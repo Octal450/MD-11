@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+    <path>overhead_2.ac</path>
+	
+    <animation>
+	<type>shader</type>
+	<shader>chrome</shader>
+	<texture>chrome_cockpit.png</texture>
+	<object-name>oh.glass.2</object-name>
+    </animation>
+
+    <effect>
+	<inherits-from>Effects/model-transparent</inherits-from>
+	<object-name>overhead.text.2</object-name>
+    </effect>
+
+    <animation>
+	<type>shader</type>
+	<shader>chrome</shader>
+	<texture>chrome_cockpit_red.png</texture>
+	<object-name>engine.fire.glass</object-name>
+    </animation>
+
+    <animation>
+	<name>Panel lighting</name>
+	<type>material</type>
+	<object-name>overhead.text.2</object-name>
+	<emission>
+	    <red>1.5</red>
+	    <green>1.27</green>
+	    <blue>1</blue>
+	    <factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
+	</emission>
+    </animation>
+
+    <effect>
+	<inherits-from>Aircraft/MD-11Family/Models/Effects/engine</inherits-from>
+	<object-name>oh_2_buttons</object-name>
+    </effect>
+
+    <animation>
+	<type>pick</type>
+	<object-name>APU_on.btn</object-name>
+	<object-name>APU_off.btn</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		controls.click(4);
+		if (getprop("controls/APU/off-start-run") == 0) {
+		    setprop("controls/APU/off-start-run",1);
+		    settimer(func setprop("controls/APU/off-start-run",2),0.2);
+		} else {
+		    setprop("controls/APU/off-start-run",0);
+		    setprop("controls/APU/apu-gen-switch",0);
+		}
+		</script>
+	    </binding>
+	</action>
+    </animation>
+    <animation>
+	<type>textranslate</type>
+	<object-name>APU_on.btn</object-name>
+        <condition>
+	    <equals>
+		<property>systems/electrical/outputs/avionics</property>
+		<value>1</value>
+	    </equals>
+	</condition>
+	<property>controls/switches/apu-indicator</property>
+	<factor>-0.0625</factor>
+	<axis>
+	    <x>1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+    </animation>
+    <animation>
+	<type>textranslate</type>
+	<object-name>APU_off.btn</object-name>
+        <condition>
+	    <equals>
+		<property>systems/electrical/outputs/avionics</property>
+		<value>1</value>
+	    </equals>
+	</condition>
+	<property>controls/APU/off-start-run</property>
+	<interpolation>
+	    <entry>
+		<ind>0</ind>
+		<dep>-0.0625</dep>
+	    </entry>
+	    <entry>
+		<ind>1</ind>
+		<dep>0</dep>
+	    </entry>
+	    <entry>
+		<ind>3</ind>
+		<dep>0</dep>
+	    </entry>
+	</interpolation>
+	<axis>
+	    <x>1</x>
+	    <y>0</y>
+	    <z>0</z>
+	</axis>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>APU_gen.btn</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-toggle</command>
+                <property>controls/APU/apu-gen-switch</property>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+		<script>controls.click(4);</script>
+	    </binding>
+	</action>
+    </animation>
+    <animation>
+	<type>textranslate</type>
+	<object-name>APU_gen.btn</object-name>
+        <condition>
+	    <equals>
+		<property>systems/electrical/outputs/avionics</property>
+		<value>1</value>
+	    </equals>
+	</condition>
+	<property>systems/electrical/APB</property>
+	<interpolation>
+	    <entry>
+		<ind>0</ind>
+		<dep>0.0625</dep>
+	    </entry>
+	    <entry>
+		<ind>1</ind>
+		<dep>0</dep>
+	    </entry>
+	</interpolation>
+	<axis>
+	    <x>0</x>
+	    <y>1</y>
+	    <z>0</z>
+	</axis>
+    </animation>
+
+</PropertyList>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+    <path>audioselector.ac</path>
+    
+         		  <animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>chrome_cockpit.png</texture>
+<object-name>audioselector.buttons</object-name>
+</animation>
+
+    <animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>audioselector.text</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+    <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>audioselector.text</object-name>
+    </effect>
+
+
+</PropertyList>

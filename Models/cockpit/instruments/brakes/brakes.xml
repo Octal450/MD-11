@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+    <path>brakes.ac</path>
+    
+         		  <animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>chrome_cockpit.png</texture>
+<object-name>brake.glass</object-name>
+</animation>
+
+    <animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>brake.text</object-name>
+		<object-name>brake.text.underglass</object-name>
+		<object-name>Abrake.001</object-name>
+		<object-name>needle.1</object-name>
+		<object-name>needle.2</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+		    <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>brake.text</object-name>
+		<object-name>Abrake.001</object-name>
+    </effect>
+
+
+    <animation>
+        <type>rotate</type>
+        <object-name>AutoBrake.knob</object-name>
+        <object-name>Abrake.001</object-name>
+        <property>autopilot/autobrake/step</property>
+        <interpolation>
+            <entry>
+                <ind>-1</ind>
+                <dep>-45</dep>
+            </entry>
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>45</dep>
+            </entry>
+            <entry>
+                <ind>2</ind>
+                <dep>90</dep>
+            </entry>
+            <entry>
+                <ind>3</ind>
+                <dep>135</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.0066</x-m>
+            <y-m>0.0216</y-m>
+            <z-m>0.0052</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+    
+        <animation>
+        <type>rotate</type>
+        <object-name>needle.1</object-name>
+        <object-name>needle.3</object-name>
+        <property>controls/gear/brake-right</property>
+<factor>180</factor>
+        <center>
+            <x-m>0.00</x-m>
+            <y-m>-0.0694</y-m>
+            <z-m>0.0052</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+    
+            <animation>
+        <type>rotate</type>
+        <object-name>needle.2</object-name>
+        <property>controls/gear/brake-left</property>
+<factor>180</factor>
+        <center>
+            <x-m>0.00</x-m>
+            <y-m>-0.0694</y-m>
+            <z-m>0.0052</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>AutoBrake.knob</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>1</step>
+                <min>-1</min>
+                <max>3</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
+        </action>
+        <action>
+            <button>3</button> <!--  scroll up -->
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>1</step>
+                <min>-1</min>
+                <max>3</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AutoBrake.knob</object-name>
+        <action>
+            <button>1</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>-1</step>
+                <min>-1</min>
+                <max>3</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>4</button> <!--  scroll down -->
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>-1</step>
+                <min>-1</min>
+                <max>3</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
+        </action>
+    </animation>
+
+
+</PropertyList>

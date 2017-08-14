@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<path>MD-11.ac</path>
+ 
+ 				<animation>
+		<type>select</type>
+    <object-name>cabin_windows.finnair.paint</object-name>
+		<condition>
+		<or>
+		<equals>
+				<property>controls/cabin/cabinwindows</property>
+				<value>0</value>
+				</equals>
+		<equals>
+				<property>controls/cabin/cabinwindows</property>
+				<value>3</value>
+				</equals>
+				</or>
+		</condition>
+	</animation>
+	
+
+
+</PropertyList>

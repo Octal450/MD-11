@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<path>compass.ac</path>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Ring</object-name>
+		<property>instrumentation/magnetic-compass[0]/indicated-heading-deg</property>
+		<center>
+			<x-m>-27.4984</x-m>
+			<y-m>0.000039</y-m>
+			<z-m>0.0241</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	
+	    <animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>Ring</object-name>
+		<object-name>compass.needle</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+		    		  <animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>Aircraft/MD-11Family/Models/cockpit/chrome_cockpit.png</texture>
+<object-name>compass.glass</object-name>
+</animation>
+
+</PropertyList>

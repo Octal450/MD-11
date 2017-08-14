@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<path>cockpit.ac</path>
+	
+	  <effect>
+<inherits-from>Aircraft/MD-11Family/Models/Effects/bumpspec-floor</inherits-from>
+<object-name>floor</object-name>
+ </effect>
+
+	    		  <animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>chrome_cockpit.png</texture>
+<object-name>ctr.gear.glass</object-name>
+<object-name>crank.handle.left</object-name>
+</animation>
+
+	    		  <animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>windshield.png</texture>
+<object-name>Windshield.inner</object-name>
+</animation>
+
+    <animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>dashboard.text</object-name>
+		<object-name>sidepanel.text</object-name>
+		<object-name>dashboard.knob.1</object-name>
+		<object-name>dashboard.knob.2</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	    <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>dashboard.text</object-name>
+		<object-name>sidepanel.text</object-name>
+		<object-name>dashboard.knob.1</object-name>
+		<object-name>dashboard.knob.2</object-name>
+    </effect>
+
+	
+	    <animation>
+        <type>select</type>
+        <object-name>Power.off</object-name>
+        <condition>
+            <less-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </less-than>
+        </condition>
+    </animation>
+    
+<model>
+	<name>Overhead 1</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/overhead_1.xml</path>
+			<offsets>
+			<pitch-deg>55</pitch-deg>
+		</offsets>
+</model>
+
+<model>
+	<name>Compass</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/compass/compass.xml</path>
+				<offsets>
+      <x-m>0.05</x-m>
+		</offsets>
+</model>
+
+ <animation>
+   <type>pick</type>
+   <object-name>Compass</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+       <command>nasal</command>
+       <script>MD11.COMPASS.toggle();</script>
+     </binding>
+   </action>
+ </animation>
+ 
+ 
+ 		<animation>
+		<type>translate</type>
+		<object-name>Compass</object-name>
+    <property>/sim/model/door-positions/compass/position-norm</property>
+		<factor>0.05</factor>
+ <axis>
+  <x>0</x>
+  <y>0.0</y>
+  <z>1</z>
+ </axis>
+	</animation>
+
+<model>
+	<name>Overhead 2</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/overhead_2.xml</path>
+			<offsets>
+			<pitch-deg>69.19</pitch-deg>
+		</offsets>
+</model>
+	
+	
+
+<model>
+	<name>FCP</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/FCP/FCP.xml</path>
+			<offsets>
+			<pitch-deg>-10</pitch-deg>
+		</offsets>
+</model>
+
+<model>
+	<name>1st seat</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/seat.xml</path>
+			<offsets>
+      <x-m>-26.8662</x-m>
+      <y-m>-0.5256</y-m>
+      <z-m>6.3334</z-m>
+		</offsets>
+</model>
+
+<model>
+	<name>2nd seat</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/seat.xml</path>
+			<offsets>
+      <x-m>-26.8662</x-m>
+      <y-m>0.5256</y-m>
+      <z-m>6.3334</z-m>
+		</offsets>
+</model>
+
+<model>
+	<name>3rd seat</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/seat.xml</path>
+			<offsets>
+      <heading-deg>-90</heading-deg>
+      <x-m>-26.0424</x-m>
+      <y-m>0.436</y-m>
+      <z-m>6.2319</z-m>
+		</offsets>
+</model>
+
+<model>
+	<name>Pedestal</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/pedestal.xml</path>
+</model>
+
+
+<model>
+	<name>3. Audio selector</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+			<offsets>
+			<pitch-deg>90</pitch-deg>
+      <heading-deg>-90</heading-deg>
+      <x-m>-26.3494</x-m>
+      <y-m>0.9785</y-m>
+      <z-m>6.7392</z-m>
+		</offsets>
+</model>
+
+
+<model>
+	<name>PFD</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/PFD/PFD_L.xml</path>
+			<offsets>
+            <x-m>-27.5138</x-m>
+            <y-m>-0.555</y-m>
+            <z-m>6.9072</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+</model>
+
+<model>
+	<name>EAD 1</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/EAD_1_GE.xml</path>
+			<offsets>
+            <x-m>-27.5138</x-m>
+            <y-m>-0.15</y-m>
+            <z-m>6.9072</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+</model>
+
+<model>
+	<name>EAD 2</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/SD.xml</path>
+			<offsets>
+            <x-m>-27.5138</x-m>
+            <y-m>0.15</y-m>
+            <z-m>6.9072</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+</model>
+
+<model>
+	<name>PFD2</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/PFD/PFD_R.xml</path>
+			<offsets>
+            <x-m>-27.5138</x-m>
+            <y-m>0.555</y-m>
+            <z-m>6.9072</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+</model>
+
+	<animation>
+ <type>translate</type>
+ <object-name>pedals.left</object-name>
+ <property>controls/flight/rudder</property>
+ <factor>0.08</factor>
+ <axis>
+  <x>1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>pedals.right</object-name>
+ <property>controls/flight/rudder</property>
+ <factor>-0.08</factor>
+ <axis>
+  <x>1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+	
+	  <animation>
+    <type>rotate</type>
+		<object-name>Tiller</object-name>
+		<condition>
+			<property>controls/gear/tiller-enabled</property>
+		</condition>
+    <property>sim/gui/dialogs/tiller-steering/value</property>
+    <factor>-1</factor>
+    <center>
+      <x-m>-27.2143</x-m>
+      <y-m>-0.9685</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x> 0 </x> 
+      <y> 0 </y> 
+      <z> 1 </z> 
+    </axis>
+  </animation>
+  
+  	  <animation>
+    <type>rotate</type>
+		<object-name>Tiller.2</object-name>
+		<condition>
+			<property>controls/gear/tiller-enabled</property>
+		</condition>
+    <property>sim/gui/dialogs/tiller-steering/value</property>
+    <factor>-1</factor>
+    <center>
+      <x-m>-27.2143</x-m>
+      <y-m>0.9685</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x> 0 </x> 
+      <y> 0 </y> 
+      <z> 1 </z> 
+    </axis>
+  </animation>
+  
+  
+  	<!-- Gear lever -->
+	<animation>
+		<name>Gear lever rotate</name>
+		<type>rotate</type>
+		<object-name>gearlever</object-name>
+		<object-name>gearlever.glass</object-name>
+		<object-name>gearlever.glass.001</object-name>
+		<property>controls/gear/gearlever/position-norm</property>
+		<interpolation>
+			<entry><ind>0.1</ind><dep>-60</dep></entry>
+			<entry><ind>0.9</ind><dep>0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-27.5502</x-m>
+			<y-m>-0.2913</y-m>
+			<z-m>6.9061</z-m>
+		</center>
+	</animation>
+	
+		<animation>
+		<type>translate</type>
+		<object-name>gearlever</object-name>
+		<object-name>gearlever.glass</object-name>
+		<object-name>gearlever.glass.001</object-name>
+		<property>controls/gear/gearlever/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.1</ind><dep>0.01</dep></entry>
+			<entry><ind>0.9</ind><dep>0.01</dep></entry>
+			<entry><ind>1.0</ind><dep>0</dep></entry>
+		</interpolation>
+	<axis>
+	    <x1-m>-27.5227</x1-m>
+	    <y1-m>-0.0235</y1-m>
+	    <z1-m>6.9061</z1-m>
+	    <x2-m>-27.4782</x2-m>
+	    <y2-m>-0.0235</y2-m>
+	    <z2-m>6.8876</z2-m>
+	</axis>
+	</animation>
+	
+			<effect>
+		<inherits-from>Aircraft/MD-11Family/Models/Effects/engine</inherits-from>
+    <object-name>gearlever.glass</object-name>
+    <object-name>cockpit_chrome</object-name>
+	</effect>
+
+	
+	<animation>
+		<name>Gear lever pick</name>
+		<type>pick</type>
+		<object-name>gearlever</object-name>
+		<object-name>gearlever.glass</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/gear-down</property>
+			</binding>
+		</action>
+	</animation>
+
+
+			<animation>
+		<type>select</type>
+        <object-name>lg.nose.green</object-name>
+        <object-name>lg.nose.red</object-name>
+        <object-name>lg.left.green</object-name>
+        <object-name>lg.left.red</object-name>
+        <object-name>lg.right.green</object-name>
+        <object-name>lg.right.red</object-name>
+        <object-name>lg.ctr.green</object-name>
+        <object-name>lg.ctr.red</object-name>
+		<condition>
+				<property>systems/electrical/outputs/avionics</property>
+		</condition>
+	</animation>
+	
+	        <animation>
+        <type>select</type>
+        <object-name>lg.nose.green</object-name>
+        <condition>
+        <greater-than>
+		<property>gear/gear[0]/position-norm</property>
+		<value>0.99</value>
+		</greater-than>
+       </condition>
+    </animation>
+    
+	        <animation>
+        <type>select</type>
+        <object-name>lg.nose.red</object-name>
+        <condition>
+        <and>
+        <less-than>
+		<property>gear/gear[0]/position-norm</property>
+		<value>0.99</value>
+		</less-than>
+    <greater-than>
+		<property>gear/gear[0]/position-norm</property>
+		<value>0.01</value>
+		</greater-than>
+		</and>
+       </condition>
+    </animation>
+    
+    	        <animation>
+        <type>select</type>
+        <object-name>lg.left.green</object-name>
+        <condition>
+        <greater-than>
+		  <property>gear/gear[1]/position-norm</property>
+		  <value>0.99</value>
+		  </greater-than>
+       </condition>
+    </animation>
+    
+	        <animation>
+        <type>select</type>
+        <object-name>lg.left.red</object-name>
+        <condition>
+        <and>
+        <less-than>
+		<property>gear/gear[1]/position-norm</property>
+		<value>0.99</value>
+		</less-than>
+    <greater-than>
+		<property>gear/gear[1]/position-norm</property>
+		<value>0.01</value>
+		</greater-than>
+		</and>
+       </condition>
+    </animation>
+    
+          <animation>
+        <type>select</type>
+        <object-name>lg.right.green</object-name>
+        <condition>
+        <greater-than>
+		<property>gear/gear[1]/position-norm</property>
+		<value>0.99</value>
+		</greater-than>
+       </condition>
+    </animation>
+    
+	        <animation>
+        <type>select</type>
+        <object-name>lg.right.red</object-name>
+        <condition>
+        <and>
+        <less-than>
+		<property>gear/gear[1]/position-norm</property>
+		<value>0.99</value>
+		</less-than>
+    <greater-than>
+		<property>gear/gear[1]/position-norm</property>
+		<value>0.01</value>
+		</greater-than>
+		</and>
+       </condition>
+    </animation>
+    
+              <animation>
+        <type>select</type>
+        <object-name>lg.ctr.green</object-name>
+        <condition>
+        <greater-than>
+		<property>gear/gear[2]/position-norm</property>
+		<value>0.99</value>
+		</greater-than>
+       </condition>
+    </animation>
+    
+	        <animation>
+        <type>select</type>
+        <object-name>lg.ctr.red</object-name>
+        <condition>
+        <and>
+        <less-than>
+		<property>gear/gear[2]/position-norm</property>
+		<value>0.99</value>
+		</less-than>
+    <greater-than>
+		<property>gear/gear[2]/position-norm</property>
+		<value>0.01</value>
+		</greater-than>
+		</and>
+       </condition>
+    </animation>
+    
+<!-- Yokes -->
+
+<animation>
+ <type>rotate</type>
+ <object-name>yoke.left.chart</object-name>
+ <object-name>yoke.left.column</object-name>
+ <object-name>yoke.left</object-name>
+   <object-name>yoke.noseup</object-name>
+   <object-name>yoke.nosedown</object-name>
+    <object-name>yoke.autodsg</object-name>
+        <object-name>yoke.piece</object-name>
+ <property>controls/flight/elevator</property>
+ <factor>15</factor>
+ <center>
+  <x-m>-27.3315</x-m>
+  <y-m>-0.524</y-m>
+  <z-m>6.3408</z-m>
+ </center>
+ <axis>
+  <x>0.0</x>
+  <y>-1.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>rotate</type>
+ <object-name>yoke.left</object-name>
+  <object-name>yoke.noseup</object-name>
+   <object-name>yoke.nosedown</object-name>
+    <object-name>yoke.autodsg</object-name>
+  <object-name>autopilot_disengage</object-name>
+ <property>controls/flight/aileron</property>
+ <factor>90</factor>
+ <center>
+  <x-m>-27.2846</x-m>
+  <y-m>-0.524</y-m>
+  <z-m>6.9244</z-m>
+ </center>
+ <axis>
+  <x>-1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+	<animation>
+		<type>translate</type>
+ <object-name>yoke.left.column.2</object-name>
+ <property>controls/flight/elevator</property>
+		<factor>0.01</factor>
+ <axis>
+  <x>-1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>yoke.autodsg</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/ap-yoke-button</property>
+			</binding>
+			<mod-up>
+			    <binding>
+				<command>property-assign</command>
+				<property>controls/switches/ap-yoke-button</property>
+				<value type="bool">false</value>
+			    </binding>
+			</mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap1</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap2</property>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>yoke.autodsg</object-name>
+		<property>controls/switches/ap-yoke-button</property>
+		<factor>0.002</factor>
+		<axis>
+		    <x1-m>-27.2002</x1-m>
+		    <y1-m>-0.6221</y1-m>
+		    <z1-m>6.9687</z1-m>
+		    <x2-m>-27.2135</x2-m>
+		    <y2-m>-0.6199</y2-m>
+		    <z2-m>6.9713</z2-m>
+		</axis>
+	</animation>
+	
+	
+	
+	
+	<animation>
+ <type>rotate</type>
+ <object-name>yoke.right.chart</object-name>
+ <object-name>yoke.right.column</object-name>
+ <object-name>yoke.right</object-name>
+   <object-name>yoke.noseup.right</object-name>
+   <object-name>yoke.nosedown.right</object-name>
+    <object-name>yoke.autodsg.right</object-name>
+ <property>controls/flight/elevator</property>
+ <factor>15</factor>
+ <center>
+  <x-m>-27.3315</x-m>
+  <y-m>0.524</y-m>
+  <z-m>6.3408</z-m>
+ </center>
+ <axis>
+  <x>0.0</x>
+  <y>-1.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>rotate</type>
+ <object-name>yoke.right</object-name>
+  <object-name>yoke.noseup.right</object-name>
+   <object-name>yoke.nosedown.right</object-name>
+    <object-name>yoke.autodsg.right</object-name>
+ <property>controls/flight/aileron</property>
+ <factor>90</factor>
+ <center>
+  <x-m>-27.2846</x-m>
+  <y-m>0.524</y-m>
+  <z-m>6.9244</z-m>
+ </center>
+ <axis>
+  <x>-1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+	<animation>
+		<type>translate</type>
+ <object-name>yoke.right.column.2</object-name>
+ <property>controls/flight/elevator</property>
+		<factor>0.01</factor>
+ <axis>
+  <x>-1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>yoke.autodsg.right</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/ap-yoke-button</property>
+			</binding>
+			<mod-up>
+			    <binding>
+				<command>property-assign</command>
+				<property>controls/switches/ap-yoke-button</property>
+				<value type="bool">false</value>
+			    </binding>
+			</mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap1</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap2</property>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>yoke.autodsg.right</object-name>
+		<property>controls/switches/ap-yoke-button</property>
+		<factor>0.002</factor>
+		<axis>
+		    <x1-m>-27.2002</x1-m>
+		    <y1-m>0.6221</y1-m>
+		    <z1-m>6.9687</z1-m>
+		    <x2-m>-27.2135</x2-m>
+		    <y2-m>0.6199</y2-m>
+		    <z2-m>6.9713</z2-m>
+		</axis>
+	</animation>
+	
+	        <animation>
+        <type>textranslate</type>
+        <object-name>lightprotect.left</object-name>
+        <property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+        <factor>0.068</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+        </axis>
+    </animation>
+    
+ <animation>
+   <type>pick</type>
+   <object-name>lightprotect.left</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+       <command>nasal</command>
+       <script>MD11.leftLightProtect.toggle();</script>
+     </binding>
+   </action>
+ </animation>
+ 
+ 
+ 		<animation>
+		<type>translate</type>
+		<object-name>lightprotect.left.2</object-name>
+    <property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+		<factor>0.68</factor>
+	<axis>
+	    <x1-m>-26.6086</x1-m>
+	    <y1-m>-1.2088</y1-m>
+	    <z1-m>7.2554</z1-m>
+	    <x2-m>-27.2278</x2-m>
+	    <y2-m>-0.84</y2-m>
+	    <z2-m>7.2642</z2-m>
+	</axis>
+	</animation>
+	
+	 	<animation>
+ <type>rotate</type>
+		<object-name>lightprotect.left.2</object-name>
+    <property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+ <factor>-7</factor>
+ <center>
+  <x-m>-26.6276</x-m>
+  <y-m>-1.1918</y-m>
+  <z-m>7.2539</z-m>
+ </center>
+ <axis>
+  <x>1.0</x>
+  <y>0.0</y>
+  <z>0.0</z>
+ </axis>
+</animation>
+
+	 	<animation>
+ <type>rotate</type>
+		<object-name>lightprotect.left.2</object-name>
+    <property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+ <factor>-17</factor>
+ <center>
+  <x-m>-26.6276</x-m>
+  <y-m>-1.1918</y-m>
+  <z-m>7.2539</z-m>
+ </center>
+ <axis>
+  <x>0</x>
+  <y>0.0</y>
+  <z>1.0</z>
+ </axis>
+</animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>master_warning_light_on</object-name>
+        <condition>
+            <or>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                <property>instrumentation/weu/light/master-warning</property>
+            </or>
+        </condition>
+    </animation>
+    
+        <animation>
+        <type>select</type>
+        <object-name>master_caution_light_on</object-name>
+        <condition>
+            <property>instrumentation/weu/light/master-caution</property>
+        </condition>
+    </animation>
+    
+        <animation>
+        <type>select</type>
+        <object-name>master_warning_light_off</object-name>
+        <condition>
+            <and>
+                <not><property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property></not>
+                <not><property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property></not>
+                <not><property>instrumentation/weu/light/master-warning</property></not>
+            </and>
+        </condition>
+    </animation>
+    
+        <animation>
+        <type>select</type>
+        <object-name>master_caution_light_off</object-name>
+        <condition>
+        <not>
+            <property>instrumentation/weu/light/master-caution</property>
+            </not>
+        </condition>
+    </animation>
+    
+    <!--animation>
+        <type>pick</type>
+        <object-name>flt_dr</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/FD</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    controls.click(1);
+                    MD11.afds.input(3,2);
+                </script>
+            </binding>
+        </action>
+    </animation-->
+ 
+
+</PropertyList>

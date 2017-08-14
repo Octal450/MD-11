@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<!-- MD-11 Flight Recorder -->
+
+<PropertyList>
+    <replay-config type="int">0</replay-config>
+
+    <config n="0">
+        <name>MD-11 Flight Recorder</name>
+        <!-- Include Generic Stuff -->
+        <signals include="/Aircraft/Generic/flightrecorder/components/position.xml" />
+        <signals include="/Aircraft/Generic/flightrecorder/components/controls.xml" />
+        <signals include="/Aircraft/Generic/flightrecorder/components/surfaces.xml"/>
+        <signals include="/Aircraft/Generic/flightrecorder/components/engine-jet.xml">
+            <count type="int">3</count>
+        </signals>
+        <signals include="/Aircraft/Generic/flightrecorder/components/gear-retractable.xml">
+            <count type="int">4</count>
+        </signals>
+        <signals include="/Aircraft/Generic/flightrecorder/components/tanks.xml">
+            <count type="int">5</count>
+        </signals>
+
+        <signals>  <!-- Now Custom Stuff -->
+            <signal>
+                <type>float</type>
+                <property>gear/gear[0]/compression-ft</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>gear/gear[1]/compression-ft</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>gear/gear[2]/compression-ft</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>velocities/groundspeed-kt</property>
+            </signal>
+            <signal>
+                <type>float</type>
+				<property>position/gear-agl-ft</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>engines/engine[0]/reverser-pos-norm</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>engines/engine[1]/reverser-pos-norm</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property>engines/engine[2]/reverser-pos-norm</property>
+            </signal>
+			<signal>
+				<type>float</type>
+				<property>fdm/jsbsim/fcs/slat-pos-norm</property>
+			</signal>
+            <signal>
+                <type>double</type>
+                <property>aircraft/wingflex</property>
+            </signal>
+        </signals>
+    </config>
+
+</PropertyList>

@@ -1,0 +1,1623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+	<fx>
+	
+  <apoff>
+   <name>apoff</name>
+   <path>/Aircraft/MD-10/Sounds/apoff.wav</path>
+   <condition>
+	 <property>/it-autoflight/sound/apoffsound</property>
+   </condition>
+   <volume>
+    <factor>10.0</factor>
+   </volume>
+  </apoff>
+  
+  <apoff>
+   <name>apoff2</name>
+   <path>/Aircraft/MD-10/Sounds/apoff.wav</path>
+   <condition>
+	 <property>/it-autoflight/sound/apoffsound2</property>
+   </condition>
+   <volume>
+    <factor>10.0</factor>
+   </volume>
+  </apoff>
+	
+		<mda>
+			<name>md11 a11</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn11.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a11</property>
+			</volume>
+			<pitch>
+				<property>amd11/a11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a12</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a12</property>
+			</volume>
+			<pitch>
+				<property>amd11/a12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn12-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a12b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12b.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a12b</property>
+			</volume>
+			<pitch>
+				<property>amd11/a12bp</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a13</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn13.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a13</property>
+			</volume>
+			<pitch>
+				<property>amd11/a13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a14</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a14</property>
+			</volume>
+			<pitch>
+				<property>amd11/a14p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a14b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14b.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a13</property>
+			</volume>
+			<pitch>
+				<property>amd11/a13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn14b-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		
+		<mdb>
+			<name>md11 b11</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn11.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b11</property>
+			</volume>
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<pitch>
+				<property>amd11/b11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mdb>
+			<name>md11 b12</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b12</property>
+			</volume>
+			<pitch>
+				<property>amd11/b12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mda>
+			<name>md11 b12b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12b.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b12b</property>
+			</volume>
+			<pitch>
+				<property>amd11/b12bp</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn12-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mdb>
+			<name>md11 b13</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn13.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b13</property>
+			</volume>
+			<pitch>
+				<property>amd11/b13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mdb>
+			<name>md11 b14</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b14</property>
+			</volume>
+			<pitch>
+				<property>amd11/b14p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mdb>
+			<name>md11 b14b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14b.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b13</property>
+			</volume>
+			<pitch>
+				<property>amd11/b13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn14b-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		
+		<mdc>
+			<name>md11 c11</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn11.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c11</property>
+			</volume>
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<pitch>
+				<property>amd11/c11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<mdc>
+			<name>md11 c12</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c12</property>
+			</volume>
+			<pitch>
+				<property>amd11/c12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn12-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<mda>
+			<name>md11 c12b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn12b.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c12b</property>
+			</volume>
+			<pitch>
+				<property>amd11/c12bp</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mdc>
+			<name>md11 c13</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn13.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c13</property>
+			</volume>
+			<pitch>
+				<property>amd11/c13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<mdc>
+			<name>md11 c14</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c14</property>
+			</volume>
+			<pitch>
+				<property>amd11/c14p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn1-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<mdc>
+			<name>md11 c14b</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn14b.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c13</property>
+			</volume>
+			<pitch>
+				<property>amd11/c13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>			
+			<volume>
+				<property>amd11/zn14b-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		<!-- ## ## ## -->
+		
+		<mda>
+			<name>md11 a21</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn21.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a21</property>
+			</volume>
+			<pitch>
+				<property>amd11/a21p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mda>
+			<name>md11 a22</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn22.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a22</property>
+			</volume>
+			<pitch>
+				<property>amd11/a22p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>20</y>
+			</position>
+		</mda>
+		
+		<mdb>
+			<name>md11 b21</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn21.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b21</property>
+			</volume>
+			<pitch>
+				<property>amd11/b21p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mdb>
+			<name>md11 b22</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn22.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b22</property>
+			</volume>
+			<pitch>
+				<property>amd11/b22p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>0</y>
+			</position>
+		</mdb>
+		
+		<mdc>
+			<name>md11 b21</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn21.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b21</property>
+			</volume>
+			<pitch>
+				<property>amd11/b21p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<mdc>
+			<name>md11 c22</name>
+			<mode>looped</mode>
+			<path>FL2070/mdn22.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c22</property>
+			</volume>
+			<pitch>
+				<property>amd11/c22p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+			</volume>
+			<volume>
+				<property>amd11/zn2-pos</property>
+			</volume>
+			
+			<position>
+				<y>-20</y>
+			</position>
+		</mdc>
+		
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND -->  <!-- ## ## ## -->
+		
+		<xmda>
+			<name>md11 xa11</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn11.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa11</property>
+			</volume>
+			<pitch>
+				<property>amd11/xa11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<xmda>
+			<name>md11 xa12</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn12.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa12</property>
+			</volume>
+			<pitch>
+				<property>amd11/xa12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<xmda>
+			<name>md11 xa13</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn13.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa13</property>
+			</volume>
+			<pitch>
+				<property>amd11/xa13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<xmdb>
+			<name>md11 xb11</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn11.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb11</property>
+			</volume>
+			<pitch>
+				<property>amd11/xb11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<xmdb>
+			<name>md11 xb12</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn12.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb12</property>
+			</volume>
+			<pitch>
+				<property>amd11/xb12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<xmdb>
+			<name>md11 xb13</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn13.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb13</property>
+			</volume>
+			<pitch>
+				<property>amd11/xb13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<xmdc>
+			<name>md11 xc11</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn11.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc11</property>
+			</volume>
+			<pitch>
+				<property>amd11/xc11p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<xmdc>
+			<name>md11 xc12</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn12.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc12</property>
+			</volume>
+			<pitch>
+				<property>amd11/xc12p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<xmdc>
+			<name>md11 xc13</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn13.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc13</property>
+			</volume>
+			<pitch>
+				<property>amd11/xc13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND N2 -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND N2 -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND N2 -->  <!-- ## ## ## -->
+		<!-- ## ## ## --> <!-- EXTERNAL SOUND N2 -->  <!-- ## ## ## -->
+		
+		<xmda>
+			<name>md11 xa21</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn21.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa21</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xa11p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<xmda>
+			<name>md11 xa22</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn22.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa12</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xa12p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<xmda>
+			<name>md11 xa23</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn23.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xa13</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xa13p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<xmdb>
+			<name>md11 xb21</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn21.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb21</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xb11p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<xmdb>
+			<name>md11 xb22</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn22.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb12</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xb12p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<xmdb>
+			<name>md11 xb23</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn23.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xb13</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xb13p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<xmdc>
+			<name>md11 xc21</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn21.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc21</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xc11p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<xmdc>
+			<name>md11 xc22</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn22.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc12</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xc12p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<xmdc>
+			<name>md11 xc23</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn23.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/xc13</property>
+			</volume>
+			<!--pitch>
+				<property>amd11/xc13p</property>
+				<offset>0</offset>
+			</pitch-->
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<xmda>
+			<name>md11 xa14</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn14.wav</path>
+			<property>engines/engine[0]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[0]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/a14</property>
+			</volume>
+			<pitch>
+				<property>amd11/xa13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmda>
+		
+		<xmdb>
+			<name>md11 xb14</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn14.wav</path>
+			<property>engines/engine[1]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[1]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/b14</property>
+			</volume>
+			<pitch>
+				<property>amd11/xb13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdb>
+		
+		<xmdc>
+			<name>md11 xc14</name>
+			<mode>looped</mode>
+			<path>FL2070/xmdn14.wav</path>
+			<property>engines/engine[2]/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/engine[2]/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>amd11/c14</property>
+			</volume>
+			<pitch>
+				<property>amd11/xc13p</property>
+				<offset>0</offset>
+			</pitch>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+			</volume>
+		</xmdc>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<misc>
+			<name>md11 wind</name>
+			<mode>looped</mode>
+			<path>FL2070/11_wind.wav</path>
+			<condition>
+				<!--
+				
+				-->
+			</condition>
+			
+			<volume>
+				<property>sim/sound/other/wind</property>
+			</volume>
+			<pitch>
+				<property>sim/sound/other/windp</property>
+				<offset>0</offset>
+			</pitch>
+		</misc>
+		
+		<misc>
+			<name>md11 cockpit system</name>
+			<mode>looped</mode>
+			<path>FL2070/11_cockpit.wav</path>
+			<condition>
+			<greater-than>
+            <property>systems/electrical/outputs/efis</property>
+            <value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>1.4</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 0</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[0]/position-norm</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 1</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[1]/position-norm</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 2</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[2]/position-norm</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 3</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[3]/position-norm</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll c 0</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll l 1</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll r 2</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll c 3</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[3]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll l 1</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>2</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll r 2</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>2</factor>
+			</volume>
+		</misc>
+		
+		<mdapu>
+			<name>apu</name>
+			<mode>looped</mode>
+			<path>FL2070/11_apu.wav</path>
+			<property>engines/apu/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/apu/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+			
+			<volume>
+				<property>engines/apu/n1</property>
+				<factor>0.01</factor>
+			</volume>
+			<pitch>
+				<property>engines/apu/n1</property>
+				<factor>0.01</factor>
+				<offset>0</offset>
+			</pitch>
+		</mdapu>
+		
+		<!-- TOUCHDOWN SOUNDS -->
+		
+		<touch>
+			<name>md11 touch n</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_INf.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 touch l</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_IN.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 touch r</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_IN.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/inside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch n</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUTf.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch l</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUT.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch r</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUT.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+	</fx>
+</PropertyList>

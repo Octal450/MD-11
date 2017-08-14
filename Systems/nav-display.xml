@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+<symbol>
+    <type type="string">airport</type>
+    <enable>
+        <property>instrumentation/efis/inputs/arpt</property>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+    </enable>
+    
+    <state type="string">!departure</state>
+    <state type="string">!arrival</state>
+    
+    <width type="float">24</width>
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">6.0</u0>
+    <v0 type="float">6.0</v0>
+    <u1 type="float">58</u1>
+    <v1 type="float">58</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>0</text-offset-y>
+</symbol>
+
+<rule>
+    <type>runway</type>
+    <state>destination</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <greater-than> <!-- range 80nm or higher -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </greater-than>
+    </enable>
+    <symbol>dep-arr-airport</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>departure</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <greater-than> <!-- range 80nm or higher -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </greater-than>
+    </enable>
+    <symbol>dep-arr-airport</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>destination</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <less-than> <!-- range 40nm or less -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </less-than>
+    </enable>
+    <symbol>dep-arr-runway</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>departure</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <less-than> <!-- range 40nm or less -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </less-than>
+    </enable>
+    <symbol>dep-arr-runway</symbol>
+</rule>
+
+
+<symbol>
+    <id type="string">dep-arr-runway</id>
+    
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    <stretch-symbol type="bool">true</stretch-symbol>
+    
+    <u0 type="float">410.0</u0>
+    <v0 type="float">20.0</v0>
+    <u1 type="float">464.0</u1>
+    <v1 type="float">126</v1>
+    
+    <x0 type="float">-25</x0>
+    <y0 type="float">-50</y0>
+    
+    <x1 type="float">25</x1>
+    <y1 type="float">0.0</y1>
+    
+    <!-- stretch data -->
+    <v2 type="float">302.0</v2>
+    <y2 type="float">0.0</y2>
+    
+    <v3 type="float">408.0</v3>
+    <y3 type="float">50</y3>
+    
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
+</symbol>
+
+<symbol>
+    <id type="string">dep-arr-airport</id>
+    
+    <width type="float">50</width>
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    
+    <u0 type="float">250.0</u0>
+    <v0 type="float">13.0</v0>
+    <u1 type="float">350.0</u1>
+    <v1 type="float">128</v1>
+    
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
+</symbol>
+
+<symbol>
+    <type type="string">waypoint</type>
+    <state type="string">current-wp</state>
+    
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+    </enable>
+    
+    <width type="float">40</width>
+    <u0 type="float">0</u0>
+    <v0 type="float">64</v0>
+    <u1 type="float">64</u1>
+    <v1 type="float">128</v1>
+    
+    <color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">1</blue>
+    </color>
+    <line-color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">1</blue>
+    </line-color>
+    <draw-leg type="bool">true</draw-leg>
+    
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
+</symbol>
+    
+<symbol>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+    </enable>
+    
+    <type type="string">waypoint</type>
+    <state type="string">on-active-route</state>
+    <state type="string">!current-wp</state>
+    
+    <width type="float">40</width>
+    <u0 type="float">0</u0>
+    <v0 type="float">64</v0>
+    <u1 type="float">64</u1>
+    <v1 type="float">128</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    <draw-leg type="bool">true</draw-leg>
+    <line-color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">1</blue>
+    </line-color>
+	
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
+</symbol>
+    
+<symbol>
+    <type type="string">VOR</type>
+    <state type="string">tuned</state>
+    
+    <enable>
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value> <!-- MAP mode -->
+        </equals>
+    </enable>
+    
+    <width type="float">32</width>
+    <u0 type="float">192</u0>
+    <v0 type="float">64</v0>
+    <u1 type="float">256</u1>
+    <v1 type="float">128</v1>
+	
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">0</blue>
+    </color>
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>0</text-offset-y>
+</symbol>
+
+<symbol>
+    <type type="string">VOR</type>
+    <enable>
+        <!-- FLT INSTM DSP, Sec. 6.10 Page 30 - non-tuned stations only
+            displayed in MAP mode -->
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value>
+        </equals>
+        <property>instrumentation/efis/inputs/sta</property>
+    </enable>
+    <state type="string">!tuned</state>
+    
+    <width type="float">32</width>
+    <u0 type="float">192</u0>
+    <v0 type="float">64</v0>
+    <u1 type="float">256</u1>
+    <v1 type="float">128</v1>
+	
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>0</text-offset-y>
+</symbol>
+
+<!-- inactive waypoints, shown when WPT button is selected -->
+<symbol>
+    <type type="string">fix</type>
+    <enable>
+        <property>instrumentation/efis/inputs/wpt</property>
+        <!-- FLT INSTM DSP Sec. 6.10 Page 33 : MAP mode, range 10, 20 or 40Nm -->
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value>
+        </equals>
+        <less-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>80</value>
+        </less-than>
+    </enable>
+    <state type="string">!on-active-route</state>
+    <width type="float">16</width>
+    <u0 type="float">0</u0>
+    <v0 type="float">256</v0>
+    <u1 type="float">64</u1>
+    <v1 type="float">320</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">0</blue>
+    </color>
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>16</text-offset-x>
+    <text-offset-y>16</text-offset-y>
+</symbol>
+
+<!-- TCAS symbols -->
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">!descending</state>
+    <state type="string">!climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">209</u0>
+    <v0 type="float">267</v0>
+    <u1 type="float">251</u1>
+    <v1 type="float">309</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-0</state>
+    <state type="string">climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">209</u0>
+    <v0 type="float">203</v0>
+    <u1 type="float">251</u1>
+    <v1 type="float">245</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-0</state>
+    <state type="string">descending</state>
+    <width type="float">40</width>
+    <u0 type="float">209</u0>
+    <v0 type="float">139</v0>
+    <u1 type="float">251</u1>
+    <v1 type="float">181</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-1</state>
+    <state type="string">!climbing</state>
+    <state type="string">!descending</state>
+    <width type="float">40</width>
+    <u0 type="float">145</u0>
+    <v0 type="float">267</v0>
+    <u1 type="float">187</u1>
+    <v1 type="float">309</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">0.5</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-1</state>
+    <state type="string">climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">145</u0>
+    <v0 type="float">203</v0>
+    <u1 type="float">187</u1>
+    <v1 type="float">245</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">0.5</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-1</state>
+    <state type="string">descending</state>
+    <width type="float">40</width>
+    <u0 type="float">145</u0>
+    <v0 type="float">139</v0>
+    <u1 type="float">187</u1>
+    <v1 type="float">181</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">0.5</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-2</state>
+    <state type="string">!descending</state>
+    <state type="string">!climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">81</u0>
+    <v0 type="float">267</v0>
+    <u1 type="float">123</u1>
+    <v1 type="float">309</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0.5</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-2</state>
+    <state type="string">climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">81</u0>
+    <v0 type="float">203</v0>
+    <u1 type="float">123</u1>
+    <v1 type="float">245</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0.5</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-2</state>
+    <state type="string">descending</state>
+    <width type="float">40</width>
+    <u0 type="float">81</u0>
+    <v0 type="float">139</v0>
+    <u1 type="float">123</u1>
+    <v1 type="float">181</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0.5</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-3</state>
+    <state type="string">!climbing</state>
+    <state type="string">!descending</state>
+    <width type="float">40</width>
+    <u0 type="float">17</u0>
+    <v0 type="float">267</v0>
+    <u1 type="float">59</u1>
+    <v1 type="float">309</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-3</state>
+    <state type="string">climbing</state>
+    <width type="float">40</width>
+    <u0 type="float">17</u0>
+    <v0 type="float">203</v0>
+    <u1 type="float">59</u1>
+    <v1 type="float">245</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
+    </enable>
+    <state type="string">tcas-threat-level-3</state>
+    <state type="string">descending</state>
+    <width type="float">40</width>
+    <u0 type="float">17</u0>
+    <v0 type="float">139</v0>
+    <u1 type="float">59</u1>
+    <v1 type="float">181</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">0</green>
+        <blue type="float">0</blue>
+    </color>
+</symbol>
+
+<!-- VNAV climb / descent symbols -->
+<symbol>
+    <equals>
+        <property>instrumentation/efis/mfd/mode-num</property>
+        <value>2</value> <!-- MAP mode -->
+    </equals>
+    
+    <type type="string">tc</type>
+    <width type="float">24</width>
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">6.0</u0>
+    <v0 type="float">6.0</v0>
+    <u1 type="float">58</u1>
+    <v1 type="float">58</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">0</blue>
+    </color>
+    <text type="string">T/C</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>0</text-offset-y>
+</symbol>
+
+<symbol>
+    <equals>
+        <property>instrumentation/efis/mfd/mode-num</property>
+        <value>2</value> <!-- MAP mode -->
+    </equals>
+    
+    <type type="string">td</type>
+    <width type="float">24</width>
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">6.0</u0>
+    <v0 type="float">6.0</v0>
+    <u1 type="float">58</u1>
+    <v1 type="float">58</v1>
+    <color>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">0</blue>
+    </color>
+    <text type="string">T/D</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>0</text-offset-y>
+</symbol>
+
+</PropertyList>

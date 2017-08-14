@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<path>cargo_area.ac</path>
+	
+			<effect>
+		<inherits-from>Aircraft/MD-11Family/Models/Effects/engine</inherits-from>
+<object-name>cargo.chrome</object-name>
+	</effect>
+	
+
+</PropertyList>

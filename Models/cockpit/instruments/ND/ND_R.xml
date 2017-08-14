@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+<path>ND_R.ac</path>
+    <animation>
+        <type>select</type>
+        <object-name>Power.off</object-name>
+        <condition>
+            <less-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </less-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>ND.screenR</object-name>
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>ND.screenR</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<command>nasal</command>
+			<script>MD11.showNd("fo");</script>
+		</binding>
+	</action>
+</animation>
+
+</PropertyList>

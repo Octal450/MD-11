@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<!-- MD-11 Aircraft Config Dialog -->
+
+
+<PropertyList>
+
+	<name>aircraft-config-about</name>
+	<layout>vbox</layout>
+	<pref-width>800</pref-width>
+
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <halign>left</halign>
+            <label>About This Aircraft</label>
+        </text>
+        <button>
+            <halign>right</halign>
+            <pref-width>20</pref-width>
+            <pref-height>20</pref-height>
+            <legend>X</legend>
+            <key>Esc</key>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+	
+    <hrule/>
+	
+		<group>
+			<layout>vbox</layout>
+			
+			<text>
+				<halign>left</halign>
+				<label>it0uchpods Hanger presents: MD-11Family by MD-11 Development Team</label>
+			</text>
+			<text>
+				<halign>left</halign>
+				<label>Joshua Davidson (it0uchpods)</label>
+			</text>
+			
+			<hrule/>
+			
+			<text>
+				<halign>left</halign>
+				<label>Systems: Joshua Davidson (it0uchpods)</label>
+			</text>
+			<text>
+				<halign>left</halign>
+				<label>Cockpit: Jormapaappa1235, John Williams (tikibar), Joshua Davidson (it0uchpods)</label>
+			</text>
+			<text>
+				<halign>left</halign>
+				<label>Instruments: Joshua Davidson (it0uchpods)</label>
+			</text>
+			<text>
+				<halign>left</halign>
+				<label>Pre V1.0, Shared Libraries 1.4.4</label>
+			</text>
+			
+		</group>
+		
+	    <hrule/>
+	
+		<group>
+			<layout>hbox</layout>
+			
+			<button>
+				<halign>center</halign>
+				<legend>Go Away</legend>
+				<pref-width>210</pref-width>
+				<binding>
+					<command>dialog-close</command>
+				</binding>
+			</button>
+		</group>
+	
+</PropertyList>

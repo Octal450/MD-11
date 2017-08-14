@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+<path>light-flare.ac</path>
+
+<animation>
+	<type>light</type>
+	<light-type>spot</light-type>
+	<name>LightNavStbd</name>
+	<object-name>LightVolNavStbd</object-name>
+	<position>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</position>
+	<direction>
+		<x>-0.3</x>
+		<y>-1.0</y>
+		<z>0.8</z>
+	</direction>
+	<ambient>
+		<r>0.03</r>
+		<g>0.03</g>
+		<b>0.03</b>
+		<a>1.0</a>
+	</ambient>
+	<diffuse>
+		<r>0.7</r>
+		<g>0.7</g>
+		<b>0.6</b>
+		<a>1.0</a>
+	</diffuse>
+	<specular>
+		<r>0.7</r>
+		<g>0.7</g>
+		<b>0.7</b>
+		<a>1.0</a>
+	</specular>
+	<attenuation>
+		<c>1.0</c>
+		<l>0.001</l>
+		<q>0.0003</q>
+	</attenuation>
+	<exponent>10</exponent>
+	<near-m>0.1</near-m>
+	<far-m>20</far-m>
+	<cutoff>90</cutoff>
+	<nopreview/>
+</animation>
+
+<animation>
+	<type>select</type>
+	<object-name>LightVolNavStbd</object-name>
+	<condition>
+		<and>
+			<property>/controls/lighting/logo-lights</property>
+			<property>/sim/rendering/rembrandt/enabled</property> 
+		</and>
+	</condition>
+</animation>
+  
+</PropertyList>

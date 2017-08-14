@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+	<name>tiller-steering</name>
+	<layout>vbox</layout>
+	<draggable>true</draggable>
+	<resizable>true</resizable>
+
+	<nasal>
+		<open>
+			props.globals.initNode("sim/gui/dialogs/tiller-steering/value", 0);
+			setprop("controls/gear/tiller-cmd-norm", 0.0);
+		</open>
+		<close>
+			setprop("sim/gui/dialogs/tiller-steering/value", 0.0);
+			setprop("controls/gear/tiller-cmd-norm", 0.0);
+		</close>
+	</nasal>
+
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<label>Tiller Steering</label>
+		</text>
+
+		<empty>
+			<stretch>true</stretch>
+		</empty>
+
+		<button>
+			<legend/>
+			<key>Esc</key>
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<border>2</border>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+
+	<hrule/>
+
+	<group>
+		<stretch>true</stretch>
+		<layout>vbox</layout>
+		<halign>left</halign>
+		<valign>top</valign>
+		<padding>5</padding>
+		<pref-width>300</pref-width>
+	
+		<checkbox>
+			<halign>left</halign>
+			<label>Enable tiller steering</label>
+			<property>controls/gear/tiller-enabled</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<group>
+			<layout>hbox</layout>
+			<halign>center</halign>
+			<text>
+				<pref-width>30</pref-width>
+				<property>sim/gui/dialogs/tiller-steering/value</property>
+				<format>%2.0f</format>
+				<live>true</live>
+			</text>
+			<text>
+				<pref-width>30</pref-width>
+				<label>degrees</label>
+			</text>
+		</group>
+
+		<slider>
+			<min>-70</min>
+			<max>70</max>
+			<pref-width>290</pref-width>
+			<property>sim/gui/dialogs/tiller-steering/value</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script><![CDATA[
+					setprop("controls/gear/tiller-cmd-norm",
+					getprop("sim/gui/dialogs/tiller-steering/value") / 70.0);
+					]]>
+				</script>
+			</binding>
+		</slider>
+
+		<button>
+			<legend>Center</legend>
+			<border>2</border>
+			<binding>
+				<command>nasal</command>
+				<script>
+					setprop("sim/gui/dialogs/tiller-steering/value", 0.0);
+					setprop("controls/gear/tiller-cmd-norm", 0.0);
+				</script>
+			</binding>
+			<binding>
+				<command>dialog-update</command>
+			</binding>
+		</button>
+	</group>
+
+	<hrule/>
+	
+	<text>
+		<label>Tiller is controlled via rudder when disabled here.</label>
+	</text>
+
+</PropertyList>
+

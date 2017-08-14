@@ -1,0 +1,369 @@
+<!-- McDonnell Douglas MD-11 FCS by Joshua Davidson (it0uchpods) -->
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<system name="MD-11: FCS">
+
+	<channel name="Pitch">
+	
+		<summer name="Pitch Trim Sum">
+			<input>/controls/flight/elevator</input>
+			<input>/controls/flight/elevator-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+
+		<aerosurface_scale name="Elevator Control">
+			<input>fcs/pitch-trim-sum</input>
+			<gain>0.015</gain>
+			<range>
+				<min>-20</min>
+				<max>20</max>
+			</range>
+			<output>fcs/elevator-pos-rad</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="Elevator Position Normalizer">
+			<input>fcs/pitch-trim-sum</input>
+			<range>
+				<min>-1</min>
+				<max>1</max>
+			</range>
+			<output>fcs/elevator-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Roll">
+	
+		<summer name="Roll Trim Sum">
+			<input>/controls/flight/aileron</input>
+			<input>/controls/flight/aileron-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+
+		<aerosurface_scale name="Left Aileron Control">
+			<input>fcs/roll-trim-sum</input>
+			<gain>0.022</gain>
+			<range>
+				<min>-25</min>
+				<max>25</max>
+			</range>
+			<output>fcs/left-aileron-pos-rad</output>
+		</aerosurface_scale>
+
+		<aerosurface_scale name="Right Aileron Control">
+			<input>-fcs/roll-trim-sum</input>
+			<gain>0.022</gain>
+			<range>
+				<min>-25</min>
+				<max>25</max>
+			</range>
+			<output>fcs/right-aileron-pos-rad</output>
+		</aerosurface_scale>
+
+		<aerosurface_scale name="Left Aileron position normalized">
+			<input>fcs/left-aileron-pos-deg</input>
+			<domain>
+				<min>-25</min>
+				<max>25</max>
+			</domain>
+			<range>
+				<min>-1</min>
+				<max>1</max>
+			</range>
+			<output>fcs/left-aileron-pos-norm</output>
+		</aerosurface_scale>
+
+		<aerosurface_scale name="Right Aileron position normalized">
+			<input>fcs/right-aileron-pos-deg</input>
+			<domain>
+				<min>-25</min>
+				<max>25</max>
+			</domain>
+			<range>
+				<min>-1</min>
+				<max>1</max>
+			</range>
+			<output>fcs/right-aileron-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Throttle">
+	
+		<pure_gain name="fcs/throttle1">
+			<input>/controls/engines/engine[0]/throttle-output</input>
+			<gain>1</gain>
+			<output>fcs/throttle-cmd-norm</output>
+			<output>fcs/throttle-pos-norm</output>
+		</pure_gain>
+		
+		<pure_gain name="fcs/throttle2">
+			<input>/controls/engines/engine[1]/throttle-output</input>
+			<gain>1</gain>
+			<output>fcs/throttle-cmd-norm[1]</output>
+			<output>fcs/throttle-pos-norm[1]</output>
+		</pure_gain>
+		
+		<pure_gain name="fcs/throttle3">
+			<input>/controls/engines/engine[2]/throttle-output</input>
+			<gain>1</gain>
+			<output>fcs/throttle-cmd-norm[2]</output>
+			<output>fcs/throttle-pos-norm[2]</output>
+		</pure_gain>
+	
+	</channel>
+
+	<channel name="Yaw">
+	
+		<summer name="fcs/rudder-cmd">
+			<input>/controls/flight/rudder</input>
+			<input>/controls/flight/rudder-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+
+		<summer name="Rudder Command Sum">
+			<input>fcs/rudder-cmd-norm</input>
+			<input>fcs/yaw-trim-cmd-norm</input>
+			<clipto>
+				<min> -0.35 </min>
+				<max>  0.35 </max>
+			</clipto>
+		</summer>
+
+		<scheduled_gain name="Yaw Damper Rate">
+			<input>velocities/r-aero-rad_sec</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+				30     0.00
+				60     2.00
+				</tableData>
+			</table>
+		</scheduled_gain>
+
+		<scheduled_gain name="Yaw Damper Beta">
+			<input>aero/beta-rad</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+				30     0.00
+				60     0.00
+				</tableData>
+			</table>
+		</scheduled_gain>
+
+		<summer name="Yaw Damper Sum">
+			<input>fcs/yaw-damper-beta</input>
+			<input>fcs/yaw-damper-rate</input>
+			<clipto>
+				<min> -0.1 </min>
+				<max>  0.1 </max>
+			</clipto>
+		</summer>
+
+		<scheduled_gain name="Yaw Damper Final">
+			<input>fcs/yaw-damper-sum</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+				30         0.0
+				31         1.0
+				</tableData>
+			</table>
+		</scheduled_gain>
+
+		<summer name="Rudder Sum">
+			<input>fcs/rudder-command-sum</input>
+			<input>fcs/yaw-damper-final</input>
+			<clipto>
+				<min> -1 </min>
+				<max>  1 </max>
+			</clipto>
+		</summer>
+
+		<aerosurface_scale name="Rudder Control">
+			<input>fcs/rudder-sum</input>
+			<range>
+				<min> -0.35 </min>
+				<max>  0.35 </max>
+			</range>
+			<output>fcs/rudder-pos-rad</output>
+		</aerosurface_scale>
+
+		<aerosurface_scale name="rudder normalization">
+			<input>fcs/rudder-pos-rad</input>
+			<domain>
+				<min> -0.35 </min>
+				<max>  0.35 </max>
+			</domain>
+			<range>
+				<min> -1 </min>
+				<max>  1 </max>
+			</range>
+			<output>fcs/rudder-pos-norm</output>
+		</aerosurface_scale>
+
+	</channel>
+
+	<channel name="Flaps">
+
+		<kinematic name="Flaps Control">
+			<input>/controls/flight/flaps-output</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>50</position>
+					<time>30</time>
+				</setting>
+			</traverse>
+			<output>fcs/flap-pos-deg</output>
+		</kinematic>
+
+		<aerosurface_scale name="Flap position normalized">
+			<input>fcs/flap-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>50</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/flap-pos-norm</output>
+		</aerosurface_scale>
+
+	</channel>
+
+	<channel name="Slats">
+
+		<kinematic name="Slats Control">
+			<input>/controls/flight/slats</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>31</position>
+					<time>20</time>
+				</setting>
+			</traverse>
+			<output>fcs/slat-pos-deg</output>
+		</kinematic>
+
+		<aerosurface_scale name="Slat position normalized">
+			<input>fcs/slat-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>27</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/slat-pos-norm</output>
+		</aerosurface_scale>
+
+	</channel>
+
+	<channel name="Landing Gear">
+
+		<kinematic name="Gear Control">
+			<input>gear/gear-cmd-norm</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>1</position>
+					<time>10</time>
+				</setting>
+			</traverse>
+			<output>gear/gear-pos-norm</output>
+		</kinematic>
+		
+	</channel>
+
+	<channel name="Speedbrake">
+	
+		<kinematic name="Speedbrake">
+			<input>/controls/flight/speedbrake</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>1</position>
+					<time>1</time>
+				</setting>
+			</traverse>
+			<output>fcs/speedbrake-pos-norm</output>
+		</kinematic>
+		
+	</channel>
+    
+	<channel name="Tiller">
+	
+		<switch name="/controls/gear/tiller-disabled">
+			<default value="0"/>
+			<test logic="AND" value="1">
+			/controls/gear/tiller-enabled == 0
+			</test>
+		</switch>
+        
+		<fcs_function name="Nose Wheel Steering 0">
+			<function name="fcs/steer-nose-deg[0]">
+				<description>Steering command for nose gear</description>
+				<sum>
+					<product>
+						<table>
+							<independentVar lookup="row">/controls/gear/tiller-cmd-norm</independentVar>
+							<independentVar lookup="column">/controls/flight/rudder</independentVar>
+							<tableData>
+							-1   0   1
+							-1 -70 -70 -70
+							0  -7   0   7
+							1  70  70  70
+							</tableData>
+						</table>
+						<property>/controls/gear/tiller-enabled</property>
+					</product>
+					<product>
+						<product>
+							<property>/controls/flight/rudder</property>
+							<value>70</value>
+						</product>
+						<property>/controls/gear/tiller-disabled</property>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+        
+		<actuator name="Gear Nose Actuator">
+			<input>fcs/steer-nose-deg[0]</input>
+			<rate_limit>70</rate_limit>
+			<output>fcs/steer-pos-deg[0]</output>
+		</actuator>
+		
+    </channel>
+
+</system>

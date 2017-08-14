@@ -1,0 +1,2409 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<path>FCP.ac</path>
+	
+	<animation>
+		<type>select</type>
+		<object-name>AP.disengage</object-name>		
+		<object-name>AP.disengage.001</object-name>
+		<condition>
+			<equals>
+				<property>/it-autoflight/custom/afds-ovrd</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>AP.disengage2</object-name>		
+		<object-name>AP.disengage2.001</object-name>
+		<condition>
+			<equals>
+				<property>/it-autoflight/custom/afds-ovrd</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+  
+ 	<animation>
+		<type>rotate</type>
+		<object-name>BLimit.knob</object-name>
+		<object-name>BLimit.knob.indicator</object-name>
+		<property>/it-autoflight/input/bank-limit-sw</property>
+		<interpolation>
+			<entry><ind>1</ind><dep>300</dep></entry>
+			<entry><ind>2</ind><dep>240</dep></entry>
+			<entry><ind>3</ind><dep>180</dep></entry>
+			<entry><ind>4</ind><dep>120</dep></entry>
+			<entry><ind>5</ind><dep>60</dep></entry>
+			<entry><ind>0</ind><dep>0</dep></entry>
+		</interpolation>
+		<center>
+            <x-m>-25.7153</x-m>
+            <y-m>-0.0486</y-m>
+            <z-m>11.7668</z-m>
+ 		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>IAS-knob</name>
+		<type>rotate</type>
+		<condition>
+			<not>
+				<property>/it-autoflight/input/kts-mach</property>
+			</not>
+		</condition>
+		<object-name>SpdKnob</object-name>
+		<property>/it-autoflight/input/spd-kts</property>
+		<factor>100</factor>
+		<center>
+            <x-m>-25.7162</x-m>
+            <y-m>-0.0924</y-m>
+            <z-m>11.767</z-m>
+ 		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>MACH-knob</name>
+		<type>rotate</type>
+		<condition>
+			<property>/it-autoflight/input/kts-mach</property>
+		</condition>
+		<object-name>SpdKnob</object-name>
+			<property>/it-autoflight/input/spd-mach</property>
+		<factor>10000</factor>
+		<center>
+            <x-m>-25.7162</x-m>
+            <y-m>-0.0924</y-m>
+            <z-m>11.767</z-m>
+ 		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>HDG.knob</object-name>
+		<property>/it-autoflight/input/hdg</property>
+		<factor>100</factor>
+		<center>
+            <x-m>-25.7155</x-m>
+            <y-m>-0.0486</y-m>
+            <z-m>11.7668</z-m>
+ 		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>ALT.knob</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>1</factor>
+		<center>
+            <x-m>-25.7162</x-m>
+            <y-m>0.0486</y-m>
+            <z-m>11.767</z-m>
+ 		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+		<animation>
+		<type>rotate</type>
+		<object-name>Pitch_Wheel.knob</object-name>
+			<property>/it-autoflight/input/vs</property>
+		<factor>1</factor>
+		<center>
+			<x-m>-25.7354</x-m>
+			<y-m>0.0929</y-m>
+			<z-m>11.7669</z-m>
+ 		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+
+<!-- LED displays-->
+
+<!-- IAS/MACH -->
+	<animation>
+		<type>select</type>
+		<object-name>ias.ind</object-name>
+		<object-name>IAS.led1</object-name>
+		<object-name>IAS.led2</object-name>
+		<object-name>IAS.led3</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<not>
+					<property>/it-autoflight/input/kts-mach</property>
+				</not>
+				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+			</and>
+		</condition>
+	</animation>
+
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led1</object-name>
+		<property>/it-autoflight/custom/kts-sel</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led2</object-name>
+		<property>/it-autoflight/custom/kts-sel</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led3</object-name>
+		<property>/it-autoflight/custom/kts-sel</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>mach.ind</object-name>
+		<object-name>MACH.led1</object-name>
+		<object-name>MACH.led2</object-name>
+		<object-name>MACH.led3</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<property>/it-autoflight/input/kts-mach</property>
+				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led1</object-name>
+		<property>/it-autoflight/custom/mach-sel</property>
+		<factor>1</factor>
+		<step>0.1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led2</object-name>
+		<property>/it-autoflight/custom/mach-sel</property>
+		<factor>10.0</factor>
+		<step>0.01</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led3</object-name>
+		<property>/it-autoflight/custom/mach-sel</property>
+		<factor>100.0</factor>
+		<step>0.001</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+<!-- HDG/TRK -->
+	<animation>
+		<type>select</type>
+		<object-name>hdg.ind</object-name>
+		<object-name>HDG.led1</object-name>
+		<object-name>HDG.led2</object-name>
+		<object-name>HDG.led3</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<not>
+					<property>/it-autoflight/input/trk</property>
+				</not>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led1</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led2</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led3</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>trk.ind</object-name>
+		<object-name>TRK.led1</object-name>
+		<object-name>TRK.led2</object-name>
+		<object-name>TRK.led3</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<property>/it-autoflight/input/trk</property>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>TRK.led1</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>TRK.led2</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>TRK.led3</object-name>
+		<property>/it-autoflight/custom/hdg-sel</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+<!-- VS/FPA -->
+	<animation>
+		<type>select</type>
+		<object-name>vs.ind</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<equals>
+					<property>/it-autoflight/custom/vs-fpa</property>
+					<value>0</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<object-name>VS.led4</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>alt_zero</object-name>
+		<condition>
+		    <and>
+				<property>systems/electrical/outputs/avionics</property>
+				<not-equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>5</value>
+				</not-equals>
+		    </and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+					<property>/it-autoflight/input/vs</property>
+					<value>0</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led1</object-name>
+		<property>/it-autoflight/input/vs-abs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led2</object-name>
+		<property>/it-autoflight/input/vs-abs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led3</object-name>
+		<property>/it-autoflight/input/vs-abs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led4</object-name>
+		<property>/it-autoflight/input/vs-abs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>fpa.ind</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<equals>
+					<property>/it-autoflight/custom/vs-fpa</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FPA.led1</object-name>
+		<object-name>FPA.led2</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/avionics</property>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>5</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FPA.ledminus</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>5</value>
+				</equals>
+				<less-than>
+					<property>/it-autoflight/input/fpa</property>
+					<value>0</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>FPA.led1</object-name>
+		<property>/it-autoflight/input/fpa-abs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<bias>0.05</bias>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>FPA.led2</object-name>
+		<property>/it-autoflight/input/fpa-abs</property>
+		<factor>1.0</factor>
+		<step>0.10</step>
+		<bias>0.05</bias>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+<!-- Altitude -->
+
+	<animation>
+		<type>select</type>
+		<object-name>alt.ind</object-name>
+		<object-name>ALT.led1</object-name>
+		<object-name>ALT.led2</object-name>
+		<object-name>ALT.led3</object-name>
+		<object-name>ALT.led4</object-name>
+		<object-name>ALT.led5</object-name>
+		<condition>
+			<property>systems/electrical/outputs/avionics</property>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led1</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led2</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led3</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led4</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led5</object-name>
+		<property>/it-autoflight/input/alt</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+<!-- Knob push and pull -->
+	<animation>
+		<type>translate</type>
+		<object-name>ALT.knob</object-name>
+		<property>controls/switches/alt-knob</property>
+		<factor>0.003</factor>
+		<axis>
+		    <x>1</x>
+		    <y>0</y>
+		    <z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>HDG.knob</object-name>
+		<property>controls/switches/hdg-knob</property>
+		<factor>0.003</factor>
+		<axis>
+		    <x>1</x>
+		    <y>0</y>
+		    <z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>SpdKnob</object-name>
+		<property>controls/switches/spd-knob</property>
+		<factor>0.003</factor>
+		<axis>
+		    <x>1</x>
+		    <y>0</y>
+		    <z>0</z>
+		</axis>
+	</animation>
+
+<!--
+
+###########   HOTSPOTS ###########
+
+ -->
+ 
+	<animation>
+		<type>pick</type>
+		<object-name>AP.disengage</object-name>		
+		<object-name>AP.disengage.001</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+			   <command>property-assign</command>
+			   <property>/it-autoflight/input/ap1</property>
+			   <value>0</value>
+			</binding>
+			<binding>
+			   <command>property-assign</command>
+			   <property>/it-autoflight/input/ap2</property>
+			   <value>0</value>
+			</binding>
+			<binding>
+			   <command>property-assign</command>
+			   <property>/it-autoflight/input/athr</property>
+			   <value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<!--animation>
+		<type>pick</type>
+		<object-name>AP.disengage2</object-name>		
+		<object-name>AP.disengage2.001</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+			   <command>property-assign</command>
+			   <property>instrumentation/afds/inputs/AP-disengage</property>
+			   <value>false</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation-->
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MACH.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/it-autoflight/input/kts-mach</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>TRK.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/it-autoflight/input/trk</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>FPA.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if (getprop("/it-autoflight/output/vert") == 1) {
+					setprop("/it-autoflight/custom/vs-fpa", "1");
+					setprop("/it-autoflight/input/vert", 5);
+				} else if (getprop("/it-autoflight/output/vert") == 5) {
+					setprop("/it-autoflight/custom/vs-fpa", "0");
+					setprop("/it-autoflight/input/vert", 1);
+				} else {
+					if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+						setprop("/it-autoflight/custom/vs-fpa", "1");
+					} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+						setprop("/it-autoflight/custom/vs-fpa", "0");
+					}
+				}
+				controls.click(4);
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>AP_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/athr</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap1</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap2</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(3);</script>
+			</binding>
+		</action>
+	</animation>
+
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>LNAV_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/lat</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation>
+
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>APP_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vert</property>
+				<value>2</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(3);</script>
+			</binding>
+		</action>
+	</animation>
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>Pitch_Wheel.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
+						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+							setprop("/it-autoflight/input/vert", 1);
+						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+							setprop("/it-autoflight/input/vert", 5);
+						}
+					}
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>3</button> <!--  scroll down -->
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
+						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+							setprop("/it-autoflight/input/vert", 1);
+						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+							setprop("/it-autoflight/input/vert", 5);
+						}
+					}
+				</script>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/vs</property>
+				<step>-100</step>
+				<min>-8000</min>
+				<max>6000</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/fpa</property>
+				<step>-0.1</step>
+				<min>-10</min>
+				<max>10</max>
+			</binding>
+		</action>
+		<action>
+			<button>4</button> <!--  scroll up -->
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
+						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+							setprop("/it-autoflight/input/vert", 1);
+						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+							setprop("/it-autoflight/input/vert", 5);
+						}
+					}
+				</script>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/vs</property>
+				<step>100</step>
+				<min>-8000</min>
+				<max>6000</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>5</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/fpa</property>
+				<step>0.1</step>
+				<min>-10</min>
+				<max>10</max>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>SpdKnob</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/spd-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/spd-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<not>
+					    <property>/it-autoflight/input/kts-mach</property>
+					</not>
+				    </and>
+				</condition>
+				<command>nasal</command>
+				<script>
+				var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
+				setprop("/it-autoflight/input/spd-kts", iasnow);
+				</script>
+			</binding>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<property>/it-autoflight/input/kts-mach</property>
+				    </and>
+				</condition>
+				<command>nasal</command>
+				<script>
+				var machnow = (int(1000*getprop("/velocities/mach")))*0.001;
+				setprop("/it-autoflight/input/spd-mach", machnow);
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/spd-knob</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/spd-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<not>
+					    <property>/it-autoflight/input/kts-mach</property>
+					</not>
+				    </and>
+				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
+				</script>
+			</binding>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<property>/it-autoflight/input/kts-mach</property>
+				    </and>
+				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>3</button> <!--  scroll up -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<not>
+					    <property>/it-autoflight/input/kts-mach</property>
+					</not>
+				    </and>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/kts-sel</property>
+				<step>1</step>
+				<min>100</min>
+				<max>390</max>
+			</binding>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<property>/it-autoflight/input/kts-mach</property>
+				    </and>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/mach-sel</property>
+				<step>0.001</step>
+				<min>0.4</min>
+				<max>0.95</max>
+			</binding>
+		</action>
+		<action>
+			<button>4</button> <!--  scroll down -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<not>
+					    <property>/it-autoflight/input/kts-mach</property>
+					</not>
+				    </and>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/kts-sel</property>
+				<step>-1</step>
+				<min>100</min>
+				<max>390</max>
+			</binding>
+			<binding>
+				<condition>
+				    <and>
+					<property>systems/electrical/outputs/avionics</property>
+					<property>/it-autoflight/input/kts-mach</property>
+				    </and>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/mach-sel</property>
+				<step>-0.001</step>
+				<min>0.4</min>
+				<max>0.95</max>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>HDG.knob</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/hdg-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/hdg-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/lat</property>
+				<value>3</value>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/hdg-knob</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/hdg-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
+				</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/lat</property>
+				<value>0</value>
+			</binding>
+		</action>
+		<action>
+			<button>3</button> <!--  scroll up -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/hdg-sel</property>
+				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>4</button> <!--  scroll down -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/custom/hdg-sel</property>
+				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>BLimit.knob</object-name>
+		<object-name>BLimit.knob.indicator</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/bank-limit-sw</property>
+				<step>1</step>
+				<min>0</min>
+				<max>6</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>/it-autoflight/input/bank-limit-sw</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>6</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<!-- Disabled until ITAF VNAV is complete -->
+    <!--animation>
+        <type>pick</type>
+        <object-name>prof</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vert</property>
+				<value>8</value>
+			</binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation-->
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>ALT.knob</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/alt-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/alt-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vert</property>
+				<value>0</value>
+			</binding>
+        </action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/alt-knob</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/alt-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vert</property>
+				<value>4</value>
+			</binding>
+        </action>
+		<action>
+			<button>3</button> <!--  scroll up -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				var altsel = getprop("/it-autoflight/input/alt");
+				if (altsel &lt; 10000) {
+					setprop("/it-autoflight/input/alt", altsel+100);
+				} else if (altsel &gt;= 10000) {
+					setprop("/it-autoflight/input/alt", altsel+500);
+				}
+				</script>
+			</binding>
+        </action>
+		<action>
+			<button>4</button> <!--  scroll down -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/avionics</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				var altsel = getprop("/it-autoflight/input/alt");
+				if (altsel &lt;= 10000) {
+					setprop("/it-autoflight/input/alt", altsel-100);
+				} else if (altsel &gt; 10000) {
+					setprop("/it-autoflight/input/alt", altsel-500);
+				}
+				</script>
+			</binding>
+        </action>
+	</animation>
+
+			<!-- Lighting -->
+	
+	    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>mcp_text</object-name>
+    </effect>
+    		<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>mcp_text</object-name>
+    <object-name>flood.knob.indicator</object-name>
+    <object-name>mcp.light.knob.indicator</object-name>
+    <object-name>BLimit.knob.indicator</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	    		<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>mcp_lcd</object-name>
+		<emission>
+			<red>1.39</red>
+			<green>0</green>
+			<blue>0</blue>
+			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+		    		<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>IAS.led1</object-name>
+    <object-name>IAS.led2</object-name>
+    <object-name>IAS.led3</object-name>
+		<object-name>MACH.led1</object-name>
+    <object-name>MACH.led2</object-name>
+    <object-name>MACH.led3</object-name>
+    <object-name>ias.ind</object-name>
+    <object-name>mach.ind</object-name>
+    <object-name>hdg.ind</object-name>
+    <object-name>trk.ind</object-name>
+    <object-name>at_dis1</object-name>
+    <object-name>TRK.led1</object-name>
+    <object-name>TRK.led2</object-name>
+    <object-name>TRK.led3</object-name>
+    <object-name>VS.ledminus</object-name>
+    <object-name>FPA.ledminus</object-name>
+    <object-name>HDG.led1</object-name>
+    <object-name>HDG.led2</object-name>
+    <object-name>HDG.led3</object-name>
+    <object-name>ALT.led1</object-name>
+    <object-name>ALT.led2</object-name>
+    <object-name>ALT.led3</object-name>
+    <object-name>ALT.led4</object-name>
+    <object-name>ALT.led5</object-name>
+    <object-name>VS.led1</object-name>
+    <object-name>VS.led2</object-name>
+    <object-name>VS.led3</object-name>
+    <object-name>VS.led4</object-name>
+    <object-name>vs.ind</object-name>
+    <object-name>fpa.ind</object-name>
+		<object-name>alt_zero</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	    	<animation>
+		<name>Flood light knob</name>
+		<type>pick</type>
+		<object-name>flood.knob</object-name>
+    <object-name>flood.knob.indicator</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/flood-panel-norm</property>
+				<step>0.025</step>
+				<max>0.5</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/flood-panel-norm</property>
+				<step>-0.025</step>
+				<min>0</min>
+			</binding>
+		</action>
+	</animation>
+	
+		    	<animation>
+		<name>MCP light knob</name>
+		<type>pick</type>
+		<object-name>mcp.light.knob</object-name>
+    <object-name>mcp.light.knob.indicator</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/mcp-panel-norm</property>
+				<step>0.025</step>
+				<max>0.5</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/mcp-panel-norm</property>
+				<step>-0.025</step>
+				<min>0</min>
+			</binding>
+		</action>
+	</animation>
+	
+				<animation>
+		<name>Flood panel light rotate</name>
+		<type>rotate</type>
+		<object-name>flood.knob</object-name>
+    <object-name>flood.knob.indicator</object-name>
+		<property>controls/lighting/flood-panel-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>-329</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
+	</animation>
+	
+
+
+				<animation>
+		<name>panel light rotate</name>
+		<type>rotate</type>
+		<object-name>mcp.light.knob</object-name>
+    <object-name>mcp.light.knob.indicator</object-name>
+		<property>controls/lighting/mcp-panel-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>-280</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
+	</animation>
+	
+	
+	
+	
+<!-- Captain's MFD controls -->
+	
+	    <animation>
+        <type>pick</type>
+        <object-name>RDR.wpt.1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/wpt</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+    	    <animation>
+        <type>pick</type>
+        <object-name>traffic.1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/tfc</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+        	    <animation>
+        <type>pick</type>
+        <object-name>data.1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/data</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+            	    <animation>
+        <type>pick</type>
+        <object-name>arpt.1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/arpt</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>STA.1</object-name>
+	<action>
+	    <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/sta</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>MAP.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis/mfd/display-mode</property>
+			<value>MAP</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/mfd/display-mode</property>
+		<value>MAP</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis/mfd/display-mode</property>
+			<value>VOR</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/mfd/display-mode</property>
+		<value>VOR</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>APP.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis/mfd/display-mode</property>
+			<value>APP</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/mfd/display-mode</property>
+		<value>APP</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>PLAN.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/inputs/nd-centered</property>
+		<value>1</value>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+		<script>setprop("instrumentation/efis/inputs/plan-wpt-index",getprop("autopilot/route-manager/current-wp"));</script>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/mfd/display-mode</property>
+		<value>PLAN</value>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+		<script>controls.click(3);</script>
+	    </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR1.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis/inputs/lh-vor-adf") == 1) {
+		    setprop("instrumentation/efis/inputs/lh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis/inputs/lh-vor-adf", 1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR2.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis/inputs/rh-vor-adf") == 1) {
+		    setprop("instrumentation/efis/inputs/rh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis/inputs/rh-vor-adf", 1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>ADF1.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis/inputs/lh-vor-adf") == -1) {
+		    setprop("instrumentation/efis/inputs/lh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis/inputs/lh-vor-adf", -1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>ADF2.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis/inputs/rh-vor-adf") == -1) {
+		    setprop("instrumentation/efis/inputs/rh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis/inputs/rh-vor-adf", -1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>RNG_incr.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		  <and>
+		    <less-than>
+			<property>instrumentation/efis/inputs/range-nm</property>
+			<value>640</value>
+		    </less-than>
+		    <greater-than>
+			<property>instrumentation/efis/inputs/range-nm</property>
+			<value>5</value>
+		    </greater-than>
+		  </and>
+		</condition>
+		<command>property-cycle</command>
+		<property>instrumentation/efis/inputs/range-nm</property>
+		<value type="int">10</value>
+		<value type="int">20</value>
+		<value type="int">40</value>
+		<value type="int">80</value>
+		<value type="int">160</value>
+		<value type="int">320</value>
+		<value type="int">640</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>RNG_decr.L</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		  <and>
+		    <less-than>
+			<property>instrumentation/efis/inputs/range-nm</property>
+			<value>645</value>
+		    </less-than>
+		    <greater-than>
+			<property>instrumentation/efis/inputs/range-nm</property>
+			<value>10</value>
+		    </greater-than>
+		  </and>
+		</condition>
+		<command>property-cycle</command>
+		<property>instrumentation/efis/inputs/range-nm</property>
+		<value type="int">640</value>
+		<value type="int">320</value>
+		<value type="int">160</value>
+		<value type="int">80</value>
+		<value type="int">40</value>
+		<value type="int">20</value>
+		<value type="int">10</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>Tru-Mag.L</object-name>
+	<object-name>Tru-Mag.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/mfd/true-north</property>
+	    </binding>
+	    <binding>
+		<command>property-toggle</command>
+		<property>instrumentation/efis[1]/mfd/true-north</property>
+	    </binding>
+	</action>
+    </animation>
+
+<!-- FO MFD controls -->
+
+	    <animation>
+        <type>pick</type>
+        <object-name>RDR.wpt.2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/inputs/wpt</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+    	    <animation>
+        <type>pick</type>
+        <object-name>traffic.2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/inputs/tfc</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+        	    <animation>
+        <type>pick</type>
+        <object-name>data.2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/inputs/data</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+    
+            	    <animation>
+        <type>pick</type>
+        <object-name>arpt.2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/inputs/arpt</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>STA.2</object-name>
+	<action>
+	    <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/inputs/sta</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>MAP.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis[1]/mfd/display-mode</property>
+			<value>MAP</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis[1]/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis[1]/mfd/display-mode</property>
+		<value>MAP</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis[1]/mfd/display-mode</property>
+			<value>VOR</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis[1]/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis[1]/mfd/display-mode</property>
+		<value>VOR</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>APP.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		    <equals>
+			<property>instrumentation/efis[1]/mfd/display-mode</property>
+			<value>APP</value>
+		    </equals>
+		</condition>
+		<command>property-toggle</command>
+		<property>instrumentation/efis[1]/inputs/nd-centered</property>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis[1]/mfd/display-mode</property>
+		<value>APP</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>PLAN.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis[1]/inputs/nd-centered</property>
+		<value>1</value>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+		<script>setprop("instrumentation/efis[1]/inputs/plan-wpt-index",getprop("autopilot/route-manager/current-wp"));</script>
+	    </binding>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis[1]/mfd/display-mode</property>
+		<value>PLAN</value>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+		<script>controls.click(3);</script>
+	    </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR1.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis[1]/inputs/lh-vor-adf") == 1) {
+		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>VOR2.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis[1]/inputs/rh-vor-adf") == 1) {
+		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>ADF1.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis[1]/inputs/lh-vor-adf") == -1) {
+		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", -1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>ADF2.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>nasal</command>
+		<script>
+		if (getprop("instrumentation/efis[1]/inputs/rh-vor-adf") == -1) {
+		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 0);
+		} else {
+		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", -1);
+		}
+		</script>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>RNG_incr.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		  <and>
+		    <less-than>
+			<property>instrumentation/efis[1]/inputs/range-nm</property>
+			<value>640</value>
+		    </less-than>
+		    <greater-than>
+			<property>instrumentation/efis[1]/inputs/range-nm</property>
+			<value>5</value>
+		    </greater-than>
+		  </and>
+		</condition>
+		<command>property-cycle</command>
+		<property>instrumentation/efis[1]/inputs/range-nm</property>
+		<value type="int">10</value>
+		<value type="int">20</value>
+		<value type="int">40</value>
+		<value type="int">80</value>
+		<value type="int">160</value>
+		<value type="int">320</value>
+		<value type="int">640</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>RNG_decr.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<condition>
+		  <and>
+		    <less-than>
+			<property>instrumentation/efis[1]/inputs/range-nm</property>
+			<value>645</value>
+		    </less-than>
+		    <greater-than>
+			<property>instrumentation/efis[1]/inputs/range-nm</property>
+			<value>10</value>
+		    </greater-than>
+		  </and>
+		</condition>
+		<command>property-cycle</command>
+		<property>instrumentation/efis[1]/inputs/range-nm</property>
+		<value type="int">640</value>
+		<value type="int">320</value>
+		<value type="int">160</value>
+		<value type="int">80</value>
+		<value type="int">40</value>
+		<value type="int">20</value>
+		<value type="int">10</value>
+	    </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+	</action>
+    </animation>
+
+<!-- Baro settings -->
+    <animation>
+	<type>pick</type>
+	<object-name>In-HPa.L</object-name>
+	<object-name>In-HPa.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/inputs/kpa-mode</property>
+	    </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>BaroSet.L</object-name>
+	<object-name>BaroSet.R</object-name>
+	<object-name>BaroSet2.L</object-name>
+	<object-name>BaroSet2.R</object-name>
+	<action>
+	    <button>1</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/altimeter/setting-inhg</property>
+		<value>29.92</value>
+	    </binding>
+	</action>
+	<action>
+	    <button>3</button>
+	    <repeatable>true</repeatable>
+	    <binding>
+		<command>property-adjust</command>
+		<property>instrumentation/altimeter/setting-inhg</property>
+		<min>26.0</min>
+		<max>33.0</max>
+		<step>0.01</step>
+	    </binding>
+	</action>
+	<action>
+	    <button>4</button>
+	    <repeatable>true</repeatable>
+	    <binding>
+		<command>property-adjust</command>
+		<property>instrumentation/altimeter/setting-inhg</property>
+		<min>26.0</min>
+		<max>33.0</max>
+		<step>-0.01</step>
+	    </binding>
+	</action>
+    </animation>
+
+    <animation>
+	<type>pick</type>
+	<object-name>MINS2.L</object-name>
+	<object-name>MINS2.R</object-name>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-toggle</command>
+		<property>instrumentation/efis/inputs/minimums-mode</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>MD11.Efis.ctl_func("mins",0);</script>
+            </binding>
+	</action>
+    </animation>
+    <animation>
+	<type>pick</type>
+	<object-name>MINS.L</object-name>
+	<object-name>MINS.R</object-name>
+	<action>
+	    <button>3</button>
+	    <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>MD11.Efis.ctl_func("dh",10);</script>
+            </binding>
+	</action>
+	<action>
+	    <button>4</button>
+	    <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>MD11.Efis.ctl_func("dh",-10);</script>
+            </binding>
+	</action>
+	<action>
+	    <button>0</button>
+	    <repeatable>false</repeatable>
+	    <binding>
+		<command>property-assign</command>
+		<property>instrumentation/efis/minimums</property>
+		<value>250</value>
+	    </binding>
+	    <binding>
+		<command>nasal</command>
+                <script>MD11.Efis.ctl_func("dh",0);</script>
+	    </binding>
+	</action>	
+    </animation>
+
+</PropertyList>

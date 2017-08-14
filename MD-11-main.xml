@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<sim>
+		<author>MD-11 Development Team: Joshua Davidson (it0uchpods)</author>
+		
+		<status>Pre V1.0</status>
+		
+		<rating>
+			<FDM type="int">3</FDM>
+			<systems type="int">2</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">5</model>
+		</rating>
+		
+		<model>
+			<pushback>
+				<kp type="double">1000</kp>
+				<ki type="double">200</ki>
+				<kd type="double">200</kd>
+				<position-norm type="double">0</position-norm>
+			</pushback>
+		</model>
+		
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/splash1.png</path>
+			</preview>
+		</previews>
+
+		<startup>
+			<splash-texture>Aircraft/MD-11Family/Splash/SplashOld.png</splash-texture>
+		</startup>
+	
+		<instrument-options>
+			<canvas-popup-enable type="bool">true</canvas-popup-enable>
+		</instrument-options>
+			
+		<view>
+			<name>Captain View</name>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y">-0.5238</x-offset-m>
+				<y-offset-m archive="y">7.2709</y-offset-m>
+				<z-offset-m archive="y">-26.8</z-offset-m>
+				<default-field-of-view-deg type="double">80</default-field-of-view-deg>
+				<pitch-offset-deg archive="y">-15.0</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="100">
+			<name>First Officer View</name>
+			<type>lookfrom</type>
+			<enabled type="bool">true</enabled>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">0.5238</x-offset-m>
+				<y-offset-m archive="y">7.2709</y-offset-m>
+				<z-offset-m archive="y">-26.8</z-offset-m>
+				<default-field-of-view-deg type="double">80</default-field-of-view-deg>
+				<pitch-offset-deg archive="y">-15.0</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="101"> 
+			<name>Overhead Panel</name>
+			<type>lookfrom</type>
+			<enabled type="bool">true</enabled>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">0.0</x-offset-m>
+				<y-offset-m archive="y">7.2709</y-offset-m>
+				<z-offset-m archive="y">-26.4</z-offset-m>
+				<pitch-offset-deg archive="y">30.0</pitch-offset-deg>
+				<default-field-of-view-deg type="double">65.5</default-field-of-view-deg>
+			</config>
+		</view>
+		<view n="102">
+			<name>Left Wing View</name>
+			<type>lookfrom</type>
+			<enabled type="bool">true</enabled>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">3.53</x-offset-m>
+				<y-offset-m archive="y">-6.96</y-offset-m>
+				<z-offset-m archive="y">7.11</z-offset-m>
+				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
+				<heading-offset-deg archive="y">110</heading-offset-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="102">
+			<name>Right Wing View</name>
+			<type>lookfrom</type>
+			<enabled type="bool">true</enabled>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">3.53</x-offset-m>
+				<y-offset-m archive="y">6.96</y-offset-m>
+				<z-offset-m archive="y">7.11</z-offset-m>
+				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
+				<heading-offset-deg archive="y">250</heading-offset-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+			</config>
+		</view>
+		
+		<chase-distance-m type="double">-100</chase-distance-m>
+
+		<weight n="0">
+			<name>Crew</name>
+			<weight-lb>250</weight-lb>
+			<max-lb>600</max-lb>
+			<min-lb>120</min-lb>
+		</weight>
+		
+		<menubar>
+			<default>
+				<menu n="3">
+					<item>
+						<name>autopilot</name>
+						<label>Autopilot</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							 var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/MD-11Family/Systems/autopilot-dlg.xml");
+							 autopilot.open();
+							</script>
+						</binding>
+					</item>
+				</menu>
+				<menu n="100">
+					<label>McDonnell Douglas MD-11</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Aircraft Config</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.main_dlg.open();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>About This Aircraft</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.about_dlg.open();
+							</script>
+						</binding>
+					</item>
+				</menu>
+				<menu n="101">
+					<label>Tools</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							aircraft.livery.dialog.toggle();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Pushback</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>pushback</dialog-name>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+        
+		<multiplay>
+			<generic>
+				<int n="0" alias="/systems/electrical/lighting/strobe"/>
+				<int n="1" alias="/systems/electrical/lighting/beacon"/>
+				<int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
+				<int n="3" alias="/systems/electrical/lighting/logo-lights"/>
+				<int n="4" alias="/systems/electrical/lighting/landing-light[0]"/>
+				<int n="5" alias="/systems/electrical/lighting/landing-light[1]"/>
+				<int n="6" alias="/systems/electrical/lighting/landing-light[2]"/>
+				<int n="7" alias="/systems/electrical/lighting/nav-lights"/>
+				<int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
+				<int n="9" alias="/systems/electrical/lighting/wing-lights"/>
+				<float n="0" alias="/gear/gear[0]/compression-norm"/>
+				<float n="1" alias="/gear/gear[1]/compression-norm"/>
+				<float n="2" alias="/gear/gear[2]/compression-norm"/>
+				<float n="3" alias="/gear/gear[3]/compression-norm"/>
+				<float n="4" alias="/gear/gear[1]/angle-deg"/>
+				<float n="5" alias="/gear/gear[2]/angle-deg"/>
+				<!--float n="6" alias="/replaceme"/-->
+				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
+				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
+				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
+				<float n="10" alias="/gear/gear[0]/steering-norm"/>
+				<float n="11" alias="/gear/gear[0]/rollspeed-ms"/>
+				<float n="12" alias="/gear/gear[1]/rollspeed-ms"/>
+				<float n="13" alias="/gear/gear[2]/rollspeed-ms"/>
+				<float n="14" alias="/gear/gear[3]/rollspeed-ms"/>
+				<string  alias="/sim/multiplay/callsign"/>
+			</generic>
+		</multiplay>
+        
+		<flaps>
+			<setting>0.00</setting>	<!-- 0 -->
+			<setting>0.31</setting>	<!-- 15 -->
+			<setting>0.58</setting>	<!-- 28-->
+			<setting>0.70</setting>	<!-- 35 -->
+			<setting>1.00</setting>	<!-- 50 -->
+		</flaps>
+        
+		<systems>
+			<autopilot n="0">
+				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
+			</autopilot>
+			<autopilot n="1">
+				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
+			</autopilot>
+			<autopilot n="2">
+				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
+			</autopilot>
+			<autopilot n="3">
+				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
+			</autopilot>
+			<autopilot n="4">
+				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
+			</autopilot>
+			<autopilot n="5">
+				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
+			</autopilot>
+			<property-rule n="101">
+				<path>Aircraft/MD-11Family/Systems/pfd.xml</path>
+			</property-rule>
+			<property-rule n="102">
+				<path>Aircraft/MD-11Family/Sounds/MD11-sound-variables.xml</path>
+			</property-rule>
+		</systems>
+        
+		<instrumentation>
+			<path>Aircraft/MD-11Family/Systems/instrumentation.xml</path>
+		</instrumentation>
+	
+		<sound>
+			<path>Aircraft/MD-11Family/Sounds/MD11-sound.xml</path>
+		</sound>
+        
+		<flight-recorder include="Systems/flight-recorder.xml"/>
+    </sim>
+	
+	<!--consumables n="0">
+		<fuel>
+			<tank n="0"><name>Left Wing</name></tank>
+			<tank n="1"><name>Center</name></tank>
+			<tank n="2"><name>Right Wing</name></tank>
+			<tank n="3"><name>Aux Forward</name></tank>
+			<tank n="4"><name>Aux Aft</name></tank>
+			<tank n="5"><name>Engine 1 Pipes</name></tank>
+			<tank n="6"><name>Engine 2 Pipes</name></tank>
+			<tank n="7"><name>Engine 3 Pipes</name></tank>
+		</fuel>
+	</consumables-->
+	
+	<controls n="0">
+		<engines n="0">
+			<engine n="0">
+				<throttle-output type="double">0</throttle-output>
+			</engine>
+			<engine n="1">
+				<throttle-output type="double">0</throttle-output>
+			</engine>
+			<engine n="2">
+				<throttle-output type="double">0</throttle-output>
+			</engine>
+		</engines>
+		<flight>
+			<flaps-output type="double">0</flaps-output>
+			<slats type="double">0</slats>
+		</flight>
+		<gear>
+			<brake-parking type="bool">0</brake-parking>
+			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
+			<tiller-enabled type="bool">0</tiller-enabled>
+		</gear>
+	</controls>
+	
+	<gear n="0">
+		<gear n="0">
+			<tyre-smoke type="bool">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+			<caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
+		</gear>
+		<gear n="1">
+			<tyre-smoke type="bool">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+		</gear>
+		<gear n="2">
+			<tyre-smoke type="bool">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+		</gear>
+		<gear n="3">
+			<tyre-smoke type="bool">0</tyre-smoke>
+			<sprayspeed-ms type="double">0</sprayspeed-ms>
+			<spray-density type="double">0</spray-density>
+		</gear>
+	</gear>
+	
+	<it-autoflight>
+		<config>
+			<roll>
+				<gain>-0.1</gain>
+				<min>-0.4</min>
+				<max>0.4</max>
+			</roll>
+			<pitch>
+				<gain>0.15</gain>
+				<min>-0.3</min>
+				<max>0.3</max>
+			</pitch>
+			<cmd>
+				<roll-kp>-1.0</roll-kp>
+				<roll-scale>1.4</roll-scale>
+				<vorloc>-2.5</vorloc>
+				<vs>0.01</vs>
+			</cmd>
+			<autoland>
+				<kp-pitch>0.03</kp-pitch>
+				<kp-rudder>-0.05</kp-rudder>
+			</autoland>
+		</config>
+		<settings>
+			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
+			<land-enable>1</land-enable> <!-- Enable/Disable Autoland -->
+			<land-flap>0.9</land-flap> <!-- Minimum Flap used for Landing -->
+			<retard-ft>50</retard-ft> <!-- Enable Thrust Retard -->
+			<retard-enable>1</retard-enable> <!-- AGL to Thrust Retard -->
+			<togaspd>165</togaspd> <!-- V2 + 10kts -->
+			<lat-agl-ft>100</lat-agl-ft> <!-- Set to 999999 if you do not want T/O to change automatically to HDG, or LNAV -->
+			<reduc-agl-ft>1500</reduc-agl-ft> <!-- Set to 999999 if you do not want TOGA to change automatically to FLCH -->
+			<autoland-without-ap>0</autoland-without-ap> <!-- Engage LAND and FLARE Modes even if the AP is off -->
+		</settings>
+		<custom>
+			<afds-ovrd>0</afds-ovrd>
+			<vs-fpa>0</vs-fpa>
+			<kts-sel>250</kts-sel>
+			<mach-sel>0.68</mach-sel>
+			<hdg-sel>360</hdg-sel>
+		</custom>
+	</it-autoflight>
+	
+	<input>
+		<keyboard>
+			<key n="49">
+				<name>1</name>
+				<desc>Captain View</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value>0</value>
+				</binding>
+			</key>
+			<key n="50">
+				<name>2</name>
+				<desc>First Officer View</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value>8</value>
+				</binding>
+			</key>
+			<key n="51">
+				<name>3</name>
+				<desc>Overhead View</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value>9</value>
+				</binding>
+			</key>
+			<!--key n="127">
+				<name>DEL</name>
+				<desc>Simple Engage/Disengage reversers</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					systems.toggleFastRevThrust();
+					</script>
+				</binding>
+			</key>
+			<key n="257">
+				<name>F1</name>
+				<desc>Disengage/Decrease reversers</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					systems.unRevThrust();
+					</script>
+				</binding>
+			</key>
+			<key n="258">
+				<name>F2</name>
+				<desc>Engage/Increase reversers</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					systems.doRevThrust();
+					</script>
+				</binding>
+			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Thrust Levers Idle</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					systems.doIdleThrust();
+					</script>
+				</binding>
+			</key-->
+			<key n="2">
+				<name>Ctrl-b</name>
+				<desc>Cycle speedbrake setting</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/flight/speedbrake-arm</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<condition>
+						<or>
+							<equals>
+								<property>/gear/gear[1]/wow</property>
+								<value>1</value>
+							</equals>
+							<equals>
+								<property>/gear/gear[2]/wow</property>
+								<value>1</value>
+							</equals>
+						</or>
+					</condition>
+					<command>property-cycle</command>
+					<property>controls/flight/speedbrake</property>
+					<value>0.0</value>
+					<value>0.3</value>
+					<value>0.5</value>
+					<value>0.7</value>
+					<value>1.0</value>
+				</binding>
+				<binding>
+					<condition>
+						<and>
+							<equals>
+								<property>/gear/gear[1]/wow</property>
+								<value>0</value>
+							</equals>
+							<equals>
+								<property>/gear/gear[2]/wow</property>
+								<value>0</value>
+							</equals>
+						</and>
+					</condition>
+					<command>property-cycle</command>
+					<property>controls/flight/speedbrake</property>
+					<value>0.0</value>
+					<value>0.3</value>
+					<value>0.5</value>
+					<value>0.7</value>
+				</binding>
+			</key>
+		</keyboard>
+	</input>
+	
+	<instrumentation n="0">
+	
+		<dme n="0">
+			<frequencies>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</dme>
+		
+		<dme n="1">
+			<frequencies>
+				<selected-mhz type="double">109.55</selected-mhz>
+				<source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</dme>
+		
+		<dme n="2">
+			<frequencies>
+				<selected-mhz type="double">112.8</selected-mhz>
+				<source type="string">/instrumentation/nav[2]/frequencies/selected-mhz</source>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</dme>
+		
+		<dme n="3">
+			<frequencies>
+				<selected-mhz type="double">114.8</selected-mhz>
+				<source type="string">/instrumentation/nav[3]/frequencies/selected-mhz</source>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</dme>
+		
+		<nav n="0">
+			<frequencies>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<standby-mhz type="double">110.95</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<nav n="1">
+			<frequencies>
+				<selected-mhz type="double">109.55</selected-mhz>
+				<standby-mhz type="double">110.55</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<nav n="2">
+			<cdi>
+				<serviceable type="bool">true</serviceable>
+			</cdi>
+			<frequencies>
+				<selected-mhz type="double">112.8</selected-mhz>
+				<standby-mhz type="double">112.6</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<nav n="3">
+			<cdi>
+				<serviceable type="bool">true</serviceable>
+			</cdi>
+			<frequencies>
+				<selected-mhz type="double">114.8</selected-mhz>
+				<standby-mhz type="double">114.6</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<tcas><!-- http://wiki.flightgear.org/index.php/TCAS -->
+			<serviceable type="bool">true</serviceable><!-- TCAS ENABLE -->
+			<inputs>
+				<mode type="int">3</mode><!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
+			</inputs>
+			<voice>
+				<file-prefix type="string">Sounds/tcas/female/</file-prefix>
+				<!-- sound file path and prefix -->
+			</voice>
+			<speaker><!-- Speaker Configuration -->
+				<max-dist> 2 </max-dist><!-- Max. distance where speaker is heard -->
+				<reference-dist> 1 </reference-dist> <!-- Distance to pilot -->
+				<volume> 0.8 </volume> <!-- Volume at reference distance -->
+			</speaker>
+		</tcas>
+		<nav-compass>
+			<nav-display n="0" type="int">0</nav-display>
+			<nav-display n="1" type="int">0</nav-display>
+		</nav-compass>
+
+		<!-- See http://wiki.flightgear.org/index.php/GPWS -->
+		<mk-viii>
+			<serviceable type="bool">true</serviceable>
+			<configuration-module>
+				<category-1 type="int">255</category-1>
+				<category-3 type="int">2</category-3>
+				<category-4 type="int">13</category-4>
+				<category-5 type="int">0</category-5>
+				<category-6 type="int">1</category-6>
+				<category-7 type="int">124</category-7>
+				<category-8 type="int">3</category-8>
+				<category-9 type="int">3</category-9> 
+				<category-10 type="int">6</category-10>
+				<category-13 type="int">7</category-13>
+				<category-14 type="int">0</category-14>
+			</configuration-module>
+			<inputs>
+				<arinc429>
+					<decision-height-ncd type="bool">0</decision-height-ncd>
+					<decision-height type="double">250</decision-height>
+				</arinc429>
+			</inputs>
+			<speaker>
+				<max-dist type="double">2</max-dist>
+				<reference-dist type="double">1</reference-dist>
+				<volume type="double">2</volume>
+			</speaker>
+			<voice>
+				<file-prefix>Aircraft/MD-11Family/Sounds/GPWS/</file-prefix>
+			</voice>
+		</mk-viii>
+		
+		<groundradar>
+			<range type="double">1.0</range>
+		</groundradar>
+		
+		<chrono n="0">
+			<started type="bool">0</started>
+			<paused type="bool">0</paused>
+			<text type="string">0' 00'</text>
+			<started-at type="int">0</started-at>
+			<elapsed-time type="int">0</elapsed-time>
+		</chrono>
+
+		<chrono n="1">
+			<started type="bool">0</started>
+			<paused type="bool">0</paused>
+			<text type="string">0' 00'</text>
+			<started-at type="int">0</started-at>
+			<elapsed-time type="int">0</elapsed-time>
+		</chrono>
+		
+	</instrumentation>
+	
+	<nasal n="0">
+		<libraries>
+			<file>Aircraft/MD-11Family/Nasal/libraries.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/magicstartup.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/buttons.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/PFD_FMA.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/gpws.nas</file>
+			<file>Aircraft/MD-11Family/Models/cockpit/instruments/ND/ND.nas</file>
+		</libraries>
+		<acconfig>
+			<file>Aircraft/MD-11Family/AircraftConfig/acconfig.nas</file>
+		</acconfig>
+		<afs>
+			<file>Aircraft/MD-11Family/Nasal/afs.nas</file>
+		</afs>
+	</nasal>
+
+</PropertyList>

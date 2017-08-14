@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+<path>light-flare.ac</path>
+
+
+<animation>
+	<type>light</type>
+	<light-type>spot</light-type>
+	<name>LightNavStbd</name>
+	<object-name>LightVolNavStbd</object-name>
+	<position>
+		<x> 0 </x>
+		<y>0 </y>
+		<z>0 </z>
+	</position>
+	<direction>
+		<x>-1</x>
+		<y>0</y>
+		<z>-0.6</z>
+	</direction>
+	<ambient>
+		<r>0.03</r>
+		<g>0.03</g>
+		<b>0.03</b>
+		<a>1.0</a>
+	</ambient>
+	<diffuse>
+		<r>1.0</r>
+		<g>1</g>
+		<b>1</b>
+		<a>1.0</a>
+	</diffuse>
+	<specular>
+		<r>0.7</r>
+		<g>0.7</g>
+		<b>0.7</b>
+		<a>1.0</a>
+	</specular>
+		<dim-factor>
+				<property>controls/lighting/mcp-panel-norm</property>
+	</dim-factor>
+	<attenuation>
+		<c>1.0</c>
+		<l>0</l>
+		<q>0</q>
+	</attenuation>
+	<exponent>15</exponent>
+	<near-m>0.001</near-m>
+	<far-m>0.2</far-m>
+	<cutoff>110</cutoff>
+</animation>
+
+<animation>
+	<type>select</type>
+	<object-name>LightNavStbd</object-name>
+	<condition>
+			<property>/sim/rendering/rembrandt/enabled</property> 
+	</condition>
+</animation>
+
+
+</PropertyList>

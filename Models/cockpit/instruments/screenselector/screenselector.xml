@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+ <path>screenselector.ac</path>
+ 
+         <animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>screenselector.text</object-name>
+		<object-name>config.text</object-name>
+		<object-name>status.text</object-name>
+		<object-name>misc.text</object-name>
+        <object-name>conseq.text</object-name>
+		<object-name>nd.text</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+				    <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>screenselector.text</object-name>
+    </effect>
+    
+    					    	<animation>
+		<name>first screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.1.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-1-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-1-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+    <animation>
+		<name>second screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.2.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-2-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-2-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+							<animation>
+		<type>rotate</type>
+		<object-name>scrn.1.knob</object-name>
+				<property>controls/lighting/screen-1-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.0182</x-m>
+			<y-m>-0.0336</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+								<animation>
+		<type>rotate</type>
+		<object-name>scrn.2.knob</object-name>
+				<property>controls/lighting/screen-2-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.0182</x-m>
+			<y-m>-0.0199</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+		    					    	<animation>
+		<name>third screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.3.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-3-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-3-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+							<animation>
+		<type>rotate</type>
+		<object-name>scrn.3.knob</object-name>
+				<property>controls/lighting/screen-3-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.0182</x-m>
+			<y-m>-0.0058</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+			    					    	<animation>
+		<name>fourth screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.4.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-4-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-4-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+							<animation>
+		<type>rotate</type>
+		<object-name>scrn.4.knob</object-name>
+				<property>controls/lighting/screen-4-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.0182</x-m>
+			<y-m>0.0077</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+				    					    	<animation>
+		<name>fifth screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.5.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-5-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-5-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+							<animation>
+		<type>rotate</type>
+		<object-name>scrn.5.knob</object-name>
+				<property>controls/lighting/screen-5-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>  
+			<x-m>-0.0182</x-m>
+			<y-m>0.0221</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+	    					    	<animation>
+		<name>sixth screen brighteness</name>
+		<type>pick</type>
+		<object-name>scrn.6.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-6-norm</property>
+				<step>0.025</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/screen-6-norm</property>
+				<step>-0.025</step>
+				<min>0.050</min>
+			</binding>
+		</action>
+	</animation>
+	
+							<animation>
+		<type>rotate</type>
+		<object-name>scrn.6.knob</object-name>
+				<property>controls/lighting/screen-6-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-275</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.0182</x-m>
+			<y-m>0.037</y-m>
+			<z-m>0.0053</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+        <object-name>config</object-name>
+        <object-name>config.text</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/sd/mode</property>
+				<value>CONFIG</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+        <object-name>status</object-name>
+        <object-name>status.text</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/sd/mode</property>
+				<value>STATUS</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+        <object-name>misc</object-name>
+        <object-name>misc.text</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/sd/mode</property>
+				<value>MISC</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+        <object-name>conseq</object-name>
+        <object-name>conseq.text</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/sd/mode</property>
+				<value>CONSEQ</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+        <object-name>nd</object-name>
+        <object-name>nd.text</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/sd/mode</property>
+				<value>ND</value>
+			</binding>
+		</action>
+	</animation>
+ 
+ 
+</PropertyList>

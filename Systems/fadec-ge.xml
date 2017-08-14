@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+	<filter>
+		<name>THROTTLE 1</name>
+		<debug>false</debug>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<input>/controls/engines/engine[0]/throttle</input>
+		<output>/controls/engines/engine[0]/throttle-output</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>0.2</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>THROTTLE 2</name>
+		<debug>false</debug>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<input>/controls/engines/engine[1]/throttle</input>
+		<output>/controls/engines/engine[1]/throttle-output</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>0.2</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>THROTTLE 3</name>
+		<debug>false</debug>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<input>/controls/engines/engine[2]/throttle</input>
+		<output>/controls/engines/engine[2]/throttle-output</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>0.2</max-rate-of-change>
+	</filter>
+
+</PropertyList>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+
+<path>light-flare.ac</path>
+
+
+<animation>
+	<type>light</type>
+	<light-type>point</light-type>
+	<name>LightNavStbd</name>
+	<object-name>LightVolNavStbd</object-name>
+	<position>
+		<x> 0 </x>
+		<y> 0 </y>
+		<z> 5 </z>
+	</position>
+	<ambient>
+		<r>0.03</r>
+		<g>0.03</g>
+		<b>0.03</b>
+		<a>1.0</a>
+	</ambient>
+	<diffuse>
+		<r>1.0</r>
+		<g>0.2</g>
+		<b>0.2</b>
+		<a>1.0</a>
+	</diffuse>
+	<specular>
+		<r>0.7</r>
+		<g>0.7</g>
+		<b>0.7</b>
+		<a>1.0</a>
+	</specular>
+	<attenuation>
+		<c>1.0</c>
+		<l>0.1</l>
+		<q>0.2</q>
+	</attenuation>
+	<exponent>100</exponent>
+	<near-m>0.0001</near-m>
+	<far-m>79</far-m>
+	<cutoff>110</cutoff>
+	<nopreview/>
+</animation>
+
+
+<animation>
+	<type>select</type>
+	<object-name>LightNavStbd</object-name>
+	<condition>
+		<equals>
+			<property>sim/model/lights/beacon/state</property>
+			<value>1</value>
+		</equals>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+	<condition>
+		<property>/sim/rendering/rembrandt/enabled</property> 
+	</condition>
+</animation>
+
+</PropertyList>
