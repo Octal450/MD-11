@@ -242,21 +242,17 @@
 			<autopilot n="5">
 				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
 			</autopilot>
+			<autopilot n="6">
+				<path>Aircraft/MD-11Family/Sounds/MD-11-sound-variables.xml</path>
+			</autopilot>
 			<property-rule n="101">
 				<path>Aircraft/MD-11Family/Systems/pfd.xml</path>
-			</property-rule>
-			<property-rule n="102">
-				<path>Aircraft/MD-11Family/Sounds/MD11-sound-variables.xml</path>
 			</property-rule>
 		</systems>
         
 		<instrumentation>
 			<path>Aircraft/MD-11Family/Systems/instrumentation.xml</path>
 		</instrumentation>
-	
-		<sound>
-			<path>Aircraft/MD-11Family/Sounds/MD11-sound.xml</path>
-		</sound>
         
 		<flight-recorder include="Systems/flight-recorder.xml"/>
     </sim>
@@ -348,7 +344,7 @@
 			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
 			<land-enable>1</land-enable> <!-- Enable/Disable Autoland -->
 			<land-flap>0.9</land-flap> <!-- Minimum Flap used for Landing -->
-			<retard-ft>50</retard-ft> <!-- Enable Thrust Retard -->
+			<retard-ft>40</retard-ft> <!-- Enable Thrust Retard -->
 			<retard-enable>1</retard-enable> <!-- AGL to Thrust Retard -->
 			<togaspd>165</togaspd> <!-- V2 + 10kts -->
 			<lat-agl-ft>100</lat-agl-ft> <!-- Set to 999999 if you do not want T/O to change automatically to HDG, or LNAV -->

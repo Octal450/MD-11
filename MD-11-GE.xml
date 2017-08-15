@@ -39,7 +39,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</location>
 
 		<location name="VRP" unit="M">
-			<x> 0 </x>
+			<x> 0.45974 </x>
 			<y> 0 </y>
 			<z> 0 </z>
 		</location>
@@ -151,7 +151,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<dynamic_friction> 0.5 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 24957 </damping_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
 			<max_steer unit="DEG"> 0.0 </max_steer>
 			<brake_group> LEFT </brake_group>
 			<retractable>1</retractable>
@@ -167,7 +167,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<dynamic_friction> 0.5 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 24957 </damping_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
 			<max_steer unit="DEG"> 0.0 </max_steer>
 			<brake_group> RIGHT </brake_group>
 			<retractable>1</retractable>
@@ -177,7 +177,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="M">
 				<x> 4.7632 </x>
 				<y> 0 </y>
-				<z> 0.77128 </z>
+				<z> 0.66128 </z>
 			</location>
 			<static_friction> 0.8 </static_friction>
 			<dynamic_friction> 0.5 </dynamic_friction>
@@ -284,8 +284,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		
 		<engine file="cf6-80c2d1f">
 			<location unit="M">
-				<x>25.2146</x>	
-				<y>0</y>
+				<x> 25.2146 </x>	
+				<y> 0 </y>
 				<z> 3.47943 </z>
 			</location>
 			<orient unit="DEG">
@@ -296,8 +296,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<feed>1</feed>
 			<thruster file="direct">
 				<location unit="M">
-					<x>25.2146</x>	
-					<y>0</y>
+					<x> 25.2146 </x>	
+					<y> 0 </y>
 					<z> 3.47943 </z>
 				</location>
 				<orient unit="DEG">

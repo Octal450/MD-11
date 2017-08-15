@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+########################################
+# Copyright (c) MD-11 Development Team #
+########################################
+-->
+
+<PropertyList>
+	<fx>
+	
+  <apoff>
+   <name>apoff</name>
+   <path>/Aircraft/MD-10/Sounds/apoff.wav</path>
+   <condition>
+	 <property>/it-autoflight/sound/apoffsound</property>
+   </condition>
+   <volume>
+    <factor>10.0</factor>
+   </volume>
+  </apoff>
+  
+  <apoff>
+   <name>apoff2</name>
+   <path>/Aircraft/MD-10/Sounds/apoff.wav</path>
+   <condition>
+	 <property>/it-autoflight/sound/apoffsound2</property>
+   </condition>
+   <volume>
+    <factor>10.0</factor>
+   </volume>
+  </apoff>
+		
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		<!-- ## ## ## -->   <!-- ## ## ## -->
+		
+		<misc>
+			<name>md11 wind</name>
+			<mode>looped</mode>
+			<path>FL2070/11_wind.wav</path>
+			<condition>
+				<!--
+				
+				-->
+			</condition>
+			
+			<volume>
+				<property>sim/sound/other/wind</property>
+			</volume>
+			<pitch>
+				<property>sim/sound/other/windp</property>
+				<offset>0</offset>
+			</pitch>
+		</misc>
+		
+		<misc>
+			<name>md11 cockpit system</name>
+			<mode>looped</mode>
+			<path>FL2070/11_cockpit.wav</path>
+			<condition>
+			<greater-than>
+            <property>systems/electrical/outputs/efis</property>
+            <value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>1.4</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 0</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[0]/position-norm</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 1</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[1]/position-norm</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 2</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[2]/position-norm</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 gear 3</name>
+			<mode>in-transit</mode>
+			<path>FL2070/11_gear.wav</path>
+			<property>gear/gear[3]/position-norm</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll c 0</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll l 1</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll r 2</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll c 3</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[3]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>1</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll l 1</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>2</factor>
+			</volume>
+		</misc>
+		
+		<misc>
+			<name>md11 roll r 2</name>
+			<mode>looped</mode>
+			<path>FL2070/11_roll.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/roll</property>
+				<factor>2</factor>
+			</volume>
+		</misc>
+		
+		<mdapu>
+			<name>apu</name>
+			<mode>looped</mode>
+			<path>FL2070/11_apu.wav</path>
+			<property>engines/apu/n1</property>
+			<condition>
+			<greater-than>
+				<property>engines/apu/n1</property>
+				<value>1</value>
+			</greater-than>
+			</condition>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>2</factor>
+				<offset>0.1</offset>
+			</volume>
+			
+			<volume>
+				<property>engines/apu/n1</property>
+				<factor>0.01</factor>
+			</volume>
+			<pitch>
+				<property>engines/apu/n1</property>
+				<factor>0.01</factor>
+				<offset>0</offset>
+			</pitch>
+		</mdapu>
+		
+		<!-- TOUCHDOWN SOUNDS -->
+		
+		<touch>
+			<name>md11 touch n</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_INf.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 touch l</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_IN.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 touch r</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_IN.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/current-view/internal</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch n</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUTf.wav</path>
+			<property>gear/gear[0]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch l</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUT.wav</path>
+			<property>gear/gear[1]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+		
+		<touch>
+			<name>md11 xtouch r</name>
+			<mode>once</mode>
+			<path>FL2070/11_touch_OUT.wav</path>
+			<property>gear/gear[2]/wow</property>
+			
+			<volume>
+				<property>sim/sound/other/outside</property>
+				<factor>50</factor>
+			</volume>
+		</touch>
+	</fx>
+</PropertyList>
