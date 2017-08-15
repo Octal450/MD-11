@@ -33,13 +33,13 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</location>
 
 		<location name="EYEPOINT" unit="M">
-			<x> -27.554 </x>
+			<x> -14.554 </x>
 			<y> -0.40563 </y>
 			<z> 7.35361 </z>
 		</location>
 
 		<location name="VRP" unit="M">
-			<x> 0.45974 </x>
+			<x> 0 </x>
 			<y> 0 </y>
 			<z> 0 </z>
 		</location>
@@ -177,7 +177,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="M">
 				<x> 4.7632 </x>
 				<y> 0 </y>
-				<z> 0.66128 </z>
+				<z> 0.69128 </z>
 			</location>
 			<static_friction> 0.8 </static_friction>
 			<dynamic_friction> 0.5 </dynamic_friction>
