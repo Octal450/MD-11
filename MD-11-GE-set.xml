@@ -12,7 +12,7 @@
 		<sound>
 			<path>Aircraft/MD-11Family/Sounds/cf680-sound.xml</path>
 		</sound>
-		
+		<checklists include="MD11-Checklists.xml"/>
 		<description>McDonnell Douglas MD-11 (CF6-80C2D1F)</description>
 		<flight-model>jsb</flight-model>
 		<aero>MD-11-GE</aero>
