@@ -1,9 +1,9 @@
 # Aircraft Config Center
 # Joshua Davidson (it0uchpods)
 
-########################################
-# Copyright (c) MD-11 Development Team #
-########################################
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
 
 var spinning = maketimer(0.05, func {
 	var spinning = getprop("/systems/acconfig/spinning");

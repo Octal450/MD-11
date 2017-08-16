@@ -1,9 +1,9 @@
 # MD-11 Main Libraries
 # Joshua Davidson (it0uchpods)
 
-########################################
-# Copyright (c) MD-11 Development Team #
-########################################
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
 
 var update_tilt = maketimer(0.1, func {
 	var comp1 = getprop("/gear/gear[1]/compression-norm");

@@ -1,8 +1,8 @@
 # MD-11 AFS by Joshua Davidson (it0uchpods)
 
-########################################
-# Copyright (c) MD-11 Development Team #
-########################################
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
 
 #################################
 # IT-AUTOFLIGHT Based Autopilot #

@@ -2,9 +2,9 @@
 # Joshua Davidson (it0uchpods)
 # ;)
 
-########################################
-# Copyright (c) MD-11 Development Team #
-########################################
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
 
 var doMagicStartup = func {
 	setprop("/systems/electrical/outputs/avionics", 25);

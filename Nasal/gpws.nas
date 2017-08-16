@@ -1,8 +1,8 @@
 # GPWS Wrapper by Thorsten Brehm.
 
-########################################
-# Copyright (c) MD-11 Development Team #
-########################################
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
 
 var gpws_min_landing_flaps = 0.9;
 
