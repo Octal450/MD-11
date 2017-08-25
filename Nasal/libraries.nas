@@ -52,7 +52,7 @@ var librariesLoop = maketimer(0.05, func {
 
 var aglgears = func {
     var agl = getprop("/position/altitude-agl-ft") or 0;
-    var aglft = agl - 1.5;  # is the position from the MD-11 above ground
+    var aglft = agl - 15.34;  # is the position from the MD-11 above ground
     var aglm = aglft * 0.3048;
     setprop("/position/gear-agl-ft", aglft);
     setprop("/position/gear-agl-m", aglm);

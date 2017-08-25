@@ -286,6 +286,7 @@
 			</engine>
 		</engines>
 		<flight>
+			<elevator-trim type="double">-0.3</elevator-trim>
 			<flaps-output type="double">0</flaps-output>
 			<slats type="double">0</slats>
 		</flight>
