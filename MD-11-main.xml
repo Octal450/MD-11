@@ -183,6 +183,16 @@
 							<dialog-name>pushback</dialog-name>
 						</binding>
 					</item>
+					<item>
+						<label>FCTL</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							var fctl = gui.Dialog.new("sim/gui/dialogs/fctl/dialog", "Aircraft/MD-11Family/Systems/fctl-dlg.xml");
+							fctl.open();
+							</script>
+						</binding>
+					</item>
 				</menu>
 			</default>
 		</menubar>
@@ -228,24 +238,27 @@
         
 		<systems>
 			<autopilot n="0">
-				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
+				<path>Aircraft/MD-11Family/Systems/lsas.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
 			</autopilot>
 			<autopilot n="2">
-				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
 			<autopilot n="3">
-				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
 			</autopilot>
 			<autopilot n="4">
-				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
+				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
 			</autopilot>
 			<autopilot n="6">
+				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
+			</autopilot>
+			<autopilot n="7">
 				<path>Aircraft/MD-11Family/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
 			<property-rule n="101">
@@ -286,6 +299,7 @@
 			</engine>
 		</engines>
 		<flight>
+			<elevator-lsas type="double">0</elevator-lsas>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<flaps-output type="double">0</flaps-output>
 			<slats type="double">0</slats>
@@ -651,6 +665,10 @@
 		</chrono>
 		
 	</instrumentation>
+	
+	<lsas n="0">
+		<enable type="bool">1</enable>
+	</lsas>
 	
 	<nasal n="0">
 		<libraries>

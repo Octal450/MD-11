@@ -11,7 +11,7 @@
 	<channel name="Pitch">
 	
 		<summer name="Pitch Trim Sum">
-			<input>/controls/flight/elevator</input>
+			<input>/controls/flight/elevator-lsas</input>
 			<input>/controls/flight/elevator-trim</input>
 			<clipto>
 				<min> -1 </min>
