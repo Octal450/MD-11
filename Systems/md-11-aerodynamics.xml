@@ -323,9 +323,9 @@
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
 					<tableData>
-						0.0     -2.200
-						0.2     -2.100
-						2.0     -0.200
+						0.0     -1.900
+						0.2     -1.800
+						2.0     -0.050
 					</tableData>
 				</table>
 			</product>
@@ -339,7 +339,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
-				<value>-42</value>
+				<value>-41</value>
 			</product>
 		</function>
 
