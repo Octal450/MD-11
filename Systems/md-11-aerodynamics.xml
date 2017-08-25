@@ -82,8 +82,8 @@
 				<table>
 					<independentVar>/gear/gear[1]/wow</independentVar>
 					<tableData>
-						0  0.0
-						1  0.1
+						0  0.00
+						1  0.20
 					</tableData>
 				</table>
 				<property>aero/qbar-psf</property>
@@ -91,14 +91,29 @@
 			</product>
 		</function>
 		
-			<function name="aero/coefficient/bogey2">
+		<function name="aero/coefficient/bogey2">
 			<description>Lift_due_bogey2</description>
 			<product>
 				<table>
 					<independentVar>/gear/gear[2]/wow</independentVar>
 					<tableData>
-						0  0.0
-						1  0.1
+						0  0.00
+						1  0.20
+					</tableData>
+				</table>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/bogey3">
+			<description>Lift_due_bogey3</description>
+			<product>
+				<table>
+					<independentVar>/gear/gear[3]/wow</independentVar>
+					<tableData>
+						0  0.00
+						1  0.10
 					</tableData>
 				</table>
 				<property>aero/qbar-psf</property>
@@ -248,7 +263,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-rad</property>
-				<value>-0.01</value>
+				<value>-0.05</value>
 			</product>
 		</function>
 

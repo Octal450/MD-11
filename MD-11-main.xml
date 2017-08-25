@@ -102,7 +102,7 @@
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
-		<view n="102">
+		<view n="103">
 			<name>Right Wing View</name>
 			<type>lookfrom</type>
 			<enabled type="bool">true</enabled>
@@ -286,7 +286,7 @@
 			</engine>
 		</engines>
 		<flight>
-			<elevator-trim type="double">-0.3</elevator-trim>
+			<elevator-trim type="double">-0.25</elevator-trim>
 			<flaps-output type="double">0</flaps-output>
 			<slats type="double">0</slats>
 		</flight>
