@@ -284,12 +284,24 @@
 	<controls n="0">
 		<engines n="0">
 			<engine n="0">
+				<cutoff type="bool">true</cutoff>
+				<cutoff-switch type="bool">true</cutoff-switch>
+				<starter type="bool">0</starter>
+				<starter-switch type="bool">0</starter-switch>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="1">
+				<cutoff type="bool">true</cutoff>
+				<cutoff-switch type="bool">true</cutoff-switch>
+				<starter type="bool">0</starter>
+				<starter-switch type="bool">0</starter-switch>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="2">
+				<cutoff type="bool">true</cutoff>
+				<cutoff-switch type="bool">true</cutoff-switch>
+				<starter type="bool">0</starter>
+				<starter-switch type="bool">0</starter-switch>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 		</engines>
@@ -308,6 +320,30 @@
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
 	</controls>
+	
+	<engines n="0">
+		<engine n="0">
+			<egt-actual type="float">0</egt-actual>
+			<state type="int">0</state>
+			<on-fire type="bool">0</on-fire>
+			<reverser-pos-norm type="double">0</reverser-pos-norm>
+			<running type="bool">0</running>
+		</engine>
+		<engine n="1">
+			<egt-actual type="float">0</egt-actual>
+			<state type="int">0</state>
+			<on-fire type="bool">0</on-fire>
+			<reverser-pos-norm type="double">0</reverser-pos-norm>
+			<running type="bool">0</running>
+		</engine>
+		<engine n="2">
+			<egt-actual type="float">0</egt-actual>
+			<state type="int">0</state>
+			<on-fire type="bool">0</on-fire>
+			<reverser-pos-norm type="double">0</reverser-pos-norm>
+			<running type="bool">0</running>
+		</engine>
+	</engines>
 	
 	<gear n="0">
 		<gear n="0">

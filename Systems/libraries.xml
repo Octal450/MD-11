@@ -25,6 +25,42 @@
 	</filter>
 	
 	<filter>
+		<name>OAT Thrust Scale</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input> 
+			<expression>
+				<table>
+					<property>/environment/temperature-degc</property>
+					<entry><ind> 70</ind><dep>0.790</dep></entry>
+					<entry><ind> 40</ind><dep>0.815</dep></entry>
+					<entry><ind>-60</ind><dep>1.000</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/controls/engines/throttle-scale</output>
+	</filter>
+	
+	<!--filter>
+		<name>FLX Thrust Scale</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input> 
+			<expression>
+				<table>
+					<property>/FMC/internal/flex</property>
+					<entry><ind> 70</ind><dep>0.790</dep></entry>
+					<entry><ind> 40</ind><dep>0.815</dep></entry>
+					<entry><ind>-60</ind><dep>1.000</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/controls/engines/flx-scale</output>
+	</filter-->
+	
+	<filter>
 		<name>Aileron Temp</name>
 		<type>noise-spike</type>
 		<input>/controls/flight/aileron</input>
