@@ -9,33 +9,132 @@
 <PropertyList>
 
 	<filter>
-		<name>THROTTLE 1</name>
-		<debug>false</debug>
-		<feedback-if-disabled>false</feedback-if-disabled>
-		<input>/controls/engines/engine[0]/throttle</input>
-		<output>/controls/engines/engine[0]/throttle-output</output>
-		<type>noise-spike</type>
-		<max-rate-of-change>0.2</max-rate-of-change>
+		<name>Throttle 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[0]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[0]/throttle</property>
+		</input>
+		<input>0</input>
+		<output>/controls/engines/engine[0]/throttle-pos</output>
 	</filter>
 	
 	<filter>
-		<name>THROTTLE 2</name>
-		<debug>false</debug>
-		<feedback-if-disabled>false</feedback-if-disabled>
-		<input>/controls/engines/engine[1]/throttle</input>
-		<output>/controls/engines/engine[1]/throttle-output</output>
+		<name>Throttle 1</name>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.2</max-rate-of-change>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[0]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[0]/throttle-pos</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[0]/reverser</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[0]/throttle-rev</property>
+			<scale>1.3</scale>
+		</input>
+		<output>/controls/engines/engine[0]/throttle-fdm</output>
+		<max-rate-of-change>0.45</max-rate-of-change>
 	</filter>
 	
 	<filter>
-		<name>THROTTLE 3</name>
-		<debug>false</debug>
-		<feedback-if-disabled>false</feedback-if-disabled>
-		<input>/controls/engines/engine[2]/throttle</input>
-		<output>/controls/engines/engine[2]/throttle-output</output>
+		<name>Throttle 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[1]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[1]/throttle</property>
+		</input>
+		<input>0</input>
+		<output>/controls/engines/engine[1]/throttle-pos</output>
+	</filter>
+	
+	<filter>
+		<name>Throttle 2</name>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.2</max-rate-of-change>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[1]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[1]/throttle-pos</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[1]/reverser</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[1]/throttle-rev</property>
+			<scale>1.3</scale>
+		</input>
+		<output>/controls/engines/engine[1]/throttle-fdm</output>
+		<max-rate-of-change>0.45</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>Throttle 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[2]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[2]/throttle</property>
+		</input>
+		<input>0</input>
+		<output>/controls/engines/engine[2]/throttle-pos</output>
+	</filter>
+	
+	<filter>
+		<name>Throttle 3</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[2]/reverser</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[2]/throttle-pos</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/engine[2]/reverser</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/controls/engines/engine[2]/throttle-rev</property>
+			<scale>1.3</scale>
+		</input>
+		<output>/controls/engines/engine[2]/throttle-fdm</output>
+		<max-rate-of-change>0.45</max-rate-of-change>
 	</filter>
 
 </PropertyList>

@@ -71,7 +71,7 @@
   	  <animation>
     <type>rotate</type>
 		<object-name>throttle.position.1</object-name>
-        <property>controls/engines/engine/throttle-output</property>
+        <property>controls/engines/engine/throttle-fdm</property>
 <interpolation>
 <entry><ind>0</ind><dep>38</dep></entry>
 <entry><ind>1</ind><dep>177</dep></entry>
@@ -189,7 +189,7 @@
     	  <animation>
     <type>rotate</type>
 		<object-name>throttle.position.2</object-name>
-        <property>controls/engines/engine[1]/throttle-output</property>
+        <property>controls/engines/engine[1]/throttle-fdm</property>
 <interpolation>
 <entry><ind>0</ind><dep>38</dep></entry>
 <entry><ind>1</ind><dep>177</dep></entry>
@@ -307,7 +307,7 @@
       	  <animation>
     <type>rotate</type>
 		<object-name>throttle.position.3</object-name>
-        <property>controls/engines/engine[2]/throttle-output</property>
+        <property>controls/engines/engine[2]/throttle-fdm</property>
 <interpolation>
 <entry><ind>0</ind><dep>38</dep></entry>
 <entry><ind>1</ind><dep>177</dep></entry>
@@ -730,7 +730,7 @@
 	</text>
 	
 			<text>
-		<name>D/L_1</name>
+		<name>U/L_1</name>
 		<offsets>
 			<x-m>0.0013</x-m>
 			<y-m>-0.0459</y-m>
@@ -739,7 +739,7 @@
 		<alignment>right-center</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type type="string">text-value</type>
-		<format type="string">D/L</format>
+		<format type="string">U/L</format>
 		<property>autopilot/serviceable</property>
 		<font>helvetica_bold.txf</font>
 		<character-size>0.007</character-size>
@@ -764,7 +764,7 @@
 	</text>
 	
 				<text>
-		<name>D/L_2</name>
+		<name>U/L_2</name>
 		<offsets>
 			<x-m>0.0013</x-m>
 			<y-m>0.0051</y-m>
@@ -773,7 +773,7 @@
 		<alignment>right-center</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type type="string">text-value</type>
-		<format type="string">D/L</format>
+		<format type="string">U/L</format>
 		<property>autopilot/serviceable</property>
 		<font>helvetica_bold.txf</font>
 		<character-size>0.007</character-size>
@@ -798,7 +798,7 @@
 	</text>
 	
 					<text>
-		<name>D/L_3</name>
+		<name>U/L_3</name>
 		<offsets>
 			<x-m>0.0013</x-m>
 			<y-m>0.0571</y-m>
@@ -807,7 +807,7 @@
 		<alignment>right-center</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type type="string">text-value</type>
-		<format type="string">D/L</format>
+		<format type="string">U/L</format>
 		<property>autopilot/serviceable</property>
 		<font>helvetica_bold.txf</font>
 		<character-size>0.007</character-size>
@@ -965,7 +965,7 @@
 	
     <animation>
 		<type>select</type>
-		<object-name>D/L_1</object-name>
+		<object-name>U/L_1</object-name>
     <condition>
     <and>
     <greater-than>
@@ -993,7 +993,7 @@
 	
 	    <animation>
 		<type>select</type>
-		<object-name>D/L_2</object-name>
+		<object-name>U/L_2</object-name>
     <condition>
     <and>
     <greater-than>
@@ -1021,7 +1021,7 @@
 	
 		    <animation>
 		<type>select</type>
-		<object-name>D/L_3</object-name>
+		<object-name>U/L_3</object-name>
     <condition>
     <and>
     <greater-than>
@@ -1097,9 +1097,9 @@
 	
 	        <animation>
         <type>material</type><!--yellow-->
-        <object-name>D/L_1</object-name>
-        <object-name>D/L_2</object-name>
-        <object-name>D/L_3</object-name>
+        <object-name>U/L_1</object-name>
+        <object-name>U/L_2</object-name>
+        <object-name>U/L_3</object-name>
 		<object-name>CONFIG</object-name>
         <emission>
             <red>1</red>

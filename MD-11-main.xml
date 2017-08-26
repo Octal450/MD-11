@@ -284,13 +284,13 @@
 	<controls n="0">
 		<engines n="0">
 			<engine n="0">
-				<throttle-output type="double">0</throttle-output>
+				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="1">
-				<throttle-output type="double">0</throttle-output>
+				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="2">
-				<throttle-output type="double">0</throttle-output>
+				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 		</engines>
 		<flight>
@@ -405,7 +405,7 @@
 					<value>9</value>
 				</binding>
 			</key>
-			<!--key n="127">
+			<key n="127">
 				<name>DEL</name>
 				<desc>Simple Engage/Disengage reversers</desc>
 				<binding>
@@ -444,7 +444,7 @@
 					systems.doIdleThrust();
 					</script>
 				</binding>
-			</key-->
+			</key>
 			<key n="2">
 				<name>Ctrl-b</name>
 				<desc>Cycle speedbrake setting</desc>
@@ -680,6 +680,9 @@
 		<acconfig>
 			<file>Aircraft/MD-11Family/AircraftConfig/acconfig.nas</file>
 		</acconfig>
+		<systems>
+			<file>Aircraft/MD-11Family/Nasal/engines.nas</file>
+		</systems>
 		<afs>
 			<file>Aircraft/MD-11Family/Nasal/afs.nas</file>
 		</afs>
