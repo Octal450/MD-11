@@ -17,11 +17,16 @@
 		<checklists include="MD-11-Checklists.xml"/>
 		
 		<rating>
-			<FDM type="int">3</FDM>
+			<FDM type="int">4</FDM>
 			<systems type="int">2</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">5</model>
 		</rating>
+		
+		<hud n="0">
+			<enable3d n="0">false</enable3d>
+			<enable3d n="1">false</enable3d>
+		</hud>
 		
 		<model>
 			<pushback>
@@ -94,11 +99,11 @@
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">3.53</x-offset-m>
-				<y-offset-m archive="y">-6.96</y-offset-m>
-				<z-offset-m archive="y">7.11</z-offset-m>
+				<x-offset-m archive="y">-3.53</x-offset-m>
+				<y-offset-m archive="y">6.96</y-offset-m>
+				<z-offset-m archive="y">5.69</z-offset-m>
 				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
-				<heading-offset-deg archive="y">110</heading-offset-deg>
+				<heading-offset-deg archive="y">100</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
@@ -111,9 +116,9 @@
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
 				<y-offset-m archive="y">6.96</y-offset-m>
-				<z-offset-m archive="y">7.11</z-offset-m>
+				<z-offset-m archive="y">5.69</z-offset-m>
 				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
-				<heading-offset-deg archive="y">250</heading-offset-deg>
+				<heading-offset-deg archive="y">260</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
@@ -299,9 +304,12 @@
 			</engine>
 		</engines>
 		<flight>
+			<aileron-sum type="double">0</aileron-sum>
 			<elevator-lsas type="double">0</elevator-lsas>
+			<elevator-sum type="double">0</elevator-sum>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<flaps-output type="double">0</flaps-output>
+			<rudder-sum type="double">0</rudder-sum>
 			<slats type="double">0</slats>
 		</flight>
 		<gear>

@@ -10,10 +10,9 @@
 
 	<path>cargo_area.ac</path>
 	
-			<effect>
+	<effect>
 		<inherits-from>Aircraft/MD-11Family/Models/Effects/engine</inherits-from>
-<object-name>cargo.chrome</object-name>
+		<object-name>cargo.chrome</object-name>
 	</effect>
-	
 
 </PropertyList>

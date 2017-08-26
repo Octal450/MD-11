@@ -11,7 +11,7 @@
 	<channel name="Pitch">
 	
 		<summer name="Pitch Trim Sum">
-			<input>/controls/flight/elevator-lsas</input>
+			<input>/controls/flight/elevator-sum</input>
 			<input>/controls/flight/elevator-trim</input>
 			<clipto>
 				<min> -1 </min>
@@ -46,7 +46,7 @@
 	<channel name="Roll">
 	
 		<summer name="Roll Trim Sum">
-			<input>/controls/flight/aileron</input>
+			<input>/controls/flight/aileron-sum</input>
 			<input>/controls/flight/aileron-trim</input>
 			<clipto>
 				<min>-1</min>
@@ -56,7 +56,7 @@
 
 		<aerosurface_scale name="Left Aileron Control">
 			<input>fcs/roll-trim-sum</input>
-			<gain>0.022</gain>
+			<gain>0.024</gain>
 			<range>
 				<min>-30</min>
 				<max>30</max>
@@ -66,7 +66,7 @@
 
 		<aerosurface_scale name="Right Aileron Control">
 			<input>-fcs/roll-trim-sum</input>
-			<gain>0.022</gain>
+			<gain>0.024</gain>
 			<range>
 				<min>-30</min>
 				<max>30</max>
@@ -130,7 +130,7 @@
 	<channel name="Yaw">
 	
 		<summer name="fcs/rudder-cmd">
-			<input>/controls/flight/rudder</input>
+			<input>/controls/flight/rudder-sum</input>
 			<input>/controls/flight/rudder-trim</input>
 			<clipto>
 				<min>-1</min>

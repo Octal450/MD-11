@@ -41,8 +41,8 @@
 			<expression>
 				<table>
 					<property>/velocities/mach</property>
-					<entry><ind>0.2</ind><dep>-0.38</dep></entry>
-					<entry><ind>0.9</ind><dep>-0.29</dep></entry>
+					<entry><ind>0.2</ind><dep>-0.26</dep></entry>
+					<entry><ind>0.9</ind><dep>-0.18</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -89,11 +89,11 @@
 					</greater-than>
 					<less-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>0.05</value>
+						<value>0.02</value>
 					</less-than-equals>
 					<greater-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>-0.05</value>
+						<value>-0.02</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -114,8 +114,8 @@
 			<beta>1</beta>
 			<alpha>0.1</alpha>
 			<gamma>0</gamma>
-			<Ti>0.41</Ti>
-			<Td>0.002</Td>
+			<Ti>0.2</Ti>
+			<Td>0.005</Td>
 			<u_min>-0.2</u_min>
 			<u_max>0.2</u_max>
 		</config>
@@ -165,11 +165,11 @@
 					</greater-than>
 					<less-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>0.05</value>
+						<value>0.02</value>
 					</less-than-equals>
 					<greater-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>-0.05</value>
+						<value>-0.02</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -225,11 +225,11 @@
 					</greater-than>
 					<less-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>0.05</value>
+						<value>0.02</value>
 					</less-than-equals>
 					<greater-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>-0.05</value>
+						<value>-0.02</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -299,11 +299,11 @@
 					</greater-than>
 					<less-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>0.05</value>
+						<value>0.02</value>
 					</less-than-equals>
 					<greater-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>-0.05</value>
+						<value>-0.02</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -371,11 +371,11 @@
 					</greater-than>
 					<less-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>0.05</value>
+						<value>0.02</value>
 					</less-than-equals>
 					<greater-than-equals>
 						<property>/controls/flight/elevator</property>
-						<value>-0.05</value>
+						<value>-0.02</value>
 					</greater-than-equals>
 					<or>
 						<greater-than>
