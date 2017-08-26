@@ -188,16 +188,6 @@
 							<dialog-name>pushback</dialog-name>
 						</binding>
 					</item>
-					<item>
-						<label>FCTL</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-							var fctl = gui.Dialog.new("sim/gui/dialogs/fctl/dialog", "Aircraft/MD-11Family/Systems/fctl-dlg.xml");
-							fctl.open();
-							</script>
-						</binding>
-					</item>
 				</menu>
 			</default>
 		</menubar>

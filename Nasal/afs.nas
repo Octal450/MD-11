@@ -27,8 +27,8 @@ var ap_init = func {
 	setprop("/it-autoflight/input/ap1", 0);
 	setprop("/it-autoflight/input/ap2", 0);
 	setprop("/it-autoflight/input/athr", 0);
-	setprop("/it-autoflight/input/fd1", 0);
-	setprop("/it-autoflight/input/fd2", 0);
+	setprop("/it-autoflight/input/fd1", 1);
+	setprop("/it-autoflight/input/fd2", 1);
 	setprop("/it-autoflight/input/hdg", 360);
 	setprop("/it-autoflight/input/alt", 10000);
 	setprop("/it-autoflight/input/vs", 0);
@@ -42,8 +42,8 @@ var ap_init = func {
 	setprop("/it-autoflight/output/ap1", 0);
 	setprop("/it-autoflight/output/ap2", 0);
 	setprop("/it-autoflight/output/athr", 0);
-	setprop("/it-autoflight/output/fd1", 0);
-	setprop("/it-autoflight/output/fd2", 0);
+	setprop("/it-autoflight/output/fd1", 1);
+	setprop("/it-autoflight/output/fd2", 1);
 	setprop("/it-autoflight/output/loc-armed", 0);
 	setprop("/it-autoflight/output/appr-armed", 0);
 	setprop("/it-autoflight/output/thr-mode", 2);

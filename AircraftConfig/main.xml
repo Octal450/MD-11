@@ -18,7 +18,7 @@
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>Aircraft Configuration V1.4.4</label>
+			<label>Aircraft Configuration V1.4.5</label>
 		</text>
 		<button>
 			<halign>right</halign>
@@ -206,9 +206,6 @@
 			<checkbox>
 				<label>Enable De-icing Truck</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
 				<property>/services/deicing_truck/enable</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -221,11 +218,8 @@
 				<halign>center</halign>
 				<padding>5</padding>
 				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<!--enable>
 					<property>/services/deicing_truck/enable</property>
-				</enable-->
+				</enable>
 				<binding>
 					<command>nasal</command>
 					<script>
@@ -380,16 +374,13 @@
 				<layout>hbox</layout>
 			
 				<button>
-					<legend>Flight Control</legend>
+					<legend>Flight Controls</legend>
 					<halign>center</halign>
-					<enable>
-						<property>/systems/acconfig/extra-stuff</property>
-					</enable>
 					<padding>5</padding>
 					<binding>
 						<command>nasal</command>
 						<script>
-						acconfig.fbw_dlg.open();
+						acconfig.fctl_dlg.open();
 						</script>
 					</binding>
 				</button>
