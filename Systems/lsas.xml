@@ -9,29 +9,6 @@
 <!-- MD-11 LSAS System by Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
-
-   <filter>
-       <name>IT-CONTROLLER: PITCH RATE CMD</name>
-        <type>gain</type>
-        <gain>1</gain>
-        <input>
-            <expression>
-				<sum>
-					<table>
-						<property>/orientation/pitch-deg</property>
-						<entry><ind>-10.00000</ind><dep>5</dep></entry>
-						<entry><ind> -9.99999</ind><dep>0</dep></entry>
-					</table>
-					<table>
-						<property>/orientation/pitch-deg</property>
-						<entry><ind>29.99999</ind><dep> 0</dep></entry>
-						<entry><ind>30.00000</ind><dep>-5</dep></entry>
-					</table>
-				</sum>
-            </expression>
-        </input>
-		<output>/lsas/pitch-rate</output>
-    </filter>
 	
 	<filter>
 		<name>LSAS: PITCH KP (P Gain)</name>
@@ -83,6 +60,14 @@
 						<property>/orientation/roll-deg</property>
 						<value>-32</value>
 					</greater-than>
+					<less-than>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</less-than>
+					<greater-than>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
+					</greater-than>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
 						<value>100</value>
@@ -102,7 +87,7 @@
 			<property>/orientation/pitch-rate-degps</property>
 		</input>
 		<reference>
-			<property>/lsas/pitch-rate</property>
+			<value>0</value>
 		</reference>
 		<output>
 			<property>/lsas/elevator-command</property>
@@ -158,6 +143,14 @@
 					<greater-than>
 						<property>/orientation/roll-deg</property>
 						<value>-32</value>
+					</greater-than>
+					<less-than>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</less-than>
+					<greater-than>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
 					</greater-than>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
@@ -218,6 +211,14 @@
 					<greater-than>
 						<property>/orientation/roll-deg</property>
 						<value>-32</value>
+					</greater-than>
+					<less-than>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</less-than>
+					<greater-than>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
 					</greater-than>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
@@ -293,6 +294,14 @@
 						<property>/orientation/roll-deg</property>
 						<value>-32</value>
 					</greater-than>
+					<less-than>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</less-than>
+					<greater-than>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
+					</greater-than>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
 						<value>100</value>
@@ -364,6 +373,14 @@
 					<greater-than>
 						<property>/orientation/roll-deg</property>
 						<value>-32</value>
+					</greater-than>
+					<less-than>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</less-than>
+					<greater-than>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
 					</greater-than>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
