@@ -53,18 +53,6 @@
 		<object-name>dashboard.knob.2</object-name>
     </effect>
 
-	
-	    <animation>
-        <type>select</type>
-        <object-name>Power.off</object-name>
-        <condition>
-            <less-than>
-                <property>systems/electrical/outputs/efis</property>
-                <value>15</value>
-            </less-than>
-        </condition>
-    </animation>
-    
 <model>
 	<name>Overhead 1</name>
 	<path>Aircraft/MD-11Family/Models/cockpit/overhead_1.xml</path>
@@ -188,8 +176,8 @@
 </model>
 
 <model>
-	<name>EAD 1</name>
-	<path>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/EAD_1_GE.xml</path>
+	<name>EAD</name>
+	<path>Aircraft/MD-11Family/Models/cockpit/instruments/EAD-old/EAD.xml</path>
 			<offsets>
             <x-m>-27.5138</x-m>
             <y-m>-0.15</y-m>
@@ -198,8 +186,8 @@
 		</offsets>
 </model>
 
-<model>
-	<name>EAD 2</name>
+<!--model>
+	<name>SD</name>
 	<path>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/SD.xml</path>
 			<offsets>
             <x-m>-27.5138</x-m>
@@ -207,7 +195,7 @@
             <z-m>6.9072</z-m>
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
-</model>
+</model-->
 
 <model>
 	<name>PFD2</name>

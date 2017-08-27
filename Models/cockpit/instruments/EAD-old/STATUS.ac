@@ -1,0 +1,44 @@
+AC3Db
+MATERIAL "buttonlights" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0.33 0.33 0.33  shi 32  trans 0
+MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 128  trans 0
+OBJECT world
+kids 2
+OBJECT poly
+name "EFIS.screen"
+loc 0.00110435 0.00181715 0.000463043
+data 10
+ND.screenL
+texture "STATUS.png"
+crease 30.000002
+numvert 4
+0 0.0871572 0.0882351
+0 -0.0809017 0.0882351
+0 -0.0809017 -0.0884976
+0 0.0871572 -0.0884976
+numsurf 1
+SURF 0x0
+mat 0
+refs 4
+3 1.00067 0.999407
+0 4.45843e-005 0.999407
+1 4.45843e-005 0.000756443
+2 1.00067 0.000756443
+kids 0
+OBJECT poly
+name "rect"
+loc 0.000607657 0.00813118 -0.000853315
+crease 45.000000
+numvert 4
+0 -0.0909923 -0.0957047
+0 -0.0909923 0.0957047
+0 0.0909923 0.0957047
+0 0.0909923 -0.0957047
+numsurf 1
+SURF 0x30
+mat 1
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0

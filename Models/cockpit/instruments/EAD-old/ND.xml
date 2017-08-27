@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
+-->
+
+<PropertyList>
+
+<path>ND.ac</path>
+
+    <animation>
+        <type>select</type>
+        <object-name>ND.screenL</object-name>
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>ND.screenL</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<command>nasal</command>
+			<script>MD11.showNd();</script>
+		</binding>
+	</action>
+</animation>
+
+</PropertyList>
