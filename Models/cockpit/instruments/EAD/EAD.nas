@@ -38,35 +38,30 @@ var canvas_EAD_base = {
 		
 		canvas.parsesvg(canvas_group, file, {'font-mapper': font_mapper});
 		
+	var svg_keys = me.getKeys();
+	foreach(var key; svg_keys) {
+		me[key] = canvas_group.getElementById(key);
 		var svg_keys = me.getKeys();
-		foreach(var key; svg_keys) {
+
+		foreach (var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
-            var svg_keys = me.getKeys();
 
-            foreach (var key; svg_keys) {
-                me[key] = canvas_group.getElementById(key);
+			var clip_el = canvas_group.getElementById(key ~ "_clip");
+			if (clip_el != nil) {
+				clip_el.setVisible(0);
+				var tran_rect = clip_el.getTransformedBounds();
 
-#
-# If there is an element in the SVG that is the same as the key with _clip appened
-# then treat that as the clipping rectangle.
-# - this belongs in the init as it is common to all
-
-                var clip_el = canvas_group.getElementById(key ~ "_clip");
-                if (clip_el != nil) {
-                    clip_el.setVisible(0);
-                    var tran_rect = clip_el.getTransformedBounds();
-                
-                    var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
-                                            tran_rect[1], # 0 ys
-                                            tran_rect[2], # 1 xe
-                                            tran_rect[3], # 2 ye
-                                            tran_rect[0]); #3 xs
-                    #   coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
-                    me[key].set("clip", clip_rect);
-                    me[key].set("clip-frame", canvas.Element.PARENT);
-                }
-            }
-        }
+				var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
+				tran_rect[1], # 0 ys
+				tran_rect[2], # 1 xe
+				tran_rect[3], # 2 ye
+				tran_rect[0]); #3 xs
+				#   coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
+				me[key].set("clip", clip_rect);
+				me[key].set("clip-frame", canvas.Element.PARENT);
+			}
+		}
+	}
 
 		me.page = canvas_group;
 
@@ -147,11 +142,11 @@ var canvas_EAD_GE = {
 	update: func() {
 		# N1
 		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1") + 0.05)));
-		me["N11-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
+		me["N11-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[0]/n1"),1))*33.65, 0.1));
 		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1") + 0.05)));
-		me["N12-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
+		me["N12-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[1]/n1"),1))*33.65, 0.1));
 		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1") + 0.05)));
-		me["N13-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
+		me["N13-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[2]/n1"),1))*33.65, 0.1));
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90)*D2R);
 		me["N11-thr"].setRotation((getprop("/DU/EAD/N1thr[0]") + 90)*D2R);
