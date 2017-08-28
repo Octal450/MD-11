@@ -18,7 +18,7 @@
         <condition>
 			<and>
 				<property>sim/rendering/rembrandt/enabled</property>
-				<property>/it-autoflight/output/fd2</property>
+				<property>it-autoflight/output/fd2</property>
 			</and>
         </condition>
     </animation>
@@ -30,7 +30,7 @@
         <condition>
 			<and>
 				<not><property>sim/rendering/rembrandt/enabled</property></not>
-				<property>/it-autoflight/output/fd2</property>
+				<property>it-autoflight/output/fd2</property>
 			</and>
         </condition>
     </animation>
@@ -39,7 +39,7 @@
         <type>translate</type>
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
-        <property>/it-autoflight/fd/pitch-bar</property>
+        <property>it-autoflight/fd/pitch-bar</property>
         <factor>0.0005</factor>
         <axis>
             <x>0</x>
@@ -52,7 +52,7 @@
         <type>translate</type>
         <object-name>FDroll</object-name>
         <object-name>FDroll_rembrandt</object-name>
-        <property>/it-autoflight/fd/roll-bar</property>
+        <property>it-autoflight/fd/roll-bar</property>
         <factor>0.0002</factor>
         <axis>
             <x>0</x>
@@ -146,15 +146,15 @@
         <condition>
 		<and>
 		<equals>
-		<property>/it-autoflight/output/ap1</property>		
+		<property>it-autoflight/output/ap1</property>		
 		<value>0</value>
 		</equals>
 		<equals>
-		<property>/it-autoflight/output/ap2</property>		
+		<property>it-autoflight/output/ap2</property>		
 		<value>0</value>
 		</equals>
 		<equals>
-		<property>/it-autoflight/mode/thr</property>		
+		<property>it-autoflight/mode/thr</property>		
 		<value> PITCH</value>
 		</equals>
 		</and>
@@ -167,11 +167,11 @@
         <condition>
 		<and>
 		<equals>
-		<property>/it-autoflight/output/athr</property>		
+		<property>it-autoflight/output/athr</property>		
 		<value>0</value>
 		</equals>
 		<equals>
-		<property>/it-autoflight/mode/thr</property>		
+		<property>it-autoflight/mode/thr</property>		
 		<value> PITCH</value>
 		</equals>
 		</and>
@@ -185,15 +185,15 @@
         <condition>
 		<and>
 		<equals>
-		<property>/it-autoflight/output/ap1</property>		
+		<property>it-autoflight/output/ap1</property>		
 		<value>0</value>
 		</equals>
 		<equals>
-		<property>/it-autoflight/output/ap2</property>		
+		<property>it-autoflight/output/ap2</property>		
 		<value>0</value>
 		</equals>
 		<not-equals>
-		<property>/it-autoflight/mode/thr</property>		
+		<property>it-autoflight/mode/thr</property>		
 		<value> PITCH</value>
 		</not-equals>
 		</and>
@@ -206,11 +206,11 @@
         <condition>
 		<and>
 		<equals>
-		<property>/it-autoflight/output/athr</property>		
+		<property>it-autoflight/output/athr</property>		
 		<value>0</value>
 		</equals>
 		<not-equals>
-		<property>/it-autoflight/mode/thr</property>		
+		<property>it-autoflight/mode/thr</property>		
 		<value> PITCH</value>
 		</not-equals>
 		</and>
@@ -475,7 +475,7 @@
     <animation>
         <type>rotate</type>
         <object-name>hdg-bug</object-name>
-        <property>/it-autoflight/input/hdg</property>
+        <property>it-autoflight/input/hdg</property>
         <interpolation>
             <entry><ind>-35</ind><dep>-35</dep></entry>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -942,7 +942,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
         <format type="string">%s</format>
-		<property>/it-autoflight/mode/thr</property>
+		<property>it-autoflight/mode/thr</property>
 		<font>helvetica_bold.txf</font>
 		<character-size>0.007</character-size>
 		<character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1080,7 +1080,7 @@
 		<object-name>APVert</object-name>
 		<condition>
 			<not-equals>
-				<property>/it-autoflight/output/vert</property>
+				<property>it-autoflight/output/vert</property>
 				<value>8</value>
 			</not-equals>
 		</condition>
@@ -1091,7 +1091,7 @@
 		<object-name>APVertM</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/output/vert</property>
+				<property>it-autoflight/output/vert</property>
 				<value>8</value>
 			</equals>
 		</condition>
@@ -1401,7 +1401,7 @@
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%2.0f</format>
-        <property>/it-autoflight/internal/alt</property>
+        <property>it-autoflight/internal/alt</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.0095</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1422,7 +1422,7 @@
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%03.0f</format>
-        <property>/it-autoflight/internal/alt</property>
+        <property>it-autoflight/internal/alt</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1795,7 +1795,7 @@
         <object-name>HDG-annun</object-name>
         <condition>
 			<equals>
-				<property>/it-autoflight/output/lat</property>
+				<property>it-autoflight/output/lat</property>
 				<value>0</value>
 			</equals>
         </condition>
@@ -1806,7 +1806,7 @@
         <object-name>TRK-annun</object-name>
         <condition>
 			<equals>
-				<property>/it-autoflight/input/trk</property>
+				<property>it-autoflight/input/trk</property>
 				<value>1</value>
 			</equals>
         </condition>

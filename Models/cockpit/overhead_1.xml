@@ -210,1318 +210,7 @@
 			<z-m>-18.0476</z-m>
 		</center>
 	</animation>
-
-
-<!-- FUEL -->
-			<animation>
-		<type>select</type>
-		<object-name>ltank.1</object-name>
-		<object-name>ltank.2</object-name>
-		<object-name>ltank.3</object-name>
-		<object-name>ltank.4</object-name>
-		<object-name>ltank.5</object-name>
-		<object-name>ctank.1</object-name>
-		<object-name>ctank.2</object-name>
-		<object-name>ctank.3</object-name>
-		<object-name>ctank.4</object-name>
-		<object-name>ctank.5</object-name>
-		<object-name>rtank.1</object-name>
-		<object-name>rtank.2</object-name>
-		<object-name>rtank.3</object-name>
-		<object-name>rtank.4</object-name>
-		<object-name>rtank.5</object-name>
-		<object-name>atank.1</object-name>
-		<object-name>atank.2</object-name>
-		<object-name>atank.3</object-name>
-		<object-name>atank.4</object-name>
-		<object-name>atank.5</object-name>
-		<object-name>ttank.1</object-name>
-		<object-name>ttank.2</object-name>
-		<object-name>ttank.3</object-name>
-		<object-name>ttank.4</object-name>
-		<object-name>ttank.5</object-name>
-		<condition>
-				<property>systems/electrical/outputs/avionics</property>
-		</condition>
-	</animation>
 	
-	
-		<animation>
-		<type>textranslate</type>
-		<object-name>ltank.1</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.2</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.3</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.4</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.5</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-			<animation>
-		<type>textranslate</type>
-		<object-name>ctank.1</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.2</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.3</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.4</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.5</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-			<animation>
-		<type>textranslate</type>
-		<object-name>rtank.1</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.2</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.3</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.4</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.5</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-				<animation>
-		<type>textranslate</type>
-		<object-name>atank.1</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.2</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.3</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.4</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.5</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-		<animation>
-		<type>textranslate</type>
-		<object-name>ttank.1</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.2</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.3</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.4</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.5</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-<!-- Fuel Tank Controls >
-jettison.btn
-jett.cover
-tank0_armf
-tank0_fill
-tank0_pump
-tank0_low
-tank0_xfeed
-tank0_xfer
-tank0_xlow
-tank3_Lxfer
-tank3_Llow
-tank3_Rxfer
-tank3_Rlow
-tank4_xfer
-tank4_xlow
-tank4_alt
-tank4_low
-FSC.btn
--->
-	<!-- Left Main Tank -->
-	<animation>
-		<type>pick</type>
-		<object-name>tank0_pump</object-name>
-		<object-name>tank0_low</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[0]/pump-eng</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank0_pump</object-name>
-		<property>controls/fuel/tank[0]/pump-eng</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank0_xfer</object-name>
-		<object-name>tank0_xlow</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[0]/pump-xfer</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank0_xfer</object-name>
-		<property>controls/fuel/tank[0]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank0_armf</object-name>
-		<object-name>tank0_fill</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[0]/fill-valve-arm</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank0_armf</object-name>
-		<property>controls/fuel/tank[0]/fill-valve-arm</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank0_fill</object-name>
-		<property>consumables/fuel/tank[0]/fill-valve</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank0_xfeed</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[0]/x-feed</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank0_xfeed</object-name>
-		<property>controls/fuel/tank[0]/x-feed</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-		    
-	<!-- Center Main Tank -->
-	<animation>
-		<type>pick</type>
-		<object-name>tank1_pump</object-name>
-		<object-name>tank1_low</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[1]/pump-eng</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank1_pump</object-name>
-		<property>controls/fuel/tank[1]/pump-eng</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank1_xfer</object-name>
-		<object-name>tank1_xlow</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[1]/pump-xfer</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank1_xfer</object-name>
-		<property>controls/fuel/tank[1]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank1_armf</object-name>
-		<object-name>tank1_fill</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[1]/fill-valve-arm</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank1_armf</object-name>
-		<property>controls/fuel/tank[1]/fill-valve-arm</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank1_fill</object-name>
-		<property>consumables/fuel/tank[1]/fill-valve</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank1_xfeed</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[1]/x-feed</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank1_xfeed</object-name>
-		<property>controls/fuel/tank[1]/x-feed</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-		    
-	<!-- Right Main Tank -->
-	<animation>
-		<type>pick</type>
-		<object-name>tank2_pump</object-name>
-		<object-name>tank2_low</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[2]/pump-eng</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank2_pump</object-name>
-		<property>controls/fuel/tank[2]/pump-eng</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank2_xfer</object-name>
-		<object-name>tank2_xlow</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[2]/pump-xfer</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank2_xfer</object-name>
-		<property>controls/fuel/tank[2]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank2_armf</object-name>
-		<object-name>tank2_fill</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[2]/fill-valve-arm</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank2_armf</object-name>
-		<property>controls/fuel/tank[2]/fill-valve-arm</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank2_fill</object-name>
-		<property>consumables/fuel/tank[2]/fill-valve</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank2_xfeed</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[2]/x-feed</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank2_xfeed</object-name>
-		<property>controls/fuel/tank[2]/x-feed</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Aux Tanks -->
-	<animation>
-		<type>pick</type>
-		<object-name>tank3_Lxfer</object-name>
-		<object-name>tank3_Llow</object-name>
-		<object-name>tank3_Rxfer</object-name>
-		<object-name>tank3_Rlow</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[3]/pump-xfer</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank3_Lxfer</object-name>
-		<property>controls/fuel/tank[3]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank3_Rxfer</object-name>
-		<property>controls/fuel/tank[3]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Tail Tank -->
-	
-	<animation>
-		<type>pick</type>
-		<object-name>tank4_alt</object-name>
-		<object-name>tank4_low</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[4]/alt-pump-eng</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank4_alt</object-name>
-		<property>controls/fuel/tank[4]/alt-pump-eng</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>tank4_xfer</object-name>
-		<object-name>tank4_xlow</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/tank[4]/pump-xfer</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>tank4_xfer</object-name>
-		<property>controls/fuel/tank[4]/pump-xfer</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Fuel System Control Button -->
-	<animation>
-		<type>pick</type>
-		<object-name>FSC.btn</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/fuel/auto-manage</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>FSC.btn</object-name>
-		<property>controls/fuel/auto-manage</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Fuel Jettison -->
-	<animation>
-		<type>pick</type>
-		<object-name>jett.cover_1</object-name>
-		<object-name>jett.cover_2</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/switches/jettison-cover</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>jett.cover_1</object-name>
-		<object-name>jett.cover_2</object-name>
-		<property>controls/switches/jettison-cover</property>
-		<factor>130</factor>
-		<axis>
-		    <x1-m>-21.795</x1-m>
-		    <y1-m> -0.500</y1-m>
-		    <z1-m>-18.014</z1-m>
-		    <x2-m>-21.795</x2-m>
-		    <y2-m>  0.500</y2-m>
-		    <z2-m>-18.014</z2-m>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>jettison.btn</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<condition>
-			    <property>controls/switches/jettison-cover</property>
-			</condition>
-			<command>property-toggle</command>
-			<property>controls/fuel/dump-valve</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>jettison.btn</object-name>
-		<property>controls/fuel/dump-valve</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-<!-- PNEUMATIC/BLEED AIR -->
-	<!-- Pneumatic System Control Button -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.auto.btn</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/auto-mode</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.auto.btn</object-name>
-		<property>controls/pneumatic/auto-mode</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Isolation Valves -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.isolL</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/isolation-valve[0]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.isolL</object-name>
-		<property>controls/pneumatic/isolation-valve[0]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>Air.isolR</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/isolation-valve[1]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.isolR</object-name>
-		<property>controls/pneumatic/isolation-valve[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Engine Bleeds -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.Bleed.L</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/engine-bleed[0]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.Bleed.L</object-name>
-		<property>controls/pneumatic/engine-bleed[0]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>Air.Bleed.C</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/engine-bleed[1]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.Bleed.C</object-name>
-		<property>controls/pneumatic/engine-bleed[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>Air.Bleed.R</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/engine-bleed[2]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.Bleed.R</object-name>
-		<property>controls/pneumatic/engine-bleed[2]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Packs -->
-	<animation>
-		<type>pick</type>
-		<object-name>Pack.L</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/pack-control[0]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Pack.L</object-name>
-		<property>systems/pneumatic/pack[0]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>Pack.C</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/pack-control[1]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Pack.C</object-name>
-		<property>systems/pneumatic/pack[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>Pack.R</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/pack-control[2]</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Pack.R</object-name>
-		<property>systems/pneumatic/pack[2]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- APU button -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.APU</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/APU-bleed-valve</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.APU</object-name>
-		<property>controls/pneumatic/APU-bleed-valve</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>-1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Econ Button -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.econ</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pneumatic/pack-high-flow</property>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Air.econ</object-name>
-		<property>controls/pneumatic/pack-high-flow</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-<!-- CABIN PRESSURIZATION -->
-	<!-- System control Button -->
-	<animation>
-		<type>pick</type>
-		<object-name>Press.btn</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
-			<command>property-toggle</command>
-			<property>controls/pressurization/valve-manual</property>
-		    </binding>
-		    <binding>
-			<condition>
-			    <not><property>controls/pressurization/valve-manual</property></not>
-			</condition>
-			<command>property-assign</command>
-			<property>controls/pressurization/landing-alt-manual</property>
-			<value>0</value>
-		    </binding>
-		</action>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>Press.btn</object-name>
-		<property>controls/pressurization/valve-manual</property>
-		<interpolation>
-		    <entry><ind>0</ind><dep>0.0625</dep></entry>
-		    <entry><ind>1</ind><dep>0</dep></entry>
-		</interpolation>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Manual Valve Knob -->
-	<animation>
-		<type>rotate</type>
-		<object-name>Air.valve.knob</object-name>
-		<object-name>Air.valve.lit</object-name>
-		<property>controls/pressurization/valve-switch</property>
-		<factor>-20</factor>
-		<center>
-		    <x-m>-21.79155</x-m>
-		    <y-m>  0.21571</y-m>
-		    <z-m>-17.87550</z-m>
-		</center>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>pick</type>
-		<object-name>Air.valve.knob</object-name>
-		<object-name>Air.valve.lit</object-name>
-		<action>
-		    <button>0</button>
-		    <repeatable>true</repeatable>
-		    <binding>
-			<command>nasal</command>
-			<script>pressurization.valve_adjust(1);</script>
-		    </binding>
-		    <binding>
-			<command>property-assign</command>
-			<property>controls/pressurization/valve-switch</property>
-			<value>1</value>
-		    </binding>
-		    <mod-up>
-			<binding>
-			    <command>property-assign</command>
-			    <property>controls/pressurization/valve-switch</property>
-			    <value>0</value>
-			</binding>
-		    </mod-up>
-		</action>
-		<action>
-		    <button>1</button>
-		    <repeatable>true</repeatable>
-		    <binding>
-			<command>nasal</command>
-			<script>pressurization.valve_adjust(-1);</script>
-		    </binding>
-		    <binding>
-			<command>property-assign</command>
-			<property>controls/pressurization/valve-switch</property>
-			<value>-1</value>
-		    </binding>
-		    <mod-up>
-			<binding>
-			    <command>property-assign</command>
-			    <property>controls/pressurization/valve-switch</property>
-			    <value>0</value>
-			</binding>
-		    </mod-up>
-		</action>
-	</animation>
-
-	 <!-- Valve needle -->
-	<animation>
-		<type>rotate</type>
-		<object-name>Air.pres.needle</object-name>
-		<property>controls/pressurization/outflow-valve-pos[0]</property>
-		<factor>-170</factor>
-		<offset-deg>85</offset-deg>
-		<center>
-		    <x-m>-21.7988</x-m>
-		    <y-m>  0.1823</y-m>
-		    <z-m>-17.8751</z-m>
-		</center>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
-	<!-- Manual Landing Alt Knob -->
-	<animation>
-		<type>pick</type>
-		<object-name>Air.alt.knob</object-name>
-		<action>
-		    <button>0</button>
-		    <button>3</button>
-		    <repeatable>true</repeatable>
-		    <binding>
-			<command>nasal</command>
-			<script>pressurization.man_alt(100);</script>
-		    </binding>
-		</action>
-		<action>
-		    <button>1</button>
-		    <button>4</button>
-		    <repeatable>true</repeatable>
-		    <binding>
-			<command>nasal</command>
-			<script>pressurization.man_alt(-100);</script>
-		    </binding>
-		</action>
-		<hovered>
-		    <binding>
-			<command>set-tooltip</command>
-			<tooltip-id>landing-alt-man</tooltip-id>
-			<label>Landing Altitude: %.0f</label>
-			<!--property>controls/pressurization/landing-alt-ft</property-->
-			<property>systems/pressurization/landing-alt-ft</property>
-		    </binding>
-		</hovered>
-	</animation>
-
 	<!-- HYDRAULICS -->
 	<!-- Hydraulic System Control Button -->
 	<animation>
@@ -2180,10 +869,387 @@ FSC.btn
 			</or>
 		</condition>
 	</animation>
-	
-	<!-- Other -->
 
-    <animation>
+<!-- FUEL -->
+			<animation>
+		<type>select</type>
+		<object-name>ltank.1</object-name>
+		<object-name>ltank.2</object-name>
+		<object-name>ltank.3</object-name>
+		<object-name>ltank.4</object-name>
+		<object-name>ltank.5</object-name>
+		<object-name>ctank.1</object-name>
+		<object-name>ctank.2</object-name>
+		<object-name>ctank.3</object-name>
+		<object-name>ctank.4</object-name>
+		<object-name>ctank.5</object-name>
+		<object-name>rtank.1</object-name>
+		<object-name>rtank.2</object-name>
+		<object-name>rtank.3</object-name>
+		<object-name>rtank.4</object-name>
+		<object-name>rtank.5</object-name>
+		<object-name>atank.1</object-name>
+		<object-name>atank.2</object-name>
+		<object-name>atank.3</object-name>
+		<object-name>atank.4</object-name>
+		<object-name>atank.5</object-name>
+		<object-name>ttank.1</object-name>
+		<object-name>ttank.2</object-name>
+		<object-name>ttank.3</object-name>
+		<object-name>ttank.4</object-name>
+		<object-name>ttank.5</object-name>
+		<condition>
+				<property>systems/electrical/outputs/avionics</property>
+		</condition>
+	</animation>
+	
+	
+		<animation>
+		<type>textranslate</type>
+		<object-name>ltank.1</object-name>
+		<property>consumables/fuel/tank/level-lbs</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ltank.2</object-name>
+		<property>consumables/fuel/tank/level-lbs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ltank.3</object-name>
+		<property>consumables/fuel/tank/level-lbs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ltank.4</object-name>
+		<property>consumables/fuel/tank/level-lbs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ltank.5</object-name>
+		<property>consumables/fuel/tank/level-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+			<animation>
+		<type>textranslate</type>
+		<object-name>ctank.1</object-name>
+		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ctank.2</object-name>
+		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ctank.3</object-name>
+		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ctank.4</object-name>
+		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ctank.5</object-name>
+		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+			<animation>
+		<type>textranslate</type>
+		<object-name>rtank.1</object-name>
+		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>rtank.2</object-name>
+		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>rtank.3</object-name>
+		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>rtank.4</object-name>
+		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>rtank.5</object-name>
+		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+				<animation>
+		<type>textranslate</type>
+		<object-name>atank.1</object-name>
+		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>atank.2</object-name>
+		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>atank.3</object-name>
+		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>atank.4</object-name>
+		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>atank.5</object-name>
+		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+		<animation>
+		<type>textranslate</type>
+		<object-name>ttank.1</object-name>
+		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ttank.2</object-name>
+		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ttank.3</object-name>
+		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ttank.4</object-name>
+		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ttank.5</object-name>
+		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	 <!-- Valve needle -->
+	<!--animation>
+		<type>rotate</type>
+		<object-name>Air.pres.needle</object-name>
+		<property>controls/pressurization/outflow-valve-pos[0]</property>
+		<factor>-170</factor>
+		<offset-deg>85</offset-deg>
+		<center>
+		    <x-m>-21.7988</x-m>
+		    <y-m>  0.1823</y-m>
+		    <z-m>-17.8751</z-m>
+		</center>
+		<axis>
+		    <x>1</x>
+		    <y>0</y>
+		    <z>0</z>
+		</axis>
+	</animation-->
+
+    <!--animation>
         <type>rotate</type>
         <object-name>emgpwrknob</object-name>
         <object-name>emgpwr.light</object-name>
@@ -2241,7 +1307,9 @@ FSC.btn
                 <max>2</max>
             </binding>
         </action>
-    </animation>
+    </animation-->
+	
+	<!-- Other -->
     
     <animation>
         <type>rotate</type>
@@ -2400,23 +1468,6 @@ FSC.btn
     <object-name>seatbelts.lever</object-name>
         <object-name>emer_light_switch</object-name>
 	</effect>
-	
-	    <animation>
-        <type>pick</type>
-        <object-name>BATT.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/electric/battery-switch</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
     
         <animation>
         <type>pick</type>
@@ -2639,51 +1690,6 @@ FSC.btn
      <z>0</z>
    </axis>
  </animation>
- 
- 	<animation>
-		<type>pick</type>
-		<object-name>EXT_P.btn</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<property>controls/electric/external-power</property>
-				</condition>
-				<command>property-toggle</command>
-				<property>systems/electrical/PRI-EPC</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(3);</script>
-			</binding>
-		</action>
-	</animation>
-	
-		<animation>
-		<type>textranslate</type>
-		<object-name>EXT_P.btn</object-name>
-		<property>controls/electric/b_ext_power_p</property>
-        <interpolation>
-            <entry>
-                <ind>1</ind>
-                <dep>0.1875</dep>
-            </entry>
-            <entry>
-                <ind>2</ind>
-                <dep>0.125</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
 	
     <animation>
         <type>pick</type>
@@ -2788,69 +1794,9 @@ FSC.btn
     </animation>
     
     <animation>
-        <type>pick</type>
-        <object-name>APUavail.btn</object-name>
-        <object-name>APUon.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>nasal</command>
-                <script>
-		controls.click(4);
-		if (getprop("controls/APU/off-start-run") == 0) {
-		    setprop("controls/APU/off-start-run",1);
-		    settimer(func setprop("controls/APU/off-start-run",2),0.2);
-		} elsif (getprop("controls/APU/apu-gen-switch")) {
-		    setprop("controls/APU/off-start-run",0);
-		}
-		</script>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/APU/apu-gen-switch</property>
-            </binding>
-        </action>
-    </animation>
-    <animation>
-	<type>textranslate</type>
-	<object-name>APUavail.btn</object-name>
-        <condition>
-	    <equals>
-		<property>systems/electrical/outputs/avionics</property>
-		<value>1</value>
-	    </equals>
-	</condition>
-        <property>controls/switches/apu-pwr-indicator</property>
-	<factor>0.1875</factor>
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-    </animation>
-    <animation>
-	<type>textranslate</type>
-	<object-name>APUon.btn</object-name>
-        <condition>
-	    <equals>
-		<property>systems/electrical/outputs/avionics</property>
-		<value>1</value>
-	    </equals>
-	</condition>
-        <property>systems/electrical/APB</property>
-	<factor>0.125</factor>
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-    </animation>
-    
-    <animation>
 	<type>knob</type>
 	<object-name>wiper.knob1</object-name>
-	<property>/controls/electric/wiperl/switch</property>
+	<property>controls/electric/wiperl/switch</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-90</dep></entry>
@@ -2859,7 +1805,7 @@ FSC.btn
 	<action>
 		<binding>
 			<command>property-adjust</command>
-			<property>/controls/electric/wiperl/switch</property>
+			<property>controls/electric/wiperl/switch</property>
 			<factor>1</factor>
 			<min>0</min>
 			<max>2</max>
@@ -2876,7 +1822,7 @@ FSC.btn
     <animation>
 	<type>knob</type>
 	<object-name>wiper.knob2</object-name>
-	<property>/controls/electric/wiperr/switch</property>
+	<property>controls/electric/wiperr/switch</property>
 	<interpolation>
 		<entry><ind>0</ind><dep>0</dep></entry>
 		<entry><ind>1</ind><dep>-90</dep></entry>
@@ -2885,7 +1831,7 @@ FSC.btn
 	<action>
 		<binding>
 			<command>property-adjust</command>
-			<property>/controls/electric/wiperr/switch</property>
+			<property>controls/electric/wiperr/switch</property>
 			<factor>1</factor>
 			<min>0</min>
 			<max>2</max>
@@ -2897,6 +1843,39 @@ FSC.btn
 	<axis>
 		<x>1</x>
 	</axis>
+    </animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AnnunTest</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/annun-test</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/annun-test</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+    <animation>
+        <type>translate</type>
+        <object-name>AnnunTest</object-name>
+        <property>controls/switches/annun-test</property>
+        <factor>-0.0025</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
     </animation>
 	
 </PropertyList>

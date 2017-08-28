@@ -8,9 +8,85 @@
 # Initializing Vars #
 #####################
 
+var spinup_time = 49;
+var apu_max = 60;
+var apu_max_n2 = 100;
+var apu_egt_min = 352;
+var apu_egt_max = 704;
+var apu_on_lt2 = 0;
+setprop("/systems/apu/n1", 0);
+setprop("/systems/apu/n2", 0);
+setprop("/systems/apu/egt", 42);
+setprop("/controls/APU/on-light", 0);
 setprop("/controls/engines/engine[0]/reverser", 0);
 setprop("/controls/engines/engine[1]/reverser", 0);
 setprop("/controls/engines/engine[2]/reverser", 0);
+
+#############
+# Start APU #
+#############
+
+setlistener("/controls/APU/start", func {
+	if (getprop("/controls/APU/start") == 1) {
+		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
+			interpolate("/systems/apu/n1", apu_max, spinup_time);
+			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
+			apu_egt_checkt.start();
+			apu_on_ltt.start();
+		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
+			apu_on_ltt.stop();
+			setprop("/controls/APU/on-light", 1);
+			interpolate("/systems/apu/n1", apu_max, 5);
+			interpolate("/systems/apu/n2", apu_max_n2, 5);
+			interpolate("/systems/apu/egt", apu_egt_max, 5);
+		}
+	} else if (getprop("/controls/APU/start") == 0) {
+		apu_on_ltt.stop();
+		setprop("/controls/APU/on-light", 0);
+		apu_egt_checkt.stop();
+		apu_egt2_checkt.stop();
+		apu_stop();
+	}
+});
+
+var apu_egt_check = func {
+	if (getprop("/systems/apu/n2") >= 28) {
+		apu_egt_checkt.stop();
+		interpolate("/systems/apu/egt", apu_egt_max, 5);
+		apu_egt2_checkt.start();
+	}
+}
+
+var apu_egt2_check = func {
+	if (getprop("/systems/apu/egt") >= 701) {
+		apu_egt2_checkt.stop();
+		interpolate("/systems/apu/egt", apu_egt_min, 30);
+	}
+}
+
+var apu_on_lt = func {
+	if (getprop("/systems/apu/n2") < 94.9) {
+		apu_on_lt2 = getprop("/controls/APU/on-light");
+		if (apu_on_lt2 == 0) {
+			setprop("/controls/APU/on-light", 1);
+		} else {
+			setprop("/controls/APU/on-light", 0);
+		}
+	} else {
+		apu_on_ltt.stop();
+		setprop("/controls/APU/on-light", 1);
+	}
+}
+
+############
+# Stop APU #
+############
+
+var apu_stop = func {
+	interpolate("/systems/apu/n1", 0, 30);
+	interpolate("/systems/apu/n2", 0, 30);
+	interpolate("/systems/apu/egt", 42, 40);
+}
 
 #######################
 # Various other stuff #
@@ -136,3 +212,11 @@ var unRevThrust_b = func {
 	setprop("/controls/engines/engine[1]/reverser", 0);
 	setprop("/controls/engines/engine[2]/reverser", 0);
 }
+
+##########
+# Timers #
+##########
+
+var apu_egt_checkt = maketimer(0.5, apu_egt_check);
+var apu_egt2_checkt = maketimer(0.5, apu_egt2_check);
+var apu_on_ltt = maketimer(0.5, apu_on_lt);

@@ -286,6 +286,14 @@
 	</consumables-->
 	
 	<controls n="0">
+		<APU>
+			<fire-btn type="bool">0</fire-btn>
+			<fire-btn-cover type="bool">0</fire-btn-cover>
+			<fire-light type="bool">0</fire-light>
+			<on-light type="bool">0</on-light>
+			<start type="bool">0</start>
+			<bleed type="bool">0</bleed>
+		</APU>
 		<engines n="0">
 			<engine n="0">
 				<cutoff type="bool">true</cutoff>
