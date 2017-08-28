@@ -5,6 +5,20 @@
 # Copyright (c) it0uchpods Design Group #
 #########################################
 
+# :)
+print(" __  __ _____        __ __ ______              _ _       ");
+print("|  \/  |  __ \      /_ /_ |  ____|            (_) |      ");
+print("| \  / | |  | |______| || | |__ __ _ _ __ ___  _| |_   _ ");
+print("| |\/| | |  | |______| || |  __/ _` | '_ ` _ \| | | | | |");
+print("| |  | | |__| |      | || | | | (_| | | | | | | | | |_| |");
+print("|_|  |_|_____/       |_||_|_|  \__,_|_| |_| |_|_|_|\__, |");
+print("                                                    __/ |");
+print("                                                   |___/ ");
+print("-----------------------------------------------------------------------------");
+print("Copyright (c) 2017 it0uchpods Design Group");
+print("-----------------------------------------------------------------------------");
+print(" ");
+
 ##########
 # Sounds #
 ##########
@@ -139,13 +153,13 @@ controls.flapsDown = func(step) {
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 1) {
 			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.310);
+			setprop("/controls/flight/flaps-output", 0.300);
 			setprop("/controls/flight/flap-lever", 2);
 			setprop("/controls/flight/flaps", 0.4);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 2) {
 			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.580);
+			setprop("/controls/flight/flaps-output", 0.560);
 			setprop("/controls/flight/flap-lever", 3);
 			setprop("/controls/flight/flaps", 0.7);
 			return;
@@ -171,13 +185,13 @@ controls.flapsDown = func(step) {
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 4) {
 			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.580);
+			setprop("/controls/flight/flaps-output", 0.560);
 			setprop("/controls/flight/flap-lever", 3);
 			setprop("/controls/flight/flaps", 7.0);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 3) {
 			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.310);
+			setprop("/controls/flight/flaps-output", 0.300);
 			setprop("/controls/flight/flap-lever", 2);
 			setprop("/controls/flight/flaps", 0.4);
 			return;

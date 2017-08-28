@@ -210,7 +210,7 @@
 				<float n="3" alias="/gear/gear[3]/compression-norm"/>
 				<float n="4" alias="/gear/gear[1]/angle-deg"/>
 				<float n="5" alias="/gear/gear[2]/angle-deg"/>
-				<!--float n="6" alias="/replaceme"/-->
+				<float n="6" alias="/controls/flight/elevator-trim"/>
 				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
 				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
 				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
@@ -225,36 +225,39 @@
         
 		<flaps>
 			<setting>0.00</setting>	<!-- 0 -->
-			<setting>0.31</setting>	<!-- 15 -->
-			<setting>0.58</setting>	<!-- 28-->
+			<setting>0.30</setting>	<!-- 15 -->
+			<setting>0.56</setting>	<!-- 28-->
 			<setting>0.70</setting>	<!-- 35 -->
 			<setting>1.00</setting>	<!-- 50 -->
 		</flaps>
         
 		<systems n="0">
 			<autopilot n="0">
-				<path>Aircraft/MD-11Family/Systems/lsas.xml</path>
+				<path>Aircraft/MD-11Family/Systems/hydraulics.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
+				<path>Aircraft/MD-11Family/Systems/lsas.xml</path>
 			</autopilot>
 			<autopilot n="2">
-				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
 			</autopilot>
 			<autopilot n="3">
-				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
+				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
 			<autopilot n="4">
+				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
+			</autopilot>
+			<autopilot n="5">
 				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
 			</autopilot>
-			<!-- Autopilot 5 is FADEC -->
-			<autopilot n="6">
+			<!-- Autopilot 6 is FADEC -->
+			<autopilot n="7">
 				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
 			</autopilot>
-			<autopilot n="7">
+			<autopilot n="8">
 				<path>Aircraft/MD-11Family/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
-			<autopilot n="8">
+			<autopilot n="9">
 				<path>Aircraft/MD-11Family/Systems/EAD.xml</path>
 			</autopilot>
 			<property-rule n="101">
@@ -314,6 +317,7 @@
 			<flaps-output type="double">0</flaps-output>
 			<rudder-sum type="double">0</rudder-sum>
 			<slats type="double">0</slats>
+			<speedbrake-output type="double">0</speedbrake-output>
 		</flight>
 		<gear>
 			<brake-parking type="bool">0</brake-parking>
@@ -509,9 +513,9 @@
 					<command>property-cycle</command>
 					<property>controls/flight/speedbrake</property>
 					<value>0.0</value>
-					<value>0.3</value>
-					<value>0.5</value>
-					<value>0.7</value>
+					<value>0.2</value>
+					<value>0.4</value>
+					<value>0.6</value>
 					<value>1.0</value>
 				</binding>
 				<binding>
@@ -530,9 +534,9 @@
 					<command>property-cycle</command>
 					<property>controls/flight/speedbrake</property>
 					<value>0.0</value>
-					<value>0.3</value>
-					<value>0.5</value>
-					<value>0.7</value>
+					<value>0.2</value>
+					<value>0.4</value>
+					<value>0.6</value>
 				</binding>
 			</key>
 		</keyboard>

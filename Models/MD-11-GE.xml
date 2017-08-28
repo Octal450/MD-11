@@ -555,12 +555,28 @@
 		</axis>
 	</animation>
 	
-		<animation>
-		<name>Rudder rotate</name>
+	<animation>
+		<name>Rudder U rotate</name>
 		<type>rotate</type>
-		<object-name>rudder</object-name>
-		<property>surface-positions/rudder-pos-norm</property>
-		<factor>-60</factor>
+		<object-name>rudder.u</object-name>
+		<property>controls/flight/rudder-upper</property>
+		<factor>-45</factor>
+		<axis>
+			<x1-m>29.2089</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>18.6348</z1-m>
+			<x2-m>25.8846</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>13.0407</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Rudder L rotate</name>
+		<type>rotate</type>
+		<object-name>rudder.l</object-name>
+		<property>controls/flight/rudder-lower</property>
+		<factor>-45</factor>
 		<axis>
 			<x1-m>29.2089</x1-m>
 			<y1-m>0</y1-m>
@@ -577,28 +593,8 @@
 		<name>Left inner aileron</name>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-	        <property>surface-positions/left-aileron-pos-norm</property>
-		<factor>-10</factor>
-		<axis>
-			<x1-m>5.6584</x1-m>
-			<y1-m>-7.3613</y1-m>
-			<z1-m>4.9732</z1-m>
-			<x2-m>5.9350</x2-m>
-			<y2-m>-9.4323</y2-m>
-			<z2-m>5.2618</z2-m>
-		</axis>
-	</animation>
-
-	<animation>
-		<name>Left inner aileron</name>
-		<type>rotate</type>
-		<object-name>AileronL1</object-name>
-	        <property>surface-positions/flap-pos-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.31</ind><dep>-15.5</dep></entry>
-			<entry><ind>0.35</ind><dep>0</dep></entry>
-		</interpolation>
+	        <property>controls/flight/aileron-in-left</property>
+		<factor>-40</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>-7.3613</y1-m>
@@ -612,27 +608,8 @@
 	<animation>
 	        <type>rotate</type>
 		<object-name>AileronL2</object-name>
-	        <property>surface-positions/left-aileron-pos-norm</property>
-        	<factor>10</factor>
-		<axis>
-			<x1-m>13.1821</x1-m>
-			<y1-m>-22.7524</y1-m>
-			<z1-m>5.9641</z1-m>
-			<x2-m>10.8656</x2-m>
-			<y2-m>-18.2087</y2-m>
-			<z2-m>5.7281</z2-m>
-		</axis>
-	</animation>
-	
-	<animation>
-	        <type>rotate</type>
-		<object-name>AileronL2</object-name>
-	        <property>surface-positions/flap-pos-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.31</ind><dep>15.5</dep></entry>
-			<entry><ind>0.35</ind><dep>0</dep></entry>
-		</interpolation>
+	        <property>controls/flight/aileron-out-left</property>
+        	<factor>40</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>-22.7524</y1-m>
@@ -647,28 +624,8 @@
 		<name>Right inner aileron</name>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-        	<property>surface-positions/right-aileron-pos-norm</property>
-		<factor>10</factor>
-		<axis>
-			<x1-m>5.6584</x1-m>
-			<y1-m>7.3613</y1-m>
-			<z1-m>4.9732</z1-m>
-			<x2-m>5.9350</x2-m>
-			<y2-m>9.4323</y2-m>
-			<z2-m>5.2618</z2-m>
-		</axis>
-	</animation>
-	
-	<animation>
-		<name>Right inner aileron</name>
-		<type>rotate</type>
-		<object-name>AileronR1</object-name>
-	        <property>surface-positions/flap-pos-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.31</ind><dep>15.5</dep></entry>
-			<entry><ind>0.35</ind><dep>0</dep></entry>
-		</interpolation>
+        	<property>controls/flight/aileron-in-right</property>
+		<factor>-40</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>7.3613</y1-m>
@@ -682,27 +639,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-	        <property>surface-positions/right-aileron-pos-norm</property>
-	        <factor>-10</factor>
-		<axis>
-			<x1-m>13.1821</x1-m>
-			<y1-m>22.7524</y1-m>
-			<z1-m>5.9641</z1-m>
-			<x2-m>10.8656</x2-m>
-			<y2-m>18.2087</y2-m>
-			<z2-m>5.7281</z2-m>
-		</axis>
-	</animation>
-	
-	<animation>
-        	<type>rotate</type>
-		<object-name>AileronR2</object-name>
-	        <property>surface-positions/flap-pos-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.31</ind><dep>-15.5</dep></entry>
-			<entry><ind>0.35</ind><dep>0</dep></entry>
-		</interpolation>
+	        <property>controls/flight/aileron-out-right</property>
+	        <factor>40</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>22.7524</y1-m>
@@ -715,13 +653,9 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>elevator.1</object-name>
-		<property>surface-positions/elevator-pos-norm</property>
-		<interpolation>
-			<entry><ind>1.0</ind><dep>15.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>-1.0</ind><dep>-15.0</dep></entry>
-		</interpolation>
+		<object-name>elevator.1o</object-name>
+		<property>controls/flight/elevator-out-left</property>
+		<factor>40</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>-8.7874</y1-m>
@@ -734,13 +668,39 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>elevator.2</object-name>
-		<property>surface-positions/elevator-pos-norm</property>
-		<interpolation>
-			<entry><ind>1.0</ind><dep>-15.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>-1.0</ind><dep>15.0</dep></entry>
-		</interpolation>
+		<object-name>elevator.1i</object-name>
+		<property>controls/flight/elevator-in-left</property>
+		<factor>40</factor>
+		<axis>
+			<x1-m>28.2809</x1-m>
+			<y1-m>-8.7874</y1-m>
+			<z1-m>8.2590</z1-m>
+			<x2-m>24.9574</x2-m>
+			<y2-m>-1.0846</y2-m>
+			<z2-m>6.9444</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator.2i</object-name>
+		<property>controls/flight/elevator-in-right</property>
+		<factor>-40</factor>
+		<axis>
+			<x1-m>28.2809</x1-m>
+			<y1-m>8.7874</y1-m>
+			<z1-m>8.2590</z1-m>
+			<x2-m>24.9574</x2-m>
+			<y2-m>1.0846</y2-m>
+			<z2-m>6.9444</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator.2o</object-name>
+		<property>controls/flight/elevator-out-right</property>
+		<factor>-40</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>8.7874</y1-m>
@@ -755,14 +715,12 @@
 		<type>rotate</type>
 		<object-name>HorzStab1</object-name>
 		<object-name>HorzStab2</object-name>
-		<object-name>elevator.2</object-name>
-		<object-name>elevator.1</object-name>
-		<property>controls/flight/elevator-trim</property>
-		<interpolation>
-			<entry><ind>1.0</ind><dep>6.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>-1.0</ind><dep>-6.0</dep></entry>
-		</interpolation>
+		<object-name>elevator.1o</object-name>
+		<object-name>elevator.1i</object-name>
+		<object-name>elevator.2i</object-name>
+		<object-name>elevator.2o</object-name>
+		<property>sim/multiplay/generic/float[6]</property>
+		<factor>14</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -781,7 +739,7 @@
 		<object-name>HorzStab2</object-name>
 		<object-name>elevator.2</object-name>
 		<object-name>elevator.1</object-name>
-		<property>controls/flight/elevator-trim</property>
+		<property>sim/multiplay/generic/float[6]</property>
 		<interpolation>
 			<entry><ind>1.0</ind><dep>10.0</dep></entry>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
@@ -1685,7 +1643,8 @@
 <inherits-from>Aircraft/MD-11Family/Models/Effects/bumpspec</inherits-from>
 <object-name>fuselage</object-name>
 <object-name>fuselage.cone</object-name>
-<object-name>rudder</object-name>
+<object-name>rudder.u</object-name>
+<object-name>rudder.l</object-name>
 <object-name>central.back.right</object-name>
 <object-name>central.back.left</object-name>
 <object-name>central.front.right</object-name>
@@ -1759,11 +1718,11 @@
 <object-name>AileronL1</object-name>
 <object-name>AileronL2</object-name>
 <object-name>sp.brake.left.outer</object-name>
-<object-name>sp.brake.left.inner</object-name>
+<object-name>sp.brake.left.5</object-name>
 <object-name>AileronR1</object-name>
 <object-name>AileronR2</object-name>
 <object-name>sp.brake.right.outer</object-name>
-<object-name>sp.brake.right.inner</object-name>
+<object-name>sp.brake.right.5</object-name>
 <object-name>flap.5</object-name>
 <object-name>flap.6</object-name>
 <object-name>flap.7</object-name>
@@ -1782,8 +1741,10 @@
 <object-name>flap.14.part2</object-name>
 <object-name>HorzStab1</object-name>
 <object-name>HorzStab2</object-name>
-<object-name>elevator.1</object-name>
-<object-name>elevator.2</object-name>
+<object-name>elevator.1o</object-name>
+<object-name>elevator.2o</object-name>
+<object-name>elevator.1i</object-name>
+<object-name>elevator.2i</object-name>
 <object-name>left.main.door</object-name>
 <object-name>right.main.door</object-name>
 <object-name>Pylons</object-name>
@@ -1824,7 +1785,7 @@
 	
 		<animation>
 		<type>rotate</type>
-		<object-name>sp.brake.left.inner</object-name>
+		<object-name>sp.brake.left.5</object-name>
 		<property>surface-positions/speedbrake-pos-norm</property>
         <interpolation>
             <entry>
@@ -1888,7 +1849,7 @@
 	
 			<animation>
 		<type>rotate</type>
-		<object-name>sp.brake.right.inner</object-name>
+		<object-name>sp.brake.right.5</object-name>
 		<property>surface-positions/speedbrake-pos-norm</property>
         <interpolation>
             <entry>
@@ -1908,104 +1869,6 @@
                 <dep>-60</dep>
             </entry>
         </interpolation>
-		<axis>
-			<x1-m>4.6240</x1-m>
-			<y1-m>4.2563</y1-m>
-			<z1-m>4.7571</z1-m>
-			<x2-m>5.0040</x2-m>
-			<y2-m>7.1055</y2-m>
-			<z2-m>5.2476</z2-m>
-		</axis>
-	</animation>
-	
-	<!-- Spoilerons -->
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>sp.brake.left.outer</object-name>
-	        <property>surface-positions/left-aileron-pos-norm</property>
-	        <interpolation>
-	            <entry>
-	                <ind>0</ind>
-	                <dep>0</dep>
-	            </entry>
-	            <entry>
-	                <ind>-1.0</ind>
-	                <dep>20</dep>
-	            </entry>
-	        </interpolation>
-		<axis>
-			<x1-m>6.1986</x1-m>
-			<y1-m>-10.5629</y1-m>
-			<z1-m>5.5481</z1-m>
-			<x2-m>9.6825</x2-m>
-			<y2-m>-17.2143</y2-m>
-			<z2-m>5.8680</z2-m>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>sp.brake.left.inner</object-name>
-	        <property>surface-positions/left-aileron-pos-norm</property>
-	        <interpolation>
-	            <entry>
-	                <ind>0</ind>
-	                <dep>0</dep>
-	            </entry>
-	            <entry>
-	                <ind>-1.0</ind>
-	                <dep>20</dep>
-	            </entry>
-        	</interpolation>
-		<axis>
-			<x1-m>4.6240</x1-m>
-			<y1-m>-4.2563</y1-m>
-			<z1-m>4.7571</z1-m>
-			<x2-m>5.0040</x2-m>
-			<y2-m>-7.1055</y2-m>
-			<z2-m>5.2476</z2-m>
-		</axis>
-	</animation>
-		
-	<animation>
-		<type>rotate</type>
-		<object-name>sp.brake.right.outer</object-name>
-        	<property>surface-positions/right-aileron-pos-norm</property>
-	        <interpolation>
-	            <entry>
-	                <ind>0</ind>
-	                <dep>0</dep>
-	            </entry>
-	            <entry>
-	                <ind>-1.0</ind>
-	                <dep>-20</dep>
-	            </entry>
-	        </interpolation>
-		<axis>
-			<x1-m>6.1986</x1-m>
-			<y1-m>10.5629</y1-m>
-			<z1-m>5.5481</z1-m>
-			<x2-m>9.6825</x2-m>
-			<y2-m>17.2143</y2-m>
-			<z2-m>5.8680</z2-m>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>sp.brake.right.inner</object-name>
-        	<property>surface-positions/right-aileron-pos-norm</property>
-        	<interpolation>
-        	    <entry>
-			<ind>0</ind>
-                	<dep>0</dep>
-	            </entry>
-	            <entry>
-                	<ind>-1.0</ind>
-                	<dep>-20</dep>
-	            </entry>
-	        </interpolation>
 		<axis>
 			<x1-m>4.6240</x1-m>
 			<y1-m>4.2563</y1-m>
@@ -2494,7 +2357,8 @@
   <type>material</type>
 <object-name>fuselage</object-name>
 <object-name>fuselage.cone</object-name>
-<object-name>rudder</object-name>
+<object-name>rudder.u</object-name>
+<object-name>rudder.l</object-name>
 <object-name>engines</object-name>
 <object-name>right.reverser</object-name>
 <object-name>left.reverser</object-name>

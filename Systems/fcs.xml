@@ -308,7 +308,7 @@
 	<channel name="Speedbrake">
 	
 		<kinematic name="Speedbrake">
-			<input>/controls/flight/speedbrake</input>
+			<input>/controls/flight/speedbrake-output</input>
 			<traverse>
 				<setting>
 					<position>0</position>

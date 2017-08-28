@@ -139,32 +139,5 @@
 		</input>
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>
-	
-	<filter>
-		<name>Aileron Temp</name>
-		<type>noise-spike</type>
-		<input>/controls/flight/aileron</input>
-		<output>/controls/flight/aileron-sum</output>
-		<max-rate-of-change>3.5</max-rate-of-change>
-	</filter>
-	
-	<filter>
-		<name>Elevator Temp</name>
-		<type>noise-spike</type>
-		<input>/controls/flight/elevator-lsas</input>
-		<output>/controls/flight/elevator-sum</output>
-		<max-rate-of-change>3.5</max-rate-of-change>
-	</filter>
-	
-	<filter>
-		<name>Rudder Temp</name>
-		<type>noise-spike</type>
-		<input>
-			<property>/controls/flight/rudder</property>
-			<scale>-1</scale>
-		</input>
-		<output>/controls/flight/rudder-sum</output>
-		<max-rate-of-change>3.5</max-rate-of-change>
-	</filter>
 
 </PropertyList>
