@@ -41,7 +41,32 @@ var canvas_EAD_base = {
 		var svg_keys = me.getKeys();
 		foreach(var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
-		}
+            var svg_keys = me.getKeys();
+
+            foreach (var key; svg_keys) {
+                me[key] = canvas_group.getElementById(key);
+
+#
+# If there is an element in the SVG that is the same as the key with _clip appened
+# then treat that as the clipping rectangle.
+# - this belongs in the init as it is common to all
+
+                var clip_el = canvas_group.getElementById(key ~ "_clip");
+                if (clip_el != nil) {
+                    clip_el.setVisible(0);
+                    var tran_rect = clip_el.getTransformedBounds();
+                
+                    var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
+                                            tran_rect[1], # 0 ys
+                                            tran_rect[2], # 1 xe
+                                            tran_rect[3], # 2 ye
+                                            tran_rect[0]); #3 xs
+                    #   coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
+                    me[key].set("clip", clip_rect);
+                    me[key].set("clip-frame", canvas.Element.PARENT);
+                }
+            }
+        }
 
 		me.page = canvas_group;
 
@@ -110,25 +135,6 @@ var canvas_EAD_GE = {
 	new: func(canvas_group, file) {
 		var m = { parents: [canvas_EAD_GE , canvas_EAD_base] };
 		m.init(canvas_group, file);
-		
-		me.getKeys();
-
-		var svg_keys = me.getKeys();
-		foreach(var key; svg_keys) {
-			me[key] = canvas_group.getElementById(key);
-			var clip_el = me.svg.getElementById(key ~ "_clip");
-			if (clip_el != nil) {
-				clip_el.setVisible(0);
-				var tran_rect = clip_el.getTransformedBounds();
-				var clip_rect = sprintf("rect(%d,% d, %d, %d)", 
-				tran_rect[1], # 0 ys
-				tran_rect[2],  # 1 xe
-				tran_rect[3], # 2 ye
-				tran_rect[0]); #3 xs
-				el.set("clip", clip_rect);
-				el.set("clip-frame", canvas.Element.PARENT);
-			}
-		}
 
 		return m;
 	},
