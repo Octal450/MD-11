@@ -447,8 +447,11 @@ setlistener("/it-autoflight/input/kts-mach", func {
 # Takeoff Modes
 # Lat Active
 var latarms = func {
-	if (getprop("/position/gear-agl-ft") >= getprop("/it-autoflight/settings/lat-agl-ft")) {
-		setprop("/it-autoflight/input/lat", getprop("/it-autoflight/input/lat-arm"));
+	if (getprop("/position/gear-agl-ft") >= 20) {
+		if (getprop("/it-autoflight/input/lat-arm") == 1) {
+			setprop("/it-autoflight/input/lat", getprop("/it-autoflight/input/lat-arm"));
+			setprop("/it-autoflight/input/lat-arm", 0);
+		}
 	}
 }
 
@@ -499,7 +502,7 @@ setlistener("/it-autoflight/mode/lat", func {
 });
 
 var toga_reduc = func {
-	if (getprop("/position/gear-agl-ft") >= getprop("/it-autoflight/settings/reduc-agl-ft")) {
+	if (getprop("/position/gear-agl-ft") >= getprop("/systems/thrust/clbthrust-ft")) {
 		setprop("/it-autoflight/input/vert", 4);
 	}
 }
@@ -732,12 +735,8 @@ var make_appr_active = func {
 var aland = func {
 	var ap1 = getprop("/it-autoflight/output/ap1");
 	var ap2 = getprop("/it-autoflight/output/ap2");
-	var landoption = getprop("/it-autoflight/settings/autoland-without-ap");
 	if (getprop("/position/gear-agl-ft") <= 100) {
 		if (ap1 == 1 or ap2 == 1) {
-			setprop("/it-autoflight/input/lat", 4);
-			setprop("/it-autoflight/input/vert", 6);
-		} else if (ap1 == 0 and ap2 == 0 and landoption) {
 			setprop("/it-autoflight/input/lat", 4);
 			setprop("/it-autoflight/input/vert", 6);
 		} else {
@@ -752,7 +751,7 @@ var aland1 = func {
 	if (aglal <= 50 and aglal > 5) {
 		setprop("/it-autoflight/mode/vert", "FLARE");
 	}
-	if ((getprop("/it-autoflight/output/ap1") == 0) and (getprop("/it-autoflight/output/ap2") == 0) and (getprop("/it-autoflight/settings/autoland-without-ap") == 0)) {
+	if ((getprop("/it-autoflight/output/ap1") == 0) and (getprop("/it-autoflight/output/ap2") == 0)) {
 		alandt.stop();
 		alandt1.stop();
 		setprop("/it-autoflight/output/loc-armed", 0);
