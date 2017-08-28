@@ -86,7 +86,7 @@
 			<legend>FD1</legend>
             <pref-width>55</pref-width>
 			<binding>
-				<command>property</command>
+				<command>property-toggle</command>
 				<property>/it-autoflight/input/fd1</property>
 			</binding>
 		</button>
@@ -94,7 +94,7 @@
 			<legend>FD2</legend>
             <pref-width>55</pref-width>
 			<binding>
-				<command>property-assign</command>
+				<command>property-toggle</command>
 				<property>/it-autoflight/input/fd2</property>
 			</binding>
 		</button>
