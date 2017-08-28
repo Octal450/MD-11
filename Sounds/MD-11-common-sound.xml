@@ -30,6 +30,81 @@
     <factor>10.0</factor>
    </volume>
   </apoff>
+  
+	<switch>
+		<name>Button</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/button.wav</path>
+		<condition>
+			<property>/sim/sounde/btn1</property>
+		</condition>
+		<volume>
+			<factor>0.75</factor>
+		</volume>
+	</switch>
+	
+	<switch>
+		<name>ButtonOH</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/button2.wav</path>
+		<condition>
+			<property>/sim/sounde/oh-btn</property>
+		</condition>
+		<volume>
+			<factor>0.75</factor>
+		</volume>
+	</switch>
+	
+	<switch>
+		<name>Button3</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/button3.wav</path>
+		<condition>
+			<property>/sim/sounde/btn3</property>
+		</condition>
+		<volume>
+			<factor>0.75</factor>
+		</volume>
+	</switch>
+	
+	<switch>
+		<name>Knob</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/knob.wav</path>
+		<condition>
+			<property>/sim/sounde/knb1</property>
+		</condition>
+		<volume>
+			<factor>0.60</factor>
+		</volume>
+	</switch>
+	
+	<switch>
+		<name>Switch</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/switch.wav</path>
+		<condition>
+			<property>/sim/sounde/switch1</property>
+		</condition>
+		<volume>
+			<factor>0.75</factor>
+		</volume>
+	</switch>
+	
+	<cvrtone>
+		<name>CVRtone</name>
+		<mode>once</mode>
+		<path>Aircraft/MD-11Family/Sounds/Cockpit/700hz.wav</path>
+		<condition>
+			<equals>
+				<property>/controls/CVR/tone</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<volume>
+			<factor>0.60</factor>
+		</volume>
+	</cvrtone>
 		
 		<!-- ## ## ## -->   <!-- ## ## ## -->
 		<!-- ## ## ## -->   <!-- ## ## ## -->

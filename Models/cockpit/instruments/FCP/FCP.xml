@@ -722,7 +722,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>controls.click(4);</script>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation>
@@ -741,7 +741,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>controls.click(4);</script>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation-->
@@ -758,7 +758,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>controls.click(4);</script>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation>
@@ -775,7 +775,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>controls.click(4);</script>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation>
@@ -802,7 +802,7 @@
 						setprop("/it-autoflight/custom/vs-fpa", "0");
 					}
 				}
-				controls.click(4);
+				setprop("/sim/sounde/btn1", 1);
 				</script>
 			</binding>
 		</action>
@@ -852,7 +852,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>controls.click(4);</script>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation>
@@ -902,18 +902,6 @@
 			<button>3</button> <!--  scroll down -->
 			<repeatable>false</repeatable>
 			<binding>
-				<command>nasal</command>
-				<script>
-					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
-						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
-							setprop("/it-autoflight/input/vert", 1);
-						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
-							setprop("/it-autoflight/input/vert", 5);
-						}
-					}
-				</script>
-			</binding>
-			<binding>
 				<condition>
 					<equals>
 						<property>/it-autoflight/output/vert</property>
@@ -923,7 +911,7 @@
 				<command>property-adjust</command>
 				<property>/it-autoflight/input/vs</property>
 				<step>-100</step>
-				<min>-8000</min>
+				<min>-6000</min>
 				<max>6000</max>
 			</binding>
 			<binding>
@@ -939,10 +927,6 @@
 				<min>-10</min>
 				<max>10</max>
 			</binding>
-		</action>
-		<action>
-			<button>4</button> <!--  scroll up -->
-			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>
@@ -955,6 +939,10 @@
 					}
 				</script>
 			</binding>
+		</action>
+		<action>
+			<button>4</button> <!--  scroll up -->
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<equals>
@@ -965,7 +953,7 @@
 				<command>property-adjust</command>
 				<property>/it-autoflight/input/vs</property>
 				<step>100</step>
-				<min>-8000</min>
+				<min>-6000</min>
 				<max>6000</max>
 			</binding>
 			<binding>
@@ -980,6 +968,18 @@
 				<step>0.1</step>
 				<min>-10</min>
 				<max>10</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
+						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+							setprop("/it-autoflight/input/vert", 1);
+						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+							setprop("/it-autoflight/input/vert", 5);
+						}
+					}
+				</script>
 			</binding>
 		</action>
 	</animation>
@@ -1281,7 +1281,7 @@
 			</binding>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(4);</script>
+                <script>setprop("/sim/sounde/btn1", 1);</script>
             </binding>
         </action>
     </animation-->

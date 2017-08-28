@@ -185,8 +185,8 @@ var lateral = func {
 		alandt1.stop();
 		setprop("/it-autoflight/output/loc-armed", 0);
 		setprop("/it-autoflight/output/appr-armed", 0);
-		var hdgnow = int(getprop("/orientation/heading-magnetic-deg")+0.5);
-		setprop("/it-autoflight/input/hdg", hdgnow);
+		var hdg5sec = int(getprop("/it-autoflight/internal/heading-5-sec-ahead")+0.5);
+		setprop("/it-autoflight/input/hdg", hdg5sec);
 		setprop("/it-autoflight/output/lat", 0);
 		setprop("/it-autoflight/mode/lat", "HDG");
 		setprop("/it-autoflight/mode/arm", " ");
@@ -238,9 +238,9 @@ var vertical = func {
 		} else {
 			setprop("/it-autoflight/mode/arm", " ");
 		}
-		var altnow = int((getprop("/instrumentation/altimeter/indicated-altitude-ft")+50)/100)*100;
-		setprop("/it-autoflight/input/alt", altnow);
-		setprop("/it-autoflight/internal/alt", altnow);
+		var alt5sec = int((getprop("/it-autoflight/internal/altitude-5-sec-ahead")+50)/100)*100;
+		setprop("/it-autoflight/input/alt", alt5sec);
+		setprop("/it-autoflight/internal/alt", alt5sec);
 		thrustmode();
 	} else if (vertset == 1) {
 		alandt.stop();

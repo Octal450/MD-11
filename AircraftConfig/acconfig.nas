@@ -75,6 +75,7 @@ var saveSettings = func {
 saveSettings();
 
 var systemsReset = func {
+	systems.hyd_init();
 	librariesLoop.start();
 	afs.ap_init();
 	setprop("/it-autoflight/input/fd1", 1);

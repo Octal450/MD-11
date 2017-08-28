@@ -9,7 +9,7 @@
 setlistener("/it-autoflight/mode/lat", func {
 	var lat = getprop("/it-autoflight/mode/lat");
 	if (lat == "HDG") {
-		setprop("/modes/pfd/fma/roll-mode", "HEADING");
+		setprop("/modes/pfd/fma/roll-mode", "HEADING     ");
 	} else if (lat == "LNAV") {
 		setprop("/modes/pfd/fma/roll-mode", "NAV1");
 	} else if (lat == "LOC") {
@@ -17,7 +17,7 @@ setlistener("/it-autoflight/mode/lat", func {
 	} else if (lat == "ALGN") {
 		setprop("/modes/pfd/fma/roll-mode", "ALIGN");
 	} else if (lat == "T/O") {
-		setprop("/modes/pfd/fma/roll-mode", "    TAKEOFF");
+		setprop("/modes/pfd/fma/roll-mode", "TAKEOFF");
 	}
 });
 
@@ -49,50 +49,50 @@ setlistener("/it-autoflight/mode/vert", func {
 	}
 });
 
-# Master VNAV
-setlistener("/it-autoflight/mode/prof", func {
-	var prof = getprop("/it-autoflight/mode/prof");
-	if (prof == "VNAV HLD") {
-		setprop("/modes/pfd/fma/pitch-mode", "HOLD");
-	} else if (prof == "VNAV CAP") {
-		setprop("/modes/pfd/fma/pitch-mode", "HOLD");
-	} else if (prof == "VNAV SPD") {
-		vnav_clbdes();
-	} else if (prof == "VNAV PTH") {
-		vnav_clbdes();
-	}
-});
-
-var vnav_clbdes = func {
-	var vert = getprop("/it-autoflight/output/vert");
-	if (vert == 8) {
-		var prof = getprop("/it-autoflight/internal/prof-mode");
-		if (prof == "XX") {
-			# Do nothing
-		} else if (prof == "DES") {
-			setprop("/modes/pfd/fma/pitch-mode", "IDLE CLAMP");
-		} else if (prof == "CLB") {
-			setprop("/modes/pfd/fma/pitch-mode", "CLB THRUST");
-		}
-	}
-}
-
 # Arm LOC
 setlistener("/it-autoflight/output/loc-armed", func {
 	var loca = getprop("/it-autoflight/output/loc-armed");
 	if (loca) {
-		setprop("/modes/pfd/fma/roll-mode-armed", "LOC ARMED");
+		setprop("/modes/pfd/fma/roll-mode-armed", "LAND ARMED");
 	} else {
-		setprop("/modes/pfd/fma/roll-mode-armed", " ");
+		setprop("/modes/pfd/fma/roll-mode-armed", "");
 	}
+	appr_arm();
 });
 
 # Arm G/S
 setlistener("/it-autoflight/output/appr-armed", func {
+	appr_arm();
+});
+
+var appr_arm = func {
+	var loca = getprop("/it-autoflight/output/loc-armed");
 	var appa = getprop("/it-autoflight/output/appr-armed");
-	if (appa) {
-		setprop("/modes/pfd/fma/pitch-mode-armed", "G/S ARMED");
+	if (appa and !loca) {
+		setprop("/modes/pfd/fma/pitch-mode-armed", "LAND ARMED");
 	} else {
-		setprop("/modes/pfd/fma/pitch-mode-armed", " ");
+		setprop("/modes/pfd/fma/pitch-mode-armed", "");
 	}
+}
+
+# AP
+var ap = func {
+	var ap1 = getprop("/it-autoflight/output/ap1");
+	var ap2 = getprop("/it-autoflight/output/ap2");
+	if (ap1 and ap2) {
+		setprop("/modes/pfd/fma/ap-mode", "AP1");
+	} else if (ap1 and !ap2) {
+		setprop("/modes/pfd/fma/ap-mode", "AP1");
+	} else if (ap2 and !ap1) {
+		setprop("/modes/pfd/fma/ap-mode", "AP2");
+	} else if (!ap1 and !ap2) {
+		setprop("/modes/pfd/fma/ap-mode", "");
+	}
+}
+
+setlistener("/it-autoflight/output/ap1", func {
+	ap();
+});
+setlistener("/it-autoflight/output/ap2", func {
+	ap();
 });

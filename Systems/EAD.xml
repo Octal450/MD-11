@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
+-->
+
+<PropertyList>
+
+	<filter>
+		<name>N1 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1[0]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 THR 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-cmd</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1thr[0]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1[1]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 THR 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-cmd</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1thr[1]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1[2]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 THR 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-cmd</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1thr[2]</output>
+	</filter>
+	
+	<filter>
+		<name>N1 LIMIT</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/engines/n1-limit</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N1Limit</output>
+	</filter>
+	
+	<filter>
+		<name>EGT 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/egt-actual</property>
+					<entry><ind>   0</ind><dep>-134</dep></entry>
+					<entry><ind>1000</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/egt-actual</property>
+					<entry><ind>  0</ind><dep>-134</dep></entry>
+					<entry><ind>800</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EGT[0]</output>
+	</filter>
+	
+	<filter>
+		<name>EGT 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/egt-actual</property>
+					<entry><ind>   0</ind><dep>-134</dep></entry>
+					<entry><ind>1000</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/egt-actual</property>
+					<entry><ind>  0</ind><dep>-134</dep></entry>
+					<entry><ind>800</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EGT[1]</output>
+	</filter>
+	
+	<filter>
+		<name>EGT 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/egt-actual</property>
+					<entry><ind>   0</ind><dep>-134</dep></entry>
+					<entry><ind>1000</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/egt-actual</property>
+					<entry><ind>  0</ind><dep>-134</dep></entry>
+					<entry><ind>800</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EGT[2]</output>
+	</filter>
+	
+	<filter>
+		<name>N2 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n2</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N2[0]</output>
+	</filter>
+	
+	<filter>
+		<name>N2 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n2</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N2[1]</output>
+	</filter>
+	
+	<filter>
+		<name>N2 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n2</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/N2[2]</output>
+	</filter>
+
+</PropertyList>

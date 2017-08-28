@@ -5,6 +5,73 @@
 # Copyright (c) it0uchpods Design Group #
 #########################################
 
+##########
+# Sounds #
+##########
+
+setlistener("/sim/sounde/btn1", func {
+	if (!getprop("/sim/sounde/btn1")) {
+		return;
+	}
+	settimer(func {
+		props.globals.getNode("/sim/sounde/btn1").setBoolValue(0);
+	}, 0.05);
+});
+
+setlistener("/sim/sounde/oh-btn", func {
+	if (!getprop("/sim/sounde/oh-btn")) {
+		return;
+	}
+	settimer(func {
+		props.globals.getNode("/sim/sounde/oh-btn").setBoolValue(0);
+	}, 0.05);
+});
+
+setlistener("/sim/sounde/btn3", func {
+	if (!getprop("/sim/sounde/btn3")) {
+		return;
+	}
+	settimer(func {
+		props.globals.getNode("/sim/sounde/btn3").setBoolValue(0);
+	}, 0.05);
+});
+
+setlistener("/sim/sounde/knb1", func {
+	if (!getprop("/sim/sounde/knb1")) {
+		return;
+	}
+	settimer(func {
+		props.globals.getNode("/sim/sounde/knb1").setBoolValue(0);
+	}, 0.05);
+});
+
+setlistener("/sim/sounde/switch1", func {
+	if (!getprop("/sim/sounde/switch1")) {
+		return;
+	}
+	settimer(func {
+		props.globals.getNode("/sim/sounde/switch1").setBoolValue(0);
+	}, 0.05);
+});
+
+setlistener("/controls/switches/seatbelt-sign", func {
+	props.globals.getNode("/sim/sounde/seatbelt-sign").setBoolValue(1);
+	settimer(func {
+		props.globals.getNode("/sim/sounde/seatbelt-sign").setBoolValue(0);
+	}, 2);
+});
+
+setlistener("/controls/switches/no-smoking-sign", func {
+	props.globals.getNode("/sim/sounde/no-smoking-sign").setBoolValue(1);
+	settimer(func {
+		props.globals.getNode("/sim/sounde/no-smoking-sign").setBoolValue(0);
+	}, 1);
+});
+
+#############
+# Gear Tilt #
+#############
+
 var update_tilt = maketimer(0.1, func {
 	var comp1 = getprop("/gear/gear[1]/compression-norm");
 	if (comp1 > 0) {
@@ -22,14 +89,12 @@ var update_tilt = maketimer(0.1, func {
 	}
 });
 
-setlistener("/controls/gear/gear-down", func {
-	down = getprop("/controls/gear/gear-down");
-	if (!down and (getprop("/gear/gear[0]/wow") or getprop("/gear/gear[1]/wow") or getprop("/gear/gear[2]/wow"))) {
-		setprop("/controls/gear/gear-down", 1);
-	}
-});
+#######################
+# Various Other Stuff #
+#######################
 
 setlistener("sim/signals/fdm-initialized", func {
+	systems.hyd_init();
 	update_tilt.start();
 	librariesLoop.start();
 	afs.ap_init();

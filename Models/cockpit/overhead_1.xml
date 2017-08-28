@@ -1522,309 +1522,666 @@ FSC.btn
 		</hovered>
 	</animation>
 
-<!-- HYDRAULICS -->
+	<!-- HYDRAULICS -->
 	<!-- Hydraulic System Control Button -->
 	<animation>
 		<type>pick</type>
-		<object-name>HSC.btn</object-name>
+		<object-name>SystemHyd</object-name>
+		<object-name>SystemHyd.manual</object-name>
 		<action>
 		    <button>0</button>
 		    <repeatable>false</repeatable>
 		    <binding>
-			<command>property-toggle</command>
-			<property>controls/hydraulic/auto-mode</property>
+				<command>nasal</command>
+				<script>systems.systemHydMode();</script>
 		    </binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
 		</action>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>HSC.btn</object-name>
-		<property>controls/hydraulic/auto-mode</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>SystemHyd.manual</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/system</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/hydraulic/switches/manual-flash</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/hydraulic/switches/manual-flash</property>
+					<value>3</value>
+				</equals>
+				<equals>
+					<property>controls/hydraulic/switches/manual-flash</property>
+					<value>5</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 
 	<!-- Aux Pumps -->
 	<animation>
 		<type>pick</type>
-		<object-name>AUXhyd1.btn</object-name>
+		<object-name>AuxPump1</object-name>
+		<object-name>AuxPump1.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/aux-pump</property>
+				<property>controls/hydraulic/switches/AuxPump1</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>AUXhyd1.btn</object-name>
-		<property>controls/hydraulic/aux-pump</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>AuxPump1.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/AuxPump1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 		
 	<animation>
 		<type>pick</type>
-		<object-name>AUXhyd2.btn</object-name>
+		<object-name>AuxPump2</object-name>
+		<object-name>AuxPump2.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/aux-pump[1]</property>
+				<property>controls/hydraulic/switches/AuxPump2</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>AUXhyd2.btn</object-name>
-		<property>controls/hydraulic/aux-pump[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>AuxPump2.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/AuxPump2</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 
 	<!-- Engine Driven Pumps -->
 	<animation>
 		<type>pick</type>
-		<object-name>HydEDP.1L</object-name>
-		<object-name>HydEDP.1Lon</object-name>
-		<object-name>HydEDP.1R</object-name>
-		<object-name>HydEDP.1Ron</object-name>
+		<object-name>LPump1</object-name>
+		<object-name>LPump1.fault</object-name>
+		<object-name>LPump1.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/engine-pump</property>
+				<property>controls/hydraulic/switches/LPump1</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.1L</object-name>
-		<object-name>HydEDP.1R</object-name>
+		<object-name>LPump1.fault</object-name>
 		<condition>
-		    <not>
-			<property>controls/hydraulic/engine-pump</property>
-		    </not>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/LPump1-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.1Lon</object-name>
-		<object-name>HydEDP.1Ron</object-name>
+		<object-name>LPump1.off</object-name>
 		<condition>
-			<property>controls/hydraulic/engine-pump</property>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/LPump1</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>HydEDP.1L</object-name>
-		<object-name>HydEDP.1Lon</object-name>
-		<object-name>HydEDP.1R</object-name>
-		<object-name>HydEDP.1Ron</object-name>
-		<property>systems/hydraulic/engine-pump-pressure-low</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>0</x>
-		    <y>1</y>
-		    <z>0</z>
-		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>HydEDP.2L</object-name>
-		<object-name>HydEDP.2Lon</object-name>
-		<object-name>HydEDP.2R</object-name>
-		<object-name>HydEDP.2Ron</object-name>
+		<object-name>RPump1</object-name>
+		<object-name>RPump1.fault</object-name>
+		<object-name>RPump1.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/engine-pump[1]</property>
+				<property>controls/hydraulic/switches/RPump1</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.2L</object-name>
-		<object-name>HydEDP.2R</object-name>
+		<object-name>RPump1.fault</object-name>
 		<condition>
-		    <not>
-			<property>controls/hydraulic/engine-pump[1]</property>
-		    </not>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/RPump1-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.2Lon</object-name>
-		<object-name>HydEDP.2Ron</object-name>
+		<object-name>RPump1.off</object-name>
 		<condition>
-			<property>controls/hydraulic/engine-pump[1]</property>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/RPump1</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>HydEDP.2L</object-name>
-		<object-name>HydEDP.2Lon</object-name>
-		<object-name>HydEDP.2R</object-name>
-		<object-name>HydEDP.2Ron</object-name>
-		<property>systems/hydraulic/engine-pump-pressure-low[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>0</x>
-		    <y>1</y>
-		    <z>0</z>
-		</axis>
-	</animation>
-
+	
 	<animation>
 		<type>pick</type>
-		<object-name>HydEDP.3L</object-name>
-		<object-name>HydEDP.3Lon</object-name>
-		<object-name>HydEDP.3R</object-name>
-		<object-name>HydEDP.3Ron</object-name>
+		<object-name>LPump2</object-name>
+		<object-name>LPump2.fault</object-name>
+		<object-name>LPump2.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/engine-pump[2]</property>
+				<property>controls/hydraulic/switches/LPump2</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.3L</object-name>
-		<object-name>HydEDP.3R</object-name>
+		<object-name>LPump2.fault</object-name>
 		<condition>
-		    <not>
-			<property>controls/hydraulic/engine-pump[2]</property>
-		    </not>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/LPump2-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>HydEDP.3Lon</object-name>
-		<object-name>HydEDP.3Ron</object-name>
+		<object-name>LPump2.off</object-name>
 		<condition>
-			<property>controls/hydraulic/engine-pump[2]</property>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/LPump2</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>RPump2</object-name>
+		<object-name>RPump2.fault</object-name>
+		<object-name>RPump2.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/hydraulic/switches/RPump2</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>RPump2.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/RPump2-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydEDP.3L</object-name>
-		<object-name>HydEDP.3Lon</object-name>
-		<object-name>HydEDP.3R</object-name>
-		<object-name>HydEDP.3Ron</object-name>
-		<property>systems/hydraulic/engine-pump-pressure-low[2]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>0</x>
-		    <y>1</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>RPump2.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/RPump2</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
-
+	
+	<animation>
+		<type>pick</type>
+		<object-name>LPump3</object-name>
+		<object-name>LPump3.fault</object-name>
+		<object-name>LPump3.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/hydraulic/switches/LPump3</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>LPump3.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/LPump3-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>LPump3.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/LPump3</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>RPump3</object-name>
+		<object-name>RPump3.fault</object-name>
+		<object-name>RPump3.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/hydraulic/switches/RPump3</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>RPump3.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/RPump3-fault</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>RPump3.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/RPump3</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<!-- RMPs -->
 	<animation>
 		<type>pick</type>
-		<object-name>HydRMP.13</object-name>
+		<object-name>RMP1-3</object-name>
+		<object-name>RMP1-3.on</object-name>
+		<object-name>RMP1-3.disag</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/electric-pump</property>
+				<property>controls/hydraulic/switches/RMP1-3</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydRMP.13</object-name>
-		<property>systems/hydraulic/rmp</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>RMP1-3.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/RMP1-3</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
-		
+	<animation>
+		<type>select</type>
+		<object-name>RMP1-3.disag</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/RMP1-3-disag</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>pick</type>
-		<object-name>HydRMP.23</object-name>
+		<object-name>RMP2-3</object-name>
+		<object-name>RMP2-3.on</object-name>
+		<object-name>RMP2-3.disag</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>systems/hydraulic/system</property></not>
+				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulic/electric-pump[1]</property>
+				<property>controls/hydraulic/switches/RMP2-3</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/hydraulic/system</property>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualHydLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydRMP.23</object-name>
-		<property>systems/hydraulic/rmp[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>RMP2-3.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/hydraulic/switches/RMP2-3</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>RMP2-3.disag</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/RMP2-3-disag</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 
 	<!-- Low Pressure Indicators -->
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydPress.1</object-name>
-		<property>systems/hydraulic/system-fault</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>HydPress1.press</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/hydraulic/sys1-psi</property>
+					<value>2400</value>
+				</less-than>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
+	
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydPress.2</object-name>
-		<property>systems/hydraulic/system-fault[1]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>HydPress2.press</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/hydraulic/sys2-psi</property>
+					<value>2400</value>
+				</less-than>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
+	
 	<animation>
-		<type>textranslate</type>
-		<object-name>HydPress.3</object-name>
-		<property>systems/hydraulic/system-fault[2]</property>
-		<factor>0.0625</factor>
-		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
-		</axis>
+		<type>select</type>
+		<object-name>HydPress3.press</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/hydraulic/sys3-psi</property>
+					<value>2400</value>
+				</less-than>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
+	
+	<!-- Other -->
 
     <animation>
         <type>rotate</type>

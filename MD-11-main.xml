@@ -231,7 +231,7 @@
 			<setting>1.00</setting>	<!-- 50 -->
 		</flaps>
         
-		<systems>
+		<systems n="0">
 			<autopilot n="0">
 				<path>Aircraft/MD-11Family/Systems/lsas.xml</path>
 			</autopilot>
@@ -247,14 +247,15 @@
 			<autopilot n="4">
 				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
 			</autopilot>
-			<autopilot n="5">
-				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
-			</autopilot>
+			<!-- Autopilot 5 is FADEC -->
 			<autopilot n="6">
 				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="7">
 				<path>Aircraft/MD-11Family/Sounds/MD-11-sound-variables.xml</path>
+			</autopilot>
+			<autopilot n="8">
+				<path>Aircraft/MD-11Family/Systems/EAD.xml</path>
 			</autopilot>
 			<property-rule n="101">
 				<path>Aircraft/MD-11Family/Systems/pfd.xml</path>
@@ -319,6 +320,9 @@
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
+		<switches>
+			<annun-test type="bool">0</annun-test>
+		</switches>
 	</controls>
 	
 	<engines n="0">
@@ -718,10 +722,14 @@
 		</acconfig>
 		<systems>
 			<file>Aircraft/MD-11Family/Nasal/engines.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/hydraulics.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11Family/Nasal/afs.nas</file>
 		</afs>
+		<thrust>
+			<file>Aircraft/MD-11Family/Nasal/fadec-common.nas</file>
+		</thrust>
 		<canvas_DU>
 			<file>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/EAD.nas</file>
 		</canvas_DU>

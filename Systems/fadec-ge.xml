@@ -8,6 +8,57 @@
 
 <PropertyList>
 
+    <filter>
+        <name>N1 CMD 1</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+                <table>
+                    <property>/controls/engines/engine[0]/throttle-fdm</property>
+                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
+                    <entry><ind>1.00</ind><dep>115.1</dep></entry>
+                </table>
+            </expression>
+        </input>
+		<output>/engines/engine[0]/n1-cmd</output>
+    </filter>
+	
+    <filter>
+        <name>N1 CMD 2</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+                <table>
+                    <property>/controls/engines/engine[1]/throttle-fdm</property>
+                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
+                    <entry><ind>1.00</ind><dep>115.1</dep></entry>
+                </table>
+            </expression>
+        </input>
+		<output>/engines/engine[1]/n1-cmd</output>
+    </filter>
+	
+    <filter>
+        <name>N1 CMD 3</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+                <table>
+                    <property>/controls/engines/engine[2]/throttle-fdm</property>
+                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
+                    <entry><ind>1.00</ind><dep>115.1</dep></entry>
+                </table>
+            </expression>
+        </input>
+		<output>/engines/engine[2]/n1-cmd</output>
+    </filter>
+
 	<filter>
 		<name>Throttle 1</name>
 		<type>gain</type>
@@ -160,7 +211,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1</property> 
-					<entry><ind> 23.7</ind><dep>323</dep></entry>
+					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
 			</expression>
@@ -191,7 +242,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1</property> 
-					<entry><ind> 23.7</ind><dep>323</dep></entry>
+					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
 			</expression>
@@ -222,7 +273,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n1</property> 
-					<entry><ind> 23.7</ind><dep>323</dep></entry>
+					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
 			</expression>

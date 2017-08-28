@@ -6,6 +6,9 @@
 #########################################
 -->
 
+<!-- IT-AUTOFLIGHT Autopilot Control Dialog -->
+
+
 <PropertyList>
 
 	<name>autopilot</name>
@@ -16,7 +19,7 @@
         <layout>hbox</layout>
         <text>
             <halign>left</halign>
-            <label>IT-AUTOFLIGHT System</label>
+            <label>IT-AUTOFLIGHT System (MD-11)</label>
         </text>
         <button>
             <halign>right</halign>
@@ -35,94 +38,66 @@
 	<group>
 		<layout>hbox</layout>
 		<button>
-			<legend>A/T</legend>
-            <pref-width>40</pref-width>
+			<legend>AUTOFLIGHT</legend>
+            <pref-width>110</pref-width>
 			<binding>
-			<command>property-toggle</command>
-			<property>/it-autoflight/input/athr</property>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap1</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/athr</property>
+				<value>1</value>
 			</binding>
 		</button>
 		<button>
-			<legend>AP1</legend>
-            <pref-width>40</pref-width>
+			<legend>AP Off</legend>
+            <pref-width>55</pref-width>
 			<binding>
-			<command>property-toggle</command>
-			<property>/it-autoflight/input/ap1</property>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap1</property>
+				<value>0</value>
 			</binding>
 		</button>
 		<button>
-			<legend>AP2</legend>
-            <pref-width>40</pref-width>
+			<legend>ATS Off</legend>
+            <pref-width>55</pref-width>
 			<binding>
-			<command>property-toggle</command>
-			<property>/it-autoflight/input/ap2</property>
-			</binding>
-		</button>
-		<button>
-			<legend>FD1</legend>
-            <pref-width>40</pref-width>
-			<binding>
-			<command>property-toggle</command>
-			<property>/it-autoflight/input/fd1</property>
-			</binding>
-		</button>
-		<button>
-			<legend>FD2</legend>
-            <pref-width>40</pref-width>
-			<binding>
-			<command>property-toggle</command>
-			<property>/it-autoflight/input/fd2</property>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/athr</property>
+				<value>0</value>
 			</binding>
 		</button>
 	</group>
 	
 	<group>
 		<layout>hbox</layout>
-		<text>
-			<label>[A/T]</label>
-			<visible>
-				<equals>
-					<property>/it-autoflight/output/athr</property>
-					<value>1</value>
-				</equals>
-			</visible>
-		</text>
-		<text>
-			<label>[AP1]</label>
-			<visible>
-				<equals>
-					<property>/it-autoflight/output/ap1</property>
-					<value>1</value>
-				</equals>
-			</visible>
-		</text>
-		<text>
-			<label>[AP2]</label>
-			<visible>
-				<equals>
-					<property>/it-autoflight/output/ap2</property>
-					<value>1</value>
-				</equals>
-			</visible>
-		</text>
-		<text>
-			<label>[FD1]</label>
-			<visible>
-				<equals>
-					<property>/it-autoflight/output/fd1</property>
-					<value>1</value>
-				</equals>
-			</visible>
-		</text>
-		<text>
-			<label>[FD2]</label>
-			<visible>
-				<equals>
-					<property>/it-autoflight/output/fd2</property>
-					<value>1</value>
-				</equals>
-			</visible>
-		</text>
+		<button>
+			<legend>APPR/LAND</legend>
+            <pref-width>110</pref-width>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vert</property>
+				<value>2</value>
+			</binding>
+		</button>
+		<button>
+			<legend>FD1</legend>
+            <pref-width>55</pref-width>
+			<binding>
+				<command>property</command>
+				<property>/it-autoflight/input/fd1</property>
+			</binding>
+		</button>
+		<button>
+			<legend>FD2</legend>
+            <pref-width>55</pref-width>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/fd2</property>
+			</binding>
+		</button>
 	</group>
 
 	<group>
@@ -145,8 +120,38 @@
 		<group>
 			<layout>hbox</layout>
 			<text>
+				<label></label>
+			</text>
+			<text>
+				<border>1</border>
+				<label>99</label>
+				<valign>center</valign>
+				<property>/it-autoflight/input/spd-common</property>
+				<live>1</live>
+			</text>
+			<text>
 				<border>1</border>
 				<label>999999</label>
+				<visible>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/fd1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</visible>
 				<valign>center</valign>
 				<property>/it-autoflight/mode/thr</property>
 				<live>1</live>
@@ -154,26 +159,159 @@
 			<vrule/>
 			<text>
 				<border>1</border>
-				<label>99999</label>
+				<label>999</label>
 				<valign>center</valign>
-				<property>/it-autoflight/mode/arm</property>
+				<property>/modes/pfd/fma/ap-mode</property>
 				<live>1</live>
 			</text>
 			<vrule/>
 			<text>
 				<border>1</border>
-				<label>99999</label>
+				<label>ATS</label>
+				<visible>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+				</visible>
 				<valign>center</valign>
-				<property>/it-autoflight/mode/lat</property>
+			</text>
+			<text>
+				<label></label>
+			</text>
+		</group>
+		
+		<hrule/>
+		
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label></label>
+			</text>
+			<text>
+				<border>1</border>
+				<label>99999999999</label>
+				<visible>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/fd1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</visible>
+				<valign>center</valign>
+				<property>/modes/pfd/fma/roll-mode-armed</property>
 				<live>1</live>
 			</text>
 			<vrule/>
 			<text>
 				<border>1</border>
-				<label>99999999</label>
+				<label>99999999999</label>
+				<visible>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/fd1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</visible>
 				<valign>center</valign>
-				<property>/it-autoflight/mode/vert</property>
+				<property>/modes/pfd/fma/roll-mode</property>
 				<live>1</live>
+			</text>
+			<text>
+				<label></label>
+			</text>
+		</group>
+		
+		<hrule/>
+		
+		<group>
+			<layout>hbox</layout>
+			<text>
+				<label></label>
+			</text>
+			<text>
+				<border>1</border>
+				<label>99999999999</label>
+				<visible>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/fd1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</visible>
+				<valign>center</valign>
+				<property>/modes/pfd/fma/pitch-mode-armed</property>
+				<live>1</live>
+			</text>
+			<vrule/>
+			<text>
+				<border>1</border>
+				<label>99999999999</label>
+				<visible>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/fd1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</visible>
+				<valign>center</valign>
+				<property>/modes/pfd/fma/pitch-mode</property>
+				<live>1</live>
+			</text>
+			<text>
+				<label></label>
 			</text>
 		</group>
 
@@ -195,34 +333,67 @@
 			<layout>hbox</layout>
 			
 			<button>
-				<legend>SPD</legend>
-				<pref-width>70</pref-width>
+				<legend>Push</legend>
+				<pref-width>65</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/kts-mach</property>
-				<value>0</value>
+					<condition>
+						<not>
+							<property>/it-autoflight/input/kts-mach</property>
+						</not>
+					</condition>
+					<command>nasal</command>
+					<script>
+					var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
+					setprop("/it-autoflight/input/spd-kts", iasnow);
+					</script>
 				</binding>
-			</button>
-		
-			<button>
-				<legend>Mach</legend>
-				<pref-width>70</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/kts-mach</property>
-				<value>1</value>
+					<condition>
+						<property>/it-autoflight/input/kts-mach</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+					var machnow = (int(1000*getprop("/velocities/mach")))*0.001;
+					setprop("/it-autoflight/input/spd-mach", machnow);
+					</script>
 				</binding>
 			</button>
 			
 			<button>
-				<legend>TOGA</legend>
-				<pref-width>70</pref-width>
+				<legend>Pull</legend>
+				<pref-width>65</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/toga</property>
-				<value>1</value>
+					<condition>
+						<not>
+							<property>/it-autoflight/input/kts-mach</property>
+						</not>
+					</condition>
+					<command>nasal</command>
+					<script>
+					setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
+					</script>
+				</binding>
+				<binding>
+					<condition>
+						<property>/it-autoflight/input/kts-mach</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+					setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
+					</script>
 				</binding>
 			</button>
+			
+			<button>
+				<legend>Speed/Mach</legend>
+				<binding>
+					<command>property-cycle</command>
+					<property>/it-autoflight/input/kts-mach</property>
+					<value>0</value>
+					<value>1</value>
+				</binding>
+			</button>
+			
 		</group>
 
 		<group>
@@ -249,8 +420,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-kts</property>
-					<min>0</min>
-					<max>380</max>
+					<min>100</min>
+					<max>350</max>
 					<step>-10</step>
 					<wrap>false</wrap>
 				</binding>
@@ -270,8 +441,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-kts</property>
-					<min>0</min>
-					<max>380</max>
+					<min>100</min>
+					<max>350</max>
 					<step>-1</step>
 					<wrap>false</wrap>
 				</binding>
@@ -309,8 +480,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-kts</property>
-					<min>0</min>
-					<max>380</max>
+					<min>100</min>
+					<max>350</max>
 					<step>1</step>
 					<wrap>false</wrap>
 				</binding>
@@ -331,8 +502,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-kts</property>
-					<min>0</min>
-					<max>380</max>
+					<min>100</min>
+					<max>350</max>
 					<step>10</step>
 					<wrap>false</wrap>
 				</binding>
@@ -364,8 +535,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-mach</property>
-					<min>0</min>
-					<max>0.99</max>
+					<min>0.50</min>
+					<max>0.84</max>
 					<step>-0.01</step>
 					<wrap>false</wrap>
 				</binding>
@@ -385,8 +556,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-mach</property>
-					<min>0</min>
-					<max>0.99</max>
+					<min>0.50</min>
+					<max>0.84</max>
 					<step>-0.001</step>
 					<wrap>false</wrap>
 				</binding>
@@ -424,8 +595,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-mach</property>
-					<min>0</min>
-					<max>0.99</max>
+					<min>0.50</min>
+					<max>0.84</max>
 					<step>0.001</step>
 					<wrap>false</wrap>
 				</binding>
@@ -446,8 +617,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/spd-mach</property>
-					<min>0</min>
-					<max>0.99</max>
+					<min>0.50</min>
+					<max>0.84</max>
 					<step>0.01</step>
 					<wrap>false</wrap>
 				</binding>
@@ -473,42 +644,47 @@
 			<layout>hbox</layout>
 			
 			<button>
-                <pref-width>50</pref-width>
-				<legend>HLD</legend>
+				<legend>Push</legend>
+				<pref-width>55</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/lat</property>
-				<value>3</value>
-				</binding>
-			</button>
-		
-			<button>
-                <pref-width>50</pref-width>
-				<legend>SEL</legend>
-				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/lat</property>
-				<value>0</value>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/lat</property>
+					<value>3</value>
 				</binding>
 			</button>
 			
 			<button>
-                <pref-width>50</pref-width>
-				<legend>LNAV</legend>
+				<legend>Pull</legend>
+				<pref-width>55</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/lat</property>
-				<value>1</value>
+					<command>nasal</command>
+					<script>
+					setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
+					</script>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/lat</property>
+					<value>0</value>
 				</binding>
 			</button>
 			
 			<button>
-                <pref-width>65</pref-width>
-				<legend>VOR/LOC</legend>
+				<legend>NAV</legend>
+				<pref-width>55</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/lat</property>
-				<value>2</value>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/lat</property>
+					<value>1</value>
+				</binding>
+			</button>
+			
+			<button>
+				<legend>HDG/TRK</legend>
+				<pref-width>60</pref-width>
+				<binding>
+					<command>property-toggle</command>
+					<property>/it-autoflight/input/trk</property>
 				</binding>
 			</button>
 		</group>
@@ -596,64 +772,6 @@
 				</binding>
 			</button>
 		</group>
-		
-		<group>
-			<layout>hbox</layout>
-
-			<checkbox>
-				<label>True HDG</label>
-				<property>/it-autoflight/input/trk</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			<checkbox>
-				<label>Use NAV2 Radio</label>
-				<property>/it-autoflight/settings/use-nav2-radio</property>
-				<enable>
-					<not-equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>2</value>
-					</not-equals>
-				</enable>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-		</group>
-		
-		<group>
-			<layout>hbox</layout>
-			<text>
-				<label>Bank Limit Degrees Select:</label>
-			</text>
-		</group>
-		
-		<group>
-			<layout>hbox</layout>
-			<slider>
-				<halign>center</halign>
-				<pref-width>215</pref-width>
-				<property>/it-autoflight/input/bank-limit-sw</property>
-				<step>1</step>
-				<min>0</min>
-				<max>6</max>
-				<live type="bool">true</live>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-			</slider>
-		</group>
-		
-		<group>
-			<layout>hbox</layout>
-			<text>
-				<halign>center</halign>
-				<label>AUTO   5     10     15     20     25     30  </label>
-			</text>
-		</group>
 
 		<group>
 			<layout>hbox</layout>
@@ -673,54 +791,62 @@
 			<layout>hbox</layout>
 			
 			<button>
-                <pref-width>40</pref-width>
-				<legend>HLD</legend>
+				<legend>Push</legend>
+				<pref-width>55</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/vert</property>
-				<value>0</value>
-				</binding>
-			</button>
-		
-			<button>
-                <pref-width>40</pref-width>
-				<legend>FLCH</legend>
-				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/vert</property>
-				<value>4</value>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/vert</property>
+					<value>0</value>
 				</binding>
 			</button>
 			
 			<button>
-                <pref-width>40</pref-width>
-				<legend>V/S</legend>
+				<legend>Pull</legend>
+				<pref-width>55</pref-width>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/vert</property>
-				<value>1</value>
-				</binding>
-			</button>
-			
-			<button>
-                <pref-width>40</pref-width>
-				<legend>FPA</legend>
-				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/vert</property>
-				<value>5</value>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/vert</property>
+					<value>4</value>
 				</binding>
 			</button>
 			
 			<button>
                 <pref-width>55</pref-width>
-				<legend>ILS</legend>
+				<legend>PROF</legend>
+				<enable>
+					<property>/systems/unused/unused-button</property>
+				</enable>
 				<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/vert</property>
-				<value>2</value>
+					<command>property-assign</command>
+					<property>/systems/unused/unused-button</property>
+					<value>0</value>
 				</binding>
 			</button>
+			
+			<button>
+                <pref-width>60</pref-width>
+				<legend>VS/FPA</legend>
+				<binding>
+					<command>nasal</command>
+					<script>
+					if (getprop("/it-autoflight/output/vert") == 1) {
+						setprop("/it-autoflight/custom/vs-fpa", "1");
+						setprop("/it-autoflight/input/vert", 5);
+					} else if (getprop("/it-autoflight/output/vert") == 5) {
+						setprop("/it-autoflight/custom/vs-fpa", "0");
+						setprop("/it-autoflight/input/vert", 1);
+					} else {
+						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+							setprop("/it-autoflight/custom/vs-fpa", "1");
+						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+							setprop("/it-autoflight/custom/vs-fpa", "0");
+						}
+					}
+					setprop("/sim/sounde/btn1", 1);
+					</script>
+				</binding>
+			</button>
+			
 		</group>
 		
 		<group>
@@ -822,19 +948,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;&lt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>1</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/vs</property>
 					<min>-6000</min>
 					<max>6000</max>
 					<step>-1000</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 1) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+								setprop("/it-autoflight/input/vert", 1);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 			<button>
@@ -843,19 +979,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>1</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/vs</property>
 					<min>-6000</min>
 					<max>6000</max>
 					<step>-100</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 1) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+								setprop("/it-autoflight/input/vert", 1);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 
@@ -882,19 +1028,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>1</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/vs</property>
 					<min>-6000</min>
 					<max>6000</max>
 					<step>100</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 1) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+								setprop("/it-autoflight/input/vert", 1);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 			<button>
@@ -904,19 +1060,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;&gt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>1</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/vs</property>
 					<min>-6000</min>
 					<max>6000</max>
 					<step>1000</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 1) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
+								setprop("/it-autoflight/input/vert", 1);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 		</group>
@@ -936,19 +1102,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;&lt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>5</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/fpa</property>
 					<min>-20.9</min>
 					<max>20.9</max>
 					<step>-1</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 5) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+								setprop("/it-autoflight/input/vert", 5);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 			<button>
@@ -957,19 +1133,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>5</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/fpa</property>
 					<min>-20.9</min>
 					<max>20.9</max>
 					<step>-0.1</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 5) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+								setprop("/it-autoflight/input/vert", 5);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 
@@ -996,19 +1182,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>5</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/fpa</property>
 					<min>-20.9</min>
 					<max>20.9</max>
 					<step>0.1</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 5) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+								setprop("/it-autoflight/input/vert", 5);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 			<button>
@@ -1018,19 +1214,29 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;&gt;</legend>
-				<enable>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</enable>
 				<binding>
+					<condition>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>5</value>
+						</equals>
+					</condition>
 					<command>property-adjust</command>
 					<property>/it-autoflight/input/fpa</property>
 					<min>-20.9</min>
 					<max>20.9</max>
 					<step>1</step>
 					<wrap>false</wrap>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/it-autoflight/output/vert") != 5) {
+							if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+								setprop("/it-autoflight/input/vert", 5);
+							}
+						}
+					</script>
 				</binding>
 			</button>
 		</group>

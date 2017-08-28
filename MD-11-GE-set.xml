@@ -35,6 +35,12 @@
 				<file type="string">MCD</file>
 			</livery>
 		</model>
+		
+		<systems n="0">
+			<autopilot n="5">
+				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
+			</autopilot>
+		</systems>
     </sim>
 	
 	<options n="0">
@@ -45,6 +51,9 @@
 		<specific>
 			<file>Aircraft/MD-11Family/Nasal/md-11-liveries.nas</file>
 		</specific>
+		<fadec>
+			<file>Aircraft/MD-11Family/Nasal/fadec-ge.nas</file>
+		</fadec>
     </nasal>
 
 </PropertyList>

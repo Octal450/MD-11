@@ -11,6 +11,32 @@
  <!-- =============================================================== -->
  <!-- Predictors                                                      -->
  <!-- =============================================================== -->
+ 
+	<predict-simple>
+		<name>HEADING 5 SECONDS AHEAD</name>
+		<debug>false</debug>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/orientation/heading-magnetic-deg</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/orientation/heading-deg</property>
+		</input>
+		<output>/it-autoflight/internal/heading-5-sec-ahead</output>
+		<seconds>5.0</seconds>
+		<filter-gain>0.0</filter-gain>
+	</predict-simple>
 
 	<predict-simple>
 		<name>ALTITUDE 5 SECONDS AHEAD</name>
