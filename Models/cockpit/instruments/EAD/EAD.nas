@@ -41,6 +41,22 @@ var canvas_EAD_base = {
 		var svg_keys = me.getKeys();
 		foreach(var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
+            var clip_el = me.svg.getElementById(key ~ "_clip");
+            if (clip_el != nil) {
+                clip_el.setVisible(0);
+                var tran_rect = clip_el.getTransformedBounds();
+                
+                var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
+                                        tran_rect[1], # 0 ys
+                                        tran_rect[2],  # 1 xe
+                                        tran_rect[3], # 2 ye
+                                        tran_rect[0]); #3 xs
+#            print(key," using clip element ",clip_rect, " trans(",tran_rect[0],",",tran_rect[1],"  ",tran_rect[2],",",tran_rect[3],")");
+#   see line 621 of simgear/canvas/CanvasElement.cxx
+#   not sure why the coordinates are in this order but are top,right,bottom,left (ys, xe, ye, xs)
+                el.set("clip", clip_rect);
+                el.set("clip-frame", canvas.Element.PARENT);
+            }
 		}
 
 		me.page = canvas_group;
