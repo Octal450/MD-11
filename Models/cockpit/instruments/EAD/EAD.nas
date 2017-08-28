@@ -35,28 +35,12 @@ var canvas_EAD_base = {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
 		};
-
+		
 		canvas.parsesvg(canvas_group, file, {'font-mapper': font_mapper});
-
+		
 		var svg_keys = me.getKeys();
 		foreach(var key; svg_keys) {
 			me[key] = canvas_group.getElementById(key);
-            var clip_el = me.svg.getElementById(key ~ "_clip");
-            if (clip_el != nil) {
-                clip_el.setVisible(0);
-                var tran_rect = clip_el.getTransformedBounds();
-                
-                var clip_rect = sprintf("rect(%d,%d, %d,%d)", 
-                                        tran_rect[1], # 0 ys
-                                        tran_rect[2],  # 1 xe
-                                        tran_rect[3], # 2 ye
-                                        tran_rect[0]); #3 xs
-#            print(key," using clip element ",clip_rect, " trans(",tran_rect[0],",",tran_rect[1],"  ",tran_rect[2],",",tran_rect[3],")");
-#   see line 621 of simgear/canvas/CanvasElement.cxx
-#   not sure why the coordinates are in this order but are top,right,bottom,left (ys, xe, ye, xs)
-                el.set("clip", clip_rect);
-                el.set("clip-frame", canvas.Element.PARENT);
-            }
 		}
 
 		me.page = canvas_group;
@@ -129,6 +113,23 @@ var canvas_EAD_GE = {
 		
 		me.getKeys();
 
+		var svg_keys = me.getKeys();
+		foreach(var key; svg_keys) {
+			me[key] = canvas_group.getElementById(key);
+			var clip_el = me.svg.getElementById(key ~ "_clip");
+			if (clip_el != nil) {
+				clip_el.setVisible(0);
+				var tran_rect = clip_el.getTransformedBounds();
+				var clip_rect = sprintf("rect(%d,% d, %d, %d)", 
+				tran_rect[1], # 0 ys
+				tran_rect[2],  # 1 xe
+				tran_rect[3], # 2 ye
+				tran_rect[0]); #3 xs
+				el.set("clip", clip_rect);
+				el.set("clip-frame", canvas.Element.PARENT);
+			}
+		}
+
 		return m;
 	},
 	getKeys: func() {
@@ -138,16 +139,13 @@ var canvas_EAD_GE = {
 		"N23-cline","N23-redline","FF3","FFOff3","N1Lim","N1Lim-decimal","N1LimMode","REV1","REV2","REV3"];
 	},
 	update: func() {
-		# Expirimental
-#		me["N11-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65); # For translating N1 -- use vertical text spacing 0.75 in SVG, same font size
-
 		# N1
 		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1") + 0.05)));
-		me["N11-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))));
+		me["N11-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
 		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1") + 0.05)));
-		me["N12-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[1]/n1") + 0.05,1))));
+		me["N12-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
 		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1") + 0.05)));
-		me["N13-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[2]/n1") + 0.05,1))));
+		me["N13-decimal"].setTranslation(0,int(10*math.mod(getprop("/engines/engine[0]/n1") + 0.05,1))*33.65);
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90)*D2R);
 		me["N11-thr"].setRotation((getprop("/DU/EAD/N1thr[0]") + 90)*D2R);
