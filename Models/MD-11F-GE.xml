@@ -196,8 +196,8 @@
     <object-name>redlightsphere</object-name>
     <object-name>RedLight</object-name>
     <object-name>fueldump.l</object-name>
-		<property>accelerations/pilot-g</property>
-  <factor>0.000005</factor>
+		<property>aircraft/wingflex</property>
+		<factor>0.000005</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
