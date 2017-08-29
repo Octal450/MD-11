@@ -336,28 +336,17 @@
 		<fcs_function name="Nose Wheel Steering 0">
 			<function name="fcs/steer-nose-deg[0]">
 				<description>Steering command for nose gear</description>
-				<sum>
-					<product>
-						<table>
-							<independentVar lookup="row">/controls/gear/tiller-cmd-norm</independentVar>
-							<independentVar lookup="column">/controls/flight/rudder</independentVar>
-							<tableData>
-							-1   0   1
-							-1 -70 -70 -70
-							0  -7   0   7
-							1  70  70  70
-							</tableData>
-						</table>
-						<property>/controls/gear/tiller-enabled</property>
-					</product>
-					<product>
-						<product>
-							<property>/controls/flight/rudder</property>
-							<value>70</value>
-						</product>
-						<property>/controls/gear/tiller-disabled</property>
-					</product>
-				</sum>
+				<product>
+					<table>
+						<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+						<independentVar lookup="column">/controls/flight/rudder</independentVar>
+						<tableData>
+						        -1  0   1
+						30.000 -70  0  70
+						30.001  -7  0   7
+						</tableData>
+					</table>
+				</product>
 			</function>
 		</fcs_function>
         
