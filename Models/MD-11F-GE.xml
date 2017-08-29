@@ -2361,52 +2361,52 @@
 		<path>Aircraft/MD-11Family/Models/Lights/MD-11-lighting.xml</path>
 	</model>
 	
- <animation>
-  <type>material</type>
-<object-name>fuselage</object-name>
-<object-name>fuselage.cone</object-name>
-<object-name>cargo.door</object-name>
-<object-name>rudder.u</object-name>
-<object-name>rudder.l</object-name>
-<object-name>engines</object-name>
-<object-name>right.reverser</object-name>
-<object-name>left.reverser</object-name>
-<object-name>center.reverser</object-name>
-<object-name>main.left.door</object-name>
-<object-name>central.back.left</object-name>
-<object-name>central.front.left</object-name>
-<object-name>central.front.right</object-name>
-<object-name>central.back.right</object-name>
-<object-name>main.right.door</object-name>
-<object-name>lgdoor.right.front.2</object-name>
-<object-name>lgdoor.right.front</object-name>
-<object-name>lgdoor.left.front.2</object-name>
-<object-name>lgdoor.left.front</object-name>
-<object-name>winglet.left</object-name>
-<object-name>winglet.right</object-name>
-<object-name>cargo1</object-name>
-<object-name>cargo2</object-name>
-<object-name>cargo3</object-name>
-<object-name>flap.3.part2</object-name>
-<object-name>flap.5.part2</object-name>
-<object-name>fan_1.center</object-name>
-<object-name>fan_2.center</object-name>
-<object-name>fan_3.center</object-name>
-<object-name>rdoor.1</object-name>
-<object-name>ldoor.1</object-name>
-<object-name>rdoor.2</object-name>
-<object-name>ldoor.2</object-name>
-<object-name>rdoor.3</object-name>
-<object-name>ldoor.3</object-name>
-<object-name>rdoor.4</object-name>
-<object-name>ldoor.4</object-name>
-<object-name>VHF.lowerF</object-name>
-<object-name>VHF.lowerA</object-name>
-<object-name>VHF.upper</object-name>
-<property-base>sim/model/livery</property-base>
-<texture-prop>texture</texture-prop>
-<texture>md11.png</texture>
- </animation>
+	<animation>
+		<type>material</type>
+		<object-name>fuselage</object-name>
+		<object-name>fuselage.cone</object-name>
+		<object-name>cargo.door</object-name>
+		<object-name>rudder.u</object-name>
+		<object-name>rudder.l</object-name>
+		<object-name>engines</object-name>
+		<object-name>right.reverser</object-name>
+		<object-name>left.reverser</object-name>
+		<object-name>center.reverser</object-name>
+		<object-name>main.left.door</object-name>
+		<object-name>central.back.left</object-name>
+		<object-name>central.front.left</object-name>
+		<object-name>central.front.right</object-name>
+		<object-name>central.back.right</object-name>
+		<object-name>main.right.door</object-name>
+		<object-name>lgdoor.right.front.2</object-name>
+		<object-name>lgdoor.right.front</object-name>
+		<object-name>lgdoor.left.front.2</object-name>
+		<object-name>lgdoor.left.front</object-name>
+		<object-name>winglet.left</object-name>
+		<object-name>winglet.right</object-name>
+		<object-name>cargo1</object-name>
+		<object-name>cargo2</object-name>
+		<object-name>cargo3</object-name>
+		<object-name>flap.3.part2</object-name>
+		<object-name>flap.5.part2</object-name>
+		<object-name>fan_1.center</object-name>
+		<object-name>fan_2.center</object-name>
+		<object-name>fan_3.center</object-name>
+		<object-name>rdoor.1</object-name>
+		<object-name>ldoor.1</object-name>
+		<object-name>rdoor.2</object-name>
+		<object-name>ldoor.2</object-name>
+		<object-name>rdoor.3</object-name>
+		<object-name>ldoor.3</object-name>
+		<object-name>rdoor.4</object-name>
+		<object-name>ldoor.4</object-name>
+		<object-name>VHF.lowerF</object-name>
+		<object-name>VHF.lowerA</object-name>
+		<object-name>VHF.upper</object-name>
+		<property-base>sim/model/livery</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>FED.png</texture>
+	</animation>
  
     <animation>
 	<name>Forward cargo door rotate</name>
