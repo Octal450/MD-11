@@ -219,6 +219,7 @@
 				<float n="12" alias="/gear/gear[1]/rollspeed-ms"/>
 				<float n="13" alias="/gear/gear[2]/rollspeed-ms"/>
 				<float n="14" alias="/gear/gear[3]/rollspeed-ms"/>
+				<float n="15" alias="/fdm/jsbsim/fcs/slat-pos-norm" />
 				<string  alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>

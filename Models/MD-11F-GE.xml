@@ -726,7 +726,8 @@
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
 		<property>sim/multiplay/generic/float[6]</property>
-		<factor>14</factor>
+		<factor>12</factor>
+		<offset-deg>-5</offset-deg>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -868,7 +869,7 @@
   <object-name>tyres</object-name>
   <object-name>nose.scissor.down</object-name>
   <property>sim/multiplay/generic/float[0]</property>
-  <factor>-0.25</factor>
+  <factor>-0.3</factor>
 	 	<axis>
 			<x1-m>-20.4239</x1-m>
 			<y1-m>0</y1-m>
@@ -1896,7 +1897,7 @@
 		<type>translate</type>
 		<object-name>slat.2</object-name>
 		<object-name>slat.2.2</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>-0.7</dep></entry>
@@ -1914,7 +1915,7 @@
 		<type>rotate</type>
 		<object-name>slat.2</object-name>
 		<object-name>slat.2.2</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>0</dep></entry>
@@ -1936,7 +1937,7 @@
 <object-name>slat.1.part3</object-name>
 <object-name>slat.1.part2</object-name>
 <object-name>slat.1.part1</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>-0.6</dep></entry>
@@ -1954,7 +1955,7 @@
 <object-name>slat.1.part3</object-name>
 <object-name>slat.1.part2</object-name>
 <object-name>slat.1.part1</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>0</dep></entry>
@@ -1977,7 +1978,7 @@
 		<type>translate</type>
 		<object-name>slat.3</object-name>
 		<object-name>slat.3.2</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>-0.7</dep></entry>
@@ -1995,7 +1996,7 @@
 		<type>rotate</type>
 		<object-name>slat.3</object-name>
 		<object-name>slat.3.2</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>0</dep></entry>
@@ -2017,7 +2018,7 @@
 <object-name>slat.4.part3</object-name>
 <object-name>slat.4.part2</object-name>
 <object-name>slat.4.part1</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>-0.6</dep></entry>
@@ -2035,7 +2036,7 @@
 <object-name>slat.4.part3</object-name>
 <object-name>slat.4.part2</object-name>
 <object-name>slat.4.part1</object-name>
-        <property>surface-positions/slats</property>
+        <property>sim/multiplay/generic/float[15]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.3</ind><dep>0</dep></entry>
