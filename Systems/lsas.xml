@@ -26,6 +26,70 @@
 		<output>/lsas/kp</output>
 	</filter>
 	
+	<filter>
+		<name>LSAS: FEEDBACK IF DISABLED</name>
+		<enable>
+			<condition>
+				<or>
+					<equals>
+						<property>/lsas/enable</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/ap1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/ap2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+					<less-than-equals>
+						<property>/orientation/roll-deg</property>
+						<value>-32</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/orientation/roll-deg</property>
+						<value>32</value>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/orientation/pitch-deg</property>
+						<value>-12</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/orientation/pitch-deg</property>
+						<value>32</value>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/position/gear-agl-ft</property>
+						<value>100</value>
+					</less-than-equals>
+					<less-than>
+						<property>/controls/flight/elevator</property>
+						<value>-0.02</value>
+					</less-than>
+					<greater-than>
+						<property>/controls/flight/elevator</property>
+						<value>0.02</value>
+					</greater-than>
+				</or>
+			</condition>
+		</enable>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>/controls/flight/elevator</input>
+		<output>/lsas/elevator-command</output>
+		<min>-0.2</min>
+		<max>0.2</max>
+	</filter>
+	
 	<pid-controller>
 		<name>LSAS: PITCH</name>
 		<debug>false</debug>
