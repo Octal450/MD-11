@@ -999,7 +999,7 @@
     
     <!-- 1. starter -->
     
-        <animation>
+        <!--animation>
         <type>pick</type>
         <object-name>starter.1.off</object-name>
         <object-name>starter.1.on</object-name>
@@ -1060,7 +1060,7 @@
 				<value>0</value>
 				</equals>
 		</condition>
-	</animation>
+	</animation-->
 	
 				<animation>
 		<type>select</type>
@@ -1076,7 +1076,7 @@
 	
 	   <!-- 2. starter -->
     
-        <animation>
+        <!--animation>
         <type>pick</type>
         <object-name>starter.2.off</object-name>
         <object-name>starter.2.on</object-name>
@@ -1137,7 +1137,7 @@
 				<value>0</value>
 				</equals>
 		</condition>
-	</animation>
+	</animation-->
 	
 				<animation>
 		<type>select</type>
@@ -1152,7 +1152,7 @@
 	
 		   <!-- 3. starter -->
     
-        <animation>
+        <!--animation>
         <type>pick</type>
         <object-name>starter.3.off</object-name>
         <object-name>starter.3.on</object-name>
@@ -1213,7 +1213,7 @@
 				<value>0</value>
 				</equals>
 		</condition>
-	</animation>
+	</animation-->
 	
 				<animation>
 		<type>select</type>
