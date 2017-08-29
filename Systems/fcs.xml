@@ -325,13 +325,6 @@
 	</channel>
     
 	<channel name="Tiller">
-	
-		<switch name="/controls/gear/tiller-disabled">
-			<default value="0"/>
-			<test logic="AND" value="1">
-			/controls/gear/tiller-enabled == 0
-			</test>
-		</switch>
         
 		<fcs_function name="Nose Wheel Steering 0">
 			<function name="fcs/steer-nose-deg[0]">

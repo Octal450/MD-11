@@ -188,6 +188,106 @@
 		<max-rate-of-change>0.45</max-rate-of-change>
 	</filter>
 	
+    <filter>
+        <name>N1 Limit TOGA</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+				<table>
+					<product>
+						<value>0.99</value>
+						<property>/controls/engines/throttle-scale</property>
+					</product>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>115.1</dep></entry>
+				</table>
+            </expression>
+        </input>
+		<output>/systems/thrust/n1/toga-lim</output>
+    </filter>
+	
+    <filter>
+        <name>N1 Limit MCT</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+				<table>
+					<product>
+						<value>0.96</value>
+						<property>/controls/engines/throttle-scale</property>
+					</product>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>115.1</dep></entry>
+				</table>
+            </expression>
+        </input>
+		<output>/systems/thrust/n1/mct-lim</output>
+    </filter>
+	
+    <filter>
+        <name>N1 Limit FLX</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+				<table>
+					<product>
+						<value>0.99</value>
+						<property>/engines/flx-throttle</property>
+					</product>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>115.1</dep></entry>
+				</table>
+            </expression>
+        </input>
+		<output>/systems/thrust/n1/flx-lim</output>
+    </filter>
+	
+    <filter>
+        <name>N1 Limit CLB</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+				<table>
+					<product>
+						<value>0.91</value>
+						<property>/controls/engines/throttle-scale</property>
+					</product>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>115.1</dep></entry>
+				</table>
+            </expression>
+        </input>
+		<output>/systems/thrust/n1/clb-lim</output>
+    </filter>
+	
+    <filter>
+        <name>N1 Limit CRZ</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <update-interval-secs type="double">0.05</update-interval-secs>
+        <input>
+            <expression>
+				<table>
+					<product>
+						<value>0.90</value>
+						<property>/controls/engines/throttle-scale</property>
+					</product>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>115.1</dep></entry>
+				</table>
+            </expression>
+        </input>
+		<output>/systems/thrust/n1/crz-lim</output>
+    </filter>
+	
 	<filter>
 		<name>EGT 1</name>
 		<type>gain</type>

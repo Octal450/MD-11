@@ -11,6 +11,183 @@
  <!-- =============================================================== -->
  <!-- Thrust Modes                                                    -->
  <!-- =============================================================== -->
+ 
+	<filter>
+		<name>Thrust Limit</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/thrust-limit</property>
+					<value>T/O</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.99</value>
+					<property>/controls/engines/throttle-scale</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/thrust-limit</property>
+					<value>MCT</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.96</value>
+					<property>/controls/engines/throttle-scale</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/thrust-limit</property>
+					<value>D-T/O</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.99</value>
+					<property>/engines/flx-throttle</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/thrust-limit</property>
+					<value>CLB</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.91</value>
+					<property>/controls/engines/throttle-scale</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/controls/engines/thrust-limit</property>
+					<value>CRZ</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.90</value>
+					<property>/controls/engines/throttle-scale</property>
+				</product>
+			</expression>
+		</input>
+		<output>/controls/engines/throttle-limit</output>
+	</filter>
+ 
+	<filter>
+		<name>KTS INPUT FILTER</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>
+			<property>/it-autoflight/input/spd-kts</property>
+		</input>
+		<output>/it-autoflight/internal/kts</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+			<value>200</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>10</value>
+		</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>MACH INPUT FILTER</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>
+			<property>/it-autoflight/input/spd-mach</property>
+		</input>
+		<output>/it-autoflight/internal/mach</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+			<value>2</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.1</value>
+		</max-rate-of-change>
+	</filter>
 
 	<!-- Auto throttle --> 
 	<pid-controller>
@@ -27,35 +204,29 @@
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
 					</equals>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
-					</equals>
 				</and>
 			</condition>
 		</enable>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>/velocities/airspeed-kt</property>
 		</input>
 		<reference>
-			<property>/it-autoflight/input/spd-kts</property>
+			<property>/it-autoflight/internal/kts</property>
 		</reference>
 		<output>
-			<property>/controls/flight/throttle-cmd</property>
+			<property>/controls/engines/throttle-cmd-pid</property>
 		</output>
 		<config>
-			<Kp>0.1</Kp>        
-			<beta>1.0</beta>    
-			<alpha>0.1</alpha>  
-			<gamma>0.0</gamma>  
-			<Ti>10.0</Ti>       
-			<Td>0.00001</Td>    
-			<u_min>0.0</u_min>  
-			<u_max>0.94</u_max>  
+			<Kp>0.05</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>0.005</u_min>
+			<u_max>
+				<property>/controls/engines/throttle-limit</property>
+			</u_max>
 		</config>
 	</pid-controller>
 
@@ -75,37 +246,31 @@
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
 					</equals>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
-					</equals>
 				</and>
 			</condition>
 		</enable>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-			<scale>1000.0</scale>
+			<property>/velocities/mach</property>
+			<scale>500.0</scale>
 		</input>
 		<reference>
-			<property>/it-autoflight/input/spd-mach</property>
-			<scale>1000.0</scale>
+			<property>/it-autoflight/internal/mach</property>
+			<scale>500.0</scale>
 		</reference>
 		<output>
-			<property>/controls/flight/throttle-cmd</property>
+			<property>/controls/engines/throttle-cmd-pid</property>
 		</output>
 		<config>
-			<Kp>0.1</Kp>        
-			<beta>1.0</beta>    
-			<alpha>0.1</alpha>  
-			<gamma>0.0</gamma>  
-			<Ti>10.0</Ti>       
-			<Td>0.00001</Td>    
-			<u_min>0.0</u_min>  
-			<u_max>0.94</u_max>  
+			<Kp>0.05</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>0.005</u_min>
+			<u_max>
+				<property>/controls/engines/throttle-limit</property>
+			</u_max>
 		</config>
 	</pid-controller>
 
@@ -115,59 +280,32 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<and>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/thr-mode</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/retard</property>
-							<value>1</value>
-						</equals>
-					</or>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>1</value>
+				</equals>
 			</condition>
 		</enable>
 		<input>
-		<value>900</value>
+			<property>/velocities/airspeed-kt</property>
 		</input>
 		<reference>
 			<value>0</value>
 		</reference>
 		<output>
-			<property>/controls/flight/throttle-cmd</property>
+			<property>/controls/engines/throttle-cmd-pid</property>
 		</output>
 		<config>
-			<Kp>0.1</Kp>        
-			<beta>1.0</beta>    
-			<alpha>0.1</alpha>  
-			<gamma>0.0</gamma>  
-			<Ti>10.0</Ti>       
-			<Td>0.00001</Td>    
-			<u_min>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
-					</equals>
-				</condition>
-				<value>0.08</value>
-			</u_min>  
-			<u_min>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>1</value>
-					</equals>
-				</condition>
-				<value>0</value>
-			</u_min>
-			<u_max>0.2</u_max>  
+			<Kp>0.008</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>0.01</u_min>
+			<u_max>
+				<property>/controls/engines/throttle-limit</property>
+			</u_max>
 		</config>
 	</pid-controller>
 
@@ -177,48 +315,39 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>2</value>
+				</equals>
 			</condition>
 		</enable>
 		<input>
-			<value>0</value>
+			<property>/velocities/airspeed-kt</property>
 		</input>
 		<reference>
 			<value>900</value>
 		</reference>
 		<output>
-			<property>/controls/flight/throttle-cmd</property>
+			<property>/controls/engines/throttle-cmd-pid</property>
 		</output>
 		<config>
-			<Kp>0.1</Kp>        
-			<beta>1.0</beta>    
-			<alpha>0.1</alpha>  
-			<gamma>0.0</gamma>  
-			<Ti>10.0</Ti>       
-			<Td>0.00001</Td>    
-			<u_min>0.0</u_min>  
-			<u_max>0.95</u_max>  
+			<Kp>0.008</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>0.005</u_min>
+			<u_max>
+				<property>/controls/engines/throttle-limit</property>
+			</u_max>
 		</config>
 	</pid-controller>
-  
+	
+	<!-- Engine 1 -->
 	<filter>
-		<name>IT-CONTROLLER: THRUST CMD</name>
+		<name>Thrust Filter 1</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
 				<equals>
@@ -227,58 +356,120 @@
 				</equals>
 			</condition>
 		</enable>
-		<input>
-			<property>/controls/flight/throttle-cmd</property>
-		</input>
-		<output>
-			<property>/controls/engines/engine[0]/throttle</property>
-			<property>/controls/engines/engine[1]/throttle</property>
-			<property>/controls/engines/engine[2]/throttle</property>
-			<property>/controls/engines/engine[3]/throttle</property>
-			<property>/controls/engines/engine[4]/throttle</property>
-			<property>/controls/engines/engine[5]/throttle</property>
-			<property>/controls/engines/engine[6]/throttle</property>
-			<property>/controls/engines/engine[7]/throttle</property>
-		</output>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/controls/engines/throttle-cmd-pid</input>
+		<output>/controls/engines/engine[0]/throttle</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>0</value>
+				</equals>
 			</condition>
-			<value>0.20</value>
+			<value>0.1</value>
 		</max-rate-of-change>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</not-equals>
+				<or>
 					<equals>
-						<property>/it-autoflight/output/retard</property>
-						<value>0</value>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>1</value>
 					</equals>
-				</and>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>2</value>
+					</equals>
+				</or>
 			</condition>
 			<value>0.05</value>
 		</max-rate-of-change>
-		<max-rate-of-change>
+	</filter>
+	
+	<!-- Engine 2 -->
+	<filter>
+		<name>Thrust Filter 2</name>
+		<debug>false</debug>
+		<enable>
 			<condition>
 				<equals>
-					<property>/it-autoflight/output/retard</property>
+					<property>/it-autoflight/output/athr</property>
 					<value>1</value>
 				</equals>
 			</condition>
-			<value>0.10</value>
+		</enable>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/controls/engines/throttle-cmd-pid</input>
+		<output>/controls/engines/engine[1]/throttle</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<value>0.1</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>2</value>
+					</equals>
+				</or>
+			</condition>
+			<value>0.05</value>
+		</max-rate-of-change>
+	</filter>
+	
+	<!-- Engine 3 -->
+	<filter>
+		<name>Thrust Filter 3</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/athr</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<feedback-if-disabled>false</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/controls/engines/throttle-cmd-pid</input>
+		<output>/controls/engines/engine[2]/throttle</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<value>0.1</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>2</value>
+					</equals>
+				</or>
+			</condition>
+			<value>0.05</value>
 		</max-rate-of-change>
 	</filter>
 
