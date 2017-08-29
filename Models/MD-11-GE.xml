@@ -180,7 +180,10 @@
     <object-name>wing.glass.left</object-name>
 		<object-name>slat.1.part3</object-name>
     <object-name>slat.1.part2</object-name>
-    <object-name>sp.brake.left.outer</object-name>
+<object-name>sp.brake.left.1</object-name>
+<object-name>sp.brake.left.2</object-name>
+<object-name>sp.brake.left.3</object-name>
+<object-name>sp.brake.left.4</object-name>
     <object-name>wing.glass.left</object-name>
     <object-name>flap.1</object-name>
     <object-name>flap.2</object-name>
@@ -248,7 +251,10 @@
     <object-name>wing.glass.right</object-name>
 		<object-name>slat.4.part3</object-name>
     <object-name>slat.4.part2</object-name>
-    <object-name>sp.brake.right.outer</object-name>
+<object-name>sp.brake.right.1</object-name>
+<object-name>sp.brake.right.2</object-name>
+<object-name>sp.brake.right.3</object-name>
+<object-name>sp.brake.right.4</object-name>
     <object-name>wing.glass.right</object-name>
     <object-name>flap.7</object-name>
     <object-name>flap.8</object-name>
@@ -721,30 +727,6 @@
 		<object-name>elevator.2o</object-name>
 		<property>sim/multiplay/generic/float[6]</property>
 		<factor>14</factor>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>24.0315</x-m>
-			<y-m>0</y-m>
-			<z-m>6.9227</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>HorzStab1</object-name>
-		<object-name>HorzStab2</object-name>
-		<object-name>elevator.2</object-name>
-		<object-name>elevator.1</object-name>
-		<property>sim/multiplay/generic/float[6]</property>
-		<interpolation>
-			<entry><ind>1.0</ind><dep>10.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>-1.0</ind><dep>-10.0</dep></entry>
-		</interpolation>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1717,11 +1699,17 @@
 <object-name>slat.3.2</object-name>
 <object-name>AileronL1</object-name>
 <object-name>AileronL2</object-name>
-<object-name>sp.brake.left.outer</object-name>
+<object-name>sp.brake.left.1</object-name>
+<object-name>sp.brake.left.2</object-name>
+<object-name>sp.brake.left.3</object-name>
+<object-name>sp.brake.left.4</object-name>
 <object-name>sp.brake.left.5</object-name>
 <object-name>AileronR1</object-name>
 <object-name>AileronR2</object-name>
-<object-name>sp.brake.right.outer</object-name>
+<object-name>sp.brake.right.1</object-name>
+<object-name>sp.brake.right.2</object-name>
+<object-name>sp.brake.right.3</object-name>
+<object-name>sp.brake.right.4</object-name>
 <object-name>sp.brake.right.5</object-name>
 <object-name>flap.5</object-name>
 <object-name>flap.6</object-name>
@@ -1753,26 +1741,9 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>sp.brake.left.outer</object-name>
-		<property>surface-positions/speedbrake-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.333</ind>
-                <dep>20</dep>
-            </entry>
-            <entry>
-                <ind>0.667</ind>
-                <dep>40</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>60</dep>
-            </entry>
-        </interpolation>
+		<object-name>sp.brake.left.1</object-name>
+		<property>controls/flight/spoiler-l1</property>
+		<factor>60</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>-10.5629</y1-m>
@@ -1783,28 +1754,56 @@
 		</axis>
 	</animation>
 	
-		<animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.left.2</object-name>
+		<property>controls/flight/spoiler-l2</property>
+		<factor>60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>-10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>-17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.left.3</object-name>
+		<property>controls/flight/spoiler-l3</property>
+		<factor>60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>-10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>-17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.left.4</object-name>
+		<property>controls/flight/spoiler-l4</property>
+		<factor>60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>-10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>-17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.5</object-name>
-		<property>surface-positions/speedbrake-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.333</ind>
-                <dep>20</dep>
-            </entry>
-            <entry>
-                <ind>0.667</ind>
-                <dep>40</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>60</dep>
-            </entry>
-        </interpolation>
+		<property>controls/flight/spoiler-l5</property>
+		<factor>60</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
 			<y1-m>-4.2563</y1-m>
@@ -1815,28 +1814,11 @@
 		</axis>
 	</animation>
 		
-			<animation>
+	<animation>
 		<type>rotate</type>
-		<object-name>sp.brake.right.outer</object-name>
-		<property>surface-positions/speedbrake-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.333</ind>
-                <dep>-20</dep>
-            </entry>
-            <entry>
-                <ind>0.667</ind>
-                <dep>-40</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-60</dep>
-            </entry>
-        </interpolation>
+		<object-name>sp.brake.right.1</object-name>
+		<property>controls/flight/spoiler-r1</property>
+		<factor>-60</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>10.5629</y1-m>
@@ -1847,28 +1829,56 @@
 		</axis>
 	</animation>
 	
-			<animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.right.2</object-name>
+		<property>controls/flight/spoiler-r2</property>
+		<factor>-60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.right.3</object-name>
+		<property>controls/flight/spoiler-r3</property>
+		<factor>-60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+		
+	<animation>
+		<type>rotate</type>
+		<object-name>sp.brake.right.4</object-name>
+		<property>controls/flight/spoiler-r4</property>
+		<factor>-60</factor>
+		<axis>
+			<x1-m>6.1986</x1-m>
+			<y1-m>10.5629</y1-m>
+			<z1-m>5.5481</z1-m>
+			<x2-m>9.6825</x2-m>
+			<y2-m>17.2143</y2-m>
+			<z2-m>5.8680</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.5</object-name>
-		<property>surface-positions/speedbrake-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.333</ind>
-                <dep>-20</dep>
-            </entry>
-            <entry>
-                <ind>0.667</ind>
-                <dep>-40</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-60</dep>
-            </entry>
-        </interpolation>
+		<property>controls/flight/spoiler-r5</property>
+		<factor>-60</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
 			<y1-m>4.2563</y1-m>
@@ -1878,9 +1888,6 @@
 			<z2-m>5.2476</z2-m>
 		</axis>
 	</animation>
-	
-	
-	
 	
 	
 	
