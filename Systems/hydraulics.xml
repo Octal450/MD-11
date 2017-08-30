@@ -1343,12 +1343,94 @@
 		<output>/controls/flight/speedbrake-output</output>
 	</filter>
 	
+	<!-- Auto Speedbrake -->
+	
+	<flipflop>
+		<name>Auto Speedbrake</name>
+		<debug>false</debug>
+		<type>RS</type>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>/controls/flight/speedbrake-arm</property>
+						<value>1</value>
+					</equals>
+					<less-than>
+						<property>/engines/engine[0]/reverser-pos-norm</property>
+						<value>0.01</value>
+					</less-than>
+					<less-than>
+						<property>/engines/engine[1]/reverser-pos-norm</property>
+						<value>0.01</value>
+					</less-than>
+					<less-than>
+						<property>/engines/engine[2]/reverser-pos-norm</property>
+						<value>0.01</value>
+					</less-than>
+				</and>
+			</condition>
+		</enable>
+		<S>
+			<and>
+				<less-than>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<value>0.15</value>
+				</less-than>
+				<less-than>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<value>0.15</value>
+				</less-than>
+				<less-than>
+					<property>/controls/engines/engine[2]/throttle</property>
+					<value>0.15</value>
+				</less-than>
+				<property>/gear/gear[1]/wow</property>
+				<property>/gear/gear[2]/wow</property>
+				<greater-than>
+					<property>/velocities/groundspeed-kt</property>
+					<value>60</value>
+				</greater-than>
+			</and>
+		</S>
+		<R>
+			<or>
+				<greater-than>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<value>0.16</value>
+				</greater-than>
+				<greater-than>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<value>0.16</value>
+				</greater-than>
+				<greater-than>
+					<property>/controls/engines/engine[2]/throttle</property>
+					<value>0.16</value>
+				</greater-than>
+			</or>
+		</R>
+		<output>/controls/flight/speedbrake-lever</output>	
+	</flipflop>
+	
 	<filter>
 		<name>Speedbrake Norm</name>
 		<type>noise-spike</type>
 		<input>/controls/flight/speedbrake</input>
 		<output>/controls/flight/speedbrake-norm</output>
 		<max-rate-of-change>0.5</max-rate-of-change>
+		<min>0</min>
+		<max>
+			<condition>
+				<not><property>/gear/gear[0]/wow</property></not>
+			</condition>
+			<value>0.6</value>
+		</max>
+		<max>
+			<condition>
+				<property>/gear/gear[0]/wow</property>
+			</condition>
+			<value>1.0</value>
+		</max>
 	</filter>
 
 </PropertyList>

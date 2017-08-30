@@ -109,9 +109,10 @@ var update_tilt = maketimer(0.1, func {
 
 setlistener("sim/signals/fdm-initialized", func {
 	systems.hyd_init();
+	thrust.fadec_reset();
+	afs.ap_init();
 	update_tilt.start();
 	librariesLoop.start();
-	afs.ap_init();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/MD-11Family/Systems/autopilot-dlg.xml");
 });
 

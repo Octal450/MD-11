@@ -865,6 +865,90 @@
 
 <!-- AP modes -->
 
+	<animation>
+		<name>APIndicators</name>
+		<object-name>APLat</object-name>
+		<object-name>APLatM</object-name>
+		<object-name>APLatArm</object-name>
+		<object-name>APVertArm</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>APIndicators</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>it-autoflight/output/fd1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/output/ap1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/output/ap2</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>APSpeed</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>it-autoflight/output/fd1</property>
+					<value>1</value>
+				</equals>
+				<and>
+					<equals>
+						<property>it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<not-equals>
+						<property>it-autoflight/mode/thr</property>
+						<value> PITCH</value>
+					</not-equals>
+				</and>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>APVert</object-name>
+		<object-name>APVertM</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>it-autoflight/output/fd1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/output/ap1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/output/ap2</property>
+					<value>1</value>
+				</equals>
+				<and>
+					<equals>
+						<property>it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>it-autoflight/mode/thr</property>
+						<value> PITCH</value>
+					</equals>
+				</and>
+			</or>
+		</condition>
+	</animation>
+
     <text>
         <name>apofft</name>
         <offsets>

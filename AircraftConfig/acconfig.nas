@@ -76,8 +76,6 @@ saveSettings();
 
 var systemsReset = func {
 	systems.hyd_init();
-	librariesLoop.start();
+	thrust.fadec_reset();
 	afs.ap_init();
-	setprop("/it-autoflight/input/fd1", 1);
-	setprop("/it-autoflight/input/fd2", 1);
 }

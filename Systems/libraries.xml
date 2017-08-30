@@ -60,6 +60,15 @@
 		<output>/controls/engines/flx-scale</output>
 	</filter-->
 	
+	<filter> <!-- FIXME: Stays at 0 for now, meaning throttles can always be idled fully -->
+		<name>Idle Thrust Scale</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>0</input>
+		<output>/controls/engines/idle-throttle</output>
+	</filter>
+	
 	<filter>
 		<name>FF 1</name>
 		<type>gain</type>

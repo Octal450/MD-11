@@ -11,7 +11,15 @@ setprop("/systems/thrust/n1/clb-lim", 0.0);
 setprop("/systems/thrust/n1/crz-lim", 0.0);
 setprop("/controls/engines/thrust-limit", "T/O");
 setprop("/controls/engines/n1-limit", 0.0);
-setprop("/systems/thrust/clbthrust-ft", "1500");
+
+var fadec_reset = func {
+	setprop("/systems/thrust/clbthrust-ft", "1500");
+	setprop("/controls/fadec/eng1-alnt", 0);
+	setprop("/controls/fadec/eng2-alnt", 0);
+	setprop("/controls/fadec/eng3-alnt", 0);
+}
+
+fadec_reset();
 
 setlistener("/sim/signals/fdm-initialized", func {
 	fadecLoopT.start();
