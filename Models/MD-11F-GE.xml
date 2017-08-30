@@ -659,6 +659,29 @@
 	
 	<animation>
 		<type>rotate</type>
+		<object-name>HorzStab1</object-name>
+		<object-name>HorzStab2</object-name>
+		<object-name>elevator.1o</object-name>
+		<object-name>elevator.1i</object-name>
+		<object-name>elevator.2i</object-name>
+		<object-name>elevator.2o</object-name>
+		<property>sim/multiplay/generic/float[6]</property>
+		<factor>12</factor>
+		<offset-deg>-5</offset-deg>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>24.0315</x-m>
+			<y-m>0</y-m>
+			<z-m>6.9227</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
 		<object-name>elevator.1o</object-name>
 		<property>controls/flight/elevator-out-left</property>
 		<factor>40</factor>
@@ -715,29 +738,6 @@
 			<y2-m>1.0846</y2-m>
 			<z2-m>6.9444</z2-m>
 		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>HorzStab1</object-name>
-		<object-name>HorzStab2</object-name>
-		<object-name>elevator.1o</object-name>
-		<object-name>elevator.1i</object-name>
-		<object-name>elevator.2i</object-name>
-		<object-name>elevator.2o</object-name>
-		<property>sim/multiplay/generic/float[6]</property>
-		<factor>12</factor>
-		<offset-deg>-5</offset-deg>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>24.0315</x-m>
-			<y-m>0</y-m>
-			<z-m>6.9227</z-m>
-		</center>
 	</animation>
 	
 		<!-- LANDING GEARS -->
