@@ -830,7 +830,7 @@
         <object-name>spdbrklever</object-name>
 		<condition>
 			<equals>
-    	    	<property>controls/flight/autospeedbrakes-armed</property>
+    	    	<property>controls/flight/speedbrake-arm</property>
 				<value>false</value>
 			</equals>
 		</condition>
@@ -841,7 +841,7 @@
         <object-name>spdbrklever2</object-name>
 		<condition>
 			<equals>
-    	    	<property>controls/flight/autospeedbrakes-armed</property>
+    	    	<property>controls/flight/speedbrake-arm</property>
 				<value>true</value>
 			</equals>
 		</condition>
@@ -850,38 +850,15 @@
       <animation>
         <type>rotate</type>
         <object-name>spdbrklever</object-name>
+		<object-name>spdbrklever2</object-name>
         <object-name>spdbrklever.circle</object-name>
-        <property>controls/flight/speedbrake-lever</property>
+        <property>controls/flight/speedbrake</property>
         <interpolation>
-            <entry><ind>0</ind><dep>-10</dep></entry>
-            <entry><ind>1</ind><dep>10</dep></entry>
-            <entry><ind>2</ind><dep>25</dep></entry>
-            <entry><ind>3</ind><dep>35</dep></entry>
-            <entry><ind>4</ind><dep>60</dep></entry>
-        </interpolation>
-		<center>
-			<x-m>-27.1287</x-m>
-			<y-m>0.1535</y-m>
-			<z-m>6.6702</z-m>
-		</center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-	
-      <animation>
-        <type>rotate</type>
-        <object-name>spdbrklever2</object-name>
-        <object-name>spdbrklever2.circle</object-name>
-        <property>controls/flight/speedbrake-lever</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>-10</dep></entry>
-            <entry><ind>1</ind><dep>10</dep></entry>
-            <entry><ind>2</ind><dep>25</dep></entry>
-            <entry><ind>3</ind><dep>35</dep></entry>
-            <entry><ind>4</ind><dep>60</dep></entry>
+            <entry><ind>0.0</ind><dep>-10</dep></entry>
+            <entry><ind>0.2</ind><dep> 10</dep></entry>
+            <entry><ind>0.4</ind><dep> 21</dep></entry>
+            <entry><ind>0.6</ind><dep> 35</dep></entry>
+            <entry><ind>1.0</ind><dep> 60</dep></entry>
         </interpolation>
 		<center>
 			<x-m>-27.1287</x-m>
@@ -895,48 +872,80 @@
         </axis>
     </animation>
     
-        <animation>
-        <type>pick</type>
-        <object-name>spdbrklever</object-name>
-        <object-name>spdbrklever2</object-name>
-        <action>
-            <button>4</button>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/flight/speedbrake-lever</property>
-                <step>1</step>
-                <min>0</min>
-                <max>2</max>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>spdbrklever</object-name>
-        <object-name>spdbrklever2</object-name>
-        <action>
-            <button>3</button>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/flight/speedbrake-lever</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>2</max>
-            </binding>
-        </action>
-    </animation>
-	
     <animation>
         <type>pick</type>
         <object-name>spdbrklever</object-name>
         <object-name>spdbrklever2</object-name>
         <action>
             <button>0</button>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/flight/autospeedbrakes-armed</property>
-            </binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/flight/speedbrake-arm</property>
+			</binding>
+        </action>
+        <action>
+            <button>3</button>
+			<binding>
+				<condition>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/flight/speedbrake</property>
+				<value>1.0</value>
+				<value>0.6</value>
+				<value>0.4</value>
+				<value>0.2</value>
+				<value>0.0</value>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</equals>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/flight/speedbrake</property>
+				<value>0.6</value>
+				<value>0.4</value>
+				<value>0.2</value>
+				<value>0.0</value>
+			</binding>
+        </action>
+        <action>
+            <button>4</button>
+			<binding>
+				<condition>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/flight/speedbrake</property>
+				<value>0.0</value>
+				<value>0.2</value>
+				<value>0.4</value>
+				<value>0.6</value>
+				<value>1.0</value>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</equals>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/flight/speedbrake</property>
+				<value>0.0</value>
+				<value>0.2</value>
+				<value>0.4</value>
+				<value>0.6</value>
+			</binding>
         </action>
     </animation>
     

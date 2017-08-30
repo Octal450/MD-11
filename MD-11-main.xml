@@ -326,8 +326,9 @@
 			<flaps-output type="double">0</flaps-output>
 			<rudder-sum type="double">0</rudder-sum>
 			<slats type="double">0</slats>
-			<speedbrake-output type="double">0</speedbrake-output>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
+			<speedbrake-auto type="double">0</speedbrake-auto>
+			<speedbrake-output type="double">0</speedbrake-output>
 		</flight>
 		<gear>
 			<brake-parking type="bool">0</brake-parking>
@@ -506,16 +507,10 @@
 				</binding>
 				<binding>
 					<condition>
-						<or>
-							<equals>
-								<property>/gear/gear[1]/wow</property>
-								<value>1</value>
-							</equals>
-							<equals>
-								<property>/gear/gear[2]/wow</property>
-								<value>1</value>
-							</equals>
-						</or>
+						<equals>
+							<property>/gear/gear[0]/wow</property>
+							<value>1</value>
+						</equals>
 					</condition>
 					<command>property-cycle</command>
 					<property>controls/flight/speedbrake</property>
@@ -527,16 +522,10 @@
 				</binding>
 				<binding>
 					<condition>
-						<and>
-							<equals>
-								<property>/gear/gear[1]/wow</property>
-								<value>0</value>
-							</equals>
-							<equals>
-								<property>/gear/gear[2]/wow</property>
-								<value>0</value>
-							</equals>
-						</and>
+						<equals>
+							<property>/gear/gear[0]/wow</property>
+							<value>0</value>
+						</equals>
 					</condition>
 					<command>property-cycle</command>
 					<property>controls/flight/speedbrake</property>
