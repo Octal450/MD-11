@@ -913,6 +913,26 @@
 						<value> PITCH</value>
 					</not-equals>
 				</and>
+				<and>
+					<or>
+						<equals>
+							<property>it-autoflight/output/fd2</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+					<equals>
+						<property>it-autoflight/mode/thr</property>
+						<value> PITCH</value>
+					</equals>
+				</and>
 			</or>
 		</condition>
 	</animation>
