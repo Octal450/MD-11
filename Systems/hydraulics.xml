@@ -1394,15 +1394,15 @@
 		<S>
 			<and>
 				<less-than>
-					<property>/controls/engines/engine[0]/throttle</property>
+					<property>/controls/engines/engine[0]/throttle-pos</property>
 					<value>0.15</value>
 				</less-than>
 				<less-than>
-					<property>/controls/engines/engine[1]/throttle</property>
+					<property>/controls/engines/engine[1]/throttle-pos</property>
 					<value>0.15</value>
 				</less-than>
 				<less-than>
-					<property>/controls/engines/engine[2]/throttle</property>
+					<property>/controls/engines/engine[2]/throttle-pos</property>
 					<value>0.15</value>
 				</less-than>
 				<property>/gear/gear[1]/wow</property>
@@ -1416,15 +1416,15 @@
 		<R>
 			<or>
 				<greater-than>
-					<property>/controls/engines/engine[0]/throttle</property>
+					<property>/controls/engines/engine[0]/throttle-pos</property>
 					<value>0.16</value>
 				</greater-than>
 				<greater-than>
-					<property>/controls/engines/engine[1]/throttle</property>
+					<property>/controls/engines/engine[1]/throttle-pos</property>
 					<value>0.16</value>
 				</greater-than>
 				<greater-than>
-					<property>/controls/engines/engine[2]/throttle</property>
+					<property>/controls/engines/engine[2]/throttle-pos</property>
 					<value>0.16</value>
 				</greater-than>
 			</or>
