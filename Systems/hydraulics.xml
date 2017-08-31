@@ -90,6 +90,10 @@
 			<condition>
 				<and>
 					<less-than>
+						<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
+						<value>5</value>
+					</less-than>
+					<less-than>
 						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
 						<value>5</value>
 					</less-than>
@@ -110,10 +114,16 @@
 		<input>
 			<condition>
 				<and>
-					<greater-than-equals>
-						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-						<value>5</value>
-					</greater-than-equals>
+					<or>
+						<greater-than-equals>
+							<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
+							<value>5</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
+							<value>5</value>
+						</greater-than-equals>
+					</or>
 					<or>
 						<greater-than-equals>
 							<property>/systems/hydraulic/sys2-psi</property>
@@ -302,6 +312,10 @@
 			<condition>
 				<and>
 					<less-than>
+						<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
+						<value>5</value>
+					</less-than>
+					<less-than>
 						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
 						<value>5</value>
 					</less-than>
@@ -322,10 +336,16 @@
 		<input>
 			<condition>
 				<and>
-					<greater-than-equals>
-						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-						<value>5</value>
-					</greater-than-equals>
+					<or>
+						<greater-than-equals>
+							<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
+							<value>5</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
+							<value>5</value>
+						</greater-than-equals>
+					</or>
 					<or>
 						<greater-than-equals>
 							<property>/systems/hydraulic/sys2-psi</property>
