@@ -1443,18 +1443,10 @@
 						<property>/controls/flight/speedbrake-arm</property>
 						<value>1</value>
 					</equals>
-					<less-than>
-						<property>/engines/engine[0]/reverser-pos-norm</property>
-						<value>0.01</value>
-					</less-than>
-					<less-than>
-						<property>/engines/engine[1]/reverser-pos-norm</property>
-						<value>0.01</value>
-					</less-than>
-					<less-than>
-						<property>/engines/engine[2]/reverser-pos-norm</property>
-						<value>0.01</value>
-					</less-than>
+					<greater-than>
+						<property>/controls/flight/speedbrake-auto</property>
+						<value>0</value>
+					</greater-than>
 				</and>
 			</condition>
 		</enable>
