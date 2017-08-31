@@ -15,12 +15,12 @@ var doMagicStartup = func {
 	setprop("/controls/engines/engine[0]/starter", "true");
 	setprop("/controls/engines/engine[1]/starter", "true");
 	setprop("/controls/engines/engine[2]/starter", "true");
-	setprop("/engines/engine[0]/state", 3);
-	setprop("/engines/engine[1]/state", 3);
-	setprop("/engines/engine[2]/state", 3);
 	settimer(func {
 		setprop("/controls/engines/engine[0]/cutoff", "false");
 		setprop("/controls/engines/engine[1]/cutoff", "false");
 		setprop("/controls/engines/engine[2]/cutoff", "false");
+		setprop("/engines/engine[0]/state", 3);
+		setprop("/engines/engine[1]/state", 3);
+		setprop("/engines/engine[2]/state", 3);
 	}, 7.5);
 }

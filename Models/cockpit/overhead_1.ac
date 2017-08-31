@@ -14,7 +14,26 @@ MATERIAL "glass" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0 0 0  spec 0.25 0.25 0.25  sh
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 0  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
-kids 413
+kids 414
+OBJECT poly
+name "lights2"
+loc -21.9063 -17.8543 0.0328229
+texture "lights2.png"
+crease 45.000000
+numvert 4
+0 -0.106428 -0.106429
+0 -0.106428 0.106429
+0 0.106428 0.106429
+0 0.106428 -0.106429
+numsurf 1
+SURF 0x30
+mat 13
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
 OBJECT poly
 name "HydPress1.press"
 loc -21.7935 -17.586 0.0258172
@@ -155468,25 +155487,6 @@ refs 4
 1 0.0742091 0.0293822
 kids 0
 OBJECT poly
-name "lights2"
-loc -21.9221 -17.8543 0.0328229
-texture "lights2.png"
-crease 45.000000
-numvert 4
-0 0.106428 -0.106429
-0 0.106428 0.106429
-0 -0.106428 0.106429
-0 -0.106428 -0.106429
-numsurf 1
-SURF 0x30
-mat 13
-refs 4
-0 1 1
-1 0 1
-2 0 0
-3 1 0
-kids 0
-OBJECT poly
 name "RMP2-3.disag"
 loc -21.7915 -17.5909 -0.111344
 texture "lights2.png"
@@ -155523,4 +155523,23 @@ refs 4
 0 0.342039 0
 1 0.342039 0.0292658
 3 0.267934 0.0292658
+kids 0
+OBJECT poly
+name "SystemHyd.select"
+loc -21.7924 -17.5645 -0.191249
+texture "lights2.png"
+crease 45.000000
+numvert 4
+0 -0.100201 0.0687171
+0 -0.100201 0.052921
+0 -0.106428 0.0687171
+0 -0.106428 0.052921
+numsurf 1
+SURF 0x30
+mat 13
+refs 4
+0 0.177169 0.0292568
+2 0.177169 0
+3 0.251379 0
+1 0.251379 0.0292568
 kids 0

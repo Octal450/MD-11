@@ -62,6 +62,7 @@ var hyd_init = func {
 	setprop("/systems/hydraulic/light/RPump3-fault", 1);
 	setprop("/systems/hydraulic/light/RMP1-3-disag", 0);
 	setprop("/systems/hydraulic/light/RMP2-3-disag", 0);
+	setprop("/systems/hydraulic/light/select-manual", 0);
 	setprop("/systems/hydraulic/source/sys1", "XX");
 	setprop("/systems/hydraulic/source/sys2", "XX");
 	setprop("/systems/hydraulic/source/sys3", "XX");

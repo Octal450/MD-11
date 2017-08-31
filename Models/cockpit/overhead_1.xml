@@ -232,6 +232,22 @@
 	</animation>
 	<animation>
 		<type>select</type>
+		<object-name>SystemHyd.select</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/hydraulic/light/select-manual</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
 		<object-name>SystemHyd.manual</object-name>
 		<condition>
 			<or>
