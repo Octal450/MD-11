@@ -197,7 +197,7 @@
     <object-name>RedLight</object-name>
     <object-name>fueldump.l</object-name>
 		<property>aircraft/wingflex</property>
-		<factor>0.000005</factor>
+		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -225,7 +225,7 @@
     <object-name>Strobelight.1</object-name>
     <object-name>fueldump.l</object-name>
 		<property>aircraft/wingflex</property>
-		<factor>0.000005</factor>
+		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
