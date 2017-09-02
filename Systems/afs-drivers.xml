@@ -111,22 +111,7 @@
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<input>
-			<condition>
-				<not-equals>
-					<property>/it-autoflight/mode/vert</property>
-					<value>T/O CLB</value>
-				</not-equals>
-			</condition>
 			<property>/it-autoflight/input/spd-kts</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/mode/vert</property>
-					<value>T/O CLB</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/settings/togaspd</property>
 		</input>
 		<output>/it-autoflight/internal/flch-kts</output>
 		<type>noise-spike</type>
