@@ -721,8 +721,9 @@
 			<file>Aircraft/MD-11Family/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<file>Aircraft/MD-11Family/Nasal/engines.nas</file>
+			<!--file>Aircraft/MD-11Family/Nasal/electrical.nas</file-->
 			<file>Aircraft/MD-11Family/Nasal/hydraulics.nas</file>
+			<file>Aircraft/MD-11Family/Nasal/engines.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11Family/Nasal/afs.nas</file>
