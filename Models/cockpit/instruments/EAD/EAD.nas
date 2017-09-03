@@ -141,11 +141,11 @@ var canvas_EAD_GE = {
 	},
 	update: func() {
 		# N1
-		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1") + 0.05)));
+		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1") + 0.01)));
 		me["N11-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[0]/n1"),1))*33.65, 0.1));
-		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1") + 0.05)));
+		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1") + 0.01)));
 		me["N12-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[1]/n1"),1))*33.65, 0.1));
-		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1") + 0.05)));
+		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1") + 0.01)));
 		me["N13-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[2]/n1"),1))*33.65, 0.1));
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90)*D2R);

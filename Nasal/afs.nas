@@ -61,7 +61,7 @@ var ap_init = func {
 	setprop("/it-autoflight/mode/arm", "HDG");
 	setprop("/it-autoflight/mode/lat", "T/O");
 	setprop("/it-autoflight/mode/vert", "T/O CLB");
-	setprop("/it-autoflight/input/spd-kts", 250);
+	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2") + 10);
 	setprop("/it-autoflight/input/spd-mach", 0.68);
 	ap_varioust.start();
 	thrustmode();
@@ -238,7 +238,7 @@ var vertical = func {
 		}
 		setprop("/it-autoflight/output/vert", 0);
 		setprop("/it-autoflight/mode/vert", "ALT HLD");
-		var alt5sec = int((getprop("/it-autoflight/internal/altitude-5-sec-ahead")+50)/100)*100;
+		var alt5sec = math.round(getprop("/it-autoflight/internal/altitude-5-sec-ahead"), 500);
 		setprop("/it-autoflight/input/alt", alt5sec);
 		setprop("/it-autoflight/internal/alt", alt5sec);
 		thrustmode();

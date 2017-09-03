@@ -425,6 +425,10 @@
 			<kts-sel>250</kts-sel>
 			<mach-sel>0.68</mach-sel>
 			<hdg-sel>360</hdg-sel>
+			<hdg-knb>0</hdg-knb>
+			<spd-knb>0</spd-knb>
+			<alt-knb>0</alt-knb>
+			<vs-knb>0</vs-knb>
 		</custom>
 	</it-autoflight>
 	
@@ -731,6 +735,9 @@
 		<thrust>
 			<file>Aircraft/MD-11Family/Nasal/fadec-common.nas</file>
 		</thrust>
+		<fms>
+			<file>Aircraft/MD-11Family/Nasal/FMS.nas</file>
+		</fms>
 		<canvas_DU>
 			<file>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/EAD.nas</file>
 		</canvas_DU>
