@@ -27,11 +27,6 @@ setlistener("/sim/signals/fdm-initialized", func {
 });
 
 var irs_init = func {
-	setprop("/controls/irs/mcducbtn",0);
-	irs_timer.start();
-}
-
-var irsreset = func {
 	setprop("/controls/irs/numm", 0);
 	setprop("/instrumentation/irs/ir[0]/aligned",0); # is aligned
 	setprop("/instrumentation/irs/ir[1]/aligned",0);
@@ -190,6 +185,3 @@ var irs_skip = setlistener("/controls/irs/skip", func {
 		skip_irs();
 	}
 });
-
-
-var irs_timer = maketimer(1, irs_display);
