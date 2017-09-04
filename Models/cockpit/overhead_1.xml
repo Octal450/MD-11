@@ -9,13 +9,6 @@
 <PropertyList>
 
     <path>overhead_1.ac</path>
-	
-    <animation>
-	<type>shader</type>
-	<shader>chrome</shader>
-	<texture>chrome_cockpit.png</texture>
-	<object-name>oh.glass</object-name>
-    </animation>
 
     <effect>
 	<inherits-from>Effects/model-transparent</inherits-from>
@@ -885,8 +878,27 @@
 			</or>
 		</condition>
 	</animation>
+	
+	<!-- Hydraulic Test -->
+	
+	<animation>
+		<type>select</type>
+		<object-name>HydPressTest.test</object-name>
+		<condition>
+			<or>
+				<!--equals>
+					<property>something</property>
+					<value>1</value>
+				</equals-->
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 
-<!-- FUEL -->
+	<!-- FUEL -->
 			<animation>
 		<type>select</type>
 		<object-name>ltank.1</object-name>
