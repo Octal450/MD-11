@@ -54,7 +54,6 @@ var irs_init = func {
 	setprop("/controls/irs/mcdu/avgdrift1", "");
 	setprop("/controls/irs/mcdu/avgdrift2", "");
 	setprop("/controls/irs/mcdu/avgdrift3", "");
-	irs_init();
 }
 
 var ir_align_loop = func(i) {
