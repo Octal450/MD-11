@@ -113,6 +113,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	afs.ap_init();
 	update_tilt.start();
 	librariesLoop.start();
+	systems.irs_init();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/MD-11Family/Systems/autopilot-dlg.xml");
 });
 
