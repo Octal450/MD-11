@@ -32,7 +32,7 @@ setprop("/controls/engines/engine[2]/reverser", 0);
 
 setlistener("/controls/APU/start", func {
 	if (getprop("/controls/APU/start") == 1) {
-	# if (getprop("/controls/APU/start") == 1 and (getprop("/controls/electrical/switches/battery") == 1) or getprop("/systems/electrical/system") {
+	# if (getprop("/controls/APU/start") == 1 and (getprop("/controls/electrical/switches/battery") == 1 or getprop("/systems/electrical/bus/ac-master") == 1)) {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
