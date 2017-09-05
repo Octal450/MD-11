@@ -10,8 +10,8 @@
 #####################
 
 setprop("/systems/electrical/bus/ac1", 0);
-setprop("/systems/electrical/light/l-emer-ac", 0);
-setprop("/systems/electrical/light/r-emer-ac", 0);
+setprop("/systems/electrical/bus/l-emer-ac", 0);
+setprop("/systems/electrical/bus/r-emer-ac", 0);
 var ttn = 0;
 var knob = 0;
 
@@ -129,8 +129,9 @@ var ir_knob_move = func(i) {
 			ir2_align_loop_timer.stop();
 		}
 	} else if (knob == 2) {
-		if ( !getprop("/instrumentation/irs/ir[" ~ i ~ "]/aligned") and
-				(getprop("/systems/electrical/bus/ac1") > 110) ) {
+		# if ( !getprop("/instrumentation/irs/ir[" ~ i ~ "]/aligned") and
+				# (getprop("/systems/electrical/bus/ac1") > 110) ) {
+		if (!getprop("/instrumentation/irs/ir[" ~ i ~ "]/aligned")) {
 			ir_align_start(i);
 		}
 	}
