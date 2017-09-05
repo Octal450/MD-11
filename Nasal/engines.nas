@@ -8,15 +8,19 @@
 # Initializing Vars #
 #####################
 
-var spinup_time = 49;
+var spinup_time = math.round((rand() * 10 ) + 49, 0.1);
 var apu_max = 60;
 var apu_max_n2 = 100;
-var apu_egt_min = 352;
-var apu_egt_max = 704;
+var apu_egt_min = math.round((rand() * 10 ) + 352, 0.1);;
+var apu_egt_max = math.round((rand() * 10 ) + 704, 0.1);;
 var apu_on_lt2 = 0;
+var oilqty = math.round((rand() * 5 ) + 7, 0.1);
+var oildrop = math.round((rand() * 5 ) + 0.8, 0.1);
+var oat = getprop("/environment/temperature-degc");
+setprop("/systems/apu/oilqty", oilqty);
 setprop("/systems/apu/n1", 0);
 setprop("/systems/apu/n2", 0);
-setprop("/systems/apu/egt", 42);
+setprop("/systems/apu/egt", oat);
 setprop("/controls/APU/on-light", 0);
 setprop("/controls/engines/engine[0]/reverser", 0);
 setprop("/controls/engines/engine[1]/reverser", 0);
@@ -28,10 +32,13 @@ setprop("/controls/engines/engine[2]/reverser", 0);
 
 setlistener("/controls/APU/start", func {
 	if (getprop("/controls/APU/start") == 1) {
+	# if (getprop("/controls/APU/start") == 1 and (getprop("/controls/electrical/switches/battery") == 1) or getprop("/systems/electrical/system") {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
 			apu_egt_checkt.start();
+			apu_n1_checkt.start();
+			apu_oil_drop.start();
 			apu_on_ltt.start();
 		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
 			apu_on_ltt.stop();
@@ -39,6 +46,8 @@ setlistener("/controls/APU/start", func {
 			interpolate("/systems/apu/n1", apu_max, 5);
 			interpolate("/systems/apu/n2", apu_max_n2, 5);
 			interpolate("/systems/apu/egt", apu_egt_max, 5);
+			oilqty = getprop("/systems/apu/oilqty");
+			setprop("/systems/apu/oilqty", oilqty - oildrop);
 		}
 	} else if (getprop("/controls/APU/start") == 0) {
 		apu_on_ltt.stop();
@@ -64,6 +73,25 @@ var apu_egt2_check = func {
 	}
 }
 
+var apu_n1_check = func {
+	if (getprop("/systems/apu/n2") >= 94.9) {
+		apu_oil_drop.stop();
+		apu_n1_checkt.stop();
+		apu_oil_consumet.start();
+	}
+}
+
+
+var apu_oil = func {
+	oilqty = getprop("/systems/apu/oilqty");
+	setprop("/systems/apu/oilqty", oilqty - 0.1);
+}
+
+var apu_oil_consume = func {
+	oilqty = getprop("/systems/apu/oilqty");
+	setprop("/systems/apu/oilqty", oilqty - 0.1);
+}
+
 var apu_on_lt = func {
 	if (getprop("/systems/apu/n2") < 94.9) {
 		apu_on_lt2 = getprop("/controls/APU/on-light");
@@ -83,9 +111,11 @@ var apu_on_lt = func {
 ############
 
 var apu_stop = func {
+	oat = getprop("/environment/temperature-degc");
+	apu_oil_consumet.stop();
 	interpolate("/systems/apu/n1", 0, 30);
 	interpolate("/systems/apu/n2", 0, 30);
-	interpolate("/systems/apu/egt", 42, 40);
+	interpolate("/systems/apu/egt", oat, 40);
 }
 
 #######################
@@ -220,3 +250,6 @@ var unRevThrust_b = func {
 var apu_egt_checkt = maketimer(0.5, apu_egt_check);
 var apu_egt2_checkt = maketimer(0.5, apu_egt2_check);
 var apu_on_ltt = maketimer(0.5, apu_on_lt);
+var apu_n1_checkt = maketimer(0.5, apu_n1_check);
+var apu_oil_drop = maketimer(5, apu_oil);
+var apu_oil_consumet = maketimer(3600, apu_oil_consume); # 0.1 qt per hour, so around 80 hours till it runs done
