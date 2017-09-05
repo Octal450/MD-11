@@ -13,7 +13,159 @@ MATERIAL "glass.002" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0 0 0  spec 0.125 0.125 0.
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 0  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
-kids 444
+kids 453
+OBJECT poly
+name "Gen3.arm"
+loc -21.7927 -17.7155 -0.0955721
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 0.0474947
+0 -0.102394 0.0474947
+0 -0.106428 0.0389375
+0 -0.102394 0.0389375
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+3 0.317073 0.018952
+1 0.276872 0.018952
+0 0.276872 0
+2 0.317073 0
+kids 0
+OBJECT poly
+name "Gen2.arm"
+loc -21.7927 -17.7155 -0.0296719
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0389375
+0 -0.106428 0.0389375
+0 -0.102394 0.0474947
+0 -0.106428 0.0474947
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+0 0.317073 0.018952
+2 0.276872 0.018952
+3 0.276872 0
+1 0.317073 0
+kids 0
+OBJECT poly
+name "Gen1.arm"
+loc -21.7927 -17.7155 0.0360305
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 0.0474947
+0 -0.102394 0.0474947
+0 -0.106428 0.0389375
+0 -0.102394 0.0389375
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+3 0.317073 0.018952
+1 0.276872 0.018952
+0 0.276872 0
+2 0.317073 0
+kids 0
+OBJECT poly
+name "ACTie1.arm"
+loc -21.7927 -17.6634 -0.107091
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0389375
+0 -0.106428 0.0389375
+0 -0.102394 0.0474947
+0 -0.106428 0.0474947
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+0 0.317073 0.018952
+2 0.276872 0.018952
+3 0.276872 0
+1 0.317073 0
+kids 0
+OBJECT poly
+name "ACTie2.arm"
+loc -21.7927 -17.6633 -0.0416753
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 0.0474947
+0 -0.102394 0.0474947
+0 -0.106428 0.0389375
+0 -0.102394 0.0389375
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+3 0.317073 0.018952
+1 0.276872 0.018952
+0 0.276872 0
+2 0.317073 0
+kids 0
+OBJECT poly
+name "lights"
+loc -21.8932 -17.5793 -0.0532833
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.106429
+0 -0.102394 -0.106429
+0 -0.106428 0.106429
+0 -0.106428 -0.106429
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+0 0 0.018952
+2 0 0
+3 1 0
+1 1 0.018952
+kids 0
+OBJECT poly
+name "ExtPwr.avail"
+loc -21.7927 -17.6722 -0.0851407
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0615887
+0 -0.106428 0.0615887
+0 -0.106428 0.0492564
+0 -0.102394 0.0492564
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+3 0.268595 0.018952
+0 0.210658 0.018952
+1 0.210658 0
+2 0.268595 0
+kids 0
+OBJECT poly
+name "ExtGlyPwr.avail"
+loc -21.7927 -17.6767 -0.0200532
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0615887
+0 -0.106428 0.0615887
+0 -0.106428 0.0492564
+0 -0.102394 0.0492564
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+3 0.268595 0.018952
+0 0.210658 0.018952
+1 0.210658 0
+2 0.268595 0
+kids 0
 OBJECT poly
 name "ACTie1.off"
 loc -21.7927 -17.6719 -0.0167165
@@ -153429,25 +153581,6 @@ refs 4
 1 0.251379 0.0292568
 kids 0
 OBJECT poly
-name "lights"
-loc -21.81 -17.4789 -0.0532833
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.106428 -0.106429
-0 -0.106428 0.106429
-0 -0.102394 -0.106429
-0 -0.102394 0.106429
-numsurf 1
-SURF 0x30
-mat 12
-refs 4
-3 0 0.018952
-1 0 0
-0 1 0
-2 1 0.018952
-kids 0
-OBJECT poly
 name "EmerPwrOn.on"
 loc -21.7935 -17.6677 0.125549
 texture "lights.png"
@@ -153465,4 +153598,42 @@ refs 4
 1 0.592181 0
 0 0.592181 0.018952
 2 0.56398 0.018952
+kids 0
+OBJECT poly
+name "ApuPwr.avail"
+loc -21.7927 -17.7034 -0.0872017
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0492564
+0 -0.106428 0.0492564
+0 -0.106428 0.0615887
+0 -0.102394 0.0615887
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+0 0.268595 0.018952
+3 0.210658 0.018952
+2 0.210658 0
+1 0.268595 0
+kids 0
+OBJECT poly
+name "ACTie1.arm"
+loc -21.7927 -17.6632 0.0246996
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.0389375
+0 -0.106428 0.0389375
+0 -0.102394 0.0474947
+0 -0.106428 0.0474947
+numsurf 1
+SURF 0x30
+mat 12
+refs 4
+0 0.317073 0.018952
+2 0.276872 0.018952
+3 0.276872 0
+1 0.317073 0
 kids 0
