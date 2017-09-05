@@ -36,9 +36,10 @@ setlistener("/controls/APU/start", func {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
+			oilqty = getprop("/systems/apu/oilqty");
+			setprop("/systems/apu/oilqty", oilqty - oildrop);
 			apu_egt_checkt.start();
-			apu_n1_checkt.start();
-			apu_oil_drop.start();
+			apu_n2_checkt.start();
 			apu_on_ltt.start();
 		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
 			apu_on_ltt.stop();
@@ -73,17 +74,10 @@ var apu_egt2_check = func {
 	}
 }
 
-var apu_n1_check = func {
+var apu_n2_check = func {
 	if (getprop("/systems/apu/n2") >= 94.9) {
-		apu_oil_drop.stop();
-		apu_n1_checkt.stop();
+		apu_n2_checkt.stop();
 	}
-}
-
-
-var apu_oil = func {
-	oilqty = getprop("/systems/apu/oilqty");
-	setprop("/systems/apu/oilqty", oilqty - 0.1);
 }
 
 var apu_on_lt = func {
@@ -243,6 +237,4 @@ var unRevThrust_b = func {
 var apu_egt_checkt = maketimer(0.5, apu_egt_check);
 var apu_egt2_checkt = maketimer(0.5, apu_egt2_check);
 var apu_on_ltt = maketimer(0.5, apu_on_lt);
-var apu_n1_checkt = maketimer(0.5, apu_n1_check);
-var apu_oil_drop = maketimer(5, apu_oil);
-
+var apu_n2_checkt = maketimer(0.5, apu_n2_check);

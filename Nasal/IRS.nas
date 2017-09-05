@@ -1,4 +1,4 @@
-# MD11 irs system
+# MD-11 IRS System
 # Jonathan Redpath
 
 #########################################
