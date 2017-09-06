@@ -39,9 +39,9 @@ setlistener("/controls/APU/start", func {
 			oilqty = getprop("/systems/apu/oilqty");
 			setprop("/systems/apu/oilqty", oilqty - oildrop);
 			apu_egt_checkt.start();
-			apu_on_ltt.start();
+			apu_start_loopt.start();
 		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
-			apu_on_ltt.stop();
+			apu_start_loopt.stop();
 			setprop("/controls/APU/on-light", 1);
 			interpolate("/systems/apu/n1", apu_max, 5);
 			interpolate("/systems/apu/n2", apu_max_n2, 5);
@@ -50,7 +50,7 @@ setlistener("/controls/APU/start", func {
 			setprop("/systems/apu/oilqty", oilqty - oildrop);
 		}
 	} else if (getprop("/controls/APU/start") == 0) {
-		apu_on_ltt.stop();
+		apu_start_loopt.stop();
 		setprop("/controls/APU/on-light", 0);
 		apu_egt_checkt.stop();
 		apu_egt2_checkt.stop();
@@ -73,8 +73,9 @@ var apu_egt2_check = func {
 	}
 }
 
-var apu_on_lt = func {
+var apu_start_loop = func {
 	if (getprop("/systems/apu/n2") < 94.9) {
+	# remember that this STOPS when APU reaches 95%
 		apu_on_lt2 = getprop("/controls/APU/on-light");
 		if (apu_on_lt2 == 0) {
 			setprop("/controls/APU/on-light", 1);
@@ -82,9 +83,12 @@ var apu_on_lt = func {
 			setprop("/controls/APU/on-light", 0);
 		}
 	} else {
-		apu_on_ltt.stop();
+		apu_start_loopt.stop();
 		setprop("/controls/APU/on-light", 1);
 	}
+	
+	oilqty = getprop("/systems/apu/oilqty");
+	setprop("/systems/apu/oilqty", oilqty - 0.01);
 }
 
 ############
@@ -229,4 +233,4 @@ var unRevThrust_b = func {
 
 var apu_egt_checkt = maketimer(0.5, apu_egt_check);
 var apu_egt2_checkt = maketimer(0.5, apu_egt2_check);
-var apu_on_ltt = maketimer(0.5, apu_on_lt);
+var apu_start_loopt = maketimer(0.5, apu_start_loop);
