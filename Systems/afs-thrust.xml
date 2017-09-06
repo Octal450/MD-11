@@ -25,6 +25,10 @@
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<not-equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</not-equals>
 					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>0</value>
@@ -44,6 +48,10 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</equals>
 					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
@@ -75,6 +83,10 @@
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<not-equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</not-equals>
 					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>0</value>
@@ -94,6 +106,10 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</equals>
 					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
