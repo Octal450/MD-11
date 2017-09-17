@@ -10,14 +10,14 @@
 
     <sim>
 		<sound>
-			<path>Aircraft/MD-11Family/Sounds/cf680-sound.xml</path>
+			<path>Aircraft/IDG-MD-11X/Sounds/cf680-sound.xml</path>
 		</sound>
 		<description>McDonnell Douglas MD-11 (CF6-80C2D1F)</description>
 		<flight-model>jsb</flight-model>
 		<aero>MD-11-GE</aero>
 			
 		<model n="0">
-			<path>Aircraft/MD-11Family/Models/MD-11-GE.xml</path>
+			<path>Aircraft/IDG-MD-11X/Models/MD-11-GE.xml</path>
 			<armrest type="double">0</armrest>
 			<door>
 				<position-x-m type="float">-24.0</position-x-m>
@@ -38,7 +38,7 @@
 		
 		<systems n="0">
 			<autopilot n="6">
-				<path>Aircraft/MD-11Family/Systems/fadec-ge.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/fadec-ge.xml</path>
 			</autopilot>
 		</systems>
     </sim>
@@ -49,10 +49,10 @@
     
     <nasal n="0">
 		<specific>
-			<file>Aircraft/MD-11Family/Nasal/md-11-liveries.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/md-11-liveries.nas</file>
 		</specific>
 		<fadec>
-			<file>Aircraft/MD-11Family/Nasal/fadec-ge.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/fadec-ge.nas</file>
 		</fadec>
     </nasal>
 

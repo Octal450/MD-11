@@ -46,7 +46,7 @@
 		</previews>
 
 		<startup>
-			<splash-texture>Aircraft/MD-11Family/Splash/SplashOld.png</splash-texture>
+			<splash-texture>Aircraft/IDG-MD-11X/Splash/SplashOld.png</splash-texture>
 		</startup>
 	
 		<instrument-options>
@@ -141,7 +141,7 @@
 						<binding>
 							<command>nasal</command>
 							<script>
-							 var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/MD-11Family/Systems/autopilot-dlg.xml");
+							 var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 							 autopilot.open();
 							</script>
 						</binding>
@@ -234,40 +234,40 @@
         
 		<systems n="0">
 			<autopilot n="0">
-				<path>Aircraft/MD-11Family/Systems/hydraulics.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/hydraulics.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/MD-11Family/Systems/lsas.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/lsas.xml</path>
 			</autopilot>
 			<autopilot n="2">
-				<path>Aircraft/MD-11Family/Systems/afs-drivers.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/afs-drivers.xml</path>
 			</autopilot>
 			<autopilot n="3">
-				<path>Aircraft/MD-11Family/Systems/afs-roll-yaw.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
 			<autopilot n="4">
-				<path>Aircraft/MD-11Family/Systems/afs-pitch.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/afs-pitch.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/MD-11Family/Systems/afs-thrust.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/afs-thrust.xml</path>
 			</autopilot>
 			<!-- Autopilot 6 is FADEC -->
 			<autopilot n="7">
-				<path>Aircraft/MD-11Family/Systems/libraries.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="8">
-				<path>Aircraft/MD-11Family/Sounds/MD-11-sound-variables.xml</path>
+				<path>Aircraft/IDG-MD-11X/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
 			<autopilot n="9">
-				<path>Aircraft/MD-11Family/Systems/EAD.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/EAD.xml</path>
 			</autopilot>
 			<property-rule n="101">
-				<path>Aircraft/MD-11Family/Systems/pfd.xml</path>
+				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
 			</property-rule>
 		</systems>
         
 		<instrumentation>
-			<path>Aircraft/MD-11Family/Systems/instrumentation.xml</path>
+			<path>Aircraft/IDG-MD-11X/Systems/instrumentation.xml</path>
 		</instrumentation>
         
 		<flight-recorder include="Systems/flight-recorder.xml"/>
@@ -682,7 +682,7 @@
 				<volume type="double">2</volume>
 			</speaker>
 			<voice>
-				<file-prefix>Aircraft/MD-11Family/Sounds/GPWS/</file-prefix>
+				<file-prefix>Aircraft/IDG-MD-11X/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
 		
@@ -714,33 +714,33 @@
 	
 	<nasal n="0">
 		<libraries>
-			<file>Aircraft/MD-11Family/Nasal/libraries.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/magicstartup.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/buttons.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/PFD_FMA.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/gpws.nas</file>
-			<file>Aircraft/MD-11Family/Models/cockpit/instruments/ND/ND.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/libraries.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/magicstartup.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/PFD_FMA.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/gpws.nas</file>
+			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/ND/ND.nas</file>
 		</libraries>
 		<acconfig>
-			<file>Aircraft/MD-11Family/AircraftConfig/acconfig.nas</file>
+			<file>Aircraft/IDG-MD-11X/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<!--file>Aircraft/MD-11Family/Nasal/electrical.nas</file-->
-			<file>Aircraft/MD-11Family/Nasal/hydraulics.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/engines.nas</file>
-			<file>Aircraft/MD-11Family/Nasal/IRS.nas</file>
+			<!--file>Aircraft/IDG-MD-11X/Nasal/electrical.nas</file-->
+			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>
 		</systems>
 		<afs>
-			<file>Aircraft/MD-11Family/Nasal/afs.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/afs.nas</file>
 		</afs>
 		<thrust>
-			<file>Aircraft/MD-11Family/Nasal/fadec-common.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/fadec-common.nas</file>
 		</thrust>
 		<fms>
-			<file>Aircraft/MD-11Family/Nasal/FMS.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/FMS.nas</file>
 		</fms>
 		<canvas_DU>
-			<file>Aircraft/MD-11Family/Models/cockpit/instruments/EAD/EAD.nas</file>
+			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/EAD.nas</file>
 		</canvas_DU>
 	</nasal>
 

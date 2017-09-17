@@ -410,7 +410,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	EAD_display.addPlacement({"node": "ead.screen"});
 	var group_EAD_GE = EAD_display.createGroup();
 
-	EAD_GE = canvas_EAD_GE.new(group_EAD_GE, "Aircraft/MD-11Family/Models/cockpit/instruments/EAD/res/ge.svg");
+	EAD_GE = canvas_EAD_GE.new(group_EAD_GE, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/res/ge.svg");
 
 	EAD_GE.update();
 	canvas_EAD_base.update();

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Bump and specular effect -->
 <PropertyList>
-  <name>Aircraft/MD-11Family/Models/Effects/bumpspec–dashboard</name>
+  <name>Aircraft/IDG-MD-11X/Models/Effects/bumpspec–dashboard</name>
   <inherits-from>Effects/model-combined-deferred</inherits-from>
   <parameters>
     <normalmap-enabled type="int"> 1 </normalmap-enabled>
     <normalmap-dds type="int"> 0 </normalmap-dds>
     <normalmap-tiling type="float"> 1.0 </normalmap-tiling>
     <texture n="2">
-      <image>Aircraft/MD-11Family/Models/Effects/dashboard.png</image>
+      <image>Aircraft/IDG-MD-11X/Models/Effects/dashboard.png</image>
       <filter>linear-mipmap-linear</filter>
       <wrap-s>repeat</wrap-s>
       <wrap-t>repeat</wrap-t>

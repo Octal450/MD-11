@@ -5,19 +5,9 @@
 # Copyright (c) it0uchpods Design Group #
 #########################################
 
-# :)
-print(" __  __ _____        __ __ ______              _ _       ");
-print("|  \/  |  __ \      /_ /_ |  ____|            (_) |      ");
-print("| \  / | |  | |______| || | |__ __ _ _ __ ___  _| |_   _ ");
-print("| |\/| | |  | |______| || |  __/ _` | '_ ` _ \| | | | | |");
-print("| |  | | |__| |      | || | | | (_| | | | | | | | | |_| |");
-print("|_|  |_|_____/       |_||_|_|  \__,_|_| |_| |_|_|_|\__, |");
-print("                                                    __/ |");
-print("                                                   |___/ ");
 print("-----------------------------------------------------------------------------");
 print("Copyright (c) 2017 it0uchpods Design Group");
 print("-----------------------------------------------------------------------------");
-print(" ");
 
 ##########
 # Sounds #
@@ -114,7 +104,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	update_tilt.start();
 	librariesLoop.start();
 	systems.irs_init();
-	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/MD-11Family/Systems/autopilot-dlg.xml");
+	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 });
 
 var librariesLoop = maketimer(0.05, func {

@@ -11,7 +11,7 @@
 	
   <apoff>
    <name>apoff</name>
-   <path>/Aircraft/MD-11Family/Sounds/apoff.wav</path>
+   <path>/Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
    <condition>
 	 <property>/it-autoflight/sound/apoffsound</property>
    </condition>
@@ -22,7 +22,7 @@
   
   <apoff>
    <name>apoff2</name>
-   <path>/Aircraft/MD-11Family/Sounds/apoff.wav</path>
+   <path>/Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
    <condition>
 	 <property>/it-autoflight/sound/apoffsound2</property>
    </condition>
@@ -34,7 +34,7 @@
 	<switch>
 		<name>Button</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/button.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button.wav</path>
 		<condition>
 			<property>/sim/sounde/btn1</property>
 		</condition>
@@ -46,7 +46,7 @@
 	<switch>
 		<name>ButtonOH</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/button2.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button2.wav</path>
 		<condition>
 			<property>/sim/sounde/oh-btn</property>
 		</condition>
@@ -58,7 +58,7 @@
 	<switch>
 		<name>Button3</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/button3.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button3.wav</path>
 		<condition>
 			<property>/sim/sounde/btn3</property>
 		</condition>
@@ -70,7 +70,7 @@
 	<switch>
 		<name>Knob</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/knob.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/knob.wav</path>
 		<condition>
 			<property>/sim/sounde/knb1</property>
 		</condition>
@@ -82,7 +82,7 @@
 	<switch>
 		<name>Switch</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/switch.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/switch.wav</path>
 		<condition>
 			<property>/sim/sounde/switch1</property>
 		</condition>
@@ -94,7 +94,7 @@
 	<cvrtone>
 		<name>CVRtone</name>
 		<mode>once</mode>
-		<path>Aircraft/MD-11Family/Sounds/Cockpit/700hz.wav</path>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/700hz.wav</path>
 		<condition>
 			<equals>
 				<property>/controls/CVR/tone</property>
