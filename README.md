@@ -1,4 +1,4 @@
-# MD-11Family
+# IDG-MD-11X
 A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear.
 
 Brought to you by:
