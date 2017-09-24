@@ -75,16 +75,16 @@ var canvas_EAD_base = {
 			if (getprop("/options/eng") == "GE") {
 				EAD_GE.page.show();
 #				EAD_PW.page.hide();
+				EAD_GE.update();
 			} else if (getprop("/options/eng") == "PW") {
 				EAD_GE.page.hide();
 #				EAD_PW.page.show();
+#				EAD_PW.update();
 			}
 #		} else {
 #			EAD_GE.page.hide();
 #			EAD_PW.page.hide();
 #		}
-		
-		settimer(func me.update(), 0.02);
 	},
 	updateBase: func() {
 		# Reversers
@@ -395,8 +395,6 @@ var canvas_EAD_GE = {
 		me["N1Lim-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/controls/engines/n1-limit") + 0.05,1))));
 		
 		me.updateBase();
-		
-		settimer(func me.update(), 0.02);
 	},
 };
 
@@ -412,7 +410,10 @@ setlistener("sim/signals/fdm-initialized", func {
 
 	EAD_GE = canvas_EAD_GE.new(group_EAD_GE, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/res/ge.svg");
 
-	EAD_GE.update();
+	EAD_update.start();
+});
+
+var EAD_update = maketimer(0.05, func {
 	canvas_EAD_base.update();
 });
 
