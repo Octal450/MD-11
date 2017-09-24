@@ -1,5 +1,5 @@
-# MD-11Family
-A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear.
+# IDG-MD-11X
+A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear by it0uchpods Design Group.
 
 Brought to you by:
 - Joshua Davidson (it0uchpods)
