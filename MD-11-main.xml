@@ -134,21 +134,8 @@
 		
 		<menubar>
 			<default>
-				<menu n="3">
-					<item>
-						<name>autopilot</name>
-						<label>Autopilot</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-							 var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
-							 autopilot.open();
-							</script>
-						</binding>
-					</item>
-				</menu>
 				<menu n="100">
-					<label>McDonnell Douglas MD-11</label>
+					<label>MD-11X Professional</label>
 					<enabled type="bool">true</enabled>
 					<item>
 						<label>Aircraft Config</label>
