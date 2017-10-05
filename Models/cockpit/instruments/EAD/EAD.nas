@@ -349,9 +349,9 @@ var canvas_EAD_GE = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/fuel-flow_actual"))));
-		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"))));
-		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"))));
+		me["FF1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
+		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
+		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
 		
 		if (getprop("/systems/fadec/eng1/ff") == 1) {
 			me["FF1"].show();

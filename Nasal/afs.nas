@@ -764,11 +764,11 @@ var aland1 = func {
 
 # For Canvas Nav Display.
 setlistener("/it-autoflight/input/hdg", func {
-	setprop("/autopilot/settings/heading-bug-deg", getprop("/it-autoflight/input/hdg"));
+	setprop("/autopilot/settings/heading-bug-deg", getprop("/it-autoflight/custom/hdg-sel"));
 });
 
 setlistener("/it-autoflight/internal/alt", func {
-	setprop("/autopilot/settings/target-altitude-ft", getprop("/it-autoflight/internal/alt"));
+	setprop("/autopilot/settings/target-altitude-ft", getprop("/it-autoflight/input/alt"));
 });
 
 # Timers

@@ -7,41 +7,6 @@
 -->
 
 <system name="MD-11: FCS">
-
-	<channel name="Pitch">
-	
-		<summer name="Pitch Trim Sum">
-			<input>/controls/flight/elevator-sum</input>
-			<input>/controls/flight/elevator-trim</input>
-			<clipto>
-				<min> -1 </min>
-				<max>  1 </max>
-			</clipto>
-		</summer>
-
-		<aerosurface_scale name="Elevator Control">
-			<input>fcs/pitch-trim-sum</input>
-			<range>
-				<min> -0.52 </min>
-				<max>  0.52 </max>
-			</range>
-			<output>fcs/elevator-pos-rad</output>
-		</aerosurface_scale>
-
-		<aerosurface_scale name="elevator normalization">
-			<input>fcs/elevator-pos-rad</input>
-			<domain>
-				<min> -0.52 </min>
-				<max>  0.52 </max>
-			</domain>
-			<range>
-				<min> -1 </min>
-				<max>  1 </max>
-			</range>
-			<output>fcs/elevator-pos-norm</output>
-		</aerosurface_scale>
-	
-	</channel>
 	
 	<channel name="Roll">
 	
@@ -54,50 +19,61 @@
 			</clipto>
 		</summer>
 
-		<aerosurface_scale name="Left Aileron Control">
+		<aerosurface_scale name="Roll Control">
 			<input>fcs/roll-trim-sum</input>
-			<gain>0.024</gain>
 			<range>
-				<min>-30</min>
-				<max>30</max>
+				<min>-0.523599</min>
+				<max>0.523599</max>
 			</range>
-			<output>fcs/left-aileron-pos-rad</output>
+			<output>fcs/roll-pos-rad</output>
 		</aerosurface_scale>
 
-		<aerosurface_scale name="Right Aileron Control">
-			<input>-fcs/roll-trim-sum</input>
-			<gain>0.024</gain>
-			<range>
-				<min>-30</min>
-				<max>30</max>
-			</range>
-			<output>fcs/right-aileron-pos-rad</output>
-		</aerosurface_scale>
-
-		<aerosurface_scale name="Left Aileron position normalized">
-			<input>fcs/left-aileron-pos-deg</input>
+		<aerosurface_scale name="Roll Control Normalized">
+			<input>fcs/roll-pos-rad</input>
 			<domain>
-				<min>-30</min>
-				<max>30</max>
+				<min>-0.523599</min>
+				<max>0.523599</max>
 			</domain>
 			<range>
 				<min>-1</min>
 				<max>1</max>
 			</range>
-			<output>fcs/left-aileron-pos-norm</output>
+			<output>fcs/roll-pos-norm</output>
 		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Pitch">
+	
+		<summer name="Pitch Trim Sum">
+			<input>/controls/flight/elevator-sum</input>
+			<input>/controls/flight/elevator-trim</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
 
-		<aerosurface_scale name="Right Aileron position normalized">
-			<input>fcs/right-aileron-pos-deg</input>
+		<aerosurface_scale name="Pitch Control">
+			<input>fcs/pitch-trim-sum</input>
+			<range>
+				<min>-0.523599</min>
+				<max>0.523599</max>
+			</range>
+			<output>fcs/pitch-pos-rad</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="Pitch Control Normalized">
+			<input>fcs/pitch-trim-sum</input>
 			<domain>
-				<min>-30</min>
-				<max>30</max>
+				<min>-0.523599</min>
+				<max>0.523599</max>
 			</domain>
 			<range>
 				<min>-1</min>
 				<max>1</max>
 			</range>
-			<output>fcs/right-aileron-pos-norm</output>
+			<output>fcs/pitch-pos-norm</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -336,7 +312,7 @@
 						<tableData>
 						        -1  0   1
 						30.000 -70  0  70
-						30.001  -7  0   7
+						30.001 -10  0  10
 						</tableData>
 					</table>
 				</product>

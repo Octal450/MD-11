@@ -11,8 +11,9 @@
 #}
 
 #setlistener("/sim/signals/fdm-initialized", func {
-#	var stateL = getprop("/engines/engine[0]/state");
-#	var stateR = getprop("/engines/engine[1]/state");
+#	var state1 = getprop("/engines/engine[0]/state");
+#	var state2 = getprop("/engines/engine[1]/state");
+#	var state3 = getprop("/engines/engine[2]/state");
 #	var Lrain = getprop("/controls/switches/LrainRpt");
 #	var Rrain = getprop("/controls/switches/RrainRpt");
 #	var OnLt = getprop("/controls/switches/emerCallLtO");
@@ -31,15 +32,15 @@ setlistener("/it-autoflight/input/fpa", func {
 });
 
 setlistener("/it-autoflight/input/spd-kts", func {
-	setprop("/it-autoflight/custom/kts-sel", abs(getprop("/it-autoflight/input/spd-kts")));
+	setprop("/it-autoflight/custom/kts-sel", getprop("/it-autoflight/input/spd-kts"));
 });
 
 setlistener("/it-autoflight/input/spd-mach", func {
-	setprop("/it-autoflight/custom/mach-sel", abs(getprop("/it-autoflight/input/spd-mach")));
+	setprop("/it-autoflight/custom/mach-sel", getprop("/it-autoflight/input/spd-mach"));
 });
 
 setlistener("/it-autoflight/input/hdg", func {
-	setprop("/it-autoflight/custom/hdg-sel", abs(getprop("/it-autoflight/input/hdg")));
+	setprop("/it-autoflight/custom/hdg-sel", getprop("/it-autoflight/input/hdg"));
 });
 
 setlistener("/it-autoflight/output/vert", func {

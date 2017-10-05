@@ -27,7 +27,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<vtailarea unit="FT2">  496.25 </vtailarea>
 		<vtailarm  unit="FT" >    0.00 </vtailarm>
 		<location name="AERORP" unit="M">
-			<x> 4.2149 </x>
+			<x> 3.6149 </x>
 			<y> 0 </y>
 			<z> 5.69282 </z>
 		</location>
@@ -53,8 +53,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<ixz unit="SLUG*FT2">         0 </ixz>
 		<iyz unit="SLUG*FT2">         0 </iyz>
 		<emptywt unit="LBS">     284000 </emptywt>
+		
 		<location name="CG" unit="M">
-			<x> 4.1849 </x>
+			<x> 3.0152 </x>
 			<y> 0 </y>
 			<z> 5.69282 </z>
 		</location>
@@ -62,7 +63,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Crew">
 			<weight unit="LBS">1080</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -71,7 +72,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="PAX">
 			<weight unit="LBS">39000</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -80,7 +81,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Fwd Cargo">
 			<weight unit="LBS">3000</weight>
 			<location name="POINTMASS" unit="M"> 
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -89,7 +90,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Aft Cargo">
 			<weight unit="LBS">3000</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -98,30 +99,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Rear Bulk Cargo">
 			<weight unit="LBS">6500</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
 		</pointmass>
-		
-		<pointmass name="Engine1">
-			<weight unit="LBS">9820</weight>
-			<location name="POINTMASS" unit="M">
-				<x> -5.29297 </x>	
-				<y> -8.24094 </y>
-				<z> 3.47943 </z>
-			</location>
-		</pointmass>
-		
-		<pointmass name="Engine3">
-			<weight unit="LBS">9820</weight>
-			<location name="POINTMASS" unit="M">
-				<x> -5.29297 </x>	
-				<y> 8.24094 </y>
-				<z> 3.47943 </z>
-			</location>
-		</pointmass>
-
 	</mass_balance>
 
 	<ground_reactions>
@@ -338,46 +320,46 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 		<tank type="FUEL">    <!-- Left Tank -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> -11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
 			<capacity unit="LBS"> 40708 </capacity>
 			<contents unit="LBS"> 10000 </contents>
-			<standpipe unit="LBS">31</standpipe><!-- minimun fuel on pipes -->
+			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
 		<tank type="FUEL">    <!-- Center Tank -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
 			<capacity unit="LBS"> 65435 </capacity>
 			<contents unit="LBS"> 10000 </contents>
-			<standpipe unit="LBS">43</standpipe><!-- minimun fuel on pipes -->
+			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
 		<tank type="FUEL">    <!-- Right Tank -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
 			<capacity unit="LBS"> 40708 </capacity>
 			<contents unit="LBS"> 10000 </contents>
-			<standpipe unit="LBS">31</standpipe><!-- minimun fuel on pipes -->
+			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- LEFT FUEL PIPES (Engine 1 feed from this) -->
+		<tank type="FUEL">    <!-- Engine 1 Pipe -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -386,9 +368,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		<tank type="FUEL">    <!-- CENTER FUEL PIPES (Engine 2 feed from this) -->
+		<tank type="FUEL">    <!-- Engine 2 Pipe -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -397,9 +379,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		<tank type="FUEL">    <!-- RIGHT FUEL PIPES (Engine 3 feed from this) -->
+		<tank type="FUEL">    <!-- Engine 3 Pipe -->
 			<location unit="M">
-				<x> 4.1849 </x>
+				<x> 3.0152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
