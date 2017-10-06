@@ -443,6 +443,9 @@ var master_elec = func {
 	if (battery1_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 		decharge1.stop();
 		charge1.start();
+	} else if (battery1_volts == 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		decharge1.stop();
+		charge1.stop();
 	} else if (batt_sw) {
 		charge1.stop();
 		decharge1.start();
@@ -454,6 +457,9 @@ var master_elec = func {
 	if (battery2_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 		decharge2.stop();
 		charge2.start();
+	} else if (battery2_volts == 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		decharge2.stop();
+		charge2.stop();
 	} else if (batt_sw) {
 		charge2.stop();
 		decharge2.start();
