@@ -81,7 +81,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	init_dlg.close();
 #	if (getprop("/systems/acconfig/out-of-date") == 1) {
 #		update_dlg.open();
-#		print("System: The IDG-A32X is out of date!");
+#		print("System: The IDG-MD-11X is out of date!");
 #	} 
 	mismatch_chk();
 	if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -103,6 +103,7 @@ var systemsReset = func {
 	thrust.fadec_reset();
 	afs.ap_init();
 	systems.irs_init();
+	libraries.variousReset();
 }
 
 ################

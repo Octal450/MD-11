@@ -6,9 +6,9 @@
 #########################################
 
 # Resets buttons to the default values
-#var variousReset = func {
-#
-#}
+var variousReset = func {
+	setprop("/controls/pneumatic/switches/bleedapu", 0); # Temporary until bleeds available
+}
 
 #setlistener("/sim/signals/fdm-initialized", func {
 #	var state1 = getprop("/engines/engine[0]/state");
