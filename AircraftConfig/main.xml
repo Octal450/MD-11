@@ -100,18 +100,6 @@
 					
 					<button>
 						<halign>center</halign>
-						<legend>Magic Startup</legend>
-						<pref-width>140</pref-width>
-						<binding>
-							<command>nasal</command>
-							<script>libraries.doMagicStartup();</script>
-						</binding>
-						<binding>
-							<command>dialog-close</command>
-						</binding>
-					</button>
-					<button>
-						<halign>center</halign>
 						<legend>Cold and Dark</legend>
 						<pref-width>140</pref-width>
 						<enable>
@@ -289,9 +277,6 @@
 			<checkbox>
 				<label>Enable External Power Box</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
 				<property>/controls/switches/cart</property>
 				<binding>
 					<command>property-assign</command>

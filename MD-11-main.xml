@@ -324,6 +324,7 @@
 		</gear>
 		<switches>
 			<annun-test type="bool">0</annun-test>
+			<cart type="bool">0</cart>
 		</switches>
 	</controls>
 	
@@ -702,7 +703,6 @@
 	<nasal n="0">
 		<libraries>
 			<file>Aircraft/IDG-MD-11X/Nasal/libraries.nas</file>
-			<file>Aircraft/IDG-MD-11X/Nasal/magicstartup.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/PFD_FMA.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/gpws.nas</file>
@@ -712,7 +712,7 @@
 			<file>Aircraft/IDG-MD-11X/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<!--file>Aircraft/IDG-MD-11X/Nasal/electrical.nas</file-->
+			<file>Aircraft/IDG-MD-11X/Nasal/electrical.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>

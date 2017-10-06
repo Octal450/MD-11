@@ -167,7 +167,7 @@ refs 4
 2 0.317073 0
 kids 0
 OBJECT poly
-name "ACTie1.arm"
+name "ACTie3.arm"
 loc -21.7927 -17.6634 -0.107091
 texture "lights.png"
 crease 45.000000
@@ -433,7 +433,7 @@ refs 4
 3 0.158709 0
 kids 0
 OBJECT poly
-name "REmerAC.off"
+name "CabBus.off"
 loc -21.7962 -17.7243 -0.191574
 texture "lights.png"
 crease 45.000000
@@ -452,7 +452,7 @@ refs 4
 3 0.121734 0
 kids 0
 OBJECT poly
-name "EmerPwrOn.on"
+name "ADGElec.on"
 loc -21.792 -17.6678 -0.0757865
 texture "lights.png"
 crease 45.000000
@@ -41245,7 +41245,7 @@ refs 4
 31 0.001735 0.02928
 kids 0
 OBJECT poly
-name "Cylinder"
+name "SmokeElecAirNorm"
 loc -21.787 -17.7804 -0.126945
 data 13
 Cylinder.mesh
@@ -123178,7 +123178,7 @@ refs 4
 12 0.004973 0.563654
 kids 0
 OBJECT poly
-name "emgpwr.light"
+name "EmerPwrKnb.light"
 loc -21.7996 -17.8164 0.120449
 data 17
 emgpwr.light.mesh
@@ -123226,7 +123226,7 @@ refs 4
 8 0.459944 0.995397
 kids 0
 OBJECT poly
-name "emgpwrknob"
+name "EmerPwrKnb"
 loc -21.7996 -17.8164 0.120449
 data 15
 emgpwrknob.mesh

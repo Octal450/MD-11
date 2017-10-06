@@ -71,7 +71,7 @@ var canvas_EAD_base = {
 		return [];
 	},
 	update: func() {
-#		if (power to displays) {
+		if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
 			if (getprop("/options/eng") == "GE") {
 				EAD_GE.page.show();
 #				EAD_PW.page.hide();
@@ -81,10 +81,10 @@ var canvas_EAD_base = {
 #				EAD_PW.page.show();
 #				EAD_PW.update();
 			}
-#		} else {
-#			EAD_GE.page.hide();
+		} else {
+			EAD_GE.page.hide();
 #			EAD_PW.page.hide();
-#		}
+		}
 	},
 	updateBase: func() {
 		# Reversers

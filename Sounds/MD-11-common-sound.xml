@@ -130,14 +130,24 @@
 		</misc>
 		
 		<misc>
-			<name>md11 cockpit system</name>
+			<name>md11 avionics</name>
 			<mode>looped</mode>
-			<path>FL2070/11_cockpit.wav</path>
+			<path>FL2070/11_efis.wav</path>
 			<condition>
-			<greater-than>
-            <property>systems/electrical/outputs/efis</property>
-            <value>1</value>
-			</greater-than>
+				<or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/ac1</property>
+						<value>110</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>systems/electrical/bus/ac2</property>
+						<value>110</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>systems/electrical/bus/ac3</property>
+						<value>110</value>
+					</greater-than-equals>
+				</or>
 			</condition>
 			
 			<volume>

@@ -75,7 +75,7 @@ var apu_egt2_check = func {
 
 var apu_start_loop = func {
 	if (getprop("/systems/apu/n2") < 94.9) {
-	# remember that this STOPS when APU reaches 95%
+	# Remember that this STOPS when APU N2 is greater than 94.9%
 		apu_on_lt2 = getprop("/controls/APU/on-light");
 		if (apu_on_lt2 == 0) {
 			setprop("/controls/APU/on-light", 1);
@@ -88,7 +88,7 @@ var apu_start_loop = func {
 	}
 	
 	oilqty = getprop("/systems/apu/oilqty");
-	setprop("/systems/apu/oilqty", oilqty - 0.01);
+	setprop("/systems/apu/oilqty", oilqty - 0.001);
 }
 
 ############
