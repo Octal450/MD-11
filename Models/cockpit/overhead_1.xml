@@ -306,6 +306,8 @@
 		<object-name>RPump3.off</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<object-name>SystemHyd.select</object-name>
+		<object-name>SystemPneu.manual</object-name>
+		<object-name>SystemPneu.select</object-name>
 		<condition>
 			<or>
 				<greater-than-equals>
@@ -333,6 +335,8 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
+		<object-name>SystemPneu.manual</object-name>
+		<object-name>SystemPneu.select</object-name>
 		<condition>
 			<equals>
 				<property>controls/switches/annun-test</property>
