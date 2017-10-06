@@ -113,8 +113,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 0.80128 </z>
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 24435.5 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 19978.5 </damping_coeff>
@@ -129,8 +129,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> -6.00641 </y>
 				<z> 0.52861 </z>
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
@@ -146,8 +146,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 6.00641 </y>
 				<z> 0.52861 </z>
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
@@ -163,8 +163,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 0.64128 </z>
 			</location>
-			<static_friction> 0.8 </static_friction>
-			<dynamic_friction> 0.5 </dynamic_friction>
+			<static_friction> 0.4 </static_friction>
+			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
 			<spring_coeff unit="LBS/FT"> 57785 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC"> 19957 </damping_coeff>

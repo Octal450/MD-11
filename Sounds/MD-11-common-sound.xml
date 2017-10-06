@@ -111,25 +111,6 @@
 		<!-- ## ## ## -->   <!-- ## ## ## -->
 		
 		<misc>
-			<name>md11 wind</name>
-			<mode>looped</mode>
-			<path>FL2070/11_wind.wav</path>
-			<condition>
-				<!--
-				
-				-->
-			</condition>
-			
-			<volume>
-				<property>sim/sound/other/wind</property>
-			</volume>
-			<pitch>
-				<property>sim/sound/other/windp</property>
-				<offset>0</offset>
-			</pitch>
-		</misc>
-		
-		<misc>
 			<name>md11 avionics</name>
 			<mode>looped</mode>
 			<path>FL2070/11_efis.wav</path>

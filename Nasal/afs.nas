@@ -763,7 +763,7 @@ var aland1 = func {
 }
 
 # For Canvas Nav Display.
-setlistener("/it-autoflight/input/hdg", func {
+setlistener("/it-autoflight/custom/hdg-sel", func {
 	setprop("/autopilot/settings/heading-bug-deg", getprop("/it-autoflight/custom/hdg-sel"));
 });
 
