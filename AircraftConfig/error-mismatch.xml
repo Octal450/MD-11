@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+#########################################
+# Copyright (c) it0uchpods Design Group #
+#########################################
+-->
+
+<!-- MD-11 Aircraft Config Dialog -->
+
+
+<PropertyList>
+
+	<name>aircraft-config-mismatch</name>
+	<layout>vbox</layout>
+	<color>
+		<red>0.5</red>
+		<green>0</green>
+		<blue>0</blue>
+		<alpha>1</alpha>
+	</color>
+
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>Error: Mismatch</label>
+		</text>
+	</group>
+	
+	<hrule/>
+	
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>Mismatch usually occurs becuase of a configuration problem, outdated FGFS.</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>Please try the suggestions below, before contacting it0uchpods Design Group</label>
+		</text>
+		
+		<hrule/>
+		
+		<group>
+			<layout>hbox</layout>
+			<halign>left</halign>
+			
+			<text>
+				<label>Error Code:</label>
+			</text>
+		
+			<text>
+				<border>1</border>
+				<label>99999</label>
+				<property>/systems/acconfig/mismatch-code</property>
+				<live>1</live>
+			</text>
+		</group>
+		
+		<group>
+			<layout>hbox</layout>
+			<halign>left</halign>
+			
+			<text>
+				<label>Reason:</label>
+			</text>
+		
+			<text>
+				<border>1</border>
+				<label>9999999999999999999999999999999999</label>
+				<property>/systems/acconfig/mismatch-reason</property>
+				<live>1</live>
+			</text>
+		</group>
+		
+		<hrule/>
+		
+		<text>
+			<halign>left</halign>
+			<label>1) Try downloading the latest version of FGFS with the button below.</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>2) Confirm that the aircraft is installed correctly.</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>3) Load the aircraft on ground, not in air.</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>4) Contact "Wecsje" or "it0uchpods" on the FlightGear Forums.</label>
+		</text>
+	</group>
+	
+	<hrule/>
+
+	<group>
+		<layout>hbox</layout>
+
+		<button>
+			<color>
+				<red>0</red>
+				<green>0.5</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<halign>center</halign>
+			<legend>Download Latest FGFS</legend>
+			<pref-width>220</pref-width>
+			<binding>
+				<command>open-browser</command>
+				<path>https://sourceforge.net/projects/flightgear</path>
+			</binding>
+			<binding>
+				<command>exit</command>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+		<button>
+			<color>
+				<red>0</red>
+				<green>0.5</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<halign>center</halign>
+			<legend>FlightGear Forums</legend>
+			<pref-width>220</pref-width>
+			<binding>
+				<command>open-browser</command>
+				<path>http://forum.flightgear.org</path>
+			</binding>
+		</button>
+	</group>
+	
+</PropertyList>

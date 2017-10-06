@@ -907,6 +907,14 @@
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/systems/acconfig/mismatch-code</property>
+					<value>0x000</value>
+				</equals>
+			</condition>
+		</enable>
 		<input>
 			<expression>
 				<product>
@@ -1170,6 +1178,14 @@
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>0.5</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/systems/acconfig/mismatch-code</property>
+					<value>0x000</value>
+				</equals>
+			</condition>
+		</enable>
 		<input>
 			<expression>
 				<sum>
