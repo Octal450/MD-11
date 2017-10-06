@@ -288,6 +288,7 @@
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<starter-switch type="bool">0</starter-switch>
+				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="1">
@@ -295,6 +296,7 @@
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<starter-switch type="bool">0</starter-switch>
+				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 			<engine n="2">
@@ -302,6 +304,7 @@
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<starter-switch type="bool">0</starter-switch>
+				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
 			</engine>
 		</engines>
@@ -309,7 +312,7 @@
 			<aileron-sum type="double">0</aileron-sum>
 			<elevator-lsas type="double">0</elevator-lsas>
 			<elevator-sum type="double">0</elevator-sum>
-			<elevator-trim type="double">-0.3</elevator-trim>
+			<elevator-trim type="double">-0.2</elevator-trim>
 			<flaps-output type="double">0</flaps-output>
 			<rudder-sum type="double">0</rudder-sum>
 			<slats type="double">0</slats>

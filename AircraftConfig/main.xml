@@ -104,7 +104,6 @@
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
-								<property>/systems/acconfig/panel-state</property>
 								<property>/gear/gear[0]/wow</property>
 								<property>/gear/gear[1]/wow</property>
 								<property>/gear/gear[2]/wow</property>

@@ -80,26 +80,29 @@
 	
 	<channel name="Throttle">
 	
-		<pure_gain name="fcs/throttle1">
-			<input>/controls/engines/engine[0]/throttle-fdm</input>
-			<gain>1</gain>
+		<lag_filter name="fcs/throttle1">
+			<input>/controls/engines/engine[0]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[0]/throttle-fdm</output>
 			<output>fcs/throttle-cmd-norm</output>
 			<output>fcs/throttle-pos-norm</output>
-		</pure_gain>
+		</lag_filter>
 		
-		<pure_gain name="fcs/throttle2">
-			<input>/controls/engines/engine[1]/throttle-fdm</input>
-			<gain>1</gain>
+		<lag_filter name="fcs/throttle2">
+			<input>/controls/engines/engine[1]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[1]/throttle-fdm</output>
 			<output>fcs/throttle-cmd-norm[1]</output>
 			<output>fcs/throttle-pos-norm[1]</output>
-		</pure_gain>
+		</lag_filter>
 		
-		<pure_gain name="fcs/throttle3">
-			<input>/controls/engines/engine[2]/throttle-fdm</input>
-			<gain>1</gain>
+		<lag_filter name="fcs/throttle3">
+			<input>/controls/engines/engine[2]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[2]/throttle-fdm</output>
 			<output>fcs/throttle-cmd-norm[2]</output>
 			<output>fcs/throttle-pos-norm[2]</output>
-		</pure_gain>
+		</lag_filter>
 	
 	</channel>
 

@@ -140,7 +140,7 @@
 		<object-name>IAS.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<not>
 					<property>it-autoflight/input/kts-mach</property>
 				</not>
@@ -197,7 +197,7 @@
 		<object-name>MACH.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<property>it-autoflight/input/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -253,7 +253,7 @@
 		<object-name>HDG.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<not>
 					<property>it-autoflight/input/trk</property>
 				</not>
@@ -308,7 +308,7 @@
 		<object-name>TRK.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<property>it-autoflight/input/trk</property>
 			</and>
 		</condition>
@@ -359,7 +359,7 @@
 		<object-name>vs.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<equals>
 					<property>it-autoflight/custom/vs-fpa</property>
 					<value>0</value>
@@ -376,7 +376,7 @@
 		<object-name>VS.led4</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -390,7 +390,7 @@
 		<object-name>alt_zero</object-name>
 		<condition>
 		    <and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<not-equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -408,7 +408,7 @@
 		<object-name>VS.ledminus</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -478,7 +478,7 @@
 		<object-name>fpa.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<equals>
 					<property>it-autoflight/custom/vs-fpa</property>
 					<value>1</value>
@@ -493,7 +493,7 @@
 		<object-name>FPA.led2</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/avionics</property>
+				<property>systems/electrical/outputs/efis</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>5</value>
@@ -558,7 +558,7 @@
 		<object-name>ALT.led4</object-name>
 		<object-name>ALT.led5</object-name>
 		<condition>
-			<property>systems/electrical/outputs/avionics</property>
+			<property>systems/electrical/outputs/efis</property>
 		</condition>
 	</animation>
 
@@ -994,7 +994,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<not>
 					    <property>it-autoflight/input/kts-mach</property>
 					</not>
@@ -1009,7 +1009,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<property>it-autoflight/input/kts-mach</property>
 				    </and>
 				</condition>
@@ -1038,7 +1038,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<not>
 					    <property>it-autoflight/input/kts-mach</property>
 					</not>
@@ -1052,7 +1052,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<property>it-autoflight/input/kts-mach</property>
 				    </and>
 				</condition>
@@ -1068,7 +1068,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<not>
 					    <property>it-autoflight/input/kts-mach</property>
 					</not>
@@ -1083,7 +1083,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<property>it-autoflight/input/kts-mach</property>
 				    </and>
 				</condition>
@@ -1108,7 +1108,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<not>
 					    <property>it-autoflight/input/kts-mach</property>
 					</not>
@@ -1123,7 +1123,7 @@
 			<binding>
 				<condition>
 				    <and>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 					<property>it-autoflight/input/kts-mach</property>
 				    </and>
 				</condition>
@@ -1164,7 +1164,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-assign</command>
 				<property>it-autoflight/input/lat</property>
@@ -1188,7 +1188,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1197,7 +1197,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-assign</command>
 				<property>it-autoflight/input/lat</property>
@@ -1209,7 +1209,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/hdg-sel</property>
@@ -1232,7 +1232,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/hdg-sel</property>
@@ -1261,7 +1261,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
@@ -1276,7 +1276,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
@@ -1328,7 +1328,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-assign</command>
 				<property>it-autoflight/input/vert</property>
@@ -1352,7 +1352,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>property-assign</command>
 				<property>it-autoflight/input/vert</property>
@@ -1364,7 +1364,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1390,7 +1390,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/avionics</property>
+					<property>systems/electrical/outputs/efis</property>
 				</condition>
 				<command>nasal</command>
 				<script>

@@ -19,9 +19,9 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<tableData>
 						-0.20 -0.800
-						 0.00  0.069
-						 0.15  1.440
-						 0.23  1.620
+						 0.00  0.049
+						 0.15  1.380
+						 0.23  1.570
 						 0.60  1.000
 					</tableData>
 				</table>
@@ -37,10 +37,10 @@
 					<independentVar lookup="row">fcs/flap-pos-norm</independentVar>
 					<tableData>
 						0.000  0.0000
-						0.310  0.0090
-						0.580  0.0185
-						0.700  0.0260
-						1.000  0.0285
+						0.310  0.0080
+						0.580  0.0175
+						0.700  0.0250
+						1.000  0.0275
 					</tableData>
 				</table>
 			</product>
@@ -52,7 +52,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>fcs/slat-pos-deg</property>
-				<value> 0.00500 </value>
+				<value> 0.00400 </value>
 			</product>
 		</function>
 
@@ -186,7 +186,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>fcs/flap-pos-deg</property>
-				<value> 0.00100 </value>
+				<value> 0.00120 </value>
 			</product>
 		</function>
 
@@ -291,8 +291,8 @@
 			</product>
 		</function>
 
-		<function name="aero/moment/Roll_aileron">
-			<description>Roll moment due to aileron</description>
+		<function name="aero/moment/Roll_control">
+			<description>Roll moment due to roll control</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -328,8 +328,8 @@
 			</product>
 		</function>
 
-		<function name="aero/moment/Pitch_elevator">
-			<description>Pitch moment due to elevator</description>
+		<function name="aero/moment/Pitch_control">
+			<description>Pitch moment due to pitch control</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -338,9 +338,9 @@
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
 					<tableData>
-						0.0     -0.870
-						0.2     -0.810
-						1.0     -0.300
+						0.0     -0.500
+						0.2     -0.400
+						1.0     -0.100
 						2.0     -0.050
 					</tableData>
 				</table>
@@ -355,7 +355,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
-				<value>-48</value>
+				<value>-38</value>
 			</product>
 		</function>
 
