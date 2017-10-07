@@ -55,7 +55,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<emptywt unit="LBS">     284000 </emptywt>
 		
 		<location name="CG" unit="M">
-			<x> 3.4152 </x>
+			<x> 3.5152 </x>
 			<y> 0 </y>
 			<z> 5.69282 </z>
 		</location>
@@ -63,7 +63,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Crew">
 			<weight unit="LBS">1080</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -72,7 +72,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="PAX">
 			<weight unit="LBS">39000</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -81,7 +81,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Fwd Cargo">
 			<weight unit="LBS">3000</weight>
 			<location name="POINTMASS" unit="M"> 
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -90,7 +90,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Aft Cargo">
 			<weight unit="LBS">3000</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -99,7 +99,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<pointmass name="Rear Bulk Cargo">
 			<weight unit="LBS">6500</weight>
 			<location name="POINTMASS" unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -111,13 +111,13 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="M">
 				<x> -20.6396 </x>
 				<y> 0 </y>
-				<z> 0.80128 </z>
+				<z> 0.82128 </z>
 			</location>
 			<static_friction> 0.4 </static_friction>
 			<dynamic_friction> 0.6 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
-			<spring_coeff unit="LBS/FT"> 24435.5 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC"> 19978.5 </damping_coeff>
+			<spring_coeff unit="LBS/FT"> 18435.5 </spring_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 18978.5 </damping_coeff>
 			<max_steer unit="DEG"> 70 </max_steer>
 			<brake_group> NONE </brake_group>
 			<retractable>1</retractable>
@@ -127,7 +127,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="M">
 				<x> 4.3949 </x>
 				<y> -6.00641 </y>
-				<z> 0.52861 </z>
+				<z> 0.50861 </z>
 			</location>
 			<static_friction> 0.4 </static_friction>
 			<dynamic_friction> 0.6 </dynamic_friction>
@@ -144,7 +144,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="M">
 				<x> 4.3949 </x>
 				<y> 6.00641 </y>
-				<z> 0.52861 </z>
+				<z> 0.50861 </z>
 			</location>
 			<static_friction> 0.4 </static_friction>
 			<dynamic_friction> 0.6 </dynamic_friction>
@@ -320,7 +320,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 		<tank type="FUEL">    <!-- Left Tank -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> -11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -333,7 +333,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 		<tank type="FUEL">    <!-- Center Tank -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -346,7 +346,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 		<tank type="FUEL">    <!-- Right Tank -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -359,7 +359,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 		<tank type="FUEL">    <!-- Engine 1 Pipe -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -370,7 +370,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 		<tank type="FUEL">    <!-- Engine 2 Pipe -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
@@ -381,7 +381,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 		<tank type="FUEL">    <!-- Engine 3 Pipe -->
 			<location unit="M">
-				<x> 3.4152 </x>
+				<x> 3.5152 </x>
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>

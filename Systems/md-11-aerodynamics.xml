@@ -19,9 +19,9 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<tableData>
 						-0.20 -0.800
-						 0.00  0.049
-						 0.15  1.380
-						 0.23  1.570
+						 0.00  0.039
+						 0.15  1.260
+						 0.23  1.470
 						 0.60  1.000
 					</tableData>
 				</table>
@@ -37,10 +37,10 @@
 					<independentVar lookup="row">fcs/flap-pos-norm</independentVar>
 					<tableData>
 						0.000  0.0000
-						0.310  0.0080
-						0.580  0.0175
-						0.700  0.0250
-						1.000  0.0275
+						0.310  0.0070
+						0.580  0.0165
+						0.700  0.0240
+						1.000  0.0265
 					</tableData>
 				</table>
 			</product>
@@ -66,12 +66,12 @@
 			</product>
 		</function>
 
-		<function name="aero/force/Lift_elevator">
-			<description>Lift due to Elevator Deflection</description>
+		<function name="aero/force/Lift_pitch_control">
+			<description>Lift due to Pitch Control Deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>fcs/elevator-pos-rad</property>
+				<property>fcs/pitch-pos-rad</property>
 				<value>0.1530</value>
 			</product>
 		</function>
@@ -228,12 +228,12 @@
 			</product>
 		</function>
 
-		<function name="aero/force/Drag_elevator">
-			<description>Drag due to Elevator Deflection</description>
+		<function name="aero/force/Drag_pitch_control">
+			<description>Drag due to Pitch Control Deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><property>fcs/elevator-pos-norm</property></abs>
+				<abs><property>fcs/pitch-pos-norm</property></abs>
 				<value>0.055</value>
 			</product>
 		</function>
@@ -334,16 +334,8 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<property>fcs/pitch-pos-rad</property>
-				<table>
-					<independentVar lookup="row">velocities/mach</independentVar>
-					<tableData>
-						0.0     -0.500
-						0.2     -0.400
-						1.0     -0.100
-						2.0     -0.050
-					</tableData>
-				</table>
+				<property>fcs/pitch-pos-geared</property>
+				<value>-0.700</value>
 			</product>
 		</function>
 
