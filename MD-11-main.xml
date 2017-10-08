@@ -325,6 +325,9 @@
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
+		<hydraulic n="0">
+			<aileron-droop type="bool">1</aileron-droop>
+		</hydraulic>
 		<switches>
 			<annun-test type="bool">0</annun-test>
 			<cart type="bool">0</cart>
