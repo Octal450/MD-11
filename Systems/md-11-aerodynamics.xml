@@ -67,7 +67,7 @@
 		</function>
 
 		<function name="aero/force/Lift_pitch_control">
-			<description>Lift due to Pitch Control Deflection</description>
+			<description>Lift due to pitch control deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -229,7 +229,7 @@
 		</function>
 
 		<function name="aero/force/Drag_pitch_control">
-			<description>Drag due to Pitch Control Deflection</description>
+			<description>Drag due to pitch control deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
