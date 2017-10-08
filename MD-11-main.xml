@@ -326,7 +326,8 @@
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
 		<hydraulic n="0">
-			<aileron-droop type="bool">1</aileron-droop>
+			<aileron-droop type="bool">0</aileron-droop>
+			<aileron-droop-enable type="bool">1</aileron-droop-enable>
 		</hydraulic>
 		<switches>
 			<annun-test type="bool">0</annun-test>

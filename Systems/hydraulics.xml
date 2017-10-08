@@ -3,18 +3,6 @@
 <!-- MD-11 Hydraulics -->
 <!-- Joshua Davidson (it0uchpods) -->
 
-<!-- NOTE TO SELF: Deflected ailerons are 0.30 for left, and -0.30 for right -->
-<!-- Something like this: -->
-<!--
-<table>
-	<property>/fdm/jsbsim/fcs/flap-pos-deg</property> 
-	<entry><ind> 1</ind><dep>0.00</dep></entry>
-	<entry><ind>10</ind><dep>0.30</dep></entry>
-	<entry><ind>28</ind><dep>0.30</dep></entry>
-	<entry><ind>33</ind><dep>0.00</dep></entry>
-</table>
--->
-
 <!--
 #########################################
 # Copyright (c) it0uchpods Design Group #
@@ -27,44 +15,44 @@
  <!-- Surface Droop                                                   -->
  <!-- =============================================================== -->
  
-    <filter>
-        <name>Aileron Droop</name>
-        <type>gain</type>
-        <gain>1</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input> 
+	<filter>
+		<name>Aileron Droop</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input> 
 			<expression>
-                <table>
-                    <property>/velocities/airspeed-kt</property>
-                    <entry><ind> 62</ind><dep>0.5</dep></entry>
-                    <entry><ind>116</ind><dep>0.0</dep></entry>
-                </table>
+				<table>
+					<property>/velocities/airspeed-kt</property>
+					<entry><ind> 62</ind><dep>0.5</dep></entry>
+					<entry><ind>116</ind><dep>0.0</dep></entry>
+				</table>
 			</expression>
-        </input>
+		</input>
 		<output>/systems/hydraulic/aileron-droop</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>Elevator Droop</name>
-        <type>gain</type>
-        <gain>1</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input> 
+	<filter>
+		<name>Elevator Droop</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input> 
 			<expression>
-                <table>
-                    <property>/velocities/airspeed-kt</property>
-                    <entry><ind> 72</ind><dep>0.5</dep></entry>
-                    <entry><ind>121</ind><dep>0.0</dep></entry>
-                </table>
+				<table>
+					<property>/velocities/airspeed-kt</property>
+					<entry><ind> 72</ind><dep>0.5</dep></entry>
+					<entry><ind>121</ind><dep>0.0</dep></entry>
+				</table>
 			</expression>
-        </input>
+		</input>
 		<output>/systems/hydraulic/elevator-droop</output>
-    </filter>
-	
+	</filter>
+
  <!-- =============================================================== -->
  <!-- Aileron Control                                                 -->
  <!-- =============================================================== -->
- 
+
 	<!-- Aileron L Outboard -->
 
 	<filter>
@@ -91,11 +79,11 @@
 				<and>
 					<less-than>
 						<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
-						<value>5</value>
+						<value>2</value>
 					</less-than>
 					<less-than>
 						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-						<value>5</value>
+						<value>2</value>
 					</less-than>
 					<or>
 						<greater-than-equals>
@@ -117,11 +105,11 @@
 					<or>
 						<greater-than-equals>
 							<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
-							<value>5</value>
+							<value>2</value>
 						</greater-than-equals>
 						<greater-than-equals>
 							<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-							<value>5</value>
+							<value>2</value>
 						</greater-than-equals>
 					</or>
 					<or>
@@ -138,7 +126,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property> 
+					<property>/fdm/jsbsim/fcs/aileron-left-droop</property> 
 					<entry><ind>-0.95</ind><dep>-0.5</dep></entry>
 					<entry><ind> 0.00</ind><dep> 0.0</dep></entry>
 					<entry><ind> 0.95</ind><dep> 0.5</dep></entry>
@@ -194,7 +182,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property> 
+					<property>/fdm/jsbsim/fcs/aileron-left-droop</property> 
 					<entry><ind>-0.95</ind><dep>-0.5</dep></entry>
 					<entry><ind> 0.00</ind><dep> 0.0</dep></entry>
 					<entry><ind> 0.95</ind><dep> 0.5</dep></entry>
@@ -266,7 +254,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property> 
+					<property>/fdm/jsbsim/fcs/aileron-right-droop</property> 
 					<entry><ind>-0.95</ind><dep>-0.5</dep></entry>
 					<entry><ind> 0.00</ind><dep> 0.0</dep></entry>
 					<entry><ind> 0.95</ind><dep> 0.5</dep></entry>
@@ -313,11 +301,11 @@
 				<and>
 					<less-than>
 						<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
-						<value>5</value>
+						<value>2</value>
 					</less-than>
 					<less-than>
 						<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-						<value>5</value>
+						<value>2</value>
 					</less-than>
 					<or>
 						<greater-than-equals>
@@ -339,11 +327,11 @@
 					<or>
 						<greater-than-equals>
 							<property>/fdm/jsbsim/fcs/slat-pos-deg</property>
-							<value>5</value>
+							<value>2</value>
 						</greater-than-equals>
 						<greater-than-equals>
 							<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
-							<value>5</value>
+							<value>2</value>
 						</greater-than-equals>
 					</or>
 					<or>
@@ -360,7 +348,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property> 
+					<property>/fdm/jsbsim/fcs/aileron-right-droop</property> 
 					<entry><ind>-0.95</ind><dep>-0.5</dep></entry>
 					<entry><ind> 0.00</ind><dep> 0.0</dep></entry>
 					<entry><ind> 0.95</ind><dep> 0.5</dep></entry>
@@ -924,7 +912,7 @@
 								<property>/controls/flight/aileron-left</property>
 								<property>/controls/flight/aileron-right</property>
 							</sum>
-							<value>1.75</value>
+							<value>1.70</value>
 						</product>
 						<product>
 							<sum>
@@ -934,10 +922,10 @@
 								</product>
 								<property>/controls/flight/spoiler-r-sum</property>
 							</sum>
-							<value>0.25</value>
+							<value>0.30</value>
 						</product>
 					</sum>
-					<value>0.3333333333333333335</value>
+					<value>0.3125</value>
 				</product>
 			</expression>
 		</input>
@@ -985,12 +973,12 @@
 				</or>
 			</condition>
 			<expression>
-                <table>
-                    <property>/controls/flight/elevator-lsas</property> 
-                    <entry><ind>-1</ind><dep>-0.5</dep></entry>
-                    <entry><ind> 0</ind><dep> 0.0</dep></entry>
-                    <entry><ind> 1</ind><dep> 0.5</dep></entry>
-                </table>
+				<table>
+					<property>/controls/flight/elevator-lsas</property> 
+					<entry><ind>-1</ind><dep>-0.5</dep></entry>
+					<entry><ind> 0</ind><dep> 0.0</dep></entry>
+					<entry><ind> 1</ind><dep> 0.5</dep></entry>
+				</table>
 			</expression>
 		</input>
 		<output>/controls/flight/elevator-out-left-cmd</output>
@@ -1041,12 +1029,12 @@
 				</or>
 			</condition>
 			<expression>
-                <table>
-                    <property>/controls/flight/elevator-lsas</property> 
-                    <entry><ind>-1</ind><dep>-0.5</dep></entry>
-                    <entry><ind> 0</ind><dep> 0.0</dep></entry>
-                    <entry><ind> 1</ind><dep> 0.5</dep></entry>
-                </table>
+				<table>
+					<property>/controls/flight/elevator-lsas</property> 
+					<entry><ind>-1</ind><dep>-0.5</dep></entry>
+					<entry><ind> 0</ind><dep> 0.0</dep></entry>
+					<entry><ind> 1</ind><dep> 0.5</dep></entry>
+				</table>
 			</expression>
 		</input>
 		<output>/controls/flight/elevator-in-left-cmd</output>
@@ -1097,12 +1085,12 @@
 				</or>
 			</condition>
 			<expression>
-                <table>
-                    <property>/controls/flight/elevator-lsas</property> 
-                    <entry><ind>-1</ind><dep>-0.5</dep></entry>
-                    <entry><ind> 0</ind><dep> 0.0</dep></entry>
-                    <entry><ind> 1</ind><dep> 0.5</dep></entry>
-                </table>
+				<table>
+					<property>/controls/flight/elevator-lsas</property> 
+					<entry><ind>-1</ind><dep>-0.5</dep></entry>
+					<entry><ind> 0</ind><dep> 0.0</dep></entry>
+					<entry><ind> 1</ind><dep> 0.5</dep></entry>
+				</table>
 			</expression>
 		</input>
 		<output>/controls/flight/elevator-in-right-cmd</output>
@@ -1153,12 +1141,12 @@
 				</or>
 			</condition>
 			<expression>
-                <table>
-                    <property>/controls/flight/elevator-lsas</property> 
-                    <entry><ind>-1</ind><dep>-0.5</dep></entry>
-                    <entry><ind> 0</ind><dep> 0.0</dep></entry>
-                    <entry><ind> 1</ind><dep> 0.5</dep></entry>
-                </table>
+				<table>
+					<property>/controls/flight/elevator-lsas</property> 
+					<entry><ind>-1</ind><dep>-0.5</dep></entry>
+					<entry><ind> 0</ind><dep> 0.0</dep></entry>
+					<entry><ind> 1</ind><dep> 0.5</dep></entry>
+				</table>
 			</expression>
 		</input>
 		<output>/controls/flight/elevator-out-right-cmd</output>

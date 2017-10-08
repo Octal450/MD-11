@@ -10,6 +10,50 @@
 	
 	<channel name="Roll">
 	
+		<fcs_function name="Aileron Left Droop Control">
+			<function>
+				<sum>
+					<property>/controls/flight/aileron</property>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								0.5       0.00
+								9.5       0.57
+								28.5      0.57
+								34.5      0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
+			</function>
+			<output>fcs/aileron-left-droop</output>
+		</fcs_function>
+		
+		<fcs_function name="Aileron Right Droop Control">
+			<function>
+				<sum>
+					<property>/controls/flight/aileron</property>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								0.5        0.00
+								9.5       -0.57
+								28.5      -0.57
+								34.5       0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
+			</function>
+			<output>fcs/aileron-right-droop</output>
+		</fcs_function>
+		
+		<!-- Goes to hydraulics, then returns as aileron-sum -->
+	
 		<summer name="Roll Trim Sum">
 			<input>/controls/flight/aileron-sum</input>
 			<input>/controls/flight/aileron-trim</input>

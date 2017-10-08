@@ -172,30 +172,47 @@ controls.flapsDown = func(step) {
 			setprop("/controls/flight/flaps-output", 0.000);
 			setprop("/controls/flight/flap-lever", 1);
 			setprop("/controls/flight/flaps", 0.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 1) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.300);
 			setprop("/controls/flight/flap-lever", 2);
 			setprop("/controls/flight/flaps", 0.4);
+			if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/gear/gear[0]/wow") == 1) {
+					setprop("/controls/hydraulic/aileron-droop", 1);
+				}
+			} else {
+				setprop("/controls/hydraulic/aileron-droop", 0);
+			}
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 2) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.560);
 			setprop("/controls/flight/flap-lever", 3);
 			setprop("/controls/flight/flaps", 0.7);
+			if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/gear/gear[0]/wow") == 1) {
+					setprop("/controls/hydraulic/aileron-droop", 1);
+				}
+			} else {
+				setprop("/controls/hydraulic/aileron-droop", 0);
+			}
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 3) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.700);
 			setprop("/controls/flight/flap-lever", 4);
 			setprop("/controls/flight/flaps", 1.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 4) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 1.000);
 			setprop("/controls/flight/flap-lever", 5);
 			setprop("/controls/flight/flaps", 1.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		}
 	} else if (step == -1) {
@@ -204,30 +221,47 @@ controls.flapsDown = func(step) {
 			setprop("/controls/flight/flaps-output", 0.700);
 			setprop("/controls/flight/flap-lever", 4);
 			setprop("/controls/flight/flaps", 1.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 4) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.560);
 			setprop("/controls/flight/flap-lever", 3);
 			setprop("/controls/flight/flaps", 7.0);
+			if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/gear/gear[0]/wow") == 1) {
+					setprop("/controls/hydraulic/aileron-droop", 1);
+				}
+			} else {
+				setprop("/controls/hydraulic/aileron-droop", 0);
+			}
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 3) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.300);
 			setprop("/controls/flight/flap-lever", 2);
 			setprop("/controls/flight/flaps", 0.4);
+			if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/gear/gear[0]/wow") == 1) {
+					setprop("/controls/hydraulic/aileron-droop", 1);
+				}
+			} else {
+				setprop("/controls/hydraulic/aileron-droop", 0);
+			}
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 2) {
 			setprop("/controls/flight/slats", 1.000);
 			setprop("/controls/flight/flaps-output", 0.000);
 			setprop("/controls/flight/flap-lever", 1);
 			setprop("/controls/flight/flaps", 0.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		} else if (getprop("/controls/flight/flap-lever") == 1) {
 			setprop("/controls/flight/slats", 0.000);
 			setprop("/controls/flight/flaps-output", 0.000);
 			setprop("/controls/flight/flap-lever", 0);
 			setprop("/controls/flight/flaps", 0.0);
+			setprop("/controls/hydraulic/aileron-droop", 0);
 			return;
 		}
 	} else {
