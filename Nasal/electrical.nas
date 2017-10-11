@@ -554,7 +554,7 @@ var master_elec = func {
 		setprop("/systems/electrical/light/emer-pw-on", 0);
 	}
 	
-	if (battery1_amps < 120 and battery2_amps < 120) { # or batt1_fail or batt2_fail
+	if (dcbat < 25) {
 		setprop("/systems/electrical/light/bat-bus", 1);
 	} else {
 		setprop("/systems/electrical/light/bat-bus", 0);
