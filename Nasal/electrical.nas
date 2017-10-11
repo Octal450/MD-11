@@ -433,6 +433,8 @@ var master_elec = func {
 	# Battery Bus
 	if (battery1_amps >= 120 or battery2_amps >= 120) {
 		setprop("/systems/electrical/bus/dcbat", dc_volt_std);
+	} else if (dc_gndsvc >= 25) {
+		setprop("/systems/electrical/bus/dcbat", dc_volt_std);
 	} else {
 		setprop("/systems/electrical/bus/dcbat", 0);
 	}
