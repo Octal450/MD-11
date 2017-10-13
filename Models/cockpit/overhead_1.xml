@@ -8,55 +8,55 @@
 
 <PropertyList>
 
-    <path>overhead_1.ac</path>
+	<path>overhead_1.ac</path>
 
-    <effect>
-	<inherits-from>Effects/model-transparent</inherits-from>
-	<object-name>overhead.text</object-name>
-	<object-name>light.knobs</object-name>
-	<object-name>emgpwr.light</object-name>
-	<object-name>Air.valve.lit</object-name>
-	<object-name>Air.pres.needle</object-name>
-    </effect>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>overhead.text</object-name>
+		<object-name>light.knobs</object-name>
+		<object-name>emgpwr.light</object-name>
+		<object-name>Air.valve.lit</object-name>
+		<object-name>Air.pres.needle</object-name>
+	</effect>
 
-    <animation>
-	<name>Panel lighting</name>
-	<type>material</type>
-	<object-name>overhead.text</object-name>
-	<object-name>ovhd_pnl_indicator</object-name>
-	<object-name>ovhd_flood_indicator</object-name>
-	<object-name>dashboard.text.indicator</object-name>
-	<object-name>dashboard.light.indicator</object-name>
-	<object-name>light.knobs</object-name>
-	<object-name>EmerPwrKnb.light</object-name>
-	<object-name>Air.valve.lit</object-name>
-	<object-name>Air.pres.needle</object-name>
-	<emission>
-	    <red>1.5</red>
-	    <green>1.27</green>
-	    <blue>1</blue>
-	    <factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
-	</emission>
-    </animation>
+	<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>overhead.text</object-name>
+		<object-name>ovhd_pnl_indicator</object-name>
+		<object-name>ovhd_flood_indicator</object-name>
+		<object-name>dashboard.text.indicator</object-name>
+		<object-name>dashboard.light.indicator</object-name>
+		<object-name>light.knobs</object-name>
+		<object-name>EmerPwrKnb.light</object-name>
+		<object-name>Air.valve.lit</object-name>
+		<object-name>Air.pres.needle</object-name>
+		<emission>
+			<red>1.5</red>
+			<green>1.27</green>
+			<blue>1</blue>
+			<factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
+		</emission>
+	</animation>
 
-    <animation>
-	<name>Panel lighting</name>
-	<type>material</type>
-	<object-name>ovhd_lcd</object-name>
-	<emission>
-	    <red>1.39</red>
-	    <green>0</green>
-	    <blue>0</blue>
-	    <factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
-	</emission>
-    </animation>
-	
-    <animation>
-	<name>OVHD light knob</name>
-	<type>pick</type>
-	<object-name>ovhd_pnl_knob</object-name>
-	<object-name>ovhd_pnl_indicator</object-name>
-	<action>
+	<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>ovhd_lcd</object-name>
+		<emission>
+			<red>1.39</red>
+			<green>0</green>
+			<blue>0</blue>
+			<factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
+		</emission>
+	</animation>
+
+	<animation>
+		<name>OVHD light knob</name>
+		<type>pick</type>
+		<object-name>ovhd_pnl_knob</object-name>
+		<object-name>ovhd_pnl_indicator</object-name>
+		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable type="bool">true</repeatable>
@@ -66,8 +66,8 @@
 				<step>0.025</step>
 				<max>1</max>
 			</binding>
-	</action>
-	<action>
+		</action>
+		<action>
 			<button>1</button>
 			<button>4</button>
 			<repeatable type="bool">true</repeatable>
@@ -77,14 +77,14 @@
 				<step>-0.025</step>
 				<min>0</min>
 			</binding>
-	</action>
-    </animation>
+		</action>
+	</animation>
 
-    <animation>
+	<animation>
 		<name>OVHD light knob</name>
 		<type>pick</type>
 		<object-name>dashboard.text.knob</object-name>
-    <object-name>dashboard.text.indicator</object-name>
+		<object-name>dashboard.text.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -108,12 +108,12 @@
 			</binding>
 		</action>
 	</animation>
-	
-					    	<animation>
+
+	<animation>
 		<name>OVHD light knob</name>
 		<type>pick</type>
 		<object-name>ovhd_flood_knob</object-name>
-    <object-name>ovhd_flood_indicator</object-name>
+		<object-name>ovhd_flood_indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -137,13 +137,13 @@
 			</binding>
 		</action>
 	</animation>
-	
-						<animation>
+
+	<animation>
 		<name>OVHD panel light rotate</name>
 		<type>rotate</type>
 		<object-name>ovhd_flood_knob</object-name>
-    <object-name>ovhd_flood_indicator</object-name>
-				<property>controls/lighting/oh-flood-norm</property>
+		<object-name>ovhd_flood_indicator</object-name>
+		<property>controls/lighting/oh-flood-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-329</dep></entry>
@@ -159,13 +159,13 @@
 			<z-m>-18.0476</z-m>
 		</center>
 	</animation>
-	
-						<animation>
+
+	<animation>
 		<name>OVHD panel light rotate</name>
 		<type>rotate</type>
 		<object-name>dashboard.text.knob</object-name>
-    <object-name>dashboard.text.indicator</object-name>
-				<property>controls/lighting/pedestal-panel-norm</property>
+		<object-name>dashboard.text.indicator</object-name>
+		<property>controls/lighting/pedestal-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-329</dep></entry>
@@ -181,13 +181,13 @@
 			<z-m>-18.0824</z-m>
 		</center>
 	</animation>
-	
-					<animation>
+
+	<animation>
 		<name>OVHD panel light rotate</name>
 		<type>rotate</type>
 		<object-name>ovhd_pnl_knob</object-name>
-    <object-name>ovhd_pnl_indicator</object-name>
-				<property>controls/lighting/ovhd-panel-norm</property>
+		<object-name>ovhd_pnl_indicator</object-name>
+		<property>controls/lighting/ovhd-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-329</dep></entry>
@@ -284,12 +284,16 @@
 		<object-name>APUBleed.on</object-name>
 		<object-name>AuxPump1.on</object-name>
 		<object-name>AuxPump2.on</object-name>
+		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
+		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2.press</object-name>
 		<object-name>Bleed2.off</object-name>
+		<object-name>Bleed2B.temphi</object-name>
 		<object-name>Bleed3.press</object-name>
 		<object-name>Bleed3.off</object-name>
+		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Econ.off</object-name>
 		<object-name>HydPress1.press</object-name>
 		<object-name>HydPress2.press</object-name>
@@ -305,8 +309,11 @@
 		<object-name>LPump2.off</object-name>
 		<object-name>LPump3.fault</object-name>
 		<object-name>LPump3.off</object-name>
+		<object-name>Pack1.flow</object-name>
 		<object-name>Pack1.off</object-name>
+		<object-name>Pack2.flow</object-name>
 		<object-name>Pack2.off</object-name>
+		<object-name>Pack3.flow</object-name>
 		<object-name>Pack3.off</object-name>
 		<object-name>RMP1-3.on</object-name>
 		<object-name>RMP1-3.disag</object-name>
@@ -344,12 +351,16 @@
 	<!-- These are not simulated yet, so they only illuminate when the test is on. Remove each light/button once you add its select animation. -JD -->
 	<animation>
 		<type>select</type>
+		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
+		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2.press</object-name>
 		<object-name>Bleed2.off</object-name>
+		<object-name>Bleed2B.temphi</object-name>
 		<object-name>Bleed3.press</object-name>
 		<object-name>Bleed3.off</object-name>
+		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Drive1.disc</object-name>
 		<object-name>Drive1.fault</object-name>
 		<object-name>Drive2.disc</object-name>
@@ -361,8 +372,11 @@
 		<object-name>ISOL-1-2.disag</object-name>
 		<object-name>ISOL-1-3.on</object-name>
 		<object-name>ISOL-1-3.disag</object-name>
+		<object-name>Pack1.flow</object-name>
 		<object-name>Pack1.off</object-name>
+		<object-name>Pack2.flow</object-name>
 		<object-name>Pack2.off</object-name>
+		<object-name>Pack3.flow</object-name>
 		<object-name>Pack3.off</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
