@@ -33,9 +33,9 @@ var fadecLoop = maketimer(0.7, func {
 	var master2 = getprop("/controls/engines/engine[1]/cutoff-switch");
 	var master3 = getprop("/controls/engines/engine[1]/cutoff-switch");
 	var modeSel = getprop("/controls/engines/ignition-mode");
-	var N21 = getprop("/engines/engine[0]/n2");
-	var N22 = getprop("/engines/engine[1]/n2");
-	var N23 = getprop("/engines/engine[2]/n2");
+	var N21 = getprop("/engines/engine[0]/n2-actual");
+	var N22 = getprop("/engines/engine[1]/n2-actual");
+	var N23 = getprop("/engines/engine[2]/n2-actual");
 	
 	if (getprop("/systems/electrical/outputs/efis") >= 15) {
 		setprop("/systems/fadec/power-avail", 1);

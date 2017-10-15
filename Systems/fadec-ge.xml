@@ -22,7 +22,7 @@
                 </table>
             </expression>
         </input>
-		<output>/engines/engine[0]/n1-cmd</output>
+		<output>/engines/engine[0]/n1-actual-cmd</output>
     </filter>
 	
     <filter>
@@ -39,7 +39,7 @@
                 </table>
             </expression>
         </input>
-		<output>/engines/engine[1]/n1-cmd</output>
+		<output>/engines/engine[1]/n1-actual-cmd</output>
     </filter>
 	
     <filter>
@@ -56,7 +56,7 @@
                 </table>
             </expression>
         </input>
-		<output>/engines/engine[2]/n1-cmd</output>
+		<output>/engines/engine[2]/n1-actual-cmd</output>
     </filter>
 	
     <filter>
@@ -398,7 +398,7 @@
 						<value>3</value>
 					</equals>
 					<greater-than>
-						<property>/engines/engine[0]/n1</property>
+						<property>/engines/engine[0]/n1-actual</property>
 						<value>23</value>
 					</greater-than>
 				</and>
@@ -408,7 +408,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n1</property> 
+					<property>/engines/engine[0]/n1-actual</property> 
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
@@ -429,7 +429,7 @@
 						<value>3</value>
 					</equals>
 					<greater-than>
-						<property>/engines/engine[1]/n1</property>
+						<property>/engines/engine[1]/n1-actual</property>
 						<value>23</value>
 					</greater-than>
 				</and>
@@ -439,7 +439,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n1</property> 
+					<property>/engines/engine[1]/n1-actual</property> 
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
@@ -460,7 +460,7 @@
 						<value>3</value>
 					</equals>
 					<greater-than>
-						<property>/engines/engine[2]/n1</property>
+						<property>/engines/engine[2]/n1-actual</property>
 						<value>23</value>
 					</greater-than>
 				</and>
@@ -470,7 +470,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n1</property> 
+					<property>/engines/engine[2]/n1-actual</property> 
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>

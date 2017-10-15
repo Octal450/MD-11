@@ -28,9 +28,9 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var state1 = getprop("/engines/engine[0]/state");
 	var state2 = getprop("/engines/engine[1]/state");
 	var state3 = getprop("/engines/engine[2]/state");
-	var N21 = getprop("/engines/engine[0]/n2");
-	var N22 = getprop("/engines/engine[1]/n2");
-	var N23 = getprop("/engines/engine[2]/n2");
+	var N21 = getprop("/engines/engine[0]/n2-actual");
+	var N22 = getprop("/engines/engine[1]/n2-actual");
+	var N23 = getprop("/engines/engine[2]/n2-actual");
 	var src1 = "XX";
 	var src2 = "XX";
 	var src3 = "XX";
@@ -83,9 +83,9 @@ var master_hyd = func {
 	state1 = getprop("/engines/engine[0]/state");
 	state2 = getprop("/engines/engine[1]/state");
 	state3 = getprop("/engines/engine[2]/state");
-	N21 = getprop("/engines/engine[0]/n2");
-	N22 = getprop("/engines/engine[1]/n2");
-	N23 = getprop("/engines/engine[2]/n2");
+	N21 = getprop("/engines/engine[0]/n2-actual");
+	N22 = getprop("/engines/engine[1]/n2-actual");
+	N23 = getprop("/engines/engine[2]/n2-actual");
 	wow = getprop("/gear/gear[3]/wow");
 	
 	# HSC

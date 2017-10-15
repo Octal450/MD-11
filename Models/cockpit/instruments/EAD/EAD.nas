@@ -141,12 +141,12 @@ var canvas_EAD_GE = {
 	},
 	update: func() {
 		# N1
-		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1") + 0.01)));
-		me["N11-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[0]/n1"),1))*33.65, 0.1));
-		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1") + 0.01)));
-		me["N12-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[1]/n1"),1))*33.65, 0.1));
-		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1") + 0.01)));
-		me["N13-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[2]/n1"),1))*33.65, 0.1));
+		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1-actual") + 0.01)));
+		me["N11-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[0]/n1-actual"),1))*33.65, 0.1));
+		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1-actual") + 0.01)));
+		me["N12-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[1]/n1-actual"),1))*33.65, 0.1));
+		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1-actual") + 0.01)));
+		me["N13-decimal"].setTranslation(0,math.round((10*math.mod(getprop("/engines/engine[2]/n1-actual"),1))*33.65, 0.1));
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90)*D2R);
 		me["N11-thr"].setRotation((getprop("/DU/EAD/N1thr[0]") + 90)*D2R);
@@ -277,12 +277,12 @@ var canvas_EAD_GE = {
 		me["EGT3-redstart"].hide(); # Hide until simulated
 		
 		# N2
-		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2") + 0.05)));
-		me["N21-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[0]/n2") + 0.05,1))));
-		me["N22"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n2") + 0.05)));
-		me["N22-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[1]/n2") + 0.05,1))));
-		me["N23"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n2") + 0.05)));
-		me["N23-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[2]/n2") + 0.05,1))));
+		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2-actual") + 0.05)));
+		me["N21-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[0]/n2-actual") + 0.05,1))));
+		me["N22"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n2-actual") + 0.05)));
+		me["N22-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[1]/n2-actual") + 0.05,1))));
+		me["N23"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n2-actual") + 0.05)));
+		me["N23-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05,1))));
 		
 		me["N21-needle"].setRotation((getprop("/DU/EAD/N2[0]") + 90)*D2R);
 		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90)*D2R);

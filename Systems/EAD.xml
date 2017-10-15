@@ -15,7 +15,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n1</property>
+					<property>/engines/engine[0]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -31,7 +31,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n1-cmd</property>
+					<property>/engines/engine[0]/n1-actual-cmd</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -47,7 +47,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n1</property>
+					<property>/engines/engine[1]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -63,7 +63,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n1-cmd</property>
+					<property>/engines/engine[1]/n1-actual-cmd</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -79,7 +79,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n1</property>
+					<property>/engines/engine[2]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -95,7 +95,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n1-cmd</property>
+					<property>/engines/engine[2]/n1-actual-cmd</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -238,7 +238,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2</property>
+					<property>/engines/engine[0]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -254,7 +254,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2</property>
+					<property>/engines/engine[1]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>
@@ -270,7 +270,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2</property>
+					<property>/engines/engine[2]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
 				</table>

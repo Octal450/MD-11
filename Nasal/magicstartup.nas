@@ -6,18 +6,26 @@
 # Copyright (c) it0uchpods Design Group #
 #########################################
 
-setprop("/systems/electrical/outputs/efis", 0);
-
 var doMagicStartup = func {
-	setprop("/controls/engines/engine[0]/starter", "true");
-	setprop("/controls/engines/engine[1]/starter", "true");
-	setprop("/controls/engines/engine[2]/starter", "true");
-	settimer(func {
-		setprop("/controls/engines/engine[0]/cutoff", "false");
-		setprop("/controls/engines/engine[1]/cutoff", "false");
-		setprop("/controls/engines/engine[2]/cutoff", "false");
-		setprop("/engines/engine[0]/state", 3);
-		setprop("/engines/engine[1]/state", 3);
-		setprop("/engines/engine[2]/state", 3);
-	}, 7.5);
+	setprop("/controls/engines/engine[0]/cutoff", 0);
+	setprop("/controls/engines/engine[1]/cutoff", 0);
+	setprop("/controls/engines/engine[2]/cutoff", 0);
+	setprop("/engines/engine[0]/out-of-fuel", 0);
+	setprop("/engines/engine[1]/out-of-fuel", 0);
+	setprop("/engines/engine[2]/out-of-fuel", 0);
+	setprop("/engines/engine[0]/run", 1);
+	setprop("/engines/engine[1]/run", 1);
+	setprop("/engines/engine[2]/run", 1);
+	setprop("/engines/engine[0]/cutoff", 0);
+	setprop("/engines/engine[1]/cutoff", 0);
+	setprop("/engines/engine[2]/cutoff", 0);
+	setprop("/engines/engine[0]/starter", 0);
+	setprop("/engines/engine[1]/starter", 0);
+	setprop("/engines/engine[2]/starter", 0);
+	setprop("/fdm/jsbsim/propulsion/set-running", 0);
+	setprop("/fdm/jsbsim/propulsion/set-running", 1);
+	setprop("/fdm/jsbsim/propulsion/set-running", 2);
+	setprop("/engines/engine[0]/state", 3);
+	setprop("/engines/engine[1]/state", 3);
+	setprop("/engines/engine[2]/state", 3);
 }
