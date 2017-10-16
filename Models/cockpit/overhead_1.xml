@@ -13,10 +13,21 @@
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>overhead.text</object-name>
-		<object-name>light.knobs</object-name>
-		<object-name>emgpwr.light</object-name>
-		<object-name>Air.valve.lit</object-name>
-		<object-name>Air.pres.needle</object-name>
+		<object-name>IR1Knb.light</object-name>
+		<object-name>IRAuxKnb.light</object-name>
+		<object-name>IR2Knb.light</object-name>
+		<object-name>CargoFwdTemp.light</object-name>
+		<object-name>CargoAftTemp.light</object-name>
+		<object-name>FlapLimit.light</object-name>
+		<object-name>ElevFeel.light</object-name>
+		<object-name>EmerPwrKnb.light</object-name>
+		<object-name>SmokeElecAirNorm.light</object-name>
+		<object-name>CockpitTemp.light</object-name>
+		<object-name>FwdTemp.light</object-name>
+		<object-name>MidTemp.light</object-name>
+		<object-name>AftTemp.light</object-name>
+		<object-name>CabinPressKnb.light</object-name>
+		<object-name>CabinPressNeedle</object-name>
 	</effect>
 
 	<animation>
@@ -27,10 +38,21 @@
 		<object-name>ovhd_flood_indicator</object-name>
 		<object-name>dashboard.text.indicator</object-name>
 		<object-name>dashboard.light.indicator</object-name>
-		<object-name>light.knobs</object-name>
+		<object-name>IR1Knb.light</object-name>
+		<object-name>IRAuxKnb.light</object-name>
+		<object-name>IR2Knb.light</object-name>
+		<object-name>CargoFwdTemp.light</object-name>
+		<object-name>CargoAftTemp.light</object-name>
+		<object-name>FlapLimit.light</object-name>
+		<object-name>ElevFeel.light</object-name>
 		<object-name>EmerPwrKnb.light</object-name>
-		<object-name>Air.valve.lit</object-name>
-		<object-name>Air.pres.needle</object-name>
+		<object-name>SmokeElecAirNorm.light</object-name>
+		<object-name>CockpitTemp.light</object-name>
+		<object-name>FwdTemp.light</object-name>
+		<object-name>MidTemp.light</object-name>
+		<object-name>AftTemp.light</object-name>
+		<object-name>CabinPressKnb.light</object-name>
+		<object-name>CabinPressNeedle</object-name>
 		<emission>
 			<red>1.5</red>
 			<green>1.27</green>
@@ -287,12 +309,15 @@
 		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
+		<object-name>Bleed1B.manf</object-name>
 		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2.press</object-name>
 		<object-name>Bleed2.off</object-name>
+		<object-name>Bleed2B.manf</object-name>
 		<object-name>Bleed2B.temphi</object-name>
 		<object-name>Bleed3.press</object-name>
 		<object-name>Bleed3.off</object-name>
+		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Econ.off</object-name>
 		<object-name>HydPress1.press</object-name>
@@ -354,12 +379,15 @@
 		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
+		<object-name>Bleed1B.manf</object-name>
 		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2.press</object-name>
 		<object-name>Bleed2.off</object-name>
+		<object-name>Bleed2B.manf</object-name>
 		<object-name>Bleed2B.temphi</object-name>
 		<object-name>Bleed3.press</object-name>
 		<object-name>Bleed3.off</object-name>
+		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Drive1.disc</object-name>
 		<object-name>Drive1.fault</object-name>
