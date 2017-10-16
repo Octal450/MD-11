@@ -30,9 +30,9 @@
 		
 		<model>
 			<pushback>
-				<kp type="double">1000</kp>
+				<kp type="double">10000</kp>
 				<ki type="double">200</ki>
-				<kd type="double">200</kd>
+				<kd type="double">500</kd>
 				<position-norm type="double">0</position-norm>
 			</pushback>
 		</model>

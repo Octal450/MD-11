@@ -363,7 +363,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 100 </capacity>
+			<capacity unit="LBS"> 10 </capacity>
 			<contents unit="LBS"> 0 </contents>
 			<priority>1</priority>
 			<type>JET-A1</type>
@@ -374,7 +374,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 100 </capacity>
+			<capacity unit="LBS"> 10 </capacity>
 			<contents unit="LBS"> 0 </contents>
 			<priority>1</priority>
 			<type>JET-A1</type>
@@ -385,7 +385,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 100 </capacity>
+			<capacity unit="LBS"> 10 </capacity>
 			<contents unit="LBS"> 0 </contents>
 			<priority>1</priority>
 			<type>JET-A1</type>
@@ -403,15 +403,15 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 	<external_reactions>
 		<force name="pushback" frame="BODY">
-			<location unit="IN">
-				<x>-620.55</x>
-				<y>0</y>
-				<z>-139.87</z>
+			<location unit="M">
+				<x> -20.6394 </x>
+				<y> 0 </y>
+				<z> 3.45158 </z>
 			</location>
 			<direction>
-				<x>1</x>
-				<y>0</y>
-				<z>0</z>
+				<x> 1 </x>
+				<y> 0 </y>
+				<z> 0 </z>
 			</direction>
 		</force>
 	</external_reactions>
