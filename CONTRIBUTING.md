@@ -1,6 +1,6 @@
 # IDG Contributing Guidelines
 
-These examples will show the IDG Guidelines for contributing. Please follow this at all times, or your contribution may be reverted.
+These examples will show the IDG Guidelines for contributing. Please follow this at all times, or your contribution will not be merged.
 
 ## Basic Guidelines:
 - Use Tabs to indent code, DO NOT USE SPACE.
