@@ -166,36 +166,42 @@
 			<input>/engines/engine[0]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[0]/n1-actual</output>
+			<output>/engines/engine[3]/n1</output>
 		</lag_filter>
 		
 		<lag_filter name="fcs/n1-actual2">
 			<input>/engines/engine[1]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[1]/n1-actual</output>
+			<output>/engines/engine[4]/n1</output>
 		</lag_filter>
 		
 		<lag_filter name="fcs/n1-actual3">
 			<input>/engines/engine[2]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[2]/n1-actual</output>
+			<output>/engines/engine[5]/n1</output>
 		</lag_filter>
 		
 		<lag_filter name="fcs/n2-actual1">
 			<input>/engines/engine[0]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[0]/n2-actual</output>
+			<output>/engines/engine[3]/n2</output>
 		</lag_filter>
 		
 		<lag_filter name="fcs/n2-actual2">
 			<input>/engines/engine[1]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[1]/n2-actual</output>
+			<output>/engines/engine[4]/n2</output>
 		</lag_filter>
 		
 		<lag_filter name="fcs/n2-actual3">
 			<input>/engines/engine[2]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[2]/n2-actual</output>
+			<output>/engines/engine[5]/n2</output>
 		</lag_filter>
 	
 	</channel>
