@@ -184,7 +184,7 @@
 					</greater-than-equals>
 				</or>
 				<equals>
-					<property>/systems/acconfig/mismatch-code</property>
+					<property>systems/acconfig/mismatch-code</property>
 					<value>0x000</value>
 				</equals>
 			</and>
@@ -202,7 +202,7 @@
 		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/Mismatch.xml</path>
 		<condition>
 			<not-equals>
-				<property>/systems/acconfig/mismatch-code</property>
+				<property>systems/acconfig/mismatch-code</property>
 				<value>0x000</value>
 			</not-equals>
 		</condition>
@@ -256,7 +256,7 @@
 					</greater-than-equals>
 				</or>
 				<equals>
-					<property>/systems/acconfig/mismatch-code</property>
+					<property>systems/acconfig/mismatch-code</property>
 					<value>0x000</value>
 				</equals>
 			</and>
@@ -274,7 +274,7 @@
 		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/Mismatch.xml</path>
 		<condition>
 			<not-equals>
-				<property>/systems/acconfig/mismatch-code</property>
+				<property>systems/acconfig/mismatch-code</property>
 				<value>0x000</value>
 			</not-equals>
 		</condition>
