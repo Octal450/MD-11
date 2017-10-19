@@ -128,7 +128,7 @@ var canvas_EAD_base = {
 
 var canvas_EAD_GE = {
 	new: func(canvas_group, file) {
-		var m = { parents: [canvas_EAD_GE , canvas_EAD_base] };
+		var m = {parents: [canvas_EAD_GE, canvas_EAD_base]};
 		m.init(canvas_group, file);
 
 		return m;
