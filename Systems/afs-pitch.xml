@@ -86,8 +86,22 @@
 			<gamma>0.0</gamma>
 			<Ti>1.0</Ti>
 			<Td>0.00001</Td>
-			<u_min>-6000</u_min>
-			<u_max>8000</u_max>
+			<u_min>
+				<expression>
+					<dif>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</dif>
+				</expression>
+			</u_min>
+			<u_max>
+				<expression>
+					<sum>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</sum>
+				</expression>
+			</u_max>
 		</config>
 	</pid-controller>
 	
@@ -189,7 +203,12 @@
 						<value>1</value>
 					</equals>
 				</condition>
-				<value>-6000</value>
+				<expression>
+					<dif>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</dif>
+				</expression>
 			</u_min>
 			<u_max>
 				<condition>
@@ -210,7 +229,12 @@
 						</and>
 					</and>
 				</condition>
-				<value>10000</value>
+				<expression>
+					<sum>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</sum>
+				</expression>
 			</u_max>
 			<u_max>
 				<condition>
