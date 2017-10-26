@@ -64,6 +64,10 @@ var pneu_init = func {
 	setprop("/systems/pneumatic/pack2", 0);
 	setprop("/systems/pneumatic/pack3", 0);
 	setprop("/systems/pneumatic/eng-starter", 0);
+	setprop("/systems/pneumatic/light/pack1-flow", 0);
+	setprop("/systems/pneumatic/light/pack2-flow", 0);
+	setprop("/systems/pneumatic/light/pack3-flow", 0);
+	setprop("/systems/pneumatic/light/select-manual", 0);
 	setprop("/controls/pneumatic/switches/manual-flash", 0);
 	manualPneuLightt.stop();
 	pneu_timer.start();
@@ -135,19 +139,19 @@ var master_pneu = func {
 		setprop("/systems/pneumatic/start-psi", 0);
 	}
 	
-	if (pack1_sw == 1 and (bleed1 >= 11 or bleedapu >= 11 or ground >= 11) and eng_starter == 0) {
+	if (pack1_sw == 1 and (bleed1 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0) {
 		setprop("/systems/pneumatic/pack1", 9);
 	} else {
 		setprop("/systems/pneumatic/pack1", 0);
 	}
 	
-	if (pack2_sw == 1 and (bleed2 >= 11 or bleedapu >= 11 or ground >= 11) and eng_starter == 0) {
+	if (pack2_sw == 1 and (bleed2 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0) {
 		setprop("/systems/pneumatic/pack2", 9);
 	} else {
 		setprop("/systems/pneumatic/pack2", 0);
 	}
 	
-	if (pack3_sw == 1 and (bleed3 >= 11 or bleedapu >= 11 or ground >= 11) and eng_starter == 0) {
+	if (pack3_sw == 1 and (bleed3 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0) {
 		setprop("/systems/pneumatic/pack3", 9);
 	} else {
 		setprop("/systems/pneumatic/pack3", 0);
@@ -198,6 +202,37 @@ var manualPneuLight = func {
 		setprop("/controls/pneumatic/switches/manual-flash", manl + 1);
 	}
 }
+
+#######################
+# Various Other Stuff #
+#######################
+
+setlistener("/controls/pneumatic/switches/pack1", func {
+	if (getprop("/controls/pneumatic/switches/pack1") == 1) {
+		setprop("/systems/pneumatic/light/pack1-flow", 1);
+		settimer(func {
+			setprop("/systems/pneumatic/light/pack1-flow", 0);
+		}, 1);
+	}
+});
+
+setlistener("/controls/pneumatic/switches/pack2", func {
+	if (getprop("/controls/pneumatic/switches/pack2") == 1) {
+		setprop("/systems/pneumatic/light/pack2-flow", 1);
+		settimer(func {
+			setprop("/systems/pneumatic/light/pack2-flow", 0);
+		}, 1);
+	}
+});
+
+setlistener("/controls/pneumatic/switches/pack3", func {
+	if (getprop("/controls/pneumatic/switches/pack3") == 1) {
+		setprop("/systems/pneumatic/light/pack3-flow", 1);
+		settimer(func {
+			setprop("/systems/pneumatic/light/pack3-flow", 0);
+		}, 1);
+	}
+});
 
 ###################
 # Update Function #
