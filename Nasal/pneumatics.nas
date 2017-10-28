@@ -102,9 +102,15 @@ var master_pneu = func {
 		setprop("/controls/pneumatic/switches/bleed3", 1);
 		setprop("/controls/pneumatic/switches/isol1-2", 0);
 		setprop("/controls/pneumatic/switches/isol1-3", 0);
-		setprop("/controls/pneumatic/switches/pack1", 1);
-		setprop("/controls/pneumatic/switches/pack2", 1);
-		setprop("/controls/pneumatic/switches/pack3", 1);
+		if (getprop("/controls/pneumatic/switches/pack1") != 1) {
+			setprop("/controls/pneumatic/switches/pack1", 1);
+		}
+		if (getprop("/controls/pneumatic/switches/pack2") != 1) {
+			setprop("/controls/pneumatic/switches/pack2", 1);
+		}
+		if (getprop("/controls/pneumatic/switches/pack3") != 1) {
+			setprop("/controls/pneumatic/switches/pack3", 1);
+		}
 	}
 	
 	# Air Sources/PSI
