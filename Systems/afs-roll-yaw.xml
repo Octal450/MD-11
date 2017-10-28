@@ -285,16 +285,26 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<or>
+				<and>
 					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
 					</equals>
-				</or>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -340,7 +350,35 @@
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
 			<property>/it-autoflight/internal/aileron-cmd</property>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+			<property>/controls/flight/rudder</property>
+			<scale>-0.5</scale>
 		</input>
 		<output>/controls/flight/aileron</output>
 		<type>noise-spike</type>
@@ -371,7 +409,34 @@
 		<output>/it-autoflight/internal/rudder-cmd</output>
 		<config>
 			<Kp>
+				<condition>
+					<and>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
 				<property>/it-autoflight/config/autoland/kp-rudder</property>
+			</Kp>
+			<Kp>
+				<condition>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</condition>
+				<property>/it-autoflight/config/rollout/kp-rudder</property>
 			</Kp>
 			<Ki>0</Ki>
 		</config>

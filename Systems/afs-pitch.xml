@@ -715,16 +715,26 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<or>
+				<and>
 					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
 					</equals>
-				</or>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -770,7 +780,34 @@
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
 			<property>/it-autoflight/internal/elevator-cmd</property>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+			<value>0.25</value>
 		</input>
 		<output>/controls/flight/elevator</output>
 		<type>noise-spike</type>
@@ -791,6 +828,14 @@
 						<property>/it-autoflight/internal/elevator-cmd</property>
 						<value>0.01</value>
 					</greater-than>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/ap1</property>
@@ -835,6 +880,14 @@
 						<property>/it-autoflight/internal/elevator-cmd</property>
 						<value>-0.01</value>
 					</less-than>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/ap1</property>
@@ -877,6 +930,14 @@
 		<enable>
 			<condition>
 				<and>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/ap1</property>

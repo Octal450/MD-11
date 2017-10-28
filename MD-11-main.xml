@@ -411,6 +411,9 @@
 				<kp-pitch>0.028</kp-pitch>
 				<kp-rudder>-0.05</kp-rudder>
 			</autoland>
+			<rollout>
+				<kp-rudder>-0.02</kp-rudder>
+			</rollout>
 		</config>
 		<settings>
 			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
@@ -418,7 +421,7 @@
 			<land-flap>0.9</land-flap> <!-- Minimum Flap used for Landing -->
 			<retard-ft>40</retard-ft> <!-- Enable Thrust Retard -->
 			<retard-enable>1</retard-enable> <!-- AGL to Thrust Retard -->
-			<togaspd>162</togaspd> <!-- V2 + 10kts -->
+			<togaspd>163</togaspd> <!-- V2 + 10kts -->
 		</settings>
 		<custom>
 			<afds-ovrd>0</afds-ovrd>

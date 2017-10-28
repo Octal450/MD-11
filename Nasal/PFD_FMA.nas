@@ -18,6 +18,8 @@ setlistener("/it-autoflight/mode/lat", func {
 		setprop("/modes/pfd/fma/roll-mode", "ALIGN");
 	} else if (lat == "T/O") {
 		setprop("/modes/pfd/fma/roll-mode", "TAKEOFF");
+	} else if (lat == "RLOU") {
+		setprop("/modes/pfd/fma/roll-mode", "ROLLOUT");
 	}
 });
 
@@ -46,6 +48,8 @@ setlistener("/it-autoflight/mode/vert", func {
 		setprop("/modes/pfd/fma/pitch-mode", "T/O CLAMP");
 	} else if (vert == "G/A CLB") {
 		setprop("/modes/pfd/fma/pitch-mode", "G/A THRUST");
+	} else if (vert == "ROLLOUT") {
+		setprop("/modes/pfd/fma/pitch-mode", "ROLLOUT");
 	}
 });
 

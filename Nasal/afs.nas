@@ -756,9 +756,9 @@ var aland1 = func {
 	var gear1 = getprop("/gear/gear[1]/wow");
 	var gear2 = getprop("/gear/gear[2]/wow");
 	if (gear1 == 1 or gear2 == 1) {
-		setprop("/it-autoflight/input/ap1", 0);
-		setprop("/it-autoflight/input/ap2", 0);
 		alandt1.stop();
+		setprop("/it-autoflight/mode/lat", "RLOU");
+		setprop("/it-autoflight/mode/vert", "ROLLOUT");
 	}
 }
 
