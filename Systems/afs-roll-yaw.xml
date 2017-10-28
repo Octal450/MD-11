@@ -378,7 +378,7 @@
 				</or>
 			</condition>
 			<property>/controls/flight/rudder</property>
-			<scale>-0.5</scale>
+			<scale>-1</scale>
 		</input>
 		<output>/controls/flight/aileron</output>
 		<type>noise-spike</type>
