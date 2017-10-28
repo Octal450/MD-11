@@ -95,6 +95,18 @@ var master_pneu = func {
 	state3 = getprop("/engines/engine[2]/state");
 	rpmapu = getprop("/systems/apu/n2");
 	
+	# PSC FIXME: (Temporary, until I find more info on how the automatic functions work) -JD
+	if (system) {
+		setprop("/controls/pneumatic/switches/bleed1", 1);
+		setprop("/controls/pneumatic/switches/bleed2", 1);
+		setprop("/controls/pneumatic/switches/bleed3", 1);
+		setprop("/controls/pneumatic/switches/isol1-2", 0);
+		setprop("/controls/pneumatic/switches/isol1-3", 0);
+		setprop("/controls/pneumatic/switches/pack1", 1);
+		setprop("/controls/pneumatic/switches/pack2", 1);
+		setprop("/controls/pneumatic/switches/pack3", 1);
+	}
+	
 	# Air Sources/PSI
 	if (rpmapu >= 94.9 and bleedapu_sw) {
 		setprop("/systems/pneumatic/bleedapu", 34);

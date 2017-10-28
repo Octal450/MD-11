@@ -42,6 +42,10 @@
 			</signal>
 			<signal>
 				<type>double</type>
+				<property>gear/gear[3]/compression-ft</property>
+			</signal>
+			<signal>
+				<type>double</type>
 				<property>velocities/groundspeed-kt</property>
 			</signal>
 			<signal>

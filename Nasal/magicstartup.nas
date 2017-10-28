@@ -28,4 +28,6 @@ var doMagicStartup = func {
 	setprop("/engines/engine[0]/state", 3);
 	setprop("/engines/engine[1]/state", 3);
 	setprop("/engines/engine[2]/state", 3);
+	setprop("/controls/electrical/switches/battery", 1);
+	setprop("/controls/electrical/switches/emer-pw-sw", 1);
 }
