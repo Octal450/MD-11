@@ -331,6 +331,28 @@
 	</pid-controller>
 	
 	<filter>
+		<name>IT-CONTROLLER: RUDDER NORMALIZER</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<enable>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-autoflight/output/ap1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/ap2</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+		</enable>
+		<input>/controls/flight/rudder-afs</input>
+		<output>/controls/flight/rudder-afs-input</output>
+	</filter>
+	
+	<filter>
 		<name>IT-CONTROLLER: ROLL CMD</name>
 		<debug>false</debug>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -377,7 +399,7 @@
 					</equals>
 				</or>
 			</condition>
-			<property>/controls/flight/rudder</property>
+			<property>/controls/flight/rudder-afs-input</property>
 			<scale>-1</scale>
 		</input>
 		<output>/controls/flight/aileron</output>
