@@ -228,6 +228,15 @@
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/mode/thr</property>
+					<value>RETARD</value>
+				</equals>
+			</condition>
+			<value>0.0</value>
+		</input>
+		<input>
 			<value>0.01</value>
 		</input>
 		<output>
