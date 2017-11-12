@@ -9,6 +9,7 @@
 #################################
 
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
+setprop("/it-autoflight/internal/heading-5-sec-ahead", 0);
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var trueSpeedKts = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
