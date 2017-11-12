@@ -204,7 +204,7 @@ var lat_arm = func {
 	var latset = getprop("/it-autoflight/input/lat");
 	if (latset == 0) {
 		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/mode/arm", "HDG");
+		setprop("/it-autoflight/mode/arm", " ");
 	} else if (latset == 1) {
 		if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1) {
 			setprop("/it-autoflight/input/lat-arm", 1);
@@ -216,7 +216,7 @@ var lat_arm = func {
 		var hdgnow = int(getprop("/orientation/heading-magnetic-deg")+0.5);
 		setprop("/it-autoflight/input/hdg", hdgnow);
 		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/mode/arm", "HDG");
+		setprop("/it-autoflight/mode/arm", " ");
 	}
 }
 
