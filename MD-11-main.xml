@@ -10,7 +10,7 @@
 
 	<sim>
 	
-		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp), Charlie Schwehm (Wecsje), J Maverick 16</author>
+		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp)</author>
 		
 		<status>Pre V1.0</status>
 		
@@ -721,7 +721,6 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/libraries.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/magicstartup.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
-			<file>Aircraft/IDG-MD-11X/Nasal/PFD_FMA.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/gpws.nas</file>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/ND/ND.nas</file>
 		</libraries>
@@ -736,7 +735,8 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>
 		</systems>
 		<afs>
-			<file>Aircraft/IDG-MD-11X/Nasal/afs.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/AFS.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/AFS-b.nas</file>
 		</afs>
 		<thrust>
 			<file>Aircraft/IDG-MD-11X/Nasal/fadec-common.nas</file>
