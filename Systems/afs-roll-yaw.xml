@@ -348,7 +348,7 @@
 				</or>
 			</condition>
 		</enable>
-		<input>/controls/flight/rudder-afs</input>
+		<input>/it-autoflight/internal/rudder-cmd</input>
 		<output>/controls/flight/rudder-afs-input</output>
 	</filter>
 	
@@ -462,8 +462,8 @@
 			</Kp>
 			<Ki>0</Ki>
 		</config>
-		<min>-0.25</min>
-		<max>0.25</max>
+		<min>-0.15</min>
+		<max>0.15</max>
 	</pi-simple-controller>
 	
 	<filter>
