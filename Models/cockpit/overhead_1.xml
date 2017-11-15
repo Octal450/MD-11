@@ -376,7 +376,6 @@
 	<!-- These are not simulated yet, so they only illuminate when the test is on. Remove each light/button once you add its select animation. -JD -->
 	<animation>
 		<type>select</type>
-		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1B.manf</object-name>
 		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2B.manf</object-name>
@@ -389,12 +388,10 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
-		<object-name>Econ.off</object-name>
 		<object-name>ISOL-1-2.on</object-name>
 		<object-name>ISOL-1-2.disag</object-name>
 		<object-name>ISOL-1-3.on</object-name>
 		<object-name>ISOL-1-3.disag</object-name>
-		<object-name>TrimAir.off</object-name>
 		<condition>
 			<equals>
 				<property>controls/switches/annun-test</property>
@@ -3143,6 +3140,215 @@
 		</condition>
 	</animation>
 	
+	<!-- Temp Controls -->
+	<animation>
+		<type>pick</type>
+		<object-name>CockpitTemp</object-name>
+		<object-name>CockpitTemp.light</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/cockpit-temp</property>
+				<step>0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/cockpit-temp</property>
+				<step>-0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>CockpitTemp</object-name>
+		<object-name>CockpitTemp.light</object-name>
+		<property>controls/pneumatic/switches/cockpit-temp</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep> 180</dep></entry>
+			<entry><ind>0.1</ind><dep> 113</dep></entry>
+			<entry><ind>0.5</ind><dep>   0</dep></entry>
+			<entry><ind>0.9</ind><dep>-113</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.11312</y-m>
+			<z-m>-17.8657</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FwdTemp</object-name>
+		<object-name>FwdTemp.light</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/fwd-temp</property>
+				<step>0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/fwd-temp</property>
+				<step>-0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>FwdTemp</object-name>
+		<object-name>FwdTemp.light</object-name>
+		<property>controls/pneumatic/switches/fwd-temp</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep> 180</dep></entry>
+			<entry><ind>0.1</ind><dep> 113</dep></entry>
+			<entry><ind>0.5</ind><dep>   0</dep></entry>
+			<entry><ind>0.9</ind><dep>-113</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.04075</y-m>
+			<z-m>-17.8657</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MidTemp</object-name>
+		<object-name>MidTemp.light</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/mid-temp</property>
+				<step>0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/mid-temp</property>
+				<step>-0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>MidTemp</object-name>
+		<object-name>MidTemp.light</object-name>
+		<property>controls/pneumatic/switches/mid-temp</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep> 180</dep></entry>
+			<entry><ind>0.1</ind><dep> 113</dep></entry>
+			<entry><ind>0.5</ind><dep>   0</dep></entry>
+			<entry><ind>0.9</ind><dep>-113</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.03162</y-m>
+			<z-m>-17.8657</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AftTemp</object-name>
+		<object-name>AftTemp.light</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/aft-temp</property>
+				<step>0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatic/switches/aft-temp</property>
+				<step>-0.1</step>
+				<min>0.0</min>
+				<max>0.9</max>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>AftTemp</object-name>
+		<object-name>AftTemp.light</object-name>
+		<property>controls/pneumatic/switches/aft-temp</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep> 180</dep></entry>
+			<entry><ind>0.1</ind><dep> 113</dep></entry>
+			<entry><ind>0.5</ind><dep>   0</dep></entry>
+			<entry><ind>0.9</ind><dep>-113</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.10399</y-m>
+			<z-m>-17.8657</z-m>
+		</center>
+	</animation>
+	
 	<!-- Packs -->
 	<animation>
 		<type>pick</type>
@@ -3779,6 +3985,182 @@
 			<or>
 				<equals>
 					<property>controls/pneumatic/switches/bleed3</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>TrimAir</object-name>
+		<object-name>TrimAir.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatic/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatic/switches/trim-air</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatic/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TrimAir.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/pneumatic/switches/trim-air</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AvionicsFan</object-name>
+		<object-name>AvionicsFan.ovrd</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatic/switches/avionics-fan</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AvionicsFan.ovrd</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/pneumatic/switches/avionics-fan</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Econ</object-name>
+		<object-name>Econ.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatic/switches/econ</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Econ.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/pneumatic/switches/econ</property>
 					<value>0</value>
 				</equals>
 				<equals>

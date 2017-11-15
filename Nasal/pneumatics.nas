@@ -9,6 +9,11 @@
 # Init Vars #
 #############
 
+setprop("/controls/pneumatic/switches/cockpit-temp", 0.5);
+setprop("/controls/pneumatic/switches/fwd-temp", 0.5);
+setprop("/controls/pneumatic/switches/mid-temp", 0.5);
+setprop("/controls/pneumatic/switches/aft-temp", 0.5);
+
 setlistener("/sim/signals/fdm-initialized", func {
 	var system = getprop("/systems/pneumatic/system");
 	var bleed1_sw = getprop("/controls/pneumatic/switches/bleed1");
@@ -51,6 +56,9 @@ var pneu_init = func {
 	setprop("/controls/pneumatic/switches/pack1", 1);
 	setprop("/controls/pneumatic/switches/pack2", 1);
 	setprop("/controls/pneumatic/switches/pack3", 1);
+	setprop("/controls/pneumatic/switches/avionics-fan", 1);
+	setprop("/controls/pneumatic/switches/econ", 1);
+	setprop("/controls/pneumatic/switches/trim-air", 1);
 	setprop("/systems/pneumatic/system", 1); # Automatic
 	setprop("/systems/pneumatic/bleed1", 0);
 	setprop("/systems/pneumatic/bleed2", 0);
