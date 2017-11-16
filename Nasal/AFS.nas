@@ -8,6 +8,8 @@
 # IT-AUTOFLIGHT Based Autopilot #
 #################################
 
+setprop("/it-autoflight/internal/heading-deg", 0);
+setprop("/it-autoflight/internal/track-deg", 0);
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
 setprop("/it-autoflight/internal/heading-5-sec-ahead", 0);
 setprop("/it-autoflight/internal/altitude-5-sec-ahead", 0);
@@ -39,6 +41,7 @@ var ap_init = func {
 	setprop("/it-autoflight/input/lat-arm", 0);
 	setprop("/it-autoflight/input/vert", 7);
 	setprop("/it-autoflight/input/trk", 0);
+	setprop("/it-autoflight/input/true-course", 0);
 	setprop("/it-autoflight/input/toga", 0);
 	setprop("/it-autoflight/input/bank-limit-sw", 0);
 	setprop("/it-autoflight/output/ap1", 0);
@@ -190,7 +193,7 @@ var lateral = func {
 		alandt1.stop();
 		setprop("/it-autoflight/output/loc-armed", 0);
 		setprop("/it-autoflight/output/appr-armed", 0);
-		var hdg5sec = int(getprop("/it-autoflight/internal/heading-5-sec-ahead")+0.5);
+		var hdg5sec = math.round(getprop("/it-autoflight/internal/heading-5-sec-ahead"));
 		setprop("/it-autoflight/input/hdg", hdg5sec);
 		setprop("/it-autoflight/output/lat", 0);
 		setprop("/it-autoflight/mode/lat", "HDG");
@@ -216,7 +219,11 @@ var lat_arm = func {
 			gui.popupTip("Please make sure you have a route set, and that it is Activated!");
 		}
 	} else if (latset == 3) {
-		var hdgnow = int(getprop("/orientation/heading-magnetic-deg")+0.5);
+		if (getprop("/it-autoflight/input/true-course") == 1) {
+			var hdgnow = math.round(getprop("/it-autoflight/internal/track-deg"));
+		} else {
+			var hdgnow = math.round(getprop("/it-autoflight/internal/heading-deg"));
+		}
 		setprop("/it-autoflight/input/hdg", hdgnow);
 		setprop("/it-autoflight/input/lat-arm", 0);
 		setprop("/it-autoflight/mode/arm", " ");
@@ -254,7 +261,7 @@ var vertical = func {
 		}
 		var altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		var vsnow = int(getprop("/velocities/vertical-speed-fps")*0.6)*100;
+		var vsnow = math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100);
 		setprop("/it-autoflight/input/vs", vsnow);
 		setprop("/it-autoflight/output/vert", 1);
 		setprop("/it-autoflight/mode/vert", "V/S");
@@ -317,7 +324,7 @@ var vertical = func {
 		}
 		var altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		var fpanow = (int(10*getprop("/it-autoflight/internal/fpa")))*0.1;
+		var fpanow = math.round(getprop("/it-autoflight/internal/fpa"), 0.1);
 		setprop("/it-autoflight/input/fpa", fpanow);
 		setprop("/it-autoflight/output/vert", 5);
 		setprop("/it-autoflight/mode/vert", "FPA");
@@ -428,13 +435,24 @@ var fpa_calc = func {
 }
 
 setlistener("/it-autoflight/input/kts-mach", func {
-	var modez = getprop("/it-autoflight/input/kts-mach");
-	if (modez == 0) {
-		var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
-		setprop("/it-autoflight/input/spd-kts", iasnow);
-	} else if (modez == 1) {
-		var machnow = (int(1000*getprop("/velocities/mach")))*0.001;
-		setprop("/it-autoflight/input/spd-mach", machnow);
+	var ias = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
+	var mach = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+	if (getprop("/it-autoflight/input/kts-mach") == 0) {
+		if (ias >= 100 and ias <= 360) {
+			setprop("/it-autoflight/input/spd-kts", math.round(ias, 1));
+		} else if (ias < 100) {
+			setprop("/it-autoflight/input/spd-kts", 100);
+		} else if (ias > 360) {
+			setprop("/it-autoflight/input/spd-kts", 360);
+		}
+	} else if (getprop("/it-autoflight/input/kts-mach") == 1) {
+		if (mach >= 0.50 and mach <= 0.95) {
+			setprop("/it-autoflight/input/spd-mach", math.round(mach, 0.001));
+		} else if (mach < 0.50) {
+			setprop("/it-autoflight/input/spd-mach", 0.50);
+		} else if (mach > 0.95) {
+			setprop("/it-autoflight/input/spd-mach", 0.95);
+		}
 	}
 });
 
@@ -463,7 +481,7 @@ setlistener("/it-autoflight/input/toga", func {
 
 var togasel = func {
 	if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
-		var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
+		var iasnow = math.round(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
 		setprop("/it-autoflight/input/spd-kts", iasnow);
 		setprop("/it-autoflight/input/kts-mach", 0);
 		setprop("/it-autoflight/mode/vert", "G/A CLB");
