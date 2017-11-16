@@ -2,9 +2,9 @@
 # Joshua Davidson (it0uchpods)
 # ;)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 var doMagicStartup = func {
 	setprop("/controls/engines/engine[0]/cutoff", 0);

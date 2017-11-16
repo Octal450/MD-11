@@ -1,9 +1,9 @@
 # MD-11 IRS System
 # Jonathan Redpath
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 #####################
 # Initializing Vars #

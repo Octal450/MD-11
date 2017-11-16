@@ -1,9 +1,9 @@
 # MD-11 Buttons
 # Joshua Davidson (it0uchpods)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 # Resets buttons to the default values
 var variousReset = func {

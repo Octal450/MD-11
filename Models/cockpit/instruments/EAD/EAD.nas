@@ -1,9 +1,9 @@
 # MD-11 EAD Canvas
 # Joshua Davidson (it0uchpods)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 var EAD_GE = nil;
 var EAD_display = nil;

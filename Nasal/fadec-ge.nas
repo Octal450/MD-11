@@ -1,8 +1,8 @@
 # MD-11 GE FADEC by Joshua Davidson (it0uchpods)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 setprop("/systems/fadec/eng1/egt", 0);
 setprop("/systems/fadec/eng1/n1", 0);

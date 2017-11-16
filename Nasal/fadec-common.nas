@@ -1,8 +1,8 @@
 # MD-11 FADEC by Joshua Davidson (it0uchpods)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 setprop("/systems/thrust/n1/toga-lim", 0.0);
 setprop("/systems/thrust/n1/mct-lim", 0.0);

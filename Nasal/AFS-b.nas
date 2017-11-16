@@ -1,9 +1,9 @@
 # McDonnell Douglas MD-11 FMA System
 # Joshua Davidson (it0uchpods/411)
 
-#########################################
-# Copyright (c) it0uchpods Design Group #
-#########################################
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
 
 # Master Lateral
 setlistener("/it-autoflight/mode/lat", func {
