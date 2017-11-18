@@ -350,11 +350,7 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/autopilot/settings/true-heading-deg</property>
-			<offset>
-				<property>/orientation/heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
+			<property>/it-autoflight/internal/lnav-error-deg</property>
 		</input>
 		<input>
 			<condition>
