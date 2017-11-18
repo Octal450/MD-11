@@ -8,9 +8,10 @@
 # IT-AUTOFLIGHT Based Autopilot #
 #################################
 
-setprop("/it-autoflight/internal/heading-deg", 0);
-setprop("/it-autoflight/internal/track-deg", 0);
+setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
+setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
+setprop("/it-autoflight/internal/heading-error-deg", 0);
 setprop("/it-autoflight/internal/heading-5-sec-ahead", 0);
 setprop("/it-autoflight/internal/altitude-5-sec-ahead", 0);
 setprop("/it-autoflight/internal/lnav-advance-nm", 1);
