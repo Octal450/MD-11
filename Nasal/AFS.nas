@@ -69,7 +69,6 @@ var ap_init = func {
 	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2") + 10);
 	setprop("/it-autoflight/input/spd-mach", 0.68);
 	ap_varioust.start();
-	lnavCalc.start();
 	thrustmode();
 }
 
@@ -410,45 +409,6 @@ var ap_various = func {
 		}
 	}
 }
-
-var lnavCalc = maketimer(0.001, func {
-	if (getprop("/autopilot/route-manager/active") == 1) {
-		var f = flightplan();
-		var total_distance = getprop("/autopilot/route-manager/total-distance");
-		var distance = total_distance - getprop("/autopilot/route-manager/distance-remaining-nm");
-		var destination_elevation = getprop("/autopilot/route-manager/destination/field-elevation-ft");
-		var leg = f.currentWP();
-		if (leg == nil) {
-			if (getprop("/it-autoflight/output/vert") == 1) {
-				setprop("/it-autoflight/input/lat", 3);
-			}
-			return;
-		}
-		var groundspeed = getprop("/velocities/groundspeed-kt");
-		var log_distance = getprop("/instrumentation/gps/wp/wp[1]/distance-nm");
-		var along_route = total_distance - getprop("/autopilot/route-manager/distance-remaining-nm");
-		var geocoord = geo.aircraft_position();
-		var referenceCourse = f.pathGeod(f.indexOfWP(f.destination_runway), -getprop("/autopilot/route-manager/distance-remaining-nm"));
-		var courseCoord = geo.Coord.new().set_latlon(referenceCourse.lat, referenceCourse.lon);
-		var CourseError = (geocoord.distance_to(courseCoord) / 1852) + 1;
-		var change_wp = abs(getprop("/autopilot/route-manager/wp/bearing-deg") - getprop("/orientation/heading-deg"));
-		if (change_wp > 180) {
-			change_wp = (360 - change_wp);
-		}
-		CourseError += (change_wp / 20);
-		var targetCourse = f.pathGeod(f.indexOfWP(f.destination_runway), (-getprop("autopilot/route-manager/distance-remaining-nm") + CourseError));
-		courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
-		CourseError = (geocoord.course_to(courseCoord) - getprop("/orientation/heading-deg"));
-		if (CourseError < -180) {
-			CourseError += 360;
-		} else if (CourseError > 180) {
-			CourseError -= 360;
-		}
-		setprop("/it-autoflight/internal/lnav-error-deg", CourseError);
-	} else {
-		setprop("/it-autoflight/internal/lnav-error-deg", 0);
-	}
-});
 
 var flch_on = func {
 	setprop("/it-autoflight/output/vert", 4);

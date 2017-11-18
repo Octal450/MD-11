@@ -53,14 +53,6 @@ setlistener("/it-autoflight/mode/vert", func {
 	}
 });
 
-setlistener("/it-autoflight/input/lat-arm", func {
-	if (getprop("/it-autoflight/input/lat-arm") == 1) {
-		setprop("/modes/pfd/fma/roll-mode-armed", "NAV ARMED");
-	} else {
-		setprop("/modes/pfd/fma/roll-mode-armed", "");
-	}
-});
-
 # Arm LOC
 setlistener("/it-autoflight/output/loc-armed", func {
 	var loca = getprop("/it-autoflight/output/loc-armed");
