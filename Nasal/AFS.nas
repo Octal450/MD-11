@@ -13,6 +13,7 @@ setprop("/it-autoflight/internal/track-deg", 0);
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
 setprop("/it-autoflight/internal/heading-5-sec-ahead", 0);
 setprop("/it-autoflight/internal/altitude-5-sec-ahead", 0);
+setprop("/it-autoflight/internal/lnav-advance-nm", 1);
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var trueSpeedKts = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
@@ -402,7 +403,7 @@ var ap_various = func {
 	}
 	
 	if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1) {
-		if (getprop("/autopilot/route-manager/wp/dist") <= 1.0) {
+		if (getprop("/autopilot/route-manager/wp/dist") <= getprop("/it-autoflight/internal/lnav-advance-nm")) {
 			if ((getprop("/autopilot/route-manager/current-wp") + 1) < getprop("/autopilot/route-manager/route/num")) {
 				setprop("/autopilot/route-manager/current-wp", getprop("/autopilot/route-manager/current-wp") + 1);
 			}
