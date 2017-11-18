@@ -258,6 +258,8 @@
 		</instrumentation>
         
 		<flight-recorder include="Systems/flight-recorder.xml"/>
+		
+		<gui n="0" include="Systems/it-gui.xml"/>
     </sim>
 	
 	<!--consumables n="0">
