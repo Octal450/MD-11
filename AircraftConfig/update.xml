@@ -8,7 +8,6 @@
 
 <!-- MD-11 Aircraft Config Dialog -->
 
-
 <PropertyList>
 
 	<name>aircraft-config-update</name>
@@ -17,7 +16,7 @@
 		<red>0.5</red>
 		<green>0</green>
 		<blue>0</blue>
-		<alpha>1</alpha>
+		<alpha>0.9</alpha>
 	</color>
 
 	<group>
@@ -28,7 +27,14 @@
 		</text>
 	</group>
 	
-	<hrule/>
+	<hrule>
+		<color>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<alpha>0.9</alpha>
+		</color>
+	</hrule>
 	
 	<group>
 		<layout>vbox</layout>
@@ -51,7 +57,14 @@
 		</text>
 	</group>
 	
-	<hrule/>
+	<hrule>
+		<color>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<alpha>0.9</alpha>
+		</color>
+	</hrule>
 
 	<group>
 		<layout>hbox</layout>
@@ -61,7 +74,7 @@
 				<red>0</red>
 				<green>0.5</green>
 				<blue>0</blue>
-				<alpha>1</alpha>
+				<alpha>0.9</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>Download Update</legend>
@@ -79,10 +92,10 @@
 		</button>
 		<button>
 			<color>
-				<red>0.7</red>
+				<red>0.6</red>
 				<green>0</green>
 				<blue>0</blue>
-				<alpha>1</alpha>
+				<alpha>0.9</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>Remind Me Later</legend>

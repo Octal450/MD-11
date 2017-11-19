@@ -8,7 +8,6 @@
 
 <!-- MD-11 Aircraft Config Dialog -->
 
-
 <PropertyList>
 
 	<name>aircraft-config-mismatch</name>
@@ -17,7 +16,7 @@
 		<red>0.5</red>
 		<green>0</green>
 		<blue>0</blue>
-		<alpha>1</alpha>
+		<alpha>0.9</alpha>
 	</color>
 
 	<group>
@@ -28,7 +27,14 @@
 		</text>
 	</group>
 	
-	<hrule/>
+	<hrule>
+		<color>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<alpha>0.9</alpha>
+		</color>
+	</hrule>
 	
 	<group>
 		<layout>vbox</layout>
@@ -42,7 +48,14 @@
 			<label>Please try the suggestions below, before contacting it0uchpods Design Group</label>
 		</text>
 		
-		<hrule/>
+		<hrule>
+			<color>
+				<red>1.0</red>
+				<green>1.0</green>
+				<blue>1.0</blue>
+				<alpha>0.9</alpha>
+			</color>
+		</hrule>
 		
 		<group>
 			<layout>hbox</layout>
@@ -76,7 +89,14 @@
 			</text>
 		</group>
 		
-		<hrule/>
+		<hrule>
+			<color>
+				<red>1.0</red>
+				<green>1.0</green>
+				<blue>1.0</blue>
+				<alpha>0.9</alpha>
+			</color>
+		</hrule>
 		
 		<text>
 			<halign>left</halign>
@@ -96,7 +116,14 @@
 		</text>
 	</group>
 	
-	<hrule/>
+	<hrule>
+		<color>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<alpha>0.9</alpha>
+		</color>
+	</hrule>
 
 	<group>
 		<layout>hbox</layout>
@@ -106,7 +133,7 @@
 				<red>0</red>
 				<green>0.5</green>
 				<blue>0</blue>
-				<alpha>1</alpha>
+				<alpha>0.9</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>Download Latest FGFS</legend>
@@ -127,7 +154,7 @@
 				<red>0</red>
 				<green>0.5</green>
 				<blue>0</blue>
-				<alpha>1</alpha>
+				<alpha>0.9</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>FlightGear Forums</legend>
