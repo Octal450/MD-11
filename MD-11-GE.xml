@@ -7,7 +7,7 @@
 ##############################################
 -->
 
-<fdm_config name="MD-11Family" version="2.0" release="BETA"
+<fdm_config name="IDG-MD-11X" version="2.0" release="BETA"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
@@ -46,13 +46,14 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</metrics>
 
 	<mass_balance>
-		<ixx unit="SLUG*FT2">   7375399 </ixx>
-		<iyy unit="SLUG*FT2">   1604014 </iyy>
-		<izz unit="SLUG*FT2">   2008984 </izz> 
-		<ixy unit="SLUG*FT2">         0 </ixy>
-		<ixz unit="SLUG*FT2">         0 </ixz>
-		<iyz unit="SLUG*FT2">         0 </iyz>
-		<emptywt unit="LBS">     284000 </emptywt>
+		<ixx unit="SLUG*FT2"> 6475399 </ixx>
+		<iyy unit="SLUG*FT2"> 7004014 </iyy>
+		<izz unit="SLUG*FT2"> 6408984 </izz>
+		
+		<ixy unit="SLUG*FT2">       0 </ixy>
+		<ixz unit="SLUG*FT2">       0 </ixz>
+		<iyz unit="SLUG*FT2">       0 </iyz>
+		<emptywt unit="LBS" >  284000 </emptywt>
 		
 		<location name="CG" unit="M">
 			<x> 3.5152 </x>

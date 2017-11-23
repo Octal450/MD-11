@@ -8,6 +8,45 @@
 
 <PropertyList>
 
+	<filter>
+		<name>IDLE Limit</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<condition>
+				<and>
+					<not-equals>
+						<property>/controls/flight/flap-lever</property>
+						<value>0</value>
+					</not-equals>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.1</value>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/gear/gear[0]/wow</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/position/altitude-ft</property> 
+					<entry><ind>    0</ind><dep>0.035</dep></entry>
+					<entry><ind>42000</ind><dep>0.285</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/controls/engines/idle-limit</output>
+	</filter>
+
     <filter>
         <name>N1 CMD 1</name>
         <type>gain</type>
@@ -234,7 +273,7 @@
 			<condition>
 				<not><property>/controls/fadec/eng1-alnt</property></not>
 			</condition>
-			<property>/controls/engines/idle-throttle</property>
+			<property>/controls/engines/idle-limit</property>
 		</min>
 		<min>0.0</min>
 		<max>
@@ -291,7 +330,7 @@
 			<condition>
 				<not><property>/controls/fadec/eng2-alnt</property></not>
 			</condition>
-			<property>/controls/engines/idle-throttle</property>
+			<property>/controls/engines/idle-limit</property>
 		</min>
 		<min>0.0</min>
 		<max>
@@ -348,7 +387,7 @@
 			<condition>
 				<not><property>/controls/fadec/eng3-alnt</property></not>
 			</condition>
-			<property>/controls/engines/idle-throttle</property>
+			<property>/controls/engines/idle-limit</property>
 		</min>
 		<min>0.0</min>
 		<max>

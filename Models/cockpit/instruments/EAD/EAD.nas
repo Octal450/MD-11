@@ -36,7 +36,7 @@ var canvas_EAD_base = {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
 		};
 		
-		canvas.parsesvg(canvas_group, file, {'font-mapper': font_mapper});
+		canvas.parsesvg(canvas_group, file, {"font-mapper": font_mapper});
 		
 		var svg_keys = me.getKeys();
 		foreach(var key; svg_keys) {
