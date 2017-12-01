@@ -6,12 +6,12 @@
 ##############################################
 -->
 
-<!-- MD-11 LSAS System by Joshua Davidson (it0uchpods) -->
+<!-- MD-11 IT-CONTROLLER System by Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
 	
 	<filter>
-		<name>LSAS: PITCH KP (P Gain)</name>
+		<name>IT-CONTROLLER: PITCH KP (P Gain)</name>
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
@@ -27,7 +27,7 @@
 	</filter>
 	
 	<filter>
-		<name>LSAS: FEEDBACK IF DISABLED</name>
+		<name>IT-CONTROLLER: FEEDBACK IF DISABLED</name>
 		<enable>
 			<condition>
 				<or>
@@ -91,7 +91,7 @@
 	</filter>
 	
 	<pid-controller>
-		<name>LSAS: PITCH</name>
+		<name>IT-CONTROLLER: PITCH</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -171,7 +171,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>LSAS: PITCH OPTION</name>
+		<name>IT-CONTROLLER: PITCH OPTION</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1</gain>
@@ -238,172 +238,8 @@
 		<output>/controls/flight/elevator-lsas</output>
 	</filter>
 	
-	<pid-controller>
-		<name>LSAS PITCH HELPER PLUS</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<and>
-					<greater-than>
-						<property>/lsas/elevator-command</property>
-						<value>0.05</value>
-					</greater-than>
-					<equals>
-						<property>/lsas/enable</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-					<less-than>
-						<property>/orientation/roll-deg</property>
-						<value>32</value>
-					</less-than>
-					<greater-than>
-						<property>/orientation/roll-deg</property>
-						<value>-32</value>
-					</greater-than>
-					<less-than>
-						<property>/orientation/pitch-deg</property>
-						<value>32</value>
-					</less-than>
-					<greater-than>
-						<property>/orientation/pitch-deg</property>
-						<value>-12</value>
-					</greater-than>
-					<greater-than>
-						<property>/position/gear-agl-ft</property>
-						<value>100</value>
-					</greater-than>
-					<less-than-equals>
-						<property>/controls/flight/elevator</property>
-						<value>0.02</value>
-					</less-than-equals>
-					<greater-than-equals>
-						<property>/controls/flight/elevator</property>
-						<value>-0.02</value>
-					</greater-than-equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<value>0</value>
-		</input>
-		<reference>
-			<value>1</value>
-		</reference>
-		<output>
-			<property>/lsas/elevator-trim-command</property>
-		</output>
-		<config>
-			<Kp>0.04</Kp>
-			<beta>1.0</beta>
-			<alpha>0.1</alpha>
-			<gamma>0.0</gamma>
-			<Ti>10</Ti>
-			<Td>0.00001</Td>
-			<u_min>-1.00</u_min>
-			<u_max>1.00</u_max>
-		</config>
-	</pid-controller>
-	
-	<pid-controller>
-		<name>LSAS PITCH HELPER MINUS</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<and>
-					<less-than>
-						<property>/lsas/elevator-command</property>
-						<value>-0.05</value>
-					</less-than>
-					<equals>
-						<property>/lsas/enable</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-					<less-than>
-						<property>/orientation/roll-deg</property>
-						<value>32</value>
-					</less-than>
-					<greater-than>
-						<property>/orientation/roll-deg</property>
-						<value>-32</value>
-					</greater-than>
-					<less-than>
-						<property>/orientation/pitch-deg</property>
-						<value>32</value>
-					</less-than>
-					<greater-than>
-						<property>/orientation/pitch-deg</property>
-						<value>-12</value>
-					</greater-than>
-					<greater-than>
-						<property>/position/gear-agl-ft</property>
-						<value>100</value>
-					</greater-than>
-					<less-than-equals>
-						<property>/controls/flight/elevator</property>
-						<value>0.02</value>
-					</less-than-equals>
-					<greater-than-equals>
-						<property>/controls/flight/elevator</property>
-						<value>-0.02</value>
-					</greater-than-equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<value>0</value>
-		</input>
-		<reference>
-			<value>1</value>
-		</reference>
-		<output>
-			<property>/lsas/elevator-trim-command</property>
-		</output>
-		<config>
-			<Kp>-0.04</Kp>
-			<beta>1.0</beta>
-			<alpha>0.1</alpha>
-			<gamma>0.0</gamma>
-			<Ti>10</Ti>
-			<Td>0.00001</Td>
-			<u_min>-1.00</u_min>
-			<u_max>1.00</u_max>
-		</config>
-	</pid-controller>
-		
 	<filter>
-		<name>LSAS: PITCH TRIM FILTER</name>
+		<name>IT-CONTROLLER: PITCH TRIM</name>
 		<debug>false</debug>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
@@ -472,11 +308,26 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/lsas/elevator-trim-command</property>
+			<condition>
+				<greater-than>
+					<property>/lsas/elevator-command</property>
+					<value>0.05</value>
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/lsas/elevator-command</property>
+					<value>-0.05</value>
+				</less-than>
+			</condition>
+			<value>-1</value>
 		</input>
 		<output>/controls/flight/elevator-trim</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.01</max-rate-of-change>
+		<max-rate-of-change>0.0075</max-rate-of-change>
 	</filter>
 
 </PropertyList>
