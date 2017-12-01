@@ -135,7 +135,7 @@
 		<name>ROLL DEG SYNC</name>
 		<debug>false</debug>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<and>
@@ -250,7 +250,7 @@
 	<filter>
 		<name>IT-CONTROLLER: ROLL RATE CMD</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<expression>
 				<table>
@@ -267,7 +267,7 @@
 	<filter>
 		<name>IT-CONTROLLER: ROLL RATE KP (P Gain)</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<expression>
 				<table>
@@ -333,7 +333,7 @@
 	<filter>
 		<name>IT-CONTROLLER: RUDDER NORMALIZER</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<or>
