@@ -302,36 +302,6 @@
 	</filter>
 	
 	<filter>
-		<name>LNAV ADVANCE</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<sum>
-					<table>
-						<property>/velocities/groundspeed-kt</property>
-						<entry><ind>120</ind><dep>1.0</dep></entry>
-						<entry><ind>400</ind><dep>1.2</dep></entry>
-					</table>
-					<table>
-						<abs>
-							<dif>
-								<property>/autopilot/route-manager/wp[1]/true-bearing-deg</property>
-								<property>/autopilot/route-manager/wp[0]/true-bearing-deg</property>
-							</dif>
-						</abs>
-						<entry><ind>30</ind><dep>0.0</dep></entry>
-						<entry><ind>70</ind><dep>1.0</dep></entry>
-					</table>
-				</sum>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/lnav-advance-nm</output>
-		<min>1.0</min>
-		<max>10.0</max>
-	</filter>
-  
-	<filter>
 		<name>HEADING ERROR DEG</name>
 		<debug>false</debug>
 		<type>gain</type>
