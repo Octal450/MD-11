@@ -447,9 +447,12 @@ var ap_various = func {
 		R = radius/math.sin(delta_angle_rad);
 		dist_coeff = delta_angle * -0.011111 + 2;
 		if (dist_coeff < 1) {
-			ist_coeff = 1;
+			dist_coeff = 1;
 		}
 		turn_dist = math.cos(delta_angle_rad) * R * dist_coeff / 1852;
+		if (getprop("/gear/gear[0]/wow") == 1 and turn_dist < 1) {
+			turn_dist = 1;
+		}
 		setprop("/it-autoflight/internal/lnav-advance-nm", turn_dist);
 		if (getprop("/sim/time/elapsed-sec")-getprop("/autopilot/internal/wp-change-time") > 60) {
 			setprop("/autopilot/internal/wp-change-check-period", time);
