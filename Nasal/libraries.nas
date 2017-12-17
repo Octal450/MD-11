@@ -257,3 +257,9 @@ controls.flapsDown = func(step) {
 		return 0;
 	}
 }
+
+if (getprop("/controls/flight/auto-coordination") == 1) {
+	setprop("/controls/flight/auto-coordination", 0);
+	gui.popupTip("System: Auto Coordination has been turned off for this session.");
+	print("System: Auto Coordination has been turned off for this session.");
+}
