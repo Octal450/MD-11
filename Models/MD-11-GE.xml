@@ -566,7 +566,7 @@
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
 		<property>controls/flight/rudder-upper</property>
-		<factor>-45</factor>
+		<factor>-60</factor>
 		<axis>
 			<x1-m>29.2089</x1-m>
 			<y1-m>0</y1-m>
@@ -582,7 +582,7 @@
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
 		<property>controls/flight/rudder-lower</property>
-		<factor>-45</factor>
+		<factor>-60</factor>
 		<axis>
 			<x1-m>29.2089</x1-m>
 			<y1-m>0</y1-m>
@@ -600,7 +600,7 @@
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
 	        <property>controls/flight/aileron-in-left</property>
-		<factor>-40</factor>
+		<factor>-50</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>-7.3613</y1-m>
@@ -615,7 +615,7 @@
 	        <type>rotate</type>
 		<object-name>AileronL2</object-name>
 	        <property>controls/flight/aileron-out-left</property>
-        	<factor>40</factor>
+        	<factor>50</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>-22.7524</y1-m>
@@ -631,7 +631,7 @@
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
         	<property>controls/flight/aileron-in-right</property>
-		<factor>-40</factor>
+		<factor>-50</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>7.3613</y1-m>
@@ -646,7 +646,7 @@
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
 	        <property>controls/flight/aileron-out-right</property>
-	        <factor>40</factor>
+	        <factor>50</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>22.7524</y1-m>
@@ -666,7 +666,7 @@
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
 		<property>sim/multiplay/generic/float[6]</property>
-		<factor>12</factor>
+		<factor>14</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -683,7 +683,7 @@
 		<type>rotate</type>
 		<object-name>elevator.1o</object-name>
 		<property>controls/flight/elevator-out-left</property>
-		<factor>40</factor>
+		<factor>50</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>-8.7874</y1-m>
@@ -698,7 +698,7 @@
 		<type>rotate</type>
 		<object-name>elevator.1i</object-name>
 		<property>controls/flight/elevator-in-left</property>
-		<factor>40</factor>
+		<factor>50</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>-8.7874</y1-m>
@@ -713,7 +713,7 @@
 		<type>rotate</type>
 		<object-name>elevator.2i</object-name>
 		<property>controls/flight/elevator-in-right</property>
-		<factor>-40</factor>
+		<factor>-50</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>8.7874</y1-m>
@@ -728,7 +728,7 @@
 		<type>rotate</type>
 		<object-name>elevator.2o</object-name>
 		<property>controls/flight/elevator-out-right</property>
-		<factor>-40</factor>
+		<factor>-50</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>8.7874</y1-m>

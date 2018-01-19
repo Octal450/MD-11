@@ -67,7 +67,7 @@ var mismatch_chk = func {
 			error_mismatch.open();
 		}
 		print("Mismatch: 0x121");
-	} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 50000 or getprop("/systems/acconfig/libraries-loaded") == 0) {
+	} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 50000 or getprop("/systems/acconfig/libraries-loaded") != 1) {
 		setprop("/systems/acconfig/mismatch-code", "0x223");
 		setprop("/systems/acconfig/mismatch-reason", "Aircraft initialization failed");
 		if (getprop("/systems/acconfig/out-of-date") != 1) {

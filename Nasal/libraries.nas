@@ -257,3 +257,30 @@ controls.flapsDown = func(step) {
 		return 0;
 	}
 }
+
+var slewProp = func(prop, delta) {
+	delta *= getprop("/sim/time/delta-realtime-sec");
+	setprop(prop, getprop(prop) + delta);
+	return getprop(prop);
+}
+
+controls.elevatorTrim = func(speed) {
+	if (getprop("/systems/hydraulic/sys1-psi") >= 1500 or getprop("/systems/hydraulic/sys3-psi") >= 1500) {
+		slewProp("/controls/flight/elevator-trim", speed * 0.045);
+	}
+}
+
+setlistener("/controls/flight/elevator-trim", func {
+	if (getprop("/controls/flight/elevator-trim") > 0.07) {
+		setprop("/controls/flight/elevator-trim", 0.07);
+	}
+});
+
+if (getprop("/controls/flight/auto-coordination") == 1) {
+	setprop("/controls/flight/auto-coordination", 0);
+	setprop("/controls/flight/aileron-drives-tiller", 1);
+} else {
+	setprop("/controls/flight/aileron-drives-tiller", 0);
+}
+
+setprop("/systems/acconfig/libraries-loaded", 1);

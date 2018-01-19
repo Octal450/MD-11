@@ -86,8 +86,8 @@
 		<gain>1.0</gain>
 		<input>/controls/flight/elevator</input>
 		<output>/lsas/elevator-command</output>
-		<min>-0.1</min>
-		<max>0.1</max>
+		<min>-0.2</min>
+		<max>0.2</max>
 	</filter>
 	
 	<pid-controller>
@@ -165,8 +165,8 @@
 			<gamma>0</gamma>
 			<Ti>0.2</Ti>
 			<Td>0.005</Td>
-			<u_min>-0.1</u_min>
-			<u_max>0.1</u_max>
+			<u_min>-0.2</u_min>
+			<u_max>0.2</u_max>
 		</config>
 	</pid-controller>
 	

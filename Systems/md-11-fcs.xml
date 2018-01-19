@@ -1,0 +1,1003 @@
+<!-- McDonnell Douglas MD-11 FCS -->
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<system name="MD-11: FCS">
+	
+	<property value="0.0">fcs/slat-pos-deg</property>
+	
+	<channel name="Surface Droop">
+		
+		<fcs_function name="hydraulics/aileron-droop">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						 62  0.5
+						116  0.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="hydraulics/aileron-droop-neg">
+			<input>hydraulics/aileron-droop</input>
+			<gain>-1.0</gain>
+		</pure_gain>
+		
+		<fcs_function name="hydraulics/elevator-droop">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						 72  0.5
+						121  0.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-l-flap">
+			<function>
+				<sum>
+					<property>/controls/flight/aileron</property>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								0.5       0.00
+								9.5       0.57
+								28.5      0.57
+								34.5      0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-r-flap">
+			<function>
+				<sum>
+					<property>/controls/flight/aileron</property>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								0.5        0.00
+								9.5       -0.57
+								28.5      -0.57
+								34.5       0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
+	<channel name="Aileron L Outer">
+		
+		<fcs_function name="hydraulics/aileron-l-out/function">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron-l-flap</independentVar>
+					<tableData>
+						-0.95 -0.5
+						 0.00  0.0
+						 0.95  0.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="hydraulics/aileron-l-out/pressure-switch-or">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/hydraulic/sys2-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/aileron-l-out/switch">
+			<default value="hydraulics/aileron-droop"/>
+			<test logic="AND" value="0">
+				hydraulics/aileron-l-out/pressure-switch-or EQ 1
+				/fdm/jsbsim/fcs/slat-pos-deg LT 2
+			</test>
+			<test logic="AND" value="hydraulics/aileron-l-out/function">
+				hydraulics/aileron-l-out/pressure-switch-or EQ 1
+				/fdm/jsbsim/fcs/slat-pos-deg GE 2
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/aileron-l-out/final">
+			<input>hydraulics/aileron-l-out/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/aileron-out-left</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Aileron L Inner">
+		
+		<fcs_function name="hydraulics/aileron-l-in/function">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron-l-flap</independentVar>
+					<tableData>
+						-0.95 -0.5
+						 0.00  0.0
+						 0.95  0.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="hydraulics/aileron-l-in/switch">
+			<default value="hydraulics/aileron-droop"/>
+			<test logic="OR" value="hydraulics/aileron-l-in/function">
+				/systems/hydraulic/sys2-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/aileron-l-in/final">
+			<input>hydraulics/aileron-l-in/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/aileron-in-left</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Aileron R Inner">
+		
+		<fcs_function name="hydraulics/aileron-r-in/function">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron-r-flap</independentVar>
+					<tableData>
+						-0.95 -0.5
+						 0.00  0.0
+						 0.95  0.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="hydraulics/aileron-r-in/switch">
+			<default value="hydraulics/aileron-droop-neg"/>
+			<test logic="OR" value="hydraulics/aileron-r-in/function">
+				/systems/hydraulic/sys1-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/aileron-r-in/final">
+			<input>hydraulics/aileron-r-in/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/aileron-in-right</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Aileron R Outer">
+		
+		<fcs_function name="hydraulics/aileron-r-out/function">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron-r-flap</independentVar>
+					<tableData>
+						-0.95 -0.5
+						 0.00  0.0
+						 0.95  0.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="hydraulics/aileron-r-out/pressure-switch-or">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/hydraulic/sys2-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/aileron-r-out/switch">
+			<default value="hydraulics/aileron-droop-neg"/>
+			<test logic="AND" value="0">
+				hydraulics/aileron-r-out/pressure-switch-or EQ 1
+				/fdm/jsbsim/fcs/slat-pos-deg LT 2
+			</test>
+			<test logic="AND" value="hydraulics/aileron-r-out/function">
+				hydraulics/aileron-r-out/pressure-switch-or EQ 1
+				/fdm/jsbsim/fcs/slat-pos-deg GE 2
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/aileron-r-out/final">
+			<input>hydraulics/aileron-r-out/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/aileron-out-right</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Roll">
+		
+		<fcs_function name="hydraulics/aileron-l/final">
+			<function>
+				<product>
+					<sum>
+						<property>hydraulics/aileron-l-out/final</property>
+						<property>hydraulics/aileron-l-in/final</property>
+					</sum>
+					<value>0.5</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-r/final">
+			<function>
+				<product>
+					<sum>
+						<property>hydraulics/aileron-r-in/final</property>
+						<property>hydraulics/aileron-r-out/final</property>
+					</sum>
+					<value>0.5</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/roll-control">
+			<function>
+				<product>
+					<sum>
+						<product>
+							<sum>
+								<property>hydraulics/aileron-l/final</property>
+								<property>hydraulics/aileron-r/final</property>
+							</sum>
+							<value>1.70</value>
+						</product>
+						<product>
+							<sum>
+								<product>
+									<property>/controls/flight/spoiler-l-sum</property>
+									<value>-1.0</value>
+								</product>
+								<property>/controls/flight/spoiler-r-sum</property>
+							</sum>
+							<value>0.30</value>
+						</product>
+					</sum>
+					<value>0.3125</value>
+				</product>
+			</function>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</fcs_function>
+		
+		<aerosurface_scale name="fcs/roll-pos-rad">
+			<input>hydraulics/roll-control</input>
+			<range>
+				<min>-0.436332</min>
+				<max>0.436332</max>
+			</range>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Elevator Common">
+		
+		<pure_gain name="hydraulics/elevator-lsas-gain">
+			<input>/controls/flight/elevator-lsas</input>
+			<gain>0.5</gain>
+		</pure_gain>
+	
+	</channel>
+	
+	<channel name="Elevator L Outer">
+		
+		<switch name="hydraulics/elevator-l-out/switch">
+			<default value="hydraulics/elevator-droop"/>
+			<test logic="OR" value="hydraulics/elevator-lsas-gain">
+				/systems/hydraulic/sys1-psi GE 1500
+				/systems/hydraulic/sys2-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/elevator-l-out/final">
+			<input>hydraulics/elevator-l-out/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/elevator-out-left</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Elevator L Inner">
+		
+		<switch name="hydraulics/elevator-l-in/switch">
+			<default value="hydraulics/elevator-droop"/>
+			<test logic="OR" value="hydraulics/elevator-lsas-gain">
+				/systems/hydraulic/sys2-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/elevator-l-in/final">
+			<input>hydraulics/elevator-l-in/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/elevator-in-left</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Elevator R Inner">
+		
+		<switch name="hydraulics/elevator-r-in/switch">
+			<default value="hydraulics/elevator-droop"/>
+			<test logic="OR" value="hydraulics/elevator-lsas-gain">
+				/systems/hydraulic/sys1-psi GE 1500
+				/systems/hydraulic/sys3-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/elevator-r-in/final">
+			<input>hydraulics/elevator-r-in/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/elevator-in-right</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Elevator R Outer">
+		
+		<switch name="hydraulics/elevator-r-out/switch">
+			<default value="hydraulics/elevator-droop"/>
+			<test logic="OR" value="hydraulics/elevator-lsas-gain">
+				/systems/hydraulic/sys1-psi GE 1500
+				/systems/hydraulic/sys2-psi GE 1500
+			</test>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+		</switch>
+		
+		<kinematic name="hydraulics/elevator-r-out/final">
+			<input>hydraulics/elevator-r-out/switch</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<output>/controls/flight/elevator-out-right</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Pitch">
+		
+		<fcs_function name="hydraulics/elevator-l/final">
+			<function>
+				<product>
+					<sum>
+						<property>hydraulics/elevator-l-out/final</property>
+						<property>hydraulics/elevator-l-in/final</property>
+					</sum>
+					<value>0.5</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/elevator-r/final">
+			<function>
+				<product>
+					<sum>
+						<property>hydraulics/elevator-r-in/final</property>
+						<property>hydraulics/elevator-r-out/final</property>
+					</sum>
+					<value>0.5</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/pitch-control">
+			<function>
+				<product>
+					<sum>
+						<property>hydraulics/elevator-l/final</property>
+						<property>hydraulics/elevator-r/final</property>
+					</sum>
+					<value>0.5</value>
+				</product>
+			</function>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</fcs_function>
+		
+		<aerosurface_scale name="fcs/pitch-pos-rad">
+			<input>hydraulics/pitch-control</input>
+			<range>
+				<min>-0.523599</min>
+				<max>0.523599</max>
+			</range>
+			<output>fcs/pitch-pos-rad</output>
+		</aerosurface_scale>
+		
+		<scheduled_gain name="fcs/pitch-pos-geared">
+			<input>fcs/pitch-pos-rad</input>
+			<table>
+				<independentVar lookup="row">velocities/mach</independentVar>
+				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+				<tableData>
+					     0     43000
+					0.0  1.00  0.65
+					0.9  0.01  0.50
+				</tableData>
+			</table>
+			<output>fcs/pitch-pos-geared</output>
+		</scheduled_gain>
+	
+	</channel>
+	
+	<channel name="Pitch Trim">
+		
+		<aerosurface_scale name="fcs/pitch-trim-cmd-deg">
+			<input>/controls/flight/elevator-trim</input>
+			<domain>
+				<min>-1.00</min>
+				<max>0.07</max>
+			</domain>
+			<range>
+				<min>-14.0</min>
+				<max>1.0</max>
+			</range>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/pitch-trim-pos-rad">
+			<input>/controls/flight/elevator-trim-fdm</input>
+			<domain>
+				<min>-1.00</min>
+				<max>0.07</max>
+			</domain>
+			<range>
+				<min>-0.2181662</min>
+				<max>0.0174533</max>
+			</range>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/pitch-trim-pos-deg">
+			<input>/controls/flight/elevator-trim-fdm</input>
+			<domain>
+				<min>-1.00</min>
+				<max>0.07</max>
+			</domain>
+			<range>
+				<min>-14.0</min>
+				<max>1.0</max>
+			</range>
+		</aerosurface_scale>
+		
+		<scheduled_gain name="fcs/pitch-trim-pos-geared">
+			<input>fcs/pitch-trim-pos-rad</input>
+			<table>
+				<independentVar lookup="row">velocities/mach</independentVar>
+				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+				<tableData>
+					     0     43000
+					0.0  1.00  0.65
+					0.9  0.01  0.50
+				</tableData>
+			</table>
+		</scheduled_gain>
+	
+	</channel>
+	
+	<channel name="FADEC">
+	
+		<lag_filter name="fcs/throttle1">
+			<input>/controls/engines/engine[0]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[0]/throttle-fdm</output>
+			<output>fcs/throttle-cmd-norm</output>
+			<output>fcs/throttle-pos-norm</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/throttle2">
+			<input>/controls/engines/engine[1]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[1]/throttle-fdm</output>
+			<output>fcs/throttle-cmd-norm[1]</output>
+			<output>fcs/throttle-pos-norm[1]</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/throttle3">
+			<input>/controls/engines/engine[2]/throttle-output</input>
+			<c1>0.75</c1>
+			<output>/controls/engines/engine[2]/throttle-fdm</output>
+			<output>fcs/throttle-cmd-norm[2]</output>
+			<output>fcs/throttle-pos-norm[2]</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n1-actual1">
+			<input>/engines/engine[0]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[0]/n1-actual</output>
+			<output>/engines/engine[3]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n1-actual2">
+			<input>/engines/engine[1]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[1]/n1-actual</output>
+			<output>/engines/engine[4]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n1-actual3">
+			<input>/engines/engine[2]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[2]/n1-actual</output>
+			<output>/engines/engine[5]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n2-actual1">
+			<input>/engines/engine[0]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[0]/n2-actual</output>
+			<output>/engines/engine[3]/n2</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n2-actual2">
+			<input>/engines/engine[1]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[1]/n2-actual</output>
+			<output>/engines/engine[4]/n2</output>
+		</lag_filter>
+		
+		<lag_filter name="fcs/n2-actual3">
+			<input>/engines/engine[2]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[2]/n2-actual</output>
+			<output>/engines/engine[5]/n2</output>
+		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Rudder Trim">
+		
+		<aerosurface_scale name="fcs/rudder-trim-cmd-deg">
+			<input>/controls/flight/rudder-trim</input>
+			<domain>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</domain>
+			<range>
+				<min>-29.7</min>
+				<max>29.7</max>
+			</range>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="hydraulics/rudder/trim-norm">
+			<input>/controls/flight/rudder-trim-fdm</input>
+			<range>
+				<min>-0.8</min>
+				<max>0.8</max>
+			</range>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Rudder Upper">
+		
+		<summer name="hydraulics/rudder-upper/summer">
+			<input>/controls/flight/rudder</input>
+			<input>hydraulics/rudder/trim-norm</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="hydraulics/rudder-upper/switch">
+			<default value="0"/>
+			<test value="hydraulics/rudder-upper/summer">
+				/systems/hydraulic/sys1-psi GE 1500
+			</test>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</switch>
+		
+		<pure_gain name="hydraulics/rudder-upper/gain">
+			<input>hydraulics/rudder-upper/switch</input>
+			<gain>0.5</gain>
+		</pure_gain>
+		
+		<kinematic name="hydraulics/rudder-upper/final">
+			<input>hydraulics/rudder-upper/gain</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+			<output>/controls/flight/rudder-upper</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Rudder Lower">
+		
+		<summer name="hydraulics/rudder-lower/summer">
+			<input>/controls/flight/rudder</input>
+			<input>hydraulics/rudder/trim-norm</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="hydraulics/rudder-lower/switch">
+			<default value="0"/>
+			<test value="hydraulics/rudder-lower/summer">
+				/systems/hydraulic/sys2-psi GE 1500
+			</test>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</switch>
+		
+		<pure_gain name="hydraulics/rudder-lower/gain">
+			<input>hydraulics/rudder-lower/switch</input>
+			<gain>0.5</gain>
+		</pure_gain>
+		
+		<kinematic name="hydraulics/rudder-lower/final">
+			<input>hydraulics/rudder-lower/gain</input>
+			<traverse>
+				<setting>
+					<position>-1.0</position>
+					<time>1.1</time>
+				</setting>
+				<setting>
+					<position>1.0</position>
+					<time>1.1</time>
+				</setting>
+			</traverse>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+			<output>/controls/flight/rudder-lower</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Yaw">
+		
+		<fcs_function name="hydraulics/rudder-control">
+			<function>
+				<sum>
+					<property>hydraulics/rudder-upper/final</property>
+					<property>hydraulics/rudder-lower/final</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</fcs_function>
+		
+		<pure_gain name="hydraulics/rudder/gain">
+			<input>hydraulics/rudder-control</input>
+			<gain>-1.0</gain>
+		</pure_gain>
+		
+		<scheduled_gain name="fcs/yaw-damper-rate">
+			<input>velocities/r-aero-rad_sec</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+					30  0.00
+					60  2.00
+				</tableData>
+			</table>
+			<clipto>
+				<min>-0.05</min>
+				<max>0.05</max>
+			</clipto>
+		</scheduled_gain>
+		
+		<scheduled_gain name="fcs/yaw-damper-final">
+			<input>fcs/yaw-damper-rate</input>
+			<table>
+				<independentVar lookup="row">velocities/ve-kts</independentVar>
+				<tableData>
+					30  0.0
+					31  1.0
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<switch name="fcs/yaw-damper-switch">
+			<default value="0"/>
+			<test logic="AND" value="fcs/yaw-damper-final">
+				/gear/gear[1]/wow EQ 0
+				/gear/gear[2]/wow EQ 0
+			</test>
+		</switch>
+		
+		<summer name="fcs/yaw-sum">
+			<input>hydraulics/rudder/gain</input>
+			<input>fcs/yaw-damper-switch</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<aerosurface_scale name="rubbish/rudder-pos-rad">
+			<input>fcs/yaw-sum</input>
+			<range>
+				<min>-0.523599</min>
+				<max>0.523599</max>
+			</range>
+			<output>fcs/rudder-pos-rad</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Flaps">
+		
+		<kinematic name="Flaps Control">
+			<input>/controls/flight/flaps-output</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>50</position>
+					<time>30</time>
+				</setting>
+			</traverse>
+			<output>fcs/flap-pos-deg</output>
+		</kinematic>
+		
+		<aerosurface_scale name="Flap position normalized">
+			<input>fcs/flap-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>50</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/flap-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Slats">
+		
+		<kinematic name="Slats Control">
+			<input>/controls/flight/slats</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>31</position>
+					<time>20</time>
+				</setting>
+			</traverse>
+			<output>fcs/slat-pos-deg</output>
+		</kinematic>
+		
+		<aerosurface_scale name="Slat position normalized">
+			<input>fcs/slat-pos-deg</input>
+			<domain>
+				<min>0</min>
+				<max>27</max>
+			</domain>
+			<range>
+				<min>0</min>
+				<max>1</max>
+			</range>
+			<output>fcs/slat-pos-norm</output>
+		</aerosurface_scale>
+	
+	</channel>
+	
+	<channel name="Landing Gear">
+		
+		<kinematic name="Gear Control">
+			<input>gear/gear-cmd-norm</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>1</position>
+					<time>10</time>
+				</setting>
+			</traverse>
+			<output>gear/gear-pos-norm</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Speedbrake">
+		
+		<kinematic name="Speedbrake">
+			<input>/controls/flight/speedbrake-output</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>1</position>
+					<time>1</time>
+				</setting>
+			</traverse>
+			<output>fcs/speedbrake-pos-norm</output>
+		</kinematic>
+	
+	</channel>
+	
+	<channel name="Tiller">
+		
+		<switch name="hydraulics/tiller/switch">
+			<default value="/controls/flight/rudder"/>
+			<test value="/controls/flight/aileron">
+				/controls/flight/aileron-drives-tiller EQ 1
+			</test>
+		</switch>
+		
+		<fcs_function name="hydraulics/tiller/function">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+					<independentVar lookup="column">hydraulics/tiller/switch</independentVar>
+					<tableData>
+						       -1     0  1
+						30.000 -70.0  0  70.0
+						30.001 -10.0  0  10.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fcs/steer-deg">
+			<input>hydraulics/tiller/function</input>
+			<rate_limit>70</rate_limit>
+			<output>fcs/steer-pos-deg[0]</output>
+		</actuator>
+	
+	</channel>
+
+</system>

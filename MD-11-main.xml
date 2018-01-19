@@ -311,12 +311,15 @@
 			</engine>
 		</engines>
 		<flight>
+			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<aileron-sum type="double">0</aileron-sum>
 			<elevator-lsas type="double">0</elevator-lsas>
 			<elevator-sum type="double">0</elevator-sum>
-			<elevator-trim type="double">-0.2</elevator-trim>
+			<elevator-trim type="double">-0.25</elevator-trim>
+			<elevator-trim-fdm type="double">-0.25</elevator-trim-fdm>
 			<flaps-output type="double">0</flaps-output>
 			<rudder-sum type="double">0</rudder-sum>
+			<rudder-trim-fdm type="double">0</rudder-trim-fdm>
 			<slats type="double">0</slats>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
 			<speedbrake-auto type="double">0</speedbrake-auto>
@@ -412,6 +415,14 @@
 			<vs-knb>0</vs-knb>
 		</custom>
 	</it-autoflight>
+	
+	<systems n="0">
+		<hydraulic n="0">
+			<sys1-psi>0</sys1-psi>
+			<sys2-psi>0</sys2-psi>
+			<sys3-psi>0</sys3-psi>
+		</hydraulic>
+	</systems>
 	
 	<input>
 		<keyboard>
