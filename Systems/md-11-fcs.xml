@@ -49,10 +49,10 @@
 						<table>
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 							<tableData>
-								0.5       0.00
-								9.5       0.57
-								28.5      0.57
-								34.5      0.00
+								 0.5  0.00
+								 9.5  0.57
+								28.5  0.57
+								34.5  0.00
 							</tableData>
 						</table>
 						<property>/controls/hydraulic/aileron-droop</property>
@@ -69,10 +69,10 @@
 						<table>
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 							<tableData>
-								0.5        0.00
-								9.5       -0.57
-								28.5      -0.57
-								34.5       0.00
+								 0.5  0.00
+								 9.5 -0.57
+								28.5 -0.57
+								34.5  0.00
 							</tableData>
 						</table>
 						<property>/controls/hydraulic/aileron-droop</property>
@@ -347,6 +347,20 @@
 				<max>0.436332</max>
 			</range>
 		</aerosurface_scale>
+		
+		<scheduled_gain name="fcs/roll-pos-geared">
+			<input>fcs/roll-pos-rad</input>
+			<table>
+				<independentVar lookup="row">velocities/mach</independentVar>
+				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+				<tableData>
+					     0     43000
+					0.0  1.00  0.70
+					0.9  0.25  0.55
+				</tableData>
+			</table>
+			<output>fcs/roll-pos-geared</output>
+		</scheduled_gain>
 	
 	</channel>
 	

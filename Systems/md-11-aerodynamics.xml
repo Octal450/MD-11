@@ -417,7 +417,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<property>fcs/roll-pos-rad</property>
+				<property>fcs/roll-pos-geared</property>
 				<value>0.18</value>
 			</product>
 		</function>
@@ -550,7 +550,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<property>fcs/roll-pos-rad</property>
+				<property>fcs/roll-pos-geared</property>
 				<value>0</value>
 			</product>
 		</function>
