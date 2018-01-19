@@ -155,7 +155,7 @@
 		</equals>
 		<equals>
 		<property>it-autoflight/mode/thr</property>		
-		<value> PITCH</value>
+		<value>PITCH</value>
 		</equals>
 		</and>
         </condition>
@@ -172,7 +172,7 @@
 		</equals>
 		<equals>
 		<property>it-autoflight/mode/thr</property>		
-		<value> PITCH</value>
+		<value>PITCH</value>
 		</equals>
 		</and>
         </condition>
@@ -194,7 +194,7 @@
 		</equals>
 		<not-equals>
 		<property>it-autoflight/mode/thr</property>		
-		<value> PITCH</value>
+		<value>PITCH</value>
 		</not-equals>
 		</and>
         </condition>
@@ -211,7 +211,7 @@
 		</equals>
 		<not-equals>
 		<property>it-autoflight/mode/thr</property>		
-		<value> PITCH</value>
+		<value>PITCH</value>
 		</not-equals>
 		</and>
         </condition>
@@ -911,7 +911,7 @@
 					</equals>
 					<not-equals>
 						<property>it-autoflight/mode/thr</property>
-						<value> PITCH</value>
+						<value>PITCH</value>
 					</not-equals>
 				</and>
 				<and>
@@ -931,7 +931,7 @@
 					</or>
 					<equals>
 						<property>it-autoflight/mode/thr</property>
-						<value> PITCH</value>
+						<value>PITCH</value>
 					</equals>
 				</and>
 			</or>
@@ -963,7 +963,7 @@
 					</equals>
 					<equals>
 						<property>it-autoflight/mode/thr</property>
-						<value> PITCH</value>
+						<value>PITCH</value>
 					</equals>
 				</and>
 			</or>

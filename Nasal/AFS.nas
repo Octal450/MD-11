@@ -665,7 +665,7 @@ var altcapt = func {
 	setprop("/it-autoflight/internal/alt", altinput);
 }
 
-# Min and Max Pitch Reset
+# Min and MaxPITCH Reset
 var minmax = func {
 	var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 	var alt = getprop("/it-autoflight/internal/alt");
@@ -690,11 +690,11 @@ var thrustmode = func {
 	if (getprop("/it-autoflight/output/vert") == 4) {
 		if (calt < alt) {
 			setprop("/it-autoflight/output/thr-mode", 2);
-			setprop("/it-autoflight/mode/thr", " PITCH");
+			setprop("/it-autoflight/mode/thr", "PITCH");
 			setprop("/it-autoflight/mode/vert", "SPD CLB");
 		} else if (calt > alt) {
 			setprop("/it-autoflight/output/thr-mode", 1);
-			setprop("/it-autoflight/mode/thr", " PITCH");
+			setprop("/it-autoflight/mode/thr", "PITCH");
 			setprop("/it-autoflight/mode/vert", "SPD DES");
 		} else {
 			setprop("/it-autoflight/output/thr-mode", 0);
@@ -703,7 +703,7 @@ var thrustmode = func {
 		}
 	} else if (getprop("/it-autoflight/output/vert") == 7) {
 		setprop("/it-autoflight/output/thr-mode", 2);
-		setprop("/it-autoflight/mode/thr", " PITCH");
+		setprop("/it-autoflight/mode/thr", "PITCH");
 	} else {
 		setprop("/it-autoflight/output/thr-mode", 0);
 		setprop("/it-autoflight/mode/thr", "THRUST");

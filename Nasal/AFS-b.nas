@@ -9,9 +9,9 @@
 setlistener("/it-autoflight/mode/lat", func {
 	var lat = getprop("/it-autoflight/mode/lat");
 	if (lat == "HDG") {
-		setprop("/modes/pfd/fma/roll-mode", "HEADING     ");
+		setprop("/modes/pfd/fma/roll-mode", "HEADING");
 	} else if (lat == "LNAV") {
-		setprop("/modes/pfd/fma/roll-mode", "NAV1");
+		setprop("/modes/pfd/fma/roll-mode", "NAV");
 	} else if (lat == "LOC") {
 		setprop("/modes/pfd/fma/roll-mode", "LOC");
 	} else if (lat == "ALGN") {
@@ -54,23 +54,25 @@ setlistener("/it-autoflight/mode/vert", func {
 });
 
 setlistener("/it-autoflight/input/lat-arm", func {
-	if (getprop("/it-autoflight/input/lat-arm") == 1) {
-		setprop("/modes/pfd/fma/roll-mode-armed", "NAV ARMED");
-	} else {
-		setprop("/modes/pfd/fma/roll-mode-armed", "");
-	}
+	lateral_arm();
 });
 
 # Arm LOC
 setlistener("/it-autoflight/output/loc-armed", func {
+	lateral_arm();
+});
+
+var lateral_arm = func {
 	var loca = getprop("/it-autoflight/output/loc-armed");
 	if (loca) {
 		setprop("/modes/pfd/fma/roll-mode-armed", "LAND ARMED");
+	} else if (getprop("/it-autoflight/input/lat-arm") == 1) {
+		setprop("/modes/pfd/fma/roll-mode-armed", "NAV ARMED");
 	} else {
 		setprop("/modes/pfd/fma/roll-mode-armed", "");
 	}
 	appr_arm();
-});
+}
 
 # Arm G/S
 setlistener("/it-autoflight/output/appr-armed", func {

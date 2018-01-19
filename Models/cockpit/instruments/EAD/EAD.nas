@@ -1,4 +1,4 @@
-# MD-11 EAD Canvas
+# MD-11 EAD
 # Joshua Davidson (it0uchpods)
 
 ##############################################
@@ -143,15 +143,15 @@ var canvas_EAD_GE = {
 		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1-actual") + 0.01)));
 		me["N13-decimal"].setTranslation(0, math.round((10*math.mod(getprop("/engines/engine[2]/n1-actual"),1)) * 33.65, 0.1));
 		
-		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90)*D2R);
-		me["N11-thr"].setRotation((getprop("/DU/EAD/N1thr[0]") + 90)*D2R);
-		me["N11-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90)*D2R);
-		me["N12-needle"].setRotation((getprop("/DU/EAD/N1[1]") + 90)*D2R);
-		me["N12-thr"].setRotation((getprop("/DU/EAD/N1thr[1]") + 90)*D2R);
-		me["N12-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90)*D2R);
-		me["N13-needle"].setRotation((getprop("/DU/EAD/N1[2]") + 90)*D2R);
-		me["N13-thr"].setRotation((getprop("/DU/EAD/N1thr[2]") + 90)*D2R);
-		me["N13-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90)*D2R);
+		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90) * D2R);
+		me["N11-thr"].setRotation((getprop("/DU/EAD/N1thr[0]") + 90) * D2R);
+		me["N11-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90) * D2R);
+		me["N12-needle"].setRotation((getprop("/DU/EAD/N1[1]") + 90) * D2R);
+		me["N12-thr"].setRotation((getprop("/DU/EAD/N1thr[1]") + 90) * D2R);
+		me["N12-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90) * D2R);
+		me["N13-needle"].setRotation((getprop("/DU/EAD/N1[2]") + 90) * D2R);
+		me["N13-thr"].setRotation((getprop("/DU/EAD/N1thr[2]") + 90) * D2R);
+		me["N13-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90) * D2R);
 		
 		if (getprop("/systems/fadec/eng1/n1") == 1) {
 			me["N11"].show();
@@ -279,9 +279,9 @@ var canvas_EAD_GE = {
 		me["N23"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n2-actual") + 0.05)));
 		me["N23-decimal"].setText(sprintf("%s", int(10*math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05,1))));
 		
-		me["N21-needle"].setRotation((getprop("/DU/EAD/N2[0]") + 90)*D2R);
-		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90)*D2R);
-		me["N23-needle"].setRotation((getprop("/DU/EAD/N2[2]") + 90)*D2R);
+		me["N21-needle"].setRotation((getprop("/DU/EAD/N2[0]") + 90) * D2R);
+		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90) * D2R);
+		me["N23-needle"].setRotation((getprop("/DU/EAD/N2[2]") + 90) * D2R);
 		
 		if (getprop("/systems/fadec/eng1/n2") == 1) {
 			me["N21"].show();

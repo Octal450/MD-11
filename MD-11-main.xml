@@ -175,6 +175,16 @@
 							<dialog-name>pushback</dialog-name>
 						</binding>
 					</item>
+					<item>
+						<label>Test Canvas</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							setprop("/options/test-canvas", 1);
+							canvas_PFD.showPFD1();
+							</script>
+						</binding>
+					</item>
 				</menu>
 			</default>
 		</menubar>
@@ -415,6 +425,14 @@
 			<vs-knb>0</vs-knb>
 		</custom>
 	</it-autoflight>
+	
+	<lsas n="0">
+		<enable type="bool">1</enable>
+	</lsas>
+	
+	<options n="0">
+		<test-canvas type="bool">1</test-canvas>
+	</options>
 	
 	<systems n="0">
 		<hydraulic n="0">
@@ -700,10 +718,6 @@
 		
 	</instrumentation>
 	
-	<lsas n="0">
-		<enable type="bool">1</enable>
-	</lsas>
-	
 	<nasal n="0">
 		<libraries>
 			<file>Aircraft/IDG-MD-11X/Nasal/libraries.nas</file>
@@ -732,9 +746,12 @@
 		<fms>
 			<file>Aircraft/IDG-MD-11X/Nasal/FMS.nas</file>
 		</fms>
-		<canvas_DU>
+		<canvas_PFD>
+			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD-WIP/PFD.nas</file>
+		</canvas_PFD>
+		<canvas_EAD>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/EAD.nas</file>
-		</canvas_DU>
+		</canvas_EAD>
 	</nasal>
 
 </PropertyList>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0"?>
 
 <!--
 ##############################################
@@ -7,298 +7,152 @@
 -->
 
 <PropertyList>
-  <!-- =============================================================== -->
-  <!--                        PFD display preprocessors                -->
-  <!-- =============================================================== -->
-
+	
 	<filter>
-    	<name>Altitude cursor icon positioning</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>1.0</gain>
-      <input>
-        <property>autopilot/settings/actual-target-altitude-ft</property>
-      </input>
-      <reference>
-		<property>instrumentation/altimeter/indicated-altitude-ft</property>
-      </reference>
-      <output>instrumentation/pfd/target-altitude-diff</output>
-      <min>-430</min>
-      <max>430</max>
-  </filter>
-
-	<filter>
-		<name>Landing runway reference</name> 
+		<name>Track heading diff</name>
 		<type>gain</type>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
-			<property>autopilot/route-manager/landing-rwy-elevation</property>
+			<property>/orientation/track-deg</property>
 		</input>
 		<reference>
-			<property>instrumentation/altimeter/indicated-altitude-ft</property>
+			<property>/instrumentation/pfd/heading-deg</property>
 		</reference>
-		<output>instrumentation/pfd/runway-elevation-diff</output>
-		<min>-1500</min>
-		<max>512</max>
+		<output>/instrumentation/pfd/track-diff</output>
 	</filter>
-
+	
 	<filter>
-		<name>Baro altitude Minimum</name> 
+		<name>Heading scale</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<!--input>
+			<condition>
+				<property>/it-autoflight/custom/trk-fpa</property>
+			</condition>
+			<property>/instrumentation/pfd/track-deg</property>
+		</input-->
+		<input>/instrumentation/pfd/heading-deg</input>
+		<output>/instrumentation/pfd/heading-scale</output>
+	</filter>
+	
+	<filter>
+		<name>Heading bug diff</name>
 		<type>gain</type>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
-			<property>instrumentation/efis/minimums-baro</property>
+			<property>/it-autoflight/input/hdg</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
 		</input>
 		<reference>
-			<property>instrumentation/altimeter/indicated-altitude-ft</property>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
 		</reference>
-		<output>instrumentation/pfd/minimum-diff</output>
-		<min>-480</min>
-		<max>512</max>
+		<output>/instrumentation/pfd/hdg-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
 	</filter>
-
+	
 	<filter>
-    	<name>Target Speed icon positioning</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>1.0</gain>
-      <input>
-        <property>autopilot/settings/target-speed-kt</property>
-      </input>
-      <reference>
-		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-      </reference>
-      <output>instrumentation/pfd/target-speed-diff</output>
-      <min>-60</min>
-      <max>60</max>
-  </filter>
-
-  <filter>
-      <name>Stall speed margin computer</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>1.0</gain>
-      <input>
-          <property>instrumentation/weu/state/stall-speed</property>
-      </input>
-      <reference>
-          <property>velocities/airspeed-kt</property>
-          <offset>102</offset>
-      </reference>
-      <output>instrumentation/pfd/stallspeed-diff</output>
-      <min>-205</min>
-      <max>10</max>
-  </filter>
-
-  <filter>
-      <name>Over speed margin computer</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>-1.0</gain>
-      <input>
-          <property>instrumentation/afds/max-airspeed-kts</property>
-      </input>
-      <reference>
-          <property>velocities/airspeed-kt</property>
-          <offset>-65</offset>
-      </reference>
-      <output>instrumentation/pfd/overspeed-diff</output>
-      <min>-200</min>
-      <max>-10</max>
-  </filter>
-
- 	<filter>
-    	<name>VREF marker positioning</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>1.0</gain>
-      <input>
-        <property>instrumentation/weu/state/vref</property>
-      </input>
-      <reference>
-		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-      </reference>
-      <output>instrumentation/pfd/vref-diff</output>
-      <min>-62</min>
-      <max>60</max>
-  </filter>
-
- 	<filter>
-    	<name>VREF text positioning</name> 
-      <type>gain</type>
-      <update-interval-secs type="double">0.05</update-interval-secs>
-      <gain>1.0</gain>
-      <input>
-        <property>instrumentation/weu/state/vref</property>
-      </input>
-      <reference>
-		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-      </reference>
-      <output>instrumentation/pfd/vref-text-diff</output>
-      <min>-55</min>
-      <max>63</max>
-  </filter>
-
-	<filter>
-    	<name>V1 marker positioning</name> 
+		<name>Track bug diff</name>
 		<type>gain</type>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
-			<property>instrumentation/weu/state/v1</property>
+			<property>/instrumentation/pfd/track-deg</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
 		</input>
 		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
 		</reference>
-		<output>instrumentation/pfd/v1-diff</output>
-		<min>-64</min>
-		<max>60</max>
+		<output>/instrumentation/pfd/track-hdg-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
 	</filter>
-
+	
 	<filter>
-    	<name>VR marker positioning</name> 
+		<name>Speed Predictor Input</name>
 		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
-			<property>instrumentation/weu/state/vr</property>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>30</value>
+				</difference>
+			</expression>
 		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/vr-diff</output>
-		<min>-64</min>
-		<max>60</max>
+		<output>/instrumentation/pfd/speed-minus-30</output>
+		<min>0</min>
+		<max>390</max>
 	</filter>
-
+	
+	<predict-simple>
+		<name>Speed Predictor (Smoothed)</name>
+		<debug>false</debug>
+		<input>/instrumentation/pfd/speed-minus-30</input>
+		<output>/instrumentation/pfd/speed-lookahead-cmd</output>
+		<seconds>10.0</seconds>
+		<filter-gain>0.01</filter-gain>
+	</predict-simple>
+	
 	<filter>
-    	<name>V2 marker positioning</name> 
-		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<gain>1.0</gain>
-		<input>
-			<property>instrumentation/weu/state/v2</property>
-		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/v2-diff</output>
-		<min>-64</min>
-		<max>60</max>
+		<name>Speed Predictor Exponential</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/pfd/speed-lookahead-cmd</input>
+		<output>/instrumentation/pfd/speed-lookahead</output>
+		<filter-time>0.32</filter-time>
 	</filter>
-
+	
 	<filter>
-    	<name>Flap UP marker positioning</name> 
+		<name>Vertical Speed Needle</name>
 		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<gain>1.0</gain>
+		<gain>1</gain>
 		<input>
-			<property>instrumentation/weu/state/flap</property>
+			<expression>
+				<table>
+					<property>/it-autoflight/internal/vert-speed-fpm</property>
+					<entry><ind>-6000</ind><dep>-76.6</dep></entry>
+					<entry><ind>-4000</ind><dep>-74.8</dep></entry>
+					<entry><ind>-2000</ind><dep>-73.0</dep></entry>
+					<entry><ind>-1500</ind><dep>-70.2</dep></entry>
+					<entry><ind>-1000</ind><dep>-66.5</dep></entry>
+					<entry><ind> -750</ind><dep>-59.8</dep></entry>
+					<entry><ind> -500</ind><dep>-49.0</dep></entry>
+					<entry><ind> -250</ind><dep>-30.1</dep></entry>
+					<entry><ind>    0</ind><dep>  0.0</dep></entry>
+					<entry><ind>  250</ind><dep> 30.1</dep></entry>
+					<entry><ind>  500</ind><dep> 49.0</dep></entry>
+					<entry><ind>  750</ind><dep> 59.8</dep></entry>
+					<entry><ind> 1000</ind><dep> 66.5</dep></entry>
+					<entry><ind> 1500</ind><dep> 70.2</dep></entry>
+					<entry><ind> 2000</ind><dep> 73.0</dep></entry>
+					<entry><ind> 4000</ind><dep> 74.8</dep></entry>
+					<entry><ind> 6000</ind><dep> 76.6</dep></entry>
+				</table>
+			</expression>
 		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/flap-diff</output>
-		<min>-64</min>
-		<max>60</max>
+		<output>/instrumentation/pfd/vs-needle</output>
 	</filter>
-
-	<filter>
-    	<name>Flap 1 marker positioning</name> 
-		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<gain>1.0</gain>
-		<input>
-			<property>instrumentation/weu/state/fl1</property>
-		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/fl1-diff</output>
-		<min>-64</min>
-		<max>60</max>
-	</filter>
-
-	<filter>
-    	<name>Flap 5 marker positioning</name> 
-		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<gain>1.0</gain>
-		<input>
-			<property>instrumentation/weu/state/fl5</property>
-		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/fl5-diff</output>
-		<min>-64</min>
-		<max>60</max>
-	</filter>
-
-	<filter>
-    	<name>Flap 15 marker positioning</name> 
-		<type>gain</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<gain>1.0</gain>
-		<input>
-			<property>instrumentation/weu/state/fl15</property>
-		</input>
-		<reference>
-			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-		</reference>
-		<output>instrumentation/pfd/fl15-diff</output>
-		<min>-64</min>
-		<max>60</max>
-	</filter>
-
-<!-- =============================================================== -->
-  <!--                 speed trend vector processing                   -->
-  <!-- =============================================================== -->
-
-  <predict-simple>
-    <name>speed predictor (smoothed)</name>
-    <update-interval-secs type="double">0.1</update-interval-secs>
-    <input>velocities/airspeed-kt</input>
-    <output>instrumentation/pfd/speed-lookahead</output>
-    <seconds>10.0</seconds>
-    <filter-gain>0.05</filter-gain>
-  </predict-simple>
-
-  <filter>
-    <name>PFD preprocessor (spd trend up)</name>
-    <type>gain</type>
-    <update-interval-secs type="double">0.1</update-interval-secs>
-    <input>
-      <property>instrumentation/pfd/speed-lookahead</property>
-    </input>
-    <reference>
-      <property>velocities/airspeed-kt</property>
-      <offset>90</offset>
-    </reference>
-    <gain>-0.002667</gain>
-    <output>instrumentation/pfd/speed-trend-up</output>
-    <max>0.24</max>
-    <min>0</min>
-  </filter>
-
-  <filter>
-    <name>PFD preprocessor (spd trend down)</name>
-    <type>gain</type>
-    <update-interval-secs type="double">0.1</update-interval-secs>
-    <input>
-      <property>instrumentation/pfd/speed-lookahead</property>
-      <min>0</min>
-    </input>
-    <reference>
-      <property>velocities/airspeed-kt</property>
-      <offset>-90</offset>
-    </reference>
-    <gain>-0.002667</gain>
-    <output>instrumentation/pfd/speed-trend-down</output>
-    <min>-0.24</min>
-    <max>0</max>
-  </filter>
 
 </PropertyList>

@@ -266,6 +266,7 @@
 		</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/heading-deg</output>
+		<output>/instrumentation/pfd/heading-deg</output>
 	</filter>
 	
 	<filter>
@@ -299,6 +300,7 @@
 		<input>/instrumentation/pfd/heading-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/track-deg</output>
+		<output>/instrumentation/pfd/track-deg</output>
 	</filter>
 	
 	<filter>
