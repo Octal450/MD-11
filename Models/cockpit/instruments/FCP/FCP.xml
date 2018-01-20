@@ -1592,855 +1592,133 @@
 		</center>
 	</animation>
 	
-	
-	
-	
-<!-- Captain's MFD controls -->
-	
-	    <animation>
-        <type>pick</type>
-        <object-name>RDR.wpt.1</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis/inputs/wpt</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-    	    <animation>
-        <type>pick</type>
-        <object-name>traffic.1</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis/inputs/tfc</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-        	    <animation>
-        <type>pick</type>
-        <object-name>data.1</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis/inputs/data</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-            	    <animation>
-        <type>pick</type>
-        <object-name>arpt.1</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis/inputs/arpt</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-
+	<!-- Baro settings -->
     <animation>
-	<type>pick</type>
-	<object-name>STA.1</object-name>
-	<action>
-	    <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis/inputs/sta</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
+		<type>pick</type>
+		<object-name>In-HPa.L</object-name>
+		<object-name>In-HPa.R</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>modes/altimeter/inhg</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
     </animation>
 
-    <animation>
-	<type>pick</type>
-	<object-name>MAP.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis/mfd/display-mode</property>
-			<value>MAP</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/mfd/display-mode</property>
-		<value>MAP</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis/mfd/display-mode</property>
-			<value>VOR</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/mfd/display-mode</property>
-		<value>VOR</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>APP.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis/mfd/display-mode</property>
-			<value>APP</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/mfd/display-mode</property>
-		<value>APP</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>PLAN.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/inputs/nd-centered</property>
-		<value>1</value>
-	    </binding>
-	    <binding>
-		<command>nasal</command>
-		<script>setprop("instrumentation/efis/inputs/plan-wpt-index",getprop("autopilot/route-manager/current-wp"));</script>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/mfd/display-mode</property>
-		<value>PLAN</value>
-	    </binding>
-	    <binding>
-		<command>nasal</command>
-		<script>setprop("/sim/sounde/btn1", 1);</script>
-	    </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR1.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis/inputs/lh-vor-adf") == 1) {
-		    setprop("instrumentation/efis/inputs/lh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis/inputs/lh-vor-adf", 1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR2.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis/inputs/rh-vor-adf") == 1) {
-		    setprop("instrumentation/efis/inputs/rh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis/inputs/rh-vor-adf", 1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>ADF1.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis/inputs/lh-vor-adf") == -1) {
-		    setprop("instrumentation/efis/inputs/lh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis/inputs/lh-vor-adf", -1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>ADF2.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis/inputs/rh-vor-adf") == -1) {
-		    setprop("instrumentation/efis/inputs/rh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis/inputs/rh-vor-adf", -1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>RNG_incr.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		  <and>
-		    <less-than>
-			<property>instrumentation/efis/inputs/range-nm</property>
-			<value>640</value>
-		    </less-than>
-		    <greater-than>
-			<property>instrumentation/efis/inputs/range-nm</property>
-			<value>5</value>
-		    </greater-than>
-		  </and>
-		</condition>
-		<command>property-cycle</command>
-		<property>instrumentation/efis/inputs/range-nm</property>
-		<value type="int">10</value>
-		<value type="int">20</value>
-		<value type="int">40</value>
-		<value type="int">80</value>
-		<value type="int">160</value>
-		<value type="int">320</value>
-		<value type="int">640</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>RNG_decr.L</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		  <and>
-		    <less-than>
-			<property>instrumentation/efis/inputs/range-nm</property>
-			<value>645</value>
-		    </less-than>
-		    <greater-than>
-			<property>instrumentation/efis/inputs/range-nm</property>
-			<value>10</value>
-		    </greater-than>
-		  </and>
-		</condition>
-		<command>property-cycle</command>
-		<property>instrumentation/efis/inputs/range-nm</property>
-		<value type="int">640</value>
-		<value type="int">320</value>
-		<value type="int">160</value>
-		<value type="int">80</value>
-		<value type="int">40</value>
-		<value type="int">20</value>
-		<value type="int">10</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>Tru-Mag.L</object-name>
-	<object-name>Tru-Mag.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/mfd/true-north</property>
-	    </binding>
-	    <binding>
-		<command>property-toggle</command>
-		<property>instrumentation/efis[1]/mfd/true-north</property>
-	    </binding>
-	</action>
-    </animation>
-
-<!-- FO MFD controls -->
-
-	    <animation>
-        <type>pick</type>
-        <object-name>RDR.wpt.2</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis[1]/inputs/wpt</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-    	    <animation>
-        <type>pick</type>
-        <object-name>traffic.2</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis[1]/inputs/tfc</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-        	    <animation>
-        <type>pick</type>
-        <object-name>data.2</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis[1]/inputs/data</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-    
-            	    <animation>
-        <type>pick</type>
-        <object-name>arpt.2</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis[1]/inputs/arpt</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>STA.2</object-name>
-	<action>
-	    <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/efis[1]/inputs/sta</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>MAP.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis[1]/mfd/display-mode</property>
-			<value>MAP</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis[1]/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis[1]/mfd/display-mode</property>
-		<value>MAP</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis[1]/mfd/display-mode</property>
-			<value>VOR</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis[1]/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis[1]/mfd/display-mode</property>
-		<value>VOR</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>APP.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		    <equals>
-			<property>instrumentation/efis[1]/mfd/display-mode</property>
-			<value>APP</value>
-		    </equals>
-		</condition>
-		<command>property-toggle</command>
-		<property>instrumentation/efis[1]/inputs/nd-centered</property>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis[1]/mfd/display-mode</property>
-		<value>APP</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>PLAN.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis[1]/inputs/nd-centered</property>
-		<value>1</value>
-	    </binding>
-	    <binding>
-		<command>nasal</command>
-		<script>setprop("instrumentation/efis[1]/inputs/plan-wpt-index",getprop("autopilot/route-manager/current-wp"));</script>
-	    </binding>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis[1]/mfd/display-mode</property>
-		<value>PLAN</value>
-	    </binding>
-	    <binding>
-		<command>nasal</command>
-		<script>setprop("/sim/sounde/btn1", 1);</script>
-	    </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR1.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis[1]/inputs/lh-vor-adf") == 1) {
-		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>VOR2.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis[1]/inputs/rh-vor-adf") == 1) {
-		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>ADF1.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis[1]/inputs/lh-vor-adf") == -1) {
-		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis[1]/inputs/lh-vor-adf", -1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>ADF2.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>nasal</command>
-		<script>
-		if (getprop("instrumentation/efis[1]/inputs/rh-vor-adf") == -1) {
-		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", 0);
-		} else {
-		    setprop("instrumentation/efis[1]/inputs/rh-vor-adf", -1);
-		}
-		</script>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>RNG_incr.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		  <and>
-		    <less-than>
-			<property>instrumentation/efis[1]/inputs/range-nm</property>
-			<value>640</value>
-		    </less-than>
-		    <greater-than>
-			<property>instrumentation/efis[1]/inputs/range-nm</property>
-			<value>5</value>
-		    </greater-than>
-		  </and>
-		</condition>
-		<command>property-cycle</command>
-		<property>instrumentation/efis[1]/inputs/range-nm</property>
-		<value type="int">10</value>
-		<value type="int">20</value>
-		<value type="int">40</value>
-		<value type="int">80</value>
-		<value type="int">160</value>
-		<value type="int">320</value>
-		<value type="int">640</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>RNG_decr.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<condition>
-		  <and>
-		    <less-than>
-			<property>instrumentation/efis[1]/inputs/range-nm</property>
-			<value>645</value>
-		    </less-than>
-		    <greater-than>
-			<property>instrumentation/efis[1]/inputs/range-nm</property>
-			<value>10</value>
-		    </greater-than>
-		  </and>
-		</condition>
-		<command>property-cycle</command>
-		<property>instrumentation/efis[1]/inputs/range-nm</property>
-		<value type="int">640</value>
-		<value type="int">320</value>
-		<value type="int">160</value>
-		<value type="int">80</value>
-		<value type="int">40</value>
-		<value type="int">20</value>
-		<value type="int">10</value>
-	    </binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-	</action>
-    </animation>
-
-<!-- Baro settings -->
-    <animation>
-	<type>pick</type>
-	<object-name>In-HPa.L</object-name>
-	<object-name>In-HPa.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/inputs/kpa-mode</property>
-	    </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>BaroSet.L</object-name>
-	<object-name>BaroSet.R</object-name>
-	<object-name>BaroSet2.L</object-name>
-	<object-name>BaroSet2.R</object-name>
-	<action>
-	    <button>1</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/altimeter/setting-inhg</property>
-		<value>29.92</value>
-	    </binding>
-	</action>
-	<action>
-	    <button>3</button>
-	    <repeatable>true</repeatable>
-	    <binding>
-		<command>property-adjust</command>
-		<property>instrumentation/altimeter/setting-inhg</property>
-		<min>26.0</min>
-		<max>33.0</max>
-		<step>0.01</step>
-	    </binding>
-	</action>
-	<action>
-	    <button>4</button>
-	    <repeatable>true</repeatable>
-	    <binding>
-		<command>property-adjust</command>
-		<property>instrumentation/altimeter/setting-inhg</property>
-		<min>26.0</min>
-		<max>33.0</max>
-		<step>-0.01</step>
-	    </binding>
-	</action>
-    </animation>
-
-    <animation>
-	<type>pick</type>
-	<object-name>MINS2.L</object-name>
-	<object-name>MINS2.R</object-name>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-toggle</command>
-		<property>instrumentation/efis/inputs/minimums-mode</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>MD11.Efis.ctl_func("mins",0);</script>
-            </binding>
-	</action>
-    </animation>
-    <animation>
-	<type>pick</type>
-	<object-name>MINS.L</object-name>
-	<object-name>MINS.R</object-name>
-	<action>
-	    <button>3</button>
-	    <repeatable>false</repeatable>
-            <binding>
-                <command>nasal</command>
-                <script>MD11.Efis.ctl_func("dh",10);</script>
-            </binding>
-	</action>
-	<action>
-	    <button>4</button>
-	    <repeatable>false</repeatable>
-            <binding>
-                <command>nasal</command>
-                <script>MD11.Efis.ctl_func("dh",-10);</script>
-            </binding>
-	</action>
-	<action>
-	    <button>0</button>
-	    <repeatable>false</repeatable>
-	    <binding>
-		<command>property-assign</command>
-		<property>instrumentation/efis/minimums</property>
-		<value>250</value>
-	    </binding>
-	    <binding>
-		<command>nasal</command>
-                <script>MD11.Efis.ctl_func("dh",0);</script>
-	    </binding>
-	</action>	
-    </animation>
+	<animation>
+		<type>pick</type>
+		<object-name>BaroSet.L</object-name>
+		<object-name>BaroSet.R</object-name>
+		<object-name>BaroSet2.L</object-name>
+		<object-name>BaroSet2.R</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				libraries.toggleSTD();
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				libraries.unSTD();
+				</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);
+				</script>
+				<condition>
+					<and>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);
+				</script>
+				<condition>
+					<and>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				libraries.unSTD();
+				</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);
+				</script>
+				<condition>
+					<and>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);
+				</script>
+				<condition>
+					<and>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+			</binding>
+		</action>
+	</animation>
 
 </PropertyList>

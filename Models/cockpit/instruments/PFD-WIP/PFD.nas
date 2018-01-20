@@ -60,7 +60,7 @@ var canvas_PFD_base = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","FD_roll","FD_pitch","VSI_needle_up","VSI_needle_dn","HDG","HDG_dial","HDG_Bug","TCAS_OFF"];
+		"ASI_GroundSpd","FD_roll","FD_pitch","VSI_needle_up","VSI_needle_dn","HDG","HDG_dial","HDG_Bug","TCAS_OFF","Slats","Flaps","Flaps_num","QNH"];
 	},
 	update: func() {
 		if (getprop("/options/test-canvas") == 1) {
@@ -191,6 +191,31 @@ var canvas_PFD_base = {
 			HDGBug = -35;
 		}
 		me["HDG_Bug"].setRotation(HDGBug * D2R);
+		
+		# QNH
+		if (getprop("/modes/altimeter/std") == 1) {
+			me["QNH"].setText("29.92");
+		} else if (getprop("/modes/altimeter/inhg") == 0) {
+			me["QNH"].setText(sprintf("%4.0f", getprop("/instrumentation/altimeter/setting-hpa")));
+		} else if (getprop("/modes/altimeter/inhg") == 1) {
+			me["QNH"].setText(sprintf("%2.2f", getprop("/instrumentation/altimeter/setting-inhg")));
+		}
+		
+		# Slats/Flaps
+		if (getprop("/controls/flight/slats") > 0 and getprop("/controls/flight/flap-txt") == 0) {
+			me["Slats"].show();
+		} else {
+			me["Slats"].hide();
+		}
+		
+		if (getprop("/controls/flight/flap-txt") > 0) {
+			me["Flaps"].show();
+			me["Flaps_num"].show();
+			me["Flaps_num"].setText(sprintf("%2.0f", getprop("/controls/flight/flap-txt")));
+		} else {
+			me["Flaps"].hide();
+			me["Flaps_num"].hide();
+		}
 		
 		# Misc
 		me["TCAS_OFF"].hide();
