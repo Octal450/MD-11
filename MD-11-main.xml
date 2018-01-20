@@ -258,9 +258,9 @@
 			<autopilot n="9">
 				<path>Aircraft/IDG-MD-11X/Systems/EAD.xml</path>
 			</autopilot>
-			<property-rule n="101">
+			<autopilot n="100">
 				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
-			</property-rule>
+			</autopilot>
 		</systems>
         
 		<instrumentation>

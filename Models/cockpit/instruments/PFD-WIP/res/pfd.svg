@@ -41,9 +41,9 @@
      inkscape:window-height="1030"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="1445.9031"
-     inkscape:cy="602.62889"
+     inkscape:zoom="2"
+     inkscape:cx="1275.9899"
+     inkscape:cy="800.14673"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -508,6 +508,22 @@
        y="224.02606"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff"
        id="tspan5027">OFF</tspan></text>
+  <rect
+     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="VSI_needle_up_clip"
+     width="38.088799"
+     height="290.78598"
+     x="936.52399"
+     y="148.01045"
+     inkscape:label="#rect9211" />
+  <rect
+     inkscape:label="#rect9211"
+     y="442.3262"
+     x="936.52399"
+     height="290.78598"
+     width="38.088799"
+     id="VSI_needle_dn_clip"
+     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <g
      id="VSI_scale"
      inkscape:label="#g4413">
@@ -2166,4 +2182,17 @@
        d="m 279.39676,473.84829 20.67975,-1.3e-4 0,15.43882 0,0 1.8e-4,27.57637 -15.4389,0 -0.14628,-27.57637 0,0 -101.56067,-5e-5 0,-15.43891 96.46592,2.1e-4 z"
        style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.50006485;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
+  <path
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:3.07355762;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 939.48105,729.87246 -2.5e-4,-286.95512 16.0872,-16.08721 16.08767,16.08757 0,286.95476"
+     id="VSI_needle_up"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc" />
+  <path
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="VSI_needle_dn"
+     d="m 939.48105,151.26674 -2.5e-4,286.95512 16.0872,16.08721 16.08767,-16.08757 0,-286.95476"
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:3.07355762;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="#path4428" />
 </svg>

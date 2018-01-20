@@ -23,7 +23,8 @@ var pitch_mode_armed = getprop("/modes/pfd/fma/pitch-mode-armed");
 setprop("/instrumentation/pfd/hdg-diff", 0);
 setprop("/instrumentation/pfd/heading-scale", 0);
 setprop("/instrumentation/pfd/track-deg", 0);
-setprop("/instrumentation/pfd/vs-needle", 0);
+setprop("/instrumentation/pfd/vs-needle-up", 0);
+setprop("/instrumentation/pfd/vs-needle-dn", 0);
 
 var canvas_PFD_base = {
 	init: func(canvas_group, file) {
@@ -59,7 +60,7 @@ var canvas_PFD_base = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","FD_roll","FD_pitch","HDG","HDG_dial","HDG_Bug","TCAS_OFF"];
+		"ASI_GroundSpd","FD_roll","FD_pitch","VSI_needle_up","VSI_needle_dn","HDG","HDG_dial","HDG_Bug","TCAS_OFF"];
 	},
 	update: func() {
 		if (getprop("/options/test-canvas") == 1) {
@@ -152,6 +153,21 @@ var canvas_PFD_base = {
 		if (getprop("/it-autoflight/fd/pitch-bar") != nil) {
 			me["FD_pitch"].setTranslation(0, -(getprop("/it-autoflight/fd/pitch-bar")) * 3.8);
 		}
+		
+		# Vertical Speed
+		if (getprop("/it-autoflight/internal/vert-speed-fpm") <= -75) {
+			me["VSI_needle_up"].hide();
+		} else {
+			me["VSI_needle_up"].show();
+		}
+		if (getprop("/it-autoflight/internal/vert-speed-fpm") >= 75) {
+			me["VSI_needle_dn"].hide();
+		} else {
+			me["VSI_needle_dn"].show();
+		}
+		
+		me["VSI_needle_up"].setTranslation(0, getprop("/instrumentation/pfd/vs-needle-up"));
+		me["VSI_needle_dn"].setTranslation(0, getprop("/instrumentation/pfd/vs-needle-dn"));
 		
 		# Heading
 		HDG = sprintf("%03d", getprop("/instrumentation/pfd/heading-scale"));
