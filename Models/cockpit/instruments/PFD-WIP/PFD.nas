@@ -310,7 +310,7 @@ var canvas_PFD_base = {
 		me["ALT_thousands"].setText(sprintf("%1.0f", math.floor(getprop("/instrumentation/altimeter/indicated-altitude-ft") / 1000)));
 		me["ALT_hundreds"].setText(sprintf("%1.0f", math.floor(num(right(sprintf("%03d", abs(getprop("/instrumentation/altimeter/indicated-altitude-ft"))), 3)) / 100)));
 		altTens = num(right(sprintf("%02d", getprop("/instrumentation/altimeter/indicated-altitude-ft")), 2));
-		me["ALT_tens"].setTranslation(0, altTens * 1.392);
+		me["ALT_tens"].setTranslation(0, altTens * 2.1325);
 		
 		me["ALT_presel"].setTranslation(0, (getprop("/instrumentation/pfd/alt-presel") / 100) * -50.9016);
 		me["ALT_sel"].setTranslation(0, (getprop("/instrumentation/pfd/alt-sel") / 100) * -50.9016);
