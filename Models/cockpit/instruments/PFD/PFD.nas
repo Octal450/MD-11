@@ -38,6 +38,7 @@ setprop("/it-autoflight/internal/ias-presel", 0);
 setprop("/it-autoflight/internal/ias-sel", 0);
 setprop("/instrumentation/pfd/alt-presel", 0);
 setprop("/instrumentation/pfd/alt-sel", 0);
+setprop("/instrumentation/pfd/bank-limit", 0);
 setprop("/instrumentation/pfd/hdg-pre-diff", 0);
 setprop("/instrumentation/pfd/hdg-diff", 0);
 setprop("/instrumentation/pfd/heading-scale", 0);
@@ -84,13 +85,19 @@ var canvas_PFD_base = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two",
-		"ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial","HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps",
-		"Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no"];
+		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","FD_roll","FD_pitch","ALT_thousands",
+		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial",
+		"HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no"];
 	},
 	update: func() {
-		if (getprop("/options/test-canvas") == 1) {
+		if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
+			PFD_1.page.show();
+			PFD_2.page.show();
 			PFD_1.update();
+			PFD_2.update();
+		} else {
+			PFD_1.page.hide();
+			PFD_2.page.hide();
 		}
 	},
 	updateCommon: func () {
@@ -280,6 +287,12 @@ var canvas_PFD_base = {
 		if (getprop("/it-autoflight/fd/pitch-bar") != nil) {
 			me["FD_pitch"].setTranslation(0, -(getprop("/it-autoflight/fd/pitch-bar")) * 3.8);
 		}
+		
+		me["AI_slipskid"].setTranslation(math.clamp(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid"), -7, 7) * -15, 0);
+		me["AI_bank"].setRotation(-roll * D2R);
+		
+		me["AI_banklimit_L"].setRotation(getprop("/instrumentation/pfd/bank-limit") * -D2R);
+		me["AI_banklimit_R"].setRotation(getprop("/instrumentation/pfd/bank-limit") * D2R);
 		
 		# Altitude
 		me.altitude = getprop("/instrumentation/altimeter/indicated-altitude-ft");
@@ -538,13 +551,13 @@ setlistener("sim/signals/fdm-initialized", func {
 		"view": [1024, 1024],
 		"mipmapping": 1
 	});
-#	PFD1_display.addPlacement({"node": "pfd1.screen"});
-#	PFD2_display.addPlacement({"node": "pfd2.screen"});
+	PFD1_display.addPlacement({"node": "pfd1.screen"});
+	PFD2_display.addPlacement({"node": "pfd2.screen"});
 	var group_pfd1 = PFD1_display.createGroup();
 	var group_pfd2 = PFD2_display.createGroup();
 
-	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD-WIP/res/pfd.svg");
-	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD-WIP/res/pfd.svg");
+	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
 	
 	PFD_update.start();
 });
@@ -558,10 +571,10 @@ var showPFD1 = func {
 	dlg.setCanvas(PFD1_display);
 }
 
-#var showPFD2 = func {
-#	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
-#	dlg.setCanvas(PFD2_display);
-#}
+var showPFD2 = func {
+	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
+	dlg.setCanvas(PFD2_display);
+}
 
 var roundabout = func(x) {
 	var y = x - int(x);

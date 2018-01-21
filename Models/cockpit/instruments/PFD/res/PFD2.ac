@@ -1,0 +1,42 @@
+AC3Db
+MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
+MATERIAL "buttonlights" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
+OBJECT world
+kids 2
+OBJECT poly
+name "pfd2.screen"
+loc 0.00180348 0.00194 0.000136164
+texture "screen.png"
+crease 30.000000
+numvert 4
+0 0.0877238 -0.0844367
+0 -0.0808958 -0.0844367
+0 -0.0808958 0.0841644
+0 0.0877238 0.0841644
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+0 1.00067 0.999407
+3 4.45843e-005 0.999407
+2 4.45843e-005 0.000756443
+1 1.00067 0.000756443
+kids 0
+OBJECT poly
+name "rect"
+loc 0.00153816 0.00586811 0.000454411
+crease 45.000000
+numvert 4
+0 -0.0925011 -0.0925359
+0 -0.0925011 0.0925359
+0 0.0925011 0.0925359
+0 0.0925011 -0.0925359
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0

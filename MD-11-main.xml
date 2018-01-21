@@ -176,12 +176,29 @@
 						</binding>
 					</item>
 					<item>
-						<label>Test Canvas</label>
+						<label>Show Captain's PFD</label>
 						<binding>
 							<command>nasal</command>
 							<script>
-							setprop("/options/test-canvas", 1);
 							canvas_PFD.showPFD1();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Show First Officer's PFD</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							canvas_PFD.showPFD2();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Show EAD</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							canvas_EAD.showEAD();
 							</script>
 						</binding>
 					</item>
@@ -755,7 +772,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/FMS.nas</file>
 		</fms>
 		<canvas_PFD>
-			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD-WIP/PFD.nas</file>
+			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD.nas</file>
 		</canvas_PFD>
 		<canvas_EAD>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/EAD.nas</file>

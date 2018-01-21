@@ -166,28 +166,12 @@
 
 	<model>
 		<name>PFD</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD_L.xml</path>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD1.xml</path>
 		<condition>
-			<and>
-				<or>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac1</property>
-						<value>110</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac2</property>
-						<value>110</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac3</property>
-						<value>110</value>
-					</greater-than-equals>
-				</or>
-				<equals>
-					<property>systems/acconfig/mismatch-code</property>
-					<value>0x000</value>
-				</equals>
-			</and>
+			<equals>
+				<property>systems/acconfig/mismatch-code</property>
+				<value>0x000</value>
+			</equals>
 		</condition>
 		<offsets>
 			<x-m>-27.5138</x-m>
@@ -238,28 +222,12 @@
 
 	<model>
 		<name>PFD2</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD_R.xml</path>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD2.xml</path>
 		<condition>
-			<and>
-				<or>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac1</property>
-						<value>110</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac2</property>
-						<value>110</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac3</property>
-						<value>110</value>
-					</greater-than-equals>
-				</or>
-				<equals>
-					<property>systems/acconfig/mismatch-code</property>
-					<value>0x000</value>
-				</equals>
-			</and>
+			<equals>
+				<property>systems/acconfig/mismatch-code</property>
+				<value>0x000</value>
+			</equals>
 		</condition>
 		<offsets>
 			<x-m>-27.5138</x-m>

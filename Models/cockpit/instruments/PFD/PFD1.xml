@@ -8,17 +8,17 @@
 
 <PropertyList>
 
-	<path>res/EAD.ac</path>
+	<path>res/PFD1.ac</path>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>ead.screen</object-name>
+		<object-name>pfd1.screen</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_EAD.showEAD();</script>
+				<script>canvas_PFD.showPFD1();</script>
 			</binding>
 		</action>
 	</animation>
