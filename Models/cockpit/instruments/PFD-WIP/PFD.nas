@@ -9,8 +9,6 @@ var PFD_1 = nil;
 var PFD_2 = nil;
 var PFD1_display = nil;
 var PFD2_display = nil;
-var wow1 = getprop("/gear/gear[1]/wow");
-var wow2 = getprop("/gear/gear[2]/wow");
 var ASI = 0;
 var ASIpresel = 0;
 var ASIpreseldiff = 0;
@@ -25,11 +23,17 @@ var HDGpresel = 0;
 var HDGsel = 0;
 var LOC = 0;
 var GS = 0;
+var ap1 = getprop("/it-autoflight/output/ap1");
+var ap2 = getprop("/it-autoflight/output/ap2");
+var fd1 = getprop("/it-autoflight/output/fd1");
+var fd2 = getprop("/it-autoflight/output/fd2");
 var throttle_mode = getprop("/it-autoflight/mode/thr");
 var roll_mode = getprop("/modes/pfd/fma/roll-mode");
 var roll_mode_armed = getprop("/modes/pfd/fma/roll-mode-armed");
 var pitch_mode = getprop("/modes/pfd/fma/pitch-mode");
 var pitch_mode_armed = getprop("/modes/pfd/fma/pitch-mode-armed");
+var wow1 = getprop("/gear/gear[1]/wow");
+var wow2 = getprop("/gear/gear[2]/wow");
 setprop("/it-autoflight/internal/ias-presel", 0);
 setprop("/it-autoflight/internal/ias-sel", 0);
 setprop("/instrumentation/pfd/alt-presel", 0);
@@ -71,15 +75,18 @@ var canvas_PFD_base = {
 			}
 		}
 		
+		me.AI_horizon_trans = me["AI_horizon"].createTransform();
+		me.AI_horizon_rot = me["AI_horizon"].createTransform();
+		
 		me.page = canvas_group;
 		
 		return me;
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four",
-		"ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial","HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH",
-		"LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no"];
+		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two",
+		"ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial","HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps",
+		"Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no"];
 	},
 	update: func() {
 		if (getprop("/options/test-canvas") == 1) {
@@ -87,6 +94,11 @@ var canvas_PFD_base = {
 		}
 	},
 	updateCommon: func () {
+		ap1 = getprop("/it-autoflight/output/ap1");
+		ap2 = getprop("/it-autoflight/output/ap2");
+		fd1 = getprop("/it-autoflight/output/fd1");
+		fd2 = getprop("/it-autoflight/output/fd2");
+		athr = getprop("/it-autoflight/output/athr");
 		throttle_mode = getprop("/it-autoflight/mode/thr");
 		roll_mode = getprop("/modes/pfd/fma/roll-mode");
 		roll_mode_armed = getprop("/modes/pfd/fma/roll-mode-armed");
@@ -94,21 +106,30 @@ var canvas_PFD_base = {
 		pitch_mode_armed = getprop("/modes/pfd/fma/pitch-mode-armed");
 		
 		# FMA
-		if (getprop("/it-autoflight/output/fd1") == 1 or getprop("/it-autoflight/output/fd2") == 1) {
+		if (fd1 == 1 or fd2 == 1 or ap1 == 1 or ap2 == 1) {
 			me["FMA_Thrust"].show();
 			me["FMA_Roll"].show();
 			me["FMA_Roll_Arm"].show();
 			me["FMA_Pitch"].show();
 			me["FMA_Pitch_Arm"].show();
 		} else {
-			me["FMA_Thrust"].hide();
+			if (throttle_mode != "PITCH" and athr == 1) {
+				me["FMA_Thrust"].show();
+			} else {
+				me["FMA_Thrust"].hide();
+			}
 			me["FMA_Roll"].hide();
 			me["FMA_Roll_Arm"].hide();
-			me["FMA_Pitch"].hide();
-			me["FMA_Pitch_Arm"].hide();
+			if (throttle_mode == "PITCH" and athr == 1) {
+				me["FMA_Pitch"].show();
+				me["FMA_Pitch_Arm"].show();
+			} else {
+				me["FMA_Pitch"].hide();
+				me["FMA_Pitch_Arm"].hide();
+			}
 		}
 		
-		if (getprop("/it-autoflight/output/athr") == 1) {
+		if (athr == 1) {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].hide();
 		} else if (throttle_mode == "PITCH") {
@@ -119,7 +140,7 @@ var canvas_PFD_base = {
 			me["FMA_ATS_Thrust_Off"].show();
 		}
 		
-		if (getprop("/it-autoflight/output/ap1") == 1 or getprop("/it-autoflight/output/ap2") == 1) {
+		if (ap1 == 1 or ap2 == 1) {
 			me["FMA_AP"].setColor(0.3215,0.8078,1);
 			me["FMA_AP"].setText(sprintf("%s", getprop("/modes/pfd/fma/ap-mode")));
 			me["FMA_AP_Pitch_Off_Box"].hide();
@@ -247,6 +268,12 @@ var canvas_PFD_base = {
 		}
 		
 		# Attitude
+		pitch = getprop("/orientation/pitch-deg") or 0;
+		roll =  getprop("/orientation/roll-deg") or 0;
+		
+		me.AI_horizon_trans.setTranslation(0, pitch * 10.246);
+		me.AI_horizon_rot.setRotation(-roll * D2R, me["AI_center"].getCenter());
+		
 		if (getprop("/it-autoflight/fd/roll-bar") != nil) {
 			me["FD_roll"].setTranslation((getprop("/it-autoflight/fd/roll-bar")) * 2.2, 0);
 		}
