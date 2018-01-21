@@ -31,12 +31,12 @@ var fadecLoop = func {
 	var n1flx = getprop("/systems/thrust/n1/flx-lim");
 	var n1clb = getprop("/systems/thrust/n1/clb-lim");
 	var n1crz = getprop("/systems/thrust/n1/crz-lim");
-	var mode = getprop("/modes/pfd/fma/pitch-mode");
+	var mode = getprop("/it-autoflight/mode/vert");
 	if (getprop("/position/gear-agl-ft") < getprop("/systems/thrust/clbthrust-ft")) {
 		setprop("/controls/engines/thrust-limit", "T/O");
 		setprop("/controls/engines/n1-limit", n1toga);
 	} else {
-		if (mode == "CLB THRUST" or (mode == "V/S" and getprop("/it-autoflight/input/vs") >= 100)) {
+		if (mode == "SPD CLB" or (mode == "V/S" and getprop("/it-autoflight/input/vs") >= 100)) {
 			setprop("/controls/engines/thrust-limit", "CLB");
 			setprop("/controls/engines/n1-limit", n1clb);
 		} else {
