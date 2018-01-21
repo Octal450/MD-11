@@ -9,6 +9,34 @@
 <PropertyList>
 	
 	<filter>
+		<name>Target alt presel diff</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>/it-autoflight/input/alt</property>
+		</input>
+		<reference>
+			<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		</reference>
+		<output>/instrumentation/pfd/alt-presel</output>
+	</filter>
+	
+	<filter>
+		<name>Target alt sel diff</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>/it-autoflight/internal/alt</property>
+		</input>
+		<reference>
+			<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		</reference>
+		<output>/instrumentation/pfd/alt-sel</output>
+	</filter>
+	
+	<filter>
 		<name>Track heading diff</name>
 		<type>gain</type>
 		<update-interval-secs type="double">0.05</update-interval-secs>
@@ -35,6 +63,32 @@
 		</input-->
 		<input>/instrumentation/pfd/heading-deg</input>
 		<output>/instrumentation/pfd/heading-scale</output>
+	</filter>
+	
+	<filter>
+		<name>Heading bug pre diff</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>/it-autoflight/custom/hdg-sel</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<reference>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</reference>
+		<output>/instrumentation/pfd/hdg-pre-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
 	</filter>
 	
 	<filter>
@@ -97,19 +151,19 @@
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>30</value>
+					<value>50</value>
 				</difference>
 			</expression>
 		</input>
-		<output>/instrumentation/pfd/speed-minus-30</output>
+		<output>/instrumentation/pfd/speed-minus-50</output>
 		<min>0</min>
-		<max>390</max>
+		<max>450</max>
 	</filter>
 	
 	<predict-simple>
 		<name>Speed Predictor (Smoothed)</name>
 		<debug>false</debug>
-		<input>/instrumentation/pfd/speed-minus-30</input>
+		<input>/instrumentation/pfd/speed-minus-50</input>
 		<output>/instrumentation/pfd/speed-lookahead-cmd</output>
 		<seconds>10.0</seconds>
 		<filter-gain>0.01</filter-gain>

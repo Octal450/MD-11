@@ -337,24 +337,11 @@
 				<pref-width>65</pref-width>
 				<binding>
 					<condition>
-						<not>
-							<property>/it-autoflight/input/kts-mach</property>
-						</not>
+						<property>systems/electrical/outputs/efis</property>
 					</condition>
 					<command>nasal</command>
 					<script>
-					var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
-					setprop("/it-autoflight/input/spd-kts", iasnow);
-					</script>
-				</binding>
-				<binding>
-					<condition>
-						<property>/it-autoflight/input/kts-mach</property>
-					</condition>
-					<command>nasal</command>
-					<script>
-					var machnow = (int(1000*getprop("/velocities/mach")))*0.001;
-					setprop("/it-autoflight/input/spd-mach", machnow);
+					afs.spdPush();
 					</script>
 				</binding>
 			</button>
@@ -364,22 +351,11 @@
 				<pref-width>65</pref-width>
 				<binding>
 					<condition>
-						<not>
-							<property>/it-autoflight/input/kts-mach</property>
-						</not>
+						<property>systems/electrical/outputs/efis</property>
 					</condition>
 					<command>nasal</command>
 					<script>
-					setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
-					</script>
-				</binding>
-				<binding>
-					<condition>
-						<property>/it-autoflight/input/kts-mach</property>
-					</condition>
-					<command>nasal</command>
-					<script>
-					setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
+					afs.spdPull();
 					</script>
 				</binding>
 			</button>
@@ -388,7 +364,7 @@
 				<legend>Speed/Mach</legend>
 				<binding>
 					<command>property-cycle</command>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/custom/kts-mach</property>
 					<value>0</value>
 					<value>1</value>
 				</binding>
@@ -413,7 +389,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -434,7 +410,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -456,7 +432,7 @@
 				<live type="bool">true</live>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -473,7 +449,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -495,7 +471,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -528,7 +504,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -549,7 +525,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -571,7 +547,7 @@
 				<live type="bool">true</live>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -588,7 +564,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -610,7 +586,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/custom/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -704,6 +680,12 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;&lt;</legend>
+				<enable>
+					<equals>
+						<property>/it-autoflight/custom/show-hdg</property>
+						<value>1</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
@@ -719,6 +701,12 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&lt;</legend>
+				<enable>
+					<equals>
+						<property>/it-autoflight/custom/show-hdg</property>
+						<value>1</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
@@ -735,6 +723,12 @@
                 <pref-width>40</pref-width>
 				<property>/it-autoflight/custom/hdg-sel</property>
 				<live type="bool">true</live>
+				<enable>
+					<equals>
+						<property>/it-autoflight/custom/show-hdg</property>
+						<value>1</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -746,6 +740,12 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;</legend>
+				<enable>
+					<equals>
+						<property>/it-autoflight/custom/show-hdg</property>
+						<value>1</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
@@ -762,6 +762,12 @@
                 <pref-width>25</pref-width>
                 <pref-height>25</pref-height>
 				<legend>&gt;&gt;</legend>
+				<enable>
+					<equals>
+						<property>/it-autoflight/custom/show-hdg</property>
+						<value>1</value>
+					</equals>
+				</enable>
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>

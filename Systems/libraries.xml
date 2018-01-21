@@ -70,6 +70,31 @@
 	</filter>
 	
 	<filter>
+		<name>V/S PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<div>
+					<floor>
+						<div>
+							<abs>
+								<property>/it-autoflight/internal/vert-speed-fpm</property> 
+							</abs>
+							<value>100</value>
+						</div>
+					</floor>
+					<value>10</value>
+				</div>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/vert-speed-fpm-pfd</output>
+		<min>0</min>
+		<max>9.9</max>
+	</filter>
+	
+	<filter>
 		<name>OAT Thrust Scale</name>
 		<type>gain</type>
 		<gain>1.0</gain>

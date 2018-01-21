@@ -34,7 +34,7 @@
 		</condition>
 	</animation>
   
- 	<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>BLimit.knob</object-name>
 		<object-name>BLimit.knob.indicator</object-name>
@@ -48,10 +48,10 @@
 			<entry><ind>0</ind><dep>0</dep></entry>
 		</interpolation>
 		<center>
-            <x-m>-25.7153</x-m>
-            <y-m>-0.0486</y-m>
-            <z-m>11.7668</z-m>
- 		</center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.0486</y-m>
+			<z-m>11.7668</z-m>
+		</center>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -65,10 +65,10 @@
 		<property>it-autoflight/custom/spd-knb</property>
 		<factor>11.25</factor>
 		<center>
-            <x-m>-25.7162</x-m>
-            <y-m>-0.0924</y-m>
-            <z-m>11.767</z-m>
- 		</center>
+			<x-m>-25.7162</x-m>
+			<y-m>-0.0924</y-m>
+			<z-m>11.767</z-m>
+		</center>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -82,10 +82,10 @@
 		<property>it-autoflight/custom/hdg-knb</property>
 		<factor>11.25</factor>
 		<center>
-            <x-m>-25.7155</x-m>
-            <y-m>-0.0486</y-m>
-            <z-m>11.7668</z-m>
- 		</center>
+			<x-m>-25.7155</x-m>
+			<y-m>-0.0486</y-m>
+			<z-m>11.7668</z-m>
+		</center>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -99,10 +99,10 @@
 		<property>it-autoflight/custom/alt-knb</property>
 		<factor>11.25</factor>
 		<center>
-            <x-m>-25.7162</x-m>
-            <y-m>0.0486</y-m>
-            <z-m>11.767</z-m>
- 		</center>
+			<x-m>-25.7162</x-m>
+			<y-m>0.0486</y-m>
+			<z-m>11.767</z-m>
+		</center>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -119,7 +119,7 @@
 			<x-m>-25.7354</x-m>
 			<y-m>0.0929</y-m>
 			<z-m>11.7669</z-m>
- 		</center>
+		</center>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -142,7 +142,7 @@
 			<and>
 				<property>systems/electrical/outputs/efis</property>
 				<not>
-					<property>it-autoflight/input/kts-mach</property>
+					<property>it-autoflight/custom/kts-mach</property>
 				</not>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -198,7 +198,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/efis</property>
-				<property>it-autoflight/input/kts-mach</property>
+				<property>it-autoflight/custom/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
 		</condition>
@@ -248,9 +248,6 @@
 	<animation>
 		<type>select</type>
 		<object-name>hdg.ind</object-name>
-		<object-name>HDG.led1</object-name>
-		<object-name>HDG.led2</object-name>
-		<object-name>HDG.led3</object-name>
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/efis</property>
@@ -260,6 +257,41 @@
 			</and>
 		</condition>
 	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>trk.ind</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/efis</property>
+				<property>it-autoflight/input/trk</property>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>HDG.led1</object-name>
+		<object-name>HDG.led2</object-name>
+		<object-name>HDG.led3</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/efis</property>
+				<property>it-autoflight/custom/show-hdg</property>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>HDG_dash</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/efis</property>
+				<not><property>it-autoflight/custom/show-hdg</property></not>
+			</and>
+		</condition>
+	</animation>
 
 	<animation>
 		<type>textranslate</type>
@@ -290,59 +322,6 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led3</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>select</type>
-		<object-name>trk.ind</object-name>
-		<object-name>TRK.led1</object-name>
-		<object-name>TRK.led2</object-name>
-		<object-name>TRK.led3</object-name>
-		<condition>
-			<and>
-				<property>systems/electrical/outputs/efis</property>
-				<property>it-autoflight/input/trk</property>
-			</and>
-		</condition>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>TRK.led1</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>TRK.led2</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>TRK.led3</object-name>
 		<property>it-autoflight/custom/hdg-sel</property>
 		<factor>0.1</factor>
 		<step>1</step>
@@ -387,9 +366,9 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>alt_zero</object-name>
+		<object-name>VS_dash</object-name>
 		<condition>
-		    <and>
+			<and>
 				<property>systems/electrical/outputs/efis</property>
 				<not-equals>
 					<property>it-autoflight/output/vert</property>
@@ -399,7 +378,7 @@
 					<property>it-autoflight/output/vert</property>
 					<value>5</value>
 				</not-equals>
-		    </and>
+			</and>
 		</condition>
 	</animation>
 
@@ -635,9 +614,9 @@
 		<property>controls/switches/alt-knob</property>
 		<factor>0.003</factor>
 		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
 		</axis>
 	</animation>
 
@@ -647,9 +626,9 @@
 		<property>controls/switches/hdg-knob</property>
 		<factor>0.003</factor>
 		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -659,9 +638,9 @@
 		<property>controls/switches/spd-knob</property>
 		<factor>0.003</factor>
 		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
 		</axis>
 	</animation>
 
@@ -727,7 +706,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>it-autoflight/input/kts-mach</property>
+				<property>it-autoflight/custom/kts-mach</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -993,30 +972,11 @@
 			</mod-up>
 			<binding>
 				<condition>
-				    <and>
 					<property>systems/electrical/outputs/efis</property>
-					<not>
-					    <property>it-autoflight/input/kts-mach</property>
-					</not>
-				    </and>
 				</condition>
 				<command>nasal</command>
 				<script>
-				var iasnow = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")+0.5);
-				setprop("/it-autoflight/input/spd-kts", iasnow);
-				</script>
-			</binding>
-			<binding>
-				<condition>
-				    <and>
-					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/input/kts-mach</property>
-				    </and>
-				</condition>
-				<command>nasal</command>
-				<script>
-				var machnow = (int(1000*getprop("/velocities/mach")))*0.001;
-				setprop("/it-autoflight/input/spd-mach", machnow);
+				afs.spdPush();
 				</script>
 			</binding>
 		</action>
@@ -1037,28 +997,11 @@
 			</mod-up>
 			<binding>
 				<condition>
-				    <and>
 					<property>systems/electrical/outputs/efis</property>
-					<not>
-					    <property>it-autoflight/input/kts-mach</property>
-					</not>
-				    </and>
 				</condition>
 				<command>nasal</command>
 				<script>
-				setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
-				</script>
-			</binding>
-			<binding>
-				<condition>
-				    <and>
-					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/input/kts-mach</property>
-				    </and>
-				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
+				afs.spdPull();
 				</script>
 			</binding>
 		</action>
@@ -1067,12 +1010,12 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-				    <and>
+					<and>
 					<property>systems/electrical/outputs/efis</property>
 					<not>
-					    <property>it-autoflight/input/kts-mach</property>
+						<property>it-autoflight/custom/kts-mach</property>
 					</not>
-				    </and>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/kts-sel</property>
@@ -1082,10 +1025,10 @@
 			</binding>
 			<binding>
 				<condition>
-				    <and>
+					<and>
 					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/input/kts-mach</property>
-				    </and>
+					<property>it-autoflight/custom/kts-mach</property>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/mach-sel</property>
@@ -1107,12 +1050,12 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-				    <and>
+					<and>
 					<property>systems/electrical/outputs/efis</property>
 					<not>
-					    <property>it-autoflight/input/kts-mach</property>
+						<property>it-autoflight/custom/kts-mach</property>
 					</not>
-				    </and>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/kts-sel</property>
@@ -1122,10 +1065,10 @@
 			</binding>
 			<binding>
 				<condition>
-				    <and>
+					<and>
 					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/input/kts-mach</property>
-				    </and>
+					<property>it-autoflight/custom/kts-mach</property>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/mach-sel</property>
@@ -1190,15 +1133,6 @@
 				<condition>
 					<property>systems/electrical/outputs/efis</property>
 				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
-				</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>property-assign</command>
 				<property>it-autoflight/input/lat</property>
 				<value>0</value>
@@ -1207,6 +1141,14 @@
 		<action>
 			<button>3</button> <!--  scroll up -->
 			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>property-assign</command>
+				<property>it-autoflight/custom/show-hdg</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/efis</property>
@@ -1230,6 +1172,14 @@
 		<action>
 			<button>4</button> <!--  scroll down -->
 			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>property-assign</command>
+				<property>it-autoflight/custom/show-hdg</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/efis</property>
@@ -1260,9 +1210,6 @@
 			<button>0</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
 				<step>1</step>
@@ -1275,9 +1222,6 @@
 			<button>1</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
 				<step>-1</step>
@@ -1288,25 +1232,23 @@
 		</action>
 	</animation>
 
-	<!-- Disabled until ITAF VNAV is complete -->
-    <!--animation>
-        <type>pick</type>
-        <object-name>prof</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
+	<!--animation>
+		<type>pick</type>
+		<object-name>prof</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>it-autoflight/input/vert</property>
 				<value>8</value>
 			</binding>
-            <binding>
-                <command>nasal</command>
-                <script>setprop("/sim/sounde/btn1", 1);</script>
-            </binding>
-        </action>
-    </animation-->
-
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
+			</binding>
+		</action>
+	</animation-->
 
 	<animation>
 		<type>pick</type>
@@ -1334,7 +1276,7 @@
 				<property>it-autoflight/input/vert</property>
 				<value>0</value>
 			</binding>
-        </action>
+		</action>
 		<action>
 			<button>1</button>
 			<repeatable>true</repeatable>
@@ -1358,7 +1300,7 @@
 				<property>it-autoflight/input/vert</property>
 				<value>4</value>
 			</binding>
-        </action>
+		</action>
 		<action>
 			<button>3</button> <!--  scroll up -->
 			<repeatable>true</repeatable>
@@ -1384,7 +1326,7 @@
 				<max>10000</max>
 				<wrap>true</wrap>
 			</binding>
-        </action>
+		</action>
 		<action>
 			<button>4</button> <!--  scroll down -->
 			<repeatable>true</repeatable>
@@ -1410,22 +1352,22 @@
 				<max>10000</max>
 				<wrap>true</wrap>
 			</binding>
-        </action>
+		</action>
 	</animation>
 
 			<!-- Lighting -->
 	
-	    <effect>
-        <inherits-from>Effects/model-transparent</inherits-from>
-        <object-name>mcp_text</object-name>
-    </effect>
-    		<animation>
+		<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>mcp_text</object-name>
+	</effect>
+			<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>mcp_text</object-name>
-    <object-name>flood.knob.indicator</object-name>
-    <object-name>mcp.light.knob.indicator</object-name>
-    <object-name>BLimit.knob.indicator</object-name>
+	<object-name>flood.knob.indicator</object-name>
+	<object-name>mcp.light.knob.indicator</object-name>
+	<object-name>BLimit.knob.indicator</object-name>
 		<emission>
 			<red>1.5</red>
 			<green>1.27</green>
@@ -1434,7 +1376,7 @@
 		</emission>
 	</animation>
 	
-	    		<animation>
+				<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>mcp_lcd</object-name>
@@ -1446,40 +1388,40 @@
 		</emission>
 	</animation>
 	
-		    		<animation>
+					<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>IAS.led1</object-name>
-    <object-name>IAS.led2</object-name>
-    <object-name>IAS.led3</object-name>
+	<object-name>IAS.led2</object-name>
+	<object-name>IAS.led3</object-name>
 		<object-name>MACH.led1</object-name>
-    <object-name>MACH.led2</object-name>
-    <object-name>MACH.led3</object-name>
-    <object-name>ias.ind</object-name>
-    <object-name>mach.ind</object-name>
-    <object-name>hdg.ind</object-name>
-    <object-name>trk.ind</object-name>
-    <object-name>at_dis1</object-name>
-    <object-name>TRK.led1</object-name>
-    <object-name>TRK.led2</object-name>
-    <object-name>TRK.led3</object-name>
-    <object-name>VS.ledminus</object-name>
-    <object-name>FPA.ledminus</object-name>
-    <object-name>HDG.led1</object-name>
-    <object-name>HDG.led2</object-name>
-    <object-name>HDG.led3</object-name>
-    <object-name>ALT.led1</object-name>
-    <object-name>ALT.led2</object-name>
-    <object-name>ALT.led3</object-name>
-    <object-name>ALT.led4</object-name>
-    <object-name>ALT.led5</object-name>
-    <object-name>VS.led1</object-name>
-    <object-name>VS.led2</object-name>
-    <object-name>VS.led3</object-name>
-    <object-name>VS.led4</object-name>
-    <object-name>vs.ind</object-name>
-    <object-name>fpa.ind</object-name>
-		<object-name>alt_zero</object-name>
+	<object-name>MACH.led2</object-name>
+	<object-name>MACH.led3</object-name>
+	<object-name>ias.ind</object-name>
+	<object-name>mach.ind</object-name>
+	<object-name>hdg.ind</object-name>
+	<object-name>trk.ind</object-name>
+	<object-name>at_dis1</object-name>
+	<object-name>TRK.led1</object-name>
+	<object-name>TRK.led2</object-name>
+	<object-name>TRK.led3</object-name>
+	<object-name>VS.ledminus</object-name>
+	<object-name>FPA.ledminus</object-name>
+	<object-name>HDG.led1</object-name>
+	<object-name>HDG.led2</object-name>
+	<object-name>HDG.led3</object-name>
+	<object-name>ALT.led1</object-name>
+	<object-name>ALT.led2</object-name>
+	<object-name>ALT.led3</object-name>
+	<object-name>ALT.led4</object-name>
+	<object-name>ALT.led5</object-name>
+	<object-name>VS.led1</object-name>
+	<object-name>VS.led2</object-name>
+	<object-name>VS.led3</object-name>
+	<object-name>VS.led4</object-name>
+	<object-name>vs.ind</object-name>
+	<object-name>fpa.ind</object-name>
+		<object-name>VS_dash</object-name>
 		<emission>
 			<red>1</red>
 			<green>1</green>
@@ -1488,11 +1430,11 @@
 		</emission>
 	</animation>
 	
-	    	<animation>
+			<animation>
 		<name>Flood light knob</name>
 		<type>pick</type>
 		<object-name>flood.knob</object-name>
-    <object-name>flood.knob.indicator</object-name>
+	<object-name>flood.knob.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -1517,11 +1459,11 @@
 		</action>
 	</animation>
 	
-		    	<animation>
+				<animation>
 		<name>MCP light knob</name>
 		<type>pick</type>
 		<object-name>mcp.light.knob</object-name>
-    <object-name>mcp.light.knob.indicator</object-name>
+	<object-name>mcp.light.knob.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -1550,7 +1492,7 @@
 		<name>Flood panel light rotate</name>
 		<type>rotate</type>
 		<object-name>flood.knob</object-name>
-    <object-name>flood.knob.indicator</object-name>
+	<object-name>flood.knob.indicator</object-name>
 		<property>controls/lighting/flood-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
@@ -1574,7 +1516,7 @@
 		<name>panel light rotate</name>
 		<type>rotate</type>
 		<object-name>mcp.light.knob</object-name>
-    <object-name>mcp.light.knob.indicator</object-name>
+	<object-name>mcp.light.knob.indicator</object-name>
 		<property>controls/lighting/mcp-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
@@ -1593,7 +1535,7 @@
 	</animation>
 	
 	<!-- Baro settings -->
-    <animation>
+	<animation>
 		<type>pick</type>
 		<object-name>In-HPa.L</object-name>
 		<object-name>In-HPa.R</object-name>
@@ -1602,13 +1544,16 @@
 			<button>1</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>property-cycle</command>
 				<property>modes/altimeter/inhg</property>
 				<value>0</value>
 				<value>1</value>
 			</binding>
 		</action>
-    </animation>
+	</animation>
 
 	<animation>
 		<type>pick</type>
@@ -1621,6 +1566,9 @@
 			<button>1</button>
 			<repeatable type="bool">false</repeatable>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				libraries.toggleSTD();
@@ -1631,12 +1579,18 @@
 			<button>3</button>
 			<repeatable type="bool">true</repeatable>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				libraries.unSTD();
 				</script>
 			</binding>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);
@@ -1655,6 +1609,9 @@
 				</condition>
 			</binding>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);
@@ -1677,12 +1634,18 @@
 			<button>4</button>
 			<repeatable type="bool">true</repeatable>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				libraries.unSTD();
 				</script>
 			</binding>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);
@@ -1701,6 +1664,9 @@
 				</condition>
 			</binding>
 			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
 				<command>nasal</command>
 				<script>
 				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);

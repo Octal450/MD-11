@@ -104,6 +104,88 @@
  <!-- =============================================================== -->
  <!-- Autopilot Helpers                                               -->
  <!-- =============================================================== -->
+	
+	<filter>
+		<name>AFS Target IAS Presel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/custom/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/custom/kts-sel</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/custom/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/custom/mach-sel</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/ias-presel</output>
+	</filter>
+	
+	<filter>
+		<name>AFS Target IAS Sel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.1</update-interval-secs>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/input/spd-kts</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/input/spd-mach</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/ias-sel</output>
+	</filter>
+	
+	<filter>
+		<name>Target Speed Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/it-autoflight/internal/ias-sel</property>
+			<offset>
+				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/speed-error-kts</output>
+	</filter>
  
 	<filter>
 		<name>KTS INPUT FILTER</name>
@@ -216,9 +298,43 @@
 			<value>0.05</value>
 		</max-rate-of-change>
 	</filter>
- 
+	
     <filter>
         <name>IAS SYNC</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-autoflight/custom/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+        <update-interval-secs type="double">0.5</update-interval-secs>
+        <input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/custom/kts-sel</output>
+    </filter>
+	
+    <filter>
+        <name>MACH SYNC</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-autoflight/custom/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+		</enable>
+        <update-interval-secs type="double">0.5</update-interval-secs>
+        <input>/instrumentation/airspeed-indicator/indicated-mach</input>
+		<output>/it-autoflight/custom/mach-sel</output>
+    </filter>
+	
+    <filter>
+        <name>IAS SYNC 2</name>
         <type>gain</type>
         <gain>1.0</gain>
 		<enable>
@@ -235,7 +351,7 @@
     </filter>
 	
     <filter>
-        <name>MACH SYNC</name>
+        <name>MACH SYNC 2</name>
         <type>gain</type>
         <gain>1.0</gain>
 		<enable>
@@ -396,6 +512,40 @@
 			<value>0</value>
 		</input>
 		<output>/it-autoflight/internal/heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>HEADING 5 SEC ERROR DEG</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/lat</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/input/hdg</property>
+			<offset>
+				<property>/it-autoflight/internal/heading-5-sec-ahead</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/lat</property>
+					<value>0</value>
+				</not-equals>
+			</condition>
+			<value>0</value>
+		</input>
+		<output>/it-autoflight/internal/heading-5-sec-error-deg</output>
 		<period>
 			<min>-180</min>
 			<max>180</max>

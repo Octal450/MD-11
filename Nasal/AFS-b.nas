@@ -5,6 +5,18 @@
 # Copyright (c) Joshua Davidson (it0uchpods) #
 ##############################################
 
+setlistener("sim/signals/fdm-initialized", func {
+	loopFMA.start();
+});
+
+var loopFMA = maketimer(0.05, func {
+	var vert = getprop("/it-autoflight/mode/vert");
+	var thrustLimMode = getprop("/controls/engines/thrust-limit");
+	if (vert == "SPD CLB" or vert == "T/O CLB" or vert == "G/A CLB") {
+		setprop("/modes/pfd/fma/pitch-mode", thrustLimMode ~ " THRUST");
+	}
+});
+
 # Master Lateral
 setlistener("/it-autoflight/mode/lat", func {
 	var lat = getprop("/it-autoflight/mode/lat");
@@ -34,8 +46,6 @@ setlistener("/it-autoflight/mode/vert", func {
 		setprop("/modes/pfd/fma/pitch-mode", "V/S");
 	} else if (vert == "G/S") {
 		setprop("/modes/pfd/fma/pitch-mode", "G/S");
-	} else if (vert == "SPD CLB") {
-		setprop("/modes/pfd/fma/pitch-mode", "CLB THRUST");
 	} else if (vert == "SPD DES") {
 		setprop("/modes/pfd/fma/pitch-mode", "IDLE CLAMP");
 	} else if (vert == "FPA") {
@@ -44,10 +54,6 @@ setlistener("/it-autoflight/mode/vert", func {
 		setprop("/modes/pfd/fma/pitch-mode", "G/S");
 	} else if (vert == "FLARE") {
 		setprop("/modes/pfd/fma/pitch-mode", "FLARE");
-	} else if (vert == "T/O CLB") {
-		setprop("/modes/pfd/fma/pitch-mode", "T/O CLAMP");
-	} else if (vert == "G/A CLB") {
-		setprop("/modes/pfd/fma/pitch-mode", "G/A THRUST");
 	} else if (vert == "ROLLOUT") {
 		setprop("/modes/pfd/fma/pitch-mode", "ROLLOUT");
 	}

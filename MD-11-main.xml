@@ -416,8 +416,9 @@
 		<custom>
 			<afds-ovrd>0</afds-ovrd>
 			<vs-fpa>0</vs-fpa>
-			<kts-sel>250</kts-sel>
-			<mach-sel>0.68</mach-sel>
+			<kts-sel type="double">250</kts-sel>
+			<mach-sel type="double">0.5</mach-sel>
+			<kts-mach type="bool">0</kts-mach>
 			<hdg-sel>360</hdg-sel>
 			<hdg-knb>0</hdg-knb>
 			<spd-knb>0</spd-knb>

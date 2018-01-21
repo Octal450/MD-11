@@ -6,7 +6,7 @@
 ##############################################
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2018 it0uchpods Design Group");
+print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
 print("-----------------------------------------------------------------------------");
 
 ##########
@@ -104,16 +104,21 @@ setlistener("sim/signals/fdm-initialized", func {
 	thrust.fadec_reset();
 	afs.ap_init();
 	update_tilt.start();
-	librariesLoop.start();
+	systemsLoop.start();
 	systems.irs_init();
 	libraries.variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 });
 
-var librariesLoop = maketimer(0.05, func {
+var systemsLoop = maketimer(0.1, func {
 	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
 		setprop("/controls/switches/cart", 0);
 		setprop("/controls/pneumatic/switches/groundair", 0);
+	}
+	
+	if (getprop("/it-autoflight/custom/show-hdg") == 0 and getprop("/it-autoflight/output/lat") != 4) {
+		setprop("/it-autoflight/input/hdg", math.round(getprop("/instrumentation/pfd/heading-scale")));
+		setprop("/it-autoflight/custom/hdg-sel", math.round(getprop("/instrumentation/pfd/heading-scale")));
 	}
 
 	if (getprop("/velocities/groundspeed-kt") > 15) {
