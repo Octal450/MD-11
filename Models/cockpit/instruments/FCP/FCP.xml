@@ -1580,23 +1580,8 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				libraries.unSTD();
-				</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);
-				</script>
-				<condition>
 					<and>
+						<property>systems/electrical/outputs/efis</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>1</value>
@@ -1607,17 +1592,15 @@
 						</equals>
 					</and>
 				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);
+				</script>
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);
-				</script>
-				<condition>
 					<and>
+						<property>systems/electrical/outputs/efis</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>0</value>
@@ -1628,6 +1611,19 @@
 						</equals>
 					</and>
 				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);
+				</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				libraries.unSTD();
+				</script>
 			</binding>
 		</action>
 		<action>
@@ -1635,23 +1631,8 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				libraries.unSTD();
-				</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);
-				</script>
-				<condition>
 					<and>
+						<property>systems/electrical/outputs/efis</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>1</value>
@@ -1662,17 +1643,15 @@
 						</equals>
 					</and>
 				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);
+				</script>
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);
-				</script>
-				<condition>
 					<and>
+						<property>systems/electrical/outputs/efis</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>0</value>
@@ -1683,6 +1662,19 @@
 						</equals>
 					</and>
 				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);
+				</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				libraries.unSTD();
+				</script>
 			</binding>
 		</action>
 	</animation>
