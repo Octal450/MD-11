@@ -101,7 +101,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	systems.elec_init();
 	systems.pneu_init();
 	systems.hyd_init();
-	thrust.fadec_reset();
+	fadec.fadec_reset();
 	afs.ap_init();
 	update_tilt.start();
 	systemsLoop.start();

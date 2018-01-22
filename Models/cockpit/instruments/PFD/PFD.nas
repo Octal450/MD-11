@@ -47,6 +47,7 @@ setprop("/instrumentation/pfd/track-deg", 0);
 setprop("/instrumentation/pfd/track-hdg-diff", 0);
 setprop("/instrumentation/pfd/vs-needle-up", 0);
 setprop("/instrumentation/pfd/vs-needle-dn", 0);
+setprop("/position/gear-agl-ft", 0);
 
 var canvas_PFD_base = {
 	init: func(canvas_group, file) {
@@ -87,7 +88,7 @@ var canvas_PFD_base = {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
 		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","FD_roll","FD_pitch","ALT_thousands",
 		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial",
-		"HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no"];
+		"HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
@@ -481,6 +482,15 @@ var canvas_PFD_base = {
 		
 		# Misc
 		me["TCAS_OFF"].hide();
+		
+		if (getprop("/position/gear-agl-ft") <= 2500) {
+			me["RA"].setText(sprintf("%4.0f", getprop("/position/gear-agl-ft")));
+			me["RA"].show();
+			me["RA_box"].show();
+		} else {
+			me["RA"].hide();
+			me["RA_box"].hide();
+		}
 	},
 };
 

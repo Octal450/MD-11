@@ -7,17 +7,157 @@
 -->
 
 <PropertyList>
+	
+	<filter>
+		<name>EPR 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/epr-actual</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPR[0]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR THR 1</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/epr-thr</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPRthr[0]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/epr-actual</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPR[1]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR THR 2</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/epr-thr</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPRthr[1]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/epr-actual</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPR[2]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR THR 3</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/epr-thr</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPRthr[2]</output>
+	</filter>
+	
+	<filter>
+		<name>EPR LIMIT</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/engines/epr-limit</property>
+					<entry><ind>0.0</ind><dep>-134</dep></entry>
+					<entry><ind>1.0</ind><dep> -53</dep></entry>
+					<entry><ind>2.0</ind><dep>  28</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/DU/EAD/EPRLimit</output>
+	</filter>
 
 	<filter>
 		<name>N1 1</name>
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -45,11 +185,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -77,11 +238,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n1-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -109,11 +291,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/controls/engines/n1-limit</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/controls/engines/n1-limit</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -150,7 +353,7 @@
 				<table>
 					<property>/engines/engine[0]/egt-actual</property>
 					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>800</ind><dep>  40</dep></entry>
+					<entry><ind>600</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -187,7 +390,7 @@
 				<table>
 					<property>/engines/engine[1]/egt-actual</property>
 					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>800</ind><dep>  40</dep></entry>
+					<entry><ind>600</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -224,7 +427,7 @@
 				<table>
 					<property>/engines/engine[2]/egt-actual</property>
 					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>800</ind><dep>  40</dep></entry>
+					<entry><ind>600</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -236,11 +439,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n2-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -252,11 +476,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n2-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -268,11 +513,32 @@
 		<type>gain</type>
 		<gain>1</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>GE</value>
+				</equals>
+			</condition>
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n2-actual</property>
 					<entry><ind>  0.0</ind><dep>-134</dep></entry>
 					<entry><ind>117.2</ind><dep>  40</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/options/eng</property>
+					<value>PW</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n2-actual</property>
+					<entry><ind>  0.0</ind><dep>-134</dep></entry>
+					<entry><ind>121.5</ind><dep>  40</dep></entry>
 				</table>
 			</expression>
 		</input>

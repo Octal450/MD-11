@@ -8,17 +8,16 @@
 
 <PropertyList>
 
-	<path>MD-11.ac</path>
+	<path>MD-11-GE.ac</path>
 	
- <nasal>
-  <load>
-   var livery_update = aircraft.livery_update.new("Aircraft/IDG-MD-11X/Models/Liveries/MD-11");
-  </load>
- 
-  <unload>
-   livery_update.stop();
-  </unload>
- </nasal>
+	<nasal>
+		<load>
+			var livery_update = aircraft.livery_update.new("Aircraft/IDG-MD-11X/Models/Liveries/MD-11/GE");
+		</load>
+		<unload>
+			livery_update.stop();
+		</unload>
+	</nasal>
  
 <model>
 <path>Aircraft/IDG-MD-11X/Models/Effects/fuel-dump.xml</path>
