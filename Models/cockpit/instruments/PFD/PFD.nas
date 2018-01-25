@@ -422,7 +422,11 @@ var canvas_PFD_base = {
 		
 		# QNH
 		if (getprop("/modes/altimeter/std") == 1) {
-			me["QNH"].setText("29.92");
+			if (getprop("/modes/altimeter/inhg") == 0) {
+				me["QNH"].setText("1013");
+			} else if (getprop("/modes/altimeter/inhg") == 1) {
+				me["QNH"].setText("29.92");
+			}
 		} else if (getprop("/modes/altimeter/inhg") == 0) {
 			me["QNH"].setText(sprintf("%4.0f", getprop("/instrumentation/altimeter/setting-hpa")));
 		} else if (getprop("/modes/altimeter/inhg") == 1) {
