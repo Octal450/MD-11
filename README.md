@@ -1,4 +1,4 @@
-# IDG MD-11X Professional
+# IDG MD-11X
 A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear by it0uchpods Design Group.
 
 - FDM: Joshua Davidson (it0uchpods)
@@ -7,5 +7,5 @@ A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear by it0u
 - Instruments: Joshua Davidson (it0uchpods)
 
 Present pack includes the following McDonnell Douglas MD-11 variants:
-- MD-11
-- MD-11F
+- MD-11 (GE and PW)
+- MD-11F (GE and PW)
