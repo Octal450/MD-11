@@ -339,9 +339,7 @@
 		</engines>
 		<flight>
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
-			<aileron-sum type="double">0</aileron-sum>
 			<elevator-lsas type="double">0</elevator-lsas>
-			<elevator-sum type="double">0</elevator-sum>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<elevator-trim-fdm type="double">-0.25</elevator-trim-fdm>
 			<flaps-output type="double">0</flaps-output>

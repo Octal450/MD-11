@@ -65,7 +65,7 @@
 
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/controls/flight/aileron-sum</property>
+					<property>/fdm/jsbsim/hydraulics/roll-control</property>
 					<min>-1</min>
 					<max>1</max>
 					<step>0.0001</step>
@@ -102,7 +102,7 @@
 					<col>0</col>
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
-					<property>/controls/flight/elevator-sum</property>
+					<property>/fdm/jsbsim/hydraulics/pitch-control</property>
 					<min>-1</min>
 					<max>1</max>
 					<step>0.0001</step>
@@ -121,7 +121,7 @@
 					<col>0</col>
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
-					<property>/controls/flight/elevator-trim</property>
+					<property>/controls/flight/elevator-trim-fdm</property>
 					<min>-1</min>
 					<max>1</max>
 					<step>0.0001</step>
@@ -152,9 +152,9 @@
 				
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/controls/flight/rudder-sum</property>
-					<min>1</min>
-					<max>-1</max>
+					<property>/fdm/jsbsim/hydraulics/rudder-control</property>
+					<min>-1</min>
+					<max>1</max>
 					<step>0.0001</step>
 					<live>true</live>
 				</slider>

@@ -20,7 +20,7 @@
 			<expression>
 				<sum>
 					<property>/it-autoflight/internal/altitude-5-sec-ahead</property>
-					<value>-5</value>
+					<value>-0.5</value>
 				</sum>
 			</expression>
 		</input>
