@@ -23,7 +23,7 @@ setlistener("/it-autoflight/mode/lat", func {
 	if (lat == "HDG") {
 		setprop("/modes/pfd/fma/roll-mode", "HEADING");
 	} else if (lat == "LNAV") {
-		setprop("/modes/pfd/fma/roll-mode", "NAV");
+		setprop("/modes/pfd/fma/roll-mode", "NAV1");
 	} else if (lat == "LOC") {
 		setprop("/modes/pfd/fma/roll-mode", "LOC");
 	} else if (lat == "ALGN") {
