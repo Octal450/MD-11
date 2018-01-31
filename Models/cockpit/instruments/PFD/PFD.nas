@@ -394,9 +394,12 @@ var canvas_PFD_base = {
 		
 		if (getprop("/it-autoflight/custom/show-hdg") == 1) {
 			me["HDG_presel"].show();
-			me["HDG_sel"].show();
 		} else {
 			me["HDG_presel"].hide();
+		}
+		if (getprop("/it-autoflight/custom/show-hdg") == 1 and getprop("/it-autoflight/output/lat") == 0) {
+			me["HDG_sel"].show();
+		} else {
 			me["HDG_sel"].hide();
 		}
 		
