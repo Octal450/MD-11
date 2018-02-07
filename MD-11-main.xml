@@ -359,7 +359,7 @@
 			<spoiler-r5>0.0</spoiler-r5>
 			<spoiler-r-sum>0.0</spoiler-r-sum>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
-			<speedbrake-auto type="double">0</speedbrake-auto>
+			<speedbrake-lever type="double">0</speedbrake-lever>
 			<speedbrake-output type="double">0</speedbrake-output>
 		</flight>
 		<gear>
@@ -555,7 +555,7 @@
 						</equals>
 					</condition>
 					<command>property-cycle</command>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/speedbrake-lever</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>
@@ -570,7 +570,7 @@
 						</equals>
 					</condition>
 					<command>property-cycle</command>
-					<property>controls/flight/speedbrake</property>
+					<property>controls/flight/speedbrake-lever</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>

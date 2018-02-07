@@ -684,28 +684,14 @@
 				</greater-than>
 			</or>
 		</R>
-		<output>/controls/flight/speedbrake-auto</output>	
+		<output>/controls/flight/speedbrake-lever</output>	
 	</flipflop>
 	
 	<filter>
 		<name>Auto Speedbrake Limiter</name>
 		<type>gain</type>
 		<gain>1</gain>
-		<enable>
-			<condition>
-				<and>
-					<equals>
-						<property>/controls/flight/speedbrake-arm</property>
-						<value>1</value>
-					</equals>
-					<greater-than>
-						<property>/controls/flight/speedbrake-auto</property>
-						<value>0</value>
-					</greater-than>
-				</and>
-			</condition>
-		</enable>
-		<input>/controls/flight/speedbrake-auto</input>
+		<input>/controls/flight/speedbrake-lever</input>
 		<output>
 			<property>/controls/flight/speedbrake</property>
 			<property>/controls/flight/speedbrake-norm</property>
