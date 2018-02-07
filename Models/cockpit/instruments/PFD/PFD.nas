@@ -7,6 +7,8 @@
 
 var PFD_1 = nil;
 var PFD_2 = nil;
+var PFD_1_mismatch = nil;
+var PFD_2_mismatch = nil;
 var PFD1_display = nil;
 var PFD2_display = nil;
 var ASI = 0;
@@ -91,14 +93,25 @@ var canvas_PFD_base = {
 		"HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
-			PFD_1.page.show();
-			PFD_2.page.show();
-			PFD_1.update();
-			PFD_2.update();
+		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
+			PFD_1_mismatch.page.hide();
+			PFD_2_mismatch.page.hide();
+			if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
+				PFD_1.page.show();
+				PFD_2.page.show();
+				PFD_1.update();
+				PFD_2.update();
+			} else {
+				PFD_1.page.hide();
+				PFD_2.page.hide();
+			}
 		} else {
 			PFD_1.page.hide();
 			PFD_2.page.hide();
+			PFD_1_mismatch.page.show();
+			PFD_2_mismatch.page.show();
+			PFD_1_mismatch.update();
+			PFD_2_mismatch.update();
 		}
 	},
 	updateCommon: func () {
@@ -555,6 +568,68 @@ var canvas_PFD_2 = {
 	},
 };
 
+var canvas_PFD_1_mismatch = {
+	init: func(canvas_group, file) {
+		var font_mapper = func(family, weight) {
+			return "LiberationFonts/LiberationSans-Regular.ttf";
+		};
+
+		canvas.parsesvg(canvas_group, file, {"font-mapper": font_mapper});
+		
+		var svg_keys = me.getKeys();
+		foreach(var key; svg_keys) {
+			me[key] = canvas_group.getElementById(key);
+		}
+
+		me.page = canvas_group;
+
+		return me;
+	},
+	new: func(canvas_group, file) {
+		var m = {parents: [canvas_PFD_1_mismatch]};
+		m.init(canvas_group, file);
+
+		return m;
+	},
+	getKeys: func() {
+		return ["ERRCODE"];
+	},
+	update: func() {
+		me["ERRCODE"].setText(getprop("/systems/acconfig/mismatch-code"));
+	},
+};
+
+var canvas_PFD_2_mismatch = {
+	init: func(canvas_group, file) {
+		var font_mapper = func(family, weight) {
+			return "LiberationFonts/LiberationSans-Regular.ttf";
+		};
+
+		canvas.parsesvg(canvas_group, file, {"font-mapper": font_mapper});
+		
+		var svg_keys = me.getKeys();
+		foreach(var key; svg_keys) {
+			me[key] = canvas_group.getElementById(key);
+		}
+
+		me.page = canvas_group;
+
+		return me;
+	},
+	new: func(canvas_group, file) {
+		var m = {parents: [canvas_PFD_2_mismatch]};
+		m.init(canvas_group, file);
+
+		return m;
+	},
+	getKeys: func() {
+		return ["ERRCODE"];
+	},
+	update: func() {
+		me["ERRCODE"].setText(getprop("/systems/acconfig/mismatch-code"));
+	},
+};
+
 setlistener("sim/signals/fdm-initialized", func {
 	PFD1_display = canvas.new({
 		"name": "PFD1",
@@ -571,10 +646,14 @@ setlistener("sim/signals/fdm-initialized", func {
 	PFD1_display.addPlacement({"node": "pfd1.screen"});
 	PFD2_display.addPlacement({"node": "pfd2.screen"});
 	var group_pfd1 = PFD1_display.createGroup();
+	var group_pfd1_mismatch = PFD1_display.createGroup();
 	var group_pfd2 = PFD2_display.createGroup();
+	var group_pfd2_mismatch = PFD2_display.createGroup();
 
 	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_1_mismatch = canvas_PFD_1_mismatch.new(group_pfd1_mismatch, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/Common/res/mismatch.svg");
 	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_2_mismatch = canvas_PFD_2_mismatch.new(group_pfd2_mismatch, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/Common/res/mismatch.svg");
 	
 	PFD_update.start();
 });

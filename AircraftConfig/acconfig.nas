@@ -62,18 +62,25 @@ setlistener("/systems/acconfig/new-revision", func {
 var mismatch_chk = func {
 	if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < 201730) {
 		setprop("/systems/acconfig/mismatch-code", "0x121");
-		setprop("/systems/acconfig/mismatch-reason", "FGFS version older than 2017.3.0, please update FlightGear");
+		setprop("/systems/acconfig/mismatch-reason", "FGFS version older than 2017.3.0, please update FlightGear.");
 		if (getprop("/systems/acconfig/out-of-date") != 1) {
 			error_mismatch.open();
 		}
 		print("Mismatch: 0x121");
-	} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 50000 or getprop("/systems/acconfig/libraries-loaded") != 1) {
+	} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 15000) {
 		setprop("/systems/acconfig/mismatch-code", "0x223");
-		setprop("/systems/acconfig/mismatch-reason", "Aircraft initialization failed");
+		setprop("/systems/acconfig/mismatch-reason", "The aircraft position is invalid for initialization. Check your scenery.");
 		if (getprop("/systems/acconfig/out-of-date") != 1) {
 			error_mismatch.open();
 		}
 		print("Mismatch: 0x223");
+	} else if (getprop("/systems/acconfig/libraries-loaded") != 1) {
+		setprop("/systems/acconfig/mismatch-code", "0x247");
+		setprop("/systems/acconfig/mismatch-reason", "System files are missing or damaged. Please download a new copy of the aircraft.");
+		if (getprop("/systems/acconfig/out-of-date") != 1) {
+			error_mismatch.open();
+		}
+		print("Mismatch: 0x247");
 	}
 }
 

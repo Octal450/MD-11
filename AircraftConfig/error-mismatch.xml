@@ -41,11 +41,11 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Mismatch usually occurs becuase of a configuration problem, outdated FGFS.</label>
+			<label>A configuration error or internal error has occurred. The aircraft has been disabled.</label>
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>Please try the suggestions below, before contacting it0uchpods Design Group</label>
+			<label>The error code and cause are listed below. Please include this information if contacting IDG.</label>
 		</text>
 		
 		<hrule>
@@ -88,32 +88,6 @@
 				<live>1</live>
 			</text>
 		</group>
-		
-		<hrule>
-			<color>
-				<red>1.0</red>
-				<green>1.0</green>
-				<blue>1.0</blue>
-				<alpha>0.9</alpha>
-			</color>
-		</hrule>
-		
-		<text>
-			<halign>left</halign>
-			<label>1) Try downloading the latest version of FGFS with the button below.</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>2) Confirm that the aircraft is installed correctly.</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>3) Load the aircraft on ground, not in air.</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>4) Open a topic describing the situation in the FlightGear Forums.</label>
-		</text>
 	</group>
 	
 	<hrule>
@@ -127,38 +101,16 @@
 
 	<group>
 		<layout>hbox</layout>
-
 		<button>
 			<color>
-				<red>0</red>
-				<green>0.5</green>
-				<blue>0</blue>
-				<alpha>0.9</alpha>
-			</color>
-			<halign>center</halign>
-			<legend>Download Latest FGFS</legend>
-			<pref-width>220</pref-width>
-			<binding>
-				<command>open-browser</command>
-				<path>https://sourceforge.net/projects/flightgear</path>
-			</binding>
-			<binding>
-				<command>exit</command>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-		<button>
-			<color>
-				<red>0</red>
-				<green>0.5</green>
+				<red>0.6</red>
+				<green>0</green>
 				<blue>0</blue>
 				<alpha>0.9</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>FlightGear Forums</legend>
-			<pref-width>220</pref-width>
+			<pref-width>550</pref-width>
 			<binding>
 				<command>open-browser</command>
 				<path>http://forum.flightgear.org</path>
