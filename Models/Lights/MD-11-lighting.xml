@@ -10,59 +10,50 @@
 
     <path>empty.ac</path>
 
-	<!-- Green Naviagation Light -->
+	<!-- Green Naviagation Light (ALS) -->
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/greennav.xml</path>
+	<path>ALS/greennav.xml</path>
+	<name>GreenLightALS</name>     
+	<offsets>
+	    <x-m>12.8220</x-m>
+	    <y-m>24.9828</y-m>
+	    <z-m>6.0796</z-m>
+	</offsets>
+    </model>
+	
+	<model>
+	<path>greennav.xml</path>
 	<name>GreenLight</name>     
 	<offsets>
 	    <x-m>12.8220</x-m>
-	    <y-m>24.9827</y-m>
+	    <y-m>24.9828</y-m>
 	    <z-m>6.0796</z-m>
 	</offsets>
     </model>
+	
+
+<!-- Red Naviagation Light (ALS) -->
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-green.xml</path>
-	<name>GreenLight</name>
+	<path>ALS/rednav.xml</path>
+	<name>RedLightALS</name>     
 	<offsets>
 	    <x-m>12.8220</x-m>
-	    <y-m>24.9827</y-m>
+	    <y-m>-24.9828</y-m>
 	    <z-m>6.0796</z-m>
 	</offsets>
     </model>
-
-
-<!-- Red Naviagation Light -->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/rednav.xml</path>
+	
+	<model>
+	<path>rednav.xml</path>
 	<name>RedLight</name>     
 	<offsets>
 	    <x-m>12.8220</x-m>
-	    <y-m>-24.9827</y-m>
+	    <y-m>-24.9828</y-m>
 	    <z-m>6.0796</z-m>
 	</offsets>
     </model>
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-red.xml</path>
-	<name>RedLight</name>
-	<offsets>
-	    <x-m>12.8220</x-m>
-	    <y-m>-24.9827</y-m>
-	    <z-m>6.0796</z-m>
-	</offsets>
-    </model>
-
-    <animation>
-	<type>select</type>
-	<object-name>RedLight</object-name>
-	<object-name>GreenLight</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[7]</property>
-	</condition>
-    </animation>
 
 	<!-- Strobe right-->
 
@@ -491,5 +482,23 @@
 	</offsets>
     </model> 
 
+	<animation>
+		<type>select</type>
+		<object-name>GreenLight</object-name>
+		<object-name>RedLight</object-name>
+		<condition>
+			<not><property>sim/rendering/shaders/skydome</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>GreenLightALS</object-name>
+		<object-name>RedLightALS</object-name>
+		<condition>
+			<property>sim/rendering/shaders/skydome</property>
+		</condition>
+	</animation>
+			
 </PropertyList>
 
