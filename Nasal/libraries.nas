@@ -9,6 +9,14 @@ print("-------------------------------------------------------------------------
 print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
 print("-----------------------------------------------------------------------------");
 
+var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
+var setting = getprop("/controls/lighting/nav-lights");
+var land = getprop("/controls/lighting/landing-light");
+var landr = getprop("/controls/lighting/landing-light[1]");
+
+var strobe_switch = props.globals.getNode("/controls/lighting/strobe", 2);
+var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/controls/lighting/strobe");
+
 ##########
 # Sounds #
 ##########
@@ -104,6 +112,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	fadec.fadec_reset();
 	afs.ap_init();
 	update_tilt.start();
+	lightsLoop.start();
 	systemsLoop.start();
 	systems.irs_init();
 	libraries.variousReset();
@@ -274,6 +283,86 @@ controls.flapsDown = func(step) {
 		return 0;
 	}
 }
+
+var lightsLoop = maketimer(0.2, func {
+	#gear = getprop("/gear/gear[0]/position-norm");
+	#nose_lights = getprop("/sim/model/lights/nose-lights");
+	#settingT = getprop("/controls/lighting/taxi-light-switch");
+	
+	# nose lights
+	
+	#if (settingT == 0.5 and gear > 0.9 and (getprop("/systems/electrical/bus/ac1") > 0 or getprop("/systems/electrical/bus/ac2") > 0)) {
+	#	setprop("/sim/model/lights/nose-lights", 0.85);
+	#} else if (settingT == 1 and gear > 0.9 and (getprop("/systems/electrical/bus/ac1") > 0 or getprop("/systems/electrical/bus/ac2") > 0)) {
+	#	setprop("/sim/model/lights/nose-lights", 1);
+	#} else {
+	#	setprop("/sim/model/lights/nose-lights", 0);
+	#}
+	
+	# turnoff lights
+	#settingTurnoff = getprop("/controls/lighting/turnoff-light-switch");
+	#left_turnoff_light = props.globals.getNode("/controls/lighting/leftturnoff");
+	#right_turnoff_light = props.globals.getNode("/controls/lighting/rightturnoff");
+	
+	#if (settingTurnoff == 1 and gear > 0.9 and getprop("/systems/electrical/bus/ac1") > 0) {
+	#	left_turnoff_light.setBoolValue(1);
+	#} else {
+	#	left_turnoff_light.setBoolValue(0);
+	#}
+	
+	#if (settingTurnoff == 1 and gear > 0.9 and getprop("/systems/electrical/bus/ac2") > 0) {
+	#	right_turnoff_light.setBoolValue(1);
+	#} else {
+	#	right_turnoff_light.setBoolValue(0);
+	#}
+	
+	# logo and navigation lights
+	setting = getprop("/controls/lighting/nav-lights");
+	nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
+	#logo_lights = props.globals.getNode("/sim/model/lights/logo-lights");
+	#wow = getprop("/gear/gear[2]/wow");
+	#slats = getprop("/controls/flight/slats");
+	
+	# if (getprop("/systems/electrical/bus/ac1") > 0 or getprop("/systems/electrical/bus/ac2") > 0) {
+	#	setprop("/systems/electrical/nav-lights-power", 1);
+	#} else { 
+	#	setprop("/systems/electrical/nav-lights-power", 0);
+	#}
+	
+	#if (setting == 0 and logo_lights == 1) {
+	#	 logo_lights.setBoolValue(0);
+	#} else if (setting == 1 or setting == 2 and (getprop("/systems/electrical/bus/ac1") > 0 or getprop("/systems/electrical/bus/ac2") > 0)) {
+	#	if ((wow) or (!wow and slats > 0)) {
+	#		logo_lights.setBoolValue(1);
+	#	} else {
+	#		logo_lights.setBoolValue(0);
+	#	}
+	#} else {
+	#	logo_lights.setBoolValue(0);
+	#}
+
+	if (setting == 1) {
+		nav_lights.setBoolValue(1);
+	} else {
+		nav_lights.setBoolValue(0);
+	}
+	
+	# landing lights
+	land = getprop("/controls/lighting/landing-light");
+	landr = getprop("/controls/lighting/landing-light[1]");
+	
+	if (land == 1) {
+		setprop("/sim/rendering/als-secondary-lights/use-landing-light", 1);
+	} else {
+		setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
+	}
+	
+	if (landr == 1 or landr == 2) {
+		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
+	} else {
+		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+	}
+});
 
 var slewProp = func(prop, delta) {
 	delta *= getprop("/sim/time/delta-realtime-sec");

@@ -137,6 +137,7 @@ var elec_init = func {
     setprop("/systems/electrical/outputs/audio-panel", 0);
     setprop("/systems/electrical/outputs/audio-panel[1]", 0);
     setprop("/systems/electrical/outputs/autopilot", 0);
+	setprop("/systems/electrical/outputs/avionics", 0);
     setprop("/systems/electrical/outputs/avionics-fan", 0);
     setprop("/systems/electrical/outputs/beacon", 0);
     setprop("/systems/electrical/outputs/bus", 0);
@@ -482,6 +483,7 @@ var master_elec = func {
 		setprop("/systems/electrical/outputs/audio-panel", 0);
 		setprop("/systems/electrical/outputs/audio-panel[1]", 0);
 		setprop("/systems/electrical/outputs/autopilot", 0);
+		setprop("/systems/electrical/outputs/avionics", 0);
 		setprop("/systems/electrical/outputs/avionics-fan", 0);
 		setprop("/systems/electrical/outputs/beacon", 0);
 		setprop("/systems/electrical/outputs/bus", 0);
@@ -514,6 +516,7 @@ var master_elec = func {
 		setprop("/systems/electrical/outputs/audio-panel", dc_volt_std);
 		setprop("/systems/electrical/outputs/audio-panel[1]", dc_volt_std);
 		setprop("/systems/electrical/outputs/autopilot", dc_volt_std);
+		setprop("/systems/electrical/outputs/avionics", dc_volt_std);
 		setprop("/systems/electrical/outputs/avionics-fan", dc_volt_std);
 		setprop("/systems/electrical/outputs/beacon", dc_volt_std);
 		setprop("/systems/electrical/outputs/bus", dc_volt_std);

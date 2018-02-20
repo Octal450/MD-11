@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!--
 ##############################################
@@ -11,16 +11,24 @@
 	<path>rednav.ac</path>
 
 	<!-- ANIMATIONS -->
+	<!-- On/off -->
+	<animation>
+		<name>On/off</name>
+		<type>select</type>
+		<object-name>Light</object-name>
+		<condition>
+			<greater-than>
+				<property>controls/lighting/nav-lights</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</animation>
+
 	<!-- Billboard animation -->
 	<animation>
 		<name>Billboard</name>
 		<type>billboard</type>
 		<object-name>Light</object-name>
 	</animation>
-	
-		          <effect>
-        <inherits-from>Effects/model-transparent</inherits-from>
-  <object-name>Light</object-name>
-    </effect>
 
 </PropertyList>
