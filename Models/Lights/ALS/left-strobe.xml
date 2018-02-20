@@ -14,7 +14,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/IDG-A32X/Models/lights/ALS/left-strobe</inherits-from>
+   <inherits-from>Aircraft/IDG-MD11X/Models/lights/ALS/left-strobe</inherits-from>
    <object-name>left-strobeals</object-name>
  </effect>
  
@@ -22,9 +22,9 @@
  
  <animation>
   <type>scale</type>
-  <x-offset>0.75</x-offset>
-  <y-offset>0.75</y-offset>
-  <z-offset>0.75</z-offset>
+  <x-offset>0.8</x-offset>
+  <y-offset>0.8</y-offset>
+  <z-offset>0.8</z-offset>
  </animation>
  
 

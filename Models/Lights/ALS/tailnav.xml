@@ -14,15 +14,15 @@
 
 
  <effect>
-   <inherits-from>Aircraft/IDG-A32X/Models/lights/ALS/tailnav</inherits-from>
+   <inherits-from>Aircraft/IDG-MD11X/Models/lights/ALS/tailnav</inherits-from>
    <object-name>tailnavlightals</object-name>
  </effect>
  
  <animation>
   <type>scale</type>
-  <x-offset>0.5</x-offset>
-  <y-offset>0.5</y-offset>
-  <z-offset>0.5</z-offset>
+  <x-offset>0.6</x-offset>
+  <y-offset>0.6</y-offset>
+  <z-offset>0.6</z-offset>
  </animation>
  
 <animation>
@@ -43,6 +43,27 @@
    </entry>
   </interpolation>
  </animation>
+ 
+  <animation>
+        <type>flash</type>
+        <object-name>landinglightals</object-name>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">true</two-sides>
+        <min>0.1</min>
+        <max>1.0</max>
+    </animation>
 
 
 </PropertyList>

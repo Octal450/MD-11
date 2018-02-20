@@ -10,103 +10,202 @@
 
     <path>empty.ac</path>
 
-	<!-- Green Naviagation Light (ALS) -->
+	<!-- Green Naviagation Light (ALS, Default, Rembrandt) -->
 
     <model>
-	<path>ALS/greennav.xml</path>
-	<name>GreenLightALS</name>     
-	<offsets>
-	    <x-m>12.8220</x-m>
-	    <y-m>24.9828</y-m>
-	    <z-m>6.0796</z-m>
-	</offsets>
+		<path>ALS/greennav.xml</path>
+		<name>GreenLightALS</name>     
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
     </model>
 	
 	<model>
-	<path>greennav.xml</path>
-	<name>GreenLight</name>     
-	<offsets>
-	    <x-m>12.8220</x-m>
-	    <y-m>24.9828</y-m>
-	    <z-m>6.0796</z-m>
-	</offsets>
-    </model>
-	
-
-<!-- Red Naviagation Light (ALS) -->
-
-    <model>
-	<path>ALS/rednav.xml</path>
-	<name>RedLightALS</name>     
-	<offsets>
-	    <x-m>12.8220</x-m>
-	    <y-m>-24.9828</y-m>
-	    <z-m>6.0796</z-m>
-	</offsets>
+		<path>greennav.xml</path>
+		<name>GreenLight</name>     
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
     </model>
 	
 	<model>
-	<path>rednav.xml</path>
-	<name>RedLight</name>     
-	<offsets>
-	    <x-m>12.8220</x-m>
-	    <y-m>-24.9828</y-m>
-	    <z-m>6.0796</z-m>
-	</offsets>
+		<path>light-green.xml</path>
+		<name>GreenLightRemb</name>     
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
     </model>
+	
+
+<!-- Red Naviagation Light (ALS, Default, Rembrandt) -->
+
+    <model>
+		<path>ALS/rednav.xml</path>
+		<name>RedLightALS</name>     
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>-24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>rednav.xml</path>
+		<name>RedLight</name>     
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>-24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>light-red.xml</path>
+		<name>RedLightRemb</name>
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>-24.9828</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+	</model>
+	
+	<!-- Strobe left-->
+	
+	 <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-strobe.xml</path>
+		<name>Strobelight.1ALS</name>
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>-24.9810</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+    </model>
+	
+    <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Strobelight.1</name>
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>-24.9810</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Strobelight.1Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+
 
 	<!-- Strobe right-->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-	<name>Strobelight.1</name>
-	<offsets>
-	    <x-m>15.4808</x-m>
-	    <y-m>-25.0777</y-m>
-	    <z-m>6.0813</z-m>
-	</offsets>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/right-strobe.xml</path>
+		<name>Strobelight.2ALS</name>
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>24.9810</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
     </model>
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
-	<name>Strobelight.1</name>
-	<offsets>
-	    <x-m>15.4808</x-m>
-	    <y-m>-25.0777</y-m>
-	    <z-m>6.0813</z-m>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Strobelight.2</name>
+		<offsets>
+			<x-m>12.8220</x-m>
+			<y-m>24.9810</y-m>
+			<z-m>6.0796</z-m>
+		</offsets>
+    </model>
+	
+	
+    <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Strobelight.2Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+	<!-- Rear Nav Left-->
+	
+	 <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/tailnav.xml</path>
+		<name>Rearnav.1ALS</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+    <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Rearnav.1</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Rearnav.1Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
     </model>
 
-	<!-- Strobe left-->
+
+	<!-- Rear Nav Right-->
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/tailnav.xml</path>
+		<name>Rearnav.2ALS</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-	<name>Strobelight.2</name>
-	<offsets>
-	    <x-m>15.4808</x-m>
-	    <y-m>25.0777</y-m>
-	    <z-m>6.0813</z-m>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Rearnav.2</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
     </model>
-
+	
+	
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
-	<name>Strobelight.2</name>
-	<offsets>
-	    <x-m>15.4808</x-m>
-	    <y-m>25.0777</y-m>
-	    <z-m>6.0813</z-m>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Rearnav.2Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
     </model>
-
-    <animation>
-        <type>select</type>
-        <object-name>Strobelight.1</object-name>
-        <object-name>Strobelight.2</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[0]</property>
-	</condition>
-    </animation>
 
 <!-- Beacon light -->
 
@@ -486,8 +585,15 @@
 		<type>select</type>
 		<object-name>GreenLight</object-name>
 		<object-name>RedLight</object-name>
+		<object-name>Strobelight.1</object-name>
+		<object-name>Strobelight.2</object-name>
+		<object-name>Rearnav.1</object-name>
+		<object-name>Rearnav.2</object-name>
 		<condition>
-			<not><property>sim/rendering/shaders/skydome</property></not>
+			<and>
+				<not><property>sim/rendering/shaders/skydome</property></not>
+				<not><property>/sim/rendering/rembrandt/enabled</property></not>
+			</and>
 		</condition>
 	</animation>
 	
@@ -495,8 +601,25 @@
 		<type>select</type>
 		<object-name>GreenLightALS</object-name>
 		<object-name>RedLightALS</object-name>
+		<object-name>Strobelight.1ALS</object-name>
+		<object-name>Strobelight.2ALS</object-name>
+		<object-name>Rearnav.1ALS</object-name>
+		<object-name>Rearnav.2ALS</object-name>
 		<condition>
 			<property>sim/rendering/shaders/skydome</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>GreenLightRemb</object-name>
+		<object-name>RedLightRemb</object-name>
+		<object-name>Strobelight.1Remb</object-name>
+		<object-name>Strobelight.2Remb</object-name>
+		<object-name>Rearnav.1Remb</object-name>
+		<object-name>Rearnav.1Remb</object-name>
+		<condition>
+			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
 	</animation>
 			
