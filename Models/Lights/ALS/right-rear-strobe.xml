@@ -8,22 +8,29 @@
 
 <PropertyList>
 
- <path>beacon.ac</path>
+ <path>right-strobe.ac</path>
  <nopreview/>
 
 
+ 
+<effect>
+   <inherits-from>Aircraft/IDG-MD11X/Models/lights/ALS/right-rear-strobe</inherits-from>
+   <object-name>right-strobeals</object-name>
+ </effect>
+ 
+ 
  <animation>
   <type>scale</type>
-  <x-offset>1</x-offset>
-  <y-offset>1</y-offset>
-  <z-offset>1</z-offset>
+  <x-offset>0.8</x-offset>
+  <y-offset>0.8</y-offset>
+  <z-offset>0.8</z-offset>
  </animation>
  
 
  
 <animation>
   <type>dist-scale</type>
-  <object-name>beaconals</object-name>
+  <object-name>right-strobeals</object-name>
   <interpolation>
    <entry>
     <ind>0</ind>
@@ -40,12 +47,6 @@
   </interpolation>
  </animation>
  
-
- 
-<effect>
-   <inherits-from>Aircraft/IDG-MD-11X/Models/lights/ALS/beacon</inherits-from>
-   <object-name>beaconals</object-name>
- </effect>
 
 
 </PropertyList>
