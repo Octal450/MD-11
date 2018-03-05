@@ -268,6 +268,21 @@
 			<z-m>6.0813</z-m>
 		</offsets>
     </model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Strobelight.1</object-name>
+		<object-name>Strobelight.2</object-name>
+		<object-name>Strobelight.3</object-name>
+		<object-name>Strobelight.4</object-name>
+		<object-name>Strobelight.1Remb</object-name>
+		<object-name>Strobelight.2Remb</object-name>
+		<object-name>Strobelight.3Remb</object-name>
+		<object-name>Strobelight.4Remb</object-name>
+		<condition>
+			<property>sim/model/lights/strobe/state</property>
+		</condition>
+    </animation>
 
 <!-- Beacon light -->
 	<model>
