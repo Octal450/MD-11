@@ -17,6 +17,9 @@ var landr = getprop("/controls/lighting/landing-light[1]");
 var strobe_switch = props.globals.getNode("/controls/lighting/strobe", 2);
 var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/controls/lighting/strobe");
 
+var beacon_switch = props.globals.getNode("/controls/lighting/beacon", 2);
+var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
+
 ##########
 # Sounds #
 ##########

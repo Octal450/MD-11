@@ -270,57 +270,78 @@
     </model>
 
 <!-- Beacon light -->
-
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/beacon.xml</path>
+		<name>Beacon.LowerALS</name>
+		<offsets>
+			<x-m>14.2979</x-m>
+			<y-m>0</y-m>
+			<z-m>3.3721</z-m>
+			<pitch-deg>180</pitch-deg>
+		</offsets>
+    </model>
+	
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/beacon.xml</path>
-	<name>Beacon.Lower</name>
-	<offsets>
-	    <x-m>14.2979</x-m>
-	    <y-m>0</y-m>
-	    <z-m>3.3721</z-m>
-	    <pitch-deg>180</pitch-deg>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon.xml</path>
+		<name>Beacon.Lower</name>
+		<offsets>
+			<x-m>14.2979</x-m>
+			<y-m>0</y-m>
+			<z-m>3.3721</z-m>
+			<pitch-deg>180</pitch-deg>
+		</offsets>
     </model>
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
-	<name>Beacon.Lower.Light</name>
-	<offsets>
-	    <x-m>14.2979</x-m>
-	    <y-m>0</y-m>
-	    <z-m>3.3721</z-m>
-	    <pitch-deg>180</pitch-deg>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
+		<name>Beacon.LowerRemb</name>
+		<offsets>
+			<x-m>14.2979</x-m>
+			<y-m>0</y-m>
+			<z-m>3.3721</z-m>
+			<pitch-deg>180</pitch-deg>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/beacon.xml</path>
+		<name>Beacon.UpperALS</name>
+		<offsets>
+			<x-m>-4.1455</x-m>
+			<y-m>0</y-m>
+			<z-m>9.2512</z-m>
+		</offsets>
     </model>
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/beacon.xml</path>
-	<name>Beacon.Upper</name>
-	<offsets>
-	    <x-m>-4.1455</x-m>
-	    <y-m>0</y-m>
-	    <z-m>9.2512</z-m>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon.xml</path>
+		<name>Beacon.Upper</name>
+		<offsets>
+			<x-m>-4.1455</x-m>
+			<y-m>0</y-m>
+			<z-m>9.2512</z-m>
+		</offsets>
     </model>
 
     <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
-	<name>Beacon.Upper.Light</name>
-	<offsets>
-	    <x-m>-4.1455</x-m>
-	    <y-m>0</y-m>
-	    <z-m>9.2512</z-m>
-	</offsets>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
+		<name>Beacon.UpperRemb</name>
+		<offsets>
+			<x-m>-4.1455</x-m>
+			<y-m>0</y-m>
+			<z-m>9.2512</z-m>
+		</offsets>
     </model>
+	
     <animation>
-	<type>select</type>
-	<object-name>Beacon.Lower</object-name>
-	<object-name>Beacon.Upper</object-name>
-	<object-name>Beacon.Lower.Light</object-name>
-	<object-name>Beacon.Upper.Light</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[1]</property>
-	</condition>
+		<type>select</type>
+		<object-name>Beacon.Lower</object-name>
+		<object-name>Beacon.Upper</object-name>
+		<object-name>Beacon.LowerRemb</object-name>
+		<object-name>Beacon.UpperRemb</object-name>
+		<condition>
+			<property>sim/model/lights/beacon/state</property>
+		</condition>
     </animation>
 
 <!-- Landing lights -->
@@ -653,6 +674,8 @@
 		<object-name>Strobelight.4</object-name>
 		<object-name>Rearnav.1</object-name>
 		<object-name>Rearnav.2</object-name>
+		<object-name>Beacon.Lower</object-name>
+		<object-name>Beacon.Upper</object-name>
 		<condition>
 			<and>
 				<not><property>sim/rendering/shaders/skydome</property></not>
@@ -671,6 +694,8 @@
 		<object-name>Strobelight.4ALS</object-name>
 		<object-name>Rearnav.1ALS</object-name>
 		<object-name>Rearnav.2ALS</object-name>
+		<object-name>Beacon.LowerALS</object-name>
+		<object-name>Beacon.UpperALS</object-name>
 		<condition>
 			<property>sim/rendering/shaders/skydome</property>
 		</condition>
@@ -686,6 +711,8 @@
 		<object-name>Strobelight.4Remb</object-name>
 		<object-name>Rearnav.1Remb</object-name>
 		<object-name>Rearnav.1Remb</object-name>
+		<object-name>Beacon.LowerRemb</object-name>
+		<object-name>Beacon.UpperRemb</object-name>
 		<condition>
 			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
