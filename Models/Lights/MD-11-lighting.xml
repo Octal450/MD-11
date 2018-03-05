@@ -206,6 +206,68 @@
 			<z-m>6.0813</z-m>
 		</offsets>
     </model>
+	
+	<!-- rear left strobe -->
+	 <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-rear-strobe.xml</path>
+		<name>Strobelight.3ALS</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+    <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Strobelight.3</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Strobelight.3Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>-25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+	<!-- rear right strobe -->
+	 <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-rear-strobe.xml</path>
+		<name>Strobelight.4ALS</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+    <model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/whitelight.xml</path>
+		<name>Strobelight.4</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
+		<name>Strobelight.4Remb</name>
+		<offsets>
+			<x-m>15.4808</x-m>
+			<y-m>25.0777</y-m>
+			<z-m>6.0813</z-m>
+		</offsets>
+    </model>
 
 <!-- Beacon light -->
 
@@ -587,6 +649,8 @@
 		<object-name>RedLight</object-name>
 		<object-name>Strobelight.1</object-name>
 		<object-name>Strobelight.2</object-name>
+		<object-name>Strobelight.3</object-name>
+		<object-name>Strobelight.4</object-name>
 		<object-name>Rearnav.1</object-name>
 		<object-name>Rearnav.2</object-name>
 		<condition>
@@ -603,6 +667,8 @@
 		<object-name>RedLightALS</object-name>
 		<object-name>Strobelight.1ALS</object-name>
 		<object-name>Strobelight.2ALS</object-name>
+		<object-name>Strobelight.3ALS</object-name>
+		<object-name>Strobelight.4ALS</object-name>
 		<object-name>Rearnav.1ALS</object-name>
 		<object-name>Rearnav.2ALS</object-name>
 		<condition>
@@ -616,6 +682,8 @@
 		<object-name>RedLightRemb</object-name>
 		<object-name>Strobelight.1Remb</object-name>
 		<object-name>Strobelight.2Remb</object-name>
+		<object-name>Strobelight.3Remb</object-name>
+		<object-name>Strobelight.4Remb</object-name>
 		<object-name>Rearnav.1Remb</object-name>
 		<object-name>Rearnav.1Remb</object-name>
 		<condition>
