@@ -21,9 +21,9 @@
     <pointing_z type="float">0.0</pointing_z>
     <is_directional type="bool">true</is_directional>
     <is_strobe type="bool">false</is_strobe>
-    <inner_angle type="float">0.5</inner_angle>
-    <outer_angle type="float">0.34202014</outer_angle>
-    <zero_angle type="float">0.017452406437</zero_angle>
+    <inner_angle type="float">0.86602540378</inner_angle>
+    <outer_angle type="float">0.93969262078</outer_angle>
+    <zero_angle type="float">0.99619469809</zero_angle>
     <outer_gain type="float">1.0</outer_gain>
     <visibility><use>/environment/ground-visibility-m</use></visibility>
     <avisibility><use>/environment/visibility-m</use></avisibility>
