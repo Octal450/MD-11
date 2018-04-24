@@ -54,8 +54,35 @@
 		</text>
 		<text>
 			<halign>center</halign>
-			<label>Please report bugs on the FlightGear forums! Enjoy!</label>
+			<label>Please report bugs on GitHub Issues! Enjoy!</label>
 		</text>
+		
+	</group>
+	
+	<hrule/>
+	
+	<group>
+		<layout>hbox</layout>
+	
+		<checkbox>
+			<label>Do not show this screen at FlightGear startup</label>
+			<halign>center</halign>
+			<property>/systems/acconfig/options/welcome-skip</property>
+			<binding>
+				<command>property-toggle</command>
+				<property>/systems/acconfig/options/welcome-skip</property>
+			</binding>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				acconfig.writeSettings();
+				</script>
+			</binding>
+			<live>true</live>
+		</checkbox>
 		
 	</group>
 	
