@@ -778,7 +778,7 @@
 			</condition>
 			<value>0.25</value>
 		</input>
-		<output>/controls/flight/elevator</output>
+		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>0.8</max-rate-of-change>
 	</filter>

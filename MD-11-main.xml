@@ -440,6 +440,12 @@
 			<retard-enable>1</retard-enable> <!-- AGL to Thrust Retard -->
 			<togaspd>163</togaspd> <!-- V2 + 10kts -->
 		</settings>
+		<output>
+			<ap1>0</ap1>
+			<ap2>0</ap2>
+			<lat>0</lat>
+			<vert>0</vert>
+		</output>
 		<custom>
 			<afds-ovrd>0</afds-ovrd>
 			<vs-fpa>0</vs-fpa>
@@ -472,31 +478,217 @@
 	
 	<input>
 		<keyboard>
+			<key n="33">
+				<name>PAGE UP</name>
+				<desc>Throttle Increase</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+					</script>
+				</binding>
+			</key>
+			<key n="34">
+				<name>PAGE DN</name>
+				<desc>Throttle Decrease</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+					</script>
+				</binding>
+			</key>
 			<key n="49">
 				<name>1</name>
-				<desc>Captain View</desc>
+				<desc>Captain View/Elevator Trim Up</desc>
 				<binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
 					<value>0</value>
 				</binding>
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>property-adjust</command>
+					<property>/controls/flight/elevator-trim</property>
+					<step>-0.001</step>
+				</binding>
 			</key>
 			<key n="50">
 				<name>2</name>
-				<desc>First Officer View</desc>
+				<desc>First Officer View/Elevator Up</desc>
 				<binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
 					<value>8</value>
 				</binding>
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") - 0.05);
+					</script>
+				</binding>
 			</key>
 			<key n="51">
 				<name>3</name>
-				<desc>Overhead View</desc>
+				<desc>Overhead View/Throttle Decrease</desc>
 				<binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
 					<value>9</value>
+				</binding>
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+					</script>
+				</binding>
+			</key>
+			<key n="52">
+				<name>4</name>
+				<desc>Forward Pedestal/Aileron Left</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") - 0.05);
+					</script>
+				</binding>
+			</key>
+			<key n="53">
+				<name>5</name>
+				<desc>Aft Pedestal/Center Controls</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/flight/aileron", 0);
+						setprop("/controls/flight/elevator", 0);
+						setprop("/controls/flight/rudder", 0);
+					</script>
+				</binding>
+			</key>
+			<key n="54">
+				<name>6</name>
+				<desc>FCU Panel/Aileron Right</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") + 0.05);
+					</script>
+				</binding>
+			</key>
+			<key n="55">
+				<name>7</name>
+				<desc>Elevator Trim Down</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>property-adjust</command>
+					<property>/controls/flight/elevator-trim</property>
+					<step>0.001</step>
+				</binding>
+			</key>
+			<key n="56">
+				<name>8</name>
+				<desc>Elevator Down</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") + 0.05);
+					</script>
+				</binding>
+			</key>
+			<key n="57">
+				<name>9</name>
+				<desc>Throttle Increase</desc>
+				<!--binding>
+					<condition>
+						<not><property>/options/system/keyboard-mode</property></not>
+					</condition>
+					<command>property-assign</command>
+					<property>/sim/current-view/view-number</property>
+					<value></value>
+				</binding-->
+				<binding>
+					<condition>
+						<property>/options/system/keyboard-mode</property>
+					</condition>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+					</script>
 				</binding>
 			</key>
 			<key n="127">

@@ -348,11 +348,28 @@
 			<hrule/>
 			
 			<checkbox>
+				<label>Keyboard Mode (See Aircraft Help)</label>
+				<halign>left</halign>
+				<property>/options/system/keyboard-mode</property>
+				<binding>
+					<command>property-toggle</command>
+					<property>/options/system/keyboard-mode</property>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.writeSettings();
+					</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>Skip ADIRS Alignment</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
 				<property>/controls/adirs/skip</property>
 				<binding>
 					<command>property-toggle</command>
@@ -364,7 +381,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					acconfig.saveSettings();
+					acconfig.writeSettings();
 					</script>
 				</binding>
 				<live>true</live>

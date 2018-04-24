@@ -34,6 +34,7 @@ setprop("/systems/acconfig/new-revision", 0);
 setprop("/systems/acconfig/out-of-date", 0);
 setprop("/systems/acconfig/mismatch-code", "0x000");
 setprop("/systems/acconfig/mismatch-reason", "XX");
+setprop("/systems/acconfig/options/keyboard-mode", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/welcome.xml");
@@ -108,9 +109,11 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
+	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 }
 
 var writeSettings = func {
+	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 }
 

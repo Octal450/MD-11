@@ -356,23 +356,8 @@
 			</condition>
 			<property>/it-autoflight/internal/aileron-cmd</property>
 		</input>
-		<input>
-			<condition>
-				<or>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>1</value>
-					</equals>
-				</or>
-			</condition>
-			<property>/controls/flight/rudder-afs-input</property>
-			<scale>-1</scale>
-		</input>
-		<output>/controls/flight/aileron</output>
+		<input>0</input>
+		<output>/fdm/jsbsim/fcc/afs/roll-cmd</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>0.8</max-rate-of-change>
 	</filter>
@@ -441,20 +426,6 @@
 		<debug>false</debug>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<enable>
-			<condition>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-				</or>
-			</condition>
-		</enable>
 		<input>
 			<condition>
 				<not-equals>
@@ -473,7 +444,7 @@
 			</condition>
 			<property>/it-autoflight/internal/rudder-cmd</property>
 		</input>
-		<output>/controls/flight/rudder</output>
+		<output>/fdm/jsbsim/fcc/afs/yaw-cmd</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>0.6</max-rate-of-change>
 	</filter>
