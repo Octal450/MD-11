@@ -32,7 +32,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind> 0.0</ind><dep>  0</dep></entry>
 						<entry><ind>-1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -78,7 +78,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind> 0.0</ind><dep>  0</dep></entry>
 						<entry><ind>-1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -124,7 +124,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind> 0.0</ind><dep>  0</dep></entry>
 						<entry><ind>-1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -170,7 +170,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind> 0.0</ind><dep>  0</dep></entry>
 						<entry><ind>-1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -216,7 +216,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind> 0.0</ind><dep>  0</dep></entry>
 						<entry><ind>-1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -282,7 +282,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind>0.0</ind><dep>  0</dep></entry>
 						<entry><ind>1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -328,7 +328,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind>0.0</ind><dep>  0</dep></entry>
 						<entry><ind>1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -374,7 +374,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind>0.0</ind><dep>  0</dep></entry>
 						<entry><ind>1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -420,7 +420,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind>0.0</ind><dep>  0</dep></entry>
 						<entry><ind>1.0</ind><dep>1.0</dep></entry>
 					</table>
@@ -466,7 +466,7 @@
 				<sum>
 					<property>/controls/flight/speedbrake-norm</property> 
 					<table>
-						<property>/controls/flight/aileron</property> 
+						<property>/fdm/jsbsim/fcc/aileron-output</property> 
 						<entry><ind>0.0</ind><dep>  0</dep></entry>
 						<entry><ind>1.0</ind><dep>1.0</dep></entry>
 					</table>

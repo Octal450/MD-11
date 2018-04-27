@@ -123,7 +123,7 @@
 			</config>
 		</view>
 		
-		<chase-distance-m type="double">-100</chase-distance-m>
+		<chase-distance-m type="double">-130</chase-distance-m>
 
 		<weight n="0">
 			<name>Crew</name>
@@ -265,7 +265,7 @@
 			<autopilot n="5">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-thrust.xml</path>
 			</autopilot>
-			<!-- Autopilot 6 is FADEC -->
+			<!-- 6 is FADEC -->
 			<autopilot n="7">
 				<path>Aircraft/IDG-MD-11X/Systems/libraries.xml</path>
 			</autopilot>
@@ -275,8 +275,11 @@
 			<autopilot n="9">
 				<path>Aircraft/IDG-MD-11X/Systems/EAD.xml</path>
 			</autopilot>
-			<autopilot n="100">
+			<autopilot n="10">
 				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
+			</autopilot>
+			<autopilot n="11">
+				<path>Aircraft/IDG-MD-11X/Systems/zoom-views.xml</path>
 			</autopilot>
 		</systems>
         
@@ -287,6 +290,16 @@
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		
 		<gui n="0" include="Systems/it-gui.xml"/>
+		
+		<current-view>
+			<z-offset-dec-step type="double">0.0</z-offset-dec-step>
+			<z-offset-inc-step type="double">0.0</z-offset-inc-step>
+			<can-change-z-offset type="bool">false</can-change-z-offset>
+			
+			<z-offset-default type="float">130.0</z-offset-default>
+			<z-offset-min-m type="float">30.0</z-offset-min-m>
+			<z-offset-max-m type="float">300.0</z-offset-max-m>
+		</current-view>
     </sim>
 	
 	<!--consumables n="0">
@@ -477,7 +490,85 @@
 	</systems>
 	
 	<input>
+		<mice n="0">
+			<mouse n="0">
+				<mode n="0">
+					<button n="3">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>
+							if (getprop("/sim/current-view/can-change-z-offset")) {
+								var distance = getprop("/sim/current-view/z-offset-m");
+								var multiple = getprop("/sim/current-view/z-offset-inc-step");
+								var min_dist = getprop("/sim/current-view/z-offset-min-m");
+
+								distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
+								setprop("/sim/current-view/z-offset-m", distance);
+
+								gui.popupTip(sprintf("%d meters", abs(distance)));
+							} else {
+								view.decrease();
+							}
+							</script>
+						</binding>
+					</button>
+					<button n="4">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>
+								if (getprop("/sim/current-view/can-change-z-offset")) {
+									var distance = getprop("/sim/current-view/z-offset-m");
+									var multiple = getprop("/sim/current-view/z-offset-dec-step");
+									var max_dist = getprop("/sim/current-view/z-offset-max-m");
+
+									distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
+									setprop("/sim/current-view/z-offset-m", distance);
+
+									gui.popupTip(sprintf("%d meters", abs(distance)));
+								} else {
+									view.increase();
+								}
+							</script>
+						</binding>
+					</button>
+				</mode>
+			</mouse>
+		</mice>
 		<keyboard>
+			<key n="24">
+				<name>Ctrl-X</name>
+				<desc>Reset zoom to default</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/sim/current-view/can-change-z-offset")) {
+							setprop("/sim/current-view/z-offset-m", getprop("/sim/current-view/z-offset-default") * -1);
+
+							gui.popupTip(sprintf("%d meters", getprop("/sim/current-view/z-offset-default")));
+						} else {
+							setprop("/sim/current-view/field-of-view", getprop("/sim/view/config/default-field-of-view-deg"));
+						}
+					</script>
+				</binding>
+			</key>
 			<key n="33">
 				<name>PAGE UP</name>
 				<desc>Throttle Increase</desc>
@@ -688,6 +779,50 @@
 					<script>
 						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
 						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+					</script>
+				</binding>
+			</key>
+			<key n="88">
+				<name>X</name>
+				<desc>Increase field of view</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+				<command>nasal</command>
+				<script>
+					if (getprop("/sim/current-view/can-change-z-offset")) {
+						var distance = getprop("/sim/current-view/z-offset-m");
+						var multiple = getprop("/sim/current-view/z-offset-dec-step");
+						var max_dist = getprop("/sim/current-view/z-offset-max-m");
+
+						distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
+						setprop("/sim/current-view/z-offset-m", distance);
+
+						gui.popupTip(sprintf("%d meters", abs(distance)));
+					} else {
+						view.increase();
+					}
+				</script>
+				</binding>
+			</key>
+			<key n="120">
+				<name>x</name>
+				<desc>Decrease field of view</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>nasal</command>
+					<script>
+						if (getprop("/sim/current-view/can-change-z-offset")) {
+							var distance = getprop("/sim/current-view/z-offset-m");
+							var multiple = getprop("/sim/current-view/z-offset-inc-step");
+							var min_dist = getprop("/sim/current-view/z-offset-min-m");
+
+							distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
+							setprop("/sim/current-view/z-offset-m", distance);
+
+							gui.popupTip(sprintf("%d meters", abs(distance)));
+						} else {
+							view.decrease();
+						}
 					</script>
 				</binding>
 			</key>
@@ -952,6 +1087,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/magicstartup.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/ND/ND.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/shake.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/IDG-MD-11X/AircraftConfig/acconfig.nas</file>
