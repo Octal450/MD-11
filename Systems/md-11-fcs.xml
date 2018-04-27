@@ -8,10 +8,14 @@
 
 <system name="MD-11: FCS">
 	
+	<property value="0">fcc/lsas/pid</property>
 	<property value="0">fcc/yaw/tc-pid</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
 	
 	<!-- Default gains for tuning -->
+	<property value="0">fcc/lsas/p-gain</property>
+	<property value="0">fcc/lsas/i-gain</property>
+	<property value="0">fcc/lsas/d-gain</property>
 	<property value="0">fcc/yaw/yd-p-gain</property>
 	<property value="0">fcc/yaw/tc-p-gain</property>
 	<property value="0">fcc/yaw/tc-i-gain</property>
@@ -32,13 +36,6 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/gain-switch">
-			<default value="0"/>
-			<test value="1">
-				position/wow eq 1
-			</test>
-		</switch>
-		
 		<switch name="fcc/afs/enabled">
 			<default value="0"/>
 			<test logic="OR" value="1">
@@ -46,6 +43,71 @@
 				/it-autoflight/output/ap2 eq 1
 			</test>
 		</switch>
+		
+		<switch name="fcc/lsas/gain-switch">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
+				attitude/pitch-rad le 0.558505
+				attitude/pitch-rad ge -0.20944
+				attitude/roll-rad le 0.558505
+				attitude/roll-rad ge -0.558505
+				/controls/flight/elevator le 0.02
+				/controls/flight/elevator ge -0.02
+				position/wow eq 0
+				/position/gear-agl-ft ge 100
+			</test>
+		</switch>
+		
+		<switch name="fcc/yaw/gain-switch">
+			<default value="0"/>
+			<test value="1">
+				position/wow eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/lsas/p-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
+					<tableData>
+						     0   1  
+						0.2  57  0
+						0.9  41  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/lsas/i-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
+					<tableData>
+						     0   1
+						0.2  85  0
+						0.9  65  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/lsas/d-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
+					<tableData>
+						     0    1
+						0.2  1.5  0.0
+						0.9  1.3  0.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<fcs_function name="fcc/yaw/yd-p-gain">
 			<function>
@@ -104,12 +166,127 @@
 	
 	<channel name="FCC: Pitch">
 		
+		<fcs_function name="fcc/lsas/thetadot-rad_sec">
+			<function>
+				<toradians>
+					<property>/orientation/pitch-rate-degps</property>
+				</toradians>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/lsas/t-r_s-s">
+			<default value="fcc/lsas/thetadot-rad_sec"/>
+			<test value="0">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/trigger">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fcc/lsas/gain-switch gt 0
+				fcc/lsas/pid le -0.169
+				fcc/lsas/pid ge 0.169
+			</test>
+		</switch>
+		
+		<pid name="fcc/lsas/pid-v">
+			<input>fcc/lsas/t-r_s-s</input>
+			<kp>fcc/lsas/p-gain</kp>
+			<ki>fcc/lsas/i-gain</ki>
+			<kd>fcc/lsas/d-gain</kd>
+			<trigger>fcc/lsas/trigger</trigger>
+			<clipto>
+				<min>-0.17</min>
+				<max>0.17</max>
+			</clipto>
+			<output>fcc/lsas/pid</output>
+		</pid>
+		
+		<pure_gain name="fcc/lsas/pid-inv">
+			<input>fcc/lsas/pid</input>
+			<gain>-1.0</gain>
+		</pure_gain>
+		
+		<switch name="fcc/lsas/pid-switched">
+			<default value="fcc/lsas/pid"/>
+			<test logic="OR" value="fcc/lsas/pid-inv">
+				attitude/roll-rad lt -1.5708
+				attitude/roll-rad gt 1.5708
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/output">
+			<default value="/controls/flight/elevator"/>
+			<test value="fcc/lsas/pid-switched">
+				fcc/lsas/gain-switch eq 0
+			</test>
+		</switch>
+		
 		<switch name="fcc/elevator-output">
-			<default value="/controls/flight/elevator-lsas"/>
+			<default value="fcc/lsas/output"/>
 			<test value="fcc/afs/pitch-cmd">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
+		
+		<switch name="fcc/elevator-output-nolsas">
+			<default value="/controls/flight/elevator"/>
+			<test value="fcc/afs/pitch-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/autotrim-switch">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fcc/lsas/gain-switch eq 0
+				fcc/elevator-output ge 0.02
+				/controls/flight/elevator-trim le 0.97
+			</test>
+			<test logic="AND" value="2">
+				fcc/lsas/gain-switch eq 0
+				fcc/elevator-output le -0.02
+				/controls/flight/elevator-trim ge -1.0
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/lsas/autotrim-offset">
+			<function>
+				<sum>
+					<ifthen>
+						<eq>
+							<property>fcc/lsas/autotrim-switch</property>
+							<value>1</value>
+						</eq>
+						<value>0.0000075</value>
+						<value>0.0</value>
+					</ifthen>
+					<ifthen>
+						<eq>
+							<property>fcc/lsas/autotrim-switch</property>
+							<value>2</value>
+						</eq>
+						<value>-0.0000075</value>
+						<value>0.0</value>
+					</ifthen>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/elevator-trim-output">
+			<function>
+				<sum>
+					<property>/controls/flight/elevator-trim</property>
+					<property>fcc/lsas/autotrim-offset</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1.00</min>
+				<max>0.07</max>
+			</clipto>
+			<output>/controls/flight/elevator-trim</output>
+		</fcs_function>
 	
 	</channel>
 	
@@ -179,7 +356,7 @@
 			</test>
 		</switch>
 		
-		<pid name="fcc/roll/tc-pid-v">
+		<pid name="fcc/yaw/tc-pid-v">
 			<input>fcc/yaw/slip-skid</input>
 			<kp>fcc/yaw/tc-p-gain</kp>
 			<ki>fcc/yaw/tc-i-gain</ki>

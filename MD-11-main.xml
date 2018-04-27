@@ -251,34 +251,31 @@
 				<path>Aircraft/IDG-MD-11X/Systems/hydraulics.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/IDG-MD-11X/Systems/lsas.xml</path>
-			</autopilot>
-			<autopilot n="2">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-drivers.xml</path>
 			</autopilot>
-			<autopilot n="3">
+			<autopilot n="2">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
-			<autopilot n="4">
+			<autopilot n="3">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-pitch.xml</path>
 			</autopilot>
-			<autopilot n="5">
+			<autopilot n="4">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-thrust.xml</path>
+			</autopilot>
+			<autopilot n="5">
+				<path>Aircraft/IDG-MD-11X/Systems/libraries.xml</path>
 			</autopilot>
 			<!-- 6 is FADEC -->
 			<autopilot n="7">
-				<path>Aircraft/IDG-MD-11X/Systems/libraries.xml</path>
-			</autopilot>
-			<autopilot n="8">
 				<path>Aircraft/IDG-MD-11X/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
-			<autopilot n="9">
+			<autopilot n="8">
 				<path>Aircraft/IDG-MD-11X/Systems/EAD.xml</path>
 			</autopilot>
-			<autopilot n="10">
+			<autopilot n="9">
 				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
 			</autopilot>
-			<autopilot n="11">
+			<autopilot n="10">
 				<path>Aircraft/IDG-MD-11X/Systems/zoom-views.xml</path>
 			</autopilot>
 		</systems>

@@ -562,7 +562,7 @@
    <object-name>yoke.nosedown</object-name>
     <object-name>yoke.autodsg</object-name>
         <object-name>yoke.piece</object-name>
- <property>fdm/jsbsim/fcc/elevator-output</property>
+ <property>fdm/jsbsim/fcc/elevator-output-nolsas</property>
  <factor>15</factor>
  <center>
   <x-m>-27.3315</x-m>
@@ -600,7 +600,7 @@
 	<animation>
 		<type>translate</type>
  <object-name>yoke.left.column.2</object-name>
- <property>fdm/jsbsim/fcc/elevator-output</property>
+ <property>fdm/jsbsim/fcc/elevator-output-nolsas</property>
 		<factor>0.01</factor>
  <axis>
   <x>-1.0</x>
@@ -665,7 +665,7 @@
    <object-name>yoke.noseup.right</object-name>
    <object-name>yoke.nosedown.right</object-name>
     <object-name>yoke.autodsg.right</object-name>
- <property>fdm/jsbsim/fcc/elevator-output</property>
+ <property>fdm/jsbsim/fcc/elevator-output-nolsas</property>
  <factor>15</factor>
  <center>
   <x-m>-27.3315</x-m>
@@ -702,7 +702,7 @@
 	<animation>
 		<type>translate</type>
  <object-name>yoke.right.column.2</object-name>
- <property>fdm/jsbsim/fcc/elevator-output</property>
+ <property>fdm/jsbsim/fcc/elevator-output-nolsas</property>
 		<factor>0.01</factor>
  <axis>
   <x>-1.0</x>
