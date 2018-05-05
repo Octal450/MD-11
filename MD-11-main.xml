@@ -475,6 +475,8 @@
 	</lsas>
 	
 	<options n="0">
+		<keyboard-mode type="bool">0</keyboard-mode>
+		<laptop-mode type="bool">0</laptop-mode>
 		<test-canvas type="bool">1</test-canvas>
 	</options>
 	

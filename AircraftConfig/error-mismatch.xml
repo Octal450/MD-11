@@ -23,7 +23,7 @@
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>Error: Mismatch</label>
+			<label>Something Happened!</label>
 		</text>
 	</group>
 	
@@ -41,7 +41,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>A configuration error or internal error has occurred. The aircraft has been disabled.</label>
+			<label>Something happened and an internal error has occurred. The aircraft has been disabled.</label>
 		</text>
 		<text>
 			<halign>left</halign>
