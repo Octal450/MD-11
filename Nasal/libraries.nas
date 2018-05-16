@@ -109,9 +109,9 @@ var update_tilt = maketimer(0.1, func {
 #######################
 
 setlistener("sim/signals/fdm-initialized", func {
-	systems.elec_init();
-	systems.pneu_init();
-	systems.hyd_init();
+	systems.ELEC.init();
+	systems.PNEU.init();
+	systems.HYD.init();
 	fadec.fadec_reset();
 	afs.ap_init();
 	update_tilt.start();
@@ -124,6 +124,11 @@ setlistener("sim/signals/fdm-initialized", func {
 });
 
 var systemsLoop = maketimer(0.1, func {
+	systems.ELEC.loop();
+	systems.PNEU.loop();
+	systems.HYD.loop();
+	fadec.fadecLoop();
+	
 	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
 		setprop("/controls/switches/cart", 0);
 		setprop("/controls/pneumatic/switches/groundair", 0);

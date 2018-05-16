@@ -33,10 +33,6 @@ var fadec_reset = func {
 
 fadec_reset();
 
-setlistener("/sim/signals/fdm-initialized", func {
-	fadecLoopT.start();
-});
-
 var fadecLoop = func {
 	var eprtoga = getprop("/systems/thrust/epr/toga-lim");
 	var eprmct = getprop("/systems/thrust/epr/mct-lim");
@@ -67,6 +63,3 @@ var fadecLoop = func {
 		setprop("/controls/engines/epr-limit", eprcrz);
 	}
 }
-
-# Timers
-var fadecLoopT = maketimer(0.5, fadecLoop);

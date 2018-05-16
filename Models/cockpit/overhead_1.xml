@@ -436,7 +436,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>systems.systemHydMode();</script>
+				<script>systems.HYD.systemMode();</script>
 		    </binding>
 			<binding>
 				<command>nasal</command>
@@ -1443,7 +1443,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>systems.systemElecMode();</script>
+				<script>systems.ELEC.systemMode();</script>
 		    </binding>
 			<binding>
 				<command>nasal</command>
@@ -3095,7 +3095,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>systems.systemPneuMode();</script>
+				<script>systems.PNEU.systemMode();</script>
 		    </binding>
 			<binding>
 				<command>nasal</command>
