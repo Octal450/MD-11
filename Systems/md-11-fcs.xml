@@ -492,20 +492,20 @@
 		<switch name="hydraulics/aileron-l-out/pressure-switch-or">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulic/sys2-psi GE 1500
-				/systems/hydraulic/sys3-psi GE 1500
+				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys3-psi ge 1500
 			</test>
 		</switch>
 		
 		<switch name="hydraulics/aileron-l-out/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="AND" value="0">
-				hydraulics/aileron-l-out/pressure-switch-or EQ 1
-				/fdm/jsbsim/fcs/slat-pos-deg LT 2
+				hydraulics/aileron-l-out/pressure-switch-or eq 1
+				/fdm/jsbsim/fcs/slat-pos-deg lt 2
 			</test>
 			<test logic="AND" value="hydraulics/aileron-l-out/function">
-				hydraulics/aileron-l-out/pressure-switch-or EQ 1
-				/fdm/jsbsim/fcs/slat-pos-deg GE 2
+				hydraulics/aileron-l-out/pressure-switch-or eq 1
+				/fdm/jsbsim/fcs/slat-pos-deg ge 2
 			</test>
 			<clipto>
 				<min>-0.5</min>
@@ -539,8 +539,8 @@
 		<switch name="hydraulics/aileron-l-in/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-l-in/function">
-				/systems/hydraulic/sys2-psi GE 1500
-				/systems/hydraulic/sys3-psi GE 1500
+				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-0.5</min>
@@ -574,8 +574,8 @@
 		<switch name="hydraulics/aileron-r-in/switch">
 			<default value="hydraulics/aileron-droop-neg"/>
 			<test logic="OR" value="hydraulics/aileron-r-in/function">
-				/systems/hydraulic/sys1-psi GE 1500
-				/systems/hydraulic/sys3-psi GE 1500
+				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-0.5</min>
@@ -609,20 +609,20 @@
 		<switch name="hydraulics/aileron-r-out/pressure-switch-or">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulic/sys2-psi GE 1500
-				/systems/hydraulic/sys3-psi GE 1500
+				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys3-psi ge 1500
 			</test>
 		</switch>
 		
 		<switch name="hydraulics/aileron-r-out/switch">
 			<default value="hydraulics/aileron-droop-neg"/>
 			<test logic="AND" value="0">
-				hydraulics/aileron-r-out/pressure-switch-or EQ 1
-				/fdm/jsbsim/fcs/slat-pos-deg LT 2
+				hydraulics/aileron-r-out/pressure-switch-or eq 1
+				/fdm/jsbsim/fcs/slat-pos-deg lt 2
 			</test>
 			<test logic="AND" value="hydraulics/aileron-r-out/function">
-				hydraulics/aileron-r-out/pressure-switch-or EQ 1
-				/fdm/jsbsim/fcs/slat-pos-deg GE 2
+				hydraulics/aileron-r-out/pressure-switch-or eq 1
+				/fdm/jsbsim/fcs/slat-pos-deg ge 2
 			</test>
 			<clipto>
 				<min>-0.5</min>
@@ -1237,8 +1237,12 @@
 		
 		<switch name="hydraulics/tiller/switch">
 			<default value="/controls/flight/rudder"/>
-			<test value="/controls/flight/aileron">
-				/controls/flight/aileron-drives-tiller EQ 1
+			<test logic="AND" value="/controls/flight/aileron">
+				fcc/afs/enabled eq 0
+				/controls/flight/aileron-drives-tiller eq 1
+			</test>
+			<test value="fcc/afs/yaw-cmd">
+				fcc/afs/enabled eq 1
 			</test>
 		</switch>
 		
@@ -1261,6 +1265,44 @@
 			<rate_limit>70</rate_limit>
 			<output>fcs/steer-pos-deg[0]</output>
 		</actuator>
+	
+	</channel>
+	
+	<channel name="Brakes">
+		
+		<summer name="fcs/left-brake-summer">
+			<input>/controls/gear/brake-left</input>
+			<input>/controls/gear/brake-parking</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="rubbish/left-brake-cmd-norm">
+			<default value="fcs/left-brake-summer"/>
+			<test value="/controls/autobrake/brake-left">
+				/controls/autobrake/active eq 1
+			</test>
+			<output>fcs/left-brake-cmd-norm</output>
+		</switch>
+		
+		<summer name="fcs/right-brake-summer">
+			<input>/controls/gear/brake-right</input>
+			<input>/controls/gear/brake-parking</input>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="rubbish/right-brake-cmd-norm">
+			<default value="fcs/right-brake-summer"/>
+			<test value="/controls/autobrake/brake-right">
+				/controls/autobrake/active eq 1
+			</test>
+			<output>fcs/right-brake-cmd-norm</output>
+		</switch>
 	
 	</channel>
 

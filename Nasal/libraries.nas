@@ -117,7 +117,8 @@ setlistener("sim/signals/fdm-initialized", func {
 	update_tilt.start();
 	lightsLoop.start();
 	systemsLoop.start();
-	systems.irs_init();
+	systems.autobrake_init();
+#	systems.irs_init();
 	libraries.variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 });

@@ -7,7 +7,26 @@
 -->
 
 <PropertyList>
-
+	
+	<filter>
+		<name>Groundspeed Meters Per Second</name>
+		<type>gain</type>
+		<gain>0.5144444444444</gain>
+		<input>/velocities/groundspeed-kt</input>
+		<output>/velocities/groundspeed-mps</output>
+		<min>0</min>
+		<max>1000</max>
+	</filter>
+	
+	<predict-simple>
+		<name>Groundspeed Meters Per Second Ahead</name>
+		<debug>false</debug>
+		<input>/velocities/groundspeed-mps</input>
+		<output>/velocities/groundspeed-mps-ahead</output>
+		<seconds>1.5</seconds>
+		<filter-gain>0.0</filter-gain>
+	</predict-simple>
+	
 	<filter>
 		<name>Gear AGL Altitude FT</name>
 		<type>gain</type>
