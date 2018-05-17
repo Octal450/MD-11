@@ -24,7 +24,7 @@ var src_dc3 = "XX";
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var batt_sw = getprop("/controls/electrical/switches/battery");
-	var emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw"); # 0 = OFF, 1 = ARM, 2 = ON
+	var emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw");# 0 = OFF, 1 = ARM, 2 = ON
 	var dc_tie_1_sw = getprop("/controls/electrical/switches/dc-tie-1");
 	var dc_tie_3_sw = getprop("/controls/electrical/switches/dc-tie-3");
 	var ac_tie_1_sw = getprop("/controls/electrical/switches/ac-tie-1");
@@ -75,7 +75,7 @@ var ELEC = {
 	init: func() {
 		setprop("/controls/switches/annun-test", 0);
 		setprop("/controls/electrical/switches/battery", 0);
-		setprop("/controls/electrical/switches/emer-pw-sw", 0); # 0 = OFF, 1 = ARM, 2 = ON
+		setprop("/controls/electrical/switches/emer-pw-sw", 0);# 0 = OFF, 1 = ARM, 2 = ON
 		setprop("/controls/electrical/switches/dc-tie-1", 1);
 		setprop("/controls/electrical/switches/dc-tie-3", 1);
 		setprop("/controls/electrical/switches/ac-tie-1", 1);
@@ -95,7 +95,7 @@ var ELEC = {
 		setprop("/controls/electrical/switches/smoke-elecair", 0);
 		setprop("/controls/electrical/switches/manual-lt", 0);
 		setprop("/controls/electrical/switches/manual-flash", 0);
-		setprop("/systems/electrical/system", 1); # Automatic
+		setprop("/systems/electrical/system", 1);# Automatic
 		setprop("/systems/electrical/battery1-volts", 26.5);
 		setprop("/systems/electrical/battery2-volts", 26.5);
 		setprop("/systems/electrical/battery1-amps", 0);
@@ -191,7 +191,7 @@ var ELEC = {
 		}
 		
 		batt_sw = getprop("/controls/electrical/switches/battery");
-		emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw"); # 0 = OFF, 1 = ARM, 2 = ON
+		emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw");# 0 = OFF, 1 = ARM, 2 = ON
 		dc_tie_1_sw = getprop("/controls/electrical/switches/dc-tie-1");
 		dc_tie_3_sw = getprop("/controls/electrical/switches/dc-tie-3");
 		ac_tie_1_sw = getprop("/controls/electrical/switches/ac-tie-1");
@@ -411,13 +411,13 @@ var ELEC = {
 		dc3 = getprop("/systems/electrical/bus/dc3");
 		
 		# Battery Amps
-		if (batt_sw) {
+		if (battery1_volts >= 20 and batt_sw) {
 			setprop("/systems/electrical/battery1-amps", dc_amps_std);
 		} else {
 			setprop("/systems/electrical/battery1-amps", 0);
 		}
 		
-		if (batt_sw) {
+		if (battery2_volts >= 20 and batt_sw) {
 			setprop("/systems/electrical/battery2-amps", dc_amps_std);
 		} else {
 			setprop("/systems/electrical/battery2-amps", 0);
@@ -440,12 +440,12 @@ var ELEC = {
 		# Battery Charging/Decharging
 		if (battery1_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery1-volts", battery1_volts + 0.02877666); # Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery1-volts", battery1_volts + 0.02877666);# Roughly 15mins to 25.9
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (batt_sw) {
 			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery1-volts", battery1_volts - 0.01438833); # Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery1-volts", battery1_volts - 0.01438833);# Roughly 30mins from 25.9
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else {
@@ -454,12 +454,12 @@ var ELEC = {
 		
 		if (battery2_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery2-volts", battery2_volts + 0.02877666); # Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery2-volts", battery2_volts + 0.02877666);# Roughly 15mins to 25.9
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (batt_sw) {
 			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery2-volts", battery2_volts - 0.01438833); # Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery2-volts", battery2_volts - 0.01438833);# Roughly 30mins from 25.9
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else {
