@@ -475,8 +475,8 @@ var ELEC = {
 		}
 		
 		if (battery1_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			if (getprop("/systems/electrical/battery1-time") + 30 < getprop("/sim/time/elapsed-sec")) {
-				battery1_percent_calc = battery1_percent + 4.5; # Roughly 90 percent every 10 mins
+			if (getprop("/systems/electrical/battery1-time") + 5 < getprop("/sim/time/elapsed-sec")) {
+				battery1_percent_calc = battery1_percent + 0.75; # Roughly 90 percent every 10 mins
 				if (battery1_percent_calc > 100) {
 					battery1_percent_calc = 100;
 				}
@@ -484,8 +484,8 @@ var ELEC = {
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (battery1_amps >= 120 and batt_sw) {
-			if (getprop("/systems/electrical/battery1-time") + 30 < getprop("/sim/time/elapsed-sec")) {
-				battery1_percent_calc = battery1_percent - 1.5; # Roughly 90 percent every 30 mins
+			if (getprop("/systems/electrical/battery1-time") + 5 < getprop("/sim/time/elapsed-sec")) {
+				battery1_percent_calc = battery1_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery1_percent_calc < 0) {
 					battery1_percent_calc = 0;
 				}
@@ -497,8 +497,8 @@ var ELEC = {
 		}
 		
 		if (battery2_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			if (getprop("/systems/electrical/battery2-time") + 30 < getprop("/sim/time/elapsed-sec")) {
-				battery2_percent_calc = battery2_percent + 4.5; # Roughly 90 percent every 10 mins
+			if (getprop("/systems/electrical/battery2-time") + 5 < getprop("/sim/time/elapsed-sec")) {
+				battery2_percent_calc = battery2_percent + 0.75; # Roughly 90 percent every 10 mins
 				if (battery2_percent_calc > 100) {
 					battery2_percent_calc = 100;
 				}
@@ -506,8 +506,8 @@ var ELEC = {
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (battery2_amps >= 120 and batt_sw) {
-			if (getprop("/systems/electrical/battery2-time") + 30 < getprop("/sim/time/elapsed-sec")) {
-				battery2_percent_calc = battery2_percent - 1.5; # Roughly 90 percent every 30 mins
+			if (getprop("/systems/electrical/battery2-time") + 5 < getprop("/sim/time/elapsed-sec")) {
+				battery2_percent_calc = battery2_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery2_percent_calc < 0) {
 					battery2_percent_calc = 0;
 				}
