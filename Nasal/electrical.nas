@@ -96,8 +96,8 @@ var ELEC = {
 		setprop("/controls/electrical/switches/manual-lt", 0);
 		setprop("/controls/electrical/switches/manual-flash", 0);
 		setprop("/systems/electrical/system", 1); # Automatic
-		setprop("/systems/electrical/battery1-volts", 25.9);
-		setprop("/systems/electrical/battery2-volts", 25.9);
+		setprop("/systems/electrical/battery1-volts", 26.5);
+		setprop("/systems/electrical/battery2-volts", 26.5);
 		setprop("/systems/electrical/battery1-amps", 0);
 		setprop("/systems/electrical/battery2-amps", 0);
 		setprop("/systems/electrical/bus/dcbat", 0);
@@ -439,31 +439,31 @@ var ELEC = {
 		
 		# Battery Charging/Decharging
 		if (battery1_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			decharge1.stop();
-			charge1.start();
-		} else if (battery1_volts == 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			decharge1.stop();
-			charge1.stop();
+			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
+				setprop("/systems/electrical/battery1-volts", battery1_volts + 0.02877666); # Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
+			}
 		} else if (batt_sw) {
-			charge1.stop();
-			decharge1.start();
+			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
+				setprop("/systems/electrical/battery1-volts", battery1_volts - 0.01438833); # Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
+			}
 		} else {
-			decharge1.stop();
-			charge1.stop();
+			setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 		}
 		
 		if (battery2_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			decharge2.stop();
-			charge2.start();
-		} else if (battery2_volts == 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
-			decharge2.stop();
-			charge2.stop();
+			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
+				setprop("/systems/electrical/battery2-volts", battery2_volts + 0.02877666); # Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+			}
 		} else if (batt_sw) {
-			charge2.stop();
-			decharge2.start();
+			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
+				setprop("/systems/electrical/battery2-volts", battery2_volts - 0.01438833); # Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+			}
 		} else {
-			decharge2.stop();
-			charge2.stop();
+			setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 		}
 		
 		# Generic FG Electrical Properties
@@ -656,20 +656,3 @@ var ELEC = {
 };
 
 var manualElecLightt = maketimer(0.4, ELEC.manualLight);
-
-var charge1 = maketimer(6, func {
-	battery1_volts = getprop("/systems/electrical/battery1-volts");
-	setprop("/systems/electrical/battery1-volts", battery1_volts + 0.1);
-});
-var charge2 = maketimer(6, func {
-	battery2_volts = getprop("/systems/electrical/battery2-volts");
-	setprop("/systems/electrical/battery2-volts", battery2_volts + 0.1);
-});
-var decharge1 = maketimer(69, func { # interval is at 69 seconds, to allow about 30 min from 25.9
-	battery1_volts = getprop("/systems/electrical/battery1-volts");
-	setprop("/systems/electrical/battery1-volts", battery1_volts - 0.1);
-});
-var decharge2 = maketimer(69, func {
-	battery2_volts = getprop("/systems/electrical/battery2-volts");
-	setprop("/systems/electrical/battery2-volts", battery2_volts - 0.1);
-});
