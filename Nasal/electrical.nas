@@ -47,6 +47,10 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var battery2_volts = getprop("/systems/electrical/battery2-volts");
 	var battery1_amps = getprop("/systems/electrical/battery1-amps");
 	var battery2_amps = getprop("/systems/electrical/battery2-amps");
+	var battery1_percent = getprop("/systems/electrical/battery1-percent");
+	var battery2_percent = getprop("/systems/electrical/battery2-percent");
+	var battery1_percent_calc = 0;
+	var battery2_percent_calc = 0;
 	var dcbat = getprop("/systems/electrical/bus/dcbat");
 	var ac1 = getprop("/systems/electrical/bus/ac1");
 	var ac2 = getprop("/systems/electrical/bus/ac2");
@@ -100,6 +104,8 @@ var ELEC = {
 		setprop("/systems/electrical/battery2-volts", 26.5);
 		setprop("/systems/electrical/battery1-amps", 0);
 		setprop("/systems/electrical/battery2-amps", 0);
+		setprop("/systems/electrical/battery1-percent", 68);
+		setprop("/systems/electrical/battery2-percent", 68);
 		setprop("/systems/electrical/bus/dcbat", 0);
 		setprop("/systems/electrical/bus/ac1", 0);
 		setprop("/systems/electrical/bus/ac2", 0);
@@ -171,6 +177,8 @@ var ELEC = {
 		system = getprop("/systems/electrical/system");
 		battery1_volts = getprop("/systems/electrical/battery1-volts");
 		battery2_volts = getprop("/systems/electrical/battery2-volts");
+		battery1_percent = getprop("/systems/electrical/battery1-percent");
+		battery2_percent = getprop("/systems/electrical/battery2-percent");
 		replay = getprop("/sim/replay/replay-state");
 		extpwr_on = getprop("/controls/switches/cart");
 		rpmapu = getprop("/systems/apu/n2");
@@ -440,12 +448,12 @@ var ELEC = {
 		# Battery Charging/Decharging
 		if (battery1_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery1-volts", battery1_volts + 0.02877666);# Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery1-volts", battery1_volts + 0.02877666); # Roughly 15mins to 25.9
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (batt_sw) {
 			if (getprop("/systems/electrical/battery1-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery1-volts", battery1_volts - 0.01438833);# Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery1-volts", battery1_volts - 0.01438833); # Roughly 30mins from 25.9
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else {
@@ -454,16 +462,75 @@ var ELEC = {
 		
 		if (battery2_volts < 27.9 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery2-volts", battery2_volts + 0.02877666);# Roughly 15mins to 25.9
+				setprop("/systems/electrical/battery2-volts", battery2_volts + 0.02877666); # Roughly 15mins to 25.9
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else if (batt_sw) {
 			if (getprop("/systems/electrical/battery2-time") + 60 < getprop("/sim/time/elapsed-sec")) {
-				setprop("/systems/electrical/battery2-volts", battery2_volts - 0.01438833);# Roughly 30mins from 25.9
+				setprop("/systems/electrical/battery2-volts", battery2_volts - 0.01438833); # Roughly 30mins from 25.9
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
 		} else {
 			setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+		}
+		
+		if (battery1_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+			if (getprop("/systems/electrical/battery1-time") + 30 < getprop("/sim/time/elapsed-sec")) {
+				battery1_percent_calc = battery1_percent + 4.5; # Roughly 90 percent every 10 mins
+				if (battery1_percent_calc > 100) {
+					battery1_percent_calc = 100;
+				}
+				setprop("/systems/electrical/battery1-percent", battery1_percent_calc);
+				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
+			}
+		} else if (battery1_amps >= 120 and batt_sw) {
+			if (getprop("/systems/electrical/battery1-time") + 30 < getprop("/sim/time/elapsed-sec")) {
+				battery1_percent_calc = battery1_percent - 1.5; # Roughly 90 percent every 30 mins
+				if (battery1_percent_calc < 0) {
+					battery1_percent_calc = 0;
+				}
+				setprop("/systems/electrical/battery1-percent", battery1_percent_calc);
+				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
+			}
+		} else {
+			setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
+		}
+		
+		if (battery2_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+			if (getprop("/systems/electrical/battery2-time") + 30 < getprop("/sim/time/elapsed-sec")) {
+				battery2_percent_calc = battery2_percent + 4.5; # Roughly 90 percent every 10 mins
+				if (battery2_percent_calc > 100) {
+					battery2_percent_calc = 100;
+				}
+				setprop("/systems/electrical/battery2-percent", battery2_percent_calc);
+				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+			}
+		} else if (battery2_amps >= 120 and batt_sw) {
+			if (getprop("/systems/electrical/battery2-time") + 30 < getprop("/sim/time/elapsed-sec")) {
+				battery2_percent_calc = battery2_percent - 1.5; # Roughly 90 percent every 30 mins
+				if (battery2_percent_calc < 0) {
+					battery2_percent_calc = 0;
+				}
+				setprop("/systems/electrical/battery2-percent", battery2_percent_calc);
+				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+			}
+		} else {
+			setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
+		}
+		
+		battery1_percent = getprop("/systems/electrical/battery1-percent");
+		battery2_percent = getprop("/systems/electrical/battery2-percent");
+		
+		if (battery1_percent >= 10) {
+			setprop("/systems/electrical/battery1-volts", math.clamp(24 + (battery1_percent - 10) * (27.9 - 24) / (100 - 10), 24, 27.9));
+		} else {
+			setprop("/systems/electrical/battery1-volts", math.clamp(battery1_percent * (24) / (10), 0, 24));
+		}
+		
+		if (battery2_percent >= 10) {
+			setprop("/systems/electrical/battery2-volts", math.clamp(24 + (battery2_percent - 10) * (27.9 - 24) / (100 - 10), 24, 30));
+		} else {
+			setprop("/systems/electrical/battery2-volts", math.clamp(battery2_percent * (24) / (10), 0, 24));
 		}
 		
 		# Generic FG Electrical Properties
