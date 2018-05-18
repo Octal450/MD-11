@@ -73,6 +73,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var xtie1 = getprop("/controls/electrical/xtie/xtie1");
 	var xtie2 = getprop("/controls/electrical/xtie/xtie2");
 	var xtie3 = getprop("/controls/electrical/xtie/xtie3");
+	var manl = 0;
 });
 
 var ELEC = {
@@ -712,8 +713,9 @@ var ELEC = {
 		}
 	},
 	manualLight: func() {
-		var manl = getprop("/controls/electrical/switches/manual-flash");
-		if (manl >= 5) {
+		manl = getprop("/controls/electrical/switches/manual-flash");
+		system = getprop("/systems/electrical/system");
+		if (manl >= 5 or !system) {
 			manualElecLightt.stop();
 			setprop("/controls/electrical/switches/manual-flash", 0);
 		} else {

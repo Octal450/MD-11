@@ -269,10 +269,12 @@
 		<object-name>Gen2.off</object-name>
 		<object-name>Gen3.arm</object-name>
 		<object-name>Gen3.off</object-name>
+		<object-name>IGN.off</object-name>
 		<object-name>IGN_A.a</object-name>
 		<object-name>IGN_A.manual</object-name>
 		<object-name>IGN_B.b</object-name>
 		<object-name>IGN_B.manual</object-name>
+		<object-name>IGN_OVRD.ovrdon</object-name>
 		<object-name>LEmerAC.off</object-name>
 		<object-name>LEmerDC.off</object-name>
 		<object-name>REmerAC.off</object-name>
@@ -324,6 +326,12 @@
 		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Econ.off</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
+		<object-name>FADEC_MODE2.select</object-name>
+		<object-name>FADEC_MODE3.select</object-name>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<object-name>FADEC_MODE2.altn</object-name>
+		<object-name>FADEC_MODE3.altn</object-name>
 		<object-name>HydPress1.press</object-name>
 		<object-name>HydPress2.press</object-name>
 		<object-name>HydPress3.press</object-name>
@@ -392,9 +400,10 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
-		<object-name>IGN_A.a</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
+		<object-name>FADEC_MODE2.select</object-name>
+		<object-name>FADEC_MODE3.select</object-name>
 		<object-name>IGN_A.manual</object-name>
-		<object-name>IGN_B.b</object-name>
 		<object-name>IGN_B.manual</object-name>
 		<object-name>ISOL-1-2.on</object-name>
 		<object-name>ISOL-1-2.disag</object-name>
@@ -4538,8 +4547,412 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-	 <!-- Valve needle -->
+	
+	<!-- FADEC/Engine Ignition Panel -->
+	<animation>
+		<type>pick</type>
+		<object-name>FADEC_MODE1</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fadec/eng1-alnt</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fadec/eng1-alnt</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FADEC_MODE1</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fadec/eng1-alnt</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fadec/eng1-alnt</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FADEC_MODE2</object-name>
+		<object-name>FADEC_MODE2.select</object-name>
+		<object-name>FADEC_MODE2.altn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fadec/eng2-alnt</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FADEC_MODE2.altn</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fadec/eng2-alnt</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FADEC_MODE3</object-name>
+		<object-name>FADEC_MODE3.select</object-name>
+		<object-name>FADEC_MODE3.altn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fadec/eng3-alnt</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FADEC_MODE3.altn</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fadec/eng3-alnt</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>IGN.off</object-name>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>controls/engines/ign-a</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>controls/engines/ign-b</property>
+						<value>0</value>
+					</equals>
+				</and>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IGN_A</object-name>
+		<object-name>IGN_A.a</object-name>
+		<object-name>IGN_A.manual</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/battery1-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/battery2-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/engines/ign-a</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IGN_A.a</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/engines/ign-a</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IGN_B</object-name>
+		<object-name>IGN_B.b</object-name>
+		<object-name>IGN_B.manual</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/battery1-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/battery2-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/engines/ign-b</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IGN_B.b</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/engines/ign-b</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IGN_OVRD</object-name>
+		<object-name>IGN_OVRD.ovrdon</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/battery1-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/battery2-amps</property>
+							<value>120</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/engines/ign-ovrd</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IGN_OVRD.ovrdon</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/engines/ign-ovrd</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- Valve needle -->
 	<!--animation>
 		<type>rotate</type>
 		<object-name>Air.pres.needle</object-name>

@@ -278,11 +278,24 @@ var canvas_EAD_GE = {
 			me["EGT3-redline"].hide();
 		}
 		
-		me["EGT1-ignition"].hide();	# Hide until simulated
+		if (getprop("/controls/engines/ignition-1") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+			me["EGT1-ignition"].show();
+		} else {
+			me["EGT1-ignition"].hide();
+		}
+		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+			me["EGT2-ignition"].show();
+		} else {
+			me["EGT2-ignition"].hide();
+		}
+		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+			me["EGT3-ignition"].show();
+		} else {
+			me["EGT3-ignition"].hide();
+		}
+		
 		me["EGT1-redstart"].hide(); # Hide until simulated
-		me["EGT2-ignition"].hide();	# Hide until simulated
 		me["EGT2-redstart"].hide(); # Hide until simulated
-		me["EGT3-ignition"].hide();	# Hide until simulated
 		me["EGT3-redstart"].hide(); # Hide until simulated
 		
 		# N2
@@ -608,11 +621,24 @@ var canvas_EAD_PW = {
 			me["EGT3-redline"].hide();
 		}
 		
-		me["EGT1-ignition"].hide();	# Hide until simulated
+		if (getprop("/controls/engines/ignition-1") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+			me["EGT1-ignition"].show();
+		} else {
+			me["EGT1-ignition"].hide();
+		}
+		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+			me["EGT2-ignition"].show();
+		} else {
+			me["EGT2-ignition"].hide();
+		}
+		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+			me["EGT3-ignition"].show();
+		} else {
+			me["EGT3-ignition"].hide();
+		}
+		
 		me["EGT1-redstart"].hide(); # Hide until simulated
-		me["EGT2-ignition"].hide();	# Hide until simulated
 		me["EGT2-redstart"].hide(); # Hide until simulated
-		me["EGT3-ignition"].hide();	# Hide until simulated
 		me["EGT3-redstart"].hide(); # Hide until simulated
 		
 		# N2

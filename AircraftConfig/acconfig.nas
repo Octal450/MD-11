@@ -127,6 +127,7 @@ var systemsReset = func {
 	systems.elec_init();
 	systems.pneu_init();
 	systems.hyd_init();
+	systems.eng_init();
 	thrust.fadec_reset();
 	afs.ap_init();
 	systems.autobrake_init();

@@ -35,6 +35,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var src2 = "XX";
 	var src3 = "XX";
 	var wow = getprop("/gear/gear[3]/wow");
+	var manl = 0;
 });
 
 var HYD = {
@@ -273,8 +274,9 @@ var HYD = {
 		}
 	},
 	manualLight: func() {
-		var manl = getprop("/controls/hydraulic/switches/manual-flash");
-		if (manl >= 5) {
+		manl = getprop("/controls/hydraulic/switches/manual-flash");
+		system = getprop("/systems/hydraulic/system");
+		if (manl >= 5 or !system) {
 			manualHydLightt.stop();
 			setprop("/controls/hydraulic/switches/manual-flash", 0);
 		} else {

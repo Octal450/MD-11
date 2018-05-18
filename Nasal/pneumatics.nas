@@ -43,6 +43,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var state3 = getprop("/engines/engine[2]/state");
 	var rpmapu = getprop("/systems/apu/n2");
 	var total_psi_calc = 0;
+	var manl = 0;
 });
 
 var PNEU = {
@@ -98,21 +99,32 @@ var PNEU = {
 		state3 = getprop("/engines/engine[2]/state");
 		rpmapu = getprop("/systems/apu/n2");
 		
-		# PSC FIXME: (Temporary, until I find more info on how the automatic functions work) -JD
 		if (system) {
 			setprop("/controls/pneumatic/switches/bleed1", 1);
 			setprop("/controls/pneumatic/switches/bleed2", 1);
 			setprop("/controls/pneumatic/switches/bleed3", 1);
 			setprop("/controls/pneumatic/switches/isol1-2", 0);
 			setprop("/controls/pneumatic/switches/isol1-3", 0);
-			if (getprop("/controls/pneumatic/switches/pack1") != 1) {
-				setprop("/controls/pneumatic/switches/pack1", 1);
-			}
-			if (getprop("/controls/pneumatic/switches/pack2") != 1) {
-				setprop("/controls/pneumatic/switches/pack2", 1);
-			}
-			if (getprop("/controls/pneumatic/switches/pack3") != 1) {
-				setprop("/controls/pneumatic/switches/pack3", 1);
+			if (getprop("/controls/engines/packs-off") == 1) {
+				if (getprop("/controls/pneumatic/switches/pack1") != 0) {
+					setprop("/controls/pneumatic/switches/pack1", 0);
+				}
+				if (getprop("/controls/pneumatic/switches/pack2") != 0) {
+					setprop("/controls/pneumatic/switches/pack2", 0);
+				}
+				if (getprop("/controls/pneumatic/switches/pack3") != 0) {
+					setprop("/controls/pneumatic/switches/pack3", 0);
+				}
+			} else {
+				if (getprop("/controls/pneumatic/switches/pack1") != 1) {
+					setprop("/controls/pneumatic/switches/pack1", 1);
+				}
+				if (getprop("/controls/pneumatic/switches/pack2") != 1) {
+					setprop("/controls/pneumatic/switches/pack2", 1);
+				}
+				if (getprop("/controls/pneumatic/switches/pack3") != 1) {
+					setprop("/controls/pneumatic/switches/pack3", 1);
+				}
 			}
 		}
 		
@@ -213,8 +225,9 @@ var PNEU = {
 		}
 	},
 	manualLight: func() {
-		var manl = getprop("/controls/pneumatic/switches/manual-flash");
-		if (manl >= 5) {
+		manl = getprop("/controls/pneumatic/switches/manual-flash");
+		system = getprop("/systems/pneumatic/system");
+		if (manl >= 5 or !system) {
 			manualPneuLightt.stop();
 			setprop("/controls/pneumatic/switches/manual-flash", 0);
 		} else {

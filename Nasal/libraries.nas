@@ -112,6 +112,7 @@ setlistener("sim/signals/fdm-initialized", func {
 	systems.ELEC.init();
 	systems.PNEU.init();
 	systems.HYD.init();
+	systems.eng_init();
 	fadec.fadec_reset();
 	afs.ap_init();
 	update_tilt.start();
@@ -127,6 +128,7 @@ var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.PNEU.loop();
 	systems.HYD.loop();
+	systems.eng_loop();
 	fadec.fadecLoop();
 	
 	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
