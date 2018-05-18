@@ -1,5 +1,5 @@
-<!-- Provide a general summary of the issue/question in the title above. -->
-<!-- Incase of a question, remove the format below, and write your question. -->
+<!-- Provide a general summary of the issue in the title above. -->
+<!-- Issues are for reporting bugs or problems only. If you have a feature request, please write in the forums. -->
 
 ### Expected Behavior
 <!-- Tell us what should happen. -->
