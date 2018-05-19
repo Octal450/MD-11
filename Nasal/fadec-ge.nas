@@ -47,7 +47,7 @@ var fadecLoop2 = maketimer(0.7, func {
 	
 	if (state1 == 3) {
 		setprop("/systems/fadec/powered1", 1);
-	} else if (powerAvail and N21 >= 5) {
+	} else if (powerAvail and N21 >= 1) {
 		setprop("/systems/fadec/powered1", 1);
 	} else {
 		setprop("/systems/fadec/powered1", 0);
@@ -55,7 +55,7 @@ var fadecLoop2 = maketimer(0.7, func {
 	
 	if (state2 == 3) {
 		setprop("/systems/fadec/powered2", 1);
-	} else if (powerAvail and N22 >= 5) {
+	} else if (powerAvail and N22 >= 1) {
 		setprop("/systems/fadec/powered2", 1);
 	} else {
 		setprop("/systems/fadec/powered2", 0);
@@ -63,7 +63,7 @@ var fadecLoop2 = maketimer(0.7, func {
 	
 	if (state3 == 3) {
 		setprop("/systems/fadec/powered3", 1);
-	} else if (powerAvail and N23 >= 5) {
+	} else if (powerAvail and N23 >= 1) {
 		setprop("/systems/fadec/powered3", 1);
 	} else {
 		setprop("/systems/fadec/powered3", 0);

@@ -11,7 +11,7 @@
 	<filter>
 		<name>IDLE Limit</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<condition>
@@ -50,7 +50,7 @@
     <filter>
         <name>N1 CMD 1</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -67,7 +67,7 @@
     <filter>
         <name>N1 CMD 2</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -84,7 +84,7 @@
     <filter>
         <name>N1 CMD 3</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -101,7 +101,7 @@
     <filter>
         <name>N1 Limit TOGA</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -129,7 +129,7 @@
     <filter>
         <name>N1 Limit MCT</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -157,7 +157,7 @@
     <filter>
         <name>N1 Limit FLX</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -185,7 +185,7 @@
     <filter>
         <name>N1 Limit CLB</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -213,7 +213,7 @@
     <filter>
         <name>N1 Limit CRZ</name>
         <type>gain</type>
-        <gain>1</gain>
+        <gain>1.0</gain>
         <update-interval-secs type="double">0.05</update-interval-secs>
         <input>
             <expression>
@@ -241,7 +241,7 @@
 	<filter>
 		<name>Thrust Limit</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
             <expression>
 				<table>
@@ -257,7 +257,7 @@
 	<filter>
 		<name>Throttle 1</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -288,7 +288,7 @@
 	<filter>
 		<name>Throttle 1 Final</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -314,7 +314,7 @@
 	<filter>
 		<name>Throttle 2</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -345,7 +345,7 @@
 	<filter>
 		<name>Throttle 2 Final</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -371,7 +371,7 @@
 	<filter>
 		<name>Throttle 3</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -402,7 +402,7 @@
 	<filter>
 		<name>Throttle 3 Final</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -428,7 +428,7 @@
 	<filter>
 		<name>EGT 1</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<and>
@@ -443,7 +443,6 @@
 				</and>
 			</condition>
 		</enable>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<table>
@@ -459,7 +458,7 @@
 	<filter>
 		<name>EGT 2</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<and>
@@ -474,7 +473,6 @@
 				</and>
 			</condition>
 		</enable>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<table>
@@ -490,7 +488,7 @@
 	<filter>
 		<name>EGT 3</name>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<and>
@@ -505,7 +503,6 @@
 				</and>
 			</condition>
 		</enable>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<table>

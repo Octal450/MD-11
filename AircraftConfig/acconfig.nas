@@ -139,4 +139,194 @@ var systemsReset = func {
 # Panel States #
 ################
 
-# Coming soon!!! -JD
+# Cold and Dark
+var colddark = func {
+	spinning.start();
+	ps_load_dlg.open();
+	setprop("/systems/acconfig/autoconfig-running", 1);
+	setprop("/controls/gear/brake-left", 1);
+	setprop("/controls/gear/brake-right", 1);
+	# Initial shutdown, and reinitialization.
+	setprop("/controls/engines/engine[0]/start-switch", 0);
+	setprop("/controls/engines/engine[1]/start-switch", 0);
+	setprop("/controls/engines/engine[2]/start-switch", 0);
+	setprop("/controls/engines/engine[0]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[1]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[2]/cutoff-switch", 1);
+	setprop("/controls/flight/slats", 0.000);
+	setprop("/controls/flight/flaps-output", 0.000);
+	setprop("/controls/flight/flap-lever", 0);
+	setprop("/controls/flight/flaps", 0.0);
+	setprop("/controls/flight/flap-txt", 0);
+	setprop("/controls/hydraulic/aileron-droop", 0);
+	setprop("/controls/flight/speedbrake-arm", 0);
+	setprop("/controls/gear/gear-down", 1);
+	setprop("/controls/flight/elevator-trim", -0.25);
+	libraries.systemsInit();
+#	failReset();
+	if (getprop("/engines/engine[1]/n2-actual") < 2) {
+		colddark_b();
+	} else {
+		var colddark_eng_off = setlistener("/engines/engine[1]/n2-actual", func {
+			if (getprop("/engines/engine[1]/n2-actual") < 2) {
+				removelistener(colddark_eng_off);
+				colddark_b();
+			}
+		});
+	}
+}
+var colddark_b = func {
+	# Continues the Cold and Dark script, after engines fully shutdown.
+	setprop("/controls/APU/start", 0);
+	setprop("/controls/gear/brake-left", 0);
+	setprop("/controls/gear/brake-right", 0);
+	setprop("/systems/acconfig/autoconfig-running", 0);
+	ps_load_dlg.close();
+	ps_loaded_dlg.open();
+	spinning.stop();
+}
+
+# Ready to Start Eng
+var beforestart = func {
+	spinning.start();
+	ps_load_dlg.open();
+	setprop("/systems/acconfig/autoconfig-running", 1);
+	setprop("/controls/gear/brake-left", 1);
+	setprop("/controls/gear/brake-right", 1);
+	# First, we set everything to cold and dark.
+	setprop("/controls/engines/engine[0]/start-switch", 0);
+	setprop("/controls/engines/engine[1]/start-switch", 0);
+	setprop("/controls/engines/engine[2]/start-switch", 0);
+	setprop("/controls/engines/engine[0]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[1]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[2]/cutoff-switch", 1);
+	setprop("/controls/flight/slats", 0.000);
+	setprop("/controls/flight/flaps-output", 0.000);
+	setprop("/controls/flight/flap-lever", 0);
+	setprop("/controls/flight/flaps", 0.0);
+	setprop("/controls/flight/flap-txt", 0);
+	setprop("/controls/hydraulic/aileron-droop", 0);
+	setprop("/controls/flight/speedbrake-arm", 0);
+	setprop("/controls/gear/gear-down", 1);
+	setprop("/controls/flight/elevator-trim", -0.25);
+	libraries.systemsInit();
+#	failReset();
+	setprop("/controls/APU/start", 0);
+	
+	# Now the Startup!
+	setprop("/controls/electrical/switches/battery", 1);
+	setprop("/controls/electrical/switches/emer-pw-sw", 1);
+	settimer(func {
+		setprop("/controls/APU/start", 1);
+		var apu_rpm_chk = setlistener("/systems/apu/n2", func {
+			if (getprop("/systems/apu/n2") >= 98) {
+				removelistener(apu_rpm_chk);
+				beforestart_b();
+			}
+		});
+	}, 0.5);
+}
+var beforestart_b = func {
+	# Continue with engine start prep.
+	setprop("/controls/electrical/switches/apu-pwr", 1);
+	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/engines/ign-a", 1);
+	setprop("/controls/gear/brake-left", 0);
+	setprop("/controls/gear/brake-right", 0);
+	setprop("/systems/acconfig/autoconfig-running", 0);
+	ps_load_dlg.close();
+	ps_loaded_dlg.open();
+	spinning.stop();
+}
+
+# Ready to Taxi
+var taxi = func {
+	spinning.start();
+	ps_load_dlg.open();
+	setprop("/systems/acconfig/autoconfig-running", 1);
+	setprop("/controls/gear/brake-left", 1);
+	setprop("/controls/gear/brake-right", 1);
+	# First, we set everything to cold and dark.
+	setprop("/controls/engines/engine[0]/start-switch", 0);
+	setprop("/controls/engines/engine[1]/start-switch", 0);
+	setprop("/controls/engines/engine[2]/start-switch", 0);
+	setprop("/controls/engines/engine[0]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[1]/cutoff-switch", 1);
+	setprop("/controls/engines/engine[2]/cutoff-switch", 1);
+	setprop("/controls/flight/slats", 0.000);
+	setprop("/controls/flight/flaps-output", 0.000);
+	setprop("/controls/flight/flap-lever", 0);
+	setprop("/controls/flight/flaps", 0.0);
+	setprop("/controls/flight/flap-txt", 0);
+	setprop("/controls/hydraulic/aileron-droop", 0);
+	setprop("/controls/flight/speedbrake-arm", 0);
+	setprop("/controls/gear/gear-down", 1);
+	setprop("/controls/flight/elevator-trim", -0.25);
+	libraries.systemsInit();
+#	failReset();
+	setprop("/controls/APU/start", 0);
+	
+	# Now the Startup!
+	setprop("/controls/electrical/switches/battery", 1);
+	setprop("/controls/electrical/switches/emer-pw-sw", 1);
+	settimer(func {
+		setprop("/controls/APU/start", 1);
+		var apu_rpm_chk = setlistener("/systems/apu/n2", func {
+			if (getprop("/systems/apu/n2") >= 98) {
+				removelistener(apu_rpm_chk);
+				taxi_b();
+			}
+		});
+	}, 0.5);
+}
+var taxi_b = func {
+	# Continue with engine start prep, and start engine 2.
+	setprop("/controls/electrical/switches/apu-pwr", 1);
+	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/engines/ign-a", 1);
+	settimer(taxi_c, 2);
+}
+var taxi_c = func {
+	systems.fast_start_one();
+	systems.fast_start_two();
+	systems.fast_start_three();
+	settimer(func {
+		taxi_d();
+	}, 10);
+}
+var taxi_d = func {
+	# After Start items.
+	setprop("/controls/APU/start", 0);
+	setprop("/controls/gear/brake-left", 0);
+	setprop("/controls/gear/brake-right", 0);
+	setprop("/systems/acconfig/autoconfig-running", 0);
+	ps_load_dlg.close();
+	ps_loaded_dlg.open();
+	spinning.stop();
+}
+
+# Ready to Takeoff
+var takeoff = func {
+	# The same as taxi, except we set some things afterwards.
+	taxi();
+	var eng_one_chk_c = setlistener("/engines/engine[0]/state", func {
+		if (getprop("/engines/engine[0]/state") == 3) {
+			removelistener(eng_one_chk_c);
+			setprop("/controls/flight/speedbrake-arm", 1);
+			setprop("/controls/flight/slats", 1.000);
+			setprop("/controls/flight/flaps-output", 0.300);
+			setprop("/controls/flight/flap-lever", 2);
+			setprop("/controls/flight/flaps", 0.4);
+			setprop("/controls/flight/flap-txt", 15);
+			if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/gear/gear[0]/wow") == 1) {
+					setprop("/controls/hydraulic/aileron-droop", 1);
+				}
+			} else {
+				setprop("/controls/hydraulic/aileron-droop", 0);
+			}
+			setprop("/controls/flight/elevator-trim", -0.3);
+			setprop("/controls/autobrake/switch", -1);
+		}
+	});
+}

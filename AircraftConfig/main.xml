@@ -114,30 +114,10 @@
 					
 					<button>
 						<halign>center</halign>
-						<legend>Engine Startup</legend>
-						<pref-width>140</pref-width>
-						<enable>
-							<and>
-								<property>/gear/gear[0]/wow</property>
-								<property>/gear/gear[1]/wow</property>
-								<property>/gear/gear[2]/wow</property>
-							</and>
-						</enable>
-						<binding>
-							<command>nasal</command>
-							<script>libraries.doMagicStartup();</script>
-						</binding>
-						<binding>
-							<command>dialog-close</command>
-						</binding>
-					</button>
-					<button>
-						<halign>center</halign>
 						<legend>Cold and Dark</legend>
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
-								<property>/systems/acconfig/panel-state</property>
 								<not><property>/systems/acconfig/autoconfig-running</property></not>
 								<property>/gear/gear[0]/wow</property>
 								<property>/gear/gear[1]/wow</property>
@@ -158,7 +138,6 @@
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
-								<property>/systems/acconfig/panel-state</property>
 								<not><property>/systems/acconfig/autoconfig-running</property></not>
 								<property>/gear/gear[0]/wow</property>
 								<property>/gear/gear[1]/wow</property>
@@ -179,7 +158,6 @@
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
-								<property>/systems/acconfig/panel-state</property>
 								<not><property>/systems/acconfig/autoconfig-running</property></not>
 								<property>/gear/gear[0]/wow</property>
 								<property>/gear/gear[1]/wow</property>
@@ -200,7 +178,6 @@
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
-								<property>/systems/acconfig/panel-state</property>
 								<not><property>/systems/acconfig/autoconfig-running</property></not>
 								<property>/gear/gear[0]/wow</property>
 								<property>/gear/gear[1]/wow</property>

@@ -283,20 +283,36 @@ var canvas_EAD_GE = {
 		} else {
 			me["EGT1-ignition"].hide();
 		}
+		
 		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
+		
 		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		me["EGT1-redstart"].hide(); # Hide until simulated
-		me["EGT2-redstart"].hide(); # Hide until simulated
-		me["EGT3-redstart"].hide(); # Hide until simulated
+		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+			me["EGT1-redstart"].show();
+		} else {
+			me["EGT1-redstart"].hide();
+		}
+		
+		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+			me["EGT2-redstart"].show();
+		} else {
+			me["EGT2-redstart"].hide();
+		}
+		
+		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+			me["EGT3-redstart"].show();
+		} else {
+			me["EGT3-redstart"].hide();
+		}
 		
 		# N2
 		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2-actual") + 0.05)));
@@ -626,20 +642,36 @@ var canvas_EAD_PW = {
 		} else {
 			me["EGT1-ignition"].hide();
 		}
+		
 		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
+		
 		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		me["EGT1-redstart"].hide(); # Hide until simulated
-		me["EGT2-redstart"].hide(); # Hide until simulated
-		me["EGT3-redstart"].hide(); # Hide until simulated
+		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+			me["EGT1-redstart"].show();
+		} else {
+			me["EGT1-redstart"].hide();
+		}
+		
+		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+			me["EGT2-redstart"].show();
+		} else {
+			me["EGT2-redstart"].hide();
+		}
+		
+		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+			me["EGT3-redstart"].show();
+		} else {
+			me["EGT3-redstart"].hide();
+		}
 		
 		# N2
 		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2-actual") + 0.05)));
