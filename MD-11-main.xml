@@ -132,7 +132,7 @@
 			</config>
 		</view>
 		<view n="105">
-			<name>Left Wing View</name>
+			<name>Left Front View</name>
 			<type>lookfrom</type>
 			<enabled type="bool">true</enabled>
 			<internal type="bool" archive="y">true</internal>
@@ -140,24 +140,37 @@
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">-3.53</x-offset-m>
 				<y-offset-m archive="y">6.96</y-offset-m>
-				<z-offset-m archive="y">5.69</z-offset-m>
-				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
-				<heading-offset-deg archive="y">100</heading-offset-deg>
+				<z-offset-m archive="y">-7.5</z-offset-m>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg archive="y">129</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
 		<view n="106">
-			<name>Right Wing View</name>
+			<name>Right Mid View</name>
 			<type>lookfrom</type>
-			<enabled type="bool">true</enabled>
-			<internal type="bool" archive="y">true</internal>
+			<internal archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
 				<y-offset-m archive="y">6.96</y-offset-m>
-				<z-offset-m archive="y">5.69</z-offset-m>
-				<default-field-of-view-deg type="double">110.2</default-field-of-view-deg>
-				<heading-offset-deg archive="y">260</heading-offset-deg>
+				<z-offset-m archive="y">3.9</z-offset-m>
+				<heading-offset-deg>257</heading-offset-deg>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="107">
+			<name>Left Aft View</name>
+			<type>lookfrom</type>
+			<internal archive="y">false</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">-3.53</x-offset-m>
+				<y-offset-m archive="y">6.96</y-offset-m>
+				<z-offset-m archive="y">9.9</z-offset-m>
+				<heading-offset-deg>75</heading-offset-deg>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
