@@ -33,87 +33,94 @@
 	
     <hrule/>
 	
-		<group>
-			<layout>vbox</layout>
-			
-			<text>
-				<halign>left</halign>
-				<label>Information:</label>
-			</text>
-			
-			<text>
-				<halign>left</halign>
-				<label>IDG MD-11X Pre V1.0</label>
-			</text>
-			
-			<hrule/>
-			
-			<text>
-				<halign>left</halign>
-				<label>Keyboard Mode: Maps flight controls to number pad, and number rows, instead of view shortucts.</label>
-			</text>
-			
-			<text>
-				<halign>left</halign>
-				<label>Laptop Mode: Not implemented yet. When implemented, will allow easier operation on laptops.</label>
-			</text>
-			
-			<hrule/>
-			
-			<text>
-				<halign>left</halign>
-				<label>Key Commands:</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>1 - Show Captains View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>2 - Show First Officers View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>3 - Show Overhead View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>4 - Show Forward Pedestal View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>5 - Show Aft Pedestal View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>6 - Show AFS Panel View</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>F1 - Disengage/Decrease Reverse Thrust</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>F2 - Engage/Increase Reverse Thrust</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>E - Set Idle Thrust</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>DEL - Toggle Reverse Thrust</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>CTRL + B - Cycle Spoilers</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>SHIFT + B - Toggle Parking Brake</label>
-			</text>
-			
-		</group>
-	
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>Information:</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>IDG MD-11X Pre V1.0</label>
+		</text>
+		
+		<hrule/>
+		
+		<text>
+			<halign>left</halign>
+			<label>Keyboard Mode: Maps flight controls to number pad, and number rows, instead of view shortucts.</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>Laptop Mode: Not implemented yet. When implemented, will allow easier operation on laptops.</label>
+		</text>
+		
+		<hrule/>
+		
+		<text>
+			<halign>left</halign>
+			<label>Key Commands:</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>1 - Show Captains View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>2 - Show First Officers View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>3 - Show Overhead View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>4 - Show Forward Pedestal View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>5 - Show Aft Pedestal View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>6 - Show AFS Panel View</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>F1 - Disengage/Decrease Reverse Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>F2 - Engage/Increase Reverse Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>DEL - Toggle Reverse Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>E - Set Idle Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>CTRL + B - Cycle Spoilers</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>SHIFT + B - Toggle Parking Brake</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>CTRL + D - Disconnect Autothrottle</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>SHIFT + D - Disconnect Autopilot</label>
+		</text>
+		
+	</group>
 	
 </PropertyList>
