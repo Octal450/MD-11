@@ -464,13 +464,13 @@
 		<output>/engines/engine[2]/epr-thr</output>
 	</filter>
 	
-    <filter>
-        <name>N1 Limit TOGA</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit TOGA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -487,10 +487,10 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/toga-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>EPR Limit TOGA</name>
@@ -533,13 +533,13 @@
 		<output>/systems/thrust/epr/toga-lim</output>
 	</filter>
 	
-    <filter>
-        <name>N1 Limit MCT</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit MCT</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -556,10 +556,10 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/mct-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>EPR Limit MCT</name>
@@ -602,13 +602,13 @@
 		<output>/systems/thrust/epr/mct-lim</output>
 	</filter>
 	
-    <filter>
-        <name>N1 Limit FLX</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit FLX</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -625,10 +625,10 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/flx-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>EPR Limit FLX</name>
@@ -671,13 +671,13 @@
 		<output>/systems/thrust/epr/flx-lim</output>
 	</filter>
 	
-    <filter>
-        <name>N1 Limit CLB</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit CLB</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -694,10 +694,10 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/clb-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>EPR Limit CLB</name>
@@ -740,13 +740,13 @@
 		<output>/systems/thrust/epr/clb-lim</output>
 	</filter>
 	
-    <filter>
-        <name>N1 Limit CRZ</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit CRZ</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -763,10 +763,10 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/crz-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>EPR Limit CRZ</name>
@@ -814,13 +814,13 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-            <expression>
+			<expression>
 				<table>
 					<property>/controls/engines/n1-limit</property>
 					<entry><ind> 23.8</ind><dep>0.00</dep></entry>
 					<entry><ind>113.1</ind><dep>1.00</dep></entry>
 				</table>
-            </expression>
+			</expression>
 		</input>
 		<output>/controls/engines/throttle-limit</output>
 	</filter>

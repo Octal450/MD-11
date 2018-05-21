@@ -47,64 +47,64 @@
 		<output>/controls/engines/idle-limit</output>
 	</filter>
 
-    <filter>
-        <name>N1 CMD 1</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
-                <table>
-                    <property>/controls/engines/engine[0]/throttle-fdm</property>
-                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
-                    <entry><ind>1.00</ind><dep>117.2</dep></entry>
-                </table>
-            </expression>
-        </input>
+	<filter>
+		<name>N1 CMD 1</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/engines/engine[0]/throttle-fdm</property>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>117.2</dep></entry>
+				</table>
+			</expression>
+		</input>
 		<output>/engines/engine[0]/n1-actual-cmd</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 CMD 2</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
-                <table>
-                    <property>/controls/engines/engine[1]/throttle-fdm</property>
-                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
-                    <entry><ind>1.00</ind><dep>117.2</dep></entry>
-                </table>
-            </expression>
-        </input>
+	<filter>
+		<name>N1 CMD 2</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/engines/engine[1]/throttle-fdm</property>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>117.2</dep></entry>
+				</table>
+			</expression>
+		</input>
 		<output>/engines/engine[1]/n1-actual-cmd</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 CMD 3</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
-                <table>
-                    <property>/controls/engines/engine[2]/throttle-fdm</property>
-                    <entry><ind>0.00</ind><dep> 23.7</dep></entry>
-                    <entry><ind>1.00</ind><dep>117.2</dep></entry>
-                </table>
-            </expression>
-        </input>
+	<filter>
+		<name>N1 CMD 3</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<table>
+					<property>/controls/engines/engine[2]/throttle-fdm</property>
+					<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+					<entry><ind>1.00</ind><dep>117.2</dep></entry>
+				</table>
+			</expression>
+		</input>
 		<output>/engines/engine[2]/n1-actual-cmd</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 Limit TOGA</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit TOGA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -121,18 +121,18 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/toga-lim</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 Limit MCT</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit MCT</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -149,18 +149,18 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/mct-lim</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 Limit FLX</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit FLX</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -177,18 +177,18 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/flx-lim</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 Limit CLB</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit CLB</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -205,18 +205,18 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/clb-lim</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>N1 Limit CRZ</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <update-interval-secs type="double">0.05</update-interval-secs>
-        <input>
-            <expression>
+	<filter>
+		<name>N1 Limit CRZ</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
 				<div>
 					<floor>
 						<product>
@@ -233,23 +233,23 @@
 					</floor>
 					<value>10</value>
 				</div>
-            </expression>
-        </input>
+			</expression>
+		</input>
 		<output>/systems/thrust/n1/crz-lim</output>
-    </filter>
+	</filter>
 	
 	<filter>
 		<name>Thrust Limit</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-            <expression>
+			<expression>
 				<table>
 					<property>/controls/engines/n1-limit</property>
 					<entry><ind> 23.7</ind><dep>0.00</dep></entry>
 					<entry><ind>117.2</ind><dep>1.00</dep></entry>
 				</table>
-            </expression>
+			</expression>
 		</input>
 		<output>/controls/engines/throttle-limit</output>
 	</filter>

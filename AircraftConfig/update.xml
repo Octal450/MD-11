@@ -104,7 +104,9 @@
 				<command>nasal</command>
 				<script>
 				if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
-					acconfig.welcome_dlg.open();
+					if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
+						acconfig.welcome_dlg.open();
+					}
 				} else {
 					acconfig.error_mismatch.open();
 				}

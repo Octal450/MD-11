@@ -80,7 +80,7 @@ var ELEC = {
 	init: func() {
 		setprop("/controls/switches/annun-test", 0);
 		setprop("/controls/electrical/switches/battery", 0);
-		setprop("/controls/electrical/switches/emer-pw-sw", 0);# 0 = OFF, 1 = ARM, 2 = ON
+		setprop("/controls/electrical/switches/emer-pw-sw", 0); # 0 = OFF, 1 = ARM, 2 = ON
 		setprop("/controls/electrical/switches/dc-tie-1", 1);
 		setprop("/controls/electrical/switches/dc-tie-3", 1);
 		setprop("/controls/electrical/switches/ac-tie-1", 1);
@@ -200,7 +200,7 @@ var ELEC = {
 		}
 		
 		batt_sw = getprop("/controls/electrical/switches/battery");
-		emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw");# 0 = OFF, 1 = ARM, 2 = ON
+		emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw"); # 0 = OFF, 1 = ARM, 2 = ON
 		dc_tie_1_sw = getprop("/controls/electrical/switches/dc-tie-1");
 		dc_tie_3_sw = getprop("/controls/electrical/switches/dc-tie-3");
 		ac_tie_1_sw = getprop("/controls/electrical/switches/ac-tie-1");
