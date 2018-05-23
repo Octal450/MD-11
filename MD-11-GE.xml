@@ -377,7 +377,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</ground_reactions>
 
 	<propulsion>
-		<engine file="cf6-80c2d1f">
+		<engine file="cf6-80c2d1f_1">
 			<location unit="M">
 				<x> -5.29297 </x>	
 				<y> -8.24094 </y>
@@ -403,7 +403,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			</thruster>
 		</engine>
 		
-		<engine file="cf6-80c2d1f">
+		<engine file="cf6-80c2d1f_2">
 			<location unit="M">
 				<x> 25.2146 </x>	
 				<y> 0 </y>
@@ -429,7 +429,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			</thruster>
 		</engine>
 
-		<engine file="cf6-80c2d1f">
+		<engine file="cf6-80c2d1f_3">
 			<location unit="M">
 				<x> -5.29297 </x>	
 				<y> 8.24094 </y>
