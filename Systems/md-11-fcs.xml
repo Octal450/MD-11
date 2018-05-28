@@ -1133,7 +1133,7 @@
 	
 	<channel name="Flaps">
 		
-		<kinematic name="Flaps Control">
+		<kinematic name="rubbish/flap-pos-deg">
 			<input>/controls/flight/flaps-output</input>
 			<traverse>
 				<setting>
@@ -1148,7 +1148,7 @@
 			<output>fcs/flap-pos-deg</output>
 		</kinematic>
 		
-		<aerosurface_scale name="Flap position normalized">
+		<aerosurface_scale name="rubbish/flap-pos-norm">
 			<input>fcs/flap-pos-deg</input>
 			<domain>
 				<min>0</min>
@@ -1165,7 +1165,7 @@
 	
 	<channel name="Slats">
 		
-		<kinematic name="Slats Control">
+		<kinematic name="rubbish/slat-pos-deg">
 			<input>/controls/flight/slats</input>
 			<traverse>
 				<setting>
@@ -1180,7 +1180,7 @@
 			<output>fcs/slat-pos-deg</output>
 		</kinematic>
 		
-		<aerosurface_scale name="Slat position normalized">
+		<aerosurface_scale name="rubbish/slat-pos-norm">
 			<input>fcs/slat-pos-deg</input>
 			<domain>
 				<min>0</min>
@@ -1197,7 +1197,7 @@
 	
 	<channel name="Landing Gear">
 		
-		<kinematic name="Gear Control">
+		<kinematic name="rubbish/gear-pos-norm">
 			<input>gear/gear-cmd-norm</input>
 			<traverse>
 				<setting>
@@ -1216,7 +1216,7 @@
 	
 	<channel name="Speedbrake">
 		
-		<kinematic name="Speedbrake">
+		<kinematic name="rubbish/speedbrake-pos-norm">
 			<input>/controls/flight/speedbrake-output</input>
 			<traverse>
 				<setting>
