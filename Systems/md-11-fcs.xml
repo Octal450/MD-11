@@ -331,8 +331,8 @@
 			<input>fcc/yaw/r-r_s-s</input>
 			<gain>fcc/yaw/yd-p-gain</gain>
 			<clipto>
-				<min>-0.2</min>
-				<max>0.2</max>
+				<min>-0.1</min>
+				<max>0.1</max>
 			</clipto>
 		</pure_gain>
 		
