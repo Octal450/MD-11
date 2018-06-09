@@ -9,6 +9,8 @@ print("-------------------------------------------------------------------------
 print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
 print("-----------------------------------------------------------------------------");
 
+setprop("/sim/replay/was-active", 0);
+
 var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
 var setting = getprop("/controls/lighting/nav-lights");
 var land = getprop("/controls/lighting/landing-light");
@@ -166,6 +168,14 @@ var systemsLoop = maketimer(0.1, func {
 #	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
 #		systems.cutoff_two();
 #	}
+	
+	if (getprop("/sim/replay/replay-state") == 1) {
+		setprop("/sim/replay/was-active", 1);
+	} else if (getprop("/sim/replay/replay-state") == 0 and getprop("/sim/replay/was-active") == 1) {
+		setprop("/sim/replay/was-active", 0);
+		acconfig.colddark();
+		gui.popupTip("Replay Ended: Setting Cold and Dark state...");
+	}
 });
 
 canvas.Text._lastText = canvas.Text["_lastText"];
