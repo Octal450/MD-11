@@ -1273,7 +1273,7 @@
 			<input>/controls/gear/brake-left</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
-				<min>-1</min>
+				<min>0</min>
 				<max>1</max>
 			</clipto>
 		</summer>
@@ -1290,7 +1290,7 @@
 			<input>/controls/gear/brake-right</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
-				<min>-1</min>
+				<min>0</min>
 				<max>1</max>
 			</clipto>
 		</summer>
