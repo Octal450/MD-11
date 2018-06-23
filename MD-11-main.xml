@@ -52,7 +52,8 @@
 		<instrument-options>
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
-			
+		
+		<chase-distance-m type="double">-100</chase-distance-m>
 		<view>
 			<name>Captain View</name>
 			<internal type="bool" archive="y">true</internal>
@@ -174,8 +175,6 @@
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
-		
-		<chase-distance-m type="double">-130</chase-distance-m>
 
 		<weight n="0">
 			<name>Crew</name>
@@ -345,7 +344,7 @@
 			<z-offset-inc-step type="double">0.0</z-offset-inc-step>
 			<can-change-z-offset type="bool">false</can-change-z-offset>
 			
-			<z-offset-default type="float">130.0</z-offset-default>
+			<z-offset-default type="float">100.0</z-offset-default>
 			<z-offset-min-m type="float">30.0</z-offset-min-m>
 			<z-offset-max-m type="float">300.0</z-offset-max-m>
 		</current-view>

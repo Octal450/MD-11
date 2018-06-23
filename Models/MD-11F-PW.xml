@@ -323,16 +323,15 @@
 <object-name>wing.glass.right</object-name>
 </animation>
 
-
-<model>
-	<name>Pushback</name>
-	<path>Models/Airport/Pushback/Goldhofert.xml</path>
-	<offsets>
-		<x-m>-20.6516</x-m>
-		<y-m>  0.000</y-m>
-		<z-m>0.85</z-m>
-	</offsets>
-</model>
+	<model>
+		<name>Pushback</name>
+		<path>Aircraft/IDG-MD-11X/Models/Services/Pushback/Douglas.xml</path>
+		<offsets>
+			<x-m>-22.15</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.76</z-m>
+		</offsets>
+	</model>
 
 <model>
 	<name>Cockpit</name>

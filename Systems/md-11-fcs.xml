@@ -1264,6 +1264,13 @@
 			<rate_limit>70</rate_limit>
 			<output>fcs/steer-pos-deg[0]</output>
 		</actuator>
+		
+		<switch name="fcs/pushback-steer-deg">
+			<default value="0"/>
+			<test value="fcs/steer-deg">
+				/sim/model/pushback/position-norm gt 0.999
+			</test>
+		</switch>
 	
 	</channel>
 	
