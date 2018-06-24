@@ -260,7 +260,7 @@
 		<property>controls/engines/engine[0]/throttle</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
-			<entry><ind>1.0</ind><dep>20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -290,10 +290,30 @@
 		<name>Engine 1 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.1</object-name>
-		<property>engines/engine[0]/reverser-pos-norm</property>
+		<property>controls/engines/engine[0]/reverser</property>
 		<interpolation>
-			<entry><ind>0.6</ind><dep>85.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>0</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-27.14</x-m>
+			<y-m>0</y-m>
+			<z-m>6.83</z-m>
+		</center>
+	</animation>
+	<animation>
+		<name>Engine 1 reverser lever 2</name>
+		<type>rotate</type>
+		<object-name>reverse.1</object-name>
+		<property>controls/engines/engine[0]/throttle-rev</property>
+		<interpolation>
+			<entry><ind>0.333</ind><dep>75.0</dep></entry>
+			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -343,7 +363,7 @@
 		<property>controls/engines/engine[1]/throttle</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
-			<entry><ind>1.0</ind><dep>20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -373,10 +393,30 @@
 		<name>Engine 2 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.2</object-name>
-		<property>engines/engine[1]/reverser-pos-norm</property>
+		<property>controls/engines/engine[1]/reverser</property>
 		<interpolation>
-			<entry><ind>0.6</ind><dep>85.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>0</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-27.14</x-m>
+			<y-m>0</y-m>
+			<z-m>6.83</z-m>
+		</center>
+	</animation>
+	<animation>
+		<name>Engine 2 reverser lever 2</name>
+		<type>rotate</type>
+		<object-name>reverse.2</object-name>
+		<property>controls/engines/engine[1]/throttle-rev</property>
+		<interpolation>
+			<entry><ind>0.333</ind><dep>75.0</dep></entry>
+			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -426,7 +466,7 @@
 		<property>controls/engines/engine[2]/throttle</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
-			<entry><ind>1.0</ind><dep>20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -456,10 +496,30 @@
 		<name>Engine 3 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.3</object-name>
-		<property>engines/engine[2]/reverser-pos-norm</property>
+		<property>controls/engines/engine[2]/reverser</property>
 		<interpolation>
-			<entry><ind>0.6</ind><dep>85.0</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>0</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-27.14</x-m>
+			<y-m>0</y-m>
+			<z-m>6.83</z-m>
+		</center>
+	</animation>
+	<animation>
+		<name>Engine 3 reverser lever 2</name>
+		<type>rotate</type>
+		<object-name>reverse.3</object-name>
+		<property>controls/engines/engine[2]/throttle-rev</property>
+		<interpolation>
+			<entry><ind>0.333</ind><dep>75.0</dep></entry>
+			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>

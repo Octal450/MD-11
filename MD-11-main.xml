@@ -387,6 +387,7 @@
 				<start-switch type="bool">0</start-switch>
 				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
+				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<engine n="1">
 				<cutoff type="bool">true</cutoff>
@@ -395,6 +396,7 @@
 				<start-switch type="bool">0</start-switch>
 				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
+				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<engine n="2">
 				<cutoff type="bool">true</cutoff>
@@ -403,6 +405,7 @@
 				<start-switch type="bool">0</start-switch>
 				<throttle-output type="double">0</throttle-output>
 				<throttle-fdm type="double">0</throttle-fdm>
+				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 		</engines>
 		<flight>

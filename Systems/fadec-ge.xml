@@ -306,7 +306,6 @@
 				</equals>
 			</condition>
 			<property>/controls/engines/engine[0]/throttle-rev</property>
-			<scale>1.3</scale>
 		</input>
 		<output>/controls/engines/engine[0]/throttle-output</output>
 	</filter>
@@ -363,7 +362,6 @@
 				</equals>
 			</condition>
 			<property>/controls/engines/engine[1]/throttle-rev</property>
-			<scale>1.3</scale>
 		</input>
 		<output>/controls/engines/engine[1]/throttle-output</output>
 	</filter>
@@ -420,7 +418,6 @@
 				</equals>
 			</condition>
 			<property>/controls/engines/engine[2]/throttle-rev</property>
-			<scale>1.3</scale>
 		</input>
 		<output>/controls/engines/engine[2]/throttle-output</output>
 	</filter>
