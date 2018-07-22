@@ -28,7 +28,10 @@
 			<enable3d n="1">false</enable3d>
 		</hud>
 		
-		<model>
+		<model n="0">
+			<lights>
+				<nav-lights type="bool">0</nav-lights>
+			</lights>
 			<pushback>
 				<kp type="double">10000</kp>
 				<ki type="double">200</ki>
