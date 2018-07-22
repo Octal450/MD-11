@@ -53,7 +53,7 @@
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
 		
-		<chase-distance-m type="double">-100</chase-distance-m>
+		<chase-distance-m type="double">-110</chase-distance-m>
 		<view>
 			<name>Captain View</name>
 			<internal type="bool" archive="y">true</internal>
@@ -349,7 +349,7 @@
 			<z-offset-max-m type="float">300.0</z-offset-max-m>
 		</current-view>
 		
-		 <minimum-fg-version>2018.1.0</minimum-fg-version>
+		<minimum-fg-version>2018.1.0</minimum-fg-version>
     </sim>
 	
 	<!--consumables n="0">

@@ -1,0 +1,37 @@
+<!-- McDonnell Douglas MD-11 JSBsim -->
+<!-- Joshua Davidson (it0uchpods) -->
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<metrics>
+	<wingarea  unit="FT2"> 3648.00 </wingarea>
+	<wingspan  unit="FT" >  169.52 </wingspan>
+	<wing_incidence>          1.03 </wing_incidence>
+	<chord     unit="FT" >   25.30 </chord>
+	<htailarea unit="FT2">  222.16 </htailarea>
+	<htailarm  unit="FT" >  107.29 </htailarm>
+	<vtailarea unit="FT2">  496.25 </vtailarea>
+	<vtailarm  unit="FT" >    0.00 </vtailarm>
+	
+	<location name="AERORP" unit="M">
+		<x> 2.8249 </x>
+		<y> 0 </y>
+		<z> 5.69282 </z>
+	</location>
+
+	<location name="EYEPOINT" unit="M">
+		<x> 0.0 </x>
+		<y> 0.0 </y>
+		<z> 7.35361 </z>
+	</location>
+
+	<location name="VRP" unit="M">
+		<x> 0 </x>
+		<y> 0 </y>
+		<z> 0 </z>
+	</location>
+</metrics>

@@ -1,0 +1,70 @@
+<!-- McDonnell Douglas MD-11 JSBsim -->
+<!-- Joshua Davidson (it0uchpods) -->
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<mass_balance>
+	<ixx unit="SLUG*FT2"> 2775399 </ixx>
+	<iyy unit="SLUG*FT2"> 7004014 </iyy>
+	<izz unit="SLUG*FT2"> 6408984 </izz>
+	
+	<ixy unit="SLUG*FT2">       0 </ixy>
+	<ixz unit="SLUG*FT2">       0 </ixz>
+	<iyz unit="SLUG*FT2">       0 </iyz>
+	<emptywt unit="LBS" >  255500 </emptywt>
+	
+	<location name="CG" unit="M">
+		<x> 2.5152 </x>
+		<y> 0 </y>
+		<z> 5.69282 </z>
+	</location>
+
+	<pointmass name="Crew">
+		<weight unit="LBS">1080</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="PAX">
+		<weight unit="LBS">39000</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+
+	<pointmass name="Fwd Cargo">
+		<weight unit="LBS">3000</weight>
+		<location name="POINTMASS" unit="M"> 
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+
+	<pointmass name="Aft Cargo">
+		<weight unit="LBS">3000</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Rear Bulk Cargo">
+		<weight unit="LBS">6500</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+</mass_balance>
