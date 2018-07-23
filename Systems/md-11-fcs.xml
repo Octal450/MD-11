@@ -510,7 +510,7 @@
 		
 		<lag_filter name="hydraulics/aileron-out-l/final">
 			<input>hydraulics/aileron-out-l/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/aileron-out-l/final-deg">
@@ -552,7 +552,7 @@
 		
 		<lag_filter name="hydraulics/aileron-in-l/final">
 			<input>hydraulics/aileron-in-l/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/aileron-in-l/final-deg">
@@ -594,7 +594,7 @@
 		
 		<lag_filter name="hydraulics/aileron-in-r/final">
 			<input>hydraulics/aileron-in-r/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/aileron-in-r/final-deg">
@@ -648,7 +648,7 @@
 		
 		<lag_filter name="hydraulics/aileron-out-r/final">
 			<input>hydraulics/aileron-out-r/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/aileron-out-r/final-deg">
@@ -733,14 +733,14 @@
 		
 		<lag_filter name="hydraulics/elevator-out-l/final">
 			<input>hydraulics/elevator-out-l/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/elevator-out-l/final-deg">
 			<input>hydraulics/elevator-out-l/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-30</min>
+				<max>30</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -762,14 +762,14 @@
 		
 		<lag_filter name="hydraulics/elevator-in-l/final">
 			<input>hydraulics/elevator-in-l/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/elevator-in-l/final-deg">
 			<input>hydraulics/elevator-in-l/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-30</min>
+				<max>30</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -791,14 +791,14 @@
 		
 		<lag_filter name="hydraulics/elevator-in-r/final">
 			<input>hydraulics/elevator-in-r/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/elevator-in-r/final-deg">
 			<input>hydraulics/elevator-in-r/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-30</min>
+				<max>30</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -820,14 +820,14 @@
 		
 		<lag_filter name="hydraulics/elevator-out-r/final">
 			<input>hydraulics/elevator-out-r/switch</input>
-			<c1>18.5</c1>
+			<c1>14.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/elevator-out-r/final-deg">
 			<input>hydraulics/elevator-out-r/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-30</min>
+				<max>30</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -875,8 +875,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.650
-					0.9  0.01  0.500
+					0.0  1.00  0.850
+					0.9  0.01  0.700
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -888,8 +888,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.650
-					0.9  0.01  0.500
+					0.0  1.00  0.850
+					0.9  0.01  0.700
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -901,8 +901,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.650
-					0.9  0.01  0.500
+					0.0  1.00  0.850
+					0.9  0.01  0.700
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -914,8 +914,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.650
-					0.9  0.01  0.500
+					0.0  1.00  0.850
+					0.9  0.01  0.700
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -927,8 +927,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.650
-					0.9  0.01  0.500
+					0.0  1.00  0.850
+					0.9  0.01  0.700
 				</tableData>
 			</table>
 		</scheduled_gain>

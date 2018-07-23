@@ -156,9 +156,9 @@
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-out-l/final-deg</property>
-					<min>-25</min>
-					<max>25</max>
-					<step>0.0025</step>
+					<min>-30</min>
+					<max>30</max>
+					<step>0.003</step>
 					<live>true</live>
 				</slider>
 			</group>
@@ -173,9 +173,9 @@
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-in-l/final-deg</property>
-					<min>-25</min>
-					<max>25</max>
-					<step>0.0025</step>
+					<min>-30</min>
+					<max>30</max>
+					<step>0.003</step>
 					<live>true</live>
 				</slider>
 			</group>
@@ -207,9 +207,9 @@
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-in-r/final-deg</property>
-					<min>-25</min>
-					<max>25</max>
-					<step>0.0025</step>
+					<min>-30</min>
+					<max>30</max>
+					<step>0.003</step>
 					<live>true</live>
 				</slider>
 			</group>
@@ -224,9 +224,9 @@
 					<pref-height>150</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-out-r/final-deg</property>
-					<min>-25</min>
-					<max>25</max>
-					<step>0.0025</step>
+					<min>-30</min>
+					<max>30</max>
+					<step>0.003</step>
 					<live>true</live>
 				</slider>
 			</group>
