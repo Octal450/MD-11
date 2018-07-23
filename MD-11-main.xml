@@ -262,6 +262,21 @@
         
 		<multiplay>
 			<generic>
+				<float n="0" alias="/gear/gear[0]/compression-norm"/>
+				<float n="1" alias="/gear/gear[1]/compression-norm"/>
+				<float n="2" alias="/gear/gear[2]/compression-norm"/>
+				<float n="3" alias="/gear/gear[3]/compression-norm"/>
+				<float n="4" alias="/gear/gear[1]/angle-deg"/>
+				<float n="5" alias="/gear/gear[2]/angle-deg"/>
+				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
+				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
+				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
+				<float n="10" alias="/gear/gear[0]/steering-norm"/>
+				<float n="11" alias="/gear/gear[0]/rollspeed-ms"/>
+				<float n="12" alias="/gear/gear[1]/rollspeed-ms"/>
+				<float n="13" alias="/gear/gear[2]/rollspeed-ms"/>
+				<float n="14" alias="/gear/gear[3]/rollspeed-ms"/>
+				<float n="15" alias="/fdm/jsbsim/fcs/slat-pos-norm"/>
 				<int n="0" alias="/systems/electrical/lighting/strobe"/>
 				<int n="1" alias="/systems/electrical/lighting/beacon"/>
 				<int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
@@ -272,23 +287,6 @@
 				<int n="7" alias="/systems/electrical/lighting/nav-lights"/>
 				<int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
 				<int n="9" alias="/systems/electrical/lighting/wing-lights"/>
-				<float n="0" alias="/gear/gear[0]/compression-norm"/>
-				<float n="1" alias="/gear/gear[1]/compression-norm"/>
-				<float n="2" alias="/gear/gear[2]/compression-norm"/>
-				<float n="3" alias="/gear/gear[3]/compression-norm"/>
-				<float n="4" alias="/gear/gear[1]/angle-deg"/>
-				<float n="5" alias="/gear/gear[2]/angle-deg"/>
-				<float n="6" alias="/controls/flight/elevator-trim"/>
-				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
-				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
-				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
-				<float n="10" alias="/gear/gear[0]/steering-norm"/>
-				<float n="11" alias="/gear/gear[0]/rollspeed-ms"/>
-				<float n="12" alias="/gear/gear[1]/rollspeed-ms"/>
-				<float n="13" alias="/gear/gear[2]/rollspeed-ms"/>
-				<float n="14" alias="/gear/gear[3]/rollspeed-ms"/>
-				<float n="15" alias="/fdm/jsbsim/fcs/slat-pos-norm" />
-				<string  alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
         
@@ -302,34 +300,31 @@
         
 		<systems n="0">
 			<autopilot n="0">
-				<path>Aircraft/IDG-MD-11X/Systems/hydraulics.xml</path>
-			</autopilot>
-			<autopilot n="1">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-drivers.xml</path>
 			</autopilot>
-			<autopilot n="2">
+			<autopilot n="1">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
-			<autopilot n="3">
+			<autopilot n="2">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-pitch.xml</path>
 			</autopilot>
-			<autopilot n="4">
+			<autopilot n="3">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-thrust.xml</path>
 			</autopilot>
-			<autopilot n="5">
+			<autopilot n="4">
 				<path>Aircraft/IDG-MD-11X/Systems/libraries.xml</path>
+			</autopilot>
+			<autopilot n="5">
+				<path>Aircraft/IDG-MD-11X/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
 			<!-- 6 is FADEC -->
 			<autopilot n="7">
-				<path>Aircraft/IDG-MD-11X/Sounds/MD-11-sound-variables.xml</path>
-			</autopilot>
-			<autopilot n="8">
 				<path>Aircraft/IDG-MD-11X/Systems/EAD.xml</path>
 			</autopilot>
-			<autopilot n="9">
+			<autopilot n="8">
 				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
 			</autopilot>
-			<autopilot n="10">
+			<autopilot n="9">
 				<path>Aircraft/IDG-MD-11X/Systems/zoom-views.xml</path>
 			</autopilot>
 		</systems>
@@ -413,28 +408,12 @@
 		</engines>
 		<flight>
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
-			<elevator-lsas type="double">0</elevator-lsas>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<elevator-trim-fdm type="double">-0.25</elevator-trim-fdm>
 			<flaps-output type="double">0</flaps-output>
-			<rudder-sum type="double">0</rudder-sum>
 			<rudder-trim-fdm type="double">0</rudder-trim-fdm>
 			<slats type="double">0</slats>
-			<spoiler-l1>0.0</spoiler-l1>
-			<spoiler-l2>0.0</spoiler-l2>
-			<spoiler-l3>0.0</spoiler-l3>
-			<spoiler-l4>0.0</spoiler-l4>
-			<spoiler-l5>0.0</spoiler-l5>
-			<spoiler-l-sum>0.0</spoiler-l-sum>
-			<spoiler-r1>0.0</spoiler-r1>
-			<spoiler-r2>0.0</spoiler-r2>
-			<spoiler-r3>0.0</spoiler-r3>
-			<spoiler-r4>0.0</spoiler-r4>
-			<spoiler-r5>0.0</spoiler-r5>
-			<spoiler-r-sum>0.0</spoiler-r-sum>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
-			<speedbrake-lever type="double">0</speedbrake-lever>
-			<speedbrake-output type="double">0</speedbrake-output>
 		</flight>
 		<gear>
 			<brake-parking type="bool">0</brake-parking>
@@ -964,19 +943,20 @@
 				<name>Ctrl-b</name>
 				<desc>Cycle speedbrake setting</desc>
 				<binding>
-					<command>property-assign</command>
-					<property>controls/flight/speedbrake-arm</property>
-					<value>0</value>
-				</binding>
-				<binding>
 					<condition>
-						<equals>
-							<property>/gear/gear[0]/wow</property>
-							<value>1</value>
-						</equals>
+						<and>
+							<not-equals>
+								<property>/controls/flight/speedbrake-arm</property>
+								<value>1</value>
+							</not-equals>
+							<equals>
+								<property>/gear/gear[0]/wow</property>
+								<value>1</value>
+							</equals>
+						</and>
 					</condition>
 					<command>property-cycle</command>
-					<property>controls/flight/speedbrake-lever</property>
+					<property>/controls/flight/speedbrake</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>
@@ -985,17 +965,28 @@
 				</binding>
 				<binding>
 					<condition>
-						<equals>
-							<property>/gear/gear[0]/wow</property>
-							<value>0</value>
-						</equals>
+						<and>
+							<not-equals>
+								<property>/controls/flight/speedbrake-arm</property>
+								<value>1</value>
+							</not-equals>
+							<equals>
+								<property>/gear/gear[0]/wow</property>
+								<value>0</value>
+							</equals>
+						</and>
 					</condition>
 					<command>property-cycle</command>
-					<property>controls/flight/speedbrake-lever</property>
+					<property>/controls/flight/speedbrake</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>
 					<value>0.6</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/speedbrake-arm</property>
+					<value>0</value>
 				</binding>
 			</key>
 		</keyboard>

@@ -266,5 +266,93 @@
 		</input>
 		<output>fdm/jsbsim/inertia/weight-kg</output>
 	</filter>
+	
+	<filter>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<or>
+					<greater-than-equals>
+						<property>/systems/hydraulic/sys1-psi</property>
+						<value>1500</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>/systems/hydraulic/sys3-psi</property>
+						<value>1500</value>
+					</greater-than-equals>
+				</or>
+			</condition>
+		</enable>
+		<input>/controls/flight/elevator-trim</input>
+		<output>/controls/flight/elevator-trim-fdm</output>
+		<max-rate-of-change>0.1</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<or>
+					<greater-than-equals>
+						<property>/systems/hydraulic/sys1-psi</property>
+						<value>1500</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>/systems/hydraulic/sys2-psi</property>
+						<value>1500</value>
+					</greater-than-equals>
+				</or>
+			</condition>
+		</enable>
+		<input>/controls/flight/rudder-trim</input>
+		<output>/controls/flight/rudder-trim-fdm</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>Autobrake Decel Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<dif>
+					<property>/velocities/groundspeed-mps</property>
+					<property>/velocities/groundspeed-mps-ahead</property>
+				</dif>
+			</expression>
+		</input>
+		<output>/controls/autobrake/decel-error</output>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: AUTOBRAKE DECEL</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<equals>
+					<property>/controls/autobrake/active</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<property>/controls/autobrake/decel-error</property>
+		</input>
+		<reference>
+			<property>/controls/autobrake/decel-rate</property>
+		</reference>
+		<output>
+			<property>/controls/autobrake/brake-left</property>
+			<property>/controls/autobrake/brake-right</property>
+		</output>
+		<config>
+			<Kp>0.45</Kp>
+			<Ki>0.25</Ki>
+			<min>0.0</min>
+			<max>1.0</max>
+		</config>
+	</pi-simple-controller>
 
 </PropertyList>

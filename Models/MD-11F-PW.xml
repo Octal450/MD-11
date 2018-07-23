@@ -563,8 +563,8 @@
 		<name>Rudder U rotate</name>
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
-		<property>controls/flight/rudder-upper</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>29.2089</x1-m>
 			<y1-m>0</y1-m>
@@ -579,8 +579,8 @@
 		<name>Rudder L rotate</name>
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
-		<property>controls/flight/rudder-lower</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>29.2089</x1-m>
 			<y1-m>0</y1-m>
@@ -591,14 +591,13 @@
 		</axis>
 	</animation>
 	
-	
-		<!-- Ailerons -->
+	<!-- Ailerons -->
 	<animation>
 		<name>Left inner aileron</name>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-			<property>controls/flight/aileron-in-left</property>
-		<factor>-50</factor>
+		<property>fdm/jsbsim/hydraulics/aileron-in-l/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>-7.3613</y1-m>
@@ -610,10 +609,10 @@
 	</animation>
 	
 	<animation>
-			<type>rotate</type>
+		<type>rotate</type>
 		<object-name>AileronL2</object-name>
-			<property>controls/flight/aileron-out-left</property>
-			<factor>50</factor>
+		<property>fdm/jsbsim/hydraulics/aileron-out-l/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>-22.7524</y1-m>
@@ -628,8 +627,8 @@
 		<name>Right inner aileron</name>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-			<property>controls/flight/aileron-in-right</property>
-		<factor>-50</factor>
+		<property>fdm/jsbsim/hydraulics/aileron-in-r/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>5.6584</x1-m>
 			<y1-m>7.3613</y1-m>
@@ -643,8 +642,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-			<property>controls/flight/aileron-out-right</property>
-			<factor>50</factor>
+		<property>fdm/jsbsim/hydraulics/aileron-out-r/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>13.1821</x1-m>
 			<y1-m>22.7524</y1-m>
@@ -663,8 +662,8 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
-		<property>sim/multiplay/generic/float[6]</property>
-		<factor>14</factor>
+		<property>fdm/jsbsim/hydraulics/elevator-trim/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -680,8 +679,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1o</object-name>
-		<property>controls/flight/elevator-out-left</property>
-		<factor>50</factor>
+		<property>fdm/jsbsim/hydraulics/elevator-out-l/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>-8.7874</y1-m>
@@ -695,8 +694,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1i</object-name>
-		<property>controls/flight/elevator-in-left</property>
-		<factor>50</factor>
+		<property>fdm/jsbsim/hydraulics/elevator-in-l/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>-8.7874</y1-m>
@@ -710,8 +709,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2i</object-name>
-		<property>controls/flight/elevator-in-right</property>
-		<factor>-50</factor>
+		<property>fdm/jsbsim/hydraulics/elevator-in-r/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>8.7874</y1-m>
@@ -725,8 +724,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2o</object-name>
-		<property>controls/flight/elevator-out-right</property>
-		<factor>-50</factor>
+		<property>fdm/jsbsim/hydraulics/elevator-out-r/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>28.2809</x1-m>
 			<y1-m>8.7874</y1-m>
@@ -1740,8 +1739,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.1</object-name>
-		<property>controls/flight/spoiler-l1</property>
-		<factor>60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-l1/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>-10.5629</y1-m>
@@ -1755,8 +1754,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.2</object-name>
-		<property>controls/flight/spoiler-l2</property>
-		<factor>60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-l2/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>-10.5629</y1-m>
@@ -1770,8 +1769,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.3</object-name>
-		<property>controls/flight/spoiler-l3</property>
-		<factor>60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-l3/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>-10.5629</y1-m>
@@ -1785,8 +1784,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.4</object-name>
-		<property>controls/flight/spoiler-l4</property>
-		<factor>60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-l4/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>-10.5629</y1-m>
@@ -1800,8 +1799,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.5</object-name>
-		<property>controls/flight/spoiler-l5</property>
-		<factor>60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-l5/final-deg</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
 			<y1-m>-4.2563</y1-m>
@@ -1815,8 +1814,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.1</object-name>
-		<property>controls/flight/spoiler-r1</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-r1/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>10.5629</y1-m>
@@ -1830,8 +1829,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.2</object-name>
-		<property>controls/flight/spoiler-r2</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-r2/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>10.5629</y1-m>
@@ -1845,8 +1844,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.3</object-name>
-		<property>controls/flight/spoiler-r3</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-r3/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>10.5629</y1-m>
@@ -1860,8 +1859,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.4</object-name>
-		<property>controls/flight/spoiler-r4</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-r4/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
 			<y1-m>10.5629</y1-m>
@@ -1875,8 +1874,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.5</object-name>
-		<property>controls/flight/spoiler-r5</property>
-		<factor>-60</factor>
+		<property>fdm/jsbsim/hydraulics/spoiler-r5/final-deg</property>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
 			<y1-m>4.2563</y1-m>

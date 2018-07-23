@@ -174,10 +174,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 	</propulsion>
 	
-	<system file="pushback" />
-	<!--system file="fuel" /-->
-	<system file="glass-effect1" />
-	<system file="md-11-fcs" />
+	<system file="pushback"/>
+	<!--system file="fuel"/-->
+	<system file="glass-effect1"/>
+	<system file="md-11-fcs"/>
+	<system file="md-11-spoiler"/>
 	
 	<flight_control name="none"/>
 	
