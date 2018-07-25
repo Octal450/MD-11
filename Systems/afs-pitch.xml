@@ -607,15 +607,13 @@
 					</not-equals>
 				</condition>
 				<expression>
-					<dif>
-						<table>
+					<max>
+						<dif>
 							<property>/orientation/pitch-deg</property>
-							<entry><ind>-10</ind><dep>-5</dep></entry>
-							<entry><ind>  0</ind><dep> 0</dep></entry>
-							<entry><ind> 30</ind><dep>35</dep></entry>
-						</table>
-						<value>5</value>
-					</dif>
+							<value>5</value>
+						</dif>
+						<value>-10</value>
+					</max>
 				</expression>
 			</u_min>
 			<u_min>
@@ -641,15 +639,13 @@
 					</and>
 				</condition>
 				<expression>
-					<sum>
-						<table>
+					<min>
+						<sum>
 							<property>/orientation/pitch-deg</property>
-							<entry><ind>-10</ind><dep>-15</dep></entry>
-							<entry><ind>  0</ind><dep>  0</dep></entry>
-							<entry><ind> 30</ind><dep> 25</dep></entry>
-						</table>
-						<value>5</value>
-					</sum>
+							<value>5</value>
+						</sum>
+						<value>30</value>
+					</min>
 				</expression>
 			</u_max>
 			<u_max>
