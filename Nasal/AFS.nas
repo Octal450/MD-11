@@ -238,8 +238,8 @@ var lateral = func {
 		setprop("/it-autoflight/input/lat-arm", 0);
 		setprop("/it-autoflight/output/loc-armed", 0);
 		setprop("/it-autoflight/output/appr-armed", 0);
-		var hdg5sec = math.round(getprop("/it-autoflight/internal/heading-predicted"));
-		setprop("/it-autoflight/input/hdg", hdg5sec);
+		var hdgpredic = math.round(getprop("/it-autoflight/internal/heading-predicted"));
+		setprop("/it-autoflight/input/hdg", hdgpredic);
 		setprop("/it-autoflight/output/lat", 0);
 		setprop("/it-autoflight/mode/lat", "HDG");
 		setprop("/it-autoflight/mode/arm", " ");
@@ -294,9 +294,9 @@ var vertical = func {
 		}
 		setprop("/it-autoflight/output/vert", 0);
 		setprop("/it-autoflight/mode/vert", "ALT HLD");
-		var alt5sec = math.round(getprop("/it-autoflight/internal/altitude-predicted"), 500);
-		setprop("/it-autoflight/input/alt", alt5sec);
-		setprop("/it-autoflight/internal/alt", alt5sec);
+		var altpredic = math.round(getprop("/it-autoflight/internal/altitude-predicted"), 500);
+		setprop("/it-autoflight/input/alt", altpredic);
+		setprop("/it-autoflight/internal/alt", altpredic);
 		thrustmode();
 	} else if (vertset == 1) {
 		alandt.stop();
@@ -308,7 +308,7 @@ var vertical = func {
 		}
 		var altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		var vsnow = math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100);
+		vsnow = math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100);
 		setprop("/it-autoflight/input/vs", vsnow);
 		setprop("/it-autoflight/output/vert", 1);
 		setprop("/it-autoflight/mode/vert", "V/S");
@@ -362,7 +362,7 @@ var vertical = func {
 		var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 		var alt = getprop("/it-autoflight/internal/alt");
 		var dif = calt - alt;
-		var vsnow = getprop("/it-autoflight/internal/vert-speed-fpm");
+		vsnow = getprop("/it-autoflight/internal/vert-speed-fpm");
 		if (calt < alt) {
 			setprop("/it-autoflight/internal/max-vs", vsnow);
 		} else if (calt > alt) {
