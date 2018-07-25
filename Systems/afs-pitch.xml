@@ -16,18 +16,18 @@
 		<name>ALTITUDE CAPTURE/HOLD</name>
 		<debug>false</debug>
 		<type>gain</type>
+		<gain>-5</gain>
 		<input>
 			<expression>
 				<sum>
-					<property>/it-autoflight/internal/altitude-5-sec-ahead</property>
-					<value>-0.5</value>
+					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<value>-2</value>
 				</sum>
 			</expression>
 		</input>
 		<reference>
 			<property>/it-autoflight/internal/alt</property>
 		</reference>
-		<gain>-8</gain>
 		<output>
 			<property>/it-autoflight/internal/target-fpm</property>
 		</output>
@@ -80,12 +80,20 @@
 			<property>/it-autoflight/internal/target-fpm-d</property>
 		</output>
 		<config>
-			<Kp>120</Kp>
+			<Kp>
+				<expression>
+					<table>
+						<property>/velocities/mach</property>
+						<entry><ind>0.2</ind><dep>120</dep></entry>
+						<entry><ind>0.9</ind><dep>340</dep></entry>
+					</table>
+				</expression>
+			</Kp>
 			<beta>1.0</beta>
 			<alpha>0.1</alpha>
 			<gamma>0.0</gamma>
-			<Ti>1.0</Ti>
-			<Td>0.00001</Td>
+			<Ti>2.0</Ti>
+			<Td>0.002</Td>
 			<u_min>
 				<expression>
 					<dif>
@@ -542,7 +550,13 @@
 						<value>6</value>
 					</not-equals>
 				</condition>
-				<value>0.0017</value>
+				<expression>
+					<table>
+						<property>/velocities/mach</property>
+						<entry><ind>0.2</ind><dep>0.0029</dep></entry>
+						<entry><ind>0.9</ind><dep>0.0010</dep></entry>
+					</table>
+				</expression>
 			</Kp>
 			<Kp>
 				<condition>
@@ -553,7 +567,7 @@
 				</condition>
 				<value>0.0047</value>
 			</Kp>
-			<Ti>3.0</Ti>
+			<Ti>2.5</Ti>
 			<Td>0.0001</Td>
 			<u_min>
 				<condition>
@@ -562,7 +576,17 @@
 						<value>6</value>
 					</not-equals>
 				</condition>
-				<value>-10</value>
+				<expression>
+					<dif>
+						<table>
+							<property>/orientation/pitch-deg</property>
+							<entry><ind>-10</ind><dep>-5</dep></entry>
+							<entry><ind>  0</ind><dep> 0</dep></entry>
+							<entry><ind> 30</ind><dep>35</dep></entry>
+						</table>
+						<value>5</value>
+					</dif>
+				</expression>
 			</u_min>
 			<u_min>
 				<condition>
@@ -586,7 +610,17 @@
 						</equals>
 					</and>
 				</condition>
-				<value>30</value>
+				<expression>
+					<sum>
+						<table>
+							<property>/orientation/pitch-deg</property>
+							<entry><ind>-10</ind><dep>-15</dep></entry>
+							<entry><ind>  0</ind><dep>  0</dep></entry>
+							<entry><ind> 30</ind><dep> 25</dep></entry>
+						</table>
+						<value>5</value>
+					</sum>
+				</expression>
 			</u_max>
 			<u_max>
 				<condition>
@@ -780,7 +814,7 @@
 		</input>
 		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.8</max-rate-of-change>
+		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
 	<filter>

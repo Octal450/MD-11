@@ -213,7 +213,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>0.0175</value>
+				<value>0.0167</value>
 			</product>
 		</function>
 		
@@ -225,11 +225,11 @@
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<tableData>
-						-1.57  1.3083
-						-0.20  0.0331
+						-1.57  1.2983
+						-0.20  0.0281
 						 0.00  0.0000
-						 0.20  0.0331
-						 1.57  1.3083
+						 0.20  0.0281
+						 1.57  1.2983
 					</tableData>
 				</table>
 			</product>
@@ -241,7 +241,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
-				<value>0.0391</value>
+				<value>0.0339</value>
 			</product>
 		</function>
 		

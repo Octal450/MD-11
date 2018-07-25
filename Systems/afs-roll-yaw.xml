@@ -59,7 +59,7 @@
 			<property>/it-autoflight/internal/target-roll-deg</property>
 		</output>
 		<config>
-			<Kp>-1.3</Kp>
+			<Kp>-1.8</Kp>
 			<Ki>-0.000001</Ki>
 			<min>
 				<property>/it-autoflight/internal/bank-limit</property>
@@ -359,7 +359,7 @@
 		<input>0</input>
 		<output>/fdm/jsbsim/fcc/afs/roll-cmd</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.8</max-rate-of-change>
+		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
  <!-- =============================================================== -->
