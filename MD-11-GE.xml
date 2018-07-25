@@ -182,7 +182,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	
 	<flight_control name="none"/>
 	
-	<aerodynamics file="Systems/md-11-aerodynamics.xml" />
+	<aerodynamics file="Systems/md-11-aerodynamics.xml"/>
 	<external_reactions file="Systems/md-11-external-reactions"/>
 
 </fdm_config>
