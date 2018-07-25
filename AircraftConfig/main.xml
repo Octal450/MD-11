@@ -402,6 +402,41 @@
 				<live>true</live>
 			</checkbox>
 			
+			<checkbox>
+				<label>Allow Damage (KC-10 Only)</label>
+				<halign>left</halign>
+				<enable>
+					<and>
+						<property>/systems/acconfig/damage-loaded</property>
+						<equals>
+							<property>/gear/gear[0]/wow</property>
+							<value>1</value>
+						</equals>
+					</and>
+				</enable>
+				<property>/options/system/allow-damage</property>
+				<binding>
+					<command>property-toggle</command>
+					<property>/options/system/allow-damage</property>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.fail_dlg.close();
+					</script>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.failReset();
+					</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
 			<group>
 				<layout>hbox</layout>
 			
@@ -420,10 +455,13 @@
 				<button>
 					<legend>System Failures</legend>
 					<halign>center</halign>
+					<padding>5</padding>
 					<enable>
 						<property>/systems/acconfig/extra-stuff</property>
 					</enable>
-					<padding>5</padding>
+					<!--enable>
+						<not><property>/options/system/allow-damage</property></not>
+					</enable-->
 					<binding>
 						<command>nasal</command>
 						<script>
