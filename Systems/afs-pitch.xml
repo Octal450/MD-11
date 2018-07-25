@@ -301,7 +301,12 @@
 						<value>0</value>
 					</equals>
 				</condition>
-				<value>-6000</value>
+				<expression>
+					<dif>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</dif>
+				</expression>
 			</u_min>
 			<u_max>
 				<condition>
@@ -310,7 +315,12 @@
 						<value>0</value>
 					</equals>
 				</condition>
-				<value>10000</value>
+				<expression>
+					<sum>
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<value>2500</value>
+					</sum>
+				</expression>
 			</u_max>
 		</config>
 	</pid-controller>
