@@ -309,9 +309,14 @@
 	
 	<animation>
 		<type>select</type>
+		<object-name>AltPump.low</object-name>
+		<object-name>AltPump.on</object-name>
 		<object-name>APUBleed.on</object-name>
 		<object-name>AuxPump1.on</object-name>
 		<object-name>AuxPump2.on</object-name>
+		<object-name>AuxTailTrans.low</object-name>
+		<object-name>AuxTailTrans.on</object-name>
+		<object-name>AvionicsFan.flow</object-name>
 		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
@@ -325,6 +330,7 @@
 		<object-name>Bleed3.off</object-name>
 		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
+		<object-name>Dump.off</object-name>
 		<object-name>Econ.off</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
@@ -346,6 +352,9 @@
 		<object-name>LPump2.off</object-name>
 		<object-name>LPump3.fault</object-name>
 		<object-name>LPump3.off</object-name>
+		<object-name>LTrans.low</object-name>
+		<object-name>LTrans.on</object-name>
+		<object-name>Manf.drain</object-name>
 		<object-name>Pack1.flow</object-name>
 		<object-name>Pack1.off</object-name>
 		<object-name>Pack2.flow</object-name>
@@ -362,10 +371,38 @@
 		<object-name>RPump2.off</object-name>
 		<object-name>RPump3.fault</object-name>
 		<object-name>RPump3.off</object-name>
+		<object-name>RTrans.low</object-name>
+		<object-name>RTrans.on</object-name>
+		<object-name>SystemFuel.manual</object-name>
+		<object-name>SystemFuel.select</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<object-name>SystemHyd.select</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
+		<object-name>Tank1Fill.arm</object-name>
+		<object-name>Tank1Fill.fill</object-name>
+		<object-name>Tank2Fill.arm</object-name>
+		<object-name>Tank2Fill.fill</object-name>
+		<object-name>Tank3Fill.arm</object-name>
+		<object-name>Tank3Fill.fill</object-name>
+		<object-name>Tank1Pumps.low</object-name>
+		<object-name>Tank1Pumps.off</object-name>
+		<object-name>Tank2Pumps.low</object-name>
+		<object-name>Tank2Pumps.off</object-name>
+		<object-name>Tank3Pumps.low</object-name>
+		<object-name>Tank3Pumps.off</object-name>
+		<object-name>Tank1Trans.low</object-name>
+		<object-name>Tank1Trans.on</object-name>
+		<object-name>Tank2Trans.low</object-name>
+		<object-name>Tank2Trans.on</object-name>
+		<object-name>Tank3Trans.low</object-name>
+		<object-name>Tank3Trans.on</object-name>
+		<object-name>Tank1XFeed.disag</object-name>
+		<object-name>Tank1XFeed.on</object-name>
+		<object-name>Tank2XFeed.disag</object-name>
+		<object-name>Tank2XFeed.on</object-name>
+		<object-name>Tank3XFeed.disag</object-name>
+		<object-name>Tank3XFeed.on</object-name>
 		<object-name>TrimAir.off</object-name>
 		<condition>
 			<or>
@@ -388,6 +425,11 @@
 	<!-- These are not simulated yet, so they only illuminate when the test is on. Remove each light/button once you add its select animation. -JD -->
 	<animation>
 		<type>select</type>
+		<object-name>AltPump.low</object-name>
+		<object-name>AltPump.on</object-name>
+		<object-name>AuxTailTrans.low</object-name>
+		<object-name>AuxTailTrans.on</object-name>
+		<object-name>AvionicsFan.flow</object-name>
 		<object-name>Bleed1B.manf</object-name>
 		<object-name>Bleed1B.temphi</object-name>
 		<object-name>Bleed2B.manf</object-name>
@@ -400,6 +442,7 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
+		<object-name>Dump.off</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE3.select</object-name>
@@ -409,6 +452,37 @@
 		<object-name>ISOL-1-2.disag</object-name>
 		<object-name>ISOL-1-3.on</object-name>
 		<object-name>ISOL-1-3.disag</object-name>
+		<object-name>LTrans.low</object-name>
+		<object-name>LTrans.on</object-name>
+		<object-name>Manf.drain</object-name>
+		<object-name>RTrans.low</object-name>
+		<object-name>RTrans.on</object-name>
+		<object-name>SystemFuel.manual</object-name>
+		<object-name>SystemFuel.select</object-name>
+		<object-name>Tank1Fill.arm</object-name>
+		<object-name>Tank1Fill.fill</object-name>
+		<object-name>Tank2Fill.arm</object-name>
+		<object-name>Tank2Fill.fill</object-name>
+		<object-name>Tank3Fill.arm</object-name>
+		<object-name>Tank3Fill.fill</object-name>
+		<object-name>Tank1Pumps.low</object-name>
+		<object-name>Tank1Pumps.off</object-name>
+		<object-name>Tank2Pumps.low</object-name>
+		<object-name>Tank2Pumps.off</object-name>
+		<object-name>Tank3Pumps.low</object-name>
+		<object-name>Tank3Pumps.off</object-name>
+		<object-name>Tank1Trans.low</object-name>
+		<object-name>Tank1Trans.on</object-name>
+		<object-name>Tank2Trans.low</object-name>
+		<object-name>Tank2Trans.on</object-name>
+		<object-name>Tank3Trans.low</object-name>
+		<object-name>Tank3Trans.on</object-name>
+		<object-name>Tank1XFeed.disag</object-name>
+		<object-name>Tank1XFeed.on</object-name>
+		<object-name>Tank2XFeed.disag</object-name>
+		<object-name>Tank2XFeed.on</object-name>
+		<object-name>Tank3XFeed.disag</object-name>
+		<object-name>Tank3XFeed.on</object-name>
 		<condition>
 			<equals>
 				<property>controls/switches/annun-test</property>
