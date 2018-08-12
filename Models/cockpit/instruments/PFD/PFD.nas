@@ -11,6 +11,8 @@ var PFD_1_mismatch = nil;
 var PFD_2_mismatch = nil;
 var PFD1_display = nil;
 var PFD2_display = nil;
+var updateL = 0;
+var updateR = 0;
 var ASI = 0;
 var ASIpresel = 0;
 var ASIpreseldiff = 0;
@@ -97,21 +99,37 @@ var canvas_PFD_base = {
 			PFD_1_mismatch.page.hide();
 			PFD_2_mismatch.page.hide();
 			if (getprop("/systems/electrical/bus/ac1") >= 110 or getprop("/systems/electrical/bus/ac2") >= 110 or getprop("/systems/electrical/bus/ac3") >= 110) {
-				PFD_1.page.show();
-				PFD_2.page.show();
+				PFD_1.updateFast();
+				PFD_2.updateFast();
 				PFD_1.update();
 				PFD_2.update();
+				updateL = 1;
+				updateR = 1;
+				PFD_1.page.show();
+				PFD_2.page.show();
 			} else {
+				updateL = 0;
+				updateR = 0;
 				PFD_1.page.hide();
 				PFD_2.page.hide();
 			}
 		} else {
+			updateL = 0;
+			updateR = 0;
 			PFD_1.page.hide();
 			PFD_2.page.hide();
-			PFD_1_mismatch.page.show();
-			PFD_2_mismatch.page.show();
 			PFD_1_mismatch.update();
 			PFD_2_mismatch.update();
+			PFD_1_mismatch.page.show();
+			PFD_2_mismatch.page.show();
+		}
+	},
+	updateSlow: func() {
+		if (updateL) {
+			PFD_1.update();
+		}
+		if (updateR) {
+			PFD_2.update();
 		}
 	},
 	updateCommon: func () {
@@ -209,6 +227,39 @@ var canvas_PFD_base = {
 		me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(getprop("/it-autoflight/internal/alt") / 1000)));
 		me["FMA_Altitude"].setText(right(sprintf("%03d", getprop("/it-autoflight/internal/alt")), 3));
 		
+		# QNH
+		if (getprop("/modes/altimeter/std") == 1) {
+			if (getprop("/modes/altimeter/inhg") == 0) {
+				me["QNH"].setText("1013");
+			} else if (getprop("/modes/altimeter/inhg") == 1) {
+				me["QNH"].setText("29.92");
+			}
+		} else if (getprop("/modes/altimeter/inhg") == 0) {
+			me["QNH"].setText(sprintf("%4.0f", getprop("/instrumentation/altimeter/setting-hpa")));
+		} else if (getprop("/modes/altimeter/inhg") == 1) {
+			me["QNH"].setText(sprintf("%2.2f", getprop("/instrumentation/altimeter/setting-inhg")));
+		}
+		
+		# Slats/Flaps
+		if (getprop("/controls/flight/slats") > 0 and getprop("/controls/flight/flap-txt") == 0) {
+			me["Slats"].show();
+		} else {
+			me["Slats"].hide();
+		}
+		
+		if (getprop("/controls/flight/flap-txt") > 0) {
+			me["Flaps"].show();
+			me["Flaps_num"].show();
+			me["Flaps_num"].setText(sprintf("%2.0f", getprop("/controls/flight/flap-txt")));
+		} else {
+			me["Flaps"].hide();
+			me["Flaps_num"].hide();
+		}
+		
+		# Misc
+		me["TCAS_OFF"].hide();
+	},
+	updateCommonFast: func() {
 		# Airspeed
 		me["ASI_v_speed"].hide();
 		
@@ -436,35 +487,6 @@ var canvas_PFD_base = {
 		
 		me["TRK_pointer"].setRotation(getprop("/instrumentation/pfd/track-hdg-diff") * D2R);
 		
-		# QNH
-		if (getprop("/modes/altimeter/std") == 1) {
-			if (getprop("/modes/altimeter/inhg") == 0) {
-				me["QNH"].setText("1013");
-			} else if (getprop("/modes/altimeter/inhg") == 1) {
-				me["QNH"].setText("29.92");
-			}
-		} else if (getprop("/modes/altimeter/inhg") == 0) {
-			me["QNH"].setText(sprintf("%4.0f", getprop("/instrumentation/altimeter/setting-hpa")));
-		} else if (getprop("/modes/altimeter/inhg") == 1) {
-			me["QNH"].setText(sprintf("%2.2f", getprop("/instrumentation/altimeter/setting-inhg")));
-		}
-		
-		# Slats/Flaps
-		if (getprop("/controls/flight/slats") > 0 and getprop("/controls/flight/flap-txt") == 0) {
-			me["Slats"].show();
-		} else {
-			me["Slats"].hide();
-		}
-		
-		if (getprop("/controls/flight/flap-txt") > 0) {
-			me["Flaps"].show();
-			me["Flaps_num"].show();
-			me["Flaps_num"].setText(sprintf("%2.0f", getprop("/controls/flight/flap-txt")));
-		} else {
-			me["Flaps"].hide();
-			me["Flaps_num"].hide();
-		}
-		
 		# ILS
 		LOC = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm") or 0;
 		GS = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm") or 0;
@@ -501,8 +523,6 @@ var canvas_PFD_base = {
 		}
 		
 		# Misc
-		me["TCAS_OFF"].hide();
-		
 		if (getprop("/position/gear-agl-ft") <= 2500) {
 			me["RA"].setText(sprintf("%4.0f", getprop("/position/gear-agl-ft")));
 			me["RA"].show();
@@ -539,6 +559,9 @@ var canvas_PFD_1 = {
 		
 		me.updateCommon();
 	},
+	updateFast: func() {
+		me.updateCommonFast();
+	},
 };
 
 var canvas_PFD_2 = {
@@ -565,6 +588,9 @@ var canvas_PFD_2 = {
 		}
 		
 		me.updateCommon();
+	},
+	updateFast: func() {
+		me.updateCommonFast();
 	},
 };
 
@@ -656,9 +682,22 @@ setlistener("sim/signals/fdm-initialized", func {
 	PFD_2_mismatch = canvas_PFD_2_mismatch.new(group_pfd2_mismatch, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/Common/res/mismatch.svg");
 	
 	PFD_update.start();
+	PFD_update_fast.start();
+	if (getprop("/systems/acconfig/options/pfd-rate") > 1) {
+		rateApply();
+	}
 });
 
-var PFD_update = maketimer(0.05, func {
+var rateApply = func {
+	PFD_update.restart(0.15 * getprop("/systems/acconfig/options/pfd-rate"));
+	PFD_update_fast.restart(0.05 * getprop("/systems/acconfig/options/pfd-rate"));
+}
+
+var PFD_update = maketimer(0.15, func {
+	canvas_PFD_base.updateSlow();
+});
+
+var PFD_update_fast = maketimer(0.05, func {
 	canvas_PFD_base.update();
 });
 

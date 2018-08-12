@@ -810,7 +810,14 @@ setlistener("sim/signals/fdm-initialized", func {
 	EAD_PW = canvas_EAD_PW.new(group_EAD_PW, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/res/pw.svg");
 
 	EAD_update.start();
+	if (getprop("/systems/acconfig/options/ead-rate") > 1) {
+		rateApply();
+	}
 });
+
+var rateApply = func {
+	EAD_update.restart(0.05 * getprop("/systems/acconfig/options/ead-rate"));
+}
 
 var EAD_update = maketimer(0.05, func {
 	canvas_EAD_base.update();

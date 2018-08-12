@@ -90,6 +90,17 @@
 						</script>
 					</binding>
 				</button>
+				<button>
+					<halign>center</halign>
+					<legend>DU Quality</legend>
+					<pref-width>140</pref-width>
+					<binding>
+						<command>nasal</command>
+						<script>
+						acconfig.du_quality.open();
+						</script>
+					</binding>
+				</button>
 			</group>
 			
 			<group>
