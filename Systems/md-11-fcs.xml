@@ -880,11 +880,11 @@
 			<input>hydraulics/elevator-trim/lag</input>
 			<domain>
 				<min>-1.00</min>
-				<max>0.07</max>
+				<max>0.064516</max>
 			</domain>
 			<range>
 				<min>-15.5</min>
-				<max>0.064516</max>
+				<max>1.0</max>
 			</range>
 		</aerosurface_scale>
 	
