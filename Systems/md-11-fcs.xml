@@ -197,8 +197,8 @@
 			<kd>fcc/lsas/d-gain</kd>
 			<trigger>fcc/lsas/trigger</trigger>
 			<clipto>
-				<min>-0.17</min>
-				<max>0.17</max>
+				<min>-0.249</min>
+				<max>0.249</max>
 			</clipto>
 			<output>fcc/lsas/pid</output>
 		</pid>
@@ -242,7 +242,7 @@
 			<test logic="AND" value="1">
 				fcc/lsas/gain-switch eq 0
 				fcc/elevator-output ge 0.02
-				/controls/flight/elevator-trim le 0.97
+				/controls/flight/elevator-trim le 0.064516
 			</test>
 			<test logic="AND" value="2">
 				fcc/lsas/gain-switch eq 0
@@ -283,7 +283,7 @@
 			</function>
 			<clipto>
 				<min>-1.00</min>
-				<max>0.07</max>
+				<max>0.064516</max>
 			</clipto>
 			<output>/controls/flight/elevator-trim</output>
 		</fcs_function>
@@ -401,7 +401,7 @@
 	
 	</channel>
 	
-	<channel name="Surface Droop">
+	<channel name="Common">
 		
 		<fcs_function name="hydraulics/aileron-droop">
 			<function>
@@ -427,60 +427,42 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="hydraulics/aileron-l-flap">
-			<function>
-				<sum>
-					<property>fcc/aileron-output</property>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<tableData>
-								 0.5  0.00
-								 9.5  0.57
-								28.5  0.57
-								34.5  0.00
-							</tableData>
-						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
-					</product>
-				</sum>
-			</function>
-		</fcs_function>
+		<switch name="hydraulics/aileron-out-enable">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/fdm/jsbsim/fcs/slat-pos-deg ge 2
+				position/wow eq 1
+			</test>
+		</switch>
 		
-		<fcs_function name="hydraulics/aileron-r-flap">
-			<function>
-				<sum>
-					<property>fcc/aileron-output</property>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<tableData>
-								 0.5  0.00
-								 9.5 -0.57
-								28.5 -0.57
-								34.5  0.00
-							</tableData>
-						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
-					</product>
-				</sum>
-			</function>
-		</fcs_function>
-	
 	</channel>
 	
 	<channel name="Aileron L Outer">
 		
 		<fcs_function name="hydraulics/aileron-out-l/function">
 			<function>
-				<table>
-					<independentVar lookup="row">hydraulics/aileron-l-flap</independentVar>
-					<tableData>
-						-0.95 -1.0
-						 0.00  0.0
-						 0.95  1.0
-					</tableData>
-				</table>
+				<sum>
+					<table>
+						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<tableData>
+							-0.95 -1.0
+							 0.00  0.0
+							 0.95  1.0
+						</tableData>
+					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								 0.5  0.00
+								 9.5  0.75
+								28.5  0.75
+								34.5  0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
 			</function>
 		</fcs_function>
 		
@@ -496,11 +478,11 @@
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="AND" value="0">
 				hydraulics/aileron-out-l/pressure-switch-or eq 1
-				/fdm/jsbsim/fcs/slat-pos-deg lt 2
+				hydraulics/aileron-out-enable ne 1
 			</test>
 			<test logic="AND" value="hydraulics/aileron-out-l/function">
 				hydraulics/aileron-out-l/pressure-switch-or eq 1
-				/fdm/jsbsim/fcs/slat-pos-deg ge 2
+				hydraulics/aileron-out-enable eq 1
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -516,8 +498,8 @@
 		<aerosurface_scale name="hydraulics/aileron-out-l/final-deg">
 			<input>hydraulics/aileron-out-l/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-20</min>
+				<max>20</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -527,14 +509,28 @@
 		
 		<fcs_function name="hydraulics/aileron-in-l/function">
 			<function>
-				<table>
-					<independentVar lookup="row">hydraulics/aileron-l-flap</independentVar>
-					<tableData>
-						-0.95 -1.0
-						 0.00  0.0
-						 0.95  1.0
-					</tableData>
-				</table>
+				<sum>
+					<table>
+						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<tableData>
+							-0.95 -1.0
+							 0.00  0.0
+							 0.95  1.0
+						</tableData>
+					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								 0.5  0.000
+								 9.5  0.575
+								28.5  0.575
+								34.5  0.000
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
 			</function>
 		</fcs_function>
 		
@@ -558,8 +554,8 @@
 		<aerosurface_scale name="hydraulics/aileron-in-l/final-deg">
 			<input>hydraulics/aileron-in-l/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-20</min>
+				<max>20</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -569,14 +565,28 @@
 		
 		<fcs_function name="hydraulics/aileron-in-r/function">
 			<function>
-				<table>
-					<independentVar lookup="row">hydraulics/aileron-r-flap</independentVar>
-					<tableData>
-						-0.95  1.0
-						 0.00  0.0
-						 0.95 -1.0
-					</tableData>
-				</table>
+				<sum>
+					<table>
+						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<tableData>
+							-0.95  1.0
+							 0.00  0.0
+							 0.95 -1.0
+						</tableData>
+					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								 0.5  0.000
+								 9.5  0.575
+								28.5  0.575
+								34.5  0.000
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
 			</function>
 		</fcs_function>
 		
@@ -600,8 +610,8 @@
 		<aerosurface_scale name="hydraulics/aileron-in-r/final-deg">
 			<input>hydraulics/aileron-in-r/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-20</min>
+				<max>20</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -611,14 +621,28 @@
 		
 		<fcs_function name="hydraulics/aileron-out-r/function">
 			<function>
-				<table>
-					<independentVar lookup="row">hydraulics/aileron-r-flap</independentVar>
-					<tableData>
-						-0.95  1.0
-						 0.00  0.0
-						 0.95 -1.0
-					</tableData>
-				</table>
+				<sum>
+					<table>
+						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<tableData>
+							-0.95  1.0
+							 0.00  0.0
+							 0.95 -1.0
+						</tableData>
+					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<tableData>
+								 0.5  0.00
+								 9.5  0.75
+								28.5  0.75
+								34.5  0.00
+							</tableData>
+						</table>
+						<property>/controls/hydraulic/aileron-droop</property>
+					</product>
+				</sum>
 			</function>
 		</fcs_function>
 		
@@ -634,11 +658,11 @@
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="AND" value="0">
 				hydraulics/aileron-out-r/pressure-switch-or eq 1
-				/fdm/jsbsim/fcs/slat-pos-deg lt 2
+				hydraulics/aileron-out-enable ne 1
 			</test>
 			<test logic="AND" value="hydraulics/aileron-out-r/function">
 				hydraulics/aileron-out-r/pressure-switch-or eq 1
-				/fdm/jsbsim/fcs/slat-pos-deg ge 2
+				hydraulics/aileron-out-enable eq 1
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -654,8 +678,8 @@
 		<aerosurface_scale name="hydraulics/aileron-out-r/final-deg">
 			<input>hydraulics/aileron-out-r/final</input>
 			<range>
-				<min>-25</min>
-				<max>25</max>
+				<min>-20</min>
+				<max>20</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -739,8 +763,8 @@
 		<aerosurface_scale name="hydraulics/elevator-out-l/final-deg">
 			<input>hydraulics/elevator-out-l/final</input>
 			<range>
-				<min>-30</min>
-				<max>30</max>
+				<min>-20.1</min>
+				<max>17.2</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -768,8 +792,8 @@
 		<aerosurface_scale name="hydraulics/elevator-in-l/final-deg">
 			<input>hydraulics/elevator-in-l/final</input>
 			<range>
-				<min>-30</min>
-				<max>30</max>
+				<min>-20.1</min>
+				<max>17.2</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -797,8 +821,8 @@
 		<aerosurface_scale name="hydraulics/elevator-in-r/final-deg">
 			<input>hydraulics/elevator-in-r/final</input>
 			<range>
-				<min>-30</min>
-				<max>30</max>
+				<min>-20.1</min>
+				<max>17.2</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -826,8 +850,8 @@
 		<aerosurface_scale name="hydraulics/elevator-out-r/final-deg">
 			<input>hydraulics/elevator-out-r/final</input>
 			<range>
-				<min>-30</min>
-				<max>30</max>
+				<min>-20.1</min>
+				<max>17.2</max>
 			</range>
 		</aerosurface_scale>
 	
@@ -839,10 +863,10 @@
 			<input>/controls/flight/elevator-trim</input>
 			<domain>
 				<min>-1.00</min>
-				<max>0.07</max>
+				<max>0.064516</max>
 			</domain>
 			<range>
-				<min>-14.0</min>
+				<min>-15.5</min>
 				<max>1.0</max>
 			</range>
 		</aerosurface_scale>
@@ -859,8 +883,8 @@
 				<max>0.07</max>
 			</domain>
 			<range>
-				<min>-14.0</min>
-				<max>1.0</max>
+				<min>-15.5</min>
+				<max>0.064516</max>
 			</range>
 		</aerosurface_scale>
 	

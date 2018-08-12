@@ -902,6 +902,8 @@
 		</input>
 		<output>/controls/flight/elevator-trim</output>
 		<type>noise-spike</type>
+		<min>-1.0</min>
+		<max>0.064516</max>
 		<max-rate-of-change>0.01</max-rate-of-change>
 	</filter>
 

@@ -455,8 +455,8 @@ controls.elevatorTrim = func(speed) {
 }
 
 setlistener("/controls/flight/elevator-trim", func {
-	if (getprop("/controls/flight/elevator-trim") > 0.07) {
-		setprop("/controls/flight/elevator-trim", 0.07);
+	if (getprop("/controls/flight/elevator-trim") > 0.064516) {
+		setprop("/controls/flight/elevator-trim", 0.064516);
 	}
 });
 
