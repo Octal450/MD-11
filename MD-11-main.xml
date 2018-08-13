@@ -230,6 +230,14 @@
 						</binding>
 					</item>
 					<item>
+						<label>Skip IRS</label>
+						<binding>
+							<command>property-assign</command>
+							<property>/controls/irs/skip</property>
+							<value>1</value>
+						</binding>
+					</item>
+					<item>
 						<label>Show Captain's PFD</label>
 						<binding>
 							<command>nasal</command>
@@ -424,6 +432,21 @@
 			<aileron-droop type="bool">0</aileron-droop>
 			<aileron-droop-enable type="bool">1</aileron-droop-enable>
 		</hydraulic>
+		<irs n="0">
+			<ir n="0">
+				<align type="bool">false</align>
+				<knob type="int">1</knob>
+			</ir>
+			<ir n="1">
+				<align type="bool">false</align>
+				<knob type="int">1</knob>
+			</ir>
+			<ir n="2">
+				<align type="bool">false</align>
+				<knob type="int">1</knob>
+			</ir>
+			<skip type="bool">0</skip>
+		</irs>
 		<switches>
 			<annun-test type="bool">0</annun-test>
 			<cart type="bool">0</cart>
@@ -1182,7 +1205,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/brakes.nas</file>
-			<!--file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file-->
+			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/IDG-MD-11X/Nasal/AFS.nas</file>

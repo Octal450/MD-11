@@ -275,6 +275,9 @@
 		<object-name>IGN_B.b</object-name>
 		<object-name>IGN_B.manual</object-name>
 		<object-name>IGN_OVRD.ovrdon</object-name>
+		<object-name>IRSNavOff1.navoff</object-name>
+		<object-name>IRSNavOff2.navoff</object-name>
+		<object-name>IRSNavOffAux.navoff</object-name>
 		<object-name>LEmerAC.off</object-name>
 		<object-name>LEmerDC.off</object-name>
 		<object-name>REmerAC.off</object-name>
@@ -488,6 +491,178 @@
 				<property>controls/switches/annun-test</property>
 				<value>1</value>
 			</equals>
+		</condition>
+	</animation>
+	
+	<!-- IRS -->
+	<animation>
+		<type>pick</type>
+		<object-name>IR1Knb</object-name>
+		<object-name>IR1Knb.light</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/irs/ir[0]/knob</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/knb1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>IR1Knb</object-name>
+		<object-name>IR1Knb.light</object-name>
+		<property>controls/irs/ir[0]/knob</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>45</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.26272</y-m>
+			<z-m>-17.6817</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IRSNavOff1.navoff</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>instrumentation/irs/ir[0]/aligned</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IRAuxKnb</object-name>
+		<object-name>IRAuxKnb.light</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/irs/ir[1]/knob</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/knb1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>IRAuxKnb</object-name>
+		<object-name>IRAuxKnb.light</object-name>
+		<property>controls/irs/ir[1]/knob</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>45</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.22417</y-m>
+			<z-m>-17.6817</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IRSNavOffAux.navoff</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>instrumentation/irs/ir[1]/aligned</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IR2Knb</object-name>
+		<object-name>IR2Knb.light</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/irs/ir[2]/knob</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/knb1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>IR2Knb</object-name>
+		<object-name>IR2Knb.light</object-name>
+		<property>controls/irs/ir[2]/knob</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>45</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.18619</y-m>
+			<z-m>-17.6817</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IRSNavOff2.navoff</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>instrumentation/irs/ir[2]/aligned</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
 	</animation>
 	
@@ -5044,66 +5219,6 @@
 		    <z>0</z>
 		</axis>
 	</animation-->
-
-    <!--animation>
-        <type>rotate</type>
-        <object-name>emgpwrknob</object-name>
-        <object-name>emgpwr.light</object-name>
-        <property>controls/switches/emgpwr</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>-45.0</dep>
-            </entry>
-            <entry>
-                <ind>1</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>2</ind>
-                <dep>45.0</dep>
-            </entry>		
-        </interpolation>
-        <center>
-            <x-m>-21.7996</x-m>
-            <y-m>-0.1204</y-m>
-            <z-m>-17.8164</z-m>
-        </center>
-        <axis>
-            <x>-1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
-    
-    <animation>
-        <type>pick</type>
-        <object-name>emgpwrknob</object-name>
-        <action>
-            <button>0</button>
-            <button>3</button>
-           <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/switches/emgpwr</property>
-                <step>1</step>
-                <min>0</min>
-                <max>2</max>
-            </binding>
-        </action>
-        <action>
-            <button>1</button>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/switches/emgpwr</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>2</max>
-            </binding>
-        </action>
-    </animation-->
 	
 	<!-- Other -->
     

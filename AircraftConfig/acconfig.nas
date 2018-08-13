@@ -36,6 +36,7 @@ setprop("/systems/acconfig/mismatch-code", "0x000");
 setprop("/systems/acconfig/mismatch-reason", "XX");
 setprop("/systems/acconfig/options/keyboard-mode", 0);
 setprop("/systems/acconfig/options/laptop-mode", 0);
+setprop("/systems/acconfig/options/irs-skip", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/nd-rate", 1);
@@ -121,24 +122,14 @@ var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
+	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
 }
 
 var writeSettings = func {
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
+	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
-}
-
-var systemsReset = func {
-	systems.elec_init();
-	systems.pneu_init();
-	systems.hyd_init();
-	systems.eng_init();
-	thrust.fadec_reset();
-	afs.ap_init();
-	systems.autobrake_init();
-#	systems.irs_init();
-	libraries.variousReset();
 }
 
 ################
@@ -238,6 +229,13 @@ var beforestart_b = func {
 	# Continue with engine start prep.
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/irs/ir[0]/knob","1");
+	setprop("/controls/irs/ir[1]/knob","1");
+	setprop("/controls/irs/ir[2]/knob","1");
+	systems.IRS.skip(0);
+	systems.IRS.skip(1);
+	systems.IRS.skip(2);
+	setprop("/controls/irs/mcducbtn", 1);
 	setprop("/controls/engines/ign-a", 1);
 	setprop("/controls/gear/brake-left", 0);
 	setprop("/controls/gear/brake-right", 0);
@@ -292,6 +290,13 @@ var taxi_b = func {
 	# Continue with engine start prep, and start engine 2.
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/irs/ir[0]/knob","1");
+	setprop("/controls/irs/ir[1]/knob","1");
+	setprop("/controls/irs/ir[2]/knob","1");
+	systems.IRS.skip(0);
+	systems.IRS.skip(1);
+	systems.IRS.skip(2);
+	setprop("/controls/irs/mcducbtn", 1);
 	setprop("/controls/engines/ign-a", 1);
 	settimer(taxi_c, 2);
 }

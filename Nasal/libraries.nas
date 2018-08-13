@@ -114,6 +114,7 @@ var systemsInit = func {
 	systems.ELEC.init();
 	systems.PNEU.init();
 	systems.HYD.init();
+	systems.IRS.init();
 	systems.eng_init();
 	fadec.fadec_reset();
 	afs.ap_init();
@@ -121,7 +122,6 @@ var systemsInit = func {
 	lightsLoop.start();
 	systemsLoop.start();
 	systems.autobrake_init();
-#	systems.irs_init();
 	libraries.variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 }
@@ -134,6 +134,7 @@ var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.PNEU.loop();
 	systems.HYD.loop();
+	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
 	

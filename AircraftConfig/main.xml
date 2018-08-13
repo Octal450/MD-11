@@ -81,23 +81,23 @@
 				</button>
 				<button>
 					<halign>center</halign>
-					<legend>About Aircraft</legend>
-					<pref-width>140</pref-width>
-					<binding>
-						<command>nasal</command>
-						<script>
-						acconfig.about_dlg.open();
-						</script>
-					</binding>
-				</button>
-				<button>
-					<halign>center</halign>
 					<legend>DU Quality</legend>
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
 						<script>
 						acconfig.du_quality.open();
+						</script>
+					</binding>
+				</button>
+				<button>
+					<halign>center</halign>
+					<legend>About Aircraft</legend>
+					<pref-width>140</pref-width>
+					<binding>
+						<command>nasal</command>
+						<script>
+						acconfig.about_dlg.open();
 						</script>
 					</binding>
 				</button>
@@ -301,7 +301,12 @@
 				<property>/controls/switches/cart</property>
 				<binding>
 					<command>property-assign</command>
-					<property>/controls/electrical/switches/gen-ext</property>
+					<property>/controls/electrical/switches/ext-pwr</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/electrical/switches/extg-pwr</property>
 					<value>0</value>
 				</binding>
 				<enable>
@@ -394,12 +399,12 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ADIRS Aligns Instantly</label>
+				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
-				<property>/controls/adirs/skip</property>
+				<property>/controls/irs/skip</property>
 				<binding>
 					<command>property-toggle</command>
-					<property>/controls/adirs/skip</property>
+					<property>/controls/irs/skip</property>
 				</binding>
 				<binding>
 					<command>dialog-apply</command>
