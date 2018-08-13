@@ -87,6 +87,7 @@ var IRS = {
 	beginAlign: func(n) {
 		ac1 = getprop("/systems/electrical/bus/ac1");
 		ac2 = getprop("/systems/electrical/bus/ac2");
+		ac3 = getprop("/systems/electrical/bus/ac3");
 		batt1_amps = getprop("/systems/electrical/battery1-amps");
 		batt2_amps = getprop("/systems/electrical/battery2-amps");
 		setprop("/instrumentation/irs/adr[" ~ n ~ "]/active", 1);
