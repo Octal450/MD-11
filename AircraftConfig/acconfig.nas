@@ -58,8 +58,9 @@ spinning.start();
 init_dlg.open();
 
 http.load("https://raw.githubusercontent.com/it0uchpods/IDG-MD-11X/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
-var revisionFile = (getprop("/sim/aircraft-dir")~"/../IDG-MD-11X/revision.txt");
+var revisionFile = (getprop("/sim/aircraft-dir") ~ "/../IDG-MD-11X/revision.txt");
 var current_revision = io.readfile(revisionFile);
+print("IDG MD-11X Revision: " ~ current_revision);
 setprop("/systems/acconfig/revision", current_revision);
 
 setlistener("/systems/acconfig/new-revision", func {
