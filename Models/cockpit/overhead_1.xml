@@ -5607,19 +5607,6 @@
 
 	<animation>
 		<type>textranslate</type>
-		<object-name>ltank.5</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
 		<object-name>ctank.1</object-name>
 		<property>consumables/fuel/tank[1]/level-lbs</property>
 		<factor>0.00001</factor>
@@ -5663,19 +5650,6 @@
 		<property>consumables/fuel/tank[1]/level-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.5</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -5737,19 +5711,6 @@
 
 	<animation>
 		<type>textranslate</type>
-		<object-name>rtank.5</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
 		<object-name>atank.1</object-name>
 		<property>consumables/fuel/tank[3]/level-lbs</property>
 		<factor>0.00001</factor>
@@ -5802,19 +5763,6 @@
 
 	<animation>
 		<type>textranslate</type>
-		<object-name>atank.5</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
 		<object-name>ttank.1</object-name>
 		<property>consumables/fuel/tank[4]/level-lbs</property>
 		<factor>0.00001</factor>
@@ -5825,7 +5773,6 @@
 			<z>0</z>
 		</axis>
 	</animation>
-	
 
 	<animation>
 		<type>textranslate</type>
@@ -5859,19 +5806,6 @@
 		<property>consumables/fuel/tank[4]/level-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.5</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>

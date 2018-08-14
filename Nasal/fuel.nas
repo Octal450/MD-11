@@ -208,13 +208,13 @@ var FUEL = {
 			setprop("/systems/fuel/light/tank0-fill", 0);
 		}
 		
-		if (getprop("/fdm/jsbsim/fuel/tank0-is-filling") == 1 and tank1fill_sw) {
+		if (getprop("/fdm/jsbsim/fuel/tank1-is-filling") == 1 and tank1fill_sw) {
 			setprop("/systems/fuel/light/tank1-fill", 1);
 		} else {
 			setprop("/systems/fuel/light/tank1-fill", 0);
 		}
 		
-		if (getprop("/fdm/jsbsim/fuel/tank0-is-filling") == 1 and tank2fill_sw) {
+		if (getprop("/fdm/jsbsim/fuel/tank2-is-filling") == 1 and tank2fill_sw) {
 			setprop("/systems/fuel/light/tank2-fill", 1);
 		} else {
 			setprop("/systems/fuel/light/tank2-fill", 0);

@@ -147,7 +147,7 @@
 		
 		<switch name="fuel/from-tank3-to-tank0"> <!-- To Left Wing Tank -->
 			<default value="0"/>
-			<test logic="AND" value="9">
+			<test logic="AND" value="18">
 				/systems/fuel/tank[3]/feed == 1
 				/controls/fuel/switches/tank0-fill eq 1
 				propulsion/tank[3]/contents-lbs gt 0
@@ -179,7 +179,7 @@
 		
 		<switch name="fuel/from-tank3-to-tank1"> <!-- To Center Tank -->
 			<default value="0"/>
-			<test logic="AND" value="9">
+			<test logic="AND" value="18">
 				/systems/fuel/tank[3]/feed == 1
 				/controls/fuel/switches/tank1-fill eq 1
 				propulsion/tank[3]/contents-lbs gt 0
@@ -211,7 +211,7 @@
 		
 		<switch name="fuel/from-tank3-to-tank2"> <!-- To Right Wing Tank -->
 			<default value="0"/>
-			<test logic="AND" value="9">
+			<test logic="AND" value="18">
 				/systems/fuel/tank[3]/feed == 1
 				/controls/fuel/switches/tank2-fill eq 1
 				propulsion/tank[3]/contents-lbs gt 0
