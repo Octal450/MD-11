@@ -236,10 +236,6 @@ var PNEU = {
 	},
 };
 
-#######################
-# Various Other Stuff #
-#######################
-
 setlistener("/controls/pneumatic/switches/pack1", func {
 	if (getprop("/controls/pneumatic/switches/pack1") == 1) {
 		setprop("/systems/pneumatic/light/pack1-flow", 1);

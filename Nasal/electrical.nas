@@ -24,7 +24,7 @@ var src_dc3 = "XX";
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var batt_sw = getprop("/controls/electrical/switches/battery");
-	var emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw");# 0 = OFF, 1 = ARM, 2 = ON
+	var emer_pw_sw = getprop("/controls/electrical/switches/emer-pw-sw"); # 0 = OFF, 1 = ARM, 2 = ON
 	var dc_tie_1_sw = getprop("/controls/electrical/switches/dc-tie-1");
 	var dc_tie_3_sw = getprop("/controls/electrical/switches/dc-tie-3");
 	var ac_tie_1_sw = getprop("/controls/electrical/switches/ac-tie-1");
@@ -100,7 +100,7 @@ var ELEC = {
 		setprop("/controls/electrical/switches/smoke-elecair", 0);
 		setprop("/controls/electrical/switches/manual-lt", 0);
 		setprop("/controls/electrical/switches/manual-flash", 0);
-		setprop("/systems/electrical/system", 1);# Automatic
+		setprop("/systems/electrical/system", 1); # Automatic
 		setprop("/systems/electrical/battery1-volts", 26.5);
 		setprop("/systems/electrical/battery2-volts", 26.5);
 		setprop("/systems/electrical/battery1-amps", 0);

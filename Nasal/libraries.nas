@@ -114,6 +114,7 @@ var systemsInit = func {
 	systems.ELEC.init();
 	systems.PNEU.init();
 	systems.HYD.init();
+	systems.FUEL.init();
 	systems.IRS.init();
 	systems.eng_init();
 	fadec.fadec_reset();
@@ -134,6 +135,7 @@ var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.PNEU.loop();
 	systems.HYD.loop();
+	systems.FUEL.loop();
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
@@ -159,16 +161,16 @@ var systemsLoop = maketimer(0.1, func {
 	} else {
 		setprop("/aircraft/wingflex-enable", 0);
 	}
-# FIXME: Needs fuel pipes working
-#	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[3]/contents-lbs") < 1) {
-#		systems.cutoff_one();
-#	}
-#	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[4]/contents-lbs") < 1) {
-#		systems.cutoff_two();
-#	}
-#	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
-#		systems.cutoff_two();
-#	}
+	
+	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
+		systems.cutoff_one();
+	}
+	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[6]/contents-lbs") < 1) {
+		systems.cutoff_two();
+	}
+	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[7]/contents-lbs") < 1) {
+		systems.cutoff_three();
+	}
 	
 	if (getprop("/sim/replay/replay-state") == 1) {
 		setprop("/sim/replay/was-active", 1);

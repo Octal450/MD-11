@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+
+<!-- MD-11 Fuel System -->
+<!-- Joshua Davidson (it0uchpods) -->
+
+<!--
+##############################################
+# Copyright (c) Joshua Davidson (it0uchpods) #
+##############################################
+-->
+
+<system name="FUEL">
+	
+	<channel name="Fuel to Engine 1 Pipes">
+		
+		<switch name="fuel/from-tank0-to-tank5"> <!-- Left Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[0]/feed == 1
+				propulsion/tank[0]/contents-lbs gt 0
+				propulsion/tank[5]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank2-to-tank5"> <!-- Right Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[2]/x-feed == 1
+				/systems/fuel/tank[2]/feed == 1
+				propulsion/tank[2]/contents-lbs gt 0
+				propulsion/tank[5]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank1-to-tank5"> <!-- Center Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[1]/x-feed == 1
+				/systems/fuel/tank[1]/feed == 1
+				fuel/from-tank2-to-tank5 eq 0
+				propulsion/tank[1]/contents-lbs gt 0
+				propulsion/tank[5]/contents-lbs lt 9
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Fuel to Engine 2 Pipes">
+		
+		<switch name="fuel/from-tank1-to-tank6"> <!-- Center Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[1]/feed == 1
+				propulsion/tank[1]/contents-lbs gt 0
+				propulsion/tank[6]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank0-to-tank6"> <!-- Left Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[0]/x-feed == 1
+				/systems/fuel/tank[0]/feed == 1
+				propulsion/tank[0]/contents-lbs gt 0
+				propulsion/tank[6]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank2-to-tank6"> <!-- Right Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[2]/x-feed == 1
+				/systems/fuel/tank[2]/feed == 1
+				propulsion/tank[2]/contents-lbs gt 0
+				propulsion/tank[6]/contents-lbs lt 9
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Fuel to Engine 3 Pipes">
+		
+		<switch name="fuel/from-tank2-to-tank7"> <!-- Right Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[2]/feed == 1
+				propulsion/tank[2]/contents-lbs gt 0
+				propulsion/tank[7]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank0-to-tank7"> <!-- Left Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[0]/x-feed == 1
+				/systems/fuel/tank[0]/feed == 1
+				propulsion/tank[0]/contents-lbs gt 0
+				propulsion/tank[7]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="fuel/from-tank1-to-tank7"> <!-- Center Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[1]/x-feed == 1
+				/systems/fuel/tank[1]/feed == 1
+				fuel/from-tank0-to-tank7 eq 0
+				propulsion/tank[1]/contents-lbs gt 0
+				propulsion/tank[7]/contents-lbs lt 9
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Engine Pipes">
+		
+		<summer name="fuel/tank5-flow-rate">
+			<input>fuel/from-tank0-to-tank5</input>
+			<input>fuel/from-tank2-to-tank5</input>
+			<input>fuel/from-tank1-to-tank5</input>
+			<output>propulsion/tank[5]/external-flow-rate-pps</output>
+		</summer>
+		
+		<summer name="fuel/tank6-flow-rate">
+			<input>fuel/from-tank1-to-tank6</input>
+			<input>fuel/from-tank0-to-tank6</input>
+			<input>fuel/from-tank2-to-tank6</input>
+			<output>propulsion/tank[6]/external-flow-rate-pps</output>
+		</summer>
+		
+		<summer name="fuel/tank7-flow-rate">
+			<input>fuel/from-tank2-to-tank7</input>
+			<input>fuel/from-tank0-to-tank7</input>
+			<input>fuel/from-tank1-to-tank7</input>
+			<output>propulsion/tank[7]/external-flow-rate-pps</output>
+		</summer>
+	
+	</channel>
+	
+	<channel name="Transfer">
+		
+		<summer name="fuel/tank0-flow-rate-nofill">
+			<input>fuel/from-tank0-to-tank5</input>
+			<input>fuel/from-tank0-to-tank6</input>
+			<input>fuel/from-tank0-to-tank7</input>
+		</summer>
+		
+		<switch name="fuel/from-tank3-to-tank0"> <!-- To Left Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank0-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[0]/contents-lbs lt 40400
+			</test>
+			<test logic="AND" value="fuel/tank0-flow-rate-nofill">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank0-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[0]/contents-lbs ge 40400
+			</test>
+		</switch>
+		
+		<switch name="fuel/tank0-is-filling">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank0-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[0]/contents-lbs lt 40400
+			</test>
+		</switch>
+		
+		<summer name="fuel/tank1-flow-rate-nofill">
+			<input>fuel/from-tank1-to-tank6</input>
+			<input>fuel/from-tank1-to-tank5</input>
+			<input>fuel/from-tank1-to-tank7</input>
+		</summer>
+		
+		<switch name="fuel/from-tank3-to-tank1"> <!-- To Center Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank1-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[1]/contents-lbs lt 63950
+			</test>
+			<test logic="AND" value="fuel/tank1-flow-rate-nofill">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank1-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[1]/contents-lbs ge 63950
+			</test>
+		</switch>
+		
+		<switch name="fuel/tank1-is-filling">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank1-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[1]/contents-lbs lt 63950
+			</test>
+		</switch>
+		
+		<summer name="fuel/tank2-flow-rate-nofill">
+			<input>fuel/from-tank2-to-tank7</input>
+			<input>fuel/from-tank2-to-tank6</input>
+			<input>fuel/from-tank2-to-tank5</input>
+		</summer>
+		
+		<switch name="fuel/from-tank3-to-tank2"> <!-- To Right Wing Tank -->
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank2-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[2]/contents-lbs lt 40400
+			</test>
+			<test logic="AND" value="fuel/tank2-flow-rate-nofill">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank2-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[2]/contents-lbs ge 40400
+			</test>
+		</switch>
+		
+		<switch name="fuel/tank2-is-filling">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/tank[3]/feed == 1
+				/controls/fuel/switches/tank2-fill eq 1
+				propulsion/tank[3]/contents-lbs gt 0
+				propulsion/tank[2]/contents-lbs lt 40400
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Total PPS">
+		
+		<summer name="fuel/tank0-flow-rate">
+			<input>-fuel/from-tank0-to-tank5</input>
+			<input>-fuel/from-tank0-to-tank6</input>
+			<input>-fuel/from-tank0-to-tank7</input>
+			<input>fuel/from-tank3-to-tank0</input>
+			<output>propulsion/tank[0]/external-flow-rate-pps</output>
+		</summer>
+
+		<summer name="fuel/tank1-flow-rate">
+			<input>-fuel/from-tank1-to-tank6</input>
+			<input>-fuel/from-tank1-to-tank5</input>
+			<input>-fuel/from-tank1-to-tank7</input>
+			<input>fuel/from-tank3-to-tank1</input>
+			<output>propulsion/tank[1]/external-flow-rate-pps</output>
+		</summer>
+
+		<summer name="fuel/tank2-flow-rate">
+			<input>-fuel/from-tank2-to-tank7</input>
+			<input>-fuel/from-tank2-to-tank6</input>
+			<input>-fuel/from-tank2-to-tank5</input>
+			<input>fuel/from-tank3-to-tank2</input>
+			<output>propulsion/tank[2]/external-flow-rate-pps</output>
+		</summer>
+		
+		<summer name="fuel/tank3-flow-rate">
+			<input>-fuel/from-tank3-to-tank0</input>
+			<input>-fuel/from-tank3-to-tank1</input>
+			<input>-fuel/from-tank3-to-tank2</input>
+			<output>propulsion/tank[3]/external-flow-rate-pps</output>
+		</summer>
+	
+	</channel>
+
+</system>

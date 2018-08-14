@@ -13,6 +13,25 @@ MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
 kids 540
 OBJECT poly
+name "Dump.on"
+loc -21.7964 -17.9012 0.153165
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 -0.0136186
+0 -0.102394 -0.0136186
+0 -0.106428 -0.0196214
+0 -0.102394 -0.0196214
+numsurf 1
+SURF 0x30
+mat 10
+refs 4
+0 0.56398 0
+2 0.592181 0
+3 0.592181 0.018952
+1 0.56398 0.018952
+kids 0
+OBJECT poly
 name "IRSNavOff2.navoff"
 loc -21.7935 -17.6488 0.0882378
 texture "lights2.png"
@@ -277,25 +296,6 @@ refs 4
 3 0 0.0235847
 2 0.0407322 0.0235847
 0 0.0407322 0.0415868
-kids 0
-OBJECT poly
-name "Dump.off"
-loc -21.7964 -17.9011 0.0519129
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.106428 0.0887471
-0 -0.102526 0.0887471
-0 -0.102526 0.0805172
-0 -0.106428 0.0805172
-numsurf 1
-SURF 0x30
-mat 10
-refs 4
-2 0.121734 0.0183337
-1 0.0830701 0.0183337
-0 0.0830701 0
-3 0.121734 0
 kids 0
 OBJECT poly
 name "Tank3Fill.arm"

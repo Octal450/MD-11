@@ -33,7 +33,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<pitch> 2.2 </pitch>
 				<yaw> 1 </yaw>
 			</orient>
-			<feed>0</feed>
+			<feed>5</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x> -5.29297 </x>	
@@ -59,7 +59,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<pitch> 0.0 </pitch>
 				<yaw> 0 </yaw>
 			</orient>
-			<feed>1</feed>
+			<feed>6</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x> 25.2146 </x>	
@@ -85,7 +85,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<pitch> 2.2 </pitch>
 				<yaw> -1 </yaw>
 			</orient>
-			<feed>2</feed>
+			<feed>7</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x> -5.29297 </x>	
@@ -106,7 +106,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> -11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 40708 </capacity>
+			<capacity unit="LBS"> 40500 </capacity>
 			<contents unit="LBS"> 20000 </contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
@@ -119,7 +119,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 0 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 65435 </capacity>
+			<capacity unit="LBS"> 64050 </capacity>
 			<contents unit="LBS"> 20000 </contents>
 			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
@@ -132,10 +132,36 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<y> 11.3314 </y>
 				<z> 5.69282 </z>
 			</location>
-			<capacity unit="LBS"> 40708 </capacity>
+			<capacity unit="LBS"> 40500 </capacity>
 			<contents unit="LBS"> 20000 </contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Aux Tank -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 98100 </capacity>
+			<contents unit="LBS">     0 </contents>
+			<standpipe unit="LBS">43</standpipe>
+			<priority>1</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Tail Tank -->
+			<location unit="M">
+				<x> 15.0705 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 13100 </capacity>
+			<contents unit="LBS">     0 </contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>1</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
@@ -175,7 +201,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 	</propulsion>
 	
 	<system file="pushback"/>
-	<!--system file="fuel"/-->
+	<system file="fuel"/>
 	<system file="glass-effect1"/>
 	<system file="md-11-fcs"/>
 	<system file="md-11-spoiler"/>

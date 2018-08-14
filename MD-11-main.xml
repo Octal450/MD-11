@@ -358,18 +358,18 @@
 		<minimum-fg-version>2018.1.0</minimum-fg-version>
     </sim>
 	
-	<!--consumables n="0">
+	<consumables n="0">
 		<fuel>
 			<tank n="0"><name>Left Wing</name></tank>
 			<tank n="1"><name>Center</name></tank>
 			<tank n="2"><name>Right Wing</name></tank>
-			<tank n="3"><name>Aux Forward</name></tank>
-			<tank n="4"><name>Aux Aft</name></tank>
+			<tank n="3"><name>Auxiliary</name></tank>
+			<tank n="4"><name>Tail</name></tank>
 			<tank n="5"><name>Engine 1 Pipes</name></tank>
 			<tank n="6"><name>Engine 2 Pipes</name></tank>
 			<tank n="7"><name>Engine 3 Pipes</name></tank>
 		</fuel>
-	</consumables-->
+	</consumables>
 	
 	<controls n="0">
 		<APU>
@@ -414,7 +414,7 @@
 				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 		</engines>
-		<flight>
+		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<elevator-trim-fdm type="double">-0.25</elevator-trim-fdm>
@@ -423,6 +423,13 @@
 			<slats type="double">0</slats>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
 		</flight>
+		<fuel n="0">
+			<switches n="0">
+				<tank0-fill type="bool">0</tank0-fill>
+				<tank1-fill type="bool">0</tank1-fill>
+				<tank2-fill type="bool">0</tank2-fill>
+			</switches>
+		</fuel>
 		<gear>
 			<brake-parking type="bool">0</brake-parking>
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
@@ -447,7 +454,7 @@
 			</ir>
 			<skip type="bool">0</skip>
 		</irs>
-		<switches>
+		<switches n="0">
 			<annun-test type="bool">0</annun-test>
 			<cart type="bool">0</cart>
 		</switches>
@@ -547,6 +554,31 @@
 	</options>
 	
 	<systems n="0">
+		<fuel n="0">
+			<tank n="0">
+				<feed type="bool">0</feed>
+				<x-feed type="bool">0</x-feed>
+			</tank>
+			<tank n="1">
+				<feed type="bool">0</feed>
+				<x-feed type="bool">0</x-feed>
+			</tank>
+			<tank n="2">
+				<feed type="bool">0</feed>
+				<x-feed type="bool">0</x-feed>
+			</tank>
+			<tank n="2">
+				<feed type="bool">0</feed>
+				<x-feed type="bool">0</x-feed>
+			</tank>
+			<tank n="3">
+				<feed type="bool">0</feed>
+			</tank>
+			<tank n="4">
+				<feed type="bool">0</feed>
+				<alt-feed type="bool">0</alt-feed>
+			</tank>
+		</fuel>
 		<hydraulic n="0">
 			<sys1-psi>0</sys1-psi>
 			<sys2-psi>0</sys2-psi>
@@ -1203,6 +1235,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/electrical.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/pneumatics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/fuel.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/brakes.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>
