@@ -47,11 +47,24 @@
 				<path>Splash/splash1.png</path>
 			</preview>
 		</previews>
-
+		
+		<tags>
+			<tag>transport</tag>
+			<tag>douglas</tag>
+			<tag>1990s</tag>
+			<tag>2000s</tag>
+			<tag>ifr</tag>
+			<tag>retractable-gear</tag>
+			<tag>glass-cockpit</tag>
+			<tag>pressurised</tag>
+			<tag>jet</tag>
+			<tag>3-engine</tag>
+		</tags>
+		
 		<startup>
 			<splash-texture>Aircraft/IDG-MD-11X/Splash/SplashOld.png</splash-texture>
 		</startup>
-	
+		
 		<instrument-options>
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
