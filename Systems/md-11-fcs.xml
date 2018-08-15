@@ -203,22 +203,9 @@
 			<output>fcc/lsas/pid</output>
 		</pid>
 		
-		<pure_gain name="fcc/lsas/pid-inv">
-			<input>fcc/lsas/pid</input>
-			<gain>-1.0</gain>
-		</pure_gain>
-		
-		<switch name="fcc/lsas/pid-switched">
-			<default value="fcc/lsas/pid"/>
-			<test logic="OR" value="fcc/lsas/pid-inv">
-				attitude/roll-rad lt -1.5708
-				attitude/roll-rad gt 1.5708
-			</test>
-		</switch>
-		
 		<switch name="fcc/lsas/output">
 			<default value="/controls/flight/elevator"/>
-			<test value="fcc/lsas/pid-switched">
+			<test value="fcc/lsas/pid">
 				fcc/lsas/gain-switch eq 0
 			</test>
 		</switch>
