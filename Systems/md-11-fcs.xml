@@ -235,7 +235,7 @@
 		
 		<switch name="fcc/rcws/trigger">
 			<default value="0"/>
-			<test logic="OR" value="-1">
+			<test value="-1">
 				fcc/rcws/gain-switch gt 0
 			</test>
 			<test logic="OR" value="1">
@@ -304,7 +304,7 @@
 		
 		<switch name="fcc/lsas/trigger">
 			<default value="0"/>
-			<test logic="OR" value="-1">
+			<test value="-1">
 				fcc/lsas/gain-switch gt 0
 			</test>
 			<test logic="OR" value="1">
