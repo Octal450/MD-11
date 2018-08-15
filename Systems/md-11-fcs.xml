@@ -514,8 +514,15 @@
 			<output>/controls/flight/rudder-fcc</output>
 		</switch>
 		
+		<switch name="fcc/rudder-pedal-switch">
+			<default value="fcc/yaw/rudder-nul"/>
+			<test value="fcc/yaw/afs-cmd">
+				fcc/yaw/autoland-switch eq 1
+			</test>
+		</switch>
+		
 		<lag_filter name="fcc/rudder-pedal">
-			<input>fcc/rudder-output</input>
+			<input>fcc/rudder-pedal-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 	
