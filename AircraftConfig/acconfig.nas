@@ -38,6 +38,7 @@ setprop("/systems/acconfig/options/keyboard-mode", 0);
 setprop("/systems/acconfig/options/laptop-mode", 0);
 setprop("/systems/acconfig/options/irs-skip", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
+setprop("/systems/acconfig/options/rcws-equipped", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/nd-rate", 1);
 setprop("/systems/acconfig/options/ead-rate", 1);
@@ -123,12 +124,14 @@ var readSettings = func {
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
 	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
+	setprop("/rcws/equipped", getprop("/systems/acconfig/options/rcws-equipped"));
 }
 
 var writeSettings = func {
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
+	setprop("/systems/acconfig/options/rcws-equipped", getprop("/rcws/equipped"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 }
 

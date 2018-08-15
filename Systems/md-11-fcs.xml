@@ -8,11 +8,15 @@
 
 <system name="MD-11: FCS">
 	
+	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/lsas/pid</property>
 	<property value="0">fcc/yaw/tc-pid</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
 	
 	<!-- Default gains for tuning -->
+	<property value="0">fcc/rcws/p-gain</property>
+	<property value="0">fcc/rcws/i-gain</property>
+	<property value="0">fcc/rcws/d-gain</property>
 	<property value="0">fcc/lsas/p-gain</property>
 	<property value="0">fcc/lsas/i-gain</property>
 	<property value="0">fcc/lsas/d-gain</property>
@@ -44,6 +48,23 @@
 			</test>
 		</switch>
 		
+		<switch name="fcc/rcws/gain-switch">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/rcws/enable eq 1
+				/rcws/equipped eq 1
+				fcc/afs/enabled eq 0
+				attitude/pitch-rad le 0.558505
+				attitude/pitch-rad ge -0.20944
+				attitude/roll-rad le 0.558505
+				attitude/roll-rad ge -0.558505
+				/controls/flight/aileron le 0.02
+				/controls/flight/aileron ge -0.02
+				position/wow eq 0
+				/position/gear-agl-ft ge 100
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/gain-switch">
 			<default value="1"/>
 			<test logic="AND" value="0">
@@ -66,6 +87,48 @@
 				position/wow eq 1
 			</test>
 		</switch>
+		
+		<fcs_function name="fcc/rcws/p-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
+					<tableData>
+						     0   1  
+						0.2 -10  0
+						0.9  -5  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/rcws/i-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
+					<tableData>
+						     0  1
+						0.2 -4  0
+						0.9 -2  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/rcws/d-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
+					<tableData>
+						     0    1
+						0.2 -1.0  0.0
+						0.9 -0.5  0.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<fcs_function name="fcc/lsas/p-gain">
 			<function>
@@ -101,9 +164,9 @@
 					<independentVar lookup="row">velocities/mach</independentVar>
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
-						     0    1
-						0.2  1.5  0.0
-						0.9  1.3  0.0
+						     0   1
+						0.2  7  0
+						0.9  4  0
 					</tableData>
 				</table>
 			</function>
@@ -155,12 +218,70 @@
 	
 	<channel name="FCC: Roll">
 		
+		<fcs_function name="fcc/rcws/p-rad_sec">
+			<function>
+				<toradians>
+					<property>/orientation/roll-rate-degps</property>
+				</toradians>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/rcws/p-r_s-s">
+			<default value="fcc/rcws/p-rad_sec"/>
+			<test value="0">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/rcws/trigger">
+			<default value="0"/>
+			<test logic="OR" value="-1">
+				fcc/rcws/gain-switch gt 0
+			</test>
+			<test logic="OR" value="1">
+				fcc/rcws/pid le -0.499
+				fcc/rcws/pid ge 0.499
+			</test>
+		</switch>
+		
+		<pid name="fcc/rcws/pid-v">
+			<input>fcc/rcws/p-r_s-s</input>
+			<kp>fcc/rcws/p-gain</kp>
+			<ki>fcc/rcws/i-gain</ki>
+			<kd>fcc/rcws/d-gain</kd>
+			<trigger>fcc/rcws/trigger</trigger>
+			<clipto>
+				<min>-0.5</min>
+				<max>0.5</max>
+			</clipto>
+			<output>fcc/rcws/pid</output>
+		</pid>
+		
+		<switch name="fcc/rcws/output">
+			<default value="/controls/flight/aileron"/>
+			<test value="fcc/rcws/pid">
+				fcc/rcws/gain-switch eq 0
+			</test>
+		</switch>
+		
 		<switch name="fcc/aileron-output">
+			<default value="fcc/rcws/output"/>
+			<test value="fcc/afs/roll-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
 			<test value="fcc/afs/roll-cmd">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
+		
+		<lag_filter name="fcc/aileron-yoke">
+			<input>fcc/aileron-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
@@ -183,8 +304,10 @@
 		
 		<switch name="fcc/lsas/trigger">
 			<default value="0"/>
-			<test logic="OR" value="1">
+			<test logic="OR" value="-1">
 				fcc/lsas/gain-switch gt 0
+			</test>
+			<test logic="OR" value="1">
 				fcc/lsas/pid le -0.248
 				fcc/lsas/pid ge 0.248
 			</test>
@@ -217,12 +340,17 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/elevator-output-nolsas">
+		<switch name="fcc/elevator-yoke-switch">
 			<default value="/controls/flight/elevator"/>
 			<test value="fcc/afs/pitch-cmd">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
+		
+		<lag_filter name="fcc/elevator-yoke">
+			<input>fcc/elevator-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
 		
 		<switch name="fcc/lsas/autotrim-switch">
 			<default value="0"/>
@@ -283,13 +411,11 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/flight/rudder</independentVar>
-					<independentVar lookup="column">fcc/afs/enabled</independentVar>
 					<tableData>
-						       0  1
-						-1.00 -1  0
-						-0.04  0  0
-						 0.04  0  0
-						 1.00  1  0
+						-1.00 -1
+						-0.04  0
+						 0.04  0
+						 1.00  1
 					</tableData>
 				</table>
 			</function>
@@ -334,12 +460,15 @@
 		
 		<switch name="fcc/yaw/trigger">
 			<default value="0"/>
-			<test logic="OR" value="1">
+			<test logic="OR" value="-1">
 				fcc/yaw/gain-switch gt 0
-				fcc/yaw/tc-pid le -0.199
-				fcc/yaw/tc-pid ge 0.199
 				/position/gear-agl-ft lt 50
 				fcc/yaw/autoland-switch eq 1
+				fcc/yaw/rudder-nul ne 0
+			</test>
+			<test logic="OR" value="1">
+				fcc/yaw/tc-pid le -0.199
+				fcc/yaw/tc-pid ge 0.199
 			</test>
 		</switch>
 		
@@ -360,8 +489,7 @@
 			<default value="fcc/yaw/tc-pid"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
-				fcc/yaw/rudder-nul gt 0
-				fcc/yaw/rudder-nul lt 0
+				fcc/yaw/rudder-nul ne 0
 			</test>
 		</switch>
 		
@@ -385,6 +513,11 @@
 			</test>
 			<output>/controls/flight/rudder-fcc</output>
 		</switch>
+		
+		<lag_filter name="fcc/rudder-pedal">
+			<input>fcc/rudder-output</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	

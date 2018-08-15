@@ -566,10 +566,14 @@
 		<enable type="bool">1</enable>
 	</lsas>
 	
+	<rcws n="0">
+		<enable type="bool">1</enable>
+		<equipped type="bool">0</equipped>
+	</rcws>
+	
 	<options n="0">
 		<keyboard-mode type="bool">0</keyboard-mode>
 		<laptop-mode type="bool">0</laptop-mode>
-		<test-canvas type="bool">1</test-canvas>
 	</options>
 	
 	<systems n="0">
