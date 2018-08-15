@@ -456,12 +456,6 @@
 		<object-name>ISOL-1-3.on</object-name>
 		<object-name>ISOL-1-3.disag</object-name>
 		<object-name>Manf.drain</object-name>
-		<object-name>Tank1Trans.low</object-name>
-		<object-name>Tank1Trans.on</object-name>
-		<object-name>Tank2Trans.low</object-name>
-		<object-name>Tank2Trans.on</object-name>
-		<object-name>Tank3Trans.low</object-name>
-		<object-name>Tank3Trans.on</object-name>
 		<condition>
 			<equals>
 				<property>controls/switches/annun-test</property>
@@ -4774,6 +4768,99 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>Tank1Trans</object-name>
+		<object-name>Tank1Trans.low</object-name>
+		<object-name>Tank1Trans.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/fuel/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fuel/switches/tank0-trans</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/fuel/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualFuelLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank1Trans.low</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/fuel/light/tank0-trans-low</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank1Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/tank0-trans</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<!-- Tank 2 -->
 	<animation>
 		<type>pick</type>
@@ -5054,6 +5141,99 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>Tank2Trans</object-name>
+		<object-name>Tank2Trans.low</object-name>
+		<object-name>Tank2Trans.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/fuel/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fuel/switches/tank1-trans</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/fuel/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualFuelLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank2Trans.low</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/fuel/light/tank1-trans-low</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank2Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/tank1-trans</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<!-- Tank 3 -->
 	<animation>
 		<type>pick</type>
@@ -5324,6 +5504,99 @@
 			<or>
 				<equals>
 					<property>systems/fuel/light/tank2-x-feed-disag</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Tank3Trans</object-name>
+		<object-name>Tank3Trans.low</object-name>
+		<object-name>Tank3Trans.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/fuel/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fuel/switches/tank2-trans</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/fuel/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualFuelLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank3Trans.low</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/fuel/light/tank2-trans-low</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Tank3Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/tank2-trans</property>
 					<value>1</value>
 				</equals>
 				<equals>

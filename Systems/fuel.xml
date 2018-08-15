@@ -25,7 +25,8 @@
 		<switch name="fuel/from-tank2-to-tank5"> <!-- Right Wing Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[2]/x-feed == 1
+				/controls/fuel/switches/tank0-x-feed == 1
+				/controls/fuel/switches/tank2-trans == 1
 				/systems/fuel/tank[2]/feed == 1
 				propulsion/tank[2]/contents-lbs gt 0
 				propulsion/tank[5]/contents-lbs lt 9
@@ -35,7 +36,8 @@
 		<switch name="fuel/from-tank1-to-tank5"> <!-- Center Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[1]/x-feed == 1
+				/controls/fuel/switches/tank0-x-feed == 1
+				/controls/fuel/switches/tank1-trans == 1
 				/systems/fuel/tank[1]/feed == 1
 				fuel/from-tank2-to-tank5 eq 0
 				propulsion/tank[1]/contents-lbs gt 0
@@ -59,7 +61,8 @@
 		<switch name="fuel/from-tank0-to-tank6"> <!-- Left Wing Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[0]/x-feed == 1
+				/controls/fuel/switches/tank1-x-feed == 1
+				/controls/fuel/switches/tank0-trans == 1
 				/systems/fuel/tank[0]/feed == 1
 				propulsion/tank[0]/contents-lbs gt 0
 				propulsion/tank[6]/contents-lbs lt 9
@@ -69,7 +72,8 @@
 		<switch name="fuel/from-tank2-to-tank6"> <!-- Right Wing Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[2]/x-feed == 1
+				/controls/fuel/switches/tank1-x-feed == 1
+				/controls/fuel/switches/tank2-trans == 1
 				/systems/fuel/tank[2]/feed == 1
 				propulsion/tank[2]/contents-lbs gt 0
 				propulsion/tank[6]/contents-lbs lt 9
@@ -92,7 +96,8 @@
 		<switch name="fuel/from-tank0-to-tank7"> <!-- Left Wing Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[0]/x-feed == 1
+				/controls/fuel/switches/tank2-x-feed == 1
+				/controls/fuel/switches/tank0-trans == 1
 				/systems/fuel/tank[0]/feed == 1
 				propulsion/tank[0]/contents-lbs gt 0
 				propulsion/tank[7]/contents-lbs lt 9
@@ -102,7 +107,8 @@
 		<switch name="fuel/from-tank1-to-tank7"> <!-- Center Tank -->
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tank[1]/x-feed == 1
+				/controls/fuel/switches/tank2-x-feed == 1
+				/controls/fuel/switches/tank1-trans == 1
 				/systems/fuel/tank[1]/feed == 1
 				fuel/from-tank0-to-tank7 eq 0
 				propulsion/tank[1]/contents-lbs gt 0

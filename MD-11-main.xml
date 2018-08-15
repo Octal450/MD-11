@@ -438,9 +438,15 @@
 		</flight>
 		<fuel n="0">
 			<switches n="0">
+				<tank0-x-feed type="bool">0</tank0-x-feed>
 				<tank0-fill type="bool">0</tank0-fill>
+				<tank0-trans type="bool">0</tank0-trans>
+				<tank1-x-feed type="bool">0</tank1-x-feed>
 				<tank1-fill type="bool">0</tank1-fill>
+				<tank1-trans type="bool">0</tank1-trans>
+				<tank2-x-feed type="bool">0</tank2-x-feed>
 				<tank2-fill type="bool">0</tank2-fill>
+				<tank2-trans type="bool">0</tank2-trans>
 			</switches>
 		</fuel>
 		<gear>

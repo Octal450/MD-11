@@ -9,12 +9,15 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var tank0pumps_sw = getprop("/controls/fuel/switches/tank0-pumps");
 	var tank0xfeed_sw = getprop("/controls/fuel/switches/tank0-x-feed");
 	var tank0fill_sw = getprop("/controls/fuel/switches/tank0-fill");
+	var tank0trans_sw = getprop("/controls/fuel/switches/tank0-trans");
 	var tank1pumps_sw = getprop("/controls/fuel/switches/tank1-pumps");
 	var tank1xfeed_sw = getprop("/controls/fuel/switches/tank1-x-feed");
 	var tank1fill_sw = getprop("/controls/fuel/switches/tank1-fill");
+	var tank1trans_sw = getprop("/controls/fuel/switches/tank1-trans");
 	var tank2pumps_sw = getprop("/controls/fuel/switches/tank2-pumps");
 	var tank2xfeed_sw = getprop("/controls/fuel/switches/tank2-x-feed");
 	var tank2fill_sw = getprop("/controls/fuel/switches/tank2-fill");
+	var tank2trans_sw = getprop("/controls/fuel/switches/tank2-trans");
 	var tank3ltrans_sw = getprop("/controls/fuel/switches/tank3-ltrans");
 	var tank3rtrans_sw = getprop("/controls/fuel/switches/tank3-rtrans");
 	var gload = getprop("/accelerations/pilot-gdamped");
@@ -30,30 +33,33 @@ var FUEL = {
 		setprop("/controls/fuel/switches/tank0-pumps", 0);
 		setprop("/controls/fuel/switches/tank0-x-feed", 0);
 		setprop("/controls/fuel/switches/tank0-fill", 0);
+		setprop("/controls/fuel/switches/tank0-trans", 0);
 		setprop("/controls/fuel/switches/tank1-pumps", 0);
 		setprop("/controls/fuel/switches/tank1-x-feed", 0);
 		setprop("/controls/fuel/switches/tank1-fill", 0);
+		setprop("/controls/fuel/switches/tank1-trans", 0);
 		setprop("/controls/fuel/switches/tank2-pumps", 0);
 		setprop("/controls/fuel/switches/tank2-x-feed", 0);
 		setprop("/controls/fuel/switches/tank2-fill", 0);
+		setprop("/controls/fuel/switches/tank2-trans", 0);
 		setprop("/controls/fuel/switches/tank3-ltrans", 0);
 		setprop("/controls/fuel/switches/tank3-rtrans", 0);
 		setprop("/controls/fuel/switches/manual-lt", 0);
 		setprop("/controls/fuel/switches/manual-flash", 0);
 		setprop("/systems/fuel/system", 1); # Automatic
 		setprop("/systems/fuel/tank[0]/feed", 0);
-		setprop("/systems/fuel/tank[0]/x-feed", 0);
 		setprop("/systems/fuel/tank[1]/feed", 0);
-		setprop("/systems/fuel/tank[1]/x-feed", 0);
 		setprop("/systems/fuel/tank[2]/feed", 0);
-		setprop("/systems/fuel/tank[2]/x-feed", 0);
 		setprop("/systems/fuel/tank[3]/feed", 0);
 		setprop("/systems/fuel/light/tank0-x-feed-disag", 0);
 		setprop("/systems/fuel/light/tank1-x-feed-disag", 0);
 		setprop("/systems/fuel/light/tank2-x-feed-disag", 0);
 		setprop("/systems/fuel/light/tank0-pumps-low", 0);
+		setprop("/systems/fuel/light/tank0-trans-low", 0);
 		setprop("/systems/fuel/light/tank1-pumps-low", 0);
+		setprop("/systems/fuel/light/tank1-trans-low", 0);
 		setprop("/systems/fuel/light/tank2-pumps-low", 0);
+		setprop("/systems/fuel/light/tank2-trans-low", 0);
 		setprop("/systems/fuel/light/tank3-trans-low", 0);
 		setprop("/systems/fuel/light/tank0-fill", 0);
 		setprop("/systems/fuel/light/tank1-fill", 0);
@@ -64,12 +70,15 @@ var FUEL = {
 		tank0pumps_sw = getprop("/controls/fuel/switches/tank0-pumps");
 		tank0xfeed_sw = getprop("/controls/fuel/switches/tank0-x-feed");
 		tank0fill_sw = getprop("/controls/fuel/switches/tank0-fill");
+		tank0trans_sw = getprop("/controls/fuel/switches/tank0-trans");
 		tank1pumps_sw = getprop("/controls/fuel/switches/tank1-pumps");
 		tank1xfeed_sw = getprop("/controls/fuel/switches/tank1-x-feed");
 		tank1fill_sw = getprop("/controls/fuel/switches/tank1-fill");
+		tank1trans_sw = getprop("/controls/fuel/switches/tank1-trans");
 		tank2pumps_sw = getprop("/controls/fuel/switches/tank2-pumps");
 		tank2xfeed_sw = getprop("/controls/fuel/switches/tank2-x-feed");
 		tank2fill_sw = getprop("/controls/fuel/switches/tank2-fill");
+		tank2trans_sw = getprop("/controls/fuel/switches/tank2-trans");
 		tank3ltrans_sw = getprop("/controls/fuel/switches/tank3-ltrans");
 		tank3rtrans_sw = getprop("/controls/fuel/switches/tank3-rtrans");
 		gload = getprop("/accelerations/pilot-gdamped");
@@ -100,6 +109,16 @@ var FUEL = {
 				setprop("/controls/fuel/switches/tank2-pumps", 1);
 			} else {
 				setprop("/controls/fuel/switches/tank2-pumps", 0);
+			}
+			
+			if (tank0trans_sw) {
+				setprop("/controls/fuel/switches/tank0-trans", 0);
+			}
+			if (tank1trans_sw) {
+				setprop("/controls/fuel/switches/tank1-trans", 0);
+			}
+			if (tank2trans_sw) {
+				setprop("/controls/fuel/switches/tank2-trans", 0);
 			}
 			
 			if (tank0xfeed_sw) {
@@ -194,6 +213,24 @@ var FUEL = {
 			setprop("/systems/fuel/light/tank2-pumps-low", 1);
 		} else {
 			setprop("/systems/fuel/light/tank2-pumps-low", 0);
+		}
+		
+		if (getprop("/consumables/fuel/tank[0]/level-lbs") <= 100 and tank0trans_sw) {
+			setprop("/systems/fuel/light/tank0-trans-low", 1);
+		} else {
+			setprop("/systems/fuel/light/tank0-trans-low", 0);
+		}
+		
+		if (getprop("/consumables/fuel/tank[1]/level-lbs") <= 100 and tank1trans_sw) {
+			setprop("/systems/fuel/light/tank1-trans-low", 1);
+		} else {
+			setprop("/systems/fuel/light/tank1-trans-low", 0);
+		}
+		
+		if (getprop("/consumables/fuel/tank[2]/level-lbs") <= 100 and tank2trans_sw) {
+			setprop("/systems/fuel/light/tank2-trans-low", 1);
+		} else {
+			setprop("/systems/fuel/light/tank2-trans-low", 0);
 		}
 		
 		if (getprop("/consumables/fuel/tank[3]/level-lbs") <= 100 and (tank3ltrans_sw or tank3rtrans_sw)) {
