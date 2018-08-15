@@ -185,8 +185,8 @@
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fcc/lsas/gain-switch gt 0
-				fcc/lsas/pid le -0.169
-				fcc/lsas/pid ge 0.169
+				fcc/lsas/pid le -0.248
+				fcc/lsas/pid ge 0.248
 			</test>
 		</switch>
 		
