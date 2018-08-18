@@ -11,13 +11,6 @@
 	<path>brakes.ac</path>
 	
 	<animation>
-		<type>shader</type>
-		<shader>chrome</shader>
-		<texture>chrome_cockpit.png</texture>
-		<object-name>brake.glass</object-name>
-	</animation>
-	
-	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>brake.text</object-name>
@@ -87,9 +80,9 @@
 		<property>controls/gear/brake-left</property>
 		<factor>180</factor>
 		<center>
-			<x-m>0.00657</x-m>
-			<y-m>0.02222</y-m>
-			<z-m>0.0</z-m>
+			<x-m>0.00</x-m>
+			<y-m>-0.0694</y-m>
+			<z-m>0.0052</z-m>
 		</center>
 		<axis>
 			<x>0</x>
