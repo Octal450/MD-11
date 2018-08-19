@@ -738,18 +738,6 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Yaw_roll_rate">
-			<description>Yaw moment due to roll rate</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/bw-ft</property>
-				<property>aero/bi2vel</property>
-				<property>velocities/r-aero-rad_sec</property>
-				<value>-0.2</value>
-			</product>
-		</function>
-		
 		<function name="aero/moment/Yaw_damp">
 			<description>Yaw moment due to yaw rate</description>
 			<product>
@@ -758,7 +746,7 @@
 				<property>metrics/bw-ft</property>
 				<property>aero/bi2vel</property>
 				<property>velocities/r-aero-rad_sec</property>
-				<value>-0.1</value>
+				<value>-0.3</value>
 			</product>
 		</function>
 		
