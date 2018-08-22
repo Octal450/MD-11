@@ -109,7 +109,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	} 
 	mismatch_chk();
 	readSettings();
-	if (getprop("/systems/acconfig/options/revision") < current_revision and getprop("/systems/acconfig/mismatch-code") == "0x000") {
+	if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/revision") < current_revision and getprop("/systems/acconfig/mismatch-code") == "0x000") {
 		updated_dlg.open();
 	} else if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/mismatch-code") == "0x000" and getprop("/systems/acconfig/options/welcome-skip") != 1) {
 		welcome_dlg.open();
