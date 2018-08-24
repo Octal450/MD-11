@@ -14,6 +14,7 @@ var ac_volt_min = 110;
 var dc_volt_std = 28;
 var dc_volt_min = 25;
 var dc_amps_std = 150;
+var batt_amps = 2;
 var ac_hz_std = 400;
 var src_ac1 = "XX";
 var src_ac2 = "XX";
@@ -421,13 +422,13 @@ var ELEC = {
 		
 		# Battery Amps
 		if (battery1_volts >= 20 and batt_sw) {
-			setprop("/systems/electrical/battery1-amps", dc_amps_std);
+			setprop("/systems/electrical/battery1-amps", batt_amps);
 		} else {
 			setprop("/systems/electrical/battery1-amps", 0);
 		}
 		
 		if (battery2_volts >= 20 and batt_sw) {
-			setprop("/systems/electrical/battery2-amps", dc_amps_std);
+			setprop("/systems/electrical/battery2-amps", batt_amps);
 		} else {
 			setprop("/systems/electrical/battery2-amps", 0);
 		}
@@ -436,7 +437,7 @@ var ELEC = {
 		battery2_amps = getprop("/systems/electrical/battery2-amps");
 		
 		# Battery Bus
-		if (battery1_amps >= 120 or battery2_amps >= 120) {
+		if (battery1_amps > 0 or battery2_amps > 0) {
 			setprop("/systems/electrical/bus/dcbat", dc_volt_std);
 		} else if (dc_gndsvc >= 25) {
 			setprop("/systems/electrical/bus/dcbat", dc_volt_std);
@@ -458,7 +459,7 @@ var ELEC = {
 			}
 		} else if (battery1_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
-		} else if (battery1_amps >= 120 and batt_sw) {
+		} else if (battery1_amps > 0 and batt_sw) {
 			if (getprop("/systems/electrical/battery1-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery1_percent_calc = battery1_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery1_percent_calc < 0) {
@@ -482,7 +483,7 @@ var ELEC = {
 			}
 		} else if (battery2_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
 			setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
-		} else if (battery2_amps >= 120 and batt_sw) {
+		} else if (battery2_amps > 0 and batt_sw) {
 			if (getprop("/systems/electrical/battery2-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery2_percent_calc = battery2_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery2_percent_calc < 0) {
