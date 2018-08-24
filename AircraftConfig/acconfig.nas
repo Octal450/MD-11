@@ -56,6 +56,7 @@ var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircr
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/updated.xml");
 var error_mismatch = gui.Dialog.new("sim/gui/dialogs/acconfig/error/mismatch/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/error-mismatch.xml");
 var du_quality = gui.Dialog.new("sim/gui/dialogs/acconfig/du-quality/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/du-quality.xml");
+var autopush_dlg = gui.Dialog.new("sim/gui/dialogs/autopush/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/autopush.xml");
 spinning.start();
 init_dlg.open();
 
