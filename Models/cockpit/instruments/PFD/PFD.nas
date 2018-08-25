@@ -21,6 +21,7 @@ var ASIseldiff = 0;
 var ASItrend = 0;
 var pitch = 0;
 var roll = 0;
+var alpha = 0;
 var altTens = 0;
 var HDG = "000";
 var HDGpresel = 0;
@@ -90,9 +91,10 @@ var canvas_PFD_base = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","FD_roll","FD_pitch","ALT_thousands",
-		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","HDG","HDG_dial",
-		"HDG_presel","HDG_sel","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
+		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2",
+		"AI_error","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up",
+		"VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no",
+		"RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -185,15 +187,39 @@ var canvas_PFD_base = {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else if (throttle_mode == "PITCH") {
-			me["FMA_AP"].setColor(1,1,1);
+			if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+				me["FMA_AP"].setColor(1,0.7843,0);
+			} else {
+				me["FMA_AP"].setColor(1,1,1);
+			}
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP_Pitch_Off_Box"].show();
 			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else {
-			me["FMA_AP"].setColor(1,1,1);
+			if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+				me["FMA_AP"].setColor(1,0.7843,0);
+			} else {
+				me["FMA_AP"].setColor(1,1,1);
+			}
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].show();
+		}
+		
+		if (getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3) {
+			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
+			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
+		} else {
+			me["FMA_ATS_Pitch_Off"].setColor(1,1,1);
+			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
+		}
+		
+		if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+		} else {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,1,1);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,1,1);
 		}
 		
 		if (getprop("/it-autoflight/input/kts-mach") == 1) {
@@ -342,9 +368,17 @@ var canvas_PFD_base = {
 		# Attitude
 		pitch = getprop("/orientation/pitch-deg") or 0;
 		roll =  getprop("/orientation/roll-deg") or 0;
+		alpha =  getprop("/fdm/jsbsim/aero/alpha-deg-damped") or 0;
 		
 		me.AI_horizon_trans.setTranslation(0, pitch * 10.246);
 		me.AI_horizon_rot.setRotation(-roll * D2R, me["AI_center"].getCenter());
+		
+		me["AI_alphalim"].setTranslation(0, math.clamp(16 - alpha, -20, 20) * -10.246);
+		if (alpha >= 15.5) {
+			me["AI_alphalim"].setColor(1,0,0);
+		} else {
+			me["AI_alphalim"].setColor(0.2156,0.5019,0.6627);
+		}
 		
 		if (getprop("/it-autoflight/fd/roll-bar") != nil) {
 			me["FD_roll"].setTranslation((getprop("/it-autoflight/fd/roll-bar")) * 2.2, 0);
@@ -557,6 +591,24 @@ var canvas_PFD_1 = {
 			me["FD_pitch"].hide();
 		}
 		
+		if (getprop("/instrumentation/irs/ir[0]/aligned") == 1) {
+			me["AI_group"].show();
+			me["AI_group2"].show();
+			me["HDG_group"].show();
+			me["VSI_group"].show();
+			me["AI_error"].hide();
+			me["HDG_error"].hide();
+			me["VSI_error"].hide();
+		} else {
+			me["AI_error"].show();
+			me["HDG_error"].show();
+			me["VSI_error"].show();
+			me["AI_group"].hide();
+			me["AI_group2"].hide();
+			me["HDG_group"].hide();
+			me["VSI_group"].hide();
+		}
+		
 		me.updateCommon();
 	},
 	updateFast: func() {
@@ -585,6 +637,24 @@ var canvas_PFD_2 = {
 			me["FD_pitch"].show();
 		} else {
 			me["FD_pitch"].hide();
+		}
+		
+		if (getprop("/instrumentation/irs/ir[1]/aligned") == 1) {
+			me["AI_group"].show();
+			me["AI_group2"].show();
+			me["HDG_group"].show();
+			me["VSI_group"].show();
+			me["AI_error"].hide();
+			me["HDG_error"].hide();
+			me["VSI_error"].hide();
+		} else {
+			me["AI_error"].show();
+			me["HDG_error"].show();
+			me["VSI_error"].show();
+			me["AI_group"].hide();
+			me["AI_group2"].hide();
+			me["HDG_group"].hide();
+			me["VSI_group"].hide();
 		}
 		
 		me.updateCommon();

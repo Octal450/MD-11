@@ -103,7 +103,7 @@ setlistener("/it-autoflight/input/ap1", func {
 			setprop("/it-autoflight/sound/enableapoffsound", 0);	  
 		}
 	} else if (apmas == 1) {
-		if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
+		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
 			setprop("/controls/flight/rudder", 0);
 			setprop("/it-autoflight/output/ap1", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 1);
@@ -125,7 +125,7 @@ setlistener("/it-autoflight/input/ap2", func {
 			setprop("/it-autoflight/sound/enableapoffsound2", 0);	  
 		}
 	} else if (apmas == 1) {
-		if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
+		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
 			setprop("/controls/flight/rudder", 0);
 			setprop("/it-autoflight/output/ap2", 1);
 			setprop("/it-autoflight/sound/enableapoffsound2", 1);
@@ -139,7 +139,7 @@ setlistener("/it-autoflight/input/athr", func {
 	var atmas = getprop("/it-autoflight/input/athr");
 	if (atmas == 0) {
 		setprop("/it-autoflight/output/athr", 0);
-	} else if (atmas == 1) {
+	} else if (atmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3)) {
 		thrustmode();
 		setprop("/it-autoflight/output/athr", 1);
 	}
@@ -536,6 +536,14 @@ var ap_various = func {
 			setprop("/it-autoflight/input/ap1", 0);
 			setprop("/it-autoflight/input/ap2", 0);
 		}
+		if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+			setprop("/it-autoflight/input/ap1", 0);
+			setprop("/it-autoflight/input/ap2", 0);
+		}
+	}
+	
+	if (getprop("/it-autoflight/output/athr") == 1 and getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3) {
+		setprop("/it-autoflight/input/athr", 0);
 	}
 }
 

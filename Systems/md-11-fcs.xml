@@ -88,6 +88,18 @@
 			</test>
 		</switch>
 		
+		<switch name="aero/alpha-deg-fixed">
+			<default value="0"/>
+			<test value="aero/alpha-deg">
+				gear/unit[0]/WOW eq 0
+			</test>
+		</switch>
+		
+		<lag_filter name="aero/alpha-deg-damped">
+			<input>aero/alpha-deg-fixed</input>
+			<c1>10</c1>
+		</lag_filter>
+		
 		<fcs_function name="fcc/rcws/p-gain">
 			<function>
 				<table>
