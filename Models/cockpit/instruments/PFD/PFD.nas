@@ -92,9 +92,9 @@ var canvas_PFD_base = {
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
 		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2",
-		"AI_error","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up",
-		"VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no",
-		"RA","RA_box"];
+		"AI_error","AI_fpv","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel",
+		"VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale",
+		"GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -372,6 +372,20 @@ var canvas_PFD_base = {
 		
 		me.AI_horizon_trans.setTranslation(0, pitch * 10.246);
 		me.AI_horizon_rot.setRotation(-roll * D2R, me["AI_center"].getCenter());
+		
+		me["AI_fpv"].setTranslation(math.clamp(getprop("/instrumentation/pfd/track-hdg-diff"), -20, 20) * 10.246, math.clamp(alpha, -20, 20) * 10.246);
+		if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
+			me["AI_fpv"].show();
+		} else {
+			me["AI_fpv"].hide();
+		}
+		
+		me["AI_arrow"].setRotation(math.clamp(-roll, -45, 45) * D2R);
+		if (pitch > 25) {
+			me["AI_arrow"].show();
+		} else {
+			me["AI_arrow"].hide();
+		}
 		
 		me["AI_alphalim"].setTranslation(0, math.clamp(16 - alpha, -20, 20) * -10.246);
 		if (alpha >= 15.5) {

@@ -394,7 +394,7 @@
 				</equals>
 				<less-than>
 					<property>it-autoflight/input/vs</property>
-					<value>0</value>
+					<value>-0.01</value>
 				</less-than>
 			</and>
 		</condition>
@@ -492,7 +492,7 @@
 				</equals>
 				<less-than>
 					<property>it-autoflight/input/fpa</property>
-					<value>0</value>
+					<value>-0.01</value>
 				</less-than>
 			</and>
 		</condition>
@@ -1420,8 +1420,10 @@
 	<object-name>VS.led3</object-name>
 	<object-name>VS.led4</object-name>
 	<object-name>vs.ind</object-name>
+	<object-name>VS_dash</object-name>
 	<object-name>fpa.ind</object-name>
-		<object-name>VS_dash</object-name>
+	<object-name>FPA.led1</object-name>
+	<object-name>FPA.led2</object-name>
 		<emission>
 			<red>1</red>
 			<green>1</green>
