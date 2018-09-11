@@ -96,6 +96,46 @@
 				<type>float</type>
 				<property>engines/engine[3]/n2-actual</property>
 			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-l1/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-l2/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-l3/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-l4/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-l5/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-r1/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-r2/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-r3/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-r4/final-deg</property>
+			</signal>
+			<signal>
+				<type>double</type>
+				<property>fdm/jsbsim/hydraulics/spoiler-r5/final-deg</property>
+			</signal>
 		</signals>
 	</config>
 
