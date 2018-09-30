@@ -5,16 +5,13 @@
 # Copyright (c) Joshua Davidson (it0uchpods) #
 ##############################################
 
+var thr1 = 0;
+var thr3 = 0;
+var wow0 = 0;
+var gnd_speed = 0;
 setprop("/controls/autobrake/active", 0);
 setprop("/controls/autobrake/mode", 0);
 setprop("/controls/autobrake/decel-rate", 0);
-
-setlistener("/sim/signals/fdm-initialized", func {
-	var thr1 = 0;
-	var thr3 = 0;
-	var wow0 = getprop("/gear/gear[0]/wow");
-	var gnd_speed = getprop("/velocities/groundspeed-kt");
-});
 
 var autobrake_init = func {
 	setprop("/controls/autobrake/active", 0);

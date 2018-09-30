@@ -9,34 +9,32 @@
 # Init Vars #
 #############
 
-setlistener("/sim/signals/fdm-initialized", func {
-	var LPump1_sw = getprop("/controls/hydraulic/switches/LPump1");
-	var RPump1_sw = getprop("/controls/hydraulic/switches/RPump1");
-	var LPump2_sw = getprop("/controls/hydraulic/switches/LPump2");
-	var RPump2_sw = getprop("/controls/hydraulic/switches/RPump2");
-	var LPump3_sw = getprop("/controls/hydraulic/switches/LPump3");
-	var RPump3_sw = getprop("/controls/hydraulic/switches/RPump3");
-	var RMP1_3_sw = getprop("/controls/hydraulic/switches/RMP1-3");
-	var RMP2_3_sw = getprop("/controls/hydraulic/switches/RMP2-3");	
-	var auxPump1_sw = getprop("/controls/hydraulic/switches/AuxPump1");
-	var auxPump2_sw = getprop("/controls/hydraulic/switches/AuxPump2");
-	var press_test = getprop("/controls/hydraulic/switches/press-test");
-	var system = getprop("/systems/hydraulic/system");
-	var sys1_psi = getprop("/systems/hydraulic/sys1-psi");
-	var sys2_psi = getprop("/systems/hydraulic/sys2-psi");
-	var sys3_psi = getprop("/systems/hydraulic/sys3-psi");
-	var state1 = getprop("/engines/engine[0]/state");
-	var state2 = getprop("/engines/engine[1]/state");
-	var state3 = getprop("/engines/engine[2]/state");
-	var N21 = getprop("/engines/engine[0]/n2-actual");
-	var N22 = getprop("/engines/engine[1]/n2-actual");
-	var N23 = getprop("/engines/engine[2]/n2-actual");
-	var src1 = "XX";
-	var src2 = "XX";
-	var src3 = "XX";
-	var wow = getprop("/gear/gear[3]/wow");
-	var manl = 0;
-});
+var system = 1;
+var LPump1_sw = 0;
+var RPump1_sw = 0;
+var LPump2_sw = 0;
+var RPump2_sw = 0;
+var LPump3_sw = 0;
+var RPump3_sw = 0;
+var RMP1_3_sw = 0;
+var RMP2_3_sw = 0;	
+var auxPump1_sw = 0;
+var auxPump2_sw = 0;
+var press_test = 0;
+var sys1_psi = 0;
+var sys2_psi = 0;
+var sys3_psi = 0;
+var state1 = 0;
+var state2 = 0;
+var state3 = 0;
+var N21 = 0;
+var N22 = 0;
+var N23 = 0;
+var src1 = "XX";
+var src2 = "XX";
+var src3 = "XX";
+var wow = 1;
+var manl = 0;
 
 var HYD = {
 	init: func() {

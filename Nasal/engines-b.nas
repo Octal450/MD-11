@@ -21,18 +21,15 @@ var IGN1 = 0;
 var IGN2 = 0;
 var IGN3 = 0;
 var IGNTOGA = 0;
+var thr1 = 0;
+var thr2 = 0;
+var state1 = 0;
+var state2 = 0;
+var state3 = 0;
+var wow0 = 1;
 setprop("/controls/engines/packs-off", 0);
 setprop("/controls/engines/ign-packs", 0);
 setprop("/controls/engines/ign-packs-time", -1000);
-
-setlistener("/sim/signals/fdm-initialized", func {
-	var thr1 = 0;
-	var thr2 = 0;
-	var state1 = getprop("/engines/engine[0]/state");
-	var state2 = getprop("/engines/engine[1]/state");
-	var state3 = getprop("/engines/engine[2]/state");
-	var wow0 = getprop("/gear/gear[0]/wow");
-});
 
 var eng_init = func {
 	setprop("/controls/engines/ign-a", 0);

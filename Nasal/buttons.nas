@@ -10,18 +10,6 @@ var variousReset = func {
 	setprop("/controls/pneumatic/switches/bleedapu", 0); # Temporary until bleeds available
 }
 
-#setlistener("/sim/signals/fdm-initialized", func {
-#	var state1 = getprop("/engines/engine[0]/state");
-#	var state2 = getprop("/engines/engine[1]/state");
-#	var state3 = getprop("/engines/engine[2]/state");
-#	var Lrain = getprop("/controls/switches/LrainRpt");
-#	var Rrain = getprop("/controls/switches/RrainRpt");
-#	var OnLt = getprop("/controls/switches/emerCallLtO");
-#	var CallLt = getprop("/controls/switches/emerCallLtC");
-#	var wow = getprop("/gear/gear[1]/wow");
-#	rainTimer.start();
-#});
-
 var toggleSTD = func {
 	var Std = getprop("/modes/altimeter/std");
 	if (Std == 1) {

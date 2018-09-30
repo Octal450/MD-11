@@ -5,28 +5,26 @@
 # Copyright (c) Joshua Davidson (it0uchpods) #
 ##############################################
 
-setlistener("/sim/signals/fdm-initialized", func {
-	var tank0pumps_sw = getprop("/controls/fuel/switches/tank0-pumps");
-	var tank0xfeed_sw = getprop("/controls/fuel/switches/tank0-x-feed");
-	var tank0fill_sw = getprop("/controls/fuel/switches/tank0-fill");
-	var tank0trans_sw = getprop("/controls/fuel/switches/tank0-trans");
-	var tank1pumps_sw = getprop("/controls/fuel/switches/tank1-pumps");
-	var tank1xfeed_sw = getprop("/controls/fuel/switches/tank1-x-feed");
-	var tank1fill_sw = getprop("/controls/fuel/switches/tank1-fill");
-	var tank1trans_sw = getprop("/controls/fuel/switches/tank1-trans");
-	var tank2pumps_sw = getprop("/controls/fuel/switches/tank2-pumps");
-	var tank2xfeed_sw = getprop("/controls/fuel/switches/tank2-x-feed");
-	var tank2fill_sw = getprop("/controls/fuel/switches/tank2-fill");
-	var tank2trans_sw = getprop("/controls/fuel/switches/tank2-trans");
-	var tank3ltrans_sw = getprop("/controls/fuel/switches/tank3-ltrans");
-	var tank3rtrans_sw = getprop("/controls/fuel/switches/tank3-rtrans");
-	var gload = getprop("/accelerations/pilot-gdamped");
-	var system = getprop("/systems/fuel/system");
-	var ac1 = getprop("/systems/electrical/bus/ac1");
-	var ac2 = getprop("/systems/electrical/bus/ac2");
-	var ac3 = getprop("/systems/electrical/bus/ac3");
-	var manl = 0;
-});
+var system = 1;
+var tank0pumps_sw = 0;
+var tank0xfeed_sw = 0;
+var tank0fill_sw = 0;
+var tank0trans_sw = 0;
+var tank1pumps_sw = 0;
+var tank1xfeed_sw = 0;
+var tank1fill_sw = 0;
+var tank1trans_sw = 0;
+var tank2pumps_sw = 0;
+var tank2xfeed_sw = 0;
+var tank2fill_sw = 0;
+var tank2trans_sw = 0;
+var tank3ltrans_sw = 0;
+var tank3rtrans_sw = 0;
+var gload = 0;
+var ac1 = 0;
+var ac2 = 0;
+var ac3 = 0;
+var manl = 0;
 
 var FUEL = {
 	init: func() {

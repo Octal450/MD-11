@@ -9,42 +9,39 @@
 # Init Vars #
 #############
 
+var system = 1;
+var bleed1_sw = 0;
+var bleed2_sw = 0;
+var bleed3_sw = 0;
+var bleedapu_sw = 0;
+var groundair_sw = 0;
+var isol1_2_sw = 0;
+var isol1_3_sw = 0;
+var pack1_sw = 0;
+var pack2_sw = 0;
+var pack3_sw = 0;
+var bleed1 = 0;
+var bleed2 = 0;
+var bleed3 = 0;
+var bleedapu = 0;
+var groundair = 0;
+var total_psi = 0;
+var start_psi = 0;
+var pack_psi = 0;
+var pack1 = 0;
+var pack2 = 0;
+var pack3 = 0;
+var eng_starter = 0;
+var state1 = 0;
+var state2 = 0;
+var state3 = 0;
+var rpmapu = 0;
+var total_psi_calc = 0;
+var manl = 0;
 setprop("/controls/pneumatic/switches/cockpit-temp", 0.5);
 setprop("/controls/pneumatic/switches/fwd-temp", 0.5);
 setprop("/controls/pneumatic/switches/mid-temp", 0.5);
 setprop("/controls/pneumatic/switches/aft-temp", 0.5);
-
-setlistener("/sim/signals/fdm-initialized", func {
-	var system = getprop("/systems/pneumatic/system");
-	var bleed1_sw = getprop("/controls/pneumatic/switches/bleed1");
-	var bleed2_sw = getprop("/controls/pneumatic/switches/bleed2");
-	var bleed3_sw = getprop("/controls/pneumatic/switches/bleed3");
-	var bleedapu_sw = getprop("/controls/pneumatic/switches/bleedapu");
-	var groundair_sw = getprop("/controls/pneumatic/switches/groundair");
-	var isol1_2_sw = getprop("/controls/pneumatic/switches/isol1-2");
-	var isol1_3_sw = getprop("/controls/pneumatic/switches/isol1-3");
-	var pack1_sw = getprop("/controls/pneumatic/switches/pack1");
-	var pack2_sw = getprop("/controls/pneumatic/switches/pack2");
-	var pack3_sw = getprop("/controls/pneumatic/switches/pack3");
-	var bleed1 = getprop("/systems/pneumatic/bleed1");
-	var bleed2 = getprop("/systems/pneumatic/bleed2");
-	var bleed3 = getprop("/systems/pneumatic/bleed3");
-	var bleedapu = getprop("/systems/pneumatic/bleedapu");
-	var groundair = getprop("/systems/pneumatic/groundair");
-	var total_psi = getprop("/systems/pneumatic/total-psi");
-	var start_psi = getprop("/systems/pneumatic/start-psi");
-	var pack_psi = getprop("/systems/pneumatic/pack-psi");
-	var pack1 = getprop("/systems/pneumatic/pack1");
-	var pack2 = getprop("/systems/pneumatic/pack2");
-	var pack3 = getprop("/systems/pneumatic/pack3");
-	var eng_starter = getprop("/systems/pneumatic/eng-starter");
-	var state1 = getprop("/engines/engine[0]/state");
-	var state2 = getprop("/engines/engine[1]/state");
-	var state3 = getprop("/engines/engine[2]/state");
-	var rpmapu = getprop("/systems/apu/n2");
-	var total_psi_calc = 0;
-	var manl = 0;
-});
 
 var PNEU = {
 	init: func() {

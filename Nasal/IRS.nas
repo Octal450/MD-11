@@ -6,18 +6,15 @@
 ##############################################
 
 var knob = 0;
+var roll = 0;
+var pitch = 0;
+var gs = 0;
+var ac1 = 0;
+var ac2 = 0;
+var ac3 = 0;
+var dcbat = 0;;
+var pwr_src = "XX";
 setprop("/controls/irs/align-time", 600);
-
-setlistener("/sim/signals/fdm-initialized", func {
-	var roll = getprop("/orientation/roll-deg");
-	var pitch = getprop("/orientation/pitch-deg");
-	var gs = getprop("/velocities/groundspeed-kt");
-	var ac1 = 0;
-	var ac2 = 0;
-	var ac3 = 0;
-	var dcbat = 0;;
-	var pwr_src = "XX";
-});
 
 var IRS = {
 	init: func() {
