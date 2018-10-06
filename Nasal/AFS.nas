@@ -705,7 +705,7 @@ var spdcapt = func {
 # Heading Capture
 var hdgcapt = func {
 	if (getprop("/it-autoflight/output/lat") == 0) {
-		if (abs(getprop("/it-autoflight/internal/heading-5-sec-error-deg")) <= 2.5) {
+		if (abs(getprop("/it-autoflight/internal/heading-predicted-error-deg")) <= 2.5) {
 			hdgcaptt.stop();
 			setprop("/it-autoflight/output/hdg-captured", 1);
 		}

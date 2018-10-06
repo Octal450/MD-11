@@ -1128,8 +1128,8 @@
 			<input>fcc/rudder-output</input>
 			<input>hydraulics/rudder/trim-norm</input>
 			<clipto>
-				<min>-1</min>
-				<max>1</max>
+				<min>-1.0</min>
+				<max>1.0</max>
 			</clipto>
 		</summer>
 		
@@ -1165,8 +1165,8 @@
 			<input>fcc/rudder-output</input>
 			<input>hydraulics/rudder/trim-norm</input>
 			<clipto>
-				<min>-1</min>
-				<max>1</max>
+				<min>-1.0</min>
+				<max>1.0</max>
 			</clipto>
 		</summer>
 		

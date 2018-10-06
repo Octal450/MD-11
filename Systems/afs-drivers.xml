@@ -484,7 +484,7 @@
 	</filter>
 	
 	<filter>
-		<name>HEADING 5 SEC ERROR DEG</name>
+		<name>HEADING PREDICTED ERROR DEG</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -497,7 +497,7 @@
 			</condition>
 			<property>/it-autoflight/input/hdg</property>
 			<offset>
-				<property>/it-autoflight/internal/heading-5-sec-ahead</property>
+				<property>/it-autoflight/internal/heading-predicted</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
@@ -510,7 +510,7 @@
 			</condition>
 			<value>0</value>
 		</input>
-		<output>/it-autoflight/internal/heading-5-sec-error-deg</output>
+		<output>/it-autoflight/internal/heading-predicted-error-deg</output>
 		<period>
 			<min>-180</min>
 			<max>180</max>
