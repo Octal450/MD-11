@@ -368,9 +368,6 @@
 			<autopilot n="8">
 				<path>Aircraft/IDG-MD-11X/Systems/pfd.xml</path>
 			</autopilot>
-			<autopilot n="9">
-				<path>Aircraft/IDG-MD-11X/Systems/zoom-views.xml</path>
-			</autopilot>
 		</systems>
         
 		<instrumentation>
@@ -382,11 +379,7 @@
 		<gui n="0" include="Systems/it-gui.xml"/>
 		
 		<current-view>
-			<z-offset-dec-step type="double">0.0</z-offset-dec-step>
-			<z-offset-inc-step type="double">0.0</z-offset-inc-step>
-			<can-change-z-offset type="bool">false</can-change-z-offset>
-			
-			<z-offset-default type="float">100.0</z-offset-default>
+			<z-offset-default type="float">110.0</z-offset-default>
 			<z-offset-min-m type="float">30.0</z-offset-min-m>
 			<z-offset-max-m type="float">300.0</z-offset-max-m>
 		</current-view>
@@ -660,20 +653,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>
-							if (getprop("/sim/current-view/can-change-z-offset")) {
-								var distance = getprop("/sim/current-view/z-offset-m");
-								var multiple = getprop("/sim/current-view/z-offset-inc-step");
-								var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-								distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-								setprop("/sim/current-view/z-offset-m", distance);
-
-								gui.popupTip(sprintf("%d meters", abs(distance)));
-							} else {
-								view.decrease();
-							}
-							</script>
+							<script>libraries.fovZoom(-1);</script>
 						</binding>
 					</button>
 					<button n="4">
@@ -688,20 +668,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>
-								if (getprop("/sim/current-view/can-change-z-offset")) {
-									var distance = getprop("/sim/current-view/z-offset-m");
-									var multiple = getprop("/sim/current-view/z-offset-dec-step");
-									var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-									distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-									setprop("/sim/current-view/z-offset-m", distance);
-
-									gui.popupTip(sprintf("%d meters", abs(distance)));
-								} else {
-									view.increase();
-								}
-							</script>
+							<script>libraries.fovZoom(1);</script>
 						</binding>
 					</button>
 				</mode>
@@ -725,15 +692,7 @@
 				<desc>Reset zoom to default</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							setprop("/sim/current-view/z-offset-m", getprop("/sim/current-view/z-offset-default") * -1);
-
-							gui.popupTip(sprintf("%d meters", getprop("/sim/current-view/z-offset-default")));
-						} else {
-							setprop("/sim/current-view/field-of-view", getprop("/sim/view/config/default-field-of-view-deg"));
-						}
-					</script>
+					<script>libraries.fovZoom(0);</script>
 				</binding>
 			</key>
 			<key n="33">
@@ -973,21 +932,8 @@
 				<desc>Increase field of view</desc>
 				<repeatable type="bool">true</repeatable>
 				<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/sim/current-view/can-change-z-offset")) {
-						var distance = getprop("/sim/current-view/z-offset-m");
-						var multiple = getprop("/sim/current-view/z-offset-dec-step");
-						var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-						distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-						setprop("/sim/current-view/z-offset-m", distance);
-
-						gui.popupTip(sprintf("%d meters", abs(distance)));
-					} else {
-						view.increase();
-					}
-				</script>
+					<command>nasal</command>
+					<script>libraries.fovZoom(1);</script>
 				</binding>
 			</key>
 			<key n="120">
@@ -996,20 +942,7 @@
 				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							var distance = getprop("/sim/current-view/z-offset-m");
-							var multiple = getprop("/sim/current-view/z-offset-inc-step");
-							var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-							distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-							setprop("/sim/current-view/z-offset-m", distance);
-
-							gui.popupTip(sprintf("%d meters", abs(distance)));
-						} else {
-							view.decrease();
-						}
-					</script>
+					<script>libraries.fovZoom(-1);</script>
 				</binding>
 			</key>
 			<key n="127">
@@ -1312,6 +1245,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/ND/ND.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/shake.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/zoom-views.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/IDG-MD-11X/AircraftConfig/acconfig.nas</file>
