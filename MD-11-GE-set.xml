@@ -15,7 +15,8 @@
 		<description>McDonnell Douglas MD-11 (CF6-80C2D1F)</description>
 		<flight-model>jsb</flight-model>
 		<aero>MD-11-GE</aero>
-			
+		<variant-of>MD-11-PW</variant-of>
+		
 		<model n="0">
 			<path>Aircraft/IDG-MD-11X/Models/MD-11-GE.xml</path>
 			<armrest type="double">0</armrest>

@@ -15,7 +15,8 @@
 		<description>McDonnell Douglas MD-11 (PW4460)</description>
 		<flight-model>jsb</flight-model>
 		<aero>MD-11-PW</aero>
-			
+		<primary-set>true</primary-set>
+		
 		<model n="0">
 			<path>Aircraft/IDG-MD-11X/Models/MD-11-PW.xml</path>
 			<armrest type="double">0</armrest>
