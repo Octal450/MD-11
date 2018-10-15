@@ -1010,9 +1010,22 @@
 			</range>
 		</aerosurface_scale>
 		
+		<switch name="hydraulics/elevator-trim/rate">
+			<default value="0"/>
+			<test logic="OR" value="0.02">
+				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys3-psi ge 1500
+			</test>
+		</switch>
+		
+		<actuator name="hydraulics/elevator-trim/actuator">
+			<input>/controls/flight/elevator-trim</input>
+			<rate_limit>hydraulics/elevator-trim/rate</rate_limit>
+		</actuator>
+		
 		<lag_filter name="hydraulics/elevator-trim/lag">
-			<input>/controls/flight/elevator-trim-fdm</input>
-			<c1>0.5</c1>
+			<input>hydraulics/elevator-trim/actuator</input>
+			<c1>10.5</c1>
 		</lag_filter>
 		
 		<aerosurface_scale name="hydraulics/elevator-trim/final-deg">
@@ -1113,7 +1126,7 @@
 		</aerosurface_scale>
 		
 		<aerosurface_scale name="hydraulics/rudder/trim-norm">
-			<input>/controls/flight/rudder-trim-fdm</input>
+			<input>/controls/flight/rudder-trim</input>
 			<range>
 				<min>-0.8</min>
 				<max>0.8</max>

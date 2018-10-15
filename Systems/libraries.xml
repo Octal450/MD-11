@@ -267,49 +267,7 @@
 		<output>fdm/jsbsim/inertia/weight-kg</output>
 	</filter>
 	
-	<filter>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<or>
-					<greater-than-equals>
-						<property>/systems/hydraulic/sys1-psi</property>
-						<value>1500</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>/systems/hydraulic/sys3-psi</property>
-						<value>1500</value>
-					</greater-than-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/controls/flight/elevator-trim</input>
-		<output>/controls/flight/elevator-trim-fdm</output>
-		<max-rate-of-change>0.1</max-rate-of-change>
-	</filter>
-	
-	<filter>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<condition>
-				<or>
-					<greater-than-equals>
-						<property>/systems/hydraulic/sys1-psi</property>
-						<value>1500</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>/systems/hydraulic/sys2-psi</property>
-						<value>1500</value>
-					</greater-than-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/controls/flight/rudder-trim</input>
-		<output>/controls/flight/rudder-trim-fdm</output>
-		<max-rate-of-change>0.5</max-rate-of-change>
-	</filter>
+	<!-- Braking -->
 	
 	<filter>
 		<name>Autobrake Decel Error</name>
