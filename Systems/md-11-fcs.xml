@@ -1278,20 +1278,24 @@
 	
 	<channel name="Flaps">
 		
-		<kinematic name="rubbish/flap-pos-deg">
-			<input>/controls/flight/flaps-output</input>
-			<traverse>
-				<setting>
-					<position>0</position>
-					<time>0</time>
-				</setting>
-				<setting>
-					<position>50</position>
-					<time>30</time>
-				</setting>
-			</traverse>
+		<pure_gain name="fcs/flap-pos-gain">
+			<input>/controls/flight/flaps</input>
+			<gain>50.0</gain>
+		</pure_gain>
+		
+		<switch name="fcs/flap-pos-rate">
+			<default value="0.0"/>
+			<test logic="OR" value="1.66666666">
+				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys2-psi ge 1500
+			</test>
+		</switch>
+		
+		<actuator name="rubbish/flap-pos-deg">
+			<input>fcs/flap-pos-gain</input>
+			<rate_limit>fcs/flap-pos-rate</rate_limit>
 			<output>fcs/flap-pos-deg</output>
-		</kinematic>
+		</actuator>
 		
 		<aerosurface_scale name="rubbish/flap-pos-norm">
 			<input>fcs/flap-pos-deg</input>
@@ -1310,26 +1314,29 @@
 	
 	<channel name="Slats">
 		
-		<kinematic name="rubbish/slat-pos-deg">
+		<pure_gain name="fcs/slat-pos-gain">
 			<input>/controls/flight/slats</input>
-			<traverse>
-				<setting>
-					<position>0</position>
-					<time>0</time>
-				</setting>
-				<setting>
-					<position>31</position>
-					<time>20</time>
-				</setting>
-			</traverse>
+			<gain>31.0</gain>
+		</pure_gain>
+		
+		<switch name="fcs/slat-pos-rate">
+			<default value="0.0"/>
+			<test value="1.55">
+				/systems/hydraulic/sys1-psi ge 1500
+			</test>
+		</switch>
+		
+		<actuator name="rubbish/slat-pos-deg">
+			<input>fcs/slat-pos-gain</input>
+			<rate_limit>fcs/slat-pos-rate</rate_limit>
 			<output>fcs/slat-pos-deg</output>
-		</kinematic>
+		</actuator>
 		
 		<aerosurface_scale name="rubbish/slat-pos-norm">
 			<input>fcs/slat-pos-deg</input>
 			<domain>
 				<min>0</min>
-				<max>27</max>
+				<max>31</max>
 			</domain>
 			<range>
 				<min>0</min>
