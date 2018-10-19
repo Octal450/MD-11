@@ -213,7 +213,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>0.0167</value>
+				<value>0.0166</value>
 			</product>
 		</function>
 		
@@ -226,10 +226,10 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<tableData>
 						-1.57  1.2983
-						-0.20  0.0281
+						-0.20  0.0271
 						 0.00  0.0000
 						 0.20  0.0281
-						 1.57  1.2983
+						 1.57  1.2973
 					</tableData>
 				</table>
 			</product>
@@ -241,7 +241,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
-				<value>0.0339</value>
+				<value>0.0335</value>
 			</product>
 		</function>
 		
@@ -256,8 +256,8 @@
 						0.00  0.000
 						0.20  0.000
 						0.79  0.002
-						1.10  0.023
-						1.80  0.015
+						1.10  0.016
+						1.80  0.012
 					</tableData>
 				</table>
 			</product>
@@ -548,7 +548,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-l/final-deg-aero</property></toradians>
-				<value>0.0245</value>
+				<value>0.0268</value>
 			</product>
 		</function>
 		
@@ -559,7 +559,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-in-l/final-deg-aero</property></toradians>
-				<value>0.0217</value>
+				<value>0.0247</value>
 			</product>
 		</function>
 		
@@ -570,7 +570,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-in-r/final-deg-aero</property></toradians>
-				<value>-0.0217</value>
+				<value>-0.0247</value>
 			</product>
 		</function>
 		
@@ -581,7 +581,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-r/final-deg-aero</property></toradians>
-				<value>-0.0245</value>
+				<value>-0.0268</value>
 			</product>
 		</function>
 		

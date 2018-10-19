@@ -92,9 +92,6 @@ setlistener("/it-autoflight/input/ap1", func {
 	var apmas = getprop("/it-autoflight/input/ap1");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap1", 0);
-		setprop("/controls/flight/aileron", 0);
-		setprop("/controls/flight/elevator", 0);
-		setprop("/controls/flight/rudder", 0);
 		if (getprop("/it-autoflight/sound/enableapoffsound") == 1) {
 			setprop("/it-autoflight/sound/apoffsound", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 0);	  
@@ -114,9 +111,6 @@ setlistener("/it-autoflight/input/ap2", func {
 	var apmas = getprop("/it-autoflight/input/ap2");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap2", 0);
-		setprop("/controls/flight/aileron", 0);
-		setprop("/controls/flight/elevator", 0);
-		setprop("/controls/flight/rudder", 0);
 		if (getprop("/it-autoflight/sound/enableapoffsound2") == 1) {
 			setprop("/it-autoflight/sound/apoffsound2", 1);	
 			setprop("/it-autoflight/sound/enableapoffsound2", 0);	  

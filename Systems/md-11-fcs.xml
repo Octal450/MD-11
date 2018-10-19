@@ -520,8 +520,9 @@
 		
 		<switch name="fcc/rudder-output">
 			<default value="fcc/yaw/rudder-nul"/>
-			<test logic="AND" value="fcc/yaw/output-sum">
+			<test logic="OR" value="fcc/yaw/output-sum">
 				fcc/yaw/rudder-nul eq 0
+				fcc/yaw/autoland-switch eq 1
 			</test>
 			<output>/controls/flight/rudder-fcc</output>
 		</switch>
@@ -569,7 +570,7 @@
 		<switch name="hydraulics/aileron-out-enable">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/fdm/jsbsim/fcs/slat-pos-deg ge 2
+				fcs/slat-pos-deg ge 2
 				position/wow eq 1
 			</test>
 		</switch>
@@ -833,8 +834,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.700
-					0.9  0.25  0.550
+					0.0  1.00  0.900
+					0.9  0.25  0.750
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -846,8 +847,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.700
-					0.9  0.25  0.550
+					0.0  1.00  0.900
+					0.9  0.25  0.750
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -859,8 +860,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.700
-					0.9  0.25  0.550
+					0.0  1.00  0.900
+					0.9  0.25  0.750
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -872,8 +873,8 @@
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 				<tableData>
 					     0     43000
-					0.0  1.00  0.700
-					0.9  0.25  0.550
+					0.0  1.00  0.900
+					0.9  0.25  0.750
 				</tableData>
 			</table>
 		</scheduled_gain>
