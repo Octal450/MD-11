@@ -231,6 +231,7 @@ var lateral = func {
 		setprop("/it-autoflight/output/appr-armed", 0);
 		var hdgpredic = math.round(getprop("/it-autoflight/internal/heading-predicted"));
 		setprop("/it-autoflight/input/hdg", hdgpredic);
+		setprop("/it-autoflight/custom/hdg-sel", hdgpredic);
 		setprop("/it-autoflight/output/lat", 0);
 		setprop("/it-autoflight/mode/lat", "HDG");
 		setprop("/it-autoflight/mode/arm", " ");
@@ -262,6 +263,7 @@ var lat_arm = func {
 			var hdgnow = math.round(getprop("/it-autoflight/internal/heading-deg"));
 		}
 		setprop("/it-autoflight/input/hdg", hdgnow);
+		setprop("/it-autoflight/custom/hdg-sel", hdgnow);
 		setprop("/it-autoflight/input/lat-arm", 0);
 		setprop("/it-autoflight/mode/arm", " ");
 	}

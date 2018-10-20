@@ -149,8 +149,8 @@
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
 						     0   1  
-						0.2  57  0
-						0.9  41  0
+						0.2  21  0
+						0.9  13  0
 					</tableData>
 				</table>
 			</function>
@@ -162,9 +162,9 @@
 					<independentVar lookup="row">velocities/mach</independentVar>
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
-						     0   1
-						0.2  85  0
-						0.9  65  0
+						     0  1
+						0.2  9  0
+						0.9  4  0
 					</tableData>
 				</table>
 			</function>
@@ -177,8 +177,8 @@
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
 						     0   1
-						0.2  7  0
-						0.9  4  0
+						0.2  11  0
+						0.9  6   0
 					</tableData>
 				</table>
 			</function>
