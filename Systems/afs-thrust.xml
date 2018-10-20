@@ -22,12 +22,12 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</equals>
-					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
 					</equals>
 					<equals>
 						<property>/it-autoflight/input/kts-mach</property>
@@ -60,12 +60,12 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</equals>
-					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
 					</equals>
 					<equals>
 						<property>/it-autoflight/input/kts-mach</property>
