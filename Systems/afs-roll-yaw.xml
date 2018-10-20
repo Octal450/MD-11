@@ -278,9 +278,9 @@
 	</pid-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: RUDDER NORMALIZER</name>
+		<name>IT-CONTROLLER: AILERON ROLLOUT</name>
 		<type>gain</type>
-		<gain>-1.0</gain>
+		<gain>-0.1</gain>
 		<enable>
 			<condition>
 				<or>
@@ -295,7 +295,8 @@
 				</or>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fcc/afs/yaw-cmd</input>
+		<input>/orientation/roll-deg</input>
+		<reference>0</reference>
 		<output>/it-autoflight/internal/aileron-rollout</output>
 	</filter>
 	

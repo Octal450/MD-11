@@ -469,6 +469,7 @@
 				position/wow eq 1
 				fcc/yaw/rudder-nul gt 0
 				fcc/yaw/rudder-nul lt 0
+				fcc/yaw/autoland-switch eq 1
 			</test>
 		</switch>
 		
@@ -503,6 +504,7 @@
 			<default value="fcc/yaw/tc-pid"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
+				fcc/yaw/autoland-switch eq 1
 				fcc/yaw/rudder-nul ne 0
 			</test>
 		</switch>
