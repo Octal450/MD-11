@@ -740,6 +740,7 @@
 	<filter>
 		<name>IT-CONTROLLER: PITCH CMD</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -794,7 +795,6 @@
 		</input>
 		<input>0.1</input>
 		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
