@@ -423,11 +423,13 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/flight/rudder</independentVar>
+					<independentVar lookup="column">fcc/afs/enabled</independentVar>
 					<tableData>
-						-1.00 -1
-						-0.04  0
-						 0.04  0
-						 1.00  1
+						       0  1
+						-1.00 -1  0
+						-0.04  0  0
+						 0.04  0  0
+						 1.00  1  0
 					</tableData>
 				</table>
 			</function>
@@ -520,9 +522,8 @@
 		
 		<switch name="fcc/rudder-output">
 			<default value="fcc/yaw/rudder-nul"/>
-			<test logic="OR" value="fcc/yaw/output-sum">
+			<test value="fcc/yaw/output-sum">
 				fcc/yaw/rudder-nul eq 0
-				fcc/yaw/autoland-switch eq 1
 			</test>
 			<output>/controls/flight/rudder-fcc</output>
 		</switch>

@@ -383,21 +383,7 @@
 				</condition>
 				<value>-0.05</value>
 			</Kp>
-			<Kp>
-				<condition>
-					<or>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</condition>
-				<value>-0.02</value>
-			</Kp>
+			<Kp>-0.02</Kp>
 			<Ki>0</Ki>
 		</config>
 		<min>-0.15</min>
