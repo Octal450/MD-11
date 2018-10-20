@@ -55,7 +55,7 @@
 			<Ki>-0.000001</Ki>
 			<min>
 				<property>/it-autoflight/internal/bank-limit</property>
-				<scale>-1</scale>
+				<scale>-1.0</scale>
 			</min>
 			<max>/it-autoflight/internal/bank-limit</max>
 		</config>
@@ -100,7 +100,7 @@
 			<Ki>-0.0001</Ki>
 			<min>
 				<property>/it-autoflight/internal/bank-limit</property>
-				<scale>-1</scale>
+				<scale>-1.0</scale>
 			</min>
 			<max>/it-autoflight/internal/bank-limit</max>
 		</config>
@@ -137,7 +137,7 @@
 		<output>/it-autoflight/internal/target-roll-deg</output>
 		<min>
 			<property>/it-autoflight/internal/bank-limit</property>
-			<scale>-1</scale>
+			<scale>-1.0</scale>
 		</min>
 		<max>/it-autoflight/internal/bank-limit</max>
 	</filter>
