@@ -364,12 +364,8 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<property>/it-autoflight/internal/nav-heading-error-deg</property>
-		</input>
-		<reference>
-			<value>0</value>
-		</reference>
+		<input>/it-autoflight/internal/nav-heading-error-deg</input>
+		<reference>0</reference>
 		<output>/it-autoflight/internal/rudder-cmd</output>
 		<config>
 			<Kp>
