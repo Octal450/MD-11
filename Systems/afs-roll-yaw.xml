@@ -407,6 +407,7 @@
 	<filter>
 		<name>IT-CONTROLLER: RUDDER CMD</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<input>
@@ -432,7 +433,6 @@
 		</input>
 		<input>0</input>
 		<output>/fdm/jsbsim/fcc/afs/yaw-cmd</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>0.6</max-rate-of-change>
 	</filter>
 
