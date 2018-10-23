@@ -427,22 +427,6 @@ var lightsLoop = maketimer(0.2, func {
 	} else {
 		nav_lights.setBoolValue(0);
 	}
-	
-	# landing lights
-	land = getprop("/controls/lighting/landing-light");
-	landr = getprop("/controls/lighting/landing-light[1]");
-	
-	if (land == 1) {
-		setprop("/sim/rendering/als-secondary-lights/use-landing-light", 1);
-	} else {
-		setprop("/sim/rendering/als-secondary-lights/use-landing-light", 0);
-	}
-	
-	if (landr == 1 or landr == 2) {
-		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
-	} else {
-		setprop("/sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
-	}
 });
 
 var slewProp = func(prop, delta) {
