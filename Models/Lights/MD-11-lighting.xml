@@ -10,7 +10,7 @@
 
     <path>empty.ac</path>
 
-	<!-- Green Naviagation Light (ALS, Default, Rembrandt) -->
+	<!-- Green Naviagation Light (ALS, Default) -->
 
     <model>
 		<path>ALS/greennav.xml</path>
@@ -32,18 +32,8 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>light-green.xml</path>
-		<name>GreenLightRemb</name>     
-		<offsets>
-			<x-m>12.8220</x-m>
-			<y-m>24.9828</y-m>
-			<z-m>6.0796</z-m>
-		</offsets>
-    </model>
-	
 
-<!-- Red Naviagation Light (ALS, Default, Rembrandt) -->
+	<!-- Red Naviagation Light (ALS, Default) -->
 
     <model>
 		<path>ALS/rednav.xml</path>
@@ -65,17 +55,7 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>light-red.xml</path>
-		<name>RedLightRemb</name>
-		<offsets>
-			<x-m>12.8220</x-m>
-			<y-m>-24.9828</y-m>
-			<z-m>6.0796</z-m>
-		</offsets>
-	</model>
-	
-	<!-- Strobe left-->
+	<!-- Strobe Left-->
 	
 	 <model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-strobe.xml</path>
@@ -97,18 +77,7 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Strobelight.1Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>-25.0777</y-m>
-			<z-m>6.0813</z-m>
-		</offsets>
-    </model>
-
-
-	<!-- Strobe right-->
+	<!-- Strobe Right-->
 	
 	<model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/right-strobe.xml</path>
@@ -127,17 +96,6 @@
 			<x-m>12.8220</x-m>
 			<y-m>24.9810</y-m>
 			<z-m>6.0796</z-m>
-		</offsets>
-    </model>
-	
-	
-    <model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Strobelight.2Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>25.0777</y-m>
-			<z-m>6.0813</z-m>
 		</offsets>
     </model>
 	
@@ -163,17 +121,6 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Rearnav.1Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>-25.0777</y-m>
-			<z-m>6.0813</z-m>
-		</offsets>
-    </model>
-
-
 	<!-- Rear Nav Right-->
 	
 	<model>
@@ -196,18 +143,8 @@
 		</offsets>
     </model>
 	
+	<!-- Rear Left Strobe -->
 	
-    <model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Rearnav.2Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>25.0777</y-m>
-			<z-m>6.0813</z-m>
-		</offsets>
-    </model>
-	
-	<!-- rear left strobe -->
 	 <model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-rear-strobe.xml</path>
 		<name>Strobelight.3ALS</name>
@@ -228,17 +165,8 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Strobelight.3Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>-25.0777</y-m>
-			<z-m>6.0813</z-m>
-		</offsets>
-    </model>
+	<!-- Rear Right Strobe -->
 	
-	<!-- rear right strobe -->
 	 <model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/left-rear-strobe.xml</path>
 		<name>Strobelight.4ALS</name>
@@ -259,15 +187,7 @@
 		</offsets>
     </model>
 	
-	<model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/light-white.xml</path>
-		<name>Strobelight.4Remb</name>
-		<offsets>
-			<x-m>15.4808</x-m>
-			<y-m>25.0777</y-m>
-			<z-m>6.0813</z-m>
-		</offsets>
-    </model>
+	<!-- Strobe select -->
 	
 	<animation>
 		<type>select</type>
@@ -275,16 +195,13 @@
 		<object-name>Strobelight.2</object-name>
 		<object-name>Strobelight.3</object-name>
 		<object-name>Strobelight.4</object-name>
-		<object-name>Strobelight.1Remb</object-name>
-		<object-name>Strobelight.2Remb</object-name>
-		<object-name>Strobelight.3Remb</object-name>
-		<object-name>Strobelight.4Remb</object-name>
 		<condition>
 			<property>sim/model/lights/strobe/state</property>
 		</condition>
     </animation>
 
-<!-- Beacon light -->
+	<!-- Beacon light -->
+	
 	<model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/ALS/beacon.xml</path>
 		<name>Beacon.LowerALS</name>
@@ -299,17 +216,6 @@
     <model>
 		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon.xml</path>
 		<name>Beacon.Lower</name>
-		<offsets>
-			<x-m>14.2979</x-m>
-			<y-m>0</y-m>
-			<z-m>3.3721</z-m>
-			<pitch-deg>180</pitch-deg>
-		</offsets>
-    </model>
-
-    <model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
-		<name>Beacon.LowerRemb</name>
 		<offsets>
 			<x-m>14.2979</x-m>
 			<y-m>0</y-m>
@@ -337,348 +243,20 @@
 			<z-m>9.2512</z-m>
 		</offsets>
     </model>
-
-    <model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/beacon_light.xml</path>
-		<name>Beacon.UpperRemb</name>
-		<offsets>
-			<x-m>-4.1455</x-m>
-			<y-m>0</y-m>
-			<z-m>9.2512</z-m>
-		</offsets>
-    </model>
+	
+	<!-- Beacon select -->
 	
     <animation>
 		<type>select</type>
 		<object-name>Beacon.Lower</object-name>
 		<object-name>Beacon.Upper</object-name>
-		<object-name>Beacon.LowerRemb</object-name>
-		<object-name>Beacon.UpperRemb</object-name>
 		<condition>
 			<property>sim/model/lights/beacon/state</property>
 		</condition>
     </animation>
-
-<!-- Landing lights -->
-
-    <model>
-	<name>landing.nose.1</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-		<x-m>-30.3489</x-m>
-		<y-m>-0.1179</y-m>
-		<z-m>0.0</z-m>
-	</offsets>
-    </model>
-
-    <model>
-	<name>landing.nose.1</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<x-m>-20.5912</x-m>
-		<y-m>-0.1901</y-m>
-		<z-m>3.2395</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<name>landing.nose.2</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-		<x-m>-30.3489</x-m>
-		<y-m>0.1179</y-m>
-		<z-m>0.0</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<name>landing.nose.2</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<x-m>-20.5912</x-m>
-		<y-m>0.1901</y-m>
-		<z-m>3.2395</z-m>
-	</offsets>
-    </model> 
-
-    <animation>
-	<type>select</type>
-	<object-name>landing.nose.1</object-name>
-	<object-name>landing.nose.2</object-name>
-	<condition>
-	  <and>
-	    <property>sim/multiplay/generic/int[5]</property>
-	    <equals>
-		<property>gear/gear[0]/position-norm</property>
-		<value>1</value>
-	    </equals>
-	  </and>
-	</condition>
-    </animation>
-
-    <model>
-	<name>landing_left</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-	    <x-m>-33.0504</x-m>
-	    <y-m>-2.3523</y-m>
-	    <z-m>0</z-m>
-	</offsets>
-    </model> 
-    <model>
-	<name>landing_left</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-	    <heading-deg>5</heading-deg>
-	    <pitch-deg>-15</pitch-deg>
-	    <x-m>-23.0504</x-m>
-	    <y-m>-2.3523</y-m>
-	    <z-m>5.0012</z-m>
-	</offsets>
-    </model>
-    <animation>
-	<type>select</type>
-	<object-name>landing_left</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[4]</property>
-	</condition>
-    </animation>
-
-    <model>
-	<name>landing_right</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-	    <x-m>-33.0504</x-m>
-	    <y-m>2.3523</y-m>
-	    <z-m>0</z-m>
-	</offsets>
-    </model> 
-    <model>
-	<name>landing_right</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-	    <heading-deg>-5</heading-deg>
-	    <pitch-deg>-15</pitch-deg>
-	    <x-m>-23.0504</x-m>
-	    <y-m>2.3523</y-m>
-	    <z-m>5.0012</z-m>
-	</offsets>
-    </model>
-    <animation>
-	<type>select</type>
-	<object-name>landing_right</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[4]</property>
-	</condition>
-    </animation>
-
-<!-- Wing Lights and Turn Off Lights -->
-
-    <model>
-	<name>winglight_left</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<heading-deg>110</heading-deg>
-		<x-m>-16.061</x-m>
-		<y-m>-6.1</y-m>
-		<z-m>12.0012</z-m>
-	</offsets>
-    </model>
-
-    <model>
-	<name>winglight_right</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<heading-deg>-110</heading-deg>
-		<x-m>-16.061</x-m>
-		<y-m>6.1</y-m>
-		<z-m>12.0012</z-m>
-	</offsets>
-    </model>
-
-    <animation>
-	<type>scale</type>
-	<object-name>winglight_left</object-name>
-	<object-name>winglight_right</object-name>
-	<x-offset>0.5</x-offset>
-	<y-offset>0.5</y-offset>
-	<z-offset>0.5</z-offset>
-    </animation>
-
-    <model>
-	<name>turnoff_right</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-		<heading-deg>-30</heading-deg>
-		<x-m>-7.6805</x-m>
-		<y-m>3.7108</y-m>
-		<z-m>0.0</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<name>turnoff_right</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<heading-deg>-70</heading-deg>
-		<x-m>-8.5061</x-m>
-		<y-m>2.93</y-m>
-		<z-m>5.1012</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<name>turnoff_left</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/transparentlight.xml</path>
-	<offsets>
-		<heading-deg>70</heading-deg>
-		<x-m>-8.5061</x-m>
-		<y-m>-2.93</y-m>
-		<z-m>5.1012</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<name>turnoff_left</name>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/taxi-nose.xml</path>
-	<offsets>
-		<heading-deg>30</heading-deg>
-		<x-m>-7.6805</x-m>
-		<y-m>-3.7108</y-m>
-		<z-m>0.0</z-m>
-	</offsets>
-    </model> 
-
-    <animation>
-	<type>select</type>
-	<object-name>turnoff_left</object-name>
-	<object-name>turnoff_right</object-name>
-	<object-name>winglight_left</object-name>
-	<object-name>winglight_right</object-name>
-	<condition>
-	    <property>sim/multiplay/generic/int[9]</property>
-	</condition>
-    </animation>
-
-<!-- Logo light -->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-logo.xml</path>
-	<offsets>
-		<x-m>26.268</x-m>
-		<y-m>-5.1541</y-m>
-		<z-m>9.7902</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/light-logo2.xml</path>
-	<offsets>
-		<x-m>26.268</x-m>
-		<y-m>5.1541</y-m>
-		<z-m>9.7902</z-m>
-	</offsets>
-    </model> 
-
-<!-- Dashboard -->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/dashboard-light.xml</path>
-	<offsets>
-		<x-m>-27.4411</x-m>
-		<y-m>0</y-m>
-		<z-m>7.1449</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/dashboard-light.xml</path>
-	<offsets>
-    <heading-deg>90</heading-deg>
-		<x-m>-27.4411</x-m>
-		<y-m>0.5393</y-m>
-		<z-m>7.1288</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/dashboard-light.xml</path>
-	<offsets>
-		<heading-deg>-90</heading-deg>
-		<x-m>-27.4411</x-m>
-		<y-m>-0.5393</y-m>
-		<z-m>7.1288</z-m>
-	</offsets>
-    </model>
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/pedestal-light.xml</path>
-	<offsets>
-		<x-m>-26.7652</x-m>
-		<y-m>-0.2236</y-m>
-		<z-m>7.8334</z-m>
-	</offsets>
-    </model> 
-
-<!-- MCP -->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/mcp-light.xml</path>
-	<offsets>
-		<x-m>-27.2623</x-m>
-		<y-m>0</y-m>
-		<z-m>7.2209</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/mcp-light.xml</path>
-	<offsets>
-		<x-m>-27.2623</x-m>
-		<y-m>0.075</y-m>
-		<z-m>7.2209</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/mcp-light.xml</path>
-	<offsets>
-		<x-m>-27.2623</x-m>
-		<y-m>0.15</y-m>
-		<z-m>7.2209</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/mcp-light.xml</path>
-	<offsets>
-		<x-m>-27.2623</x-m>
-		<y-m>-0.15</y-m>
-		<z-m>7.2209</z-m>
-	</offsets>
-    </model> 
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/mcp-light.xml</path>
-	<offsets>
-		<x-m>-27.2623</x-m>
-		<y-m>-0.075</y-m>
-		<z-m>7.2209</z-m>
-	</offsets>
-    </model> 
-
-<!--Overhead flood-->
-
-    <model>
-	<path>Aircraft/IDG-MD-11X/Models/Lights/oh-light.xml</path>
-	<offsets>
-		<pitch-deg>160</pitch-deg>
-		<x-m>-27.1163</x-m>
-		<y-m>0</y-m>
-		<z-m>7.0356</z-m>
-	</offsets>
-    </model> 
-
+	
+	<!-- Lights change -->
+	
 	<animation>
 		<type>select</type>
 		<object-name>GreenLight</object-name>
@@ -692,10 +270,7 @@
 		<object-name>Beacon.Lower</object-name>
 		<object-name>Beacon.Upper</object-name>
 		<condition>
-			<and>
-				<not><property>sim/rendering/shaders/skydome</property></not>
-				<not><property>/sim/rendering/rembrandt/enabled</property></not>
-			</and>
+			<not><property>sim/rendering/shaders/skydome</property></not>
 		</condition>
 	</animation>
 	
@@ -715,23 +290,5 @@
 			<property>sim/rendering/shaders/skydome</property>
 		</condition>
 	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>GreenLightRemb</object-name>
-		<object-name>RedLightRemb</object-name>
-		<object-name>Strobelight.1Remb</object-name>
-		<object-name>Strobelight.2Remb</object-name>
-		<object-name>Strobelight.3Remb</object-name>
-		<object-name>Strobelight.4Remb</object-name>
-		<object-name>Rearnav.1Remb</object-name>
-		<object-name>Rearnav.1Remb</object-name>
-		<object-name>Beacon.LowerRemb</object-name>
-		<object-name>Beacon.UpperRemb</object-name>
-		<condition>
-			<property>/sim/rendering/rembrandt/enabled</property>
-		</condition>
-	</animation>
-			
-</PropertyList>
 
+</PropertyList>
