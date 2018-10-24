@@ -194,6 +194,11 @@
 	<object-name>AileronL2</object-name>
 	<object-name>redlightsphere</object-name>
 	<object-name>RedLight</object-name>
+	<object-name>RedLightALS</object-name>
+	<object-name>Strobelight.1</object-name>
+	<object-name>Strobelight.1ALS</object-name>
+	<object-name>Rearnav.1</object-name>
+	<object-name>Rearnav.1ALS</object-name>
 	<object-name>fueldump.l</object-name>
 		<property>aircraft/wingflex</property>
 		<factor>-0.000005</factor>
@@ -221,7 +226,11 @@
 	<object-name>wing.1.part3</object-name>
 	<object-name>redlightsphere</object-name>
 	<object-name>RedLight</object-name>
+	<object-name>RedLightALS</object-name>
 	<object-name>Strobelight.1</object-name>
+	<object-name>Strobelight.1ALS</object-name>
+	<object-name>Rearnav.1</object-name>
+	<object-name>Rearnav.1ALS</object-name>
 	<object-name>fueldump.l</object-name>
 		<property>aircraft/wingflex</property>
 		<factor>-0.000005</factor>
@@ -265,7 +274,11 @@
 	<object-name>AileronR2</object-name>
 	<object-name>greenlightsphere</object-name>
 	<object-name>GreenLight</object-name>
+	<object-name>GreenLightALS</object-name>
 	<object-name>Strobelight.2</object-name>
+	<object-name>Strobelight.2ALS</object-name>
+	<object-name>Rearnav.2</object-name>
+	<object-name>Rearnav.2ALS</object-name>
 	<object-name>fueldump.r</object-name>
 		<property>aircraft/wingflex</property>
 		<factor>0.000005</factor>
@@ -294,7 +307,11 @@
 	<object-name>wing.2.part3</object-name>
 	<object-name>greenlightsphere</object-name>
 	<object-name>GreenLight</object-name>
+	<object-name>GreenLightALS</object-name>
 	<object-name>Strobelight.2</object-name>
+	<object-name>Strobelight.2ALS</object-name>
+	<object-name>Rearnav.2</object-name>
+	<object-name>Rearnav.2ALS</object-name>
 	<object-name>fueldump.r</object-name>
 		<property>aircraft/wingflex</property>
 		<factor>0.000005</factor>
@@ -308,7 +325,7 @@
 			<y-m>17.6849</y-m>
 			<z-m>5.7059</z-m>
 		</center>
-	</animation>	
+	</animation>
 	
 	
 	
