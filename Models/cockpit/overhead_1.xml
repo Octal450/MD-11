@@ -640,9 +640,9 @@
 		<object-name>SystemHyd.select</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<condition>
 					<or>
 						<greater-than-equals>
@@ -661,7 +661,7 @@
 				</condition>
 				<command>nasal</command>
 				<script>systems.HYD.systemMode();</script>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/oh-btn", 1);</script>
@@ -1639,9 +1639,9 @@
 		<object-name>SystemElec.select</object-name>
 		<object-name>SystemElec.manual</object-name>
 		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<condition>
 					<or>
 						<greater-than-equals>
@@ -1664,7 +1664,7 @@
 				</condition>
 				<command>nasal</command>
 				<script>systems.ELEC.systemMode();</script>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/oh-btn", 1);</script>
@@ -2799,32 +2799,32 @@
 		<object-name>EmerPwrKnb</object-name>
 		<object-name>EmerPwrKnb.light</object-name>
 		<action>
-		    <button>0</button>
-		    <button>3</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<command>property-cycle</command>
 				<property>controls/electrical/switches/emer-pw-sw</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/knb1", 1);</script>
 			</binding>
 		</action>
 		<action>
-		    <button>1</button>
-		    <button>4</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<command>property-cycle</command>
 				<property>controls/electrical/switches/emer-pw-sw</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/knb1", 1);</script>
@@ -3211,9 +3211,9 @@
 		<object-name>SystemPneu.select</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<condition>
 					<or>
 						<greater-than-equals>
@@ -3232,7 +3232,7 @@
 				</condition>
 				<command>nasal</command>
 				<script>systems.PNEU.systemMode();</script>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/oh-btn", 1);</script>
@@ -4323,9 +4323,9 @@
 		<object-name>SystemFuel.select</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<action>
-		    <button>0</button>
-		    <repeatable>false</repeatable>
-		    <binding>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
 				<condition>
 					<or>
 						<greater-than-equals>
@@ -4344,7 +4344,7 @@
 				</condition>
 				<command>nasal</command>
 				<script>systems.FUEL.systemMode();</script>
-		    </binding>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>setprop("/sim/sounde/oh-btn", 1);</script>
@@ -6394,120 +6394,120 @@
 		<factor>-170</factor>
 		<offset-deg>85</offset-deg>
 		<center>
-		    <x-m>-21.7988</x-m>
-		    <y-m>  0.1823</y-m>
-		    <z-m>-17.8751</z-m>
+			<x-m>-21.7988</x-m>
+			<y-m>  0.1823</y-m>
+			<z-m>-17.8751</z-m>
 		</center>
 		<axis>
-		    <x>1</x>
-		    <y>0</y>
-		    <z>0</z>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
 		</axis>
 	</animation-->
 	
 	<!-- Other -->
-    
-    <animation>
-        <type>rotate</type>
-        <object-name>nosmoking.lever</object-name>
-        <property>controls/cabin/NoSmoking-knob</property>
-        <factor>30</factor>
-        <center>
-            <x-m>-21.7985</x-m>
-            <y-m>0</y-m>
-            <z-m>-18.0439</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-    
-    <animation>
-        <type>rotate</type>
-        <object-name>seatbelts.lever</object-name>
-        <property>controls/cabin/SeatBelt-knob</property>
-        <factor>30</factor>
-        <center>
-            <x-m>-21.7985</x-m>
-            <y-m>0</y-m>
-            <z-m>-18.0439</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-    
-    <animation>
-        <type>pick</type>
-        <object-name>nosmoking.lever</object-name>
-        <action>
-            <button>0</button>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/cabin/NoSmoking-knob</property>
-                <step>1</step>
-                <min>-1</min>
-                <max>1</max>
-                <wrap>0</wrap>
-            </binding>
-        </action>
-        <action>
-            <button>1</button>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/cabin/NoSmoking-knob</property>
-                <step>-1</step>
-                <min>-1</min>
-                <max>1</max>
-                <wrap>0</wrap>
-            </binding>
-        </action>
-    </animation>
-    
-    <animation>
-        <type>pick</type>
-        <object-name>seatbelts.lever</object-name>
-        <action>
-            <button>0</button>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/cabin/SeatBelt-knob</property>
-                <step>1</step>
-                <min>-1</min>
-                <max>1</max>
-                <wrap>0</wrap>
-            </binding>
-        </action>
-        <action>
-            <button>1</button>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>controls/cabin/SeatBelt-knob</property>
-                <step>-1</step>
-                <min>-1</min>
-                <max>1</max>
-                <wrap>0</wrap>
-            </binding>
-        </action>
-    </animation>
-    
-    <animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>nosmoking.lever</object-name>
+		<property>controls/cabin/NoSmoking-knob</property>
+		<factor>30</factor>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0439</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>seatbelts.lever</object-name>
+		<property>controls/cabin/SeatBelt-knob</property>
+		<factor>30</factor>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0439</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>nosmoking.lever</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/cabin/NoSmoking-knob</property>
+				<step>1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/cabin/NoSmoking-knob</property>
+				<step>-1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>seatbelts.lever</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/cabin/SeatBelt-knob</property>
+				<step>1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/cabin/SeatBelt-knob</property>
+				<step>-1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
 		<name>Dashboard light knob</name>
 		<type>pick</type>
 		<object-name>dashboard.light</object-name>
-    		<object-name>dashboard.light.indicator</object-name>
+			<object-name>dashboard.light.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -6536,8 +6536,8 @@
 		<name>Dashboard light rotate</name>
 		<type>rotate</type>
 		<object-name>dashboard.light</object-name>
-    <object-name>dashboard.light.indicator</object-name>
-    <property>controls/lighting/dashboard-panel-norm</property>
+	<object-name>dashboard.light.indicator</object-name>
+	<property>controls/lighting/dashboard-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1.0</ind><dep>-280</dep></entry>
@@ -6553,343 +6553,207 @@
 			<z-m>-18.0824</z-m>
 		</center>
 	</animation>
-
-			<effect>
+	
+	<effect>
 		<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/engine</inherits-from>
-    <object-name>nosmoking.lever</object-name>
-        <object-name>L-Lnd.toggle</object-name>
-        <object-name>C-Lnd.toggle</object-name>
-        <object-name>R-Lnd.toggle</object-name>
-    <object-name>thunderstorm</object-name>
-    <object-name>seatbelts.lever</object-name>
-        <object-name>emer_light_switch</object-name>
+		<object-name>nosmoking.lever</object-name>
+		<object-name>L-Lnd.toggle</object-name>
+		<object-name>C-Lnd.toggle</object-name>
+		<object-name>R-Lnd.toggle</object-name>
+		<object-name>thunderstorm</object-name>
+		<object-name>seatbelts.lever</object-name>
+		<object-name>emer_light_switch</object-name>
 	</effect>
-    
-        <animation>
-        <type>pick</type>
-        <object-name>BCN.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/beacon</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
-    
- <animation>
-   <type>textranslate</type>
-   <object-name>BCN.btn</object-name>
-        <property>controls/lighting/beacon</property>
-        <condition>
-	    <equals>
-		<property>systems/electrical/outputs/avionics</property>
-		<value>1</value>
-	    </equals>
-	</condition>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0625</dep>
-            </entry>
-            <entry>
-                <ind>1</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>NAV.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/nav-lights</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
-    
- <animation>
-   <type>textranslate</type>
-   <object-name>NAV.btn</object-name>
-   <property>controls/lighting/nav-lights</property>
-        <condition>
-        <equals>
-        <property>systems/electrical/outputs/avionics</property>
-        <value>1</value>
-        </equals>
-        </condition>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0625</dep>
-            </entry>
-            <entry>
-                <ind>1</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>LOGO.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/logo-lights</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
-    
-     <animation>
-   <type>textranslate</type>
-   <object-name>LOGO.btn</object-name>
-      <property>controls/lighting/logo-lights</property>
-        <condition>
-        <equals>
-        <property>systems/electrical/outputs/avionics</property>
-        <value>1</value>
-        </equals>
-        </condition>
-        <interpolation>
-            <entry>
-                <ind>1</ind>
-                <dep>0.125</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0.1875</dep>
-            </entry>
-        </interpolation>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- 
-    <animation>
-	<type>pick</type>
-        <object-name>turnoff.left</object-name>
-        <object-name>turnoff.right</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/wing-lights</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
-    <animation>
-	<type>textranslate</type>
-        <object-name>turnoff.left</object-name>
-        <object-name>turnoff.right</object-name>
-        <property>controls/lighting/wing-lights</property>
-        <condition>
-	    <equals>
-		<property>systems/electrical/outputs/avionics</property>
-		<value>1</value>
-	    </equals>
-        </condition>
-        <interpolation>
-            <entry>
-                <ind>1</ind>
-                <dep>0.0625</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-	<axis>
-	    <x>0</x>
-	    <y>1</y>
-	    <z>0</z>
-	</axis>
-    </animation>
-
-    
-        <animation>
-        <type>pick</type>
-        <object-name>STRB.toggle</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/strobe</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
-    </animation>
-    
-         <animation>
-   <type>textranslate</type>
-      <object-name>STRB.toggle</object-name>
-        <property>controls/lighting/strobe</property>
-        <condition>
-        <equals>
-        <property>systems/electrical/outputs/avionics</property>
-        <value>1</value>
-        </equals>
-        </condition>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.125</dep>
-            </entry>
-            <entry>
-                <ind>1</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-	
-    <animation>
-        <type>pick</type>
-        <object-name>L-Lnd.toggle</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/landing-light</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(1);</script>
-            </binding>
-        </action>
-    </animation>
 	
 	<animation>
-        <type>rotate</type>
-        <object-name>L-Lnd.toggle</object-name>
-        <property>controls/lighting/landing-light</property>
-        <factor>30</factor>
-        <center>
-            <x-m>-21.7985</x-m>
-            <y-m>0</y-m>
-            <z-m>-18.0824</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-	
-    <animation>
-        <type>pick</type>
-        <object-name>R-Lnd.toggle</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/landing-light</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(1);</script>
-            </binding>
-        </action>
-    </animation>
+		<type>pick</type>
+		<object-name>BCN.btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/beacon</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
 	
 	<animation>
-        <type>rotate</type>
-        <object-name>R-Lnd.toggle</object-name>
-        <property>controls/lighting/landing-light</property>
-        <factor>30</factor>
-        <center>
-            <x-m>-21.7985</x-m>
-            <y-m>0</y-m>
-            <z-m>-18.0824</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-	
-    <animation>
-        <type>pick</type>
-        <object-name>C-Lnd.toggle</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>controls/lighting/landing-light[1]</property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(1);</script>
-            </binding>
-        </action>
-    </animation>
+		<type>pick</type>
+		<object-name>NAV.btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/nav-lights</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
 	
 	<animation>
-        <type>rotate</type>
-        <object-name>C-Lnd.toggle</object-name>
-        <property>controls/lighting/landing-light[1]</property>
-        <factor>30</factor>
-        <center>
-            <x-m>-21.7985</x-m>
-            <y-m>0</y-m>
-            <z-m>-18.0824</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-    
-    <animation>
+		<type>pick</type>
+		<object-name>LOGO.btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/logo-lights</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>turnoff.left</object-name>
+		<object-name>turnoff.right</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/wing-lights</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>STRB.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/strobe</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L-Lnd.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/landing-light</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>L-Lnd.toggle</object-name>
+		<property>controls/lighting/landing-light</property>
+		<factor>30</factor>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R-Lnd.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/landing-light</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>R-Lnd.toggle</object-name>
+		<property>controls/lighting/landing-light</property>
+		<factor>30</factor>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>C-Lnd.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/landing-light[1]</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>C-Lnd.toggle</object-name>
+		<property>controls/lighting/landing-light[1]</property>
+		<factor>30</factor>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 	<type>knob</type>
 	<object-name>wiper.knob1</object-name>
 	<property>controls/electric/wiperl/switch</property>
@@ -6913,9 +6777,9 @@
 	<axis>
 		<x>1</x>
 	</axis>
-    </animation>
+	</animation>
 
-    <animation>
+	<animation>
 	<type>knob</type>
 	<object-name>wiper.knob2</object-name>
 	<property>controls/electric/wiperr/switch</property>
@@ -6939,7 +6803,7 @@
 	<axis>
 		<x>1</x>
 	</axis>
-    </animation>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
@@ -6962,16 +6826,16 @@
 		</action>
 	</animation>
 	
-    <animation>
-        <type>translate</type>
-        <object-name>AnnunTest</object-name>
-        <property>controls/switches/annun-test</property>
-        <factor>-0.0025</factor>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AnnunTest</object-name>
+		<property>controls/switches/annun-test</property>
+		<factor>-0.0025</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 	
 </PropertyList>
