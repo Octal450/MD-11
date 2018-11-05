@@ -6,28 +6,7 @@
 ##############################################
 -->
 
-<!--
-**********************************************************************
-generic-instrumentation.xml
-
-Generic instrumentation configuration. This file selects the
-instrumentation modules that should be available.
-
-You can have several instances of the same instrument type.
-The value inside the name tag becomes the node in the property tree.
-If two instruments have the same name you must use the number tag
-to separate them. They become name[number] in the property tree.
-Some instruments have additional configuration tags like static-port
-and pitot-port. The static- and pitot-ports (and any other system that
-an instrument depend on) have to be configured in the systems
-configuration file: generic-systems.xml
-
-The values in this file are the default values. If any configuration
-tags are omitted in an aircraft specific version of this configuration
-file, these values will be used (they are hardcoded).
-
-**********************************************************************
--->
+<!-- IDG Custom Instrumentation -->
 
 <PropertyList>
 	
@@ -194,8 +173,8 @@ file, these values will be used (they are hardcoded).
 	</tacan>
 	
 	<mk-viii>
-	 <name>mk-viii</name>
-	 <number>0</number>
+		<name>mk-viii</name>
+		<number>0</number>
 	</mk-viii>
 
 </PropertyList>
