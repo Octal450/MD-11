@@ -51,7 +51,15 @@
 		<reference>0</reference>
 		<output>/it-autoflight/internal/target-roll-deg</output>
 		<config>
-			<Kp>-1.8</Kp>
+			<Kp>
+				<expression>
+					<table>
+						<property>/fdm/jsbsim/velocities/vc-kts</property>
+						<entry><ind>140</ind><dep>-1.8</dep></entry>
+						<entry><ind>360</ind><dep>-2.8</dep></entry>
+					</table>
+				</expression>
+			</Kp>
 			<Ki>-0.000001</Ki>
 			<min>
 				<property>/it-autoflight/internal/bank-limit</property>
@@ -263,11 +271,18 @@
 		<config>
 			<Kp>
 				<expression>
-					<table>
-						<property>/velocities/mach</property>
-						<entry><ind>0.2</ind><dep>0.10</dep></entry>
-						<entry><ind>0.9</ind><dep>0.06</dep></entry>
-					</table>
+					<product>
+						<table>
+							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<entry><ind>140</ind><dep>0.16</dep></entry>
+							<entry><ind>360</ind><dep>0.05</dep></entry>
+						</table>
+						<table> <!-- Reduce deflection if outer ailerons are not locked -->
+							<property>/fdm/jsbsim/hydraulics/aileron-out-enable</property>
+							<entry><ind>0</ind><dep>1.0</dep></entry>
+							<entry><ind>1</ind><dep>0.6</dep></entry>
+						</table>
+					</product>
 				</expression>
 			</Kp>
 			<Ti>1.0</Ti>
