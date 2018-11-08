@@ -24,6 +24,7 @@ var roll = 0;
 var alpha = 0;
 var altTens = 0;
 var HDG = "000";
+var HDGraw = 0;
 var HDGpresel = 0;
 var HDGsel = 0;
 var LOC = 0;
@@ -497,7 +498,14 @@ var canvas_PFD_base = {
 		me["VSI_needle_dn"].setTranslation(0, getprop("/instrumentation/pfd/vs-needle-dn"));
 		
 		# Heading
-		HDG = sprintf("%03d", getprop("/instrumentation/pfd/heading-scale"));
+		HDGraw = getprop("/instrumentation/pfd/heading-scale") + 0.5;
+		if (HDGraw > 359) {
+			HDGraw = HDGraw - 360;
+		}
+		if (HDGraw < 0) {
+			HDGraw = HDGraw + 360;
+		}
+		HDG = sprintf("%03d", HDGraw);
 		if (HDG == "360") {
 			HDG == "000";
 		}
