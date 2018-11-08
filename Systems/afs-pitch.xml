@@ -169,9 +169,7 @@
 			<property>/it-autoflight/internal/flch-mach</property>
 			<scale>1000.0</scale>
 		</reference>
-		<output>
-			<property>/it-autoflight/internal/target-fpm-b</property>
-		</output>
+		<output>/it-autoflight/internal/target-fpm-b</output>
 		<config>
 			<Kp>
 				<condition>
