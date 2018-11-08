@@ -9,6 +9,7 @@
 <system name="MD-11: FCS">
 	
 	<property value="0">fcc/rcws/pid</property>
+	<property value="0">fcc/rcws/aileron-out-enable</property>
 	<property value="0">fcc/lsas/pid</property>
 	<property value="0">fcc/yaw/tc-pid</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
@@ -103,12 +104,12 @@
 		<fcs_function name="fcc/rcws/p-gain">
 			<function>
 				<table>
-					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
 					<tableData>
 						     0   1  
-						0.2 -10  0
-						0.9  -5  0
+						140 -10  0
+						360  -4  0
 					</tableData>
 				</table>
 			</function>
@@ -117,12 +118,12 @@
 		<fcs_function name="fcc/rcws/i-gain">
 			<function>
 				<table>
-					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
 					<tableData>
 						     0  1
-						0.2 -4  0
-						0.9 -2  0
+						140 -4  0
+						360 -1  0
 					</tableData>
 				</table>
 			</function>
@@ -131,12 +132,12 @@
 		<fcs_function name="fcc/rcws/d-gain">
 			<function>
 				<table>
-					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
 					<tableData>
 						     0    1
-						0.2 -1.0  0.0
-						0.9 -0.5  0.0
+						140 -1.0  0.0
+						360 -0.7  0.0
 					</tableData>
 				</table>
 			</function>
@@ -251,8 +252,8 @@
 				fcc/rcws/gain-switch gt 0
 			</test>
 			<test logic="OR" value="1">
-				fcc/rcws/pid le -0.499
-				fcc/rcws/pid ge 0.499
+				fcc/rcws/pid le -0.299
+				fcc/rcws/pid ge 0.299
 			</test>
 		</switch>
 		
@@ -263,16 +264,26 @@
 			<kd>fcc/rcws/d-gain</kd>
 			<trigger>fcc/rcws/trigger</trigger>
 			<clipto>
-				<min>-0.5</min>
-				<max>0.5</max>
+				<min>-0.3</min>
+				<max>0.3</max>
 			</clipto>
 			<output>fcc/rcws/pid</output>
 		</pid>
 		
+		<pure_gain name="fcc/rcws/pid-scaled">
+			<input>fcc/rcws/pid</input>
+			<gain>0.6</gain>
+		</pure_gain>
+		
 		<switch name="fcc/rcws/output">
 			<default value="/controls/flight/aileron"/>
-			<test value="fcc/rcws/pid">
+			<test logic="AND" value="fcc/rcws/pid">
 				fcc/rcws/gain-switch eq 0
+				fcc/rcws/aileron-out-enable eq 0
+			</test>
+			<test logic="AND" value="fcc/rcws/pid-scaled"> <!-- Reduce deflection if outer ailerons are not locked -->
+				fcc/rcws/gain-switch eq 0
+				fcc/rcws/aileron-out-enable eq 1
 			</test>
 		</switch>
 		
@@ -561,6 +572,7 @@
 				fcs/slat-pos-deg ge 2
 				position/wow eq 1
 			</test>
+			<output>fcc/rcws/aileron-out-enable</output>
 		</switch>
 		
 	</channel>
