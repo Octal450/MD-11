@@ -148,7 +148,7 @@
 				</equals>
 			</condition>
 			<property>/it-autoflight/internal/lookahead-15-sec-mach</property>
-			<scale>1000.0</scale>
+			<scale>750.0</scale>
 		</input>
 		<reference>
 			<condition>
@@ -167,7 +167,7 @@
 				</equals>
 			</condition>
 			<property>/it-autoflight/internal/flch-mach</property>
-			<scale>1000.0</scale>
+			<scale>750.0</scale>
 		</reference>
 		<output>/it-autoflight/internal/target-fpm-b</output>
 		<config>
