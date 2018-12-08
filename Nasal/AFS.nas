@@ -90,6 +90,14 @@ var ap_init = func {
 # AP 1 Master System
 setlistener("/it-autoflight/input/ap1", func {
 	var apmas = getprop("/it-autoflight/input/ap1");
+	var apout = getprop("/it-autoflight/output/ap1");
+	if (apmas != apout) {
+		AP1Master();
+	}
+});
+
+var AP1Master = func {
+	var apmas = getprop("/it-autoflight/input/ap1");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap1", 0);
 		if (getprop("/it-autoflight/sound/enableapoffsound") == 1) {
@@ -104,10 +112,24 @@ setlistener("/it-autoflight/input/ap1", func {
 			setprop("/it-autoflight/sound/apoffsound", 0);
 		}
 	}
-});
+	
+	var apout = getprop("/it-autoflight/output/ap1");
+	if (apmas != apout) {
+		setprop("/it-autoflight/input/ap1", apout);
+	}
+}
 
 # AP 2 Master System
 setlistener("/it-autoflight/input/ap2", func {
+	var apmas = getprop("/it-autoflight/input/ap2");
+	var apout = getprop("/it-autoflight/output/ap2");
+	
+	if (apmas != apout) {
+		AP2Master();
+	}
+});
+
+var AP2Master = func {
 	var apmas = getprop("/it-autoflight/input/ap2");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap2", 0);
@@ -123,38 +145,85 @@ setlistener("/it-autoflight/input/ap2", func {
 			setprop("/it-autoflight/sound/apoffsound2", 0);
 		}
 	}
-});
+	
+	var apout = getprop("/it-autoflight/output/ap2");
+	if (apmas != apout) {
+		setprop("/it-autoflight/input/ap2", apout);
+	}
+}
 
-# AT Master System
+# ATHR Master System
 setlistener("/it-autoflight/input/athr", func {
-	var atmas = getprop("/it-autoflight/input/athr");
-	if (atmas == 0) {
-		setprop("/it-autoflight/output/athr", 0);
-	} else if (atmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3)) {
-		thrustmode();
-		setprop("/it-autoflight/output/athr", 1);
+	var athrmas = getprop("/it-autoflight/input/athr");
+	var athrout = getprop("/it-autoflight/output/athr");
+	
+	if (athrmas != athrout) {
+		ATHRMaster();
 	}
 });
 
+var ATHRMaster = func {
+	var athrmas = getprop("/it-autoflight/input/athr");
+	if (athrmas == 0) {
+		setprop("/it-autoflight/output/athr", 0);
+	} else if (athrmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3)) {
+		thrustmode();
+		setprop("/it-autoflight/output/athr", 1);
+	}
+	
+	var athrout = getprop("/it-autoflight/output/athr");
+	if (athrmas != athrout) {
+		setprop("/it-autoflight/input/athr", athrout);
+	}
+}
+
 # Flight Director 1 Master System
 setlistener("/it-autoflight/input/fd1", func {
+	var fdmas = getprop("/it-autoflight/input/fd1");
+	var fdout = getprop("/it-autoflight/output/fd1");
+	
+	if (fdmas != fdout) {
+		FD1Master();
+	}
+});
+
+var FD1Master = func {
 	var fdmas = getprop("/it-autoflight/input/fd1");
 	if (fdmas == 0) {
 		setprop("/it-autoflight/output/fd1", 0);
 	} else if (fdmas == 1) {
 		setprop("/it-autoflight/output/fd1", 1);
 	}
-});
+	
+	var fdout = getprop("/it-autoflight/output/fd1");
+	if (fdmas != fdout) {
+		setprop("/it-autoflight/input/fd1", fdout);
+	}
+}
 
 # Flight Director 2 Master System
 setlistener("/it-autoflight/input/fd2", func {
+	var fdmas = getprop("/it-autoflight/input/fd2");
+	var fdout = getprop("/it-autoflight/output/fd2");
+	
+	if (fdmas != fdout) {
+		FD2Master();
+	}
+});
+
+var FD2Master = func {
 	var fdmas = getprop("/it-autoflight/input/fd2");
 	if (fdmas == 0) {
 		setprop("/it-autoflight/output/fd2", 0);
 	} else if (fdmas == 1) {
 		setprop("/it-autoflight/output/fd2", 1);
 	}
-});
+	
+	var fdout = getprop("/it-autoflight/output/fd2");
+	if (fdmas != fdout) {
+		setprop("/it-autoflight/input/fd2", fdout);
+	}
+}
 
 # Master Lateral
 setlistener("/it-autoflight/input/lat", func {
