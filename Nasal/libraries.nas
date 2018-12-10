@@ -124,7 +124,6 @@ var systemsInit = func {
 	systemsLoop.start();
 	systems.autobrake_init();
 	libraries.variousReset();
-	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/IDG-MD-11X/Systems/autopilot-dlg.xml");
 }
 
 setlistener("sim/signals/fdm-initialized", func {
