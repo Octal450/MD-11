@@ -6,7 +6,7 @@
 ##############################################
 -->
 
-<!-- MD-11 Aircraft Config Dialog -->
+<!-- A3XX Aircraft Config Dialog -->
 
 <PropertyList>
 
@@ -16,7 +16,7 @@
 		<red>0.5</red>
 		<green>0</green>
 		<blue>0</blue>
-		<alpha>0.9</alpha>
+		<alpha>0.95</alpha>
 	</color>
 
 	<group>
@@ -32,7 +32,7 @@
 			<red>1.0</red>
 			<green>1.0</green>
 			<blue>1.0</blue>
-			<alpha>0.9</alpha>
+			<alpha>0.95</alpha>
 		</color>
 	</hrule>
 	
@@ -40,19 +40,60 @@
 		<layout>vbox</layout>
 		
 		<text>
-			<halign>center</halign>
+			<halign>left</halign>
 			<label>Attention: Your IDG-MD-11X is out of date! This means you are missing out on bugfixes, and new features!</label>
 		</text>
+		
+		<group>
+			<layout>table</layout>
+			<halign>left</halign>
+			
+			<text>
+				<row>0</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>Latest available revision:</label>
+			</text>
+			
+			<text>
+				<row>0</row>
+				<col>1</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>99999</label>
+				<property>/systems/acconfig/new-revision</property>
+				<live>1</live>
+			</text>
+			
+			<text>
+				<row>1</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>Current installed revision:</label>
+			</text>
+			
+			<text>
+				<row>1</row>
+				<col>1</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>99999</label>
+				<property>/systems/acconfig/revision</property>
+				<live>1</live>
+			</text>
+			
+		</group>
+		
 		<text>
-			<halign>center</halign>
+			<halign>left</halign>
 			<label>You can continue for now, but it is highly recommended to download the latest version by the button below.</label>
 		</text>
 		<text>
-			<halign>center</halign>
+			<halign>left</halign>
 			<label>You will need to restart FlightGear, and install the latest .zip file.</label>
 		</text>
 		<text>
-			<halign>center</halign>
+			<halign>left</halign>
 			<label>GIT users: Please press Remind Me Later, and run a "git pull" command. (or pull using GIT GUI)</label>
 		</text>
 	</group>
@@ -62,7 +103,7 @@
 			<red>1.0</red>
 			<green>1.0</green>
 			<blue>1.0</blue>
-			<alpha>0.9</alpha>
+			<alpha>0.95</alpha>
 		</color>
 	</hrule>
 
@@ -74,7 +115,7 @@
 				<red>0</red>
 				<green>0.5</green>
 				<blue>0</blue>
-				<alpha>0.9</alpha>
+				<alpha>0.95</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>Download Update</legend>
@@ -95,7 +136,7 @@
 				<red>0.6</red>
 				<green>0</green>
 				<blue>0</blue>
-				<alpha>0.9</alpha>
+				<alpha>0.95</alpha>
 			</color>
 			<halign>center</halign>
 			<legend>Remind Me Later</legend>

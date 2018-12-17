@@ -1,117 +1,157 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
-##############################################
--->
+<PropertyList>
+	
+	<particlesystem>
+		<name>contrail-eng3</name>
+		<texture>smoke.png</texture>
+		<offsets>
+			<x-m>30</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<pitch-deg>90</pitch-deg>
+		</offsets>
+		<emissive type="bool">false</emissive>
+		<lighting type="bool">false</lighting>
+		<condition>
+			<and>
+				<greater-than>
+					<property>engines/engine[2]/n2-actual</property>
+					<value>50</value>
+				</greater-than>
+				<greater-than>
+					<property>/position/altitude-ft</property>
+					<value>19000</value>
+				</greater-than>
+				<less-than>
+					<property>environment/temperature-degc</property>
+					<value>-30</value>
+				</less-than>
+				<equals>
+					<property>engines/engine[2]/state</property>
+					<value>3</value>
+				</equals>
+			</and>
+		</condition>
+		
+		<attach>world</attach>
+		
+		<placer>
+			<type>point</type> 
+		</placer>
+		
+		<shooter>
+			<theta-min-deg>-1.5</theta-min-deg>
+			<theta-max-deg>1.5</theta-max-deg>
+			<phi-min-deg>-1.5</phi-min-deg>
+			<phi-max-deg>1.5</phi-max-deg>
+			<speed-mps>
+				<value>0</value>
+				<spread>0</spread>
+			</speed-mps>
+			<rotation-speed>
+				<x-min-deg-sec>0</x-min-deg-sec>
+				<y-min-deg-sec>0</y-min-deg-sec>
+				<z-min-deg-sec>0</z-min-deg-sec>
+				<x-max-deg-sec>0</x-max-deg-sec>
+				<y-max-deg-sec>0</y-max-deg-sec>
+				<z-max-deg-sec>0</z-max-deg-sec>
+			</rotation-speed>
+		</shooter>
+		
+		<counter>
+			<particles-per-sec>
+			<value>50</value>
+			<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<align>billboard</align>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<expression>
+							<product>
+								<value>0.7</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</red>
+					<green>
+						<expression>
+							<product>
+								<value>0.7</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</green>
+					<blue>
+						<expression>
+							<product>
+								<value>0.7</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</blue>
+					<alpha>
+						<value>0.3</value>
+					</alpha>
+				</color>
+				<size>
+					<value>2</value>
+				</size>
+			</start>
 
-    <PropertyList>
-     <particlesystem>
-       <name>smoke</name>
-       <texture>smoke.png</texture>
+			<end>
+				<color>
+					<red>
+						<expression>
+							<product>
+								<value>1.0</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</red>
+					<green>
+						<expression>
+							<product>
+								<value>1.0</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</green>
+					<blue>
+						<expression>
+							<product>
+								<value>1.0</value>
+								<property>rendering/scene/diffuse/red</property>
+							</product>
+						</expression>
+					</blue>
+					<alpha>
+						<value>0.00000001</value>
+					</alpha>
+				</color>
+				<size>
+					<value>6</value>
+				</size>
+			</end>
 
-       <offsets>
-         <x-m>15</x-m>
-         <y-m>0</y-m>
-         <z-m>0</z-m>
-       </offsets>
-       
-       <condition>
-         <and>
-           <greater-than>
-             <property>engines/engine[2]/n2</property>
-             <value>40</value>
-           </greater-than>
-           <greater-than>
-             <property>/position/altitude-ft</property>
-             <value>19000</value>
-           </greater-than>
-           <less-than>
-             <property>environment/temperature-degc</property>
-             <value>-30</value>
-           </less-than>
-           <property>engines/engine[2]/running</property>
-         </and>
-       </condition>
+			<life-sec>
+				<value>10</value>
+			</life-sec>
 
-       <emissive type="bool">false</emissive>
-       <lighting type="bool">true</lighting>
-       <align>billboard</align> <!-- billboard / fixed -->
-       <attach>world</attach>
-       
-       <placer>
-         <type>point</type>  <!-- sector / segments / point -->
-       </placer>
+			<mass-kg>0.5</mass-kg>
+			<radius-m>0.5</radius-m>
+		</particle>
 
-       <shooter>
-         <theta-min-deg>-100</theta-min-deg>
-         <theta-max-deg>100</theta-max-deg>
-         <phi-min-deg>-100</phi-min-deg>
-         <phi-max-deg>100</phi-max-deg>
-         <speed-mps>
-           <value>0</value>
-           <spread>50</spread>
-         </speed-mps>
-         <rotation-speed>
-           <x-min-deg-sec>0</x-min-deg-sec>
-           <y-min-deg-sec>0</y-min-deg-sec>
-           <z-min-deg-sec>0</z-min-deg-sec>
-           <x-max-deg-sec>0</x-max-deg-sec>
-           <y-max-deg-sec>0</y-max-deg-sec>
-           <z-max-deg-sec>0</z-max-deg-sec>
-         </rotation-speed>
-       </shooter>
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind typ="bool">true</wind>
+		</program>
+	</particlesystem>
 
-       <counter>
-         <particles-per-sec>
-           <value>200</value>
-           <spread>100</spread>
-         </particles-per-sec>
-       </counter>
-         
-       <align>billboard</align>
-
-       <particle>
-         <start>
-           <color>
-             <red><value>   1.0 </value></red>
-             <green><value> 1.0 </value></green>
-             <blue><value>  1.0 </value></blue>
-             <alpha><value> 0.08 </value></alpha>
-           </color>
-           <size>
-             <value>2.0</value>
-           </size>
-         </start>
-
-         <end>
-           <color>
-             <red><value>   1.0 </value></red>
-             <green><value> 1.0 </value></green>
-             <blue><value>  1.0 </value></blue>
-             <alpha><value> 0.0 </value></alpha>
-           </color>
-           <size>
-             <value>10.0</value>
-           </size>
-         </end>
-
-         <life-sec>
-           <value>60</value>
-         </life-sec>
-           
-         <mass-kg>  0.01 </mass-kg>
-         <radius-m> 50.0 </radius-m>
-       </particle>
-
-       <program>
-         <fluid> air </fluid>  <!-- air / water -->
-         <gravity type="bool"> true </gravity>
-         <wind typ="bool">     true </wind>
-       </program>
-
-     </particlesystem>
-
-    </PropertyList>
-
+</PropertyList>

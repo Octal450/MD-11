@@ -6,7 +6,7 @@
 ##############################################
 -->
 
-<!-- MD-11 Aircraft Config Dialog -->
+<!-- A3XX Aircraft Config Dialog -->
 
 <PropertyList>
 
@@ -47,14 +47,14 @@
 			
 			<text>
 				<halign>left</halign>
-				<label>You are now running Revision: </label>
+				<label>You have been upgraded to revision:</label>
 			</text>
 			
 			<text>
 				<halign>left</halign>
 				<border>1</border>
 				<label>99999</label>
-				<property>/systems/acconfig/options/revision</property>
+				<property>/systems/acconfig/revision</property>
 				<live>1</live>
 			</text>
 			
