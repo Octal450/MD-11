@@ -11,7 +11,7 @@
 	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/rcws/aileron-out-enable</property>
 	<property value="0">fcc/lsas/pid</property>
-	<property value="0">fcc/yaw/tc-pid</property>
+	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
 	
 	<!-- Default gains for tuning -->
@@ -484,7 +484,7 @@
 			</test>
 		</switch>
 		
-		<pid name="fcc/yaw/tc-pid-v">
+		<pid name="fcc/yaw/tc-pd-v">
 			<input>fcc/yaw/slip-skid</input>
 			<kp>fcc/yaw/tc-p-gain</kp>
 			<ki>0.0</ki>
@@ -493,11 +493,11 @@
 				<min>-0.2</min>
 				<max>0.2</max>
 			</clipto>
-			<output>fcc/yaw/tc-pid</output>
+			<output>fcc/yaw/tc-pd</output>
 		</pid>
 		
-		<switch name="fcc/yaw/tc-pid-s">
-			<default value="fcc/yaw/tc-pid"/>
+		<switch name="fcc/yaw/tc-pd-s">
+			<default value="fcc/yaw/tc-pd"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
 				fcc/yaw/autoland-switch eq 1
@@ -514,7 +514,7 @@
 		
 		<summer name="fcc/yaw/output-sum">
 			<input>fcc/yaw/yd-f</input>
-			<input>fcc/yaw/tc-pid-s</input>
+			<input>fcc/yaw/tc-pd-s</input>
 			<input>fcc/yaw/afs-cmd</input>
 		</summer>
 		
