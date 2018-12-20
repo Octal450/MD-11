@@ -1,8 +1,6 @@
 # MD-11X Shaking
 
-##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
-##############################################
+# Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
 var shakeEffectMD11X = props.globals.initNode("/systems/shake/effect",0,"BOOL");
 var shakeMD11X = props.globals.initNode("/systems/shake/shaking",0,"DOUBLE");

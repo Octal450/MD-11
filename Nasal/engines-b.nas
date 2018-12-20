@@ -1,8 +1,6 @@
 # MD-11 JSB Engine System
 
-##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
-##############################################
+# Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
 var engines = props.globals.getNode("/engines").getChildren("engine");
 if (getprop("/options/eng") == "PW") {

@@ -1,9 +1,6 @@
 # MD-11 EAD
-# Joshua Davidson (it0uchpods)
 
-##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
-##############################################
+# Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
 var EAD_GE = nil;
 var EAD_PW = nil;
