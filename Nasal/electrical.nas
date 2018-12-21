@@ -104,6 +104,8 @@ var ELEC = {
 		setprop("/systems/electrical/battery2-amps", 0);
 		setprop("/systems/electrical/battery1-percent", 68);
 		setprop("/systems/electrical/battery2-percent", 68);
+		setprop("/systems/electrical/battery1-time", 0);
+		setprop("/systems/electrical/battery2-time", 0);
 		setprop("/systems/electrical/bus/dcbat", 0);
 		setprop("/systems/electrical/bus/ac1", 0);
 		setprop("/systems/electrical/bus/ac2", 0);
