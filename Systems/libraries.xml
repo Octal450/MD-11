@@ -70,8 +70,7 @@
 
 	<filter>
 		<name>Wingflex</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>exponential</type>
 		<enable>
 			<condition>
 				<equals>
@@ -82,6 +81,7 @@
 		</enable>
 		<input>/fdm/jsbsim/aero/force/Lift_alpha</input>
 		<output>/aircraft/wingflex</output>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -147,38 +147,18 @@
 	
 	<filter>
 		<name>FF 1</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
-			<expression>
-				<table>
-					<property>/engines/engine[0]/fuel-flow_pph</property> 
-					<entry><ind>   0</ind><dep>   0</dep></entry>
-					<entry><ind>2000</ind><dep>1387</dep></entry>
-					<entry><ind>9000</ind><dep>9847</dep></entry>
-				</table>
-			</expression>
-		</input>
+		<type>exponential</type>
+		<input>/engines/engine[0]/fuel-flow_pph</input>
 		<output>/engines/engine[0]/fuel-flow_actual</output>
+		<filter-time>0.32</filter-time>
 	</filter>
 	
 	<filter>
 		<name>FF 2</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
-			<expression>
-				<table>
-					<property>/engines/engine[1]/fuel-flow_pph</property> 
-					<entry><ind>   0</ind><dep>   0</dep></entry>
-					<entry><ind>2000</ind><dep>1387</dep></entry>
-					<entry><ind>9000</ind><dep>9847</dep></entry>
-				</table>
-			</expression>
-		</input>
+		<type>exponential</type>
+		<input>/engines/engine[1]/fuel-flow_pph</input>
 		<output>/engines/engine[1]/fuel-flow_actual</output>
+		<filter-time>0.32</filter-time>
 	</filter>
 	
 	<filter>
