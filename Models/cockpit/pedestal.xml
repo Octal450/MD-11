@@ -915,8 +915,15 @@
 		<action>
 			<button>0</button>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
+				<property>controls/flight/speedbrake</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-cycle</command>
 				<property>controls/flight/speedbrake-arm</property>
+				<value>0</value>
+				<value>1</value>
 			</binding>
 		</action>
 		<action>
@@ -995,7 +1002,7 @@
 		</action>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>pick</type>
 		<object-name>PitchTrim</object-name>
 		<action>
