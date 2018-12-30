@@ -255,10 +255,8 @@
 					<item>
 						<label>Pushback</label>
 						<binding>
-							<command>nasal</command>
-							<script>
-							acconfig.autopush_dlg.open();
-							</script>
+							<command>dialog-show</command>
+							<dialog-name>autopush</dialog-name>
 						</binding>
 					</item>
 					<item>
