@@ -90,6 +90,7 @@ Distribute under the terms of GPLv2.
 				<col>2</col>
 				<min>-1.0</min>
 				<max>1.0</max>
+				<step>0.1</step>
 				<property>/sim/model/pushback/steer-cmd-norm</property>
 				<live>true</live>
 				<binding>
@@ -155,6 +156,7 @@ Distribute under the terms of GPLv2.
 				<min>-25</min>
 				<max>25</max>
 				<property>/sim/model/pushback/target-speed-km_h</property>
+				<step>1.0</step>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>

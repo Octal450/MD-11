@@ -9,6 +9,14 @@ print("-------------------------------------------------------------------------
 
 setprop("/sim/replay/was-active", 0);
 
+setprop("/sim/menubar/default/menu[0]/item[0]/enabled", 0);
+setprop("/sim/menubar/default/menu[2]/item[0]/enabled", 0);
+setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);
+setprop("/sim/menubar/default/menu[3]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[9]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
+
 var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
 var setting = getprop("/controls/lighting/nav-lights");
 var land = getprop("/controls/lighting/landing-light");

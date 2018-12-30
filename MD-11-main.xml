@@ -29,12 +29,13 @@
 				<nav-lights type="bool">0</nav-lights>
 			</lights>
 			<pushback>
+				<connected type="bool">0</connected>
 				<position-norm type="double">0</position-norm>
 				<enabled type="int"/>
 				<available type="int">1</available>
-				<chocks alias="/controls/gear/wheel-chocks"/>
-				<steer-cmd-norm alias="/controls/flight/rudder"/>
-				<yaw alias="/gear/gear[0]/steering-norm"/>
+				<chocks alias="/services/chokes/nose"/>
+				<steer-cmd-norm alias="/fdm/jsbsim/hydraulics/tiller/autopush-cmd"/>
+				<yaw alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<yaw-mult type="float">1.0</yaw-mult>
 				<target-speed-km_h type="float">0.0</target-speed-km_h>
 				<K_p type="float">0.5</K_p>
@@ -219,7 +220,11 @@
 		<menubar>
 			<default>
 				<menu n="100">
-					<label>IDG-MD-11X</label>
+					<label>|</label>
+					<enabled type="bool">false</enabled>
+				</menu>
+				<menu n="101">
+					<label>System</label>
 					<enabled type="bool">true</enabled>
 					<item>
 						<label>Aircraft Config</label>
@@ -240,7 +245,54 @@
 						</binding>
 					</item>
 				</menu>
-				<menu n="101">
+				<menu n="102">
+					<label>AFS/FMS</label>
+					<item>
+						<label>AFS Panel</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>autopilot</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Route Manager</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>route-manager</dialog-name>
+						</binding>
+					</item>
+				</menu>
+				<menu n="103">
+					<label>DU</label>
+					<item>
+						<label>Captain's PFD</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							canvas_pfd.showPFD1();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>First Officer's PFD</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							canvas_pfd.showPFD2();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>EAD</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							canvas_ead.showEAD();
+							</script>
+						</binding>
+					</item>
+				</menu>
+				<menu n="104">
 					<label>Utilities</label>
 					<enabled type="bool">true</enabled>
 					<item>
@@ -265,33 +317,6 @@
 							<command>property-assign</command>
 							<property>/controls/irs/skip</property>
 							<value>1</value>
-						</binding>
-					</item>
-					<item>
-						<label>Show Captain's PFD</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-							canvas_pfd.showPFD1();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Show First Officer's PFD</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-							canvas_pfd.showPFD2();
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Show EAD</label>
-						<binding>
-							<command>nasal</command>
-							<script>
-							canvas_ead.showEAD();
-							</script>
 						</binding>
 					</item>
 				</menu>

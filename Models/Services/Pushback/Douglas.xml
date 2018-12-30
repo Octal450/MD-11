@@ -90,22 +90,6 @@
 			<z>1</z>
 		</axis>
 	</animation>
-
-	<animation>
-		<type>rotate</type>
-		<property>gear/gear[0]/steering-norm</property>
-		<factor>-70</factor>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>0</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>1</z>
-		</axis>
-	</animation>
 	
 	<!-- compensate for pitch of aircraft, keep pushback level -->
 	<animation>
