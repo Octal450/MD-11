@@ -17,7 +17,7 @@ var _K_d = nil;
 var _F_d = nil;
 var _F = nil;
 var _int = nil;
-var _deltaV = nil;
+var _V = nil;
 var _T_f = nil;
 var _K_yaw = nil;
 var _yasim = 0;
@@ -36,27 +36,28 @@ var _loop = func() {
 	var y = 0.0;
 	# Rollspeed is only adequate if the wheel is touching the ground.
 	if (getprop("/gear/gear[0]/wow")) {
-		var deltaV = getprop("/sim/model/pushback/target-speed-km_h");
-		deltaV -= getprop("/gear/gear[0]/rollspeed-ms") * 3.6;
-		var dV = deltaV - _deltaV;
+		var V = getprop("/gear/gear[0]/rollspeed-ms") * 3.6;
+		var deltaV = getprop("/sim/model/pushback/target-speed-km_h") - V;
+		var dV = V - _V;
 		var time = getprop("/sim/time/elapsed-sec");
 		var prop = math.min(math.max(_K_p * deltaV, -_F_p), _F_p);
 		var speedup = getprop("/sim/speed-up");
+		var deriv = 0.0;
 		dt = time - _time;
 		# XXX Sanitising dt. Smaller chance of freakout on lag spike.
 		if(dt > 0.0) {
 			if(dt < 0.05) {
-				_int = math.min(math.max(_int + _K_i * dV * dt, -_F_i), _F_i);
+				_int = math.min(math.max(_int + _K_i * deltaV * dt, -_F_i), _F_i);
 			}
 			if(dt > 0.002) {
-				var deriv = math.min(math.max(_K_d * dV / dt, -_F_d), _F_d);
+				deriv = math.min(math.max(_K_d * dV / dt, -_F_d), _F_d);
 			}
 		}
 		var accel = prop + _int + deriv;
 		if (_debug > 2) {
 			print("pushback prop " ~ prop ~ ", _int " ~ _int ~ ", deriv " ~ deriv);
 		}
-		_deltaV = deltaV;
+		_V = V;
 		_time = time;
 		if (!_yasim) {
 			force = accel * getprop("/fdm/jsbsim/inertia/weight-lbs") * _unitconv;
@@ -97,7 +98,7 @@ var _start = func() {
 	_yasim = (getprop("/sim/flight-model") == "yasim");
 	_debug = getprop("/sim/model/pushback/debug") or 0;
 	_int = 0.0;
-	_deltaV = 0.0;
+	_V = 0.0;
 	_time = getprop("/sim/time/elapsed-sec");
 	setprop("/sim/model/pushback/connected", 1);
 	if (!_timer.isRunning) {

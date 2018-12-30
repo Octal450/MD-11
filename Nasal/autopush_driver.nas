@@ -34,7 +34,7 @@ var _loop = func() {
 	D *= NM2M;
 	# FIXME Use _K_V and total remaining distance.
 	var V = _F_V;
-	if ((D < _D_min) or (abs(geo.normdeg180(A - psi) > 90.0))) {
+	if ((D < _D_min) or (abs(geo.normdeg180(A - psi) > 45.0))) {
 		_to_wp += 1;
 		if (_to_wp == size(_route)) {
 			_done();

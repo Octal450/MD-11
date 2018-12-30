@@ -26,8 +26,12 @@ var _D_min = nil;
 var _add = func(pos) {
 	if (_N) {
 		var (A, S) = courseAndDistance(_user_points.arr[_N - 1], pos);
-		if (S * NM2M < 3 * _D_min) {
+		S *= NM2M;
+		if (S < 3 * _D_min) {
 			gui.popupTip("Too close to the previous point,\ntry again");
+			return;
+		}else if (S  > 10000.0) {
+			gui.popupTip("Too far from the previous point,\ntry again");
 			return;
 		}
 	}
@@ -126,7 +130,7 @@ var _clear_waypoint_models = func() {
 }
 
 var _set_view = func() {
-	if(!getprop("/sim/current-view/internal")){
+	if (!getprop("/sim/current-view/internal")){
 		_view_changed_or_external = 1;
 		return;
 	}

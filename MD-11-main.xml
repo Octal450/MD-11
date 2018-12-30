@@ -37,10 +37,10 @@
 				<yaw alias="/gear/gear[0]/steering-norm"/>
 				<yaw-mult type="float">1.0</yaw-mult>
 				<target-speed-km_h type="float">0.0</target-speed-km_h>
-				<K_p type="float">1.0</K_p>
-				<F_p type="float">0.1</F_p>
-				<K_i type="float">0.01</K_i>
-				<F_i type="float">2.0</F_i>
+				<K_p type="float">0.5</K_p>
+				<F_p type="float">0.15</F_p>
+				<K_i type="float">0.25</K_i>
+				<F_i type="float">0.1</F_i>
 				<K_d type="float">0.0</K_d>
 				<F_d type="float">0.0</F_d>
 				<driver>
