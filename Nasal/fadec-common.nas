@@ -1,6 +1,6 @@
 # MD-11 FADEC by Joshua Davidson (it0uchpods)
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 if (getprop("/options/eng") == "PW") {
 	io.include("fadec-pw.nas");

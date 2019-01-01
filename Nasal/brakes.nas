@@ -1,7 +1,7 @@
 # MD-11 Autobrake
 # Joshua Davidson (it0uchpods)
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var thr1 = 0;
 var thr3 = 0;

@@ -1,7 +1,7 @@
 # Aircraft Config Center
 # Joshua Davidson (it0uchpods)
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var spinning = maketimer(0.05, func {
 	var spinning = getprop("/systems/acconfig/spinning");

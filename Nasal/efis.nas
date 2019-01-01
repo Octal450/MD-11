@@ -1,6 +1,6 @@
 # MD-11 EFIS controller by Joshua Davidson (it0uchpods).
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 setlistener("sim/signals/fdm-initialized", func {
 	setprop("/instrumentation/efis[0]/mfd/display-mode", "MAP");

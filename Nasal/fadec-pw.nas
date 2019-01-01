@@ -1,6 +1,6 @@
 # MD-11 PW FADEC by Joshua Davidson (it0uchpods)
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 setprop("/systems/fadec/eng1/epr", 0);
 setprop("/systems/fadec/eng1/egt", 0);

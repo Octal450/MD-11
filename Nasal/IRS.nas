@@ -1,7 +1,7 @@
 # MD-11 IRS System
 # Joshua Davidson (it0uchpods)
 
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var knob = 0;
 var roll = 0;
