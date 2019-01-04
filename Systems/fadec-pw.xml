@@ -51,7 +51,7 @@
 			<expression>
 				<table>
 					<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
-					<entry><ind>    0</ind><dep>0.806</dep></entry>
+					<entry><ind>    0</ind><dep>0.804</dep></entry>
 					<entry><ind>42000</ind><dep>1.015</dep></entry>
 				</table>
 			</expression>
@@ -85,7 +85,7 @@
 				<difference>
 					<table>
 						<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
-						<entry><ind>    0</ind><dep>0.986</dep></entry>
+						<entry><ind>    0</ind><dep>0.983</dep></entry>
 						<entry><ind>43000</ind><dep>0.834</dep></entry>
 					</table>
 					<table>
