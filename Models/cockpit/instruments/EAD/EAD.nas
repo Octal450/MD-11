@@ -5,6 +5,7 @@
 var EAD_GE = nil;
 var EAD_PW = nil;
 var EAD_display = nil;
+var eprFixed = 1.00;
 setprop("/engines/engine[0]/epr-actual", 1);
 setprop("/engines/engine[1]/epr-actual", 1);
 setprop("/engines/engine[2]/epr-actual", 1);
@@ -784,9 +785,10 @@ var canvas_EAD_PW = {
 		}
 		
 		# EPR Limit
+		eprFixed = getprop("/controls/engines/epr-limit") + 0.003;
 		me["EPRLimMode"].setText(sprintf("%s", getprop("/controls/engines/thrust-limit")));
-		me["EPRLim"].setText(sprintf("%1.0f", math.floor(getprop("/controls/engines/epr-limit"))));
-		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(getprop("/controls/engines/epr-limit") - int(getprop("/controls/engines/epr-limit")), 0.01) * 100));
+		me["EPRLim"].setText(sprintf("%1.0f", math.floor(eprFixed)));
+		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(eprFixed - int(eprFixed), 0.01) * 100));
 		
 		me.updateBase();
 	},

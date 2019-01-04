@@ -20,6 +20,7 @@ var pitch = 0;
 var roll = 0;
 var alpha = 0;
 var altTens = 0;
+var altPolarity = "";
 var HDG = "000";
 var HDGraw = 0;
 var HDGpresel = 0;
@@ -458,8 +459,13 @@ var canvas_PFD_base = {
 			me["ALT_one_T"].setText(me.oneT);
 		}
 		
-		me["ALT_thousands"].setText(sprintf("%1.0f", math.floor(getprop("/instrumentation/altimeter/indicated-altitude-ft") / 1000)));
-		me["ALT_hundreds"].setText(sprintf("%1.0f", math.floor(num(right(sprintf("%03d", abs(getprop("/instrumentation/altimeter/indicated-altitude-ft"))), 3)) / 100)));
+		if (getprop("/instrumentation/altimeter/indicated-altitude-ft") < 0) {
+			altPolarity = "-";
+		} else {
+			altPolarity = "";
+		}
+		me["ALT_thousands"].setText(sprintf("%s%d", altPolarity, math.abs(int(getprop("/instrumentation/altimeter/indicated-altitude-ft") / 1000))));
+		me["ALT_hundreds"].setText(sprintf("%d", math.floor(num(right(sprintf("%03d", abs(getprop("/instrumentation/altimeter/indicated-altitude-ft"))), 3)) / 100)));
 		altTens = num(right(sprintf("%02d", getprop("/instrumentation/altimeter/indicated-altitude-ft")), 2));
 		me["ALT_tens"].setTranslation(0, altTens * 2.1325);
 		
