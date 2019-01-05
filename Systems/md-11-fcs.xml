@@ -174,7 +174,7 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
-						     0   1  
+						     0   1
 						140  21  0
 						360   9  0
 					</tableData>
@@ -184,21 +184,24 @@
 		
 		<fcs_function name="fcc/lsas/p-gain2"> <!-- Used for pitch rate damping mode -->
 			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<independentVar lookup="column">fcc/lsas/gain-switch2</independentVar>
-					<independentVar lookup="table">/position/altitude-ft</independentVar>
-					<tableData breakPoint="15000">
-						     0  1  
-						140  0  0
-						360  0  0
-					</tableData>
-					<tableData breakPoint="20000">
-						     0  1  
-						140  7  0
-						360  3  0
-					</tableData>
-				</table>
+				<product>
+					<table>
+						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<independentVar lookup="column">fcc/lsas/gain-switch2</independentVar>
+						<tableData>
+							     0     1
+							140  5.25  0.00
+							360  2.25  0.00
+						</tableData>
+					</table>
+					<table>
+						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<tableData>
+							16500  0.3
+							20000  1.0
+						</tableData>
+					</table>
+				</product>
 			</function>
 		</fcs_function>
 		
@@ -460,6 +463,10 @@
 		<pure_gain name="fcc/lsas/thetadot-damper">
 			<input>fcc/lsas/t-r_s-s</input>
 			<gain>fcc/lsas/p-gain2-scheduled</gain>
+			<clipto>
+				<min>-0.249</min>
+				<max>0.249</max>
+			</clipto>
 		</pure_gain>
 		
 		<summer name="fcc/lsas/damper-control-cmd">
