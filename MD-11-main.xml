@@ -560,6 +560,14 @@
 					<y alias="/sim/model/pushback/force-y"/>
 				</tractor>
 			</external_reactions>
+			<fcc>
+				<lsas>
+					<left-in-active type="bool">1</left-in-active>
+					<left-out-active type="bool">1</left-out-active>
+					<right-in-active type="bool">1</right-in-active>
+					<right-out-active type="bool">1</right-out-active>
+				</lsas>
+			</fcc>
 		</jsbsim>
 	</fdm>
 	
