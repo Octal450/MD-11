@@ -106,11 +106,11 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				position/wow eq 1
-				/yawdamp/avail-upr eq 1
+				fcc/yaw/avail-upr eq 1
 			</test>
 			<test logic="AND" value="1">
 				position/wow eq 1
-				/yawdamp/avail-lwr eq 1
+				fcc/yaw/avail-lwr eq 1
 			</test>
 		</switch>
 		
@@ -688,14 +688,14 @@
 		<switch name="fcc/yaw/upper-output">
 			<default value="fcc/yaw/output-sum"/>
 			<test value="fcc/yaw/afs-cmd">
-				/yawdamp/avail-upr ne 1
+				fcc/yaw/avail-upr ne 1
 			</test>
 		</switch>
 		
 		<switch name="fcc/yaw/lower-output">
 			<default value="fcc/yaw/output-sum"/>
 			<test value="fcc/yaw/afs-cmd">
-				/yawdamp/avail-lwr ne 1
+				fcc/yaw/avail-lwr ne 1
 			</test>
 		</switch>
 		

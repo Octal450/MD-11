@@ -562,11 +562,15 @@
 			</external_reactions>
 			<fcc>
 				<lsas>
-					<left-in-active type="bool">1</left-in-active>
-					<left-out-active type="bool">1</left-out-active>
-					<right-in-active type="bool">1</right-in-active>
-					<right-out-active type="bool">1</right-out-active>
+					<left-in-active type="bool">0</left-in-active>
+					<left-out-active type="bool">0</left-out-active>
+					<right-in-active type="bool">0</right-in-active>
+					<right-out-active type="bool">0</right-out-active>
 				</lsas>
+				<yaw>
+					<avail-upr type="bool">0</avail-upr>
+					<avail-lwr type="bool">0</avail-lwr>
+				</yaw>
 			</fcc>
 		</jsbsim>
 	</fdm>
@@ -632,11 +636,6 @@
 		<enable type="bool">1</enable>
 		<equipped type="bool">0</equipped>
 	</rcws>
-	
-	<yawdamp n="0">
-		<avail-upr type="bool">1</avail-upr>
-		<avail-lwr type="bool">1</avail-lwr>
-	</yawdamp>
 	
 	<options n="0">
 		<keyboard-mode type="bool">0</keyboard-mode>
@@ -1295,6 +1294,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/pneumatics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/fuel.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/fctl.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/brakes.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>

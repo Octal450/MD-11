@@ -3,10 +3,6 @@
 
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-#############
-# Init Vars #
-#############
-
 var system = 1;
 var LPump1_sw = 0;
 var RPump1_sw = 0;

@@ -47,7 +47,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>FUEL SYS Fail</label>
+					<label>ELEC SYS Fail</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -55,9 +55,9 @@
 			</group>
 			
 			<checkbox>
-				<label>Tank 1 Pumps</label>
+				<label>APU GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank0pumps</property>
+				<property>/systems/failures/elec-apu</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -65,9 +65,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 2 Pumps</label>
+				<label>BATTERY 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank1pumps</property>
+				<property>/systems/failures/elec-batt1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -75,9 +75,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 3 Pumps</label>
+				<label>BATTERY 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank2pumps</property>
+				<property>/systems/failures/elec-batt2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -85,9 +85,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>AUX Tank L Trans</label>
+				<label>ENG 1 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank3pumpl</property>
+				<property>/systems/failures/elec-gen1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -95,9 +95,19 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>AUX Tank R Trans</label>
+				<label>ENG 2 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank3pumpr</property>
+				<property>/systems/failures/elec-gen2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>ENG 3 GEN</label>
+				<halign>left</halign>
+				<property>/systems/failures/elec-gen3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -316,7 +326,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>ELEC SYS Fail</label>
+					<label>FUEL SYS Fail</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -324,9 +334,9 @@
 			</group>
 			
 			<checkbox>
-				<label>APU GEN</label>
+				<label>Tank 1 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-apu</property>
+				<property>/systems/failures/tank0pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -334,9 +344,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 1</label>
+				<label>Tank 2 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-batt1</property>
+				<property>/systems/failures/tank1pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -344,9 +354,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 2</label>
+				<label>Tank 3 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-batt2</property>
+				<property>/systems/failures/tank2pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -354,9 +364,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ENG 1 GEN</label>
+				<label>AUX Tank L Trans</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-gen1</property>
+				<property>/systems/failures/tank3pumpl</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -364,19 +374,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ENG 2 GEN</label>
+				<label>AUX Tank R Trans</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-gen2</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>ENG 3 GEN</label>
-				<halign>left</halign>
-				<property>/systems/failures/elec-gen3</property>
+				<property>/systems/failures/tank3pumpr</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -408,7 +408,7 @@
 				<label>LSAS L OUTBD</label>
 				<halign>left</halign>
 				<enable>
-					<property>/lsas/enable1</property>
+					<property>/lsas/enable</property>
 				</enable>
 				<property>/systems/failures/lsas-l-out</property>
 				<binding>
@@ -421,7 +421,7 @@
 				<label>LSAS L INBD</label>
 				<halign>left</halign>
 				<enable>
-					<property>/lsas/enable1</property>
+					<property>/lsas/enable</property>
 				</enable>
 				<property>/systems/failures/lsas-l-in</property>
 				<binding>
@@ -434,7 +434,7 @@
 				<label>LSAS R INBD</label>
 				<halign>left</halign>
 				<enable>
-					<property>/lsas/enable1</property>
+					<property>/lsas/enable</property>
 				</enable>
 				<property>/systems/failures/lsas-r-in</property>
 				<binding>
@@ -447,7 +447,7 @@
 				<label>LSAS R OUTBD</label>
 				<halign>left</halign>
 				<enable>
-					<property>/lsas/enable1</property>
+					<property>/lsas/enable</property>
 				</enable>
 				<property>/systems/failures/lsas-r-out</property>
 				<binding>
@@ -459,9 +459,6 @@
 			<checkbox>
 				<label>YAW DAMP UPR A</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
 				<property>/systems/failures/yawdamp-upr-a</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -472,9 +469,6 @@
 			<checkbox>
 				<label>YAW DAMP UPR B</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
 				<property>/systems/failures/yawdamp-upr-b</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -485,9 +479,6 @@
 			<checkbox>
 				<label>YAW DAMP LWR A</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
 				<property>/systems/failures/yawdamp-lwr-a</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -498,9 +489,6 @@
 			<checkbox>
 				<label>YAW DAMP LWR B</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
 				<property>/systems/failures/yawdamp-lwr-b</property>
 				<binding>
 					<command>dialog-apply</command>

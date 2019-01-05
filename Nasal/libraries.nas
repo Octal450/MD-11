@@ -121,6 +121,7 @@ var systemsInit = func {
 	systems.PNEU.init();
 	systems.HYD.init();
 	systems.FUEL.init();
+	systems.FCTL.init();
 	systems.IRS.init();
 	systems.eng_init();
 	fadec.fadec_reset();
@@ -141,6 +142,7 @@ var systemsLoop = maketimer(0.1, func {
 	systems.PNEU.loop();
 	systems.HYD.loop();
 	systems.FUEL.loop();
+	systems.FCTL.loop();
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
