@@ -37,6 +37,15 @@ var failReset = func {
 	setprop("/systems/failures/yawdamp-upr-b", 0);
 	setprop("/systems/failures/yawdamp-lwr-a", 0);
 	setprop("/systems/failures/yawdamp-lwr-b", 0);
+	setprop("/systems/failures/hyd-sys1", 0);
+	setprop("/systems/failures/hyd-sys2", 0);
+	setprop("/systems/failures/hyd-sys3", 0);
+	setprop("/systems/failures/hyd-fault-l1", 0);
+	setprop("/systems/failures/hyd-fault-r1", 0);
+	setprop("/systems/failures/hyd-fault-l2", 0);
+	setprop("/systems/failures/hyd-fault-r2", 0);
+	setprop("/systems/failures/hyd-fault-l3", 0);
+	setprop("/systems/failures/hyd-fault-r3", 0);
 }
 
 failReset();
@@ -197,6 +206,7 @@ var writeSettings = func {
 var colddark = func {
 	if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
 		spinning.start();
+		ps_loaded_dlg.close();
 		ps_load_dlg.open();
 		setprop("/systems/acconfig/autoconfig-running", 1);
 		setprop("/controls/gear/brake-left", 1);
@@ -219,7 +229,7 @@ var colddark = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-#		failReset();
+		failReset();
 		if (getprop("/engines/engine[1]/n2-actual") < 2) {
 			colddark_b();
 		} else {
@@ -247,6 +257,7 @@ var colddark_b = func {
 var beforestart = func {
 	if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
 		spinning.start();
+		ps_loaded_dlg.close();
 		ps_load_dlg.open();
 		setprop("/systems/acconfig/autoconfig-running", 1);
 		setprop("/controls/gear/brake-left", 1);
@@ -269,7 +280,7 @@ var beforestart = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-#		failReset();
+		failReset();
 		setprop("/controls/APU/start", 0);
 		
 		# Now the Startup!
@@ -310,6 +321,7 @@ var beforestart_b = func {
 var taxi = func {
 	if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
 		spinning.start();
+		ps_loaded_dlg.close();
 		ps_load_dlg.open();
 		setprop("/systems/acconfig/autoconfig-running", 1);
 		setprop("/controls/gear/brake-left", 1);
@@ -332,7 +344,7 @@ var taxi = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-#		failReset();
+		failReset();
 		setprop("/controls/APU/start", 0);
 		
 		# Now the Startup!
