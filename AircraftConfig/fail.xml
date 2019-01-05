@@ -254,7 +254,7 @@
 			
 		</group>
 		
-		<!--vrule/>
+		<vrule/>
 		
 		<group>
 			<layout>vbox</layout>
@@ -274,9 +274,9 @@
 			</group>
 			
 			<checkbox>
-				<label>Blue HYD Leak</label>
+				<label>SYS1 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/hyd-blue</property>
+				<property>/systems/failures/hyd-sys1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -284,9 +284,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Blue ELEC Pump</label>
+				<label>SYS1 L Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/pump-blue</property>
+				<property>/systems/failures/hyd-fault-l1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -294,9 +294,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Green HYD Leak</label>
+				<label>SYS1 R Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hyd-green</property>
+				<property>/systems/failures/hyd-fault-r1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -304,9 +304,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Green ENG 1 Pump</label>
+				<label>SYS2 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/pump-green</property>
+				<property>/systems/failures/hyd-sys2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -314,9 +314,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Yellow HYD Leak</label>
+				<label>SYS2 L Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hyd-yellow</property>
+				<property>/systems/failures/hyd-fault-l2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -324,9 +324,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Yellow ENG 2 Pump</label>
+				<label>SYS2 R Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/pump-yellow-eng</property>
+				<property>/systems/failures/hyd-fault-r2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -334,9 +334,29 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Yellow ELEC Pump</label>
+				<label>SYS3 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/pump-yellow-elec</property>
+				<property>/systems/failures/hyd-sys3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>SYS3 L Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/hyd-fault-l3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>SYS3 R Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/hyd-fault-r3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -358,19 +378,9 @@
 			</group>
 			
 			<checkbox>
-				<label>AC ESS Bus</label>
-				<halign>left</halign>
-				<property>/systems/failures/elec-ac-ess</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
 				<label>APU GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-genapu</property>
+				<property>/systems/failures/elec-apu</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -378,7 +388,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 1</label>
+				<label>Battery 1</label>
 				<halign>left</halign>
 				<property>/systems/failures/elec-batt1</property>
 				<binding>
@@ -388,7 +398,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 2</label>
+				<label>Battery 2</label>
 				<halign>left</halign>
 				<property>/systems/failures/elec-batt2</property>
 				<binding>
@@ -418,18 +428,18 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Galley Bus</label>
+				<label>ENG 3 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-galley</property>
+				<property>/systems/failures/elec-gen3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
 				<live>true</live>
 			</checkbox>
-				
+		
 		</group>
 		
-		<vrule/>
+		<!--vrule/>
 		
 		<group>
 			<layout>vbox</layout>

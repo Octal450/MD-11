@@ -3,10 +3,6 @@
 
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-#############
-# Init Vars #
-#############
-
 var ac_volt_std = 115;
 var ac_volt_min = 110;
 var dc_volt_std = 28;
@@ -20,7 +16,6 @@ var src_ac3 = "XX";
 var src_dc1 = "XX";
 var src_dc2 = "XX";
 var src_dc3 = "XX";
-
 var system = 1;
 var batt_sw = 0;
 var emer_pw_sw = 0; # 0 = OFF, 1 = ARM, 2 = ON
@@ -72,6 +67,12 @@ var xtie1 = 0;
 var xtie2 = 0;
 var xtie3 = 0;
 var manl = 0;
+var batt1_fail = 0;
+var batt2_fail = 0;
+var genapu_fail = 0;
+var gen1_fail = 0;
+var gen2_fail = 0;
+var gen3_fail = 0;
 
 var ELEC = {
 	init: func() {
@@ -135,6 +136,9 @@ var ELEC = {
 		setprop("/systems/electrical/light/r-emer-ac", 0);
 		setprop("/systems/electrical/light/r-emer-dc", 0);
 		setprop("/systems/electrical/light/select-manual", 0);
+		setprop("/systems/electrical/light/gen1-arm", 0);
+		setprop("/systems/electrical/light/gen2-arm", 0);
+		setprop("/systems/electrical/light/gen3-arm", 0);
 		setprop("/controls/electrical/xtie/xtie1", 0);
 		setprop("/controls/electrical/xtie/xtie2", 0);
 		setprop("/controls/electrical/xtie/xtie3", 0);
@@ -185,6 +189,12 @@ var ELEC = {
 		state1 = getprop("/engines/engine[0]/state");
 		state2 = getprop("/engines/engine[1]/state");
 		state3 = getprop("/engines/engine[2]/state");
+		batt1_fail = getprop("/systems/failures/elec-batt1");
+		batt2_fail = getprop("/systems/failures/elec-batt2");
+		genapu_fail = getprop("/systems/failures/elec-apu");
+		gen1_fail = getprop("/systems/failures/elec-gen1");
+		gen2_fail = getprop("/systems/failures/elec-gen2");
+		gen3_fail = getprop("/systems/failures/elec-gen3");
 		
 		# ESC
 		if (system) {
@@ -193,9 +203,21 @@ var ELEC = {
 			setprop("/controls/electrical/switches/ac-tie-1", 1);
 			setprop("/controls/electrical/switches/ac-tie-2", 1);
 			setprop("/controls/electrical/switches/ac-tie-3", 1);
-			setprop("/controls/electrical/switches/gen1", 1);
-			setprop("/controls/electrical/switches/gen2", 1);
-			setprop("/controls/electrical/switches/gen3", 1);
+			if (!gen1_fail) {
+				setprop("/controls/electrical/switches/gen1", 1);
+			} else {
+				setprop("/controls/electrical/switches/gen1", 0);
+			}
+			if (!gen2_fail) {
+				setprop("/controls/electrical/switches/gen2", 1);
+			} else {
+				setprop("/controls/electrical/switches/gen2", 0);
+			}
+			if (!gen3_fail) {
+				setprop("/controls/electrical/switches/gen3", 1);
+			} else {
+				setprop("/controls/electrical/switches/gen3", 0);
+			}
 		}
 		
 		batt_sw = getprop("/controls/electrical/switches/battery");
@@ -219,39 +241,39 @@ var ELEC = {
 		smoke_elecair_sw = getprop("/controls/electrical/switches/smoke-elecair");
 		
 		# Bus Tie logic for AC Bus 1
-		if (state2 == 3 and gen2_sw and ac_tie_2_sw) {
+		if (state2 == 3 and gen2_sw and !gen2_fail and ac_tie_2_sw) {
 			setprop("/controls/electrical/xtie/xtie1", 1);
-		} else if (state3 == 3 and gen3_sw and ac_tie_3_sw) {
+		} else if (state3 == 3 and gen3_sw and !gen3_fail and ac_tie_3_sw) {
 			setprop("/controls/electrical/xtie/xtie1", 1);
 		} else if (extpwr_on and ext_pwr_sw) {
 			setprop("/controls/electrical/xtie/xtie1", 1);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw and (ac_tie_2_sw or ac_tie_3_sw)) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail and (ac_tie_2_sw or ac_tie_3_sw)) {
 			setprop("/controls/electrical/xtie/xtie1", 1);
 		} else {
 			setprop("/controls/electrical/xtie/xtie1", 0);
 		}
 		
 		# Bus Tie logic for AC Bus 2
-		if (state1 == 3 and gen1_sw and ac_tie_1_sw) {
+		if (state1 == 3 and gen1_sw and !gen1_fail and ac_tie_1_sw) {
 			setprop("/controls/electrical/xtie/xtie2", 1);
-		} else if (state3 == 3 and gen3_sw and ac_tie_3_sw) {
+		} else if (state3 == 3 and gen3_sw and !gen3_fail and ac_tie_3_sw) {
 			setprop("/controls/electrical/xtie/xtie2", 1);
 		} else if (extpwr_on and ext_pwr_sw) {
 			setprop("/controls/electrical/xtie/xtie2", 1);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw and (ac_tie_1_sw or ac_tie_3_sw)) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail and (ac_tie_1_sw or ac_tie_3_sw)) {
 			setprop("/controls/electrical/xtie/xtie2", 1);
 		} else {
 			setprop("/controls/electrical/xtie/xtie2", 0);
 		}
 		
 		# Bus Tie logic for AC Bus 3
-		if (state1 == 3 and gen1_sw and ac_tie_1_sw) {
+		if (state1 == 3 and gen1_sw and !gen1_fail and ac_tie_1_sw) {
 			setprop("/controls/electrical/xtie/xtie3", 1);
-		} else if (state2 == 3 and gen2_sw and ac_tie_2_sw) {
+		} else if (state2 == 3 and gen2_sw and !gen2_fail and ac_tie_2_sw) {
 			setprop("/controls/electrical/xtie/xtie3", 1);
 		} else if (extpwr_on and ext_pwr_sw) {
 			setprop("/controls/electrical/xtie/xtie3", 1);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw and (ac_tie_1_sw or ac_tie_2_sw)) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail and (ac_tie_1_sw or ac_tie_2_sw)) {
 			setprop("/controls/electrical/xtie/xtie3", 1);
 		} else {
 			setprop("/controls/electrical/xtie/xtie3", 0);
@@ -262,10 +284,10 @@ var ELEC = {
 		xtie3 = getprop("/controls/electrical/xtie/xtie3");
 		
 		# AC Bus 1
-		if (state1 == 3 and gen1_sw) {
+		if (state1 == 3 and gen1_sw and !gen1_fail) {
 			src_ac1 = "ENG";
 			setprop("/systems/electrical/bus/ac1", ac_volt_std);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail) {
 			src_ac1 = "APU";
 			setprop("/systems/electrical/bus/ac1", ac_volt_std);
 		} else if (ac_tie_1_sw == 1 and xtie1) {
@@ -277,10 +299,10 @@ var ELEC = {
 		}
 		
 		# AC Bus 2
-		if (state2 == 3 and gen2_sw) {
+		if (state2 == 3 and gen2_sw and !gen2_fail) {
 			src_ac2 = "ENG";
 			setprop("/systems/electrical/bus/ac2", ac_volt_std);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail) {
 			src_ac2 = "APU";
 			setprop("/systems/electrical/bus/ac2", ac_volt_std);
 		} else if (ac_tie_2_sw == 1 and xtie2) {
@@ -292,10 +314,10 @@ var ELEC = {
 		}
 		
 		# AC Bus 3
-		if (state3 == 3 and gen3_sw) {
+		if (state3 == 3 and gen3_sw and !gen3_fail) {
 			src_ac3 = "ENG";
 			setprop("/systems/electrical/bus/ac3", ac_volt_std);
-		} else if (rpmapu >= 94.9 and apu_pwr_sw) {
+		} else if (rpmapu >= 94.9 and apu_pwr_sw and !genapu_fail) {
 			src_ac3 = "APU";
 			setprop("/systems/electrical/bus/ac3", ac_volt_std);
 		} else if (ac_tie_3_sw == 1 and xtie3) {
@@ -313,7 +335,7 @@ var ELEC = {
 		dc3 = getprop("/systems/electrical/bus/dc3");
 		
 		# Emergency Power and Emergency Buses
-		if (emer_pw_sw == 1 and batt_sw) { # ARM
+		if (emer_pw_sw == 1 and batt_sw and (!batt1_fail or !batt2_fail)) { # ARM
 			setprop("/systems/electrical/bus/l-emer-ac", ac_volt_std);
 			setprop("/systems/electrical/bus/l-emer-dc", dc_volt_std);
 			if (ac3 >= 110) {
@@ -323,7 +345,7 @@ var ELEC = {
 				setprop("/systems/electrical/bus/r-emer-ac", 0);
 				setprop("/systems/electrical/bus/r-emer-dc", 0);
 			}
-		} else if (emer_pw_sw == 2 and batt_sw) { # ON
+		} else if (emer_pw_sw == 2 and batt_sw and (!batt1_fail or !batt2_fail)) { # ON
 			setprop("/systems/electrical/bus/l-emer-ac", ac_volt_std);
 			setprop("/systems/electrical/bus/l-emer-dc", dc_volt_std);
 			if (ac3 >= 110) {
@@ -419,13 +441,13 @@ var ELEC = {
 		dc3 = getprop("/systems/electrical/bus/dc3");
 		
 		# Battery Amps
-		if (battery1_volts >= 20 and batt_sw) {
+		if (battery1_volts >= 20 and batt_sw and !batt1_fail) {
 			setprop("/systems/electrical/battery1-amps", batt_amps);
 		} else {
 			setprop("/systems/electrical/battery1-amps", 0);
 		}
 		
-		if (battery2_volts >= 20 and batt_sw) {
+		if (battery2_volts >= 20 and batt_sw and !batt2_fail) {
 			setprop("/systems/electrical/battery2-amps", batt_amps);
 		} else {
 			setprop("/systems/electrical/battery2-amps", 0);
@@ -446,7 +468,7 @@ var ELEC = {
 		dcbat = getprop("/systems/electrical/bus/dcbat");
 		
 		# Battery Charging/Decharging
-		if (battery1_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		if (battery1_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw and !batt1_fail) {
 			if (getprop("/systems/electrical/battery1-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery1_percent_calc = battery1_percent + 0.75; # Roughly 90 percent every 10 mins
 				if (battery1_percent_calc > 100) {
@@ -455,9 +477,9 @@ var ELEC = {
 				setprop("/systems/electrical/battery1-percent", battery1_percent_calc);
 				setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 			}
-		} else if (battery1_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		} else if (battery1_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw and !batt1_fail) {
 			setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
-		} else if (battery1_amps > 0 and batt_sw) {
+		} else if (battery1_amps > 0 and batt_sw and !batt1_fail) {
 			if (getprop("/systems/electrical/battery1-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery1_percent_calc = battery1_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery1_percent_calc < 0) {
@@ -470,7 +492,7 @@ var ELEC = {
 			setprop("/systems/electrical/battery1-time", getprop("/sim/time/elapsed-sec"));
 		}
 		
-		if (battery2_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		if (battery2_percent < 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw and !batt2_fail) {
 			if (getprop("/systems/electrical/battery2-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery2_percent_calc = battery2_percent + 0.75; # Roughly 90 percent every 10 mins
 				if (battery2_percent_calc > 100) {
@@ -479,9 +501,9 @@ var ELEC = {
 				setprop("/systems/electrical/battery2-percent", battery2_percent_calc);
 				setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
 			}
-		} else if (battery2_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw) {
+		} else if (battery2_percent == 100 and (ac_gndsvc >= 110 or r_emer_ac >= 110) and batt_sw and !batt2_fail) {
 			setprop("/systems/electrical/battery2-time", getprop("/sim/time/elapsed-sec"));
-		} else if (battery2_amps > 0 and batt_sw) {
+		} else if (battery2_amps > 0 and batt_sw and !batt2_fail) {
 			if (getprop("/systems/electrical/battery2-time") + 5 < getprop("/sim/time/elapsed-sec")) {
 				battery2_percent_calc = battery2_percent - 0.25; # Roughly 90 percent every 30 mins
 				if (battery2_percent_calc < 0) {
@@ -675,6 +697,24 @@ var ELEC = {
 			setprop("/systems/electrical/light/r-emer-ac", 1);
 		} else {
 			setprop("/systems/electrical/light/r-emer-ac", 0);
+		}
+		
+		if (gen1_sw and !gen1_fail and state1 != 3) {
+			setprop("/systems/electrical/light/gen1-arm", 1);
+		} else {
+			setprop("/systems/electrical/light/gen1-arm", 0);
+		}
+		
+		if (gen2_sw and !gen2_fail and state2 != 3) {
+			setprop("/systems/electrical/light/gen2-arm", 1);
+		} else {
+			setprop("/systems/electrical/light/gen2-arm", 0);
+		}
+		
+		if (gen3_sw and !gen3_fail and state3 != 3) {
+			setprop("/systems/electrical/light/gen3-arm", 1);
+		} else {
+			setprop("/systems/electrical/light/gen3-arm", 0);
 		}
 	},
 	systemMode: func() {

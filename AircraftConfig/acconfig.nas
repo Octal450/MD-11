@@ -21,6 +21,12 @@ var spinning = maketimer(0.05, func {
 });
 
 var failReset = func {
+	setprop("/systems/failures/elec-batt1", 0);
+	setprop("/systems/failures/elec-batt2", 0);
+	setprop("/systems/failures/elec-apu", 0);
+	setprop("/systems/failures/elec-gen1", 0);
+	setprop("/systems/failures/elec-gen2", 0);
+	setprop("/systems/failures/elec-gen3", 0);
 	setprop("/systems/failures/bleed-apu", 0);
 	setprop("/systems/failures/bleed-ext", 0);
 	setprop("/systems/failures/bleed-eng1", 0);

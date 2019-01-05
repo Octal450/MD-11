@@ -432,11 +432,8 @@
 		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Drive1.disc</object-name>
-		<object-name>Drive1.fault</object-name>
 		<object-name>Drive2.disc</object-name>
-		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
-		<object-name>Drive3.fault</object-name>
 		<object-name>Dump.on</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
@@ -2138,10 +2135,16 @@
 		<object-name>ApuPwr.avail</object-name>
 		<condition>
 			<or>
-				<greater-than>
-					<property>systems/apu/n2</property>
-					<value>94.9</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>systems/apu/n2</property>
+						<value>94.9</value>
+					</greater-than>
+					<not-equals>
+						<property>systems/failures/elec-apu</property>
+						<value>1</value>
+					</not-equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2163,6 +2166,10 @@
 						<property>controls/electrical/switches/apu-pwr</property>
 						<value>1</value>
 					</equals>
+					<not-equals>
+						<property>systems/failures/elec-apu</property>
+						<value>1</value>
+					</not-equals>
 				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -2541,16 +2548,10 @@
 		<object-name>Gen1.arm</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>controls/electrical/switches/gen1</property>
-						<value>1</value>
-					</equals>
-					<not-equals>
-						<property>engines/engine[0]/state</property>
-						<value>3</value>
-					</not-equals>
-				</and>
+				<equals>
+					<property>systems/electrical/light/gen1-arm</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2566,6 +2567,23 @@
 				<equals>
 					<property>controls/electrical/switches/gen1</property>
 					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Drive1.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/failures/elec-gen1</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -2648,16 +2666,10 @@
 		<object-name>Gen2.arm</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>controls/electrical/switches/gen2</property>
-						<value>1</value>
-					</equals>
-					<not-equals>
-						<property>engines/engine[1]/state</property>
-						<value>3</value>
-					</not-equals>
-				</and>
+				<equals>
+					<property>systems/electrical/light/gen2-arm</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2673,6 +2685,23 @@
 				<equals>
 					<property>controls/electrical/switches/gen2</property>
 					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Drive2.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/failures/elec-gen2</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -2755,16 +2784,10 @@
 		<object-name>Gen3.arm</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>controls/electrical/switches/gen3</property>
-						<value>1</value>
-					</equals>
-					<not-equals>
-						<property>engines/engine[2]/state</property>
-						<value>3</value>
-					</not-equals>
-				</and>
+				<equals>
+					<property>systems/electrical/light/gen3-arm</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2780,6 +2803,23 @@
 				<equals>
 					<property>controls/electrical/switches/gen3</property>
 					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Drive3.fault</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/failures/elec-gen3</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
