@@ -35,14 +35,6 @@ var failReset = func {
 	setprop("/systems/failures/pack1", 0);
 	setprop("/systems/failures/pack2", 0);
 	setprop("/systems/failures/pack3", 0);
-	setprop("/systems/failures/lsas-l-out", 0);
-	setprop("/systems/failures/lsas-l-in", 0);
-	setprop("/systems/failures/lsas-r-in", 0);
-	setprop("/systems/failures/lsas-r-out", 0);
-	setprop("/systems/failures/yawdamp-upr-a", 0);
-	setprop("/systems/failures/yawdamp-upr-b", 0);
-	setprop("/systems/failures/yawdamp-lwr-a", 0);
-	setprop("/systems/failures/yawdamp-lwr-b", 0);
 	setprop("/systems/failures/hyd-sys1", 0);
 	setprop("/systems/failures/hyd-sys2", 0);
 	setprop("/systems/failures/hyd-sys3", 0);
@@ -52,6 +44,21 @@ var failReset = func {
 	setprop("/systems/failures/hyd-fault-r2", 0);
 	setprop("/systems/failures/hyd-fault-l3", 0);
 	setprop("/systems/failures/hyd-fault-r3", 0);
+	setprop("/systems/failures/tank0pumps", 0);
+	setprop("/systems/failures/tank1pumps", 0);
+	setprop("/systems/failures/tank2pumps", 0);
+	setprop("/systems/failures/tank3pumpl", 0);
+	setprop("/systems/failures/tank3pumpr", 0);
+	setprop("/systems/failures/lsas-l-out", 0);
+	setprop("/systems/failures/lsas-l-in", 0);
+	setprop("/systems/failures/lsas-r-in", 0);
+	setprop("/systems/failures/lsas-r-out", 0);
+	setprop("/systems/failures/yawdamp-upr-a", 0);
+	setprop("/systems/failures/yawdamp-upr-b", 0);
+	setprop("/systems/failures/yawdamp-lwr-a", 0);
+	setprop("/systems/failures/yawdamp-lwr-b", 0);
+	setprop("/systems/failures/elev-feel", 0);
+	setprop("/systems/failures/flap-limit", 0);
 }
 
 failReset();

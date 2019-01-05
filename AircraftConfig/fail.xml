@@ -47,7 +47,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>FCTL SYS Fail</label>
+					<label>FUEL SYS Fail</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -55,12 +55,9 @@
 			</group>
 			
 			<checkbox>
-				<label>LSAS L Out</label>
+				<label>Tank 1 Pumps</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable1</property>
-				</enable>
-				<property>/systems/failures/lsas-l-out</property>
+				<property>/systems/failures/tank0pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -68,12 +65,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS L In</label>
+				<label>Tank 2 Pumps</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable1</property>
-				</enable>
-				<property>/systems/failures/lsas-l-in</property>
+				<property>/systems/failures/tank1pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -81,12 +75,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS R In</label>
+				<label>Tank 3 Pumps</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable1</property>
-				</enable>
-				<property>/systems/failures/lsas-r-in</property>
+				<property>/systems/failures/tank2pumps</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -94,12 +85,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS R Out</label>
+				<label>AUX Tank L Trans</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable1</property>
-				</enable>
-				<property>/systems/failures/lsas-r-out</property>
+				<property>/systems/failures/tank3pumpl</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -107,51 +95,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Yaw Damp Upr A</label>
+				<label>AUX Tank R Trans</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
-				<property>/systems/failures/yawdamp-upr-a</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Yaw Damp Upr B</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
-				<property>/systems/failures/yawdamp-upr-b</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Yaw Damp Lwr A</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
-				<property>/systems/failures/yawdamp-lwr-a</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Yaw Damp Lwr B</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
-				<property>/systems/failures/yawdamp-lwr-b</property>
+				<property>/systems/failures/tank3pumpr</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -388,7 +334,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Battery 1</label>
+				<label>BATTERY 1</label>
 				<halign>left</halign>
 				<property>/systems/failures/elec-batt1</property>
 				<binding>
@@ -398,7 +344,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Battery 2</label>
+				<label>BATTERY 2</label>
 				<halign>left</halign>
 				<property>/systems/failures/elec-batt2</property>
 				<binding>
@@ -439,7 +385,7 @@
 		
 		</group>
 		
-		<!--vrule/>
+		<vrule/>
 		
 		<group>
 			<layout>vbox</layout>
@@ -451,7 +397,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>FUEL SYS Fail</label>
+					<label>FCTL SYS Fail</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -459,9 +405,12 @@
 			</group>
 			
 			<checkbox>
-				<label>Tank L Pump 1</label>
+				<label>LSAS L OUTBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank0pump1</property>
+				<enable>
+					<property>/lsas/enable1</property>
+				</enable>
+				<property>/systems/failures/lsas-l-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -469,9 +418,12 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank L Pump 2</label>
+				<label>LSAS L INBRD</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank0pump2</property>
+				<enable>
+					<property>/lsas/enable1</property>
+				</enable>
+				<property>/systems/failures/lsas-l-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -479,9 +431,12 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank C Pump 1</label>
+				<label>LSAS R INBRD</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank1pump1</property>
+				<enable>
+					<property>/lsas/enable1</property>
+				</enable>
+				<property>/systems/failures/lsas-r-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -489,9 +444,12 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank C Pump 2</label>
+				<label>LSAS R OUTBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank1pump2</property>
+				<enable>
+					<property>/lsas/enable1</property>
+				</enable>
+				<property>/systems/failures/lsas-r-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -499,9 +457,12 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank R Pump 1</label>
+				<label>YAW DAMP UPR A</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank2pump1</property>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/yawdamp-upr-a</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -509,9 +470,64 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank R Pump 2</label>
+				<label>YAW DAMP UPR B</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank2pump2</property>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/yawdamp-upr-b</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>YAW DAMP LWR A</label>
+				<halign>left</halign>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/yawdamp-lwr-a</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>YAW DAMP LWR B</label>
+				<halign>left</halign>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/yawdamp-lwr-b</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>ELEV FEEL</label>
+				<halign>left</halign>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/elev-feel</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>FLAP LIMIT</label>
+				<halign>left</halign>
+				<enable>
+					<property>/systems/acconfig/blah</property>
+				</enable>
+				<property>/systems/failures/flap-limit</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -533,7 +549,7 @@
 				</binding>
 			</button>
 				
-		</group-->
+		</group>
 
 	</group>
 	

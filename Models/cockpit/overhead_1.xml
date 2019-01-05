@@ -5634,7 +5634,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank3-trans-low</property>
+					<property>systems/fuel/light/tank3-ltrans-low</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5727,7 +5727,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank3-trans-low</property>
+					<property>systems/fuel/light/tank3-rtrans-low</property>
 					<value>1</value>
 				</equals>
 				<equals>

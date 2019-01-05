@@ -23,6 +23,11 @@ var ac1 = 0;
 var ac2 = 0;
 var ac3 = 0;
 var manl = 0;
+var tank0pumps_fail = 0;
+var tank1pumps_fail = 0;
+var tank2pumps_fail = 0;
+var tank3pumpl_fail = 0;
+var tank3pumpr_fail = 0;
 
 var FUEL = {
 	init: func() {
@@ -56,7 +61,8 @@ var FUEL = {
 		setprop("/systems/fuel/light/tank1-trans-low", 0);
 		setprop("/systems/fuel/light/tank2-pumps-low", 0);
 		setprop("/systems/fuel/light/tank2-trans-low", 0);
-		setprop("/systems/fuel/light/tank3-trans-low", 0);
+		setprop("/systems/fuel/light/tank3-ltrans-low", 0);
+		setprop("/systems/fuel/light/tank3-rtrans-low", 0);
 		setprop("/systems/fuel/light/tank0-fill", 0);
 		setprop("/systems/fuel/light/tank1-fill", 0);
 		setprop("/systems/fuel/light/tank2-fill", 0);
@@ -82,6 +88,11 @@ var FUEL = {
 		ac1 = getprop("/systems/electrical/bus/ac1");
 		ac2 = getprop("/systems/electrical/bus/ac2");
 		ac3 = getprop("/systems/electrical/bus/ac3");
+		tank0pumps_fail = getprop("/systems/failures/tank0pumps");
+		tank1pumps_fail = getprop("/systems/failures/tank1pumps");
+		tank2pumps_fail = getprop("/systems/failures/tank2pumps");
+		tank3pumpl_fail = getprop("/systems/failures/tank3pumpl");
+		tank3pumpr_fail = getprop("/systems/failures/tank3pumpr");
 		
 		# FSC
 		if (system) {
@@ -165,7 +176,7 @@ var FUEL = {
 			}
 		}
 		
-		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank0pumps_sw) {
+		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank0pumps_sw and !tank0pumps_fail) {
 			setprop("/systems/fuel/tank[0]/feed", 1);
 		} else if (gload >= 0.7) {
 			setprop("/systems/fuel/tank[0]/feed", 1);
@@ -173,13 +184,13 @@ var FUEL = {
 			setprop("/systems/fuel/tank[0]/feed", 0);
 		}
 		
-		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank1pumps_sw) {
+		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank1pumps_sw and !tank1pumps_fail) {
 			setprop("/systems/fuel/tank[1]/feed", 1);
 		} else { # Engine 2 cannot gravity feed because it is above the tank
 			setprop("/systems/fuel/tank[1]/feed", 0);
 		}
 		
-		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank2pumps_sw) {
+		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and tank2pumps_sw and !tank2pumps_fail) {
 			setprop("/systems/fuel/tank[2]/feed", 1);
 		} else if (gload >= 0.7) {
 			setprop("/systems/fuel/tank[2]/feed", 1);
@@ -187,25 +198,25 @@ var FUEL = {
 			setprop("/systems/fuel/tank[2]/feed", 0);
 		}
 		
-		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and (tank3ltrans_sw or tank3rtrans_sw)) {
+		if ((ac1 >= 110 or ac2 >= 110 or ac3 >= 110) and ((tank3ltrans_sw and !tank3pumpl_fail) or (tank3rtrans_sw and !tank3pumpr_fail))) {
 			setprop("/systems/fuel/tank[3]/feed", 1);
 		} else {
 			setprop("/systems/fuel/tank[3]/feed", 0);
 		}
 		
-		if (getprop("/consumables/fuel/tank[0]/level-lbs") <= 100 and tank0pumps_sw) {
+		if ((getprop("/consumables/fuel/tank[0]/level-lbs") <= 100 or tank0pumps_fail) and tank0pumps_sw) {
 			setprop("/systems/fuel/light/tank0-pumps-low", 1);
 		} else {
 			setprop("/systems/fuel/light/tank0-pumps-low", 0);
 		}
 		
-		if (getprop("/consumables/fuel/tank[1]/level-lbs") <= 100 and tank1pumps_sw) {
+		if ((getprop("/consumables/fuel/tank[1]/level-lbs") <= 100 or tank1pumps_fail) and tank1pumps_sw) {
 			setprop("/systems/fuel/light/tank1-pumps-low", 1);
 		} else {
 			setprop("/systems/fuel/light/tank1-pumps-low", 0);
 		}
 		
-		if (getprop("/consumables/fuel/tank[2]/level-lbs") <= 100 and tank2pumps_sw) {
+		if ((getprop("/consumables/fuel/tank[2]/level-lbs") <= 100 or tank2pumps_fail) and tank2pumps_sw) {
 			setprop("/systems/fuel/light/tank2-pumps-low", 1);
 		} else {
 			setprop("/systems/fuel/light/tank2-pumps-low", 0);
@@ -229,10 +240,16 @@ var FUEL = {
 			setprop("/systems/fuel/light/tank2-trans-low", 0);
 		}
 		
-		if (getprop("/consumables/fuel/tank[3]/level-lbs") <= 100 and (tank3ltrans_sw or tank3rtrans_sw)) {
-			setprop("/systems/fuel/light/tank3-trans-low", 1);
+		if ((getprop("/consumables/fuel/tank[3]/level-lbs") <= 100 or tank3pumpl_fail) and tank3ltrans_sw) {
+			setprop("/systems/fuel/light/tank3-ltrans-low", 1);
 		} else {
-			setprop("/systems/fuel/light/tank3-trans-low", 0);
+			setprop("/systems/fuel/light/tank3-ltrans-low", 0);
+		}
+		
+		if ((getprop("/consumables/fuel/tank[3]/level-lbs") <= 100 or tank3pumpr_fail) and tank3rtrans_sw) {
+			setprop("/systems/fuel/light/tank3-rtrans-low", 1);
+		} else {
+			setprop("/systems/fuel/light/tank3-rtrans-low", 0);
 		}
 		
 		if (getprop("/fdm/jsbsim/fuel/tank0-is-filling") == 1 and tank0fill_sw) {
