@@ -1,10 +1,10 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.5 0.5 0.5  shi 10  trans 0
-MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 50  trans 0
+MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "Material.002" rgb 0.0134 0.0124 0.0133  amb 0 0 0  emis 0 0 0  spec 1 1 1  shi 50  trans 0
-MATERIAL "glass" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 50  trans 0.8586
-MATERIAL "Material.004" rgb 0.8 0.0734 0.676  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 50  trans 0
-MATERIAL "Material.029" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0.8 0.8 0.8  spec 0.25 0.25 0.25  shi 50  trans 0
+MATERIAL "glass" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0.8586
+MATERIAL "Material.004" rgb 0.8 0.0705882 0.67451  amb 0.8 0.0705882 0.67451  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
+MATERIAL "Material.029" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0.8 0.8 0.8  spec 0 0 0  shi 20.8842  trans 0
 OBJECT world
 kids 110
 OBJECT poly

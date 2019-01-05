@@ -36,8 +36,6 @@ var roll_mode = getprop("/modes/pfd/fma/roll-mode");
 var roll_mode_armed = getprop("/modes/pfd/fma/roll-mode-armed");
 var pitch_mode = getprop("/modes/pfd/fma/pitch-mode");
 var pitch_mode_armed = getprop("/modes/pfd/fma/pitch-mode-armed");
-var wow1 = getprop("/gear/gear[1]/wow");
-var wow2 = getprop("/gear/gear[2]/wow");
 setprop("/it-autoflight/internal/ias-presel", 0);
 setprop("/it-autoflight/internal/ias-sel", 0);
 setprop("/instrumentation/pfd/alt-presel", 0);
@@ -188,6 +186,8 @@ var canvas_PFD_base = {
 		} else if (throttle_mode == "PITCH") {
 			if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
+			} else if (getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3 and getprop("/gear/gear[1]/wow") != 0 and getprop("/gear/gear[2]/wow") != 0) {
+				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
 			}
@@ -196,6 +196,8 @@ var canvas_PFD_base = {
 			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else {
 			if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+				me["FMA_AP"].setColor(1,0.7843,0);
+			} else if (getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3 and getprop("/gear/gear[1]/wow") != 0 and getprop("/gear/gear[2]/wow") != 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
@@ -214,6 +216,9 @@ var canvas_PFD_base = {
 		}
 		
 		if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+		} else if (getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3 and getprop("/gear/gear[1]/wow") != 0 and getprop("/gear/gear[2]/wow") != 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
 		} else {
