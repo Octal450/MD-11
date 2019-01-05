@@ -316,7 +316,9 @@
 						<binding>
 							<command>nasal</command>
 							<script>
-							acconfig.fail_dlg.open();
+							if (getprop("/options/system/allow-damage") != 1) {
+								acconfig.fail_dlg.open();
+							}
 							</script>
 						</binding>
 					</item>
