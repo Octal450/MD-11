@@ -4,11 +4,11 @@ MATERIAL "Buttons.002" rgb 0.3931 0.3931 0.3931  amb 1 1 1  emis 0.8 0.8 0.8  sp
 MATERIAL "DefaultWhite.009" rgb 1 1 1  amb 1 1 1  emis 0.8 0.8 0.8  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "DefaultWhite.011" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "Material.014" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0.8 0.8 0.8  spec 0.0312 0.0312 0.0312  shi 50  trans 0
-MATERIAL "emit.000" rgb 1 1 1  amb 1 1 1  emis 1.754 1.754 1.754  spec 0 0 0  shi 50  trans 0
+MATERIAL "emit.000" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
 MATERIAL "Buttons" rgb 0.0081 0.0081 0.0081  amb 0 0 0  emis 0 0 0  spec 0.125 0.125 0.125  shi 50  trans 0
-MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 50  trans 0
-MATERIAL "DefaultWhite.003" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.0125 0.0125 0.0125  shi 50  trans 0
-MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 0  trans 0
+MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
+MATERIAL "DefaultWhite.003" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.0125 0.0125 0.0125  shi 20.8842  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
 kids 540
