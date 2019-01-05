@@ -312,6 +312,15 @@
 						</binding>
 					</item>
 					<item>
+						<label>Failures</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.fail_dlg.open();
+							</script>
+						</binding>
+					</item>
+					<item>
 						<label>Skip IRS</label>
 						<binding>
 							<command>property-assign</command>
@@ -615,6 +624,11 @@
 		<enable type="bool">1</enable>
 		<equipped type="bool">0</equipped>
 	</rcws>
+	
+	<yawdamp n="0">
+		<avail-upr type="bool">1</avail-upr>
+		<avail-lwr type="bool">1</avail-lwr>
+	</yawdamp>
 	
 	<options n="0">
 		<keyboard-mode type="bool">0</keyboard-mode>

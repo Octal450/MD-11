@@ -21,6 +21,22 @@ var spinning = maketimer(0.05, func {
 });
 
 var failReset = func {
+	setprop("/systems/failures/bleed-apu", 0);
+	setprop("/systems/failures/bleed-ext", 0);
+	setprop("/systems/failures/bleed-eng1", 0);
+	setprop("/systems/failures/bleed-eng2", 0);
+	setprop("/systems/failures/bleed-eng3", 0);
+	setprop("/systems/failures/pack1", 0);
+	setprop("/systems/failures/pack2", 0);
+	setprop("/systems/failures/pack3", 0);
+	setprop("/systems/failures/lsas-l-out", 0);
+	setprop("/systems/failures/lsas-l-in", 0);
+	setprop("/systems/failures/lsas-r-in", 0);
+	setprop("/systems/failures/lsas-r-out", 0);
+	setprop("/systems/failures/yawdamp-upr-a", 0);
+	setprop("/systems/failures/yawdamp-upr-b", 0);
+	setprop("/systems/failures/yawdamp-lwr-a", 0);
+	setprop("/systems/failures/yawdamp-lwr-b", 0);
 }
 
 failReset();
@@ -49,7 +65,7 @@ var ps_loaded_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psloaded/dialog", "
 var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/ac_init.xml");
 var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/help.xml");
 var fctl_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fctl/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/fctl.xml");
-#var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/fail.xml");
+var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/fail.xml");
 var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/about.xml");
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/update.xml");
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/updated.xml");

@@ -3854,10 +3854,10 @@
 		<condition>
 			<or>
 				<and>
-					<less-than>
-						<property>systems/pneumatic/bleed1</property>
-						<value>9</value>
-					</less-than>
+					<equals>
+						<property>systems/pneumatic/light/bleed1-press</property>
+						<value>1</value>
+					</equals>
 					<equals>
 						<property>controls/pneumatic/switches/bleed1</property>
 						<value>1</value>
@@ -3953,10 +3953,10 @@
 		<condition>
 			<or>
 				<and>
-					<less-than>
-						<property>systems/pneumatic/bleed2</property>
-						<value>9</value>
-					</less-than>
+					<equals>
+						<property>systems/pneumatic/light/bleed2-press</property>
+						<value>1</value>
+					</equals>
 					<equals>
 						<property>controls/pneumatic/switches/bleed2</property>
 						<value>1</value>
@@ -4102,10 +4102,10 @@
 		<condition>
 			<or>
 				<and>
-					<less-than>
-						<property>systems/pneumatic/bleed3</property>
-						<value>9</value>
-					</less-than>
+					<equals>
+						<property>systems/pneumatic/light/bleed3-press</property>
+						<value>1</value>
+					</equals>
 					<equals>
 						<property>controls/pneumatic/switches/bleed3</property>
 						<value>1</value>

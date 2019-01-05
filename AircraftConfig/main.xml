@@ -492,11 +492,8 @@
 					<halign>center</halign>
 					<padding>5</padding>
 					<enable>
-						<property>/systems/acconfig/extra-stuff</property>
-					</enable>
-					<!--enable>
 						<not><property>/options/system/allow-damage</property></not>
-					</enable-->
+					</enable>
 					<binding>
 						<command>nasal</command>
 						<script>
