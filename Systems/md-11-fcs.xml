@@ -7,6 +7,7 @@
 	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/rcws/aileron-out-enable</property>
 	<property value="0">fcc/lsas/pid</property>
+	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
 	
@@ -132,9 +133,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
 					<tableData>
-						     0   1  
-						140 -10  0
-						360  -4  0
+						     0     1
+						140 -10.0  0.0
+						360  -3.7  0.0
 					</tableData>
 				</table>
 			</function>
@@ -146,9 +147,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
 					<tableData>
-						     0  1
-						140 -4  0
-						360 -1  0
+						     0    1
+						140 -4.0  0.0
+						360 -0.8  0.0
 					</tableData>
 				</table>
 			</function>
@@ -162,7 +163,7 @@
 					<tableData>
 						     0    1
 						140 -1.0  0.0
-						360 -0.7  0.0
+						360 -0.6  0.0
 					</tableData>
 				</table>
 			</function>
@@ -176,22 +177,22 @@
 					<tableData>
 						     0   1
 						140  21  0
-						360   9  0
+						360   7  0
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/p-gain2"> <!-- Used for pitch rate damping mode -->
+		<fcs_function name="fcc/lsas/p-gain2">
 			<function>
 				<product>
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<independentVar lookup="column">fcc/lsas/gain-switch2</independentVar>
 						<tableData>
-							     0     1
-							140  5.25  0.00
-							360  2.25  0.00
+							     0    1
+							140  6.0  0.0
+							360  2.0  0.0
 						</tableData>
 					</table>
 					<table>
@@ -211,9 +212,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
-						     0  1
-						140  9  0
-						360  2  0
+						     0    1
+						140  9.0  0.0
+						360  1.7  0.0
 					</tableData>
 				</table>
 			</function>
@@ -225,9 +226,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/gain-switch</independentVar>
 					<tableData>
-						     0   1
-						140  11  0
-						360   3  0
+						     0     1
+						140  11.0  0.0
+						360   2.5  0.0
 					</tableData>
 				</table>
 			</function>
@@ -300,8 +301,8 @@
 				fcc/rcws/gain-switch gt 0
 			</test>
 			<test logic="OR" value="1">
-				fcc/rcws/pid le -0.299
-				fcc/rcws/pid ge 0.299
+				fcc/rcws/pid le -0.249
+				fcc/rcws/pid ge 0.249
 			</test>
 		</switch>
 		
@@ -312,8 +313,8 @@
 			<kd>fcc/rcws/d-gain</kd>
 			<trigger>fcc/rcws/trigger</trigger>
 			<clipto>
-				<min>-0.3</min>
-				<max>0.3</max>
+				<min>-0.25</min>
+				<max>0.25</max>
 			</clipto>
 			<output>fcc/rcws/pid</output>
 		</pid>
@@ -469,8 +470,30 @@
 			</clipto>
 		</pure_gain>
 		
-		<summer name="fcc/lsas/damper-control-cmd">
+		<switch name="fcc/lsas/elevator-feel-switch">
+			<default value="fcc/lsas/elevator-feel-speed"/>
+			<test value="velocities/vc-kts">
+				fcc/lsas/elevator-feel-auto eq 1
+			</test>
+			<output>fcc/lsas/elevator-feel-speed</output>
+			<min>120</min>
+			<max>300</max>
+		</switch>
+		
+		<scheduled_gain name="fcc/lsas/elevator-feel">
 			<input>/controls/flight/elevator</input>
+			<table>
+				<independentVar lookup="row">fcc/lsas/elevator-feel-speed</independentVar>
+				<tableData>
+					120  1.00
+					200  0.88
+					300  0.70
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<summer name="fcc/lsas/damper-control-cmd">
+			<input>fcc/lsas/elevator-feel</input>
 			<input>fcc/lsas/thetadot-damper</input>
 		</summer>
 		
@@ -1014,62 +1037,6 @@
 	
 	</channel>
 	
-	<channel name="Roll Aero">
-		
-		<scheduled_gain name="hydraulics/aileron-out-l/final-deg-aero">
-			<input>hydraulics/aileron-out-l/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.900
-					0.9  0.25  0.750
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/aileron-in-l/final-deg-aero">
-			<input>hydraulics/aileron-in-l/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.900
-					0.9  0.25  0.750
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/aileron-in-r/final-deg-aero">
-			<input>hydraulics/aileron-in-r/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.900
-					0.9  0.25  0.750
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/aileron-out-r/final-deg-aero">
-			<input>hydraulics/aileron-out-r/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.900
-					0.9  0.25  0.750
-				</tableData>
-			</table>
-		</scheduled_gain>
-	
-	</channel>
-	
 	<channel name="Elevator L Outer">
 		
 		<switch name="hydraulics/elevator-out-l/switch">
@@ -1229,75 +1196,6 @@
 				<max>1.0</max>
 			</range>
 		</aerosurface_scale>
-	
-	</channel>
-	
-	<channel name="Pitch Aero">
-		
-		<scheduled_gain name="hydraulics/elevator-out-l/final-deg-aero">
-			<input>hydraulics/elevator-out-l/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.850
-					0.9  0.01  0.700
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/elevator-in-l/final-deg-aero">
-			<input>hydraulics/elevator-in-l/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.850
-					0.9  0.01  0.700
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/elevator-in-r/final-deg-aero">
-			<input>hydraulics/elevator-in-r/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.850
-					0.9  0.01  0.700
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/elevator-out-r/final-deg-aero">
-			<input>hydraulics/elevator-out-r/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.850
-					0.9  0.01  0.700
-				</tableData>
-			</table>
-		</scheduled_gain>
-		
-		<scheduled_gain name="hydraulics/elevator-trim/final-deg-aero">
-			<input>hydraulics/elevator-trim/final-deg</input>
-			<table>
-				<independentVar lookup="row">velocities/mach</independentVar>
-				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-				<tableData>
-					     0     43000
-					0.0  1.00  0.850
-					0.9  0.01  0.700
-				</tableData>
-			</table>
-		</scheduled_gain>
 	
 	</channel>
 	

@@ -429,7 +429,7 @@ var takeoff = func {
 				} else {
 					setprop("/controls/hydraulic/aileron-droop", 0);
 				}
-				setprop("/controls/flight/elevator-trim", -0.3);
+				setprop("/controls/flight/elevator-trim", -0.29);
 				setprop("/controls/autobrake/switch", -1);
 			}
 		});
