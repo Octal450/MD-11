@@ -171,5 +171,13 @@ var FCTL = {
 		} else {
 			setprop("/controls/fctl/yd/light/lower-b-fail", 0);
 		}
+		
+		# VMO MMO Calculations
+		mmoIAS = (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") / getprop("/instrumentation/airspeed-indicator/indicated-mach")) * 0.82;
+		if (mmoIAS < 365) {
+			setprop("/controls/fctl/vmo-mmo", mmoIAS);
+		} else {
+			setprop("/controls/fctl/vmo-mmo", 365);
+		}
 	},
 };

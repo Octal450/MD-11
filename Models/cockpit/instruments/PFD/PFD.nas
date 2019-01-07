@@ -11,11 +11,13 @@ var PFD2_display = nil;
 var updateL = 0;
 var updateR = 0;
 var ASI = 0;
+var ASImax = 0;
 var ASIpresel = 0;
 var ASIpreseldiff = 0;
 var ASIsel = 0;
 var ASIseldiff = 0;
 var ASItrend = 0;
+var IASmax = 0;
 var pitch = 0;
 var roll = 0;
 var alpha = 0;
@@ -88,10 +90,10 @@ var canvas_PFD_base = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2",
-		"AI_error","AI_fpv","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel",
-		"VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale",
-		"GS_pointer","GS_no","RA","RA_box"];
+		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2","ASI_max_flap","AI_center",
+		"AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three",
+		"ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error",
+		"TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -300,6 +302,8 @@ var canvas_PFD_base = {
 			me["ASI_scale"].show();
 			me["ASI_presel"].show();
 			me["ASI_sel"].show();
+			me["ASI_max"].show();
+			me["ASI_max_flap"].show();
 		} else {
 			me["ASI_GroundSpd"].setText(sprintf("%3.0f", getprop("/velocities/groundspeed-kt")));
 			me["ASI_GroundSpd"].show();
@@ -308,6 +312,8 @@ var canvas_PFD_base = {
 			me["ASI_scale"].hide();
 			me["ASI_presel"].hide();
 			me["ASI_sel"].hide();
+			me["ASI_max"].hide();
+			me["ASI_max_flap"].hide();
 		}
 		
 		# Subtract 50, since the scale starts at 50, but don"t allow less than 0, or more than 500 situations
@@ -319,8 +325,33 @@ var canvas_PFD_base = {
 			ASI = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") - 50;
 		}
 		
+		IASmax = getprop("/controls/fctl/vmo-mmo");
+		if (IASmax <= 50) {
+			ASImax = 0 - ASI;
+		} else if (IASmax >= 500) {
+			ASImax = 450 - ASI;
+		} else {
+			ASImax = IASmax - 50 - ASI;
+		}
+		
 		me["ASI_scale"].setTranslation(0, ASI * 4.48656);
+		me["ASI_max"].setTranslation(0, ASImax * -4.48656);
+		me["ASI_max_flap"].hide(); # Temporary
 		me["ASI"].setText(sprintf("%3.0f", getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")));
+		
+		if (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") > IASmax) {
+			me["ASI"].setColor(1,0,0);
+			me["ASI_mach"].setColor(1,0,0);
+			me["ASI_mach_decimal"].setColor(1,0,0);
+			me["ASI_bowtie_L"].setColor(1,0,0);
+			me["ASI_bowtie_R"].setColor(1,0,0);
+		} else {
+			me["ASI"].setColor(1,1,1);
+			me["ASI_mach"].setColor(1,1,1);
+			me["ASI_mach_decimal"].setColor(1,1,1);
+			me["ASI_bowtie_L"].setColor(1,1,1);
+			me["ASI_bowtie_R"].setColor(1,1,1);
+		}
 		
 		if (getprop("/instrumentation/airspeed-indicator/indicated-mach") >= 0.5) {
 			me["ASI_bowtie_mach"].show();
