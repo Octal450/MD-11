@@ -12,12 +12,14 @@ var updateL = 0;
 var updateR = 0;
 var ASI = 0;
 var ASImax = 0;
+var ASIflapmax = 0;
 var ASIpresel = 0;
 var ASIpreseldiff = 0;
 var ASIsel = 0;
 var ASIseldiff = 0;
 var ASItrend = 0;
 var IASmax = 0;
+var IASflapmax = 0;
 var pitch = 0;
 var roll = 0;
 var alpha = 0;
@@ -334,9 +336,32 @@ var canvas_PFD_base = {
 			ASImax = IASmax - 50 - ASI;
 		}
 		
+		IASflapmax = getprop("/controls/fctl/flap-gear-max");
+		if (IASflapmax < 0) {
+			ASIflapmax = 0;
+			me["ASI_max_bar"].show();
+			me["ASI_max_bar2"].hide();
+			me["ASI_max_flap"].hide();
+		} else if (IASflapmax <= 50) {
+			ASIflapmax = 0 - ASI;
+			me["ASI_max_bar"].hide();
+			me["ASI_max_bar2"].show();
+			me["ASI_max_flap"].show();
+		} else if (IASflapmax >= 500) {
+			ASIflapmax = 450 - ASI;
+			me["ASI_max_bar"].hide();
+			me["ASI_max_bar2"].show();
+			me["ASI_max_flap"].show();
+		} else {
+			ASIflapmax = IASflapmax - 50 - ASI;
+			me["ASI_max_bar"].hide();
+			me["ASI_max_bar2"].show();
+			me["ASI_max_flap"].show();
+		}
+		
 		me["ASI_scale"].setTranslation(0, ASI * 4.48656);
 		me["ASI_max"].setTranslation(0, ASImax * -4.48656);
-		me["ASI_max_flap"].hide(); # Temporary
+		me["ASI_max_flap"].setTranslation(0, ASIflapmax * -4.48656);
 		me["ASI"].setText(sprintf("%3.0f", getprop("/instrumentation/airspeed-indicator/indicated-speed-kt")));
 		
 		if (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") > IASmax) {
@@ -345,6 +370,12 @@ var canvas_PFD_base = {
 			me["ASI_mach_decimal"].setColor(1,0,0);
 			me["ASI_bowtie_L"].setColor(1,0,0);
 			me["ASI_bowtie_R"].setColor(1,0,0);
+		} else if (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") > IASflapmax and IASflapmax >= 0) {
+			me["ASI"].setColor(0.9647,0.8196,0.07843);
+			me["ASI_mach"].setColor(0.9647,0.8196,0.07843);
+			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.07843);
+			me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.07843);
+			me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.07843);
 		} else {
 			me["ASI"].setColor(1,1,1);
 			me["ASI_mach"].setColor(1,1,1);

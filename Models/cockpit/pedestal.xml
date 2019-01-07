@@ -741,54 +741,30 @@
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<object-name>flaplever.3</object-name>
-		<property>controls/flight/slats</property>
+		<property>controls/flight/flap-lever</property>
 		<interpolation>
 			<entry>
 				<ind>0</ind>
-				<dep>-13</dep>
+				<dep>-26</dep>
 			</entry>
 			<entry>
 				<ind>1</ind>
-				<dep>0</dep>
-			</entry>
-		</interpolation>
-		<center>
-			<x-m>-27.125</x-m>
-			<y-m>0</y-m>
-			<z-m>6.6837</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>rotate</type>
-		<object-name>flaplever</object-name>
-		<object-name>flaplever.2</object-name>
-		<object-name>flaplever.3</object-name>
-		<property>controls/flight/flaps</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
 				<dep>-13</dep>
 			</entry>
 			<entry>
-				<ind>0.31</ind>
+				<ind>2</ind>
 				<dep>13</dep>
 			</entry>
 			<entry>
-				<ind>0.58</ind>
+				<ind>3</ind>
 				<dep>24</dep>
 			</entry>
 			<entry>
-				<ind>0.7</ind>
+				<ind>4</ind>
 				<dep>35</dep>
 			</entry>
 			<entry>
-				<ind>1.0</ind>
+				<ind>5</ind>
 				<dep>51</dep>
 			</entry>
 		</interpolation>
@@ -835,32 +811,30 @@
 		</action>
 	</animation>
 	
-		<animation>
-		<type>pick</type>
-		<object-name>flaplever</object-name>
-		<object-name>flaplever.2</object-name>
-		<action>
-			<button>0</button>
-			<binding>
-				<command>nasal</command>
-				<script>controls.flapsDown(1);</script>
-			</binding>
-		</action>
-	</animation>
-
 	<animation>
 		<type>pick</type>
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>controls.flapsDown(1);</script>
+			</binding>
+		</action>
+		<action>
 			<button>1</button>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>controls.flapsDown(-1);</script>
 			</binding>
 		</action>
 	</animation>
-  
+
 	<animation>
 		<type>select</type>
 		<object-name>spdbrklever</object-name>
