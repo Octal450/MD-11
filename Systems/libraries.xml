@@ -198,7 +198,7 @@
 	<filter>
 		<name>Gear Lever</name>
 		<type>noise-spike</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
+		<update-interval-secs type="double">0.02</update-interval-secs>
 		<input>/controls/gear/gear-down</input>
 		<output>controls/gear/gearlever/position-norm</output>
 		<max-rate-of-change>1.5</max-rate-of-change>
@@ -231,6 +231,40 @@
 			</product>
 		</input>
 		<output>fdm/jsbsim/inertia/weight-kg</output>
+	</filter>
+	
+	<filter>
+		<name>ELEV FEEL Slew Knob</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.075</update-interval-secs>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-pwr</property>
+						<value>1</value>
+					</equals>
+					<not-equals>
+						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-auto</property>
+						<value>1</value>
+					</not-equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<sum>
+					<property>/fdm/jsbsim/fcc/lsas/elevator-feel-speed</property>
+					<property>/controls/fctl/lsas/feel-knob</property>
+				</sum>
+			</expression>
+		</input>
+		<output>/fdm/jsbsim/fcc/lsas/elevator-feel-speed</output>
+		<min>120</min>
+		<max>300</max>
 	</filter>
 	
 	<!-- Braking -->

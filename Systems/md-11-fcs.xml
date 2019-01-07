@@ -7,6 +7,8 @@
 	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/rcws/aileron-out-enable</property>
 	<property value="0">fcc/lsas/pid</property>
+	<property value="0">fcc/lsas/elevator-feel-manual</property>
+	<property value="0">fcc/lsas/elevator-feel-pwr</property>
 	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
@@ -470,14 +472,16 @@
 			</clipto>
 		</pure_gain>
 		
-		<switch name="fcc/lsas/elevator-feel-switch">
+		<switch name="fcc/lsas/elevator-feel-switch"> <!-- Manual knob control is in libraries.xml -->
 			<default value="fcc/lsas/elevator-feel-speed"/>
 			<test value="velocities/vc-kts">
 				fcc/lsas/elevator-feel-auto eq 1
 			</test>
 			<output>fcc/lsas/elevator-feel-speed</output>
-			<min>120</min>
-			<max>300</max>
+			<clipto>
+				<min>120</min>
+				<max>300</max>
+			</clipto>
 		</switch>
 		
 		<scheduled_gain name="fcc/lsas/elevator-feel">

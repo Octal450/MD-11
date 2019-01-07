@@ -253,12 +253,14 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
+		<object-name>ElevFeel.manual</object-name>
 		<object-name>EmerPwrOff.off</object-name>
 		<object-name>EmerPwrOn.on</object-name>
 		<object-name>ExtGlyPwr.avail</object-name>
 		<object-name>ExtGlyPwr.on</object-name>
 		<object-name>ExtPwr.avail</object-name>
 		<object-name>ExtPwr.on</object-name>
+		<object-name>FlapLim.manual</object-name>
 		<object-name>Gen1.arm</object-name>
 		<object-name>Gen1.off</object-name>
 		<object-name>Gen2.arm</object-name>
@@ -333,6 +335,7 @@
 		<object-name>FADEC_MODE1.altn</object-name>
 		<object-name>FADEC_MODE2.altn</object-name>
 		<object-name>FADEC_MODE3.altn</object-name>
+		<object-name>FlapLim.manual</object-name>
 		<object-name>HydPress1.press</object-name>
 		<object-name>HydPress2.press</object-name>
 		<object-name>HydPress3.press</object-name>
@@ -454,6 +457,7 @@
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE3.select</object-name>
+		<object-name>FlapLim.manual</object-name>
 		<object-name>IGN_A.manual</object-name>
 		<object-name>IGN_B.manual</object-name>
 		<object-name>ISOL-1-2.on</object-name>
@@ -6459,6 +6463,192 @@
 	
 	<!-- FCTL Panel -->
 	<animation>
+		<type>select</type>
+		<object-name>ElevFeel.manual</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>fdm/jsbsim/fcc/lsas/elevator-feel-auto</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ElevFeel.toggle</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/fctl/lsas/feel-knob</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/fctl/lsas/feel-man</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/knb1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>ElevFeel.L2</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
+					setprop("/controls/fctl/lsas/feel-knob", -2);
+					setprop("/sim/sounde/knb1", 1);
+				}
+				</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>
+					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/sim/sounde/knb1", 1);
+					</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>ElevFeel.L1</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
+					setprop("/controls/fctl/lsas/feel-knob", -1);
+					setprop("/sim/sounde/knb1", 1);
+				}
+				</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>
+					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/sim/sounde/knb1", 1);
+					</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>ElevFeel.H1</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
+					setprop("/controls/fctl/lsas/feel-knob", 1);
+					setprop("/sim/sounde/knb1", 1);
+				}
+				</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>
+					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/sim/sounde/knb1", 1);
+					</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>ElevFeel.H2</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
+					setprop("/controls/fctl/lsas/feel-knob", 2);
+					setprop("/sim/sounde/knb1", 1);
+				}
+				</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>
+					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/sim/sounde/knb1", 1);
+					</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ElevFeel.knob</object-name>
+		<object-name>ElevFeel.light</object-name>
+		<object-name>ElevFeel.toggle</object-name>
+		<property>controls/fctl/lsas/feel-man</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>ElevFeel.knob</object-name>
+		<object-name>ElevFeel.light</object-name>
+		<object-name>ElevFeel.toggle</object-name>
+		<property>controls/fctl/lsas/feel-knob</property>
+		<interpolation>
+			<entry><ind>-2</ind><dep> 65</dep></entry>
+			<entry><ind>-1</ind><dep> 32</dep></entry>
+			<entry><ind> 0</ind><dep>  0</dep></entry>
+			<entry><ind> 1</ind><dep>-32</dep></entry>
+			<entry><ind> 2</ind><dep>-65</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.26287</y-m>
+			<z-m>-17.6813</z-m>
+		</center>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>LSAS_lo</object-name>
 		<object-name>LSAS_lo.fail</object-name>
@@ -7343,55 +7533,59 @@
 	</animation>
 	
 	<animation>
-	<type>knob</type>
-	<object-name>wiper.knob1</object-name>
-	<property>controls/electric/wiperl/switch</property>
+		<type>knob</type>
+		<object-name>wiper.knob1</object-name>
+		<property>controls/electric/wiperl/switch</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-90</dep></entry>
 			<entry><ind>2</ind><dep>-135</dep></entry>
 		</interpolation>
-	<action>
-		<binding>
-			<command>property-adjust</command>
-			<property>controls/electric/wiperl/switch</property>
-			<factor>1</factor>
-			<min>0</min>
-			<max>2</max>
-		</binding>
-	</action>
-	<center>
-		<x-m>-21.7969</x-m><y-m>-0.2244</y-m><z-m>-18.0506</z-m>
-	</center>
-	<axis>
-		<x>1</x>
-	</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/electric/wiperl/switch</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>2</max>
+			</binding>
+		</action>
+		<center>
+			<x-m>-21.7969</x-m>
+			<y-m>-0.2244</y-m>
+			<z-m>-18.0506</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+		</axis>
 	</animation>
 
 	<animation>
-	<type>knob</type>
-	<object-name>wiper.knob2</object-name>
-	<property>controls/electric/wiperr/switch</property>
-	<interpolation>
-		<entry><ind>0</ind><dep>0</dep></entry>
-		<entry><ind>1</ind><dep>-90</dep></entry>
-		<entry><ind>2</ind><dep>-135</dep></entry>
-	</interpolation>
-	<action>
-		<binding>
-			<command>property-adjust</command>
-			<property>controls/electric/wiperr/switch</property>
-			<factor>1</factor>
-			<min>0</min>
-			<max>2</max>
-		</binding>
-	</action>
-	<center>
-		<x-m>-21.7969</x-m><y-m>0.2244</y-m><z-m>-18.0506</z-m>
-	</center>
-	<axis>
-		<x>1</x>
-	</axis>
+		<type>knob</type>
+		<object-name>wiper.knob2</object-name>
+		<property>controls/electric/wiperr/switch</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-90</dep></entry>
+			<entry><ind>2</ind><dep>-135</dep></entry>
+		</interpolation>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/electric/wiperr/switch</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>2</max>
+			</binding>
+		</action>
+		<center>
+			<x-m>-21.7969</x-m>
+			<y-m>0.2244</y-m>
+			<z-m>-18.0506</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+		</axis>
 	</animation>
 	
 	<animation>

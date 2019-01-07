@@ -473,6 +473,11 @@
 				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 		</engines>
+		<fctl n="0">
+			<lsas n="0">
+				<feel-knob type="int">0</feel-knob>
+			</lsas>
+		</fctl>
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">-0.25</elevator-trim>

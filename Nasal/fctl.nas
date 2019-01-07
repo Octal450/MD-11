@@ -6,6 +6,7 @@ var sys1_psi = 0;
 var sys2_psi = 0;
 var sys3_psi = 0;
 var dc1 = 0;
+var dc2 = 0;
 var dc3 = 0;
 var l_emer_dc = 0;
 var r_emer_dc = 0;
@@ -24,6 +25,8 @@ var FCTL = {
 		setprop("/controls/fctl/lsas/left-in", 1);
 		setprop("/controls/fctl/lsas/right-in", 1);
 		setprop("/controls/fctl/lsas/right-out", 1);
+		setprop("/controls/fctl/lsas/feel-knob", 0);
+		setprop("/controls/fctl/lsas/feel-man", 0);
 		setprop("/controls/fctl/yd/upper-a", 1);
 		setprop("/controls/fctl/yd/upper-b", 1);
 		setprop("/controls/fctl/yd/lower-a", 1);
@@ -48,6 +51,7 @@ var FCTL = {
 		sys2_psi = getprop("/systems/hydraulic/sys2-psi");
 		sys3_psi = getprop("/systems/hydraulic/sys3-psi");
 		dc1 = getprop("/systems/electrical/bus/dc1");
+		dc2 = getprop("/systems/electrical/bus/dc2");
 		dc3 = getprop("/systems/electrical/bus/dc3");
 		l_emer_dc = getprop("/systems/electrical/bus/l-emer-dc");
 		r_emer_dc = getprop("/systems/electrical/bus/r-emer-dc");
@@ -59,6 +63,19 @@ var FCTL = {
 		yd_uprb_fail = getprop("/systems/failures/yawdamp-upr-b");
 		yd_lwra_fail = getprop("/systems/failures/yawdamp-lwr-a");
 		yd_lwrb_fail = getprop("/systems/failures/yawdamp-lwr-b");
+		
+		# ELEV FEEL MAN
+		if (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25) {
+			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-pwr", 1);
+		} else {
+			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-pwr", 0);
+		}
+		
+		if (getprop("/controls/fctl/lsas/feel-man") != 1 and (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25)) {
+			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 1);
+		} else {
+			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 0);
+		}
 		
 		# L OUTBD LSAS
 		if (getprop("/controls/fctl/lsas/left-out") == 1 and (sys1_psi >= 1500 or sys2_psi >= 1500) and dc3 >= 25 and !lsas_lo_fail) {
