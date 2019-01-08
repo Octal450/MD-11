@@ -658,13 +658,11 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/flight/rudder</independentVar>
-					<independentVar lookup="column">fcc/afs/enabled</independentVar>
 					<tableData>
-						       0  1
-						-1.00 -1  0
-						-0.02  0  0
-						 0.02  0  0
-						 1.00  1  0
+						-1.00 -1
+						-0.02  0
+						 0.02  0
+						 1.00  1
 					</tableData>
 				</table>
 			</function>
