@@ -616,43 +616,6 @@
 	</filter>
 	
 	<filter>
-		<name>INTERNAL VERTICAL SPEED COMPUTER SYNC 5</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<not>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</not>
-			</condition>
-		</enable>
-		<input>/it-autoflight/internal/vert-speed-fpm</input>
-		<output>/it-autoflight/internal/target-fpm-d</output>
-	</filter>
-	
-	<filter>
 		<name>NAV1 G/S FPM Calc</name>
 		<debug>false</debug>
 		<type>gain</type>

@@ -870,8 +870,8 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/input/fpa</property>
 				<step>-0.1</step>
-				<min>-10</min>
-				<max>10</max>
+				<min>-9.9</min>
+				<max>9.9</max>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -920,8 +920,8 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/input/fpa</property>
 				<step>0.1</step>
-				<min>-10</min>
-				<max>10</max>
+				<min>-9.9</min>
+				<max>9.9</max>
 			</binding>
 			<binding>
 				<command>nasal</command>

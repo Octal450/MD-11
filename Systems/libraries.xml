@@ -95,7 +95,10 @@
 					<floor>
 						<div>
 							<abs>
-								<property>/it-autoflight/internal/vert-speed-fpm</property> 
+								<sum>
+									<property>/it-autoflight/internal/vert-speed-fpm</property>
+									<value>50</value>
+								</sum>
 							</abs>
 							<value>100</value>
 						</div>
@@ -211,7 +214,7 @@
 		<input> 
 			<expression>
 				<product>
-					<property>velocities/uBody-fps</property> 
+					<property>velocities/uBody-fps</property>
 					<value>0.592484</value>
 				</product>
 			</expression>

@@ -86,6 +86,9 @@ var canvas_PFD_base = {
 		me.AI_horizon_trans = me["AI_horizon"].createTransform();
 		me.AI_horizon_rot = me["AI_horizon"].createTransform();
 		
+		me.AI_fpd_trans = me["AI_fpd"].createTransform();
+		me.AI_fpd_rot = me["AI_fpd"].createTransform();
+		
 		me.page = canvas_group;
 		
 		return me;
@@ -93,9 +96,9 @@ var canvas_PFD_base = {
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
 		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2","ASI_max_flap","AI_center",
-		"AI_horizon","AI_bank","AI_slipskid","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three",
-		"ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error",
-		"TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
+		"AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one",
+		"ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel",
+		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -446,6 +449,14 @@ var canvas_PFD_base = {
 			me["AI_fpv"].hide();
 		}
 		
+		if (getprop("/it-autoflight/output/vert") == 5) {
+			me.AI_fpd_trans.setTranslation(0, (pitch - alpha + (alpha * math.cos(roll / 57.2957795131)) - getprop("/it-autoflight/input/fpa")) * 10.246);
+			me.AI_fpd_rot.setRotation(-roll * D2R, me["AI_center"].getCenter());
+			me["AI_fpd"].show();
+		} else {
+			me["AI_fpd"].hide();
+		}
+		
 		me["AI_arrow"].setRotation(math.clamp(-roll, -45, 45) * D2R);
 		if (pitch > 25) {
 			me["AI_arrow"].show();
@@ -469,6 +480,12 @@ var canvas_PFD_base = {
 		
 		me["AI_slipskid"].setTranslation(math.clamp(getprop("/instrumentation/slip-skid-ball/indicated-slip-skid"), -7, 7) * -15, 0);
 		me["AI_bank"].setRotation(-roll * D2R);
+		
+		if (abs(roll) >= 30.5) {
+			me["AI_overbank_index"].show();
+		} else {
+			me["AI_overbank_index"].hide();
+		}
 		
 		me["AI_banklimit_L"].setRotation(getprop("/instrumentation/pfd/bank-limit") * -D2R);
 		me["AI_banklimit_R"].setRotation(getprop("/instrumentation/pfd/bank-limit") * D2R);
@@ -540,12 +557,12 @@ var canvas_PFD_base = {
 		me["ALT_sel"].setTranslation(0, (getprop("/instrumentation/pfd/alt-sel") / 100) * -50.9016);
 		
 		# Vertical Speed
-		if (getprop("/it-autoflight/internal/vert-speed-fpm") <= -75) {
+		if (getprop("/it-autoflight/internal/vert-speed-fpm") <= -50) {
 			me["VSI_needle_up"].hide();
 		} else {
 			me["VSI_needle_up"].show();
 		}
-		if (getprop("/it-autoflight/internal/vert-speed-fpm") >= 75) {
+		if (getprop("/it-autoflight/internal/vert-speed-fpm") >= 50) {
 			me["VSI_needle_dn"].hide();
 		} else {
 			me["VSI_needle_dn"].show();
