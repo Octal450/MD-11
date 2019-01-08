@@ -1398,7 +1398,7 @@
 	<channel name="Flaps">
 		
 		<pure_gain name="fcs/flap-pos-gain">
-			<input>/controls/flight/flaps</input>
+			<input>/controls/flight/flaps-output</input>
 			<gain>50.0</gain>
 		</pure_gain>
 		
