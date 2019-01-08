@@ -41,9 +41,9 @@
      inkscape:window-height="1027"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="715.62462"
-     inkscape:cy="769.25862"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="278.02653"
+     inkscape:cy="1135.0595"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -2097,7 +2097,7 @@
        id="tspan5153"
        sodipodi:role="line">MAG</tspan></text>
   <path
-     style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:4.50665426;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:4.5064;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 394.13976,807.88983 101.1874,0 3e-4,54.53132 -30.80872,0 -19.78514,21.41405 -19.78515,-21.4144 -30.80872,3.5e-4 z"
      id="rect5155"
      inkscape:connector-curvature="0"
@@ -3955,7 +3955,7 @@
   <g
      id="ASI_max_flap"
      inkscape:label="#g4893"
-     transform="translate(-0.4,-222.04055)">
+     transform="translate(-0.4,-218.04055)">
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
@@ -3974,7 +3974,7 @@
   <g
      id="ASI_max"
      inkscape:label="#g7242"
-     transform="translate(505.6,0)">
+     transform="translate(505.6,3.999996)">
     <rect
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect5586"
@@ -5525,5 +5525,51 @@
        inkscape:label="#rect902"
        inkscape:transform-center-x="-202.09726"
        inkscape:transform-center-y="-202.09712" />
+  </g>
+  <text
+     inkscape:label="#text4965"
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:29.6424942px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#f6d114;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+     x="241.3654"
+     y="792.51062"
+     id="Flaps_num2"
+     sodipodi:linespacing="125%"
+     transform="scale(0.92632793,1.0795313)"><tspan
+       sodipodi:role="line"
+       id="tspan4954"
+       x="241.3654"
+       y="792.51062"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#f6d114;fill-opacity:1;">15</tspan></text>
+  <g
+     id="Flaps_num_boxes"
+     inkscape:label="#g4959">
+    <rect
+       y="819.08282"
+       x="127.36569"
+       height="46.771549"
+       width="59.502941"
+       id="rect4945"
+       style="fill:none;fill-opacity:1;stroke:#f6d114;stroke-width:4.50640011;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       transform="scale(0.92632793,1.0795313)"
+       sodipodi:linespacing="125%"
+       id="text4947"
+       y="792.51062"
+       x="210.2749"
+       style="font-style:normal;font-weight:normal;font-size:29.6424942px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:label="#text4965"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff"
+         y="792.51062"
+         x="210.2749"
+         id="tspan4949"
+         sodipodi:role="line">/</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#f6d114;stroke-width:4.50640011;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4957"
+       width="59.502941"
+       height="46.771549"
+       x="215.76569"
+       y="819.08282" />
   </g>
 </svg>

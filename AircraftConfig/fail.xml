@@ -500,7 +500,7 @@
 				<label>ELEV FEEL</label>
 				<halign>left</halign>
 				<enable>
-					<property>/systems/acconfig/blah</property>
+					<property>/lsas/enable</property>
 				</enable>
 				<property>/systems/failures/elev-feel</property>
 				<binding>
@@ -512,9 +512,6 @@
 			<checkbox>
 				<label>FLAP LIMIT</label>
 				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/blah</property>
-				</enable>
 				<property>/systems/failures/flap-limit</property>
 				<binding>
 					<command>dialog-apply</command>

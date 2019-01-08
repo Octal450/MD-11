@@ -33,6 +33,7 @@ var flap20_25Max = 220;
 var flap28Max = 210;
 var flap35Max = 190;
 var flap50Max = 175;
+var flapLimKnob = 0;
 setprop("/controls/fctl/vmo-mmo", 365);
 setprop("/controls/fctl/flap-gear-max", 300);
 
@@ -48,20 +49,24 @@ var FCTL = {
 		setprop("/controls/fctl/yd/upper-b", 1);
 		setprop("/controls/fctl/yd/lower-a", 1);
 		setprop("/controls/fctl/yd/lower-b", 1);
+		setprop("/controls/fctl/flap/limit-knob", 0);
 		setprop("/controls/fctl/lsas/light/left-out-fail", 1);
 		setprop("/controls/fctl/lsas/light/left-in-fail", 1);
 		setprop("/controls/fctl/lsas/light/right-in-fail", 1);
 		setprop("/controls/fctl/lsas/light/right-out-fail", 1);
+		setprop("/controls/fctl/lsas/light/manual", 0);
 		setprop("/controls/fctl/yd/light/upper-a-fail", 1);
 		setprop("/controls/fctl/yd/light/upper-b-fail", 1);
 		setprop("/controls/fctl/yd/light/lower-a-fail", 1);
 		setprop("/controls/fctl/yd/light/lower-b-fail", 1);
+		setprop("/controls/fctl/flap/light/manual", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/left-out-active", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/left-in-active", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/right-in-active", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/right-out-active", 0);
 		setprop("/fdm/jsbsim/fcc/yaw/avail-upr", 0);
 		setprop("/fdm/jsbsim/fcc/yaw/avail-lwr", 0);
+		setprop("/fdm/jsbsim/fcc/flap/max-deg", 50);
 	},
 	loop: func() {
 		sys1_psi = getprop("/systems/hydraulic/sys1-psi");
@@ -80,6 +85,8 @@ var FCTL = {
 		yd_uprb_fail = getprop("/systems/failures/yawdamp-upr-b");
 		yd_lwra_fail = getprop("/systems/failures/yawdamp-lwr-a");
 		yd_lwrb_fail = getprop("/systems/failures/yawdamp-lwr-b");
+		elevFeelFail = getprop("/systems/failures/elev-feel");
+		flapLimFail = getprop("/systems/failures/flap-limit");
 		
 		# ELEV FEEL MAN
 		if (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25) {
@@ -88,7 +95,7 @@ var FCTL = {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-pwr", 0);
 		}
 		
-		if (getprop("/controls/fctl/lsas/feel-man") != 1 and (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25)) {
+		if (getprop("/controls/fctl/lsas/feel-man") != 1 and (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25) and !elevFeelFail) {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 0);
@@ -262,22 +269,55 @@ var FCTL = {
 			flap50Max= 175;
 		}
 		
-		flap = getprop("/controls/flight/flap-lever");
+		flap = getprop("/fdm/jsbsim/fcc/flap/cmd-deg");
+		slat = getprop("/fdm/jsbsim/fcc/slat/cmd-deg");
 		gear = getprop("/controls/gear/gear-down");
-		if (flap == 5) {
+		# These if conditions are up from the previous position by 0.1, just in case.
+		if (flap > 35.1) {
 			setprop("/controls/fctl/flap-gear-max", flap50Max);
-		} else if (flap == 4) {
+		} else if (flap > 28.1) {
 			setprop("/controls/fctl/flap-gear-max", flap35Max);
-		} else if (flap == 3) {
+		} else if (flap > 25.1) {
 			setprop("/controls/fctl/flap-gear-max", flap28Max);
-		} else if (flap == 2) { # Dial a flap not implemented yet, so for now we only use 15
+		} else if (flap > 20.1) {
+			setprop("/controls/fctl/flap-gear-max", flap20_25Max);
+		} else if (flap > 15.1) {
+			setprop("/controls/fctl/flap-gear-max", flap15_20Max);
+		} else if (flap > 0.1) {
 			setprop("/controls/fctl/flap-gear-max", flap0_15Max);
-		} else if (flap == 1) {
+		} else if (flap <= 0.1 and slat > 0.1) {
 			setprop("/controls/fctl/flap-gear-max", slatMax);
 		} else if (gear == 1) {
 			setprop("/controls/fctl/flap-gear-max", gearMax);
 		} else {
 			setprop("/controls/fctl/flap-gear-max", -1); # Hide the tape
+		}
+		
+		# Flap Limiter
+		flapLimKnob = getprop("/controls/fctl/flap/limit-knob");
+		if (IAS > flap20_25Max and flapLimKnob == 0 and !flapLimFail) {
+			setprop("/fdm/jsbsim/fcc/flap/max-deg", 22);
+		} else if (IAS > flap28Max and flapLimKnob == 0 and !flapLimFail) {
+			setprop("/fdm/jsbsim/fcc/flap/max-deg", 25);
+		} else if (IAS > flap35Max and flapLimKnob == 0 and !flapLimFail) {
+			setprop("/fdm/jsbsim/fcc/flap/max-deg", 28);
+		} else if (IAS > flap50Max and flapLimKnob == 0 and !flapLimFail) {
+			setprop("/fdm/jsbsim/fcc/flap/max-deg", 35);
+		} else {
+			setprop("/fdm/jsbsim/fcc/flap/max-deg", 50);
+		}
+		
+		# Manual Lights
+		if (getprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto") != 1 or elevFeelFail) {
+			setprop("/controls/fctl/lsas/light/manual", 1);
+		} else {
+			setprop("/controls/fctl/lsas/light/manual", 0);
+		}
+		
+		if (flapLimKnob > 0 or flapLimFail) {
+			setprop("/controls/fctl/flap/light/manual", 1);
+		} else {
+			setprop("/controls/fctl/flap/light/manual", 0);
 		}
 	},
 };

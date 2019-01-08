@@ -11,6 +11,7 @@
 	<property value="0">fcc/lsas/elevator-feel-pwr</property>
 	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
+	<property value="50">fcc/flap/max-deg</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
 	
 	<!-- Default gains for tuning -->
@@ -1395,12 +1396,30 @@
 	
 	</channel>
 	
-	<channel name="Flaps">
+	<channel name="FCC: Flaps/Slats">
 		
-		<pure_gain name="fcs/flap-pos-gain">
+		<pure_gain name="fcc/flap/input-deg">
 			<input>/controls/flight/flaps-output</input>
 			<gain>50.0</gain>
 		</pure_gain>
+		
+		<pure_gain name="fcc/flap/cmd-deg">
+			<input>fcc/flap/input-deg</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>0</min>
+				<max>fcc/flap/max-deg</max>
+			</clipto>
+		</pure_gain>
+		
+		<pure_gain name="fcc/slat/cmd-deg">
+			<input>/controls/flight/slats</input>
+			<gain>31.0</gain>
+		</pure_gain>
+	
+	</channel>
+	
+	<channel name="Flaps">
 		
 		<switch name="fcs/flap-pos-rate">
 			<default value="0.0"/>
@@ -1411,7 +1430,7 @@
 		</switch>
 		
 		<actuator name="rubbish/flap-pos-deg">
-			<input>fcs/flap-pos-gain</input>
+			<input>fcc/flap/cmd-deg</input>
 			<rate_limit>fcs/flap-pos-rate</rate_limit>
 			<output>fcs/flap-pos-deg</output>
 		</actuator>
@@ -1433,11 +1452,6 @@
 	
 	<channel name="Slats">
 		
-		<pure_gain name="fcs/slat-pos-gain">
-			<input>/controls/flight/slats</input>
-			<gain>31.0</gain>
-		</pure_gain>
-		
 		<switch name="fcs/slat-pos-rate">
 			<default value="0.0"/>
 			<test value="1.55">
@@ -1446,7 +1460,7 @@
 		</switch>
 		
 		<actuator name="rubbish/slat-pos-deg">
-			<input>fcs/slat-pos-gain</input>
+			<input>fcc/slat/cmd-deg</input>
 			<rate_limit>fcs/slat-pos-rate</rate_limit>
 			<output>fcs/slat-pos-deg</output>
 		</actuator>

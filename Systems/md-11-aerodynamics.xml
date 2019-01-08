@@ -116,10 +116,10 @@
 					<independentVar lookup="row">fcs/flap-pos-norm</independentVar>
 					<tableData>
 						0.000  0.0000
-						0.310  0.0950
-						0.580  0.1412
-						0.700  0.1941
-						1.000  0.2512
+						0.310  0.1050
+						0.580  0.1612
+						0.700  0.2241
+						1.000  0.2812
 					</tableData>
 				</table>
 			</product>
@@ -131,7 +131,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>fcs/slat-pos-norm</property>
-				<value>0.2541</value>
+				<value>0.2641</value>
 			</product>
 		</function>
 		

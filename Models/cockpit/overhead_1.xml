@@ -457,7 +457,6 @@
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE3.select</object-name>
-		<object-name>FlapLim.manual</object-name>
 		<object-name>IGN_A.manual</object-name>
 		<object-name>IGN_B.manual</object-name>
 		<object-name>ISOL-1-2.on</object-name>
@@ -6464,13 +6463,76 @@
 	<!-- FCTL Panel -->
 	<animation>
 		<type>select</type>
+		<object-name>FlapLim.manual</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fctl/flap/light/manual</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>FlapLimit.knob</object-name>
+		<object-name>FlapLimit.light</object-name>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/fctl/flap/limit-knob</property>
+				<value>2</value>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+		<action>
+			<button>0</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/fctl/flap/limit-knob</property>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>FlapLimit.knob</object-name>
+		<object-name>FlapLimit.light</object-name>
+		<property>controls/fctl/flap/limit-knob</property>
+		<factor>45</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.18304</y-m>
+			<z-m>-17.6813</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>select</type>
 		<object-name>ElevFeel.manual</object-name>
 		<condition>
 			<or>
-				<not-equals>
-					<property>fdm/jsbsim/fcc/lsas/elevator-feel-auto</property>
+				<equals>
+					<property>controls/fctl/lsas/light/manual</property>
 					<value>1</value>
-				</not-equals>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7286,7 +7348,7 @@
 		<name>Dashboard light knob</name>
 		<type>pick</type>
 		<object-name>dashboard.light</object-name>
-			<object-name>dashboard.light.indicator</object-name>
+		<object-name>dashboard.light.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -7311,12 +7373,12 @@
 		</action>
 	</animation>
 	
-					<animation>
+	<animation>
 		<name>Dashboard light rotate</name>
 		<type>rotate</type>
 		<object-name>dashboard.light</object-name>
-	<object-name>dashboard.light.indicator</object-name>
-	<property>controls/lighting/dashboard-panel-norm</property>
+		<object-name>dashboard.light.indicator</object-name>
+		<property>controls/lighting/dashboard-panel-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1.0</ind><dep>-280</dep></entry>

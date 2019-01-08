@@ -98,7 +98,7 @@ var canvas_PFD_base = {
 		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2","ASI_max_flap","AI_center",
 		"AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one",
 		"ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel",
-		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
+		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
 	},
 	update: func() {
 		if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
@@ -278,19 +278,30 @@ var canvas_PFD_base = {
 		}
 		
 		# Slats/Flaps
-		if (getprop("/controls/flight/slats") > 0 and getprop("/controls/flight/flap-txt") == 0) {
+		if (getprop("/fdm/jsbsim/fcc/slat/cmd-deg") > 0.1 and getprop("/fdm/jsbsim/fcc/flap/input-deg") <= 0.1) {
 			me["Slats"].show();
 		} else {
 			me["Slats"].hide();
 		}
 		
-		if (getprop("/controls/flight/flap-txt") > 0) {
+		if (getprop("/fdm/jsbsim/fcc/flap/input-deg") > 0.1) {
 			me["Flaps"].show();
+			me["Flaps_num"].setText(sprintf("%2.0f", getprop("/fdm/jsbsim/fcc/flap/input-deg")));
 			me["Flaps_num"].show();
-			me["Flaps_num"].setText(sprintf("%2.0f", getprop("/controls/flight/flap-txt")));
 		} else {
 			me["Flaps"].hide();
 			me["Flaps_num"].hide();
+		}
+		
+		if (getprop("/fdm/jsbsim/fcc/flap/input-deg") > 0.1 and getprop("/fdm/jsbsim/fcc/flap/input-deg") - 0.1 > getprop("/fdm/jsbsim/fcc/flap/max-deg")) {
+			me["Flaps_num"].setColor(0.9647,0.8196,0.0784);
+			me["Flaps_num_boxes"].show();
+			me["Flaps_num2"].setText(sprintf("%2.0f", getprop("/fdm/jsbsim/fcc/flap/input-deg")));
+			me["Flaps_num2"].show();
+		} else {
+			me["Flaps_num"].setColor(1,1,1);
+			me["Flaps_num_boxes"].hide();
+			me["Flaps_num2"].hide();
 		}
 		
 		# Misc
@@ -375,10 +386,10 @@ var canvas_PFD_base = {
 			me["ASI_bowtie_R"].setColor(1,0,0);
 		} else if (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") > IASflapmax and IASflapmax >= 0) {
 			me["ASI"].setColor(0.9647,0.8196,0.07843);
-			me["ASI_mach"].setColor(0.9647,0.8196,0.07843);
-			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.07843);
-			me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.07843);
-			me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.07843);
+			me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
+			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
+			me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
+			me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
 		} else {
 			me["ASI"].setColor(1,1,1);
 			me["ASI_mach"].setColor(1,1,1);
