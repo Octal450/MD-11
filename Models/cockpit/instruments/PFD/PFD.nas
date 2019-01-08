@@ -29,9 +29,12 @@ var HDGpresel = 0;
 var HDGsel = 0;
 var LOC = 0;
 var GS = 0;
+var FMAAlt = 0;
+
+# Fetch nodes:
 var ap1 = props.globals.getNode("/it-autoflight/output/ap1", 1);
 var ap2 = props.globals.getNode("/it-autoflight/output/ap2", 1);
-var athr = props.globals.getNode("/it-autoflight/output/athr", 1);
+var ats = props.globals.getNode("/it-autoflight/output/athr", 1);
 var fd1 = props.globals.getNode("/it-autoflight/output/fd1", 1);
 var fd2 = props.globals.getNode("/it-autoflight/output/fd2", 1);
 var apvert = props.globals.getNode("/it-autoflight/output/vert", 1);
@@ -59,16 +62,11 @@ var ac3 = props.globals.getNode("/systems/electrical/bus/ac3", 1);
 var wow1 = props.globals.getNode("/gear/gear[1]/wow", 1);
 var wow2 = props.globals.getNode("/gear/gear[2]/wow", 1);
 var apmode = props.globals.getNode("/modes/pfd/fma/ap-mode", 1);
-var hdgprediff = props.globals.getNode("/instrumentation/pfd/hdg-pre-diff", 1);
-var hdgdiff = props.globals.getNode("/instrumentation/pfd/hdg-diff", 1);
-var trackdiff = props.globals.getNode("/instrumentation/pfd/track-hdg-diff", 1);
 var showhdg = props.globals.getNode("/it-autoflight/custom/show-hdg", 1);
 var hdgscale = props.globals.getNode("/instrumentation/pfd/heading-scale", 1);
 var aplat = props.globals.getNode("/it-autoflight/output/lat", 1);
 var vspfd = props.globals.getNode("/it-autoflight/internal/vert-speed-fpm-pfd", 1);
 var internalvs = props.globals.getNode("/it-autoflight/internal/vert-speed-fpm", 1);
-var vsup = props.globals.getNode("/instrumentation/pfd/vs-needle-up", 1);
-var vsdn = props.globals.getNode("/instrumentation/pfd/vs-needle-dn", 1);
 var gs = props.globals.getNode("/velocities/groundspeed-kt", 1);
 var altitude = props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1);
 var IR0align = props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1);
@@ -89,13 +87,13 @@ var flapmaxdeg = props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg", 1);
 var skid = props.globals.getNode("/instrumentation/slip-skid-ball/indicated-slip-skid", 1);
 var fdroll = props.globals.getNode("/it-autoflight/fd/roll-bar", 1);
 var fdpitch = props.globals.getNode("/it-autoflight/fd/pitch-bar", 1);
-var altmode = props.globals.getNode("/modes/altimeter/inhg", 1);
-var altmodestd = props.globals.getNode("/modes/altimeter/std", 1);
+var qnhinhg = props.globals.getNode("/modes/altimeter/inhg", 1);
+var qnhstd = props.globals.getNode("/modes/altimeter/std", 1);
 var altin = props.globals.getNode("/instrumentation/altimeter/setting-inhg", 1);
 var althp = props.globals.getNode("/instrumentation/altimeter/setting-hpa", 1);
 var fpa = props.globals.getNode("/it-autoflight/input/fpa", 1);
 var apfpa = props.globals.getNode("/it-autoflight/custom/vs-fpa", 1);
-var rate = props.globals.getNode("/systems/acconfig/options/pfd-rate", 1);
+var pfdrate = props.globals.getNode("/systems/acconfig/options/pfd-rate", 1);
 var mismatch = props.globals.getNode("/systems/acconfig/mismatch-code", 1);
 var nav0defl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
 var gs0defl = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1);
@@ -104,6 +102,13 @@ var gs0range = props.globals.getNode("/instrumentation/nav[0]/gs-in-range", 1);
 var nav0signal = props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1);
 var hasgs = props.globals.getNode("/instrumentation/nav[0]/has-gs", 1);
 var navloc = props.globals.getNode("/instrumentation/nav[0]/nav-loc", 1);
+
+# Create Nodes:
+var vsup = props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0.0, "DOUBLE");
+var vsdn = props.globals.initNode("/instrumentation/pfd/vs-needle-dn", 0.0, "DOUBLE");
+var hdgprediff = props.globals.initNode("/instrumentation/pfd/hdg-pre-diff", 0.0, "DOUBLE");
+var hdgdiff = props.globals.initNode("/instrumentation/pfd/hdg-diff", 0.0, "DOUBLE");
+var trackdiff = props.globals.initNode("/instrumentation/pfd/track-hdg-diff", 0.0, "DOUBLE");
 
 var canvas_PFD_base = {
 	init: func(canvas_group, file) {
@@ -189,33 +194,22 @@ var canvas_PFD_base = {
 		}
 	},
 	updateCommon: func () {
-		ap1x = ap1.getValue();
-		ap2x = ap2.getValue();
-		fd1x = fd1.getValue();
-		fd2x = fd2.getValue();
-		athrx = athr.getValue();
-		throttle_modex = throttle_mode.getValue();
-		roll_modex = roll_mode.getValue();
-		roll_mode_armedx = roll_mode_armed.getValue();
-		pitch_modex = pitch_mode.getValue();
-		pitch_mode_armedx = pitch_mode_armed.getValue();
-		
 		# FMA
-		if (fd1x == 1 or fd2x == 1 or ap1x == 1 or ap2x == 1) {
+		if (fd1.getValue() == 1 or fd2.getValue() == 1 or ap1.getValue() == 1 or ap2.getValue() == 1) {
 			me["FMA_Thrust"].show();
 			me["FMA_Roll"].show();
 			me["FMA_Roll_Arm"].show();
 			me["FMA_Pitch"].show();
 			me["FMA_Pitch_Arm"].show();
 		} else {
-			if (throttle_modex != "PITCH" and athrx == 1) {
+			if (throttle_mode.getValue() != "PITCH" and ats.getValue() == 1) {
 				me["FMA_Thrust"].show();
 			} else {
 				me["FMA_Thrust"].hide();
 			}
 			me["FMA_Roll"].hide();
 			me["FMA_Roll_Arm"].hide();
-			if (throttle_modex == "PITCH" and athrx == 1) {
+			if (throttle_mode.getValue() == "PITCH" and ats.getValue() == 1) {
 				me["FMA_Pitch"].show();
 				me["FMA_Pitch_Arm"].show();
 			} else {
@@ -224,10 +218,10 @@ var canvas_PFD_base = {
 			}
 		}
 		
-		if (athrx == 1) {
+		if (ats.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].hide();
-		} elsif (throttle_modex == "PITCH") {
+		} elsif (throttle_mode.getValue() == "PITCH") {
 			me["FMA_ATS_Pitch_Off"].show();
 			me["FMA_ATS_Thrust_Off"].hide();
 		} else {
@@ -235,24 +229,15 @@ var canvas_PFD_base = {
 			me["FMA_ATS_Thrust_Off"].show();
 		}
 		
-		eng0statex = eng0state.getValue();
-		eng1statex = eng1state.getValue();
-		eng2statex = eng2state.getValue();
-		IR0alignx = IR0align.getValue();
-		IR1alignx = IR1align.getValue();
-		IR2alignx = IR2align.getValue();
-		wow1x = wow1.getValue();
-		wow2x = wow2.getValue();
-		
-		if (ap1x == 1 or ap2x == 1) {
+		if (ap1.getValue() == 1 or ap2.getValue() == 1) {
 			me["FMA_AP"].setColor(0.3215,0.8078,1);
 			me["FMA_AP"].setText(sprintf("%s", apmode.getValue()));
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].hide();
-		} elsif (throttle_modex == "PITCH") {
-			if (IR0alignx == 0 and IR1alignx == 0 and IR2alignx == 0) {
+		} elsif (throttle_mode.getValue() == "PITCH") {
+			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
-			} elsif (eng0statex != 3 and eng1statex != 3 and eng2statex != 3 and wow1x != 0 and wow2x != 0) {
+			} elsif (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
@@ -261,9 +246,9 @@ var canvas_PFD_base = {
 			me["FMA_AP_Pitch_Off_Box"].show();
 			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else {
-			if (IR0alignx == 0 and IR1alignx == 0 and IR2alignx == 0) {
+			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
-			} elsif (eng0statex != 3 and eng1statex != 3 and eng2statex != 3 and wow1x != 0 and wow2x != 0) {
+			} elsif (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
@@ -273,7 +258,7 @@ var canvas_PFD_base = {
 			me["FMA_AP_Thrust_Off_Box"].show();
 		}
 		
-		if (eng0statex != 3 and eng1statex != 3 and eng2statex != 3) {
+		if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
 		} else {
@@ -281,10 +266,10 @@ var canvas_PFD_base = {
 			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
 		}
 		
-		if (IR0alignx == 0 and IR1alignx == 0 and IR2alignx == 0) {
+		if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
-		} elsif (eng0statex != 3 and eng0statex != 3 and eng0statex != 3 and wow1x != 0 and wow2x != 0) {
+		} elsif (eng0state.getValue() != 3 and eng0state.getValue() != 3 and eng0state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
 		} else {
@@ -298,43 +283,43 @@ var canvas_PFD_base = {
 			me["FMA_Speed"].setText(sprintf("%3.0f", apspd.getValue()));
 		}
 		
-		me["FMA_Thrust"].setText(sprintf("%s", throttle_modex));
-		if (roll_modex == "HEADING") {
-			me["FMA_Roll"].setText(sprintf("%s", roll_modex ~ " " ~ aphdg.getValue()));
+		me["FMA_Thrust"].setText(sprintf("%s", throttle_mode.getValue()));
+		if (roll_mode.getValue() == "HEADING") {
+			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue() ~ " " ~ aphdg.getValue()));
 		} else {
-			me["FMA_Roll"].setText(sprintf("%s", roll_modex));
+			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue()));
 		}
-		me["FMA_Roll_Arm"].setText(sprintf("%s", roll_mode_armedx));
-		me["FMA_Pitch"].setText(sprintf("%s", pitch_modex));
-		me["FMA_Pitch_Arm"].setText(sprintf("%s", pitch_mode_armedx));
+		me["FMA_Roll_Arm"].setText(sprintf("%s", roll_mode_armed.getValue()));
+		me["FMA_Pitch"].setText(sprintf("%s", pitch_mode.getValue()));
+		me["FMA_Pitch_Arm"].setText(sprintf("%s", pitch_mode_armed.getValue()));
 		
-		if (roll_modex == "NAV1" or roll_modex == "NAV2") {
+		if (roll_mode.getValue() == "NAV1" or roll_mode.getValue() == "NAV2") {
 			me["FMA_Roll"].setColor(0.9607,0,0.7764);
 		} else {
 			me["FMA_Roll"].setColor(1,1,1);
 		}
 		
-		if (roll_mode_armedx == "NAV ARMED") {
+		if (roll_mode_armed.getValue() == "NAV ARMED") {
 			me["FMA_Roll_Arm"].setColor(0.9607,0,0.7764);
 		} else {
 			me["FMA_Roll_Arm"].setColor(1,1,1);
 		}
 		
-		apaltx = apalt.getValue();
-		me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(apaltx / 1000)));
-		me["FMA_Altitude"].setText(right(sprintf("%03d", apaltx), 3));
+		FMAAlt = apalt.getValue();
+		me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(FMAAlt / 1000)));
+		me["FMA_Altitude"].setText(right(sprintf("%03d", FMAAlt), 3));
 		
 		# QNH
-		altmodex = altmode.getValue();
-		if (altmodestd.getValue() == 1) {
-			if (altmodex == 0) {
+		qnhinhgx = qnhinhg.getValue();
+		if (qnhstd.getValue() == 1) {
+			if (qnhinhgx == 0) {
 				me["QNH"].setText("1013");
-			} elsif (altmodex == 1) {
+			} elsif (qnhinhgx == 1) {
 				me["QNH"].setText("29.92");
 			}
-		} elsif (altmodex == 0) {
+		} else if (qnhinhgx == 0) {
 			me["QNH"].setText(sprintf("%4.0f", althp.getValue()));
-		} elsif (altmodex == 1) {
+		} else if (qnhinhgx == 1) {
 			me["QNH"].setText(sprintf("%2.2f", altin.getValue()));
 		}
 		
@@ -404,33 +389,31 @@ var canvas_PFD_base = {
 			ASI = speedx - 50;
 		}
 		
-		IASmaxx = IASmax.getValue();
-		if (IASmaxx <= 50) {
+		if (IASmax.getValue() <= 50) {
 			ASImax = 0 - ASI;
-		} elsif (IASmaxx >= 500) {
+		} elsif (IASmax.getValue() >= 500) {
 			ASImax = 450 - ASI;
 		} else {
-			ASImax = IASmaxx - 50 - ASI;
+			ASImax = IASmax.getValue() - 50 - ASI;
 		}
 		
-		IASflapmaxx = IASflapmax.getValue();
-		if (IASflapmaxx < 0) {
+		if (IASflapmax.getValue() < 0) {
 			ASIflapmax = 0;
 			me["ASI_max_bar"].show();
 			me["ASI_max_bar2"].hide();
 			me["ASI_max_flap"].hide();
-		} elsif (IASflapmaxx <= 50) {
+		} elsif (IASflapmax.getValue() <= 50) {
 			ASIflapmax = 0 - ASI;
 			me["ASI_max_bar"].hide();
 			me["ASI_max_bar2"].show();
 			me["ASI_max_flap"].show();
-		} elsif (IASflapmaxx >= 500) {
+		} elsif (IASflapmax.getValue() >= 500) {
 			ASIflapmax = 450 - ASI;
 			me["ASI_max_bar"].hide();
 			me["ASI_max_bar2"].show();
 			me["ASI_max_flap"].show();
 		} else {
-			ASIflapmax = IASflapmaxx - 50 - ASI;
+			ASIflapmax = IASflapmax.getValue() - 50 - ASI;
 			me["ASI_max_bar"].hide();
 			me["ASI_max_bar2"].show();
 			me["ASI_max_flap"].show();
@@ -441,13 +424,13 @@ var canvas_PFD_base = {
 		me["ASI_max_flap"].setTranslation(0, ASIflapmax * -4.48656);
 		me["ASI"].setText(sprintf("%3.0f", speedx));
 		
-		if (speedx > IASmaxx) {
+		if (speedx > IASmax.getValue()) {
 			me["ASI"].setColor(1,0,0);
 			me["ASI_mach"].setColor(1,0,0);
 			me["ASI_mach_decimal"].setColor(1,0,0);
 			me["ASI_bowtie_L"].setColor(1,0,0);
 			me["ASI_bowtie_R"].setColor(1,0,0);
-		} elsif (speedx > IASflapmaxx and IASflapmaxx >= 0) {
+		} elsif (speedx > IASflapmax.getValue() and IASflapmax.getValue() >= 0) {
 			me["ASI"].setColor(0.9647,0.8196,0.07843);
 			me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
 			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
@@ -461,37 +444,34 @@ var canvas_PFD_base = {
 			me["ASI_bowtie_R"].setColor(1,1,1);
 		}
 		
-		machx = mach.getValue();
-		if (machx >= 0.5) {
+		if (mach.getValue() >= 0.5) {
 			me["ASI_bowtie_mach"].show();
 		} else {
 			me["ASI_bowtie_mach"].hide();
 		}
 		
-		if (machx >= 0.999) {
+		if (mach.getValue() >= 0.999) {
 			me["ASI_mach"].setText("999");
 		} else {
-			me["ASI_mach"].setText(sprintf("%3.0f", machx * 1000));
+			me["ASI_mach"].setText(sprintf("%3.0f", mach.getValue() * 1000));
 		}
 		
-		IASpreselx = IASpresel.getValue();
-		if (IASpreselx <= 50) {
+		if (IASpresel.getValue() <= 50) {
 			ASIpresel = 0 - ASI;
-		} elsif (IASpreselx >= 500) {
+		} elsif (IASpresel.getValue() >= 500) {
 			ASIpresel = 450 - ASI;
 		} else {
-			ASIpresel = IASpreselx - 50 - ASI;
+			ASIpresel = IASpresel.getValue() - 50 - ASI;
 		}
 		
 		me["ASI_presel"].setTranslation(0, ASIpresel * -4.48656);
 		
-		IASselx = IASsel.getValue();
-		if (IASselx <= 50) {
+		if (IASsel.getValue() <= 50) {
 			ASIsel = 0 - ASI;
-		} elsif (IASselx >= 500) {
+		} elsif (IASsel.getValue() >= 500) {
 			ASIsel = 450 - ASI;
 		} else {
-			ASIsel = IASselx - 50 - ASI;
+			ASIsel = IASsel.getValue() - 50 - ASI;
 		}
 		
 		me["ASI_sel"].setTranslation(0, ASIsel * -4.48656);
@@ -513,8 +493,8 @@ var canvas_PFD_base = {
 		
 		# Attitude
 		pitchx = pitch.getValue() or 0;
-		rollx =  roll.getValue() or 0;
-		alphax =  alpha.getValue() or 0;
+		rollx = roll.getValue() or 0;
+		alphax = alpha.getValue() or 0;
 		
 		me.AI_horizon_trans.setTranslation(0, pitchx * 10.246);
 		me.AI_horizon_rot.setRotation(-rollx * D2R, me["AI_center"].getCenter());
@@ -567,14 +547,13 @@ var canvas_PFD_base = {
 			me["AI_overbank_index"].hide();
 		}
 		
-		banklimitx = banklimit.getValue();
-		me["AI_banklimit_L"].setRotation(banklimitx * -D2R);
-		me["AI_banklimit_R"].setRotation(banklimitx * D2R);
+		me["AI_banklimit_L"].setRotation(banklimit.getValue() * -D2R);
+		me["AI_banklimit_R"].setRotation(banklimit.getValue() * D2R);
 		
 		# Altitude
-		me.altitudex = altitude.getValue();
-		me.altOffset = me.altitudex / 500 - int(me.altitudex / 500);
-		me.middleAltText = roundaboutAlt(me.altitudex / 100) * 100;
+		me.altitudeInput = altitude.getValue();
+		me.altOffset = me.altitudeInput / 500 - int(me.altitudeInput / 500);
+		me.middleAltText = roundaboutAlt(me.altitudeInput / 100) * 100;
 		me.middleAltOffset = nil;
 		if (me.altOffset > 0.5) {
 			me.middleAltOffset = -(me.altOffset - 1) * 254.508;
@@ -639,38 +618,35 @@ var canvas_PFD_base = {
 		me["ALT_sel"].setTranslation(0, (altsel.getValue() / 100) * -50.9016);
 		
 		# Vertical Speed
-		internalvsx = internalvs.getValue();
-		if (internalvsx <= -50) {
+		if (internalvs.getValue() <= -50) {
 			me["VSI_needle_up"].hide();
 		} else {
 			me["VSI_needle_up"].show();
 		}
-		if (internalvsx >= 50) {
+		if (internalvs.getValue() >= 50) {
 			me["VSI_needle_dn"].hide();
 		} else {
 			me["VSI_needle_dn"].show();
 		}
 		
-		vspfdx = vspfd.getValue();
-		if (internalvsx > 10 and vspfdx > 0) {
+		if (internalvs.getValue() > 10 and vspfd.getValue() > 0) {
 			me["VSI_up"].show();
 		} else {
 			me["VSI_up"].hide();
 		}
-		if (internalvsx < -10 and vspfdx > 0) {
+		if (internalvs.getValue() < -10 and vspfd.getValue() > 0) {
 			me["VSI_down"].show();
 		} else {
 			me["VSI_down"].hide();
 		}
 		
-		me["VSI_up"].setText(sprintf("%1.1f", vspfdx));
-		me["VSI_down"].setText(sprintf("%1.1f", vspfdx));
+		me["VSI_up"].setText(sprintf("%1.1f", vspfd.getValue()));
+		me["VSI_down"].setText(sprintf("%1.1f", vspfd.getValue()));
 		me["VSI_needle_up"].setTranslation(0, vsup.getValue());
 		me["VSI_needle_dn"].setTranslation(0, vsdn.getValue());
 		
 		# Heading
-		hdgscalex = hdgscale.getValue();
-		HDGraw = hdgscalex + 0.5;
+		HDGraw = hdgscale.getValue() + 0.5;
 		if (HDGraw > 359) {
 			HDGraw = HDGraw - 360;
 		}
@@ -682,36 +658,33 @@ var canvas_PFD_base = {
 			HDG == "000";
 		}
 		me["HDG"].setText(HDG);
-		me["HDG_dial"].setRotation(hdgscalex * -D2R);
+		me["HDG_dial"].setRotation(hdgscale.getValue() * -D2R);
 		
-		showhdgx = showhdg.getValue();
-		if (showhdgx == 1) {
+		if (showhdg.getValue() == 1) {
 			me["HDG_presel"].show();
 		} else {
 			me["HDG_presel"].hide();
 		}
-		if (showhdgx == 1 and aplat.getValue() == 0) {
+		if (showhdg.getValue() == 1 and aplat.getValue() == 0) {
 			me["HDG_sel"].show();
 		} else {
 			me["HDG_sel"].hide();
 		}
 		
-		hdgprediffx =  hdgprediff.getValue();
-		if (hdgprediffx <= 35 and hdgprediffx >= -35) {
-			HDGpresel = hdgprediffx;
-		} elsif (hdgprediffx > 35) {
+		if (hdgprediff.getValue() <= 35 and hdgprediff.getValue() >= -35) {
+			HDGpresel = hdgprediff.getValue();
+		} elsif (hdgprediff.getValue() > 35) {
 			HDGpresel = 35;
-		} elsif (hdgprediffx < -35) {
+		} elsif (hdgprediff.getValue() < -35) {
 			HDGpresel = -35;
 		}
 		me["HDG_presel"].setRotation(HDGpresel * D2R);
 		
-		hdgdiffx = hdgdiff.getValue();
-		if (hdgdiffx <= 35 and hdgdiffx >= -35) {
-			HDGsel = hdgdiffx;
-		} elsif (hdgdiffx > 35) {
+		if (hdgdiff.getValue() <= 35 and hdgdiff.getValue() >= -35) {
+			HDGsel = hdgdiff.getValue();
+		} elsif (hdgdiff.getValue() > 35) {
 			HDGsel = 35;
-		} elsif (hdgdiffx < -35) {
+		} elsif (hdgdiff.getValue() < -35) {
 			HDGsel = -35;
 		}
 		me["HDG_sel"].setRotation(HDGsel * D2R);
@@ -754,9 +727,8 @@ var canvas_PFD_base = {
 		}
 		
 		# Misc
-		gearaglx = gearagl.getValue();
-		if (gearaglx <= 2500) {
-			me["RA"].setText(sprintf("%4.0f", gearaglx));
+		if (gearagl.getValue() <= 2500) {
+			me["RA"].setText(sprintf("%4.0f", gearagl.getValue()));
 			me["RA"].show();
 			me["RA_box"].show();
 		} else {
@@ -774,15 +746,13 @@ var canvas_PFD_1 = {
 		return m;
 	},
 	update: func() {
-		fd1x = fd1.getValue();
-		
-		if (fd1x == 1) {
+		if (fd1.getValue() == 1) {
 			me["FD_roll"].show();
 		} else {
 			me["FD_roll"].hide();
 		}
 		
-		if (fd1x == 1) {
+		if (fd1.getValue() == 1) {
 			me["FD_pitch"].show();
 		} else {
 			me["FD_pitch"].hide();
@@ -821,15 +791,13 @@ var canvas_PFD_2 = {
 		return m;
 	},
 	update: func() {
-		fd2x = fd2.getValue();
-		
-		if (fd2x == 1) {
+		if (fd2.getValue() == 1) {
 			me["FD_roll"].show();
 		} else {
 			me["FD_roll"].hide();
 		}
 		
-		if (fd2x == 1) {
+		if (fd2.getValue() == 1) {
 			me["FD_pitch"].show();
 		} else {
 			me["FD_pitch"].hide();
@@ -949,15 +917,15 @@ setlistener("sim/signals/fdm-initialized", func {
 	
 	PFD_update.start();
 	PFD_update_fast.start();
-	if (rate.getValue() > 1) {
+	
+	if (pfdrate.getValue() > 1) {
 		rateApply();
 	}
 });
 
 var rateApply = func {
-	ratex = rate.getValue();
-	PFD_update.restart(0.15 * ratex);
-	PFD_update_fast.restart(0.05 * ratex);
+	PFD_update.restart(0.15 * pfdrate.getValue());
+	PFD_update_fast.restart(0.05 * pfdrate.getValue());
 }
 
 var PFD_update = maketimer(0.15, func {
