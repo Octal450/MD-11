@@ -27,6 +27,8 @@ var R = 0;
 var dist_coeff = 0;
 var turn_dist = 0;
 var vsnow = 0;
+var fpanow = 0;
+var altinput = 0;
 setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
 setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
@@ -366,7 +368,7 @@ var vertical = func {
 			setprop("/it-autoflight/output/appr-armed", 0);
 			setprop("/it-autoflight/mode/arm", " ");
 		}
-		var altinput = getprop("/it-autoflight/input/alt");
+		altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
 		vsnow = math.clamp(math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100), -6000, 6000);
 		setprop("/it-autoflight/input/vs", vsnow);
@@ -439,7 +441,7 @@ var vertical = func {
 			setprop("/it-autoflight/output/appr-armed", 0);
 			setprop("/it-autoflight/mode/arm", " ");
 		}
-		var altinput = getprop("/it-autoflight/input/alt");
+		altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
 		var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 		var alt = getprop("/it-autoflight/internal/alt");
@@ -457,9 +459,9 @@ var vertical = func {
 			setprop("/it-autoflight/output/appr-armed", 0);
 			setprop("/it-autoflight/mode/arm", " ");
 		}
-		var altinput = getprop("/it-autoflight/input/alt");
+		altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		var fpanow = math.clamp(math.round(getprop("/it-autoflight/internal/fpa"), 0.1), -9.9, 9.9);
+		fpanow = math.clamp(math.round(getprop("/it-autoflight/internal/fpa"), 0.1), -9.9, 9.9);
 		setprop("/it-autoflight/input/fpa", fpanow);
 		setprop("/it-autoflight/output/vert", 5);
 		setprop("/it-autoflight/mode/vert", "FPA");
@@ -476,7 +478,7 @@ var vertical = func {
 		alandt1.stop();
 		setprop("/it-autoflight/output/vert", 7);
 		setprop("/it-autoflight/mode/arm", " ");
-		var altinput = getprop("/it-autoflight/input/alt");
+		altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
 		thrustmodet.start();
 	}
@@ -798,7 +800,7 @@ var altcapt = func {
 			setprop("/it-autoflight/mode/thr", "THRUST");
 		}
 	}
-	var altinput = getprop("/it-autoflight/input/alt");
+	altinput = getprop("/it-autoflight/input/alt");
 	setprop("/it-autoflight/internal/alt", altinput);
 }
 
