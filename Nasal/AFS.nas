@@ -368,7 +368,7 @@ var vertical = func {
 		}
 		var altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		vsnow = math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100);
+		vsnow = math.clamp(math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100), -6000, 6000);
 		setprop("/it-autoflight/input/vs", vsnow);
 		setprop("/it-autoflight/output/vert", 1);
 		setprop("/it-autoflight/mode/vert", "V/S");
@@ -459,7 +459,7 @@ var vertical = func {
 		}
 		var altinput = getprop("/it-autoflight/input/alt");
 		setprop("/it-autoflight/internal/alt", altinput);
-		var fpanow = math.round(getprop("/it-autoflight/internal/fpa"), 0.1);
+		var fpanow = math.clamp(math.round(getprop("/it-autoflight/internal/fpa"), 0.1), -9.9, 9.9);
 		setprop("/it-autoflight/input/fpa", fpanow);
 		setprop("/it-autoflight/output/vert", 5);
 		setprop("/it-autoflight/mode/vert", "FPA");
