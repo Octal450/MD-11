@@ -654,20 +654,6 @@
 	
 	<channel name="FCC: Yaw">
 		
-		<fcs_function name="fcc/yaw/rudder-nul">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/flight/rudder</independentVar>
-					<tableData>
-						-1.00 -1
-						-0.02  0
-						 0.02  0
-						 1.00  1
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
 		<switch name="fcc/yaw/autoland-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
@@ -675,6 +661,22 @@
 				/it-autoflight/output/lat eq 4
 			</test>
 		</switch>
+		
+		<fcs_function name="fcc/yaw/rudder-nul">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/flight/rudder</independentVar>
+					<independentVar lookup="column">fcc/yaw/autoland-switch</independentVar>
+					<tableData>
+						       0  1
+						-1.00 -1  0
+						-0.02  0  0
+						 0.02  0  0
+						 1.00  1  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<switch name="fcc/yaw/r-r_s-s">
 			<default value="velocities/r-rad_sec"/>
