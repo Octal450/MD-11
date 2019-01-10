@@ -211,14 +211,7 @@
 		<name>TAS</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input> 
-			<expression>
-				<product>
-					<property>velocities/uBody-fps</property>
-					<value>0.592484</value>
-				</product>
-			</expression>
-		</input>
+		<input>/instrumentation/airspeed-indicator/true-speed-kt</input>
 		<output>/velocities/TAS</output>
 	</filter>
 	

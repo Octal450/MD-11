@@ -6,9 +6,19 @@
 	
 	<!-- Roll Axis -->
 	
-	<pi-simple-controller>
-		<name>ROLL CONTROLLER: HDG/LNAV</name>
+	<filter>
+		<name>IT-CONTROLLER: HDG/LNAV ROLL</name>
 		<debug>false</debug>
+		<type>gain</type>
+		<gain>
+			<expression>
+				<table>
+					<property>/fdm/jsbsim/velocities/vc-kts</property>
+					<entry><ind>140</ind><dep>1.8</dep></entry>
+					<entry><ind>360</ind><dep>2.8</dep></entry>
+				</table>
+			</expression>
+		</gain>
 		<enable>
 			<condition>
 				<and>
@@ -46,28 +56,18 @@
 		<input>/it-autoflight/internal/heading-error-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/target-roll-deg</output>
-		<config>
-			<Kp>
-				<expression>
-					<table>
-						<property>/fdm/jsbsim/velocities/vc-kts</property>
-						<entry><ind>140</ind><dep>-1.8</dep></entry>
-						<entry><ind>360</ind><dep>-2.8</dep></entry>
-					</table>
-				</expression>
-			</Kp>
-			<Ki>-0.000001</Ki>
-			<min>
-				<property>/it-autoflight/internal/bank-limit</property>
-				<scale>-1.0</scale>
-			</min>
-			<max>/it-autoflight/internal/bank-limit</max>
-		</config>
-	</pi-simple-controller>
+		<min>
+			<property>/it-autoflight/internal/bank-limit</property>
+			<scale>-1.0</scale>
+		</min>
+		<max>/it-autoflight/internal/bank-limit</max>
+	</filter>
 	
-	<pi-simple-controller>
-		<name>VORLOC TRK</name>
+	<filter>
+		<name>IT-CONTROLLER: VORLOC ROLL</name>
 		<debug>false</debug>
+		<type>gain</type>
+		<gain>2.8</gain>
 		<enable>
 			<condition>
 				<and>
@@ -99,16 +99,12 @@
 		<input>/it-autoflight/internal/nav-heading-error-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/target-roll-deg</output>
-		<config>
-			<Kp>-2.8</Kp>
-			<Ki>-0.0001</Ki>
-			<min>
-				<property>/it-autoflight/internal/bank-limit</property>
-				<scale>-1.0</scale>
-			</min>
-			<max>/it-autoflight/internal/bank-limit</max>
-		</config>
-	</pi-simple-controller>
+		<min>
+			<property>/it-autoflight/internal/bank-limit</property>
+			<scale>-1.0</scale>
+		</min>
+		<max>/it-autoflight/internal/bank-limit</max>
+	</filter>
 	
 	<filter>
 		<name>ROLL DEG SYNC</name>
