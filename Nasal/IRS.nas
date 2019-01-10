@@ -12,6 +12,11 @@ var ac2 = 0;
 var ac3 = 0;
 var dcbat = 0;;
 var pwr_src = "XX";
+var algnd1 = 0;
+var algnd2 = 0;
+var algnd3 = 0;
+var setHDG = 1;
+var hdg = 0;
 setprop("/controls/irs/align-time", 600);
 
 var IRS = {
@@ -67,6 +72,20 @@ var IRS = {
 			pwr_src = "BATT";
 		} else {
 			pwr_src = "XX";
+		}
+		
+		algnd1 = getprop("/instrumentation/irs/ir[0]/aligned");
+		algnd2 = getprop("/instrumentation/irs/ir[1]/aligned");
+		algnd3 = getprop("/instrumentation/irs/ir[2]/aligned");
+		hdg = math.round(getprop("/orientation/heading-magnetic-deg"));
+		
+		if (!algnd1 and !algnd2 and !algnd3 and setHDG != 1) {
+			setHDG = 1;
+		}
+		if ((algnd1 or algnd2 or algnd3) and setHDG == 1) {
+			setHDG = 0;
+			setprop("/it-autoflight/custom/hdg-sel", hdg);
+			setprop("/it-autoflight/input/hdg", hdg);
 		}
 	},
 	knob: func(k) {

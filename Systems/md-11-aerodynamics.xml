@@ -154,51 +154,6 @@
 				<value>-0.0349066</value>
 			</product>
 		</function>
-		
-		<function name="aero/coefficient/bogey1">
-			<description>Lift_due_bogey1</description>
-			<product>
-				<table>
-					<independentVar>/gear/gear[1]/wow</independentVar>
-					<tableData>
-						0  0.00
-						1  0.10
-					</tableData>
-				</table>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-			</product>
-		</function>
-		
-		<function name="aero/coefficient/bogey2">
-			<description>Lift_due_bogey2</description>
-			<product>
-				<table>
-					<independentVar>/gear/gear[2]/wow</independentVar>
-					<tableData>
-						0  0.00
-						1  0.10
-					</tableData>
-				</table>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-			</product>
-		</function>
-		
-		<function name="aero/coefficient/bogey3">
-			<description>Lift_due_bogey3</description>
-			<product>
-				<table>
-					<independentVar>/gear/gear[3]/wow</independentVar>
-					<tableData>
-						0  0.00
-						1  0.10
-					</tableData>
-				</table>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-			</product>
-		</function>
 	
 	</axis>
 	

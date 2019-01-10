@@ -125,7 +125,7 @@ var systemsInit = func {
 	systems.IRS.init();
 	systems.eng_init();
 	fadec.fadec_reset();
-	afs.ap_init();
+	afs.APinit(0);
 	update_tilt.start();
 	lightsLoop.start();
 	systemsLoop.start();

@@ -221,7 +221,7 @@ var canvas_PFD_base = {
 		if (ats.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].hide();
-		} elsif (throttle_mode.getValue() == "PITCH") {
+		} else if (throttle_mode.getValue() == "PITCH") {
 			me["FMA_ATS_Pitch_Off"].show();
 			me["FMA_ATS_Thrust_Off"].hide();
 		} else {
@@ -234,10 +234,10 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setText(sprintf("%s", apmode.getValue()));
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].hide();
-		} elsif (throttle_mode.getValue() == "PITCH") {
+		} else if (throttle_mode.getValue() == "PITCH") {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
-			} elsif (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
+			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
@@ -248,7 +248,7 @@ var canvas_PFD_base = {
 		} else {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
-			} elsif (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
+			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
@@ -269,7 +269,7 @@ var canvas_PFD_base = {
 		if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
-		} elsif (eng0state.getValue() != 3 and eng0state.getValue() != 3 and eng0state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
+		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
 		} else {
@@ -314,7 +314,7 @@ var canvas_PFD_base = {
 		if (qnhstd.getValue() == 1) {
 			if (qnhinhgx == 0) {
 				me["QNH"].setText("1013");
-			} elsif (qnhinhgx == 1) {
+			} else if (qnhinhgx == 1) {
 				me["QNH"].setText("29.92");
 			}
 		} else if (qnhinhgx == 0) {
@@ -383,7 +383,7 @@ var canvas_PFD_base = {
 		# Subtract 50, since the scale starts at 50, but don"t allow less than 0, or more than 500 situations
 		if (speedx <= 50) {
 			ASI = 0;
-		} elsif (speedx >= 500) {
+		} else if (speedx >= 500) {
 			ASI = 450;
 		} else {
 			ASI = speedx - 50;
@@ -391,7 +391,7 @@ var canvas_PFD_base = {
 		
 		if (IASmax.getValue() <= 50) {
 			ASImax = 0 - ASI;
-		} elsif (IASmax.getValue() >= 500) {
+		} else if (IASmax.getValue() >= 500) {
 			ASImax = 450 - ASI;
 		} else {
 			ASImax = IASmax.getValue() - 50 - ASI;
@@ -402,12 +402,12 @@ var canvas_PFD_base = {
 			me["ASI_max_bar"].show();
 			me["ASI_max_bar2"].hide();
 			me["ASI_max_flap"].hide();
-		} elsif (IASflapmax.getValue() <= 50) {
+		} else if (IASflapmax.getValue() <= 50) {
 			ASIflapmax = 0 - ASI;
 			me["ASI_max_bar"].hide();
 			me["ASI_max_bar2"].show();
 			me["ASI_max_flap"].show();
-		} elsif (IASflapmax.getValue() >= 500) {
+		} else if (IASflapmax.getValue() >= 500) {
 			ASIflapmax = 450 - ASI;
 			me["ASI_max_bar"].hide();
 			me["ASI_max_bar2"].show();
@@ -430,7 +430,7 @@ var canvas_PFD_base = {
 			me["ASI_mach_decimal"].setColor(1,0,0);
 			me["ASI_bowtie_L"].setColor(1,0,0);
 			me["ASI_bowtie_R"].setColor(1,0,0);
-		} elsif (speedx > IASflapmax.getValue() and IASflapmax.getValue() >= 0) {
+		} else if (speedx > IASflapmax.getValue() and IASflapmax.getValue() >= 0) {
 			me["ASI"].setColor(0.9647,0.8196,0.07843);
 			me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
 			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
@@ -458,7 +458,7 @@ var canvas_PFD_base = {
 		
 		if (IASpresel.getValue() <= 50) {
 			ASIpresel = 0 - ASI;
-		} elsif (IASpresel.getValue() >= 500) {
+		} else if (IASpresel.getValue() >= 500) {
 			ASIpresel = 450 - ASI;
 		} else {
 			ASIpresel = IASpresel.getValue() - 50 - ASI;
@@ -468,7 +468,7 @@ var canvas_PFD_base = {
 		
 		if (IASsel.getValue() <= 50) {
 			ASIsel = 0 - ASI;
-		} elsif (IASsel.getValue() >= 500) {
+		} else if (IASsel.getValue() >= 500) {
 			ASIsel = 450 - ASI;
 		} else {
 			ASIsel = IASsel.getValue() - 50 - ASI;
@@ -483,7 +483,7 @@ var canvas_PFD_base = {
 		if (ASItrendx >= 2) {
 			me["ASI_trend_up"].show();
 			me["ASI_trend_down"].hide();
-		} elsif (ASItrendx <= -2) {
+		} else if (ASItrendx <= -2) {
 			me["ASI_trend_down"].show();
 			me["ASI_trend_up"].hide();
 		} else {
@@ -673,18 +673,18 @@ var canvas_PFD_base = {
 		
 		if (hdgprediff.getValue() <= 35 and hdgprediff.getValue() >= -35) {
 			HDGpresel = hdgprediff.getValue();
-		} elsif (hdgprediff.getValue() > 35) {
+		} else if (hdgprediff.getValue() > 35) {
 			HDGpresel = 35;
-		} elsif (hdgprediff.getValue() < -35) {
+		} else if (hdgprediff.getValue() < -35) {
 			HDGpresel = -35;
 		}
 		me["HDG_presel"].setRotation(HDGpresel * D2R);
 		
 		if (hdgdiff.getValue() <= 35 and hdgdiff.getValue() >= -35) {
 			HDGsel = hdgdiff.getValue();
-		} elsif (hdgdiff.getValue() > 35) {
+		} else if (hdgdiff.getValue() > 35) {
 			HDGsel = 35;
-		} elsif (hdgdiff.getValue() < -35) {
+		} else if (hdgdiff.getValue() < -35) {
 			HDGsel = -35;
 		}
 		me["HDG_sel"].setRotation(HDGsel * D2R);
