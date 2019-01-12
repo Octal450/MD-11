@@ -13,13 +13,14 @@
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="50">fcc/flap/max-deg</property>
 	<property value="0.0">fcs/slat-pos-deg</property>
+	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Default gains for tuning -->
 	<property value="0">fcc/rcws/p-gain</property>
 	<property value="0">fcc/rcws/i-gain</property>
 	<property value="0">fcc/rcws/d-gain</property>
 	<property value="0">fcc/lsas/p-gain</property>
-	<property value="0">fcc/lsas/p-gain2</property>
+	<property value="0">fcc/lsas/p-gain-prd</property>
 	<property value="0">fcc/lsas/i-gain</property>
 	<property value="0">fcc/lsas/d-gain</property>
 	<property value="0">fcc/yaw/yd-p-gain</property>
@@ -83,7 +84,7 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/gain-switch2-input">
+		<switch name="fcc/lsas/gain-switch-prd-input">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/controls/flight/elevator gt 0.02
@@ -91,7 +92,7 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/gain-switch2">
+		<switch name="fcc/lsas/gain-switch-prd">
 			<default value="1"/>
 			<test logic="AND" value="0">
 				/lsas/enable eq 1
@@ -100,7 +101,7 @@
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				fcc/lsas/gain-switch2-input eq 1
+				fcc/lsas/gain-switch-prd-input eq 1
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 			</test>
@@ -186,12 +187,12 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/p-gain2">
+		<fcs_function name="fcc/lsas/p-gain-prd">
 			<function>
 				<product>
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
-						<independentVar lookup="column">fcc/lsas/gain-switch2</independentVar>
+						<independentVar lookup="column">fcc/lsas/gain-switch-prd</independentVar>
 						<tableData>
 							     0    1
 							140  6.0  0.0
@@ -450,8 +451,8 @@
 			<output>fcc/lsas/pid</output>
 		</pid>
 		
-		<scheduled_gain name="fcc/lsas/p-gain2-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/lsas/p-gain2</input>
+		<scheduled_gain name="fcc/lsas/p-gain-prd-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>fcc/lsas/p-gain-prd</input>
 			<table>
 				<independentVar lookup="row">fcc/lsas/channels-active</independentVar>
 				<tableData>
@@ -466,7 +467,7 @@
 		
 		<pure_gain name="fcc/lsas/thetadot-damper">
 			<input>fcc/lsas/t-r_s-s</input>
-			<gain>fcc/lsas/p-gain2-scheduled</gain>
+			<gain>fcc/lsas/p-gain-prd-scheduled</gain>
 			<clipto>
 				<min>-0.249</min>
 				<max>0.249</max>
@@ -503,13 +504,40 @@
 			<input>fcc/lsas/thetadot-damper</input>
 		</summer>
 		
+		<switch name="fcc/lsas/gain-switch-pnl">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				gear/unit[0]/WOW ne 1
+				gear/unit[1]/WOW eq 1
+				gear/unit[2]/WOW eq 1
+				fcc/afs/enabled eq 0
+				spoilers/auto-speedbrake-feedback ge 0.5
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/lsas/pnl-control-cmd">
+			<function>
+				<sum>
+					<property>fcc/lsas/elevator-feel</property>
+					<value>0.1</value>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</fcs_function>
+		
 		<switch name="fcc/lsas/output">
 			<default value="fcc/lsas/elevator-feel"/>
 			<test value="fcc/lsas/pid">
 				fcc/lsas/gain-switch eq 0
 			</test>
 			<test value="fcc/lsas/damper-control-cmd">
-				fcc/lsas/gain-switch2 eq 0
+				fcc/lsas/gain-switch-prd eq 0
+			</test>
+			<test value="fcc/lsas/pnl-control-cmd">
+				fcc/lsas/gain-switch-pnl eq 0
 			</test>
 		</switch>
 		
@@ -586,14 +614,14 @@
 				attitude/roll-rad le 0.0890118
 			</test>
 			<test logic="AND" value="3">
-				fcc/lsas/gain-switch2 eq 0
+				fcc/lsas/gain-switch-prd eq 0
 				fcc/lsas/elevator-feel ge 0.35
 				/controls/flight/elevator-trim le 0.064516
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
 			</test>
 			<test logic="AND" value="4">
-				fcc/lsas/gain-switch2 eq 0
+				fcc/lsas/gain-switch-prd eq 0
 				fcc/lsas/elevator-feel le -0.35
 				/controls/flight/elevator-trim ge -1.0
 				attitude/roll-rad ge -0.0890118
