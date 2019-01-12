@@ -524,6 +524,8 @@
 		</irs>
 		<switches n="0">
 			<annun-test type="bool">0</annun-test>
+			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
+			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
 			<cart type="bool">0</cart>
 		</switches>
 	</controls>
@@ -727,11 +729,23 @@
 				<binding>
 					<command>nasal</command>
 					<script>
+						setprop("/controls/switches/ats-lever1", 1);
+						setprop("/controls/switches/ats-lever3", 1);
+						afs.killATSWarn();
 						if (getprop("/it-autoflight/output/athr") == 1) {
 							setprop("/it-autoflight/input/athr", 0);
 						}
 					</script>
 				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>
+							setprop("/controls/switches/ats-lever1", 0);
+							setprop("/controls/switches/ats-lever3", 0);
+						</script>
+					</binding>
+				</mod-up>
 			</key>
 			<key n="24">
 				<name>Ctrl-x</name>
@@ -964,6 +978,9 @@
 				<binding>
 					<command>nasal</command>
 					<script>
+						setprop("/controls/switches/ap-yoke-button1", 1);
+						setprop("/controls/switches/ap-yoke-button2", 1);
+						afs.killAPWarn();
 						if (getprop("/it-autoflight/output/ap1") == 1) {
 							setprop("/it-autoflight/input/ap1", 0);
 						}
@@ -972,6 +989,15 @@
 						}
 					</script>
 				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>
+							setprop("/controls/switches/ap-yoke-button1", 0);
+							setprop("/controls/switches/ap-yoke-button2", 0);
+						</script>
+					</binding>
+				</mod-up>
 			</key>
 			<key n="88">
 				<name>X</name>
