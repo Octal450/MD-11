@@ -5,27 +5,33 @@
 <PropertyList>
 	<fx>
 	
-  <apoff>
-   <name>apoff</name>
-   <path>/Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
-   <condition>
-	 <property>/it-autoflight/sound/apoffsound</property>
-   </condition>
-   <volume>
-    <factor>10.0</factor>
-   </volume>
-  </apoff>
-  
-  <apoff>
-   <name>apoff2</name>
-   <path>/Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
-   <condition>
-	 <property>/it-autoflight/sound/apoffsound2</property>
-   </condition>
-   <volume>
-    <factor>10.0</factor>
-   </volume>
-  </apoff>
+	<apoff>
+		<name>apoff</name>
+		<mode>looped</mode>
+		<path>Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
+		<condition>
+			<and>
+				<property>/it-autoflight/sound/apoffsound</property>
+				<or>
+					<greater-than-equals>
+						<property>/systems/electrical/bus/dc1</property>
+						<value>25</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>/systems/electrical/bus/dc2</property>
+						<value>25</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>/systems/electrical/bus/dc3</property>
+						<value>25</value>
+					</greater-than-equals>
+				</or>
+			</and>
+		</condition>
+		<volume>
+			<factor>10.0</factor>
+		</volume>
+	</apoff>
   
 	<switch>
 		<name>Button</name>

@@ -49,15 +49,28 @@
 		<button>
 			<legend>AP Off</legend>
             <pref-width>55</pref-width>
+			<binding> <!-- MUST be before turning AP off -->
+				<command>nasal</command>
+				<script>afs.killAPWarn();</script>
+			</binding>
 			<binding>
 				<command>property-assign</command>
 				<property>/it-autoflight/input/ap1</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/ap2</property>
 				<value>0</value>
 			</binding>
 		</button>
 		<button>
 			<legend>ATS Off</legend>
             <pref-width>55</pref-width>
+			<binding> <!-- MUST be before turning ATS off -->
+				<command>nasal</command>
+				<script>afs.killATSWarn();</script>
+			</binding>
 			<binding>
 				<command>property-assign</command>
 				<property>/it-autoflight/input/athr</property>

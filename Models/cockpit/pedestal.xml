@@ -253,7 +253,7 @@
 		<object-name>throttle.1</object-name>
 		<object-name>reverse.1</object-name>
 		<object-name>throttle.1.circle</object-name>
-		<property>controls/engines/engine[0]/throttle</property>
+		<property>controls/engines/engine[0]/throttle-lever</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -356,7 +356,7 @@
 		<object-name>throttle.2</object-name>
 		<object-name>reverse.2</object-name>
 		<object-name>throttle.2.circle</object-name>
-		<property>controls/engines/engine[1]/throttle</property>
+		<property>controls/engines/engine[1]/throttle-lever</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -459,7 +459,7 @@
 		<object-name>throttle.3</object-name>
 		<object-name>throttle.3.circle</object-name>
 		<object-name>reverse.3</object-name>
-		<property>controls/engines/engine[2]/throttle</property>
+		<property>controls/engines/engine[2]/throttle-lever</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -528,7 +528,93 @@
 			<z-m>6.83</z-m>
 		</center>
 	</animation>
-
+	
+	<animation>
+		<name>ATS OFF Left</name>
+		<type>pick</type>
+		<object-name>throttle.1.ats</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/ats-lever1</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/ats-lever1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding> <!-- MUST be before turning ATS off -->
+				<command>nasal</command>
+				<script>afs.killATSWarn();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/athr</property>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>throttle.1.ats</object-name>
+		<property>controls/switches/ats-lever1</property>
+		<factor>0.002</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>ATS OFF Right</name>
+		<type>pick</type>
+		<object-name>throttle.3.ats</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/ats-lever3</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/ats-lever3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding> <!-- MUST be before turning ATS off -->
+				<command>nasal</command>
+				<script>afs.killATSWarn();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/athr</property>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>throttle.3.ats</object-name>
+		<property>controls/switches/ats-lever3</property>
+		<factor>-0.002</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
 	<animation>
 		<name>Rudder</name>
 		<type>rotate</type>

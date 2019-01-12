@@ -38,6 +38,12 @@ var ats = props.globals.getNode("/it-autoflight/output/athr", 1);
 var fd1 = props.globals.getNode("/it-autoflight/output/fd1", 1);
 var fd2 = props.globals.getNode("/it-autoflight/output/fd2", 1);
 var apvert = props.globals.getNode("/it-autoflight/output/vert", 1);
+var apwarn = props.globals.getNode("/it-autoflight/custom/apwarn", 1);
+var apsound = props.globals.getNode("/it-autoflight/sound/apoffsound", 1);
+var atswarn = props.globals.getNode("/it-autoflight/custom/atswarn", 1);
+var atsflash = props.globals.getNode("/it-autoflight/custom/atsflash", 1);
+var apdiscbtn1 = props.globals.getNode("/controls/switches/ap-yoke-button1", 1);
+var apdiscbtn2 = props.globals.getNode("/controls/switches/ap-yoke-button2", 1);
 var throttle_mode = props.globals.getNode("/it-autoflight/mode/thr", 1);
 var roll_mode = props.globals.getNode("/modes/pfd/fma/roll-mode", 1);
 var roll_mode_armed = props.globals.getNode("/modes/pfd/fma/roll-mode-armed", 1);
@@ -218,9 +224,46 @@ var canvas_PFD_base = {
 			}
 		}
 		
+		if (atsflash.getValue() == 1) {
+			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
+			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
+		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) {
+			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
+			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
+		} else {
+			me["FMA_ATS_Pitch_Off"].setColor(1,1,1);
+			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
+		}
+		
+		if (apsound.getValue() == 1) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
+		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+		} else if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+		} else {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,1,1);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,1,1);
+		}
+		
 		if (ats.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].hide();
+		} else if (atsflash.getValue() == 1 and atswarn.getValue() != 1) {
+			me["FMA_ATS_Pitch_Off"].hide();
+			me["FMA_ATS_Thrust_Off"].hide();
+		} else if (atsflash.getValue() == 1 and atswarn.getValue() == 1 and throttle_mode.getValue() == "PITCH") {
+			me["FMA_ATS_Pitch_Off"].show();
+			me["FMA_ATS_Thrust_Off"].hide();
+		} else if (atsflash.getValue() == 1 and atswarn.getValue() == 1 and throttle_mode.getValue() != "PITCH") {
+			me["FMA_ATS_Pitch_Off"].hide();
+			me["FMA_ATS_Thrust_Off"].show();
 		} else if (throttle_mode.getValue() == "PITCH") {
 			me["FMA_ATS_Pitch_Off"].show();
 			me["FMA_ATS_Thrust_Off"].hide();
@@ -232,8 +275,17 @@ var canvas_PFD_base = {
 		if (ap1.getValue() == 1 or ap2.getValue() == 1) {
 			me["FMA_AP"].setColor(0.3215,0.8078,1);
 			me["FMA_AP"].setText(sprintf("%s", apmode.getValue()));
-			me["FMA_AP_Pitch_Off_Box"].hide();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP"].show();
+		} else if (apsound.getValue() == 1 and apwarn.getValue() != 1) {
+			me["FMA_AP"].hide();
+		} else if (apsound.getValue() == 1 and apwarn.getValue() == 1) {
+			me["FMA_AP"].setColor(1,0,0);
+			me["FMA_AP"].setText("AP OFF");
+			me["FMA_AP"].show();
+		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) {
+			me["FMA_AP"].setColor(1,0.7843,0);
+			me["FMA_AP"].setText("AP OFF");
+			me["FMA_AP"].show();
 		} else if (throttle_mode.getValue() == "PITCH") {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
@@ -243,8 +295,7 @@ var canvas_PFD_base = {
 				me["FMA_AP"].setColor(1,1,1);
 			}
 			me["FMA_AP"].setText("AP OFF");
-			me["FMA_AP_Pitch_Off_Box"].show();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP"].show();
 		} else {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
 				me["FMA_AP"].setColor(1,0.7843,0);
@@ -254,27 +305,27 @@ var canvas_PFD_base = {
 				me["FMA_AP"].setColor(1,1,1);
 			}
 			me["FMA_AP"].setText("AP OFF");
+			me["FMA_AP"].show();
+		}
+		
+		if (ap1.getValue() == 1 or ap2.getValue() == 1) {
+			me["FMA_AP_Pitch_Off_Box"].hide();
+			me["FMA_AP_Thrust_Off_Box"].hide();
+		} else if (apsound.getValue() == 1 and apwarn.getValue() != 1) {
+			me["FMA_AP_Pitch_Off_Box"].hide();
+			me["FMA_AP_Thrust_Off_Box"].hide();
+		} else if (apsound.getValue() == 1 and apwarn.getValue() == 1 and throttle_mode.getValue() == "PITCH") {
+			me["FMA_AP_Pitch_Off_Box"].show();
+			me["FMA_AP_Thrust_Off_Box"].hide();
+		} else if (apsound.getValue() == 1 and apwarn.getValue() == 1 and throttle_mode.getValue() != "PITCH") {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].show();
-		}
-		
-		if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) {
-			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
-			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
+		} else if (throttle_mode.getValue() == "PITCH") {
+			me["FMA_AP_Pitch_Off_Box"].show();
+			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else {
-			me["FMA_ATS_Pitch_Off"].setColor(1,1,1);
-			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
-		}
-		
-		if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
-		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
-		} else {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,1,1);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,1,1);
+			me["FMA_AP_Pitch_Off_Box"].hide();
+			me["FMA_AP_Thrust_Off_Box"].show();
 		}
 		
 		if (ktsmach.getValue() == 1) {

@@ -29,6 +29,8 @@ var turn_dist = 0;
 var vsnow = 0;
 var fpanow = 0;
 var altinput = 0;
+var APwarn = 0;
+var APsound = 0;
 setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
 setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
@@ -99,12 +101,30 @@ var APinit = func(t) {
 	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2") + 10);
 	setprop("/it-autoflight/input/spd-mach", 0.5);
 	setprop("/it-autoflight/custom/show-hdg", 5);
+	setprop("/it-autoflight/sound/enableapoffsound", 0);
+	setprop("/it-autoflight/sound/apoffsound", 0);
+	setprop("/it-autoflight/sound/enableatsflash", 0);
+	setprop("/it-autoflight/custom/atsflash", 0);
 	ap_varioust.start();
 	various2.start();
+	apKill.stop();
+	atsKill.stop();
+	setprop("/it-autoflight/custom/apwarn", 0);
+	setprop("/it-autoflight/custom/atswarn", 0);
 	thrustmode();
 }
 
-# AP 1 Master System
+# AFS Master System
+var killAFSSilent = func {
+	setprop("/it-autoflight/output/ap1", 0);
+	setprop("/it-autoflight/output/ap2", 0);
+	setprop("/it-autoflight/sound/apoffsound", 0);
+	setprop("/it-autoflight/sound/enableapoffsound", 0);
+	# Now that AFS is off, we can safely update the input to 0 without the AP Master running
+	setprop("/it-autoflight/input/ap1", 0);
+	setprop("/it-autoflight/input/ap2", 0);
+}
+
 setlistener("/it-autoflight/input/ap1", func {
 	var apmas = getprop("/it-autoflight/input/ap1");
 	var apout = getprop("/it-autoflight/output/ap1");
@@ -115,14 +135,20 @@ setlistener("/it-autoflight/input/ap1", func {
 
 var AP1Master = func {
 	var apmas = getprop("/it-autoflight/input/ap1");
+	var apmas_other = getprop("/it-autoflight/input/ap2");
+	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
+	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap1", 0);
-		if (getprop("/it-autoflight/sound/enableapoffsound") == 1) {
+		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
 			setprop("/it-autoflight/sound/apoffsound", 1);
-			setprop("/it-autoflight/sound/enableapoffsound", 0);	  
+			setprop("/it-autoflight/sound/enableapoffsound", 0);
+			apKill.start();			
 		}
-	} else if (apmas == 1) {
+	} else if (apmas == 1 and !discBtn1 and !discBtn2) {
 		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
+			apKill.stop();
+			setprop("/it-autoflight/custom/apwarn", 0);
 			setprop("/controls/flight/rudder", 0);
 			setprop("/it-autoflight/output/ap1", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 1);
@@ -136,7 +162,6 @@ var AP1Master = func {
 	}
 }
 
-# AP 2 Master System
 setlistener("/it-autoflight/input/ap2", func {
 	var apmas = getprop("/it-autoflight/input/ap2");
 	var apout = getprop("/it-autoflight/output/ap2");
@@ -148,18 +173,24 @@ setlistener("/it-autoflight/input/ap2", func {
 
 var AP2Master = func {
 	var apmas = getprop("/it-autoflight/input/ap2");
+	var apmas_other = getprop("/it-autoflight/input/ap1");
+	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
+	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap2", 0);
-		if (getprop("/it-autoflight/sound/enableapoffsound2") == 1) {
-			setprop("/it-autoflight/sound/apoffsound2", 1);	
-			setprop("/it-autoflight/sound/enableapoffsound2", 0);	  
+		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
+			setprop("/it-autoflight/sound/apoffsound", 1);
+			setprop("/it-autoflight/sound/enableapoffsound", 0);
+			apKill.start();			
 		}
-	} else if (apmas == 1) {
+	} else if (apmas == 1 and !discBtn1 and !discBtn2) {
 		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
+			apKill.stop();
+			setprop("/it-autoflight/custom/apwarn", 0);
 			setprop("/controls/flight/rudder", 0);
 			setprop("/it-autoflight/output/ap2", 1);
-			setprop("/it-autoflight/sound/enableapoffsound2", 1);
-			setprop("/it-autoflight/sound/apoffsound2", 0);
+			setprop("/it-autoflight/sound/enableapoffsound", 1);
+			setprop("/it-autoflight/sound/apoffsound", 0);
 		}
 	}
 	
@@ -169,7 +200,23 @@ var AP2Master = func {
 	}
 }
 
+var killAPWarn = func {
+	if (getprop("/it-autoflight/sound/apoffsound") == 1) { # Second press only
+		apKill.stop();
+		setprop("/it-autoflight/custom/apwarn", 0);
+		setprop("/it-autoflight/sound/apoffsound", 0);
+	}
+};
+
 # ATHR Master System
+var killATSSilent = func {
+	setprop("/it-autoflight/output/athr", 0);
+	setprop("/it-autoflight/custom/atsflash", 0);
+	setprop("/it-autoflight/sound/enableatsflash", 0);
+	# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
+	setprop("/it-autoflight/input/athr", 0);
+}
+
 setlistener("/it-autoflight/input/athr", func {
 	var athrmas = getprop("/it-autoflight/input/athr");
 	var athrout = getprop("/it-autoflight/output/athr");
@@ -186,9 +233,17 @@ var ATHRMaster = func {
 	var vert = getprop("/it-autoflight/mode/vert");
 	if (athrmas == 0) {
 		setprop("/it-autoflight/output/athr", 0);
+		if (getprop("/it-autoflight/custom/enableatsflash") == 1) {
+			setprop("/it-autoflight/custom/atsflash", 1);
+			setprop("/it-autoflight/sound/enableatsflash", 0);
+			atsKill.start();			
+		}
 	} else if (athrmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3) and ((gear1 == 0 and gear2 == 0) or vert == "T/O CLB")) {
 		thrustmode();
+		atsKill.stop();
 		setprop("/it-autoflight/output/athr", 1);
+		setprop("/it-autoflight/custom/enableatsflash", 1);
+		setprop("/it-autoflight/custom/atsflash", 0);
 	}
 	
 	var athrout = getprop("/it-autoflight/output/athr");
@@ -196,6 +251,14 @@ var ATHRMaster = func {
 		setprop("/it-autoflight/input/athr", athrout);
 	}
 }
+
+var killATSWarn = func {
+	if (getprop("/it-autoflight/custom/atsflash") == 1) { # Second press only
+		atsKill.stop();
+		setprop("/it-autoflight/custom/atswarn", 0);
+		setprop("/it-autoflight/custom/atsflash", 0);
+	}
+};
 
 # Flight Director 1 Master System
 setlistener("/it-autoflight/input/fd1", func {
@@ -912,15 +975,10 @@ var atoffchk = func{
 	var gear1 = getprop("/gear/gear[1]/wow");
 	var gear2 = getprop("/gear/gear[2]/wow");
 	if (gear1 == 1 or gear2 == 1) {
-		setprop("/it-autoflight/input/athr", 0);
+		killATSSilent();
 		setprop("/controls/engines/engine[0]/throttle", 0);
 		setprop("/controls/engines/engine[1]/throttle", 0);
 		setprop("/controls/engines/engine[2]/throttle", 0);
-		setprop("/controls/engines/engine[3]/throttle", 0);
-		setprop("/controls/engines/engine[4]/throttle", 0);
-		setprop("/controls/engines/engine[5]/throttle", 0);
-		setprop("/controls/engines/engine[6]/throttle", 0);
-		setprop("/controls/engines/engine[7]/throttle", 0);
 		atofft.stop();
 	}
 }
@@ -1074,6 +1132,33 @@ setlistener("/it-autoflight/custom/hdg-sel", func {
 
 setlistener("/it-autoflight/internal/alt", func {
 	setprop("/autopilot/settings/target-altitude-ft", getprop("/it-autoflight/input/alt"));
+});
+
+# AP/ATS Off Warning
+var apKill = maketimer(0.3, func {
+	APwarn = getprop("/it-autoflight/custom/apwarn");
+	APsound = getprop("/it-autoflight/sound/apoffsound");
+	if (!APsound) {
+		apKill.stop();
+		setprop("/it-autoflight/custom/apwarn", 0);
+	} else if (APwarn != 1) {
+		setprop("/it-autoflight/custom/apwarn", 1);
+	} else {
+		setprop("/it-autoflight/custom/apwarn", 0);
+	}
+});
+
+var atsKill = maketimer(0.3, func {
+	ATSwarn = getprop("/it-autoflight/custom/atswarn");
+	ATSflash = getprop("/it-autoflight/custom/atsflash");
+	if (!ATSflash) {
+		atsKill.stop();
+		setprop("/it-autoflight/custom/atswarn", 0);
+	} else if (ATSwarn != 1) {
+		setprop("/it-autoflight/custom/atswarn", 1);
+	} else {
+		setprop("/it-autoflight/custom/atswarn", 0);
+	}
 });
 
 # Timers
