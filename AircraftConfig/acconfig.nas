@@ -172,7 +172,7 @@ var renderingSettings = {
 		var ALS = getprop("/sim/rendering/shaders/skydome");
 		var customSettings = getprop("/sim/rendering/shaders/custom-settings") == 1;
 		var landmass = getprop("/sim/rendering/shaders/landmass") >= 4;
-		var model = getprop("/sim/rendering/shaders/model") >= 1;
+		var model = getprop("/sim/rendering/shaders/model") >= 2;
 		if (!rembrandt and (!ALS or !customSettings or !landmass or !model)) {
 			rendering_dlg.open();
 		}
@@ -180,12 +180,12 @@ var renderingSettings = {
 	fixAll: func() {
 		me.fixCore();
 		var landmass = getprop("/sim/rendering/shaders/landmass") >= 4;
-		var model = getprop("/sim/rendering/shaders/model") >= 1;
+		var model = getprop("/sim/rendering/shaders/model") >= 2;
 		if (!landmass) {
 			setprop("/sim/rendering/shaders/landmass", 4);
 		}
 		if (!model) {
-			setprop("/sim/rendering/shaders/model", 1);
+			setprop("/sim/rendering/shaders/model", 2);
 		}
 	},
 	fixCore: func() {
