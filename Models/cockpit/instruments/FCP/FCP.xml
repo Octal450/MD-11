@@ -8,11 +8,10 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AP.disengage</object-name>		
-		<object-name>AP.disengage.001</object-name>
+		<object-name>OVRD1</object-name>		
 		<condition>
 			<equals>
-				<property>it-autoflight/custom/afds-ovrd</property>
+				<property>it-autoflight/input/ovrd1</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -20,11 +19,32 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AP.disengage2</object-name>		
-		<object-name>AP.disengage2.001</object-name>
+		<object-name>OVRD1X</object-name>		
 		<condition>
 			<equals>
-				<property>it-autoflight/custom/afds-ovrd</property>
+				<property>it-autoflight/input/ovrd1</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD2</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd2</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD2X</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd2</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -646,55 +666,43 @@
 ###########   HOTSPOTS ###########
 
  -->
- 
+
 	<animation>
 		<type>pick</type>
-		<object-name>AP.disengage</object-name>		
-		<object-name>AP.disengage.001</object-name>
+		<object-name>OVRD1</object-name>			
+		<object-name>OVRD1X</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-			   <command>property-assign</command>
-			   <property>it-autoflight/input/ap1</property>
-			   <value>0</value>
-			</binding>
-			<binding>
-			   <command>property-assign</command>
-			   <property>it-autoflight/input/ap2</property>
-			   <value>0</value>
-			</binding>
-			<binding>
-			   <command>property-assign</command>
-			   <property>it-autoflight/input/athr</property>
-			   <value>0</value>
+			   <command>property-toggle</command>
+			   <property>it-autoflight/input/ovrd1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
 			</binding>
 		</action>
 	</animation>
 	
-	<!--animation>
-		<type>pick</type>
-		<object-name>AP.disengage2</object-name>		
-		<object-name>AP.disengage2.001</object-name>
+	<animation>
+		<type>pick</type>		
+		<object-name>OVRD2</object-name>		
+		<object-name>OVRD2X</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-			   <command>property-assign</command>
-			   <property>instrumentation/afds/inputs/AP-disengage</property>
-			   <value>false</value>
+			   <command>property-toggle</command>
+			   <property>it-autoflight/input/ovrd2</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
 			</binding>
 		</action>
-	</animation-->
-	
+	</animation>
+
 	<animation>
 		<type>pick</type>
 		<object-name>MACH.toggle</object-name>
@@ -765,19 +773,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/athr</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap1</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap2</property>
-				<value>0</value>
+				<command>nasal</command>
+				<script>afs.AUTOFLIGHT();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>

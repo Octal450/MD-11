@@ -95,8 +95,8 @@
 				<x-offset-m archive="y">-0.5238</x-offset-m>
 				<y-offset-m archive="y">7.2709</y-offset-m>
 				<z-offset-m archive="y">-26.8</z-offset-m>
-				<default-field-of-view-deg type="double">75</default-field-of-view-deg>
-				<pitch-offset-deg archive="y">-15.4</pitch-offset-deg>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
 			</config>
 		</view>
 		<view n="100">
@@ -109,8 +109,8 @@
 				<x-offset-m archive="y">0.5238</x-offset-m>
 				<y-offset-m archive="y">7.2709</y-offset-m>
 				<z-offset-m archive="y">-26.8</z-offset-m>
-				<default-field-of-view-deg type="double">75</default-field-of-view-deg>
-				<pitch-offset-deg archive="y">-15.4</pitch-offset-deg>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
 			</config>
 		</view>
 		<view n="101"> 
@@ -610,6 +610,10 @@
 	</gear>
 	
 	<it-autoflight>
+		<input>
+			<ovrd1>0</ovrd1>
+			<ovrd2>0</ovrd2>
+		</input>
 		<settings>
 			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
 			<land-enable>1</land-enable> <!-- Enable/Disable Autoland -->

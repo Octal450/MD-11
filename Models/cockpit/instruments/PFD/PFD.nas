@@ -42,6 +42,8 @@ var apwarn = props.globals.getNode("/it-autoflight/custom/apwarn", 1);
 var apsound = props.globals.getNode("/it-autoflight/sound/apoffsound", 1);
 var atswarn = props.globals.getNode("/it-autoflight/custom/atswarn", 1);
 var atsflash = props.globals.getNode("/it-autoflight/custom/atsflash", 1);
+var ovrd1 = props.globals.getNode("/it-autoflight/input/ovrd1");
+var ovrd2 = props.globals.getNode("/it-autoflight/input/ovrd2");
 var apdiscbtn1 = props.globals.getNode("/controls/switches/ap-yoke-button1", 1);
 var apdiscbtn2 = props.globals.getNode("/controls/switches/ap-yoke-button2", 1);
 var throttle_mode = props.globals.getNode("/it-autoflight/mode/thr", 1);
@@ -227,6 +229,9 @@ var canvas_PFD_base = {
 		if (atsflash.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
+		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
+			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
+			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
 		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
@@ -238,6 +243,9 @@ var canvas_PFD_base = {
 		if (apsound.getValue() == 1) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
+		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
+			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
 		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
@@ -282,7 +290,7 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setColor(1,0,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
-		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) {
+		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (ovrd1.getBoolValue() and ovrd2.getBoolValue())) {
 			me["FMA_AP"].setColor(1,0.7843,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();

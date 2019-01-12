@@ -36,14 +36,8 @@
 			<legend>AUTOFLIGHT</legend>
             <pref-width>110</pref-width>
 			<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/ap1</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/athr</property>
-				<value>1</value>
+				<command>nasal</command>
+				<script>afs.AUTOFLIGHT();</script>
 			</binding>
 		</button>
 		<button>
@@ -1253,6 +1247,45 @@
 					</script>
 				</binding>
 			</button>
+		</group>
+		
+		<group>
+			<layout>hbox</layout>
+
+			<hrule>
+				<stretch type="bool">true</stretch>
+			</hrule>
+			<text>
+				<label>AFDS OVRD OFF</label>
+			</text>
+			<hrule>
+				<stretch type="bool">true</stretch>
+			</hrule>
+		</group>
+		
+		<group>
+			<layout>hbox</layout>
+			
+			<checkbox>
+				<label>AFDS OVRD 1</label>
+				<halign>center</halign>
+				<property>/it-autoflight/input/ovrd1</property>
+				<binding>
+					<command>property-toggle</command>
+					<property>/it-autoflight/input/ovrd1</property>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			<checkbox>
+				<label>AFDS OVRD 2</label>
+				<halign>center</halign>
+				<property>/it-autoflight/input/ovrd2</property>
+				<binding>
+					<command>property-toggle</command>
+					<property>/it-autoflight/input/ovrd2</property>
+				</binding>
+				<live>true</live>
+			</checkbox>
 		</group>
 		
 	</group>

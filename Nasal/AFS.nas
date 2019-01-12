@@ -31,6 +31,12 @@ var fpanow = 0;
 var altinput = 0;
 var APwarn = 0;
 var APsound = 0;
+var activeFMS = 1;
+var ap1 = 0;
+var ap2 = 0;
+var ats = 0;
+var ovrd1 = 0;
+var ovrd2 = 0;
 setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
 setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
@@ -72,6 +78,8 @@ var APinit = func(t) {
 	if (t != 1) {
 		setprop("/it-autoflight/input/bank-limit-sw", 0);
 	}
+	setprop("/it-autoflight/input/ovrd1", 0);
+	setprop("/it-autoflight/input/ovrd2", 0);
 	setprop("/it-autoflight/output/ap1", 0);
 	setprop("/it-autoflight/output/ap2", 0);
 	setprop("/it-autoflight/output/athr", 0);
@@ -94,11 +102,12 @@ var APinit = func(t) {
 	}
 	setprop("/it-autoflight/internal/fpa", 0);
 	setprop("/it-autoflight/internal/top-of-des-nm", 0);
+	setprop("/it-autoflight/internal/active-fms", 1);
 	setprop("/it-autoflight/mode/thr", "PITCH");
 	setprop("/it-autoflight/mode/arm", "HDG");
 	setprop("/it-autoflight/mode/lat", "T/O");
 	setprop("/it-autoflight/mode/vert", "T/O CLB");
-	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2") + 10);
+	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2"));
 	setprop("/it-autoflight/input/spd-mach", 0.5);
 	setprop("/it-autoflight/custom/show-hdg", 5);
 	setprop("/it-autoflight/sound/enableapoffsound", 0);
@@ -125,6 +134,77 @@ var killAFSSilent = func {
 	setprop("/it-autoflight/input/ap2", 0);
 }
 
+var AUTOFLIGHT = func {
+	ap1 = getprop("/it-autoflight/output/ap1");
+	ap2 = getprop("/it-autoflight/output/ap2");
+	ats = getprop("/it-autoflight/output/athr");
+	ovrd1 = getprop("/it-autoflight/input/ovrd1");
+	ovrd2 = getprop("/it-autoflight/input/ovrd2");
+	
+	if (!ats and (!ovrd1 or !ovrd2)) {
+		setprop("/it-autoflight/input/athr", 1);
+	}
+	
+	activeFMS = getprop("/it-autoflight/internal/active-fms");
+	
+	if (ap1 or ap2) {
+		if (activeFMS == 1) {
+			setprop("/it-autoflight/internal/active-fms", 2);
+		} else if (activeFMS == 2) {
+			setprop("/it-autoflight/internal/active-fms", 1);
+		}
+	}
+	
+	activeFMS = getprop("/it-autoflight/internal/active-fms");
+	
+	if (activeFMS == 1 and !ovrd1) {
+		setprop("/it-autoflight/input/ap1", 1);
+		setprop("/it-autoflight/input/ap2", 0);
+	} else if (activeFMS == 2 and !ovrd2) {
+		setprop("/it-autoflight/input/ap2", 1);
+		setprop("/it-autoflight/input/ap1", 0);
+	}
+}
+
+var updateOVRD = func {
+	ap1 = getprop("/it-autoflight/output/ap1");
+	ap2 = getprop("/it-autoflight/output/ap2");
+	ats = getprop("/it-autoflight/output/athr");
+	ovrd1 = getprop("/it-autoflight/input/ovrd1");
+	ovrd2 = getprop("/it-autoflight/input/ovrd2");
+	
+	if (ovrd1 and ovrd2) {
+		if (ap1) {
+			setprop("/it-autoflight/input/ap1", 0);
+		}
+		if (ap2) {
+			setprop("/it-autoflight/input/ap2", 0);
+		}
+		if (ats) {
+			setprop("/it-autoflight/input/athr", 0);
+		}
+		setprop("/it-autoflight/internal/active-fms", 1);
+	} else if (ovrd1 and !ovrd2) {
+		if (ap1) {
+			setprop("/it-autoflight/input/ap1", 0);
+		}
+		setprop("/it-autoflight/internal/active-fms", 2);
+	} else if (ovrd2 and !ovrd1) {
+		if (ap2) {
+			setprop("/it-autoflight/input/ap2", 0);
+		}
+		setprop("/it-autoflight/internal/active-fms", 1);
+	}
+}
+
+setlistener("/it-autoflight/input/ovrd1", func {
+	updateOVRD();
+});
+
+setlistener("/it-autoflight/input/ovrd2", func {
+	updateOVRD();
+});
+
 setlistener("/it-autoflight/input/ap1", func {
 	var apmas = getprop("/it-autoflight/input/ap1");
 	var apout = getprop("/it-autoflight/output/ap1");
@@ -138,14 +218,16 @@ var AP1Master = func {
 	var apmas_other = getprop("/it-autoflight/input/ap2");
 	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
 	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
+	ovrd1 = getprop("/it-autoflight/input/ovrd1");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap1", 0);
+		setprop("/it-autoflight/internal/active-fms", 2);
 		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
 			setprop("/it-autoflight/sound/apoffsound", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 0);
 			apKill.start();			
 		}
-	} else if (apmas == 1 and !discBtn1 and !discBtn2) {
+	} else if (apmas == 1 and !discBtn1 and !discBtn2 and !ovrd1) {
 		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
 			apKill.stop();
 			setprop("/it-autoflight/custom/apwarn", 0);
@@ -153,6 +235,7 @@ var AP1Master = func {
 			setprop("/it-autoflight/output/ap1", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 1);
 			setprop("/it-autoflight/sound/apoffsound", 0);
+			setprop("/it-autoflight/internal/active-fms", 1);
 		}
 	}
 	
@@ -176,14 +259,16 @@ var AP2Master = func {
 	var apmas_other = getprop("/it-autoflight/input/ap1");
 	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
 	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
+	ovrd2 = getprop("/it-autoflight/input/ovrd2");
 	if (apmas == 0) {
 		setprop("/it-autoflight/output/ap2", 0);
+		setprop("/it-autoflight/internal/active-fms", 1);
 		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
 			setprop("/it-autoflight/sound/apoffsound", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 0);
 			apKill.start();			
 		}
-	} else if (apmas == 1 and !discBtn1 and !discBtn2) {
+	} else if (apmas == 1 and !discBtn1 and !discBtn2 and !ovrd2) {
 		if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
 			apKill.stop();
 			setprop("/it-autoflight/custom/apwarn", 0);
@@ -191,6 +276,7 @@ var AP2Master = func {
 			setprop("/it-autoflight/output/ap2", 1);
 			setprop("/it-autoflight/sound/enableapoffsound", 1);
 			setprop("/it-autoflight/sound/apoffsound", 0);
+			setprop("/it-autoflight/internal/active-fms", 2);
 		}
 	}
 	
@@ -231,6 +317,8 @@ var ATHRMaster = func {
 	var gear1 = getprop("/gear/gear[1]/wow");
 	var gear2 = getprop("/gear/gear[2]/wow");
 	var vert = getprop("/it-autoflight/mode/vert");
+	ovrd1 = getprop("/it-autoflight/input/ovrd1");
+	ovrd2 = getprop("/it-autoflight/input/ovrd2");
 	if (athrmas == 0) {
 		setprop("/it-autoflight/output/athr", 0);
 		if (getprop("/it-autoflight/custom/enableatsflash") == 1) {
@@ -238,7 +326,7 @@ var ATHRMaster = func {
 			setprop("/it-autoflight/sound/enableatsflash", 0);
 			atsKill.start();			
 		}
-	} else if (athrmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3) and ((gear1 == 0 and gear2 == 0) or vert == "T/O CLB")) {
+	} else if (athrmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3) and ((gear1 == 0 and gear2 == 0) or vert == "T/O CLB") and (!ovrd1 or !ovrd2)) {
 		thrustmode();
 		atsKill.stop();
 		setprop("/it-autoflight/output/athr", 1);

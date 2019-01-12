@@ -17,11 +17,19 @@ var loopFMA = maketimer(0.05, func {
 
 # Master Lateral
 setlistener("/it-autoflight/mode/lat", func {
+	updateLateral();
+});
+
+setlistener("/it-autoflight/internal/active-fms", func {
+	updateLateral();
+}, 0, 0);
+
+var updateLateral = func {
 	var lat = getprop("/it-autoflight/mode/lat");
 	if (lat == "HDG") {
 		setprop("/modes/pfd/fma/roll-mode", "HEADING");
 	} else if (lat == "LNAV") {
-		setprop("/modes/pfd/fma/roll-mode", "NAV1");
+		setprop("/modes/pfd/fma/roll-mode", "NAV" ~ getprop("/it-autoflight/internal/active-fms"));
 	} else if (lat == "LOC") {
 		setprop("/modes/pfd/fma/roll-mode", "LOC");
 	} else if (lat == "ALGN") {
@@ -31,7 +39,7 @@ setlistener("/it-autoflight/mode/lat", func {
 	} else if (lat == "RLOU") {
 		setprop("/modes/pfd/fma/roll-mode", "ROLLOUT");
 	}
-});
+}
 
 # Master Vertical
 setlistener("/it-autoflight/mode/vert", func {

@@ -2,11 +2,11 @@
 
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-setprop("/FMS/internal/v2", 153);
+setprop("/FMS/internal/v2", 163);
 
 var CORE = {
 	resetFMS: func() {
-		setprop("/FMS/internal/v2", 153);
+		setprop("/FMS/internal/v2", 163);
 		afs.APinit(1);
 	},
 	stateCheck: func() {
