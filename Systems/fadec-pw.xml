@@ -345,7 +345,69 @@
 	</filter>
 	
 	<filter>
-		<name>N1 Limit TOGA</name>
+		<name>N1 Limit GA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<div>
+					<floor>
+						<product>
+							<table>
+								<property>/controls/engines/throttle-scale</property>
+								<entry><ind>0.00</ind><dep> 23.8</dep></entry>
+								<entry><ind>1.00</ind><dep>111.4</dep></entry>
+							</table>
+							<value>10</value>
+						</product>
+					</floor>
+					<value>10</value>
+				</div>
+			</expression>
+		</input>
+		<output>/systems/thrust/n1/ga-lim</output>
+	</filter>
+	
+	<filter>
+		<name>EPR Limit GA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<table>
+					<pow>
+						<property>/systems/thrust/n1/ga-lim</property>
+						<value>3.5</value>
+					</pow>
+					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
+				</table>
+			</expression>
+			<scale>/engines/epr-scale</scale>
+		</input>
+		<output>/systems/thrust/epr/ga-lim-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>EPR CMD GA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<sum>
+					<property>/systems/thrust/epr/ga-lim-cmd</property>
+					<property>/engines/epr-scale-b</property>
+				</sum>
+			</expression>
+		</input>
+		<output>/systems/thrust/epr/ga-lim</output>
+	</filter>
+	
+	<filter>
+		<name>N1 Limit TO</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.05</update-interval-secs>
@@ -369,11 +431,11 @@
 				</div>
 			</expression>
 		</input>
-		<output>/systems/thrust/n1/toga-lim</output>
+		<output>/systems/thrust/n1/to-lim</output>
 	</filter>
 	
 	<filter>
-		<name>EPR Limit TOGA</name>
+		<name>EPR Limit TO</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.05</update-interval-secs>
@@ -381,7 +443,7 @@
 			<expression>
 				<table>
 					<pow>
-						<property>/systems/thrust/n1/toga-lim</property>
+						<property>/systems/thrust/n1/to-lim</property>
 						<value>3.5</value>
 					</pow>
 					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
@@ -390,23 +452,23 @@
 			</expression>
 			<scale>/engines/epr-scale</scale>
 		</input>
-		<output>/systems/thrust/epr/toga-lim-cmd</output>
+		<output>/systems/thrust/epr/to-lim-cmd</output>
 	</filter>
 	
 	<filter>
-		<name>EPR CMD TOGA</name>
+		<name>EPR CMD TO</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<sum>
-					<property>/systems/thrust/epr/toga-lim-cmd</property>
+					<property>/systems/thrust/epr/to-lim-cmd</property>
 					<property>/engines/epr-scale-b</property>
 				</sum>
 			</expression>
 		</input>
-		<output>/systems/thrust/epr/toga-lim</output>
+		<output>/systems/thrust/epr/to-lim</output>
 	</filter>
 	
 	<filter>

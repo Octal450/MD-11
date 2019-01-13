@@ -8,23 +8,27 @@ if (getprop("/options/eng") == "PW") {
 	io.include("fadec-ge.nas");
 }
 
-var eprtoga = 0;
+var eprga = 0;
+var eprto = 0;
 var eprmct = 0;
 var eprflx = 0;
 var eprclb = 0;
 var eprcrz = 0;
-var n1toga = 0;
+var n1ga = 0;
+var n1to = 0;
 var n1mct = 0;
 var n1flx = 0;
 var n1clb = 0;
 var n1crz = 0;
 var mode = 0;
-setprop("/systems/thrust/epr/toga-lim", 1.0);
+setprop("/systems/thrust/epr/ga-lim", 1.0);
+setprop("/systems/thrust/epr/to-lim", 1.0);
 setprop("/systems/thrust/epr/mct-lim", 1.0);
 setprop("/systems/thrust/epr/flx-lim", 1.0);
 setprop("/systems/thrust/epr/clb-lim", 1.0);
 setprop("/systems/thrust/epr/crz-lim", 1.0);
-setprop("/systems/thrust/n1/toga-lim", 0.0);
+setprop("/systems/thrust/n1/ga-lim", 0.0);
+setprop("/systems/thrust/n1/to-lim", 0.0);
 setprop("/systems/thrust/n1/mct-lim", 0.0);
 setprop("/systems/thrust/n1/flx-lim", 0.0);
 setprop("/systems/thrust/n1/clb-lim", 0.0);
@@ -43,26 +47,28 @@ var fadec_reset = func {
 fadec_reset();
 
 var fadecLoop = func {
-	eprtoga = getprop("/systems/thrust/epr/toga-lim");
+	eprga = getprop("/systems/thrust/epr/ga-lim");
+	eprto = getprop("/systems/thrust/epr/to-lim");
 	eprmct = getprop("/systems/thrust/epr/mct-lim");
 	eprflx = getprop("/systems/thrust/epr/flx-lim");
 	eprclb = getprop("/systems/thrust/epr/clb-lim");
 	eprcrz = getprop("/systems/thrust/epr/crz-lim");
-	n1toga = getprop("/systems/thrust/n1/toga-lim");
+	n1ga = getprop("/systems/thrust/n1/ga-lim");
+	n1to = getprop("/systems/thrust/n1/to-lim");
 	n1mct = getprop("/systems/thrust/n1/mct-lim");
 	n1flx = getprop("/systems/thrust/n1/flx-lim");
 	n1clb = getprop("/systems/thrust/n1/clb-lim");
 	n1crz = getprop("/systems/thrust/n1/crz-lim");
 	mode = getprop("/it-autoflight/mode/vert");
 	flap = getprop("/controls/flight/flap-lever");
-	if (mode == "T/O CLB") {
-		setprop("/controls/engines/thrust-limit", "T/O");
-		setprop("/controls/engines/n1-limit", n1toga);
-		setprop("/controls/engines/epr-limit", eprtoga);
-	} else if (mode == "G/A CLB") {
+	if (mode == "G/A CLB") {
 		setprop("/controls/engines/thrust-limit", "G/A");
-		setprop("/controls/engines/n1-limit", n1toga);
-		setprop("/controls/engines/epr-limit", eprtoga);
+		setprop("/controls/engines/n1-limit", n1ga);
+		setprop("/controls/engines/epr-limit", eprga);
+	} else if (mode == "T/O CLB") {
+		setprop("/controls/engines/thrust-limit", "T/O");
+		setprop("/controls/engines/n1-limit", n1to);
+		setprop("/controls/engines/epr-limit", eprto);
 	} else if (mode == "SPD CLB" or (mode == "V/S" and getprop("/it-autoflight/input/vs") >= 50) or flap >= 2) {
 		setprop("/controls/engines/thrust-limit", "CLB");
 		setprop("/controls/engines/n1-limit", n1clb);

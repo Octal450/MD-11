@@ -95,7 +95,32 @@
 	</filter>
 	
 	<filter>
-		<name>N1 Limit TOGA</name>
+		<name>N1 Limit GA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<input>
+			<expression>
+				<div>
+					<floor>
+						<product>
+							<table>
+								<property>/controls/engines/throttle-scale</property>
+								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
+								<entry><ind>1.00</ind><dep>117.5</dep></entry>
+							</table>
+							<value>10</value>
+						</product>
+					</floor>
+					<value>10</value>
+				</div>
+			</expression>
+		</input>
+		<output>/systems/thrust/n1/ga-lim</output>
+	</filter>
+	
+	<filter>
+		<name>N1 Limit TO</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.05</update-interval-secs>
@@ -119,7 +144,7 @@
 				</div>
 			</expression>
 		</input>
-		<output>/systems/thrust/n1/toga-lim</output>
+		<output>/systems/thrust/n1/to-lim</output>
 	</filter>
 	
 	<filter>

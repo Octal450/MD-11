@@ -22,6 +22,10 @@
 						<value>1</value>
 					</equals>
 					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
 					</equals>
@@ -60,6 +64,10 @@
 						<value>1</value>
 					</equals>
 					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
 					</equals>
@@ -93,6 +101,10 @@
 						<value>1</value>
 					</equals>
 					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+					<equals>
 						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
@@ -124,6 +136,10 @@
 					<equals>
 						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
 					</equals>
 					<equals>
 						<property>/it-autoflight/input/kts-mach</property>
@@ -167,27 +183,22 @@
 						<value>1</value>
 					</equals>
 					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>1</value>
 					</equals>
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/mode/thr</property>
-					<value>RETARD</value>
-				</equals>
-			</condition>
-			<value>0.0</value>
-		</input>
-		<input>/controls/engines/idle-limit</input>
+		<input>0.0</input>
 		<output>/controls/engines/throttle-cmd-pid</output>
 	</filter>
 	
 	<filter>
-		<name>CLB</name>
+		<name>THR LIM</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -199,12 +210,30 @@
 						<value>1</value>
 					</equals>
 					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>2</value>
 					</equals>
 				</and>
 			</condition>
 		</enable>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/mode/vert</property>
+					<value>T/O CLB</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<value>0.97</value> <!-- Number in TO on FADEC -->
+					<property>/controls/engines/throttle-scale</property>
+				</product>
+			</expression>
+		</input>
 		<input>/controls/engines/throttle-limit</input>
 		<output>/controls/engines/throttle-cmd-pid</output>
 	</filter>
@@ -215,10 +244,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<equals>
-					<property>/it-autoflight/output/athr</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<type>noise-spike</type>
@@ -250,10 +285,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<equals>
-					<property>/it-autoflight/output/athr</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<type>noise-spike</type>
@@ -285,10 +326,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<equals>
-					<property>/it-autoflight/output/athr</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<type>noise-spike</type>
@@ -312,6 +359,22 @@
 			<value>0.05</value>
 		</max-rate-of-change>
 		<max-rate-of-change>0.3</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>Throttle Comparator</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<max>
+					<property>/controls/engines/engine[0]/throttle</property>
+					<property>/controls/engines/engine[1]/throttle</property>
+					<property>/controls/engines/engine[2]/throttle</property>
+				</max>
+			</expression>
+		</input>
+		<output>/controls/engines/throttle-max</output>
 	</filter>
 
 </PropertyList>

@@ -44,6 +44,7 @@ setprop("/it-autoflight/internal/heading-error-deg", 0);
 setprop("/it-autoflight/internal/heading-predicted", 0);
 setprop("/it-autoflight/internal/altitude-predicted", 0);
 setprop("/it-autoflight/internal/lnav-advance-nm", 1);
+setprop("/it-autoflight/output/clamp", 0);
 
 var APinit = func(t) {
 	if (t != 1) {
@@ -92,6 +93,7 @@ var APinit = func(t) {
 	setprop("/it-autoflight/output/vert", 7);
 	setprop("/it-autoflight/output/hdg-captured", 1);
 	setprop("/it-autoflight/output/spd-captured", 1);
+	setprop("/it-autoflight/output/clamp", 0);
 	setprop("/it-autoflight/settings/use-nav2-radio", 0);
 	setprop("/it-autoflight/internal/min-vs", -500);
 	setprop("/it-autoflight/internal/max-vs", 500);
@@ -862,13 +864,15 @@ var togasel = func {
 		setprop("/it-autoflight/input/kts-mach", 0);
 		setprop("/it-autoflight/mode/vert", "G/A CLB");
 		setprop("/it-autoflight/input/lat", 3);
-	} else {
-		setprop("/it-autoflight/input/lat", 5);
-		lateral();
-		setprop("/it-autoflight/mode/lat", "T/O");
-		setprop("/it-autoflight/mode/vert", "T/O CLB");
-		setprop("/it-autoflight/input/athr", 1);
 	}
+}
+
+var takeoffReset = func {
+	setprop("/it-autoflight/input/lat", 5);
+	lateral();
+	setprop("/it-autoflight/mode/lat", "T/O");
+	setprop("/it-autoflight/mode/vert", "T/O CLB");
+	setprop("/it-autoflight/input/athr", 1);
 }
 
 setlistener("/it-autoflight/mode/vert", func {

@@ -253,7 +253,7 @@
 		<object-name>throttle.1</object-name>
 		<object-name>reverse.1</object-name>
 		<object-name>throttle.1.circle</object-name>
-		<property>controls/engines/engine[0]/throttle-lever</property>
+		<property>controls/engines/engine[0]/throttle-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -356,7 +356,7 @@
 		<object-name>throttle.2</object-name>
 		<object-name>reverse.2</object-name>
 		<object-name>throttle.2.circle</object-name>
-		<property>controls/engines/engine[1]/throttle-lever</property>
+		<property>controls/engines/engine[1]/throttle-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -459,7 +459,7 @@
 		<object-name>throttle.3</object-name>
 		<object-name>throttle.3.circle</object-name>
 		<object-name>reverse.3</object-name>
-		<property>controls/engines/engine[2]/throttle-lever</property>
+		<property>controls/engines/engine[2]/throttle-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -569,6 +569,48 @@
 			<x>0</x>
 			<y>1</y>
 			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>GA Button</name>
+		<type>pick</type>
+		<object-name>throttle.2.ga</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/ga-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/ga-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<command>property-assign</command>
+				<property>it-autoflight/input/toga</property>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>throttle.2.ga</object-name>
+		<property>controls/switches/ga-button</property>
+		<factor>0.002</factor>
+		<axis>
+			<x1-m>-27.1205</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>6.85978</z1-m>
+			<x2-m>-27.1187</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>6.8571</z2-m>
 		</axis>
 	</animation>
 	

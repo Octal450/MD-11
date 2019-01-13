@@ -32,7 +32,31 @@
 			<factor>10.0</factor>
 		</volume>
 	</apoff>
-  
+	
+	<switch>
+		<name>Clamp on</name>
+		<mode>once</mode>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/clamp.wav</path>
+		<condition>
+			<property>/it-autoflight/output/clamp</property>
+		</condition>
+		<volume>
+			<factor>0.95</factor>
+		</volume>
+	</switch>
+	
+	<switch>
+		<name>Clamp off</name>
+		<mode>once</mode>
+		<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/clamp.wav</path>
+		<condition>
+			<not><property>/it-autoflight/output/clamp</property></not>
+		</condition>
+		<volume>
+			<factor>0.95</factor>
+		</volume>
+	</switch>
+	
 	<switch>
 		<name>Button</name>
 		<mode>once</mode>
