@@ -142,12 +142,10 @@
 				<div>
 					<floor>
 						<div>
-							<abs>
-								<sum>
-									<property>/it-autoflight/internal/vert-speed-fpm</property>
-									<value>50</value>
-								</sum>
-							</abs>
+							<sum>
+								<abs><property>/it-autoflight/internal/vert-speed-fpm</property></abs>
+								<value>50</value>
+							</sum>
 							<value>100</value>
 						</div>
 					</floor>
