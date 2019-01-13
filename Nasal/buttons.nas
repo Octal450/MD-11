@@ -5,7 +5,7 @@
 
 # Resets buttons to the default values
 var variousReset = func {
-	setprop("/controls/pneumatic/switches/bleedapu", 0); # Temporary until bleeds available
+	setprop("/controls/switches/minimums", 200);
 }
 
 var toggleSTD = func {

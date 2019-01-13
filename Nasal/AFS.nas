@@ -920,6 +920,12 @@ var spdPush = func {
 			setprop("/it-autoflight/custom/mach-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
 			setprop("/it-autoflight/input/spd-mach", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
 		}
+	} else {
+		if (getprop("/it-autoflight/custom/kts-mach") == 0) {
+			setprop("/it-autoflight/custom/kts-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt")), 100, 360));
+		} else if (getprop("/it-autoflight/custom/kts-mach") == 1) {
+			setprop("/it-autoflight/custom/mach-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
+		}
 	}
 }
 

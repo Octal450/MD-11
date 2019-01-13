@@ -1527,7 +1527,7 @@
 		</center>
 	</animation>
 	
-	<!-- Baro settings -->
+	<!-- Baro/Minimums settings -->
 	<animation>
 		<type>pick</type>
 		<object-name>In-HPa.L</object-name>
@@ -1667,6 +1667,53 @@
 				<command>nasal</command>
 				<script>
 				libraries.unSTD();
+				</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MINS.L</object-name>
+		<object-name>MINS.R</object-name>
+		<object-name>MINS2.L</object-name>
+		<object-name>MINS2.R</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/switches/minimums</property>
+				<value>200</value>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/efis</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+				setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);
 				</script>
 			</binding>
 		</action>

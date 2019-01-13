@@ -113,6 +113,7 @@ var navloc = props.globals.getNode("/instrumentation/nav[0]/nav-loc", 1);
 var rev1 = props.globals.getNode("/controls/engines/engine[0]/reverser");
 var rev2 = props.globals.getNode("/controls/engines/engine[1]/reverser");
 var rev3 = props.globals.getNode("/controls/engines/engine[2]/reverser");
+var minimums = props.globals.getNode("/controls/switches/minimums", 1);
 
 # Create Nodes:
 var vsup = props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0.0, "DOUBLE");
@@ -164,7 +165,7 @@ var canvas_PFD_base = {
 		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2","ASI_max_flap","AI_center",
 		"AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one",
 		"ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel",
-		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box"];
+		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box","Minimums"];
 	},
 	update: func() {
 		if (mismatch.getValue() == "0x000") {
@@ -414,6 +415,13 @@ var canvas_PFD_base = {
 		}
 		
 		# Misc
+		me["Minimums"].setText(sprintf("%4.0f", minimums.getValue()));
+		if (gearagl.getValue() <= minimums.getValue()) {
+			me["Minimums"].setColor(1,0.7843,0);
+		} else {
+			me["Minimums"].setColor(1,1,1);
+		}
+		
 		me["TCAS_OFF"].hide();
 	},
 	updateCommonFast: func() {
