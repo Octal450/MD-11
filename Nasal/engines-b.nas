@@ -126,12 +126,14 @@ var eng_loop = func {
 
 # Trigger Startups and Stops
 setlistener("/controls/engines/engine[0]/start-switch", func {
-	if (getprop("/controls/engines/engine[0]/start-switch") == 1) {
+	if (getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/engines/engine[0]/state") == 0) {
 		if (getprop("/systems/acconfig/autoconfig-running") != 1) {
 			start_one_check();
 		}
 	} else if (getprop("/engines/engine[0]/state") == 1 or (getprop("/engines/engine[0]/state") == 2 and getprop("/engines/engine[0]/n2-actual") < 42.0)) {
 		cutoff_one();
+	} else {
+		setprop("/controls/engines/engine[0]/start-switch", 0);
 	}
 });
 
@@ -174,20 +176,20 @@ var start_one_check = func {
 		if (IGN1 == 1 and getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
 			auto_start_one();
 		} else {
-			settimer(func {
-				setprop("/controls/engines/engine[0]/start-switch", 0);
-			}, 1);
+			setprop("/controls/engines/engine[0]/start-switch", 0);
 		}
 	}
 }
 
 setlistener("/controls/engines/engine[1]/start-switch", func {
-	if (getprop("/controls/engines/engine[1]/start-switch") == 1) {
+	if (getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/engines/engine[1]/state") == 0) {
 		if (getprop("/systems/acconfig/autoconfig-running") != 1) {
 			start_two_check();
 		}
 	} else if (getprop("/engines/engine[1]/state") == 1 or (getprop("/engines/engine[1]/state") == 2 and getprop("/engines/engine[1]/n2-actual") < 42.0)) {
 		cutoff_two();
+	} else {
+		setprop("/controls/engines/engine[1]/start-switch", 0);
 	}
 });
 
@@ -230,20 +232,20 @@ var start_two_check = func {
 		if (IGN1 == 1 and getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
 			auto_start_two();
 		} else {
-			settimer(func {
-				setprop("/controls/engines/engine[1]/start-switch", 0);
-			}, 1);
+			setprop("/controls/engines/engine[1]/start-switch", 0);
 		}
 	}
 }
 
 setlistener("/controls/engines/engine[2]/start-switch", func {
-	if (getprop("/controls/engines/engine[2]/start-switch") == 1) {
+	if (getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/engines/engine[2]/state") == 0) {
 		if (getprop("/systems/acconfig/autoconfig-running") != 1) {
 			start_three_check();
 		}
 	} else if (getprop("/engines/engine[2]/state") == 1 or (getprop("/engines/engine[2]/state") == 2 and getprop("/engines/engine[2]/n2-actual") < 42.0)) {
 		cutoff_three();
+	} else {
+		setprop("/controls/engines/engine[2]/start-switch", 0);
 	}
 });
 
@@ -286,9 +288,7 @@ var start_three_check = func {
 		if (IGN1 == 1 and getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
 			auto_start_three();
 		} else {
-			settimer(func {
-				setprop("/controls/engines/engine[2]/start-switch", 0);
-			}, 1);
+			setprop("/controls/engines/engine[2]/start-switch", 0);
 		}
 	}
 }

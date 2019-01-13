@@ -110,6 +110,9 @@ var gs0range = props.globals.getNode("/instrumentation/nav[0]/gs-in-range", 1);
 var nav0signal = props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1);
 var hasgs = props.globals.getNode("/instrumentation/nav[0]/has-gs", 1);
 var navloc = props.globals.getNode("/instrumentation/nav[0]/nav-loc", 1);
+var rev1 = props.globals.getNode("/controls/engines/engine[0]/reverser");
+var rev2 = props.globals.getNode("/controls/engines/engine[1]/reverser");
+var rev3 = props.globals.getNode("/controls/engines/engine[2]/reverser");
 
 # Create Nodes:
 var vsup = props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0.0, "DOUBLE");
@@ -232,7 +235,7 @@ var canvas_PFD_base = {
 		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
-		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) {
+		} else if ((eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) or (rev1.getValue() >= 0.01 or rev2.getValue() >= 0.01 or rev3.getValue() >= 0.01)) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
 		} else {
