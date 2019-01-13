@@ -1054,8 +1054,6 @@ var retardchk = func {
 				setprop("/it-autoflight/output/thr-mode", 1);
 				setprop("/it-autoflight/mode/thr", "RETARD");
 				atofft.start();
-			} else {
-				thrustmode();
 			}
 		}
 	}
