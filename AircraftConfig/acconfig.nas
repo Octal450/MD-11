@@ -244,7 +244,9 @@ var colddark = func {
 		libraries.systemsInit();
 		failReset();
 		if (getprop("/engines/engine[1]/n2-actual") < 2) {
-			colddark_b();
+			settimer(func {
+				colddark_b();
+			}, 2);
 		} else {
 			var colddark_eng_off = setlistener("/engines/engine[1]/n2-actual", func {
 				if (getprop("/engines/engine[1]/n2-actual") < 2) {

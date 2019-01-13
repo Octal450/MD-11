@@ -1960,24 +1960,30 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dcbat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<and>
+						<equals>
+							<property>controls/electrical/switches/allow-apu-ext</property>
+							<value>1</value>
+						</equals>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/ext-pwr</property>
@@ -2037,24 +2043,30 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dcbat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<and>
+						<equals>
+							<property>controls/electrical/switches/allow-apu-ext</property>
+							<value>1</value>
+						</equals>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/extg-pwr</property>
@@ -2116,6 +2128,10 @@
 			<binding>
 				<condition>
 					<and>
+						<equals>
+							<property>controls/electrical/switches/allow-apu-ext</property>
+							<value>1</value>
+						</equals>
 						<or>
 							<greater-than-equals>
 								<property>systems/electrical/bus/dcbat</property>

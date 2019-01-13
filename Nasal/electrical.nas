@@ -98,6 +98,7 @@ var ELEC = {
 		setprop("/controls/electrical/switches/smoke-elecair", 0);
 		setprop("/controls/electrical/switches/manual-lt", 0);
 		setprop("/controls/electrical/switches/manual-flash", 0);
+		setprop("/controls/electrical/switches/allow-apu-ext", 0);
 		setprop("/systems/electrical/system", 1); # Automatic
 		setprop("/systems/electrical/battery1-volts", 26.5);
 		setprop("/systems/electrical/battery2-volts", 26.5);
@@ -239,6 +240,31 @@ var ELEC = {
 		gen3_sw = getprop("/controls/electrical/switches/gen3");
 		gen_drive_3_sw = getprop("/controls/electrical/switches/gen-drive-3");
 		smoke_elecair_sw = getprop("/controls/electrical/switches/smoke-elecair");
+		
+		if (state1 == 3 and gen1_sw and !gen1_fail and state2 == 3 and gen2_sw and !gen2_fail) {
+			if (extg_pwr_sw or ext_pwr_sw or apu_pwr_sw) {
+				setprop("/controls/electrical/switches/extg-pwr", 0);
+				setprop("/controls/electrical/switches/ext-pwr", 0);
+				setprop("/controls/electrical/switches/apu-pwr", 0);
+			}
+			setprop("/controls/electrical/switches/allow-apu-ext", 0);
+		} else if (state1 == 3 and gen1_sw and !gen1_fail and state3 == 3 and gen3_sw and !gen3_fail) {
+			if (extg_pwr_sw or ext_pwr_sw or apu_pwr_sw) {
+				setprop("/controls/electrical/switches/extg-pwr", 0);
+				setprop("/controls/electrical/switches/ext-pwr", 0);
+				setprop("/controls/electrical/switches/apu-pwr", 0);
+			}
+			setprop("/controls/electrical/switches/allow-apu-ext", 0);
+		} else if (state2 == 3 and gen2_sw and !gen2_fail and state3 == 3 and gen3_sw and !gen3_fail) {
+			if (extg_pwr_sw or ext_pwr_sw or apu_pwr_sw) {
+				setprop("/controls/electrical/switches/extg-pwr", 0);
+				setprop("/controls/electrical/switches/ext-pwr", 0);
+				setprop("/controls/electrical/switches/apu-pwr", 0);
+			}
+			setprop("/controls/electrical/switches/allow-apu-ext", 0);
+		} else {
+			setprop("/controls/electrical/switches/allow-apu-ext", 1);
+		}
 		
 		# Bus Tie logic for AC Bus 1
 		if (state2 == 3 and gen2_sw and !gen2_fail and ac_tie_2_sw) {
