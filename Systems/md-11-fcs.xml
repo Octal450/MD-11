@@ -615,14 +615,14 @@
 			</test>
 			<test logic="AND" value="3">
 				fcc/lsas/gain-switch-prd eq 0
-				fcc/lsas/elevator-feel ge 0.35
+				fcc/lsas/elevator-feel ge 0.15
 				/controls/flight/elevator-trim le 0.064516
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
 			</test>
 			<test logic="AND" value="4">
 				fcc/lsas/gain-switch-prd eq 0
-				fcc/lsas/elevator-feel le -0.35
+				fcc/lsas/elevator-feel le -0.15
 				/controls/flight/elevator-trim ge -1.0
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
