@@ -504,13 +504,28 @@
 			<input>fcc/lsas/thetadot-damper</input>
 		</summer>
 		
+		<switch name="fcc/lsas/gain-switch-pap">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
+				/position/gear-agl-ft le 5
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/gain-switch-pnl">
 			<default value="1"/>
 			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
 				gear/unit[0]/WOW ne 1
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
-				fcc/afs/enabled eq 0
 				spoilers/auto-speedbrake-feedback ge 0.5
 			</test>
 		</switch>
