@@ -315,6 +315,7 @@
 		<object-name>AuxTailTrans.on</object-name>
 		<object-name>AvionicsFan.flow</object-name>
 		<object-name>AvionicsFan.ovrd</object-name>
+		<object-name>BeaconLt.off</object-name>
 		<object-name>Bleed1.press</object-name>
 		<object-name>Bleed1.off</object-name>
 		<object-name>Bleed1B.manf</object-name>
@@ -340,10 +341,8 @@
 		<object-name>HydPress2.press</object-name>
 		<object-name>HydPress3.press</object-name>
 		<object-name>HydPressTest.test</object-name>
-		<object-name>ISOL-1-2.on</object-name>
-		<object-name>ISOL-1-2.disag</object-name>
-		<object-name>ISOL-1-3.on</object-name>
-		<object-name>ISOL-1-3.disag</object-name>
+		<object-name>LogoLt.off</object-name>
+		<object-name>LogoLt.on</object-name>
 		<object-name>LPump1.fault</object-name>
 		<object-name>LPump1.off</object-name>
 		<object-name>LPump2.fault</object-name>
@@ -358,9 +357,14 @@
 		<object-name>LSAS_ri.off</object-name>
 		<object-name>LSAS_ro.fail</object-name>
 		<object-name>LSAS_ro.off</object-name>
+		<object-name>ISOL-1-2.on</object-name>
+		<object-name>ISOL-1-2.disag</object-name>
+		<object-name>ISOL-1-3.on</object-name>
+		<object-name>ISOL-1-3.disag</object-name>
 		<object-name>LTrans.low</object-name>
 		<object-name>LTrans.on</object-name>
 		<object-name>Manf.drain</object-name>
+		<object-name>NavLt.off</object-name>
 		<object-name>Pack1.flow</object-name>
 		<object-name>Pack1.off</object-name>
 		<object-name>Pack2.flow</object-name>
@@ -379,6 +383,7 @@
 		<object-name>RPump3.off</object-name>
 		<object-name>RTrans.low</object-name>
 		<object-name>RTrans.on</object-name>
+		<object-name>StrobeLt.off</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
 		<object-name>SystemHyd.manual</object-name>
@@ -7424,7 +7429,8 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>BCN.btn</object-name>
+		<object-name>BeaconLt</object-name>
+		<object-name>BeaconLt.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -7438,10 +7444,27 @@
 			</binding>
 		</action>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>BeaconLt.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/beacon</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>NAV.btn</object-name>
+		<object-name>NavLt</object-name>
+		<object-name>NavLt.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -7455,10 +7478,28 @@
 			</binding>
 		</action>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>NavLt.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/nav-lights</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>LOGO.btn</object-name>
+		<object-name>LogoLt</object-name>
+		<object-name>LogoLt.off</object-name>
+		<object-name>LogoLt.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -7472,28 +7513,43 @@
 			</binding>
 		</action>
 	</animation>
-	
 	<animation>
-		<type>pick</type>
-		<object-name>turnoff.left</object-name>
-		<object-name>turnoff.right</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/lighting/wing-lights</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>setprop("/sim/sounde/oh-btn", 1);</script>
-			</binding>
-		</action>
+		<type>select</type>
+		<object-name>LogoLt.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/logo-lights</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>LogoLt.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/logo-lights</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>STRB.toggle</object-name>
+		<object-name>StrobeLt</object-name>
+		<object-name>StrobeLt.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -7507,6 +7563,22 @@
 			</binding>
 		</action>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>StrobeLt.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/strobe</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
@@ -7515,8 +7587,26 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light</property>
+				<value>0.0</value>
+				<value>0.5</value>
+				<value>1.0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/landing-light</property>
+				<value>1.0</value>
+				<value>0.5</value>
+				<value>0.0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7549,8 +7639,26 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light</property>
+				<value>0.0</value>
+				<value>0.5</value>
+				<value>1.0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/landing-light</property>
+				<value>1.0</value>
+				<value>0.5</value>
+				<value>0.0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7583,8 +7691,26 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light[1]</property>
+				<value>0.0</value>
+				<value>0.5</value>
+				<value>1.0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/landing-light[1]</property>
+				<value>1.0</value>
+				<value>0.5</value>
+				<value>0.0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>

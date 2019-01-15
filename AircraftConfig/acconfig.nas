@@ -324,6 +324,8 @@ var beforestart_b = func {
 	systems.IRS.skip(2);
 	setprop("/controls/irs/mcducbtn", 1);
 	setprop("/controls/engines/ign-a", 1);
+	setprop("/controls/lighting/beacon", 1);
+	setprop("/controls/lighting/nav-lights", 1);
 	settimer(func {
 		setprop("/controls/gear/brake-left", 0);
 		setprop("/controls/gear/brake-right", 0);
@@ -390,6 +392,10 @@ var taxi_b = func {
 	systems.IRS.skip(2);
 	setprop("/controls/irs/mcducbtn", 1);
 	setprop("/controls/engines/ign-a", 1);
+	setprop("/controls/lighting/beacon", 1);
+	setprop("/controls/lighting/nav-lights", 1);
+	setprop("/controls/lighting/landing-light[0]", 0.5);
+	setprop("/controls/lighting/landing-light[1]", 0.5);
 	settimer(taxi_c, 2);
 }
 var taxi_c = func {
@@ -420,6 +426,9 @@ var takeoff = func {
 		var eng_one_chk_c = setlistener("/engines/engine[0]/state", func {
 			if (getprop("/engines/engine[0]/state") == 3) {
 				removelistener(eng_one_chk_c);
+				setprop("/controls/lighting/strobe", 1);
+				setprop("/controls/lighting/landing-light[0]", 1);
+				setprop("/controls/lighting/landing-light[1]", 1);
 				setprop("/controls/flight/speedbrake-arm", 1);
 				setprop("/controls/flight/slats", 1.000);
 				setprop("/controls/flight/flaps-output", 0.300);

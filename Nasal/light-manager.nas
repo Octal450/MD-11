@@ -202,7 +202,7 @@ var light_manager = {
 				me.light1_off();
 			}
 			
-			if (taxi == 1) {
+			if (taxi >= 0.5) {
 				me.light2_on();
 			} else {
 				me.light2_off();

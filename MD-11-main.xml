@@ -522,6 +522,14 @@
 			</ir>
 			<skip type="bool">0</skip>
 		</irs>
+		<lighting>
+			<beacon type="bool">0</beacon>
+			<landing-light type="double" n="0">0</landing-light>
+			<landing-light type="double" n="1">0</landing-light>
+			<logo-lights type="bool">0</logo-lights>
+			<nav-lights type="bool">0</nav-lights>
+			<strobe type="bool">0</strobe>
+		</lighting>
 		<switches n="0">
 			<annun-test type="bool">0</annun-test>
 			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
