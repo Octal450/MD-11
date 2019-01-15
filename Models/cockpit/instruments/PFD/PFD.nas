@@ -165,8 +165,9 @@ var canvas_PFD_base = {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Land","FMA_Land","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP",
 		"ASI_v_speed","ASI_Taxi","ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2",
 		"ASI_max_flap","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow_up","AI_arrow_dn","FD_roll","FD_pitch","ALT_thousands",
-		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error",
-		"HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box","Minimums"];
+		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","ALT_agl","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group",
+		"VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box",
+		"Minimums"];
 	},
 	update: func() {
 		if (mismatch.getValue() == "0x000") {
@@ -255,11 +256,11 @@ var canvas_PFD_base = {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
 		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
-			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
-			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
+			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
+			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else if ((eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) or (rev1.getValue() >= 0.01 or rev2.getValue() >= 0.01 or rev3.getValue() >= 0.01)) {
-			me["FMA_ATS_Pitch_Off"].setColor(1,0.7843,0);
-			me["FMA_ATS_Thrust_Off"].setColor(1,0.7843,0);
+			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
+			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else {
 			me["FMA_ATS_Pitch_Off"].setColor(1,1,1);
 			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
@@ -269,17 +270,17 @@ var canvas_PFD_base = {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
 		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0.7843,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0.7843,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,1,1);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,1,1);
@@ -316,14 +317,14 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (ovrd1.getBoolValue() and ovrd2.getBoolValue())) {
-			me["FMA_AP"].setColor(1,0.7843,0);
+			me["FMA_AP"].setColor(0.9412,0.7255,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else if (throttle_mode.getValue() == "PITCH") {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
-				me["FMA_AP"].setColor(1,0.7843,0);
+				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-				me["FMA_AP"].setColor(1,0.7843,0);
+				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
 			}
@@ -331,9 +332,9 @@ var canvas_PFD_base = {
 			me["FMA_AP"].show();
 		} else {
 			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
-				me["FMA_AP"].setColor(1,0.7843,0);
+				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-				me["FMA_AP"].setColor(1,0.7843,0);
+				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else {
 				me["FMA_AP"].setColor(1,1,1);
 			}
@@ -436,9 +437,9 @@ var canvas_PFD_base = {
 		# Misc
 		me["Minimums"].setText(sprintf("%4.0f", minimums.getValue()));
 		if (gearagl.getValue() <= minimums.getValue()) {
-			me["Minimums"].setColor(1,0.7843,0);
-			me["RA"].setColor(1,0.7843,0);
-			me["RA_box"].setColor(1,0.7843,0);
+			me["Minimums"].setColor(0.9412,0.7255,0);
+			me["RA"].setColor(0.9412,0.7255,0);
+			me["RA_box"].setColor(0.9412,0.7255,0);
 		} else {
 			me["Minimums"].setColor(1,1,1);
 			me["RA"].setColor(1,1,1);
@@ -715,6 +716,7 @@ var canvas_PFD_base = {
 		
 		me["ALT_presel"].setTranslation(0, (altpresel.getValue() / 100) * -50.9016);
 		me["ALT_sel"].setTranslation(0, (altsel.getValue() / 100) * -50.9016);
+		me["ALT_agl"].setTranslation(0, (math.clamp(gearagl.getValue(), -700, 700) / 100) * 50.9016);
 		
 		# Vertical Speed
 		if (internalvs.getValue() <= -50) {
