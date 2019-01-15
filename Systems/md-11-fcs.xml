@@ -474,6 +474,42 @@
 			</clipto>
 		</pure_gain>
 		
+		<switch name="fcc/lsas/gain-switch-pap">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="0">
+				/lsas/enable eq 1
+				fcc/afs/enabled eq 0
+				/position/gear-agl-ft le 2
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/lsas/pap-elev-max"> <!-- Limit upwards elevator to prevent tailstrike -->
+			<function>
+				<ifthen>
+					<eq>
+						<property>fcc/lsas/gain-switch-pap</property>
+						<value>0</value>
+					</eq>
+					<table>
+						<independentVar lookup="row">attitude/pitch-rad</independentVar>
+						<independentVar lookup="column">/position/gear-agl-ft</independentVar>
+						<tableData>
+							          0     2
+							0.174533 -1.00 -1.00
+							0.244346  0.00 -1.00
+							0.314159  0.00  0.00
+						</tableData>
+					</table>
+					<value>-1.0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<switch name="fcc/lsas/elevator-feel-switch"> <!-- Manual knob control is in libraries.xml -->
 			<default value="fcc/lsas/elevator-feel-speed"/>
 			<test value="velocities/vc-kts">
@@ -497,26 +533,16 @@
 					300  0.661
 				</tableData>
 			</table>
+			<clipto>
+				<min>fcc/lsas/pap-elev-max</min>
+				<max>1.0</max>
+			</clipto>
 		</scheduled_gain>
 		
 		<summer name="fcc/lsas/damper-control-cmd">
 			<input>fcc/lsas/elevator-feel</input>
 			<input>fcc/lsas/thetadot-damper</input>
 		</summer>
-		
-		<switch name="fcc/lsas/gain-switch-pap">
-			<default value="1"/>
-			<test logic="AND" value="0">
-				/lsas/enable eq 1
-				fcc/afs/enabled eq 0
-				position/wow eq 1
-			</test>
-			<test logic="AND" value="0">
-				/lsas/enable eq 1
-				fcc/afs/enabled eq 0
-				/position/gear-agl-ft le 5
-			</test>
-		</switch>
 		
 		<switch name="fcc/lsas/gain-switch-pnl">
 			<default value="1"/>

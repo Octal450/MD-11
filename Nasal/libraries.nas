@@ -455,6 +455,10 @@ setlistener("/controls/flight/elevator-trim", func {
 	}
 });
 
+setlistener("/controls/flight/auto-coordination", func {
+	setprop("/controls/flight/auto-coordination", 0);
+});
+
 if (getprop("/controls/flight/auto-coordination") == 1) {
 	setprop("/controls/flight/auto-coordination", 0);
 	setprop("/controls/flight/aileron-drives-tiller", 1);
