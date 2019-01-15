@@ -7619,7 +7619,11 @@
 		<type>rotate</type>
 		<object-name>L-Lnd.toggle</object-name>
 		<property>controls/lighting/landing-light</property>
-		<factor>30</factor>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-30</dep></entry>
+			<entry><ind>0.5</ind><dep>  0</dep></entry>
+			<entry><ind>1.0</ind><dep> 30</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>-21.7985</x-m>
 			<y-m>0</y-m>
@@ -7671,7 +7675,11 @@
 		<type>rotate</type>
 		<object-name>R-Lnd.toggle</object-name>
 		<property>controls/lighting/landing-light</property>
-		<factor>30</factor>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-30</dep></entry>
+			<entry><ind>0.5</ind><dep>  0</dep></entry>
+			<entry><ind>1.0</ind><dep> 30</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>-21.7985</x-m>
 			<y-m>0</y-m>
@@ -7723,7 +7731,11 @@
 		<type>rotate</type>
 		<object-name>C-Lnd.toggle</object-name>
 		<property>controls/lighting/landing-light[1]</property>
-		<factor>30</factor>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-30</dep></entry>
+			<entry><ind>0.5</ind><dep>  0</dep></entry>
+			<entry><ind>1.0</ind><dep> 30</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>-21.7985</x-m>
 			<y-m>0</y-m>
