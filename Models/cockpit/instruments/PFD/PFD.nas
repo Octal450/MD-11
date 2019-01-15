@@ -51,6 +51,7 @@ var roll_mode = props.globals.getNode("/modes/pfd/fma/roll-mode", 1);
 var roll_mode_armed = props.globals.getNode("/modes/pfd/fma/roll-mode-armed", 1);
 var pitch_mode = props.globals.getNode("/modes/pfd/fma/pitch-mode", 1);
 var pitch_mode_armed = props.globals.getNode("/modes/pfd/fma/pitch-mode-armed", 1);
+var land_mode = props.globals.getNode("/it-autoflight/mode/land", 1);
 var speed = props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1);
 var mach = props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1);
 var IASmax = props.globals.getNode("/controls/fctl/vmo-mmo", 1);
@@ -161,11 +162,11 @@ var canvas_PFD_base = {
 		return me;
 	},
 	getKeys: func() {
-		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP","ASI_v_speed","ASI_Taxi",
-		"ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2","ASI_max_flap","AI_center",
-		"AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one",
-		"ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel",
-		"HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box","Minimums"];
+		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Land","FMA_Land","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP",
+		"ASI_v_speed","ASI_Taxi","ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2",
+		"ASI_max_flap","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow","FD_roll","FD_pitch","ALT_thousands","ALT_hundreds",
+		"ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group","VSI_error","HDG",
+		"HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box","Minimums"];
 	},
 	update: func() {
 		if (mismatch.getValue() == "0x000") {
@@ -207,27 +208,47 @@ var canvas_PFD_base = {
 	},
 	updateCommon: func () {
 		# FMA
-		if (fd1.getValue() == 1 or fd2.getValue() == 1 or ap1.getValue() == 1 or ap2.getValue() == 1) {
-			me["FMA_Thrust"].show();
-			me["FMA_Roll"].show();
-			me["FMA_Roll_Arm"].show();
-			me["FMA_Pitch"].show();
-			me["FMA_Pitch_Arm"].show();
+		if (land_mode.getValue() == "DUAL") {
+			me["FMA_Altitude_Thousand"].hide();
+			me["FMA_Altitude"].hide();
+			me["FMA_Land"].setColor(0,1,0);
+			me["FMA_Pitch_Land"].setColor(0,1,0);
+			me["FMA_Land"].setText("DUAL LAND");
+			me["FMA_Land"].show();
+			me["FMA_Pitch_Land"].setText(sprintf("%s", pitch_mode.getValue()));
+			me["FMA_Pitch_Land"].show();
+		} else if (land_mode.getValue() == "SINGLE") {
+			me["FMA_Altitude_Thousand"].hide();
+			me["FMA_Altitude"].hide();
+			me["FMA_Land"].setColor(1,1,1);
+			me["FMA_Pitch_Land"].setColor(1,1,1);
+			me["FMA_Land"].setText("SINGLE LAND");
+			me["FMA_Land"].show();
+			me["FMA_Pitch_Land"].setText(sprintf("%s", pitch_mode.getValue()));
+			me["FMA_Pitch_Land"].show();
+		} else if (land_mode.getValue() == "APPR") {
+			me["FMA_Altitude_Thousand"].hide();
+			me["FMA_Altitude"].hide();
+			me["FMA_Land"].setColor(1,1,1);
+			me["FMA_Pitch_Land"].setColor(1,1,1);
+			me["FMA_Land"].setText("APPR ONLY");
+			me["FMA_Land"].show();
+			me["FMA_Pitch_Land"].setText(sprintf("%s", pitch_mode.getValue()));
+			me["FMA_Pitch_Land"].show();
+		} else if (land_mode.getValue() == "OFF") {
+			me["FMA_Land"].hide();
+			me["FMA_Pitch_Land"].hide();
+			FMAAlt = apalt.getValue();
+			me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(FMAAlt / 1000)));
+			me["FMA_Altitude"].setText(right(sprintf("%03d", FMAAlt), 3));
+			me["FMA_Altitude_Thousand"].show();
+			me["FMA_Altitude"].show();
+		}
+		
+		if (pitch_mode.getValue() == "ROLLOUT") {
+			me["FMA_Pitch_Land"].setTranslation(-20, 0);
 		} else {
-			if (throttle_mode.getValue() != "PITCH" and ats.getValue() == 1) {
-				me["FMA_Thrust"].show();
-			} else {
-				me["FMA_Thrust"].hide();
-			}
-			me["FMA_Roll"].hide();
-			me["FMA_Roll_Arm"].hide();
-			if (throttle_mode.getValue() == "PITCH" and ats.getValue() == 1) {
-				me["FMA_Pitch"].show();
-				me["FMA_Pitch_Arm"].show();
-			} else {
-				me["FMA_Pitch"].hide();
-				me["FMA_Pitch_Arm"].hide();
-			}
+			me["FMA_Pitch_Land"].setTranslation(0, 0);
 		}
 		
 		if (atsflash.getValue() == 1) {
@@ -356,7 +377,9 @@ var canvas_PFD_base = {
 		me["FMA_Pitch"].setText(sprintf("%s", pitch_mode.getValue()));
 		me["FMA_Pitch_Arm"].setText(sprintf("%s", pitch_mode_armed.getValue()));
 		
-		if (roll_mode.getValue() == "NAV1" or roll_mode.getValue() == "NAV2") {
+		if (land_mode.getValue() == "DUAL") {
+			me["FMA_Roll"].setColor(0,1,0);
+		} else if (roll_mode.getValue() == "NAV1" or roll_mode.getValue() == "NAV2") {
 			me["FMA_Roll"].setColor(0.9607,0,0.7764);
 		} else {
 			me["FMA_Roll"].setColor(1,1,1);
@@ -367,10 +390,6 @@ var canvas_PFD_base = {
 		} else {
 			me["FMA_Roll_Arm"].setColor(1,1,1);
 		}
-		
-		FMAAlt = apalt.getValue();
-		me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(FMAAlt / 1000)));
-		me["FMA_Altitude"].setText(right(sprintf("%03d", FMAAlt), 3));
 		
 		# QNH
 		qnhinhgx = qnhinhg.getValue();
@@ -418,8 +437,12 @@ var canvas_PFD_base = {
 		me["Minimums"].setText(sprintf("%4.0f", minimums.getValue()));
 		if (gearagl.getValue() <= minimums.getValue()) {
 			me["Minimums"].setColor(1,0.7843,0);
+			me["RA"].setColor(1,0.7843,0);
+			me["RA_box"].setColor(1,0.7843,0);
 		} else {
 			me["Minimums"].setColor(1,1,1);
+			me["RA"].setColor(1,1,1);
+			me["RA_box"].setColor(1,1,1);
 		}
 		
 		me["TCAS_OFF"].hide();
@@ -816,6 +839,33 @@ var canvas_PFD_1 = {
 		return m;
 	},
 	update: func() {
+		# FMA
+		if (fd1.getValue() == 1 or ap1.getValue() == 1 or ap2.getValue() == 1) {
+			me["FMA_Thrust"].show();
+			me["FMA_Roll"].show();
+			if (land_mode.getValue() == "OFF") {
+				me["FMA_Pitch"].show();
+			} else {
+				me["FMA_Pitch"].hide();
+			}
+		} else {
+			if (throttle_mode.getValue() != "PITCH" and ats.getValue() == 1) {
+				me["FMA_Thrust"].show();
+			} else {
+				me["FMA_Thrust"].hide();
+			}
+			me["FMA_Roll"].hide();
+			if (throttle_mode.getValue() == "PITCH" and ats.getValue() == 1) {
+				if (land_mode.getValue() == "OFF") {
+					me["FMA_Pitch"].show();
+				} else {
+					me["FMA_Pitch"].hide();
+				}
+			} else {
+				me["FMA_Pitch"].hide();
+			}
+		}
+		
 		if (fd1.getValue() == 1) {
 			me["FD_roll"].show();
 		} else {
@@ -861,6 +911,33 @@ var canvas_PFD_2 = {
 		return m;
 	},
 	update: func() {
+		# FMA
+		if (fd2.getValue() == 1 or ap1.getValue() == 1 or ap2.getValue() == 1) {
+			me["FMA_Thrust"].show();
+			me["FMA_Roll"].show();
+			if (land_mode.getValue() == "OFF") {
+				me["FMA_Pitch"].show();
+			} else {
+				me["FMA_Pitch"].hide();
+			}
+		} else {
+			if (throttle_mode.getValue() != "PITCH" and ats.getValue() == 1) {
+				me["FMA_Thrust"].show();
+			} else {
+				me["FMA_Thrust"].hide();
+			}
+			me["FMA_Roll"].hide();
+			if (throttle_mode.getValue() == "PITCH" and ats.getValue() == 1) {
+				if (land_mode.getValue() == "OFF") {
+					me["FMA_Pitch"].show();
+				} else {
+					me["FMA_Pitch"].hide();
+				}
+			} else {
+				me["FMA_Pitch"].hide();
+			}
+		}
+		
 		if (fd2.getValue() == 1) {
 			me["FD_roll"].show();
 		} else {

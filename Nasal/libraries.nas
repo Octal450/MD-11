@@ -146,6 +146,7 @@ var systemsLoop = maketimer(0.1, func {
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
+	afs.alandLogic();
 	
 	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
 		setprop("/controls/switches/cart", 0);
