@@ -87,6 +87,14 @@ var IRS = {
 			setprop("/it-autoflight/custom/hdg-sel", hdg);
 			setprop("/it-autoflight/input/hdg", hdg);
 		}
+		
+		if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/output/lat") == 1) {
+			setprop("/it-autoflight/input/lat", 3);
+			setprop("/it-autoflight/mode/arm", " ");
+		} else if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/input/lat-arm") == 1) {
+			setprop("/it-autoflight/input/lat-arm", 0);
+			setprop("/it-autoflight/mode/arm", " ");
+		}
 	},
 	knob: func(k) {
 		knob = getprop("/controls/irs/ir[" ~ k ~ "]/knob");
