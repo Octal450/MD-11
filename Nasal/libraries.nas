@@ -91,27 +91,6 @@ setlistener("/controls/switches/no-smoking-sign", func {
 	}, 1);
 });
 
-#############
-# Gear Tilt #
-#############
-
-var update_tilt = maketimer(0.1, func {
-	var comp1 = getprop("/gear/gear[1]/compression-norm");
-	if (comp1 > 0) {
-		var pitchdeg1 = getprop("/orientation/pitch-deg");
-		setprop("/gear/gear[1]/angle-deg", pitchdeg1);
-	} else {
-		setprop("/gear/gear[1]/angle-deg", "0");
-	}
-	var comp2 = getprop("/gear/gear[2]/compression-norm");
-	if (comp2 > 0) {
-		var pitchdeg2 = getprop("/orientation/pitch-deg");
-		setprop("/gear/gear[2]/angle-deg", pitchdeg2);
-	} else {
-		setprop("/gear/gear[2]/angle-deg", "0");
-	}
-});
-
 #######################
 # Various Other Stuff #
 #######################
@@ -126,7 +105,6 @@ var systemsInit = func {
 	systems.eng_init();
 	fadec.fadec_reset();
 	afs.APinit(0);
-	update_tilt.start();
 	lightsLoop.start();
 	systemsLoop.start();
 	systems.autobrake_init();

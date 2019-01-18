@@ -27,8 +27,7 @@
 		<name>Gear AGL Altitude FT</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
+		<input>
 			<expression>
 				<dif>
 					<property>/position/altitude-agl-ft</property>
@@ -45,8 +44,7 @@
 		<name>Gear AGL Altitude M</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
+		<input>
 			<expression>
 				<product>
 					<property>/position/gear-agl-ft</property>
@@ -69,6 +67,44 @@
 	</predict-simple>
 	
 	<filter>
+		<name>Gear 1 Tilt</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/gear/gear[1]/compression-norm</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+			<property>/orientation/pitch-deg</property>
+		</input>
+		<input>0</input>
+		<output>/gear/gear[1]/angle-deg</output>
+		<min>-20</min>
+		<max>20</max>
+	</filter>
+	
+	<filter>
+		<name>Gear 2 Tilt</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/gear/gear[2]/compression-norm</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+			<property>/orientation/pitch-deg</property>
+		</input>
+		<input>0</input>
+		<output>/gear/gear[2]/angle-deg</output>
+		<min>-20</min>
+		<max>20</max>
+	</filter>
+	
+	<filter>
 		<name>Minimums Minus 50</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -89,7 +125,7 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.1</update-interval-secs>
-		<input> 
+		<input>
 			<expression>
 				<sum>
 					<property>/controls/switches/minimums</property>
@@ -105,7 +141,7 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<update-interval-secs type="double">0.1</update-interval-secs>
-		<input> 
+		<input>
 			<expression>
 				<sum>
 					<property>/controls/switches/minimums</property>

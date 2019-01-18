@@ -974,7 +974,7 @@
 		<object-name>tyres.right.back</object-name>
 		<object-name>tyres.right.front</object-name>
 		<object-name>right.strut.low2</object-name>
-		<property>/sim/multiplay/generic/float[5]</property>
+		<property>sim/multiplay/generic/float[5]</property>
 		<factor>-1</factor>
 		<center>
 		    <x-m>3.95</x-m>
@@ -1193,7 +1193,7 @@
 		<object-name>tyres.left.back</object-name>
 		<object-name>tyres.left.front</object-name>
 		<object-name>left.strut.low2</object-name>
-		<property>/sim/multiplay/generic/float[4]</property>
+		<property>sim/multiplay/generic/float[4]</property>
 		<factor>-1</factor>
 		<center>
 		    <x-m>3.95</x-m>
