@@ -450,8 +450,9 @@ var lateral = func {
 		setprop("/it-autoflight/mode/lat", "HDG");
 		setprop("/it-autoflight/mode/arm", " ");
 	} else if (latset == 1) {
-		if (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
-			if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1 and getprop("/position/gear-agl-ft") >= 30) {
+		if ((getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) and getprop("/autopilot/route-manager/route/num") > 0 and 
+		getprop("/autopilot/route-manager/active") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
+			if (getprop("/position/gear-agl-ft") >= 30) {
 				make_lnav_active();
 			} else {
 				if (getprop("/it-autoflight/output/lat") != 1) {
@@ -523,11 +524,10 @@ var lat_arm = func {
 		setprop("/it-autoflight/input/lat-arm", 0);
 		setprop("/it-autoflight/mode/arm", " ");
 	} else if (latset == 1) {
-		if (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
-			if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1) {
-				setprop("/it-autoflight/input/lat-arm", 1);
-				setprop("/it-autoflight/mode/arm", "LNV");
-			}
+		if ((getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) and getprop("/autopilot/route-manager/route/num") > 0 and 
+		getprop("/autopilot/route-manager/active") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
+			setprop("/it-autoflight/input/lat-arm", 1);
+			setprop("/it-autoflight/mode/arm", "LNV");
 		}
 	} else if (latset == 3) {
 		if (getprop("/it-autoflight/input/true-course") == 1) {
