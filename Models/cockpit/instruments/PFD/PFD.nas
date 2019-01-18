@@ -78,9 +78,12 @@ var vspfd = props.globals.getNode("/it-autoflight/internal/vert-speed-fpm-pfd", 
 var internalvs = props.globals.getNode("/it-autoflight/internal/vert-speed-fpm", 1);
 var gs = props.globals.getNode("/velocities/groundspeed-kt", 1);
 var altitude = props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1);
-var IR0align = props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1);
-var IR1align = props.globals.getNode("/instrumentation/irs/ir[1]/aligned", 1);
-var IR2align = props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1);
+var IR0align = props.globals.getNode("/controls/irs/ir[0]/align", 1);
+var IR1align = props.globals.getNode("/controls/irs/ir[1]/align", 1);
+var IR2align = props.globals.getNode("/controls/irs/ir[2]/align", 1);
+var IR0aligned = props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1);
+var IR1aligned = props.globals.getNode("/instrumentation/irs/ir[1]/aligned", 1);
+var IR2aligned = props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1);
 var eng0state = props.globals.getNode("/engines/engine[0]/state", 1);
 var eng1state = props.globals.getNode("/engines/engine[1]/state", 1);
 var eng2state = props.globals.getNode("/engines/engine[2]/state", 1);
@@ -164,10 +167,10 @@ var canvas_PFD_base = {
 	getKeys: func() {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Land","FMA_Land","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP",
 		"ASI_v_speed","ASI_Taxi","ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2",
-		"ASI_max_flap","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_error","AI_fpv","AI_fpd","AI_arrow_up","AI_arrow_dn","FD_roll","FD_pitch","ALT_thousands",
-		"ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","ALT_agl","VSI_needle_up","VSI_needle_dn","VSI_up","VSI_down","VSI_group",
-		"VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer","GS_no","RA","RA_box",
-		"Minimums"];
+		"ASI_max_flap","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_group3","AI_error","AI_fpv","AI_fpd","AI_arrow_up","AI_arrow_dn","FD_roll","FD_pitch",
+		"ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","ALT_agl","VSI_needle_up","VSI_needle_dn","VSI_up",
+		"VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer",
+		"GS_no","RA","RA_box","Minimums"];
 	},
 	update: func() {
 		if (mismatch.getValue() == "0x000") {
@@ -275,7 +278,7 @@ var canvas_PFD_base = {
 		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
-		} else if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
+		} else if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
@@ -321,7 +324,7 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else if (throttle_mode.getValue() == "PITCH") {
-			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
+			if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
 				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(0.9412,0.7255,0);
@@ -331,7 +334,7 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else {
-			if (IR0align.getValue() == 0 and IR1align.getValue() == 0 and IR2align.getValue() == 0) {
+			if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
 				me["FMA_AP"].setColor(0.9412,0.7255,0);
 			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 				me["FMA_AP"].setColor(0.9412,0.7255,0);
@@ -463,7 +466,19 @@ var canvas_PFD_base = {
 			me["ASI_max"].show();
 			me["ASI_max_flap"].show();
 		} else {
-			me["ASI_GroundSpd"].setText(sprintf("%3.0f", gs.getValue()));
+			if (IR0align.getValue() == 1 or IR1align.getValue() == 1 or IR2align.getValue() == 1) {
+				me["ASI_Taxi"].setColor(0.9412,0.7255,0);
+				me["ASI_GroundSpd"].setColor(0.9412,0.7255,0);
+				me["ASI_GroundSpd"].setText("NO");
+			} else if (IR0aligned.getValue() != 1 and IR1aligned.getValue() != 1 and IR2aligned.getValue() != 1) {
+				me["ASI_Taxi"].setColor(1,1,1);
+				me["ASI_GroundSpd"].setColor(1,1,1);
+				me["ASI_GroundSpd"].setText("--");
+			} else {
+				me["ASI_Taxi"].setColor(1,1,1);
+				me["ASI_GroundSpd"].setColor(1,1,1);
+				me["ASI_GroundSpd"].setText(sprintf("%3.0f", gs.getValue()));
+			}
 			me["ASI_GroundSpd"].show();
 			me["ASI_Taxi"].show();
 			me["ASI_bowtie"].hide();
@@ -886,9 +901,10 @@ var canvas_PFD_1 = {
 			me["FD_pitch"].hide();
 		}
 		
-		if (IR0align.getValue() == 1) {
+		if (IR0aligned.getValue() == 1) {
 			me["AI_group"].show();
 			me["AI_group2"].show();
+			me["AI_group3"].show();
 			me["HDG_group"].show();
 			me["VSI_group"].show();
 			me["AI_error"].hide();
@@ -900,6 +916,7 @@ var canvas_PFD_1 = {
 			me["VSI_error"].show();
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
+			me["AI_group3"].hide();
 			me["HDG_group"].hide();
 			me["VSI_group"].hide();
 		}
@@ -958,9 +975,10 @@ var canvas_PFD_2 = {
 			me["FD_pitch"].hide();
 		}
 		
-		if (IR1align.getValue() == 1) {
+		if (IR1aligned.getValue() == 1) {
 			me["AI_group"].show();
 			me["AI_group2"].show();
+			me["AI_group3"].show();
 			me["HDG_group"].show();
 			me["VSI_group"].show();
 			me["AI_error"].hide();
@@ -972,6 +990,7 @@ var canvas_PFD_2 = {
 			me["VSI_error"].show();
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
+			me["AI_group3"].hide();
 			me["HDG_group"].hide();
 			me["VSI_group"].hide();
 		}
