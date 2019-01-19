@@ -168,9 +168,9 @@ var canvas_PFD_base = {
 		return ["FMA_Speed","FMA_Thrust","FMA_Roll","FMA_Roll_Arm","FMA_Pitch","FMA_Pitch_Land","FMA_Land","FMA_Pitch_Arm","FMA_Altitude_Thousand","FMA_Altitude","FMA_ATS_Thrust_Off","FMA_ATS_Pitch_Off","FMA_AP_Pitch_Off_Box","FMA_AP_Thrust_Off_Box","FMA_AP",
 		"ASI_v_speed","ASI_Taxi","ASI_GroundSpd","ASI_scale","ASI_bowtie","ASI_bowtie_mach","ASI","ASI_mach","ASI_mach_decimal","ASI_bowtie_L","ASI_bowtie_R","ASI_presel","ASI_sel","ASI_trend_up","ASI_trend_down","ASI_max","ASI_max_bar","ASI_max_bar2",
 		"ASI_max_flap","AI_center","AI_horizon","AI_bank","AI_slipskid","AI_overbank_index","AI_banklimit_L","AI_banklimit_R","AI_alphalim","AI_group","AI_group2","AI_group3","AI_error","AI_fpv","AI_fpd","AI_arrow_up","AI_arrow_dn","FD_roll","FD_pitch",
-		"ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","ALT_agl","VSI_needle_up","VSI_needle_dn","VSI_up",
-		"VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale","GS_pointer",
-		"GS_no","RA","RA_box","Minimums"];
+		"ALT_thousands","ALT_hundreds","ALT_tens","ALT_scale","ALT_scale_num","ALT_one","ALT_two","ALT_three","ALT_four","ALT_five","ALT_one_T","ALT_two_T","ALT_three_T","ALT_four_T","ALT_five_T","ALT_presel","ALT_sel","ALT_agl","VSI_needle_up","VSI_needle_dn",
+		"VSI_up","VSI_down","VSI_group","VSI_error","HDG","HDG_dial","HDG_presel","HDG_sel","HDG_group","HDG_error","TRK_pointer","TCAS_OFF","Slats","Flaps","Flaps_num","Flaps_num2","Flaps_num_boxes","QNH","LOC_scale","LOC_pointer","LOC_no","GS_scale",
+		"GS_pointer","GS_no","RA","RA_box","Minimums"];
 	},
 	update: func() {
 		if (mismatch.getValue() == "0x000") {
@@ -676,7 +676,9 @@ var canvas_PFD_base = {
 			me.middleAltOffset = -me.altOffset * 254.508;
 		}
 		me["ALT_scale"].setTranslation(0, -me.middleAltOffset);
+		me["ALT_scale_num"].setTranslation(0, -me.middleAltOffset);
 		me["ALT_scale"].update();
+		me["ALT_scale_num"].update();
 		me.five = int((me.middleAltText + 1000) * 0.001);
 		me["ALT_five"].setText(sprintf("%03d", abs(1000 * (((me.middleAltText + 1000) * 0.001) - me.five))));
 		me.fiveT = sprintf("%01d", abs(me.five));

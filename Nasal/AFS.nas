@@ -121,16 +121,20 @@ var APinit = func(t) {
 	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2"));
 	setprop("/it-autoflight/input/spd-mach", 0.5);
 	setprop("/it-autoflight/custom/show-hdg", 5);
-	setprop("/it-autoflight/sound/enableapoffsound", 0);
-	setprop("/it-autoflight/sound/apoffsound", 0);
-	setprop("/it-autoflight/sound/enableatsflash", 0);
-	setprop("/it-autoflight/custom/atsflash", 0);
+	if (t != 1) {
+		setprop("/it-autoflight/sound/enableapoffsound", 0);
+		setprop("/it-autoflight/sound/apoffsound", 0);
+		setprop("/it-autoflight/sound/enableatsflash", 0);
+		setprop("/it-autoflight/custom/atsflash", 0);
+	}
 	ap_varioust.start();
 	various2.start();
-	apKill.stop();
-	atsKill.stop();
-	setprop("/it-autoflight/custom/apwarn", 0);
-	setprop("/it-autoflight/custom/atswarn", 0);
+	if (t != 1) {
+		apKill.stop();
+		atsKill.stop();
+		setprop("/it-autoflight/custom/apwarn", 0);
+		setprop("/it-autoflight/custom/atswarn", 0);
+	}
 	thrustmode();
 }
 
