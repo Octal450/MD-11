@@ -1147,8 +1147,8 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/hdg-sel</property>
 				<step>1</step>
-				<min>1</min>
-				<max>361</max>
+				<min>0</min>
+				<max>360</max>
 				<wrap>true</wrap>
 			</binding>
 			<binding>
@@ -1178,8 +1178,8 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/custom/hdg-sel</property>
 				<step>-1</step>
-				<min>1</min>
-				<max>361</max>
+				<min>0</min>
+				<max>360</max>
 				<wrap>true</wrap>
 			</binding>
 			<binding>

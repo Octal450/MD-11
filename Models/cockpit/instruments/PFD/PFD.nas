@@ -373,7 +373,7 @@ var canvas_PFD_base = {
 		
 		me["FMA_Thrust"].setText(sprintf("%s", throttle_mode.getValue()));
 		if (roll_mode.getValue() == "HEADING") {
-			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue() ~ " " ~ aphdg.getValue()));
+			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue() ~ " " ~ sprintf("%03d", aphdg.getValue())));
 		} else {
 			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue()));
 		}

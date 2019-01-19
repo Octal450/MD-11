@@ -691,8 +691,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
-					<min>1</min>
-					<max>361</max>
+					<min>0</min>
+					<max>360</max>
 					<step>-10</step>
 					<wrap>true</wrap>
 				</binding>
@@ -712,8 +712,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
-					<min>1</min>
-					<max>361</max>
+					<min>0</min>
+					<max>360</max>
 					<step>-1</step>
 					<wrap>true</wrap>
 				</binding>
@@ -751,8 +751,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
-					<min>1</min>
-					<max>361</max>
+					<min>0</min>
+					<max>360</max>
 					<step>1</step>
 					<wrap>true</wrap>
 				</binding>
@@ -773,8 +773,8 @@
 				<binding>
 					<command>property-adjust</command>
 					<property>/it-autoflight/custom/hdg-sel</property>
-					<min>1</min>
-					<max>361</max>
+					<min>0</min>
+					<max>360</max>
 					<step>10</step>
 					<wrap>true</wrap>
 				</binding>

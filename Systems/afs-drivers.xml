@@ -747,7 +747,7 @@
 			<condition>
 				<less-than>
 					<property>/it-autoflight/internal/heading-predicted-cmd</property>
-					<value>1</value>
+					<value>0.5</value>
 				</less-than>
 			</condition>
 			<expression>

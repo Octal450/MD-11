@@ -24,7 +24,7 @@ var loopFMA = maketimer(0.05, func {
 	
 	if (vert == "T/O CLB") {
 		if (getprop("/it-autoflight/output/athr") == 1 and getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 80) {
-			if (thr >= 0.7) {
+			if (thr >= 0.6) {
 				clamp = 0;
 			}
 		} else {

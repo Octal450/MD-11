@@ -60,7 +60,7 @@ var APinit = func(t) {
 		setprop("/it-autoflight/custom/kts-mach", 0);
 		setprop("/it-autoflight/custom/kts-sel", 250);
 		setprop("/it-autoflight/custom/mach-sel", 0.5);
-		setprop("/it-autoflight/custom/hdg-sel", 360);
+		setprop("/it-autoflight/custom/hdg-sel", 0);
 		setprop("/it-autoflight/custom/vs-fpa", "0");
 	}
 	setprop("/it-autoflight/input/kts-mach", 0);
@@ -70,7 +70,7 @@ var APinit = func(t) {
 	setprop("/it-autoflight/input/fd1", 1);
 	setprop("/it-autoflight/input/fd2", 1);
 	if (t != 1) {
-		setprop("/it-autoflight/input/hdg", 360);
+		setprop("/it-autoflight/input/hdg", 0);
 	}
 	if (t != 1) {
 		setprop("/it-autoflight/input/alt", 10000);
@@ -506,6 +506,9 @@ var lateral = func {
 		setprop("/it-autoflight/output/loc-armed", 0);
 		setprop("/it-autoflight/output/appr-armed", 0);
 		var hdgpredic = math.round(getprop("/it-autoflight/internal/heading-predicted"));
+		if (hdgpredic == 360) {
+			hdgpredic = 0;
+		}
 		setprop("/it-autoflight/input/hdg", hdgpredic);
 		setprop("/it-autoflight/custom/hdg-sel", hdgpredic);
 		setprop("/it-autoflight/output/lat", 0);
