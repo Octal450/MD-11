@@ -51,8 +51,8 @@
 			<expression>
 				<table>
 					<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
-					<entry><ind>    0</ind><dep>0.804</dep></entry>
-					<entry><ind>42000</ind><dep>1.015</dep></entry>
+					<entry><ind>    0</ind><dep>0.8016</dep></entry>
+					<entry><ind>42000</ind><dep>1.0151</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -85,7 +85,7 @@
 				<difference>
 					<table>
 						<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
-						<entry><ind>    0</ind><dep>0.983</dep></entry>
+						<entry><ind>    0</ind><dep>0.986</dep></entry>
 						<entry><ind>43000</ind><dep>0.834</dep></entry>
 					</table>
 					<table>
@@ -130,8 +130,8 @@
 						<property>/engines/engine[0]/n1-actual</property> 
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      18.0</ind><dep>0.00</dep></entry>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -170,7 +170,7 @@
 						</table>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -205,8 +205,8 @@
 						<property>/engines/engine[1]/n1-actual</property> 
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      18.0</ind><dep>0.00</dep></entry>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -245,7 +245,7 @@
 						</table>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -280,8 +280,8 @@
 						<property>/engines/engine[2]/n1-actual</property> 
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      18.0</ind><dep>0.00</dep></entry>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -320,7 +320,7 @@
 						</table>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -381,7 +381,7 @@
 						<property>/systems/thrust/n1/ga-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -446,7 +446,7 @@
 						<property>/systems/thrust/n1/to-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -511,7 +511,7 @@
 						<property>/systems/thrust/n1/mct-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -576,7 +576,7 @@
 						<property>/systems/thrust/n1/flx-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -641,7 +641,7 @@
 						<property>/systems/thrust/n1/clb-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
@@ -706,7 +706,7 @@
 						<property>/systems/thrust/n1/crz-lim</property>
 						<value>3.5</value>
 					</pow>
-					<entry><ind>      23.8</ind><dep>0.03</dep></entry>
+					<entry><ind>   65768.7</ind><dep>0.03</dep></entry>
 					<entry><ind>14591440.5</ind><dep>1.00</dep></entry>
 				</table>
 			</expression>
