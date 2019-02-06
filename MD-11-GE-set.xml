@@ -40,6 +40,51 @@
 		</systems>
     </sim>
 	
+	<payload>
+		<weight n="0">
+			<name>Cockpit Crew</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+			<min-lb type="double">200</min-lb>
+			<max-lb type="double">440</max-lb>
+		</weight>
+		<weight n="1">
+			<name>Forward Cabin</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">11880</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Center Cabin</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">26640</max-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Cabin</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">34920</max-lb>
+		</weight>
+		<weight n="4">
+			<name>Forward Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">25200</max-lb>
+		</weight>
+		<weight n="5">
+			<name>Center Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">33600</max-lb>
+		</weight>
+		<weight n="6">
+			<name>Aft Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
+			<min-lb type="double">300</min-lb>
+			<max-lb type="double">2000</max-lb>
+		</weight>
+	</payload>
+	
 	<options n="0">
 		<eng>GE</eng>
 	</options>

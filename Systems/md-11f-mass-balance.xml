@@ -28,34 +28,7 @@
 		</location>
 	</pointmass>
 	
-	<pointmass name="Forward Cabin">
-		<weight unit="LBS">6660</weight>
-		<location name="POINTMASS" unit="M"> 
-			<x> 2.5152 </x>
-			<y> 0 </y>
-			<z> 5.69282 </z>
-		</location>
-	</pointmass>
-	
-	<pointmass name="Center Cabin">
-		<weight unit="LBS">16200</weight>
-		<location name="POINTMASS" unit="M">
-			<x> 2.5152 </x>
-			<y> 0 </y>
-			<z> 5.69282 </z>
-		</location>
-	</pointmass>
-	
-	<pointmass name="Aft Cabin">
-		<weight unit="LBS">21960</weight>
-		<location name="POINTMASS" unit="M">
-			<x> 2.5152 </x>
-			<y> 0 </y>
-			<z> 5.69282 </z>
-		</location>
-	</pointmass>
-	
-	<pointmass name="Forward Cargo">
+	<pointmass name="Forward Upper Cargo">
 		<weight unit="LBS">16800</weight>
 		<location name="POINTMASS" unit="M"> 
 			<x> 2.5152 </x>
@@ -64,8 +37,8 @@
 		</location>
 	</pointmass>
 	
-	<pointmass name="Center Cargo">
-		<weight unit="LBS">21600</weight>
+	<pointmass name="Center Upper Cargo">
+		<weight unit="LBS">16800</weight>
 		<location name="POINTMASS" unit="M">
 			<x> 2.5152 </x>
 			<y> 0 </y>
@@ -73,8 +46,35 @@
 		</location>
 	</pointmass>
 	
-	<pointmass name="Aft Cargo">
-		<weight unit="LBS">2000</weight>
+	<pointmass name="Aft Upper Cargo">
+		<weight unit="LBS">21000</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Forward Lower Cargo">
+		<weight unit="LBS">12600</weight>
+		<location name="POINTMASS" unit="M"> 
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Center Lower Cargo">
+		<weight unit="LBS">19200</weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5152 </x>
+			<y> 0 </y>
+			<z> 5.69282 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Aft Lower Cargo">
+		<weight unit="LBS">1000</weight>
 		<location name="POINTMASS" unit="M">
 			<x> 2.5152 </x>
 			<y> 0 </y>

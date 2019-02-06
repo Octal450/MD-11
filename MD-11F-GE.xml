@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+
+<fdm_config name="IDG-MD-11X" version="2.0" release="BETA"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+	<fileheader>
+		<author>Joshua Davidson (it0uchpods)</author>
+		<version>Pre V1.0</version>
+		<description>MD-11 FDE</description>
+	</fileheader>
+	
+	<metrics file="Systems/md-11-metrics"/>
+	<mass_balance file="Systems/md-11f-mass-balance"/>
+	<ground_reactions file="Systems/md-11-ground-reactions"/>
+	
+	<propulsion>
+		<engine file="cf6-80c2d1f_1">
+			<location unit="M">
+				<x> -5.29297 </x>	
+				<y> -8.24094 </y>
+				<z> 3.47943 </z>
+			</location>
+			<orient unit="DEG">
+				<roll> 0.0 </roll>
+				<pitch> 2.2 </pitch>
+				<yaw> 1 </yaw>
+			</orient>
+			<feed>5</feed>
+			<thruster file="direct">
+				<location unit="M">
+					<x> -5.29297 </x>	
+					<y> -8.24094 </y>
+					<z> 3.47943 </z>
+				</location>
+				<orient unit="DEG">
+					<roll> 0.0 </roll>
+					<pitch> 2.2 </pitch>
+					<yaw> 1 </yaw>
+				</orient>
+			</thruster>
+		</engine>
+		
+		<engine file="cf6-80c2d1f_2">
+			<location unit="M">
+				<x> 25.2146 </x>	
+				<y> 0 </y>
+				<z> 10.698 </z>
+			</location>
+			<orient unit="DEG">
+				<roll> 0.0 </roll>
+				<pitch> 0.0 </pitch>
+				<yaw> 0 </yaw>
+			</orient>
+			<feed>6</feed>
+			<thruster file="direct">
+				<location unit="M">
+					<x> 25.2146 </x>	
+					<y> 0 </y>
+					<z> 10.698 </z>
+				</location>
+				<orient unit="DEG">
+					<roll> 0.0 </roll>
+					<pitch> 0.0 </pitch>
+					<yaw> 0 </yaw>
+				</orient>
+			</thruster>
+		</engine>
+		
+		<engine file="cf6-80c2d1f_3">
+			<location unit="M">
+				<x> -5.29297 </x>	
+				<y> 8.24094 </y>
+				<z> 3.47943 </z>
+			</location>
+			<orient unit="DEG">
+				<roll> 0.0 </roll>
+				<pitch> 2.2 </pitch>
+				<yaw> -1 </yaw>
+			</orient>
+			<feed>7</feed>
+			<thruster file="direct">
+				<location unit="M">
+					<x> -5.29297 </x>	
+					<y> 8.24094 </y>
+					<z> 3.47943 </z>
+				</location>
+				<orient unit="DEG">
+					<roll> 0.0 </roll>
+					<pitch> 2.2 </pitch>
+					<yaw> -1 </yaw>
+				</orient>
+			</thruster>
+		</engine>
+		
+		<tank type="FUEL">    <!-- Left Tank -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> -11.3314 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 40500 </capacity>
+			<contents unit="LBS"> 20000 </contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>2</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Center Tank -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 64050 </capacity>
+			<contents unit="LBS"> 20000 </contents>
+			<standpipe unit="LBS">43</standpipe>
+			<priority>1</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Right Tank -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 11.3314 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 40500 </capacity>
+			<contents unit="LBS"> 20000 </contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>2</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Aux Tank -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 98100 </capacity>
+			<contents unit="LBS">     0 </contents>
+			<standpipe unit="LBS">43</standpipe>
+			<priority>1</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Tail Tank -->
+			<location unit="M">
+				<x> 15.0705 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 13100 </capacity>
+			<contents unit="LBS">     0 </contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>1</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Engine 1 Pipe -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 10 </capacity>
+			<contents unit="LBS"> 0 </contents>
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+		<tank type="FUEL">    <!-- Engine 2 Pipe -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 10 </capacity>
+			<contents unit="LBS"> 0 </contents>
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+		<tank type="FUEL">    <!-- Engine 3 Pipe -->
+			<location unit="M">
+				<x> 2.5152 </x>
+				<y> 0 </y>
+				<z> 5.69282 </z>
+			</location>
+			<capacity unit="LBS"> 10 </capacity>
+			<contents unit="LBS"> 0 </contents>
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+	</propulsion>
+	
+	<system file="fuel"/>
+	<system file="glass-effect1"/>
+	<system file="md-11-fcs"/>
+	<system file="md-11-spoiler"/>
+	
+	<flight_control name="none"/>
+	
+	<aerodynamics file="Systems/md-11-aerodynamics.xml"/>
+	<external_reactions file="Systems/md-11-external-reactions"/>
+
+</fdm_config>
