@@ -201,7 +201,7 @@ var FCTL = {
 		Mach = getprop("/instrumentation/airspeed-indicator/indicated-mach");
 		
 		# VMO MMO
-		mmoIAS = (IAS / Mach) * 0.85;
+		mmoIAS = (IAS / Mach) * 0.87;
 		if (mmoIAS < 365) {
 			setprop("/controls/fctl/vmo-mmo", mmoIAS);
 		} else {
