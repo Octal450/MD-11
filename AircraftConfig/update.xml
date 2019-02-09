@@ -88,9 +88,27 @@
 			<halign>left</halign>
 			<label>You will need to restart FlightGear, and install the latest .zip file.</label>
 		</text>
+		
+		<hrule>
+			<color>
+				<red>1.0</red>
+				<green>1.0</green>
+				<blue>1.0</blue>
+				<alpha>0.95</alpha>
+			</color>
+		</hrule>
+		
 		<text>
 			<halign>left</halign>
 			<label>GIT users: Please press Remind Me Later, and run a "git pull" command. (or pull using GIT GUI)</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>Make sure you have cloned from either of the following: (git remote -v to check)</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>HTTP: http://www.github.com/it0uchpods/IDG-MD-11X.git or SSH: git@github.com:it0uchpods/IDG-MD-11X.git</label>
 		</text>
 	</group>
 	
