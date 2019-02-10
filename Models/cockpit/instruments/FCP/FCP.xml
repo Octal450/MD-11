@@ -1346,97 +1346,83 @@
 		</action>
 	</animation>
 
-			<!-- Lighting -->
+	<!-- Lighting -->
 	
-		<effect>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>mcp_text</object-name>
-	</effect>
-			<animation>
-		<name>Panel lighting</name>
-		<type>material</type>
-		<object-name>mcp_text</object-name>
-	<object-name>flood.knob.indicator</object-name>
-	<object-name>mcp.light.knob.indicator</object-name>
-	<object-name>BLimit.knob.indicator</object-name>
-		<emission>
-			<red>1.5</red>
-			<green>1.27</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
-		</emission>
-	</animation>
-	
-				<animation>
+	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>mcp_lcd</object-name>
 		<emission>
-			<red>1.39</red>
+			<red>1</red>
 			<green>0</green>
 			<blue>0</blue>
-			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
+			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	
-					<animation>
-		<name>Panel lighting</name>
+	<animation>
+		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>IAS.led1</object-name>
-	<object-name>IAS.led2</object-name>
-	<object-name>IAS.led3</object-name>
+		<object-name>IAS.led2</object-name>
+		<object-name>IAS.led3</object-name>
 		<object-name>MACH.led1</object-name>
-	<object-name>MACH.led2</object-name>
-	<object-name>MACH.led3</object-name>
-	<object-name>ias.ind</object-name>
-	<object-name>mach.ind</object-name>
-	<object-name>hdg.ind</object-name>
-	<object-name>trk.ind</object-name>
-	<object-name>at_dis1</object-name>
-	<object-name>TRK.led1</object-name>
-	<object-name>TRK.led2</object-name>
-	<object-name>TRK.led3</object-name>
-	<object-name>VS.ledminus</object-name>
-	<object-name>FPA.ledminus</object-name>
-	<object-name>HDG.led1</object-name>
-	<object-name>HDG.led2</object-name>
-	<object-name>HDG.led3</object-name>
-	<object-name>ALT.led1</object-name>
-	<object-name>ALT.led2</object-name>
-	<object-name>ALT.led3</object-name>
-	<object-name>ALT.led4</object-name>
-	<object-name>ALT.led5</object-name>
-	<object-name>VS.led1</object-name>
-	<object-name>VS.led2</object-name>
-	<object-name>VS.led3</object-name>
-	<object-name>VS.led4</object-name>
-	<object-name>vs.ind</object-name>
-	<object-name>VS_dash</object-name>
-	<object-name>fpa.ind</object-name>
-	<object-name>FPA.led1</object-name>
-	<object-name>FPA.led2</object-name>
+		<object-name>MACH.led2</object-name>
+		<object-name>MACH.led3</object-name>
+		<object-name>ias.ind</object-name>
+		<object-name>mach.ind</object-name>
+		<object-name>hdg.ind</object-name>
+		<object-name>trk.ind</object-name>
+		<object-name>at_dis1</object-name>
+		<object-name>TRK.led1</object-name>
+		<object-name>TRK.led2</object-name>
+		<object-name>TRK.led3</object-name>
+		<object-name>VS.ledminus</object-name>
+		<object-name>FPA.ledminus</object-name>
+		<object-name>HDG.led1</object-name>
+		<object-name>HDG.led2</object-name>
+		<object-name>HDG.led3</object-name>
+		<object-name>ALT.led1</object-name>
+		<object-name>ALT.led2</object-name>
+		<object-name>ALT.led3</object-name>
+		<object-name>ALT.led4</object-name>
+		<object-name>ALT.led5</object-name>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<object-name>VS.led4</object-name>
+		<object-name>vs.ind</object-name>
+		<object-name>VS_dash</object-name>
+		<object-name>fpa.ind</object-name>
+		<object-name>FPA.led1</object-name>
+		<object-name>FPA.led2</object-name>
+		<object-name>HDG_dash</object-name>
+		<object-name>mcp_text</object-name>
+		<object-name>integlight.indicator</object-name>
+		<object-name>floodlight.indicator</object-name>
+		<object-name>BLimit.knob.indicator</object-name>
 		<emission>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/flood-panel-norm</factor-prop>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	
-			<animation>
-		<name>Flood light knob</name>
+	<animation>
+		<name>Integ light knob</name>
 		<type>pick</type>
-		<object-name>flood.knob</object-name>
-	<object-name>flood.knob.indicator</object-name>
+		<object-name>integlight.knob</object-name>
+		<object-name>integlight.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/flood-panel-norm</property>
-				<step>0.025</step>
-				<max>0.5</max>
+				<property>controls/lighting/fcp-integ-knb</property>
+				<step>0.05</step>
+				<max>1</max>
 			</binding>
 		</action>
 		<action>
@@ -1445,18 +1431,18 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/flood-panel-norm</property>
-				<step>-0.025</step>
+				<property>controls/lighting/fcp-integ-knb</property>
+				<step>-0.05</step>
 				<min>0</min>
 			</binding>
 		</action>
 	</animation>
 	
-				<animation>
+	<!--animation>
 		<name>MCP light knob</name>
 		<type>pick</type>
-		<object-name>mcp.light.knob</object-name>
-	<object-name>mcp.light.knob.indicator</object-name>
+		<object-name>floodlight.knob</object-name>
+		<object-name>floodlight.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -1464,8 +1450,8 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/mcp-panel-norm</property>
-				<step>0.025</step>
-				<max>0.5</max>
+				<step>0.05</step>
+				<max>1</max>
 			</binding>
 		</action>
 		<action>
@@ -1475,22 +1461,19 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/mcp-panel-norm</property>
-				<step>-0.025</step>
+				<step>-0.05</step>
 				<min>0</min>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 	
-				<animation>
-		<name>Flood panel light rotate</name>
+	<animation>
+		<name>Integ panel light rotate</name>
 		<type>rotate</type>
-		<object-name>flood.knob</object-name>
-	<object-name>flood.knob.indicator</object-name>
-		<property>controls/lighting/flood-panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-329</dep></entry>
-		</interpolation>
+		<object-name>integlight.knob</object-name>
+		<object-name>integlight.indicator</object-name>
+		<property>controls/lighting/fcp-integ-knb</property>
+		<factor>-329</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -1503,18 +1486,13 @@
 		</center>
 	</animation>
 	
-
-
-				<animation>
+	<animation>
 		<name>panel light rotate</name>
 		<type>rotate</type>
-		<object-name>mcp.light.knob</object-name>
-	<object-name>mcp.light.knob.indicator</object-name>
-		<property>controls/lighting/mcp-panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-280</dep></entry>
-		</interpolation>
+		<object-name>floodlight.knob</object-name>
+		<object-name>floodlight.indicator</object-name>
+		<property>controls/lighting/mcp-panel-knb</property>
+		<factor>-329</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>

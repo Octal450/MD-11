@@ -1,10 +1,9 @@
 AC3Db
-MATERIAL "Buttons.002" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0.0312 0.0312 0.0312  shi 20.2105  trans 0
+MATERIAL "Buttons.002" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.0312 0.0312 0.0312  shi 0  trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "Buttons" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
-MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
-MATERIAL "glass" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 1
 MATERIAL "Buttons.002" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
+MATERIAL "glass" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 1
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
 kids 81
@@ -20,7 +19,7 @@ numvert 4
 0 0.106428 -0.106429
 numsurf 1
 SURF 0x30
-mat 6
+mat 5
 refs 4
 3 1 1
 2 0 1
@@ -39,7 +38,7 @@ numvert 4
 0 -0.110628 0.0788392
 numsurf 1
 SURF 0x30
-mat 6
+mat 5
 refs 4
 1 0.158709 0.0183337
 2 0.129617 0.0183337
@@ -94,224 +93,224 @@ numvert 38
 0.00863075 0.00863075 -0.00863001
 numsurf 32
 SURF 0x30
-mat 5
+mat 3
 refs 4
 16 0.001735 0.001844
 2 0.001735 0.001844
 1 0.001735 0.02928
 6 0.001735 0.02928
 SURF 0x30
-mat 5
+mat 3
 refs 4
 17 0.060831 0.001844
 3 0.060831 0.001844
 2 0.001735 0.001844
 16 0.001735 0.001844
 SURF 0x30
-mat 5
+mat 3
 refs 4
 4 0.060831 0.02928
 0 0.060831 0.02928
 3 0.060831 0.001844
 17 0.060831 0.001844
 SURF 0x30
-mat 5
+mat 3
 refs 4
 1 0.001735 0.02928
 2 0.001735 0.001844
 3 0.060831 0.001844
 0 0.060831 0.02928
 SURF 0x30
-mat 5
+mat 3
 refs 4
 5 0.062315 0.029173
 4 0.060831 0.02928
 17 0.060831 0.001844
 21 0.062315 0.000359
 SURF 0x30
-mat 5
+mat 3
 refs 4
 9 0.000251 0.029173
 6 0.001735 0.02928
 10 0.001735 0.03139
 14 0.000251 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 10 0.001735 0.03139
 6 0.001735 0.02928
 4 0.060831 0.02928
 11 0.060831 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 15 0.062315 0.03139
 5 0.062315 0.029173
 7 0.062315 0.029173
 12 0.062315 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 13 0.000251 0.03139
 8 0.000251 0.029173
 9 0.000251 0.029173
 14 0.000251 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 15 0.062315 0.03139
 11 0.060831 0.03139
 4 0.060831 0.02928
 5 0.062315 0.029173
 SURF 0x30
-mat 5
+mat 3
 refs 4
 20 0.000251 0.000359
 16 0.001735 0.001844
 6 0.001735 0.02928
 9 0.000251 0.029173
 SURF 0x30
-mat 5
+mat 3
 refs 4
 6 0.001735 0.02928
 1 0.001735 0.02928
 0 0.060831 0.02928
 4 0.060831 0.02928
 SURF 0x30
-mat 5
+mat 3
 refs 4
 20 0.000251 0.000359
 19 0.000251 0.000359
 18 0.062315 0.000359
 21 0.062315 0.000359
 SURF 0x30
-mat 5
+mat 3
 refs 4
 5 0.062315 0.029173
 21 0.062315 0.000359
 18 0.062315 0.000359
 7 0.062315 0.029173
 SURF 0x30
-mat 5
+mat 3
 refs 4
 8 0.000251 0.029173
 19 0.000251 0.000359
 20 0.000251 0.000359
 9 0.000251 0.029173
 SURF 0x30
-mat 5
+mat 3
 refs 4
 21 0.062315 0.000359
 17 0.060831 0.001844
 16 0.001735 0.001844
 20 0.000251 0.000359
 SURF 0x30
-mat 5
+mat 3
 refs 4
 23 0.001735 0.033505
 24 0.001735 0.060942
 32 0.001735 0.060942
 28 0.001735 0.033505
 SURF 0x30
-mat 5
+mat 3
 refs 4
 24 0.001735 0.060942
 25 0.060831 0.060942
 33 0.060831 0.060942
 32 0.001735 0.060942
 SURF 0x30
-mat 5
+mat 3
 refs 4
 25 0.060831 0.060942
 22 0.060831 0.033505
 26 0.060831 0.033505
 33 0.060831 0.060942
 SURF 0x30
-mat 5
+mat 3
 refs 4
 25 0.060831 0.060942
 24 0.001735 0.060942
 23 0.001735 0.033505
 22 0.060831 0.033505
 SURF 0x30
-mat 5
+mat 3
 refs 4
 27 0.060831 0.060942
 37 0.060831 0.033505
 33 0.062315 0.033607
 26 0.062315 0.062427
 SURF 0x30
-mat 5
+mat 3
 refs 4
 10 0.001735 0.03139
 28 0.001735 0.033505
 31 0.000251 0.033607
 14 0.000251 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 26 0.060831 0.033505
 28 0.001735 0.033505
 10 0.001735 0.03139
 11 0.060831 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 29 0.062315 0.033607
 27 0.062315 0.033607
 15 0.062315 0.03139
 12 0.062315 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 31 0.000251 0.033607
 30 0.000251 0.033607
 13 0.000251 0.03139
 14 0.000251 0.03139
 SURF 0x30
-mat 5
+mat 3
 refs 4
 26 0.060831 0.033505
 11 0.060831 0.03139
 15 0.062315 0.03139
 27 0.062315 0.033607
 SURF 0x30
-mat 5
+mat 3
 refs 4
 28 0.001735 0.033505
 32 0.001735 0.060942
 36 0.000251 0.062427
 31 0.000251 0.033607
 SURF 0x30
-mat 5
+mat 3
 refs 4
 22 0.060831 0.033505
 23 0.001735 0.033505
 28 0.001735 0.033505
 26 0.060831 0.033505
 SURF 0x30
-mat 5
+mat 3
 refs 4
 36 0.062315 0.062427
 37 0.000251 0.062427
 34 0.000251 0.062427
 35 0.062315 0.062427
 SURF 0x30
-mat 5
+mat 3
 refs 4
 34 0.062315 0.033607
 37 0.062315 0.033607
 27 0.062315 0.062427
 29 0.062315 0.062427
 SURF 0x30
-mat 5
+mat 3
 refs 4
 36 0.000251 0.062427
 35 0.000251 0.062427
 30 0.000251 0.033607
 31 0.000251 0.033607
 SURF 0x30
-mat 5
+mat 3
 refs 4
 37 0.001735 0.060942
 36 0.060831 0.060942
@@ -591,7 +590,7 @@ kids 0
 OBJECT poly
 name "Cube.045"
 loc -16.8138 -22.1845 3.8e-006
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 23
 0.000732422 0.184193 -0.390018
@@ -720,7 +719,7 @@ kids 0
 OBJECT poly
 name "Cube.046"
 loc -16.8056 -22.0504 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 66
 0.00235558 0.0134354 0.323376
@@ -1224,7 +1223,7 @@ kids 0
 OBJECT poly
 name "Cube.049"
 loc -16.8056 -22.1069 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 66
 0.00235558 0.0134354 0.323376
@@ -1728,7 +1727,7 @@ kids 0
 OBJECT poly
 name "Cube.050"
 loc -16.8103 -21.9974 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 66
 -0.000984192 0.0136051 0.323376
@@ -2232,7 +2231,7 @@ kids 0
 OBJECT poly
 name "Cube.051"
 loc -16.8369 -21.9451 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 80
 -0.00486374 0.012743 0.323376
@@ -2841,7 +2840,7 @@ kids 0
 OBJECT poly
 name "Cube.227"
 loc -16.8123 -22.4036 -0.222747
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 56
 -0.00431633 -0.0186653 -0.0606926
@@ -3212,7 +3211,7 @@ kids 0
 OBJECT poly
 name "Cube.393"
 loc -16.7963 -22.407 -0.1826
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 75
 -0.00259972 -0.00113297 -0.0030432
@@ -3777,7 +3776,7 @@ kids 0
 OBJECT poly
 name "Cube.394"
 loc -16.8135 -22.3949 -0.182682
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 60
 0.00885582 -0.00802231 0.00615241
@@ -4232,7 +4231,7 @@ kids 0
 OBJECT poly
 name "Cube.395"
 loc -16.808 -22.3913 -0.205337
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 20
 -0.00223351 -0.00892258 0.0085835
@@ -4375,7 +4374,7 @@ kids 0
 OBJECT poly
 name "Cube.396"
 loc -16.8123 -22.307 -0.222747
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 66
 -0.00451088 0.0146942 0.057935
@@ -4838,7 +4837,7 @@ kids 0
 OBJECT poly
 name "Cube.398"
 loc -16.8165 -22.3307 -0.222871
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 20
 -0.00316429 -0.0440483 0.0663502
@@ -5309,7 +5308,7 @@ kids 0
 OBJECT poly
 name "Cube.403"
 loc -16.8165 -22.3703 -0.362123
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 76
 0.0056591 -0.0440483 0.0427361
@@ -5865,7 +5864,7 @@ kids 0
 OBJECT poly
 name "Cube.406"
 loc -16.8141 -22.2475 -0.222871
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 20
 -0.00316429 -0.0440483 0.0663502
@@ -6008,7 +6007,7 @@ kids 0
 OBJECT poly
 name "Cube.407"
 loc -16.8136 -22.3857 0.223929
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 20
 -0.00316429 -0.0440483 0.0663502
@@ -6151,7 +6150,7 @@ kids 0
 OBJECT poly
 name "Cube.408"
 loc -16.8141 -22.2475 0.223576
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 52
 0.00316048 0.0116615 0.033004
@@ -6620,7 +6619,7 @@ kids 0
 OBJECT poly
 name "Cube.409"
 loc -16.8092 -22.3303 0.218247
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 110
 -0.00767517 -0.0350494 -0.0313756
@@ -7382,7 +7381,7 @@ kids 0
 OBJECT poly
 name "Cube.415"
 loc -16.8141 -22.3233 0.22352
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 24
 -0.00312233 -0.0406685 0.0663502
@@ -7588,7 +7587,7 @@ kids 0
 OBJECT poly
 name "Cube.416"
 loc -16.7461 -22.2331 -0.0725308
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 204
 -0.0055275 0.00637054 0.169357
@@ -9321,7 +9320,7 @@ kids 0
 OBJECT poly
 name "Cube.418"
 loc -16.8153 -22.2359 0.223576
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 42
 0.00106239 0.00577354 -0.0058597
@@ -9651,7 +9650,7 @@ kids 0
 OBJECT poly
 name "Cube.447"
 loc -16.8138 -22.1845 3.8e-006
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 53
 -0.000921249 -0.258602 -0.390018
@@ -10006,7 +10005,7 @@ kids 0
 OBJECT poly
 name "Cube.448"
 loc -16.8029 -22.1906 0.0356542
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 48
 0.0424404 -0.00717163 -0.0752463
@@ -10370,7 +10369,7 @@ kids 0
 OBJECT poly
 name "Cube.453"
 loc -16.8018 -22.4156 -0.103846
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 428
 0.00298309 -0.00527763 -0.0166451
@@ -13494,7 +13493,7 @@ kids 0
 OBJECT poly
 name "Cube.459"
 loc -16.7884 -22.4049 -0.104729
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -13552,7 +13551,7 @@ kids 0
 OBJECT poly
 name "Cube.460"
 loc -16.8184 -22.3861 -0.309876
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 60
 0.00885582 -0.00802231 0.00615239
@@ -14007,7 +14006,7 @@ kids 0
 OBJECT poly
 name "Cube.461"
 loc -16.8012 -22.3982 -0.309795
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 75
 -0.00259972 -0.00113297 -0.0030432
@@ -14572,7 +14571,7 @@ kids 0
 OBJECT poly
 name "Cube.462"
 loc -16.8112 -22.3611 0.197112
-texture "overhead_1.png"
+texture "overhead_1.jpg"
 crease 45.000000
 numvert 28
 -0.00985718 -0.000782013 -0.0091159
@@ -15090,7 +15089,7 @@ kids 0
 OBJECT poly
 name "Cube.467"
 loc -16.8112 -22.3611 0.247806
-texture "overhead_1.png"
+texture "overhead_1.jpg"
 crease 45.000000
 numvert 28
 -0.00985718 -0.000782013 -0.0091159
@@ -15280,7 +15279,7 @@ kids 0
 OBJECT poly
 name "Cube.468"
 loc -16.7884 -22.4049 -0.027083
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -15338,7 +15337,7 @@ kids 0
 OBJECT poly
 name "Cube.469"
 loc -16.7884 -22.4049 -0.0456366
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -15396,7 +15395,7 @@ kids 0
 OBJECT poly
 name "Cube.470"
 loc -16.7884 -22.4049 0.0263305
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -15454,7 +15453,7 @@ kids 0
 OBJECT poly
 name "Cube.471"
 loc -16.7884 -22.4049 0.0448841
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -15512,7 +15511,7 @@ kids 0
 OBJECT poly
 name "Cube.472"
 loc -16.7884 -22.4049 0.103313
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 8
 -0.0123177 -0.00325584 0.0059977
@@ -15570,7 +15569,7 @@ kids 0
 OBJECT poly
 name "Cube.473"
 loc -16.7892 -22.3756 -0.0003294
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 12
 -0.0127087 -0.00111389 0.0057621
@@ -15660,7 +15659,7 @@ kids 0
 OBJECT poly
 name "Cube.474"
 loc -16.7892 -22.3756 0.0716392
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 12
 -0.0127087 -0.00111389 0.0057621
@@ -15750,7 +15749,7 @@ kids 0
 OBJECT poly
 name "Cube.475"
 loc -16.7892 -22.3756 -0.0713213
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 12
 -0.0127087 -0.00111389 0.0057621
@@ -15840,7 +15839,7 @@ kids 0
 OBJECT poly
 name "Cube.477"
 loc -16.7986 -22.1964 0.0760335
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 24
 0.00506592 0.00112915 -0.182501
@@ -15998,7 +15997,7 @@ kids 0
 OBJECT poly
 name "Cube.482"
 loc -16.8138 -22.1845 3.8e-006
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 20
 0.000732422 0.184193 -0.390018
@@ -16104,7 +16103,7 @@ kids 0
 OBJECT poly
 name "Cube.483"
 loc -16.8056 -22.1649 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 66
 0.00235558 0.0107288 0.32969
@@ -16608,7 +16607,7 @@ kids 0
 OBJECT poly
 name "Cube.484"
 loc -16.8647 -21.8994 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 80
 -0.00477028 0.0127792 0.323376
@@ -17217,7 +17216,7 @@ kids 0
 OBJECT poly
 name "Cube.485"
 loc -16.8944 -21.8516 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 80
 -0.00477028 0.0127792 0.323376
@@ -17826,7 +17825,7 @@ kids 0
 OBJECT poly
 name "Cube.486"
 loc -16.922 -21.803 -4e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 80
 -0.00477028 0.0127792 0.323376
@@ -18435,7 +18434,7 @@ kids 0
 OBJECT poly
 name "Cylinder.019"
 loc -16.8668 -22.3116 -7e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 236
 0.113911 -0.043293 -0.121339
@@ -19985,7 +19984,7 @@ kids 0
 OBJECT poly
 name "Cylinder.033"
 loc -16.8131 -22.1903 0.382826
-texture "overhead_1.png"
+texture "overhead_1.jpg"
 crease 45.000000
 numvert 2212
 7.24792e-005 -0.00854874 -0.00258121
@@ -37969,7 +37968,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1153"
 loc -16.8193 -22.4053 -0.25124
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 180
 0.00789261 0 -0.0165744
@@ -39198,7 +39197,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1158"
 loc -16.8047 -22.4157 -0.213058
-texture "overhead_1.png"
+texture "overhead_1.jpg"
 crease 45.000000
 numvert 72
 -0.00734138 0 -0.0073415
@@ -39762,7 +39761,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1161"
 loc -16.782 -22.3136 -0.192951
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 28
 -0.0271378 0 -0.0058963
@@ -40139,7 +40138,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1183"
 loc -16.8079 -22.4167 0.287162
-texture "overhead_1.png"
+texture "overhead_1.jpg"
 crease 45.000000
 numvert 960
 0.00234604 0.113228 -0.125308
@@ -47227,7 +47226,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1185"
 loc -16.8668 -22.3116 -7e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 916
 0.124529 -0.0317669 -0.0573069
@@ -54686,7 +54685,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1193"
 loc -16.8668 -22.3116 -7e-007
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 112
 0.0927773 0.0706596 -0.0011257
@@ -55170,7 +55169,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1194"
 loc -16.8142 -22.3417 0
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 16
 0 0.0069828 -0.0907291
@@ -55322,7 +55321,7 @@ kids 0
 OBJECT poly
 name "Cylinder.1196"
 loc -16.8157 -22.1396 0.210676
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 720
 0.00338364 0 -0.0093174
@@ -133115,7 +133114,7 @@ kids 0
 OBJECT poly
 name "oh_2_buttons"
 loc -16.8084 -22.3806 -0.315223
-texture "overhead_2.png"
+texture "overhead_2.jpg"
 crease 45.000000
 numvert 128
 -0.00273895 -0.0134373 0.00397009
@@ -135380,7 +135379,7 @@ numvert 4
 0 -0.102463 0.0707693
 numsurf 1
 SURF 0x30
-mat 6
+mat 5
 refs 4
 3 0.167528 0.0186294
 1 0.167528 0

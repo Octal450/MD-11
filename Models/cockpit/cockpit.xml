@@ -46,37 +46,32 @@
 		<object-name>sidepanel.text</object-name>
 		<object-name>dashboard.knob.1</object-name>
 		<object-name>dashboard.knob.2</object-name>
+		<object-name>dashboard.004</object-name>
+		<object-name>dashboard.005</object-name>
+		<object-name>dashboard.007</object-name>
 		<emission>
-			<red>1.5</red>
-			<green>1.27</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/main-panel-norm</factor-prop>
 		</emission>
 	</animation>
 	
-		<effect>
-	<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>dashboard.text</object-name>
-		<object-name>sidepanel.text</object-name>
-		<object-name>dashboard.knob.1</object-name>
-		<object-name>dashboard.knob.2</object-name>
-	</effect>
-
-<model>
-	<name>Overhead 1</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/overhead_1.xml</path>
-			<offsets>
+	<model>
+		<name>Overhead 1</name>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/overhead_1.xml</path>
+		<offsets>
 			<pitch-deg>55</pitch-deg>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Compass</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/compass/compass.xml</path>
-				<offsets>
-	  <x-m>0.05</x-m>
+	<model>
+		<name>Compass</name>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/compass/compass.xml</path>
+		<offsets>
+			<x-m>0.05</x-m>
 		</offsets>
-</model>
+	</model>
 
  <animation>
    <type>pick</type>
@@ -85,10 +80,10 @@
    <action>
 	 <button>0</button>
 	 <repeatable>false</repeatable>
-	 <binding>
+	 <!--binding>
 	   <command>nasal</command>
 	   <script>MD11.COMPASS.toggle();</script>
-	 </binding>
+	 </binding-->
    </action>
  </animation>
  
@@ -96,7 +91,7 @@
 		<animation>
 		<type>translate</type>
 		<object-name>Compass</object-name>
-	<property>/sim/model/door-positions/compass/position-norm</property>
+	<property>sim/model/door-positions/compass/position-norm</property>
 		<factor>0.05</factor>
  <axis>
   <x>0</x>

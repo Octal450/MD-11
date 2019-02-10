@@ -524,9 +524,15 @@
 		</irs>
 		<lighting>
 			<beacon type="bool">0</beacon>
+			<fcp-integ-knb type="double">0</fcp-integ-knb>
+			<fcp-integ-norm type="double">0</fcp-integ-norm>
 			<landing-light type="double" n="0">0</landing-light>
 			<landing-light type="double" n="1">0</landing-light>
 			<logo-lights type="bool">0</logo-lights>
+			<main-panel-knb type="double">0</main-panel-knb>
+			<main-panel-norm type="double">0</main-panel-norm>
+			<overhead-panel-knb type="double">0</overhead-panel-knb>
+			<overhead-panel-norm type="double">0</overhead-panel-norm>
 			<nav-lights type="bool">0</nav-lights>
 			<strobe type="bool">0</strobe>
 		</lighting>

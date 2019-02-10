@@ -597,6 +597,9 @@ var ELEC = {
 			setprop("/systems/electrical/outputs/taxi-lights", 0);
 			setprop("/systems/electrical/outputs/transponder", 0);
 			setprop("/systems/electrical/outputs/turn-coordinator", 0);
+			setprop("/controls/lighting/fcp-integ-norm", 0);
+			setprop("/controls/lighting/main-panel-norm", 0);
+			setprop("/controls/lighting/overhead-panel-norm", 0);
 		} else {
 			setprop("/systems/electrical/outputs/adf", dc_volt_std);
 			setprop("/systems/electrical/outputs/audio-panel", dc_volt_std);
@@ -630,6 +633,9 @@ var ELEC = {
 			setprop("/systems/electrical/outputs/taxi-lights", dc_volt_std);
 			setprop("/systems/electrical/outputs/transponder", dc_volt_std);
 			setprop("/systems/electrical/outputs/turn-coordinator", dc_volt_std);
+			setprop("/controls/lighting/fcp-integ-norm", getprop("/controls/lighting/fcp-integ-knb"));
+			setprop("/controls/lighting/main-panel-norm", getprop("/controls/lighting/main-panel-knb"));
+			setprop("/controls/lighting/overhead-panel-norm", getprop("/controls/lighting/overhead-panel-knb"));
 		}
 		
 		# Lights

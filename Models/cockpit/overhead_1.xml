@@ -5,35 +5,15 @@
 <PropertyList>
 
 	<path>overhead_1.ac</path>
-
-	<effect>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>overhead.text</object-name>
-		<object-name>IR1Knb.light</object-name>
-		<object-name>IRAuxKnb.light</object-name>
-		<object-name>IR2Knb.light</object-name>
-		<object-name>CargoFwdTemp.light</object-name>
-		<object-name>CargoAftTemp.light</object-name>
-		<object-name>FlapLimit.light</object-name>
-		<object-name>ElevFeel.light</object-name>
-		<object-name>EmerPwrKnb.light</object-name>
-		<object-name>SmokeElecAirNorm.light</object-name>
-		<object-name>CockpitTemp.light</object-name>
-		<object-name>FwdTemp.light</object-name>
-		<object-name>MidTemp.light</object-name>
-		<object-name>AftTemp.light</object-name>
-		<object-name>CabinPressKnb.light</object-name>
-		<object-name>CabinPressNeedle</object-name>
-	</effect>
-
+	
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>overhead.text</object-name>
-		<object-name>ovhd_pnl_indicator</object-name>
-		<object-name>ovhd_flood_indicator</object-name>
-		<object-name>dashboard.text.indicator</object-name>
-		<object-name>dashboard.light.indicator</object-name>
+		<object-name>ovhdinteg.indicator</object-name>
+		<object-name>maininteg.indicator</object-name>
+		<object-name>ovhdflood.indicator</object-name>
+		<object-name>mainflood.indicator</object-name>
 		<object-name>IR1Knb.light</object-name>
 		<object-name>IRAuxKnb.light</object-name>
 		<object-name>IR2Knb.light</object-name>
@@ -49,11 +29,38 @@
 		<object-name>AftTemp.light</object-name>
 		<object-name>CabinPressKnb.light</object-name>
 		<object-name>CabinPressNeedle</object-name>
+		<object-name>Plane.022</object-name>
+		<object-name>CVRNeedle</object-name>
+		<object-name>ltank.1</object-name>
+		<object-name>ltank.2</object-name>
+		<object-name>ltank.3</object-name>
+		<object-name>ltank.4</object-name>
+		<object-name>ltank.5</object-name>
+		<object-name>ctank.1</object-name>
+		<object-name>ctank.2</object-name>
+		<object-name>ctank.3</object-name>
+		<object-name>ctank.4</object-name>
+		<object-name>ctank.5</object-name>
+		<object-name>rtank.1</object-name>
+		<object-name>rtank.2</object-name>
+		<object-name>rtank.3</object-name>
+		<object-name>rtank.4</object-name>
+		<object-name>rtank.5</object-name>
+		<object-name>atank.1</object-name>
+		<object-name>atank.2</object-name>
+		<object-name>atank.3</object-name>
+		<object-name>atank.4</object-name>
+		<object-name>atank.5</object-name>
+		<object-name>ttank.1</object-name>
+		<object-name>ttank.2</object-name>
+		<object-name>ttank.3</object-name>
+		<object-name>ttank.4</object-name>
+		<object-name>ttank.5</object-name>
 		<emission>
-			<red>1.5</red>
-			<green>1.27</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/overhead-panel-norm</factor-prop>
 		</emission>
 	</animation>
 
@@ -62,26 +69,26 @@
 		<type>material</type>
 		<object-name>ovhd_lcd</object-name>
 		<emission>
-			<red>1.39</red>
+			<red>1</red>
 			<green>0</green>
 			<blue>0</blue>
-			<factor-prop>controls/lighting/ovhd-panel-norm</factor-prop>
+			<factor-prop>controls/lighting/overhead-panel-norm</factor-prop>
 		</emission>
 	</animation>
 
 	<animation>
-		<name>OVHD light knob</name>
+		<name>OVHD Integ light knob</name>
 		<type>pick</type>
-		<object-name>ovhd_pnl_knob</object-name>
-		<object-name>ovhd_pnl_indicator</object-name>
+		<object-name>ovhdinteg.knob</object-name>
+		<object-name>ovhdinteg.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/ovhd-panel-norm</property>
-				<step>0.025</step>
+				<property>controls/lighting/overhead-panel-knb</property>
+				<step>0.05</step>
 				<max>1</max>
 			</binding>
 		</action>
@@ -91,26 +98,26 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/ovhd-panel-norm</property>
-				<step>-0.025</step>
+				<property>controls/lighting/overhead-panel-knb</property>
+				<step>-0.05</step>
 				<min>0</min>
 			</binding>
 		</action>
 	</animation>
 
 	<animation>
-		<name>OVHD light knob</name>
+		<name>Main Integ light knob</name>
 		<type>pick</type>
-		<object-name>dashboard.text.knob</object-name>
-		<object-name>dashboard.text.indicator</object-name>
+		<object-name>maininteg.knob</object-name>
+		<object-name>maininteg.indicator</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/pedestal-panel-norm</property>
-				<step>0.025</step>
+				<property>controls/lighting/main-panel-knb</property>
+				<step>0.05</step>
 				<max>1</max>
 			</binding>
 		</action>
@@ -120,52 +127,20 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/pedestal-panel-norm</property>
-				<step>-0.025</step>
+				<property>controls/lighting/main-panel-knb</property>
+				<step>-0.05</step>
 				<min>0</min>
 			</binding>
 		</action>
 	</animation>
 
-	<animation>
-		<name>OVHD light knob</name>
-		<type>pick</type>
-		<object-name>ovhd_flood_knob</object-name>
-		<object-name>ovhd_flood_indicator</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/oh-flood-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/oh-flood-norm</property>
-				<step>-0.025</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
+	<!--animation>
 		<name>OVHD panel light rotate</name>
 		<type>rotate</type>
-		<object-name>ovhd_flood_knob</object-name>
-		<object-name>ovhd_flood_indicator</object-name>
+		<object-name>ovhdflood.knob</object-name>
+		<object-name>ovhdflood.indicator</object-name>
 		<property>controls/lighting/oh-flood-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-329</dep></entry>
-		</interpolation>
+		<factor>-329</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -176,18 +151,35 @@
 			<y-m>-0.1138</y-m>
 			<z-m>-18.0476</z-m>
 		</center>
-	</animation>
+	</animation-->
+	
+	
+	<!--animation>
+		<name>Dashboard light rotate</name>
+		<type>rotate</type>
+		<object-name>mainflood.knob</object-name>
+		<object-name>mainflood.indicator</object-name>
+		<property>controls/lighting/dashboard-panel-norm</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.1138</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
+	</animation-->
 
 	<animation>
-		<name>OVHD panel light rotate</name>
+		<name>Main Integ light rotate</name>
 		<type>rotate</type>
-		<object-name>dashboard.text.knob</object-name>
-		<object-name>dashboard.text.indicator</object-name>
-		<property>controls/lighting/pedestal-panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-329</dep></entry>
-		</interpolation>
+		<object-name>maininteg.knob</object-name>
+		<object-name>maininteg.indicator</object-name>
+		<property>controls/lighting/main-panel-knb</property>
+		<factor>-329</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -201,15 +193,12 @@
 	</animation>
 
 	<animation>
-		<name>OVHD panel light rotate</name>
+		<name>OVHD Integ light rotate</name>
 		<type>rotate</type>
-		<object-name>ovhd_pnl_knob</object-name>
-		<object-name>ovhd_pnl_indicator</object-name>
-		<property>controls/lighting/ovhd-panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-329</dep></entry>
-		</interpolation>
+		<object-name>ovhdinteg.knob</object-name>
+		<object-name>ovhdinteg.indicator</object-name>
+		<property>controls/lighting/overhead-panel-knb</property>
+		<factor>-329</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -423,6 +412,32 @@
 		<object-name>YD_lwra.off</object-name>
 		<object-name>YD_lwrb.fail</object-name>
 		<object-name>YD_lwrb.off</object-name>
+		<!-- Fuel LEDs -->
+		<object-name>ltank.1</object-name>
+		<object-name>ltank.2</object-name>
+		<object-name>ltank.3</object-name>
+		<object-name>ltank.4</object-name>
+		<object-name>ltank.5</object-name>
+		<object-name>ctank.1</object-name>
+		<object-name>ctank.2</object-name>
+		<object-name>ctank.3</object-name>
+		<object-name>ctank.4</object-name>
+		<object-name>ctank.5</object-name>
+		<object-name>rtank.1</object-name>
+		<object-name>rtank.2</object-name>
+		<object-name>rtank.3</object-name>
+		<object-name>rtank.4</object-name>
+		<object-name>rtank.5</object-name>
+		<object-name>atank.1</object-name>
+		<object-name>atank.2</object-name>
+		<object-name>atank.3</object-name>
+		<object-name>atank.4</object-name>
+		<object-name>atank.5</object-name>
+		<object-name>ttank.1</object-name>
+		<object-name>ttank.2</object-name>
+		<object-name>ttank.3</object-name>
+		<object-name>ttank.4</object-name>
+		<object-name>ttank.5</object-name>
 		<condition>
 			<or>
 				<greater-than-equals>
@@ -5779,38 +5794,6 @@
 	</animation>
 	
 	<animation>
-		<type>select</type>
-		<object-name>ltank.1</object-name>
-		<object-name>ltank.2</object-name>
-		<object-name>ltank.3</object-name>
-		<object-name>ltank.4</object-name>
-		<object-name>ltank.5</object-name>
-		<object-name>ctank.1</object-name>
-		<object-name>ctank.2</object-name>
-		<object-name>ctank.3</object-name>
-		<object-name>ctank.4</object-name>
-		<object-name>ctank.5</object-name>
-		<object-name>rtank.1</object-name>
-		<object-name>rtank.2</object-name>
-		<object-name>rtank.3</object-name>
-		<object-name>rtank.4</object-name>
-		<object-name>rtank.5</object-name>
-		<object-name>atank.1</object-name>
-		<object-name>atank.2</object-name>
-		<object-name>atank.3</object-name>
-		<object-name>atank.4</object-name>
-		<object-name>atank.5</object-name>
-		<object-name>ttank.1</object-name>
-		<object-name>ttank.2</object-name>
-		<object-name>ttank.3</object-name>
-		<object-name>ttank.4</object-name>
-		<object-name>ttank.5</object-name>
-		<condition>
-				<property>systems/electrical/outputs/avionics</property>
-		</condition>
-	</animation>
-	
-	<animation>
 		<type>textranslate</type>
 		<object-name>ltank.1</object-name>
 		<property>consumables/fuel/tank/level-lbs</property>
@@ -7364,68 +7347,6 @@
 			</binding>
 		</action>
 	</animation>
-	
-	<animation>
-		<name>Dashboard light knob</name>
-		<type>pick</type>
-		<object-name>dashboard.light</object-name>
-		<object-name>dashboard.light.indicator</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/dashboard-panel-norm</property>
-				<step>0.025</step>
-				<max>1.0</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/dashboard-panel-norm</property>
-				<step>-0.025</step>
-				<min>0</min>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<name>Dashboard light rotate</name>
-		<type>rotate</type>
-		<object-name>dashboard.light</object-name>
-		<object-name>dashboard.light.indicator</object-name>
-		<property>controls/lighting/dashboard-panel-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1.0</ind><dep>-280</dep></entry>
-		</interpolation>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.1138</y-m>
-			<z-m>-18.0824</z-m>
-		</center>
-	</animation>
-	
-	<effect>
-		<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/engine</inherits-from>
-		<object-name>nosmoking.lever</object-name>
-		<object-name>L-Lnd.toggle</object-name>
-		<object-name>C-Lnd.toggle</object-name>
-		<object-name>R-Lnd.toggle</object-name>
-		<object-name>thunderstorm</object-name>
-		<object-name>seatbelts.lever</object-name>
-		<object-name>emer_light_switch</object-name>
-	</effect>
 	
 	<animation>
 		<type>pick</type>
