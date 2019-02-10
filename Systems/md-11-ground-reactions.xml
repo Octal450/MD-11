@@ -13,8 +13,8 @@
 		<static_friction> 0.4 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 18435.5 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 18978.5 </damping_coeff>
+		<spring_coeff unit="LBS/FT"> 53871.1 </spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC"> 39957.3 </damping_coeff>
 		<max_steer unit="DEG"> 70 </max_steer>
 		<brake_group> NONE </brake_group>
 		<retractable> 1 </retractable>
@@ -29,8 +29,8 @@
 		<static_friction> 0.4 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
+		<spring_coeff unit="LBS/FT"> 137570.4 </spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC"> 53914.5 </damping_coeff>
 		<damping_coeff_rebound unit="LBS/FT/SEC"> 15 </damping_coeff_rebound>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> LEFT </brake_group>
@@ -46,8 +46,8 @@
 		<static_friction> 0.4 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 88785 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 34957 </damping_coeff>
+		<spring_coeff unit="LBS/FT"> 137570.4 </spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC"> 53914.5 </damping_coeff>
 		<damping_coeff_rebound unit="LBS/FT/SEC"> 15 </damping_coeff_rebound>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> RIGHT </brake_group>
@@ -63,8 +63,8 @@
 		<static_friction> 0.4 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
-		<spring_coeff unit="LBS/FT"> 57785 </spring_coeff>
-		<damping_coeff unit="LBS/FT/SEC"> 19957 </damping_coeff>
+		<spring_coeff unit="LBS/FT"> 68785.2 </spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC"> 39957.3 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> CENTER </brake_group>
 		<retractable> 1 </retractable>
