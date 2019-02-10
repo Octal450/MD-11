@@ -194,7 +194,11 @@ var light_manager = {
 			var sh = math.sin(heading);
 			var ch = math.cos(heading);
 			
-			if (land == 1) {
+			ac1 = getprop("/systems/electrical/bus/ac1") != 0;
+			ac2 = getprop("/systems/electrical/bus/ac1") != 0;
+			ac3 = getprop("/systems/electrical/bus/ac1") != 0;
+			
+			if (land == 1 and (ac1 or ac2 or ac3)) {
 				me.light1_ypos =  0.0;
 				me.light1_setSize(16);
 				me.light1_on();
@@ -202,13 +206,13 @@ var light_manager = {
 				me.light1_off();
 			}
 			
-			if (taxi >= 0.5) {
+			if (taxi >= 0.5 and (ac1 or ac2 or ac3)) {
 				me.light2_on();
 			} else {
 				me.light2_off();
 			}
 			
-			if (nav == 1) {
+			if (nav == 1 and (ac1 or ac2 or ac3)) {
 				me.light3_on();
 				me.light4_on();
 				me.light5_on();
