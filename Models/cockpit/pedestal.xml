@@ -246,7 +246,7 @@
 		<object-name>throttle.1</object-name>
 		<object-name>reverse.1</object-name>
 		<object-name>throttle.1.circle</object-name>
-		<property>controls/engines/engine[0]/throttle-pos</property>
+		<property>fdm/jsbsim/fcc/throttle-lever[0]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -263,23 +263,10 @@
 		</center>
 	</animation>
 	<animation>
-		<name>Engine 1 reverser lever pick</name>
-		<type>pick</type>
-		<object-name>reverse.1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[0]/reverser</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
 		<name>Engine 1 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.1</object-name>
-		<property>controls/engines/engine[0]/reverser</property>
+		<property>fdm/jsbsim/fcc/reverse-lever[0]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>10</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -299,7 +286,7 @@
 		<name>Engine 1 reverser lever 2</name>
 		<type>rotate</type>
 		<object-name>reverse.1</object-name>
-		<property>controls/engines/engine[0]/throttle-rev</property>
+		<property>fdm/jsbsim/fcc/reverse-thr-lever[0]</property>
 		<interpolation>
 			<entry><ind>0.333</ind><dep>75.0</dep></entry>
 			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
@@ -349,7 +336,7 @@
 		<object-name>throttle.2</object-name>
 		<object-name>reverse.2</object-name>
 		<object-name>throttle.2.circle</object-name>
-		<property>controls/engines/engine[1]/throttle-pos</property>
+		<property>fdm/jsbsim/fcc/throttle-lever[1]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -366,23 +353,10 @@
 		</center>
 	</animation>
 	<animation>
-		<name>Engine 2 reverser lever pick</name>
-		<type>pick</type>
-		<object-name>reverse.2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[1]/reverser</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
 		<name>Engine 2 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.2</object-name>
-		<property>controls/engines/engine[1]/reverser</property>
+		<property>fdm/jsbsim/fcc/reverse-lever[1]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>10</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -402,7 +376,7 @@
 		<name>Engine 2 reverser lever 2</name>
 		<type>rotate</type>
 		<object-name>reverse.2</object-name>
-		<property>controls/engines/engine[1]/throttle-rev</property>
+		<property>fdm/jsbsim/fcc/reverse-thr-lever[1]</property>
 		<interpolation>
 			<entry><ind>0.333</ind><dep>75.0</dep></entry>
 			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
@@ -452,7 +426,7 @@
 		<object-name>throttle.3</object-name>
 		<object-name>throttle.3.circle</object-name>
 		<object-name>reverse.3</object-name>
-		<property>controls/engines/engine[2]/throttle-pos</property>
+		<property>fdm/jsbsim/fcc/throttle-lever[2]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -469,23 +443,10 @@
 		</center>
 	</animation>
 	<animation>
-		<name>Engine 3 reverser lever pick</name>
-		<type>pick</type>
-		<object-name>reverse.3</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[2]/reverser</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
 		<name>Engine 3 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.3</object-name>
-		<property>controls/engines/engine[2]/reverser</property>
+		<property>fdm/jsbsim/fcc/reverse-lever[2]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>10</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -505,7 +466,7 @@
 		<name>Engine 3 reverser lever 2</name>
 		<type>rotate</type>
 		<object-name>reverse.3</object-name>
-		<property>controls/engines/engine[2]/throttle-rev</property>
+		<property>fdm/jsbsim/fcc/reverse-thr-lever[2]</property>
 		<interpolation>
 			<entry><ind>0.333</ind><dep>75.0</dep></entry>
 			<entry><ind>0.000</ind><dep> 0.0</dep></entry>
@@ -862,7 +823,7 @@
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<object-name>flaplever.3</object-name>
-		<property>controls/flight/flap-lever</property>
+		<property>fdm/jsbsim/fcc/flap-lever</property>
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -901,11 +862,11 @@
 		</axis>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>BrkLever</object-name>
 		<object-name>BrkLever2</object-name>
-		<property>controls/gear/parkbrakelever/position-norm</property>
+		<property>fdm/jsbsim/fcs/brake-lever</property>
 		<factor>71</factor>
 		<center>
 			<x-m>-27.1248</x-m>
@@ -926,8 +887,8 @@
 		<action>
 			<button>0</button>
 			<binding>
-			<command>property-toggle</command>
-			<property>controls/gear/brake-parking</property>
+				<command>property-toggle</command>
+				<property>controls/gear/brake-parking</property>
 			</binding>
 		</action>
 	</animation>
@@ -983,7 +944,7 @@
 		<object-name>spdbrklever</object-name>
 		<object-name>spdbrklever2</object-name>
 		<object-name>spdbrklever.circle</object-name>
-		<property>fdm/jsbsim/spoilers/main-cmd</property>
+		<property>fdm/jsbsim/spoilers/main-lever</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-10</dep></entry>
 			<entry><ind>0.2</ind><dep> 10</dep></entry>
