@@ -733,7 +733,7 @@
 		<name>Engine 1 cutoff switch</name>
 		<type>rotate</type>
 		<object-name>Eng1Cutoff</object-name>
-		<property>controls/engines/engine[0]/cutoff-switch</property>
+		<property>fdm/jsbsim/fcc/engine-cutoff[0]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-30</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -767,7 +767,7 @@
 		<name>Engine 2 cutoff switch</name>
 		<type>rotate</type>
 		<object-name>Eng2Cutoff</object-name>
-		<property>controls/engines/engine[1]/cutoff-switch</property>
+		<property>fdm/jsbsim/fcc/engine-cutoff[1]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-30</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -801,7 +801,7 @@
 		<name>Engine 3 cutoff switch</name>
 		<type>rotate</type>
 		<object-name>Eng3Cutoff</object-name>
-		<property>controls/engines/engine[2]/cutoff-switch</property>
+		<property>fdm/jsbsim/fcc/engine-cutoff[2]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-30</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -916,33 +916,22 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
-		<type>select</type>
+		<type>translate</type>
 		<object-name>spdbrklever</object-name>
-		<condition>
-			<equals>
-				<property>controls/flight/speedbrake-arm</property>
-				<value>false</value>
-			</equals>
-		</condition>
+		<property>fdm/jsbsim/spoilers/lever-arm</property>
+		<factor>0.01624</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
-		<type>select</type>
-		<object-name>spdbrklever2</object-name>
-		<condition>
-			<equals>
-				<property>controls/flight/speedbrake-arm</property>
-				<value>true</value>
-			</equals>
-		</condition>
-	</animation>
-  
-	  <animation>
 		<type>rotate</type>
 		<object-name>spdbrklever</object-name>
-		<object-name>spdbrklever2</object-name>
 		<object-name>spdbrklever.circle</object-name>
 		<property>fdm/jsbsim/spoilers/main-lever</property>
 		<interpolation>
@@ -967,7 +956,6 @@
 	<animation>
 		<type>pick</type>
 		<object-name>spdbrklever</object-name>
-		<object-name>spdbrklever2</object-name>
 		<action>
 			<button>0</button>
 			<binding>
@@ -1060,43 +1048,107 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>PitchTrim</object-name>
+		<object-name>PitchTrim.dn</object-name>
 		<action>
 			<repeatable>true</repeatable>
 			<button>0</button>
 			<binding>
-				<command>nasal</command>
-				<script>controls.elevatorTrim(5);</script>
+				<command>property-adjust</command>
+				<property>/controls/flight/elevator-trim</property>
+				<step>0.001</step>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/elevator-trim-lever</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/flight/elevator-trim-lever</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<repeatable>true</repeatable>
+			<button>1</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>/controls/flight/elevator-trim</property>
+				<step>-0.001</step>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/elevator-trim-lever</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/flight/elevator-trim-lever</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 
 	<animation>
 		<type>pick</type>
-		<object-name>PitchTrim</object-name>
+		<object-name>PitchTrim.up</object-name>
+		<action>
+			<repeatable>true</repeatable>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>/controls/flight/elevator-trim</property>
+				<step>-0.001</step>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/elevator-trim-lever</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/flight/elevator-trim-lever</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
 		<action>
 			<repeatable>true</repeatable>
 			<button>1</button>
 			<binding>
-				<command>nasal</command>
-				<script>controls.elevatorTrim(-5);</script>
+				<command>property-adjust</command>
+				<property>/controls/flight/elevator-trim</property>
+				<step>0.001</step>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/elevator-trim-lever</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/flight/elevator-trim-lever</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>PitchTrim</object-name>
 		<object-name>PitchTrim.circle</object-name>
-		<property>controls/flight/elevator-trim</property>
+		<property>fdm/jsbsim/fcc/elevator-trim-lever</property>
 		<interpolation>
 			<entry>
 				<ind>-1.0</ind>
 				<dep>-28</dep>
-			</entry>
-			<entry>
-				<ind>0.0</ind>
-				<dep>-7</dep>
 			</entry>
 			<entry>
 				<ind>1.0</ind>

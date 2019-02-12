@@ -481,6 +481,7 @@
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">-0.25</elevator-trim>
+			<elevator-trim-lever type="int">0</elevator-trim-lever>
 			<flaps-output type="double">0</flaps-output>
 			<slats type="double">0</slats>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
