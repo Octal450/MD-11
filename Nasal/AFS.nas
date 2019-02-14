@@ -47,6 +47,9 @@ var landModeActive = 0;
 var selfCheckTime = 0;
 var selfCheckStatus = 0;
 var time = 0;
+var HDGPredError = 0;
+var TargetIAS = 0;
+var IASSelError = 0;
 setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
 setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
 setprop("/it-autoflight/internal/vert-speed-fpm", 0);
@@ -711,37 +714,11 @@ setlistener("/autopilot/route-manager/current-wp", func {
 var ap_various = func {
 	trueSpeedKts = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
 	if (trueSpeedKts > 420) {
-		if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 10) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 5);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 15) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 10);
-		} else {
-			setprop("/it-autoflight/internal/bank-limit-auto", 15);
-		}
+		setprop("/it-autoflight/internal/bank-limit-auto", 15);
 	} else if (trueSpeedKts > 340) {
-		if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 10) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 5);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 15) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 10);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 20) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 15);
-		} else {
-			setprop("/it-autoflight/internal/bank-limit-auto", 20);
-		}
+		setprop("/it-autoflight/internal/bank-limit-auto", 20);
 	} else {
-		if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 10) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 5);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 15) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 10);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 20) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 15);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 25) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 20);
-		} else if (getprop("/it-autoflight/settings/auto-bank-max-deg") < 30) {
-			setprop("/it-autoflight/internal/bank-limit-auto", 25);
-		} else {
-			setprop("/it-autoflight/internal/bank-limit-auto", 30);
-		}
+		setprop("/it-autoflight/internal/bank-limit-auto", 25);
 	}
 	
 	bank_limit_sw = getprop("/it-autoflight/input/bank-limit-sw");
@@ -757,8 +734,6 @@ var ap_various = func {
 		setprop("/it-autoflight/internal/bank-limit", 20);
 	} else if (bank_limit_sw == 5) {
 		setprop("/it-autoflight/internal/bank-limit", 25);
-	} else if (bank_limit_sw == 6) {
-		setprop("/it-autoflight/internal/bank-limit", 30);
 	}
 	
 	if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1) {
@@ -980,28 +955,32 @@ var spdPull = func {
 
 # Speed Capture
 var spdcapt = func {
-	if (abs(getprop("/it-autoflight/internal/speed-error-kts")) <= 2.5) {
-		spdcaptt.stop();
-		setprop("/it-autoflight/output/spd-captured", 1);
-	}
 	if (getprop("/it-autoflight/input/kts-mach") != getprop("/it-autoflight/custom/kts-mach")) {
 		setprop("/it-autoflight/input/kts-mach", getprop("/it-autoflight/custom/kts-mach"));
 	}
 	if (getprop("/it-autoflight/input/kts-mach") == 0) {
 		setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
+		TargetIAS = getprop("/it-autoflight/input/spd-kts");
 	} else if (getprop("/it-autoflight/input/kts-mach") == 1) {
 		setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
+		TargetIAS = getprop("/it-autoflight/input/spd-mach") * (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") / getprop("/instrumentation/airspeed-indicator/indicated-mach"));
+	}
+	IASSelError = TargetIAS - getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt");
+	if (abs(IASSelError) <= 2.5) {
+		spdcaptt.stop();
+		setprop("/it-autoflight/output/spd-captured", 1);
 	}
 }
 
 # Heading Capture
 var hdgcapt = func {
 	if (getprop("/it-autoflight/output/lat") == 0) {
-		if (abs(getprop("/it-autoflight/internal/heading-predicted-error-deg")) <= 2.5) {
+		setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
+		HDGPredError = getprop("/it-autoflight/input/hdg") - getprop("/it-autoflight/internal/heading-predicted");
+		if (abs(HDGPredError) <= 2.5) {
 			hdgcaptt.stop();
 			setprop("/it-autoflight/output/hdg-captured", 1);
 		}
-		setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
 	} else {
 		hdgcaptt.stop();
 		setprop("/it-autoflight/output/hdg-captured", 1);
@@ -1079,22 +1058,19 @@ var thrustmode = func {
 
 # ILS and Autoland
 # Retard
-setlistener("/controls/flight/flaps", func {
-	var flapc = getprop("/controls/flight/flaps");
-	var flapl = getprop("/it-autoflight/settings/land-flap");
-	if (flapc >= flapl) {
+setlistener("/it-autoflight/internal/retard-flap", func {
+	if (getprop("/fdm/jsbsim/fcs/flap-pos-deg") >= 31.6) {
 		retardt.start();
 	} else {
 		retardt.stop();
 	}
-});
+}, 0, 0);
 
 var retardchk = func {
-	if (getprop("/it-autoflight/settings/retard-enable") == 1) {
+	if (getprop("/fdm/jsbsim/fcs/flap-pos-deg") >= 31.6) {
 		var altpos = getprop("/position/gear-agl-ft");
-		var retardalt = getprop("/it-autoflight/settings/retard-ft");
 		var aton = getprop("/it-autoflight/output/athr");
-		if (altpos < retardalt) {
+		if (altpos < 50) {
 			if (aton == 1) {
 				thrustmodet.stop();
 				setprop("/it-autoflight/output/thr-mode", 1);

@@ -631,10 +631,6 @@
 		</input>
 		<settings>
 			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
-			<land-enable>1</land-enable> <!-- Enable/Disable Autoland -->
-			<land-flap>0.9</land-flap> <!-- Minimum Flap used for Landing -->
-			<retard-ft>50</retard-ft> <!-- Enable Thrust Retard -->
-			<retard-enable>1</retard-enable> <!-- AGL to Thrust Retard -->
 			<togaspd>163</togaspd> <!-- V2 + 10kts -->
 		</settings>
 		<output>

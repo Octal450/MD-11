@@ -762,32 +762,6 @@
 	</filter>
 	
 	<filter>
-		<name>HEADING PREDICTED ERROR DEG</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/output/lat</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/input/hdg</property>
-			<offset>
-				<property>/it-autoflight/internal/heading-predicted</property>
-				<scale>-1.0</scale>
-			</offset>
-		</input>
-		<input>0</input>
-		<output>/it-autoflight/internal/heading-predicted-error-deg</output>
-		<period>
-			<min>-180</min>
-			<max>180</max>
-		</period>
-	</filter>
-	
-	<filter>
 		<name>ALTITUDE PREDICTOR</name>
 		<debug>false</debug>
 		<type>gain</type>
@@ -821,6 +795,17 @@
 		</input>
 		<output>/it-autoflight/internal/fpa</output>
 	</filter>
+	
+	<logic>
+		<name>ATS Retard Enable</name>
+		<input>
+			<greater-than-equals>
+				<property>/fdm/jsbsim/fcs/flap-pos-deg</property>
+				<value>31.6</value>
+			</greater-than-equals>
+		</input>
+		<output>/it-autoflight/internal/retard-flap</output>
+	</logic>
 	
 	<!-- Flight Director -->
 	
