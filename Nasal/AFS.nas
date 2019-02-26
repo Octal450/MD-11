@@ -860,25 +860,24 @@ setlistener("/it-autoflight/input/kts-mach", func {
 # Takeoff Modes
 # TOGA
 setlistener("/it-autoflight/input/toga", func {
-	if (getprop("/it-autoflight/input/toga") == 1) {
-		setprop("/it-autoflight/input/vert", 7);
-		vertical();
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/appr-armed", 0);
-		setprop("/it-autoflight/input/toga", 0);
-		togasel();
+	if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/it-autoflight/output/vert") == 2 or getprop("/it-autoflight/output/vert") == 6)) {
+		if (getprop("/it-autoflight/input/toga") == 1) {
+			setprop("/it-autoflight/input/vert", 7);
+			vertical();
+			setprop("/it-autoflight/output/loc-armed", 0);
+			setprop("/it-autoflight/output/appr-armed", 0);
+			setprop("/it-autoflight/input/toga", 0);
+			togasel();
+		}
 	}
 });
 
 var togasel = func {
-	var vertMode = getprop("/it-autoflight/output/vert");
-	if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (vertMode == 2 or vertMode == 6)) {
-		var iasnow = math.round(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
-		setprop("/it-autoflight/input/spd-kts", iasnow);
-		setprop("/it-autoflight/input/kts-mach", 0);
-		setprop("/it-autoflight/mode/vert", "G/A CLB");
-		setprop("/it-autoflight/input/lat", 3);
-	}
+	var iasnow = math.round(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
+	setprop("/it-autoflight/input/spd-kts", iasnow);
+	setprop("/it-autoflight/input/kts-mach", 0);
+	setprop("/it-autoflight/mode/vert", "G/A CLB");
+	setprop("/it-autoflight/input/lat", 3);
 }
 
 var takeoffReset = func {

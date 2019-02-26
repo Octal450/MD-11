@@ -96,7 +96,7 @@ var apalt = props.globals.getNode("/it-autoflight/internal/alt", 1);
 var slat = props.globals.getNode("/fdm/jsbsim/fcc/slat/cmd-deg", 1);
 var flap = props.globals.getNode("/fdm/jsbsim/fcc/flap/input-deg", 1);
 var flapmaxdeg = props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg", 1);
-var skid = props.globals.getNode("/instrumentation/slip-skid-ball/indicated-slip-skid", 1);
+var slip_skid = props.globals.getNode("/instrumentation/pfd/slip-skid", 1);
 var fdroll = props.globals.getNode("/it-autoflight/fd/roll-bar", 1);
 var fdpitch = props.globals.getNode("/it-autoflight/fd/pitch-bar", 1);
 var qnhinhg = props.globals.getNode("/modes/altimeter/inhg", 1);
@@ -653,7 +653,7 @@ var canvas_PFD_base = {
 			me["FD_pitch"].setTranslation(0, -(fdpitchx) * 3.8);
 		}
 		
-		me["AI_slipskid"].setTranslation(math.clamp(skid.getValue(), -7, 7) * -15, 0);
+		me["AI_slipskid"].setTranslation(math.clamp(slip_skid.getValue(), -15, 15) * 7, 0);
 		me["AI_bank"].setRotation(-rollx * D2R);
 		
 		if (abs(rollx) >= 30.5) {

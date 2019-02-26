@@ -226,5 +226,25 @@
 		</input>
 		<output>/instrumentation/pfd/vs-needle-dn</output>
 	</filter>
+	
+	<filter>
+		<name>Slip/Skid Indicator</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<property>/fdm/jsbsim/position/wow</property>
+			</condition>
+			<expression>
+				<product>
+					<property>/fdm/jsbsim/accelerations/Ny</property>
+					<value>-25</value>
+				</product>
+			</expression>
+		</input>
+		<input>/fdm/jsbsim/aero/beta-deg</input>
+		<output>/instrumentation/pfd/slip-skid</output>
+		<filter-time>0.16</filter-time>
+	</filter>
 
 </PropertyList>
