@@ -618,19 +618,9 @@
 					<value>0</value>
 				</binding>
 			</mod-up>
-			<binding> <!-- MUST be before turning AP off -->
+			<binding>
 				<command>nasal</command>
-				<script>afs.killAPWarn();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap1</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap2</property>
-				<value>0</value>
+				<script>libraries.APPanel.APDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -725,19 +715,9 @@
 					<value>0</value>
 				</binding>
 			</mod-up>
-			<binding> <!-- MUST be before turning AP off -->
+			<binding>
 				<command>nasal</command>
-				<script>afs.killAPWarn();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap1</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/ap2</property>
-				<value>0</value>
+				<script>libraries.APPanel.APDisc();</script>
 			</binding>
 		</action>
 	</animation>

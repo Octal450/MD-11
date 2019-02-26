@@ -64,7 +64,7 @@ var APinit = func(t) {
 		setprop("/it-autoflight/custom/kts-sel", 250);
 		setprop("/it-autoflight/custom/mach-sel", 0.5);
 		setprop("/it-autoflight/custom/hdg-sel", 0);
-		setprop("/it-autoflight/custom/vs-fpa", "0");
+		setprop("/it-autoflight/custom/vs-fpa", 0);
 	}
 	setprop("/it-autoflight/input/kts-mach", 0);
 	setprop("/it-autoflight/input/ap1", 0);
@@ -871,7 +871,8 @@ setlistener("/it-autoflight/input/toga", func {
 });
 
 var togasel = func {
-	if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
+	var vertMode = getprop("/it-autoflight/output/vert");
+	if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (vertMode == 2 or vertMode == 6)) {
 		var iasnow = math.round(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
 		setprop("/it-autoflight/input/spd-kts", iasnow);
 		setprop("/it-autoflight/input/kts-mach", 0);

@@ -502,14 +502,9 @@
 					<value>0</value>
 				</binding>
 			</mod-up>
-			<binding> <!-- MUST be before turning ATS off -->
-				<command>nasal</command>
-				<script>afs.killATSWarn();</script>
-			</binding>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/athr</property>
-				<value>0</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.ATDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -546,9 +541,8 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/toga</property>
-				<value>1</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.GAButton();</script>
 			</binding>
 		</action>
 	</animation>
@@ -587,14 +581,9 @@
 					<value>0</value>
 				</binding>
 			</mod-up>
-			<binding> <!-- MUST be before turning ATS off -->
-				<command>nasal</command>
-				<script>afs.killATSWarn();</script>
-			</binding>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/athr</property>
-				<value>0</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.ATDisc();</script>
 			</binding>
 		</action>
 	</animation>

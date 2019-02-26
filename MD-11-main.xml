@@ -749,10 +749,7 @@
 					<script>
 						setprop("/controls/switches/ats-lever1", 1);
 						setprop("/controls/switches/ats-lever3", 1);
-						afs.killATSWarn();
-						if (getprop("/it-autoflight/output/athr") == 1) {
-							setprop("/it-autoflight/input/athr", 0);
-						}
+						libraries.APPanel.ATDisc();
 					</script>
 				</binding>
 				<mod-up>
@@ -998,13 +995,7 @@
 					<script>
 						setprop("/controls/switches/ap-yoke-button1", 1);
 						setprop("/controls/switches/ap-yoke-button2", 1);
-						afs.killAPWarn();
-						if (getprop("/it-autoflight/output/ap1") == 1) {
-							setprop("/it-autoflight/input/ap1", 0);
-						}
-						if (getprop("/it-autoflight/output/ap2") == 1) {
-							setprop("/it-autoflight/input/ap2", 0);
-						}
+						libraries.APPanel.APDisc();
 					</script>
 				</binding>
 				<mod-up>

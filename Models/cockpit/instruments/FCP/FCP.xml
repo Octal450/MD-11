@@ -156,7 +156,7 @@
 		<object-name>IAS.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<not>
 					<property>it-autoflight/custom/kts-mach</property>
 				</not>
@@ -213,7 +213,7 @@
 		<object-name>MACH.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<property>it-autoflight/custom/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -266,7 +266,7 @@
 		<object-name>hdg.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<not>
 					<property>it-autoflight/input/trk</property>
 				</not>
@@ -279,7 +279,7 @@
 		<object-name>trk.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<property>it-autoflight/input/trk</property>
 			</and>
 		</condition>
@@ -292,7 +292,7 @@
 		<object-name>HDG.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<property>it-autoflight/custom/show-hdg</property>
 			</and>
 		</condition>
@@ -303,7 +303,7 @@
 		<object-name>HDG_dash</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<not><property>it-autoflight/custom/show-hdg</property></not>
 			</and>
 		</condition>
@@ -355,7 +355,7 @@
 		<object-name>vs.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/custom/vs-fpa</property>
 					<value>0</value>
@@ -372,7 +372,7 @@
 		<object-name>VS.led4</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -386,7 +386,7 @@
 		<object-name>VS_dash</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<not-equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -404,7 +404,7 @@
 		<object-name>VS.ledminus</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -474,7 +474,7 @@
 		<object-name>fpa.ind</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/custom/vs-fpa</property>
 					<value>1</value>
@@ -489,7 +489,7 @@
 		<object-name>FPA.led2</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/efis</property>
+				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>5</value>
@@ -554,7 +554,7 @@
 		<object-name>ALT.led4</object-name>
 		<object-name>ALT.led5</object-name>
 		<condition>
-			<property>systems/electrical/outputs/efis</property>
+			<property>systems/electrical/outputs/fcp-power</property>
 		</condition>
 	</animation>
 
@@ -710,8 +710,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>it-autoflight/custom/kts-mach</property>
+				<command>nasal</command>
+				<script>libraries.APPanel.IASMach();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -727,8 +727,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>it-autoflight/input/trk</property>
+				<command>nasal</command>
+				<script>libraries.APPanel.HDGTRK();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -745,22 +745,11 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>
-				if (getprop("/it-autoflight/output/vert") == 1) {
-					setprop("/it-autoflight/custom/vs-fpa", "1");
-					setprop("/it-autoflight/input/vert", 5);
-				} else if (getprop("/it-autoflight/output/vert") == 5) {
-					setprop("/it-autoflight/custom/vs-fpa", "0");
-					setprop("/it-autoflight/input/vert", 1);
-				} else {
-					if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
-						setprop("/it-autoflight/custom/vs-fpa", "1");
-					} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
-						setprop("/it-autoflight/custom/vs-fpa", "0");
-					}
-				}
-				setprop("/sim/sounde/btn1", 1);
-				</script>
+				<script>libraries.APPanel.VSFPA();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/btn1", 1);</script>
 			</binding>
 		</action>
 	</animation>
@@ -774,7 +763,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>afs.AUTOFLIGHT();</script>
+				<script>libraries.APPanel.AUTOFLIGHT();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -825,62 +814,11 @@
 		<type>pick</type>
 		<object-name>Pitch_Wheel.knob</object-name>
 		<action>
-			<button>0</button>
-			<button>1</button>
-			<repeatable>false</repeatable>
+			<button>3</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>
-					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
-						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
-							setprop("/it-autoflight/input/vert", 1);
-						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
-							setprop("/it-autoflight/input/vert", 5);
-						}
-					}
-				</script>
-			</binding>
-		</action>
-		<action>
-			<button>3</button> <!--  scroll down -->
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<equals>
-						<property>it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/vs</property>
-				<step>-100</step>
-				<min>-6000</min>
-				<max>6000</max>
-			</binding>
-			<binding>
-				<condition>
-					<equals>
-						<property>it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/fpa</property>
-				<step>-0.1</step>
-				<min>-9.9</min>
-				<max>9.9</max>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>
-					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
-						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
-							setprop("/it-autoflight/input/vert", 1);
-						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
-							setprop("/it-autoflight/input/vert", 5);
-						}
-					}
-				</script>
+				<script>libraries.APPanel.VSAdjust(-1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -892,45 +830,11 @@
 			</binding>
 		</action>
 		<action>
-			<button>4</button> <!--  scroll up -->
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<equals>
-						<property>it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/vs</property>
-				<step>100</step>
-				<min>-6000</min>
-				<max>6000</max>
-			</binding>
-			<binding>
-				<condition>
-					<equals>
-						<property>it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/fpa</property>
-				<step>0.1</step>
-				<min>-9.9</min>
-				<max>9.9</max>
-			</binding>
+			<button>4</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>
-					if ((getprop("/it-autoflight/output/vert") != 1) and (getprop("/it-autoflight/output/vert") != 5)) {
-						if (getprop("/it-autoflight/custom/vs-fpa") == 0) {
-							setprop("/it-autoflight/input/vert", 1);
-						} else if (getprop("/it-autoflight/custom/vs-fpa") == 1) {
-							setprop("/it-autoflight/input/vert", 5);
-						}
-					}
-				</script>
+				<script>libraries.APPanel.VSAdjust(1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -948,7 +852,7 @@
 		<object-name>SpdKnob</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/spd-knob</property>
@@ -962,18 +866,13 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>nasal</command>
-				<script>
-				afs.spdPush();
-				</script>
+				<script>libraries.APPanel.SPDPush();</script>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/spd-knob</property>
@@ -987,45 +886,16 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>nasal</command>
-				<script>
-				afs.spdPull();
-				</script>
+				<script>libraries.APPanel.SPDPull();</script>
 			</binding>
 		</action>
 		<action>
-			<button>3</button> <!--  scroll up -->
+			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<and>
-					<property>systems/electrical/outputs/efis</property>
-					<not>
-						<property>it-autoflight/custom/kts-mach</property>
-					</not>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/kts-sel</property>
-				<step>1</step>
-				<min>100</min>
-				<max>360</max>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/custom/kts-mach</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/mach-sel</property>
-				<step>0.001</step>
-				<min>0.50</min>
-				<max>0.95</max>
+				<command>nasal</command>
+				<script>libraries.APPanel.SPDAdjust(1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1037,35 +907,11 @@
 			</binding>
 		</action>
 		<action>
-			<button>4</button> <!--  scroll down -->
+			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<and>
-					<property>systems/electrical/outputs/efis</property>
-					<not>
-						<property>it-autoflight/custom/kts-mach</property>
-					</not>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/kts-sel</property>
-				<step>-1</step>
-				<min>100</min>
-				<max>360</max>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-					<property>systems/electrical/outputs/efis</property>
-					<property>it-autoflight/custom/kts-mach</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/mach-sel</property>
-				<step>-0.001</step>
-				<min>0.50</min>
-				<max>0.95</max>
+				<command>nasal</command>
+				<script>libraries.APPanel.SPDAdjust(-1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1083,7 +929,7 @@
 		<object-name>HDG.knob</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/hdg-knob</property>
@@ -1097,17 +943,13 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/input/lat</property>
-				<value>3</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.HDGPush();</script>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/hdg-knob</property>
@@ -1121,35 +963,16 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/input/lat</property>
-				<value>0</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.HDGPull();</script>
 			</binding>
 		</action>
 		<action>
-			<button>3</button> <!--  scroll up -->
+			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/custom/show-hdg</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-sel</property>
-				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>true</wrap>
+				<command>nasal</command>
+				<script>libraries.APPanel.HDGAdjust(1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1161,26 +984,11 @@
 			</binding>
 		</action>
 		<action>
-			<button>4</button> <!--  scroll down -->
+			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/custom/show-hdg</property>
-				<value>1</value>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-sel</property>
-				<step>-1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>true</wrap>
+				<command>nasal</command>
+				<script>libraries.APPanel.HDGAdjust(-1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1199,7 +1007,7 @@
 		<object-name>BLimit.knob.indicator</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
@@ -1211,7 +1019,7 @@
 		</action>
 		<action>
 			<button>1</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
@@ -1246,7 +1054,7 @@
 		<object-name>ALT.knob</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/alt-knob</property>
@@ -1260,17 +1068,13 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/input/vert</property>
-				<value>0</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.ALTPush();</script>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/alt-knob</property>
@@ -1284,30 +1088,16 @@
 				</binding>
 			</mod-up>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
-				<command>property-assign</command>
-				<property>it-autoflight/input/vert</property>
-				<value>4</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.ALTPull();</script>
 			</binding>
 		</action>
 		<action>
-			<button>3</button> <!--  scroll up -->
+			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>nasal</command>
-				<script>
-				var altsel = getprop("/it-autoflight/input/alt");
-				if (altsel &lt; 10000) {
-					setprop("/it-autoflight/input/alt", altsel+100);
-				} else if (altsel &gt;= 10000) {
-					setprop("/it-autoflight/input/alt", altsel+500);
-				}
-				</script>
+				<script>libraries.APPanel.ALTAdjust(1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1319,21 +1109,11 @@
 			</binding>
 		</action>
 		<action>
-			<button>4</button> <!--  scroll down -->
+			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/efis</property>
-				</condition>
 				<command>nasal</command>
-				<script>
-				var altsel = getprop("/it-autoflight/input/alt");
-				if (altsel &lt;= 10000) {
-					setprop("/it-autoflight/input/alt", altsel-100);
-				} else if (altsel &gt; 10000) {
-					setprop("/it-autoflight/input/alt", altsel-500);
-				}
-				</script>
+				<script>libraries.APPanel.ALTAdjust(-1);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1516,7 +1296,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>property-cycle</command>
 				<property>modes/altimeter/inhg</property>
@@ -1538,7 +1318,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1552,7 +1332,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/efis</property>
+						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>1</value>
@@ -1571,7 +1351,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/efis</property>
+						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>0</value>
@@ -1589,7 +1369,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1603,7 +1383,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/efis</property>
+						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>1</value>
@@ -1622,7 +1402,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/efis</property>
+						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
 							<property>modes/altimeter/inhg</property>
 							<value>0</value>
@@ -1640,7 +1420,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1662,7 +1442,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/switches/minimums</property>
@@ -1674,7 +1454,7 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
 				<script>
@@ -1687,7 +1467,7 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/efis</property>
+					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
 				<script>

@@ -156,6 +156,7 @@ var ELEC = {
 		setprop("/systems/electrical/outputs/cabin-lights", 0);
 		setprop("/systems/electrical/outputs/dme", 0);
 		setprop("/systems/electrical/outputs/efis", 0);
+		setprop("/systems/electrical/outputs/fcp-power", 0);
 		setprop("/systems/electrical/outputs/flaps", 0);
 		setprop("/systems/electrical/outputs/fuel-pump", 0);
 		setprop("/systems/electrical/outputs/fuel-pump[1]", 0);
@@ -576,6 +577,7 @@ var ELEC = {
 			setprop("/systems/electrical/outputs/cabin-lights", 0);
 			setprop("/systems/electrical/outputs/dme", 0);
 			setprop("/systems/electrical/outputs/efis", 0);
+			setprop("/systems/electrical/outputs/fcp-power", 0);
 			setprop("/systems/electrical/outputs/flaps", 0);
 			setprop("/systems/electrical/outputs/fuel-pump", 0);
 			setprop("/systems/electrical/outputs/fuel-pump[1]", 0);
@@ -612,6 +614,7 @@ var ELEC = {
 			setprop("/systems/electrical/outputs/cabin-lights", dc_volt_std);
 			setprop("/systems/electrical/outputs/dme", dc_volt_std);
 			setprop("/systems/electrical/outputs/efis", dc_volt_std);
+			setprop("/systems/electrical/outputs/fcp-power", 1); # Boolean, not voltage
 			setprop("/systems/electrical/outputs/flaps", dc_volt_std);
 			setprop("/systems/electrical/outputs/fuel-pump", dc_volt_std);
 			setprop("/systems/electrical/outputs/fuel-pump[1]", dc_volt_std);
