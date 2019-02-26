@@ -6,6 +6,47 @@
 
     <path>empty.ac</path>
 
+	<!-- Landing lights (ALS only) -->
+	<model>
+		<path>ALS/landinglightL.xml</path>
+		<name>LandLALS</name>     
+		<offsets>
+			<x-m>-23.05</x-m>
+			<y-m>-2.42</y-m>
+			<z-m>4.9782</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>ALS/landinglightR.xml</path>
+		<name>LandRALS</name> 
+		<offsets>
+			<x-m>-23.0</x-m>
+			<y-m>2.42</y-m>
+			<z-m>5.00548</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>ALS/noselight.xml</path>
+		<name>NoseLALS</name>     
+		<offsets>
+			<x-m>-20.3602</x-m>
+			<y-m>0.190095</y-m>
+			<z-m>3.24137</z-m>
+		</offsets>
+    </model>
+	
+	<model>
+		<path>ALS/noselight.xml</path>
+		<name>NoseRALS</name> 
+		<offsets>
+			<x-m>-20.3602</x-m>
+			<y-m>-0.190095</y-m>
+			<z-m>3.24137</z-m>
+		</offsets>
+    </model>
+	
 	<!-- Green Naviagation Light (ALS, Default) -->
 
     <model>
@@ -282,6 +323,8 @@
 		<object-name>Rearnav.2ALS</object-name>
 		<object-name>Beacon.LowerALS</object-name>
 		<object-name>Beacon.UpperALS</object-name>
+		<object-name>LandLALS</object-name>
+		<object-name>LandRALS</object-name>
 		<condition>
 			<property>sim/rendering/shaders/skydome</property>
 		</condition>

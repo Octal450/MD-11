@@ -527,8 +527,13 @@
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
 			<fcp-integ-norm type="double">0</fcp-integ-norm>
-			<landing-light type="double" n="0">0</landing-light>
-			<landing-light type="double" n="1">0</landing-light>
+			<landing-light-l type="double">0</landing-light-l>
+			<landing-light-r type="double">0</landing-light-r>
+			<landing-light-n type="double">0</landing-light-n>
+			<land-on-l type="double">0</land-on-l>
+			<land-on-r type="double">0</land-on-r>
+			<land-ext-l type="double">0</land-ext-l>
+			<land-ext-r type="double">0</land-ext-r>
 			<logo-lights type="bool">0</logo-lights>
 			<main-panel-knb type="double">0</main-panel-knb>
 			<main-panel-norm type="double">0</main-panel-norm>

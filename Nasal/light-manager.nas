@@ -176,8 +176,9 @@ var light_manager = {
 		type_of_view = getprop("sim/current-view/internal");
 		
 		if (als_on == 1 and alt_agl < 100.0) {
-			land = getprop("/controls/lighting/landing-light");
-			taxi = getprop("/controls/lighting/landing-light[1]");
+			land = getprop("/controls/lighting/landing-light-l");
+			land2 = getprop("/controls/lighting/landing-light-r");
+			taxi = getprop("/controls/lighting/landing-light-n");
 			nav = getprop("controls/lighting/nav-lights");
 			
 			var apos = geo.aircraft_position();
@@ -195,10 +196,10 @@ var light_manager = {
 			var ch = math.cos(heading);
 			
 			ac1 = getprop("/systems/electrical/bus/ac1") != 0;
-			ac2 = getprop("/systems/electrical/bus/ac1") != 0;
-			ac3 = getprop("/systems/electrical/bus/ac1") != 0;
+			ac2 = getprop("/systems/electrical/bus/ac2") != 0;
+			ac3 = getprop("/systems/electrical/bus/ac3") != 0;
 			
-			if (land == 1 and (ac1 or ac2 or ac3)) {
+			if (land == 1 or land2 == 1 and (ac1 or ac2 or ac3)) {
 				me.light1_ypos =  0.0;
 				me.light1_setSize(16);
 				me.light1_on();
@@ -222,7 +223,24 @@ var light_manager = {
 				me.light5_off();
 			}
 			
-
+			if (!ac1 and !ac2 and !ac3) {
+				setprop("/controls/lighting/land-on-l", 0);
+				setprop("/controls/lighting/land-on-n", 0);
+				setprop("/controls/lighting/land-on-r", 0);
+			} else {
+				if (getprop("/controls/lighting/landing-light-l") == 1) {
+					setprop("/controls/lighting/land-on-l", 1);
+				}
+				if (getprop("/controls/lighting/landing-light-r") == 1) {
+					setprop("/controls/lighting/land-on-r", 1);
+				}
+				if (getprop("/controls/lighting/landing-light-n") == 1) {
+					setprop("/controls/lighting/land-on-n", 1);
+				} elsif (getprop("/controls/lighting/landing-light-n") == 0.5) {
+					setprop("/controls/lighting/land-on-n", 0.8);
+				}
+			}
+			
 			# light 1 position
 	 
 			#var alt_agl = getprop("/position/altitude-agl-ft");
@@ -396,6 +414,46 @@ var light_manager = {
 };
 
 light_manager.init();
+
+setlistener("/controls/lighting/landing-light-l", func() {
+	if (getprop("/controls/lighting/landing-light-l") == 1) {
+		interpolate("/controls/lighting/land-ext-l", 1, 1);
+		settimer(func() {
+			setprop("/controls/lighting/land-on-l", 1);
+		}, 1);
+	} elsif (getprop("/controls/lighting/landing-light-l") == 0.5) {
+		setprop("/controls/lighting/land-on-l", 0);
+		interpolate("/controls/lighting/land-ext-l", 1, 1);
+	} else {
+		setprop("/controls/lighting/land-on-l", 0);
+		interpolate("/controls/lighting/land-ext-l", 0, 1);
+	}
+}, 0, 0);
+
+setlistener("/controls/lighting/landing-light-r", func() {
+	if (getprop("/controls/lighting/landing-light-r") == 1) {
+		interpolate("/controls/lighting/land-ext-r", 1, 1);
+		settimer(func() {
+			setprop("/controls/lighting/land-on-r", 1);
+		}, 1);
+	} elsif (getprop("/controls/lighting/landing-light-r") == 0.5) {
+		setprop("/controls/lighting/land-on-r", 0);
+		interpolate("/controls/lighting/land-ext-r", 1, 1);
+	} else {
+		setprop("/controls/lighting/land-on-r", 0);
+		interpolate("/controls/lighting/land-ext-r", 0, 1);
+	}
+}, 0, 0);
+
+setlistener("/controls/lighting/landing-light-n", func() {
+	if (getprop("/controls/lighting/landing-light-n") == 1) {
+		setprop("/controls/lighting/land-on-n", 1);
+	} elsif (getprop("/controls/lighting/landing-light-n") == 0.5) {
+		setprop("/controls/lighting/land-on-n", 0.8);
+	} else {
+		setprop("/controls/lighting/land-on-n", 0);
+	}
+}, 0, 0);
 
 
 

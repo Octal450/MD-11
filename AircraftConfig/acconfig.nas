@@ -394,8 +394,9 @@ var taxi_b = func {
 	setprop("/controls/engines/ign-a", 1);
 	setprop("/controls/lighting/beacon", 1);
 	setprop("/controls/lighting/nav-lights", 1);
-	setprop("/controls/lighting/landing-light[0]", 0.5);
-	setprop("/controls/lighting/landing-light[1]", 0.5);
+	setprop("/controls/lighting/landing-light-l", 0.5);
+	setprop("/controls/lighting/landing-light-n", 0.5);
+	setprop("/controls/lighting/landing-light-r", 0.5);
 	settimer(taxi_c, 2);
 }
 var taxi_c = func {
@@ -427,8 +428,9 @@ var takeoff = func {
 			if (getprop("/engines/engine[0]/state") == 3) {
 				removelistener(eng_one_chk_c);
 				setprop("/controls/lighting/strobe", 1);
-				setprop("/controls/lighting/landing-light[0]", 1);
-				setprop("/controls/lighting/landing-light[1]", 1);
+				setprop("/controls/lighting/landing-light-l", 1);
+				setprop("/controls/lighting/landing-light-n", 1);
+				setprop("/controls/lighting/landing-light-r", 1);
 				setprop("/controls/flight/speedbrake-arm", 1);
 				setprop("/controls/flight/slats", 1.000);
 				setprop("/controls/flight/flaps-output", 0.300);

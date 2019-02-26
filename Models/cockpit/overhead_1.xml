@@ -7509,7 +7509,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light</property>
+				<property>controls/lighting/landing-light-l</property>
 				<value>0.0</value>
 				<value>0.5</value>
 				<value>1.0</value>
@@ -7524,7 +7524,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light</property>
+				<property>controls/lighting/landing-light-l</property>
 				<value>1.0</value>
 				<value>0.5</value>
 				<value>0.0</value>
@@ -7539,7 +7539,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>L-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light</property>
+		<property>controls/lighting/landing-light-l</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7565,7 +7565,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light</property>
+				<property>controls/lighting/landing-light-r</property>
 				<value>0.0</value>
 				<value>0.5</value>
 				<value>1.0</value>
@@ -7580,7 +7580,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light</property>
+				<property>controls/lighting/landing-light-r</property>
 				<value>1.0</value>
 				<value>0.5</value>
 				<value>0.0</value>
@@ -7595,7 +7595,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>R-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light</property>
+		<property>controls/lighting/landing-light-r</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7621,7 +7621,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light[1]</property>
+				<property>controls/lighting/landing-light-n</property>
 				<value>0.0</value>
 				<value>0.5</value>
 				<value>1.0</value>
@@ -7636,7 +7636,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/lighting/landing-light[1]</property>
+				<property>controls/lighting/landing-light-n</property>
 				<value>1.0</value>
 				<value>0.5</value>
 				<value>0.0</value>
@@ -7651,7 +7651,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>C-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light[1]</property>
+		<property>controls/lighting/landing-light-n</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
