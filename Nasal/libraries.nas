@@ -19,8 +19,6 @@ setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 
 var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
 var setting = getprop("/controls/lighting/nav-lights");
-var land = getprop("/controls/lighting/landing-light");
-var landr = getprop("/controls/lighting/landing-light[1]");
 
 var strobe_switch = props.globals.getNode("/controls/lighting/strobe", 2);
 var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/controls/lighting/strobe");
