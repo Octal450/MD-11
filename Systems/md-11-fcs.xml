@@ -258,9 +258,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/yaw/gain-switch</independentVar>
 					<tableData>
-						     0  1
-						140  5  0
-						360  1  0
+						     0    1
+						140  1.5  0.0
+						360  0.5  0.0
 					</tableData>
 				</table>
 			</function>
@@ -272,9 +272,9 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/yaw/gain-switch</independentVar>
 					<tableData>
-						     0  1
-						140  9  0
-						360  4  0
+						     0    1
+						140  3.0  0.0
+						360  1.0  0.0
 					</tableData>
 				</table>
 			</function>
@@ -465,8 +465,20 @@
 			</table>
 		</scheduled_gain>
 		
+		<washout_filter name="fcc/lsas/thetadot-washout">
+			<input>fcc/lsas/thetadot-rad_sec</input>
+			<c1>0.5</c1>
+		</washout_filter>
+		
+		<switch name="fcc/lsas/thetadot-washout-s">
+			<default value="fcc/lsas/thetadot-washout"/>
+			<test value="0">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
 		<pure_gain name="fcc/lsas/thetadot-damper">
-			<input>fcc/lsas/t-r_s-s</input>
+			<input>fcc/lsas/thetadot-washout-s</input>
 			<gain>fcc/lsas/p-gain-prd-scheduled</gain>
 			<clipto>
 				<min>-0.249</min>
@@ -752,8 +764,13 @@
 			</function>
 		</fcs_function>
 		
+		<washout_filter name="fcc/yaw/r-washout">
+			<input>velocities/r-rad_sec</input>
+			<c1>0.5</c1>
+		</washout_filter>
+		
 		<switch name="fcc/yaw/r-r_s-s">
-			<default value="velocities/r-rad_sec"/>
+			<default value="fcc/yaw/r-washout"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
 				fcc/yaw/rudder-nul ne 0
@@ -766,8 +783,8 @@
 			<input>fcc/yaw/r-r_s-s</input>
 			<gain>fcc/yaw/yd-p-gain</gain>
 			<clipto>
-				<min>-0.1</min>
-				<max>0.1</max>
+				<min>-0.5</min>
+				<max>0.5</max>
 			</clipto>
 		</pure_gain>
 		
