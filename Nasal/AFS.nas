@@ -860,7 +860,7 @@ setlistener("/it-autoflight/input/kts-mach", func {
 # Takeoff Modes
 # TOGA
 setlistener("/it-autoflight/input/toga", func {
-	if (getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/it-autoflight/output/vert") == 2 or getprop("/it-autoflight/output/vert") == 6)) {
+	if (getprop("/it-autoflight/output/vert") == 2 or getprop("/it-autoflight/output/vert") == 6) {
 		if (getprop("/it-autoflight/input/toga") == 1) {
 			setprop("/it-autoflight/input/vert", 7);
 			vertical();
