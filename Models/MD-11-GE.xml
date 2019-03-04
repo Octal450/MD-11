@@ -2541,7 +2541,7 @@
 	<object-name>ldglight.right.glass</object-name>
 	<object-name>ldglight.right</object-name>
 	<!--property>controls/lighting/landing-light</property-->
-	<property>/controls/lighting/land-ext-r</property>
+	<property>controls/lighting/land-ext-r</property>
 	<factor>90</factor>
 	<axis>
 	    <x>0</x>
@@ -2560,7 +2560,7 @@
 	<object-name>ldglight.left.glass</object-name>
 	<object-name>ldglight.left</object-name>
 	<!--property>controls/lighting/landing-light</property-->
-	<property>/controls/lighting/land-ext-l</property>
+	<property>controls/lighting/land-ext-l</property>
 	<factor>-90</factor>
 	<axis>
 	    <x>0</x>

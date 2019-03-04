@@ -6,8 +6,9 @@
 # Resets buttons to the default values
 var variousReset = func {
 	setprop("/controls/lighting/beacon", 0);
-	setprop("/controls/lighting/landing-light[0]", 0);
-	setprop("/controls/lighting/landing-light[1]", 0);
+	setprop("/controls/lighting/landing-light-l", 0.0);
+	setprop("/controls/lighting/landing-light-n", 0.0);
+	setprop("/controls/lighting/landing-light-r", 0.0);
 	setprop("/controls/lighting/logo-lights", 0);
 	setprop("/controls/lighting/nav-lights", 0);
 	setprop("/controls/lighting/strobe", 0);
