@@ -209,13 +209,6 @@
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
 			</config>
 		</view>
-
-		<weight n="0">
-			<name>Crew</name>
-			<weight-lb>250</weight-lb>
-			<max-lb>600</max-lb>
-			<min-lb>120</min-lb>
-		</weight>
 		
 		<menubar>
 			<default>
@@ -1330,6 +1323,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/buttons.nas</file>
 			<file>Aircraft/IDG-MD-11X/Models/cockpit/instruments/ND/ND.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/shake.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/light-manager.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/zoom-views.nas</file>
 		</libraries>
 		<acconfig>
