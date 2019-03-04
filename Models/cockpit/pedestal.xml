@@ -1043,7 +1043,7 @@
 			<button>0</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>0.001</step>
 			</binding>
 			<binding>
@@ -1064,7 +1064,7 @@
 			<button>1</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>-0.001</step>
 			</binding>
 			<binding>
@@ -1090,7 +1090,7 @@
 			<button>0</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>-0.001</step>
 			</binding>
 			<binding>
@@ -1111,7 +1111,7 @@
 			<button>1</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>0.001</step>
 			</binding>
 			<binding>
