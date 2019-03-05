@@ -365,7 +365,7 @@
 		<object-name>fan_1</object-name>
 		<object-name>fan_1.center</object-name>
 		<factor>-67</factor>
-		<property>engines/engine[3]/n1</property>
+		<property>engines/engine[4]/n1</property>
 	<axis>
 	    <x1-m>-4.8064</x1-m>
 	    <y1-m>-8.2552</y1-m>
@@ -381,7 +381,7 @@
 		<type>spin</type>
 		<object-name>fan_1_fast</object-name>
 		<factor>0.2</factor>
-		<property>engines/engine[3]/n1</property>
+		<property>engines/engine[4]/n1</property>
 	<axis>
 	    <x1-m>-4.8064</x1-m>
 	    <y1-m>-8.2552</y1-m>
@@ -397,7 +397,7 @@
 		<object-name>fan_1_fast</object-name>
 		<condition>
 		<greater-than>
-		<property>engines/engine[3]/n1</property>
+		<property>engines/engine[4]/n1</property>
 		<value>50</value>
 		</greater-than>
 		</condition>
@@ -408,7 +408,7 @@
 		<object-name>fan_1</object-name>
 		<condition>
 		<less-than>
-		<property>engines/engine[3]/n1</property>
+		<property>engines/engine[4]/n1</property>
 		<value>50</value>
 		</less-than>
 		</condition>
@@ -420,7 +420,7 @@
 		<object-name>fan_2</object-name>
 		<object-name>fan_2.center</object-name>
 		<factor>67</factor>
-		<property>engines/engine[4]/n1</property>
+		<property>engines/engine[5]/n1</property>
 	<axis>
 	    <x1-m>25.7008</x1-m>
 	    <y1-m>0</y1-m>
@@ -436,7 +436,7 @@
 		<type>spin</type>
 		<object-name>fan_2_fast</object-name>
 		<factor>0.2</factor>
-		<property>engines/engine[4]/n1</property>
+		<property>engines/engine[5]/n1</property>
 	<axis>
 	    <x1-m>25.7008</x1-m>
 	    <y1-m>0</y1-m>
@@ -452,7 +452,7 @@
 		<object-name>fan_2_fast</object-name>
 		<condition>
 		<greater-than>
-		<property>engines/engine[4]/n1</property>
+		<property>engines/engine[5]/n1</property>
 		<value>50</value>
 		</greater-than>
 		</condition>
@@ -463,7 +463,7 @@
 		<object-name>fan_2</object-name>
 		<condition>
 		<less-than>
-		<property>engines/engine[4]/n1</property>
+		<property>engines/engine[5]/n1</property>
 		<value>50</value>
 		</less-than>
 		</condition>
@@ -476,7 +476,7 @@
 		<object-name>fan_3</object-name>
 		<object-name>fan_3.center</object-name>
 		<factor>67</factor>
-		<property>engines/engine[5]/n1</property>
+		<property>engines/engine[6]/n1</property>
 	<axis>
 	    <x1-m>-4.8064</x1-m>
 	    <y1-m>8.2552</y1-m>
@@ -492,7 +492,7 @@
 		<type>spin</type>
 		<object-name>fan_3_fast</object-name>
 		<factor>0.2</factor>
-		<property>engines/engine[5]/n1</property>
+		<property>engines/engine[6]/n1</property>
 	<axis>
 	    <x1-m>-4.8064</x1-m>
 	    <y1-m>8.2552</y1-m>
@@ -508,7 +508,7 @@
 		<object-name>fan_3_fast</object-name>
 		<condition>
 		<greater-than>
-		<property>engines/engine[5]/n1</property>
+		<property>engines/engine[6]/n1</property>
 		<value>50</value>
 		</greater-than>
 		</condition>
@@ -519,7 +519,7 @@
 		<object-name>fan_3</object-name>
 		<condition>
 		<less-than>
-		<property>engines/engine[5]/n1</property>
+		<property>engines/engine[6]/n1</property>
 		<value>50</value>
 		</less-than>
 		</condition>
