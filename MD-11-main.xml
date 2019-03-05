@@ -1058,6 +1058,16 @@
 					</script>
 				</binding>
 			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Thrust Lever Full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					systems.doFullThrust();
+					</script>
+				</binding>
+			</key>
 			<key n="2">
 				<name>Ctrl-b</name>
 				<desc>Cycle speedbrake setting</desc>

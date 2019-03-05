@@ -4,10 +4,6 @@
 
 io.include("engines-b.nas");
 
-#####################
-# Initializing Vars #
-#####################
-
 var spinup_time = math.round((rand() * 10 ) + 49, 0.1);
 var apu_max = 60;
 var apu_max_n2 = 100;
@@ -111,6 +107,12 @@ var doIdleThrust = func {
 	setprop("/controls/engines/engine[0]/throttle", 0.0);
 	setprop("/controls/engines/engine[1]/throttle", 0.0);
 	setprop("/controls/engines/engine[2]/throttle", 0.0);
+}
+
+var doFullThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 1.0);
+	setprop("/controls/engines/engine[1]/throttle", 1.0);
+	setprop("/controls/engines/engine[2]/throttle", 1.0);
 }
 
 #########################
