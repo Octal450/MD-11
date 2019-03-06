@@ -1122,6 +1122,21 @@
 	</input>
 	
 	<instrumentation n="0">
+		<chrono n="0">
+			<started type="bool">0</started>
+			<paused type="bool">0</paused>
+			<text type="string">0' 00'</text>
+			<started-at type="int">0</started-at>
+			<elapsed-time type="int">0</elapsed-time>
+		</chrono>
+		
+		<chrono n="1">
+			<started type="bool">0</started>
+			<paused type="bool">0</paused>
+			<text type="string">0' 00'</text>
+			<started-at type="int">0</started-at>
+			<elapsed-time type="int">0</elapsed-time>
+		</chrono>
 		
 		<comm n="0">
 			<frequencies>
@@ -1185,6 +1200,10 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
+		
+		<groundradar>
+			<range type="double">1.0</range>
+		</groundradar>
 		
 		<nav n="0">
 			<frequencies>
@@ -1255,11 +1274,12 @@
 				<volume> 0.8 </volume> <!-- Volume at reference distance -->
 			</speaker>
 		</tcas>
+		
 		<nav-compass>
 			<nav-display n="0" type="int">0</nav-display>
 			<nav-display n="1" type="int">0</nav-display>
 		</nav-compass>
-
+		
 		<!-- See http://wiki.flightgear.org/index.php/GPWS -->
 		<mk-viii>
 			<serviceable type="bool">true</serviceable>
@@ -1291,27 +1311,6 @@
 				<file-prefix>Aircraft/IDG-MD-11X/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
-		
-		<groundradar>
-			<range type="double">1.0</range>
-		</groundradar>
-		
-		<chrono n="0">
-			<started type="bool">0</started>
-			<paused type="bool">0</paused>
-			<text type="string">0' 00'</text>
-			<started-at type="int">0</started-at>
-			<elapsed-time type="int">0</elapsed-time>
-		</chrono>
-
-		<chrono n="1">
-			<started type="bool">0</started>
-			<paused type="bool">0</paused>
-			<text type="string">0' 00'</text>
-			<started-at type="int">0</started-at>
-			<elapsed-time type="int">0</elapsed-time>
-		</chrono>
-		
 	</instrumentation>
 	
 	<modes>
