@@ -1275,11 +1275,6 @@
 			</speaker>
 		</tcas>
 		
-		<nav-compass>
-			<nav-display n="0" type="int">0</nav-display>
-			<nav-display n="1" type="int">0</nav-display>
-		</nav-compass>
-		
 		<!-- See http://wiki.flightgear.org/index.php/GPWS -->
 		<mk-viii>
 			<serviceable type="bool">true</serviceable>
