@@ -22,21 +22,18 @@ setprop("/controls/engines/engine[0]/reverser", 0);
 setprop("/controls/engines/engine[1]/reverser", 0);
 setprop("/controls/engines/engine[2]/reverser", 0);
 
-#############
-# Start APU #
-#############
-
+# Start APU
 setlistener("/controls/APU/start", func {
-	if (getprop("/controls/APU/start") == 1 and (getprop("/systems/electrical/bus/dcbat") >= 25 or getprop("/systems/electrical/light/ac1") >= 110 or getprop("/systems/electrical/light/ac2") >= 110 or getprop("/systems/electrical/light/ac3") >= 110)) {
+	if (getprop("/controls/APU/start") == 1 and (getprop("/systems/electrical/bus/dcbat") >= 25 or getprop("/systems/electrical/bus/dc1") >= 25 or getprop("/systems/electrical/bus/dc2") >= 25 or getprop("/systems/electrical/bus/dc3") >= 25)) {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
 			oilqty = getprop("/systems/apu/oilqty");
 			setprop("/systems/apu/oilqty", oilqty - oildrop);
-			apu_egt_checkt.start();
-			apu_start_loopt.start();
+			apu_egt_check.start();
+			apu_start_loop.start();
 		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
-			apu_start_loopt.stop();
+			apu_start_loop.stop();
 			setprop("/controls/APU/on-light", 1);
 			interpolate("/systems/apu/n1", apu_max, 5);
 			interpolate("/systems/apu/n2", apu_max_n2, 5);
@@ -45,30 +42,30 @@ setlistener("/controls/APU/start", func {
 			setprop("/systems/apu/oilqty", oilqty - oildrop);
 		}
 	} else if (getprop("/controls/APU/start") == 0) {
-		apu_start_loopt.stop();
+		apu_start_loop.stop();
 		setprop("/controls/APU/on-light", 0);
-		apu_egt_checkt.stop();
-		apu_egt2_checkt.stop();
+		apu_egt_check.stop();
+		apu_egt2_check.stop();
 		apu_stop();
 	}
 });
 
-var apu_egt_check = func {
+var apu_egt_check = maketimer(0.5, func {
 	if (getprop("/systems/apu/n2") >= 28) {
-		apu_egt_checkt.stop();
+		apu_egt_check.stop();
 		interpolate("/systems/apu/egt", apu_egt_max, 5);
-		apu_egt2_checkt.start();
+		apu_egt2_check.start();
 	}
-}
+});
 
-var apu_egt2_check = func {
+var apu_egt2_check = maketimer(0.5, func {
 	if (getprop("/systems/apu/egt") >= 701) {
-		apu_egt2_checkt.stop();
+		apu_egt2_check.stop();
 		interpolate("/systems/apu/egt", apu_egt_min, 30);
 	}
-}
+});
 
-var apu_start_loop = func {
+var apu_start_loop = maketimer(0.5, func {
 	if (getprop("/systems/apu/n2") < 94.9) {
 	# Remember that this STOPS when APU N2 is greater than 94.9%
 		apu_on_lt2 = getprop("/controls/APU/on-light");
@@ -78,18 +75,15 @@ var apu_start_loop = func {
 			setprop("/controls/APU/on-light", 0);
 		}
 	} else {
-		apu_start_loopt.stop();
+		apu_start_loop.stop();
 		setprop("/controls/APU/on-light", 1);
 	}
 	
 	oilqty = getprop("/systems/apu/oilqty");
 	setprop("/systems/apu/oilqty", oilqty - 0.001);
-}
+});
 
-############
-# Stop APU #
-############
-
+# Stop APU
 var apu_stop = func {
 	setprop("/controls/electrical/switches/apu-pwr", 0);
 	setprop("/controls/pneumatic/switches/bleedapu", 0);
@@ -99,10 +93,7 @@ var apu_stop = func {
 	interpolate("/systems/apu/egt", oat, 40);
 }
 
-#######################
-# Various other stuff #
-#######################
-
+# Various Other Stuff
 var doIdleThrust = func {
 	setprop("/controls/engines/engine[0]/throttle", 0.0);
 	setprop("/controls/engines/engine[1]/throttle", 0.0);
@@ -115,10 +106,7 @@ var doFullThrust = func {
 	setprop("/controls/engines/engine[2]/throttle", 1.0);
 }
 
-#########################
-# Reverse Thrust System #
-#########################
-
+# Reverse Thrust System
 var toggleFastRevThrust = func {
 	var eng1thr = getprop("/controls/engines/engine[0]/throttle-pos");
 	var eng2thr = getprop("/controls/engines/engine[1]/throttle-pos");
@@ -229,11 +217,3 @@ var unRevThrust_b = func {
 	setprop("/controls/engines/engine[1]/reverser", 0);
 	setprop("/controls/engines/engine[2]/reverser", 0);
 }
-
-##########
-# Timers #
-##########
-
-var apu_egt_checkt = maketimer(0.5, apu_egt_check);
-var apu_egt2_checkt = maketimer(0.5, apu_egt2_check);
-var apu_start_loopt = maketimer(0.5, apu_start_loop);
