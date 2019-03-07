@@ -975,7 +975,7 @@
 		
 		<actuator name="hydraulics/aileron-out-l/final-actuator">
 			<input>hydraulics/aileron-out-l/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-out-l/final-deg</output>
 		</actuator>
@@ -1033,7 +1033,7 @@
 		
 		<actuator name="hydraulics/aileron-in-l/final-actuator">
 			<input>hydraulics/aileron-in-l/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-in-l/final-deg</output>
 		</actuator>
@@ -1091,7 +1091,7 @@
 		
 		<actuator name="hydraulics/aileron-in-r/final-actuator">
 			<input>hydraulics/aileron-in-r/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-in-r/final-deg</output>
 		</actuator>
@@ -1161,7 +1161,7 @@
 		
 		<actuator name="hydraulics/aileron-out-r/final-actuator">
 			<input>hydraulics/aileron-out-r/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-out-r/final-deg</output>
 		</actuator>
@@ -1192,7 +1192,7 @@
 		
 		<actuator name="hydraulics/elevator-out-l/final-actuator">
 			<input>hydraulics/elevator-out-l/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-out-l/final-deg</output>
 		</actuator>
@@ -1223,7 +1223,7 @@
 		
 		<actuator name="hydraulics/elevator-in-l/final-actuator">
 			<input>hydraulics/elevator-in-l/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-in-l/final-deg</output>
 		</actuator>
@@ -1254,7 +1254,7 @@
 		
 		<actuator name="hydraulics/elevator-in-r/final-actuator">
 			<input>hydraulics/elevator-in-r/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-in-r/final-deg</output>
 		</actuator>
@@ -1285,7 +1285,7 @@
 		
 		<actuator name="hydraulics/elevator-out-r/final-actuator">
 			<input>hydraulics/elevator-out-r/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>80</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-out-r/final-deg</output>
 		</actuator>
@@ -1379,7 +1379,7 @@
 		
 		<actuator name="hydraulics/rudder-upper/final-actuator">
 			<input>hydraulics/rudder-upper/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>75</rate_limit>
 			<lag>25.5</lag>
 			<output>hydraulics/rudder-upper/final-deg</output>
 		</actuator>
@@ -1418,7 +1418,7 @@
 		
 		<actuator name="hydraulics/rudder-lower/final-actuator">
 			<input>hydraulics/rudder-lower/cmd-deg</input>
-			<rate_limit>150</rate_limit>
+			<rate_limit>75</rate_limit>
 			<lag>25.5</lag>
 			<output>hydraulics/rudder-lower/final-deg</output>
 		</actuator>
@@ -1621,7 +1621,7 @@
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<test value="1.55">
+			<test value="3.1">
 				/systems/hydraulic/sys1-psi ge 1500
 			</test>
 		</switch>
