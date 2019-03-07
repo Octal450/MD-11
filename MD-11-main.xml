@@ -364,6 +364,9 @@
 		</flaps>
         
 		<systems n="0">
+			<electrical>
+				<path></path>
+			</electrical>
 			<autopilot n="0">
 				<path>Aircraft/IDG-MD-11X/Systems/afs-drivers.xml</path>
 			</autopilot>
