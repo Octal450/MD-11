@@ -6,6 +6,10 @@
 
 	<path>MD-11-GE.ac</path>
 	
+	<offsets>
+		<z-m>-5.9508</z-m>
+	</offsets>
+	
 	<nasal>
 		<load>
 			var livery_update = aircraft.livery_update.new("Aircraft/IDG-MD-11X/Models/Liveries/MD-11/GE");
