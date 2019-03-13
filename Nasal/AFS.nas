@@ -238,7 +238,6 @@ var ITAF = {
 		Input.vs.setValue(0);
 		Input.fpa.setValue(0);
 		Input.lat.setValue(5);
-		Output.lnavArm.setBoolValue(0);
 		Input.vert.setValue(7);
 		if (t != 1) {
 			Input.trk.setBoolValue(0);
@@ -255,6 +254,7 @@ var ITAF = {
 		Output.athr.setBoolValue(0);
 		Output.fd1.setBoolValue(1);
 		Output.fd2.setBoolValue(1);
+		Output.lnavArm.setBoolValue(0);
 		Output.locArm.setBoolValue(0);
 		Output.apprArm.setBoolValue(0);
 		Output.thrMode.setValue(0);
