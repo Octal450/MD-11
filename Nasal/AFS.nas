@@ -422,6 +422,7 @@ var ITAF = {
 			}
 		}
 		
+		# Custom Stuff Below
 		# Speed Capture
 		if (Text.vertTemp != "T/O CLB") {
 			if (!Custom.Output.spdCaptured) {
@@ -465,7 +466,7 @@ var ITAF = {
 			Custom.Output.hdgCaptured = 1;
 		}
 		
-		# Custom Stuff Below
+		# Misc
 		if (Output.ap1Temp == 1 or Output.ap2Temp == 1) { # Trip AP off
 			if (abs(Control.aileron.getValue()) >= 0.2 or abs(Control.elevator.getValue()) >= 0.2) {
 				me.ap1Master(0);
