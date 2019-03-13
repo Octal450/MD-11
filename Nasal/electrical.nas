@@ -658,10 +658,10 @@ var ELEC = {
 		# Generic FG Electrical Properties
 		if (dc1 < 25 and dc2 < 25 and dc3 < 25) {
 			if (getprop("/it-autoflight/output/ap1") == 1 or getprop("/it-autoflight/output/ap2") == 1) {
-				afs.killAFSSilent();
+				afs.ITAF.killAFSSilent();
 			}
 			if (getprop("/it-autoflight/output/athr") == 1) {
-				afs.killATSSilent();
+				afs.ITAF.killATSSilent();
 			}
 			setprop("/systems/electrical/outputs/adf", 0);
 			setprop("/systems/electrical/outputs/audio-panel", 0);

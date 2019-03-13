@@ -1,1308 +1,1271 @@
-# MD-11 AFS by Joshua Davidson (it0uchpods)
-
+# MD-11 AFS
+# Based off IT AUTOFLIGHT System Controller V4.0.0
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-#################################
-# IT-AUTOFLIGHT Based Autopilot #
-#################################
-
-var trueSpeedKts = 0;
-var locdefl = 0;
-var locdefl_b = 0;
-var signal = 0;
-var signal_b = 0;
-var bank_limit_sw = 0;
-var gnds_mps = 0;
-var current_course = 0;
-var wp_fly_from = 0;
-var wp_fly = 0;
-var next_course = 0;
-var max_bank_limit = 0;
-var delta_angle = 0;
-var max_bank = 0;
-var radius = 0;
-var time = 0;
-var delta_angle_rad = 0;
-var R = 0;
-var dist_coeff = 0;
-var turn_dist = 0;
-var vsnow = 0;
-var fpanow = 0;
-var altinput = 0;
-var APwarn = 0;
-var APsound = 0;
-var activeFMS = 1;
-var lat = "";
-var vert = "";
-var ap1 = 0;
-var ap2 = 0;
-var ats = 0;
-var ovrd1 = 0;
-var ovrd2 = 0;
-var useNAV2 = 0;
-var canAutoland = 0;
-var landCondition = 0;
-var aglalt = 0;
-var landModeActive = 0;
-var selfCheckTime = 0;
-var selfCheckStatus = 0;
-var time = 0;
-var HDGPredError = 0;
-var TargetIAS = 0;
-var IASSelError = 0;
-setprop("/it-autoflight/internal/heading-deg", getprop("/orientation/heading-magnetic-deg"));
-setprop("/it-autoflight/internal/track-deg", getprop("/orientation/track-magnetic-deg"));
-setprop("/it-autoflight/internal/vert-speed-fpm", 0);
-setprop("/it-autoflight/internal/heading-error-deg", 0);
-setprop("/it-autoflight/internal/heading-predicted", 0);
-setprop("/it-autoflight/internal/altitude-predicted", 0);
-setprop("/it-autoflight/internal/lnav-advance-nm", 1);
-
-var APinit = func(t) {
-	if (t != 1) {
-		setprop("/it-autoflight/custom/kts-mach", 0);
-		setprop("/it-autoflight/custom/kts-sel", 250);
-		setprop("/it-autoflight/custom/mach-sel", 0.5);
-		setprop("/it-autoflight/custom/hdg-sel", 0);
-		setprop("/it-autoflight/custom/vs-fpa", 0);
-	}
-	setprop("/it-autoflight/input/kts-mach", 0);
-	setprop("/it-autoflight/input/ap1", 0);
-	setprop("/it-autoflight/input/ap2", 0);
-	setprop("/it-autoflight/input/athr", 0);
-	setprop("/it-autoflight/input/fd1", 1);
-	setprop("/it-autoflight/input/fd2", 1);
-	if (t != 1) {
-		setprop("/it-autoflight/input/hdg", 0);
-	}
-	if (t != 1) {
-		setprop("/it-autoflight/input/alt", 10000);
-	}
-	setprop("/it-autoflight/input/vs", 0);
-	setprop("/it-autoflight/input/fpa", 0);
-	setprop("/it-autoflight/input/lat", 5);
-	setprop("/it-autoflight/input/lat-arm", 0);
-	setprop("/it-autoflight/input/vert", 7);
-	if (t != 1) {
-		setprop("/it-autoflight/input/trk", 0);
-		setprop("/it-autoflight/input/true-course", 0);
-	}
-	setprop("/it-autoflight/input/toga", 0);
-	if (t != 1) {
-		setprop("/it-autoflight/input/bank-limit-sw", 0);
-	}
-	setprop("/it-autoflight/input/ovrd1", 0);
-	setprop("/it-autoflight/input/ovrd2", 0);
-	setprop("/it-autoflight/output/ap1", 0);
-	setprop("/it-autoflight/output/ap2", 0);
-	setprop("/it-autoflight/output/athr", 0);
-	setprop("/it-autoflight/output/fd1", 1);
-	setprop("/it-autoflight/output/fd2", 1);
-	setprop("/it-autoflight/output/loc-armed", 0);
-	setprop("/it-autoflight/output/appr-armed", 0);
-	setprop("/it-autoflight/output/thr-mode", 2);
-	setprop("/it-autoflight/output/lat", 5);
-	setprop("/it-autoflight/output/vert", 7);
-	setprop("/it-autoflight/output/hdg-captured", 1);
-	setprop("/it-autoflight/output/spd-captured", 1);
-	setprop("/it-autoflight/settings/use-nav2-radio", 0);
-	setprop("/it-autoflight/internal/min-vs", -500);
-	setprop("/it-autoflight/internal/max-vs", 500);
-	setprop("/it-autoflight/internal/bank-limit-auto", 25);
-	setprop("/it-autoflight/internal/bank-limit", 25);
-	if (t != 1) {
-		setprop("/it-autoflight/internal/alt", 10000);
-	}
-	setprop("/it-autoflight/internal/fpa", 0);
-	setprop("/it-autoflight/internal/top-of-des-nm", 0);
-	setprop("/it-autoflight/internal/active-fms", 1);
-	setprop("/it-autoflight/mode/thr", "PITCH");
-	setprop("/it-autoflight/mode/arm", " ");
-	setprop("/it-autoflight/mode/lat", "T/O");
-	setprop("/it-autoflight/mode/vert", "T/O CLB");
-	setprop("/it-autoflight/mode/land", "OFF");
-	setprop("/it-autoflight/input/spd-kts", getprop("/FMS/internal/v2"));
-	setprop("/it-autoflight/input/spd-mach", 0.5);
-	setprop("/it-autoflight/custom/show-hdg", 5);
-	if (t != 1) {
-		setprop("/it-autoflight/sound/enableapoffsound", 0);
-		setprop("/it-autoflight/sound/apoffsound", 0);
-		setprop("/it-autoflight/sound/enableatsflash", 0);
-		setprop("/it-autoflight/custom/atsflash", 0);
-	}
-	ap_varioust.start();
-	various2.start();
-	if (t != 1) {
-		apKill.stop();
-		atsKill.stop();
-		setprop("/it-autoflight/custom/apwarn", 0);
-		setprop("/it-autoflight/custom/atswarn", 0);
-	}
-	thrustmode();
-}
-
-# AFS Master System
-var killAFSSilent = func {
-	setprop("/it-autoflight/output/ap1", 0);
-	setprop("/it-autoflight/output/ap2", 0);
-	setprop("/it-autoflight/sound/apoffsound", 0);
-	setprop("/it-autoflight/sound/enableapoffsound", 0);
-	# Now that AFS is off, we can safely update the input to 0 without the AP Master running
-	setprop("/it-autoflight/input/ap1", 0);
-	setprop("/it-autoflight/input/ap2", 0);
-}
-
-var AUTOFLIGHT = func {
-	ap1 = getprop("/it-autoflight/output/ap1");
-	ap2 = getprop("/it-autoflight/output/ap2");
-	ats = getprop("/it-autoflight/output/athr");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	
-	if (!ats and (!ovrd1 or !ovrd2)) {
-		setprop("/it-autoflight/input/athr", 1);
-	}
-	
-	activeFMS = getprop("/it-autoflight/internal/active-fms");
-	
-	if (ap1 or ap2) {
-		if (activeFMS == 1 and !ovrd2) {
-			setprop("/it-autoflight/internal/active-fms", 2);
-		} else if (activeFMS == 2 and !ovrd1) {
-			setprop("/it-autoflight/internal/active-fms", 1);
-		}
-	}
-	
-	activeFMS = getprop("/it-autoflight/internal/active-fms");
-	
-	if (activeFMS == 1 and !ovrd1) {
-		setprop("/it-autoflight/input/ap1", 1);
-		setprop("/it-autoflight/input/ap2", 0);
-	} else if (activeFMS == 2 and !ovrd2) {
-		setprop("/it-autoflight/input/ap2", 1);
-		setprop("/it-autoflight/input/ap1", 0);
-	}
-}
-
-var updateOVRD = func {
-	ap1 = getprop("/it-autoflight/output/ap1");
-	ap2 = getprop("/it-autoflight/output/ap2");
-	ats = getprop("/it-autoflight/output/athr");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	
-	if (ovrd1 and ovrd2) {
-		if (ap1) {
-			setprop("/it-autoflight/input/ap1", 0);
-		}
-		if (ap2) {
-			setprop("/it-autoflight/input/ap2", 0);
-		}
-		if (ats) {
-			setprop("/it-autoflight/input/athr", 0);
-		}
-		setprop("/it-autoflight/internal/active-fms", 1);
-	} else if (ovrd1 and !ovrd2) {
-		if (ap1) {
-			setprop("/it-autoflight/input/ap1", 0);
-		}
-		setprop("/it-autoflight/internal/active-fms", 2);
-	} else if (ovrd2 and !ovrd1) {
-		if (ap2) {
-			setprop("/it-autoflight/input/ap2", 0);
-		}
-		setprop("/it-autoflight/internal/active-fms", 1);
-	}
-}
-
-setlistener("/it-autoflight/input/ovrd1", func {
-	updateOVRD();
-});
-
-setlistener("/it-autoflight/input/ovrd2", func {
-	updateOVRD();
-});
-
-setlistener("/it-autoflight/input/ap1", func {
-	var apmas = getprop("/it-autoflight/input/ap1");
-	var apout = getprop("/it-autoflight/output/ap1");
-	if (apmas != apout) {
-		AP1Master();
-	}
-});
-
-var AP1Master = func {
-	var apmas = getprop("/it-autoflight/input/ap1");
-	var apmas_other = getprop("/it-autoflight/input/ap2");
-	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
-	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	if (apmas == 0) {
-		setprop("/it-autoflight/output/ap1", 0);
-		if (!ovrd2) {
-			setprop("/it-autoflight/internal/active-fms", 2);
-		}
-		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
-			setprop("/it-autoflight/sound/apoffsound", 1);
-			setprop("/it-autoflight/sound/enableapoffsound", 0);
-			apKill.start();			
-		}
-		if (getprop("/it-autoflight/mode/vert") == "ROLLOUT") {
-			fms.CORE.resetFMS();
-		}
-	} else if (apmas == 1 and !discBtn1 and !discBtn2 and !ovrd1) {
-		if (getprop("/it-autoflight/output/vert") != 6 and getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
-			apKill.stop();
-			setprop("/it-autoflight/custom/apwarn", 0);
-			setprop("/controls/flight/rudder", 0);
-			setprop("/it-autoflight/output/ap1", 1);
-			setprop("/it-autoflight/sound/enableapoffsound", 1);
-			setprop("/it-autoflight/sound/apoffsound", 0);
-			setprop("/it-autoflight/internal/active-fms", 1);
-			if (getprop("/it-autoflight/output/vert") == 2) {
-				alandt.start();
-			}
-		}
-	}
-	
-	var apout = getprop("/it-autoflight/output/ap1");
-	if (apmas != apout) {
-		setprop("/it-autoflight/input/ap1", apout);
-	}
-}
-
-setlistener("/it-autoflight/input/ap2", func {
-	var apmas = getprop("/it-autoflight/input/ap2");
-	var apout = getprop("/it-autoflight/output/ap2");
-	
-	if (apmas != apout) {
-		AP2Master();
-	}
-});
-
-var AP2Master = func {
-	var apmas = getprop("/it-autoflight/input/ap2");
-	var apmas_other = getprop("/it-autoflight/input/ap1");
-	var discBtn1 = getprop("/controls/switches/ap-yoke-button1");
-	var discBtn2 = getprop("/controls/switches/ap-yoke-button2");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	if (apmas == 0) {
-		setprop("/it-autoflight/output/ap2", 0);
-		if (!ovrd1) {
-			setprop("/it-autoflight/internal/active-fms", 1);
-		}
-		if (getprop("/it-autoflight/sound/enableapoffsound") == 1 and apmas_other != 1) {
-			setprop("/it-autoflight/sound/apoffsound", 1);
-			setprop("/it-autoflight/sound/enableapoffsound", 0);
-			apKill.start();			
-		}
-		if (getprop("/it-autoflight/mode/vert") == "ROLLOUT") {
-			fms.CORE.resetFMS();
-		}
-	} else if (apmas == 1 and !discBtn1 and !discBtn2 and !ovrd2) {
-		if (getprop("/it-autoflight/output/vert") != 6 and getprop("/gear/gear[1]/wow") == 0 and getprop("/gear/gear[2]/wow") == 0 and (getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1)) {
-			apKill.stop();
-			setprop("/it-autoflight/custom/apwarn", 0);
-			setprop("/controls/flight/rudder", 0);
-			setprop("/it-autoflight/output/ap2", 1);
-			setprop("/it-autoflight/sound/enableapoffsound", 1);
-			setprop("/it-autoflight/sound/apoffsound", 0);
-			setprop("/it-autoflight/internal/active-fms", 2);
-			if (getprop("/it-autoflight/output/vert") == 2) {
-				alandt.start();
-			}
-		}
-	}
-	
-	var apout = getprop("/it-autoflight/output/ap2");
-	if (apmas != apout) {
-		setprop("/it-autoflight/input/ap2", apout);
-	}
-}
-
-var killAPWarn = func {
-	if (getprop("/it-autoflight/sound/apoffsound") == 1) { # Second press only
-		apKill.stop();
-		setprop("/it-autoflight/custom/apwarn", 0);
-		setprop("/it-autoflight/sound/apoffsound", 0);
-	}
+# Initialize all used variables and property nodes
+# Sim
+var Velocity = {
+	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
+	groundspeedMps: 0,
+	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
+	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-airspeed-kt", 1),
+	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
+	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-mach", 1),
+	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
+	trueAirspeedKtTemp: 0,
 };
 
-# ATHR Master System
-var killATSSilent = func {
-	setprop("/it-autoflight/output/athr", 0);
-	setprop("/it-autoflight/custom/atsflash", 0);
-	setprop("/it-autoflight/sound/enableatsflash", 0);
-	# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
-	setprop("/it-autoflight/input/athr", 0);
-}
+var Position = {
+	gearAglFtTemp: 0,
+	gearAglFt: props.globals.getNode("/position/gear-agl-ft", 1),
+	indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1),
+	indicatedAltitudeFtTemp: 0,
+};
 
-setlistener("/it-autoflight/input/athr", func {
-	var athrmas = getprop("/it-autoflight/input/athr");
-	var athrout = getprop("/it-autoflight/output/athr");
-	
-	if (athrmas != athrout) {
-		ATHRMaster();
+var Gear = {
+	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
+	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
+	wow1Temp: 1,
+	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
+	wow2Temp: 1,
+};
+
+var Control = {
+	aileron: props.globals.getNode("/controls/flight/aileron", 1),
+	elevator: props.globals.getNode("/controls/flight/elevator", 1),
+	rudder: props.globals.getNode("/controls/flight/rudder", 1),
+};
+
+var Radio = {
+	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1)],
+	gsDeflTemp: 0,
+	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1)],
+	inRangeTemp: 0,
+	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1)],
+	locDeflTemp: 0,
+	radioSel: 0,
+	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1)],
+	signalQualityTemp: 0,
+};
+
+var FPLN = {
+	active: props.globals.getNode("/autopilot/route-manager/active", 1),
+	activeTemp: 0,
+	currentCourse: 0,
+	currentWP: props.globals.getNode("/autopilot/route-manager/current-wp", 1),
+	currentWPTemp: 0,
+	deltaAngle: 0,
+	deltaAngleRad: 0,
+	distCoeff: 0,
+	maxBank: 0,
+	maxBankLimit: 0,
+	nextCourse: 0,
+	num: props.globals.getNode("/autopilot/route-manager/route/num", 1),
+	numTemp: 0,
+	R: 0,
+	radius: 0,
+	turnDist: 0,
+	wp0Dist: props.globals.getNode("/autopilot/route-manager/wp/dist", 1),
+	wpFlyFrom: 0,
+	wpFlyTo: 0,
+};
+
+var Misc = {
+	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
+	ir0Align: props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1),
+	ir1Align: props.globals.getNode("/instrumentation/irs/ir[1]/aligned", 1),
+	ir2Align: props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1),
+	state1: props.globals.getNode("/engines/engine[0]/state", 1),
+	state2: props.globals.getNode("/engines/engine[1]/state", 1),
+	state3: props.globals.getNode("/engines/engine[2]/state", 1),
+	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
+	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
+	pfdHeadingScaleTemp: 0,
+};
+
+# IT-AUTOFLIGHT
+var Input = {
+	alt: props.globals.initNode("/it-autoflight/input/alt", 10000, "INT"),
+	ap1: props.globals.initNode("/it-autoflight/input/ap1", 0, "BOOL"),
+	ap2: props.globals.initNode("/it-autoflight/input/ap2", 0, "BOOL"),
+	athr: props.globals.initNode("/it-autoflight/input/athr", 0, "BOOL"),
+	altDiff: 0,
+	bankLimitSW: props.globals.initNode("/it-autoflight/input/bank-limit-sw", 0, "INT"),
+	bankLimitSWTemp: 0,
+	fd1: props.globals.initNode("/it-autoflight/input/fd1", 0, "BOOL"),
+	fd2: props.globals.initNode("/it-autoflight/input/fd2", 0, "BOOL"),
+	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
+	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
+	hdgSet: 0,
+	ias: props.globals.initNode("/it-autoflight/input/spd-kts", 250, "INT"),
+	ktsMach: props.globals.initNode("/it-autoflight/input/kts-mach", 0, "BOOL"),
+	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
+	latTemp: 5,
+	mach: props.globals.initNode("/it-autoflight/input/spd-mach", 0.5, "DOUBLE"),
+	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
+	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
+	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
+	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
+	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
+	vertTemp: 7,
+};
+
+var Internal = {
+	alt: props.globals.initNode("/it-autoflight/internal/alt", 10000, "INT"),
+	altCaptureActive: 0,
+	altDiff: 0,
+	altTemp: 0,
+	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
+	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "INT"),
+	bankLimitAuto: 25,
+	captVS: 0,
+	flchActive: 0,
+	fpa: props.globals.initNode("/it-autoflight/internal/fpa", 0, "DOUBLE"),
+	hdg: props.globals.initNode("/it-autoflight/internal/heading-deg", 0, "DOUBLE"),
+	hdgPredicted: props.globals.initNode("/it-autoflight/internal/heading-predicted", 0, "DOUBLE"),
+	lnavAdvanceNm: props.globals.initNode("/it-autoflight/internal/lnav-advance-nm", 0, "DOUBLE"),
+	minVS: props.globals.initNode("/it-autoflight/internal/min-vs", -500, "INT"),
+	maxVS: props.globals.initNode("/it-autoflight/internal/max-vs", 500, "INT"),
+	trk: props.globals.initNode("/it-autoflight/internal/track-deg", 0, "DOUBLE"),
+	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
+	vsTemp: 0,
+};
+
+var Output = {
+	ap1: props.globals.initNode("/it-autoflight/output/ap1", 0, "BOOL"),
+	ap1Temp: 0,
+	ap2: props.globals.initNode("/it-autoflight/output/ap2", 0, "BOOL"),
+	ap2Temp: 0,
+	apprArm: props.globals.initNode("/it-autoflight/output/appr-armed", 0, "BOOL"),
+	athr: props.globals.initNode("/it-autoflight/output/athr", 0, "BOOL"),
+	athrTemp: 0,
+	fd1: props.globals.initNode("/it-autoflight/output/fd1", 0, "BOOL"),
+	fd1Temp: 0,
+	fd2: props.globals.initNode("/it-autoflight/output/fd2", 0, "BOOL"),
+	fd2Temp: 0,
+	lat: props.globals.initNode("/it-autoflight/output/lat", 5, "INT"),
+	latTemp: 5,
+	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-armed", 0, "BOOL"),
+	locArm: props.globals.initNode("/it-autoflight/output/loc-armed", 0, "BOOL"),
+	thrMode: props.globals.initNode("/it-autoflight/output/thr-mode", 2, "INT"),
+	vert: props.globals.initNode("/it-autoflight/output/vert", 7, "INT"),
+	vertTemp: 7,
+};
+
+var Text = {
+	arm: props.globals.initNode("/it-autoflight/mode/arm", " ", "STRING"),
+	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
+	thr: props.globals.initNode("/it-autoflight/mode/thr", "PITCH", "STRING"),
+	vert: props.globals.initNode("/it-autoflight/mode/vert", "T/O CLB", "STRING"),
+	vertTemp: 0,
+};
+
+var Setting = {
+	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1500, "INT"), # Will be changable from FMS
+	useNAV2Radio: props.globals.initNode("/it-autoflight/settings/use-nav2-radio", 0, "BOOL"),
+};
+
+var Sound = {
+	apOff: props.globals.initNode("/it-autoflight/sound/apoffsound", 0, "BOOL"),
+	enableApOff: 0,
+};
+
+# MD-11 Custom
+var Custom = {
+	apWarn: props.globals.initNode("/it-autoflight/custom/apwarn", 0, "BOOL"),
+	atsFlash: props.globals.initNode("/it-autoflight/custom/atsflash", 0, "BOOL"),
+	atsWarn: props.globals.initNode("/it-autoflight/custom/atswarn", 0, "BOOL"),
+	canAutoland: 0,
+	enableAtsOff: 0,
+	fpaAbs: props.globals.initNode("/it-autoflight/input/fpa-abs", 0, "DOUBLE"),
+	hdgSel: props.globals.initNode("/it-autoflight/custom/hdg-sel", 0, "INT"),
+	ktsMach: props.globals.initNode("/it-autoflight/custom/kts-mach", 0, "BOOL"),
+	ktsMachTemp: 0,
+	landCondition: 0,
+	landModeActive: 0,
+	iasSel: props.globals.initNode("/it-autoflight/custom/kts-sel", 0, "INT"),
+	machSel: props.globals.initNode("/it-autoflight/custom/mach-sel", 0, "DOUBLE"),
+	retardLock: 0,
+	selfCheckStatus: 0,
+	selfCheckTime: 0,
+	showHdg: props.globals.initNode("/it-autoflight/custom/show-hdg", 1, "BOOL"),
+	targetHDGError: 0,
+	targetIAS: 0,
+	targetIASError: 0,
+	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"),
+	vsFpa: props.globals.initNode("/it-autoflight/custom/vs-fpa", 0, "BOOL"),
+	Input: {
+		ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
+		ovrd1Temp: 0,
+		ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
+		ovrd2Temp: 0,
+	},
+	Internal: {
+		activeFMS: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
+		activeFMSTemp: 1,
+	},
+	Output: {
+		hdgCaptured: 1,
+		spdCaptured: 1,
+	},
+	Text: {
+		land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
+	},
+	FMS: {
+		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
+	},
+};
+
+var ITAF = {
+	init: func(t) { # Not everything should be reset if the reset is type 1
+		if (t != 1) {
+			Custom.ktsMach.setBoolValue(0);
+			Custom.iasSel.setValue(250);
+			Custom.machSel.setValue(0.5);
+			Custom.hdgSel.setValue(0);
+			Custom.vsFpa.setBoolValue(0);
+		}
+		Input.ktsMach.setBoolValue(0);
+		Input.ap1.setBoolValue(0);
+		Input.ap2.setBoolValue(0);
+		Input.athr.setBoolValue(0);
+		Input.fd1.setBoolValue(1);
+		Input.fd2.setBoolValue(1);
+		if (t != 1) {
+			Input.hdg.setValue(0);
+			Input.alt.setValue(10000);
+		}
+		Input.vs.setValue(0);
+		Input.fpa.setValue(0);
+		Input.lat.setValue(5);
+		Output.lnavArm.setBoolValue(0);
+		Input.vert.setValue(7);
+		if (t != 1) {
+			Input.trk.setBoolValue(0);
+			Input.trueCourse.setBoolValue(0);
+		}
+		Input.toga.setBoolValue(0);
+		if (t != 1) {
+			Input.bankLimitSW.setValue(0);
+			Custom.Input.ovrd1.setBoolValue(0);
+			Custom.Input.ovrd2.setBoolValue(0);
+		}
+		Output.ap1.setBoolValue(0);
+		Output.ap2.setBoolValue(0);
+		Output.athr.setBoolValue(0);
+		Output.fd1.setBoolValue(1);
+		Output.fd2.setBoolValue(1);
+		Output.locArm.setBoolValue(0);
+		Output.apprArm.setBoolValue(0);
+		Output.thrMode.setValue(0);
+		Output.lat.setValue(5);
+		Output.vert.setValue(7);
+		Setting.useNAV2Radio.setBoolValue(0);
+		Internal.minVS.setValue(-500);
+		Internal.maxVS.setValue(500);
+		Internal.bankLimit.setValue(25);
+		Internal.bankLimitAuto = 25;
+		if (t != 1) {
+			Internal.alt.setValue(10000);
+		}
+		Internal.altCaptureActive = 0;
+		Input.ias.setValue(Custom.FMS.v2Speed.getValue());
+		Input.mach.setValue(0.5);
+		Text.thr.setValue("PITCH");
+		Text.arm.setValue(" ");
+		Text.lat.setValue("T/O");
+		Text.vert.setValue("T/O CLB");
+		Custom.retardLock = 0;
+		Custom.Text.land.setValue("OFF");
+		Custom.Output.spdCaptured = 1;
+		Custom.Output.hdgCaptured = 1;
+		Custom.Internal.activeFMS.setValue(1);
+		Custom.showHdg.setBoolValue(1);
+		if (t != 1) {
+			Sound.apOff.setBoolValue(0);
+			Custom.apWarn.setBoolValue(0);
+			Custom.atsFlash.setBoolValue(0);
+			Custom.atsWarn.setBoolValue(0);
+			Sound.enableApOff = 0;
+			Custom.enableAtsOff = 0;
+			apKill.stop();
+			atsKill.stop();
+		}
+		loopTimer.start();
+		slowLoopTimer.start();
+	},
+	loop: func() {
+		Output.latTemp = Output.lat.getValue();
+		Output.vertTemp = Output.vert.getValue();
+		
+		# VOR/ILS Revision
+		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
+			me.checkRadioRevision(Output.latTemp, Output.vertTemp);
+		}
+		
+		Gear.wow1Temp = Gear.wow1.getBoolValue();
+		Gear.wow2Temp = Gear.wow2.getBoolValue();
+		Output.ap1Temp = Output.ap1.getBoolValue();
+		Output.ap2Temp = Output.ap2.getBoolValue();
+		Output.athrTemp = Output.athr.getBoolValue();
+		Output.latTemp = Output.lat.getValue();
+		Output.vertTemp = Output.vert.getValue();
+		Text.vertTemp = Text.vert.getValue();
+		Position.gearAglFtTemp = Position.gearAglFt.getValue();
+		Internal.vsTemp = Internal.vs.getValue();
+		Position.indicatedAltitudeFtTemp = Position.indicatedAltitudeFt.getValue();
+		
+		# LNAV Engagement
+		if (Output.lnavArm.getBoolValue()) {
+			me.checkLNAV(1);
+		}
+		
+		# VOR/LOC or ILS/LOC Capture
+		if (Output.locArm.getBoolValue()) {
+			me.checkLOC(1, 0);
+		}
+		
+		# G/S Capture
+		if (Output.apprArm.getBoolValue()) {
+			me.checkAPPR(1);
+		}
+		
+		# Autoland Logic
+		if (Output.latTemp == 2) {
+			if (Position.gearAglFtTemp <= 150) {
+				if (Output.ap1Temp or Output.ap2Temp) {
+					me.setLatMode(4);
+				}
+			}
+		}
+		if (Output.vertTemp == 2) {
+			if (Position.gearAglFtTemp <= 100 and Position.gearAglFtTemp >= 5) {
+				if (Output.ap1Temp or Output.ap2Temp) {
+					me.setVertMode(6);
+				}
+			}
+		} else if (Output.vertTemp == 6) {
+			if (!Output.ap1Temp and !Output.ap2Temp) {
+				me.activateLOC();
+				me.activateGS();
+			} else {
+				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5) {
+					Text.vert.setValue("FLARE");
+				}
+				if (Gear.wow1Temp and Gear.wow2Temp) {
+					Text.lat.setValue("RLOU");
+					Text.vert.setValue("ROLLOUT");
+				}
+			}
+		}
+		
+		# FLCH Engagement
+		if (Text.vertTemp == "T/O CLB") {
+			me.checkFLCH(Setting.reducAglFt.getValue());
+		}
+		
+		# Altitude Capture/Sync Logic
+		if (Output.vertTemp != 0) {
+			Internal.alt.setValue(Input.alt.getValue());
+		}
+		Internal.altTemp = Internal.alt.getValue();
+		Internal.altDiff = Internal.altTemp - Position.indicatedAltitudeFtTemp;
+		
+		if (Output.vertTemp != 0 and Output.vertTemp != 2 and Output.vertTemp != 6 and Text.vertTemp != "G/A CLB") {
+			Internal.captVS = math.clamp(math.round(abs(Internal.vs.getValue()) / 5, 100), 50, 2500); # Capture limits
+			if (abs(Internal.altDiff) <= Internal.captVS and !Gear.wow1Temp and !Gear.wow2Temp) {
+				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp and Internal.vsTemp >= -25) { # Don't capture if we are going the wrong way
+					me.setVertMode(3);
+				} else if (Internal.altTemp < Position.indicatedAltitudeFtTemp and Internal.vsTemp <= 25) { # Don't capture if we are going the wrong way
+					me.setVertMode(3);
+				}
+			}
+		}
+		
+		# Altitude Hold Min/Max Reset
+		if (Internal.altCaptureActive) {
+			if (abs(Internal.altDiff) <= 25) {
+				me.resetClimbRateLim();
+				Text.vert.setValue("ALT HLD");
+			}
+		}
+		
+		# Thrust Mode Selector
+		if (Output.athrTemp and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.6) {
+			Output.thrMode.setValue(1);
+			Text.thr.setValue("RETARD");
+			Custom.retardLock = 1;
+			if (Gear.wow1Temp or Gear.wow2Temp) { # Disconnect A/THR on either main gear touch
+				me.killATSSilent();
+			}
+		} else if (Custom.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
+			if (Output.vertTemp == 4) {
+				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp) {
+					Output.thrMode.setValue(2);
+					Text.thr.setValue("PITCH");
+					if (Internal.flchActive) {
+						Text.vert.setValue("SPD CLB");
+					}
+				} else {
+					Output.thrMode.setValue(1);
+					Text.thr.setValue("PITCH");
+					if (Internal.flchActive) {
+						Text.vert.setValue("SPD DES");
+					}
+				}
+			} else if (Output.vertTemp == 7) {
+				Output.thrMode.setValue(2);
+				Text.thr.setValue("PITCH");
+			} else {
+				Output.thrMode.setValue(0);
+				Text.thr.setValue("THRUST");
+			}
+		}
+		
+		# Speed Capture
+		if (Text.vertTemp != "T/O CLB") {
+			if (!Custom.Output.spdCaptured) {
+				Custom.ktsMachTemp = Custom.ktsMach.getBoolValue();
+				if (Input.ktsMach.getBoolValue() != Custom.ktsMachTemp) {
+					Input.ktsMach.setBoolValue(Custom.ktsMachTemp);
+				}
+				if (Custom.ktsMachTemp) {
+					Input.mach.setValue(Custom.machSel.getValue());
+					Custom.targetIAS = Input.mach.getValue() * (Velocity.indicatedAirspeedKt.getValue() / Velocity.indicatedMach.getValue()); # Convert to IAS
+				} else {
+					Input.ias.setValue(Custom.iasSel.getValue());
+					Custom.targetIAS = Input.ias.getValue();
+				}
+				Custom.targetIASError = Custom.targetIAS - Velocity.indicatedAirspeedKt5Sec.getValue();
+				if (abs(Custom.targetIASError) <= 2.5) {
+					Custom.Output.spdCaptured = 1;
+				}
+			}
+		} else if (!Custom.Output.spdCaptured) {
+			Custom.Output.spdCaptured = 1;
+		}
+		
+		# Heading Sync
+		if (!Custom.showHdg.getBoolValue()) {
+			Misc.pfdHeadingScaleTemp = Misc.pfdHeadingScale.getValue();
+			Input.hdg.setValue(Misc.pfdHeadingScaleTemp);
+			Custom.hdgSel.setValue(Misc.pfdHeadingScaleTemp);
+		}
+		
+		# Heading Capture
+		if (Output.latTemp == 0) {
+			if (!Custom.Output.hdgCaptured) {
+				Input.hdg.setValue(Custom.hdgSel.getValue());
+				Custom.targetHDGError = Input.hdg.getValue() - Internal.hdgPredicted.getValue();
+				if (abs(Custom.targetHDGError) <= 2.5) {
+					Custom.Output.hdgCaptured = 1;
+				}
+			}
+		} else if (!Custom.Output.hdgCaptured) {
+			Custom.Output.hdgCaptured = 1;
+		}
+		
+		# Custom Stuff Below
+		if (Output.ap1Temp == 1 or Output.ap2Temp == 1) { # Trip AP off
+			if (abs(Control.aileron.getValue()) >= 0.2 or abs(Control.elevator.getValue()) >= 0.2) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+			}
+			if (!Misc.ir0Align.getBoolValue() or !Misc.ir1Align.getBoolValue() or !Misc.ir2Align.getBoolValue()) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+			}
+		}
+		if (Output.athrTemp and Misc.state1.getValue() != 3 and Misc.state2.getValue() != 3 and Misc.state3.getValue() != 3) { # Trip A/THR off
+			me.athrMaster(0);
+		}
+		
+		# Dual Land Logic
+		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
+			Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
+			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
+			Custom.canAutoland = (abs(Radio.locDeflTemp) <= 0.1 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) or Gear.wow0.getBoolValue();
+		} else {
+			Custom.canAutoland = 0;
+		}
+		Custom.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
+		
+		if (Position.gearAglFtTemp <= 1500 and Custom.landModeActive) {
+			Custom.selfCheckStatus = 1;
+		} else if (!Custom.landModeActive) {
+			Custom.selfCheckStatus = 0;
+		}
+		
+		if (Custom.selfCheckStatus == 1) {
+			if (Custom.selfCheckStatus != 2 and Custom.selfCheckTime + 10 < Misc.elapsedSec.getValue()) {
+				Custom.selfCheckStatus = 2;
+			}
+		} else {
+			Custom.selfCheckTime = Misc.elapsedSec.getValue();
+		}
+		
+		if (Custom.canAutoland and Custom.landModeActive and Custom.selfCheckStatus == 2) {
+			if ((Output.ap1Temp or Output.ap2Temp) and !Custom.Input.ovrd1.getBoolValue() and !Custom.Input.ovrd2.getBoolValue()) {
+				Custom.landCondition = "DUAL";
+			} else if (Output.ap1Temp or Output.ap2Temp) {
+				Custom.landCondition = "SINGLE";
+			} else {
+				Custom.landCondition = "APPR";
+			}
+		} else {
+			Custom.landCondition = "OFF";
+		}
+		
+		if (Custom.landCondition != Custom.Text.land.getValue()) {
+			Custom.Text.land.setValue(Custom.landCondition);
+		}
+	},
+	slowLoop: func() {
+		Input.bankLimitSWTemp = Input.bankLimitSW.getValue();
+		Velocity.trueAirspeedKtTemp = Velocity.trueAirspeedKt.getValue();
+		FPLN.activeTemp = FPLN.active.getValue();
+		FPLN.currentWPTemp = FPLN.currentWP.getValue();
+		FPLN.numTemp = FPLN.num.getValue();
+		
+		# Bank Limit
+		if (Velocity.trueAirspeedKtTemp >= 420) {
+			Internal.bankLimitAuto = 15;
+		} else if (Velocity.trueAirspeedKtTemp >= 340) {
+			Internal.bankLimitAuto = 20;
+		} else {
+			Internal.bankLimitAuto = 25;
+		}
+		
+		if (Input.bankLimitSWTemp == 0) {
+			Internal.bankLimit.setValue(Internal.bankLimitAuto);
+		} else if (Input.bankLimitSWTemp == 1) {
+			Internal.bankLimit.setValue(5);
+		} else if (Input.bankLimitSWTemp == 2) {
+			Internal.bankLimit.setValue(10);
+		} else if (Input.bankLimitSWTemp == 3) {
+			Internal.bankLimit.setValue(15);
+		} else if (Input.bankLimitSWTemp == 4) {
+			Internal.bankLimit.setValue(20);
+		} else if (Input.bankLimitSWTemp == 5) {
+			Internal.bankLimit.setValue(25);
+		}
+		
+		# If in LNAV mode and route is not longer active, switch to HDG HLD
+		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
+			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue()) {
+				me.setLatMode(3);
+			}
+		}
+		
+		# Waypoint Advance Logic
+		if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
+			if ((FPLN.currentWPTemp + 1) < FPLN.numTemp) {
+				Velocity.groundspeedMps = Velocity.groundspeedKt.getValue() * 0.5144444444444;
+				FPLN.wpFlyFrom = FPLN.currentWPTemp;
+				if (FPLN.wpFlyFrom < 0) {
+					FPLN.wpFlyFrom = 0;
+				}
+				FPLN.currentCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyFrom ~ "]/leg-bearing-true-deg"); # Best left at getprop
+				FPLN.wpFlyTo = FPLN.currentWPTemp + 1;
+				if (FPLN.wpFlyTo < 0) {
+					FPLN.wpFlyTo = 0;
+				}
+				FPLN.nextCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyTo ~ "]/leg-bearing-true-deg"); # Best left at getprop
+				FPLN.maxBankLimit = Internal.bankLimit.getValue();
+
+				FPLN.deltaAngle = math.abs(geo.normdeg180(FPLN.currentCourse - FPLN.nextCourse));
+				FPLN.maxBank = FPLN.deltaAngle * 1.5;
+				if (FPLN.maxBank > FPLN.maxBankLimit) {
+					FPLN.maxBank = FPLN.maxBankLimit;
+				}
+				FPLN.radius = (Velocity.groundspeedMps * Velocity.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
+				FPLN.deltaAngleRad = (180 - FPLN.deltaAngle) / 114.5915590262;
+				FPLN.R = FPLN.radius / math.sin(FPLN.deltaAngleRad);
+				FPLN.distCoeff = FPLN.deltaAngle * -0.011111 + 2;
+				if (FPLN.distCoeff < 1) {
+					FPLN.distCoeff = 1;
+				}
+				FPLN.turnDist = math.cos(FPLN.deltaAngleRad) * FPLN.R * FPLN.distCoeff / 1852;
+				if (Gear.wow0.getBoolValue() and FPLN.turnDist < 1) {
+					FPLN.turnDist = 1;
+				}
+				Internal.lnavAdvanceNm.setValue(FPLN.turnDist);
+				
+				if (FPLN.wp0Dist.getValue() <= FPLN.turnDist) {
+					FPLN.currentWP.setValue(FPLN.currentWPTemp + 1);
+				}
+			}
+		}
+	},
+	ap1Master: func(s) {
+		if (s == 1) {
+			if (Output.vert.getValue() != 6 and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and !Custom.Input.ovrd1.getBoolValue() and (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue())) {
+				Control.rudder.setValue(0);
+				Output.ap1.setBoolValue(1);
+				Custom.Internal.activeFMS.setValue(1);
+				apKill.stop();
+				Custom.apWarn.setBoolValue(0);
+				Sound.apOff.setBoolValue(0);
+				Sound.enableApOff = 1;
+			}
+		} else {
+			Output.ap1.setBoolValue(0);
+			if (!Custom.Input.ovrd2.getBoolValue()) {
+				Custom.Internal.activeFMSTemp = 2;
+			}
+			me.apOffFunction();
+		}
+		Output.ap1Temp = Output.ap1.getBoolValue();
+		if (Input.ap1.getBoolValue() != Output.ap1Temp) {
+			Input.ap1.setBoolValue(Output.ap1Temp);
+		}
+	},
+	ap2Master: func(s) {
+		if (s == 1) {
+			if (Output.vert.getValue() != 6 and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and !Custom.Input.ovrd2.getBoolValue() and (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue())) {
+				Control.rudder.setValue(0);
+				Output.ap2.setBoolValue(1);
+				Custom.Internal.activeFMS.setValue(2);
+				apKill.stop();
+				Custom.apWarn.setBoolValue(0);
+				Sound.apOff.setBoolValue(0);
+				Sound.enableApOff = 1;
+			}
+		} else {
+			Output.ap2.setBoolValue(0);
+			if (!Custom.Input.ovrd1.getBoolValue()) {
+				Custom.Internal.activeFMSTemp = 1;
+			}
+			me.apOffFunction();
+		}
+		Output.ap2Temp = Output.ap2.getBoolValue();
+		if (Input.ap2.getBoolValue() != Output.ap2Temp) {
+			Input.ap2.setBoolValue(Output.ap2Temp);
+		}
+	},
+	apOffFunction: func() {
+		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) { # Only do if both APs are off
+			if (Sound.enableApOff) {
+				Sound.apOff.setBoolValue(1);
+				Sound.enableApOff = 0;
+				apKill.start();	
+			}
+			if (Text.vert.getValue() == "ROLLOUT") {
+				fms.CORE.resetFMS();
+				print("FMS reset called");
+			}
+		}
+	},
+	athrMaster: func(s) {
+		if (s == 1) {
+			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3) {
+				Output.athr.setBoolValue(1);
+				atsKill.stop();
+				Custom.atsWarn.setBoolValue(0);
+				Custom.atsFlash.setBoolValue(0);
+				Custom.enableAtsOff = 1;
+			}
+		} else {
+			Output.athr.setBoolValue(0);
+			if (Custom.enableAtsOff) {
+				Custom.atsFlash.setBoolValue(1);
+				Custom.enableAtsOff = 0;
+				atsKill.start();
+			}
+		}
+		Output.athrTemp = Output.athr.getBoolValue();
+		if (Input.athr.getBoolValue() != Output.athrTemp) {
+			Input.athr.setBoolValue(Output.athrTemp);
+		}
+	},
+	fd1Master: func(s) {
+		if (s == 1) {
+			Output.fd1.setBoolValue(1);
+		} else {
+			Output.fd1.setBoolValue(0);
+		}
+		Output.fd1Temp = Output.fd1.getBoolValue();
+		if (Input.fd1.getBoolValue() != Output.fd1Temp) {
+			Input.fd1.setBoolValue(Output.fd1Temp);
+		}
+	},
+	fd2Master: func(s) {
+		if (s == 1) {
+			Output.fd2.setBoolValue(1);
+		} else {
+			Output.fd2.setBoolValue(0);
+		}
+		Output.fd2Temp = Output.fd2.getBoolValue();
+		if (Input.fd2.getBoolValue() != Output.fd2Temp) {
+			Input.fd2.setBoolValue(Output.fd2Temp);
+		}
+	},
+	setLatMode: func(n) {
+		Output.vertTemp = Output.vert.getValue();
+		if (n == 0) { # HDG SEL
+			Custom.Output.hdgCaptured = 0;
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.apprArm.setBoolValue(0);
+			Output.lat.setValue(0);
+			Custom.showHdg.setBoolValue(1);
+			Text.lat.setValue("HDG");
+			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
+				me.setVertMode(1);
+			} else {
+				me.armTextCheck();
+			}
+		} else if (n == 1) { # LNAV
+			if (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue()) { # Remember that IRS.nas kills NAV if the IR's fail
+				me.checkLNAV(0);
+			}
+		} else if (n == 2) { # VOR/LOC
+			Output.lnavArm.setBoolValue(0);
+			me.armTextCheck();
+			me.checkLOC(0, 0);
+		} else if (n == 3) { # HDG HLD
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.apprArm.setBoolValue(0);
+			me.syncHDG();
+			Output.lat.setValue(0);
+			Custom.showHdg.setBoolValue(1);
+			Text.lat.setValue("HDG");
+			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
+				me.setVertMode(1);
+			} else {
+				me.armTextCheck();
+			}
+		} else if (n == 4) { # ALIGN
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.apprArm.setBoolValue(0);
+			Output.lat.setValue(4);
+			Custom.showHdg.setBoolValue(0);
+			Text.lat.setValue("ALGN");
+			me.armTextCheck();
+		} else if (n == 5) { # T/O
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.apprArm.setBoolValue(0);
+			Output.lat.setValue(5);
+			Custom.showHdg.setBoolValue(1);
+			Text.lat.setValue("T/O");
+			me.armTextCheck();
+		}
+	},
+	setLatArm: func(n) {
+		if (n == 1) {
+			if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue()) {
+				Output.lnavArm.setBoolValue(1);
+				me.armTextCheck();
+			}
+		} else if (n == 3) {
+			me.syncHDG();
+			Output.lnavArm.setBoolValue(0);
+			me.armTextCheck();
+		} 
+	},
+	setVertMode: func(n) {
+		Input.altDiff = Input.alt.getValue() - Position.indicatedAltitudeFt.getValue();
+		Output.latTemp = Output.lat.getValue();
+		if (n == 0) { # ALT HLD
+			Internal.flchActive = 0;
+			Internal.altCaptureActive = 0;
+			if (Output.latTemp == 2) {
+				Output.apprArm.setBoolValue(0);
+			}
+			Output.vert.setValue(0);
+			me.resetClimbRateLim();
+			Text.vert.setValue("ALT HLD");
+			me.syncALT();
+			me.armTextCheck();
+		} else if (n == 1) { # V/S
+			if (abs(Input.altDiff) >= 25) {
+				Internal.flchActive = 0;
+				Internal.altCaptureActive = 0;
+				Custom.vsFpa.setBoolValue(0);
+				if (Output.latTemp == 2) {
+					Output.apprArm.setBoolValue(0);
+				}
+				Output.vert.setValue(1);
+				Text.vert.setValue("V/S");
+				me.syncVS();
+				me.armTextCheck();
+			} else {
+				Output.apprArm.setBoolValue(0);
+				me.armTextCheck();
+			}
+		} else if (n == 2) { # G/S
+			me.checkLOC(0, 1);
+			me.checkAPPR(0);
+		} else if (n == 3) { # ALT CAP
+			Internal.flchActive = 0;
+			Output.vert.setValue(0);
+			me.setClimbRateLim();
+			Internal.altCaptureActive = 1;
+			Text.vert.setValue("ALT CAP");
+		} else if (n == 4) { # FLCH
+			if (Output.latTemp == 2) {
+				Output.apprArm.setBoolValue(0);
+			}
+			Output.vert.setValue(1);
+			Internal.alt.setValue(Input.alt.getValue());
+			Internal.altDiff = Internal.alt.getValue() - Position.indicatedAltitudeFt.getValue();
+			if (abs(Internal.altDiff) >= 250) { # SPD CLB or SPD DES
+				Custom.retardLock = 0;
+				Internal.altCaptureActive = 0;
+				Output.vert.setValue(4);
+				Internal.flchActive = 1;
+			} else { # ALT CAP
+				Internal.flchActive = 0;
+				Internal.alt.setValue(Input.alt.getValue());
+				Internal.altCaptureActive = 1;
+				Output.vert.setValue(0);
+				Text.vert.setValue("ALT CAP");
+			}
+			me.armTextCheck();
+		} else if (n == 5) { # FPA
+			if (abs(Input.altDiff) >= 25) {
+				Internal.flchActive = 0;
+				Internal.altCaptureActive = 0;
+				Custom.vsFpa.setBoolValue(1);
+				if (Output.latTemp == 2) {
+					Output.apprArm.setBoolValue(0);
+				}
+				Output.vert.setValue(5);
+				Text.vert.setValue("FPA");
+				me.syncFPA();
+				me.armTextCheck();
+			} else {
+				Output.apprArm.setBoolValue(0);
+				me.armTextCheck();
+			}
+		} else if (n == 6) { # FLARE/ROLLOUT
+			Internal.flchActive = 0;
+			Internal.altCaptureActive = 0;
+			Output.vert.setValue(6);
+			Text.vert.setValue("G/S");
+		} else if (n == 7) { # T/O CLB or G/A CLB, text is set by TOGA selector
+			Custom.retardLock = 0;
+			Internal.flchActive = 0;
+			Internal.altCaptureActive = 0;
+			if (Output.latTemp == 2) {
+				Output.apprArm.setBoolValue(0);
+			}
+			Output.vert.setValue(7);
+			me.armTextCheck();
+		}
+	},
+	activateLNAV: func() {
+		if (Output.lat.getValue() != 1) {
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.apprArm.setBoolValue(0);
+			Output.lat.setValue(1);
+			Text.lat.setValue("LNAV");
+			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
+				me.setVertMode(1);
+			} else {
+				me.armTextCheck();
+			}
+		}
+		Custom.showHdg.setBoolValue(0);
+	},
+	activateLOC: func() {
+		if (Output.lat.getValue() != 2) {
+			Output.lnavArm.setBoolValue(0);
+			Output.locArm.setBoolValue(0);
+			Output.lat.setValue(2);
+			Text.lat.setValue("LOC");
+			me.armTextCheck();
+		}
+		Custom.showHdg.setBoolValue(0);
+	},
+	activateGS: func() {
+		if (Output.vert.getValue() != 2) {
+			Internal.flchActive = 0;
+			Internal.altCaptureActive = 0;
+			Output.apprArm.setBoolValue(0);
+			Output.vert.setValue(2);
+			Text.vert.setValue("G/S");
+			me.armTextCheck();
+		}
+	},
+	checkLNAV: func(t) {
+		if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue() and Position.gearAglFt.getValue() >= 150) {
+			me.activateLNAV();
+		} else if (Output.lat.getValue() != 1 and t != 1) {
+			Output.lnavArm.setBoolValue(1);
+			me.armTextCheck();
+		}
+	},
+	checkFLCH: func(a) {
+		if (Position.gearAglFt.getValue() >= a and a != 0) {
+			me.setVertMode(4);
+		}
+	},
+	checkLOC: func(t, a) {
+		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
+			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
+			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
+			if (abs(Radio.locDeflTemp) <= 0.95 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) {
+				me.activateLOC();
+			} else if (t != 1) { # Do not do this if loop calls it
+				if (Output.lat.getValue() != 2) {
+					Output.lnavArm.setBoolValue(0);
+					Output.locArm.setBoolValue(1);
+					if (a != 1) { # Don't call this if arming with G/S
+						me.armTextCheck();
+					}
+				}
+			}
+		} else { # Prevent bad behavior due to FG not updating it when not in range
+			Radio.signalQuality[Radio.radioSel].setValue(0);
+		}
+	},
+	checkAPPR: func(t) {
+		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
+			Radio.gsDeflTemp = Radio.gsDefl[Radio.radioSel].getValue();
+			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2) { # Only capture if LOC is active
+				me.activateGS();
+			} else if (t != 1) { # Do not do this if loop calls it
+				if (Output.vert.getValue() != 2) {
+					Output.apprArm.setBoolValue(1);
+				}
+				me.armTextCheck();
+			}
+		} else { # Prevent bad behavior due to FG not updating it when not in range
+			Radio.signalQuality[Radio.radioSel].setValue(0);
+		}
+	},
+	checkRadioRevision: func(l, v) { # Revert mode if signal lost
+		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		Radio.inRangeTemp = Radio.inRange[Radio.radioSel].getBoolValue();
+		if (!Radio.inRangeTemp) {
+			if (l == 4 or v == 6) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+				me.setLatMode(3);
+				me.setVertMode(1);
+			} else {
+				me.setLatMode(3); # Also cancels G/S if active
+			}
+		}
+	},
+	setClimbRateLim: func() {
+		Internal.vsTemp = Internal.vs.getValue();
+		if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
+			Internal.maxVS.setValue(math.round(Internal.vsTemp));
+			Internal.minVS.setValue(-500);
+		} else {
+			Internal.maxVS.setValue(500);
+			Internal.minVS.setValue(math.round(Internal.vsTemp));
+		}
+	},
+	resetClimbRateLim: func() {
+		Internal.minVS.setValue(-500);
+		Internal.maxVS.setValue(500);
+	},
+	takeoffGoAround: func() {
+		Output.vertTemp = Output.vert.getValue();
+		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocity.indicatedAirspeedKt.getValue() >= 80) {
+			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+			}
+			me.setLatMode(3);
+			me.setVertMode(7);
+			Text.vert.setValue("G/A CLB");
+			Input.ktsMach.setBoolValue(0);
+			me.syncIASGA();
+		}
+	},
+	armTextCheck: func() {
+		if (Output.apprArm.getBoolValue()) {
+			Text.arm.setValue("ILS");
+		} else if (Output.locArm.getBoolValue()) {
+			Text.arm.setValue("LOC");
+		} else if (Output.lnavArm.getBoolValue()) {
+			Text.arm.setValue("LNV");
+		} else {
+			Text.arm.setValue(" ");
+		}
+	},
+	syncIAS: func() {
+		Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), 100, 365));
+	},
+	syncIASGA: func() { # Same as syncIAS, except doesn't go below V2
+		Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
+	},
+	syncCIAS: func() {
+		Custom.iasSel.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), 100, 365));
+	},
+	syncMach: func() {
+		Input.mach.setValue(math.clamp(math.round(Velocity.indicatedMach.getValue(), 0.001), 0.5, 0.87));
+	},
+	syncCMach: func() {
+		Custom.machSel.setValue(math.clamp(math.round(Velocity.indicatedMach.getValue(), 0.001), 0.5, 0.87));
+	},
+	syncHDG: func() {
+		Input.hdgSet = math.round(Internal.hdgPredicted.getValue()); # Switches to track automatically
+		if (Input.hdgSet == 360) {
+			Input.hdgSet = 0;
+		}
+		Input.hdg.setValue(Input.hdgSet);
+		Custom.hdgSel.setValue(Input.hdgSet);
+	},
+	syncALT: func() {
+		Input.alt.setValue(math.clamp(math.round(Internal.altPredicted.getValue(), 100), 0, 50000));
+		Internal.alt.setValue(math.clamp(math.round(Internal.altPredicted.getValue(), 100), 0, 50000));
+	},
+	syncVS: func() {
+		Input.vs.setValue(math.clamp(math.round(Internal.vs.getValue(), 100), -6000, 6000));
+	},
+	syncFPA: func() {
+		Input.fpa.setValue(math.clamp(math.round(Internal.fpa.getValue(), 0.1), -9.9, 9.9));
+	},
+	# Custom Stuff Below
+	spdPush: func() {
+		Custom.retardLock = 0;
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and Text.vert.getValue() != "T/O CLB") {
+			Custom.Output.spdCaptured = 1;
+			if (Custom.ktsMach.getBoolValue()) {
+				Input.ktsMach.setBoolValue(1);
+				Custom.machSel.setValue(math.clamp(math.round(Velocity.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
+				Input.mach.setValue(math.clamp(math.round(Velocity.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
+			} else {
+				Input.ktsMach.setBoolValue(0);
+				Custom.iasSel.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+				Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+			}
+		} else {
+			if (Custom.ktsMach.getBoolValue()) {
+				me.syncCMach();
+			} else {
+				me.syncCIAS();
+			}
+		}
+	},
+	spdPull: func() {
+		Custom.retardLock = 0;
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and Text.vert.getValue() != "T/O CLB") {
+			Custom.ktsMachTemp = Custom.ktsMach.getBoolValue();
+			if (Input.ktsMach.getBoolValue() != Custom.ktsMachTemp) {
+				Input.ktsMach.setBoolValue(Custom.ktsMachTemp);
+			}
+			if (Custom.ktsMachTemp) {
+				Input.mach.setValue(Custom.machSel.getValue());
+			} else {
+				Input.ias.setValue(Custom.iasSel.getValue());
+			}
+			Custom.Output.spdCaptured = 0;
+		}
+	},
+	AUTOFLIGHT: func() {
+		Custom.Input.ovrd1Temp = Custom.Input.ovrd1.getBoolValue();
+		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
+		Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue();
+		
+		if ((!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) or Text.vert.getValue() == "T/O CLB") { # Only allow engagement in air, or for A/THR arm
+			if (!Output.athr.getBoolValue() and (!Custom.Input.ovrd1Temp or !Custom.Input.ovrd2Temp)) {
+				me.athrMaster(1);
+			}
+			
+			if (Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) { # Switch active FMS
+				if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd2Temp) {
+					Custom.Internal.activeFMSTemp = 2;
+				} else if (Custom.Internal.activeFMSTemp == 2 and !Custom.Input.ovrd1Temp) {
+					Custom.Internal.activeFMSTemp = 1;
+				}
+			}
+			# Note: AP will trip if in vert mode 6
+			if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd1Temp) { # AP1 on
+				me.ap1Master(1);
+				me.ap2Master(0);
+			} else if (Custom.Internal.activeFMSTemp == 2 and !Custom.Input.ovrd2Temp) { # AP2 on
+				me.ap2Master(1);
+				me.ap1Master(0);
+			}
+		}
+	},
+	updateOVRD: func() {
+		Output.ap1Temp = Output.ap1.getBoolValue();
+		Output.ap2Temp = Output.ap2.getBoolValue();
+		Custom.Input.ovrd1Temp = Custom.Input.ovrd1.getBoolValue();
+		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
+		
+		if (Custom.Input.ovrd1Temp and Custom.Input.ovrd2Temp) {
+			if (Output.ap1Temp) {
+				me.ap1Master(0);
+			}
+			if (Output.ap2Temp) {
+				me.ap2Master(0);
+			}
+			if (Output.athr.getBoolValue()) {
+				me.athrMaster(0);
+			}
+		} else if (Custom.Input.ovrd1Temp and !Custom.Input.ovrd2Temp) {
+			if (Output.ap1Temp) {
+				me.ap1Master(0);
+			}
+			Custom.Internal.activeFMS.setValue(2);
+		} else if (Custom.Input.ovrd2Temp and !Custom.Input.ovrd1Temp) {
+			if (Output.ap2Temp) {
+				me.ap2Master(0);
+			}
+			Custom.Internal.activeFMS.setValue(1);
+		}
+	},
+	killAFSSilent: func() {
+		Output.ap1.setBoolValue(0);
+		Output.ap2.setBoolValue(0);
+		Sound.apOff.setBoolValue(0);
+		Sound.enableApOff = 0;
+		# Now that AFS is off, we can safely update the input to 0 without the AP Master running
+		Input.ap1.setBoolValue(0);
+		Input.ap2.setBoolValue(0);
+	},
+	killATSSilent: func() {
+		Output.athr.setBoolValue(0);
+		Custom.atsFlash.setBoolValue(0);
+		Custom.enableAtsOff = 0;
+		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
+		Input.athr.setBoolValue(0);
+	},
+};
+
+setlistener("/it-autoflight/input/ap1", func {
+	Input.ap1Temp = Input.ap1.getBoolValue();
+	if (Input.ap1Temp != Output.ap1.getBoolValue()) {
+		ITAF.ap1Master(Input.ap1Temp);
 	}
 });
 
-var ATHRMaster = func {
-	var athrmas = getprop("/it-autoflight/input/athr");
-	var gear1 = getprop("/gear/gear[1]/wow");
-	var gear2 = getprop("/gear/gear[2]/wow");
-	vert = getprop("/it-autoflight/mode/vert");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	if (athrmas == 0) {
-		setprop("/it-autoflight/output/athr", 0);
-		if (getprop("/it-autoflight/custom/enableatsflash") == 1) {
-			setprop("/it-autoflight/custom/atsflash", 1);
-			setprop("/it-autoflight/sound/enableatsflash", 0);
-			atsKill.start();			
-		}
-	} else if (athrmas == 1 and (getprop("/engines/engine[0]/state") == 3 or getprop("/engines/engine[1]/state") == 3 or getprop("/engines/engine[2]/state") == 3) and ((gear1 == 0 and gear2 == 0) or vert == "T/O CLB") and (!ovrd1 or !ovrd2)) {
-		thrustmode();
-		atsKill.stop();
-		setprop("/it-autoflight/output/athr", 1);
-		setprop("/it-autoflight/custom/enableatsflash", 1);
-		setprop("/it-autoflight/custom/atsflash", 0);
+setlistener("/it-autoflight/input/ap2", func {
+	Input.ap2Temp = Input.ap2.getBoolValue();
+	if (Input.ap2Temp != Output.ap2.getBoolValue()) {
+		ITAF.ap2Master(Input.ap2Temp);
 	}
-	
-	var athrout = getprop("/it-autoflight/output/athr");
-	if (athrmas != athrout) {
-		setprop("/it-autoflight/input/athr", athrout);
+});
+
+setlistener("/it-autoflight/input/athr", func {
+	Input.athrTemp = Input.athr.getBoolValue();
+	if (Input.athrTemp != Output.athr.getBoolValue()) {
+		ITAF.athrMaster(Input.athrTemp);
+	}
+});
+
+setlistener("/it-autoflight/input/fd1", func {
+	Input.fd1Temp = Input.fd1.getBoolValue();
+	if (Input.fd1Temp != Output.fd1.getBoolValue()) {
+		ITAF.fd1Master(Input.fd1Temp);
+	}
+});
+
+setlistener("/it-autoflight/input/fd2", func {
+	Input.fd2Temp = Input.fd2.getBoolValue();
+	if (Input.fd2Temp != Output.fd2.getBoolValue()) {
+		ITAF.fd2Master(Input.fd2Temp);
+	}
+});
+
+setlistener("/it-autoflight/custom/kts-mach", func {
+	if (Custom.ktsMach.getBoolValue()) {
+		ITAF.syncCMach();
+	} else {
+		ITAF.syncCIAS();
+	}
+}, 0, 0);
+
+setlistener("/it-autoflight/input/kts-mach", func {
+	if (Input.ktsMach.getBoolValue()) {
+		ITAF.syncMach();
+	} else {
+		ITAF.syncIAS();
+	}
+}, 0, 0);
+
+setlistener("/it-autoflight/input/toga", func {
+	if (Input.toga.getBoolValue()) {
+		ITAF.takeoffGoAround();
+		Input.toga.setBoolValue(0);
+	}
+});
+
+setlistener("/it-autoflight/input/lat", func {
+	Input.latTemp = Input.lat.getValue();
+	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
+		Output.lnavArm.setBoolValue(0);
+		ITAF.setLatMode(Input.latTemp);
+	} else {
+		ITAF.setLatArm(Input.latTemp);
+	}
+});
+
+setlistener("/it-autoflight/input/vert", func {
+	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
+		ITAF.setVertMode(Input.vert.getValue());
+	}
+});
+
+# Flashing Logic
+var killAPWarn = func {
+	if (Sound.apOff.getBoolValue()) { # Second press only
+		apKill.stop();
+		Custom.apWarn.setBoolValue(0);
+		Sound.apOff.setBoolValue(0);
 	}
 }
 
 var killATSWarn = func {
-	if (getprop("/it-autoflight/custom/atsflash") == 1) { # Second press only
+	if (Custom.atsFlash.getBoolValue()) { # Second press only
 		atsKill.stop();
-		setprop("/it-autoflight/custom/atswarn", 0);
-		setprop("/it-autoflight/custom/atsflash", 0);
+		Custom.atsWarn.setBoolValue(0);
+		Custom.atsFlash.setBoolValue(0);
 	}
 };
 
-# Flight Director 1 Master System
-setlistener("/it-autoflight/input/fd1", func {
-	var fdmas = getprop("/it-autoflight/input/fd1");
-	var fdout = getprop("/it-autoflight/output/fd1");
-	
-	if (fdmas != fdout) {
-		FD1Master();
-	}
-});
-
-var FD1Master = func {
-	var fdmas = getprop("/it-autoflight/input/fd1");
-	if (fdmas == 0) {
-		setprop("/it-autoflight/output/fd1", 0);
-	} else if (fdmas == 1) {
-		setprop("/it-autoflight/output/fd1", 1);
-	}
-	
-	var fdout = getprop("/it-autoflight/output/fd1");
-	if (fdmas != fdout) {
-		setprop("/it-autoflight/input/fd1", fdout);
-	}
-}
-
-# Flight Director 2 Master System
-setlistener("/it-autoflight/input/fd2", func {
-	var fdmas = getprop("/it-autoflight/input/fd2");
-	var fdout = getprop("/it-autoflight/output/fd2");
-	
-	if (fdmas != fdout) {
-		FD2Master();
-	}
-});
-
-var FD2Master = func {
-	var fdmas = getprop("/it-autoflight/input/fd2");
-	if (fdmas == 0) {
-		setprop("/it-autoflight/output/fd2", 0);
-	} else if (fdmas == 1) {
-		setprop("/it-autoflight/output/fd2", 1);
-	}
-	
-	var fdout = getprop("/it-autoflight/output/fd2");
-	if (fdmas != fdout) {
-		setprop("/it-autoflight/input/fd2", fdout);
-	}
-}
-
-# Master Lateral
-setlistener("/it-autoflight/input/lat", func {
-	if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
-		setprop("/it-autoflight/input/lat-arm", 0);
-		lateral();
+var apKill = maketimer(0.3, func {
+	if (!Sound.apOff.getBoolValue()) {
+		apKill.stop();
+		Custom.apWarn.setBoolValue(0);
+	} else if (!Custom.apWarn.getBoolValue()) {
+		Custom.apWarn.setBoolValue(1);
 	} else {
-		lat_arm();
+		Custom.apWarn.setBoolValue(0);
 	}
 });
 
-var lateral = func {
-	var latset = getprop("/it-autoflight/input/lat");
-	if (latset == 0) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/output/hdg-captured", 0);
-		hdgcaptt.start();
-		setprop("/it-autoflight/custom/show-hdg", 1);
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/appr-armed", 0);
-		setprop("/it-autoflight/output/lat", 0);
-		setprop("/it-autoflight/mode/lat", "HDG");
-		setprop("/it-autoflight/mode/arm", " ");
-	} else if (latset == 1) {
-		if ((getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) and getprop("/autopilot/route-manager/route/num") > 0 and 
-		getprop("/autopilot/route-manager/active") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
-			if (getprop("/position/gear-agl-ft") >= 30) {
-				make_lnav_active();
-			} else {
-				if (getprop("/it-autoflight/output/lat") != 1) {
-					setprop("/it-autoflight/input/lat-arm", 1);
-					setprop("/it-autoflight/mode/arm", "LNV");
-				} else {
-					setprop("/it-autoflight/custom/show-hdg", 0);
-				}
-			}
-		}
-	} else if (latset == 2) {
-		if (getprop("/instrumentation/nav[0]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 0) {
-			locdefl = abs(getprop("/instrumentation/nav[0]/heading-needle-deflection-norm"));
-			if (locdefl < 0.95 and locdefl != 0 and getprop("/instrumentation/nav[0]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				if (getprop("/it-autoflight/output/lat") != 2) {
-					setprop("/it-autoflight/input/lat-arm", 0);
-					setprop("/it-autoflight/output/loc-armed", 1);
-					setprop("/it-autoflight/mode/arm", "LOC");
-				} else {
-					setprop("/it-autoflight/custom/show-hdg", 0);
-				}
-			}
-		} else if (getprop("/instrumentation/nav[1]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 1) {
-			locdefl_b = abs(getprop("/instrumentation/nav[1]/heading-needle-deflection-norm"));
-			if (locdefl_b < 0.95 and locdefl_b != 0 and getprop("/instrumentation/nav[1]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				if (getprop("/it-autoflight/output/lat") != 2) {
-					setprop("/it-autoflight/input/lat-arm", 0);
-					setprop("/it-autoflight/output/loc-armed", 1);
-					setprop("/it-autoflight/mode/arm", "LOC");
-				} else {
-					setprop("/it-autoflight/custom/show-hdg", 0);
-				}
-			}
-		} else {
-			setprop("/instrumentation/nav[0]/signal-quality-norm", 0);
-			setprop("/instrumentation/nav[1]/signal-quality-norm", 0);
-		}
-	} else if (latset == 3) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/custom/show-hdg", 1);
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/appr-armed", 0);
-		var hdgpredic = math.round(getprop("/it-autoflight/internal/heading-predicted"));
-		if (hdgpredic == 360) {
-			hdgpredic = 0;
-		}
-		setprop("/it-autoflight/input/hdg", hdgpredic);
-		setprop("/it-autoflight/custom/hdg-sel", hdgpredic);
-		setprop("/it-autoflight/output/lat", 0);
-		setprop("/it-autoflight/mode/lat", "HDG");
-		setprop("/it-autoflight/mode/arm", " ");
-	} else if (latset == 4) {
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/output/lat", 4);
-		setprop("/it-autoflight/mode/lat", "ALGN");
-		setprop("/it-autoflight/custom/show-hdg", 0);
-	} else if (latset == 5) {
-		setprop("/it-autoflight/output/lat", 5);
-		setprop("/it-autoflight/custom/show-hdg", 1);
-	}
-}
-
-var lat_arm = func {
-	var latset = getprop("/it-autoflight/input/lat");
-	if (latset == 0) {
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/mode/arm", " ");
-	} else if (latset == 1) {
-		if ((getprop("/instrumentation/irs/ir[0]/aligned") == 1 or getprop("/instrumentation/irs/ir[1]/aligned") == 1 or getprop("/instrumentation/irs/ir[2]/aligned") == 1) and getprop("/autopilot/route-manager/route/num") > 0 and 
-		getprop("/autopilot/route-manager/active") == 1) { # Remember that IRS.nas kills NAV if the IR's fail
-			setprop("/it-autoflight/input/lat-arm", 1);
-			setprop("/it-autoflight/mode/arm", "LNV");
-		}
-	} else if (latset == 3) {
-		if (getprop("/it-autoflight/input/true-course") == 1) {
-			var hdgnow = math.round(getprop("/it-autoflight/internal/track-deg"));
-		} else {
-			var hdgnow = math.round(getprop("/it-autoflight/internal/heading-deg"));
-		}
-		setprop("/it-autoflight/input/hdg", hdgnow);
-		setprop("/it-autoflight/custom/hdg-sel", hdgnow);
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/mode/arm", " ");
-	}
-}
-
-# Master Vertical
-setlistener("/it-autoflight/input/vert", func {
-	if ((getprop("/gear/gear[1]/wow") == 0) and (getprop("/gear/gear[2]/wow") == 0)) {
-		vertical();
+var atsKill = maketimer(0.3, func {
+	if (!Custom.atsFlash.getBoolValue()) {
+		atsKill.stop();
+		Custom.atsWarn.setBoolValue(0);
+	} else if (!Custom.atsWarn.getBoolValue()) {
+		Custom.atsWarn.setBoolValue(1);
+	} else {
+		Custom.atsWarn.setBoolValue(0);
 	}
 });
 
-var vertical = func {
-	var vertset = getprop("/it-autoflight/input/vert");
-	if (vertset == 0) {
-		alandt.stop();
-		alandt1.stop();
-		if (getprop("/it-autoflight/output/lat") == 2) {
-			setprop("/it-autoflight/output/appr-armed", 0);
-			setprop("/it-autoflight/mode/arm", " ");
-		}
-		setprop("/it-autoflight/output/vert", 0);
-		setprop("/it-autoflight/mode/vert", "ALT HLD");
-		var altpredic = math.round(getprop("/it-autoflight/internal/altitude-predicted"), 100);
-		setprop("/it-autoflight/input/alt", altpredic);
-		setprop("/it-autoflight/internal/alt", altpredic);
-		thrustmode();
-	} else if (vertset == 1) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/custom/vs-fpa", 0);
-		if (getprop("/it-autoflight/output/lat") == 2) {
-			setprop("/it-autoflight/output/appr-armed", 0);
-			setprop("/it-autoflight/mode/arm", " ");
-		}
-		altinput = getprop("/it-autoflight/input/alt");
-		setprop("/it-autoflight/internal/alt", altinput);
-		vsnow = math.clamp(math.round(getprop("/it-autoflight/internal/vert-speed-fpm"), 100), -6000, 6000);
-		setprop("/it-autoflight/input/vs", vsnow);
-		setprop("/it-autoflight/output/vert", 1);
-		setprop("/it-autoflight/mode/vert", "V/S");
-		thrustmode();
-	} else if (vertset == 2) {
-		if (getprop("/instrumentation/nav[0]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 0) {
-			locdefl = abs(getprop("/instrumentation/nav[0]/heading-needle-deflection-norm"));
-			if (locdefl < 0.95 and locdefl != 0 and getprop("/instrumentation/nav[0]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				if (getprop("/it-autoflight/output/lat") != 2) {
-					setprop("/it-autoflight/output/loc-armed", 1);
-				}
-			}
-			signal = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
-			if (((signal < 0 and signal >= -0.20) or (signal > 0 and signal <= 0.20)) and getprop("/it-autoflight/output/lat") == 2) {
-				make_appr_active();
-			} else {
-				if (getprop("/it-autoflight/output/vert") != 2 and getprop("/it-autoflight/output/vert") != 6) {
-					setprop("/it-autoflight/output/appr-armed", 1);
-					setprop("/it-autoflight/mode/arm", "ILS");
-				}
-			}
-		} else if (getprop("/instrumentation/nav[1]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 1) {
-			locdefl_b = abs(getprop("/instrumentation/nav[1]/heading-needle-deflection-norm"));
-			if (locdefl_b < 0.95 and locdefl_b != 0 and getprop("/instrumentation/nav[1]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				if (getprop("/it-autoflight/output/lat") != 2) {
-					setprop("/it-autoflight/output/loc-armed", 1);
-				}
-			}
-			signal_b = getprop("/instrumentation/nav[1]/gs-needle-deflection-norm");
-			if (((signal_b < 0 and signal_b >= -0.20) or (signal_b > 0 and signal_b <= 0.20)) and getprop("/it-autoflight/output/lat") == 2) {
-				make_appr_active();
-			} else {
-				if (getprop("/it-autoflight/output/vert") != 2 and getprop("/it-autoflight/output/vert") != 6) {
-					setprop("/it-autoflight/output/appr-armed", 1);
-					setprop("/it-autoflight/mode/arm", "ILS");
-				}
-			}
-		} else {
-			setprop("/instrumentation/nav[0]/signal-quality-norm", 0);
-			setprop("/instrumentation/nav[1]/signal-quality-norm", 0);
-			setprop("/instrumentation/nav[0]/gs-rate-of-climb", 0);
-			setprop("/instrumentation/nav[1]/gs-rate-of-climb", 0);
-		}
-	} else if (vertset == 3) {
-		alandt.stop();
-		alandt1.stop();
-		var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-		var alt = getprop("/it-autoflight/internal/alt");
-		var dif = calt - alt;
-		vsnow = getprop("/it-autoflight/internal/vert-speed-fpm");
-		if (calt < alt) {
-			setprop("/it-autoflight/internal/max-vs", vsnow);
-		} else if (calt > alt) {
-			setprop("/it-autoflight/internal/min-vs", vsnow);
-		}
-		minmaxtimer.start();
-		thrustmode();
-		setprop("/it-autoflight/output/vert", 0);
-		setprop("/it-autoflight/mode/vert", "ALT CAP");
-	} else if (vertset == 4) {
-		alandt.stop();
-		alandt1.stop();
-		if (getprop("/it-autoflight/output/lat") == 2) {
-			setprop("/it-autoflight/output/appr-armed", 0);
-			setprop("/it-autoflight/mode/arm", " ");
-		}
-		altinput = getprop("/it-autoflight/input/alt");
-		setprop("/it-autoflight/internal/alt", altinput);
-		var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-		var alt = getprop("/it-autoflight/internal/alt");
-		var dif = calt - alt;
-		if (dif < 250 and dif > -250) {
-			alt_on();
-		} else {
-			flch_on();
-		}
-	} else if (vertset == 5) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/custom/vs-fpa", 1);
-		if (getprop("/it-autoflight/output/lat") == 2) {
-			setprop("/it-autoflight/output/appr-armed", 0);
-			setprop("/it-autoflight/mode/arm", " ");
-		}
-		altinput = getprop("/it-autoflight/input/alt");
-		setprop("/it-autoflight/internal/alt", altinput);
-		fpanow = math.clamp(math.round(getprop("/it-autoflight/internal/fpa"), 0.1), -9.9, 9.9);
-		setprop("/it-autoflight/input/fpa", fpanow);
-		setprop("/it-autoflight/output/vert", 5);
-		setprop("/it-autoflight/mode/vert", "FPA");
-		thrustmode();
-	} else if (vertset == 6) {
-		setprop("/it-autoflight/output/vert", 6);
-		setprop("/it-autoflight/mode/vert", "LAND");
-		setprop("/it-autoflight/mode/arm", " ");
-		thrustmode();
-		alandt.stop();
-		alandt1.start();
-	} else if (vertset == 7) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/output/vert", 7);
-		setprop("/it-autoflight/mode/arm", " ");
-		altinput = getprop("/it-autoflight/input/alt");
-		setprop("/it-autoflight/internal/alt", altinput);
-		thrustmodet.start();
-	}
-}
+setlistener("/it-autoflight/input/ovrd1", func {
+	ITAF.updateOVRD();
+});
 
-# Helpers
+setlistener("/it-autoflight/input/ovrd2", func {
+	ITAF.updateOVRD();
+});
+
 setlistener("/it-autoflight/input/vs", func {
-	setprop("/it-autoflight/input/vs-abs", abs(getprop("/it-autoflight/input/vs")));
+	Custom.vsAbs.setValue(abs(Input.vs.getValue()));
 });
 
 setlistener("/it-autoflight/input/fpa", func {
-	setprop("/it-autoflight/input/fpa-abs", abs(getprop("/it-autoflight/input/fpa")));
+	Custom.fpaAbs.setValue(abs(Input.fpa.getValue()));
 });
-
-setlistener("/autopilot/route-manager/current-wp", func {
-	setprop("/autopilot/internal/wp-change-time", getprop("/sim/time/elapsed-sec"));
-});
-
-var ap_various = func {
-	trueSpeedKts = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
-	if (trueSpeedKts > 420) {
-		setprop("/it-autoflight/internal/bank-limit-auto", 15);
-	} else if (trueSpeedKts > 340) {
-		setprop("/it-autoflight/internal/bank-limit-auto", 20);
-	} else {
-		setprop("/it-autoflight/internal/bank-limit-auto", 25);
-	}
-	
-	bank_limit_sw = getprop("/it-autoflight/input/bank-limit-sw");
-	if (bank_limit_sw == 0) {
-		setprop("/it-autoflight/internal/bank-limit", getprop("/it-autoflight/internal/bank-limit-auto"));
-	} else if (bank_limit_sw == 1) {
-		setprop("/it-autoflight/internal/bank-limit", 5);
-	} else if (bank_limit_sw == 2) {
-		setprop("/it-autoflight/internal/bank-limit", 10);
-	} else if (bank_limit_sw == 3) {
-		setprop("/it-autoflight/internal/bank-limit", 15);
-	} else if (bank_limit_sw == 4) {
-		setprop("/it-autoflight/internal/bank-limit", 20);
-	} else if (bank_limit_sw == 5) {
-		setprop("/it-autoflight/internal/bank-limit", 25);
-	}
-	
-	if (getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1) {
-		if ((getprop("/autopilot/route-manager/current-wp") + 1) < getprop("/autopilot/route-manager/route/num")) {
-			gnds_mps = getprop("/velocities/groundspeed-kt") * 0.5144444444444;
-			wp_fly_from = getprop("/autopilot/route-manager/current-wp");
-			if (wp_fly_from < 0) {
-				wp_fly_from = 0;
-			}
-			current_course = getprop("/autopilot/route-manager/route/wp[" ~ wp_fly_from ~ "]/leg-bearing-true-deg");
-			wp_fly_to = getprop("/autopilot/route-manager/current-wp") + 1;
-			if (wp_fly_to < 0) {
-				wp_fly_to = 0;
-			}
-			next_course = getprop("/autopilot/route-manager/route/wp[" ~ wp_fly_to ~ "]/leg-bearing-true-deg");
-			max_bank_limit = getprop("/it-autoflight/internal/bank-limit");
-
-			delta_angle = math.abs(geo.normdeg180(current_course - next_course));
-			max_bank = delta_angle * 1.5;
-			if (max_bank > max_bank_limit) {
-				max_bank = max_bank_limit;
-			}
-			radius = (gnds_mps * gnds_mps) / (9.81 * math.tan(max_bank / 57.2957795131));
-			time = 0.64 * gnds_mps * delta_angle * 0.7 / (360 * math.tan(max_bank / 57.2957795131));
-			delta_angle_rad = (180 - delta_angle) / 114.5915590262;
-			R = radius/math.sin(delta_angle_rad);
-			dist_coeff = delta_angle * -0.011111 + 2;
-			if (dist_coeff < 1) {
-				dist_coeff = 1;
-			}
-			turn_dist = math.cos(delta_angle_rad) * R * dist_coeff / 1852;
-			if (getprop("/gear/gear[0]/wow") == 1 and turn_dist < 1) {
-				turn_dist = 1;
-			}
-			setprop("/it-autoflight/internal/lnav-advance-nm", turn_dist);
-			if (getprop("/sim/time/elapsed-sec")-getprop("/autopilot/internal/wp-change-time") > 60) {
-				setprop("/autopilot/internal/wp-change-check-period", time);
-			}
-			
-			if (getprop("/autopilot/route-manager/wp/dist") <= turn_dist) {
-				setprop("/autopilot/route-manager/current-wp", getprop("/autopilot/route-manager/current-wp") + 1);
-			}
-		}
-	}
-	
-	if (getprop("/it-autoflight/output/ap1") == 1 or getprop("/it-autoflight/output/ap2") == 1) {
-		if (getprop("/controls/flight/aileron") > 0.2 or getprop("/controls/flight/aileron") < -0.2 or getprop("/controls/flight/elevator") > 0.2 or getprop("/controls/flight/elevator") < -0.2) {
-			setprop("/it-autoflight/input/ap1", 0);
-			setprop("/it-autoflight/input/ap2", 0);
-		}
-		if (getprop("/instrumentation/irs/ir[0]/aligned") == 0 and getprop("/instrumentation/irs/ir[1]/aligned") == 0 and getprop("/instrumentation/irs/ir[2]/aligned") == 0) {
-			setprop("/it-autoflight/input/ap1", 0);
-			setprop("/it-autoflight/input/ap2", 0);
-		}
-	}
-	
-	if (getprop("/it-autoflight/output/athr") == 1 and getprop("/engines/engine[0]/state") != 3 and getprop("/engines/engine[1]/state") != 3 and getprop("/engines/engine[2]/state") != 3) {
-		setprop("/it-autoflight/input/athr", 0);
-	}
-}
-
-var various2 = maketimer(0.5, func {
-	if (getprop("/it-autoflight/output/lat") == 0) {
-		setprop("/it-autoflight/custom/show-hdg", 1);
-	}
-});
-
-var flch_on = func {
-	setprop("/it-autoflight/output/vert", 4);
-	thrustmodet.start();
-}
-var alt_on = func {
-	setprop("/it-autoflight/output/vert", 0);
-	setprop("/it-autoflight/mode/vert", "ALT CAP");
-	setprop("/it-autoflight/internal/max-vs", 500);
-	setprop("/it-autoflight/internal/min-vs", -500);
-	minmaxtimer.start();
-}
-
-setlistener("/it-autoflight/custom/kts-mach", func {
-	var ias = getprop("/it-autoflight/custom/kts-sel") or 0;
-	var mach = getprop("/it-autoflight/custom/mach-sel") or 0;
-	if (getprop("/it-autoflight/custom/kts-mach") == 0) {
-		if (ias >= 100 and ias <= 360) {
-			setprop("/it-autoflight/custom/kts-sel", math.round(ias, 1));
-		} else if (ias < 100) {
-			setprop("/it-autoflight/custom/kts-sel", 100);
-		} else if (ias > 360) {
-			setprop("/it-autoflight/custom/kts-sel", 360);
-		}
-	} else if (getprop("/it-autoflight/custom/kts-mach") == 1) {
-		if (mach >= 0.50 and mach <= 0.95) {
-			setprop("/it-autoflight/custom/mach-sel", math.round(mach, 0.001));
-		} else if (mach < 0.50) {
-			setprop("/it-autoflight/custom/mach-sel", 0.50);
-		} else if (mach > 0.95) {
-			setprop("/it-autoflight/custom/mach-sel", 0.95);
-		}
-	}
-});
-
-setlistener("/it-autoflight/input/kts-mach", func {
-	var ias = getprop("/it-autoflight/input/spd-kts") or 0;
-	var mach = getprop("/it-autoflight/input/spd-mach") or 0;
-	if (getprop("/it-autoflight/input/kts-mach") == 0) {
-		if (ias >= 100 and ias <= 360) {
-			setprop("/it-autoflight/input/spd-kts", math.round(ias, 1));
-		} else if (ias < 100) {
-			setprop("/it-autoflight/input/spd-kts", 100);
-		} else if (ias > 360) {
-			setprop("/it-autoflight/input/spd-kts", 360);
-		}
-	} else if (getprop("/it-autoflight/input/kts-mach") == 1) {
-		if (mach >= 0.50 and mach <= 0.95) {
-			setprop("/it-autoflight/input/spd-mach", math.round(mach, 0.001));
-		} else if (mach < 0.50) {
-			setprop("/it-autoflight/input/spd-mach", 0.50);
-		} else if (mach > 0.95) {
-			setprop("/it-autoflight/input/spd-mach", 0.95);
-		}
-	}
-});
-
-# Takeoff Modes
-# TOGA
-setlistener("/it-autoflight/input/toga", func {
-	if (getprop("/it-autoflight/output/vert") == 2 or getprop("/it-autoflight/output/vert") == 6) {
-		if (getprop("/it-autoflight/input/toga") == 1) {
-			setprop("/it-autoflight/input/vert", 7);
-			vertical();
-			setprop("/it-autoflight/output/loc-armed", 0);
-			setprop("/it-autoflight/output/appr-armed", 0);
-			setprop("/it-autoflight/input/toga", 0);
-			togasel();
-		}
-	}
-});
-
-var togasel = func {
-	var iasnow = math.round(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
-	setprop("/it-autoflight/input/spd-kts", iasnow);
-	setprop("/it-autoflight/input/kts-mach", 0);
-	setprop("/it-autoflight/mode/vert", "G/A CLB");
-	setprop("/it-autoflight/input/lat", 3);
-}
-
-var takeoffReset = func {
-	setprop("/it-autoflight/input/lat", 5);
-	lateral();
-	setprop("/it-autoflight/mode/lat", "T/O");
-	setprop("/it-autoflight/mode/vert", "T/O CLB");
-	setprop("/it-autoflight/input/athr", 1);
-}
-
-setlistener("/it-autoflight/mode/vert", func {
-	var vertm = getprop("/it-autoflight/mode/vert");
-	if (vertm == "T/O CLB") {
-		reduct.start();
-	} else {
-		reduct.stop();
-	}
-});
-
-var toga_reduc = func {
-	if (getprop("/position/gear-agl-ft") >= getprop("/systems/thrust/clbthrust-ft")) {
-		setprop("/it-autoflight/input/vert", 4);
-	}
-}
-
-# Altitude Capture and FPA Timer Logic
-setlistener("/it-autoflight/output/vert", func {
-	var vertm = getprop("/it-autoflight/output/vert");
-	if (vertm == 1) {
-		altcaptt.start();
-	} else if (vertm == 4) {
-		altcaptt.start();
-	} else if (vertm == 5) {
-		altcaptt.start();
-	} else if (vertm == 7) {
-		altcaptt.start();
-	} else {
-		altcaptt.stop();
-	}
-});
-
-var spdPush = func {
-	var gear1 = getprop("/gear/gear[1]/wow");
-	var gear2 = getprop("/gear/gear[2]/wow");
-	if (gear1 == 0 and gear2 == 0 and getprop("/it-autoflight/mode/vert") != "T/O CLB") {
-		spdcaptt.stop();
-		setprop("/it-autoflight/output/spd-captured", 1);
-		if (getprop("/it-autoflight/input/kts-mach") != getprop("/it-autoflight/custom/kts-mach")) {
-			setprop("/it-autoflight/input/kts-mach", getprop("/it-autoflight/custom/kts-mach"));
-		}
-		if (getprop("/it-autoflight/custom/kts-mach") == 0) {
-			setprop("/it-autoflight/custom/kts-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt")), 100, 360));
-			setprop("/it-autoflight/input/spd-kts", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt")), 100, 360));
-		} else if (getprop("/it-autoflight/custom/kts-mach") == 1) {
-			setprop("/it-autoflight/custom/mach-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
-			setprop("/it-autoflight/input/spd-mach", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
-		}
-	} else {
-		if (getprop("/it-autoflight/custom/kts-mach") == 0) {
-			setprop("/it-autoflight/custom/kts-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt")), 100, 360));
-		} else if (getprop("/it-autoflight/custom/kts-mach") == 1) {
-			setprop("/it-autoflight/custom/mach-sel", math.clamp(math.round(getprop("/it-autoflight/internal/lookahead-5-sec-mach"), 0.001), 0.5, 0.95));
-		}
-	}
-}
-
-var spdPull = func {
-	var gear1 = getprop("/gear/gear[1]/wow");
-	var gear2 = getprop("/gear/gear[2]/wow");
-	if (gear1 == 0 and gear2 == 0 and getprop("/it-autoflight/mode/vert") != "T/O CLB") {
-		setprop("/it-autoflight/output/spd-captured", 0);
-		spdcaptt.start();
-	}
-}
-
-# Speed Capture
-var spdcapt = func {
-	if (getprop("/it-autoflight/input/kts-mach") != getprop("/it-autoflight/custom/kts-mach")) {
-		setprop("/it-autoflight/input/kts-mach", getprop("/it-autoflight/custom/kts-mach"));
-	}
-	if (getprop("/it-autoflight/input/kts-mach") == 0) {
-		setprop("/it-autoflight/input/spd-kts", getprop("/it-autoflight/custom/kts-sel"));
-		TargetIAS = getprop("/it-autoflight/input/spd-kts");
-	} else if (getprop("/it-autoflight/input/kts-mach") == 1) {
-		setprop("/it-autoflight/input/spd-mach", getprop("/it-autoflight/custom/mach-sel"));
-		TargetIAS = getprop("/it-autoflight/input/spd-mach") * (getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") / getprop("/instrumentation/airspeed-indicator/indicated-mach"));
-	}
-	IASSelError = TargetIAS - getprop("/it-autoflight/internal/lookahead-5-sec-airspeed-kt");
-	if (abs(IASSelError) <= 2.5) {
-		spdcaptt.stop();
-		setprop("/it-autoflight/output/spd-captured", 1);
-	}
-}
-
-# Heading Capture
-var hdgcapt = func {
-	if (getprop("/it-autoflight/output/lat") == 0) {
-		setprop("/it-autoflight/input/hdg", getprop("/it-autoflight/custom/hdg-sel"));
-		HDGPredError = getprop("/it-autoflight/input/hdg") - getprop("/it-autoflight/internal/heading-predicted");
-		if (abs(HDGPredError) <= 2.5) {
-			hdgcaptt.stop();
-			setprop("/it-autoflight/output/hdg-captured", 1);
-		}
-	} else {
-		hdgcaptt.stop();
-		setprop("/it-autoflight/output/hdg-captured", 1);
-	}
-}
-
-# Altitude Capture
-var altcapt = func {
-	vsnow = getprop("/it-autoflight/internal/vert-speed-fpm");
-	setprop("/it-autoflight/internal/captvs", math.round(abs(vsnow) / 5, 100));
-	setprop("/it-autoflight/internal/captvsneg", -1 * math.round(abs(vsnow) / 5, 100));
-	var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-	var alt = getprop("/it-autoflight/internal/alt");
-	var dif = calt - alt;
-	if (dif < getprop("/it-autoflight/internal/captvs") and dif > getprop("/it-autoflight/internal/captvsneg")) {
-		if (vsnow > 0 and dif < 0) {
-			setprop("/it-autoflight/input/vert", 3);
-			setprop("/it-autoflight/output/thr-mode", 0);
-			setprop("/it-autoflight/mode/thr", "THRUST");
-		} else if (vsnow < 0 and dif > 0) {
-			setprop("/it-autoflight/input/vert", 3);
-			setprop("/it-autoflight/output/thr-mode", 0);
-			setprop("/it-autoflight/mode/thr", "THRUST");
-		}
-	}
-	altinput = getprop("/it-autoflight/input/alt");
-	setprop("/it-autoflight/internal/alt", altinput);
-}
-
-# Min and Max Pitch Reset
-var minmax = func {
-	var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-	var alt = getprop("/it-autoflight/internal/alt");
-	var dif = calt - alt;
-	if (dif < 50 and dif > -50) {
-		setprop("/it-autoflight/internal/max-vs", 500);
-		setprop("/it-autoflight/internal/min-vs", -500);
-		var vertmode = getprop("/it-autoflight/output/vert");
-		if (vertmode == 1 or vertmode == 2 or vertmode == 4 or vertmode == 5 or vertmode == 6 or vertmode == 7) {
-			# Do not change the vertical mode because we are not trying to capture altitude.
-		} else {
-			setprop("/it-autoflight/mode/vert", "ALT HLD");
-		}
-		minmaxtimer.stop();
-	}
-}
-
-# Thrust Mode Selector
-var thrustmode = func {
-	var calt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-	var alt = getprop("/it-autoflight/internal/alt");
-	if (getprop("/it-autoflight/output/vert") == 4) {
-		if (calt < alt) {
-			setprop("/it-autoflight/output/thr-mode", 2);
-			setprop("/it-autoflight/mode/thr", "PITCH");
-			setprop("/it-autoflight/mode/vert", "SPD CLB");
-		} else if (calt > alt) {
-			setprop("/it-autoflight/output/thr-mode", 1);
-			setprop("/it-autoflight/mode/thr", "PITCH");
-			setprop("/it-autoflight/mode/vert", "SPD DES");
-		} else {
-			setprop("/it-autoflight/output/thr-mode", 0);
-			setprop("/it-autoflight/mode/thr", "THRUST");
-			setprop("/it-autoflight/input/vert", 3);
-		}
-	} else if (getprop("/it-autoflight/output/vert") == 7) {
-		setprop("/it-autoflight/output/thr-mode", 2);
-		setprop("/it-autoflight/mode/thr", "PITCH");
-	} else {
-		setprop("/it-autoflight/output/thr-mode", 0);
-		setprop("/it-autoflight/mode/thr", "THRUST");
-		thrustmodet.stop();
-	}
-}
-
-# ILS and Autoland
-# Retard
-setlistener("/it-autoflight/internal/retard-flap", func {
-	if (getprop("/fdm/jsbsim/fcs/flap-pos-deg") >= 31.6) {
-		retardt.start();
-	} else {
-		retardt.stop();
-	}
-}, 0, 0);
-
-var retardchk = func {
-	if (getprop("/fdm/jsbsim/fcs/flap-pos-deg") >= 31.6) {
-		var altpos = getprop("/position/gear-agl-ft");
-		var aton = getprop("/it-autoflight/output/athr");
-		if (altpos < 50) {
-			if (aton == 1) {
-				thrustmodet.stop();
-				setprop("/it-autoflight/output/thr-mode", 1);
-				setprop("/it-autoflight/mode/thr", "RETARD");
-				atofft.start();
-			}
-		}
-	}
-}
-
-var atoffchk = func{
-	var gear1 = getprop("/gear/gear[1]/wow");
-	var gear2 = getprop("/gear/gear[2]/wow");
-	if (gear1 == 1 or gear2 == 1) {
-		killATSSilent();
-		setprop("/controls/engines/engine[0]/throttle", 0);
-		setprop("/controls/engines/engine[1]/throttle", 0);
-		setprop("/controls/engines/engine[2]/throttle", 0);
-		atofft.stop();
-	}
-}
-
-# LOC and G/S arming
-setlistener("/it-autoflight/input/lat-arm", func {
-	check_arms();
-});
-
-setlistener("/it-autoflight/output/loc-armed", func {
-	check_arms();
-});
-
-setlistener("/it-autoflight/output/appr-armed", func {
-	check_arms();
-});
-
-var check_arms = func {
-	if (getprop("/it-autoflight/input/lat-arm") or getprop("/it-autoflight/output/loc-armed") or getprop("/it-autoflight/output/appr-armed")) {
-		update_armst.start();
-	} else {
-		update_armst.stop();
-	}
-}
-
-var update_arms = func {
-	if (getprop("/it-autoflight/input/lat-arm") == 1 and getprop("/autopilot/route-manager/route/num") > 0 and getprop("/autopilot/route-manager/active") == 1 and getprop("/position/gear-agl-ft") >= 30) {
-		make_lnav_active();
-	}
-	if (getprop("/instrumentation/nav[0]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 0) {
-		if (getprop("/it-autoflight/output/loc-armed")) {
-			locdefl = abs(getprop("/instrumentation/nav[0]/heading-needle-deflection-norm"));
-			if (locdefl < 0.95 and locdefl != 0 and getprop("/instrumentation/nav[0]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				return 0;
-			}
-		}
-		if (getprop("/it-autoflight/output/appr-armed")) {
-			signal = getprop("/instrumentation/nav[0]/gs-needle-deflection-norm");
-			if (((signal < 0 and signal >= -0.20) or (signal > 0 and signal <= 0.20)) and getprop("/it-autoflight/output/lat") == 2) {
-				make_appr_active();
-			} else {
-				return 0;
-			}
-		}
-	} else if (getprop("/instrumentation/nav[1]/in-range") == 1 and getprop("/it-autoflight/settings/use-nav2-radio") == 1) {
-		if (getprop("/it-autoflight/output/loc-armed")) {
-			locdefl_b = abs(getprop("/instrumentation/nav[1]/heading-needle-deflection-norm"));
-			if (locdefl_b < 0.95 and locdefl_b != 0 and getprop("/instrumentation/nav[1]/signal-quality-norm") > 0.99) {
-				make_loc_active();
-			} else {
-				return 0;
-			}
-		}
-		if (getprop("/it-autoflight/output/appr-armed")) {
-			signal_b = getprop("/instrumentation/nav[1]/gs-needle-deflection-norm");
-			if (((signal_b < 0 and signal_b >= -0.20) or (signal_b > 0 and signal_b <= 0.20)) and getprop("/it-autoflight/output/lat") == 2) {
-				make_appr_active();
-			} else {
-				return 0;
-			}
-		}
-	}
-}
-
-var make_lnav_active = func {
-	setprop("/it-autoflight/custom/show-hdg", 0);
-	if (getprop("/it-autoflight/output/lat") != 1) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/appr-armed", 0);
-		setprop("/it-autoflight/output/lat", 1);
-		setprop("/it-autoflight/mode/lat", "LNAV");
-		setprop("/it-autoflight/mode/arm", " ");
-	}
-}
-
-var make_loc_active = func {
-	setprop("/it-autoflight/custom/show-hdg", 0);
-	if (getprop("/it-autoflight/output/lat") != 2) {
-		setprop("/it-autoflight/input/lat-arm", 0);
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/lat", 2);
-		setprop("/it-autoflight/mode/lat", "LOC");
-		if (getprop("/it-autoflight/output/appr-armed") == 1) {
-			# Do nothing because G/S is armed
-		} else {
-			setprop("/it-autoflight/mode/arm", " ");
-		}
-	}
-}
-
-var make_appr_active = func {
-	if (getprop("/it-autoflight/output/vert") != 2) {
-		setprop("/it-autoflight/output/appr-armed", 0);
-		setprop("/it-autoflight/output/vert", 2);
-		setprop("/it-autoflight/mode/vert", "G/S");
-		setprop("/it-autoflight/mode/arm", " ");
-		alandt.start();
-		thrustmode();
-	}
-}
-
-# Autoland Logic
-var alandLogic = func { # Runs at system loop speed
-	useNAV2 = getprop("/it-autoflight/settings/use-nav2-radio");
-	locdefl = abs(getprop("/instrumentation/nav[0]/heading-needle-deflection-norm"));
-	locdefl_b = abs(getprop("/instrumentation/nav[1]/heading-needle-deflection-norm"));
-	lat = getprop("/it-autoflight/mode/lat");
-	vert = getprop("/it-autoflight/mode/vert");
-	canAutoland = lat == "ALGN" or lat == "RLOU" or (useNAV2 != 1 and locdefl < 0.1 and locdefl != 0 and getprop("/instrumentation/nav[0]/signal-quality-norm") > 0.99) or (useNAV2 == 1 and locdefl_b < 0.1 and locdefl_b != 0 and 
-	getprop("/instrumentation/nav[1]/signal-quality-norm") > 0.99);
-	ap1 = getprop("/it-autoflight/output/ap1");
-	ap2 = getprop("/it-autoflight/output/ap2");
-	ovrd1 = getprop("/it-autoflight/input/ovrd1");
-	ovrd2 = getprop("/it-autoflight/input/ovrd2");
-	aglalt = getprop("/position/gear-agl-ft");
-	time = getprop("/sim/time/elapsed-sec");
-	landModeActive = (lat == "LOC" or lat == "ALGN" or lat == "RLOU") and (vert == "G/S" or vert == "LAND" or vert == "FLARE" or vert == "ROLLOUT");
-	
-	if (aglalt <= 1500 and landModeActive) {
-		selfCheckStatus = 1;
-	} else if (!landModeActive) {
-		selfCheckStatus = 0;
-	}
-	
-	if (selfCheckStatus == 1) {
-		if (selfCheckStatus != 2 and selfCheckTime + 10 < time) {
-			selfCheckStatus = 2;
-		}
-	} else {
-		selfCheckTime = time;
-	}
-	
-	if (canAutoland and landModeActive and selfCheckStatus == 2) {
-		if ((ap1 or ap2) and !ovrd1 and !ovrd2) {
-			landCondition = 3; # DUAL LAND
-		} else if (ap1 or ap2) {
-			landCondition = 2; # SINGLE LAND
-		} else {
-			landCondition = 1; # APPR ONLY
-		}
-	} else {
-		landCondition = 0; # OFF
-	}
-	
-	if (landCondition == 3) {
-		setprop("/it-autoflight/mode/land", "DUAL");
-	} else if (landCondition == 2) {
-		setprop("/it-autoflight/mode/land", "SINGLE");
-	} else if (landCondition == 1) {
-		setprop("/it-autoflight/mode/land", "APPR");
-	} else {
-		setprop("/it-autoflight/mode/land", "OFF");
-	}
-}
-
-var aland = func {
-	ap1 = getprop("/it-autoflight/output/ap1");
-	ap2 = getprop("/it-autoflight/output/ap2");
-	useNAV2 = getprop("/it-autoflight/settings/use-nav2-radio");
-	locdefl = abs(getprop("/instrumentation/nav[0]/heading-needle-deflection-norm"));
-	locdefl_b = abs(getprop("/instrumentation/nav[1]/heading-needle-deflection-norm"));
-	lat = getprop("/it-autoflight/mode/lat");
-	canAutoland = lat == "ALGN" or lat == "RLOU" or (useNAV2 != 1 and locdefl < 0.1 and locdefl != 0 and getprop("/instrumentation/nav[0]/signal-quality-norm") > 0.99) or (useNAV2 == 1 and locdefl_b < 0.1 and locdefl_b != 0 and 
-	getprop("/instrumentation/nav[1]/signal-quality-norm") > 0.99);
-	
-	if (ap1 == 1 or ap2 == 1) {
-		if (getprop("/position/gear-agl-ft") <= 150 and canAutoland) {
-			setprop("/it-autoflight/input/lat", 4);
-		}
-		if (getprop("/position/gear-agl-ft") <= 100 and canAutoland) {
-			setprop("/it-autoflight/input/vert", 6);
-		} else if (getprop("/position/gear-agl-ft") <= 100 and !canAutoland) {
-			if (ap1 == 1) {
-				setprop("/it-autoflight/input/ap1", 0);
-			}
-			if (ap2 == 1) {
-				setprop("/it-autoflight/input/ap2", 0);
-			}
-		}
-	} else {
-		alandt.stop();
-		alandt1.stop();
-	}
-}
-
-var aland1 = func {
-	aglalt = getprop("/position/gear-agl-ft");
-	if (aglalt <= 50 and aglalt > 5) {
-		setprop("/it-autoflight/mode/vert", "FLARE");
-	}
-	if (getprop("/it-autoflight/output/ap1") == 0 and getprop("/it-autoflight/output/ap2") == 0) {
-		alandt.stop();
-		alandt1.stop();
-		setprop("/it-autoflight/output/loc-armed", 0);
-		setprop("/it-autoflight/output/lat", 2);
-		setprop("/it-autoflight/mode/lat", "LOC");
-		setprop("/it-autoflight/output/appr-armed", 0);
-		setprop("/it-autoflight/output/vert", 2);
-		setprop("/it-autoflight/mode/vert", "G/S");
-		setprop("/it-autoflight/mode/arm", " ");
-	}
-	var gear1 = getprop("/gear/gear[1]/wow");
-	var gear2 = getprop("/gear/gear[2]/wow");
-	if (gear1 == 1 or gear2 == 1) {
-		alandt1.stop();
-		setprop("/it-autoflight/mode/lat", "RLOU");
-		setprop("/it-autoflight/mode/vert", "ROLLOUT");
-	}
-}
 
 # For Canvas Nav Display.
 setlistener("/it-autoflight/custom/hdg-sel", func {
@@ -1313,43 +1276,5 @@ setlistener("/it-autoflight/internal/alt", func {
 	setprop("/autopilot/settings/target-altitude-ft", getprop("/it-autoflight/input/alt"));
 });
 
-# AP/ATS Off Warning
-var apKill = maketimer(0.3, func {
-	APwarn = getprop("/it-autoflight/custom/apwarn");
-	APsound = getprop("/it-autoflight/sound/apoffsound");
-	if (!APsound) {
-		apKill.stop();
-		setprop("/it-autoflight/custom/apwarn", 0);
-	} else if (APwarn != 1) {
-		setprop("/it-autoflight/custom/apwarn", 1);
-	} else {
-		setprop("/it-autoflight/custom/apwarn", 0);
-	}
-});
-
-var atsKill = maketimer(0.3, func {
-	ATSwarn = getprop("/it-autoflight/custom/atswarn");
-	ATSflash = getprop("/it-autoflight/custom/atsflash");
-	if (!ATSflash) {
-		atsKill.stop();
-		setprop("/it-autoflight/custom/atswarn", 0);
-	} else if (ATSwarn != 1) {
-		setprop("/it-autoflight/custom/atswarn", 1);
-	} else {
-		setprop("/it-autoflight/custom/atswarn", 0);
-	}
-});
-
-# Timers
-var update_armst = maketimer(0.5, update_arms);
-var altcaptt = maketimer(0.5, altcapt);
-var hdgcaptt = maketimer(0.5, hdgcapt);
-var spdcaptt = maketimer(0.5, spdcapt);
-var thrustmodet = maketimer(0.5, thrustmode);
-var minmaxtimer = maketimer(0.5, minmax);
-var retardt = maketimer(0.5, retardchk);
-var atofft = maketimer(0.5, atoffchk);
-var alandt = maketimer(0.5, aland);
-var alandt1 = maketimer(0.5, aland1);
-var reduct = maketimer(0.5, toga_reduc);
-var ap_varioust = maketimer(1, ap_various);
+var loopTimer = maketimer(0.1, ITAF, ITAF.loop);
+var slowLoopTimer = maketimer(1, ITAF, ITAF.slowLoop);

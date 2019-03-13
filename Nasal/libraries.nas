@@ -1,6 +1,4 @@
 # MD-11 Main Libraries
-# Joshua Davidson (it0uchpods)
-
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 print("-----------------------------------------------------------------------------");
@@ -102,7 +100,7 @@ var systemsInit = func {
 	systems.IRS.init();
 	systems.eng_init();
 	fadec.fadec_reset();
-	afs.APinit(0);
+	afs.ITAF.init(0);
 	lightsLoop.start();
 	systemsLoop.start();
 	systems.autobrake_init();
@@ -122,16 +120,10 @@ var systemsLoop = maketimer(0.1, func {
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
-	afs.alandLogic();
 	
 	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
 		setprop("/controls/switches/cart", 0);
 		setprop("/controls/pneumatic/switches/groundair", 0);
-	}
-	
-	if (getprop("/it-autoflight/custom/show-hdg") == 0 and getprop("/it-autoflight/output/lat") != 4) {
-		setprop("/it-autoflight/input/hdg", math.round(getprop("/instrumentation/pfd/heading-scale")));
-		setprop("/it-autoflight/custom/hdg-sel", math.round(getprop("/instrumentation/pfd/heading-scale")));
 	}
 
 	if (getprop("/velocities/groundspeed-kt") > 15) {

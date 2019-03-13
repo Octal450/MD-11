@@ -44,35 +44,27 @@ var athr = props.globals.getNode("/it-autoflight/output/athr", 1);
 var APPanel = {
 	AUTOFLIGHT: func() {
 		if (fcpPower.getBoolValue()) {
-			afs.AUTOFLIGHT();
+			afs.ITAF.AUTOFLIGHT();
 		}
 	},
 	FD1: func() {
 		if (fcpPower.getBoolValue()) {
-			if (!fd1.getBoolValue()) {
-				setprop("it-autoflight/input/fd1", 1);
-			} else {
-				setprop("it-autoflight/input/fd1", 0);
-			}
+			afs.ITAF.fd1Master(fd1.getBoolValue());
 		}
 	},
 	FD2: func() {
 		if (fcpPower.getBoolValue()) {
-			if (!fd2.getBoolValue()) {
-				setprop("it-autoflight/input/fd2", 1);
-			} else {
-				setprop("it-autoflight/input/fd2", 0);
-			}
+			afs.ITAF.fd1Master(fd2.getBoolValue());
 		}
 	},
 	APDisc: func() {
 		if (fcpPower.getBoolValue()) {
 			afs.killAPWarn();
 			if (ap1.getBoolValue()) {
-				setprop("/it-autoflight/input/ap1", 0);
+				afs.ITAF.ap1Master(0);
 			}
 			if (ap2.getBoolValue()) {
-				setprop("/it-autoflight/input/ap2", 0);
+				afs.ITAF.ap2Master(0);
 			}
 		}
 	},
@@ -80,7 +72,7 @@ var APPanel = {
 		if (fcpPower.getBoolValue()) {
 			afs.killATSWarn();
 			if (athr.getBoolValue()) {
-				setprop("/it-autoflight/input/athr", 0);
+				afs.ITAF.athrMaster(0);
 			}
 		}
 	},
@@ -95,17 +87,12 @@ var APPanel = {
 	},
 	SPDPush: func() {
 		if (fcpPower.getBoolValue()) {
-			afs.spdPush();
+			afs.ITAF.spdPush();
 		}
 	},
 	SPDPull: func() {
 		if (fcpPower.getBoolValue()) {
-			if (ktsMachC.getBoolValue()) {
-				machSet.setValue(machSetC.getValue());
-			} else {
-				iasSet.setValue(iasSetC.getValue());
-			}
-			afs.spdPull();
+			afs.ITAF.spdPull();
 		}
 	},
 	SPDAdjust: func(d) {

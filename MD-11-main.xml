@@ -626,10 +626,6 @@
 			<ovrd1>0</ovrd1>
 			<ovrd2>0</ovrd2>
 		</input>
-		<settings>
-			<auto-bank-max-deg>25</auto-bank-max-deg> <!-- Maximum Auto Bank Limit -->
-			<togaspd>163</togaspd> <!-- V2 + 10kts -->
-		</settings>
 		<output>
 			<ap1>0</ap1>
 			<ap2>0</ap2>
@@ -637,11 +633,6 @@
 			<vert>0</vert>
 		</output>
 		<custom>
-			<afds-ovrd>0</afds-ovrd>
-			<vs-fpa>0</vs-fpa>
-			<kts-sel type="double">250</kts-sel>
-			<mach-sel type="double">0.5</mach-sel>
-			<kts-mach type="bool">0</kts-mach>
 			<hdg-sel>0</hdg-sel>
 			<hdg-knb>0</hdg-knb>
 			<spd-knb>0</spd-knb>

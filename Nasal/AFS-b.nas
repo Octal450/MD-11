@@ -1,6 +1,4 @@
-# McDonnell Douglas MD-11 FMA System
-# Joshua Davidson (it0uchpods/411)
-
+# MD-11 AFS Interface
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var lat = "";
@@ -103,7 +101,7 @@ var updateLateral = func {
 	if (lat == "HDG") {
 		setprop("/modes/pfd/fma/roll-mode", "HEADING");
 	} else if (lat == "LNAV") {
-		setprop("/modes/pfd/fma/roll-mode", "NAV" ~ getprop("/it-autoflight/internal/active-fms"));
+		setprop("/modes/pfd/fma/roll-mode", "NAV" ~ Custom.Internal.activeFMS.getValue());
 	} else if (lat == "LOC") {
 		setprop("/modes/pfd/fma/roll-mode", "LOC");
 	} else if (lat == "ALGN") {
@@ -128,8 +126,6 @@ setlistener("/it-autoflight/mode/vert", func {
 		setprop("/modes/pfd/fma/pitch-mode", "G/S");
 	} else if (vert == "FPA") {
 		setprop("/modes/pfd/fma/pitch-mode", "FPA");
-	} else if (vert == "LAND") {
-		setprop("/modes/pfd/fma/pitch-mode", "G/S");
 	} else if (vert == "FLARE") {
 		setprop("/modes/pfd/fma/pitch-mode", "FLARE");
 	} else if (vert == "ROLLOUT") {
@@ -137,7 +133,7 @@ setlistener("/it-autoflight/mode/vert", func {
 	}
 });
 
-setlistener("/it-autoflight/input/lat-arm", func {
+setlistener("/it-autoflight/output/lnav-armed", func {
 	lateral_arm();
 });
 
@@ -150,7 +146,7 @@ var lateral_arm = func {
 	var loca = getprop("/it-autoflight/output/loc-armed");
 	if (loca) {
 		setprop("/modes/pfd/fma/roll-mode-armed", "LAND ARMED");
-	} else if (getprop("/it-autoflight/input/lat-arm") == 1) {
+	} else if (getprop("/it-autoflight/output/lnav-armed") == 1) {
 		setprop("/modes/pfd/fma/roll-mode-armed", "NAV ARMED");
 	} else {
 		setprop("/modes/pfd/fma/roll-mode-armed", "");

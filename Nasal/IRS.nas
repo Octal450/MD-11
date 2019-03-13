@@ -56,13 +56,13 @@ var IRS = {
 		
 		if (gs > 5 or pitch > 5 or pitch < -5 or roll > 10 or roll < -10 or (ac1 < 110 and ac2 < 110 and dcbat < 25)) {
 			if (getprop("/controls/irs/ir[0]/align") == 1) {
-				me.stopAlign(0,1);
+				me.stopAlign(0, 1);
 			}
 			if (getprop("/controls/irs/ir[1]/align") == 1) {
-				me.stopAlign(1,1);
+				me.stopAlign(1, 1);
 			}
 			if (getprop("/controls/irs/ir[2]/align") == 1) {
-				me.stopAlign(2,1);
+				me.stopAlign(2, 1);
 			}
 		}
 		
@@ -89,17 +89,16 @@ var IRS = {
 		}
 		
 		if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/output/lat") == 1) {
-			setprop("/it-autoflight/input/lat", 3);
-			setprop("/it-autoflight/mode/arm", " ");
-		} else if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/input/lat-arm") == 1) {
-			setprop("/it-autoflight/input/lat-arm", 0);
-			setprop("/it-autoflight/mode/arm", " ");
+			afs.ITAF.setLatMode(3);
+		} else if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/output/lnav-armed") == 1) {
+			setprop("/it-autoflight/output/lnav-armed", 0);
+			afs.ITAF.armTextCheck();
 		}
 	},
 	knob: func(k) {
 		knob = getprop("/controls/irs/ir[" ~ k ~ "]/knob");
 		if (knob == 0) {
-			me.stopAlign(k,0);
+			me.stopAlign(k, 0);
 		} else if (knob == 1) {
 			me.beginAlign(k);
 		}
