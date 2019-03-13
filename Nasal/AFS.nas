@@ -1,5 +1,5 @@
 # MD-11 AFS
-# Based off IT AUTOFLIGHT System Controller V4.0.0
+# Based off IT AUTOFLIGHT System Controller V4.0.X
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 # Initialize all used variables and property nodes
