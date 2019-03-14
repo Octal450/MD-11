@@ -1200,7 +1200,6 @@ setlistener("/it-autoflight/input/toga", func {
 setlistener("/it-autoflight/input/lat", func {
 	Input.latTemp = Input.lat.getValue();
 	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-		Output.lnavArm.setBoolValue(0);
 		ITAF.setLatMode(Input.latTemp);
 	} else {
 		ITAF.setLatArm(Input.latTemp);
