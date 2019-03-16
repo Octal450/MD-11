@@ -71,16 +71,19 @@ var FPLN = {
 };
 
 var Misc = {
+	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
 	ir0Align: props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1),
 	ir1Align: props.globals.getNode("/instrumentation/irs/ir[1]/aligned", 1),
 	ir2Align: props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1),
+	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
+	pfdHeadingScaleTemp: 0,
+	rev1: props.globals.getNode("/controls/engines/engine[0]/reverser", 1),
+	rev2: props.globals.getNode("/controls/engines/engine[1]/reverser", 1),
+	rev3: props.globals.getNode("/controls/engines/engine[2]/reverser", 1),
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
 	state2: props.globals.getNode("/engines/engine[1]/state", 1),
 	state3: props.globals.getNode("/engines/engine[2]/state", 1),
-	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
-	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
-	pfdHeadingScaleTemp: 0,
 };
 
 # IT-AUTOFLIGHT
@@ -660,7 +663,7 @@ var ITAF = {
 	},
 	athrMaster: func(s) {
 		if (s == 1) {
-			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3) {
+			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3 and Misc.rev1.getValue() < 0.01 and Misc.rev2.getValue() < 0.01 and Misc.rev3.getValue() < 0.01) {
 				Output.athr.setBoolValue(1);
 				atsKill.stop();
 				Custom.atsWarn.setBoolValue(0);
@@ -1071,10 +1074,11 @@ var ITAF = {
 		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
 		Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue();
 		
-		if ((!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) or Text.vert.getValue() == "T/O CLB") { # Only allow engagement in air, or for A/THR arm
-			if (!Output.athr.getBoolValue() and (!Custom.Input.ovrd1Temp or !Custom.Input.ovrd2Temp)) {
-				me.athrMaster(1);
-			}
+		if (!Output.athr.getBoolValue() and (!Custom.Input.ovrd1Temp or !Custom.Input.ovrd2Temp)) {
+			me.athrMaster(1);
+		}
+		
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			
 			if (Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) { # Switch active FMS
 				if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd2Temp) {
@@ -1083,7 +1087,7 @@ var ITAF = {
 					Custom.Internal.activeFMSTemp = 1;
 				}
 			}
-			# Note: AP will trip if in vert mode 6
+			# Note: AP will not engage in vert mode 6
 			if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd1Temp) { # AP1 on
 				me.ap1Master(1);
 				me.ap2Master(0);

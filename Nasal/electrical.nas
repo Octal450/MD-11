@@ -1,6 +1,4 @@
 # MD-11 Electrical System
-# Joshua Davidson (it0uchpods)
-
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var ac_volt_std = 115;

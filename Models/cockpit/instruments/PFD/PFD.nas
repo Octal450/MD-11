@@ -261,7 +261,7 @@ var canvas_PFD_base = {
 		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
 			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
 			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
-		} else if ((eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) or (rev1.getValue() >= 0.01 or rev2.getValue() >= 0.01 or rev3.getValue() >= 0.01)) {
+		} else if ((eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) or rev1.getValue() >= 0.01 or rev2.getValue() >= 0.01 or rev3.getValue() >= 0.01) {
 			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
 			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else {
@@ -365,10 +365,15 @@ var canvas_PFD_base = {
 			me["FMA_AP_Thrust_Off_Box"].show();
 		}
 		
-		if (ktsmach.getValue() == 1) {
-			me["FMA_Speed"].setText(sprintf("%0.3f", apmach.getValue()));
+		if (throttle_mode.getValue() == "RETARD") {
+			me["FMA_Speed"].hide();
 		} else {
-			me["FMA_Speed"].setText(sprintf("%3.0f", apspd.getValue()));
+			if (ktsmach.getValue() == 1) {
+				me["FMA_Speed"].setText(sprintf("%0.3f", apmach.getValue()));
+			} else {
+				me["FMA_Speed"].setText(sprintf("%3.0f", apspd.getValue()));
+			}
+			me["FMA_Speed"].show();
 		}
 		
 		me["FMA_Thrust"].setText(sprintf("%s", throttle_mode.getValue()));
