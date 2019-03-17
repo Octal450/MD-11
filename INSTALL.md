@@ -1,7 +1,7 @@
 # INSTALL
 ## Prerequisites
 Have at least following versions installed:
-* FlightGear 2018.1.0 or newer
+* FlightGear 2018.3.0 or newer
 
 ## Install using ZIP Snapshot
 [Download](https://github.com/it0uchpods/IDG-MD-11X/archive/master.zip) the zip file.  
