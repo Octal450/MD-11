@@ -242,14 +242,15 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
-		<object-name>ElevFeel.manual</object-name>
 		<object-name>EmerPwrOff.off</object-name>
 		<object-name>EmerPwrOn.on</object-name>
 		<object-name>ExtGlyPwr.avail</object-name>
 		<object-name>ExtGlyPwr.on</object-name>
 		<object-name>ExtPwr.avail</object-name>
 		<object-name>ExtPwr.on</object-name>
-		<object-name>FlapLim.manual</object-name>
+		<object-name>Galley1.off</object-name>
+		<object-name>Galley2.off</object-name>
+		<object-name>Galley3.off</object-name>
 		<object-name>Gen1.arm</object-name>
 		<object-name>Gen1.off</object-name>
 		<object-name>Gen2.arm</object-name>
@@ -319,6 +320,7 @@
 		<object-name>Bleed3B.temphi</object-name>
 		<object-name>Dump.on</object-name>
 		<object-name>Econ.off</object-name>
+		<object-name>ElevFeel.manual</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE3.select</object-name>
@@ -470,9 +472,6 @@
 		<object-name>Bleed2B.temphi</object-name>
 		<object-name>Bleed3B.manf</object-name>
 		<object-name>Bleed3B.temphi</object-name>
-		<object-name>Drive1.disc</object-name>
-		<object-name>Drive2.disc</object-name>
-		<object-name>Drive3.disc</object-name>
 		<object-name>Dump.on</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
@@ -656,6 +655,259 @@
 					<property>instrumentation/irs/ir[2]/aligned</property>
 					<value>1</value>
 				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- Galley Bus Button -->
+	<animation>
+		<type>pick</type>
+		<object-name>Galley1</object-name>
+		<object-name>Galley1.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/electrical/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/electrical/switches/galley-1</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualElecLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Galley1.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/electrical/switches/galley-1</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Galley2</object-name>
+		<object-name>Galley2.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/electrical/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/electrical/switches/galley-2</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualElecLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Galley2.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/electrical/switches/galley-2</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Galley3</object-name>
+		<object-name>Galley3.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/electrical/system</property></not>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/electrical/switches/galley-3</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/system</property>
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dcbat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualElecLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Galley3.off</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/electrical/switches/galley-3</property>
+					<value>0</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1980,30 +2232,24 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<equals>
-							<property>controls/electrical/switches/allow-apu-ext</property>
-							<value>1</value>
-						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dcbat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
-					</and>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dcbat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/ext-pwr</property>
@@ -2063,30 +2309,24 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<equals>
-							<property>controls/electrical/switches/allow-apu-ext</property>
-							<value>1</value>
-						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dcbat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
-					</and>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dcbat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/extg-pwr</property>
@@ -2149,7 +2389,7 @@
 				<condition>
 					<and>
 						<equals>
-							<property>controls/electrical/switches/allow-apu-ext</property>
+							<property>controls/electrical/switches/allow-apu</property>
 							<value>1</value>
 						</equals>
 						<or>
@@ -2563,7 +2803,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen1</property>
+				<property>controls/electrical/switches/gen-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2620,7 +2860,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen1</property>
+					<property>controls/electrical/switches/gen-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2631,6 +2871,67 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>Drive1</object-name>
+		<object-name>Drive1.disc</object-name>
+		<object-name>Drive1.fault</object-name>
+		<action>
+			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dcbat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/electrical/switches/gen-drive-1</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Drive1.disc</object-name>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>controls/electrical/switches/gen-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/electrical/light/gen1-arm</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	<animation>
 		<type>select</type>
 		<object-name>Drive1.fault</object-name>
@@ -2681,7 +2982,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen2</property>
+				<property>controls/electrical/switches/gen-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2721,10 +3022,16 @@
 		<object-name>Gen2.arm</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/electrical/light/gen2-arm</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/electrical/switches/gen-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/electrical/light/gen2-arm</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2738,7 +3045,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen2</property>
+					<property>controls/electrical/switches/gen-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2749,6 +3056,61 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>Drive2</object-name>
+		<object-name>Drive2.disc</object-name>
+		<object-name>Drive2.fault</object-name>
+		<action>
+			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dcbat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/electrical/switches/gen-drive-2</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Drive2.disc</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/electrical/switches/gen-drive-2</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	<animation>
 		<type>select</type>
 		<object-name>Drive2.fault</object-name>
@@ -2799,7 +3161,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen3</property>
+				<property>controls/electrical/switches/gen-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2839,10 +3201,16 @@
 		<object-name>Gen3.arm</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/electrical/light/gen3-arm</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/electrical/switches/gen-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/electrical/light/gen3-arm</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2856,7 +3224,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen3</property>
+					<property>controls/electrical/switches/gen-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2867,6 +3235,61 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>Drive3</object-name>
+		<object-name>Drive3.disc</object-name>
+		<object-name>Drive3.fault</object-name>
+		<action>
+			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dcbat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc1</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc2</property>
+							<value>25</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc3</property>
+							<value>25</value>
+						</greater-than-equals>
+					</or>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/electrical/switches/gen-drive-3</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Drive3.disc</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/electrical/switches/gen-drive-3</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 	<animation>
 		<type>select</type>
 		<object-name>Drive3.fault</object-name>

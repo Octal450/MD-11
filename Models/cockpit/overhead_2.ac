@@ -6,45 +6,7 @@ MATERIAL "Buttons.002" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105
 MATERIAL "glass" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 1
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
-kids 81
-OBJECT poly
-name "lights"
-loc -16.8887 -22.1583 -0.243901
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.106428 -0.106429
-0 -0.106428 0.106429
-0 0.106428 0.106429
-0 0.106428 -0.106429
-numsurf 1
-SURF 0x30
-mat 5
-refs 4
-3 1 1
-2 0 1
-1 0 0
-0 1 0
-kids 0
-OBJECT poly
-name "APUStartStop.on"
-loc -16.8026 -22.2389 -0.257032
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.110628 0.0726467
-0 -0.106726 0.0726467
-0 -0.106726 0.0788392
-0 -0.110628 0.0788392
-numsurf 1
-SURF 0x30
-mat 5
-refs 4
-1 0.158709 0.0183337
-2 0.129617 0.0183337
-3 0.129617 0
-0 0.158709 0
-kids 0
+kids 80
 OBJECT poly
 name "APUStartStop"
 loc -16.8111 -22.352 -0.181289
@@ -135368,25 +135330,6 @@ refs 4
 10 0.188097 0.187136
 kids 0
 OBJECT poly
-name "APUStartStop.off"
-loc -16.8026 -22.252 -0.248169
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.106428 0.0629903
-0 -0.106428 0.0707693
-0 -0.102463 0.0629903
-0 -0.102463 0.0707693
-numsurf 1
-SURF 0x30
-mat 5
-refs 4
-3 0.167528 0.0186294
-1 0.167528 0
-0 0.204073 0
-2 0.204073 0.0186294
-kids 0
-OBJECT poly
 name "oh.glass.2"
 loc -16.7559 -22.1988 0
 crease 45.000000
@@ -141133,4 +141076,65 @@ refs 4
 5 0 0
 2 0 0
 7 0 0
+kids 0
+OBJECT group
+name "Indicators"
+loc -16.8026 -22.2454 -0.2526
+kids 2
+OBJECT poly
+name "APUStartStop.on"
+loc 0 0.00654984 -0.00443152
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.110628 0.0726467
+0 -0.106726 0.0726467
+0 -0.106726 0.0788392
+0 -0.110628 0.0788392
+numsurf 1
+SURF 0x30
+mat 5
+refs 4
+1 0.158709 0.0183337
+2 0.129617 0.0183337
+3 0.129617 0
+0 0.158709 0
+kids 0
+OBJECT poly
+name "APUStartStop.off"
+loc 0 -0.00655174 0.00443149
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 0.0629903
+0 -0.106428 0.0707693
+0 -0.102463 0.0629903
+0 -0.102463 0.0707693
+numsurf 1
+SURF 0x30
+mat 5
+refs 4
+3 0.167528 0.0186294
+1 0.167528 0
+0 0.204073 0
+2 0.204073 0.0186294
+kids 0
+OBJECT poly
+name "lights"
+loc -16.8887 -22.1583 -0.243901
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 -0.106429
+0 -0.106428 0.106429
+0 0.106428 0.106429
+0 0.106428 -0.106429
+numsurf 1
+SURF 0x30
+mat 5
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
 kids 0

@@ -436,6 +436,32 @@
 			<brake-left type="double">0</brake-left>
 			<brake-right type="double">0</brake-right>
 		</autobrake>
+		<electrical n="0">
+			<switches n="0">
+				<ac-tie-1 type="bool">1</ac-tie-1>
+				<ac-tie-2 type="bool">1</ac-tie-2>
+				<ac-tie-3 type="bool">1</ac-tie-3>
+				<adg-elec type="bool">0</adg-elec>
+				<apu-pwr type="bool">0</apu-pwr>
+				<battery type="bool">0</battery>
+				<cab-bus type="bool">1</cab-bus>
+				<dc-tie-1 type="bool">1</dc-tie-1>
+				<dc-tie-3 type="bool">1</dc-tie-3>
+				<emer-pw-sw type="int">0</emer-pw-sw>
+				<ext-pwr type="bool">0</ext-pwr>
+				<extg-pwr type="bool">0</extg-pwr>
+				<galley-1 type="bool">1</galley-1>
+				<galley-2 type="bool">1</galley-2>
+				<galley-3 type="bool">1</galley-3>
+				<gen-1 type="bool">1</gen-1>
+				<gen-2 type="bool">1</gen-2>
+				<gen-3 type="bool">1</gen-3>
+				<gen-drive-1 type="bool">1</gen-drive-1>
+				<gen-drive-2 type="bool">1</gen-drive-2>
+				<gen-drive-3 type="bool">1</gen-drive-3>
+				<smoke-elec-air type="int">0</smoke-elec-air>
+			</switches>
+		</electrical>
 		<engines n="0">
 			<engine n="0">
 				<cutoff type="bool">true</cutoff>
@@ -659,6 +685,21 @@
 		<acconfig n="0">
 			<autoconfig-running>0</autoconfig-running>
 		</acconfig>
+		<apu n="0">
+			<n2 type="double">0</n2>
+		</apu>
+		<electrical n="0">
+			<battery1-volts type="double">26.5</battery1-volts>
+			<battery2-volts type="double">26.5</battery2-volts>
+		</electrical>
+		<failures n="0">
+			<elec-apu type="bool">0</elec-apu>
+			<elec-batt1 type="bool">0</elec-batt1>
+			<elec-batt2 type="bool">0</elec-batt2>
+			<elec-gen1 type="bool">0</elec-gen1>
+			<elec-gen2 type="bool">0</elec-gen2>
+			<elec-gen3 type="bool">0</elec-gen3>
+		</failures>
 		<fuel n="0">
 			<tank n="0">
 				<feed type="bool">0</feed>
