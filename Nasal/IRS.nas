@@ -39,10 +39,10 @@ var IRS = {
 		roll = getprop("/orientation/roll-deg");
 		pitch = getprop("/orientation/pitch-deg");
 		gs = getprop("/velocities/groundspeed-kt");
-		ac1 = getprop("/systems/electrical/bus/ac1");
-		ac2 = getprop("/systems/electrical/bus/ac2");
-		ac3 = getprop("/systems/electrical/bus/ac3");
-		dcbat = getprop("/systems/electrical/bus/dcbat");
+		ac1 = getprop("/systems/electrical/bus/ac-1");
+		ac2 = getprop("/systems/electrical/bus/ac-2");
+		ac3 = getprop("/systems/electrical/bus/ac-3");
+		dcbat = getprop("/systems/electrical/bus/dc-bat");
 		
 		if (getprop("/controls/irs/skip") == 1) {
 			if (getprop("/controls/irs/align-time") != 5) {
@@ -104,10 +104,10 @@ var IRS = {
 		}
 	},
 	beginAlign: func(n) {
-		ac1 = getprop("/systems/electrical/bus/ac1");
-		ac2 = getprop("/systems/electrical/bus/ac2");
-		ac3 = getprop("/systems/electrical/bus/ac3");
-		dcbat = getprop("/systems/electrical/bus/dcbat");
+		ac1 = getprop("/systems/electrical/bus/ac-1");
+		ac2 = getprop("/systems/electrical/bus/ac-2");
+		ac3 = getprop("/systems/electrical/bus/ac-3");
+		dcbat = getprop("/systems/electrical/bus/dc-bat");
 		setprop("/instrumentation/irs/adr[" ~ n ~ "]/active", 1);
 		if (getprop("/controls/irs/ir[" ~ n ~ "]/align") != 1 and getprop("/instrumentation/irs/ir[" ~ n ~ "]/aligned") != 1 and (ac1 >= 110 or ac2 >= 110 or ac3 >= 110 or dcbat >= 25)) {
 			setprop("/controls/irs/ir[" ~ n ~ "]/time", getprop("/sim/time/elapsed-sec"));

@@ -6,6 +6,36 @@ var ELEC = {
 		battery1: props.globals.getNode("/systems/electrical/battery1-volts", 1),
 		battery2: props.globals.getNode("/systems/electrical/battery2-volts", 1),
 	},
+	Bus: {
+		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
+		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),
+		ac3: props.globals.getNode("/systems/electrical/bus/ac-3"),
+		acGen1: props.globals.getNode("/systems/electrical/bus/ac-gen-1"),
+		acGen2: props.globals.getNode("/systems/electrical/bus/ac-gen-2"),
+		acGen3: props.globals.getNode("/systems/electrical/bus/ac-gen-3"),
+		acGndSvc: props.globals.getNode("/systems/electrical/bus/ac-gndsvc"),
+		acTie: props.globals.getNode("/systems/electrical/bus/ac-tie"),
+		dc1: props.globals.getNode("/systems/electrical/bus/dc-1"),
+		dc2: props.globals.getNode("/systems/electrical/bus/dc-2"),
+		dc3: props.globals.getNode("/systems/electrical/bus/dc-3"),
+		dcBat: props.globals.getNode("/systems/electrical/bus/dc-bat"),
+		dcBatDirect: props.globals.getNode("/systems/electrical/bus/dc-bat-direct"),
+		dcGndSvc: props.globals.getNode("/systems/electrical/bus/dc-gndsvc"),
+		dcTie: props.globals.getNode("/systems/electrical/bus/dc-tie"),
+		galley1: props.globals.getNode("/systems/electrical/bus/galley-1"),
+		galley2: props.globals.getNode("/systems/electrical/bus/galley-2"),
+		galley3: props.globals.getNode("/systems/electrical/bus/galley-3"),
+		lEmerAc: props.globals.getNode("/systems/electrical/bus/l-emer-ac"),
+		lEmerDc: props.globals.getNode("/systems/electrical/bus/l-emer-dc"),
+		lEmerSi: props.globals.getNode("/systems/electrical/bus/l-emer-si"),
+		rEmerAc: props.globals.getNode("/systems/electrical/bus/r-emer-ac"),
+		rEmerDc: props.globals.getNode("/systems/electrical/bus/r-emer-dc"),
+	},
+	Fail: {
+		gen1: props.globals.getNode("/systems/failures/elec-gen1", 1),
+		gen2: props.globals.getNode("/systems/failures/elec-gen2", 1),
+		gen3: props.globals.getNode("/systems/failures/elec-gen3", 1),
+	},
 	Generic: {
 		adf: props.globals.initNode("/systems/electrical/outputs/adf", 0, "DOUBLE"),
 		dme: props.globals.initNode("/systems/electrical/outputs/dme", 0, "DOUBLE"),
@@ -23,6 +53,9 @@ var ELEC = {
 		tacan: props.globals.initNode("/systems/electrical/outputs/tacan", 0, "DOUBLE"),
 		transponder: props.globals.initNode("/systems/electrical/outputs/transponder", 0, "DOUBLE"),
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
+	},
+	Source: {
+		
 	},
 	Switch: {
 		acTie1: props.globals.getNode("/controls/electrical/switches/ac-tie-1"),
@@ -50,7 +83,7 @@ var ELEC = {
 		manualFlashTemp: 0,
 		smokeElecAir: props.globals.getNode("/controls/electrical/switches/smoke-elec-air"),
 	},
-	system: props.globals.initNode("/systems/electrical/system", 1, "BOOL"),
+	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
 		me.Switch.acTie1.setBoolValue(1);
 		me.Switch.acTie2.setBoolValue(1);

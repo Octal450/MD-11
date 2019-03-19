@@ -195,9 +195,9 @@ var light_manager = {
 			var sh = math.sin(heading);
 			var ch = math.cos(heading);
 			
-			ac1 = getprop("/systems/electrical/bus/ac1") != 0;
-			ac2 = getprop("/systems/electrical/bus/ac2") != 0;
-			ac3 = getprop("/systems/electrical/bus/ac3") != 0;
+			ac1 = getprop("/systems/electrical/bus/ac-1") != 0;
+			ac2 = getprop("/systems/electrical/bus/ac-2") != 0;
+			ac3 = getprop("/systems/electrical/bus/ac-3") != 0;
 			
 			if (land == 1 or land2 == 1 and (ac1 or ac2 or ac3)) {
 				me.light1_ypos =  0.0;

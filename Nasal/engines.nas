@@ -24,7 +24,7 @@ setprop("/controls/engines/engine[2]/reverser", 0);
 
 # Start APU
 setlistener("/controls/APU/start", func {
-	if (getprop("/controls/APU/start") == 1 and (getprop("/systems/electrical/bus/dcbat") >= 25 or getprop("/systems/electrical/bus/dc1") >= 25 or getprop("/systems/electrical/bus/dc2") >= 25 or getprop("/systems/electrical/bus/dc3") >= 25)) {
+	if (getprop("/controls/APU/start") == 1 and (getprop("/systems/electrical/bus/dc-bat") >= 25 or getprop("/systems/electrical/bus/dc-1") >= 25 or getprop("/systems/electrical/bus/dc-2") >= 25 or getprop("/systems/electrical/bus/dc-3") >= 25)) {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
