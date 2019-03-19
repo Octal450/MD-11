@@ -55,7 +55,43 @@ var ELEC = {
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
 	Source: {
-		
+		Apu: {
+			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
+		},
+		Ext: {
+			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
+			hertzGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/ext/output-volt"),
+			voltGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-volt"),
+		},
+		Idg1: {
+			hertz: props.globals.getNode("/systems/electrical/sources/idg1/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg1/output-volt"),
+		},
+		Idg2: {
+			hertz: props.globals.getNode("/systems/electrical/sources/idg2/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg2/output-volt"),
+		},
+		Idg3: {
+			hertz: props.globals.getNode("/systems/electrical/sources/idg3/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg3/output-volt"),
+		},
+		Si1: {
+			volt: props.globals.getNode("/systems/electrical/sources/si1/output-volt"),
+		},
+		Tr1: {
+			volt: props.globals.getNode("/systems/electrical/sources/tr1/output-volt"),
+		},
+		Tr2a: {
+			volt: props.globals.getNode("/systems/electrical/sources/tr2a/output-volt"),
+		},
+		Tr2b: {
+			volt: props.globals.getNode("/systems/electrical/sources/tr2b/output-volt"),
+		},
+		Tr3: {
+			volt: props.globals.getNode("/systems/electrical/sources/tr3/output-volt"),
+		},
 	},
 	Switch: {
 		acTie1: props.globals.getNode("/controls/electrical/switches/ac-tie-1"),
