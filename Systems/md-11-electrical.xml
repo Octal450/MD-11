@@ -135,7 +135,6 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 					<tableData>
-						 50  1.50000000000
 						 60  1.25000000000
 						 70  1.07142857143
 						 75  1.00000000000
@@ -627,9 +626,9 @@
 			</test>
 		</switch>
 		
-		<!-- Left Emergency AC Bus -->
-		<fcs_function name="/systems/electrical/bus/l-emer-si">
-			<description>Left Emergency DC Static Inverter</description>
+		<!-- Static Inverter 1 -->
+		<fcs_function name="/systems/electrical/sources/si1/output-volt">
+			<description>Static Inverter 1</description>
 			<function>
 				<table> <!-- DC to AC converter -->
 					<independentVar lookup="row">/systems/electrical/bus/l-emer-dc</independentVar>
@@ -642,13 +641,14 @@
 			</function>
 		</fcs_function>
 		
+		<!-- Left Emergency AC Bus -->
 		<switch name="/systems/electrical/bus/l-emer-ac">
 			<default value="0"/>
 			<test value="/systems/electrical/bus/ac-gen-1">
 				/systems/electrical/bus/ac-gen-1 ge 110
 			</test>
-			<test value="/systems/electrical/bus/l-emer-si">
-				/systems/electrical/bus/l-emer-si ge 110
+			<test value="/systems/electrical/sources/si1/output-volt">
+				/systems/electrical/sources/si1/output-volt ge 110
 				/controls/electrical/switches/emer-pw-sw gt 0
 			</test>
 		</switch>
