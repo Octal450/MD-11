@@ -10,6 +10,54 @@
 	
 	<channel name="Sources/Buses" execrate="8">
 		
+		<!-- Battery 1 -->
+		<fcs_function name="/systems/electrical/sources/bat1/volts">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/bat1/percent</independentVar>
+					<independentVar lookup="column">/systems/failures/elec-batt1</independentVar>
+					<tableData>
+						      0  1
+						  0   0  0
+						 10  25  4
+						100  28  7
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/bat1/amp">
+			<default value="0"/>
+			<test logic="AND" value="2">
+				/controls/electrical/switches/battery eq 1
+				/systems/electrical/sources/bat1/volts ge 10
+			</test>
+		</switch>
+		
+		<!-- Battery 2 -->
+		<fcs_function name="/systems/electrical/sources/bat2/volts">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/bat2/percent</independentVar>
+					<independentVar lookup="column">/systems/failures/elec-batt2</independentVar>
+					<tableData>
+						      0  1
+						  0   0  0
+						 10  25  4
+						100  28  7
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/bat2/amp">
+			<default value="0"/>
+			<test logic="AND" value="2">
+				/controls/electrical/switches/battery eq 1
+				/systems/electrical/sources/bat2/volts ge 10
+			</test>
+		</switch>
+		
 		<!-- IDG Engine 1 -->
 		<fcs_function name="/systems/electrical/sources/idg1/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
 			<function>
@@ -447,20 +495,68 @@
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
 		
+		<fcs_function name="/systems/electrical/sources/tr1/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr1/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<pure_gain name="/systems/electrical/sources/tr2a/output-volt">
 			<input>/systems/electrical/bus/ac-gen-2</input>
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr2a/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr2a/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<pure_gain name="/systems/electrical/sources/tr2b/output-volt">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
 		
+		<fcs_function name="/systems/electrical/sources/tr2b/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr2b/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<pure_gain name="/systems/electrical/sources/tr3/output-volt">
 			<input>/systems/electrical/bus/r-emer-ac</input>
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr3/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr3/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<!-- DC Ground Service Bus -->
 		<switch name="/systems/electrical/bus/dc-gndsvc-src">
@@ -685,7 +781,7 @@
 		</switch>
 		
 		<!-- Battery Charger Powered -->
-		<switch name="/systems/electrical/source/bat-charger">
+		<switch name="/systems/electrical/sources/bat-charger">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/ac-gndsvc ge 110
@@ -697,31 +793,7 @@
 	
 	<channel name="Battery Charge/Discharge" execrate="8">
 		
-		<fcs_function name="/systems/electrical/sources/bat1/volts">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/bat1/percent</independentVar>
-					<tableData>
-						  0   0
-						 10  25
-						100  28
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/bat2/volts">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/bat2/percent</independentVar>
-					<tableData>
-						  0   0
-						 10  25
-						100  28
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
 	
 	</channel>
 	

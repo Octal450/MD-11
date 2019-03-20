@@ -56,10 +56,12 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 		},
 		Bat1: {
+			amp: props.globals.getNode("/systems/electrical/sources/bat1/amp", 1),
 			percent: props.globals.getNode("/systems/electrical/sources/bat1/percent", 1),
 			volt: props.globals.getNode("/systems/electrical/sources/bat1/volts", 1),
 		},
 		Bat2: {
+			amp: props.globals.getNode("/systems/electrical/sources/bat2/amp", 1),
 			percent: props.globals.getNode("/systems/electrical/sources/bat2/percent", 1),
 			volt: props.globals.getNode("/systems/electrical/sources/bat2/volts", 1),
 		},
@@ -85,15 +87,19 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/si1/output-volt"),
 		},
 		Tr1: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr1/output-amp"),
 			volt: props.globals.getNode("/systems/electrical/sources/tr1/output-volt"),
 		},
 		Tr2A: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr2a/output-amp"),
 			volt: props.globals.getNode("/systems/electrical/sources/tr2a/output-volt"),
 		},
 		Tr2B: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr2b/output-amp"),
 			volt: props.globals.getNode("/systems/electrical/sources/tr2b/output-volt"),
 		},
 		Tr3: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr3/output-amp"),
 			volt: props.globals.getNode("/systems/electrical/sources/tr3/output-volt"),
 		},
 	},
