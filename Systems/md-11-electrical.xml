@@ -781,19 +781,13 @@
 		</switch>
 		
 		<!-- Battery Charger Powered -->
-		<switch name="/systems/electrical/sources/bat-charger">
+		<switch name="/systems/electrical/sources/bat-charger-powered">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/ac-gndsvc ge 110
 				/systems/electrical/bus/r-emer-ac ge 110
 			</test>
 		</switch>
-	
-	</channel>
-	
-	<channel name="Battery Charge/Discharge" execrate="8">
-		
-		
 	
 	</channel>
 	
