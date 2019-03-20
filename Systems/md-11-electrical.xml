@@ -7,7 +7,6 @@
 	
 	<property value="0">/systems/electrical/bus/ac-tie-feedback</property>
 	<property value="0">/systems/electrical/bus/dc-tie-feedback</property>
-	<property value="0">/systems/electrical/bus/dc-gndsvc-feedback</property>
 	
 	<channel name="Sources/Buses" execrate="8">
 		
@@ -430,7 +429,19 @@
 			</test>
 		</switch>
 		
-		<!-- Transformer Rectifiers 1/2A/3 -->
+		<!-- AC Ground Service Bus -->
+		<switch name="/systems/electrical/bus/ac-gndsvc">
+			<default value="0"/>
+			<test logic="AND" value="/systems/electrical/bus/ac-gen-2">
+				/systems/electrical/bus/ac-gen-2 ge 110
+			</test>
+			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
+				/systems/electrical/sources/ext/output-volt ge 110
+				/controls/electrical/switches/ext-pwr eq 1
+			</test>
+		</switch>
+		
+		<!-- Transformer Rectifiers 1/2A/2B/3 -->
 		<pure_gain name="/systems/electrical/sources/tr1/output-volt">
 			<input>/systems/electrical/bus/ac-gen-1</input>
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
@@ -441,10 +452,36 @@
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
 		
+		<pure_gain name="/systems/electrical/sources/tr2b/output-volt">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
+		</pure_gain>
+		
 		<pure_gain name="/systems/electrical/sources/tr3/output-volt">
 			<input>/systems/electrical/bus/r-emer-ac</input>
 			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
 		</pure_gain>
+		
+		<!-- DC Ground Service Bus -->
+		<switch name="/systems/electrical/bus/dc-gndsvc-src">
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- TR2B -->
+				/systems/electrical/sources/tr2b/output-volt ge 25
+			</test>
+			<test value="2"> <!-- DC TIE -->
+				/systems/electrical/bus/dc-tie-feedback ge 25
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/bus/dc-gndsvc">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/tr2b/output-volt">
+				/systems/electrical/bus/dc-gndsvc-src eq 1
+			</test>
+			<test value="/systems/electrical/bus/dc-tie-feedback">
+				/systems/electrical/bus/dc-gndsvc-src eq 2
+			</test>
+		</switch>
 		
 		<!-- Right Emergency DC Bus -->
 		<switch name="/systems/electrical/bus/r-emer-dc">
@@ -529,65 +566,28 @@
 		<fcs_function name="/systems/electrical/bus/dc-bat-direct">
 			<function>
 				<max>
-					<property>/systems/electrical/battery1-volts</property>
-					<property>/systems/electrical/battery2-volts</property>
+					<property>/systems/electrical/sources/bat1/volts</property>
+					<property>/systems/electrical/sources/bat2/volts</property>
 				</max>
 			</function>
 		</fcs_function>
 		
 		<switch name="/systems/electrical/bus/dc-bat">
 			<default value="0"/>
-			<test logic="AND" value="/systems/electrical/bus/dc-bat-direct">
-				/systems/electrical/bus/dc-bat-direct ge 25
-				/controls/electrical/switches/battery eq 1
+			<test value="/systems/electrical/bus/dc-2">
+				/systems/electrical/bus/dc-2 ge 25
 			</test>
-			<test value="/systems/electrical/bus/dc-gndsvc-feedback">
-				/systems/electrical/bus/dc-gndsvc-feedback ge 25
+			<test value="/systems/electrical/bus/dc-gndsvc">
+				/systems/electrical/bus/dc-gndsvc ge 25
 			</test>
 			<test logic="AND" value="/systems/electrical/sources/tr3/output-volt">
 				/systems/electrical/sources/tr3/output-volt ge 25
 				/controls/electrical/switches/adg-elec eq 1
 			</test>
-		</switch>
-		
-		<!-- AC Ground Service Bus -->
-		<switch name="/systems/electrical/bus/ac-gndsvc">
-			<default value="0"/>
-			<test logic="AND" value="/systems/electrical/bus/ac-gen-2">
-				/systems/electrical/bus/ac-gen-2 ge 110
+			<test logic="AND" value="/systems/electrical/bus/dc-bat-direct">
+				/systems/electrical/bus/dc-bat-direct ge 25
+				/controls/electrical/switches/battery eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-			</test>
-		</switch>
-		
-		<!-- Transformer Rectifiers 2B -->
-		<pure_gain name="/systems/electrical/sources/tr2b/output-volt">
-			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
-		
-		<!-- DC Ground Service Bus -->
-		<switch name="/systems/electrical/bus/dc-gndsvc-src">
-			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR2B -->
-				/systems/electrical/sources/tr2b/output-volt ge 25
-			</test>
-			<test value="2"> <!-- DC TIE -->
-				/systems/electrical/bus/dc-tie-feedback ge 25
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/bus/dc-gndsvc">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr2b/output-volt">
-				/systems/electrical/bus/dc-gndsvc-src eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-tie-feedback">
-				/systems/electrical/bus/dc-gndsvc-src eq 2
-			</test>
-			<output>/systems/electrical/bus/dc-gndsvc-feedback</output>
 		</switch>
 		
 		<!-- DC Tie Bus -->
@@ -647,7 +647,7 @@
 			<test value="/systems/electrical/bus/ac-gen-1">
 				/systems/electrical/bus/ac-gen-1 ge 110
 			</test>
-			<test value="/systems/electrical/sources/si1/output-volt">
+			<test logic="AND" value="/systems/electrical/sources/si1/output-volt">
 				/systems/electrical/sources/si1/output-volt ge 110
 				/controls/electrical/switches/emer-pw-sw gt 0
 			</test>
@@ -683,6 +683,45 @@
 			<output>/systems/electrical/outputs/transponder</output>
 			<output>/systems/electrical/outputs/turn-coordinator</output>
 		</switch>
+		
+		<!-- Battery Charger Powered -->
+		<switch name="/systems/electrical/source/bat-charger">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/ac-gndsvc ge 110
+				/systems/electrical/bus/r-emer-ac ge 110
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Battery Charge/Discharge" execrate="8">
+		
+		<fcs_function name="/systems/electrical/sources/bat1/volts">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/bat1/percent</independentVar>
+					<tableData>
+						  0   0
+						 10  25
+						100  28
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/electrical/sources/bat2/volts">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/bat2/percent</independentVar>
+					<tableData>
+						  0   0
+						 10  25
+						100  28
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

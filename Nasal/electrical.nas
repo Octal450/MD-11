@@ -2,10 +2,6 @@
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var ELEC = {
-	Battery: {
-		battery1: props.globals.getNode("/systems/electrical/battery1-volts", 1),
-		battery2: props.globals.getNode("/systems/electrical/battery2-volts", 1),
-	},
 	Bus: {
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
 		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),
@@ -59,6 +55,14 @@ var ELEC = {
 			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 		},
+		Bat1: {
+			percent: props.globals.getNode("/systems/electrical/sources/bat1/percent", 1),
+			volt: props.globals.getNode("/systems/electrical/sources/bat1/volts", 1),
+		},
+		Bat2: {
+			percent: props.globals.getNode("/systems/electrical/sources/bat2/percent", 1),
+			volt: props.globals.getNode("/systems/electrical/sources/bat2/volts", 1),
+		},
 		Ext: {
 			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
 			hertzGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-hertz"),
@@ -83,10 +87,10 @@ var ELEC = {
 		Tr1: {
 			volt: props.globals.getNode("/systems/electrical/sources/tr1/output-volt"),
 		},
-		Tr2a: {
+		Tr2A: {
 			volt: props.globals.getNode("/systems/electrical/sources/tr2a/output-volt"),
 		},
-		Tr2b: {
+		Tr2B: {
 			volt: props.globals.getNode("/systems/electrical/sources/tr2b/output-volt"),
 		},
 		Tr3: {
@@ -143,8 +147,8 @@ var ELEC = {
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
 		me.Switch.smokeElecAir.setValue(0);
-		me.Battery.battery1.setValue(26.5);
-		me.Battery.battery2.setValue(26.5);
+		me.Source.Bat1.percent.setValue(55);
+		me.Source.Bat2.percent.setValue(55);
 		me.system.setBoolValue(1);
 		manualElecLightt.stop();
 		me.Switch.manualFlash.setValue(0);

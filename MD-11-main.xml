@@ -689,8 +689,14 @@
 			<n2 type="double">0</n2>
 		</apu>
 		<electrical n="0">
-			<battery1-volts type="double">26.5</battery1-volts>
-			<battery2-volts type="double">26.5</battery2-volts>
+			<sources n="0">
+				<bat1 n="0">
+					<percent type="double">55</percent>
+				</bat1>
+				<bat2 n="0">
+					<percent type="double">55</percent>
+				</bat2>
+			</sources>
 			<system type="bool">1</system>
 		</electrical>
 		<failures n="0">
