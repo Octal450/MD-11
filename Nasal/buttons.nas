@@ -1,6 +1,4 @@
-# MD-11 Buttons
-# Joshua Davidson (it0uchpods)
-
+# McDonnell Douglas MD-11 Buttons and Switches
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 # Resets buttons to the default values
@@ -12,6 +10,7 @@ var variousReset = func {
 	setprop("/controls/lighting/logo-lights", 0);
 	setprop("/controls/lighting/nav-lights", 0);
 	setprop("/controls/lighting/strobe", 0);
+	setprop("/controls/switches/adg-handle", 0);
 	setprop("/controls/switches/minimums", 200);
 }
 

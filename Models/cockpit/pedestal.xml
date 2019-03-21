@@ -1367,4 +1367,92 @@
 		</condition>
 	</animation>
 	
+	<!-- ADG Handle -->
+	<animation>
+		<type>rotate</type>
+		<object-name>ADGHandle</object-name>
+		<property>controls/switches/adg-handle</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>25</dep></entry>
+			<entry><ind>0.5</ind><dep> 0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-26.5865</x-m>
+			<y-m>0.055</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>ADGHandle</object-name>
+		<property>controls/switches/adg-handle</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.00</dep></entry>
+			<entry><ind>0.5</ind><dep>0.08</dep></entry>
+			<entry><ind>1.0</ind><dep>0.18</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ADGHandle</object-name>
+		<property>controls/switches/adg-handle</property>
+		<interpolation>
+			<entry><ind>0.5</ind><dep> 0</dep></entry>
+			<entry><ind>1.0</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.055</y-m>
+			<z-m>6.49274</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ADGHandleLabel</object-name> <!-- Make the clickspot harder, since its a non-reversible action -->
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/adg-handle</property>
+				<step>0.5</step>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<less-than-equals>
+						<property>controls/switches/adg-handle</property>
+						<value>0.5</value>
+					</less-than-equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/adg-handle</property>
+				<step>-0.5</step>
+				<min>0</min>
+			</binding>
+		</action>
+	</animation>
+	
 </PropertyList>

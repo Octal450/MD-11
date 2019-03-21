@@ -11,6 +11,7 @@ var ELEC = {
 		acGen3: props.globals.getNode("/systems/electrical/bus/ac-gen-3"),
 		acGndSvc: props.globals.getNode("/systems/electrical/bus/ac-gndsvc"),
 		acTie: props.globals.getNode("/systems/electrical/bus/ac-tie"),
+		adg: props.globals.getNode("/systems/electrical/bus/adg"),
 		dc1: props.globals.getNode("/systems/electrical/bus/dc-1"),
 		dc2: props.globals.getNode("/systems/electrical/bus/dc-2"),
 		dc3: props.globals.getNode("/systems/electrical/bus/dc-3"),
@@ -32,9 +33,6 @@ var ELEC = {
 		bat1Temp: 0,
 		bat2: props.globals.getNode("/systems/failures/elec-batt2", 1),
 		bat2Temp: 0,
-#		gen1: props.globals.getNode("/systems/failures/elec-gen1", 1),
-#		gen2: props.globals.getNode("/systems/failures/elec-gen2", 1),
-#		gen3: props.globals.getNode("/systems/failures/elec-gen3", 1),
 	},
 	Generic: {
 		adf: props.globals.initNode("/systems/electrical/outputs/adf", 0, "DOUBLE"),
@@ -61,6 +59,10 @@ var ELEC = {
 	Source: {
 		batChargerPowered: props.globals.getNode("/systems/electrical/sources/bat-charger-powered"),
 		batChargerPoweredTemp: 0,
+		Adg: {
+			hertz: props.globals.getNode("/systems/electrical/sources/adg/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/adg/output-volt"),
+		},
 		Apu: {
 			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
