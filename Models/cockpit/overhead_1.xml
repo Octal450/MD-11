@@ -737,8 +737,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/galley-1</property>
-					<value>0</value>
+					<property>systems/electrical/light/galley-1</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -821,8 +821,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/galley-2</property>
-					<value>0</value>
+					<property>systems/electrical/light/galley-2</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -905,8 +905,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/galley-3</property>
-					<value>0</value>
+					<property>systems/electrical/light/galley-3</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -2876,7 +2876,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/electrical/light/gen1-arm</property>
+						<property>systems/electrical/light/gen-1-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3055,7 +3055,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/electrical/light/gen2-arm</property>
+						<property>systems/electrical/light/gen-2-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3234,7 +3234,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/electrical/light/gen3-arm</property>
+						<property>systems/electrical/light/gen-3-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3613,7 +3613,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/ac1</property>
+					<property>systems/electrical/light/ac-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3630,7 +3630,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/ac2</property>
+					<property>systems/electrical/light/ac-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3664,7 +3664,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/ac3</property>
+					<property>systems/electrical/light/ac-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3682,7 +3682,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/dc1</property>
+					<property>systems/electrical/light/dc-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3699,7 +3699,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/dc2</property>
+					<property>systems/electrical/light/dc-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3733,7 +3733,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/light/dc3</property>
+					<property>systems/electrical/light/dc-3</property>
 					<value>1</value>
 				</equals>
 				<equals>

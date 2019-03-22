@@ -375,6 +375,12 @@
 		<!-- Galley 1 Bus -->
 		<switch name="/systems/electrical/bus/galley-1">
 			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/ext/output-galley-volt ge 110
+				/controls/electrical/switches/ext-pwr eq 1
+				/controls/electrical/switches/extg-pwr ne 1
+				/systems/electrical/bus/ac-gen-1-src eq 3
+			</test>
 			<test logic="AND" value="/systems/electrical/bus/ac-1">
 				/systems/electrical/bus/ac-1 ge 110
 				/controls/electrical/switches/galley-1 eq 1
@@ -424,6 +430,12 @@
 		<!-- Galley 2 Bus -->
 		<switch name="/systems/electrical/bus/galley-2">
 			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/ext/output-galley-volt ge 110
+				/controls/electrical/switches/ext-pwr eq 1
+				/controls/electrical/switches/extg-pwr ne 1
+				/systems/electrical/bus/ac-gen-2-src eq 3
+			</test>
 			<test logic="AND" value="/systems/electrical/bus/ac-2">
 				/systems/electrical/bus/ac-2 ge 110
 				/controls/electrical/switches/galley-2 eq 1
@@ -473,6 +485,12 @@
 		<!-- Galley 3 Bus -->
 		<switch name="/systems/electrical/bus/galley-3">
 			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/ext/output-galley-volt ge 110
+				/controls/electrical/switches/ext-pwr eq 1
+				/controls/electrical/switches/extg-pwr ne 1
+				/systems/electrical/bus/ac-gen-3-src eq 3
+			</test>
 			<test logic="AND" value="/systems/electrical/bus/ac-3">
 				/systems/electrical/bus/ac-3 ge 110
 				/controls/electrical/switches/galley-3 eq 1
@@ -898,12 +916,6 @@
 		
 		<switch name="/systems/electrical/esc/galley-1">
 			<default value="/controls/electrical/switches/galley-1"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-1-src eq 3
-			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -912,12 +924,6 @@
 		
 		<switch name="/systems/electrical/esc/galley-2">
 			<default value="/controls/electrical/switches/galley-2"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-2-src eq 3
-			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -926,12 +932,6 @@
 		
 		<switch name="/systems/electrical/esc/galley-3">
 			<default value="/controls/electrical/switches/galley-3"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-3-src eq 3
-			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -1013,14 +1013,14 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc1">
+		<switch name="/systems/electrical/light/dc-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc2">
+		<switch name="/systems/electrical/light/dc-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-2 lt 25
@@ -1034,7 +1034,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc3">
+		<switch name="/systems/electrical/light/dc-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-3 lt 25
@@ -1055,14 +1055,14 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac1">
+		<switch name="/systems/electrical/light/ac-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac2">
+		<switch name="/systems/electrical/light/ac-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-2 lt 25
@@ -1076,7 +1076,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac3">
+		<switch name="/systems/electrical/light/ac-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-3 lt 25
@@ -1114,7 +1114,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen1-arm">
+		<switch name="/systems/electrical/light/gen-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/gen-1 eq 1
@@ -1122,7 +1122,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen2-arm">
+		<switch name="/systems/electrical/light/gen-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/gen-2 eq 1
@@ -1130,11 +1130,32 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen3-arm">
+		<switch name="/systems/electrical/light/gen-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/gen-3 eq 1
 				/systems/electrical/sources/idg3/output-volt lt 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/light/galley-1">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/galley-1 lt 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/light/galley-2">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/galley-2 lt 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/light/galley-3">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/galley-3 lt 110
 			</test>
 		</switch>
 	
