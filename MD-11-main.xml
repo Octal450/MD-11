@@ -28,7 +28,7 @@
 			<lights>
 				<nav-lights type="bool">0</nav-lights>
 			</lights>
-			<pushback>
+			<autopush>
 				<connected type="bool">0</connected>
 				<position-norm type="double">0</position-norm>
 				<enabled type="int"/>
@@ -44,18 +44,18 @@
 				<F_i type="float">0.1</F_i>
 				<K_d type="float">0.0</K_d>
 				<F_d type="float">0.0</F_d>
+				<pitch-deg type="float">0.0</pitch-deg>
+				<min-turn-radius-m type="float">15</min-turn-radius-m>
+				<stopping-distance-m type="float">5.0</stopping-distance-m>
 				<driver>
-					<K_V type="float">5.5</K_V>
 					<F_V type="float">5.5</F_V>
-					<D_min-m type="float">5.0</D_min-m>
 					<K_psi type="float">0.03</K_psi>
-					<debug type="bool">true</debug>
 				</driver>
 				<route>
 					<show type="bool"/>
-					<view type="string">Model View</view>
 				</route>
-			</pushback>
+				<debug type="bool">false</debug>
+			</autopush>
 		</model>
 		
 		<previews>
@@ -576,9 +576,9 @@
 		<jsbsim>
 			<external_reactions>
 				<tractor>
-					<magnitude alias="/sim/model/pushback/force-lbf"/>
-					<x alias="/sim/model/pushback/force-x"/>
-					<y alias="/sim/model/pushback/force-y"/>
+					<magnitude alias="/sim/model/autopush/force-lbf"/>
+					<x alias="/sim/model/autopush/force-x"/>
+					<y alias="/sim/model/autopush/force-y"/>
 				</tractor>
 			</external_reactions>
 			<fcc>
