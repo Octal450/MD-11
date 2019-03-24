@@ -72,7 +72,7 @@ var canvas_EAD_base = {
 		return [];
 	},
 	update: func() {
-		if (getprop("/systems/electrical/bus/ac-1") >= 110 or getprop("/systems/electrical/bus/ac-2") >= 110 or getprop("/systems/electrical/bus/ac-3") >= 110) {
+		if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
 			if (getprop("/options/eng") == "GE") {
 				EAD_GE.page.show();
 				EAD_PW.page.hide();

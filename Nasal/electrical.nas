@@ -1,11 +1,6 @@
 # McDonnell Douglas MD-11 Electrical System
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-# Temporary because these buses don't work yet
-setprop("/systems/electrical/bus/dc-1", 28);
-setprop("/systems/electrical/bus/dc-2", 28);
-setprop("/systems/electrical/bus/dc-3", 28);
-
 var ELEC = {
 	Bus: { # Volts
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
@@ -16,10 +11,10 @@ var ELEC = {
 		acGen3: props.globals.getNode("/systems/electrical/bus/ac-gen-3"),
 		acGndSvc: props.globals.getNode("/systems/electrical/bus/ac-gndsvc"),
 		acTie: props.globals.getNode("/systems/electrical/bus/ac-tie"),
-		adg: props.globals.getNode("/systems/electrical/bus/adg"),
 		cabinAc1: props.globals.getNode("/systems/electrical/bus/cabin-ac-1"),
 		cabinAc3: props.globals.getNode("/systems/electrical/bus/cabin-ac-3"),
 		cabinAcF: props.globals.getNode("/systems/electrical/bus/cabin-ac-f"),
+		cabinDc: props.globals.getNode("/systems/electrical/bus/cabin-dc"),
 		cargoLoading: props.globals.getNode("/systems/electrical/bus/cargo-loading"),
 		dc1: props.globals.getNode("/systems/electrical/bus/dc-1"),
 		dc2: props.globals.getNode("/systems/electrical/bus/dc-2"),
@@ -68,6 +63,14 @@ var ELEC = {
 	Misc: {
 		elapsedSec: props.globals.getNode("/sim/time/elapsed-sec"),
 		elapsedSecTemp: 0,
+	},
+	RCB: { # 0 is Open, 1 is Closed
+		dcBat_LEmerDc: props.globals.getNode("/systems/electrical/rcb/dc-bat-l-emer-dc/contact-pos"),
+		dcTie_Dc1: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-1/contact-pos"),
+		dcTie_Dc2: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-2/contact-pos"),
+		dcTie_Dc3: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-3/contact-pos"),
+		dcTie_DcGndSvc: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos"),
+		tr3_LEmerDcDcBat: props.globals.getNode("/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos"),
 	},
 	Relay: { # 0 is Open, 1 is Closed
 		acGen1_LEmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos"),

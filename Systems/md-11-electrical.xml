@@ -17,12 +17,8 @@
 	<property value="0">/systems/electrical/relay/idg-ac-gen-1/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-2/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-3/contact-pos</property>
-	
-	<!-- Temporary because these buses don't work yet -->
-	<property value="28">/systems/electrical/bus/dc-bat</property>
-	<property value="28">/systems/electrical/bus/dc-gndsvc</property>
-	<property value="28">/systems/electrical/bus/l-emer-dc</property>
-	<property value="28">/systems/electrical/bus/r-emer-dc</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
 	
 	<channel name="EPCU Switches/Logic" execrate="16"> <!-- These switches are only set in automatic mode -->
 		
@@ -503,12 +499,6 @@
 			</function>
 		</fcs_function>
 		
-		<!-- ADG Bus -->
-		<pure_gain name="/systems/electrical/bus/adg">
-			<input>/systems/electrical/sources/adg/output-volt</input>
-			<gain>1.0</gain>
-		</pure_gain>
-		
 		<!-- IDG AC Gen Bus Relays -->
 		<switch name="/systems/electrical/relay/idg-ac-gen-1/command-pos">
 			<default value="0"/>
@@ -626,7 +616,7 @@
 		</switch>
 		
 		<!-- AC Tie Bus AC Gen Bus Relays -->
-		<!-- These outputs are from the Tie Bus to the Gen Bus -->
+		<!-- These outputs are from the AC Tie Bus to the AC Gen Bus -->
 		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="0">
@@ -691,7 +681,7 @@
 			<test value="2"> <!-- APU -->
 				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
 			</test>
-			<test logic="AND" value="3"> <!-- AC TIE -->
+			<test value="3"> <!-- AC TIE -->
 				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
 			</test>
 		</switch>
@@ -721,7 +711,7 @@
 			<test value="2"> <!-- APU -->
 				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
 			</test>
-			<test logic="AND" value="3"> <!-- AC TIE -->
+			<test value="3"> <!-- AC TIE -->
 				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
 			</test>
 		</switch>
@@ -751,7 +741,7 @@
 			<test value="2"> <!-- APU -->
 				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
 			</test>
-			<test logic="AND" value="3"> <!-- AC TIE -->
+			<test value="3"> <!-- AC TIE -->
 				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
 			</test>
 		</switch>
@@ -858,7 +848,7 @@
 		</fcs_function>
 		
 		<!-- AC Tie Bus AC Gen Bus Relays (continued) -->
-		<!-- These outputs are from the Gen Bus to the Tie Bus -->
+		<!-- These outputs are from the AC Gen Bus to the AC Tie Bus -->
 		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/output-tie">
 			<default value="0"/>
 			<test value="/systems/electrical/bus/ac-gen-1">
@@ -925,7 +915,7 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Cabin Buses Passenger Varient -->
+		<!-- Cabin AC Buses Passenger Varient -->
 		<pure_gain name="/systems/electrical/bus/cabin-ac-1">
 			<input>/systems/electrical/bus/ac-gen-1</input>
 			<gain>1.0</gain>
@@ -946,7 +936,7 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Cabin Buses Freighter Varient -->
+		<!-- Cabin AC Buses Freighter Varient -->
 		<pure_gain name="/systems/electrical/bus/cabin-ac-f">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
 			<gain>1.0</gain>
@@ -957,27 +947,13 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Cabin Buses Common -->
+		<!-- Cabin AC Buses Common -->
 		<pure_gain name="/systems/electrical/bus/flt-comp-ac-gndsvc">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Emergency AC Relays -->
-		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos">
-			<default value="0"/>
-			<test value="1">
-				/systems/electrical/bus/ac-gen-1 ge 110
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/output">
-			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-1">
-				/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos eq 1
-			</test>
-		</switch>
-		
+		<!-- Right Emergency AC Bus Relays -->
 		<switch name="/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos">
 			<default value="0"/>
 			<test value="1">
@@ -996,13 +972,13 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/adg-elec eq 1
-				/systems/electrical/bus/adg ge 110
+				/systems/electrical/sources/adg/output-volt ge 110
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/relay/adg-r-emer-ac/output">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/adg">
+			<test value="/systems/electrical/sources/adg/output-volt">
 				/systems/electrical/relay/adg-r-emer-ac/contact-pos eq 1
 			</test>
 		</switch>
@@ -1074,7 +1050,382 @@
 			</test>
 		</switch>
 		
-		<!-- DC stuff goes here -->
+		<!-- Transformer Rectifiers -->
+		<pure_gain name="/systems/electrical/sources/tr-1/output-volt">
+			<input>/systems/electrical/relay/ac-gen-1-tr-1/output</input>
+			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr-1/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr-1/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="/systems/electrical/sources/tr-2a/output-volt">
+			<input>/systems/electrical/relay/ac-gen-2-tr-2a/output</input>
+			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr-2a/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr-2a/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="/systems/electrical/sources/tr-2b/output-volt">
+			<input>/systems/electrical/relay/ac-gndsvc-tr-2b/output</input>
+			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr-2b/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr-2b/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="/systems/electrical/sources/tr-3/output-volt">
+			<input>/systems/electrical/relay/r-emer-ac-tr-3/output</input>
+			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/tr-3/output-amp">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/electrical/sources/tr-3/output-volt</independentVar>
+					<tableData>
+						 0    0
+						10   75
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!-- Cabin DC Bus -->
+		<pure_gain name="/systems/electrical/bus/cabin-dc">
+			<input>/systems/electrical/sources/tr-3/output-volt</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<!-- DC Tie Bus DC Bus Remote Circuit Breakers -->
+		<!-- These outputs are from the DC Tie Bus to the DC Gen Bus -->
+		<switch name="/systems/electrical/rcb/dc-tie-dc-1/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/controls/electrical/switches/dc-tie-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-1/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-tie">
+				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-2/contact-pos">
+			<default value="0"/>
+			<test value="1"> <!-- I don't know what triggers this, its a dummy -->
+				/systems/electrical/rcb/dc-tie-dc-2/command-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-2/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-tie">
+				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos">
+			<default value="0"/>
+			<test value="1"> <!-- I don't know what triggers this, its a dummy -->
+				/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-gndsvc/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-tie">
+				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-3/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/dc-tie-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-tie">
+				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- DC 1 Bus -->
+		<switch name="/systems/electrical/bus/dc-1-src">
+			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- TR1 -->
+				/systems/electrical/sources/tr-1/output-volt ge 25
+			</test>
+			<test value="2"> <!-- DC TIE -->
+				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/bus/dc-1">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/tr-1/output-volt</property>
+					<property>/systems/electrical/rcb/dc-tie-dc-1/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- DC 2 Bus -->
+		<switch name="/systems/electrical/bus/dc-2-src">
+			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- TR2A -->
+				/systems/electrical/sources/tr-2a/output-volt ge 25
+			</test>
+			<test value="2"> <!-- DC TIE -->
+				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/bus/dc-2">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/tr-2a/output-volt</property>
+					<property>/systems/electrical/rcb/dc-tie-dc-2/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- DC Ground Service Bus -->
+		<switch name="/systems/electrical/bus/dc-gndsvc-src">
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- TR2B -->
+				/systems/electrical/sources/tr-2b/output-volt ge 25
+			</test>
+			<test value="2"> <!-- DC TIE -->
+				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/bus/dc-gndsvc">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/tr-2b/output-volt</property>
+					<property>/systems/electrical/rcb/dc-tie-dc-gndsvc/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- DC 3 Bus -->
+		<switch name="/systems/electrical/bus/dc-3-src">
+			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- TR3 -->
+				/systems/electrical/sources/tr-3/output-volt ge 25
+			</test>
+			<test value="2"> <!-- DC TIE -->
+				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/bus/dc-3">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/tr-3/output-volt</property>
+					<property>/systems/electrical/rcb/dc-tie-dc-3/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- DC Tie Bus DC Bus Remote Circuit Breakers (continued) -->
+		<!-- These outputs are from the DC Bus to the DC Tie Bus -->
+		<switch name="/systems/electrical/rcb/dc-tie-dc-1/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-1">
+				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-2/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-2">
+				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-gndsvc/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-gndsvc">
+				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-tie-dc-3/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-3">
+				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- DC Tie Bus -->
+		<switch name="/systems/electrical/bus/dc-tie">
+			<default value="0"/>
+			<test logic="AND" value="/systems/electrical/rcb/dc-tie-dc-2/output-tie">
+				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
+				/systems/electrical/bus/dc-2-src ne 2
+			</test>
+			<test logic="AND" value="/systems/electrical/rcb/dc-tie-dc-gndsvc/output-tie">
+				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
+				/systems/electrical/bus/dc-gndsvc-src ne 2
+			</test>
+			<test logic="AND" value="/systems/electrical/rcb/dc-tie-dc-1/output-tie">
+				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
+				/systems/electrical/bus/dc-1-src ne 2
+			</test>
+			<test logic="AND" value="/systems/electrical/rcb/dc-tie-dc-3/output-tie">
+				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
+				/systems/electrical/bus/dc-3-src ne 2
+			</test>
+		</switch>
+		
+		<!-- Left Emergency DC Bus/Battery DC Bus Shared Remote Circuit Breaker -->
+		<switch name="/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/adg-elec eq 1
+				/systems/electrical/sources/tr-3/output-volt ge 25
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/tr-3/output-volt">
+				/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- Battery Bus/Battery Direct Bus -->
+		<fcs_function name="/systems/electrical/bus/dc-bat-direct">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/bat-1/volt</property>
+					<property>/systems/electrical/sources/bat-2/volt</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<scheduled_gain name="/systems/electrical/bus/dc-bat-direct-regulator">
+			<description>Battery Voltage Step Down/Up (Buck/Boost) Regulator</description>
+			<input>/systems/electrical/bus/dc-bat-direct</input>
+			<gain>/controls/electrical/switches/battery</gain>
+			<table>
+				<independentVar lookup="row">/systems/electrical/bus/dc-bat-direct</independentVar>
+				<tableData>
+					21  1.33333333333
+					22  1.27272727272
+					23  1.21739130434
+					24  1.16666666666
+					25  1.12000000000
+					26  1.07692307692
+					27  1.03703703703
+					28  1.00000000000
+					29  0.96551724137
+					30  0.93333333333
+					31  0.90322580645
+					32  0.87500000000
+					33  0.84848484848
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<fcs_function name="/systems/electrical/bus/dc-bat">
+			<function>
+				<max>
+					<property>/systems/electrical/sources/tr-2a/output-volt</property>
+					<property>/systems/electrical/sources/tr-2b/output-volt</property>
+					<property>/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output</property>
+					<property>/systems/electrical/bus/dc-bat-direct-regulator</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- Left Emergency DC Bus Remote Circuit Breaker -->
+		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos">
+			<default value="0"/>
+			<test value="1"> <!-- ON -->
+				/controls/electrical/switches/emer-pw-sw eq 2
+			</test>
+			<test logic="AND" value="1"> <!-- ARM -->
+				/controls/electrical/switches/emer-pw-sw eq 1
+				/systems/electrical/bus/dc-1 lt 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
+				/systems/electrical/bus/dc-bat ge 25
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-bat">
+				/systems/electrical/rcb/dc-bat-l-emer-dc/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- Left Emergency DC Bus -->
+		<fcs_function name="/systems/electrical/bus/l-emer-dc">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/dc-1</property>
+					<property>/systems/electrical/sources/tr-1/output-volt</property>
+					<property>/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output</property>
+					<property>/systems/electrical/rcb/dc-bat-l-emer-dc/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- Right Emergency DC Bus -->
+		<fcs_function name="/systems/electrical/bus/r-emer-dc">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/dc-3</property>
+					<property>/systems/electrical/sources/tr-3/output-volt</property>
+				</max>
+			</function>
+		</fcs_function>
 		
 		<!-- Static Inverter -->
 		<fcs_function name="/systems/electrical/sources/si-1/output-volt">
@@ -1091,7 +1442,21 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Static Inverter Relay -->
+		<!-- Left Emergency AC Bus Relays -->
+		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/ac-gen-1 ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-1">
+				/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/electrical/relay/si-1-l-emer-ac/command-pos">
 			<default value="0"/>
 			<test value="1"> <!-- ON -->
@@ -1124,7 +1489,7 @@
 				<max>
 					<property>/systems/electrical/relay/ac-gen-1-l-emer-ac/output</property>
 					<property>/systems/electrical/relay/si-1-l-emer-ac/output</property>
-					<property>/systems/electrical/bus/adg</property>
+					<property>/systems/electrical/sources/adg/output-volt</property>
 				</max>
 			</function>
 		</fcs_function>
@@ -1342,7 +1707,8 @@
 		
 		<switch name="/systems/electrical/light/emer-pw-on">
 			<default value="0"/>
-			<test logic="OR" value="1"> <!-- TODO: Add Emergency Power DC RCB Command -->
+			<test logic="OR" value="1">
+				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
 				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
 			</test>
 		</switch>

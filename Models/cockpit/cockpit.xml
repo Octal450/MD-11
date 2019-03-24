@@ -216,20 +216,10 @@
 		<type>select</type>
 		<object-name>ND.screenL</object-name>
 		<condition>
-			<or>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-1</property>
-					<value>110</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-2</property>
-					<value>110</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-3</property>
-					<value>110</value>
-				</greater-than-equals>
-			</or>
+			<greater-than-equals>
+				<property>systems/electrical/bus/ac-1</property>
+				<value>110</value>
+			</greater-than-equals>
 		</condition>
 	</animation>
 	
@@ -237,20 +227,10 @@
 		<type>select</type>
 		<object-name>ND.screenR</object-name>
 		<condition>
-			<or>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-1</property>
-					<value>110</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-2</property>
-					<value>110</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/ac-3</property>
-					<value>110</value>
-				</greater-than-equals>
-			</or>
+			<greater-than-equals>
+				<property>systems/electrical/bus/ac-3</property>
+				<value>110</value>
+			</greater-than-equals>
 		</condition>
 	</animation>
 

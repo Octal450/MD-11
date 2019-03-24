@@ -65,9 +65,6 @@ var pitch = props.globals.getNode("/orientation/pitch-deg", 1);
 var roll = props.globals.getNode("/orientation/roll-deg", 1);
 var alpha = props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped", 1);
 var banklimit = props.globals.getNode("/instrumentation/pfd/bank-limit", 1);
-var ac1 = props.globals.getNode("/systems/electrical/bus/ac-1", 1);
-var ac2 = props.globals.getNode("/systems/electrical/bus/ac-2", 1);
-var ac3 = props.globals.getNode("/systems/electrical/bus/ac-3", 1);
 var wow1 = props.globals.getNode("/gear/gear[1]/wow", 1);
 var wow2 = props.globals.getNode("/gear/gear[2]/wow", 1);
 var apmode = props.globals.getNode("/modes/pfd/fma/ap-mode", 1);
@@ -176,19 +173,22 @@ var canvas_PFD_base = {
 		if (mismatch.getValue() == "0x000") {
 			PFD_1_mismatch.page.hide();
 			PFD_2_mismatch.page.hide();
-			if (ac1.getValue() >= 110 or ac2.getValue() >= 110 or ac3.getValue() >= 110) {
+			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
 				PFD_1.updateFast();
-				PFD_2.updateFast();
 				PFD_1.update();
-				PFD_2.update();
 				updateL = 1;
-				updateR = 1;
 				PFD_1.page.show();
-				PFD_2.page.show();
 			} else {
 				updateL = 0;
-				updateR = 0;
 				PFD_1.page.hide();
+			}
+			if (systems.ELEC.Bus.ac3.getValue() >= 110) {
+				PFD_2.updateFast();
+				PFD_2.update();
+				updateR = 1;
+				PFD_2.page.show();
+			} else {
+				updateR = 0;
 				PFD_2.page.hide();
 			}
 		} else {
