@@ -148,69 +148,37 @@
 
 	<model>
 		<name>CDU1</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/cdu/boeing.xml</path>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/mcdu/MCDU.xml</path>
 		<offsets>
-			<x-m>-27.3951</x-m>
-			<y-m>0.1663</y-m>
-			<z-m>6.76</z-m>
-			<pitch-deg>-68.83</pitch-deg>
+			<x-m>-27.044</x-m>
+			<y-m>0.001664</y-m>
+			<z-m>6.75931</z-m>
+			<pitch-deg>20.8</pitch-deg>
+			<yaw-deg>-0.0453</yaw-deg>
 		</offsets>
-		<overlay>
-			<texture>boeing_grey.png</texture>
-			<material>
-				<emission>
-					<red>0.1</red>
-					<green>0.1</green>
-					<blue>0.1</blue>
-				</emission>
-			</material>
-		</overlay>
 	</model>
 	
-		<model>
-		<name>CDU2</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/cdu/boeing.xml</path>
+	<model>
+		<name>CDU1</name>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/mcdu/MCDU.xml</path>
 		<offsets>
-			<x-m>-27.3951</x-m>
-			<y-m>-0.1663</y-m>
-			<z-m>6.76</z-m>
-			<pitch-deg>-68.83</pitch-deg>
+			<x-m>-27.044</x-m>
+			<y-m>0.333051</y-m>
+			<z-m>6.75931</z-m>
+			<pitch-deg>20.8</pitch-deg>
+			<yaw-deg>-0.0453</yaw-deg>
 		</offsets>
-		<overlay>
-			<texture>boeing_grey.png</texture>
-			<material>
-				<emission>
-					<red>0.1</red>
-					<green>0.1</green>
-					<blue>0.1</blue>
-				</emission>
-			</material>
-		</overlay>
 	</model>
 	
-			<model>
+	<model>
 		<name>CDU3</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/cdu/boeing.xml</path>
+		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/mcdu/MCDU.xml</path>
 		<offsets>
-			<x-m>-26.8285</x-m>
-			<y-m>0</y-m>
-			<z-m>6.7028</z-m>
-			<pitch-deg>-90</pitch-deg>
+			<x-m>-26.5056</x-m>
+			<y-m>0.166557</y-m>
+			<z-m>6.82741</z-m>
 		</offsets>
-		<overlay>
-			<texture>boeing_grey.png</texture>
-			<material>
-				<emission>
-					<red>0.1</red>
-					<green>0.1</green>
-					<blue>0.1</blue>
-				</emission>
-			</material>
-		</overlay>
 	</model>
-
-
-
 
 	<!-- Throttle quadrant -->
 	<animation>
