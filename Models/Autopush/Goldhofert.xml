@@ -78,15 +78,15 @@ Distribute under the terms of GPLv2.
  <animation>
    <type>select</type>
    <condition>
-     <!-- SETTING Whether connected: /sim/model/pushback/connected -->
-     <property>sim/model/pushback/connected</property>
+     <!-- SETTING Whether connected: /sim/model/autopush/connected -->
+     <property>sim/model/autopush/connected</property>
    </condition>
  </animation>
 
  <animation>
    <type>rotate</type>
-   <property>sim/model/pushback/yaw</property>
-   <!-- SETTING The value of /sim/model/pushback/yaw-mult. -->
+   <property>sim/model/autopush/yaw</property>
+   <!-- SETTING The value of /sim/model/autopush/yaw-mult. -->
    <factor>60.0</factor>
    <center>
      <x-m>0</x-m>

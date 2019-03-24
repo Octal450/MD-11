@@ -1684,7 +1684,7 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/sim/model/pushback/connected</property>
+						<property>/sim/model/autopush/connected</property>
 						<value>1</value>
 					</eq>
 					<product>
@@ -1715,7 +1715,7 @@
 		<switch name="fcs/pushback-steer-deg">
 			<default value="0"/>
 			<test value="fcs/steer-deg">
-				/sim/model/pushback/connected eq 1
+				/sim/model/autopush/connected eq 1
 			</test>
 		</switch>
 	

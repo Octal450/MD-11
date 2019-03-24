@@ -80,6 +80,8 @@ setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/nd-rate", 1);
 setprop("/systems/acconfig/options/ead-rate", 1);
 setprop("/systems/acconfig/options/sd-rate", 1);
+setprop("/systems/acconfig/options/autopush/show-route", 1);
+setprop("/systems/acconfig/options/autopush/show-wingtip", 1);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/welcome.xml");
 var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/psload.xml");
@@ -201,6 +203,8 @@ var readSettings = func {
 	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
 	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
 	setprop("/rcws/equipped", getprop("/systems/acconfig/options/rcws-equipped"));
+	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
+	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
 }
 
 var writeSettings = func {
@@ -208,6 +212,8 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	setprop("/systems/acconfig/options/rcws-equipped", getprop("/rcws/equipped"));
+	setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
+	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 }
 
