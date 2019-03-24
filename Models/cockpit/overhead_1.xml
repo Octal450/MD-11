@@ -2281,16 +2281,10 @@
 		<object-name>ExtPwr.on</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>controls/switches/cart</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>controls/electrical/switches/ext-pwr</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>systems/electrical/light/ext-pwr-on</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2358,16 +2352,10 @@
 		<object-name>ExtGlyPwr.on</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>controls/switches/cart</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>controls/electrical/switches/extg-pwr</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>systems/electrical/light/extg-pwr-on</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -2389,7 +2377,7 @@
 				<condition>
 					<and>
 						<equals>
-							<property>controls/electrical/switches/allow-apu</property>
+							<property>systems/electrical/epcu/allow-apu</property>
 							<value>1</value>
 						</equals>
 						<or>
@@ -2487,6 +2475,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
+						<equals>
+							<property>systems/electrical/epcu/allow-ac-tie-1</property>
+							<value>1</value>
+						</equals>
 						<or>
 							<greater-than-equals>
 								<property>systems/electrical/bus/dc-bat</property>
@@ -2594,6 +2586,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
+						<equals>
+							<property>systems/electrical/epcu/allow-ac-tie-2</property>
+							<value>1</value>
+						</equals>
 						<or>
 							<greater-than-equals>
 								<property>systems/electrical/bus/dc-bat</property>
@@ -2701,6 +2697,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
+						<equals>
+							<property>systems/electrical/epcu/allow-ac-tie-3</property>
+							<value>1</value>
+						</equals>
 						<or>
 							<greater-than-equals>
 								<property>systems/electrical/bus/dc-bat</property>

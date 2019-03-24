@@ -5,61 +5,234 @@
 
 <system name="MD-11: Electrical">
 	
-	<property value="0">/systems/electrical/bus/ac-tie-feedback</property>
-	<property value="0">/systems/electrical/bus/dc-tie-feedback</property>
+	<property value="0">/systems/electrical/bus/ac-tie</property>
+	<property value="0">/systems/electrical/bus/dc-tie</property>
+	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
+	<property value="0">/systems/electrical/bus/ac-gen-1-src</property>
+	<property value="0">/systems/electrical/bus/ac-gen-2-src</property>
+	<property value="0">/systems/electrical/bus/ac-gen-3-src</property>
+	<property value="0">/systems/electrical/relay/apu-ac-gen-1/contact-pos</property>
+	<property value="0">/systems/electrical/relay/apu-ac-gen-2/contact-pos</property>
+	<property value="0">/systems/electrical/relay/apu-ac-gen-3/contact-pos</property>
+	<property value="0">/systems/electrical/relay/idg-ac-gen-1/contact-pos</property>
+	<property value="0">/systems/electrical/relay/idg-ac-gen-2/contact-pos</property>
+	<property value="0">/systems/electrical/relay/idg-ac-gen-3/contact-pos</property>
 	
-	<channel name="Sources/Buses" execrate="8">
+	<!-- Temporary because these buses don't work yet -->
+	<property value="28">/systems/electrical/bus/dc-bat</property>
+	<property value="28">/systems/electrical/bus/dc-gndsvc</property>
+	<property value="28">/systems/electrical/bus/l-emer-dc</property>
+	<property value="28">/systems/electrical/bus/r-emer-dc</property>
+	
+	<channel name="EPCU Switches/Logic" execrate="16"> <!-- These switches are only set in automatic mode -->
+		
+		<switch name="/systems/electrical/epcu/allow-apu">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/ac-gen-1-src ne 1
+				/systems/electrical/bus/ac-gen-2-src ne 1
+				/systems/electrical/bus/ac-gen-3-src ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/allow-ac-tie-1">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/allow-ac-tie-2">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/allow-ac-tie-3">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/ac-tie-1">
+			<default value="/controls/electrical/switches/ac-tie-1"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<test value="1">
+				/systems/electrical/epcu/allow-ac-tie-1 eq 0
+			</test>
+			<output>/controls/electrical/switches/ac-tie-1</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/ac-tie-2">
+			<default value="/controls/electrical/switches/ac-tie-2"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<test value="1">
+				/systems/electrical/epcu/allow-ac-tie-2 eq 0
+			</test>
+			<output>/controls/electrical/switches/ac-tie-2</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/ac-tie-3">
+			<default value="/controls/electrical/switches/ac-tie-3"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<test value="1">
+				/systems/electrical/epcu/allow-ac-tie-3 eq 0
+			</test>
+			<output>/controls/electrical/switches/ac-tie-3</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/apu-pwr">
+			<default value="/controls/electrical/switches/apu-pwr"/>
+			<test value="0">
+				/systems/electrical/epcu/allow-apu eq 0
+			</test>
+			<output>/controls/electrical/switches/apu-pwr</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/dc-tie-1">
+			<default value="/controls/electrical/switches/dc-tie-1"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/dc-tie-1</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/dc-tie-3">
+			<default value="/controls/electrical/switches/dc-tie-3"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/dc-tie-3</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/galley-1">
+			<default value="/controls/electrical/switches/galley-1"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/galley-1</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/galley-2">
+			<default value="/controls/electrical/switches/galley-2"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/galley-2</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/galley-3">
+			<default value="/controls/electrical/switches/galley-3"/>
+			<test value="1">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/galley-3</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/gen-1">
+			<default value="/controls/electrical/switches/gen-1"/>
+			<test logic="AND" value="1">
+				/systems/electrical/system eq 1
+				/systems/failures/elec-gen1 ne 1
+				/controls/electrical/switches/gen-drive-1 eq 1
+			</test>
+			<test value="0">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/gen-1</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/gen-2">
+			<default value="/controls/electrical/switches/gen-2"/>
+			<test logic="AND" value="1">
+				/systems/electrical/system eq 1
+				/systems/failures/elec-gen2 ne 1
+				/controls/electrical/switches/gen-drive-2 eq 1
+			</test>
+			<test value="0">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/gen-2</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/gen-3">
+			<default value="/controls/electrical/switches/gen-3"/>
+			<test logic="AND" value="1">
+				/systems/electrical/system eq 1
+				/systems/failures/elec-gen3 ne 1
+				/controls/electrical/switches/gen-drive-3 eq 1
+			</test>
+			<test value="0">
+				/systems/electrical/system eq 1
+			</test>
+			<output>/controls/electrical/switches/gen-3</output>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Main Electrical" execrate="8">
 		
 		<!-- Battery 1 -->
-		<fcs_function name="/systems/electrical/sources/bat1/volts">
+		<fcs_function name="/systems/electrical/sources/bat-1/volt">
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/electrical/sources/bat1/percent</independentVar>
+					<independentVar lookup="row">/systems/electrical/sources/bat-1/percent</independentVar>
 					<independentVar lookup="column">/systems/failures/elec-batt1</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0
 						 10  25  4
-						100  28  7
+						100  32  7
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/electrical/sources/bat1/amp">
+		<switch name="/systems/electrical/sources/bat-1/amp">
 			<default value="0"/>
 			<test logic="AND" value="2">
 				/controls/electrical/switches/battery eq 1
-				/systems/electrical/sources/bat1/volts ge 10
+				/systems/electrical/sources/bat-1/volt ge 10
 			</test>
 		</switch>
 		
 		<!-- Battery 2 -->
-		<fcs_function name="/systems/electrical/sources/bat2/volts">
+		<fcs_function name="/systems/electrical/sources/bat-2/volt">
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/electrical/sources/bat2/percent</independentVar>
+					<independentVar lookup="row">/systems/electrical/sources/bat-2/percent</independentVar>
 					<independentVar lookup="column">/systems/failures/elec-batt2</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0
 						 10  25  4
-						100  28  7
+						100  32  7
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/electrical/sources/bat2/amp">
+		<switch name="/systems/electrical/sources/bat-2/amp">
 			<default value="0"/>
 			<test logic="AND" value="2">
 				/controls/electrical/switches/battery eq 1
-				/systems/electrical/sources/bat2/volts ge 10
+				/systems/electrical/sources/bat-2/volt ge 10
 			</test>
 		</switch>
 		
 		<!-- IDG Engine 1 -->
-		<fcs_function name="/systems/electrical/sources/idg1/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<fcs_function name="/systems/electrical/sources/idg-1/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
@@ -77,12 +250,12 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg1/csd-percent-rpm">
+		<pure_gain name="/systems/electrical/sources/idg-1/csd-percent-rpm">
 			<input>/engines/engine[0]/n2-actual</input>
-			<gain>/systems/electrical/sources/idg1/csd-gearbox-ratio</gain>
+			<gain>/systems/electrical/sources/idg-1/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg1/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-1/output-volt">
 			<function>
 				<product>
 					<property>/controls/electrical/switches/gen-drive-1</property>
@@ -93,7 +266,7 @@
 						</eq>
 						<value>0</value>
 						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg1/csd-percent-rpm</independentVar>
+							<independentVar lookup="row">/systems/electrical/sources/idg-1/csd-percent-rpm</independentVar>
 							<tableData>
 								74    0
 								75  115
@@ -104,11 +277,11 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg1/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-1/output-hertz">
 			<function>
 				<ifthen>
 					<ge>
-						<property>/systems/electrical/sources/idg1/output-volt</property>
+						<property>/systems/electrical/sources/idg-1/output-volt</property>
 						<value>110</value>
 					</ge>
 					<value>400</value>
@@ -118,7 +291,7 @@
 		</fcs_function>
 		
 		<!-- IDG Engine 2 -->
-		<fcs_function name="/systems/electrical/sources/idg2/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<fcs_function name="/systems/electrical/sources/idg-2/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
@@ -136,12 +309,12 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg2/csd-percent-rpm">
+		<pure_gain name="/systems/electrical/sources/idg-2/csd-percent-rpm">
 			<input>/engines/engine[1]/n2-actual</input>
-			<gain>/systems/electrical/sources/idg2/csd-gearbox-ratio</gain>
+			<gain>/systems/electrical/sources/idg-2/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg2/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-2/output-volt">
 			<function>
 				<product>
 					<property>/controls/electrical/switches/gen-drive-2</property>
@@ -152,7 +325,7 @@
 						</eq>
 						<value>0</value>
 						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg2/csd-percent-rpm</independentVar>
+							<independentVar lookup="row">/systems/electrical/sources/idg-2/csd-percent-rpm</independentVar>
 							<tableData>
 								74    0
 								75  115
@@ -163,11 +336,11 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg2/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-2/output-hertz">
 			<function>
 				<ifthen>
 					<ge>
-						<property>/systems/electrical/sources/idg2/output-volt</property>
+						<property>/systems/electrical/sources/idg-2/output-volt</property>
 						<value>110</value>
 					</ge>
 					<value>400</value>
@@ -177,7 +350,7 @@
 		</fcs_function>
 		
 		<!-- IDG Engine 3 -->
-		<fcs_function name="/systems/electrical/sources/idg3/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<fcs_function name="/systems/electrical/sources/idg-3/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
@@ -195,12 +368,12 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg3/csd-percent-rpm">
+		<pure_gain name="/systems/electrical/sources/idg-3/csd-percent-rpm">
 			<input>/engines/engine[2]/n2-actual</input>
-			<gain>/systems/electrical/sources/idg3/csd-gearbox-ratio</gain>
+			<gain>/systems/electrical/sources/idg-3/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg3/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-3/output-volt">
 			<function>
 				<product>
 					<property>/controls/electrical/switches/gen-drive-3</property>
@@ -211,7 +384,7 @@
 						</eq>
 						<value>0</value>
 						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg3/csd-percent-rpm</independentVar>
+							<independentVar lookup="row">/systems/electrical/sources/idg-3/csd-percent-rpm</independentVar>
 							<tableData>
 								74    0
 								75  115
@@ -222,11 +395,11 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg3/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-3/output-hertz">
 			<function>
 				<ifthen>
 					<ge>
-						<property>/systems/electrical/sources/idg3/output-volt</property>
+						<property>/systems/electrical/sources/idg-3/output-volt</property>
 						<value>110</value>
 					</ge>
 					<value>400</value>
@@ -336,455 +509,575 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- AC 1 Bus/AC Gen 1 Bus -->
-		<switch name="/systems/electrical/bus/ac-gen-1-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
-			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- IDG1 -->
-				/systems/electrical/sources/idg1/output-volt ge 110
+		<!-- IDG AC Gen Bus Relays -->
+		<switch name="/systems/electrical/relay/idg-ac-gen-1/command-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
 				/controls/electrical/switches/gen-1 eq 1
+				/controls/electrical/switches/gen-drive-1 eq 1
 			</test>
-			<test logic="AND" value="2"> <!-- APU -->
-				/systems/electrical/sources/apu/output-volt ge 110
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-1/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
+				/systems/electrical/sources/idg-1/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-1/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/idg-1/output-volt">
+				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-2/command-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/gen-2 eq 1
+				/controls/electrical/switches/gen-drive-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-2/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
+				/systems/electrical/sources/idg-2/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-2/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/idg-2/output-volt">
+				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-3/command-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/gen-3 eq 1
+				/controls/electrical/switches/gen-drive-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-3/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
+				/systems/electrical/sources/idg-3/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/idg-ac-gen-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/idg-3/output-volt">
+				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- APU AC Gen Bus Relays -->
+		<switch name="/systems/electrical/relay/apu-ac-gen-1/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
+				/systems/electrical/sources/apu/output-volt ge 110
 			</test>
-			<test logic="AND" value="3"> <!-- AC TIE -->
-				/systems/electrical/bus/ac-tie-feedback ge 110
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ac-gen-1/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/apu/output-volt">
+				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ac-gen-2/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/apu-pwr eq 1
+				/systems/electrical/sources/apu/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ac-gen-2/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/apu/output-volt">
+				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ac-gen-3/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/apu-pwr eq 1
+				/systems/electrical/sources/apu/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ac-gen-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/apu/output-volt">
+				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- AC Tie Bus AC Gen Bus Relays -->
+		<!-- These outputs are from the Tie Bus to the Gen Bus -->
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
+			</test>
+			<test value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/bus/ac-gen-1">
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/output">
 			<default value="0"/>
-			<test value="/systems/electrical/sources/idg1/output-volt">
-				/systems/electrical/bus/ac-gen-1-src eq 1
-			</test>
-			<test value="/systems/electrical/sources/apu/output-volt">
-				/systems/electrical/bus/ac-gen-1-src eq 2
-			</test>
-			<test value="/systems/electrical/bus/ac-tie-feedback">
-				/systems/electrical/bus/ac-gen-1-src eq 3
+			<test value="/systems/electrical/bus/ac-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
 			</test>
 		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
+			</test>
+			<test value="1">
+				/controls/electrical/switches/ac-tie-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-2/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 0
+				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
+			</test>
+			<test value="1">
+				/controls/electrical/switches/ac-tie-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- AC 1 Bus/AC Gen 1 Bus -->
+		<switch name="/systems/electrical/bus/ac-gen-1-src">
+			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- IDG1 -->
+				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 1
+			</test>
+			<test value="2"> <!-- APU -->
+				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
+			</test>
+			<test logic="AND" value="3"> <!-- AC TIE -->
+				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/bus/ac-gen-1">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/idg-ac-gen-1/output</property>
+					<property>/systems/electrical/relay/apu-ac-gen-1/output</property>
+					<property>/systems/electrical/relay/ac-tie-ac-gen-1/output</property>
+				</max>
+			</function>
+		</fcs_function>
 		
 		<pure_gain name="/systems/electrical/bus/ac-1">
 			<input>/systems/electrical/bus/ac-gen-1</input>
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Galley 1 Bus -->
-		<switch name="/systems/electrical/bus/galley-1">
-			<default value="0"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-1-src eq 3
-			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-1">
-				/systems/electrical/bus/ac-1 ge 110
-				/controls/electrical/switches/galley-1 eq 1
-			</test>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/extg-pwr eq 1
-			</test>
-		</switch>
-		
 		<!-- AC 2 Bus/AC Gen 2 Bus -->
 		<switch name="/systems/electrical/bus/ac-gen-2-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- IDG2 -->
-				/systems/electrical/sources/idg2/output-volt ge 110
-				/controls/electrical/switches/gen-2 eq 1
+			<test value="1"> <!-- IDG1 -->
+				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 1
 			</test>
-			<test logic="AND" value="2"> <!-- APU -->
-				/systems/electrical/sources/apu/output-volt ge 110
-				/controls/electrical/switches/apu-pwr eq 1
+			<test value="2"> <!-- APU -->
+				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
 			</test>
 			<test logic="AND" value="3"> <!-- AC TIE -->
-				/systems/electrical/bus/ac-tie-feedback ge 110
-				/controls/electrical/switches/ac-tie-2 eq 1
+				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/bus/ac-gen-2">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/idg2/output-volt">
-				/systems/electrical/bus/ac-gen-2-src eq 1
-			</test>
-			<test value="/systems/electrical/sources/apu/output-volt">
-				/systems/electrical/bus/ac-gen-2-src eq 2
-			</test>
-			<test value="/systems/electrical/bus/ac-tie-feedback">
-				/systems/electrical/bus/ac-gen-2-src eq 3
-			</test>
-		</switch>
+		<fcs_function name="/systems/electrical/bus/ac-gen-2">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/idg-ac-gen-2/output</property>
+					<property>/systems/electrical/relay/apu-ac-gen-2/output</property>
+					<property>/systems/electrical/relay/ac-tie-ac-gen-2/output</property>
+				</max>
+			</function>
+		</fcs_function>
 		
 		<pure_gain name="/systems/electrical/bus/ac-2">
 			<input>/systems/electrical/bus/ac-gen-2</input>
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Galley 2 Bus -->
-		<switch name="/systems/electrical/bus/galley-2">
-			<default value="0"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-2-src eq 3
-			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-2">
-				/systems/electrical/bus/ac-2 ge 110
-				/controls/electrical/switches/galley-2 eq 1
-			</test>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
-				/controls/electrical/switches/extg-pwr eq 1
-			</test>
-		</switch>
-		
 		<!-- AC 3 Bus/AC Gen 3 Bus -->
 		<switch name="/systems/electrical/bus/ac-gen-3-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- IDG3 -->
-				/systems/electrical/sources/idg3/output-volt ge 110
-				/controls/electrical/switches/gen-3 eq 1
+			<test value="1"> <!-- IDG1 -->
+				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 1
 			</test>
-			<test logic="AND" value="2"> <!-- APU -->
-				/systems/electrical/sources/apu/output-volt ge 110
-				/controls/electrical/switches/apu-pwr eq 1
+			<test value="2"> <!-- APU -->
+				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
 			</test>
 			<test logic="AND" value="3"> <!-- AC TIE -->
-				/systems/electrical/bus/ac-tie-feedback ge 110
-				/controls/electrical/switches/ac-tie-3 eq 1
+				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/bus/ac-gen-3">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/idg3/output-volt">
-				/systems/electrical/bus/ac-gen-3-src eq 1
-			</test>
-			<test value="/systems/electrical/sources/apu/output-volt">
-				/systems/electrical/bus/ac-gen-3-src eq 2
-			</test>
-			<test value="/systems/electrical/bus/ac-tie-feedback">
-				/systems/electrical/bus/ac-gen-3-src eq 3
-			</test>
-		</switch>
+		<fcs_function name="/systems/electrical/bus/ac-gen-3">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/idg-ac-gen-3/output</property>
+					<property>/systems/electrical/relay/apu-ac-gen-3/output</property>
+					<property>/systems/electrical/relay/ac-tie-ac-gen-3/output</property>
+				</max>
+			</function>
+		</fcs_function>
 		
 		<pure_gain name="/systems/electrical/bus/ac-3">
 			<input>/systems/electrical/bus/ac-gen-3</input>
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<!-- Galley 3 Bus -->
-		<switch name="/systems/electrical/bus/galley-3">
+		<!-- External Power Relays -->
+		<switch name="/systems/electrical/relay/ext-pwr/contact-pos">
 			<default value="0"/>
-			<test logic="AND" value="0">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
+			<test logic="AND" value="1">
 				/controls/electrical/switches/ext-pwr eq 1
-				/controls/electrical/switches/extg-pwr ne 1
-				/systems/electrical/bus/ac-gen-3-src eq 3
+				/systems/electrical/sources/ext/output-volt ge 110
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-3">
-				/systems/electrical/bus/ac-3 ge 110
-				/controls/electrical/switches/galley-3 eq 1
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ext-pwr/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/ext/output-volt">
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-galley-volt ge 110
+		</switch>
+		
+		<switch name="/systems/electrical/relay/extg-pwr/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
 				/controls/electrical/switches/extg-pwr eq 1
+				/systems/electrical/sources/ext/output-galley-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/extg-pwr/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/ext/output-galley-volt">
+				/systems/electrical/relay/extg-pwr/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- External Power AC Tie Bus Relay -->
+		<switch name="/systems/electrical/relay/ext-ac-tie/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/controls/electrical/switches/ext-pwr eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ext-ac-tie/output">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/ext-pwr/output">
+				/systems/electrical/relay/ext-ac-tie/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- APU External Power AC Gen Bus Relays -->
+		<switch name="/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/apu-pwr eq 1
+				/systems/electrical/sources/apu/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ext-ac-gndsvc/output-apu">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/apu/output-volt">
+				/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-ext">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu ne 1
+				/systems/electrical/relay/ext-pwr/output ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/apu-ext-ac-gndsvc/output-ext">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/ext-pwr/output">
+				/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-ext eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/relay/apu-ext-ac-gndsvc/output">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/apu-ext-ac-gndsvc/output-apu</property>
+					<property>/systems/electrical/relay/apu-ext-ac-gndsvc/output-ext</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- AC Tie Bus AC Gen Bus Relays (continued) -->
+		<!-- These outputs are from the Gen Bus to the Tie Bus -->
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-1">
+				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-2/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-2">
+				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-tie-ac-gen-3/output-tie">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-3">
+				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<!-- AC Tie Bus -->
 		<switch name="/systems/electrical/bus/ac-tie">
 			<default value="0"/>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
+			<test value="/systems/electrical/relay/ext-ac-tie/output">
+				/systems/electrical/relay/ext-ac-tie/contact-pos eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-gen-1">
-				/systems/electrical/bus/ac-gen-1 ne 0
+			<test logic="AND" value="/systems/electrical/relay/ac-tie-ac-gen-1/output-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
 				/systems/electrical/bus/ac-gen-1-src ne 3
-				/controls/electrical/switches/ac-tie-1 eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-gen-2">
-				/systems/electrical/bus/ac-gen-2 ne 0
+			<test logic="AND" value="/systems/electrical/relay/ac-tie-ac-gen-2/output-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
 				/systems/electrical/bus/ac-gen-2-src ne 3
-				/controls/electrical/switches/ac-tie-2 eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/ac-gen-3">
-				/systems/electrical/bus/ac-gen-3 ne 0
+			<test logic="AND" value="/systems/electrical/relay/ac-tie-ac-gen-3/output-tie">
+				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
 				/systems/electrical/bus/ac-gen-3-src ne 3
-				/controls/electrical/switches/ac-tie-3 eq 1
 			</test>
-			<output>/systems/electrical/bus/ac-tie-feedback</output>
 		</switch>
 		
-		<!-- Right Emergency AC Bus -->
-		<switch name="/systems/electrical/bus/r-emer-ac">
+		<!-- AC Gen Bus 2 AC Ground Service Bus Relay -->
+		<switch name="/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-3">
-				/systems/electrical/bus/ac-gen-3 ge 110
+			<test value="1">
+				/systems/electrical/bus/ac-gen-2 ge 110
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/adg">
-				/systems/electrical/bus/adg ge 110
-				/controls/electrical/switches/adg-elec eq 1
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-2-ac-gndsvc/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-2">
+				/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<!-- AC Ground Service Bus -->
-		<switch name="/systems/electrical/bus/ac-gndsvc">
-			<default value="0"/>
-			<test logic="AND" value="/systems/electrical/bus/ac-gen-2">
-				/systems/electrical/bus/ac-gen-2 ge 110
-			</test>
-			<test logic="AND" value="/systems/electrical/sources/ext/output-volt">
-				/systems/electrical/sources/ext/output-volt ge 110
-				/controls/electrical/switches/ext-pwr eq 1
-			</test>
-		</switch>
-		
-		<!-- Transformer Rectifiers 1/2A/2B/3 -->
-		<pure_gain name="/systems/electrical/sources/tr1/output-volt">
-			<input>/systems/electrical/bus/ac-gen-1</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
-		
-		<fcs_function name="/systems/electrical/sources/tr1/output-amp">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/tr1/output-volt</independentVar>
-					<tableData>
-						 0    0
-						10   75
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/systems/electrical/sources/tr2a/output-volt">
-			<input>/systems/electrical/bus/ac-gen-2</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
-		
-		<fcs_function name="/systems/electrical/sources/tr2a/output-amp">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/tr2a/output-volt</independentVar>
-					<tableData>
-						 0    0
-						10   75
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/systems/electrical/sources/tr2b/output-volt">
-			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
-		
-		<fcs_function name="/systems/electrical/sources/tr2b/output-amp">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/tr2b/output-volt</independentVar>
-					<tableData>
-						 0    0
-						10   75
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/systems/electrical/sources/tr3/output-volt">
-			<input>/systems/electrical/bus/r-emer-ac</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
-		
-		<fcs_function name="/systems/electrical/sources/tr3/output-amp">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/electrical/sources/tr3/output-volt</independentVar>
-					<tableData>
-						 0    0
-						10   75
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<!-- DC Ground Service Bus -->
-		<switch name="/systems/electrical/bus/dc-gndsvc-src">
-			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR2B -->
-				/systems/electrical/sources/tr2b/output-volt ge 25
-			</test>
-			<test value="2"> <!-- DC TIE -->
-				/systems/electrical/bus/dc-tie-feedback ge 25
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/bus/dc-gndsvc">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr2b/output-volt">
-				/systems/electrical/bus/dc-gndsvc-src eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-tie-feedback">
-				/systems/electrical/bus/dc-gndsvc-src eq 2
-			</test>
-		</switch>
-		
-		<!-- Right Emergency DC Bus -->
-		<switch name="/systems/electrical/bus/r-emer-dc">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr3/output-volt">
-				/systems/electrical/sources/tr3/output-volt ge 25
-			</test>
-		</switch>
-		
-		<!-- DC 1 Bus -->
-		<switch name="/systems/electrical/bus/dc-1-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
-			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- TR1 -->
-				/systems/electrical/sources/tr1/output-volt ge 25
-				/controls/electrical/switches/gen-1 eq 1
-			</test>
-			<test logic="AND" value="2"> <!-- DC TIE -->
-				/systems/electrical/bus/dc-tie-feedback ge 25
-				/controls/electrical/switches/dc-tie-1 eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/bus/dc-1">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr1/output-volt">
-				/systems/electrical/bus/dc-1-src eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-tie-feedback">
-				/systems/electrical/bus/dc-1-src eq 2
-			</test>
-		</switch>
-		
-		<!-- DC 2 Bus -->
-		<switch name="/systems/electrical/bus/dc-2-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
-			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- TR2A -->
-				/systems/electrical/sources/tr2a/output-volt ge 25
-				/controls/electrical/switches/gen-2 eq 1
-			</test>
-			<test value="2"> <!-- DC TIE -->
-				/systems/electrical/bus/dc-tie-feedback ge 25
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/bus/dc-2">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr2a/output-volt">
-				/systems/electrical/bus/dc-2-src eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-tie-feedback">
-				/systems/electrical/bus/dc-2-src eq 2
-			</test>
-		</switch>
-		
-		<!-- DC 3 Bus -->
-		<switch name="/systems/electrical/bus/dc-3-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
-			<default value="0"/> <!-- OFF -->
-			<test logic="AND" value="1"> <!-- TR1 -->
-				/systems/electrical/sources/tr3/output-volt ge 25
-				/controls/electrical/switches/gen-3 eq 1
-			</test>
-			<test logic="AND" value="2"> <!-- DC TIE -->
-				/systems/electrical/bus/dc-tie-feedback ge 25
-				/controls/electrical/switches/dc-tie-3 eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/bus/dc-3">
-			<default value="0"/>
-			<test value="/systems/electrical/sources/tr3/output-volt">
-				/systems/electrical/bus/dc-3-src eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-tie-feedback">
-				/systems/electrical/bus/dc-3-src eq 2
-			</test>
-		</switch>
-		
-		<!-- Battery Bus/Battery Direct Bus -->
-		<fcs_function name="/systems/electrical/bus/dc-bat-direct">
+		<fcs_function name="/systems/electrical/bus/ac-gndsvc">
 			<function>
 				<max>
-					<property>/systems/electrical/sources/bat1/volts</property>
-					<property>/systems/electrical/sources/bat2/volts</property>
+					<property>/systems/electrical/relay/ac-gen-2-ac-gndsvc/output</property>
+					<property>/systems/electrical/relay/apu-ext-ac-gndsvc/output</property>
 				</max>
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/electrical/bus/dc-bat">
+		<!-- Cabin Buses Passenger Varient -->
+		<pure_gain name="/systems/electrical/bus/cabin-ac-1">
+			<input>/systems/electrical/bus/ac-gen-1</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/fwd-mid-cabin">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/overwing-aft-cabin">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/cabin-ac-3">
+			<input>/systems/electrical/bus/ac-gen-3</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<!-- Cabin Buses Freighter Varient -->
+		<pure_gain name="/systems/electrical/bus/cabin-ac-f">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/cargo-loading">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<!-- Cabin Buses Common -->
+		<pure_gain name="/systems/electrical/bus/flt-comp-ac-gndsvc">
+			<input>/systems/electrical/bus/ac-gndsvc</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<!-- Emergency AC Relays -->
+		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-2">
-				/systems/electrical/bus/dc-2 ge 25
+			<test value="1">
+				/systems/electrical/bus/ac-gen-1 ge 110
 			</test>
-			<test value="/systems/electrical/bus/dc-gndsvc">
-				/systems/electrical/bus/dc-gndsvc ge 25
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-1">
+				/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/sources/tr3/output-volt">
-				/systems/electrical/sources/tr3/output-volt ge 25
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/ac-gen-3 ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-3-r-emer-ac/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-3">
+				/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/adg-r-emer-ac/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
 				/controls/electrical/switches/adg-elec eq 1
-			</test>
-			<test logic="AND" value="/systems/electrical/bus/dc-bat-direct">
-				/systems/electrical/bus/dc-bat-direct ge 25
-				/controls/electrical/switches/battery eq 1
+				/systems/electrical/bus/adg ge 110
 			</test>
 		</switch>
 		
-		<!-- DC Tie Bus -->
-		<switch name="/systems/electrical/bus/dc-tie">
+		<switch name="/systems/electrical/relay/adg-r-emer-ac/output">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-2">
-				/systems/electrical/bus/dc-2-src eq 1
+			<test value="/systems/electrical/bus/adg">
+				/systems/electrical/relay/adg-r-emer-ac/contact-pos eq 1
 			</test>
-			<test logic="AND" value="/systems/electrical/bus/dc-1">
-				/systems/electrical/bus/dc-1-src eq 1
-				/controls/electrical/switches/dc-tie-1 eq 1
-			</test>
-			<test logic="AND" value="/systems/electrical/bus/dc-3">
-				/systems/electrical/bus/dc-3-src eq 1
-				/controls/electrical/switches/dc-tie-3 eq 1
-			</test>
-			<test value="/systems/electrical/bus/dc-gndsvc">
-				/systems/electrical/bus/dc-gndsvc-src eq 1
-			</test>
-			<output>/systems/electrical/bus/dc-tie-feedback</output>
 		</switch>
 		
-		<!-- Left Emergency DC Bus -->
-		<switch name="/systems/electrical/bus/l-emer-dc">
+		<!-- Right Emergency AC Bus -->
+		<fcs_function name="/systems/electrical/bus/r-emer-ac">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/ac-gen-3-r-emer-ac/output</property>
+					<property>/systems/electrical/relay/adg-r-emer-ac/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- Transformer Rectifier Relays -->
+		<switch name="/systems/electrical/relay/ac-gen-1-tr-1/contact-pos">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-1">
-				/systems/electrical/bus/dc-1 ge 25
-			</test>
-			<test logic="AND" value="/systems/electrical/bus/dc-bat">
-				/systems/electrical/bus/dc-bat ge 25
-				/controls/electrical/switches/emer-pw-sw gt 0
-			</test>
-			<test logic="AND" value="/systems/electrical/sources/tr3/output-volt">
-				/systems/electrical/sources/tr3/output-volt ge 25
-				/controls/electrical/switches/adg-elec eq 1
+			<test value="1">
+				/systems/electrical/bus/ac-gen-1 ge 110
 			</test>
 		</switch>
 		
-		<!-- Static Inverter 1 -->
-		<fcs_function name="/systems/electrical/sources/si1/output-volt">
+		<switch name="/systems/electrical/relay/ac-gen-1-tr-1/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-1">
+				/systems/electrical/relay/ac-gen-1-tr-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-2-tr-2a/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/ac-gen-2 ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-2-tr-2a/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-2">
+				/systems/electrical/relay/ac-gen-2-tr-2a/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gndsvc-tr-2b/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/ac-gndsvc ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gndsvc-tr-2b/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gndsvc">
+				/systems/electrical/relay/ac-gndsvc-tr-2b/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/r-emer-ac-tr-3/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/r-emer-ac ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/r-emer-ac-tr-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/r-emer-ac">
+				/systems/electrical/relay/r-emer-ac-tr-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- DC stuff goes here -->
+		
+		<!-- Static Inverter -->
+		<fcs_function name="/systems/electrical/sources/si-1/output-volt">
 			<description>Static Inverter 1</description>
 			<function>
 				<table> <!-- DC to AC converter -->
@@ -798,53 +1091,45 @@
 			</function>
 		</fcs_function>
 		
+		<!-- Static Inverter Relay -->
+		<switch name="/systems/electrical/relay/si-1-l-emer-ac/command-pos">
+			<default value="0"/>
+			<test value="1"> <!-- ON -->
+				/controls/electrical/switches/emer-pw-sw eq 2
+			</test>
+			<test logic="AND" value="1"> <!-- ARM -->
+				/controls/electrical/switches/emer-pw-sw eq 1
+				/systems/electrical/bus/ac-1 lt 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/si-1-l-emer-ac/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
+				/systems/electrical/sources/si-1/output-volt ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/si-1-l-emer-ac/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/si-1/output-volt">
+				/systems/electrical/relay/si-1-l-emer-ac/contact-pos eq 1
+			</test>
+		</switch>
+		
 		<!-- Left Emergency AC Bus -->
-		<switch name="/systems/electrical/bus/l-emer-ac">
-			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-1">
-				/systems/electrical/bus/ac-gen-1 ge 110
-			</test>
-			<test logic="AND" value="/systems/electrical/sources/si1/output-volt">
-				/systems/electrical/sources/si1/output-volt ge 110
-				/controls/electrical/switches/emer-pw-sw gt 0
-			</test>
-			<test value="/systems/electrical/bus/adg">
-				/systems/electrical/bus/adg ge 110
-			</test>
-		</switch>
+		<fcs_function name="/systems/electrical/bus/l-emer-ac">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/ac-gen-1-l-emer-ac/output</property>
+					<property>/systems/electrical/relay/si-1-l-emer-ac/output</property>
+					<property>/systems/electrical/bus/adg</property>
+				</max>
+			</function>
+		</fcs_function>
 		
-		<!-- Output to Generics -->
-		<switch name="/systems/electrical/generic-pwr">
-			<description>This makes the FG stuff work because we killed the generic electrical</description>
-			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-1">
-				/systems/electrical/bus/dc-1 ge 25
-			</test>
-			<test value="/systems/electrical/bus/dc-2">
-				/systems/electrical/bus/dc-2 ge 25
-			</test>
-			<test value="/systems/electrical/bus/dc-3">
-				/systems/electrical/bus/dc-3 ge 25
-			</test>
-			<output>/systems/electrical/outputs/adf</output>
-			<output>/systems/electrical/outputs/dme</output>
-			<output>/systems/electrical/outputs/efis</output>
-			<output>/systems/electrical/outputs/fcp-power</output>
-			<output>/systems/electrical/outputs/fuel-pump[0]</output>
-			<output>/systems/electrical/outputs/fuel-pump[1]</output>
-			<output>/systems/electrical/outputs/fuel-pump[2]</output>
-			<output>/systems/electrical/outputs/gps</output>
-			<output>/systems/electrical/outputs/mk-viii</output>
-			<output>/systems/electrical/outputs/nav[0]</output>
-			<output>/systems/electrical/outputs/nav[1]</output>
-			<output>/systems/electrical/outputs/nav[2]</output>
-			<output>/systems/electrical/outputs/nav[3]</output>
-			<output>/systems/electrical/outputs/tacan</output>
-			<output>/systems/electrical/outputs/transponder</output>
-			<output>/systems/electrical/outputs/turn-coordinator</output>
-		</switch>
-		
-		<!-- Battery Charger Powered -->
+		<!-- Battery Charger Power Relay -->
 		<switch name="/systems/electrical/sources/bat-charger-powered">
 			<default value="0"/>
 			<test logic="OR" value="1">
@@ -852,134 +1137,201 @@
 				/systems/electrical/bus/r-emer-ac ge 110
 			</test>
 		</switch>
-	
-	</channel>
-	
-	<channel name="ESC Switches/Logic" execrate="16"> <!-- These switches are only set in automatic mode -->
 		
-		<switch name="/controls/electrical/switches/allow-apu">
+		<!-- Galley Bus Source Relays -->
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-ac-gen">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/electrical/bus/ac-gen-1-src ne 1
-				/systems/electrical/bus/ac-gen-2-src ne 1
-				/systems/electrical/bus/ac-gen-3-src ne 1
+			<test logic="AND" value="0">
+				/systems/electrical/bus/ac-gen-1-src eq 3
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/ac-tie-1">
-			<default value="/controls/electrical/switches/ac-tie-1"/>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/electrical/bus/ac-gen-1 ge 110
 			</test>
-			<output>/controls/electrical/switches/ac-tie-1</output>
 		</switch>
 		
-		<switch name="/systems/electrical/esc/ac-tie-2">
-			<default value="/controls/electrical/switches/ac-tie-2"/>
-			<test value="1">
-				/systems/electrical/system eq 1
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-1/output-ac-gen">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-1">
+				/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-ac-gen eq 1
 			</test>
-			<output>/controls/electrical/switches/ac-tie-2</output>
 		</switch>
 		
-		<switch name="/systems/electrical/esc/ac-tie-3">
-			<default value="/controls/electrical/switches/ac-tie-3"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/ac-tie-3</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/apu-pwr">
-			<default value="/controls/electrical/switches/apu-pwr"/>
-			<test value="0">
-				/controls/electrical/switches/allow-apu eq 0
-			</test>
-			<output>/controls/electrical/switches/apu-pwr</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/dc-tie-1">
-			<default value="/controls/electrical/switches/dc-tie-1"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/dc-tie-1</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/dc-tie-3">
-			<default value="/controls/electrical/switches/dc-tie-3"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/dc-tie-3</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/galley-1">
-			<default value="/controls/electrical/switches/galley-1"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/galley-1</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/galley-2">
-			<default value="/controls/electrical/switches/galley-2"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/galley-2</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/galley-3">
-			<default value="/controls/electrical/switches/galley-3"/>
-			<test value="1">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/galley-3</output>
-		</switch>
-		
-		<switch name="/systems/electrical/esc/gen-1">
-			<default value="/controls/electrical/switches/gen-1"/>
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-extg">
+			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/system eq 1
-				/systems/failures/elec-gen1 ne 1
-				/controls/electrical/switches/gen-drive-1 eq 1
+				/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-ac-gen ne 1
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
-			<test value="0">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/gen-1</output>
 		</switch>
 		
-		<switch name="/systems/electrical/esc/gen-2">
-			<default value="/controls/electrical/switches/gen-2"/>
-			<test logic="AND" value="1">
-				/systems/electrical/system eq 1
-				/systems/failures/elec-gen2 ne 1
-				/controls/electrical/switches/gen-drive-2 eq 1
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-1/output-extg">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/extg-pwr/output">
+				/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-extg eq 1
 			</test>
-			<test value="0">
-				/systems/electrical/system eq 1
-			</test>
-			<output>/controls/electrical/switches/gen-2</output>
 		</switch>
 		
-		<switch name="/systems/electrical/esc/gen-3">
-			<default value="/controls/electrical/switches/gen-3"/>
-			<test logic="AND" value="1">
-				/systems/electrical/system eq 1
-				/systems/failures/elec-gen3 ne 1
-				/controls/electrical/switches/gen-drive-3 eq 1
+		<fcs_function name="/systems/electrical/relay/ac-gen-ext-galley-1/output">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-1/output-extg</property>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-1/output-ac-gen</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-ac-gen">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/bus/ac-gen-2-src eq 3
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
-			<test value="0">
-				/systems/electrical/system eq 1
+			<test value="1">
+				/systems/electrical/bus/ac-gen-2 ge 110
 			</test>
-			<output>/controls/electrical/switches/gen-3</output>
 		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-2/output-ac-gen">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-2">
+				/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-ac-gen eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-extg">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-ac-gen ne 1
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-2/output-extg">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/extg-pwr/output">
+				/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-extg eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/relay/ac-gen-ext-galley-2/output">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-2/output-extg</property>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-2/output-ac-gen</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-ac-gen">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/electrical/bus/ac-gen-3-src eq 3
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
+			</test>
+			<test value="1">
+				/systems/electrical/bus/ac-gen-3 ge 110
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-3/output-ac-gen">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/ac-gen-3">
+				/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-ac-gen eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-extg">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-ac-gen ne 1
+				/systems/electrical/relay/ext-pwr/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/ac-gen-ext-galley-3/output-extg">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/extg-pwr/output">
+				/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-extg eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/relay/ac-gen-ext-galley-3/output">
+			<function>
+				<max>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-3/output-extg</property>
+					<property>/systems/electrical/relay/ac-gen-ext-galley-3/output-ac-gen</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- Galley Bus Relays -->
+		<switch name="/systems/electrical/relay/galley-1/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/controls/electrical/switches/galley-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/galley-1/output">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/ac-gen-ext-galley-1/output">
+				/systems/electrical/relay/galley-1/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/galley-2/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/controls/electrical/switches/galley-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/galley-2/output">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/ac-gen-ext-galley-2/output">
+				/systems/electrical/relay/galley-2/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/galley-3/contact-pos">
+			<default value="0"/>
+			<test value="1">
+				/controls/electrical/switches/galley-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/relay/galley-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/relay/ac-gen-ext-galley-3/output">
+				/systems/electrical/relay/galley-3/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<!-- Galley Buses -->
+		<pure_gain name="/systems/electrical/bus/galley-1">
+			<input>/systems/electrical/relay/galley-1/output</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/galley-2">
+			<input>/systems/electrical/relay/galley-2/output</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/galley-3">
+			<input>/systems/electrical/relay/galley-3/output</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/bus/galley-4">
+			<input>/systems/electrical/bus/ac-gen-3</input>
+			<gain>1.0</gain>
+		</pure_gain>
 	
 	</channel>
 	
-	<channel name="Overhead Lights" execrate="16">
+	<channel name="Overhead Lights" execrate="8">
 		
 		<switch name="/systems/electrical/light/emer-pw-off">
 			<default value="0"/>
@@ -990,12 +1342,8 @@
 		
 		<switch name="/systems/electrical/light/emer-pw-on">
 			<default value="0"/>
-			<test value="1">
-				/controls/electrical/switches/emer-pw-sw eq 2
-			</test>
-			<test logic="AND" value="1">
-				/controls/electrical/switches/emer-pw-sw eq 1
-				/systems/electrical/bus/dc-1 lt 25
+			<test logic="OR" value="1"> <!-- TODO: Add Emergency Power DC RCB Command -->
+				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
 			</test>
 		</switch>
 		
@@ -1051,7 +1399,7 @@
 		<switch name="/systems/electrical/light/l-emer-ac">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/l-emer-ac lt 25
+				/systems/electrical/bus/l-emer-ac lt 110
 			</test>
 		</switch>
 		
@@ -1065,28 +1413,28 @@
 		<switch name="/systems/electrical/light/ac-2">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-2 lt 25
+				/systems/electrical/bus/ac-2 lt 110
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/ac-gnd">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gndsvc lt 25
+				/systems/electrical/bus/ac-gndsvc lt 110
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/ac-3">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-3 lt 25
+				/systems/electrical/bus/ac-3 lt 110
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/r-emer-ac">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/r-emer-ac lt 25
+				/systems/electrical/bus/r-emer-ac lt 110
 			</test>
 		</switch>
 		
@@ -1094,7 +1442,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
-				/systems/electrical/bus/ac-gen-1-src eq 2
+				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos ne 1
 			</test>
 		</switch>
 		
@@ -1102,7 +1450,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-2 eq 1
-				/systems/electrical/bus/ac-gen-2-src eq 2
+				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos ne 1
 			</test>
 		</switch>
 		
@@ -1110,31 +1458,45 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-3 eq 1
-				/systems/electrical/bus/ac-gen-3-src eq 2
+				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/light/ext-pwr-on">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/relay/ext-ac-tie/contact-pos eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/light/extg-pwr-on">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/relay/extg-pwr/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/gen-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/electrical/switches/gen-1 eq 1
-				/systems/electrical/sources/idg1/output-volt lt 110
+				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
+				/systems/electrical/relay/idg-ac-gen-1/contact-pos ne 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/gen-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/electrical/switches/gen-2 eq 1
-				/systems/electrical/sources/idg2/output-volt lt 110
+				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
+				/systems/electrical/relay/idg-ac-gen-2/contact-pos ne 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/light/gen-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/electrical/switches/gen-3 eq 1
-				/systems/electrical/sources/idg3/output-volt lt 110
+				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
+				/systems/electrical/relay/idg-ac-gen-3/contact-pos ne 1
 			</test>
 		</switch>
 		

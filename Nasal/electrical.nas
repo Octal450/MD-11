@@ -1,8 +1,13 @@
 # McDonnell Douglas MD-11 Electrical System
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
+# Temporary because these buses don't work yet
+setprop("/systems/electrical/bus/dc-1", 28);
+setprop("/systems/electrical/bus/dc-2", 28);
+setprop("/systems/electrical/bus/dc-3", 28);
+
 var ELEC = {
-	Bus: {
+	Bus: { # Volts
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
 		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),
 		ac3: props.globals.getNode("/systems/electrical/bus/ac-3"),
@@ -12,6 +17,10 @@ var ELEC = {
 		acGndSvc: props.globals.getNode("/systems/electrical/bus/ac-gndsvc"),
 		acTie: props.globals.getNode("/systems/electrical/bus/ac-tie"),
 		adg: props.globals.getNode("/systems/electrical/bus/adg"),
+		cabinAc1: props.globals.getNode("/systems/electrical/bus/cabin-ac-1"),
+		cabinAc3: props.globals.getNode("/systems/electrical/bus/cabin-ac-3"),
+		cabinAcF: props.globals.getNode("/systems/electrical/bus/cabin-ac-f"),
+		cargoLoading: props.globals.getNode("/systems/electrical/bus/cargo-loading"),
 		dc1: props.globals.getNode("/systems/electrical/bus/dc-1"),
 		dc2: props.globals.getNode("/systems/electrical/bus/dc-2"),
 		dc3: props.globals.getNode("/systems/electrical/bus/dc-3"),
@@ -19,12 +28,16 @@ var ELEC = {
 		dcBatDirect: props.globals.getNode("/systems/electrical/bus/dc-bat-direct"),
 		dcGndSvc: props.globals.getNode("/systems/electrical/bus/dc-gndsvc"),
 		dcTie: props.globals.getNode("/systems/electrical/bus/dc-tie"),
+		fltCompAcGndSvc: props.globals.getNode("/systems/electrical/bus/flt-comp-ac-gndsvc"),
+		fwdMidCabin: props.globals.getNode("/systems/electrical/bus/fwd-mid-cabin"),
 		galley1: props.globals.getNode("/systems/electrical/bus/galley-1"),
 		galley2: props.globals.getNode("/systems/electrical/bus/galley-2"),
 		galley3: props.globals.getNode("/systems/electrical/bus/galley-3"),
+		galley4: props.globals.getNode("/systems/electrical/bus/galley-4"),
 		lEmerAc: props.globals.getNode("/systems/electrical/bus/l-emer-ac"),
 		lEmerDc: props.globals.getNode("/systems/electrical/bus/l-emer-dc"),
 		lEmerSi: props.globals.getNode("/systems/electrical/bus/l-emer-si"),
+		overwingAftCabin: props.globals.getNode("/systems/electrical/bus/overwing-aft-cabin"),
 		rEmerAc: props.globals.getNode("/systems/electrical/bus/r-emer-ac"),
 		rEmerDc: props.globals.getNode("/systems/electrical/bus/r-emer-dc"),
 	},
@@ -53,8 +66,42 @@ var ELEC = {
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
 	Misc: {
-		elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
+		elapsedSec: props.globals.getNode("/sim/time/elapsed-sec"),
 		elapsedSecTemp: 0,
+	},
+	Relay: { # 0 is Open, 1 is Closed
+		acGen1_LEmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos"),
+		acGen1_Tr1: props.globals.getNode("/systems/electrical/relay/ac-gen-1-tr-1/contact-pos"),
+		acGen2_AcGndSvc: props.globals.getNode("/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos"),
+		acGen2_Tr2a: props.globals.getNode("/systems/electrical/relay/ac-gen-2-tr-2a/contact-pos"),
+		acGen3_REmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos"),
+		acGen_Ext_Galley1_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-ac-gen"),
+		acGen_Ext_Galley1_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-extg"),
+		acGen_Ext_Galley2_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-ac-gen"),
+		acGen_Ext_Galley2_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-extg"),
+		acGen_Ext_Galley3_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-ac-gen"),
+		acGen_Ext_Galley3_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-extg"),
+		acGndSvc_Tr2b: props.globals.getNode("/systems/electrical/relay/ac-gndsvc-tr-2b/contact-pos"),
+		acTie_AcGen1: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos"),
+		acTie_AcGen2: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos"),
+		acTie_AcGen3: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos"),
+		adg_REmerAc: props.globals.getNode("/systems/electrical/relay/adg-r-emer-ac/contact-pos"),
+		apu_AcGen1: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-1/contact-pos"),
+		apu_AcGen2: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-2/contact-pos"),
+		apu_AcGen3: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-3/contact-pos"),
+		apu_Ext_AcGndSvc_S1: props.globals.getNode("/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu"),
+		apu_Ext_AcGndSvc_S2: props.globals.getNode("/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-ext"),
+		ext_AcTie: props.globals.getNode("/systems/electrical/relay/ext-ac-tie/contact-pos"),
+		extPwr: props.globals.getNode("/systems/electrical/relay/ext-pwr/contact-pos"),
+		extGPwr: props.globals.getNode("/systems/electrical/relay/extg-pwr/contact-pos"),
+		galley1: props.globals.getNode("/systems/electrical/relay/galley-1/contact-pos"),
+		galley2: props.globals.getNode("/systems/electrical/relay/galley-2/contact-pos"),
+		galley3: props.globals.getNode("/systems/electrical/relay/galley-3/contact-pos"),
+		idg_AcGen1: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-1/contact-pos"),
+		idg_AcGen2: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-2/contact-pos"),
+		idg_AcGen3: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-3/contact-pos"),
+		rEmerAc_Tr3: props.globals.getNode("/systems/electrical/relay/r-emer-ac-tr-3/contact-pos"),
+		si1_LEmerAc: props.globals.getNode("/systems/electrical/relay/si-1-l-emer-ac/contact-pos"),
 	},
 	Source: {
 		batChargerPowered: props.globals.getNode("/systems/electrical/sources/bat-charger-powered"),
@@ -68,20 +115,20 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 		},
 		Bat1: {
-			amp: props.globals.getNode("/systems/electrical/sources/bat1/amp", 1),
-			percent: props.globals.getNode("/systems/electrical/sources/bat1/percent", 1),
+			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),
+			percent: props.globals.getNode("/systems/electrical/sources/bat-1/percent"),
 			percentCalc: 100,
 			percentTemp: 100,
 			time: 0,
-			volt: props.globals.getNode("/systems/electrical/sources/bat1/volts", 1),
+			volt: props.globals.getNode("/systems/electrical/sources/bat-1/volt"),
 		},
 		Bat2: {
-			amp: props.globals.getNode("/systems/electrical/sources/bat2/amp", 1),
-			percent: props.globals.getNode("/systems/electrical/sources/bat2/percent", 1),
+			amp: props.globals.getNode("/systems/electrical/sources/bat-2/amp"),
+			percent: props.globals.getNode("/systems/electrical/sources/bat-2/percent"),
 			percentCalc: 100,
 			percentTemp: 100,
 			time: 0,
-			volt: props.globals.getNode("/systems/electrical/sources/bat2/volts", 1),
+			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
 		Ext: {
 			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
@@ -90,35 +137,35 @@ var ELEC = {
 			voltGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-volt"),
 		},
 		Idg1: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg1/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg1/output-volt"),
+			hertz: props.globals.getNode("/systems/electrical/sources/idg-1/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg-1/output-volt"),
 		},
 		Idg2: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg2/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg2/output-volt"),
+			hertz: props.globals.getNode("/systems/electrical/sources/idg-2/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg-2/output-volt"),
 		},
 		Idg3: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg3/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg3/output-volt"),
+			hertz: props.globals.getNode("/systems/electrical/sources/idg-3/output-hertz"),
+			volt: props.globals.getNode("/systems/electrical/sources/idg-3/output-volt"),
 		},
 		Si1: {
-			volt: props.globals.getNode("/systems/electrical/sources/si1/output-volt"),
+			volt: props.globals.getNode("/systems/electrical/sources/si-1/output-volt"),
 		},
 		Tr1: {
-			amp: props.globals.getNode("/systems/electrical/sources/tr1/output-amp"),
-			volt: props.globals.getNode("/systems/electrical/sources/tr1/output-volt"),
+			amp: props.globals.getNode("/systems/electrical/sources/tr-1/output-amp"),
+			volt: props.globals.getNode("/systems/electrical/sources/tr-1/output-volt"),
 		},
-		Tr2A: {
-			amp: props.globals.getNode("/systems/electrical/sources/tr2a/output-amp"),
-			volt: props.globals.getNode("/systems/electrical/sources/tr2a/output-volt"),
+		Tr2a: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr-2a/output-amp"),
+			volt: props.globals.getNode("/systems/electrical/sources/tr-2a/output-volt"),
 		},
-		Tr2B: {
-			amp: props.globals.getNode("/systems/electrical/sources/tr2b/output-amp"),
-			volt: props.globals.getNode("/systems/electrical/sources/tr2b/output-volt"),
+		Tr2b: {
+			amp: props.globals.getNode("/systems/electrical/sources/tr-2b/output-amp"),
+			volt: props.globals.getNode("/systems/electrical/sources/tr-2b/output-volt"),
 		},
 		Tr3: {
-			amp: props.globals.getNode("/systems/electrical/sources/tr3/output-amp"),
-			volt: props.globals.getNode("/systems/electrical/sources/tr3/output-volt"),
+			amp: props.globals.getNode("/systems/electrical/sources/tr-3/output-amp"),
+			volt: props.globals.getNode("/systems/electrical/sources/tr-3/output-volt"),
 		},
 	},
 	Switch: {
