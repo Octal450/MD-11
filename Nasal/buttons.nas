@@ -48,12 +48,12 @@ var APPanel = {
 	},
 	FD1: func() {
 		if (fcpPower.getBoolValue()) {
-			afs.ITAF.fd1Master(fd1.getBoolValue());
+			afs.ITAF.fd1Master(!fd1.getBoolValue());
 		}
 	},
 	FD2: func() {
 		if (fcpPower.getBoolValue()) {
-			afs.ITAF.fd1Master(fd2.getBoolValue());
+			afs.ITAF.fd2Master(!fd2.getBoolValue());
 		}
 	},
 	APDisc: func() {

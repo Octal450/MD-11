@@ -1693,6 +1693,37 @@
 			<input>/systems/electrical/bus/ac-gen-3</input>
 			<gain>1.0</gain>
 		</pure_gain>
+		
+		<!-- Output to Generics to keep FG things working, temporary, until we know what gets power by what bus -->
+		<switch name="/systems/electrical/generic-pwr">
+			<description>This makes the FG stuff work because we killed the generic electrical</description>
+			<default value="0"/>
+			<test value="/systems/electrical/bus/dc-1">
+				/systems/electrical/bus/dc-1 ge 25
+			</test>
+			<test value="/systems/electrical/bus/dc-2">
+				/systems/electrical/bus/dc-2 ge 25
+			</test>
+			<test value="/systems/electrical/bus/dc-3">
+				/systems/electrical/bus/dc-3 ge 25
+			</test>
+			<output>/systems/electrical/outputs/adf</output>
+			<output>/systems/electrical/outputs/dme</output>
+			<output>/systems/electrical/outputs/efis</output>
+			<output>/systems/electrical/outputs/fcp-power</output>
+			<output>/systems/electrical/outputs/fuel-pump[0]</output>
+			<output>/systems/electrical/outputs/fuel-pump[1]</output>
+			<output>/systems/electrical/outputs/fuel-pump[2]</output>
+			<output>/systems/electrical/outputs/gps</output>
+			<output>/systems/electrical/outputs/mk-viii</output>
+			<output>/systems/electrical/outputs/nav[0]</output>
+			<output>/systems/electrical/outputs/nav[1]</output>
+			<output>/systems/electrical/outputs/nav[2]</output>
+			<output>/systems/electrical/outputs/nav[3]</output>
+			<output>/systems/electrical/outputs/tacan</output>
+			<output>/systems/electrical/outputs/transponder</output>
+			<output>/systems/electrical/outputs/turn-coordinator</output>
+		</switch>
 	
 	</channel>
 	
