@@ -1386,7 +1386,7 @@
 			</test>
 			<test logic="AND" value="1"> <!-- ARM -->
 				/controls/electrical/switches/emer-pw-sw eq 1
-				/systems/electrical/bus/dc-1 lt 110
+				/systems/electrical/bus/dc-1 lt 25
 			</test>
 		</switch>
 		
