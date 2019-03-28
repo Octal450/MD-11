@@ -37,10 +37,14 @@ var ELEC = {
 		rEmerDc: props.globals.getNode("/systems/electrical/bus/r-emer-dc"),
 	},
 	Fail: {
-		bat1: props.globals.getNode("/systems/failures/elec-batt1", 1),
+		apu: props.globals.getNode("/systems/failures/elec/apu"),
+		bat1: props.globals.getNode("/systems/failures/elec/bat-1"),
 		bat1Temp: 0,
-		bat2: props.globals.getNode("/systems/failures/elec-batt2", 1),
+		bat2: props.globals.getNode("/systems/failures/elec/bat-2"),
 		bat2Temp: 0,
+		gen1: props.globals.getNode("/systems/failures/elec/gen-1"),
+		gen2: props.globals.getNode("/systems/failures/elec/gen-2"),
+		gen3: props.globals.getNode("/systems/failures/elec/gen-3"),
 	},
 	Generic: {
 		adf: props.globals.initNode("/systems/electrical/outputs/adf", 0, "DOUBLE"),
@@ -59,6 +63,10 @@ var ELEC = {
 		tacan: props.globals.initNode("/systems/electrical/outputs/tacan", 0, "DOUBLE"),
 		transponder: props.globals.initNode("/systems/electrical/outputs/transponder", 0, "DOUBLE"),
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
+	},
+	Light: {
+		manualFlash: props.globals.initNode("/systems/electrical/light/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
 	},
 	Misc: {
 		elapsedSec: props.globals.getNode("/sim/time/elapsed-sec"),
@@ -194,12 +202,11 @@ var ELEC = {
 		genDrive1: props.globals.getNode("/controls/electrical/switches/gen-drive-1"),
 		genDrive2: props.globals.getNode("/controls/electrical/switches/gen-drive-2"),
 		genDrive3: props.globals.getNode("/controls/electrical/switches/gen-drive-3"),
-		manualFlash: props.globals.initNode("/controls/electrical/switches/manual-flash", 0, "INT"),
-		manualFlashTemp: 0,
 		smokeElecAir: props.globals.getNode("/controls/electrical/switches/smoke-elec-air"),
 	},
 	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
+		me.resetFail();
 		me.Switch.acTie1.setBoolValue(1);
 		me.Switch.acTie2.setBoolValue(1);
 		me.Switch.acTie3.setBoolValue(1);
@@ -226,7 +233,15 @@ var ELEC = {
 		me.Source.Bat2.percent.setValue(100);
 		me.system.setBoolValue(1);
 		manualElecLightt.stop();
-		me.Switch.manualFlash.setValue(0);
+		me.Light.manualFlash.setValue(0);
+	},
+	resetFail: func() {
+		me.Fail.apu.setBoolValue(0);
+		me.Fail.bat1.setBoolValue(0);
+		me.Fail.bat2.setBoolValue(0);
+		me.Fail.gen1.setBoolValue(0);
+		me.Fail.gen2.setBoolValue(0);
+		me.Fail.gen3.setBoolValue(0);
 	},
 	loop: func() {
 		me.Fail.bat1Temp = me.Fail.bat1.getBoolValue();
@@ -291,20 +306,20 @@ var ELEC = {
 		if (me.system.getBoolValue()) {
 			me.system.setBoolValue(0);
 			manualElecLightt.stop();
-			me.Switch.manualFlash.setValue(0);
+			me.Light.manualFlash.setValue(0);
 		} else {
 			me.system.setBoolValue(1);
 			manualElecLightt.stop();
-			me.Switch.manualFlash.setValue(0);
+			me.Light.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Switch.manualFlashTemp = me.Switch.manualFlash.getValue();
-		if (me.Switch.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
+		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
+		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
 			manualElecLightt.stop();
-			me.Switch.manualFlash.setValue(0);
+			me.Light.manualFlash.setValue(0);
 		} else {
-			me.Switch.manualFlash.setValue(me.Switch.manualFlashTemp + 1);
+			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
 		}
 	},
 };

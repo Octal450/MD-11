@@ -140,7 +140,7 @@
 			<default value="/controls/electrical/switches/gen-1"/>
 			<test logic="AND" value="1">
 				/systems/electrical/system eq 1
-				/systems/failures/elec-gen1 ne 1
+				/systems/failures/elec/gen-1 ne 1
 				/controls/electrical/switches/gen-drive-1 eq 1
 			</test>
 			<test value="0">
@@ -153,7 +153,7 @@
 			<default value="/controls/electrical/switches/gen-2"/>
 			<test logic="AND" value="1">
 				/systems/electrical/system eq 1
-				/systems/failures/elec-gen2 ne 1
+				/systems/failures/elec/gen-2 ne 1
 				/controls/electrical/switches/gen-drive-2 eq 1
 			</test>
 			<test value="0">
@@ -166,7 +166,7 @@
 			<default value="/controls/electrical/switches/gen-3"/>
 			<test logic="AND" value="1">
 				/systems/electrical/system eq 1
-				/systems/failures/elec-gen3 ne 1
+				/systems/failures/elec/gen-3 ne 1
 				/controls/electrical/switches/gen-drive-3 eq 1
 			</test>
 			<test value="0">
@@ -184,7 +184,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/electrical/sources/bat-1/percent</independentVar>
-					<independentVar lookup="column">/systems/failures/elec-batt1</independentVar>
+					<independentVar lookup="column">/systems/failures/elec/bat-1</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0
@@ -208,7 +208,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/electrical/sources/bat-2/percent</independentVar>
-					<independentVar lookup="column">/systems/failures/elec-batt2</independentVar>
+					<independentVar lookup="column">/systems/failures/elec/bat-2</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0
@@ -257,7 +257,7 @@
 					<property>/controls/electrical/switches/gen-drive-1</property>
 					<ifthen>
 						<eq>
-							<property>/systems/failures/elec-gen1</property>
+							<property>/systems/failures/elec/gen-1</property>
 							<value>1</value>
 						</eq>
 						<value>0</value>
@@ -316,7 +316,7 @@
 					<property>/controls/electrical/switches/gen-drive-2</property>
 					<ifthen>
 						<eq>
-							<property>/systems/failures/elec-gen2</property>
+							<property>/systems/failures/elec/gen-2</property>
 							<value>1</value>
 						</eq>
 						<value>0</value>
@@ -375,7 +375,7 @@
 					<property>/controls/electrical/switches/gen-drive-3</property>
 					<ifthen>
 						<eq>
-							<property>/systems/failures/elec-gen3</property>
+							<property>/systems/failures/elec/gen-3</property>
 							<value>1</value>
 						</eq>
 						<value>0</value>
@@ -409,7 +409,7 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/systems/failures/elec-apu</property>
+						<property>/systems/failures/elec/apu</property>
 						<value>1</value>
 					</eq>
 					<value>0</value>

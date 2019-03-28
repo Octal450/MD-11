@@ -57,7 +57,7 @@
 			<checkbox>
 				<label>APU GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-apu</property>
+				<property>/systems/failures/elec/apu</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -67,7 +67,7 @@
 			<checkbox>
 				<label>BATTERY 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-batt1</property>
+				<property>/systems/failures/elec/bat-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -77,7 +77,7 @@
 			<checkbox>
 				<label>BATTERY 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-batt2</property>
+				<property>/systems/failures/elec/bat-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -87,7 +87,7 @@
 			<checkbox>
 				<label>ENG 1 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-gen1</property>
+				<property>/systems/failures/elec/gen-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -97,7 +97,7 @@
 			<checkbox>
 				<label>ENG 2 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-gen2</property>
+				<property>/systems/failures/elec/gen-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -107,7 +107,7 @@
 			<checkbox>
 				<label>ENG 3 GEN</label>
 				<halign>left</halign>
-				<property>/systems/failures/elec-gen3</property>
+				<property>/systems/failures/elec/gen-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -528,9 +528,7 @@
 				<pref-width>120</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>
-					acconfig.failReset();
-					</script>
+					<script>acconfig.failReset();</script>
 				</binding>
 			</button>
 		
