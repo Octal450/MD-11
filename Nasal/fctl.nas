@@ -69,9 +69,9 @@ var FCTL = {
 		setprop("/fdm/jsbsim/fcc/flap/max-deg", 50);
 	},
 	loop: func() {
-		sys1_psi = getprop("/systems/hydraulic/sys1-psi");
-		sys2_psi = getprop("/systems/hydraulic/sys2-psi");
-		sys3_psi = getprop("/systems/hydraulic/sys3-psi");
+		sys1_psi = getprop("/systems/hydraulic/sys-1-psi");
+		sys2_psi = getprop("/systems/hydraulic/sys-2-psi");
+		sys3_psi = getprop("/systems/hydraulic/sys-3-psi");
 		dc1 = getprop("/systems/electrical/bus/dc-1");
 		dc2 = getprop("/systems/electrical/bus/dc-2");
 		dc3 = getprop("/systems/electrical/bus/dc-3");

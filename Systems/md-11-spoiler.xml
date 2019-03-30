@@ -128,7 +128,7 @@
 		<switch name="hydraulics/spoiler-l1/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-l1/sum">
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -164,7 +164,7 @@
 		<switch name="hydraulics/spoiler-l2/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-l2/sum">
-				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -200,7 +200,7 @@
 		<switch name="hydraulics/spoiler-l3/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-l3/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -236,7 +236,7 @@
 		<switch name="hydraulics/spoiler-l4/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-l4/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -272,7 +272,7 @@
 		<switch name="hydraulics/spoiler-l5/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-l5/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -308,7 +308,7 @@
 		<switch name="hydraulics/spoiler-r1/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-r1/sum">
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -344,7 +344,7 @@
 		<switch name="hydraulics/spoiler-r2/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-r2/sum">
-				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -380,7 +380,7 @@
 		<switch name="hydraulics/spoiler-r3/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-r3/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -416,7 +416,7 @@
 		<switch name="hydraulics/spoiler-r4/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-r4/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>
@@ -452,7 +452,7 @@
 		<switch name="hydraulics/spoiler-r5/switch">
 			<default value="0"/>
 			<test logic="AND" value="hydraulics/spoiler-r5/sum">
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>0.0</min>

@@ -5,6 +5,321 @@
 
 <system name="MD-11: Hydraulics">
 	
+	<property value="500">/systems/hydraulic/sys-incr-rate</property> <!-- 2 seconds per 1000 psi -->
+	<property value="0">/systems/hydraulic/sys-1-psi</property>
+	<property value="0">/systems/hydraulic/sys-2-psi</property>
+	<property value="0">/systems/hydraulic/sys-3-psi</property>
 	
+	<channel name="Main Hydraulics" execrate="8">
+		
+		<switch name="/systems/hydraulic/sys-decr-rate">
+			<default value="45.45455"/> <!-- 22 seconds per 1000 psi -->
+			<test value="500"> <!-- 2 seconds per 1000 psi for ACCONFIG -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<!-- SYS1 -->
+		<fcs_function name="/systems/hydraulic/l-eng-1-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/l-pump-1</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-1-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/l-eng-1-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/l-eng-1-pump-psi-input">
+				/controls/hydraulic/switches/l-pump-1 eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/r-eng-1-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/r-pump-1</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-1-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/r-eng-1-pump-status">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- ON -->
+				/controls/hydraulic/switches/r-pump-1 eq 1
+				/systems/hydraulic/l-eng-1-pump-psi lt 2400
+				/systems/hydraulic/r-eng-1-pump-psi-input ge 2400
+			</test>
+			<test value="-1"> <!-- ARM -->
+				/controls/hydraulic/switches/r-pump-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/r-eng-1-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/r-eng-1-pump-psi-input">
+				/systems/hydraulic/r-eng-1-pump-status eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/sys-1-psi-cmd">
+			<function>
+				<max>
+					<property>/systems/hydraulic/l-eng-1-pump-psi</property>
+					<property>/systems/hydraulic/r-eng-1-pump-psi</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/hydraulic/sys-1-psi">
+			<input>/systems/hydraulic/sys-1-psi-cmd</input>
+			<rate_limit sense="incr">/systems/hydraulic/sys-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/hydraulic/sys-decr-rate</rate_limit>
+			<output>/systems/hydraulic/sys-1-psi-debug</output>
+		</actuator>
+		
+		<!-- SYS2 -->
+		<fcs_function name="/systems/hydraulic/l-eng-2-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/l-pump-2</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-2-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/l-eng-2-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/l-eng-2-pump-psi-input">
+				/controls/hydraulic/switches/l-pump-2 eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/r-eng-2-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/r-pump-2</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-2-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/r-eng-2-pump-status">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- ON -->
+				/controls/hydraulic/switches/r-pump-2 eq 1
+				/systems/hydraulic/l-eng-2-pump-psi lt 2400
+				/systems/hydraulic/r-eng-2-pump-psi-input ge 2400
+			</test>
+			<test value="-2"> <!-- ARM -->
+				/controls/hydraulic/switches/r-pump-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/r-eng-2-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/r-eng-2-pump-psi-input">
+				/systems/hydraulic/r-eng-2-pump-status eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/sys-2-psi-cmd">
+			<function>
+				<max>
+					<property>/systems/hydraulic/l-eng-2-pump-psi</property>
+					<property>/systems/hydraulic/r-eng-2-pump-psi</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/hydraulic/sys-2-psi">
+			<input>/systems/hydraulic/sys-2-psi-cmd</input>
+			<rate_limit sense="incr">/systems/hydraulic/sys-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/hydraulic/sys-decr-rate</rate_limit>
+			<output>/systems/hydraulic/sys-2-psi-debug</output>
+		</actuator>
+		
+		<!-- SYS1 -->
+		<fcs_function name="/systems/hydraulic/l-eng-3-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/l-pump-3</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-3-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/l-eng-3-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/l-eng-3-pump-psi-input">
+				/controls/hydraulic/switches/l-pump-3 eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/r-eng-3-pump-psi-input">
+			<function>
+				<ifthen>
+					<nq>
+						<property>/systems/failures/hydraulic/r-pump-3</property>
+						<value>1</value>
+					</nq>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="column">/systems/hydraulic/sys-3-qty</independentVar>
+						<tableData>
+							    0.9   1.0
+							50  40    40
+							55  40  3000
+						</tableData>
+					</table>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulic/r-eng-3-pump-status">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- ON -->
+				/controls/hydraulic/switches/r-pump-3 eq 1
+				/systems/hydraulic/l-eng-3-pump-psi lt 2400
+				/systems/hydraulic/r-eng-3-pump-psi-input ge 2400
+			</test>
+			<test value="-3"> <!-- ARM -->
+				/controls/hydraulic/switches/r-pump-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/r-eng-3-pump-psi">
+			<default value="40"/>
+			<test value="/systems/hydraulic/r-eng-3-pump-psi-input">
+				/systems/hydraulic/r-eng-3-pump-status eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulic/sys-3-psi-cmd">
+			<function>
+				<max>
+					<property>/systems/hydraulic/l-eng-3-pump-psi</property>
+					<property>/systems/hydraulic/r-eng-3-pump-psi</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/hydraulic/sys-3-psi">
+			<input>/systems/hydraulic/sys-3-psi-cmd</input>
+			<rate_limit sense="incr">/systems/hydraulic/sys-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/hydraulic/sys-decr-rate</rate_limit>
+			<output>/systems/hydraulic/sys-3-psi-debug</output>
+		</actuator>
+	
+	</channel>
+	
+	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/systems/hydraulic/light/l-pump-1-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/l-eng-1-pump-psi-input lt 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/light/r-pump-1-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/r-eng-1-pump-psi-input lt 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/light/l-pump-2-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/l-eng-2-pump-psi-input lt 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/light/r-pump-2-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/r-eng-2-pump-psi-input lt 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/light/l-pump-3-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/l-eng-3-pump-psi-input lt 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulic/light/r-pump-3-fault">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulic/r-eng-3-pump-psi-input lt 2400
+			</test>
+		</switch>
+	
+	</channel>
 
 </system>

@@ -55,7 +55,6 @@
 		<switch name="fcc/rcws/gain-switch">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/rcws/enable eq 1
 				/rcws/equipped eq 1
 				fcc/afs/enabled eq 0
 				attitude/pitch-rad le 0.558505
@@ -72,7 +71,6 @@
 		<switch name="fcc/lsas/gain-switch">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/lsas/enable eq 1
 				fcc/afs/enabled eq 0
 				attitude/pitch-rad le 0.558505
 				attitude/pitch-rad ge -0.20944
@@ -96,7 +94,6 @@
 		<switch name="fcc/lsas/gain-switch-prd">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/lsas/enable eq 1
 				fcc/afs/enabled eq 0
 				attitude/pitch-rad le 0.558505
 				attitude/pitch-rad ge -0.20944
@@ -490,12 +487,10 @@
 		<switch name="fcc/lsas/gain-switch-pap">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/lsas/enable eq 1
 				fcc/afs/enabled eq 0
 				position/wow eq 1
 			</test>
 			<test logic="AND" value="0">
-				/lsas/enable eq 1
 				fcc/afs/enabled eq 0
 				/position/gear-agl-ft le 2
 			</test>
@@ -560,7 +555,6 @@
 		<switch name="fcc/lsas/gain-switch-pnl">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/lsas/enable eq 1
 				fcc/afs/enabled eq 0
 				gear/unit[0]/WOW ne 1
 				gear/unit[1]/WOW eq 1
@@ -911,6 +905,11 @@
 			<output>fcc/rcws/aileron-out-enable</output>
 		</switch>
 		
+		<pure_gain name="hydraulics/deflected-aileron-active">
+			<input>/controls/hydraulic/deflected-aileron</input>
+			<gain>/controls/hydraulic/deflected-aileron-equipped</gain>
+		</pure_gain>
+	
 	</channel>
 	
 	<channel name="Aileron L Outer">
@@ -918,47 +917,40 @@
 		<fcs_function name="hydraulics/aileron-out-l/function">
 			<function>
 				<sum>
-					<table>
-						<independentVar lookup="row">fcc/aileron-output</independentVar>
-						<tableData>
-							-0.95 -1.0
-							 0.00  0.0
-							 0.95  1.0
-						</tableData>
-					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcc/aileron-output</independentVar>
+							<tableData>
+								-0.95 -1.0
+								 0.00  0.0
+								 0.95  1.0
+							</tableData>
+						</table>
+						<property>hydraulics/aileron-out-enable</property>
+					</product>
 					<product>
 						<table>
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
 							<tableData>
-								 0.5  0.00
-								 9.5  0.75
-								28.5  0.75
-								34.5  0.00
+									  0     1
+								 0.5  0.20  0.20
+								 9.5  0.20  0.75
+								28.5  0.20  0.75
+								34.5  0.20  0.20
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
+						<property>/controls/hydraulic/deflected-aileron-equipped</property>
 					</product>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<switch name="hydraulics/aileron-out-l/pressure-switch-or">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/hydraulic/sys2-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
-			</test>
-		</switch>
-		
 		<switch name="hydraulics/aileron-out-l/switch">
 			<default value="hydraulics/aileron-droop"/>
-			<test logic="AND" value="0">
-				hydraulics/aileron-out-l/pressure-switch-or eq 1
-				hydraulics/aileron-out-enable ne 1
-			</test>
-			<test logic="AND" value="hydraulics/aileron-out-l/function">
-				hydraulics/aileron-out-l/pressure-switch-or eq 1
-				hydraulics/aileron-out-enable eq 1
+			<test logic="OR" value="hydraulics/aileron-out-l/function">
+				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1006,7 +998,7 @@
 								34.5  0.000
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
+						<property>hydraulics/deflected-aileron-active</property>
 					</product>
 				</sum>
 			</function>
@@ -1015,8 +1007,8 @@
 		<switch name="hydraulics/aileron-in-l/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-l/function">
-				/systems/hydraulic/sys2-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1064,7 +1056,7 @@
 								34.5  0.000
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
+						<property>hydraulics/deflected-aileron-active</property>
 					</product>
 				</sum>
 			</function>
@@ -1073,8 +1065,8 @@
 		<switch name="hydraulics/aileron-in-r/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-r/function">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1104,47 +1096,40 @@
 		<fcs_function name="hydraulics/aileron-out-r/function">
 			<function>
 				<sum>
-					<table>
-						<independentVar lookup="row">fcc/aileron-output</independentVar>
-						<tableData>
-							-0.95  1.0
-							 0.00  0.0
-							 0.95 -1.0
-						</tableData>
-					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">fcc/aileron-output</independentVar>
+							<tableData>
+								-0.95  1.0
+								 0.00  0.0
+								 0.95 -1.0
+							</tableData>
+						</table>
+						<property>hydraulics/aileron-out-enable</property>
+					</product>
 					<product>
 						<table>
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
 							<tableData>
-								 0.5  0.00
-								 9.5  0.75
-								28.5  0.75
-								34.5  0.00
+									  0     1
+								 0.5  0.20  0.20
+								 9.5  0.20  0.75
+								28.5  0.20  0.75
+								34.5  0.20  0.20
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/aileron-droop</property>
+						<property>/controls/hydraulic/deflected-aileron-equipped</property>
 					</product>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<switch name="hydraulics/aileron-out-r/pressure-switch-or">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/hydraulic/sys2-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
-			</test>
-		</switch>
-		
 		<switch name="hydraulics/aileron-out-r/switch">
 			<default value="hydraulics/aileron-droop"/>
-			<test logic="AND" value="0">
-				hydraulics/aileron-out-r/pressure-switch-or eq 1
-				hydraulics/aileron-out-enable ne 1
-			</test>
-			<test logic="AND" value="hydraulics/aileron-out-r/function">
-				hydraulics/aileron-out-r/pressure-switch-or eq 1
-				hydraulics/aileron-out-enable eq 1
+			<test logic="OR" value="hydraulics/aileron-out-r/function">
+				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1174,8 +1159,8 @@
 		<switch name="hydraulics/elevator-out-l/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-l-output">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1205,8 +1190,8 @@
 		<switch name="hydraulics/elevator-in-l/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-l-output">
-				/systems/hydraulic/sys2-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1236,8 +1221,8 @@
 		<switch name="hydraulics/elevator-in-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-r-output">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1267,8 +1252,8 @@
 		<switch name="hydraulics/elevator-out-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-r-output">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1298,8 +1283,8 @@
 		<switch name="hydraulics/elevator-trim/rate">
 			<default value="0"/>
 			<test logic="OR" value="0.25">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys3-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-3-psi ge 1500
 			</test>
 		</switch>
 		
@@ -1362,7 +1347,7 @@
 		<switch name="hydraulics/rudder-upper/switch">
 			<default value="0"/>
 			<test value="hydraulics/rudder-upper/summer">
-				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1401,7 +1386,7 @@
 		<switch name="hydraulics/rudder-lower/switch">
 			<default value="0"/>
 			<test value="hydraulics/rudder-lower/summer">
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1589,8 +1574,8 @@
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test logic="OR" value="1.66666666">
-				/systems/hydraulic/sys1-psi ge 1500
-				/systems/hydraulic/sys2-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulic/sys-2-psi ge 1500
 			</test>
 		</switch>
 		
@@ -1623,7 +1608,7 @@
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test value="3.1">
-				/systems/hydraulic/sys1-psi ge 1500
+				/systems/hydraulic/sys-1-psi ge 1500
 			</test>
 		</switch>
 		

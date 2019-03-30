@@ -523,8 +523,8 @@
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
 		<hydraulic n="0">
-			<aileron-droop type="bool">0</aileron-droop>
-			<aileron-droop-enable type="bool">1</aileron-droop-enable>
+			<deflected-aileron type="bool">0</deflected-aileron>
+			<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 			<switches n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
@@ -681,12 +681,7 @@
 		</custom>
 	</it-autoflight>
 	
-	<lsas n="0">
-		<enable type="bool">1</enable>
-	</lsas>
-	
 	<rcws n="0">
-		<enable type="bool">1</enable>
 		<equipped type="bool">0</equipped>
 	</rcws>
 	
@@ -714,14 +709,29 @@
 			<system type="bool">1</system>
 		</electrical>
 		<failures n="0">
-			<elec n="0">
+			<electrical n="0">
 				<apu type="bool">0</apu>
 				<bat-1 type="bool">0</bat-1>
 				<bat-2 type="bool">0</bat-2>
 				<gen-1 type="bool">0</gen-1>
 				<gen-2 type="bool">0</gen-2>
 				<gen-3 type="bool">0</gen-3>
-			</elec>
+			</electrical>
+			<hydraulic n="0">
+				<aux-pump-1 type="bool">0</aux-pump-1>
+				<aux-pump-2 type="bool">0</aux-pump-2>
+				<l-pump-1 type="bool">0</l-pump-1>
+				<l-pump-2 type="bool">0</l-pump-2>
+				<l-pump-3 type="bool">0</l-pump-3>
+				<r-pump-1 type="bool">0</r-pump-1>
+				<r-pump-2 type="bool">0</r-pump-2>
+				<r-pump-3 type="bool">0</r-pump-3>
+				<rmp-1-3 type="bool">0</rmp-1-3>
+				<rmp-2-3 type="bool">0</rmp-2-3>
+				<sys-1-leak type="bool">0</sys-1-leak>
+				<sys-2-leak type="bool">0</sys-2-leak>
+				<sys-3-leak type="bool">0</sys-3-leak>
+			</hydraulic>
 		</failures>
 		<fuel n="0">
 			<tank n="0">
@@ -745,9 +755,9 @@
 			</tank>
 		</fuel>
 		<hydraulic n="0">
-			<sys1-psi>3000</sys1-psi>
-			<sys2-psi>3000</sys2-psi>
-			<sys3-psi>3000</sys3-psi>
+			<sys-1-qty type="double">8.0</sys-1-qty> <!-- Randomized later in sim init -->
+			<sys-2-qty type="double">8.0</sys-2-qty> <!-- Randomized later in sim init -->
+			<sys-3-qty type="double">8.0</sys-3-qty> <!-- Randomized later in sim init -->
 		</hydraulic>
 	</systems>
 	
@@ -1185,7 +1195,6 @@
 			<started-at type="int">0</started-at>
 			<elapsed-time type="int">0</elapsed-time>
 		</chrono>
-		
 		<chrono n="1">
 			<started type="bool">0</started>
 			<paused type="bool">0</paused>
@@ -1193,7 +1202,6 @@
 			<started-at type="int">0</started-at>
 			<elapsed-time type="int">0</elapsed-time>
 		</chrono>
-		
 		<comm n="0">
 			<frequencies>
 				<selected-mhz type="double">118.7</selected-mhz>
@@ -1202,7 +1210,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		
 		<comm n="1">
 			<frequencies>
 				<selected-mhz type="double">119.4</selected-mhz>
@@ -1211,7 +1218,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		
 		<comm n="2">
 			<frequencies>
 				<selected-mhz type="double">0</selected-mhz>
@@ -1220,7 +1226,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		
 		<dme n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -1229,7 +1234,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		
 		<dme n="1">
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
@@ -1238,7 +1242,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		
 		<dme n="2">
 			<frequencies>
 				<selected-mhz type="double">112.8</selected-mhz>
@@ -1247,7 +1250,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		
 		<dme n="3">
 			<frequencies>
 				<selected-mhz type="double">114.8</selected-mhz>
@@ -1256,11 +1258,9 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
-		
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -1272,7 +1272,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
 		<nav n="1">
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
@@ -1284,7 +1283,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
 		<nav n="2">
 			<cdi>
 				<serviceable type="bool">true</serviceable>
@@ -1299,7 +1297,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
 		<nav n="3">
 			<cdi>
 				<serviceable type="bool">true</serviceable>
@@ -1314,8 +1311,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
-		<tcas><!-- http://wiki.flightgear.org/index.php/TCAS -->
+		<tcas>
 			<serviceable type="bool">true</serviceable><!-- TCAS ENABLE -->
 			<inputs>
 				<mode type="int">3</mode><!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
@@ -1330,8 +1326,6 @@
 				<volume> 0.8 </volume> <!-- Volume at reference distance -->
 			</speaker>
 		</tcas>
-		
-		<!-- See http://wiki.flightgear.org/index.php/GPWS -->
 		<mk-viii>
 			<serviceable type="bool">true</serviceable>
 			<configuration-module>

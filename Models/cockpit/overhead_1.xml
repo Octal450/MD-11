@@ -1164,10 +1164,16 @@
 		<object-name>LPump1.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/l-pump-1-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/l-pump-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/l-pump-1-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1257,10 +1263,16 @@
 		<object-name>RPump1.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/r-pump-1-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/r-pump-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/r-pump-1-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1350,10 +1362,16 @@
 		<object-name>LPump2.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/l-pump-2-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/l-pump-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/l-pump-2-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1443,10 +1461,16 @@
 		<object-name>RPump2.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/r-pump-2-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/r-pump-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/r-pump-2-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1536,10 +1560,16 @@
 		<object-name>LPump3.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/l-pump-3-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/l-pump-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/l-pump-3-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1629,10 +1659,16 @@
 		<object-name>RPump3.fault</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/hydraulic/light/r-pump-3-fault</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/hydraulic/switches/r-pump-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/hydraulic/light/r-pump-3-fault</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -1851,7 +1887,7 @@
 		<condition>
 			<or>
 				<less-than>
-					<property>systems/hydraulic/sys1-psi</property>
+					<property>systems/hydraulic/sys-1-psi</property>
 					<value>2400</value>
 				</less-than>
 				<equals>
@@ -1868,7 +1904,7 @@
 		<condition>
 			<or>
 				<less-than>
-					<property>systems/hydraulic/sys2-psi</property>
+					<property>systems/hydraulic/sys-2-psi</property>
 					<value>2400</value>
 				</less-than>
 				<equals>
@@ -1885,7 +1921,7 @@
 		<condition>
 			<or>
 				<less-than>
-					<property>systems/hydraulic/sys3-psi</property>
+					<property>systems/hydraulic/sys-3-psi</property>
 					<value>2400</value>
 				</less-than>
 				<equals>
@@ -2424,7 +2460,7 @@
 						<value>94.9</value>
 					</greater-than>
 					<not-equals>
-						<property>systems/failures/elec/apu</property>
+						<property>systems/failures/electrical/apu</property>
 						<value>1</value>
 					</not-equals>
 				</and>
@@ -2450,7 +2486,7 @@
 						<value>1</value>
 					</equals>
 					<not-equals>
-						<property>systems/failures/elec/apu</property>
+						<property>systems/failures/electrical/apu</property>
 						<value>1</value>
 					</not-equals>
 				</and>
@@ -2965,7 +3001,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/failures/elec/gen-1</property>
+					<property>systems/failures/electrical/gen-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3144,7 +3180,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/failures/elec/gen-2</property>
+					<property>systems/failures/electrical/gen-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3323,7 +3359,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/failures/elec/gen-3</property>
+					<property>systems/failures/electrical/gen-3</property>
 					<value>1</value>
 				</equals>
 				<equals>

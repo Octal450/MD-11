@@ -22,7 +22,7 @@ var spinning = maketimer(0.05, func {
 
 var failReset = func {
 	systems.ELEC.resetFail();
-#	systems.HYD.resetFail();
+	systems.HYD.resetFail();
 	failResetOld();
 }
 
@@ -35,15 +35,6 @@ var failResetOld = func {
 	setprop("/systems/failures/pack1", 0);
 	setprop("/systems/failures/pack2", 0);
 	setprop("/systems/failures/pack3", 0);
-	setprop("/systems/failures/hyd-sys1", 0);
-	setprop("/systems/failures/hyd-sys2", 0);
-	setprop("/systems/failures/hyd-sys3", 0);
-	setprop("/systems/failures/hyd-fault-l1", 0);
-	setprop("/systems/failures/hyd-fault-r1", 0);
-	setprop("/systems/failures/hyd-fault-l2", 0);
-	setprop("/systems/failures/hyd-fault-r2", 0);
-	setprop("/systems/failures/hyd-fault-l3", 0);
-	setprop("/systems/failures/hyd-fault-r3", 0);
 	setprop("/systems/failures/tank0pumps", 0);
 	setprop("/systems/failures/tank1pumps", 0);
 	setprop("/systems/failures/tank2pumps", 0);
@@ -65,23 +56,24 @@ failResetOld();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
-setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/new-revision", 0);
 setprop("/systems/acconfig/out-of-date", 0);
 setprop("/systems/acconfig/mismatch-code", "0x000");
 setprop("/systems/acconfig/mismatch-reason", "XX");
-setprop("/systems/acconfig/options/keyboard-mode", 0);
-setprop("/systems/acconfig/options/laptop-mode", 0);
-setprop("/systems/acconfig/options/irs-skip", 0);
-setprop("/systems/acconfig/options/welcome-skip", 0);
-setprop("/systems/acconfig/options/no-rendering-warn", 0);
-setprop("/systems/acconfig/options/rcws-equipped", 0);
-setprop("/systems/acconfig/options/pfd-rate", 1);
-setprop("/systems/acconfig/options/nd-rate", 1);
-setprop("/systems/acconfig/options/ead-rate", 1);
-setprop("/systems/acconfig/options/sd-rate", 1);
 setprop("/systems/acconfig/options/autopush/show-route", 1);
 setprop("/systems/acconfig/options/autopush/show-wingtip", 1);
+setprop("/systems/acconfig/options/deflected-aileron-equipped", 1);
+setprop("/systems/acconfig/options/ead-rate", 1);
+setprop("/systems/acconfig/options/irs-skip", 0);
+setprop("/systems/acconfig/options/keyboard-mode", 0);
+setprop("/systems/acconfig/options/laptop-mode", 0);
+setprop("/systems/acconfig/options/nd-rate", 1);
+setprop("/systems/acconfig/options/no-rendering-warn", 0);
+setprop("/systems/acconfig/options/pfd-rate", 1);
+setprop("/systems/acconfig/options/rcws-equipped", 0);
+setprop("/systems/acconfig/options/revision", 0);
+setprop("/systems/acconfig/options/sd-rate", 1);
+setprop("/systems/acconfig/options/welcome-skip", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/welcome.xml");
 var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/psload.xml");
@@ -199,21 +191,24 @@ var renderingSettings = {
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
-	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
-	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
-	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
-	setprop("/rcws/equipped", getprop("/systems/acconfig/options/rcws-equipped"));
 	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
+	setprop("/controls/hydraulic/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
+	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
+	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
+	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
+	setprop("/rcws/equipped", getprop("/systems/acconfig/options/rcws-equipped"));
+
 }
 
 var writeSettings = func {
-	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
-	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
-	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
-	setprop("/systems/acconfig/options/rcws-equipped", getprop("/rcws/equipped"));
 	setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
 	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
+	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulic/deflected-aileron-equipped"));
+	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
+	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
+	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
+	setprop("/systems/acconfig/options/rcws-equipped", getprop("/rcws/equipped"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 }
 
@@ -242,7 +237,7 @@ var colddark = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/aileron-droop", 0);
+		setprop("/controls/hydraulic/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -295,7 +290,7 @@ var beforestart = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/aileron-droop", 0);
+		setprop("/controls/hydraulic/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -363,7 +358,7 @@ var taxi = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/aileron-droop", 0);
+		setprop("/controls/hydraulic/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -443,12 +438,12 @@ var takeoff = func {
 				setprop("/controls/flight/flap-lever", 2);
 				setprop("/controls/flight/flaps", 0.4);
 				setprop("/controls/flight/flap-txt", 15);
-				if (getprop("/controls/hydraulic/aileron-droop-enable") == 1) {
+				if (getprop("/controls/hydraulic/deflected-aileron-equipped") == 1) {
 					if (getprop("/gear/gear[0]/wow") == 1) {
-						setprop("/controls/hydraulic/aileron-droop", 1);
+						setprop("/controls/hydraulic/deflected-aileron", 1);
 					}
 				} else {
-					setprop("/controls/hydraulic/aileron-droop", 0);
+					setprop("/controls/hydraulic/deflected-aileron", 0);
 				}
 				setprop("/controls/flight/elevator-trim", -0.29);
 				setprop("/controls/autobrake/switch", -1);

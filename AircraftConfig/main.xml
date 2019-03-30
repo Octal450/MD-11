@@ -417,13 +417,30 @@
 			<checkbox>
 				<label>RCWS Equipped</label>
 				<halign>left</halign>
-				<enable>
-					<property>/rcws/enable</property>
-				</enable>
 				<property>/rcws/equipped</property>
 				<binding>
 					<command>property-toggle</command>
 					<property>/rcws/equipped</property>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+					acconfig.writeSettings();
+					</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Deflected Ailerons Equipped</label>
+				<halign>left</halign>
+				<property>/controls/hydraulic/deflected-aileron-equipped</property>
+				<binding>
+					<command>property-toggle</command>
+					<property>/controls/hydraulic/deflected-aileron-equipped</property>
 				</binding>
 				<binding>
 					<command>dialog-apply</command>
