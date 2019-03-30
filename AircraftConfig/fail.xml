@@ -232,7 +232,7 @@
 			<checkbox>
 				<label>SYS1 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/sys-1-leak</property>
+				<property>/systems/failures/hydraulics/sys-1-leak</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -242,7 +242,7 @@
 			<checkbox>
 				<label>SYS1 L Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/l-pump-1</property>
+				<property>/systems/failures/hydraulics/l-pump-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -252,7 +252,7 @@
 			<checkbox>
 				<label>SYS1 R Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/r-pump-1</property>
+				<property>/systems/failures/hydraulics/r-pump-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -262,7 +262,7 @@
 			<checkbox>
 				<label>SYS2 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/sys-2-leak</property>
+				<property>/systems/failures/hydraulics/sys-2-leak</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -272,7 +272,7 @@
 			<checkbox>
 				<label>SYS2 L Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/l-pump-2</property>
+				<property>/systems/failures/hydraulics/l-pump-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -282,7 +282,7 @@
 			<checkbox>
 				<label>SYS2 R Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/r-pump-2</property>
+				<property>/systems/failures/hydraulics/r-pump-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -292,7 +292,7 @@
 			<checkbox>
 				<label>SYS3 HYD Leak</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/sys-3-leak</property>
+				<property>/systems/failures/hydraulics/sys-3-leak</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -302,7 +302,7 @@
 			<checkbox>
 				<label>SYS3 L Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/l-pump-3</property>
+				<property>/systems/failures/hydraulics/l-pump-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -312,7 +312,7 @@
 			<checkbox>
 				<label>SYS3 R Pump</label>
 				<halign>left</halign>
-				<property>/systems/failures/hydraulic/r-pump-3</property>
+				<property>/systems/failures/hydraulics/r-pump-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

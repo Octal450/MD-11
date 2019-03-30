@@ -193,7 +193,7 @@ var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
-	setprop("/controls/hydraulic/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
+	setprop("/controls/hydraulics/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
 	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
@@ -204,7 +204,7 @@ var readSettings = func {
 var writeSettings = func {
 	setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
 	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
-	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulic/deflected-aileron-equipped"));
+	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulics/deflected-aileron-equipped"));
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
@@ -237,7 +237,7 @@ var colddark = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/deflected-aileron", 0);
+		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -290,7 +290,7 @@ var beforestart = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/deflected-aileron", 0);
+		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -358,7 +358,7 @@ var taxi = func {
 		setprop("/controls/flight/flap-lever", 0);
 		setprop("/controls/flight/flaps", 0.0);
 		setprop("/controls/flight/flap-txt", 0);
-		setprop("/controls/hydraulic/deflected-aileron", 0);
+		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
@@ -438,12 +438,12 @@ var takeoff = func {
 				setprop("/controls/flight/flap-lever", 2);
 				setprop("/controls/flight/flaps", 0.4);
 				setprop("/controls/flight/flap-txt", 15);
-				if (getprop("/controls/hydraulic/deflected-aileron-equipped") == 1) {
+				if (getprop("/controls/hydraulics/deflected-aileron-equipped") == 1) {
 					if (getprop("/gear/gear[0]/wow") == 1) {
-						setprop("/controls/hydraulic/deflected-aileron", 1);
+						setprop("/controls/hydraulics/deflected-aileron", 1);
 					}
 				} else {
-					setprop("/controls/hydraulic/deflected-aileron", 0);
+					setprop("/controls/hydraulics/deflected-aileron", 0);
 				}
 				setprop("/controls/flight/elevator-trim", -0.29);
 				setprop("/controls/autobrake/switch", -1);

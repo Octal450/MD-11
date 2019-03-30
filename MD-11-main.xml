@@ -522,7 +522,7 @@
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
-		<hydraulic n="0">
+		<hydraulics n="0">
 			<deflected-aileron type="bool">0</deflected-aileron>
 			<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 			<switches n="0">
@@ -538,7 +538,7 @@
 				<rmp-1-3 type="bool">0</rmp-1-3>
 				<rmp-2-3 type="bool">0</rmp-2-3>
 			</switches>
-		</hydraulic>
+		</hydraulics>
 		<irs n="0">
 			<ir n="0">
 				<align type="bool">false</align>
@@ -717,7 +717,7 @@
 				<gen-2 type="bool">0</gen-2>
 				<gen-3 type="bool">0</gen-3>
 			</electrical>
-			<hydraulic n="0">
+			<hydraulics n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
 				<l-pump-1 type="bool">0</l-pump-1>
@@ -731,7 +731,7 @@
 				<sys-1-leak type="bool">0</sys-1-leak>
 				<sys-2-leak type="bool">0</sys-2-leak>
 				<sys-3-leak type="bool">0</sys-3-leak>
-			</hydraulic>
+			</hydraulics>
 		</failures>
 		<fuel n="0">
 			<tank n="0">
@@ -754,11 +754,11 @@
 				<alt-feed type="bool">0</alt-feed>
 			</tank>
 		</fuel>
-		<hydraulic n="0">
+		<hydraulics n="0">
 			<sys-1-qty type="double">8.0</sys-1-qty> <!-- Randomized later in sim init -->
 			<sys-2-qty type="double">8.0</sys-2-qty> <!-- Randomized later in sim init -->
 			<sys-3-qty type="double">8.0</sys-3-qty> <!-- Randomized later in sim init -->
-		</hydraulic>
+		</hydraulics>
 	</systems>
 	
 	<input>

@@ -3,22 +3,22 @@
 
 var HYD = {
 	Fail: {
-		auxPump1: props.globals.getNode("/systems/failures/hydraulic/aux-pump-1"),
-		auxPump2: props.globals.getNode("/systems/failures/hydraulic/aux-pump-2"),
-		lPump1: props.globals.getNode("/systems/failures/hydraulic/l-pump-1"),
-		lPump2: props.globals.getNode("/systems/failures/hydraulic/l-pump-2"),
-		lPump3: props.globals.getNode("/systems/failures/hydraulic/l-pump-3"),
-		rPump1: props.globals.getNode("/systems/failures/hydraulic/r-pump-1"),
-		rPump2: props.globals.getNode("/systems/failures/hydraulic/r-pump-2"),
-		rPump3: props.globals.getNode("/systems/failures/hydraulic/r-pump-3"),
-		rmp13: props.globals.getNode("/systems/failures/hydraulic/rmp-1-3"),
-		rmp23: props.globals.getNode("/systems/failures/hydraulic/rmp-2-3"),
-		sys1Leak: props.globals.getNode("/systems/failures/hydraulic/sys-1-leak"),
-		sys2Leak: props.globals.getNode("/systems/failures/hydraulic/sys-2-leak"),
-		sys3Leak: props.globals.getNode("/systems/failures/hydraulic/sys-3-leak"),
+		auxPump1: props.globals.getNode("/systems/failures/hydraulics/aux-pump-1"),
+		auxPump2: props.globals.getNode("/systems/failures/hydraulics/aux-pump-2"),
+		lPump1: props.globals.getNode("/systems/failures/hydraulics/l-pump-1"),
+		lPump2: props.globals.getNode("/systems/failures/hydraulics/l-pump-2"),
+		lPump3: props.globals.getNode("/systems/failures/hydraulics/l-pump-3"),
+		rPump1: props.globals.getNode("/systems/failures/hydraulics/r-pump-1"),
+		rPump2: props.globals.getNode("/systems/failures/hydraulics/r-pump-2"),
+		rPump3: props.globals.getNode("/systems/failures/hydraulics/r-pump-3"),
+		rmp13: props.globals.getNode("/systems/failures/hydraulics/rmp-1-3"),
+		rmp23: props.globals.getNode("/systems/failures/hydraulics/rmp-2-3"),
+		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
+		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
+		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/hydraulic/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Misc: {
@@ -27,22 +27,43 @@ var HYD = {
 		wow1: props.globals.getNode("/gear/gear[1]/wow"),
 		wow2: props.globals.getNode("/gear/gear[2]/wow"),
 	},
-	Switch: {
-		auxPump1: props.globals.getNode("/controls/hydraulic/switches/aux-pump-1"),
-		auxPump2: props.globals.getNode("/controls/hydraulic/switches/aux-pump-2"),
-		lPump1: props.globals.getNode("/controls/hydraulic/switches/l-pump-1"),
-		lPump2: props.globals.getNode("/controls/hydraulic/switches/l-pump-2"),
-		lPump3: props.globals.getNode("/controls/hydraulic/switches/l-pump-3"),
-		pressTest: props.globals.getNode("/controls/hydraulic/switches/press-test"),
-		rPump1: props.globals.getNode("/controls/hydraulic/switches/r-pump-1"),
-		rPump2: props.globals.getNode("/controls/hydraulic/switches/r-pump-2"),
-		rPump3: props.globals.getNode("/controls/hydraulic/switches/r-pump-3"),
-		rmp13: props.globals.getNode("/controls/hydraulic/switches/rmp-1-3"),
-		rmp23: props.globals.getNode("/controls/hydraulic/switches/rmp-2-3"),
+	Psi: {
+		auxPump1: props.globals.getNode("/systems/hydraulics/aux-pump-1-psi"),
+		auxPump2: props.globals.getNode("/systems/hydraulics/aux-pump-2-psi"),
+		lPump1: props.globals.getNode("/systems/hydraulics/l-eng-1-pump-psi"),
+		lPump2: props.globals.getNode("/systems/hydraulics/l-eng-2-pump-psi"),
+		lPump3: props.globals.getNode("/systems/hydraulics/l-eng-3-pump-psi"),
+		rPump1: props.globals.getNode("/systems/hydraulics/r-eng-1-pump-psi"),
+		rPump2: props.globals.getNode("/systems/hydraulics/r-eng-2-pump-psi"),
+		rPump3: props.globals.getNode("/systems/hydraulics/r-eng-3-pump-psi"),
+		sys1: props.globals.getNode("/systems/hydraulics/sys-1-psi"),
+		sys2: props.globals.getNode("/systems/hydraulics/sys-2-psi"),
+		sys3: props.globals.getNode("/systems/hydraulics/sys-3-psi"),
 	},
-	system: props.globals.getNode("/systems/hydraulic/system"),
+	Qty: {
+		sys1: props.globals.getNode("/systems/hydraulics/sys-1-qty"),
+		sys2: props.globals.getNode("/systems/hydraulics/sys-2-qty"),
+		sys3: props.globals.getNode("/systems/hydraulics/sys-3-qty"),
+	},
+	Switch: {
+		auxPump1: props.globals.getNode("/controls/hydraulics/switches/aux-pump-1"),
+		auxPump2: props.globals.getNode("/controls/hydraulics/switches/aux-pump-2"),
+		lPump1: props.globals.getNode("/controls/hydraulics/switches/l-pump-1"),
+		lPump2: props.globals.getNode("/controls/hydraulics/switches/l-pump-2"),
+		lPump3: props.globals.getNode("/controls/hydraulics/switches/l-pump-3"),
+		pressTest: props.globals.getNode("/controls/hydraulics/switches/press-test"),
+		rPump1: props.globals.getNode("/controls/hydraulics/switches/r-pump-1"),
+		rPump2: props.globals.getNode("/controls/hydraulics/switches/r-pump-2"),
+		rPump3: props.globals.getNode("/controls/hydraulics/switches/r-pump-3"),
+		rmp13: props.globals.getNode("/controls/hydraulics/switches/rmp-1-3"),
+		rmp23: props.globals.getNode("/controls/hydraulics/switches/rmp-2-3"),
+	},
+	system: props.globals.getNode("/systems/hydraulics/system"),
 	init: func() {
 		me.resetFail();
+		me.Qty.sys1.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys2.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys3.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Switch.auxPump1.setBoolValue(0);
 		me.Switch.auxPump2.setBoolValue(0);
 		me.Switch.lPump1.setBoolValue(1);
@@ -97,6 +118,7 @@ var HYD = {
 
 var manualHydLightt = maketimer(0.4, HYD, HYD.manualLight);
 
+# Prevent gear up accidently while WoW
 setlistener("/controls/gear/gear-down", func {
 	if (!HYD.Misc.gearDown.getBoolValue() and (HYD.Misc.wow0.getBoolValue() or HYD.Misc.wow1.getBoolValue() or HYD.Misc.wow2.getBoolValue())) {
 		HYD.Misc.gearDown.setBoolValue(1);

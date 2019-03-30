@@ -1249,7 +1249,7 @@
 		<switch name="/systems/electrical/bus/dc-3-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR3 -->
+			<test value="1"> <!-- TR3 --> <!-- Needs to be fixed, incorrectly powered in ADG Elec Mode -->
 				/systems/electrical/sources/tr-3/output-volt ge 25
 			</test>
 			<test value="2"> <!-- DC TIE -->

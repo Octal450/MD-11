@@ -437,10 +437,10 @@
 			<checkbox>
 				<label>Deflected Ailerons Equipped</label>
 				<halign>left</halign>
-				<property>/controls/hydraulic/deflected-aileron-equipped</property>
+				<property>/controls/hydraulics/deflected-aileron-equipped</property>
 				<binding>
 					<command>property-toggle</command>
-					<property>/controls/hydraulic/deflected-aileron-equipped</property>
+					<property>/controls/hydraulics/deflected-aileron-equipped</property>
 				</binding>
 				<binding>
 					<command>dialog-apply</command>

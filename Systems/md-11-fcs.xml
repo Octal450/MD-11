@@ -906,8 +906,8 @@
 		</switch>
 		
 		<pure_gain name="hydraulics/deflected-aileron-active">
-			<input>/controls/hydraulic/deflected-aileron</input>
-			<gain>/controls/hydraulic/deflected-aileron-equipped</gain>
+			<input>/controls/hydraulics/deflected-aileron</input>
+			<gain>/controls/hydraulics/deflected-aileron-equipped</gain>
 		</pure_gain>
 	
 	</channel>
@@ -940,7 +940,7 @@
 								34.5  0.20  0.20
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/deflected-aileron-equipped</property>
+						<property>/controls/hydraulics/deflected-aileron-equipped</property>
 					</product>
 				</sum>
 			</function>
@@ -949,8 +949,8 @@
 		<switch name="hydraulics/aileron-out-l/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-l/function">
-				/systems/hydraulic/sys-2-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1007,8 +1007,8 @@
 		<switch name="hydraulics/aileron-in-l/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-l/function">
-				/systems/hydraulic/sys-2-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1065,8 +1065,8 @@
 		<switch name="hydraulics/aileron-in-r/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-r/function">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1119,7 +1119,7 @@
 								34.5  0.20  0.20
 							</tableData>
 						</table>
-						<property>/controls/hydraulic/deflected-aileron-equipped</property>
+						<property>/controls/hydraulics/deflected-aileron-equipped</property>
 					</product>
 				</sum>
 			</function>
@@ -1128,8 +1128,8 @@
 		<switch name="hydraulics/aileron-out-r/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-r/function">
-				/systems/hydraulic/sys-2-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1159,8 +1159,8 @@
 		<switch name="hydraulics/elevator-out-l/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-l-output">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1190,8 +1190,8 @@
 		<switch name="hydraulics/elevator-in-l/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-l-output">
-				/systems/hydraulic/sys-2-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1221,8 +1221,8 @@
 		<switch name="hydraulics/elevator-in-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-r-output">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1252,8 +1252,8 @@
 		<switch name="hydraulics/elevator-out-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-r-output">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1283,8 +1283,8 @@
 		<switch name="hydraulics/elevator-trim/rate">
 			<default value="0"/>
 			<test logic="OR" value="0.25">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 		</switch>
 		
@@ -1347,7 +1347,7 @@
 		<switch name="hydraulics/rudder-upper/switch">
 			<default value="0"/>
 			<test value="hydraulics/rudder-upper/summer">
-				/systems/hydraulic/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1386,7 +1386,7 @@
 		<switch name="hydraulics/rudder-lower/switch">
 			<default value="0"/>
 			<test value="hydraulics/rudder-lower/summer">
-				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1574,8 +1574,8 @@
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test logic="OR" value="1.66666666">
-				/systems/hydraulic/sys-1-psi ge 1500
-				/systems/hydraulic/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
 		</switch>
 		
@@ -1607,8 +1607,9 @@
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<test value="3.1">
-				/systems/hydraulic/sys-1-psi ge 1500
+			<test logic="OR" value="3.1">
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 		</switch>
 		
