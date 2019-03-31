@@ -78,7 +78,7 @@ var ELEC = {
 		dcTie_Dc2: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-2/contact-pos"),
 		dcTie_Dc3: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-3/contact-pos"),
 		dcTie_DcGndSvc: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos"),
-		tr3_LEmerDcDcBat: props.globals.getNode("/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos"),
+		tr3_Dc3: props.globals.getNode("/systems/electrical/rcb/tr-3-dc-3/contact-pos"),
 	},
 	Relay: { # 0 is Open, 1 is Closed
 		acGen1_LEmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos"),

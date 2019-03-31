@@ -984,6 +984,17 @@
 		</switch>
 		
 		<!-- Right Emergency AC Bus -->
+		<switch name="/systems/electrical/bus/r-emer-ac-src">
+			<description>Tell which source is being used, so that the TR 3 DC 3 RCB can not allow DC 3 bus in ADG ELEC mode</description>
+			<default value="0"/> <!-- OFF -->
+			<test value="1"> <!-- AC GEN 3 -->
+				/systems/electrical/relay/ac-gen-3-r-emer-ac/output ge 110
+			</test>
+			<test value="2"> <!-- ADG -->
+				/systems/electrical/relay/adg-r-emer-ac/output ge 110
+			</test>
+		</switch>
+		
 		<fcs_function name="/systems/electrical/bus/r-emer-ac">
 			<function>
 				<max>
@@ -1183,11 +1194,27 @@
 			</test>
 		</switch>
 		
+		<!-- TR 3 DC 3 Bus Remote Circuit Breaker -->
+		<switch name="/systems/electrical/rcb/tr-3-dc-3/contact-pos">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/tr-3/output-volt ge 25
+				/systems/electrical/bus/r-emer-ac-src eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/rcb/tr-3-dc-3/output">
+			<default value="0"/>
+			<test value="/systems/electrical/sources/tr-3/output-volt">
+				/systems/electrical/rcb/tr-3-dc-3/contact-pos eq 1
+			</test>
+		</switch>
+		
 		<!-- DC 1 Bus -->
 		<switch name="/systems/electrical/bus/dc-1-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR1 -->
+			<test value="1"> <!-- TR 1 -->
 				/systems/electrical/sources/tr-1/output-volt ge 25
 			</test>
 			<test value="2"> <!-- DC TIE -->
@@ -1208,7 +1235,7 @@
 		<switch name="/systems/electrical/bus/dc-2-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR2A -->
+			<test value="1"> <!-- TR 2A -->
 				/systems/electrical/sources/tr-2a/output-volt ge 25
 			</test>
 			<test value="2"> <!-- DC TIE -->
@@ -1228,7 +1255,7 @@
 		<!-- DC Ground Service Bus -->
 		<switch name="/systems/electrical/bus/dc-gndsvc-src">
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR2B -->
+			<test value="1"> <!-- TR 2B -->
 				/systems/electrical/sources/tr-2b/output-volt ge 25
 			</test>
 			<test value="2"> <!-- DC TIE -->
@@ -1249,8 +1276,8 @@
 		<switch name="/systems/electrical/bus/dc-3-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- TR3 --> <!-- Needs to be fixed, incorrectly powered in ADG Elec Mode -->
-				/systems/electrical/sources/tr-3/output-volt ge 25
+			<test value="1"> <!-- TR 3 -->
+				/systems/electrical/rcb/tr-3-dc-3/output ge 25
 			</test>
 			<test value="2"> <!-- DC TIE -->
 				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
@@ -1260,7 +1287,7 @@
 		<fcs_function name="/systems/electrical/bus/dc-3">
 			<function>
 				<max>
-					<property>/systems/electrical/sources/tr-3/output-volt</property>
+					<property>/systems/electrical/rcb/tr-3-dc-3/output</property>
 					<property>/systems/electrical/rcb/dc-tie-dc-3/output</property>
 				</max>
 			</function>
@@ -1317,19 +1344,12 @@
 			</test>
 		</switch>
 		
-		<!-- Left Emergency DC Bus/Battery DC Bus Shared Remote Circuit Breaker -->
-		<switch name="/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				/controls/electrical/switches/adg-elec eq 1
-				/systems/electrical/sources/tr-3/output-volt ge 25
-			</test>
-		</switch>
-		
-		<switch name="/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output">
+		<!-- Left Emergency DC Bus/Battery DC Bus Shared ADG ELEC Switch -->
+		<!-- I am pretty sure this switch mechanically connects them, in case of power failure from battery -->
+		<switch name="/systems/electrical/sources/tr-3/output-volt-adg-switched">
 			<default value="0"/>
 			<test value="/systems/electrical/sources/tr-3/output-volt">
-				/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/contact-pos eq 1
+				/controls/electrical/switches/adg-elec eq 1
 			</test>
 		</switch>
 		
@@ -1372,7 +1392,7 @@
 				<max>
 					<property>/systems/electrical/sources/tr-2a/output-volt</property>
 					<property>/systems/electrical/sources/tr-2b/output-volt</property>
-					<property>/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output</property>
+					<property>/systems/electrical/sources/tr-3/output-volt-adg-switched</property>
 					<property>/systems/electrical/bus/dc-bat-direct-regulator</property>
 				</max>
 			</function>
@@ -1411,7 +1431,7 @@
 				<max>
 					<property>/systems/electrical/bus/dc-1</property>
 					<property>/systems/electrical/sources/tr-1/output-volt</property>
-					<property>/systems/electrical/rcb/tr-3-l-emer-dc-dc-bat/output</property>
+					<property>/systems/electrical/sources/tr-3/output-volt-adg-switched</property>
 					<property>/systems/electrical/rcb/dc-bat-l-emer-dc/output</property>
 				</max>
 			</function>
