@@ -6,9 +6,8 @@
 <system name="MD-11: Hydraulics">
 	
 	<property value="500">/systems/hydraulics/sys-incr-rate</property> <!-- 2 seconds per 1000 psi -->
-	<property value="0">/systems/hydraulics/sys-1-psi</property>
-	<property value="0">/systems/hydraulics/sys-2-psi</property>
-	<property value="0">/systems/hydraulics/sys-3-psi</property>
+	<property value="0">/systems/hydraulics/rmp-1-3-psi</property>
+	<property value="0">/systems/hydraulics/rmp-2-3-psi</property>
 	
 	<channel name="Main Hydraulics" execrate="8">
 		
@@ -19,7 +18,7 @@
 			</test>
 		</switch>
 		
-		<!-- SYS1 -->
+		<!-- SYS 1 -->
 		<fcs_function name="/systems/hydraulics/l-eng-1-pump-psi-input">
 			<function>
 				<ifthen>
@@ -29,11 +28,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-1-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  2990
+							50    40
+							55  2990
 						</tableData>
 					</table>
 					<value>40</value>
@@ -57,11 +54,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-1-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  2990
+							50    40
+							55  2990
 						</tableData>
 					</table>
 					<value>40</value>
@@ -90,10 +85,18 @@
 		
 		<fcs_function name="/systems/hydraulics/sys-1-psi-cmd">
 			<function>
-				<max>
-					<property>/systems/hydraulics/l-eng-1-pump-psi</property>
-					<property>/systems/hydraulics/r-eng-1-pump-psi</property>
-				</max>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-1-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/l-eng-1-pump-psi</property>
+						<property>/systems/hydraulics/r-eng-1-pump-psi</property>
+						<property>/systems/hydraulics/rmp-1-3-psi</property>
+					</max>
+					<value>40</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
@@ -104,7 +107,7 @@
 			<output>/systems/hydraulics/sys-1-psi-debug</output>
 		</actuator>
 		
-		<!-- SYS2 -->
+		<!-- SYS 2 -->
 		<fcs_function name="/systems/hydraulics/l-eng-2-pump-psi-input">
 			<function>
 				<ifthen>
@@ -114,11 +117,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-2-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  3010
+							50    40
+							55  3010
 						</tableData>
 					</table>
 					<value>40</value>
@@ -142,11 +143,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-2-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  3010
+							50    40
+							55  3010
 						</tableData>
 					</table>
 					<value>40</value>
@@ -175,10 +174,18 @@
 		
 		<fcs_function name="/systems/hydraulics/sys-2-psi-cmd">
 			<function>
-				<max>
-					<property>/systems/hydraulics/l-eng-2-pump-psi</property>
-					<property>/systems/hydraulics/r-eng-2-pump-psi</property>
-				</max>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-2-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/l-eng-2-pump-psi</property>
+						<property>/systems/hydraulics/r-eng-2-pump-psi</property>
+						<property>/systems/hydraulics/rmp-2-3-psi</property>
+					</max>
+					<value>40</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
@@ -189,7 +196,7 @@
 			<output>/systems/hydraulics/sys-2-psi-debug</output>
 		</actuator>
 		
-		<!-- SYS3 -->
+		<!-- SYS 3 -->
 		<fcs_function name="/systems/hydraulics/l-eng-3-pump-psi-input">
 			<function>
 				<ifthen>
@@ -199,11 +206,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-3-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  2980
+							50    40
+							55  2980
 						</tableData>
 					</table>
 					<value>40</value>
@@ -227,11 +232,9 @@
 					</nq>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-						<independentVar lookup="column">/systems/hydraulics/sys-3-qty</independentVar>
 						<tableData>
-							    0.9  1.0
-							50  40    40
-							55  40  2980
+							50    40
+							55  2980
 						</tableData>
 					</table>
 					<value>40</value>
@@ -290,12 +293,21 @@
 		
 		<fcs_function name="/systems/hydraulics/sys-3-psi-cmd">
 			<function>
-				<max>
-					<property>/systems/hydraulics/l-eng-3-pump-psi</property>
-					<property>/systems/hydraulics/r-eng-3-pump-psi</property>
-					<property>/systems/hydraulics/aux-pump-1-psi</property>
-					<property>/systems/hydraulics/aux-pump-2-psi</property>
-				</max>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-3-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/l-eng-3-pump-psi</property>
+						<property>/systems/hydraulics/r-eng-3-pump-psi</property>
+						<property>/systems/hydraulics/aux-pump-1-psi</property>
+						<property>/systems/hydraulics/aux-pump-2-psi</property>
+						<property>/systems/hydraulics/rmp-1-3-psi</property>
+						<property>/systems/hydraulics/rmp-2-3-psi</property>
+					</max>
+					<value>40</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		

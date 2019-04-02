@@ -99,10 +99,16 @@ var HYD = {
 			me.system.setBoolValue(0);
 			manualHydLightt.stop();
 			me.Light.manualFlash.setValue(0);
+			# Apparently this happens when turning to MANUAL
+			me.Switch.rmp13.setBoolValue(1);
+			me.Switch.rmp23.setBoolValue(1);
 		} else {
 			me.system.setBoolValue(1);
 			manualHydLightt.stop();
 			me.Light.manualFlash.setValue(0);
+			# Apparently this happens when turning to AUTO
+			me.Switch.auxPump1.setBoolValue(0);
+			me.Switch.auxPump2.setBoolValue(0);
 		}
 	},
 	manualLight: func() {
