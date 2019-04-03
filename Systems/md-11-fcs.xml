@@ -13,7 +13,6 @@
 	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="50">fcc/flap/max-deg</property>
-	<property value="0.0">fcs/slat-pos-deg</property>
 	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Default gains for tuning -->
@@ -34,15 +33,6 @@
 	<property value="0">fcc/afs/yaw-cmd</property>
 	
 	<channel name="Libraries">
-		
-		<switch name="position/wow">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				gear/unit[0]/WOW eq 1
-				gear/unit[1]/WOW eq 1
-				gear/unit[2]/WOW eq 1
-			</test>
-		</switch>
 		
 		<switch name="fcc/afs/enabled">
 			<default value="0"/>
@@ -1191,7 +1181,7 @@
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-l-output">
 				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi-aft ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1222,7 +1212,7 @@
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-r-output">
 				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi-aft ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>

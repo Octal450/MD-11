@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Libraries -->
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+
+<system name="MD-11: Libraries">
+	
+	<channel name="FDM Rate Libraries">
+		
+		<switch name="position/wow">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				gear/unit[0]/WOW eq 1
+				gear/unit[1]/WOW eq 1
+				gear/unit[2]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="libraries/multi-engine-out">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state ne 3
+				/engines/engine[1]/state ne 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state ne 3
+				/engines/engine[2]/state ne 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[1]/state ne 3
+				/engines/engine[2]/state ne 3
+			</test>
+		</switch>
+	
+	</channel>
+
+</system>

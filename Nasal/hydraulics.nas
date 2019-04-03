@@ -18,6 +18,7 @@ var HYD = {
 		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
 		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
+		sys3LeakAft: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak-aft"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
@@ -46,6 +47,7 @@ var HYD = {
 		sys1: props.globals.getNode("/systems/hydraulics/sys-1-qty"),
 		sys2: props.globals.getNode("/systems/hydraulics/sys-2-qty"),
 		sys3: props.globals.getNode("/systems/hydraulics/sys-3-qty"),
+		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-qty-aft"),
 	},
 	Switch: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/switches/aux-pump-1"),
@@ -66,6 +68,7 @@ var HYD = {
 		me.Qty.sys1.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys2.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys3.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys3Aft.setValue(me.Qty.sys3.getValue());
 		me.Switch.auxPump1.setBoolValue(0);
 		me.Switch.auxPump2.setBoolValue(0);
 		me.Switch.lPump1.setBoolValue(1);
@@ -97,6 +100,7 @@ var HYD = {
 		me.Fail.sys1Leak.setBoolValue(0);
 		me.Fail.sys2Leak.setBoolValue(0);
 		me.Fail.sys3Leak.setBoolValue(0);
+		me.Fail.sys3LeakAft.setBoolValue(0);
 	},
 	systemMode: func() {
 		if (me.system.getBoolValue()) {
