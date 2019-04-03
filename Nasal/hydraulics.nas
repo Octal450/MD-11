@@ -8,6 +8,8 @@ var HYD = {
 		lPump1: props.globals.getNode("/systems/failures/hydraulics/l-pump-1"),
 		lPump2: props.globals.getNode("/systems/failures/hydraulics/l-pump-2"),
 		lPump3: props.globals.getNode("/systems/failures/hydraulics/l-pump-3"),
+		nrmp21: props.globals.getNode("/systems/failures/hydraulics/nrmp-2-1"),
+		nrmp32: props.globals.getNode("/systems/failures/hydraulics/nrmp-3-2"),
 		rPump1: props.globals.getNode("/systems/failures/hydraulics/r-pump-1"),
 		rPump2: props.globals.getNode("/systems/failures/hydraulics/r-pump-2"),
 		rPump3: props.globals.getNode("/systems/failures/hydraulics/r-pump-3"),
@@ -85,6 +87,8 @@ var HYD = {
 		me.Fail.lPump1.setBoolValue(0);
 		me.Fail.lPump2.setBoolValue(0);
 		me.Fail.lPump3.setBoolValue(0);
+		me.Fail.nrmp21.setBoolValue(0);
+		me.Fail.nrmp32.setBoolValue(0);
 		me.Fail.rPump1.setBoolValue(0);
 		me.Fail.rPump2.setBoolValue(0);
 		me.Fail.rPump3.setBoolValue(0);

@@ -420,6 +420,42 @@
 				/systems/failures/hydraulics/rmp-2-3 ne 1
 			</test>
 		</switch>
+		
+		<!-- Non Reversible Motor Pump 2-1 -->
+		<switch name="/systems/hydraulics/nrmp/sys-2-to-sys-1-cmd">
+			<default value="/systems/hydraulics/nrmp/sys-2-to-sys-1-cmd"/>
+			<test value="1">
+				/systems/hydraulics/sys-1-psi lt 2200
+			</test>
+			<test value="0">
+				/systems/hydraulics/sys-1-psi ge 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/nrmp/sys-2-to-sys-1">
+			<default value="0"/>
+			<test value="/systems/hydraulics/sys-2-psi-cmd">
+				/systems/hydraulics/nrmp/sys-2-to-sys-1-cmd eq 1
+			</test>
+		</switch>
+		
+		<!-- Non Reversible Motor Pump 3-2 -->
+		<switch name="/systems/hydraulics/nrmp/sys-3-to-sys-2-cmd">
+			<default value="/systems/hydraulics/nrmp/sys-3-to-sys-2-cmd"/>
+			<test value="1">
+				/systems/hydraulics/sys-2-psi lt 2200
+			</test>
+			<test value="0">
+				/systems/hydraulics/sys-2-psi ge 2400
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/nrmp/sys-3-to-sys-2">
+			<default value="0"/>
+			<test value="/systems/hydraulics/sys-3-psi-cmd">
+				/systems/hydraulics/nrmp/sys-3-to-sys-2-cmd eq 1
+			</test>
+		</switch>
 	
 	</channel>
 	

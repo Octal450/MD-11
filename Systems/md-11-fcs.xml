@@ -1346,8 +1346,9 @@
 		
 		<switch name="hydraulics/rudder-upper/switch">
 			<default value="0"/>
-			<test value="hydraulics/rudder-upper/summer">
+			<test logic="OR" value="hydraulics/rudder-upper/summer">
 				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -1385,8 +1386,9 @@
 		
 		<switch name="hydraulics/rudder-lower/switch">
 			<default value="0"/>
-			<test value="hydraulics/rudder-lower/summer">
+			<test logic="OR" value="hydraulics/rudder-lower/summer">
 				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
