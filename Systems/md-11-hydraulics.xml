@@ -6,8 +6,11 @@
 <system name="MD-11: Hydraulics">
 	
 	<property value="500">/systems/hydraulics/sys-incr-rate</property> <!-- 2 seconds per 1000 psi -->
-	<property value="0">/systems/hydraulics/rmp-1-3-psi</property>
-	<property value="0">/systems/hydraulics/rmp-2-3-psi</property>
+	<property value="0">/systems/hydraulics/rmp/sys-1-to-sys-3</property>
+	<property value="0">/systems/hydraulics/rmp/sys-2-to-sys-3</property>
+	<property value="0">/systems/hydraulics/rmp/sys-3-to-sys-1</property>
+	<property value="0">/systems/hydraulics/rmp/sys-3-to-sys-2</property>
+	<property value="0">/systems/hydraulics/rmp/sys-multi-thru-sys-3</property>
 	
 	<channel name="Main Hydraulics" execrate="8">
 		
@@ -83,7 +86,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/hydraulics/sys-1-psi-cmd">
+		<fcs_function name="/systems/hydraulics/sys-1-pre-psi-cmd">
 			<function>
 				<ifthen>
 					<ge>
@@ -93,7 +96,23 @@
 					<max>
 						<property>/systems/hydraulics/l-eng-1-pump-psi</property>
 						<property>/systems/hydraulics/r-eng-1-pump-psi</property>
-						<property>/systems/hydraulics/rmp-1-3-psi</property>
+					</max>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/hydraulics/sys-1-psi-cmd">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-1-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/sys-1-pre-psi-cmd</property>
+						<property>/systems/hydraulics/rmp/sys-3-to-sys-1</property>
+						<property>/systems/hydraulics/rmp/sys-multi-thru-sys-3</property>
 					</max>
 					<value>40</value>
 				</ifthen>
@@ -172,7 +191,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/hydraulics/sys-2-psi-cmd">
+		<fcs_function name="/systems/hydraulics/sys-2-pre-psi-cmd">
 			<function>
 				<ifthen>
 					<ge>
@@ -182,7 +201,23 @@
 					<max>
 						<property>/systems/hydraulics/l-eng-2-pump-psi</property>
 						<property>/systems/hydraulics/r-eng-2-pump-psi</property>
-						<property>/systems/hydraulics/rmp-2-3-psi</property>
+					</max>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/hydraulics/sys-2-psi-cmd">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-2-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/sys-2-pre-psi-cmd</property>
+						<property>/systems/hydraulics/rmp/sys-3-to-sys-2</property>
+						<property>/systems/hydraulics/rmp/sys-multi-thru-sys-3</property>
 					</max>
 					<value>40</value>
 				</ifthen>
@@ -291,7 +326,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/hydraulics/sys-3-psi-cmd">
+		<fcs_function name="/systems/hydraulics/sys-3-pre-psi-cmd">
 			<function>
 				<ifthen>
 					<ge>
@@ -303,11 +338,34 @@
 						<property>/systems/hydraulics/r-eng-3-pump-psi</property>
 						<property>/systems/hydraulics/aux-pump-1-psi</property>
 						<property>/systems/hydraulics/aux-pump-2-psi</property>
-						<property>/systems/hydraulics/rmp-1-3-psi</property>
-						<property>/systems/hydraulics/rmp-2-3-psi</property>
 					</max>
 					<value>40</value>
 				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/hydraulics/sys-3-rmp-psi-cmd">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/hydraulics/sys-3-qty</property>
+						<value>1.0</value>
+					</ge>
+					<max>
+						<property>/systems/hydraulics/rmp/sys-1-to-sys-3</property>
+						<property>/systems/hydraulics/rmp/sys-2-to-sys-3</property>
+					</max>
+					<value>40</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/hydraulics/sys-3-psi-cmd">
+			<function>
+				<max>
+					<property>/systems/hydraulics/sys-3-pre-psi-cmd</property>
+					<property>/systems/hydraulics/sys-3-rmp-psi-cmd</property>
+				</max>
 			</function>
 		</fcs_function>
 		
@@ -317,6 +375,51 @@
 			<rate_limit sense="decr">/systems/hydraulics/sys-decr-rate</rate_limit>
 			<output>/systems/hydraulics/sys-3-psi-debug</output>
 		</actuator>
+		
+		<!-- Reversible Motor Pump 1-3 -->
+		<switch name="/systems/hydraulics/rmp/sys-1-to-sys-3">
+			<default value="0"/>
+			<test logic="AND" value="/systems/hydraulics/sys-1-pre-psi-cmd">
+				/controls/hydraulics/switches/rmp-1-3 eq 1
+				/systems/failures/hydraulics/rmp-1-3 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/rmp/sys-3-to-sys-1">
+			<default value="0"/>
+			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
+				/controls/hydraulics/switches/rmp-1-3 eq 1
+				/systems/failures/hydraulics/rmp-1-3 ne 1
+			</test>
+		</switch>
+		
+		<!-- Reversible Motor Pump 2-3 -->
+		<switch name="/systems/hydraulics/rmp/sys-2-to-sys-3">
+			<default value="0"/>
+			<test logic="AND" value="/systems/hydraulics/sys-2-pre-psi-cmd">
+				/controls/hydraulics/switches/rmp-2-3 eq 1
+				/systems/failures/hydraulics/rmp-2-3 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/rmp/sys-3-to-sys-2">
+			<default value="0"/>
+			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
+				/controls/hydraulics/switches/rmp-2-3 eq 1
+				/systems/failures/hydraulics/rmp-2-3 ne 1
+			</test>
+		</switch>
+		
+		<!-- Reversible Motor Pump Multi -->
+		<switch name="/systems/hydraulics/rmp/sys-multi-thru-sys-3">
+			<default value="0"/>
+			<test logic="AND" value="/systems/hydraulics/sys-3-rmp-psi-cmd">
+				/controls/hydraulics/switches/rmp-1-3 eq 1
+				/systems/failures/hydraulics/rmp-1-3 ne 1
+				/controls/hydraulics/switches/rmp-2-3 eq 1
+				/systems/failures/hydraulics/rmp-2-3 ne 1
+			</test>
+		</switch>
 	
 	</channel>
 	
