@@ -39,27 +39,27 @@ setprop("/controls/fctl/flap-gear-max", 300);
 
 var FCTL = {
 	init: func() {
-		setprop("/controls/fctl/lsas/left-out", 1);
-		setprop("/controls/fctl/lsas/left-in", 1);
-		setprop("/controls/fctl/lsas/right-in", 1);
-		setprop("/controls/fctl/lsas/right-out", 1);
-		setprop("/controls/fctl/lsas/feel-knob", 0);
-		setprop("/controls/fctl/lsas/feel-man", 0);
-		setprop("/controls/fctl/yd/upper-a", 1);
-		setprop("/controls/fctl/yd/upper-b", 1);
-		setprop("/controls/fctl/yd/lower-a", 1);
-		setprop("/controls/fctl/yd/lower-b", 1);
-		setprop("/controls/fctl/flap/limit-knob", 0);
-		setprop("/controls/fctl/lsas/light/left-out-fail", 1);
-		setprop("/controls/fctl/lsas/light/left-in-fail", 1);
-		setprop("/controls/fctl/lsas/light/right-in-fail", 1);
-		setprop("/controls/fctl/lsas/light/right-out-fail", 1);
-		setprop("/controls/fctl/lsas/light/manual", 0);
-		setprop("/controls/fctl/yd/light/upper-a-fail", 1);
-		setprop("/controls/fctl/yd/light/upper-b-fail", 1);
-		setprop("/controls/fctl/yd/light/lower-a-fail", 1);
-		setprop("/controls/fctl/yd/light/lower-b-fail", 1);
-		setprop("/controls/fctl/flap/light/manual", 0);
+		setprop("/controls/fctl/lsas-left-out", 1);
+		setprop("/controls/fctl/lsas-left-in", 1);
+		setprop("/controls/fctl/lsas-right-in", 1);
+		setprop("/controls/fctl/lsas-right-out", 1);
+		setprop("/controls/fctl/lsas-feel-knob", 0);
+		setprop("/controls/fctl/lsas-feel-man", 0);
+		setprop("/controls/fctl/yd-upper-a", 1);
+		setprop("/controls/fctl/yd-upper-b", 1);
+		setprop("/controls/fctl/yd-lower-a", 1);
+		setprop("/controls/fctl/yd-lower-b", 1);
+		setprop("/controls/fctl/flap-limit-knob", 0);
+		setprop("/controls/fctl/light/lsas-left-out-fail", 1);
+		setprop("/controls/fctl/light/lsas-left-in-fail", 1);
+		setprop("/controls/fctl/light/lsas-right-in-fail", 1);
+		setprop("/controls/fctl/light/lsas-right-out-fail", 1);
+		setprop("/controls/fctl/light/lsas-manual", 0);
+		setprop("/controls/fctl/light/yd-upper-a-fail", 1);
+		setprop("/controls/fctl/light/yd-upper-b-fail", 1);
+		setprop("/controls/fctl/light/yd-lower-a-fail", 1);
+		setprop("/controls/fctl/light/yd-lower-b-fail", 1);
+		setprop("/controls/fctl/light/flap-limit-manual", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/left-out-active", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/left-in-active", 0);
 		setprop("/fdm/jsbsim/fcc/lsas/right-in-active", 0);
@@ -95,105 +95,105 @@ var FCTL = {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-pwr", 0);
 		}
 		
-		if (getprop("/controls/fctl/lsas/feel-man") != 1 and (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25) and !elevFeelFail) {
+		if (getprop("/controls/fctl/lsas-feel-man") != 1 and (l_emer_dc >= 25 or r_emer_dc >= 25 or dc1 >= 25 or dc2 >= 25 or dc3 >= 25) and !elevFeelFail) {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto", 0);
 		}
 		
 		# L OUTBD LSAS
-		if (getprop("/controls/fctl/lsas/left-out") == 1 and (sys1_psi >= 1500 or sys2_psi >= 1500) and dc3 >= 25 and !lsas_lo_fail) {
+		if (getprop("/controls/fctl/lsas-left-out") == 1 and (sys1_psi >= 1500 or sys2_psi >= 1500) and dc3 >= 25 and !lsas_lo_fail) {
 			setprop("/fdm/jsbsim/fcc/lsas/left-out-active", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/left-out-active", 0);
 		}
 		
 		# L INBD LSAS
-		if (getprop("/controls/fctl/lsas/left-in") == 1 and (sys2_psi >= 1500 or sys3_psi >= 1500) and l_emer_dc >= 25 and !lsas_li_fail) {
+		if (getprop("/controls/fctl/lsas-left-in") == 1 and (sys2_psi >= 1500 or sys3_psi >= 1500) and l_emer_dc >= 25 and !lsas_li_fail) {
 			setprop("/fdm/jsbsim/fcc/lsas/left-in-active", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/left-in-active", 0);
 		}
 		
 		# R INBD LSAS
-		if (getprop("/controls/fctl/lsas/right-in") == 1 and (sys1_psi >= 1500 or sys3_psi >= 1500) and r_emer_dc >= 25 and !lsas_ri_fail) {
+		if (getprop("/controls/fctl/lsas-right-in") == 1 and (sys1_psi >= 1500 or sys3_psi >= 1500) and r_emer_dc >= 25 and !lsas_ri_fail) {
 			setprop("/fdm/jsbsim/fcc/lsas/right-in-active", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/right-in-active", 0);
 		}
 		
 		# R OUTBD LSAS
-		if (getprop("/controls/fctl/lsas/right-out") == 1 and (sys1_psi >= 1500 or sys2_psi >= 1500) and dc1 >= 25 and !lsas_ro_fail) {
+		if (getprop("/controls/fctl/lsas-right-out") == 1 and (sys1_psi >= 1500 or sys2_psi >= 1500) and dc1 >= 25 and !lsas_ro_fail) {
 			setprop("/fdm/jsbsim/fcc/lsas/right-out-active", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/lsas/right-out-active", 0);
 		}
 		
 		# UPR YD
-		if (getprop("/controls/fctl/yd/upper-a") == 1 and sys1_psi >= 1500 and dc3 >= 25 and !yd_upra_fail) {
+		if (getprop("/controls/fctl/yd-upper-a") == 1 and sys1_psi >= 1500 and dc3 >= 25 and !yd_upra_fail) {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-upr", 1);
-		} else if (getprop("/controls/fctl/yd/upper-b") == 1 and sys1_psi >= 1500 and dc3 >= 25 and !yd_uprb_fail) {
+		} else if (getprop("/controls/fctl/yd-upper-b") == 1 and sys1_psi >= 1500 and dc3 >= 25 and !yd_uprb_fail) {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-upr", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-upr", 0);
 		}
 		
 		# LWR YD
-		if (getprop("/controls/fctl/yd/lower-a") == 1 and sys2_psi >= 1500 and dc1 >= 25 and !yd_lwra_fail) {
+		if (getprop("/controls/fctl/yd-lower-a") == 1 and sys2_psi >= 1500 and dc1 >= 25 and !yd_lwra_fail) {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-lwr", 1);
-		} else if (getprop("/controls/fctl/yd/lower-b") == 1 and sys2_psi >= 1500 and dc1 >= 25 and !yd_lwrb_fail) {
+		} else if (getprop("/controls/fctl/yd-lower-b") == 1 and sys2_psi >= 1500 and dc1 >= 25 and !yd_lwrb_fail) {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-lwr", 1);
 		} else {
 			setprop("/fdm/jsbsim/fcc/yaw/avail-lwr", 0);
 		}
 		
 		# Fault lights
-		if (getprop("/controls/fctl/lsas/left-out") == 1 and lsas_lo_fail) {
-			setprop("/controls/fctl/lsas/light/left-out-fail", 1);
+		if (getprop("/controls/fctl/lsas-left-out") == 1 and lsas_lo_fail) {
+			setprop("/controls/fctl/light/lsas-left-out-fail", 1);
 		} else {
-			setprop("/controls/fctl/lsas/light/left-out-fail", 0);
+			setprop("/controls/fctl/light/lsas-left-out-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/lsas/left-in") == 1 and lsas_li_fail) {
-			setprop("/controls/fctl/lsas/light/left-in-fail", 1);
+		if (getprop("/controls/fctl/lsas-left-in") == 1 and lsas_li_fail) {
+			setprop("/controls/fctl/light/lsas-left-in-fail", 1);
 		} else {
-			setprop("/controls/fctl/lsas/light/left-in-fail", 0);
+			setprop("/controls/fctl/light/lsas-left-in-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/lsas/right-in") == 1 and lsas_ri_fail) {
-			setprop("/controls/fctl/lsas/light/right-in-fail", 1);
+		if (getprop("/controls/fctl/lsas-right-in") == 1 and lsas_ri_fail) {
+			setprop("/controls/fctl/light/lsas-right-in-fail", 1);
 		} else {
-			setprop("/controls/fctl/lsas/light/right-in-fail", 0);
+			setprop("/controls/fctl/light/lsas-right-in-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/lsas/right-out") == 1 and lsas_ro_fail) {
-			setprop("/controls/fctl/lsas/light/right-out-fail", 1);
+		if (getprop("/controls/fctl/lsas-right-out") == 1 and lsas_ro_fail) {
+			setprop("/controls/fctl/light/lsas-right-out-fail", 1);
 		} else {
-			setprop("/controls/fctl/lsas/light/right-out-fail", 0);
+			setprop("/controls/fctl/light/lsas-right-out-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/yd/upper-a") == 1 and yd_upra_fail) {
-			setprop("/controls/fctl/yd/light/upper-a-fail", 1);
+		if (getprop("/controls/fctl/yd-upper-a") == 1 and yd_upra_fail) {
+			setprop("/controls/fctl/light/yd-upper-a-fail", 1);
 		} else {
-			setprop("/controls/fctl/yd/light/upper-a-fail", 0);
+			setprop("/controls/fctl/light/yd-upper-a-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/yd/upper-b") == 1 and yd_uprb_fail) {
-			setprop("/controls/fctl/yd/light/upper-b-fail", 1);
+		if (getprop("/controls/fctl/yd-upper-b") == 1 and yd_uprb_fail) {
+			setprop("/controls/fctl/light/yd-upper-b-fail", 1);
 		} else {
-			setprop("/controls/fctl/yd/light/upper-b-fail", 0);
+			setprop("/controls/fctl/light/yd-upper-b-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/yd/lower-a") == 1 and yd_lwra_fail) {
-			setprop("/controls/fctl/yd/light/lower-a-fail", 1);
+		if (getprop("/controls/fctl/yd-lower-a") == 1 and yd_lwra_fail) {
+			setprop("/controls/fctl/light/yd-lower-a-fail", 1);
 		} else {
-			setprop("/controls/fctl/yd/light/lower-a-fail", 0);
+			setprop("/controls/fctl/light/yd-lower-a-fail", 0);
 		}
 		
-		if (getprop("/controls/fctl/yd/lower-b") == 1 and yd_lwrb_fail) {
-			setprop("/controls/fctl/yd/light/lower-b-fail", 1);
+		if (getprop("/controls/fctl/yd-lower-b") == 1 and yd_lwrb_fail) {
+			setprop("/controls/fctl/light/yd-lower-b-fail", 1);
 		} else {
-			setprop("/controls/fctl/yd/light/lower-b-fail", 0);
+			setprop("/controls/fctl/light/yd-lower-b-fail", 0);
 		}
 		
 		# Max Speed Calculations
@@ -294,7 +294,7 @@ var FCTL = {
 		}
 		
 		# Flap Limiter
-		flapLimKnob = getprop("/controls/fctl/flap/limit-knob");
+		flapLimKnob = getprop("/controls/fctl/flap-limit-knob");
 		if (IAS > flap20_25Max and flapLimKnob == 0 and !flapLimFail) {
 			setprop("/fdm/jsbsim/fcc/flap/max-deg", 22);
 		} else if (IAS > flap28Max and flapLimKnob == 0 and !flapLimFail) {
@@ -309,15 +309,15 @@ var FCTL = {
 		
 		# Manual Lights
 		if (getprop("/fdm/jsbsim/fcc/lsas/elevator-feel-auto") != 1 or elevFeelFail) {
-			setprop("/controls/fctl/lsas/light/manual", 1);
+			setprop("/controls/fctl/light/lsas-manual", 1);
 		} else {
-			setprop("/controls/fctl/lsas/light/manual", 0);
+			setprop("/controls/fctl/light/lsas-manual", 0);
 		}
 		
 		if (flapLimKnob > 0 or flapLimFail) {
-			setprop("/controls/fctl/flap/light/manual", 1);
+			setprop("/controls/fctl/light/flap-limit-manual", 1);
 		} else {
-			setprop("/controls/fctl/flap/light/manual", 0);
+			setprop("/controls/fctl/light/flap-limit-manual", 0);
 		}
 	},
 };

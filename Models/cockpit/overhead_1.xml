@@ -7248,7 +7248,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/flap/light/manual</property>
+					<property>controls/fctl/light/flap-limit-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7268,7 +7268,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/fctl/flap/limit-knob</property>
+				<property>controls/fctl/flap-limit-knob</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
@@ -7280,7 +7280,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/fctl/flap/limit-knob</property>
+				<property>controls/fctl/flap-limit-knob</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -7291,7 +7291,7 @@
 		<type>rotate</type>
 		<object-name>FlapLimit.knob</object-name>
 		<object-name>FlapLimit.light</object-name>
-		<property>controls/fctl/flap/limit-knob</property>
+		<property>controls/fctl/flap-limit-knob</property>
 		<factor>45</factor>
 		<axis>
 			<x>1</x>
@@ -7311,7 +7311,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/light/manual</property>
+					<property>controls/fctl/light/lsas-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7332,12 +7332,12 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fctl/lsas/feel-knob</property>
+				<property>controls/fctl/lsas-feel-knob</property>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas/feel-man</property>
+				<property>controls/fctl/lsas-feel-man</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7355,8 +7355,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
-					setprop("/controls/fctl/lsas/feel-knob", -2);
+				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
+					setprop("/controls/fctl/lsas-feel-knob", -2);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7365,7 +7365,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/controls/fctl/lsas-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7382,8 +7382,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
-					setprop("/controls/fctl/lsas/feel-knob", -1);
+				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
+					setprop("/controls/fctl/lsas-feel-knob", -1);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7392,7 +7392,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/controls/fctl/lsas-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7409,8 +7409,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
-					setprop("/controls/fctl/lsas/feel-knob", 1);
+				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
+					setprop("/controls/fctl/lsas-feel-knob", 1);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7419,7 +7419,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/controls/fctl/lsas-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7436,8 +7436,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas/feel-man") == 1) {
-					setprop("/controls/fctl/lsas/feel-knob", 2);
+				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
+					setprop("/controls/fctl/lsas-feel-knob", 2);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7446,7 +7446,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas/feel-knob", 0);
+					setprop("/controls/fctl/lsas-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7458,7 +7458,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/lsas/feel-man</property>
+		<property>controls/fctl/lsas-feel-man</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -7471,7 +7471,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/lsas/feel-knob</property>
+		<property>controls/fctl/lsas-feel-knob</property>
 		<interpolation>
 			<entry><ind>-2</ind><dep> 65</dep></entry>
 			<entry><ind>-1</ind><dep> 32</dep></entry>
@@ -7522,7 +7522,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas/left-out</property>
+				<property>controls/fctl/lsas-left-out</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7536,7 +7536,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/light/left-out-fail</property>
+					<property>controls/fctl/light/lsas-left-out-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7552,7 +7552,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/left-out</property>
+					<property>controls/fctl/lsas-left-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7594,7 +7594,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas/left-in</property>
+				<property>controls/fctl/lsas-left-in</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7608,7 +7608,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/light/left-in-fail</property>
+					<property>controls/fctl/light/lsas-left-in-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7624,7 +7624,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/left-in</property>
+					<property>controls/fctl/lsas-left-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7666,7 +7666,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas/right-in</property>
+				<property>controls/fctl/lsas-right-in</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7680,7 +7680,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/light/right-in-fail</property>
+					<property>controls/fctl/light/lsas-right-in-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7696,7 +7696,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/right-in</property>
+					<property>controls/fctl/lsas-right-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7738,7 +7738,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas/right-out</property>
+				<property>controls/fctl/lsas-right-out</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7752,7 +7752,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/light/right-out-fail</property>
+					<property>controls/fctl/light/lsas-right-out-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7768,7 +7768,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lsas/right-out</property>
+					<property>controls/fctl/lsas-right-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7810,7 +7810,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/yd/upper-a</property>
+				<property>controls/fctl/yd-upper-a</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7824,7 +7824,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/light/upper-a-fail</property>
+					<property>controls/fctl/light/yd-upper-a-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7840,7 +7840,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/upper-a</property>
+					<property>controls/fctl/yd-upper-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7882,7 +7882,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/yd/upper-b</property>
+				<property>controls/fctl/yd-upper-b</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7896,7 +7896,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/light/upper-b-fail</property>
+					<property>controls/fctl/light/yd-upper-b-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7912,7 +7912,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/upper-b</property>
+					<property>controls/fctl/yd-upper-b</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7954,7 +7954,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/yd/lower-a</property>
+				<property>controls/fctl/yd-lower-a</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7968,7 +7968,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/light/lower-a-fail</property>
+					<property>controls/fctl/light/yd-lower-a-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7984,7 +7984,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/lower-a</property>
+					<property>controls/fctl/yd-lower-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8026,7 +8026,7 @@
 				</condition>
 
 				<command>property-toggle</command>
-				<property>controls/fctl/yd/lower-b</property>
+				<property>controls/fctl/yd-lower-b</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -8040,7 +8040,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/light/lower-b-fail</property>
+					<property>controls/fctl/light/yd-lower-b-fail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -8056,7 +8056,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/yd/lower-b</property>
+					<property>controls/fctl/yd-lower-b</property>
 					<value>0</value>
 				</equals>
 				<equals>

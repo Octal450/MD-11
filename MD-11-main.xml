@@ -472,9 +472,7 @@
 			</engine>
 		</engines>
 		<fctl n="0">
-			<lsas n="0">
-				<feel-knob type="int">0</feel-knob>
-			</lsas>
+			<lsas-feel-knob type="int">0</lsas-feel-knob>
 		</fctl>
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
