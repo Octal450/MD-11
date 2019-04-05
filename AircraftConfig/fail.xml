@@ -407,9 +407,6 @@
 			<checkbox>
 				<label>LSAS L OUTBD</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable</property>
-				</enable>
 				<property>/systems/failures/lsas-l-out</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -420,9 +417,6 @@
 			<checkbox>
 				<label>LSAS L INBD</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable</property>
-				</enable>
 				<property>/systems/failures/lsas-l-in</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -433,9 +427,6 @@
 			<checkbox>
 				<label>LSAS R INBD</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable</property>
-				</enable>
 				<property>/systems/failures/lsas-r-in</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -446,9 +437,6 @@
 			<checkbox>
 				<label>LSAS R OUTBD</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable</property>
-				</enable>
 				<property>/systems/failures/lsas-r-out</property>
 				<binding>
 					<command>dialog-apply</command>
@@ -499,9 +487,6 @@
 			<checkbox>
 				<label>ELEV FEEL</label>
 				<halign>left</halign>
-				<enable>
-					<property>/lsas/enable</property>
-				</enable>
 				<property>/systems/failures/elev-feel</property>
 				<binding>
 					<command>dialog-apply</command>
