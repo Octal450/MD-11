@@ -91,6 +91,22 @@ setlistener("/controls/switches/no-smoking-sign", func {
 # Various Other Stuff #
 #######################
 
+var Master = { # Setup like property tree
+	Controls: {
+		Gear: {
+			brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
+		},
+	},
+	Sim: {
+		Time: {
+			elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
+		},
+	},
+	Velocities: {
+		groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
+	},
+};
+
 var systemsInit = func {
 	systems.ELEC.init();
 	systems.PNEU.init();
@@ -119,12 +135,18 @@ var systemsLoop = maketimer(0.1, func {
 	systems.eng_loop();
 	fadec.fadecLoop();
 	
-	if ((getprop("/controls/pneumatic/switches/groundair") or getprop("/controls/switches/cart")) and ((getprop("/velocities/groundspeed-kt") > 2) or getprop("/controls/gear/brake-parking") == 0)) {
-		setprop("/controls/switches/cart", 0);
-		setprop("/controls/pneumatic/switches/groundair", 0);
+	if ((Master.Velocities.groundspeedKt.getValue() >= 2) or !Master.Controls.Gear.brakeParking.getBoolValue()) {
+		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
+			systems.ELEC.Source.Ext.cart.setBoolValue(0);
+			systems.ELEC.Switch.extPwr.setBoolValue(0);
+			systems.ELEC.Switch.extGPwr.setBoolValue(0);
+		}
+		if (getprop("/controls/pneumatic/switches/groundair")) { # To be deprecated
+			setprop("/controls/pneumatic/switches/groundair", 0);
+		}
 	}
 
-	if (getprop("/velocities/groundspeed-kt") > 15) {
+	if (Master.Velocities.groundspeedKt.getValue() >= 15) {
 		setprop("/systems/shake/effect", 1);
 	} else {
 		setprop("/systems/shake/effect", 0);
@@ -159,7 +181,7 @@ canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
 	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {return me;}
 	me._lastText = text;
-	me.set("text", typeof(text) == 'scalar' ? text : "");
+	me.set("text", typeof(text) == "scalar" ? text : "");
 };
 canvas.Element._lastVisible = nil;
 canvas.Element.show = func {
@@ -177,10 +199,6 @@ canvas.Element.setVisible = func(vis) {
 	me._lastVisible = vis;
 	me.setBool("visible", vis);
 };
-
-setprop("/controls/flight/flap-lever", 0);
-setprop("/controls/flight/flap-output", 0);
-setprop("/controls/flight/flap-txt", 0);
 
 controls.flapsDown = func(step) {
 	if (step == 1) {
@@ -326,7 +344,6 @@ var retractSpeedbrake = func {
 var lightsLoop = maketimer(0.2, func {
 	# Logo and navigation lights
 	setting = getprop("/controls/lighting/nav-lights");
-	nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
 	
 	if (setting == 1) {
 		nav_lights.setBoolValue(1);

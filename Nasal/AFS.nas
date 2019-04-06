@@ -625,8 +625,8 @@ var ITAF = {
 			}
 		} else {
 			Output.ap1.setBoolValue(0);
-			if (!Custom.Input.ovrd2.getBoolValue()) {
-				Custom.Internal.activeFMSTemp = 2;
+			if (!Custom.Input.ovrd2.getBoolValue() and !Output.ap2.getBoolValue()) {
+				Custom.Internal.activeFMS.setValue(2);
 			}
 			me.apOffFunction();
 		}
@@ -648,8 +648,8 @@ var ITAF = {
 			}
 		} else {
 			Output.ap2.setBoolValue(0);
-			if (!Custom.Input.ovrd1.getBoolValue()) {
-				Custom.Internal.activeFMSTemp = 1;
+			if (!Custom.Input.ovrd1.getBoolValue() and !Output.ap1.getBoolValue()) {
+				Custom.Internal.activeFMS.setValue(1);
 			}
 			me.apOffFunction();
 		}
@@ -667,7 +667,6 @@ var ITAF = {
 			}
 			if (Text.vert.getValue() == "ROLLOUT") {
 				fms.CORE.resetFMS();
-				print("FMS reset called");
 			}
 		}
 	},
@@ -1084,19 +1083,15 @@ var ITAF = {
 		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
 		Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue();
 		
-		if (!Output.athr.getBoolValue() and (!Custom.Input.ovrd1Temp or !Custom.Input.ovrd2Temp)) {
-			me.athrMaster(1);
-		}
-		
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-			
-			if (Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) { # Switch active FMS
+			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
 				if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd2Temp) {
-					Custom.Internal.activeFMSTemp = 2;
+					Custom.Internal.activeFMS.setValue(2);
 				} else if (Custom.Internal.activeFMSTemp == 2 and !Custom.Input.ovrd1Temp) {
-					Custom.Internal.activeFMSTemp = 1;
+					Custom.Internal.activeFMS.setValue(1);
 				}
 			}
+			Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue(); # Update it after we just set it
 			# Note: AP will not engage in vert mode 6
 			if (Custom.Internal.activeFMSTemp == 1 and !Custom.Input.ovrd1Temp) { # AP1 on
 				me.ap1Master(1);
@@ -1105,6 +1100,9 @@ var ITAF = {
 				me.ap2Master(1);
 				me.ap1Master(0);
 			}
+		}
+		if (!Output.athr.getBoolValue() and (!Custom.Input.ovrd1Temp or !Custom.Input.ovrd2Temp)) {
+			me.athrMaster(1);
 		}
 	},
 	updateOVRD: func() {

@@ -142,6 +142,7 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
 		Ext: {
+			cart: props.globals.getNode("/controls/switches/cart"),
 			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
 			hertzGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/ext/output-volt"),
@@ -234,6 +235,7 @@ var ELEC = {
 		me.system.setBoolValue(1);
 		manualElecLightt.stop();
 		me.Light.manualFlash.setValue(0);
+		me.Source.Ext.cart.setBoolValue(0);
 	},
 	resetFail: func() {
 		me.Fail.apu.setBoolValue(0);
