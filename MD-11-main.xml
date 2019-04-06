@@ -472,7 +472,17 @@
 			</engine>
 		</engines>
 		<fctl n="0">
+			<flap-limit-knob type="int">0</flap-limit-knob>
 			<lsas-feel-knob type="int">0</lsas-feel-knob>
+			<lsas-feel-man type="bool">0</lsas-feel-man>
+			<lsas-left-in type="bool">1</lsas-left-in>
+			<lsas-left-out type="bool">1</lsas-left-out>
+			<lsas-right-in type="bool">1</lsas-right-in>
+			<lsas-right-out type="bool">1</lsas-right-out>
+			<yd-upper-a type="bool">1</yd-upper-a>
+			<yd-upper-b type="bool">1</yd-upper-b>
+			<yd-lower-a type="bool">1</yd-lower-a>
+			<yd-lower-b type="bool">1</yd-lower-b>
 		</fctl>
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
@@ -1069,6 +1079,10 @@
 	</input>
 	
 	<instrumentation n="0">
+		<airspeed-indicator n="0">
+			<indicated-mach type="double">0</indicated-mach>
+			<indicated-speed-kt type="double">0</indicated-speed-kt>
+		</airspeed-indicator>
 		<altimeter n="0">
 			<indicated-altitude-ft type="double">0</indicated-altitude-ft>
 		</altimeter>
@@ -1145,6 +1159,17 @@
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
+		<irs n="0">
+			<ir n="0">
+				<aligned type="bool">0</aligned>
+			</ir>
+			<ir n="1">
+				<aligned type="bool">0</aligned>
+			</ir>
+			<ir n="2">
+				<aligned type="bool">0</aligned>
+			</ir>
+		</irs>
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -1275,10 +1300,6 @@
 		<laptop-mode type="bool">0</laptop-mode>
 	</options>
 	
-	<rcws n="0">
-		<equipped type="bool">0</equipped>
-	</rcws>
-	
 	<systems n="0">
 		<acconfig n="0">
 			<autoconfig-running>0</autoconfig-running>
@@ -1306,6 +1327,18 @@
 				<gen-2 type="bool">0</gen-2>
 				<gen-3 type="bool">0</gen-3>
 			</electrical>
+			<fctl n="0">
+				<flap-limit type="bool">0</flap-limit>
+				<lsas-elev-feel type="bool">0</lsas-elev-feel>
+				<lsas-left-in type="bool">0</lsas-left-in>
+				<lsas-left-out type="bool">0</lsas-left-out>
+				<lsas-right-in type="bool">0</lsas-right-in>
+				<lsas-right-out type="bool">0</lsas-right-out>
+				<yd-upper-a type="bool">0</yd-upper-a>
+				<yd-upper-b type="bool">0</yd-upper-b>
+				<yd-lower-a type="bool">0</yd-lower-a>
+				<yd-lower-b type="bool">0</yd-lower-b>
+			</fctl>
 			<hydraulics n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
@@ -1373,7 +1406,7 @@
 			<file>Aircraft/IDG-MD-11X/Nasal/pneumatics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/hydraulics.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/fuel.nas</file>
-			<file>Aircraft/IDG-MD-11X/Nasal/fctl.nas</file>
+			<file>Aircraft/IDG-MD-11X/Nasal/master-system.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/engines.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/brakes.nas</file>
 			<file>Aircraft/IDG-MD-11X/Nasal/IRS.nas</file>

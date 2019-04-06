@@ -407,7 +407,7 @@
 			<checkbox>
 				<label>LSAS L OUTBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/lsas-l-out</property>
+				<property>/systems/failures/fctl/lsas-left-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -417,7 +417,7 @@
 			<checkbox>
 				<label>LSAS L INBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/lsas-l-in</property>
+				<property>/systems/failures/fctl/lsas-left-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -427,7 +427,7 @@
 			<checkbox>
 				<label>LSAS R INBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/lsas-r-in</property>
+				<property>/systems/failures/fctl/lsas-right-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -437,7 +437,7 @@
 			<checkbox>
 				<label>LSAS R OUTBD</label>
 				<halign>left</halign>
-				<property>/systems/failures/lsas-r-out</property>
+				<property>/systems/failures/fctl/lsas-right-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -447,7 +447,7 @@
 			<checkbox>
 				<label>YAW DAMP UPR A</label>
 				<halign>left</halign>
-				<property>/systems/failures/yawdamp-upr-a</property>
+				<property>/systems/failures/fctl/yd-upper-a</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -457,7 +457,7 @@
 			<checkbox>
 				<label>YAW DAMP UPR B</label>
 				<halign>left</halign>
-				<property>/systems/failures/yawdamp-upr-b</property>
+				<property>/systems/failures/fctl/yd-upper-b</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -467,7 +467,7 @@
 			<checkbox>
 				<label>YAW DAMP LWR A</label>
 				<halign>left</halign>
-				<property>/systems/failures/yawdamp-lwr-a</property>
+				<property>/systems/failures/fctl/yd-lower-a</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -477,7 +477,7 @@
 			<checkbox>
 				<label>YAW DAMP LWR B</label>
 				<halign>left</halign>
-				<property>/systems/failures/yawdamp-lwr-b</property>
+				<property>/systems/failures/fctl/yd-lower-b</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -487,7 +487,7 @@
 			<checkbox>
 				<label>ELEV FEEL</label>
 				<halign>left</halign>
-				<property>/systems/failures/elev-feel</property>
+				<property>/systems/failures/fctl/lsas-elev-feel</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -497,7 +497,7 @@
 			<checkbox>
 				<label>FLAP LIMIT</label>
 				<halign>left</halign>
-				<property>/systems/failures/flap-limit</property>
+				<property>/systems/failures/fctl/flap-limit</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

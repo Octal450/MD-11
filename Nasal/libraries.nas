@@ -114,9 +114,7 @@ setlistener("sim/signals/fdm-initialized", func {
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.PNEU.loop();
-#	systems.HYD.loop();
 	systems.FUEL.loop();
-	systems.FCTL.loop();
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();

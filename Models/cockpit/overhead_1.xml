@@ -947,7 +947,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>nasal</command>
 				<script>systems.HYD.systemMode();</script>
 			</binding>
@@ -1085,7 +1084,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/hydraulics/switches/aux-pump-2</property>
 			</binding>
@@ -3889,7 +3887,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>nasal</command>
 				<script>systems.PNEU.systemMode();</script>
 			</binding>
@@ -4718,7 +4715,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/pneumatic/switches/bleedapu</property>
 			</binding>
@@ -4964,7 +4960,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/pneumatic/switches/avionics-fan</property>
 			</binding>
@@ -5019,7 +5014,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/pneumatic/switches/econ</property>
 			</binding>
@@ -5077,7 +5071,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>nasal</command>
 				<script>systems.FUEL.systemMode();</script>
 			</binding>
@@ -6840,7 +6833,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fadec/eng1-alnt</property>
 			</binding>
@@ -6896,7 +6888,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fadec/eng1-alnt</property>
 			</binding>
@@ -6952,7 +6943,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fadec/eng2-alnt</property>
 			</binding>
@@ -7008,7 +6998,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fadec/eng3-alnt</property>
 			</binding>
@@ -7311,7 +7300,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/light/lsas-manual</property>
+					<property>controls/fctl/light/lsas-feel-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7520,7 +7509,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-left-out</property>
 			</binding>
@@ -7535,10 +7523,16 @@
 		<object-name>LSAS_lo.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/lsas-left-out-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/lsas-left-out</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/lsas-left-out-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7592,7 +7586,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-left-in</property>
 			</binding>
@@ -7607,10 +7600,16 @@
 		<object-name>LSAS_li.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/lsas-left-in-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/lsas-left-in</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/lsas-left-in-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7664,7 +7663,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-right-in</property>
 			</binding>
@@ -7679,10 +7677,16 @@
 		<object-name>LSAS_ri.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/lsas-right-in-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/lsas-right-in</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/lsas-right-in-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7736,7 +7740,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-right-out</property>
 			</binding>
@@ -7751,10 +7754,16 @@
 		<object-name>LSAS_ro.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/lsas-right-out-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/lsas-right-out</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/lsas-right-out-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7808,7 +7817,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-upper-a</property>
 			</binding>
@@ -7823,10 +7831,16 @@
 		<object-name>YD_upra.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/yd-upper-a-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/yd-upper-a</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/yd-upper-a-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7880,7 +7894,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-upper-b</property>
 			</binding>
@@ -7895,10 +7908,16 @@
 		<object-name>YD_uprb.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/yd-upper-b-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/yd-upper-b</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/yd-upper-b-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -7952,7 +7971,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-lower-a</property>
 			</binding>
@@ -7967,10 +7985,16 @@
 		<object-name>YD_lwra.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/yd-lower-a-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/yd-lower-a</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/yd-lower-a-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -8024,7 +8048,6 @@
 						</greater-than-equals>
 					</or>
 				</condition>
-
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-lower-b</property>
 			</binding>
@@ -8039,10 +8062,16 @@
 		<object-name>YD_lwrb.fail</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fctl/light/yd-lower-b-fail</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fctl/yd-lower-b</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/fctl/light/yd-lower-b-fail</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -8068,7 +8097,6 @@
 	</animation>
 	
 	<!-- Other -->
-	
 	<animation>
 		<type>rotate</type>
 		<object-name>nosmoking.lever</object-name>

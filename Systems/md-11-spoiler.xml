@@ -101,16 +101,6 @@
 				<max>1.0</max>
 			</clipto>
 		</summer>
-		
-		<lag_filter name="spoilers/main-lever">
-			<input>spoilers/main-cmd</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="spoilers/lever-arm">
-			<input>/controls/flight/speedbrake-arm</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	

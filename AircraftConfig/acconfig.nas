@@ -23,6 +23,7 @@ var spinning = maketimer(0.05, func {
 var failReset = func {
 	systems.ELEC.resetFail();
 	systems.HYD.resetFail();
+	systems.FCTL.resetFail();
 	failResetOld();
 }
 
@@ -40,16 +41,6 @@ var failResetOld = func {
 	setprop("/systems/failures/tank2pumps", 0);
 	setprop("/systems/failures/tank3pumpl", 0);
 	setprop("/systems/failures/tank3pumpr", 0);
-	setprop("/systems/failures/lsas-l-out", 0);
-	setprop("/systems/failures/lsas-l-in", 0);
-	setprop("/systems/failures/lsas-r-in", 0);
-	setprop("/systems/failures/lsas-r-out", 0);
-	setprop("/systems/failures/yawdamp-upr-a", 0);
-	setprop("/systems/failures/yawdamp-upr-b", 0);
-	setprop("/systems/failures/yawdamp-lwr-a", 0);
-	setprop("/systems/failures/yawdamp-lwr-b", 0);
-	setprop("/systems/failures/elev-feel", 0);
-	setprop("/systems/failures/flap-limit", 0);
 }
 
 failResetOld();
@@ -70,7 +61,6 @@ setprop("/systems/acconfig/options/laptop-mode", 0);
 setprop("/systems/acconfig/options/nd-rate", 1);
 setprop("/systems/acconfig/options/no-rendering-warn", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
-setprop("/systems/acconfig/options/rcws-equipped", 0);
 setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/options/sd-rate", 1);
 setprop("/systems/acconfig/options/welcome-skip", 0);
@@ -197,7 +187,6 @@ var readSettings = func {
 	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
-	setprop("/rcws/equipped", getprop("/systems/acconfig/options/rcws-equipped"));
 
 }
 
@@ -208,7 +197,6 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
-	setprop("/systems/acconfig/options/rcws-equipped", getprop("/rcws/equipped"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
 }
 

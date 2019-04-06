@@ -196,13 +196,13 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		</tank>
 	</propulsion>
 	
-	<system file="glass-effect1"/>
 	<system file="md-11-libraries"/>
 	<system file="md-11-electrical"/>
 	<system file="md-11-hydraulics"/>
 	<system file="md-11-fuel"/>
 	<system file="md-11-fcs"/>
 	<system file="md-11-spoiler"/>
+	<system file="md-11-cockpit"/>
 	
 	<flight_control name="none"/>
 	

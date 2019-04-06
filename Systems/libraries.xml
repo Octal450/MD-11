@@ -322,7 +322,7 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-pwr</property>
+						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-power</property>
 						<value>1</value>
 					</equals>
 					<not-equals>

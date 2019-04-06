@@ -5,20 +5,13 @@
 
 <system name="MD-11: FCS">
 	
-	<property value="0">fcc/rcws/pid</property>
-	<property value="0">fcc/rcws/aileron-out-enable</property>
 	<property value="0">fcc/lsas/pid</property>
 	<property value="0">fcc/lsas/elevator-feel-manual</property>
-	<property value="0">fcc/lsas/elevator-feel-pwr</property>
 	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
-	<property value="50">fcc/flap/max-deg</property>
 	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Default gains for tuning -->
-	<property value="0">fcc/rcws/p-gain</property>
-	<property value="0">fcc/rcws/i-gain</property>
-	<property value="0">fcc/rcws/d-gain</property>
 	<property value="0">fcc/lsas/p-gain</property>
 	<property value="0">fcc/lsas/p-gain-prd</property>
 	<property value="0">fcc/lsas/i-gain</property>
@@ -42,21 +35,84 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/gain-switch">
-			<default value="1"/>
-			<test logic="AND" value="0">
-				/rcws/equipped eq 1
-				fcc/afs/enabled eq 0
-				attitude/pitch-rad le 0.558505
-				attitude/pitch-rad ge -0.20944
-				attitude/roll-rad le 0.558505
-				attitude/roll-rad ge -0.558505
-				/controls/flight/aileron le 0.02
-				/controls/flight/aileron ge -0.02
-				position/wow eq 0
-				/position/gear-agl-ft ge 100
+		<switch name="fcc/lsas/left-out-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-left-out eq 1
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/lsas-left-out ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-left-out eq 1
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/lsas-left-out ne 1
+				libraries/any-irs-aligned eq 1
 			</test>
 		</switch>
+		
+		<switch name="fcc/lsas/left-in-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-left-in eq 1
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/electrical/bus/l-emer-dc ge 25
+				/systems/failures/fctl/lsas-left-in ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-left-in eq 1
+				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/electrical/bus/l-emer-dc ge 25
+				/systems/failures/fctl/lsas-left-in ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/right-in-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-right-in eq 1
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/electrical/bus/r-emer-dc ge 25
+				/systems/failures/fctl/lsas-right-in ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-right-in eq 1
+				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/electrical/bus/r-emer-dc ge 25
+				/systems/failures/fctl/lsas-right-in ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/right-out-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-right-out eq 1
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/lsas-right-out ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-right-out eq 1
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/lsas-right-out ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<summer name="fcc/lsas/channels-active">
+			<input>fcc/lsas/left-out-active</input>
+			<input>fcc/lsas/left-in-active</input>
+			<input>fcc/lsas/right-in-active</input>
+			<input>fcc/lsas/right-out-active</input>
+		</summer>
 		
 		<switch name="fcc/lsas/gain-switch">
 			<default value="1"/>
@@ -70,6 +126,7 @@
 				/controls/flight/elevator ge -0.02
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
+				fcc/lsas/channels-active gt 0
 			</test>
 		</switch>
 		
@@ -92,18 +149,92 @@
 				fcc/lsas/gain-switch-prd-input eq 1
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
+				fcc/lsas/channels-active gt 0
+			</test>
+		</switch>
+		
+		<switch name="fcc/yaw/avail-upper-a">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-upper-a eq 1
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/yd-upper-a ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-upper-a eq 1
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/yd-upper-a ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/yaw/avail-upper-b">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-upper-b eq 1
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/yd-upper-b ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-upper-b eq 1
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/failures/fctl/yd-upper-b ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/yaw/avail-lower-a">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-lower-a eq 1
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/yd-lower-a ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-lower-a eq 1
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/yd-lower-a ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/yaw/avail-lower-b">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-lower-b eq 1
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/yd-lower-b ne 1
+				libraries/any-irs-aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fctl/yd-lower-b eq 1
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/failures/fctl/yd-lower-b ne 1
+				libraries/any-irs-aligned eq 1
 			</test>
 		</switch>
 		
 		<switch name="fcc/yaw/gain-switch">
-			<default value="0"/>
-			<test logic="AND" value="1">
+			<default value="1"/>
+			<test value="1">
 				position/wow eq 1
-				fcc/yaw/avail-upr eq 1
 			</test>
-			<test logic="AND" value="1">
-				position/wow eq 1
-				fcc/yaw/avail-lwr eq 1
+			<test logic="OR" value="0">
+				fcc/yaw/avail-upper-a eq 1
+				fcc/yaw/avail-upper-b eq 1
+				fcc/yaw/avail-lower-a eq 1
+				fcc/yaw/avail-lower-b eq 1
 			</test>
 		</switch>
 		
@@ -118,48 +249,6 @@
 			<input>aero/alpha-deg-fixed</input>
 			<c1>10</c1>
 		</lag_filter>
-		
-		<fcs_function name="fcc/rcws/p-gain">
-			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
-					<tableData>
-						     0     1
-						140 -10.0  0.0
-						360  -3.7  0.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fcc/rcws/i-gain">
-			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
-					<tableData>
-						     0    1
-						140 -4.0  0.0
-						360 -0.8  0.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fcc/rcws/d-gain">
-			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<independentVar lookup="column">fcc/rcws/gain-switch</independentVar>
-					<tableData>
-						     0    1
-						140 -1.0  0.0
-						360 -0.6  0.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
 		
 		<fcs_function name="fcc/lsas/p-gain">
 			<function>
@@ -272,64 +361,8 @@
 	
 	<channel name="FCC: Roll">
 		
-		<fcs_function name="fcc/rcws/p-rad_sec">
-			<function>
-				<toradians>
-					<property>/orientation/roll-rate-degps</property>
-				</toradians>
-			</function>
-		</fcs_function>
-		
-		<switch name="fcc/rcws/p-r_s-s">
-			<default value="fcc/rcws/p-rad_sec"/>
-			<test value="0">
-				gear/unit[0]/WOW eq 1
-			</test>
-		</switch>
-		
-		<switch name="fcc/rcws/trigger">
-			<default value="0"/>
-			<test value="-1">
-				fcc/rcws/gain-switch gt 0
-			</test>
-			<test logic="OR" value="1">
-				fcc/rcws/pid le -0.249
-				fcc/rcws/pid ge 0.249
-			</test>
-		</switch>
-		
-		<pid name="fcc/rcws/pid-v">
-			<input>fcc/rcws/p-r_s-s</input>
-			<kp>fcc/rcws/p-gain</kp>
-			<ki>fcc/rcws/i-gain</ki>
-			<kd>fcc/rcws/d-gain</kd>
-			<trigger>fcc/rcws/trigger</trigger>
-			<clipto>
-				<min>-0.25</min>
-				<max>0.25</max>
-			</clipto>
-			<output>fcc/rcws/pid</output>
-		</pid>
-		
-		<pure_gain name="fcc/rcws/pid-scaled">
-			<input>fcc/rcws/pid</input>
-			<gain>0.6</gain>
-		</pure_gain>
-		
-		<switch name="fcc/rcws/output">
-			<default value="/controls/flight/aileron"/>
-			<test logic="AND" value="fcc/rcws/pid">
-				fcc/rcws/gain-switch eq 0
-				fcc/rcws/aileron-out-enable eq 0
-			</test>
-			<test logic="AND" value="fcc/rcws/pid-scaled"> <!-- Reduce deflection if outer ailerons are not locked -->
-				fcc/rcws/gain-switch eq 0
-				fcc/rcws/aileron-out-enable eq 1
-			</test>
-		</switch>
-		
 		<switch name="fcc/aileron-output">
-			<default value="fcc/rcws/output"/>
+			<default value="/controls/flight/aileron"/>
 			<test value="fcc/afs/roll-cmd">
 				fcc/afs/enabled eq 1
 			</test>
@@ -341,11 +374,6 @@
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
-		
-		<lag_filter name="fcc/aileron-yoke">
-			<input>fcc/aileron-yoke-switch</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
@@ -365,13 +393,6 @@
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
-		
-		<summer name="fcc/lsas/channels-active">
-			<input>fcc/lsas/left-out-active</input>
-			<input>fcc/lsas/left-in-active</input>
-			<input>fcc/lsas/right-in-active</input>
-			<input>fcc/lsas/right-out-active</input>
-		</summer>
 		
 		<scheduled_gain name="fcc/lsas/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
 			<input>fcc/lsas/p-gain</input>
@@ -508,6 +529,26 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="fcc/lsas/elevator-feel-power">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/dc-1 ge 25
+				/systems/electrical/bus/dc-2 ge 25
+				/systems/electrical/bus/dc-3 ge 25
+				/systems/electrical/bus/l-emer-dc ge 25
+				/systems/electrical/bus/r-emer-dc ge 25
+			</test>
+		</switch>
+		
+		<switch name="fcc/lsas/elevator-feel-auto">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fctl/lsas-feel-man ne 1
+				fcc/lsas/elevator-feel-power eq 1
+				/systems/failures/fctl/lsas-elev-feel ne 1
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/elevator-feel-switch"> <!-- Manual knob control is in libraries.xml -->
 			<default value="fcc/lsas/elevator-feel-speed"/>
 			<test value="velocities/vc-kts">
@@ -630,11 +671,6 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="fcc/elevator-yoke">
-			<input>fcc/elevator-yoke-switch</input>
-			<c1>20</c1>
-		</lag_filter>
-		
 		<switch name="fcc/lsas/autotrim-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
@@ -681,7 +717,7 @@
 								<value>3</value>
 							</eq>
 						</or>
-						<value>0.00002</value>
+						<value>0.000025</value>
 						<value>0.0</value>
 					</ifthen>
 					<ifthen>
@@ -695,7 +731,7 @@
 								<value>4</value>
 							</eq>
 						</or>
-						<value>-0.00002</value>
+						<value>-0.000025</value>
 						<value>0.0</value>
 					</ifthen>
 				</sum>
@@ -715,11 +751,6 @@
 			</clipto>
 			<output>/controls/flight/elevator-trim</output>
 		</fcs_function>
-		
-		<lag_filter name="fcc/elevator-trim-lever">
-			<input>/controls/flight/elevator-trim-lever</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
@@ -818,15 +849,17 @@
 		
 		<switch name="fcc/yaw/upper-output">
 			<default value="fcc/yaw/output-sum"/>
-			<test value="fcc/yaw/afs-cmd">
-				fcc/yaw/avail-upr ne 1
+			<test logic="OR" value="fcc/yaw/afs-cmd">
+				fcc/yaw/avail-upper-a ne 1
+				fcc/yaw/avail-upper-b ne 1
 			</test>
 		</switch>
 		
 		<switch name="fcc/yaw/lower-output">
 			<default value="fcc/yaw/output-sum"/>
-			<test value="fcc/yaw/afs-cmd">
-				fcc/yaw/avail-lwr ne 1
+			<test logic="OR" value="fcc/yaw/afs-cmd">
+				fcc/yaw/avail-lower-a ne 1
+				fcc/yaw/avail-lower-b ne 1
 			</test>
 		</switch>
 		
@@ -852,11 +885,6 @@
 				fcc/yaw/autoland-switch eq 1
 			</test>
 		</switch>
-		
-		<lag_filter name="fcc/rudder-pedal">
-			<input>fcc/rudder-pedal-switch</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
@@ -892,7 +920,6 @@
 				fcs/slat-pos-deg ge 2
 				position/wow eq 1
 			</test>
-			<output>fcc/rcws/aileron-out-enable</output>
 		</switch>
 		
 		<pure_gain name="hydraulics/deflected-aileron-active">
@@ -1467,75 +1494,34 @@
 			<output>/engines/engine[2]/n2-actual</output>
 			<output>/engines/engine[6]/n2</output>
 		</lag_filter>
-		
-		<lag_filter name="fcc/throttle-lever[0]">
-			<input>/controls/engines/engine[0]/throttle-pos</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/throttle-lever[1]">
-			<input>/controls/engines/engine[1]/throttle-pos</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/throttle-lever[2]">
-			<input>/controls/engines/engine[2]/throttle-pos</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-lever[0]">
-			<input>/controls/engines/engine[0]/reverser</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-lever[1]">
-			<input>/controls/engines/engine[1]/reverser</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-lever[2]">
-			<input>/controls/engines/engine[2]/reverser</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-thr-lever[0]">
-			<input>/controls/engines/engine[0]/throttle-rev</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-thr-lever[1]">
-			<input>/controls/engines/engine[1]/throttle-rev</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-thr-lever[2]">
-			<input>/controls/engines/engine[2]/throttle-rev</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/engine-cutoff[0]">
-			<input>/controls/engines/engine[0]/cutoff-switch</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/engine-cutoff[1]">
-			<input>/controls/engines/engine[1]/cutoff-switch</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fcc/engine-cutoff[2]">
-			<input>/controls/engines/engine[2]/cutoff-switch</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
 	<channel name="FCC: Flaps/Slats">
 		
-		<lag_filter name="fcc/flap-lever">
-			<input>/controls/flight/flap-lever</input>
-			<c1>20</c1>
-		</lag_filter>
+		<switch name="fcc/flap/max-deg">
+			<default value="50"/>
+			<test logic="AND" value="22">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-20-25-max-kts
+				/controls/fctl/flap-limit-knob eq 0
+				/systems/failures/fctl/flap-limit ne 1
+			</test>
+			<test logic="AND" value="25">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-28-max-kts
+				/controls/fctl/flap-limit-knob eq 0
+				/systems/failures/fctl/flap-limit ne 1
+			</test>
+			<test logic="AND" value="28">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-35-max-kts
+				/controls/fctl/flap-limit-knob eq 0
+				/systems/failures/fctl/flap-limit ne 1
+			</test>
+			<test logic="AND" value="35">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-50-max-kts
+				/controls/fctl/flap-limit-knob eq 0
+				/systems/failures/fctl/flap-limit ne 1
+			</test>
+		</switch>
 		
 		<pure_gain name="fcc/flap/input-deg">
 			<input>/controls/flight/flaps-output</input>
@@ -1545,6 +1531,7 @@
 		<pure_gain name="fcc/flap/cmd-deg">
 			<input>fcc/flap/input-deg</input>
 			<gain>1.0</gain>
+			<output>fcc/flap/cmd-deg-feedback</output>
 			<clipto>
 				<min>0</min>
 				<max>fcc/flap/max-deg</max>
@@ -1554,6 +1541,7 @@
 		<pure_gain name="fcc/slat/cmd-deg">
 			<input>/controls/flight/slats</input>
 			<gain>31.0</gain>
+			<output>fcc/slat/cmd-deg-feedback</output>
 		</pure_gain>
 	
 	</channel>
@@ -1700,11 +1688,6 @@
 	</channel>
 	
 	<channel name="Brakes">
-		
-		<lag_filter name="fcs/brake-lever">
-			<input>/controls/gear/brake-parking</input>
-			<c1>20</c1>
-		</lag_filter>
 		
 		<summer name="fcs/left-brake-summer">
 			<input>/controls/gear/brake-left</input>

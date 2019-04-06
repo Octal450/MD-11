@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Cockpit -->
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+
+<system name="MD-11: Cockpit"> <!-- Everything here is after all systems -->
+	
+	<channel name="Animations">
+		
+		<lag_filter name="fcc/aileron-yoke">
+			<input>fcc/aileron-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/elevator-yoke">
+			<input>fcc/elevator-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/elevator-trim-lever">
+			<input>/controls/flight/elevator-trim-lever</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/rudder-pedal">
+			<input>fcc/rudder-pedal-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="spoilers/main-lever">
+			<input>spoilers/main-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="spoilers/lever-arm">
+			<input>/controls/flight/speedbrake-arm</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/throttle-lever[0]">
+			<input>/controls/engines/engine[0]/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/throttle-lever[1]">
+			<input>/controls/engines/engine[1]/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/throttle-lever[2]">
+			<input>/controls/engines/engine[2]/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-lever[0]">
+			<input>/controls/engines/engine[0]/reverser</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-lever[1]">
+			<input>/controls/engines/engine[1]/reverser</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-lever[2]">
+			<input>/controls/engines/engine[2]/reverser</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-thr-lever[0]">
+			<input>/controls/engines/engine[0]/throttle-rev</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-thr-lever[1]">
+			<input>/controls/engines/engine[1]/throttle-rev</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/reverse-thr-lever[2]">
+			<input>/controls/engines/engine[2]/throttle-rev</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/engine-cutoff[0]">
+			<input>/controls/engines/engine[0]/cutoff-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/engine-cutoff[1]">
+			<input>/controls/engines/engine[1]/cutoff-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/engine-cutoff[2]">
+			<input>/controls/engines/engine[2]/cutoff-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/flap-lever">
+			<input>/controls/flight/flap-lever</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcs/brake-lever">
+			<input>/controls/gear/brake-parking</input>
+			<c1>20</c1>
+		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Lights" execrate="8">
+		
+		<switch name="/controls/fctl/light/lsas-feel-manual">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fcc/lsas/elevator-feel-auto ne 1
+				/systems/failures/fctl/lsas-elev-feel eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/flap-limit-manual">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/fctl/flap-limit-knob gt 0
+				/systems/failures/fctl/flap-limit eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/lsas-left-out-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/lsas-left-out eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/lsas-left-in-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/lsas-left-in eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/lsas-right-in-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/lsas-right-in eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/lsas-right-out-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/lsas-right-out eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/yd-upper-a-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/yd-upper-a eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/yd-upper-b-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/yd-upper-b eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/yd-lower-a-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/yd-lower-a eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fctl/light/yd-lower-b-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				libraries/any-irs-aligned ne 1
+				/systems/failures/fctl/yd-lower-b eq 1
+			</test>
+		</switch>
+	
+	</channel>
+
+</system>
