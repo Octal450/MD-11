@@ -324,7 +324,7 @@
 						<value>1</value>
 					</nq>
 					<table>
-						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
 							40    40
 							45  2990
@@ -350,7 +350,7 @@
 						<value>1</value>
 					</nq>
 					<table>
-						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
 							40    40
 							45  2990
