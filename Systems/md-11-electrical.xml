@@ -1744,6 +1744,28 @@
 			<output>/systems/electrical/outputs/transponder</output>
 			<output>/systems/electrical/outputs/turn-coordinator</output>
 		</switch>
+		
+		<!-- Lighting Power -->
+		<switch name="/controls/lighting/fcp-integ-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/fcp-integ-knb">
+				/systems/electrical/generic-pwr ge 25
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/main-panel-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/main-panel-knb">
+				/systems/electrical/generic-pwr ge 25
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/overhead-panel-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/overhead-panel-knb">
+				/systems/electrical/generic-pwr ge 25
+			</test>
+		</switch>
 	
 	</channel>
 	
