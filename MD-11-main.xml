@@ -652,42 +652,6 @@
 	</gear>
 	
 	<input>
-		<mice n="0">
-			<mouse n="0">
-				<mode n="0">
-					<button n="3">
-						<binding n="0">
-							<script></script>
-						</binding>
-						<binding n="1">
-							<condition>
-								<and>
-									<property>/devices/status/mice/mouse[0]/button[2]</property>
-									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
-								</and>
-							</condition>
-							<command>nasal</command>
-							<script>libraries.fovZoom(-1);</script>
-						</binding>
-					</button>
-					<button n="4">
-						<binding n="0">
-							<script></script>
-						</binding>
-						<binding n="1">
-							<condition>
-								<and>
-									<property>/devices/status/mice/mouse[0]/button[2]</property>
-									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
-								</and>
-							</condition>
-							<command>nasal</command>
-							<script>libraries.fovZoom(1);</script>
-						</binding>
-					</button>
-				</mode>
-			</mouse>
-		</mice>
 		<keyboard>
 			<key n="4">
 				<name>CTRL-d</name>
@@ -1075,6 +1039,42 @@
 				</binding>
 			</key>
 		</keyboard>
+		<mice n="0">
+			<mouse n="0">
+				<mode n="0">
+					<button n="3">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>libraries.fovZoom(-1);</script>
+						</binding>
+					</button>
+					<button n="4">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>libraries.fovZoom(1);</script>
+						</binding>
+					</button>
+				</mode>
+			</mouse>
+		</mice>
 	</input>
 	
 	<instrumentation n="0">
