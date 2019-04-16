@@ -5,34 +5,32 @@
 <PropertyList include="MD-11-main.xml">
 
     <sim>
-		<sound>
-			<path>Aircraft/IDG-MD-11X/Sounds/pw4000-sound.xml</path>
-		</sound>
+		<aero>MD-11-PW</aero>
 		<description>McDonnell Douglas MD-11 (PW4460)</description>
 		<flight-model>jsb</flight-model>
-		<aero>MD-11-PW</aero>
-		<primary-set>true</primary-set>
-		
 		<model n="0">
-			<path>Aircraft/IDG-MD-11X/Models/MD-11-PW.xml</path>
-			<armrest type="double">0</armrest>
-			<door>
+			<armrest type="bool">1</armrest>
+			<door n="0">
+				<jetway-hood-deg type="float">5</jetway-hood-deg>
 				<position-x-m type="float">-24.0</position-x-m>
 				<position-y-m type="float">-2.3</position-y-m>
 				<position-z-m type="float">6.0</position-z-m>
-				<jetway-hood-deg type="float">5</jetway-hood-deg>
 			</door>
-			<door>
+			<door n="1">
+				<jetway-hood-deg type="float">1</jetway-hood-deg>
 				<position-x-m type="float">-14.5</position-x-m>
 				<position-y-m type="float">-2.8</position-y-m>
 				<position-z-m type="float">6.0</position-z-m>
-				<jetway-hood-deg type="float">1</jetway-hood-deg>
 			</door>
 			<livery>
 				<file type="string">MCD</file>
 			</livery>
+			<path>Aircraft/IDG-MD-11X/Models/MD-11-PW.xml</path>
 		</model>
-		
+		<primary-set>true</primary-set>
+		<sound>
+			<path>Aircraft/IDG-MD-11X/Sounds/pw4000-sound.xml</path>
+		</sound>
 		<systems n="0">
 			<autopilot n="6">
 				<path>Aircraft/IDG-MD-11X/Systems/fadec-pw.xml</path>
@@ -40,7 +38,11 @@
 		</systems>
     </sim>
 	
-	<payload>
+	<options n="0">
+		<eng>PW</eng>
+	</options>
+	
+	<payload n="0">
 		<weight n="0">
 			<name>Cockpit Crew</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
@@ -84,15 +86,11 @@
 			<max-lb type="double">2000</max-lb>
 		</weight>
 	</payload>
-	
-	<options n="0">
-		<eng>PW</eng>
-	</options>
     
     <nasal n="0">
-		<specific>
-			<file>Aircraft/IDG-MD-11X/Nasal/md-11-pw-liveries.nas</file>
-		</specific>
+		<setup>
+			<script>aircraft.livery.init("Aircraft/IDG-MD-11X/Models/Liveries/MD-11/PW");</script>
+		</setup>
     </nasal>
 
 </PropertyList>

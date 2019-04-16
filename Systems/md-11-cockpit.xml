@@ -106,6 +106,30 @@
 			<input>/controls/gear/brake-parking</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<pure_gain name="/sim/model/armrest-rotate-cmd">
+			<input>/sim/model/armrest</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>0.2</min>
+				<max>1.0</max>
+			</clipto>
+		</pure_gain>
+		
+		<pure_gain name="/sim/model/armrest-translate-cmd">
+			<input>/sim/model/armrest</input>
+			<gain>0.2</gain>
+		</pure_gain>
+		
+		<lag_filter name="/sim/model/armrest-rotate">
+			<input>/sim/model/armrest-rotate-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/sim/model/armrest-translate">
+			<input>/sim/model/armrest-translate-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
