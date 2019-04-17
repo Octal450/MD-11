@@ -98,11 +98,11 @@
 		</function>
 		
 		<function name="aero/force/Lift_elevator_trim">
-			<description>Lift due to elevator trim deflection</description>
+			<description>Lift due to stabilizer deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/elevator-trim/final-deg</property></toradians>
+				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
 				<value>0.0092075</value>
 			</product>
 		</function>
@@ -273,11 +273,11 @@
 		</function>
 		
 		<function name="aero/force/Drag_elevator_trim">
-			<description>Drag due to elevator trim deflection</description>
+			<description>Drag due to stabilizer deflection</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/elevator-trim/final-deg</property></toradians></abs>
+				<abs><toradians><property>hydraulics/stabilizer/final-deg</property></toradians></abs>
 				<value>0.0145</value>
 			</product>
 		</function>
@@ -640,12 +640,12 @@
 		</function>
 		
 		<function name="aero/moment/Pitch_elevator_trim">
-			<description>Pitch moment due to elevator trim</description>
+			<description>Pitch moment due to stabilizer</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/elevator-trim/final-deg</property></toradians>
+				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
 				<value>-1.491325</value>
 			</product>
 		</function>
