@@ -759,6 +759,29 @@
 	</pid-controller>
 	
 	<filter>
+		<name>ELEVATOR SYNC</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<and>
+					<not-equals>
+						<property>/it-autoflight/output/ap1</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/it-autoflight/output/ap2</property>
+						<value>1</value>
+					</not-equals>
+				</and>
+			</condition>
+		</enable>
+		<input>/controls/flight/elevator</input>
+		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
+	</filter>
+	
+	<filter>
 		<name>IT-CONTROLLER: PITCH CMD</name>
 		<debug>false</debug>
 		<type>noise-spike</type>

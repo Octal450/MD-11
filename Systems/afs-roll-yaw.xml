@@ -319,6 +319,29 @@
 	</filter>
 	
 	<filter>
+		<name>AILERON SYNC</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<and>
+					<not-equals>
+						<property>/it-autoflight/output/ap1</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/it-autoflight/output/ap2</property>
+						<value>1</value>
+					</not-equals>
+				</and>
+			</condition>
+		</enable>
+		<input>/controls/flight/aileron</input>
+		<output>/fdm/jsbsim/fcc/afs/roll-cmd</output>
+	</filter>
+	
+	<filter>
 		<name>IT-CONTROLLER: ROLL CMD</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
