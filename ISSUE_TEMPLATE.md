@@ -1,4 +1,5 @@
 <!-- Provide a general summary of the issue in the title above. -->
+<!-- Before submitting, please check our Frequently Asked Questions page at https://github.com/it0uchpods/IDG-MD-11X/blob/master/FAQ.md -->
 
 ### General
 ----
