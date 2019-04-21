@@ -583,11 +583,14 @@
 	    <z2-m>3.4978</z2-m>
 		</axis>
 	</animation>
-	
-	<animation>
+
+<!-- Rudder -->
+
+<animation>
 		<name>Rudder U rotate</name>
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
+		<object-name>rudder_trailing.u</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
 		<factor>-1</factor>
 		<axis>
@@ -600,10 +603,28 @@
 		</axis>
 	</animation>
 	
+<animation>
+		<name>Rudder trailing U rotate</name>
+		<type>rotate</type>
+		<object-name>rudder_trailing.u</object-name>
+		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
+		<factor>-0.5</factor>
+		<axis>
+			<x1-m>30.0511</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>18.7270</z1-m>
+			<x2-m>28.4906</x2-m>
+			<y2-m>-0.0001</y2-m>
+			<z2-m>15.8437</z2-m>
+		</axis>
+	</animation>
+	
+	
 	<animation>
 		<name>Rudder L rotate</name>
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
+		<object-name>rudder_trailing.l</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
 		<factor>-1</factor>
 		<axis>
@@ -616,21 +637,47 @@
 		</axis>
 	</animation>
 	
+	<animation>
+		<name>Rudder L trailing rotate</name>
+		<type>rotate</type>
+		<object-name>rudder_trailing.l</object-name>
+		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
+		<factor>-0.5</factor>
+		<axis>
+			<x1-m>28.4977</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>15.8428</z1-m>
+			<x2-m>26.8313</x2-m>
+			<y2-m>-0</y2-m>
+			<z2-m>12.7639</z2-m>
+		</axis>
+	</animation>
+	
 	<!-- Ailerons -->
 	<animation>
 		<name>Left inner aileron</name>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
 		<property>fdm/jsbsim/hydraulics/aileron-in-l/final-deg</property>
-		<factor>-1</factor>
+		<factor>-1</factor>		
 		<axis>
-			<x1-m>5.71377</x1-m>
-			<y1-m>-7.35551</y1-m>
-			<z1-m>5.16546</z1-m>
+			<x1-m>5.69263</x1-m>
+			<y1-m>-7.30759</y1-m>
+			<z1-m>5.16118</z1-m>
+			<x2-m>5.94448</x2-m>
+			<y2-m>-9.41549</y2-m>
+			<z2-m>5.4387</z2-m>
+		</axis>
+	<!--
+		<axis>
+			<x1-m>5.71459</x1-m>
+			<y1-m>-7.36459</y1-m>
+			<z1-m>5.17285</z1-m>
 			<x2-m>5.99499</x2-m>
 			<y2-m>-9.43463</y2-m>
 			<z2-m>5.43705</z2-m>
 		</axis>
+	-->
 	</animation>
 	
 	<animation>
@@ -655,13 +702,23 @@
 		<property>fdm/jsbsim/hydraulics/aileron-in-r/final-deg</property>
 		<factor>1</factor>
 		<axis>
-			<x1-m>5.71377</x1-m>
-			<y1-m>7.35551</y1-m>
-			<z1-m>5.16546</z1-m>
+			<x1-m>5.69263</x1-m>
+			<y1-m>7.30759</y1-m>
+			<z1-m>5.16118</z1-m>
+			<x2-m>5.94448</x2-m>
+			<y2-m>9.41549</y2-m>
+			<z2-m>5.4387</z2-m>
+		</axis>
+		<!--
+		<axis>
+			<x1-m>5.71459</x1-m>
+			<y1-m>7.36459</y1-m>
+			<z1-m>5.17285</z1-m>
 			<x2-m>5.99499</x2-m>
 			<y2-m>9.43463</y2-m>
 			<z2-m>5.43705</z2-m>
 		</axis>
+		-->
 	</animation>
 	
 	<animation>
@@ -687,7 +744,7 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
-		<property>fdm/jsbsim/hydraulics/stabilizer/final-deg</property>
+		<property>fdm/jsbsim/hydraulics/elevator-trim/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -1648,7 +1705,9 @@
 <object-name>fuselage</object-name>
 <object-name>fuselage.cone</object-name>
 <object-name>rudder.u</object-name>
+<object-name>rudder_trailing.u</object-name>
 <object-name>rudder.l</object-name>
+<object-name>rudder_trailing.l</object-name>
 <object-name>central.back.right</object-name>
 <object-name>central.back.left</object-name>
 <object-name>central.front.right</object-name>
@@ -2387,7 +2446,9 @@
 		<object-name>fuselage</object-name>
 		<object-name>fuselage.cone</object-name>
 		<object-name>rudder.u</object-name>
+		<object-name>rudder_trailing.u</object-name>
 		<object-name>rudder.l</object-name>
+		<object-name>rudder_trailing.l</object-name>
 		<object-name>engines</object-name>
 		<object-name>right.reverser</object-name>
 		<object-name>left.reverser</object-name>
