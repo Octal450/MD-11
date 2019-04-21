@@ -2,11 +2,11 @@
 
 ## Startup
 
-### Q. Error Code: 0x121 appears
+### Q. Error Code: 0x121 appears. Why?
 
 This error occurs if you are attempting to use this IDG Aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/it0uchpods/IDG-MD-11X/blob/master/INSTALL.md) for more information.
 
-### Q. Error Code: 0x223 appears
+### Q. Error Code: 0x223 appears. Why?
 
 This error occurs when there is an issue with the scenery that prevents initialization, or if you are starting in air.
 
@@ -16,11 +16,29 @@ The simulation is so complex that there is no support for starting it in mid-air
 
 In case that you want to practice landing, it might be better to fly to your destination and by doing it by landing, and performing a missed approach (like real pilots do).
 
-### Q. Error Code: 0x247 appears
+### Q. Error Code: 0x247 appears. Why?
 
 This error most commonly occurs if your download is corrupted, or a serious problem with the aircraft's systems occurs.
 
 This error can also appear if you are starting FlightGear for the very first time with this aircraft. This is a known issue and we are working to correct it. To fix this, simply start FlightGear again at an airport that is in a different scenery file. After this, all airports (including the original one attempted) will work properly.
+
+## Behavior
+
+### Q. I can't control the rudder with my aileron axis after turning on the FlightGear auto coordination system. Why?
+
+This aircraft has a complex and realistic flight control system, which contains a yaw damper and turn coordinator. Therefore, auto coordination is not nessesary and the rudder is only used in the air when de-crabbing during crosswind landings.
+
+When the aircraft detects that auto coordination has been turned on, it enables the aileron drives tiller system. This way, you will be able to control the nose wheel with the aileron axis to steer on the ground. Please use keyboard for rudder functionality.
+
+### Q. Some menu items are greyed out when using this aircraft. Why?
+
+Some functions in the regular menu (like Autopilot) have moved to custom menus. This is due to limitations in the way the default menus can be manipulated to prevent unsupported functionality (ex: Previous/Next Waypoint) from being executed.
+
+Some of the functions may be implemented in custom way and still usable. Check the custom menus to the right of the "|" for these functions.
+
+### Q. Why does the cold and dark state load after exiting replay mode?
+
+The flight recording system does not record the systems or internal functions of the aircraft. Doing so would require recording thousands of properties, and this would likely cause bugs and a performance hit. This means, that after replay, the systems might be in an invalid state. To ensure the aircraft remains functional, we reset the aircraft to cold and dark to reset everything.
 
 ## Reporting Issues / Debugging
 
@@ -34,9 +52,7 @@ Yes, please do so! If we do not know about the bugs, there is no-one to fix them
 
 ### Q. I have a flight recording which shows the problem. Could you please have a look?
 
-It does not make sense sending in flight recordings, as they do not contain enough information. That is why they are more or less useless for us.
-
-Properly enabling the recording is also not reasonable: The recording would be quite CPU and memory intensive and certainly would have a negative impact on your flight experience.
+It does not make sense sending in flight recordings, as they do not contain enough information. That is why they are more or less useless for us. We do not plan on recording full information in the recorder. See the "Why does the cold and dark state load after exiting replay mode?" section for more information.
 
 Instead, for documenting issues, please perform the steps mentioned in the next question:
 
