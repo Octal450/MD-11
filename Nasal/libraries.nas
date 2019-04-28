@@ -177,6 +177,16 @@ var systemsLoop = maketimer(0.1, func {
 	}
 });
 
+setlistener("/controls/flight/flaps-input-out", func { # TODO: props.nas
+	if (getprop("/controls/flight/flaps-input-out") == 2 or getprop("/controls/flight/flaps-input-out") == 3) {
+		if (getprop("/gear/gear[0]/wow") == 1) {
+			setprop("/controls/hydraulics/deflected-aileron", 1);
+		}
+	} else {
+		setprop("/controls/hydraulics/deflected-aileron", 0);
+	}
+}, 0, 0);
+
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
 	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {return me;}
@@ -199,104 +209,6 @@ canvas.Element.setVisible = func(vis) {
 	me._lastVisible = vis;
 	me.setBool("visible", vis);
 };
-
-controls.flapsDown = func(step) {
-	if (step == 1) {
-		if (getprop("/controls/flight/flap-lever") == 0) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.000);
-			setprop("/controls/flight/flap-lever", 1);
-			setprop("/controls/flight/flaps", 0.0);
-			setprop("/controls/flight/flap-txt", 0);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 1) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.300);
-			setprop("/controls/flight/flap-lever", 2);
-			setprop("/controls/flight/flaps", 0.4);
-			setprop("/controls/flight/flap-txt", 15);
-			if (getprop("/gear/gear[0]/wow") == 1) {
-				setprop("/controls/hydraulics/deflected-aileron", 1);
-			}
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 2) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.560);
-			setprop("/controls/flight/flap-lever", 3);
-			setprop("/controls/flight/flaps", 0.7);
-			setprop("/controls/flight/flap-txt", 28);
-			if (getprop("/gear/gear[0]/wow") == 1) {
-				setprop("/controls/hydraulics/deflected-aileron", 1);
-			}
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 3) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.700);
-			setprop("/controls/flight/flap-lever", 4);
-			setprop("/controls/flight/flaps", 1.0);
-			setprop("/controls/flight/flap-txt", 35);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 4) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 1.000);
-			setprop("/controls/flight/flap-lever", 5);
-			setprop("/controls/flight/flaps", 1.0);
-			setprop("/controls/flight/flap-txt", 50);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		}
-	} else if (step == -1) {
-		if (getprop("/controls/flight/flap-lever") == 5) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.700);
-			setprop("/controls/flight/flap-lever", 4);
-			setprop("/controls/flight/flaps", 1.0);
-			setprop("/controls/flight/flap-txt", 35);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 4) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.560);
-			setprop("/controls/flight/flap-lever", 3);
-			setprop("/controls/flight/flaps", 7.0);
-			setprop("/controls/flight/flap-txt", 28);
-			if (getprop("/gear/gear[0]/wow") == 1) {
-				setprop("/controls/hydraulics/deflected-aileron", 1);
-			}
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 3) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.300);
-			setprop("/controls/flight/flap-lever", 2);
-			setprop("/controls/flight/flaps", 0.4);
-			setprop("/controls/flight/flap-txt", 15);
-			if (getprop("/gear/gear[0]/wow") == 1) {
-				setprop("/controls/hydraulics/deflected-aileron", 1);
-			}
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 2) {
-			setprop("/controls/flight/slats", 1.000);
-			setprop("/controls/flight/flaps-output", 0.000);
-			setprop("/controls/flight/flap-lever", 1);
-			setprop("/controls/flight/flaps", 0.0);
-			setprop("/controls/flight/flap-txt", 0);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		} else if (getprop("/controls/flight/flap-lever") == 1) {
-			setprop("/controls/flight/slats", 0.000);
-			setprop("/controls/flight/flaps-output", 0.000);
-			setprop("/controls/flight/flap-lever", 0);
-			setprop("/controls/flight/flaps", 0.0);
-			setprop("/controls/flight/flap-txt", 0);
-			setprop("/controls/hydraulics/deflected-aileron", 0);
-			return;
-		}
-	} else {
-		return 0;
-	}
-}
 
 controls.stepSpoilers = func(step) {
 	setprop("/controls/flight/speedbrake-arm", 0);

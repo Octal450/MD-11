@@ -900,6 +900,58 @@
 	
 	</channel>
 	
+	<channel name="Flap Lever">
+		
+		<switch name="/controls/flight/flaps-input">
+			<default value="0"/> <!-- UP/RET -->
+			<test logic="AND" value="1"> <!-- UP/EXT -->
+				/controls/flight/flaps ge 0.20
+				/controls/flight/flaps lt 0.36
+			</test>
+			<test logic="AND" value="2"> <!-- 10-25/EXT -->
+				/controls/flight/flaps ge 0.36
+				/controls/flight/flaps lt 0.52
+			</test>
+			<test logic="AND" value="3"> <!-- 28/EXT -->
+				/controls/flight/flaps ge 0.52
+				/controls/flight/flaps lt 0.68
+			</test>
+			<test logic="AND" value="4"> <!-- 35/EXT -->
+				/controls/flight/flaps ge 0.68
+				/controls/flight/flaps lt 0.84
+			</test>
+			<test logic="AND" value="5"> <!-- 50/EXT -->
+				/controls/flight/flaps ge 0.84
+				/controls/flight/flaps lt 1.00
+			</test>
+			<output>/controls/flight/flaps-input-out</output>
+		</switch>
+		
+		<switch name="/controls/flight/flaps-command">
+			<default value="0"/>
+			<test value="/controls/flight/dial-a-flap">
+				/controls/flight/flaps-input eq 2
+			</test>
+			<test value="28">
+				/controls/flight/flaps-input eq 3
+			</test>
+			<test value="35">
+				/controls/flight/flaps-input eq 4
+			</test>
+			<test value="50">
+				/controls/flight/flaps-input eq 5
+			</test>
+		</switch>
+		
+		<switch name="/controls/flight/slats-command">
+			<default value="0"/>
+			<test value="31">
+				/controls/flight/flaps-input ge 1
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="FCC: Flaps/Slats">
 		
 		<switch name="fcc/flap/max-deg">
@@ -926,13 +978,8 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="fcc/flap/input-deg">
-			<input>/controls/flight/flaps-output</input>
-			<gain>50.0</gain>
-		</pure_gain>
-		
 		<pure_gain name="fcc/flap/cmd-deg">
-			<input>fcc/flap/input-deg</input>
+			<input>/controls/flight/flaps-command</input>
 			<gain>1.0</gain>
 			<output>fcc/flap/cmd-deg-feedback</output>
 			<clipto>
@@ -942,8 +989,8 @@
 		</pure_gain>
 		
 		<pure_gain name="fcc/slat/cmd-deg">
-			<input>/controls/flight/slats</input>
-			<gain>31.0</gain>
+			<input>/controls/flight/slats-command</input>
+			<gain>1.0</gain>
 			<output>fcc/slat/cmd-deg-feedback</output>
 		</pure_gain>
 	

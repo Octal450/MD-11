@@ -13,12 +13,13 @@
 			<z-offset-min-m type="float">30.0</z-offset-min-m>
 			<z-offset-max-m type="float">300.0</z-offset-max-m>
 		</current-view>
-		<flaps>
-			<setting>0.00</setting>	<!-- 0 -->
-			<setting>0.30</setting>	<!-- 15 -->
-			<setting>0.56</setting>	<!-- 28-->
-			<setting>0.70</setting>	<!-- 35 -->
-			<setting>1.00</setting>	<!-- 50 -->
+		<flaps> <!-- These steps are the beginning of the dead-band for each detent, not mapped directly to deflection -->
+			<setting n="0">0.00</setting> <!-- UP/RET -->
+			<setting n="1">0.20</setting> <!-- UP/EXT -->
+			<setting n="2">0.36</setting> <!-- 10-25/EXT -->
+			<setting n="3">0.52</setting> <!-- 28/EXT -->
+			<setting n="4">0.68</setting> <!-- 35/EXT -->
+			<setting n="5">0.84</setting> <!-- 50/EXT -->
 		</flaps>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
@@ -488,10 +489,7 @@
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">-0.25</elevator-trim>
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
-			<flap-lever type="double">0</flap-lever>
-			<flap-txt type="int">0</flap-txt>
-			<flaps-output type="double">0</flaps-output>
-			<slats type="double">0</slats>
+			<dial-a-flap type="int">15</dial-a-flap>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
 		</flight>
 		<fuel n="0">

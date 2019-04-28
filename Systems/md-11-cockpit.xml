@@ -98,7 +98,7 @@
 		</lag_filter>
 		
 		<lag_filter name="fcc/flap-lever">
-			<input>/controls/flight/flap-lever</input>
+			<input>/controls/flight/flaps-input</input>
 			<c1>20</c1>
 		</lag_filter>
 		

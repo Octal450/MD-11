@@ -3,6 +3,7 @@
 
 # Resets buttons to the default values
 var variousReset = func {
+	setprop("/controls/flight/dial-a-flap", 15);
 	setprop("/controls/lighting/beacon", 0);
 	setprop("/controls/lighting/landing-light-l", 0.0);
 	setprop("/controls/lighting/landing-light-n", 0.0);

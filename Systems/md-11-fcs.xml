@@ -10,10 +10,10 @@
 		<fcs_function name="hydraulics/aileron-droop">
 			<function>
 				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
 					<tableData>
-						 62  1.0
-						116  0.0
+						 7  1.0
+						31  0.0
 					</tableData>
 				</table>
 			</function>
@@ -22,10 +22,10 @@
 		<fcs_function name="hydraulics/elevator-droop">
 			<function>
 				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
 					<tableData>
-						 72  1.0
-						121  0.0
+						 8  1.0
+						32  0.0
 					</tableData>
 				</table>
 			</function>
@@ -412,7 +412,7 @@
 	
 	</channel>
 	
-	<channel name="Pitch Trim">
+	<channel name="Stabilizer">
 		
 		<switch name="hydraulics/stabilizer/rate">
 			<default value="0"/>
