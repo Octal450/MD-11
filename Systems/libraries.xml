@@ -163,7 +163,7 @@
 				</equals>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/aero/force/Lift_alpha</input>
+		<input>/fdm/jsbsim/aero/coefficient/CLalpha</input>
 		<output>/aircraft/wingflex</output>
 		<filter-time>0.04</filter-time>
 	</filter>

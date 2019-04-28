@@ -5,15 +5,57 @@
 
 <aerodynamics>
 	
-	<property value="0.0">ice/wing</property>
+	<property value="0">ice/wing</property>
+	
+	<function name="aero/function/kCLge">
+		<description>Lift factor due to ground effect</description>
+		<table>
+			<independentVar>aero/h_b-mac-ft</independentVar>
+			<tableData>
+				0.00  1.203
+				0.10  1.127
+				0.15  1.090
+				0.20  1.073
+				0.30  1.046
+				0.40  1.055
+				0.50  1.019
+				0.60  1.013
+				0.70  1.008
+				0.80  1.006
+				0.90  1.003
+				1.00  1.002
+				1.10  1.000
+			</tableData>
+		</table>
+	</function>
+	
+	<function name="aero/function/kCDge">
+		<description>Drag factor due to ground effect</description>
+		<table>
+			<independentVar>aero/h_b-mac-ft</independentVar>
+			<tableData>
+				0.00  0.480
+				0.10  0.515
+				0.15  0.629
+				0.20  0.709
+				0.30  0.815
+				0.40  0.882
+				0.50  0.928
+				0.60  0.962
+				0.70  0.988
+				0.80  1.000
+			</tableData>
+		</table>
+	</function>
 	
 	<axis name="LIFT">
 		
-		<function name="aero/force/Lift_alpha">
+		<function name="aero/coefficient/CLalpha">
 			<description>Lift due to alpha</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
+				<property>aero/function/kCLge</property>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<tableData>
@@ -35,7 +77,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_pitch_rate">
+		<function name="aero/coefficient/CLq">
 			<description>Lift due to pitch rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -46,7 +88,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_alpha_rate">
+		<function name="aero/coefficient/CLadot">
 			<description>Lift due to alpha rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -57,61 +99,12 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_left_outer_elevator">
-			<description>Lift due to left outer elevator deflection</description>
+		<function name="aero/coefficient/CLflap">
+			<description>Lift due to flaps</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
-				<value>0.04679875</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Lift_left_inner_elevator">
-			<description>Lift due to left inner elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
-				<value>0.04679875</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Lift_right_inner_elevator">
-			<description>Lift due to right inner elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
-				<value>0.04679875</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Lift_right_outer_elevator">
-			<description>Lift due to right outer elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
-				<value>0.04679875</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Lift_elevator_trim">
-			<description>Lift due to stabilizer deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
-				<value>0.0092075</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Lift_flap">
-			<description>Delta Lift due to flaps</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
+				<property>aero/function/kCLge</property>
 				<table>
 					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 					<tableData>
@@ -125,18 +118,69 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_slats">
-			<description>Delta Lift due to slats</description>
+		<function name="aero/coefficient/CLslat">
+			<description>Lift due to slats</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>fcs/slat-pos-norm</property>
+				<property>aero/function/kCLge</property>
 				<value>0.1114</value>
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_left_spoiler">
-			<description>Delta Lift due to left spoiler</description>
+		<function name="aero/coefficient/CLde_lo">
+			<description>Lift due to left outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
+				<value>0.04679875</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLde_li">
+			<description>Lift due to left inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
+				<value>0.04679875</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLde_ri">
+			<description>Lift due to right inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
+				<value>0.04679875</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLde_ro">
+			<description>Lift due to right outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
+				<value>0.04679875</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLdstab">
+			<description>Lift due to stabilizer</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
+				<value>0.0092075</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLdsp_l">
+			<description>Lift due to left spoiler</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -145,8 +189,8 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Lift_right_spoiler">
-			<description>Delta Lift due to right spoiler</description>
+		<function name="aero/coefficient/CLdsp_r">
+			<description>Lift due to right spoiler</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -159,7 +203,7 @@
 	
 	<axis name="DRAG">
 		
-		<function name="aero/force/Drag_minimum">
+		<function name="aero/coefficient/CD0">
 			<description>Minimum drag</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -168,8 +212,8 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_basic">
-			<description>Drag at zero lift</description>
+		<function name="aero/coefficient/CDalpha">
+			<description>Drag due to alpha</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -186,17 +230,18 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_induced">
+		<function name="aero/coefficient/CDi">
 			<description>Induced drag</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
+				<property>aero/function/kCDge</property>
 				<value>0.0333</value>
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_mach">
+		<function name="aero/coefficient/CDmach">
 			<description>Drag due to mach</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -214,7 +259,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_beta">
+		<function name="aero/coefficient/CDbeta">
 			<description>Drag due to sideslip</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -232,57 +277,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_left_outer_elevator">
-			<description>Drag due to left outer elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians></abs>
-				<value>0.003625</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_left_inner_elevator">
-			<description>Drag due to left inner elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians></abs>
-				<value>0.003625</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_right_inner_elevator">
-			<description>Drag due to right inner elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians></abs>
-				<value>0.003625</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_right_outer_elevator">
-			<description>Drag due to right outer elevator deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians></abs>
-				<value>0.003625</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_elevator_trim">
-			<description>Drag due to stabilizer deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/stabilizer/final-deg</property></toradians></abs>
-				<value>0.0145</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_gear">
+		<function name="aero/coefficient/CDgear">
 			<description>Drag due to gear</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -292,7 +287,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_flap">
+		<function name="aero/coefficient/CDflap">
 			<description>Drag due to flaps</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -302,7 +297,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_slat">
+		<function name="aero/coefficient/CDslat">
 			<description>Drag due to slats</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -312,68 +307,8 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Drag_left_outer_aileron">
-			<description>Drag due to left outer aileron</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_left_inner_aileron">
-			<description>Drag due to left inner aileron</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_left_spoiler">
-			<description>Drag due to left spoiler</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>fcs/spoiler-left-deg</property></toradians>
-				<value>0.0200716020249513</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_right_spoiler">
-			<description>Drag due to right spoiler</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>fcs/spoiler-right-deg</property></toradians>
-				<value>0.0200716020249513</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_right_inner_aileron">
-			<description>Drag due to right inner aileron</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_right_outer_aileron">
-			<description>Drag due to right outer aileron</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
-			</product>
-		</function>
-		
-		<function name="aero/force/Drag_wingice">
-			<description>Drag_due_to_ice_on_wing</description>
+		<function name="aero/coefficient/CDice">
+			<description>Drag due to ice on wing</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
@@ -388,12 +323,122 @@
 				</table>
 			</product>
 		</function>
+		
+		<function name="aero/coefficient/CDde_lo">
+			<description>Drag due to left outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians></abs>
+				<value>0.003625</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDde_li">
+			<description>Drag due to left inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians></abs>
+				<value>0.003625</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDde_ri">
+			<description>Drag due to right inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians></abs>
+				<value>0.003625</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDde_ro">
+			<description>Drag due to right outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians></abs>
+				<value>0.003625</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDdstab">
+			<description>Drag due to stabilizer</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/stabilizer/final-deg</property></toradians></abs>
+				<value>0.0145</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDda_lo">
+			<description>Drag due to left outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians></abs>
+				<value>0.0029271086286386</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDda_li">
+			<description>Drag due to left inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians></abs>
+				<value>0.0029271086286386</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDda_ri">
+			<description>Drag due to right inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians></abs>
+				<value>0.0029271086286386</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDda_ro">
+			<description>Drag due to right outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<abs><toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians></abs>
+				<value>0.0029271086286386</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDdsp_l">
+			<description>Drag due to left spoiler</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>fcs/spoiler-left-deg</property></toradians>
+				<value>0.0200716020249513</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CDdsp_r">
+			<description>Drag due to right spoiler</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>fcs/spoiler-right-deg</property></toradians>
+				<value>0.0200716020249513</value>
+			</product>
+		</function>
 	
 	</axis>
 	
 	<axis name="SIDE">
 		
-		<function name="aero/force/Side_beta">
+		<function name="aero/coefficient/CYbeta">
 			<description>Side force due to beta</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -403,7 +448,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Side_roll_rate">
+		<function name="aero/coefficient/CYp">
 			<description>Side force due to roll rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -422,7 +467,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Side_yaw_rate">
+		<function name="aero/coefficient/CYr">
 			<description>Side force due to yaw rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -433,7 +478,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Side_upper_rudder">
+		<function name="aero/coefficient/CYdr_u">
 			<description>Side force due to upper rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -443,7 +488,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/force/Side_lower_rudder">
+		<function name="aero/coefficient/CYdr_l">
 			<description>Side force due to lower rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -457,7 +502,7 @@
 	
 	<axis name="ROLL">
 		
-		<function name="aero/moment/Roll_beta">
+		<function name="aero/coefficient/Clbeta">
 			<description>Roll moment due to beta</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -468,7 +513,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_damp">
+		<function name="aero/coefficient/Clp">
 			<description>Roll moment due to roll rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -480,7 +525,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_yaw">
+		<function name="aero/coefficient/Clr">
 			<description>Roll moment due to yaw rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -492,7 +537,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_left_outer_aileron">
+		<function name="aero/coefficient/Clda_lo">
 			<description>Roll moment due to left outer aileron</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -503,7 +548,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_left_inner_aileron">
+		<function name="aero/coefficient/Clda_li">
 			<description>Roll moment due to left inner aileron</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -514,7 +559,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_right_inner_aileron">
+		<function name="aero/coefficient/Clda_ri">
 			<description>Roll moment due to right inner aileron</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -525,7 +570,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_right_outer_aileron">
+		<function name="aero/coefficient/Clda_ro">
 			<description>Roll moment due to right outer aileron</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -536,7 +581,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_left_spoiler">
+		<function name="aero/coefficient/Cldsp_l">
 			<description>Roll moment due to left spoiler</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -547,7 +592,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_right_spoiler">
+		<function name="aero/coefficient/Cldsp_r">
 			<description>Roll moment due to right spoiler</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -558,7 +603,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_upper_rudder">
+		<function name="aero/coefficient/Cldr_u">
 			<description>Roll moment due to upper rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -569,7 +614,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_lower_rudder">
+		<function name="aero/coefficient/Cldr_l">
 			<description>Roll moment due to lower rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -584,7 +629,7 @@
 	
 	<axis name="PITCH">
 		
-		<function name="aero/moment/Pitch_alpha">
+		<function name="aero/coefficient/Cmalpha">
 			<description>Pitch moment due to alpha</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -595,62 +640,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Pitch_left_outer_elevator">
-			<description>Pitch moment due to left outer elevator</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
-				<value>-0.14186075</value>
-			</product>
-		</function>
-		
-		<function name="aero/moment/Pitch_left_inner_elevator">
-			<description>Pitch moment due to left inner elevator</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
-				<value>-0.14186075</value>
-			</product>
-		</function>
-		
-		<function name="aero/moment/Pitch_right_inner_elevator">
-			<description>Pitch moment due to right inner elevator</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
-				<value>-0.14186075</value>
-			</product>
-		</function>
-		
-		<function name="aero/moment/Pitch_right_outer_elevator">
-			<description>Pitch moment due to right outer elevator</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
-				<value>-0.14186075</value>
-			</product>
-		</function>
-		
-		<function name="aero/moment/Pitch_elevator_trim">
-			<description>Pitch moment due to stabilizer</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
-				<value>-1.491325</value>
-			</product>
-		</function>
-		
-		<function name="aero/moment/Pitch_damp">
+		<function name="aero/coefficient/Cmq">
 			<description>Pitch moment due to pitch rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -662,7 +652,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Pitch_alphadot">
+		<function name="aero/coefficient/Cmadot">
 			<description>Pitch moment due to alpha rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -673,12 +663,67 @@
 				<value>-1.1356</value>
 			</product>
 		</function>
+		
+		<function name="aero/coefficient/Cmde_lo">
+			<description>Pitch moment due to left outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
+				<value>-0.14186075</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cmde_li">
+			<description>Pitch moment due to left inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
+				<value>-0.14186075</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cmde_ri">
+			<description>Pitch moment due to right inner elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
+				<value>-0.14186075</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cmde_ro">
+			<description>Pitch moment due to right outer elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
+				<value>-0.14186075</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cmdstab">
+			<description>Pitch moment due to stabilizer</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
+				<value>-1.491325</value>
+			</product>
+		</function>
 	
 	</axis>
 	
 	<axis name="YAW">
 		
-		<function name="aero/moment/Yaw_beta">
+		<function name="aero/coefficient/Cnbeta">
 			<description>Yaw moment due to beta</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -689,7 +734,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Yaw_damp">
+		<function name="aero/coefficient/Cnr">
 			<description>Yaw moment due to yaw rate</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -701,7 +746,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Yaw_upper_rudder">
+		<function name="aero/coefficient/Cndr_u">
 			<description>Yaw moment due to upper rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
@@ -712,7 +757,7 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Yaw_lower_rudder">
+		<function name="aero/coefficient/Cndr_l">
 			<description>Yaw moment due to lower rudder</description>
 			<product>
 				<property>aero/qbar-psf</property>
