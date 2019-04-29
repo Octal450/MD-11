@@ -220,11 +220,7 @@ var colddark = func {
 		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
-		setprop("/controls/flight/slats", 0.000);
-		setprop("/controls/flight/flaps-output", 0.000);
-		setprop("/controls/flight/flap-lever", 0);
-		setprop("/controls/flight/flaps", 0.0);
-		setprop("/controls/flight/flap-txt", 0);
+		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
@@ -273,11 +269,7 @@ var beforestart = func {
 		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
-		setprop("/controls/flight/slats", 0.000);
-		setprop("/controls/flight/flaps-output", 0.000);
-		setprop("/controls/flight/flap-lever", 0);
-		setprop("/controls/flight/flaps", 0.0);
-		setprop("/controls/flight/flap-txt", 0);
+		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
@@ -340,11 +332,7 @@ var taxi = func {
 		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
 		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
-		setprop("/controls/flight/slats", 0.000);
-		setprop("/controls/flight/flaps-output", 0.000);
-		setprop("/controls/flight/flap-lever", 0);
-		setprop("/controls/flight/flaps", 0.0);
-		setprop("/controls/flight/flap-txt", 0);
+		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
@@ -420,11 +408,7 @@ var takeoff = func {
 				setprop("/controls/lighting/landing-light-n", 1);
 				setprop("/controls/lighting/landing-light-r", 1);
 				setprop("/controls/flight/speedbrake-arm", 1);
-				setprop("/controls/flight/slats", 1.000);
-				setprop("/controls/flight/flaps-output", 0.300);
-				setprop("/controls/flight/flap-lever", 2);
-				setprop("/controls/flight/flaps", 0.4);
-				setprop("/controls/flight/flap-txt", 15);
+				setprop("/controls/flight/flaps", 0.36); # 10-25/EXT
 				if (getprop("/controls/hydraulics/deflected-aileron-equipped") == 1) {
 					if (getprop("/gear/gear[0]/wow") == 1) {
 						setprop("/controls/hydraulics/deflected-aileron", 1);
