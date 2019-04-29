@@ -651,6 +651,56 @@
 	
 	<input>
 		<keyboard>
+			<key n="2">
+				<name>Ctrl-b</name>
+				<desc>Cycle speedbrake setting</desc>
+				<binding>
+					<condition>
+						<and>
+							<not-equals>
+								<property>/controls/flight/speedbrake-arm</property>
+								<value>1</value>
+							</not-equals>
+							<equals>
+								<property>/gear/gear[0]/wow</property>
+								<value>1</value>
+							</equals>
+						</and>
+					</condition>
+					<command>property-cycle</command>
+					<property>/controls/flight/speedbrake</property>
+					<value>0.0</value>
+					<value>0.2</value>
+					<value>0.4</value>
+					<value>0.6</value>
+					<value>1.0</value>
+				</binding>
+				<binding>
+					<condition>
+						<and>
+							<not-equals>
+								<property>/controls/flight/speedbrake-arm</property>
+								<value>1</value>
+							</not-equals>
+							<equals>
+								<property>/gear/gear[0]/wow</property>
+								<value>0</value>
+							</equals>
+						</and>
+					</condition>
+					<command>property-cycle</command>
+					<property>/controls/flight/speedbrake</property>
+					<value>0.0</value>
+					<value>0.2</value>
+					<value>0.4</value>
+					<value>0.6</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/flight/speedbrake-arm</property>
+					<value>0</value>
+				</binding>
+			</key>
 			<key n="4">
 				<name>CTRL-d</name>
 				<desc>Autothrottle Disconnect</desc>
@@ -719,9 +769,10 @@
 					<condition>
 						<property>/options/system/keyboard-mode</property>
 					</condition>
-					<command>property-adjust</command>
-					<property>/controls/flight/elevator-trim</property>
-					<step>-0.001</step>
+					<command>nasal</command>
+					<script>
+						controls.elevatorTrim(-1);
+					</script>
 				</binding>
 			</key>
 			<key n="50">
@@ -848,9 +899,10 @@
 					<condition>
 						<property>/options/system/keyboard-mode</property>
 					</condition>
-					<command>property-adjust</command>
-					<property>/controls/flight/elevator-trim</property>
-					<step>0.001</step>
+					<command>nasal</command>
+					<script>
+						controls.elevatorTrim(1);
+					</script>
 				</binding>
 			</key>
 			<key n="56">
@@ -986,54 +1038,24 @@
 					</script>
 				</binding>
 			</key>
-			<key n="2">
-				<name>Ctrl-b</name>
-				<desc>Cycle speedbrake setting</desc>
+			<key n="362">
+				<name>Home</name>
+				<desc>Elevator Trim Down</desc>
 				<binding>
-					<condition>
-						<and>
-							<not-equals>
-								<property>/controls/flight/speedbrake-arm</property>
-								<value>1</value>
-							</not-equals>
-							<equals>
-								<property>/gear/gear[0]/wow</property>
-								<value>1</value>
-							</equals>
-						</and>
-					</condition>
-					<command>property-cycle</command>
-					<property>/controls/flight/speedbrake</property>
-					<value>0.0</value>
-					<value>0.2</value>
-					<value>0.4</value>
-					<value>0.6</value>
-					<value>1.0</value>
+					<command>nasal</command>
+					<script>
+						controls.elevatorTrim(1);
+					</script>
 				</binding>
+			</key>
+			<key n="363">
+				<name>End</name>
+				<desc>Elevator Trim Up</desc>
 				<binding>
-					<condition>
-						<and>
-							<not-equals>
-								<property>/controls/flight/speedbrake-arm</property>
-								<value>1</value>
-							</not-equals>
-							<equals>
-								<property>/gear/gear[0]/wow</property>
-								<value>0</value>
-							</equals>
-						</and>
-					</condition>
-					<command>property-cycle</command>
-					<property>/controls/flight/speedbrake</property>
-					<value>0.0</value>
-					<value>0.2</value>
-					<value>0.4</value>
-					<value>0.6</value>
-				</binding>
-				<binding>
-					<command>property-assign</command>
-					<property>/controls/flight/speedbrake-arm</property>
-					<value>0</value>
+					<command>nasal</command>
+					<script>
+						controls.elevatorTrim(-1);
+					</script>
 				</binding>
 			</key>
 		</keyboard>

@@ -270,9 +270,9 @@ var slewProp = func(prop, delta) {
 	return getprop(prop);
 }
 
-controls.elevatorTrim = func(speed) {
+controls.elevatorTrim = func(d) {
 	if (getprop("/systems/hydraulics/sys-1-psi") >= 1500 or getprop("/systems/hydraulics/sys-3-psi") >= 1500) {
-		slewProp("/controls/flight/elevator-trim", speed * 0.045);
+		slewProp("/controls/flight/elevator-trim", d * 0.0162); # 0.0162 is the rate in JSB normalized (0.25 / 15.5)
 	}
 }
 
