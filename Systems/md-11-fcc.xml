@@ -920,9 +920,8 @@
 				/controls/flight/flaps ge 0.68
 				/controls/flight/flaps lt 0.84
 			</test>
-			<test logic="AND" value="5"> <!-- 50/EXT -->
+			<test value="5"> <!-- 50/EXT -->
 				/controls/flight/flaps ge 0.84
-				/controls/flight/flaps lt 1.00
 			</test>
 			<output>/controls/flight/flaps-input-out</output>
 		</switch>
