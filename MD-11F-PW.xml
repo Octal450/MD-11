@@ -96,7 +96,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			</thruster>
 		</engine>
 		
-		<tank type="FUEL">    <!-- Left Tank -->
+		<tank type="FUEL">    <!-- Tank 1 -->
 			<location unit="M">
 				<x> 2.6152 </x>
 				<y> -11.3314 </y>
@@ -109,7 +109,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Center Tank -->
+		<tank type="FUEL">    <!-- Tank 2 -->
 			<location unit="M">
 				<x> 2.6152 </x>
 				<y> 0 </y>
@@ -122,7 +122,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Right Tank -->
+		<tank type="FUEL">    <!-- Tank 3 -->
 			<location unit="M">
 				<x> 2.6152 </x>
 				<y> 11.3314 </y>

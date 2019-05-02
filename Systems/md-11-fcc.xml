@@ -573,22 +573,34 @@
 			</clipto>
 		</switch>
 		
-		<scheduled_gain name="fcc/lsas/elevator-feel">
+		<fcs_function name="fcc/lsas/elevator-feel-gain">
+			<function>
+				<table>
+					<independentVar lookup="row">fcc/lsas/elevator-feel-speed</independentVar>
+					<tableData>
+						120  1.000
+						140  0.925
+						200  0.825
+						300  0.610
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fcc/lsas/elevator-feel">
 			<input>/controls/flight/elevator</input>
-			<table>
-				<independentVar lookup="row">fcc/lsas/elevator-feel-speed</independentVar>
-				<tableData>
-					120  1.000
-					140  0.925
-					200  0.825
-					300  0.610
-				</tableData>
-			</table>
+			<gain>fcc/lsas/elevator-feel-gain</gain>
 			<clipto>
 				<min>fcc/lsas/pap-elev-max</min>
 				<max>1.0</max>
 			</clipto>
-		</scheduled_gain>
+		</pure_gain>
+		
+		<pure_gain name="fcc/lsas/elevator-afs-feel">
+			<description>Schedule the AFS the same as yoke for when AFS is disconnected with yoke movement</description>
+			<input>fcc/afs/pitch-cmd</input>
+			<gain>fcc/lsas/elevator-feel-gain</gain>
+		</pure_gain>
 		
 		<summer name="fcc/lsas/damper-control-cmd">
 			<input>fcc/lsas/elevator-feel</input>
@@ -638,7 +650,7 @@
 				fcc/lsas/left-out-active eq 1
 				fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/afs/pitch-cmd">
+			<test value="fcc/lsas/elevator-afs-feel">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
@@ -649,7 +661,7 @@
 				fcc/lsas/left-in-active eq 1
 				fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/afs/pitch-cmd">
+			<test value="fcc/lsas/elevator-afs-feel">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
@@ -660,7 +672,7 @@
 				fcc/lsas/right-in-active eq 1
 				fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/afs/pitch-cmd">
+			<test value="fcc/lsas/elevator-afs-feel">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
@@ -671,7 +683,7 @@
 				fcc/lsas/right-out-active eq 1
 				fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/afs/pitch-cmd">
+			<test value="fcc/lsas/elevator-afs-feel">
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>

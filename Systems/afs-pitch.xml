@@ -744,11 +744,14 @@
 		<config>
 			<Kp>
 				<expression>
-					<table>
-						<property>/fdm/jsbsim/velocities/vc-kts</property>
-						<entry><ind>140</ind><dep>-0.14</dep></entry>
-						<entry><ind>360</ind><dep>-0.07</dep></entry>
-					</table>
+					<div>
+						<table>
+							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<entry><ind>140</ind><dep>-0.14</dep></entry>
+							<entry><ind>360</ind><dep>-0.07</dep></entry>
+						</table>
+						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-gain</property> <!-- Compensate for scheduled AFS command -->
+					</div>
 				</expression>
 			</Kp>
 			<Ti>0.35</Ti>

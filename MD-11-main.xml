@@ -392,11 +392,11 @@
 	
 	<consumables n="0">
 		<fuel>
-			<tank n="0"><name>Left Wing</name></tank>
-			<tank n="1"><name>Center</name></tank>
-			<tank n="2"><name>Right Wing</name></tank>
-			<tank n="3"><name>Auxiliary</name></tank>
-			<tank n="4"><name>Tail</name></tank>
+			<tank n="0"><name>Tank 1</name></tank>
+			<tank n="1"><name>Tank 2</name></tank>
+			<tank n="2"><name>Tank 3</name></tank>
+			<tank n="3"><name>Aux Tank</name></tank>
+			<tank n="4"><name>Tail Tank</name></tank>
 			<tank n="5"><name>Engine 1 Pipes</name></tank>
 			<tank n="6"><name>Engine 2 Pipes</name></tank>
 			<tank n="7"><name>Engine 3 Pipes</name></tank>
@@ -1189,6 +1189,39 @@
 				<aligned type="bool">0</aligned>
 			</ir>
 		</irs>
+		<mk-viii>
+			<configuration-module>
+				<category-1 type="int">255</category-1>
+				<category-3 type="int">2</category-3>
+				<category-4 type="int">13</category-4>
+				<category-5 type="int">0</category-5>
+				<category-6 type="int">1</category-6>
+				<category-7 type="int">124</category-7>
+				<category-8 type="int">3</category-8>
+				<category-9 type="int">3</category-9> 
+				<category-10 type="int">6</category-10>
+				<category-13 type="int">7</category-13>
+				<category-14 type="int">0</category-14>
+			</configuration-module>
+			<inputs>
+				<arinc429>
+					<decision-height-ncd type="bool">0</decision-height-ncd>
+					<decision-height type="double">250</decision-height>
+				</arinc429>
+				<discretes>
+					<momentary-flap-override type="bool">1</momentary-flap-override> <!-- I think temporary -->
+				</discretes>
+			</inputs>
+			<serviceable type="bool">true</serviceable>
+			<speaker>
+				<max-dist type="double">2</max-dist>
+				<reference-dist type="double">1</reference-dist>
+				<volume type="double">2</volume>
+			</speaker>
+			<voice>
+				<file-prefix>Aircraft/IDG-MD-11X/Sounds/GPWS/</file-prefix>
+			</voice>
+		</mk-viii>
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -1254,36 +1287,6 @@
 				<volume> 0.8 </volume> <!-- Volume at reference distance -->
 			</speaker>
 		</tcas>
-		<mk-viii>
-			<configuration-module>
-				<category-1 type="int">255</category-1>
-				<category-3 type="int">2</category-3>
-				<category-4 type="int">13</category-4>
-				<category-5 type="int">0</category-5>
-				<category-6 type="int">1</category-6>
-				<category-7 type="int">124</category-7>
-				<category-8 type="int">3</category-8>
-				<category-9 type="int">3</category-9> 
-				<category-10 type="int">6</category-10>
-				<category-13 type="int">7</category-13>
-				<category-14 type="int">0</category-14>
-			</configuration-module>
-			<inputs>
-				<arinc429>
-					<decision-height-ncd type="bool">0</decision-height-ncd>
-					<decision-height type="double">250</decision-height>
-				</arinc429>
-			</inputs>
-			<serviceable type="bool">true</serviceable>
-			<speaker>
-				<max-dist type="double">2</max-dist>
-				<reference-dist type="double">1</reference-dist>
-				<volume type="double">2</volume>
-			</speaker>
-			<voice>
-				<file-prefix>Aircraft/IDG-MD-11X/Sounds/GPWS/</file-prefix>
-			</voice>
-		</mk-viii>
 	</instrumentation>
 	
 	<it-autoflight>

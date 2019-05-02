@@ -60,7 +60,7 @@ var fadecLoop = func {
 	n1clb = getprop("/systems/thrust/n1/clb-lim");
 	n1crz = getprop("/systems/thrust/n1/crz-lim");
 	mode = getprop("/it-autoflight/mode/vert");
-	flap = getprop("/controls/flight/flap-lever");
+	flap = getprop("/controls/flight/flaps-input");
 	if (mode == "G/A CLB") {
 		setprop("/controls/engines/thrust-limit", "G/A");
 		setprop("/controls/engines/n1-limit", n1ga);
