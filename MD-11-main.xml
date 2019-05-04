@@ -770,9 +770,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						controls.elevatorTrim(-1);
-					</script>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
 			</key>
 			<key n="50">
@@ -791,9 +789,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") - 0.05);
-					</script>
+					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") - 0.05);</script>
 				</binding>
 			</key>
 			<key n="51">
@@ -835,9 +831,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") - 0.05);
-					</script>
+					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") - 0.05);</script>
 				</binding>
 			</key>
 			<key n="53">
@@ -879,9 +873,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") + 0.05);
-					</script>
+					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") + 0.05);</script>
 				</binding>
 			</key>
 			<key n="55">
@@ -900,9 +892,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						controls.elevatorTrim(1);
-					</script>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
 			</key>
 			<key n="56">
@@ -921,9 +911,7 @@
 						<property>/options/system/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
-					<script>
-						setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") + 0.05);
-					</script>
+					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") + 0.05);</script>
 				</binding>
 			</key>
 			<key n="57">
@@ -993,9 +981,7 @@
 				<desc>Simple Engage/Disengage reversers</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					systems.toggleFastRevThrust();
-					</script>
+					<script>systems.toggleFastRevThrust();</script>
 				</binding>
 			</key>
 			<key n="257">
@@ -1003,9 +989,7 @@
 				<desc>Disengage/Decrease reversers</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					systems.unRevThrust();
-					</script>
+					<script>systems.unRevThrust();</script>
 				</binding>
 			</key>
 			<key n="258">
@@ -1013,9 +997,7 @@
 				<desc>Engage/Increase reversers</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					systems.doRevThrust();
-					</script>
+					<script>systems.doRevThrust();</script>
 				</binding>
 			</key>
 			<key n="101">
@@ -1023,9 +1005,7 @@
 				<desc>Thrust Levers Idle</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					systems.doIdleThrust();
-					</script>
+					<script>systems.doIdleThrust();</script>
 				</binding>
 			</key>
 			<key n="102">
@@ -1033,9 +1013,7 @@
 				<desc>Thrust Lever Full</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					systems.doFullThrust();
-					</script>
+					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
 			<key n="362">
@@ -1043,9 +1021,7 @@
 				<desc>Elevator Trim Down</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						controls.elevatorTrim(1);
-					</script>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
 			</key>
 			<key n="363">
@@ -1053,9 +1029,7 @@
 				<desc>Elevator Trim Up</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						controls.elevatorTrim(-1);
-					</script>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
 			</key>
 		</keyboard>
@@ -1090,6 +1064,28 @@
 							</condition>
 							<command>nasal</command>
 							<script>libraries.fovZoom(1);</script>
+						</binding>
+					</button>
+				</mode>
+				<mode n="1"> <!-- Mouse Yoke Support -->
+					<button n="3">
+						<binding n="0">
+							<command>nasal</command>
+							<script></script>
+						</binding>
+						<binding n="1">
+							<command>nasal</command>
+							<script>controls.elevatorTrim(1);</script>
+						</binding>
+					</button>
+					<button n="4">
+						<binding n="0">
+							<command>nasal</command>
+							<script></script>
+						</binding>
+						<binding n="1">
+							<command>nasal</command>
+							<script>controls.elevatorTrim(-1);</script>
 						</binding>
 					</button>
 				</mode>
