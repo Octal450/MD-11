@@ -13,14 +13,6 @@
 			<z-offset-min-m type="float">30.0</z-offset-min-m>
 			<z-offset-max-m type="float">300.0</z-offset-max-m>
 		</current-view>
-		<flaps> <!-- These steps are the beginning of the dead-band for each detent, not mapped directly to deflection -->
-			<setting n="0">0.00</setting> <!-- UP/RET -->
-			<setting n="1">0.20</setting> <!-- UP/EXT -->
-			<setting n="2">0.36</setting> <!-- 10-25/EXT -->
-			<setting n="3">0.52</setting> <!-- 28/EXT -->
-			<setting n="4">0.68</setting> <!-- 35/EXT -->
-			<setting n="5">0.84</setting> <!-- 50/EXT -->
-		</flaps>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
 		<hud n="0">
@@ -662,18 +654,18 @@
 								<value>1</value>
 							</not-equals>
 							<equals>
-								<property>/gear/gear[0]/wow</property>
+								<property>gear/gear[0]/wow</property>
 								<value>1</value>
 							</equals>
 						</and>
 					</condition>
 					<command>property-cycle</command>
-					<property>/controls/flight/speedbrake</property>
+					<property>controls/flight/speedbrake</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>
 					<value>0.6</value>
-					<value>1.0</value>
+					<value>0.8</value>
 				</binding>
 				<binding>
 					<condition>
@@ -682,18 +674,18 @@
 								<property>/controls/flight/speedbrake-arm</property>
 								<value>1</value>
 							</not-equals>
-							<equals>
-								<property>/gear/gear[0]/wow</property>
-								<value>0</value>
-							</equals>
+							<not-equals>
+								<property>gear/gear[0]/wow</property>
+								<value>1</value>
+							</not-equals>
 						</and>
 					</condition>
 					<command>property-cycle</command>
-					<property>/controls/flight/speedbrake</property>
+					<property>controls/flight/speedbrake</property>
 					<value>0.0</value>
 					<value>0.2</value>
 					<value>0.4</value>
-					<value>0.6</value>
+					<value>0.8</value> <!-- Not 0.6! -->
 				</binding>
 				<binding>
 					<command>property-assign</command>
@@ -703,7 +695,7 @@
 			</key>
 			<key n="4">
 				<name>CTRL-d</name>
-				<desc>Autothrottle Disconnect</desc>
+				<desc>ATS Disconnect</desc>
 				<binding>
 					<command>nasal</command>
 					<script>
@@ -939,7 +931,7 @@
 			</key>
 			<key n="68">
 				<name>D</name>
-				<desc>Autopilot Disconnect</desc>
+				<desc>AFS Disconnect</desc>
 				<binding>
 					<command>nasal</command>
 					<script>
@@ -1185,39 +1177,6 @@
 				<aligned type="bool">0</aligned>
 			</ir>
 		</irs>
-		<mk-viii>
-			<configuration-module>
-				<category-1 type="int">255</category-1>
-				<category-3 type="int">2</category-3>
-				<category-4 type="int">13</category-4>
-				<category-5 type="int">0</category-5>
-				<category-6 type="int">1</category-6>
-				<category-7 type="int">124</category-7>
-				<category-8 type="int">3</category-8>
-				<category-9 type="int">3</category-9> 
-				<category-10 type="int">6</category-10>
-				<category-13 type="int">7</category-13>
-				<category-14 type="int">0</category-14>
-			</configuration-module>
-			<inputs>
-				<arinc429>
-					<decision-height-ncd type="bool">0</decision-height-ncd>
-					<decision-height type="double">250</decision-height>
-				</arinc429>
-				<discretes>
-					<momentary-flap-override type="bool">1</momentary-flap-override> <!-- I think temporary -->
-				</discretes>
-			</inputs>
-			<serviceable type="bool">true</serviceable>
-			<speaker>
-				<max-dist type="double">2</max-dist>
-				<reference-dist type="double">1</reference-dist>
-				<volume type="double">2</volume>
-			</speaker>
-			<voice>
-				<file-prefix>Aircraft/IDG-MD-11X/Sounds/GPWS/</file-prefix>
-			</voice>
-		</mk-viii>
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>

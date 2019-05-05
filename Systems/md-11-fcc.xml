@@ -5,11 +5,13 @@
 
 <system name="MD-11: FCC">
 	
-	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	<property value="0">fcc/lsas/pid</property>
 	<property value="0">fcc/lsas/elevator-feel-manual</property>
 	<property value="0">fcc/lsas/elevator-feel-speed</property>
 	<property value="0">fcc/yaw/tc-pd</property>
+	<property value="0">fcs/spoiler-left-feedback</property>
+	<property value="0">fcs/spoiler-right-feedback</property>
+	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Default gains for tuning -->
 	<property value="0">fcc/lsas/p-gain</property>
@@ -530,10 +532,10 @@
 						<independentVar lookup="row">attitude/pitch-rad</independentVar>
 						<independentVar lookup="column">/position/gear-agl-ft</independentVar>
 						<tableData>
-							          0     2
-							0.174533 -1.00 -1.00
-							0.244346  0.00 -1.00
-							0.314159  0.00  0.00
+							          0  2
+							0.174533 -1 -1
+							0.244346  0 -1
+							0.314159  0  0
 						</tableData>
 					</table>
 					<value>-1.0</value>
@@ -611,25 +613,28 @@
 			<default value="1"/>
 			<test logic="AND" value="0">
 				fcc/afs/enabled eq 0
-				gear/unit[0]/WOW ne 1
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
-				spoilers/auto-speedbrake-feedback ge 0.5
+				spoilers/auto-speedbrake-feedback gt 0
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/lsas/pnl-control-cmd">
-			<function>
-				<sum>
-					<property>fcc/lsas/elevator-feel</property>
-					<value>0.1</value>
-				</sum>
-			</function>
+		<switch name="fcc/lsas/pnl-amount">
+			<default value="0.17442"/> <!-- About 3 degrees -->
+			<test logic="AND" value="0.23256"> <!-- About 4 degrees -->
+				fcs/spoiler-left-feedback gt 10
+				fcs/spoiler-right-feedback gt 10
+			</test>
+		</switch>
+		
+		<summer name="fcc/lsas/pnl-control-cmd">
+			<input>fcc/lsas/elevator-feel</input>
+			<input>fcc/lsas/pnl-amount</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
-		</fcs_function>
+		</summer>
 		
 		<switch name="fcc/lsas/output">
 			<default value="fcc/lsas/elevator-feel"/>
@@ -938,7 +943,7 @@
 			<output>/controls/flight/flaps-input-out</output>
 		</switch>
 		
-		<switch name="/controls/flight/flaps-command">
+		<switch name="/controls/flight/flaps-cmd">
 			<default value="0"/>
 			<test value="/controls/flight/dial-a-flap">
 				/controls/flight/flaps-input eq 2
@@ -954,7 +959,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/flight/slats-command">
+		<switch name="/controls/flight/slats-cmd">
 			<default value="0"/>
 			<test value="31">
 				/controls/flight/flaps-input ge 1
@@ -990,7 +995,7 @@
 		</switch>
 		
 		<pure_gain name="fcc/flap/cmd-deg">
-			<input>/controls/flight/flaps-command</input>
+			<input>/controls/flight/flaps-cmd</input>
 			<gain>1.0</gain>
 			<output>fcc/flap/cmd-deg-feedback</output>
 			<clipto>
@@ -1000,7 +1005,7 @@
 		</pure_gain>
 		
 		<pure_gain name="fcc/slat/cmd-deg">
-			<input>/controls/flight/slats-command</input>
+			<input>/controls/flight/slats-cmd</input>
 			<gain>1.0</gain>
 			<output>fcc/slat/cmd-deg-feedback</output>
 		</pure_gain>

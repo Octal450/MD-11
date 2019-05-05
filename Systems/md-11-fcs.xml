@@ -452,16 +452,20 @@
 				<max>1.0</max>
 			</domain>
 			<range>
-				<min>-29.7</min>
-				<max>29.7</max>
+				<min>-13</min>
+				<max>13</max>
 			</range>
 		</aerosurface_scale>
 		
 		<aerosurface_scale name="hydraulics/rudder/trim-norm">
-			<input>/controls/flight/rudder-trim</input>
+			<input>hydraulics/rudder/trim-cmd-deg</input>
+			<domain>
+				<min>-30</min>
+				<max>30</max>
+			</domain>
 			<range>
-				<min>-0.8</min>
-				<max>0.8</max>
+				<min>-1.0</min>
+				<max>1.0</max>
 			</range>
 		</aerosurface_scale>
 	

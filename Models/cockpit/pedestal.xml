@@ -892,11 +892,11 @@
 		<object-name>spdbrklever.circle</object-name>
 		<property>fdm/jsbsim/spoilers/main-lever</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>-10</dep></entry>
-			<entry><ind>0.2</ind><dep> 10</dep></entry>
-			<entry><ind>0.4</ind><dep> 21</dep></entry>
-			<entry><ind>0.6</ind><dep> 35</dep></entry>
-			<entry><ind>1.0</ind><dep> 60</dep></entry>
+			<entry><ind>0</ind><dep>-10</dep></entry>
+			<entry><ind>1</ind><dep> 10</dep></entry>
+			<entry><ind>2</ind><dep> 21</dep></entry>
+			<entry><ind>3</ind><dep> 35</dep></entry>
+			<entry><ind>4</ind><dep> 60</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-27.1287</x-m>
@@ -915,6 +915,7 @@
 		<object-name>spdbrklever</object-name>
 		<action>
 			<button>0</button>
+			<button>1</button>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/flight/speedbrake</property>
@@ -930,20 +931,15 @@
 		<action>
 			<button>3</button>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/flight/speedbrake-arm</property>
-				<value>0</value>
-			</binding>
-			<binding>
 				<condition>
 					<equals>
-						<property>/gear/gear[0]/wow</property>
+						<property>gear/gear[0]/wow</property>
 						<value>1</value>
 					</equals>
 				</condition>
 				<command>property-cycle</command>
 				<property>controls/flight/speedbrake</property>
-				<value>1.0</value>
+				<value>0.8</value>
 				<value>0.6</value>
 				<value>0.4</value>
 				<value>0.2</value>
@@ -951,14 +947,14 @@
 			</binding>
 			<binding>
 				<condition>
-					<equals>
-						<property>/gear/gear[0]/wow</property>
-						<value>0</value>
-					</equals>
+					<not-equals>
+						<property>gear/gear[0]/wow</property>
+						<value>1</value>
+					</not-equals>
 				</condition>
 				<command>property-cycle</command>
 				<property>controls/flight/speedbrake</property>
-				<value>0.6</value>
+				<value>0.8</value> <!-- Not 0.6! -->
 				<value>0.4</value>
 				<value>0.2</value>
 				<value>0.0</value>
@@ -967,14 +963,9 @@
 		<action>
 			<button>4</button>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/flight/speedbrake-arm</property>
-				<value>0</value>
-			</binding>
-			<binding>
 				<condition>
 					<equals>
-						<property>/gear/gear[0]/wow</property>
+						<property>gear/gear[0]/wow</property>
 						<value>1</value>
 					</equals>
 				</condition>
@@ -984,21 +975,21 @@
 				<value>0.2</value>
 				<value>0.4</value>
 				<value>0.6</value>
-				<value>1.0</value>
+				<value>0.8</value>
 			</binding>
 			<binding>
 				<condition>
-					<equals>
-						<property>/gear/gear[0]/wow</property>
-						<value>0</value>
-					</equals>
+					<not-equals>
+						<property>gear/gear[0]/wow</property>
+						<value>1</value>
+					</not-equals>
 				</condition>
 				<command>property-cycle</command>
 				<property>controls/flight/speedbrake</property>
 				<value>0.0</value>
 				<value>0.2</value>
 				<value>0.4</value>
-				<value>0.6</value>
+				<value>0.8</value> <!-- Not 0.6! -->
 			</binding>
 		</action>
 	</animation>

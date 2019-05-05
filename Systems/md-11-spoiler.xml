@@ -5,7 +5,52 @@
 
 <system name="MD-11: Spoilers">
 	
-	<channel name="Spoiler Logic">
+	<channel name="Spoiler Lever and Logic">
+		
+		<switch name="spoilers/auto-speedbrake-arm">
+			<default value="/controls/flight/speedbrake-arm"/>
+			<test value="0">
+				/controls/flight/speedbrake gt 0
+			</test>
+			<output>/controls/flight/speedbrake-arm</output>
+		</switch>
+		
+		<switch name="spoilers/max-lever">
+			<default value="3"/>
+			<test value="4">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="spoilers/auto-speedbrake-max">
+			<default value="2"/>
+			<test value="4">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="spoilers/lever-input">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/flight/speedbrake ge 0.2
+				/controls/flight/speedbrake lt 0.4
+			</test>
+			<test logic="AND" value="2">
+				/controls/flight/speedbrake ge 0.4
+				/controls/flight/speedbrake lt 0.6
+			</test>
+			<test logic="AND" value="3">
+				/controls/flight/speedbrake ge 0.6
+				/controls/flight/speedbrake lt 0.8
+			</test>
+			<test value="4">
+				/controls/flight/speedbrake ge 0.8
+			</test>
+			<clipto>
+				<min>0</min>
+				<max>spoilers/max-lever</max>
+			</clipto>
+		</switch>
 		
 		<switch name="spoilers/main-gear-or">
 			<default value="0"/>
@@ -25,82 +70,84 @@
 		
 		<switch name="spoilers/throttle[0]">
 			<default value="/controls/engines/engine[0]/throttle"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				/controls/engines/engine[0]/reverser eq 1
 			</test>
 		</switch>
 		
 		<switch name="spoilers/throttle[1]">
 			<default value="/controls/engines/engine[1]/throttle"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				/controls/engines/engine[1]/reverser eq 1
 			</test>
 		</switch>
 		
 		<switch name="spoilers/throttle[2]">
 			<default value="/controls/engines/engine[2]/throttle"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				/controls/engines/engine[2]/reverser eq 1
 			</test>
 		</switch>
 		
-		<switch name="spoilers/max-spoiler">
-			<default value="0.6"/>
-			<test logic="AND" value="1.0">
-				gear/unit[0]/WOW eq 1
-			</test>
-		</switch>
-		
-		<switch name="spoilers/auto-speedbrake-cmd">
-			<default value="spoilers/auto-speedbrake-cmd"/>
+		<switch name="spoilers/auto-speedbrake">
+			<description>Flip flop for autospeedbrake</description>
+			<default value="spoilers/auto-speedbrake"/>
 			<test logic="OR" value="0"> <!-- Reset -->
-				spoilers/throttle[0] ge 0.01
-				spoilers/throttle[1] ge 0.01
-				spoilers/throttle[2] ge 0.01
+				spoilers/throttle[0] ge 0.05
+				spoilers/throttle[1] ge 0.05
+				spoilers/throttle[2] ge 0.05
 				/controls/flight/speedbrake-arm ne 1
 			</test>
-			<test logic="AND" value="1"> <!-- Set -->
-				spoilers/throttle[0] lt 0.01
-				spoilers/throttle[1] lt 0.01
-				spoilers/throttle[2] lt 0.01
+			<test logic="AND" value="4"> <!-- Set -->
+				spoilers/throttle[0] lt 0.05
+				spoilers/throttle[1] lt 0.05
+				spoilers/throttle[2] lt 0.05
 				/controls/flight/speedbrake-arm eq 1
 				spoilers/main-gear-or eq 1
 				/velocities/groundspeed-kt ge 60
+				fcs/flap-pos-deg ge 31
 			</test>
 			<clipto>
-				<min>0.0</min>
-				<max>spoilers/max-spoiler</max>
+				<min>0</min>
+				<max>spoilers/auto-speedbrake-max</max>
 			</clipto>
 			<output>spoilers/auto-speedbrake-feedback</output>
 		</switch>
 		
-		<switch name="spoilers/speedbrake-nul">
-			<default value="0"/>
-			<test logic="AND" value="0.2">
-				/controls/flight/speedbrake gt 0.1
-				/controls/flight/speedbrake le 0.3
-			</test>
-			<test logic="AND" value="0.4">
-				/controls/flight/speedbrake gt 0.3
-				/controls/flight/speedbrake le 0.5
-			</test>
-			<test logic="AND" value="0.6">
-				/controls/flight/speedbrake gt 0.5
-				/controls/flight/speedbrake le 0.8
-			</test>
-			<test logic="AND" value="1.0">
-				/controls/flight/speedbrake gt 0.8
+		<switch name="spoilers/lever-cmd">
+			<default value="spoilers/lever-input"/>
+			<test value="spoilers/auto-speedbrake">
+				/controls/flight/speedbrake-arm eq 1
 			</test>
 		</switch>
 		
-		<summer name="spoilers/main-cmd">
-			<input>spoilers/speedbrake-nul</input>
-			<input>spoilers/auto-speedbrake-cmd</input>
-			<clipto>
+		<switch name="spoilers/main-cmd-deg">
+			<default value="0.0"/>
+			<test value="10">
+				spoilers/lever-cmd eq 1
+			</test>
+			<test value="20">
+				spoilers/lever-cmd eq 2
+			</test>
+			<test value="30">
+				spoilers/lever-cmd eq 3
+			</test>
+			<test value="60">
+				spoilers/lever-cmd eq 4
+			</test>
+		</switch>
+		
+		<aerosurface_scale name="spoilers/main-cmd">
+			<input>spoilers/main-cmd-deg</input>
+			<domain>
+				<min>0</min>
+				<max>60</max>
+			</domain>
+			<range>
 				<min>0.0</min>
 				<max>1.0</max>
-			</clipto>
-		</summer>
+			</range>
+		</aerosurface_scale>
 	
 	</channel>
 	
@@ -481,6 +528,7 @@
 					<value>5</value>
 				</quotient>
 			</function>
+			<output>fcs/spoiler-left-feedback</output>
 		</fcs_function>
 		
 		<summer name="fcs/spoiler-right-sum">
@@ -498,6 +546,7 @@
 					<value>5</value>
 				</quotient>
 			</function>
+			<output>fcs/spoiler-right-feedback</output>
 		</fcs_function>
 	
 	</channel>

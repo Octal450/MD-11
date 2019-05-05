@@ -398,10 +398,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>2500</value>
@@ -436,10 +432,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>1000</value>
@@ -474,10 +466,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>400</value>
@@ -516,10 +504,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>300</value>
@@ -558,10 +542,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>200</value>
@@ -600,10 +580,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>100</value>
@@ -642,10 +618,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>100</value>
@@ -680,10 +652,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>50</value>
@@ -718,10 +686,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>40</value>
@@ -756,10 +720,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>30</value>
@@ -794,10 +754,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>20</value>
@@ -832,10 +788,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<not-equals>
 						<property>/controls/switches/minimums</property>
 						<value>10</value>
@@ -870,10 +822,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<property>/controls/switches/minimums-plus-100</property>
@@ -904,10 +852,6 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
-						<value>0</value>
-					</equals>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<property>/controls/switches/minimums</property>

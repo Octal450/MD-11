@@ -36,6 +36,10 @@ var Control = {
 	rudder: props.globals.getNode("/controls/flight/rudder", 1),
 };
 
+var Engine = {
+	reverserNorm: [props.globals.getNode("/engines/engine[0]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[1]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[2]/reverser-pos-norm", 1)],
+};
+
 var Radio = {
 	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1)],
 	gsDeflTemp: 0,
@@ -78,9 +82,6 @@ var Misc = {
 	ir2Align: props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1),
 	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
 	pfdHeadingScaleTemp: 0,
-	rev1: props.globals.getNode("/controls/engines/engine[0]/reverser", 1),
-	rev2: props.globals.getNode("/controls/engines/engine[1]/reverser", 1),
-	rev3: props.globals.getNode("/controls/engines/engine[2]/reverser", 1),
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
 	state2: props.globals.getNode("/engines/engine[1]/state", 1),
 	state3: props.globals.getNode("/engines/engine[2]/state", 1),
@@ -408,7 +409,7 @@ var ITAF = {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
 			Custom.retardLock = 1;
-			if (Gear.wow1Temp or Gear.wow2Temp) { # Disconnect A/THR on either main gear touch
+			if (Engine.reverserNorm[0].getValue() >= 0.01 or Engine.reverserNorm[1].getValue() >= 0.01 or Engine.reverserNorm[2].getValue() >= 0.01) { # Disconnect A/THR on any reverser deployed
 				me.killATSSilent();
 			}
 		} else if (Custom.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
@@ -672,7 +673,7 @@ var ITAF = {
 	},
 	athrMaster: func(s) {
 		if (s == 1) {
-			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3 and Misc.rev1.getValue() < 0.01 and Misc.rev2.getValue() < 0.01 and Misc.rev3.getValue() < 0.01) {
+			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3 and Engine.reverserNorm[0].getValue() < 0.01 and Engine.reverserNorm[1].getValue() < 0.01 and Engine.reverserNorm[2].getValue() < 0.01) {
 				Output.athr.setBoolValue(1);
 				atsKill.stop();
 				Custom.atsWarn.setBoolValue(0);

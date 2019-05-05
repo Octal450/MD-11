@@ -13,7 +13,7 @@
 			<condition>
 				<and>
 					<not-equals>
-						<property>/controls/flight/flaps-command</property>
+						<property>/controls/flight/flaps-cmd</property>
 						<value>0</value>
 					</not-equals>
 					<equals>

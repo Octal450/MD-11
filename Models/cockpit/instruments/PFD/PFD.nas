@@ -90,8 +90,8 @@ var aphdg = props.globals.getNode("/it-autoflight/input/hdg", 1);
 var apspd = props.globals.getNode("/it-autoflight/input/spd-kts", 1);
 var apmach = props.globals.getNode("/it-autoflight/input/spd-mach", 1);
 var apalt = props.globals.getNode("/it-autoflight/internal/alt", 1);
-var slat = props.globals.getNode("/controls/flight/slats-command", 1);
-var flap = props.globals.getNode("/controls/flight/flaps-command", 1);
+var slat = props.globals.getNode("/controls/flight/slats-cmd", 1);
+var flap = props.globals.getNode("/controls/flight/flaps-cmd", 1);
 var flapmaxdeg = props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg", 1);
 var slip_skid = props.globals.getNode("/instrumentation/pfd/slip-skid", 1);
 var fdroll = props.globals.getNode("/it-autoflight/fd/roll-bar", 1);
@@ -111,9 +111,9 @@ var gs0range = props.globals.getNode("/instrumentation/nav[0]/gs-in-range", 1);
 var nav0signal = props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1);
 var hasgs = props.globals.getNode("/instrumentation/nav[0]/has-gs", 1);
 var navloc = props.globals.getNode("/instrumentation/nav[0]/nav-loc", 1);
-var rev1 = props.globals.getNode("/controls/engines/engine[0]/reverser");
-var rev2 = props.globals.getNode("/controls/engines/engine[1]/reverser");
-var rev3 = props.globals.getNode("/controls/engines/engine[2]/reverser");
+var rev1 = props.globals.getNode("/engines/engine[0]/reverser-pos-norm");
+var rev2 = props.globals.getNode("/engines/engine[1]/reverser-pos-norm");
+var rev3 = props.globals.getNode("/engines/engine[2]/reverser-pos-norm");
 var minimums = props.globals.getNode("/controls/switches/minimums", 1);
 
 # Create Nodes:

@@ -210,49 +210,6 @@ canvas.Element.setVisible = func(vis) {
 	me.setBool("visible", vis);
 };
 
-controls.stepSpoilers = func(step) {
-	setprop("/controls/flight/speedbrake-arm", 0);
-	if (step == 1) {
-		deploySpeedbrake();
-	} else if (step == -1) {
-		retractSpeedbrake();
-	}
-}
-
-var deploySpeedbrake = func {
-	if (getprop("/gear/gear[1]/wow") == 1 or getprop("/gear/gear[2]/wow") == 1) {
-		if (getprop("/controls/flight/speedbrake") < 0.2) {
-			setprop("/controls/flight/speedbrake", 0.2);
-		} else if (getprop("/controls/flight/speedbrake") < 0.4) {
-			setprop("/controls/flight/speedbrake", 0.4);
-		} else if (getprop("/controls/flight/speedbrake") < 0.6) {
-			setprop("/controls/flight/speedbrake", 0.6);
-		} else if (getprop("/controls/flight/speedbrake") < 1.0) {
-			setprop("/controls/flight/speedbrake", 1.0);
-		}
-	} else {
-		if (getprop("/controls/flight/speedbrake") < 0.2) {
-			setprop("/controls/flight/speedbrake", 0.2);
-		} else if (getprop("/controls/flight/speedbrake") < 0.4) {
-			setprop("/controls/flight/speedbrake", 0.4);
-		} else if (getprop("/controls/flight/speedbrake") < 0.6) {
-			setprop("/controls/flight/speedbrake", 0.6);
-		}
-	}
-}
-
-var retractSpeedbrake = func {
-	if (getprop("/controls/flight/speedbrake") > 0.6) {
-		setprop("/controls/flight/speedbrake", 0.6);
-	} else if (getprop("/controls/flight/speedbrake") > 0.4) {
-		setprop("/controls/flight/speedbrake", 0.4);
-	} else if (getprop("/controls/flight/speedbrake") > 0.2) {
-		setprop("/controls/flight/speedbrake", 0.2);
-	} else if (getprop("/controls/flight/speedbrake") > 0.0) {
-		setprop("/controls/flight/speedbrake", 0.0);
-	}
-}
-
 var lightsLoop = maketimer(0.2, func {
 	# Logo and navigation lights
 	setting = getprop("/controls/lighting/nav-lights");
@@ -264,10 +221,92 @@ var lightsLoop = maketimer(0.2, func {
 	}
 });
 
+# Custom controls.nas overwrites
 var slewProp = func(prop, delta) {
 	delta *= getprop("/sim/time/delta-realtime-sec");
 	setprop(prop, getprop(prop) + delta);
 	return getprop(prop);
+}
+
+controls.flapsDown = func(step) {
+	if (step == 1) {
+		if (getprop("/controls/flight/flaps") < 0.2) {
+			setprop("/controls/flight/flaps", 0.2);
+		} else if (getprop("/controls/flight/flaps") < 0.36) {
+			setprop("/controls/flight/flaps", 0.36);
+		} else if (getprop("/controls/flight/flaps") < 0.52) {
+			setprop("/controls/flight/flaps", 0.52);
+		} else if (getprop("/controls/flight/flaps") < 0.68) {
+			setprop("/controls/flight/flaps", 0.68);
+		} else if (getprop("/controls/flight/flaps") < 0.84) {
+			setprop("/controls/flight/flaps", 0.84);
+		}
+	} else if (step == -1) {
+		if (getprop("/controls/flight/flaps") > 0.68) {
+			setprop("/controls/flight/flaps", 0.68);
+		} else if (getprop("/controls/flight/flaps") > 0.52) {
+			setprop("/controls/flight/flaps", 0.52);
+		} else if (getprop("/controls/flight/flaps") > 0.36) {
+			setprop("/controls/flight/flaps", 0.36);
+		} else if (getprop("/controls/flight/flaps") > 0.2) {
+			setprop("/controls/flight/flaps", 0.2);
+		} else if (getprop("/controls/flight/flaps") > 0) {
+			setprop("/controls/flight/flaps", 0);
+		}
+	}
+}
+
+controls.stepSpoilers = func(step) {
+	setprop("/controls/flight/speedbrake-arm", 0);
+	if (step == 1) {
+		deploySpeedbrake();
+	} else if (step == -1) {
+		retractSpeedbrake();
+	}
+}
+
+var deploySpeedbrake = func {
+	if (getprop("/gear/gear[0]/wow") == 1) {
+		if (getprop("/controls/flight/speedbrake") < 0.2) {
+			setprop("/controls/flight/speedbrake", 0.2);
+		} else if (getprop("/controls/flight/speedbrake") < 0.4) {
+			setprop("/controls/flight/speedbrake", 0.4);
+		} else if (getprop("/controls/flight/speedbrake") < 0.6) {
+			setprop("/controls/flight/speedbrake", 0.6);
+		} else if (getprop("/controls/flight/speedbrake") < 0.8) {
+			setprop("/controls/flight/speedbrake", 0.8);
+		}
+	} else {
+		if (getprop("/controls/flight/speedbrake") < 0.2) {
+			setprop("/controls/flight/speedbrake", 0.2);
+		} else if (getprop("/controls/flight/speedbrake") < 0.4) {
+			setprop("/controls/flight/speedbrake", 0.4);
+		} else if (getprop("/controls/flight/speedbrake") < 0.8) { # Not 0.6!
+			setprop("/controls/flight/speedbrake", 0.8); # Not 0.6!
+		}
+	}
+}
+
+var retractSpeedbrake = func {
+	if (getprop("/gear/gear[0]/wow") == 1) {
+		if (getprop("/controls/flight/speedbrake") > 0.6) {
+			setprop("/controls/flight/speedbrake", 0.6);
+		} else if (getprop("/controls/flight/speedbrake") > 0.4) {
+			setprop("/controls/flight/speedbrake", 0.4);
+		} else if (getprop("/controls/flight/speedbrake") > 0.2) {
+			setprop("/controls/flight/speedbrake", 0.2);
+		} else if (getprop("/controls/flight/speedbrake") > 0) {
+			setprop("/controls/flight/speedbrake", 0);
+		}
+	} else {
+		if (getprop("/controls/flight/speedbrake") > 0.4) {
+			setprop("/controls/flight/speedbrake", 0.4);
+		} else if (getprop("/controls/flight/speedbrake") > 0.2) {
+			setprop("/controls/flight/speedbrake", 0.2);
+		} else if (getprop("/controls/flight/speedbrake") > 0) {
+			setprop("/controls/flight/speedbrake", 0);
+		}
+	}
 }
 
 controls.elevatorTrim = func(d) {
