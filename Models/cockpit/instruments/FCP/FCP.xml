@@ -77,11 +77,11 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>SpdKnob</object-name>
+		<object-name>SPD.knob</object-name>
 		<property>it-autoflight/custom/spd-knb</property>
 		<factor>11.25</factor>
 		<center>
-			<x-m>-25.7162</x-m>
+			<x-m>0</x-m>
 			<y-m>-0.0924</y-m>
 			<z-m>11.767</z-m>
 		</center>
@@ -98,7 +98,7 @@
 		<property>it-autoflight/custom/hdg-knb</property>
 		<factor>11.25</factor>
 		<center>
-			<x-m>-25.7155</x-m>
+			<x-m>0</x-m>
 			<y-m>-0.0486</y-m>
 			<z-m>11.7668</z-m>
 		</center>
@@ -115,7 +115,7 @@
 		<property>it-autoflight/custom/alt-knb</property>
 		<factor>11.25</factor>
 		<center>
-			<x-m>-25.7162</x-m>
+			<x-m>0</x-m>
 			<y-m>0.0486</y-m>
 			<z-m>11.767</z-m>
 		</center>
@@ -126,14 +126,14 @@
 		</axis>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>rotate</type>
-		<object-name>Pitch_Wheel.knob</object-name>
+		<object-name>VS.knob</object-name>
 		<property>it-autoflight/custom/vs-knb</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>-25.7354</x-m>
-			<y-m>0.0929</y-m>
+			<y-m>0</y-m>
 			<z-m>11.7669</z-m>
 		</center>
 		<axis>
@@ -651,8 +651,56 @@
 	
 	<animation>
 		<type>translate</type>
-		<object-name>SpdKnob</object-name>
+		<object-name>SPD.knob</object-name>
 		<property>controls/switches/spd-knob</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BaroSet.L</object-name>
+		<property>controls/switches/baro-l-knob</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BaroSet.R</object-name>
+		<property>controls/switches/baro-r-knob</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>MINS.L</object-name>
+		<property>controls/switches/mins-l-knob</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>MINS.R</object-name>
+		<property>controls/switches/mins-r-knob</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -812,7 +860,7 @@
 
 	<animation>
 		<type>pick</type>
-		<object-name>Pitch_Wheel.knob</object-name>
+		<object-name>VS.knob</object-name>
 		<action>
 			<button>3</button>
 			<repeatable>true</repeatable>
@@ -849,7 +897,7 @@
 
 	<animation>
 		<type>pick</type>
-		<object-name>SpdKnob</object-name>
+		<object-name>SPD.knob</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1038,9 +1086,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/vert</property>
-				<value>8</value>
+				<command>nasal</command>
+				<script>libraries.APPanel.PROF();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -1197,7 +1244,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/fcp-integ-knb</property>
@@ -1208,7 +1255,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/fcp-integ-knb</property>
@@ -1226,7 +1273,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/mcp-panel-norm</property>
@@ -1237,7 +1284,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/mcp-panel-norm</property>
@@ -1293,7 +1340,7 @@
 		<action>
 			<button>0</button>
 			<button>1</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
@@ -1309,26 +1356,33 @@
 	<animation>
 		<type>pick</type>
 		<object-name>BaroSet.L</object-name>
-		<object-name>BaroSet.R</object-name>
-		<object-name>BaroSet2.L</object-name>
-		<object-name>BaroSet2.R</object-name>
 		<action>
 			<button>0</button>
 			<button>1</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/baro-l-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/baro-l-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-				libraries.toggleSTD();
-				</script>
+				<script>libraries.toggleSTD();</script>
 			</binding>
 		</action>
 		<action>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1344,9 +1398,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);
-				</script>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -1363,23 +1415,27 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);
-				</script>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-				libraries.unSTD();
-				</script>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/baro-l-rotate</property>
+				<step>1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<action>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1395,9 +1451,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);
-				</script>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -1414,32 +1468,214 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);
-				</script>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-				libraries.unSTD();
-				</script>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/baro-l-rotate</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 	</animation>
 	
 	<animation>
+		<type>rotate</type>
+		<object-name>BaroSet.L</object-name>
+		<property>controls/switches/baro-l-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.22571</y-m>
+			<z-m>11.7911</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
-		<object-name>MINS.L</object-name>
-		<object-name>MINS.R</object-name>
-		<object-name>MINS2.L</object-name>
-		<object-name>MINS2.R</object-name>
+		<object-name>BaroSet.R</object-name>
 		<action>
 			<button>0</button>
 			<button>1</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/baro-r-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/baro-r-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.toggleSTD();</script>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);</script>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/baro-r-rotate</property>
+				<step>1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);</script>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<equals>
+							<property>modes/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>modes/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/baro-r-rotate</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>BaroSet.R</object-name>
+		<property>controls/switches/baro-r-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2248</y-m>
+			<z-m>11.7911</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MINS.L</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/mins-l-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/mins-l-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
@@ -1451,30 +1687,144 @@
 		</action>
 		<action>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);
-				</script>
+				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/mins-l-rotate</property>
+				<step>1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<action>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-				setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);
-				</script>
+				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/mins-l-rotate</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>MINS.L</object-name>
+		<property>controls/switches/mins-l-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.22571</y-m>
+			<z-m>11.7567</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>MINS.R</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/mins-r-knob</property>
+				<value>-1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/mins-r-knob</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/switches/minimums</property>
+				<value>200</value>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/mins-r-rotate</property>
+				<step>1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/outputs/fcp-power</property>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/mins-r-rotate</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>10000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>MINS.R</object-name>
+		<property>controls/switches/mins-r-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2248</y-m>
+			<z-m>11.7567</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<!-- ND Captain Controls -->
