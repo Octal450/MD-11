@@ -1415,4 +1415,72 @@
 		</action>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>DialAFlapWheel</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/dial-a-flap</property>
+				<step>0.25</step>
+				<max>25</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/dial-a-flap</property>
+				<step>-0.25</step>
+				<min>10</min>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>DialAFlapWheel</object-name>
+		<property>controls/flight/dial-a-flap</property>
+		<interpolation>
+			<entry><ind>10</ind><dep>   0</dep></entry>
+			<entry><ind>25</ind><dep>-285</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-27.0583</x-m>
+			<y-m>0</y-m>
+			<z-m>6.73086</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>DialAFlap</object-name>
+		<property>controls/flight/dial-a-flap</property>
+		<interpolation>
+			<entry><ind>10</ind><dep>190</dep></entry>
+			<entry><ind>20</ind><dep>  0</dep></entry>
+			<entry><ind>25</ind><dep>-95</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-27.0572</x-m>
+			<y-m>0</y-m>
+			<z-m>6.73513</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
 </PropertyList>
