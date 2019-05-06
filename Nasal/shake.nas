@@ -1,23 +1,12 @@
-# MD-11X Shaking
-
+# McDonnell Douglas MD-11 Shaking
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
-var shakeEffectMD11X = props.globals.initNode("/systems/shake/effect",0,"BOOL");
-var shakeMD11X = props.globals.initNode("/systems/shake/shaking",0,"DOUBLE");
-var rSpeed = 0;
 var sf = 0;
-var n_g_c = 0;
-var n_g_l = 0;
-var n_g_r = 0;
 
 var theShakeEffect = func{
-	n_g_c = getprop("/gear/gear[0]/compression-norm") or 0;
-	n_g_l = getprop("/gear/gear[1]/compression-norm") or 0;
-	n_g_r = getprop("/gear/gear[2]/compression-norm") or 0;
-	rSpeed = getprop("/gear/gear[0]/rollspeed-ms") or 0;
-	sf = rSpeed / 94000;
-
-	if (shakeEffectMD11X.getBoolValue() and (n_g_c > 0 or n_g_l > 0 or n_g_r > 0)) {
+	sf = pts.Gear.rollspeedMs[0].getValue() / 94000;
+	
+	if (pts.Systems.Shake.effect.getBoolValue() and (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue())) {
 		interpolate("/systems/shake/shaking", sf, 0.03);
 		settimer(func {
 			interpolate("/systems/shake/shaking", -sf * 2, 0.03); 
@@ -27,13 +16,13 @@ var theShakeEffect = func{
 		}, 0.12);
 		settimer(theShakeEffect, 0.09);	
 	} else {
-		setprop("/systems/shake/shaking", 0);
-		setprop("/systems/shake/effect",0);		
+		pts.Systems.Shake.effect.setBoolValue(0);
+		setprop("/systems/shake/shaking", 0); # Why do props.nas when I need interpolate above anyways...
 	}	    
 }
 
-setlistener("/systems/shake/effect", func(state){
-	if(state.getBoolValue()){
+setlistener("/systems/shake/effect", func {
+	if (pts.Systems.Shake.effect.getBoolValue()) {
 		theShakeEffect();
 	}
-}, 1, 0);
+}, 0, 0);

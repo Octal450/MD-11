@@ -24,12 +24,6 @@ var HYD = {
 		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
-	Misc: {
-		gearDown: props.globals.getNode("/controls/gear/gear-down"),
-		wow0: props.globals.getNode("/gear/gear[0]/wow"),
-		wow1: props.globals.getNode("/gear/gear[1]/wow"),
-		wow2: props.globals.getNode("/gear/gear[2]/wow"),
-	},
 	Psi: {
 		auxPump1: props.globals.getNode("/systems/hydraulics/aux-pump-1-psi"),
 		auxPump2: props.globals.getNode("/systems/hydraulics/aux-pump-2-psi"),
@@ -131,10 +125,3 @@ var HYD = {
 };
 
 var manualHydLightt = maketimer(0.4, HYD, HYD.manualLight);
-
-# Prevent gear up accidently while WoW
-setlistener("/controls/gear/gear-down", func {
-	if (!HYD.Misc.gearDown.getBoolValue() and (HYD.Misc.wow0.getBoolValue() or HYD.Misc.wow1.getBoolValue() or HYD.Misc.wow2.getBoolValue())) {
-		HYD.Misc.gearDown.setBoolValue(1);
-	}
-});

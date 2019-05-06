@@ -1,55 +1,19 @@
 # MD-11 AFS
 # Based off IT-AUTOFLIGHT System Controller V4.0.X
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# This file DOES NOT integrate with Property Tree Setup
+# That way, we can update it from generic IT-AUTOFLIGHT easily
 
 # Initialize all used variables and property nodes
 # Sim
-var Velocity = {
-	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
-	groundspeedMps: 0,
-	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
-	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-airspeed-kt", 1),
-	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
-	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-mach", 1),
-	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
-	trueAirspeedKtTemp: 0,
-};
-
-var Position = {
-	gearAglFtTemp: 0,
-	gearAglFt: props.globals.getNode("/position/gear-agl-ft", 1),
-	indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1),
-	indicatedAltitudeFtTemp: 0,
-};
-
-var Gear = {
-	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
-	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
-	wow1Temp: 1,
-	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
-	wow2Temp: 1,
-};
-
-var Control = {
+var Controls = {
 	aileron: props.globals.getNode("/controls/flight/aileron", 1),
 	elevator: props.globals.getNode("/controls/flight/elevator", 1),
 	rudder: props.globals.getNode("/controls/flight/rudder", 1),
 };
 
-var Engine = {
+var Engines = {
 	reverserNorm: [props.globals.getNode("/engines/engine[0]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[1]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[2]/reverser-pos-norm", 1)],
-};
-
-var Radio = {
-	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1)],
-	gsDeflTemp: 0,
-	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1)],
-	inRangeTemp: 0,
-	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1)],
-	locDeflTemp: 0,
-	radioSel: 0,
-	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1)],
-	signalQualityTemp: 0,
 };
 
 var FPLN = {
@@ -74,6 +38,14 @@ var FPLN = {
 	wpFlyTo: 0,
 };
 
+var Gear = {
+	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
+	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
+	wow1Temp: 1,
+	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
+	wow2Temp: 1,
+};
+
 var Misc = {
 	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
@@ -85,6 +57,36 @@ var Misc = {
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
 	state2: props.globals.getNode("/engines/engine[1]/state", 1),
 	state3: props.globals.getNode("/engines/engine[2]/state", 1),
+};
+
+var Position = {
+	gearAglFtTemp: 0,
+	gearAglFt: props.globals.getNode("/position/gear-agl-ft", 1),
+	indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1),
+	indicatedAltitudeFtTemp: 0,
+};
+
+var Radio = {
+	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1)],
+	gsDeflTemp: 0,
+	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1)],
+	inRangeTemp: 0,
+	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1)],
+	locDeflTemp: 0,
+	radioSel: 0,
+	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1)],
+	signalQualityTemp: 0,
+};
+
+var Velocities = {
+	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
+	groundspeedMps: 0,
+	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
+	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-airspeed-kt", 1),
+	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
+	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-mach", 1),
+	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
+	trueAirspeedKtTemp: 0,
 };
 
 # IT-AUTOFLIGHT
@@ -156,14 +158,6 @@ var Output = {
 	vertTemp: 7,
 };
 
-var Text = {
-	arm: props.globals.initNode("/it-autoflight/mode/arm", " ", "STRING"),
-	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
-	thr: props.globals.initNode("/it-autoflight/mode/thr", "PITCH", "STRING"),
-	vert: props.globals.initNode("/it-autoflight/mode/vert", "T/O CLB", "STRING"),
-	vertTemp: 0,
-};
-
 var Setting = {
 	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1500, "INT"), # Will be changable from FMS
 	useNAV2Radio: props.globals.initNode("/it-autoflight/settings/use-nav2-radio", 0, "BOOL"),
@@ -172,6 +166,14 @@ var Setting = {
 var Sound = {
 	apOff: props.globals.initNode("/it-autoflight/sound/apoffsound", 0, "BOOL"),
 	enableApOff: 0,
+};
+
+var Text = {
+	arm: props.globals.initNode("/it-autoflight/mode/arm", " ", "STRING"),
+	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
+	thr: props.globals.initNode("/it-autoflight/mode/thr", "PITCH", "STRING"),
+	vert: props.globals.initNode("/it-autoflight/mode/vert", "T/O CLB", "STRING"),
+	vertTemp: 0,
 };
 
 # MD-11 Custom
@@ -198,6 +200,9 @@ var Custom = {
 	targetIASError: 0,
 	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"),
 	vsFpa: props.globals.initNode("/it-autoflight/custom/vs-fpa", 0, "BOOL"),
+	FMS: {
+		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
+	},
 	Input: {
 		ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
 		ovrd1Temp: 0,
@@ -214,9 +219,6 @@ var Custom = {
 	},
 	Text: {
 		land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
-	},
-	FMS: {
-		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
 	},
 };
 
@@ -409,7 +411,7 @@ var ITAF = {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
 			Custom.retardLock = 1;
-			if (Engine.reverserNorm[0].getValue() >= 0.01 or Engine.reverserNorm[1].getValue() >= 0.01 or Engine.reverserNorm[2].getValue() >= 0.01) { # Disconnect A/THR on any reverser deployed
+			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Disconnect A/THR on any reverser deployed
 				me.killATSSilent();
 			}
 		} else if (Custom.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
@@ -446,12 +448,12 @@ var ITAF = {
 				}
 				if (Custom.ktsMachTemp) {
 					Input.mach.setValue(Custom.machSel.getValue());
-					Custom.targetIAS = Input.mach.getValue() * (Velocity.indicatedAirspeedKt.getValue() / Velocity.indicatedMach.getValue()); # Convert to IAS
+					Custom.targetIAS = Input.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to IAS
 				} else {
 					Input.ias.setValue(Custom.iasSel.getValue());
 					Custom.targetIAS = Input.ias.getValue();
 				}
-				Custom.targetIASError = Custom.targetIAS - Velocity.indicatedAirspeedKt5Sec.getValue();
+				Custom.targetIASError = Custom.targetIAS - Velocities.indicatedAirspeedKt5Sec.getValue();
 				if (abs(Custom.targetIASError) <= 2.5) {
 					Custom.Output.spdCaptured = 1;
 				}
@@ -482,7 +484,7 @@ var ITAF = {
 		
 		# Misc
 		if (Output.ap1Temp == 1 or Output.ap2Temp == 1) { # Trip AP off
-			if (abs(Control.aileron.getValue()) >= 0.2 or abs(Control.elevator.getValue()) >= 0.2) {
+			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2) {
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}
@@ -538,15 +540,15 @@ var ITAF = {
 	},
 	slowLoop: func() {
 		Input.bankLimitSWTemp = Input.bankLimitSW.getValue();
-		Velocity.trueAirspeedKtTemp = Velocity.trueAirspeedKt.getValue();
+		Velocities.trueAirspeedKtTemp = Velocities.trueAirspeedKt.getValue();
 		FPLN.activeTemp = FPLN.active.getValue();
 		FPLN.currentWPTemp = FPLN.currentWP.getValue();
 		FPLN.numTemp = FPLN.num.getValue();
 		
 		# Bank Limit
-		if (Velocity.trueAirspeedKtTemp >= 420) {
+		if (Velocities.trueAirspeedKtTemp >= 420) {
 			Internal.bankLimitAuto = 15;
-		} else if (Velocity.trueAirspeedKtTemp >= 340) {
+		} else if (Velocities.trueAirspeedKtTemp >= 340) {
 			Internal.bankLimitAuto = 20;
 		} else {
 			Internal.bankLimitAuto = 25;
@@ -576,7 +578,7 @@ var ITAF = {
 		# Waypoint Advance Logic
 		if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
 			if ((FPLN.currentWPTemp + 1) < FPLN.numTemp) {
-				Velocity.groundspeedMps = Velocity.groundspeedKt.getValue() * 0.5144444444444;
+				Velocities.groundspeedMps = Velocities.groundspeedKt.getValue() * 0.5144444444444;
 				FPLN.wpFlyFrom = FPLN.currentWPTemp;
 				if (FPLN.wpFlyFrom < 0) {
 					FPLN.wpFlyFrom = 0;
@@ -594,7 +596,7 @@ var ITAF = {
 				if (FPLN.maxBank > FPLN.maxBankLimit) {
 					FPLN.maxBank = FPLN.maxBankLimit;
 				}
-				FPLN.radius = (Velocity.groundspeedMps * Velocity.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
+				FPLN.radius = (Velocities.groundspeedMps * Velocities.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
 				FPLN.deltaAngleRad = (180 - FPLN.deltaAngle) / 114.5915590262;
 				FPLN.R = FPLN.radius / math.sin(FPLN.deltaAngleRad);
 				FPLN.distCoeff = FPLN.deltaAngle * -0.011111 + 2;
@@ -616,7 +618,7 @@ var ITAF = {
 	ap1Master: func(s) {
 		if (s == 1) {
 			if (Output.vert.getValue() != 6 and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and !Custom.Input.ovrd1.getBoolValue() and (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue())) {
-				Control.rudder.setValue(0);
+				Controls.rudder.setValue(0);
 				Output.ap1.setBoolValue(1);
 				Custom.Internal.activeFMS.setValue(1);
 				apKill.stop();
@@ -639,7 +641,7 @@ var ITAF = {
 	ap2Master: func(s) {
 		if (s == 1) {
 			if (Output.vert.getValue() != 6 and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and !Custom.Input.ovrd2.getBoolValue() and (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue())) {
-				Control.rudder.setValue(0);
+				Controls.rudder.setValue(0);
 				Output.ap2.setBoolValue(1);
 				Custom.Internal.activeFMS.setValue(2);
 				apKill.stop();
@@ -673,7 +675,7 @@ var ITAF = {
 	},
 	athrMaster: func(s) {
 		if (s == 1) {
-			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3 and Engine.reverserNorm[0].getValue() < 0.01 and Engine.reverserNorm[1].getValue() < 0.01 and Engine.reverserNorm[2].getValue() < 0.01) {
+			if (Misc.state1.getValue() == 3 or Misc.state2.getValue() == 3 or Misc.state3.getValue() == 3 and Engines.reverserNorm[0].getValue() < 0.01 and Engines.reverserNorm[1].getValue() < 0.01 and Engines.reverserNorm[2].getValue() < 0.01) {
 				Output.athr.setBoolValue(1);
 				atsKill.stop();
 				Custom.atsWarn.setBoolValue(0);
@@ -986,7 +988,7 @@ var ITAF = {
 	},
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
-		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocity.indicatedAirspeedKt.getValue() >= 80) {
+		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocities.indicatedAirspeedKt.getValue() >= 80) {
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
 				me.ap1Master(0);
 				me.ap2Master(0);
@@ -1010,19 +1012,19 @@ var ITAF = {
 		}
 	},
 	syncIAS: func() {
-		Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), 100, 365));
+		Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
 	syncIASGA: func() { # Same as syncIAS, except doesn't go below V2
-		Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
+		Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
 	},
 	syncCIAS: func() {
-		Custom.iasSel.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt.getValue()), 100, 365));
+		Custom.iasSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
 	syncMach: func() {
-		Input.mach.setValue(math.clamp(math.round(Velocity.indicatedMach.getValue(), 0.001), 0.5, 0.87));
+		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
 	},
 	syncCMach: func() {
-		Custom.machSel.setValue(math.clamp(math.round(Velocity.indicatedMach.getValue(), 0.001), 0.5, 0.87));
+		Custom.machSel.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
 	},
 	syncHDG: func() {
 		Input.hdgSet = math.round(Internal.hdgPredicted.getValue()); # Switches to track automatically
@@ -1049,12 +1051,12 @@ var ITAF = {
 			Custom.Output.spdCaptured = 1;
 			if (Custom.ktsMach.getBoolValue()) {
 				Input.ktsMach.setBoolValue(1);
-				Custom.machSel.setValue(math.clamp(math.round(Velocity.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
-				Input.mach.setValue(math.clamp(math.round(Velocity.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
+				Custom.machSel.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
+				Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
 			} else {
 				Input.ktsMach.setBoolValue(0);
-				Custom.iasSel.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt5Sec.getValue()), 100, 365));
-				Input.ias.setValue(math.clamp(math.round(Velocity.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+				Custom.iasSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+				Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
 			}
 		} else {
 			if (Custom.ktsMach.getBoolValue()) {

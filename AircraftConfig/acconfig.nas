@@ -114,7 +114,7 @@ var mismatch_chk = func {
 		libraries.systemsLoop.stop();
 		print("Mismatch: 0x223");
 		welcome_dlg.close();
-	} else if (getprop("/systems/acconfig/libraries-loaded") != 1) {
+	} else if (getprop("/systems/acconfig/libraries-loaded") != 1 or getprop("/systems/acconfig/property-tree-setup-loaded") != 1) {
 		setprop("/systems/acconfig/mismatch-code", "0x247");
 		setprop("/systems/acconfig/mismatch-reason", "System files are missing or damaged. Please download a new copy of the aircraft.");
 		if (getprop("/systems/acconfig/out-of-date") != 1) {
