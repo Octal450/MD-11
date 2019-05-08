@@ -15,7 +15,7 @@
 </animation>
 
 			<effect>
-		<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/engine</inherits-from>
+		<inherits-from>Aircraft/IDG-MD-11/Models/Effects/engine</inherits-from>
 	<object-name>aileron.trim</object-name>
 	</effect>
 
@@ -35,7 +35,7 @@
 	
 <model>
 	<name>stby-ai</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/stby-ai/stby-ai.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-ai/stby-ai.xml</path>
 			<offsets>
 	  <x-m>-27.473</x-m>
 	  <y-m>0.044</y-m>
@@ -46,7 +46,7 @@
 
 <model>
 	<name>stby-alt</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/stby-alt/stby-alt.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-alt/stby-alt.xml</path>
 			<offsets>
 	  <x-m>-27.473</x-m>
 	  <y-m>-0.047</y-m>
@@ -57,7 +57,7 @@
 
 <model>
 	<name>brakes</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/brakes/brakes.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/brakes/brakes.xml</path>
 			<offsets>
 	  <x-m>-27.2957</x-m>
 	  <y-m>-0.0018</y-m>
@@ -67,7 +67,7 @@
 
 <model>
 	<name>Radio1</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/Radio/radio1.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
 			<offsets>
 	  <x-m>-26.9723</x-m>
 	  <y-m>-0.1197</y-m>
@@ -77,7 +77,7 @@
 
 <model>
 	<name>Radio2</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/Radio/radio1.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
 			<offsets>
 	  <x-m>-26.9723</x-m>
 	  <y-m>0.1197</y-m>
@@ -87,7 +87,7 @@
 
 <model>
 	<name>Radio3</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/Radio/radio1.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
 			<offsets>
 	  <x-m>-26.701</x-m>
 	  <y-m>-0.1197</y-m>
@@ -97,7 +97,7 @@
 
 <model>
 	<name>Radar</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/radar/radar.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/radar/radar.xml</path>
 			<offsets>
 	  <x-m>-26.8316</x-m>
 	  <y-m>-0.1197</y-m>
@@ -107,7 +107,7 @@
 
 <model>
 	<name>TCAS</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/tcas/tcas.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/tcas/tcas.xml</path>
 			<offsets>
 	  <x-m>-26.7763</x-m>
 	  <y-m>-0.1197</y-m>
@@ -117,7 +117,7 @@
 
 <model>
 	<name>Audio selector</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
 			<offsets>
 	  <x-m>-26.8997</x-m>
 	  <y-m>-0.1192</y-m>
@@ -127,7 +127,7 @@
 
 <model>
 	<name>2. Audio selector</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
 			<offsets>
 	  <x-m>-26.8997</x-m>
 	  <y-m>0.1192</y-m>
@@ -138,7 +138,7 @@
 
 <model>
 	<name>Screen selector</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/screenselector/screenselector.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/screenselector/screenselector.xml</path>
 			<offsets>
 	  <x-m>-26.968</x-m>
 	  <y-m>-0.0005</y-m>
@@ -149,7 +149,7 @@
 
 	<model>
 		<name>CDU1</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/MCDU/MCDU.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/MCDU/MCDU.xml</path>
 		<offsets>
 			<x-m>-27.044</x-m>
 			<y-m>0.001664</y-m>
@@ -161,7 +161,7 @@
 	
 	<model>
 		<name>CDU1</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/MCDU/MCDU.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/MCDU/MCDU.xml</path>
 		<offsets>
 			<x-m>-27.044</x-m>
 			<y-m>0.333051</y-m>
@@ -173,7 +173,7 @@
 	
 	<model>
 		<name>CDU3</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/MCDU/MCDU.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/MCDU/MCDU.xml</path>
 		<offsets>
 			<x-m>-26.5056</x-m>
 			<y-m>0.166557</y-m>

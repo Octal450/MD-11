@@ -8,7 +8,7 @@
 		<apoff>
 			<name>apoff</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/apoff.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/apoff.wav</path>
 			<condition>
 				<and>
 					<property>/it-autoflight/sound/apoffsound</property>
@@ -36,7 +36,7 @@
 		<switch>
 			<name>Clamp on</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/clamp.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/clamp.wav</path>
 			<condition>
 				<property>/it-autoflight/output/clamp</property>
 			</condition>
@@ -48,7 +48,7 @@
 		<switch>
 			<name>Clamp off</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/clamp.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/clamp.wav</path>
 			<condition>
 				<not><property>/it-autoflight/output/clamp</property></not>
 			</condition>
@@ -60,7 +60,7 @@
 		<switch>
 			<name>Button</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/button.wav</path>
 			<condition>
 				<property>/sim/sounde/btn1</property>
 			</condition>
@@ -72,7 +72,7 @@
 		<switch>
 			<name>ButtonOH</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button2.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/button2.wav</path>
 			<condition>
 				<property>/sim/sounde/oh-btn</property>
 			</condition>
@@ -84,7 +84,7 @@
 		<switch>
 			<name>Button3</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/button3.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/button3.wav</path>
 			<condition>
 				<property>/sim/sounde/btn3</property>
 			</condition>
@@ -96,7 +96,7 @@
 		<switch>
 			<name>Knob</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/knob.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/knob.wav</path>
 			<condition>
 				<property>/sim/sounde/knb1</property>
 			</condition>
@@ -108,7 +108,7 @@
 		<switch>
 			<name>Switch</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/switch.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/switch.wav</path>
 			<condition>
 				<property>/sim/sounde/switch1</property>
 			</condition>
@@ -120,7 +120,7 @@
 		<cvrtone>
 			<name>CVRtone</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-MD-11X/Sounds/Cockpit/700hz.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/Cockpit/700hz.wav</path>
 			<condition>
 				<equals>
 					<property>/controls/CVR/tone</property>
@@ -394,7 +394,7 @@
 		<!-- Custom GPWS -->
 	    <gpws>
 			<name>2500</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/2500.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/2500.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -428,7 +428,7 @@
 		</gpws>
 	    <gpws>
 			<name>1000</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/1000.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/1000.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -462,7 +462,7 @@
 		</gpws>
 	    <gpws>
 			<name>500</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/500.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/500.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -500,7 +500,7 @@
 		</gpws>
 	    <gpws>
 			<name>400</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/400.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/400.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -538,7 +538,7 @@
 		</gpws>
 	    <gpws>
 			<name>300</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/300.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/300.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -576,7 +576,7 @@
 		</gpws>
 	    <gpws>
 			<name>200</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/200.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/200.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -614,7 +614,7 @@
 		</gpws>
 	    <gpws>
 			<name>100</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/100.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/100.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -648,7 +648,7 @@
 		</gpws>
 	    <gpws>
 			<name>50</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/50.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/50.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -682,7 +682,7 @@
 		</gpws>
 	    <gpws>
 			<name>40</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/40.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/40.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -716,7 +716,7 @@
 		</gpws>
 	    <gpws>
 			<name>30</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/30.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/30.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -750,7 +750,7 @@
 		</gpws>
 	    <gpws>
 			<name>20</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/20.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/20.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -784,7 +784,7 @@
 		</gpws>
 	    <gpws>
 			<name>10</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/10.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/10.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -818,7 +818,7 @@
 		</gpws>
 	    <gpws>
 			<name>Approaching Minimum</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/approaching-minimum.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/approaching-minimum.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -848,7 +848,7 @@
 		</gpws>
 	    <gpws>
 			<name>Minimum</name>
-			<path>Aircraft/IDG-MD-11X/Sounds/GPWS/minimum.wav</path>
+			<path>Aircraft/IDG-MD-11/Sounds/GPWS/minimum.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>

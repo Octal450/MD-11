@@ -25,15 +25,15 @@
 			<livery>
 				<file type="string">MCD</file>
 			</livery>
-			<path>Aircraft/IDG-MD-11X/Models/MD-11-PW.xml</path>
+			<path>Aircraft/IDG-MD-11/Models/MD-11-PW.xml</path>
 		</model>
 		<primary-set>true</primary-set>
 		<sound>
-			<path>Aircraft/IDG-MD-11X/Sounds/pw4000-sound.xml</path>
+			<path>Aircraft/IDG-MD-11/Sounds/pw4000-sound.xml</path>
 		</sound>
 		<systems n="0">
 			<autopilot n="6">
-				<path>Aircraft/IDG-MD-11X/Systems/fadec-pw.xml</path>
+				<path>Aircraft/IDG-MD-11/Systems/fadec-pw.xml</path>
 			</autopilot>
 		</systems>
     </sim>
@@ -89,7 +89,7 @@
     
     <nasal n="0">
 		<setup>
-			<script>aircraft.livery.init("Aircraft/IDG-MD-11X/Models/Liveries/MD-11/PW");</script>
+			<script>aircraft.livery.init("Aircraft/IDG-MD-11/Models/Liveries/MD-11/PW");</script>
 		</setup>
     </nasal>
 

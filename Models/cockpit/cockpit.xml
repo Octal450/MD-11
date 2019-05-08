@@ -20,7 +20,7 @@
 	</animation>
 	
 	  <effect>
-<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/bumpspec-floor</inherits-from>
+<inherits-from>Aircraft/IDG-MD-11/Models/Effects/bumpspec-floor</inherits-from>
 <object-name>floor</object-name>
  </effect>
 
@@ -59,7 +59,7 @@
 	
 	<model>
 		<name>Overhead 1</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/overhead_1.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/overhead_1.xml</path>
 		<offsets>
 			<pitch-deg>55</pitch-deg>
 		</offsets>
@@ -67,7 +67,7 @@
 
 	<model>
 		<name>Compass</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/compass/compass.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/compass/compass.xml</path>
 		<offsets>
 			<x-m>0.05</x-m>
 		</offsets>
@@ -102,7 +102,7 @@
 
 <model>
 	<name>Overhead 2</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/overhead_2.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/overhead_2.xml</path>
 			<offsets>
 			<pitch-deg>69.19</pitch-deg>
 		</offsets>
@@ -112,7 +112,7 @@
 
 <model>
 	<name>FCP</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/FCP/FCP.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/FCP/FCP.xml</path>
 			<offsets>
 			<pitch-deg>-10</pitch-deg>
 		</offsets>
@@ -120,7 +120,7 @@
 
 <model>
 	<name>1st seat</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/seat.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/seat.xml</path>
 			<offsets>
 	  <x-m>-26.8662</x-m>
 	  <y-m>-0.5256</y-m>
@@ -130,7 +130,7 @@
 
 <model>
 	<name>2nd seat</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/seat.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/seat.xml</path>
 			<offsets>
 	  <x-m>-26.8662</x-m>
 	  <y-m>0.5256</y-m>
@@ -140,7 +140,7 @@
 
 <model>
 	<name>3rd seat</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/seat.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/seat.xml</path>
 			<offsets>
 	  <heading-deg>-90</heading-deg>
 	  <x-m>-26.0424</x-m>
@@ -151,13 +151,13 @@
 
 <model>
 	<name>Pedestal</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/pedestal.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/pedestal.xml</path>
 </model>
 
 
 <model>
 	<name>3. Audio selector</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
 			<offsets>
 			<pitch-deg>90</pitch-deg>
 	  <heading-deg>-90</heading-deg>
@@ -170,7 +170,7 @@
 
 	<model>
 		<name>PFD</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD1.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/PFD1.xml</path>
 		<offsets>
 			<x-m>-27.5138</x-m>
 			<y-m>-0.555</y-m>
@@ -181,7 +181,7 @@
 
 	<model>
 		<name>EAD</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/EAD.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/EAD/EAD.xml</path>
 		<offsets>
 			<x-m>-27.5138</x-m>
 			<y-m>-0.15</y-m>
@@ -192,7 +192,7 @@
 
 	<!--model>
 		<name>SD</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/EAD/SD.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/EAD/SD.xml</path>
 		<offsets>
 			<x-m>-27.5138</x-m>
 			<y-m>0.15</y-m>
@@ -203,7 +203,7 @@
 
 	<model>
 		<name>PFD2</name>
-		<path>Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/PFD2.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/PFD2.xml</path>
 		<offsets>
 			<x-m>-27.5138</x-m>
 			<y-m>0.555</y-m>
@@ -373,7 +373,7 @@
 	</animation>
 	
 			<effect>
-		<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/engine</inherits-from>
+		<inherits-from>Aircraft/IDG-MD-11/Models/Effects/engine</inherits-from>
 	<object-name>gearlever.glass</object-name>
 	<object-name>cockpit_chrome</object-name>
 	</effect>

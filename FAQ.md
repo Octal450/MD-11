@@ -4,7 +4,7 @@
 
 ### Q. Error Code: 0x121 appears. Why?
 
-This error occurs if you are attempting to use this IDG Aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/it0uchpods/IDG-MD-11X/blob/master/INSTALL.md) for more information.
+This error occurs if you are attempting to use this IDG Aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/it0uchpods/IDG-MD-11/blob/master/INSTALL.md) for more information.
 
 ### Q. Error Code: 0x223 appears. Why?
 
@@ -44,7 +44,7 @@ The flight recording system does not record the systems or internal functions of
 
 ### Q. Where should I report issues?
 
-Please use our [issues page](https://github.com/it0uchpods/IDG-MD-11X/issues/new) to report bugs. Please fill out the template there to the best of your knowledge. Issues submitted with blank templates will be closed.
+Please use our [issues page](https://github.com/it0uchpods/IDG-MD-11/issues/new) to report bugs. Please fill out the template there to the best of your knowledge. Issues submitted with blank templates will be closed.
 
 ### Q. I encountered a strange behavior while flying. Should I report a bug?
 
@@ -62,15 +62,15 @@ Besides describing it with words, you may do two things, which helps us reproduc
 
 1. Hit the screenshot buttons (hotkey `F3` by default) often and send them all in! Five screenshots with redundant data isn't a problem to sort out, but one screenshot missing out which would have contained vital information may prevent understanding the problem properly.
 
-2. If able you may also dump the property tree. That is also a very helpful source of information. To do so, please open the "Nasal Console" from the "Debug" menu, paste this command, and press "Execute". `io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-dump.xml", "/");` The dumped file will be located in `$FGHOME/Export`.
+2. If able you may also dump the property tree. That is also a very helpful source of information. To do so, please open the "Nasal Console" from the "Debug" menu, paste this command, and press "Execute". `io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11-dump.xml", "/");` The dumped file will be located in `$FGHOME/Export`.
 
 ## Do's and Don'ts
 
 ### Q. The current version has a bug, but I still want to keep flying. Can I downgrade?
 
-First of all, did you ensure that the bug is reported on our [issues page](https://github.com/it0uchpods/IDG-MD-11X/issues/new)? If not, please do so (see also questions above on how to report them)!
+First of all, did you ensure that the bug is reported on our [issues page](https://github.com/it0uchpods/IDG-MD-11/issues/new)? If not, please do so (see also questions above on how to report them)!
 
-IDG suggests **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `IDG-MD-11X-config.xml` file. You may find it in `$FGHOME/Export`.
+IDG suggests **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `IDG-MD-11-config.xml` file. You may find it in `$FGHOME/Export`.
 
 ### Q. I like increasing the simulation speed on long flights. However, I encounter issues with it once in a while. What's up?
 

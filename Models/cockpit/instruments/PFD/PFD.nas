@@ -1091,10 +1091,10 @@ setlistener("sim/signals/fdm-initialized", func {
 	var group_pfd2 = PFD2_display.createGroup();
 	var group_pfd2_mismatch = PFD2_display.createGroup();
 
-	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_1_mismatch = canvas_PFD_1_mismatch.new(group_pfd1_mismatch, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/Common/res/mismatch.svg");
-	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_2_mismatch = canvas_PFD_2_mismatch.new(group_pfd2_mismatch, "Aircraft/IDG-MD-11X/Models/cockpit/instruments/Common/res/mismatch.svg");
+	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_1_mismatch = canvas_PFD_1_mismatch.new(group_pfd1_mismatch, "Aircraft/IDG-MD-11/Models/cockpit/instruments/Common/res/mismatch.svg");
+	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_2_mismatch = canvas_PFD_2_mismatch.new(group_pfd2_mismatch, "Aircraft/IDG-MD-11/Models/cockpit/instruments/Common/res/mismatch.svg");
 	
 	PFD_update.start();
 	PFD_update_fast.start();

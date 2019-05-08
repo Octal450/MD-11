@@ -37,7 +37,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Attention: Your IDG-MD-11X is out of date! This means you are missing out on bugfixes, and new features!</label>
+			<label>Attention: Your IDG-MD-11 is out of date! This means you are missing out on bugfixes, and new features!</label>
 		</text>
 		
 		<group>
@@ -108,7 +108,7 @@
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>HTTP: http://www.github.com/it0uchpods/IDG-MD-11X.git or SSH: git@github.com:it0uchpods/IDG-MD-11X.git</label>
+			<label>HTTP: http://www.github.com/it0uchpods/IDG-MD-11.git or SSH: git@github.com:it0uchpods/IDG-MD-11.git</label>
 		</text>
 	</group>
 	
@@ -136,7 +136,7 @@
 			<pref-width>220</pref-width>
 			<binding>
 				<command>open-browser</command>
-				<path>https://www.github.com/it0uchpods/IDG-MD-11X/archive/master.zip</path>
+				<path>https://www.github.com/it0uchpods/IDG-MD-11/archive/master.zip</path>
 			</binding>
 			<binding>
 				<command>exit</command>

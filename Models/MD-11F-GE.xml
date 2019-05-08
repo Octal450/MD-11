@@ -12,7 +12,7 @@
 	
 	<nasal>
 		<load>
-			var livery_update = aircraft.livery_update.new("Aircraft/IDG-MD-11X/Models/Liveries/MD-11F/GE");
+			var livery_update = aircraft.livery_update.new("Aircraft/IDG-MD-11/Models/Liveries/MD-11F/GE");
 		</load>
 		<unload>
 			livery_update.stop();
@@ -20,7 +20,7 @@
 	</nasal>
  
 <model>
-<path>Aircraft/IDG-MD-11X/Models/Effects/fuel-dump.xml</path>
+<path>Aircraft/IDG-MD-11/Models/Effects/fuel-dump.xml</path>
 <name>fueldump.l</name>  
 <condition>
 		<equals>
@@ -36,7 +36,7 @@
 </model>
 
 <model>
-<path>Aircraft/IDG-MD-11X/Models/Effects/fuel-dump.xml</path>
+<path>Aircraft/IDG-MD-11/Models/Effects/fuel-dump.xml</path>
 <name>fueldump.r</name>  
 <condition>
 		<equals>
@@ -52,7 +52,7 @@
 </model>
 
 	<model>
-	<path>Aircraft/IDG-MD-11X/Models/Effects/contrail-eng1.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/Effects/contrail-eng1.xml</path>
 	<offsets>
 		<x-m> 0.0</x-m>
 		<y-m>-8.4553</y-m>
@@ -60,7 +60,7 @@
 	</offsets>
 	</model>
 	<model>
-	<path>Aircraft/IDG-MD-11X/Models/Effects/contrail-eng2.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/Effects/contrail-eng2.xml</path>
 	<offsets>
 		<x-m> 22.0</x-m>
 		<y-m> 0.0</y-m>
@@ -68,7 +68,7 @@
 	</offsets>
 	</model>
 	<model>
-	<path>Aircraft/IDG-MD-11X/Models/Effects/contrail-eng3.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/Effects/contrail-eng3.xml</path>
 	<offsets>
 		<x-m> 0.0</x-m>
 		<y-m> 8.4553</y-m>
@@ -78,12 +78,12 @@
  
 	
 	 <model>
- <path>Aircraft/IDG-MD-11X/Models/Cabin/cargo.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Cabin/cargo.xml</path>
  <name>Cabin</name>
 </model>
 
  <model>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <name>l1</name>
  <offsets>
   <x-m>-24.053</x-m>
@@ -98,7 +98,7 @@
 
 <model>
  <name>l2</name>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <offsets>
   <x-m>-14.4742</x-m>
   <y-m>-2.9444</y-m>
@@ -110,7 +110,7 @@
 </model>
 
 <model>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <name>l4</name>
  <offsets>
   <x-m>18.1755</x-m>
@@ -124,7 +124,7 @@
 </model>
 
  <model>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <name>l1_2</name>
  <offsets>
   <x-m>-24.053</x-m>
@@ -139,7 +139,7 @@
 
 <model>
  <name>l2_2</name>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <offsets>
   <x-m>-14.4742</x-m>
   <y-m>2.9444</y-m>
@@ -152,7 +152,7 @@
 </model>
 
 <model>
- <path>Aircraft/IDG-MD-11X/Models/Services/Stairs/stairs.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Services/Stairs/stairs.xml</path>
  <name>l4_2</name>
  <offsets>
   <x-m>18.1755</x-m>
@@ -350,7 +350,7 @@
 
 	<model>
 		<name>Pushback</name>
-		<path>Aircraft/IDG-MD-11X/Models/Services/Pushback/Douglas.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/Services/Pushback/Douglas.xml</path>
 		<offsets>
 			<x-m>-22.15</x-m>
 			<y-m>0.0</y-m>
@@ -360,7 +360,7 @@
 
 <model>
 	<name>Cockpit</name>
-	<path>Aircraft/IDG-MD-11X/Models/cockpit/cockpit.xml</path>
+	<path>Aircraft/IDG-MD-11/Models/cockpit/cockpit.xml</path>
 </model>
 
 	<animation>
@@ -546,7 +546,7 @@
 	</animation>
 	
 	<effect>
-		<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/engine</inherits-from>
+		<inherits-from>Aircraft/IDG-MD-11/Models/Effects/engine</inherits-from>
 		<object-name>engines.chrome</object-name>
 		<object-name>wiper.left</object-name>
 		<object-name>wiper.right</object-name>
@@ -1651,7 +1651,7 @@
 		
 		<model>
  <name>tyre-smoke-0</name>
- <path>Aircraft/IDG-MD-11X/Models/Effects/tyre-smoke-0.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Effects/tyre-smoke-0.xml</path>
  <offsets>
   <x-m>-20.6516</x-m>
   <y-m>  0.000</y-m>
@@ -1661,7 +1661,7 @@
 
 		<model>
  <name>tyre-smoke-1</name>
- <path>Aircraft/IDG-MD-11X/Models/Effects/tyre-smoke-1.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Effects/tyre-smoke-1.xml</path>
  <offsets>
   <x-m>4.7549</x-m>
   <y-m>-5.3100</y-m>
@@ -1671,7 +1671,7 @@
 
 		<model>
  <name>tyre-smoke-2</name>
- <path>Aircraft/IDG-MD-11X/Models/Effects/tyre-smoke-2.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Effects/tyre-smoke-2.xml</path>
  <offsets>
   <x-m>4.7549</x-m>
   <y-m>5.3100</y-m>
@@ -1681,7 +1681,7 @@
 
 		<model>
  <name>tyre-smoke-3</name>
- <path>Aircraft/IDG-MD-11X/Models/Effects/tyre-smoke-3.xml</path>
+ <path>Aircraft/IDG-MD-11/Models/Effects/tyre-smoke-3.xml</path>
  <offsets>
   <x-m>4.7549</x-m>
   <y-m>0</y-m>
@@ -1691,7 +1691,7 @@
 
 
   <effect>
-<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/bumpspec</inherits-from>
+<inherits-from>Aircraft/IDG-MD-11/Models/Effects/bumpspec</inherits-from>
 <object-name>fuselage</object-name>
 <object-name>fuselage.cone</object-name>
 <object-name>rudder.u</object-name>
@@ -1732,7 +1732,7 @@
  </effect>
  
 	<effect>
-	<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/bumpspec-eng</inherits-from>
+	<inherits-from>Aircraft/IDG-MD-11/Models/Effects/bumpspec-eng</inherits-from>
 	<object-name>engines</object-name>
 	<object-name>Intakes</object-name>
 	<object-name>left.reverser</object-name>
@@ -1740,7 +1740,7 @@
 	</effect>
 
    <effect>
-<inherits-from>Aircraft/IDG-MD-11X/Models/Effects/bumpspec-wing</inherits-from>
+<inherits-from>Aircraft/IDG-MD-11/Models/Effects/bumpspec-wing</inherits-from>
 <object-name>wing.1</object-name>
 <object-name>wing.2</object-name>
 <object-name>wing1.grey.part1</object-name>
@@ -2428,7 +2428,7 @@
 	</animation>	
 	
 	<model>
-		<path>Aircraft/IDG-MD-11X/Models/Lights/MD-11-lighting.xml</path>
+		<path>Aircraft/IDG-MD-11/Models/Lights/MD-11-lighting.xml</path>
 	</model>
 	
 	<animation>

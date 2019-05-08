@@ -25,14 +25,14 @@
 			<livery>
 				<file type="string">MCD</file>
 			</livery>
-			<path>Aircraft/IDG-MD-11X/Models/MD-11-GE.xml</path>
+			<path>Aircraft/IDG-MD-11/Models/MD-11-GE.xml</path>
 		</model>
 		<sound>
-			<path>Aircraft/IDG-MD-11X/Sounds/cf680-sound.xml</path>
+			<path>Aircraft/IDG-MD-11/Sounds/cf680-sound.xml</path>
 		</sound>
 		<systems n="0">
 			<autopilot n="6">
-				<path>Aircraft/IDG-MD-11X/Systems/fadec-ge.xml</path>
+				<path>Aircraft/IDG-MD-11/Systems/fadec-ge.xml</path>
 			</autopilot>
 		</systems>
 		<variant-of>MD-11-PW</variant-of>
@@ -89,7 +89,7 @@
     
     <nasal n="0">
 		<setup>
-			<script>aircraft.livery.init("Aircraft/IDG-MD-11X/Models/Liveries/MD-11/GE");</script>
+			<script>aircraft.livery.init("Aircraft/IDG-MD-11/Models/Liveries/MD-11/GE");</script>
 		</setup>
     </nasal>
 

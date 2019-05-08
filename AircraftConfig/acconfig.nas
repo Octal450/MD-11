@@ -64,27 +64,27 @@ setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/options/sd-rate", 1);
 setprop("/systems/acconfig/options/welcome-skip", 0);
-var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/main.xml");
-var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/welcome.xml");
-var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/psload.xml");
-var ps_loaded_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psloaded/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/psloaded.xml");
-var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/ac_init.xml");
-var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/help.xml");
-var fctl_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fctl/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/fctl.xml");
-var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/fail.xml");
-var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/about.xml");
-var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/update.xml");
-var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/updated.xml");
-var error_mismatch = gui.Dialog.new("sim/gui/dialogs/acconfig/error/mismatch/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/error-mismatch.xml");
-var du_quality = gui.Dialog.new("sim/gui/dialogs/acconfig/du-quality/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/du-quality.xml");
-var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/IDG-MD-11X/AircraftConfig/rendering.xml");
+var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-MD-11/AircraftConfig/main.xml");
+var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-MD-11/AircraftConfig/welcome.xml");
+var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/IDG-MD-11/AircraftConfig/psload.xml");
+var ps_loaded_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psloaded/dialog", "Aircraft/IDG-MD-11/AircraftConfig/psloaded.xml");
+var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/IDG-MD-11/AircraftConfig/ac_init.xml");
+var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/IDG-MD-11/AircraftConfig/help.xml");
+var fctl_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fctl/dialog", "Aircraft/IDG-MD-11/AircraftConfig/fctl.xml");
+var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/IDG-MD-11/AircraftConfig/fail.xml");
+var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/IDG-MD-11/AircraftConfig/about.xml");
+var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/IDG-MD-11/AircraftConfig/update.xml");
+var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/IDG-MD-11/AircraftConfig/updated.xml");
+var error_mismatch = gui.Dialog.new("sim/gui/dialogs/acconfig/error/mismatch/dialog", "Aircraft/IDG-MD-11/AircraftConfig/error-mismatch.xml");
+var du_quality = gui.Dialog.new("sim/gui/dialogs/acconfig/du-quality/dialog", "Aircraft/IDG-MD-11/AircraftConfig/du-quality.xml");
+var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/IDG-MD-11/AircraftConfig/rendering.xml");
 spinning.start();
 init_dlg.open();
 
-http.load("https://raw.githubusercontent.com/it0uchpods/IDG-MD-11X/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
+http.load("https://raw.githubusercontent.com/it0uchpods/IDG-MD-11/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
 var revisionFile = (getprop("/sim/aircraft-dir") ~ "/revision.txt");
 var current_revision = io.readfile(revisionFile);
-print("IDG MD-11X Revision: " ~ current_revision);
+print("IDG MD-11 Revision: " ~ current_revision);
 setprop("/systems/acconfig/revision", current_revision);
 
 setlistener("/systems/acconfig/new-revision", func {
@@ -130,7 +130,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	init_dlg.close();
 	if (getprop("/systems/acconfig/out-of-date") == 1) {
 		update_dlg.open();
-		print("System: The IDG-MD-11X is out of date!");
+		print("System: The IDG-MD-11 is out of date!");
 	} 
 	mismatch_chk();
 	readSettings();
@@ -180,7 +180,7 @@ var renderingSettings = {
 };
 
 var readSettings = func {
-	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
+	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11-config.xml", "/systems/acconfig/options");
 	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
 	setprop("/controls/hydraulics/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
@@ -197,7 +197,7 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
-	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11X-config.xml", "/systems/acconfig/options");
+	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11-config.xml", "/systems/acconfig/options");
 }
 
 ################
