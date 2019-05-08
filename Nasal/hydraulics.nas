@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Hydraulic System
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var HYD = {
 	Fail: {

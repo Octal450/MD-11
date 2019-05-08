@@ -1,6 +1,6 @@
 # MD-11 PFD
 
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var PFD_1 = nil;
 var PFD_2 = nil;
@@ -851,7 +851,7 @@ var canvas_PFD_base = {
 		
 		# Misc
 		if (gearagl.getValue() <= 2500) {
-			me["RA"].setText(sprintf("%4.0f", gearagl.getValue()));
+			me["RA"].setText(sprintf("%4.0f", math.clamp(gearagl.getValue(), 0, 2500)));
 			me["RA"].show();
 			me["RA_box"].show();
 		} else {

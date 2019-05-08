@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -36,8 +36,6 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-ft</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 	
 	<filter>
@@ -53,8 +51,6 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-m</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 
 	<predict-simple>
@@ -72,10 +68,10 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/gear/gear[1]/compression-norm</property>
-					<value>0</value>
-				</greater-than>
+				<equals>
+					<property>/gear/gear[1]/wow</property>
+					<value>1</value>
+				</equals>
 			</condition>
 			<property>/orientation/pitch-deg</property>
 		</input>
@@ -91,10 +87,10 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/gear/gear[2]/compression-norm</property>
-					<value>0</value>
-				</greater-than>
+				<equals>
+					<property>/gear/gear[2]/wow</property>
+					<value>1</value>
+				</equals>
 			</condition>
 			<property>/orientation/pitch-deg</property>
 		</input>

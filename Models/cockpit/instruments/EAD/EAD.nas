@@ -1,6 +1,6 @@
 # MD-11 EAD
 
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var EAD_GE = nil;
 var EAD_PW = nil;

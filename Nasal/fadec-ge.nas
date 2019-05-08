@@ -1,6 +1,6 @@
-# MD-11 GE FADEC by Joshua Davidson (it0uchpods)
+# MD-11 GE FADEC by Joshua Davidson (Octal450)
 
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 setprop("/systems/fadec/eng1/egt", 0);
 setprop("/systems/fadec/eng1/n1", 0);

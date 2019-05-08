@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 
 	<sim>
-		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp), CaptB, Zack (Zhuangt98)</author>
+		<author>Immersive Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Semir Gebran (CaptB), Zack (Zhuangt98)</author>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
@@ -208,7 +208,7 @@
 			</preview>
 		</previews>
 		<rating>
-			<FDM type="int">4</FDM>
+			<FDM type="int">5</FDM>
 			<systems type="int">4</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">5</model>
