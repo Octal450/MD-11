@@ -4,81 +4,81 @@
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <mass_balance>
-	<ixx unit="SLUG*FT2"> 2375399 </ixx>
-	<iyy unit="SLUG*FT2"> 5004014 </iyy>
-	<izz unit="SLUG*FT2"> 4408984 </izz>
+	<ixx unit="SLUG*FT2">2375399</ixx>
+	<iyy unit="SLUG*FT2">5004014</iyy>
+	<izz unit="SLUG*FT2">4408984</izz>
 	
-	<ixy unit="SLUG*FT2">       0 </ixy>
-	<ixz unit="SLUG*FT2">       0 </ixz>
-	<iyz unit="SLUG*FT2">       0 </iyz>
-	<emptywt unit="LBS" >  255500 </emptywt>
+	<ixy unit="SLUG*FT2">0</ixy>
+	<ixz unit="SLUG*FT2">0</ixz>
+	<iyz unit="SLUG*FT2">0</iyz>
+	<emptywt unit="LBS">255500</emptywt>
 	
 	<location name="CG" unit="M">
-		<x> 2.6152 </x>
-		<y> 0 </y>
-		<z> 5.69282 </z>
+		<x>2.6152</x>
+		<y>0</y>
+		<z>5.69282</z>
 	</location>
 
 	<pointmass name="Crew">
 		<weight unit="LBS">320</weight>
 		<location name="POINTMASS" unit="M">
-			<x> -26.5261 </x>
-			<y> 0 </y>
-			<z> 6.8 </z>
+			<x>-26.5261</x>
+			<y>0</y>
+			<z>6.8</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Forward Cabin">
 		<weight unit="LBS">4860</weight>
 		<location name="POINTMASS" unit="M"> 
-			<x> -10.2 </x>
-			<y> 0 </y>
-			<z> 6.8 </z>
+			<x>-10.2</x>
+			<y>0</y>
+			<z>6.8</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Center Cabin">
 		<weight unit="LBS">15840</weight>
 		<location name="POINTMASS" unit="M">
-			<x> -4.1 </x>
-			<y> 0 </y>
-			<z> 6.8 </z>
+			<x>-4.1</x>
+			<y>0</y>
+			<z>6.8</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Aft Cabin">
 		<weight unit="LBS">20520</weight>
 		<location name="POINTMASS" unit="M">
-			<x> 10.3 </x>
-			<y> 0 </y>
-			<z> 6.8 </z>
+			<x>10.3</x>
+			<y>0</y>
+			<z>6.8</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Forward Cargo">
 		<weight unit="LBS">16800</weight>
 		<location name="POINTMASS" unit="M"> 
-			<x> -8.2 </x>
-			<y> 0 </y>
-			<z> 5.0 </z>
+			<x>-8.2</x>
+			<y>0</y>
+			<z>5.0</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Center Cargo">
 		<weight unit="LBS">24000</weight>
 		<location name="POINTMASS" unit="M">
-			<x> 10.1 </x>
-			<y> 0 </y>
-			<z> 5.0 </z>
+			<x>10.1</x>
+			<y>0</y>
+			<z>5.0</z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Aft Cargo">
 		<weight unit="LBS">2000</weight>
 		<location name="POINTMASS" unit="M">
-			<x> 14.3 </x>
-			<y> 0 </y>
-			<z> 5.0 </z>
+			<x>14.3</x>
+			<y>0</y>
+			<z>5.0</z>
 		</location>
 	</pointmass>
 </mass_balance>

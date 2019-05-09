@@ -637,7 +637,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<property>aero/alpha-rad</property>
-				<value>-0.7918</value>
+				<value>-0.7883</value>
 			</product>
 		</function>
 		
@@ -649,7 +649,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
-				<value>-29</value>
+				<value>-28.9</value>
 			</product>
 		</function>
 		
@@ -661,7 +661,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>aero/alphadot-rad_sec</property>
-				<value>-1.1356</value>
+				<value>-1.1306</value>
 			</product>
 		</function>
 		
@@ -672,7 +672,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
-				<value>-0.14186075</value>
+				<value>-0.14124396</value>
 			</product>
 		</function>
 		
@@ -683,7 +683,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
-				<value>-0.14186075</value>
+				<value>-0.14124396</value>
 			</product>
 		</function>
 		
@@ -694,7 +694,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
-				<value>-0.14186075</value>
+				<value>-0.14124396</value>
 			</product>
 		</function>
 		
@@ -705,7 +705,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
-				<value>-0.14186075</value>
+				<value>-0.14124396</value>
 			</product>
 		</function>
 		
@@ -716,7 +716,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
-				<value>-1.491325</value>
+				<value>-1.48484098</value>
 			</product>
 		</function>
 	

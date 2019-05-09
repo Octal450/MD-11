@@ -4,30 +4,28 @@
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <metrics>
-	<wingarea  unit="FT2"> 3648.00 </wingarea>
-	<wingspan  unit="FT" >  169.52 </wingspan>
-	<wing_incidence>          1.03 </wing_incidence>
-	<chord     unit="FT" >   25.30 </chord>
-	<htailarea unit="FT2">  222.16 </htailarea>
-	<htailarm  unit="FT" >  107.29 </htailarm>
-	<vtailarea unit="FT2">  496.25 </vtailarea>
-	<vtailarm  unit="FT" >    0.00 </vtailarm>
+	<wingarea unit="FT2">3648</wingarea> <!-- Without winglet -->
+	<wingspan unit="FT">169.52</wingspan> <!-- Without winglet -->
+	<wing_incidence unit="DEG">1.03</wing_incidence>
+	<chord unit="FT">25.19</chord>
+	<htailarea unit="FT2">920.31</htailarea>
+	<vtailarea unit="FT2">604.93</vtailarea>
 	
 	<location name="AERORP" unit="M">
-		<x> 2.9249 </x>
-		<y> 0 </y>
-		<z> 5.69282 </z>
+		<x>2.9249</x>
+		<y>0</y>
+		<z>5.69282</z>
 	</location>
 
 	<location name="EYEPOINT" unit="M">
-		<x> 0.0 </x>
-		<y> 0.0 </y>
-		<z> 7.35361 </z>
+		<x>0.0</x>
+		<y>0.0</y>
+		<z>7.35361 </z>
 	</location>
 
 	<location name="VRP" unit="M">
-		<x> 0 </x>
-		<y> 0 </y>
-		<z> 5.9508 </z>
+		<x>0</x>
+		<y>0</y>
+		<z>5.9508</z>
 	</location>
 </metrics>

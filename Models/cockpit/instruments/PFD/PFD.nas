@@ -851,7 +851,7 @@ var canvas_PFD_base = {
 		
 		# Misc
 		if (gearagl.getValue() <= 2500) {
-			me["RA"].setText(sprintf("%4.0f", math.clamp(gearagl.getValue(), 0, 2500)));
+			me["RA"].setText(sprintf("%4.0f", gearagl.getValue()));
 			me["RA"].show();
 			me["RA_box"].show();
 		} else {
