@@ -11,7 +11,7 @@
 	<function name="aero/function/kCLge">
 		<description>Lift factor due to ground effect</description>
 		<table>
-			<independentVar>aero/h_b-mac-ft</independentVar>
+			<independentVar lookup="row">aero/h_b-mac-ft</independentVar>
 			<tableData>
 				0.00  1.15225
 				0.10  1.09525
@@ -33,7 +33,7 @@
 	<function name="aero/function/kCDge">
 		<description>Drag factor due to ground effect</description>
 		<table>
-			<independentVar>aero/h_b-mac-ft</independentVar>
+			<independentVar lookup="row">aero/h_b-mac-ft</independentVar>
 			<tableData>
 				0.00  0.480
 				0.10  0.515
