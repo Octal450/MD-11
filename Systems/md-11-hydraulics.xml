@@ -17,8 +17,126 @@
 	<property value="0">/systems/hydraulics/rmp/sys-3-to-sys-1</property>
 	<property value="0">/systems/hydraulics/rmp/sys-3-to-sys-2</property>
 	<property value="0">/systems/hydraulics/rmp/sys-multi-thru-sys-3</property>
+	<property value="0">/systems/hydraulics/sys-3-qty</property>
 	
-	<channel name="HSC Switches/Logic" execrate="16"> <!-- These switches are only set in automatic mode -->
+	<channel name="SYS Leak Logic" execrate="8">
+		
+		<!-- SYS 1 -->
+		<switch name="/systems/hydraulics/sys-1-qty-cmd">
+			<default value="/systems/hydraulics/sys-1-qty-input"/>
+			<test value="0">
+				/systems/failures/hydraulics/sys-1-leak eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/sys-1-qty-decr-rate">
+			<default value="100"/> <!-- Instant -->
+			<test value="0.25">
+				/systems/failures/hydraulics/sys-1-leak eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/hydraulics/sys-1-qty">
+			<input>/systems/hydraulics/sys-1-qty-cmd</input>
+			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/hydraulics/sys-1-qty-decr-rate</rate_limit>
+			<output>/systems/hydraulics/sys-1-qty-debug</output>
+		</actuator>
+		
+		<!-- SYS 2 -->
+		<switch name="/systems/hydraulics/sys-2-qty-cmd">
+			<default value="/systems/hydraulics/sys-2-qty-input"/>
+			<test value="0">
+				/systems/failures/hydraulics/sys-2-leak eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/sys-2-qty-decr-rate">
+			<default value="100"/> <!-- Instant -->
+			<test value="0.25">
+				/systems/failures/hydraulics/sys-2-leak eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/hydraulics/sys-2-qty">
+			<input>/systems/hydraulics/sys-2-qty-cmd</input>
+			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/hydraulics/sys-2-qty-decr-rate</rate_limit>
+			<output>/systems/hydraulics/sys-2-qty-debug</output>
+		</actuator>
+		
+		<!-- SYS 3 -->
+		<switch name="/systems/hydraulics/sys-3-isol-valve">
+			<default value="0"/>
+			<test value="1">
+				/systems/hydraulics/sys-3-qty le 4.75
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/sys-3-qty-cmd">
+			<default value="/systems/hydraulics/sys-3-qty-input"/>
+			<test value="0">
+				/systems/failures/hydraulics/sys-3-leak eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+				/systems/hydraulics/sys-3-isol-valve ne 1
+			</test>
+			<test logic="AND" value="/systems/hydraulics/sys-3-qty">
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+				/systems/hydraulics/sys-3-isol-valve eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/sys-3-qty-decr-rate">
+			<default value="100"/> <!-- Instant -->
+			<test value="0.25">
+				/systems/failures/hydraulics/sys-3-leak eq 1
+			</test>
+			<test logic="AND" value="0.25">
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+				/systems/hydraulics/sys-3-isol-valve ne 1
+			</test>
+			<test logic="AND" value="100"> <!-- Instant -->
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+				/systems/hydraulics/sys-3-isol-valve eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/hydraulics/sys-3-qty">
+			<input>/systems/hydraulics/sys-3-qty-cmd</input>
+			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/hydraulics/sys-3-qty-decr-rate</rate_limit>
+			<output>/systems/hydraulics/sys-3-qty-debug</output>
+		</actuator>
+		
+		<!-- SYS 3 Aft --> <!-- If SYS 3 is lost, SYS 3 Aft is lost also, but not the other way around -->
+		<switch name="/systems/hydraulics/sys-3-aft-qty-cmd">
+			<default value="/systems/hydraulics/sys-3-qty"/>
+			<test logic="AND" value="0">
+				/systems/failures/hydraulics/sys-3-leak ne 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/sys-3-aft-qty-decr-rate">
+			<default value="100"/> <!-- Instant -->
+			<test logic="AND" value="0.25">
+				/systems/failures/hydraulics/sys-3-leak ne 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/hydraulics/sys-3-aft-qty">
+			<input>/systems/hydraulics/sys-3-aft-qty-cmd</input>
+			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/hydraulics/sys-3-aft-qty-decr-rate</rate_limit>
+			<output>/systems/hydraulics/sys-3-aft-qty-debug</output>
+		</actuator>
+	
+	</channel>
+	
+	<channel name="HSC Switches/Logic" execrate="16">
 		
 		<switch name="/systems/hydraulics/hsc/parked-config-active">
 			<default value="0"/>
@@ -308,6 +426,7 @@
 	
 	<channel name="Main Hydraulics" execrate="8">
 		
+		<!-- Common -->
 		<switch name="/systems/hydraulics/sys-decr-rate">
 			<default value="45.45455"/> <!-- 22 seconds per 1000 psi -->
 			<test value="500"> <!-- 2 seconds per 1000 psi for ACCONFIG -->
@@ -599,7 +718,7 @@
 				/controls/electrical/switches/adg-elec eq 1
 				/systems/electrical/sources/adg/output-volt ge 110
 			</test>
-			<test logic="OR" value="2960"> <!-- I know it is powered by an AC bus, but I don't know which one, so guesses -->
+			<test logic="OR" value="2960"> <!-- I know it is powered by an AC bus, but I don't know which one, so these are educated guesses -->
 				/systems/electrical/bus/ac-1 ge 110
 				/systems/electrical/bus/ac-2 ge 110
 				/systems/electrical/bus/ac-3 ge 110
@@ -670,37 +789,24 @@
 			<output>/systems/hydraulics/sys-3-psi-debug</output>
 		</actuator>
 		
-		<switch name="/systems/hydraulics/sys-3-isol-valve">
-			<default value="1"/>
-			<test value="0">
-				/systems/hydraulics/sys-3-qty le 4.75
-			</test>
-		</switch>
-		
-		<fcs_function name="/systems/hydraulics/sys-3-psi-aft-cmd">
+		<fcs_function name="/systems/hydraulics/sys-3-aft-psi-cmd">
 			<function>
 				<ifthen>
-					<and>
-						<ge>
-							<property>/systems/hydraulics/sys-3-qty-aft</property>
-							<value>1.0</value>
-						</ge>
-						<eq>
-							<property>/systems/hydraulics/sys-3-isol-valve</property>
-							<value>1</value>
-						</eq>
-					</and>
+					<ge>
+						<property>/systems/hydraulics/sys-3-aft-qty</property>
+						<value>1.0</value>
+					</ge>
 					<property>/systems/hydraulics/sys-3-psi-cmd</property>
 					<value>40</value>
 				</ifthen>
 			</function>
 		</fcs_function>
 		
-		<actuator name="/systems/hydraulics/sys-3-psi-aft">
-			<input>/systems/hydraulics/sys-3-psi-aft-cmd</input>
+		<actuator name="/systems/hydraulics/sys-3-aft-psi">
+			<input>/systems/hydraulics/sys-3-aft-psi-cmd</input>
 			<rate_limit sense="incr">/systems/hydraulics/sys-incr-rate</rate_limit>
 			<rate_limit sense="decr">/systems/hydraulics/sys-decr-rate</rate_limit>
-			<output>/systems/hydraulics/sys-3-psi-aft-debug</output>
+			<output>/systems/hydraulics/sys-3-aft-psi-debug</output>
 		</actuator>
 		
 		<!-- Reversible Motor Pump 1-3 -->
@@ -720,7 +826,7 @@
 			</test>
 		</switch>
 		
-		<actuator name="/systems/hydraulics/rmp/mp-1-3-status">
+		<actuator name="/systems/hydraulics/rmp/rmp-1-3-status">
 			<input>/controls/hydraulics/switches/rmp-1-3</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
@@ -742,7 +848,7 @@
 			</test>
 		</switch>
 		
-		<actuator name="/systems/hydraulics/rmp/mp-2-3-status">
+		<actuator name="/systems/hydraulics/rmp/rmp-2-3-status">
 			<input>/controls/hydraulics/switches/rmp-2-3</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
@@ -791,7 +897,7 @@
 		
 		<switch name="/systems/hydraulics/nrmp/sys-3-to-sys-2">
 			<default value="0"/>
-			<test logic="AND" value="/systems/hydraulics/sys-3-psi-aft-cmd">
+			<test logic="AND" value="/systems/hydraulics/sys-3-aft-psi-cmd">
 				/systems/hydraulics/nrmp/sys-3-to-sys-2-cmd eq 1
 				/systems/failures/hydraulics/nrmp-3-2 ne 1
 				/systems/hydraulics/sys-3-qty ge 1.0
@@ -847,16 +953,16 @@
 		<switch name="/systems/hydraulics/light/rmp-1-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/hydraulics/rmp/mp-1-3-status ne 0
-				/systems/hydraulics/rmp/mp-1-3-status ne 1
+				/systems/hydraulics/rmp/rmp-1-3-status ne 0
+				/systems/hydraulics/rmp/rmp-1-3-status ne 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/hydraulics/light/rmp-2-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/hydraulics/rmp/mp-2-3-status ne 0
-				/systems/hydraulics/rmp/mp-2-3-status ne 1
+				/systems/hydraulics/rmp/rmp-2-3-status ne 0
+				/systems/hydraulics/rmp/rmp-2-3-status ne 1
 			</test>
 		</switch>
 	

@@ -69,7 +69,6 @@ var ELEC = {
 		manualFlashTemp: 0,
 	},
 	Misc: {
-		elapsedSec: props.globals.getNode("/sim/time/elapsed-sec"),
 		elapsedSecTemp: 0,
 	},
 	RCB: { # 0 is Open, 1 is Closed
@@ -248,7 +247,7 @@ var ELEC = {
 	loop: func() {
 		me.Fail.bat1Temp = me.Fail.bat1.getBoolValue();
 		me.Fail.bat2Temp = me.Fail.bat2.getBoolValue();
-		me.Misc.elapsedSecTemp = me.Misc.elapsedSec.getValue();
+		me.Misc.elapsedSecTemp = pts.Sim.Time.elapsedSec.getValue();
 		me.Source.batChargerPoweredTemp = me.Source.batChargerPowered.getBoolValue();
 		me.Source.Bat1.percentTemp = me.Source.Bat1.percent.getValue();
 		me.Source.Bat2.percentTemp = me.Source.Bat2.percent.getValue();

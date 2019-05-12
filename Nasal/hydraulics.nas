@@ -5,6 +5,7 @@ var HYD = {
 	Fail: {
 		auxPump1: props.globals.getNode("/systems/failures/hydraulics/aux-pump-1"),
 		auxPump2: props.globals.getNode("/systems/failures/hydraulics/aux-pump-2"),
+		catastrophicAft: props.globals.getNode("/systems/failures/hydraulics/catastrophic-aft"),
 		lPump1: props.globals.getNode("/systems/failures/hydraulics/l-pump-1"),
 		lPump2: props.globals.getNode("/systems/failures/hydraulics/l-pump-2"),
 		lPump3: props.globals.getNode("/systems/failures/hydraulics/l-pump-3"),
@@ -18,7 +19,6 @@ var HYD = {
 		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
 		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
-		sys3LeakAft: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak-aft"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
@@ -36,12 +36,16 @@ var HYD = {
 		sys1: props.globals.getNode("/systems/hydraulics/sys-1-psi"),
 		sys2: props.globals.getNode("/systems/hydraulics/sys-2-psi"),
 		sys3: props.globals.getNode("/systems/hydraulics/sys-3-psi"),
+		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-psi"),
 	},
 	Qty: {
 		sys1: props.globals.getNode("/systems/hydraulics/sys-1-qty"),
+		sys1Input: props.globals.getNode("/systems/hydraulics/sys-1-qty-input"),
 		sys2: props.globals.getNode("/systems/hydraulics/sys-2-qty"),
+		sys2Input: props.globals.getNode("/systems/hydraulics/sys-2-qty-input"),
 		sys3: props.globals.getNode("/systems/hydraulics/sys-3-qty"),
-		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-qty-aft"),
+		sys3Input: props.globals.getNode("/systems/hydraulics/sys-3-qty-input"),
+		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-qty"),
 	},
 	Switch: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/switches/aux-pump-1"),
@@ -59,10 +63,9 @@ var HYD = {
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	init: func() {
 		me.resetFail();
-		me.Qty.sys1.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Qty.sys2.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Qty.sys3.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Qty.sys3Aft.setValue(me.Qty.sys3.getValue());
+		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Switch.auxPump1.setBoolValue(0);
 		me.Switch.auxPump2.setBoolValue(0);
 		me.Switch.lPump1.setBoolValue(1);
@@ -81,6 +84,7 @@ var HYD = {
 	resetFail: func() {
 		me.Fail.auxPump1.setBoolValue(0);
 		me.Fail.auxPump2.setBoolValue(0);
+		me.Fail.catastrophicAft.setBoolValue(0);
 		me.Fail.lPump1.setBoolValue(0);
 		me.Fail.lPump2.setBoolValue(0);
 		me.Fail.lPump3.setBoolValue(0);
@@ -94,7 +98,6 @@ var HYD = {
 		me.Fail.sys1Leak.setBoolValue(0);
 		me.Fail.sys2Leak.setBoolValue(0);
 		me.Fail.sys3Leak.setBoolValue(0);
-		me.Fail.sys3LeakAft.setBoolValue(0);
 	},
 	systemMode: func() {
 		if (me.system.getBoolValue()) {

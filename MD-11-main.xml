@@ -1319,6 +1319,7 @@
 			<hydraulics n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
+				<catastrophic-aft type="bool">0</catastrophic-aft>
 				<l-pump-1 type="bool">0</l-pump-1>
 				<l-pump-2 type="bool">0</l-pump-2>
 				<l-pump-3 type="bool">0</l-pump-3>
@@ -1332,7 +1333,6 @@
 				<sys-1-leak type="bool">0</sys-1-leak>
 				<sys-2-leak type="bool">0</sys-2-leak>
 				<sys-3-leak type="bool">0</sys-3-leak>
-				<sys-3-leak-aft type="bool">0</sys-3-leak-aft>
 			</hydraulics>
 		</failures>
 		<fuel n="0">
@@ -1357,10 +1357,9 @@
 			</tank>
 		</fuel>
 		<hydraulics n="0">
-			<sys-1-qty type="double">8.0</sys-1-qty> <!-- Randomized later in sim init -->
-			<sys-2-qty type="double">8.0</sys-2-qty> <!-- Randomized later in sim init -->
-			<sys-3-qty type="double">8.0</sys-3-qty> <!-- Randomized later in sim init -->
-			<sys-3-qty-aft type="double">8.0</sys-3-qty-aft> <!-- Equal to SYS 3 QTY unless leak -->
+			<sys-1-qty-input type="double">8.0</sys-1-qty-input> <!-- Randomized later in sim init -->
+			<sys-2-qty-input type="double">8.0</sys-2-qty-input> <!-- Randomized later in sim init -->
+			<sys-3-qty-input type="double">8.0</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
 	</systems>

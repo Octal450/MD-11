@@ -67,7 +67,7 @@ var systemsLoop = maketimer(0.1, func {
 	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
 		systems.cutoff_one();
 	}
-	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[6]/contents-lbs") < 1) {
+	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and (getprop("/fdm/jsbsim/propulsion/tank[6]/contents-lbs") < 1 or systems.HYD.Fail.catastrophicAft.getBoolValue())) {
 		systems.cutoff_two();
 	}
 	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[7]/contents-lbs") < 1) {

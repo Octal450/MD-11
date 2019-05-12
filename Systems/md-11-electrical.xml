@@ -20,7 +20,7 @@
 	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
 	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
 	
-	<channel name="EPCU Switches/Logic" execrate="16"> <!-- These switches are only set in automatic mode -->
+	<channel name="EPCU Switches/Logic" execrate="16">
 		
 		<switch name="/systems/electrical/epcu/allow-apu">
 			<default value="0"/>

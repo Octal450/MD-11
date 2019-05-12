@@ -325,7 +325,7 @@
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-l-output">
 				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-psi-aft ge 1500
+				/systems/hydraulics/sys-3-aft-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -356,7 +356,7 @@
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-r-output">
 				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi-aft ge 1500
+				/systems/hydraulics/sys-3-aft-psi ge 1500
 			</test>
 			<clipto>
 				<min>-1.0</min>

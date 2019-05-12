@@ -55,7 +55,7 @@
 			</group>
 			
 			<checkbox>
-				<label>APU GEN</label>
+				<label>APU Generator</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/apu</property>
 				<binding>
@@ -65,7 +65,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 1</label>
+				<label>Battery 1</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/bat-1</property>
 				<binding>
@@ -75,7 +75,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>BATTERY 2</label>
+				<label>Battery 2</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/bat-2</property>
 				<binding>
@@ -85,7 +85,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ENG 1 GEN</label>
+				<label>Eng 1 Generator</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/gen-1</property>
 				<binding>
@@ -95,7 +95,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ENG 2 GEN</label>
+				<label>Eng 2 Generator</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/gen-2</property>
 				<binding>
@@ -105,7 +105,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ENG 3 GEN</label>
+				<label>Eng 3 Generator</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/gen-3</property>
 				<binding>
@@ -139,7 +139,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed EXT</label>
+				<label>Bleed Ext</label>
 				<halign>left</halign>
 				<property>/systems/failures/bleed-ext</property>
 				<binding>
@@ -149,7 +149,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed ENG 1</label>
+				<label>Bleed Eng 1</label>
 				<halign>left</halign>
 				<property>/systems/failures/bleed-eng1</property>
 				<binding>
@@ -159,7 +159,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed ENG 2</label>
+				<label>Bleed Eng 2</label>
 				<halign>left</halign>
 				<property>/systems/failures/bleed-eng2</property>
 				<binding>
@@ -169,7 +169,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed ENG 3</label>
+				<label>Bleed Eng 3</label>
 				<halign>left</halign>
 				<property>/systems/failures/bleed-eng3</property>
 				<binding>
@@ -230,7 +230,17 @@
 			</group>
 			
 			<checkbox>
-				<label>SYS1 HYD Leak</label>
+				<label>Catastrophic Aft Leak</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/catastrophic-aft</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>SYS 1 Leak</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/sys-1-leak</property>
 				<binding>
@@ -240,7 +250,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS1 L Pump</label>
+				<label>SYS 1 L Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/l-pump-1</property>
 				<binding>
@@ -250,7 +260,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS1 R Pump</label>
+				<label>SYS 1 R Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/r-pump-1</property>
 				<binding>
@@ -260,7 +270,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS2 HYD Leak</label>
+				<label>SYS 2 Leak</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/sys-2-leak</property>
 				<binding>
@@ -270,7 +280,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS2 L Pump</label>
+				<label>SYS 2 L Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/l-pump-2</property>
 				<binding>
@@ -280,7 +290,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS2 R Pump</label>
+				<label>SYS 2 R Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/r-pump-2</property>
 				<binding>
@@ -290,7 +300,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS3 HYD Leak</label>
+				<label>SYS 3 Leak</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/sys-3-leak</property>
 				<binding>
@@ -300,7 +310,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS3 L Pump</label>
+				<label>SYS 3 L Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/l-pump-3</property>
 				<binding>
@@ -310,7 +320,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>SYS3 R Pump</label>
+				<label>SYS 3 R Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/r-pump-3</property>
 				<binding>
@@ -364,7 +374,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>AUX Tank L Trans</label>
+				<label>Aux Tank L Trans</label>
 				<halign>left</halign>
 				<property>/systems/failures/tank3pumpl</property>
 				<binding>
@@ -374,7 +384,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>AUX Tank R Trans</label>
+				<label>Aux Tank R Trans</label>
 				<halign>left</halign>
 				<property>/systems/failures/tank3pumpr</property>
 				<binding>
@@ -405,7 +415,7 @@
 			</group>
 			
 			<checkbox>
-				<label>LSAS L OUTBD</label>
+				<label>LSAS L Outboard</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/lsas-left-out</property>
 				<binding>
@@ -415,7 +425,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS L INBD</label>
+				<label>LSAS L Inboard</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/lsas-left-in</property>
 				<binding>
@@ -425,7 +435,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS R INBD</label>
+				<label>LSAS R Inboard</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/lsas-right-in</property>
 				<binding>
@@ -435,7 +445,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>LSAS R OUTBD</label>
+				<label>LSAS R Outboard</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/lsas-right-out</property>
 				<binding>
@@ -445,7 +455,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>YAW DAMP UPR A</label>
+				<label>Yaw Damper Upper A</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/yd-upper-a</property>
 				<binding>
@@ -455,7 +465,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>YAW DAMP UPR B</label>
+				<label>Yaw Damper Upper B</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/yd-upper-b</property>
 				<binding>
@@ -465,7 +475,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>YAW DAMP LWR A</label>
+				<label>Yaw Damper Lower A</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/yd-lower-a</property>
 				<binding>
@@ -475,7 +485,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>YAW DAMP LWR B</label>
+				<label>Yaw Damper Lower B</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/yd-lower-b</property>
 				<binding>
@@ -485,7 +495,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>ELEV FEEL</label>
+				<label>Elevator Feel</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/lsas-elev-feel</property>
 				<binding>
@@ -495,7 +505,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>FLAP LIMIT</label>
+				<label>Flap Limit</label>
 				<halign>left</halign>
 				<property>/systems/failures/fctl/flap-limit</property>
 				<binding>
