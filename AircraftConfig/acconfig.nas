@@ -1,6 +1,4 @@
 # Aircraft Config Center
-# Joshua Davidson (Octal450)
-
 # Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var spinning = maketimer(0.05, func {
