@@ -4,6 +4,7 @@
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <mass_balance>
+	
 	<ixx unit="SLUG*FT2">2375399</ixx>
 	<iyy unit="SLUG*FT2">5004014</iyy>
 	<izz unit="SLUG*FT2">4408984</izz>
@@ -81,4 +82,5 @@
 			<z>5.0</z>
 		</location>
 	</pointmass>
+
 </mass_balance>

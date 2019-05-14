@@ -4,6 +4,7 @@
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <external_reactions>
+	
 	<force name="tractor" frame="BODY">
 		<location unit="M">
 			<x>-20.6394</x>
@@ -16,4 +17,5 @@
 			<z>0</z>
 		</direction>
 	</force>
+
 </external_reactions>

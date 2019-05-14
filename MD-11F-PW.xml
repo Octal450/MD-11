@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
-<fdm_config name="IDG-MD-11" version="2.0" release="BETA"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
-
+<fdm_config name="IDG-PA28" version="2.0" release="BETA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+	
 	<fileheader>
 		<author>Joshua Davidson (Octal450)</author>
 		<version>Pre V1.0</version>
