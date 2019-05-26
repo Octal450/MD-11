@@ -1,0 +1,548 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Pneumatic System -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
+<system name="MD-11: Pneumatics">
+	
+	<property value="0">/systems/pneumatics/apu-active</property>
+	<property value="0">/systems/pneumatics/bleed-1-psi-cmd</property>
+	<property value="0">/systems/pneumatics/bleed-2-psi-cmd</property>
+	<property value="0">/systems/pneumatics/bleed-3-psi-cmd</property>
+	<property value="0">/systems/pneumatics/eng-1-psi</property>
+	<property value="0">/systems/pneumatics/eng-2-psi</property>
+	<property value="0">/systems/pneumatics/eng-3-psi</property>
+	<property value="0">/systems/pneumatics/isol/from-1-to-2</property>
+	<property value="0">/systems/pneumatics/isol/from-1-to-3</property>
+	<property value="0">/systems/pneumatics/isol/from-2-to-1</property>
+	<property value="0">/systems/pneumatics/isol/from-3-to-1</property>
+	<property value="0">/systems/pneumatics/isol/multi-thru-1</property>
+	<property value="0">/systems/pneumatics/pack-1-delta-psi</property>
+	<property value="0">/systems/pneumatics/pack-2-delta-psi</property>
+	<property value="0">/systems/pneumatics/pack-3-delta-psi</property>
+	
+	<channel name="ESC Switches/Logic" execrate="16">
+		
+		<switch name="/systems/pneumatics/esc/bleed-1">
+			<default value="/controls/pneumatics/switches/bleed-1"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/engines/engine[0]/state ge 2
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/bleed-1</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/bleed-2">
+			<default value="/controls/pneumatics/switches/bleed-2"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/engines/engine[1]/state ge 2
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/bleed-2</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/bleed-3">
+			<default value="/controls/pneumatics/switches/bleed-3"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/engines/engine[2]/state ge 2
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/bleed-3</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/isol-1-2">
+			<default value="/controls/pneumatics/switches/isol-1-2"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/apu-active eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/isol-1-2</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/isol-1-3">
+			<default value="/controls/pneumatics/switches/isol-1-3"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/apu-active eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/isol-1-3</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/trim-air">
+			<default value="/controls/pneumatics/switches/trim-air"/>
+			<test value="1">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/trim-air</output>
+		</switch>
+		
+		<!-- Continued below Main Pneumatics -->
+	
+	</channel>
+	
+	<channel name="Main Pneumatics" execrate="8">
+		
+		<!-- Bleed Inputs -->
+		<actuator name="/systems/pneumatics/apu-valve-status">
+			<input>/controls/pneumatics/switches/bleed-apu</input>
+			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/apu-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/apu-valve-status eq 1
+				/systems/apu/n2 ge 94.9
+				/systems/failures/pneumatics/bleed-apu ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/apu-psi">
+			<default value="0"/>
+			<test logic="AND" value="32">
+				/systems/pneumatics/apu-active eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/eng-1-psi">
+			<default value="0"/>
+			<test logic="AND" value="31">
+				/controls/pneumatics/switches/bleed-1 eq 1
+				/engines/engine[0]/state ge 2
+				/systems/failures/pneumatics/bleed-1 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/eng-2-psi">
+			<default value="0"/>
+			<test logic="AND" value="33">
+				/controls/pneumatics/switches/bleed-2 eq 1
+				/engines/engine[1]/state ge 2
+				/systems/failures/pneumatics/bleed-2 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/eng-3-psi">
+			<default value="0"/>
+			<test logic="AND" value="32">
+				/controls/pneumatics/switches/bleed-3 eq 1
+				/engines/engine[2]/state ge 2
+				/systems/failures/pneumatics/bleed-3 ne 1
+			</test>
+		</switch>
+		
+		<!-- Bleed 1 -->
+		<fcs_function name="/systems/pneumatics/total-1-isol-psi">
+			<function>
+				<max>
+					<property>/systems/pneumatics/isol/from-2-to-1</property>
+					<property>/systems/pneumatics/isol/from-3-to-1</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/bleed-1-psi-pre-cmd">
+			<function>
+				<max>
+					<property>/systems/pneumatics/eng-1-psi</property>
+					<property>/systems/pneumatics/total-1-isol-psi</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/bleed-1-psi-cmd">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/bleed-1-psi-pre-cmd</property>
+					<property>/systems/pneumatics/pack-1-delta-psi</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/bleed-1-psi">
+			<input>/systems/pneumatics/bleed-1-psi-cmd</input>
+			<rate_limit sense="incr">4.0</rate_limit>
+			<rate_limit sense="decr">1.4</rate_limit>
+			<output>/systems/pneumatics/bleed-1-psi-debug</output>
+		</actuator>
+		
+		<!-- Bleed 2 -->
+		<fcs_function name="/systems/pneumatics/bleed-2-psi-pre-input">
+			<function>
+				<max>
+					<property>/systems/pneumatics/apu-psi</property>
+					<property>/systems/pneumatics/eng-2-psi</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/bleed-2-psi-pre-cmd">
+			<function>
+				<max>
+					<property>/systems/pneumatics/bleed-2-psi-pre-input</property>
+					<property>/systems/pneumatics/isol/from-1-to-2</property>
+					<property>/systems/pneumatics/isol/multi-thru-1</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/bleed-2-psi-cmd">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/bleed-2-psi-pre-cmd</property>
+					<property>/systems/pneumatics/pack-2-delta-psi</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/bleed-2-psi">
+			<input>/systems/pneumatics/bleed-2-psi-cmd</input>
+			<rate_limit sense="incr">4.0</rate_limit>
+			<rate_limit sense="decr">1.4</rate_limit>
+			<output>/systems/pneumatics/bleed-2-psi-debug</output>
+		</actuator>
+		
+		<!-- Bleed 3 -->
+		<fcs_function name="/systems/pneumatics/bleed-3-psi-pre-cmd">
+			<function>
+				<max>
+					<property>/systems/pneumatics/eng-3-psi</property>
+					<property>/systems/pneumatics/isol/from-1-to-3</property>
+					<property>/systems/pneumatics/isol/multi-thru-1</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/bleed-3-psi-cmd">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/bleed-3-psi-pre-cmd</property>
+					<property>/systems/pneumatics/pack-3-delta-psi</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/bleed-3-psi">
+			<input>/systems/pneumatics/bleed-3-psi-cmd</input>
+			<rate_limit sense="incr">4.0</rate_limit>
+			<rate_limit sense="decr">1.4</rate_limit>
+			<output>/systems/pneumatics/bleed-3-psi-debug</output>
+		</actuator>
+		
+		<!-- Packs -->
+		<fcs_function name="/systems/pneumatics/pack-1-delta-psi">
+			<function>
+				<ifthen>
+					<and>
+						<eq>
+							<property>/controls/pneumatics/switches/pack-1</property>
+							<value>1</value>
+						</eq>
+						<nq>
+							<property>/systems/failures/pneumatics/pack-1</property>
+							<value>1</value>
+						</nq>
+					</and>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/eng-1-psi</independentVar>
+						<tableData>
+							10   0
+							16  -6
+							29  -6
+							35 -12
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/pack-2-delta-psi">
+			<function>
+				<ifthen>
+					<and>
+						<eq>
+							<property>/controls/pneumatics/switches/pack-2</property>
+							<value>1</value>
+						</eq>
+						<nq>
+							<property>/systems/failures/pneumatics/pack-2</property>
+							<value>1</value>
+						</nq>
+					</and>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/bleed-2-psi-cmd</independentVar>
+						<tableData>
+							10   0
+							16  -6
+							29  -6
+							35 -12
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/pack-3-delta-psi">
+			<function>
+				<ifthen>
+					<and>
+						<eq>
+							<property>/controls/pneumatics/switches/pack-3</property>
+							<value>1</value>
+						</eq>
+						<nq>
+							<property>/systems/failures/pneumatics/pack-3</property>
+							<value>1</value>
+						</nq>
+					</and>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/bleed-3-psi-cmd</independentVar>
+						<tableData>
+							10   0
+							16  -6
+							29  -6
+							35 -12
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<!-- Isol 1-2 Valve -->
+		<actuator name="/systems/pneumatics/isol/isol-1-2-status">
+			<input>/controls/pneumatics/switches/isol-1-2</input>
+			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/isol/from-1-to-2">
+			<default value="0"/>
+			<test value="/systems/pneumatics/eng-1-psi">
+				/systems/pneumatics/isol/isol-1-2-status eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/isol/from-2-to-1">
+			<default value="0"/>
+			<test value="/systems/pneumatics/bleed-2-psi-pre-input">
+				/systems/pneumatics/isol/isol-1-2-status eq 1
+			</test>
+		</switch>
+		
+		<!-- Isol 1-3 Valve -->
+		<actuator name="/systems/pneumatics/isol/isol-1-3-status">
+			<input>/controls/pneumatics/switches/isol-1-3</input>
+			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/isol/from-1-to-3">
+			<default value="0"/>
+			<test value="/systems/pneumatics/eng-1-psi">
+				/systems/pneumatics/isol/isol-1-3-status eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/isol/from-3-to-1">
+			<default value="0"/>
+			<test value="/systems/pneumatics/eng-3-psi">
+				/systems/pneumatics/isol/isol-1-3-status eq 1
+			</test>
+		</switch>
+		
+		<!-- Reversible Motor Pump Multi -->
+		<switch name="/systems/pneumatics/isol/multi-thru-1">
+			<default value="0"/>
+			<test logic="AND" value="/systems/pneumatics/total-1-isol-psi">
+				/systems/pneumatics/isol/isol-1-2-status eq 1
+				/systems/pneumatics/isol/isol-1-3-status eq 1
+			</test>
+		</switch>
+		
+		<!-- Temperature Control -->
+		<fcs_function name="/systems/pneumatics/cockpit-temp">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/switches/cockpit-temp</independentVar>
+					<tableData>
+						0.0   0
+						0.1  18
+						0.5  24
+						1.0  29
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/fwd-temp">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/switches/fwd-temp</independentVar>
+					<tableData>
+						0.0   0
+						0.1  18
+						0.5  24
+						1.0  29
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/mid-temp">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/switches/mid-temp</independentVar>
+					<tableData>
+						0.0   0
+						0.1  18
+						0.5  24
+						1.0  29
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/aft-temp">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/switches/aft-temp</independentVar>
+					<tableData>
+						0.0   0
+						0.1  18
+						0.5  24
+						1.0  29
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!-- Keep compatibility with non-IntegratedSystems engine start -->
+		<fcs_function name="/systems/pneumatics/total-psi-tie">
+			<function>
+				<max>
+					<property>/systems/pneumatics/bleed-1-psi</property>
+					<property>/systems/pneumatics/bleed-2-psi</property>
+					<property>/systems/pneumatics/bleed-3-psi</property>
+				</max>
+			</function>
+			<output>/systems/pneumatics/total-psi</output>
+		</fcs_function>
+	
+	</channel>
+	
+	<channel name="PSC Switches/Logic 2" execrate="16"> <!-- Needs to be after Main Pneumatics to avoid flashing off lights in certain situations -->
+		
+		<switch name="/systems/pneumatics/esc/pack-1">
+			<default value="/controls/pneumatics/switches/pack-1"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/controls/engines/packs-off eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/pack-1</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/pack-2">
+			<default value="/controls/pneumatics/switches/pack-2"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/controls/engines/packs-off eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/apu-active eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/pack-2</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/pack-3">
+			<default value="/controls/pneumatics/switches/pack-3"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/controls/engines/packs-off eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/switches/pack-3</output>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/systems/pneumatics/light/bleed-1-press">
+			<default value="0"/>
+			<test value="1">
+				/systems/pneumatics/bleed-1-psi lt 10.5
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/bleed-2-press">
+			<default value="0"/>
+			<test value="1">
+				/systems/pneumatics/bleed-2-psi lt 10.5
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/bleed-3-press">
+			<default value="0"/>
+			<test value="1">
+				/systems/pneumatics/bleed-3-psi lt 10.5
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/isol-1-2-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/isol/isol-1-2-status ne 0
+				/systems/pneumatics/isol/isol-1-2-status ne 1
+				/systems/pneumatics/system ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/isol-1-3-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/isol/isol-1-3-status ne 0
+				/systems/pneumatics/isol/isol-1-3-status ne 1
+				/systems/pneumatics/system ne 1
+			</test>
+		</switch>
+	
+	</channel>
+
+</system>

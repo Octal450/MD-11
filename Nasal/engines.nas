@@ -86,7 +86,7 @@ var apu_start_loop = maketimer(0.5, func {
 # Stop APU
 var apu_stop = func {
 	setprop("/controls/electrical/switches/apu-pwr", 0);
-	setprop("/controls/pneumatic/switches/bleedapu", 0);
+	setprop("/controls/pneumatics/switches/bleed-apu", 0);
 	oat = getprop("/environment/temperature-degc");
 	interpolate("/systems/apu/n1", 0, 30);
 	interpolate("/systems/apu/n2", 0, 30);

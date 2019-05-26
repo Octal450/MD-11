@@ -463,6 +463,7 @@
 				<throttle-fdm type="double">0</throttle-fdm>
 				<throttle-rev type="double">0</throttle-rev>
 			</engine>
+			<packs-off type="bool">0</packs-off>
 		</engines>
 		<fctl n="0">
 			<flap-limit-knob type="int">0</flap-limit-knob>
@@ -483,6 +484,8 @@
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
 			<dial-a-flap type="double">15</dial-a-flap> <!-- Rounded in md-11-fcc.xml -->
 			<speedbrake-arm type="bool">0</speedbrake-arm>
+			<wingflex type="double">0</wingflex>
+			<wingflex-enable type="bool">0</wingflex-enable>
 		</flight>
 		<fuel n="0">
 			<switches n="0">
@@ -550,6 +553,27 @@
 			<nav-lights type="bool">0</nav-lights>
 			<strobe type="bool">0</strobe>
 		</lighting>
+		<pneumatics n="0">
+			<switches n="0">
+				<aft-temp type="double">0.5</aft-temp>
+				<avionics-fan type="bool">1</avionics-fan>
+				<bleed-apu type="bool">0</bleed-apu>
+				<bleed-1 type="bool">1</bleed-1>
+				<bleed-2 type="bool">1</bleed-2>
+				<bleed-3 type="bool">1</bleed-3>
+				<cockpit-temp type="double">0.5</cockpit-temp>
+				<econ type="bool">1</econ>
+				<fwd-temp type="double">0.5</fwd-temp>
+				<ground-air type="bool">0</ground-air>
+				<isol-1-2 type="bool">0</isol-1-2>
+				<isol-1-3 type="bool">0</isol-1-3>
+				<mid-temp type="double">0.5</mid-temp>
+				<pack-1 type="bool">1</pack-1>
+				<pack-2 type="bool">1</pack-2>
+				<pack-3 type="bool">1</pack-3>
+				<trim-air type="bool">1</trim-air>
+			</switches>
+		</pneumatics>
 		<switches n="0">
 			<adg-handle type="double">0</adg-handle>
 			<annun-test type="bool">0</annun-test>
@@ -1334,6 +1358,16 @@
 				<sys-2-leak type="bool">0</sys-2-leak>
 				<sys-3-leak type="bool">0</sys-3-leak>
 			</hydraulics>
+			<pneumatics n="0">
+				<bleed-apu type="bool">0</bleed-apu>
+				<bleed-ext type="bool">0</bleed-ext>
+				<bleed-1 type="bool">0</bleed-1>
+				<bleed-2 type="bool">0</bleed-2>
+				<bleed-3 type="bool">0</bleed-3>
+				<pack-1 type="bool">0</pack-1>
+				<pack-2 type="bool">0</pack-2>
+				<pack-3 type="bool">0</pack-3>
+			</pneumatics>
 		</failures>
 		<fuel n="0">
 			<tank n="0">
@@ -1362,6 +1396,9 @@
 			<sys-3-qty-input type="double">8.0</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
+		<pneumatics n="0">
+			<system type="bool">1</system>
+		</pneumatics>
 	</systems>
 	
 	<nasal n="0">

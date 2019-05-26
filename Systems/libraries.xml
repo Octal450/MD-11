@@ -154,13 +154,13 @@
 		<enable>
 			<condition>
 				<equals>
-					<property>/aircraft/wingflex-enable</property>
+					<property>/controls/flight/wingflex-enable</property>
 					<value>1</value>
 				</equals>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/aero/coefficient/CLalpha</input>
-		<output>/aircraft/wingflex</output>
+		<output>/controls/flight/wingflex</output>
 		<filter-time>0.04</filter-time>
 	</filter>
 	

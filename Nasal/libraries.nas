@@ -15,11 +15,11 @@ setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 
 var systemsInit = func {
 	systems.ELEC.init();
-	systems.PNEU.init();
-	systems.HYD.init();
-	systems.FUEL.init();
 	systems.FCTL.init();
+	systems.FUEL.init();
+	systems.HYD.init();
 	systems.IRS.init();
+	systems.PNEU.init();
 	systems.eng_init();
 	fadec.fadec_reset();
 	afs.ITAF.init(0);
@@ -35,7 +35,6 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
-	systems.PNEU.loop();
 	systems.FUEL.loop();
 	systems.IRS.loop();
 	systems.eng_loop();
@@ -47,8 +46,8 @@ var systemsLoop = maketimer(0.1, func {
 			systems.ELEC.Switch.extPwr.setBoolValue(0);
 			systems.ELEC.Switch.extGPwr.setBoolValue(0);
 		}
-		if (getprop("/controls/pneumatic/switches/groundair")) { # To be deprecated
-			setprop("/controls/pneumatic/switches/groundair", 0);
+		if (getprop("/controls/pneumatics/switches/ground-air")) { # To be deprecated
+			setprop("/controls/pneumatics/switches/ground-air", 0);
 		}
 	}
 
@@ -58,10 +57,10 @@ var systemsLoop = maketimer(0.1, func {
 		pts.Systems.Shake.effect.setBoolValue(0);
 	}
 	
-	if (getprop("/sim/replay/replay-state") == 1) {
-		setprop("/aircraft/wingflex-enable", 0);
+	if (pts.Sim.Replay.replayState.getBoolValue()) {
+		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
 	} else {
-		setprop("/aircraft/wingflex-enable", 1);
+		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
 	}
 	
 	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
@@ -105,23 +104,31 @@ setlistener("/controls/flight/flaps-input-out", func {
 
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
-	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {return me;}
+	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {
+		return me;
+	}
 	me._lastText = text;
 	me.set("text", typeof(text) == "scalar" ? text : "");
 };
 canvas.Element._lastVisible = nil;
 canvas.Element.show = func {
-	if (1 == me._lastVisible) {return me;}
+	if (1 == me._lastVisible) {
+		return me;
+	}
 	me._lastVisible = 1;
 	me.setBool("visible", 1);
 };
 canvas.Element.hide = func {
-	if (0 == me._lastVisible) {return me;}
+	if (0 == me._lastVisible) {
+		return me;
+	}
 	me._lastVisible = 0;
 	me.setBool("visible", 0);
 };
 canvas.Element.setVisible = func(vis) {
-	if (vis == me._lastVisible) {return me;}
+	if (vis == me._lastVisible) {
+		return me;
+	}
 	me._lastVisible = vis;
 	me.setBool("visible", vis);
 };

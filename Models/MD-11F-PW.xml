@@ -202,7 +202,7 @@
 	<object-name>Rearnav.1</object-name>
 	<object-name>Rearnav.1ALS</object-name>
 	<object-name>fueldump.l</object-name>
-		<property>aircraft/wingflex</property>
+		<property>controls/flight/wingflex</property>
 		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -236,7 +236,7 @@
 	<object-name>Rearnav.1</object-name>
 	<object-name>Rearnav.1ALS</object-name>
 	<object-name>fueldump.l</object-name>
-		<property>aircraft/wingflex</property>
+		<property>controls/flight/wingflex</property>
 		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -286,7 +286,7 @@
 	<object-name>Rearnav.2</object-name>
 	<object-name>Rearnav.2ALS</object-name>
 	<object-name>fueldump.r</object-name>
-		<property>aircraft/wingflex</property>
+		<property>controls/flight/wingflex</property>
 		<factor>0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -321,7 +321,7 @@
 	<object-name>Rearnav.2</object-name>
 	<object-name>Rearnav.2ALS</object-name>
 	<object-name>fueldump.r</object-name>
-		<property>aircraft/wingflex</property>
+		<property>controls/flight/wingflex</property>
 		<factor>0.000005</factor>
 		<axis>
 			<x>1</x>

@@ -13,6 +13,7 @@ var Controls = {
 		speedbrake: props.globals.getNode("/controls/flight/speedbrake"),
 		speedbrakeArm: props.globals.getNode("/controls/flight/speedbrake-arm"),
 		speedbrakeTemp: 0,
+		wingflexEnable: props.globals.getNode("/controls/flight/wingflex-enable"),
 	},
 	Gear: {
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),

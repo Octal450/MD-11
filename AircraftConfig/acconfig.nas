@@ -20,20 +20,13 @@ var spinning = maketimer(0.05, func {
 
 var failReset = func {
 	systems.ELEC.resetFail();
-	systems.HYD.resetFail();
 	systems.FCTL.resetFail();
+	systems.HYD.resetFail();
+	systems.PNEU.resetFail();
 	failResetOld();
 }
 
 var failResetOld = func {
-	setprop("/systems/failures/bleed-apu", 0);
-	setprop("/systems/failures/bleed-ext", 0);
-	setprop("/systems/failures/bleed-eng1", 0);
-	setprop("/systems/failures/bleed-eng2", 0);
-	setprop("/systems/failures/bleed-eng3", 0);
-	setprop("/systems/failures/pack1", 0);
-	setprop("/systems/failures/pack2", 0);
-	setprop("/systems/failures/pack3", 0);
 	setprop("/systems/failures/tank0pumps", 0);
 	setprop("/systems/failures/tank1pumps", 0);
 	setprop("/systems/failures/tank2pumps", 0);
@@ -294,7 +287,7 @@ var beforestart = func {
 var beforestart_b = func {
 	# Continue with engine start prep.
 	setprop("/controls/electrical/switches/apu-pwr", 1);
-	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/pneumatics/switches/bleed-apu", 1);
 	setprop("/controls/irs/ir[0]/knob","1");
 	setprop("/controls/irs/ir[1]/knob","1");
 	setprop("/controls/irs/ir[2]/knob","1");
@@ -357,7 +350,7 @@ var taxi = func {
 var taxi_b = func {
 	# Continue with engine start prep
 	setprop("/controls/electrical/switches/apu-pwr", 1);
-	setprop("/controls/pneumatic/switches/bleedapu", 1);
+	setprop("/controls/pneumatics/switches/bleed-apu", 1);
 	setprop("/controls/irs/ir[0]/knob","1");
 	setprop("/controls/irs/ir[1]/knob","1");
 	setprop("/controls/irs/ir[2]/knob","1");

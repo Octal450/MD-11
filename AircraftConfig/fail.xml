@@ -151,7 +151,7 @@
 			<checkbox>
 				<label>Bleed Eng 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-eng1</property>
+				<property>/systems/failures/bleed-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -161,7 +161,7 @@
 			<checkbox>
 				<label>Bleed Eng 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-eng2</property>
+				<property>/systems/failures/bleed-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -171,7 +171,7 @@
 			<checkbox>
 				<label>Bleed Eng 3</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-eng3</property>
+				<property>/systems/failures/bleed-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -181,7 +181,7 @@
 			<checkbox>
 				<label>Pack 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/pack1</property>
+				<property>/systems/failures/pack-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -191,7 +191,7 @@
 			<checkbox>
 				<label>Pack 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/pack2</property>
+				<property>/systems/failures/pack-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -201,7 +201,7 @@
 			<checkbox>
 				<label>Pack 3</label>
 				<halign>left</halign>
-				<property>/systems/failures/pack3</property>
+				<property>/systems/failures/pack-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

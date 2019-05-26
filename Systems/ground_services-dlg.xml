@@ -34,7 +34,7 @@
 	<checkbox>
 		<halign>left</halign>
 		<label>Enable External Compressed Air</label>
-		<property>systems/pneumatic/air-service</property>
+		<property>systems/pneumatics/air-service</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>

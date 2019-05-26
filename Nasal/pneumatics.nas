@@ -1,316 +1,96 @@
-# MD-11 Pneumatic System
-# Joshua Davidson (Octal450)
-
+# McDonnell Douglas MD-11 Pneumatic System
 # Copyright (c) 2019 Joshua Davidson (Octal450)
 
-var system = 1;
-var bleed1_sw = 0;
-var bleed2_sw = 0;
-var bleed3_sw = 0;
-var bleedapu_sw = 0;
-var groundair_sw = 0;
-var isol1_2_sw = 0;
-var isol1_3_sw = 0;
-var pack1_sw = 0;
-var pack2_sw = 0;
-var pack3_sw = 0;
-var bleed1 = 0;
-var bleed2 = 0;
-var bleed3 = 0;
-var bleedapu = 0;
-var groundair = 0;
-var total_psi = 0;
-var start_psi = 0;
-var pack_psi = 0;
-var pack1 = 0;
-var pack2 = 0;
-var pack3 = 0;
-var eng_starter = 0;
-var state1 = 0;
-var state2 = 0;
-var state3 = 0;
-var rpmapu = 0;
-var total_psi_calc = 0;
-var manl = 0;
-var bleedapu_fail = 0;
-var bleedext_fail = 0;
-var bleedeng1_fail = 0;
-var bleedeng2_fail = 0;
-var bleedeng3_fail = 0;
-var pack1_fail = 0;
-var pack2_fail = 0;
-var pack3_fail = 0;
-setprop("/controls/pneumatic/switches/cockpit-temp", 0.5);
-setprop("/controls/pneumatic/switches/fwd-temp", 0.5);
-setprop("/controls/pneumatic/switches/mid-temp", 0.5);
-setprop("/controls/pneumatic/switches/aft-temp", 0.5);
-
 var PNEU = {
-	init: func() {
-		setprop("/controls/pneumatic/switches/bleed1", 1);
-		setprop("/controls/pneumatic/switches/bleed2", 1);
-		setprop("/controls/pneumatic/switches/bleed3", 1);
-		setprop("/controls/pneumatic/switches/bleedapu", 0);
-		setprop("/controls/pneumatic/switches/groundair", 0);
-		setprop("/controls/pneumatic/switches/isol1-2", 0);
-		setprop("/controls/pneumatic/switches/isol1-3", 0);
-		setprop("/controls/pneumatic/switches/pack1", 1);
-		setprop("/controls/pneumatic/switches/pack2", 1);
-		setprop("/controls/pneumatic/switches/pack3", 1);
-		setprop("/controls/pneumatic/switches/avionics-fan", 1);
-		setprop("/controls/pneumatic/switches/econ", 1);
-		setprop("/controls/pneumatic/switches/trim-air", 1);
-		setprop("/systems/pneumatic/system", 1); # Automatic
-		setprop("/systems/pneumatic/bleed1", 0);
-		setprop("/systems/pneumatic/bleed2", 0);
-		setprop("/systems/pneumatic/bleed3", 0);
-		setprop("/systems/pneumatic/bleedapu", 0);
-		setprop("/systems/pneumatic/groundair", 0);
-		setprop("/systems/pneumatic/total-psi", 0);
-		setprop("/systems/pneumatic/start-psi", 0);
-		setprop("/systems/pneumatic/pack-psi", 0);
-		setprop("/systems/pneumatic/pack1", 0);
-		setprop("/systems/pneumatic/pack2", 0);
-		setprop("/systems/pneumatic/pack3", 0);
-		setprop("/systems/pneumatic/eng-starter", 0);
-		setprop("/systems/pneumatic/light/bleed1-press", 0);
-		setprop("/systems/pneumatic/light/bleed2-press", 0);
-		setprop("/systems/pneumatic/light/bleed3-press", 0);
-		setprop("/systems/pneumatic/light/pack1-flow", 0);
-		setprop("/systems/pneumatic/light/pack1-flow-mom", 0);
-		setprop("/systems/pneumatic/light/pack2-flow", 0);
-		setprop("/systems/pneumatic/light/pack2-flow-mom", 0);
-		setprop("/systems/pneumatic/light/pack3-flow", 0);
-		setprop("/systems/pneumatic/light/pack3-flow-mom", 0);
-		setprop("/systems/pneumatic/light/select-manual", 0);
-		setprop("/controls/pneumatic/switches/manual-flash", 0);
-		manualPneuLightt.stop();
+	Fail: {
+		bleedApu: props.globals.getNode("/systems/failures/pneumatics/bleed-apu"),
+		bleedExt: props.globals.getNode("/systems/failures/pneumatics/bleed-ext"),
+		bleed1: props.globals.getNode("/systems/failures/pneumatics/bleed-1"),
+		bleed2: props.globals.getNode("/systems/failures/pneumatics/bleed-2"),
+		bleed3: props.globals.getNode("/systems/failures/pneumatics/bleed-3"),
+		pack1: props.globals.getNode("/systems/failures/pneumatics/pack-1"),
+		pack2: props.globals.getNode("/systems/failures/pneumatics/pack-2"),
+		pack3: props.globals.getNode("/systems/failures/pneumatics/pack-3"),
 	},
-	loop: func() {
-		system = getprop("/systems/pneumatic/system");
-		bleed1_sw = getprop("/controls/pneumatic/switches/bleed1");
-		bleed2_sw = getprop("/controls/pneumatic/switches/bleed2");
-		bleed3_sw = getprop("/controls/pneumatic/switches/bleed3");
-		bleedapu_sw = getprop("/controls/pneumatic/switches/bleedapu");
-		groundair_sw = getprop("/controls/pneumatic/switches/groundair");
-		isol1_2_sw = getprop("/controls/pneumatic/switches/isol1-2");
-		isol1_3_sw = getprop("/controls/pneumatic/switches/isol1-3");
-		pack1_sw = getprop("/controls/pneumatic/switches/pack1");
-		pack2_sw = getprop("/controls/pneumatic/switches/pack2");
-		pack3_sw = getprop("/controls/pneumatic/switches/pack3");
-		eng_starter = getprop("/systems/pneumatic/eng-starter");
-		state1 = getprop("/engines/engine[0]/state");
-		state2 = getprop("/engines/engine[1]/state");
-		state3 = getprop("/engines/engine[2]/state");
-		rpmapu = getprop("/systems/apu/n2");
-		bleedapu_fail = getprop("/systems/failures/bleed-apu");
-		bleedext_fail = getprop("/systems/failures/bleed-ext");
-		bleedeng1_fail = getprop("/systems/failures/bleed-eng1");
-		bleedeng2_fail = getprop("/systems/failures/bleed-eng2");
-		bleedeng3_fail = getprop("/systems/failures/bleed-eng3");
-		pack1_fail = getprop("/systems/failures/pack1");
-		pack2_fail = getprop("/systems/failures/pack2");
-		pack3_fail = getprop("/systems/failures/pack3");
-		
-		if (system) {
-			setprop("/controls/pneumatic/switches/bleed1", 1);
-			setprop("/controls/pneumatic/switches/bleed2", 1);
-			setprop("/controls/pneumatic/switches/bleed3", 1);
-			setprop("/controls/pneumatic/switches/isol1-2", 0);
-			setprop("/controls/pneumatic/switches/isol1-3", 0);
-			if (getprop("/controls/engines/packs-off") == 1) {
-				if (getprop("/controls/pneumatic/switches/pack1") != 0) {
-					setprop("/controls/pneumatic/switches/pack1", 0);
-				}
-				if (getprop("/controls/pneumatic/switches/pack2") != 0) {
-					setprop("/controls/pneumatic/switches/pack2", 0);
-				}
-				if (getprop("/controls/pneumatic/switches/pack3") != 0) {
-					setprop("/controls/pneumatic/switches/pack3", 0);
-				}
-			} else {
-				if (getprop("/controls/pneumatic/switches/pack1") != 1) {
-					setprop("/controls/pneumatic/switches/pack1", 1);
-				}
-				if (getprop("/controls/pneumatic/switches/pack2") != 1) {
-					setprop("/controls/pneumatic/switches/pack2", 1);
-				}
-				if (getprop("/controls/pneumatic/switches/pack3") != 1) {
-					setprop("/controls/pneumatic/switches/pack3", 1);
-				}
-			}
-		}
-		
-		# Air Sources/PSI
-		if (rpmapu >= 94.9 and bleedapu_sw and !bleedapu_fail) {
-			setprop("/systems/pneumatic/bleedapu", 34);
-		} else {
-			setprop("/systems/pneumatic/bleedapu", 0);
-		}
-		
-		if (groundair_sw and !bleedext_fail) {
-			setprop("/systems/pneumatic/groundair", 39);
-		} else {
-			setprop("/systems/pneumatic/groundair", 0);
-		}
-		
-		bleedapu = getprop("/systems/pneumatic/bleedapu");
-		groundair = getprop("/systems/pneumatic/groundair");
-		
-		if (state1 == 3 and bleed1_sw and !bleedeng1_fail) {
-			setprop("/systems/pneumatic/bleed1", 31);
-		} else {
-			setprop("/systems/pneumatic/bleed1", 0);
-		}
-		
-		if (state2 == 3 and bleed2_sw and !bleedeng2_fail) {
-			setprop("/systems/pneumatic/bleed2", 32);
-		} else {
-			setprop("/systems/pneumatic/bleed2", 0);
-		}
-		
-		if (state3 == 3 and bleed3_sw and !bleedeng3_fail) {
-			setprop("/systems/pneumatic/bleed3", 31);
-		} else {
-			setprop("/systems/pneumatic/bleed3", 0);
-		}
-		
-		bleed1 = getprop("/systems/pneumatic/bleed1");
-		bleed2 = getprop("/systems/pneumatic/bleed2");
-		bleed3 = getprop("/systems/pneumatic/bleed3");
-		
-		if (state1 == 1 or state2 == 1 or state3 == 1) {
-			setprop("/systems/pneumatic/start-psi", 18);
-		} else {
-			setprop("/systems/pneumatic/start-psi", 0);
-		}
-		
-		if (pack1_sw == 1 and (bleed1 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0 and !pack1_fail) {
-			setprop("/systems/pneumatic/pack1", 9);
-		} else {
-			setprop("/systems/pneumatic/pack1", 0);
-		}
-		
-		if (pack2_sw == 1 and (bleed2 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0 and !pack2_fail) {
-			setprop("/systems/pneumatic/pack2", 9);
-		} else {
-			setprop("/systems/pneumatic/pack2", 0);
-		}
-		
-		if (pack3_sw == 1 and (bleed3 >= 11 or bleedapu >= 11 or groundair >= 11) and eng_starter == 0 and !pack3_fail) {
-			setprop("/systems/pneumatic/pack3", 9);
-		} else {
-			setprop("/systems/pneumatic/pack3", 0);
-		}
-		
-		pack1 = getprop("/systems/pneumatic/pack1");
-		pack2 = getprop("/systems/pneumatic/pack2");
-		pack3 = getprop("/systems/pneumatic/pack3");
-		
-		if (pack1_sw == 1 and pack2_sw == 1 and pack3_sw == 1) {
-			setprop("/systems/pneumatic/pack-psi", pack1 + pack2 + pack3);
-		} else if (pack1_sw == 0 and pack2_sw == 0 and pack3_sw == 0) {
-			setprop("/systems/pneumatic/pack-psi", 0);
-		} else {
-			setprop("/systems/pneumatic/pack-psi", pack1 + pack2 + pack3 + 5);
-		}
-		
-		start_psi = getprop("/systems/pneumatic/start-psi");
-		pack_psi = getprop("/systems/pneumatic/pack-psi");
-		
-		if ((bleed1 + bleed2 + bleed3 + bleedapu) > 42) {
-			setprop("/systems/pneumatic/total-psi", 42);
-		} else {
-			total_psi_calc = ((bleed1 + bleed2 + bleed3 + bleedapu + groundair) - start_psi - pack_psi);
-			setprop("/systems/pneumatic/total-psi", total_psi_calc);
-		}
-		
-		total_psi = getprop("/systems/pneumatic/total-psi");
-		
-		# Fault lights
-		if ((bleedeng1_fail and bleed1_sw) or (bleed1_sw and bleed1 < 11)) {
-			setprop("/systems/pneumatic/light/bleed1-press", 1);
-		} else {
-			setprop("/systems/pneumatic/light/bleed1-press", 0);
-		}
-		
-		if ((bleedeng2_fail and bleed2_sw) or (bleed2_sw and bleed2 < 11)) {
-			setprop("/systems/pneumatic/light/bleed2-press", 1);
-		} else {
-			setprop("/systems/pneumatic/light/bleed2-press", 0);
-		}
-		
-		if ((bleedeng3_fail and bleed3_sw) or (bleed3_sw and bleed3 < 11)) {
-			setprop("/systems/pneumatic/light/bleed3-press", 1);
-		} else {
-			setprop("/systems/pneumatic/light/bleed3-press", 0);
-		}
-		
-		if ((pack1_fail and pack1_sw) or (pack1_sw and pack1 <= 5) or getprop("/systems/pneumatic/light/pack1-flow-mom") == 1) {
-			setprop("/systems/pneumatic/light/pack1-flow", 1);
-		} else {
-			setprop("/systems/pneumatic/light/pack1-flow", 0);
-		}
-		
-		if ((pack2_fail and pack2_sw) or (pack2_sw and pack2 <= 5) or getprop("/systems/pneumatic/light/pack2-flow-mom") == 1) {
-			setprop("/systems/pneumatic/light/pack2-flow", 1);
-		} else {
-			setprop("/systems/pneumatic/light/pack2-flow", 0);
-		}
-		
-		if ((pack3_fail and pack3_sw) or (pack3_sw and pack3 <= 5) or getprop("/systems/pneumatic/light/pack3-flow-mom") == 1) {
-			setprop("/systems/pneumatic/light/pack3-flow", 1);
-		} else {
-			setprop("/systems/pneumatic/light/pack3-flow", 0);
-		}
+	Light: {
+		manualFlash: props.globals.initNode("/systems/pneumatics/light/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
+	},
+	Psi: {
+#		: props.globals.getNode(""),
+	},
+	Switch: {
+		aftTemp: props.globals.getNode("/controls/pneumatics/switches/aft-temp"),
+		avionicsFan: props.globals.getNode("/controls/pneumatics/switches/avionics-fan"),
+		bleedApu: props.globals.getNode("/controls/pneumatics/switches/bleed-apu"),
+		bleed1: props.globals.getNode("/controls/pneumatics/switches/bleed-1"),
+		bleed2: props.globals.getNode("/controls/pneumatics/switches/bleed-2"),
+		bleed3: props.globals.getNode("/controls/pneumatics/switches/bleed-3"),
+		cockpitTemp: props.globals.getNode("/controls/pneumatics/switches/cockpit-temp"),
+		econ: props.globals.getNode("/controls/pneumatics/switches/econ"),
+		fwdTemp: props.globals.getNode("/controls/pneumatics/switches/fwd-temp"),
+		groundAir: props.globals.getNode("/controls/pneumatics/switches/ground-air"), # No switch in cockpit
+		isol12: props.globals.getNode("/controls/pneumatics/switches/isol-1-2"),
+		isol13: props.globals.getNode("/controls/pneumatics/switches/isol-1-3"),
+		midTemp: props.globals.getNode("/controls/pneumatics/switches/mid-temp"),
+		pack1: props.globals.getNode("/controls/pneumatics/switches/pack-1"),
+		pack2: props.globals.getNode("/controls/pneumatics/switches/pack-2"),
+		pack3: props.globals.getNode("/controls/pneumatics/switches/pack-3"),
+		trimAir: props.globals.getNode("/controls/pneumatics/switches/trim-air"),
+	},
+	system: props.globals.getNode("/systems/pneumatics/system"),
+	init: func() {
+		me.resetFail();
+		me.Switch.aftTemp.setValue(0.5);
+		me.Switch.avionicsFan.setBoolValue(1);
+		me.Switch.bleedApu.setBoolValue(0);
+		me.Switch.bleed1.setBoolValue(1);
+		me.Switch.bleed2.setBoolValue(1);
+		me.Switch.bleed3.setBoolValue(1);
+		me.Switch.econ.setBoolValue(1);
+		me.Switch.fwdTemp.setValue(0.5);
+		me.Switch.groundAir.setBoolValue(0);
+		me.Switch.isol12.setBoolValue(0);
+		me.Switch.isol13.setBoolValue(0);
+		me.Switch.midTemp.setValue(0.5);
+		me.Switch.pack1.setBoolValue(1);
+		me.Switch.pack2.setBoolValue(1);
+		me.Switch.pack3.setBoolValue(1);
+		me.Switch.trimAir.setBoolValue(1);
+		me.system.setBoolValue(1);
+		manualPneuLightt.stop();
+		me.Light.manualFlash.setValue(0);
+	},
+	resetFail: func() {
+		me.Fail.bleedApu.setBoolValue(0);
+		me.Fail.bleedExt.setBoolValue(0);
+		me.Fail.bleed1.setBoolValue(0);
+		me.Fail.bleed2.setBoolValue(0);
+		me.Fail.bleed3.setBoolValue(0);
+		me.Fail.pack1.setBoolValue(0);
+		me.Fail.pack2.setBoolValue(0);
+		me.Fail.pack3.setBoolValue(0);
 	},
 	systemMode: func() {
-		system = getprop("/systems/pneumatic/system");
-		if (system) {
-			setprop("/systems/pneumatic/system", 0);
-			setprop("/controls/pneumatic/switches/manual-lt", 1);
+		if (me.system.getBoolValue()) {
+			me.system.setBoolValue(0);
+			manualPneuLightt.stop();
+			me.Light.manualFlash.setValue(0);
 		} else {
-			setprop("/systems/pneumatic/system", 1);
-			setprop("/controls/pneumatic/switches/manual-lt", 0);
+			me.system.setBoolValue(1);
+			manualPneuLightt.stop();
+			me.Light.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		manl = getprop("/controls/pneumatic/switches/manual-flash");
-		system = getprop("/systems/pneumatic/system");
-		if (manl >= 5 or !system) {
+		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
+		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
 			manualPneuLightt.stop();
-			setprop("/controls/pneumatic/switches/manual-flash", 0);
+			me.Light.manualFlash.setValue(0);
 		} else {
-			setprop("/controls/pneumatic/switches/manual-flash", manl + 1);
+			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
 		}
 	},
 };
 
-setlistener("/controls/pneumatic/switches/pack1", func {
-	if (getprop("/controls/pneumatic/switches/pack1") == 1) {
-		setprop("/systems/pneumatic/light/pack1-flow-mom", 1);
-		settimer(func {
-			setprop("/systems/pneumatic/light/pack1-flow-mom", 0);
-		}, 1);
-	}
-});
-
-setlistener("/controls/pneumatic/switches/pack2", func {
-	if (getprop("/controls/pneumatic/switches/pack2") == 1) {
-		setprop("/systems/pneumatic/light/pack2-flow-mom", 1);
-		settimer(func {
-			setprop("/systems/pneumatic/light/pack2-flow-mom", 0);
-		}, 1);
-	}
-});
-
-setlistener("/controls/pneumatic/switches/pack3", func {
-	if (getprop("/controls/pneumatic/switches/pack3") == 1) {
-		setprop("/systems/pneumatic/light/pack3-flow-mom", 1);
-		settimer(func {
-			setprop("/systems/pneumatic/light/pack3-flow-mom", 0);
-		}, 1);
-	}
-});
-
-var manualPneuLightt = maketimer(0.4, PNEU.manualLight);
+var manualPneuLightt = maketimer(0.4, PNEU, PNEU.manualLight);

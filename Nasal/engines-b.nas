@@ -173,7 +173,7 @@ var start_one_check = func {
 		setprop("/controls/engines/ign-packs-time", getprop("/sim/time/elapsed-sec"));
 		settimer(start_one_check, 1);
 	} else {
-		if (IGN1 == 1 and getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
+		if (IGN1 == 1 and getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/pneumatics/total-psi") >= 28) {
 			auto_start_one();
 		} else {
 			setprop("/controls/engines/engine[0]/start-switch", 0);
@@ -229,7 +229,7 @@ var start_two_check = func {
 		setprop("/controls/engines/ign-packs-time", getprop("/sim/time/elapsed-sec"));
 		settimer(start_two_check, 1);
 	} else {
-		if (IGN1 == 1 and getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
+		if (IGN1 == 1 and getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/pneumatics/total-psi") >= 28) {
 			auto_start_two();
 		} else {
 			setprop("/controls/engines/engine[1]/start-switch", 0);
@@ -285,7 +285,7 @@ var start_three_check = func {
 		setprop("/controls/engines/ign-packs-time", getprop("/sim/time/elapsed-sec"));
 		settimer(start_three_check, 1);
 	} else {
-		if (IGN1 == 1 and getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/pneumatic/total-psi") >= 28) {
+		if (IGN1 == 1 and getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/pneumatics/total-psi") >= 28) {
 			auto_start_three();
 		} else {
 			setprop("/controls/engines/engine[2]/start-switch", 0);
@@ -438,8 +438,8 @@ var ign_kill_check = func {
 	}
 }
 
-setlistener("/systems/pneumatic/start-psi", func {
-	if (getprop("/systems/pneumatic/total-psi") < 12) {
+setlistener("/systems/pneumatics/total-psi", func {
+	if (getprop("/systems/pneumatics/total-psi") < 12) {
 		if (getprop("/engines/engine[0]/state") == 1 or getprop("/engines/engine[0]/state") == 2) {
 			setprop("/controls/engines/engine[0]/starter", 0);
 			setprop("/controls/engines/engine[0]/cutoff", 1);
@@ -459,4 +459,4 @@ setlistener("/systems/pneumatic/start-psi", func {
 			interpolate(engines[2].getNode("egt-actual"), 0, egt_shutdown_time);
 		}
 	}
-});
+}, 0, 0);

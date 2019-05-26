@@ -291,7 +291,7 @@
 	<channel name="Elevator L Outer">
 		
 		<switch name="hydraulics/elevator-out-l/switch">
-			<default value="hydraulics/elevator-droop"/>
+			<default value="0"/> <!-- Doesn't droop apparently for some reason -->
 			<test logic="OR" value="fcc/elevator-o-l-output">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-2-psi ge 1500
@@ -384,7 +384,7 @@
 	<channel name="Elevator R Outer">
 		
 		<switch name="hydraulics/elevator-out-r/switch">
-			<default value="hydraulics/elevator-droop"/>
+			<default value="0"/> <!-- Doesn't droop apparently for some reason -->
 			<test logic="OR" value="fcc/elevator-o-r-output">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-2-psi ge 1500

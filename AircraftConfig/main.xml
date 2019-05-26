@@ -326,10 +326,10 @@
 			<checkbox>
 				<label>Enable External Air</label>
 				<halign>left</halign>
-				<property>/controls/pneumatic/switches/groundair</property>
+				<property>/controls/pneumatics/switches/ground-air</property>
 				<binding>
 					<command>property-toggle</command>
-					<property>/controls/pneumatic/switches/groundair</property>
+					<property>/controls/pneumatics/switches/ground-air</property>
 				</binding>
 				<enable>
 					<and>

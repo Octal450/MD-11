@@ -3,22 +3,21 @@
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
-
+	
 	<path>pedestal.ac</path>
 	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>chrome_cockpit.png</texture>
+		<object-name>dial-a-flap.glass</object-name>
+	</animation>
 	
-				  <animation>
-<type>shader</type>
-<shader>chrome</shader>
-<texture>chrome_cockpit.png</texture>
-<object-name>dial-a-flap.glass</object-name>
-</animation>
-
-			<effect>
+	<effect>
 		<inherits-from>Aircraft/IDG-MD-11/Models/Effects/engine</inherits-from>
-	<object-name>aileron.trim</object-name>
+		<object-name>aileron.trim</object-name>
 	</effect>
-
+	
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
@@ -33,120 +32,118 @@
 		</emission>
 	</animation>
 	
-<model>
-	<name>stby-ai</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-ai/stby-ai.xml</path>
-			<offsets>
-	  <x-m>-27.473</x-m>
-	  <y-m>0.044</y-m>
-	  <z-m>6.7501</z-m>
+	<model>
+		<name>stby-ai</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-ai/stby-ai.xml</path>
+		<offsets>
+			<x-m>-27.473</x-m>
+			<y-m>0.044</y-m>
+			<z-m>6.7501</z-m>
 			<pitch-deg>-20.12</pitch-deg>
 		</offsets>
-</model>
-
-<model>
-	<name>stby-alt</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-alt/stby-alt.xml</path>
-			<offsets>
-	  <x-m>-27.473</x-m>
-	  <y-m>-0.047</y-m>
-	  <z-m>6.7501</z-m>
+	</model>
+	
+	<model>
+		<name>stby-alt</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/stby-alt/stby-alt.xml</path>
+		<offsets>
+			<x-m>-27.473</x-m>
+			<y-m>-0.047</y-m>
+			<z-m>6.7501</z-m>
 			<pitch-deg>-20.12</pitch-deg>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>brakes</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/brakes/brakes.xml</path>
-			<offsets>
-	  <x-m>-27.2957</x-m>
-	  <y-m>-0.0018</y-m>
-	  <z-m>6.7019</z-m>
+	<model>
+		<name>brakes</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/brakes/brakes.xml</path>
+		<offsets>
+			<x-m>-27.2957</x-m>
+			<y-m>-0.0018</y-m>
+			<z-m>6.7019</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Radio1</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
-			<offsets>
-	  <x-m>-26.9723</x-m>
-	  <y-m>-0.1197</y-m>
-	  <z-m>6.7004</z-m>
+	<model>
+		<name>Radio1</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
+		<offsets>
+			<x-m>-26.9723</x-m>
+			<y-m>-0.1197</y-m>
+			<z-m>6.7004</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Radio2</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
-			<offsets>
-	  <x-m>-26.9723</x-m>
-	  <y-m>0.1197</y-m>
-	  <z-m>6.7004</z-m>
+	<model>
+		<name>Radio2</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
+		<offsets>
+			<x-m>-26.9723</x-m>
+			<y-m>0.1197</y-m>
+			<z-m>6.7004</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Radio3</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
-			<offsets>
-	  <x-m>-26.701</x-m>
-	  <y-m>-0.1197</y-m>
-	  <z-m>6.7004</z-m>
+	<model>
+		<name>Radio3</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/Radio/radio1.xml</path>
+		<offsets>
+			<x-m>-26.701</x-m>
+			<y-m>-0.1197</y-m>
+			<z-m>6.7004</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Radar</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/radar/radar.xml</path>
-			<offsets>
-	  <x-m>-26.8316</x-m>
-	  <y-m>-0.1197</y-m>
-	  <z-m>6.6999</z-m>
+	<model>
+		<name>Radar</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/radar/radar.xml</path>
+		<offsets>
+			<x-m>-26.8316</x-m>
+			<y-m>-0.1197</y-m>
+			<z-m>6.6999</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>TCAS</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/tcas/tcas.xml</path>
-			<offsets>
-	  <x-m>-26.7763</x-m>
-	  <y-m>-0.1197</y-m>
-	  <z-m>6.6999</z-m>
+	<model>
+		<name>TCAS</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/tcas/tcas.xml</path>
+		<offsets>
+			<x-m>-26.7763</x-m>
+			<y-m>-0.1197</y-m>
+			<z-m>6.6999</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>Audio selector</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
-			<offsets>
-	  <x-m>-26.8997</x-m>
-	  <y-m>-0.1192</y-m>
-	  <z-m>6.7004</z-m>
+	<model>
+		<name>Audio selector</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+		<offsets>
+			<x-m>-26.8997</x-m>
+			<y-m>-0.1192</y-m>
+			<z-m>6.7004</z-m>
 		</offsets>
-</model>
+	</model>
 
-<model>
-	<name>2. Audio selector</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
-			<offsets>
-	  <x-m>-26.8997</x-m>
-	  <y-m>0.1192</y-m>
-	  <z-m>6.7004</z-m>
+	<model>
+		<name>2. Audio selector</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+		<offsets>
+			<x-m>-26.8997</x-m>
+			<y-m>0.1192</y-m>
+			<z-m>6.7004</z-m>
 		</offsets>
-</model>
-
-
-<model>
-	<name>Screen selector</name>
-	<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/screenselector/screenselector.xml</path>
-			<offsets>
-	  <x-m>-26.968</x-m>
-	  <y-m>-0.0005</y-m>
-	  <z-m>6.7008</z-m>
+	</model>
+	
+	<model>
+		<name>Screen selector</name>
+		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/screenselector/screenselector.xml</path>
+		<offsets>
+			<x-m>-26.968</x-m>
+			<y-m>-0.0005</y-m>
+			<z-m>6.7008</z-m>
 		</offsets>
-</model>
-
-
+	</model>
+	
 	<model>
 		<name>CDU1</name>
 		<path>Aircraft/IDG-MD-11/Models/cockpit/instruments/MCDU/MCDU.xml</path>
@@ -189,22 +186,22 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
-				<step type="double">0.02</step>
+				<step>0.02</step>
 				<max>1</max>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
-				<step type="double">-0.02</step>
+				<step>-0.02</step>
 				<min>0</min>
 			</binding>
 		</action>
@@ -279,22 +276,22 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[1]/throttle</property>
-				<step type="double">0.02</step>
+				<step>0.02</step>
 				<max>1</max>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[1]/throttle</property>
-				<step type="double">-0.02</step>
+				<step>-0.02</step>
 				<min>0</min>
 			</binding>
 		</action>
@@ -369,22 +366,22 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[2]/throttle</property>
-				<step type="double">0.02</step>
+				<step>0.02</step>
 				<max>1</max>
 			</binding>
 		</action>
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[2]/throttle</property>
-				<step type="double">-0.02</step>
+				<step>-0.02</step>
 				<min>0</min>
 			</binding>
 		</action>
@@ -680,7 +677,7 @@
 		<object-name>Eng1Cutoff</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/engines/engine[0]/cutoff-switch</property>
@@ -714,7 +711,7 @@
 		<object-name>Eng2Cutoff</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/engines/engine[1]/cutoff-switch</property>
@@ -748,7 +745,7 @@
 		<object-name>Eng3Cutoff</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/engines/engine[2]/cutoff-switch</property>
@@ -858,7 +855,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>controls.flapsDown(1);</script>
@@ -867,7 +864,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>controls.flapsDown(-1);</script>
