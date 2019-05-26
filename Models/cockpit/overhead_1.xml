@@ -4220,16 +4220,10 @@
 		<object-name>Pack1.flow</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>systems/pneumatics/light/pack-1-flow</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>controls/pneumatics/switches/pack-1</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>systems/pneumatics/light/pack-1-flow</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -4327,16 +4321,10 @@
 		<object-name>Pack2.flow</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>systems/pneumatics/light/pack-2-flow</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>controls/pneumatics/switches/pack-2</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>systems/pneumatics/light/pack-2-flow</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -4434,16 +4422,10 @@
 		<object-name>Pack3.flow</object-name>
 		<condition>
 			<or>
-				<and>
-					<equals>
-						<property>systems/pneumatics/light/pack-3-flow</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>controls/pneumatics/switches/pack-3</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>systems/pneumatics/light/pack-3-flow</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>

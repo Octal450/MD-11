@@ -244,7 +244,7 @@
 			<output>/systems/pneumatics/bleed-3-psi-debug</output>
 		</actuator>
 		
-		<!-- Packs -->
+		<!-- Pack 1 -->
 		<fcs_function name="/systems/pneumatics/pack-1-delta-psi">
 			<function>
 				<ifthen>
@@ -259,7 +259,7 @@
 						</nq>
 					</and>
 					<table>
-						<independentVar lookup="row">/systems/pneumatics/eng-1-psi</independentVar>
+						<independentVar lookup="row">/systems/pneumatics/bleed-1-psi-cmd</independentVar>
 						<tableData>
 							10   0
 							16  -6
@@ -272,6 +272,35 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/pneumatics/pack-1-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-1-psi-cmd ge 10
+				/controls/pneumatics/switches/pack-1 eq 1
+				/systems/failures/pneumatics/pack-1 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-1-valve">
+			<input>/systems/pneumatics/pack-1-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-1-flow-cmd">
+			<default value="0"/>
+			<test value="12">
+				/systems/pneumatics/pack-1-valve-cmd gt 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-1-flow">
+			<input>/systems/pneumatics/pack-1-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+			<output>/systems/pneumatics/pack-1-flow-debug</output>
+		</actuator>
+		
+		<!-- Pack 2 -->
 		<fcs_function name="/systems/pneumatics/pack-2-delta-psi">
 			<function>
 				<ifthen>
@@ -299,6 +328,35 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/pneumatics/pack-2-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-2-psi-cmd ge 10
+				/controls/pneumatics/switches/pack-2 eq 1
+				/systems/failures/pneumatics/pack-2 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-2-valve">
+			<input>/systems/pneumatics/pack-2-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-2-flow-cmd">
+			<default value="0"/>
+			<test value="12">
+				/systems/pneumatics/pack-2-valve-cmd gt 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-2-flow">
+			<input>/systems/pneumatics/pack-2-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+			<output>/systems/pneumatics/pack-2-flow-debug</output>
+		</actuator>
+		
+		<!-- Pack 3 -->
 		<fcs_function name="/systems/pneumatics/pack-3-delta-psi">
 			<function>
 				<ifthen>
@@ -326,7 +384,35 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Isol 1-2 Valve -->
+		<switch name="/systems/pneumatics/pack-3-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-3-psi-cmd ge 10
+				/controls/pneumatics/switches/pack-3 eq 1
+				/systems/failures/pneumatics/pack-3 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-3-valve">
+			<input>/systems/pneumatics/pack-3-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-3-flow-cmd">
+			<default value="0"/>
+			<test value="12">
+				/systems/pneumatics/pack-3-valve-cmd gt 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-3-flow">
+			<input>/systems/pneumatics/pack-3-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+			<output>/systems/pneumatics/pack-3-flow-debug</output>
+		</actuator>
+		
+		<!-- Isolation Valve 1-2 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-2-status">
 			<input>/controls/pneumatics/switches/isol-1-2</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
@@ -346,7 +432,7 @@
 			</test>
 		</switch>
 		
-		<!-- Isol 1-3 Valve -->
+		<!-- Isolation Valve 1-3 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-3-status">
 			<input>/controls/pneumatics/switches/isol-1-3</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
@@ -366,7 +452,7 @@
 			</test>
 		</switch>
 		
-		<!-- Reversible Motor Pump Multi -->
+		<!-- Isolation Valve Multi -->
 		<switch name="/systems/pneumatics/isol/multi-thru-1">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/total-1-isol-psi">
@@ -540,6 +626,42 @@
 				/systems/pneumatics/isol/isol-1-3-status ne 0
 				/systems/pneumatics/isol/isol-1-3-status ne 1
 				/systems/pneumatics/system ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/pack-1-flow">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-1-valve ne 0
+				/systems/pneumatics/pack-1-valve ne 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-1-flow lt 10
+				/controls/pneumatics/switches/pack-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/pack-2-flow">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-2-valve ne 0
+				/systems/pneumatics/pack-2-valve ne 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-2-flow lt 10
+				/controls/pneumatics/switches/pack-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/light/pack-3-flow">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-3-valve ne 0
+				/systems/pneumatics/pack-3-valve ne 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-3-flow lt 10
+				/controls/pneumatics/switches/pack-3 eq 1
 			</test>
 		</switch>
 	
