@@ -32,12 +32,12 @@ setprop("/controls/engines/ign-packs-time", -1000);
 var eng_init = func {
 	setprop("/controls/engines/ign-a", 0);
 	setprop("/controls/engines/ign-b", 0);
+	setprop("/controls/engines/ign-a-enabled", 0);
+	setprop("/controls/engines/ign-b-enabled", 0);
 	setprop("/controls/engines/ign-ovrd", 0);
 	setprop("/controls/engines/ignition-1", 0);
 	setprop("/controls/engines/ignition-2", 0);
 	setprop("/controls/engines/ignition-3", 0);
-	setprop("/controls/engines/ign-a-enabled", 0);
-	setprop("/controls/engines/ign-b-enabled", 0);
 	setprop("/controls/engines/engine[0]/start-switch", 0);
 	setprop("/controls/engines/engine[1]/start-switch", 0);
 	setprop("/controls/engines/engine[2]/start-switch", 0);
@@ -402,18 +402,18 @@ var eng_three_n2_check = maketimer(0.5, func {
 setlistener("/controls/engines/ign-a-enabled", func {
 	ign_kill_check();
 });
-setlistener("/controls/engines/ign-a-enabled", func {
+setlistener("/controls/engines/ign-b-enabled", func {
 	ign_kill_check();
 });
 
 var ign_kill_check = func {
-	if (getprop("/engines/engine[0]/state") == 0) {
+	if (getprop("/engines/engine[0]/state") == 0 and getprop("/controls/engines/engine[0]/start-switch") == 1) {
 		start_one_check();
 	}
-	if (getprop("/engines/engine[1]/state") == 0) {
+	if (getprop("/engines/engine[1]/state") == 0 and getprop("/controls/engines/engine[1]/start-switch") == 1) {
 		start_two_check();
 	}
-	if (getprop("/engines/engine[2]/state") == 0) {
+	if (getprop("/engines/engine[2]/state") == 0 and getprop("/controls/engines/engine[2]/start-switch") == 1) {
 		start_three_check();
 	}
 	if (getprop("/controls/engines/ign-a-enabled") == 0 or getprop("/controls/engines/ign-b-enabled") == 0) {
