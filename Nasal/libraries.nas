@@ -46,8 +46,8 @@ var systemsLoop = maketimer(0.1, func {
 			systems.ELEC.Switch.extPwr.setBoolValue(0);
 			systems.ELEC.Switch.extGPwr.setBoolValue(0);
 		}
-		if (getprop("/controls/pneumatics/switches/ground-air")) { # To be deprecated
-			setprop("/controls/pneumatics/switches/ground-air", 0);
+		if (systems.PNEU.Switch.groundAir.getBoolValue()) {
+			systems.PNEU.Switch.groundAir.setBoolValue(0);
 		}
 	}
 

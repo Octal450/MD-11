@@ -65,6 +65,16 @@
 				/systems/pneumatics/system eq 1
 				/systems/pneumatics/apu-active eq 1
 			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/controls/pneumatics/switches/ground-air eq 1
+				/systems/pneumatics/eng-1-psi lt 10
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/controls/pneumatics/switches/ground-air eq 1
+				/systems/pneumatics/eng-3-psi lt 10
+			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
 			</test>
@@ -76,6 +86,11 @@
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
 				/systems/pneumatics/apu-active eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/controls/pneumatics/switches/ground-air eq 1
+				/systems/pneumatics/eng-3-psi lt 10
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
@@ -146,6 +161,13 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/pneumatics/ground-psi">
+			<default value="0"/>
+			<test logic="AND" value="34">
+				/controls/pneumatics/switches/ground-air eq 1
+			</test>
+		</switch>
+		
 		<!-- Bleed 1 -->
 		<fcs_function name="/systems/pneumatics/total-1-isol-psi">
 			<function>
@@ -187,6 +209,7 @@
 				<max>
 					<property>/systems/pneumatics/apu-psi</property>
 					<property>/systems/pneumatics/eng-2-psi</property>
+					<property>/systems/pneumatics/ground-psi</property>
 				</max>
 			</function>
 		</fcs_function>
@@ -275,7 +298,7 @@
 		<switch name="/systems/pneumatics/pack-1-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-1-psi-cmd ge 10
+				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-1 eq 1
 				/systems/failures/pneumatics/pack-1 ne 1
 			</test>
@@ -331,7 +354,7 @@
 		<switch name="/systems/pneumatics/pack-2-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-2-psi-cmd ge 10
+				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-2 eq 1
 				/systems/failures/pneumatics/pack-2 ne 1
 			</test>
@@ -387,7 +410,7 @@
 		<switch name="/systems/pneumatics/pack-3-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-3-psi-cmd ge 10
+				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-3 eq 1
 				/systems/failures/pneumatics/pack-3 ne 1
 			</test>
