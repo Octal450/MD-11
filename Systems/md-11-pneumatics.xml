@@ -32,7 +32,7 @@
 			<test value="0">
 				/systems/pneumatics/system eq 1
 			</test>
-			<output>/controls/pneumatics/switches/bleed-11</output>
+			<output>/controls/pneumatics/switches/bleed-1</output>
 		</switch>
 		
 		<switch name="/systems/pneumatics/esc/bleed-2">
@@ -44,7 +44,7 @@
 			<test value="0">
 				/systems/pneumatics/system eq 1
 			</test>
-			<output>/controls/pneumatics/switches/bleed-21</output>
+			<output>/controls/pneumatics/switches/bleed-2</output>
 		</switch>
 		
 		<switch name="/systems/pneumatics/esc/bleed-3">
@@ -56,7 +56,7 @@
 			<test value="0">
 				/systems/pneumatics/system eq 1
 			</test>
-			<output>/controls/pneumatics/switches/bleed-31</output>
+			<output>/controls/pneumatics/switches/bleed-3</output>
 		</switch>
 		
 		<switch name="/systems/pneumatics/esc/isol-1-2">
