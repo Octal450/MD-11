@@ -33,7 +33,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/position/altitude-ft</property> 
+					<property>/position/altitude-ft</property>
 					<entry><ind>    0</ind><dep>0.035</dep></entry>
 					<entry><ind>42000</ind><dep>0.315</dep></entry>
 				</table>
@@ -464,7 +464,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n1-actual</property> 
+					<property>/engines/engine[0]/n1-actual</property>
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
@@ -494,7 +494,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n1-actual</property> 
+					<property>/engines/engine[1]/n1-actual</property>
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>
@@ -524,7 +524,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n1-actual</property> 
+					<property>/engines/engine[2]/n1-actual</property>
 					<entry><ind> 23.7</ind><dep>342</dep></entry>
 					<entry><ind>118.0</ind><dep>620</dep></entry>
 				</table>

@@ -33,7 +33,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/position/altitude-ft</property> 
+					<property>/position/altitude-ft</property>
 					<entry><ind>    0</ind><dep>0.035</dep></entry>
 					<entry><ind>42000</ind><dep>0.315</dep></entry>
 				</table>
@@ -50,7 +50,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
+					<property>/fdm/jsbsim/atmosphere/density-altitude</property>
 					<entry><ind>    0</ind><dep>0.8016</dep></entry>
 					<entry><ind>42000</ind><dep>1.0151</dep></entry>
 				</table>
@@ -84,7 +84,7 @@
 			<expression>
 				<difference>
 					<table>
-						<property>/fdm/jsbsim/atmosphere/density-altitude</property> 
+						<property>/fdm/jsbsim/atmosphere/density-altitude</property>
 						<entry><ind>    0</ind><dep>0.986</dep></entry>
 						<entry><ind>43000</ind><dep>0.834</dep></entry>
 					</table>
@@ -127,7 +127,7 @@
 			<expression>
 				<table>
 					<pow>
-						<property>/engines/engine[0]/n1-actual</property> 
+						<property>/engines/engine[0]/n1-actual</property>
 						<value>3.5</value>
 					</pow>
 					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
@@ -164,7 +164,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[0]/throttle-fdm</property> 
+							<property>/controls/engines/engine[0]/throttle-fdm</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -202,7 +202,7 @@
 			<expression>
 				<table>
 					<pow>
-						<property>/engines/engine[1]/n1-actual</property> 
+						<property>/engines/engine[1]/n1-actual</property>
 						<value>3.5</value>
 					</pow>
 					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
@@ -239,7 +239,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[1]/throttle-fdm</property> 
+							<property>/controls/engines/engine[1]/throttle-fdm</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -277,7 +277,7 @@
 			<expression>
 				<table>
 					<pow>
-						<property>/engines/engine[2]/n1-actual</property> 
+						<property>/engines/engine[2]/n1-actual</property>
 						<value>3.5</value>
 					</pow>
 					<entry><ind>   24743.1</ind><dep>0.00</dep></entry>
@@ -314,7 +314,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[2]/throttle-fdm</property> 
+							<property>/controls/engines/engine[2]/throttle-fdm</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -936,7 +936,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n1-actual</property> 
+					<property>/engines/engine[0]/n1-actual</property>
 					<entry><ind> 23.8</ind><dep>323</dep></entry>
 					<entry><ind>118.0</ind><dep>510</dep></entry>
 				</table>
@@ -966,7 +966,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n1-actual</property> 
+					<property>/engines/engine[1]/n1-actual</property>
 					<entry><ind> 23.8</ind><dep>323</dep></entry>
 					<entry><ind>118.0</ind><dep>510</dep></entry>
 				</table>
@@ -996,7 +996,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n1-actual</property> 
+					<property>/engines/engine[2]/n1-actual</property>
 					<entry><ind> 23.8</ind><dep>323</dep></entry>
 					<entry><ind>118.0</ind><dep>510</dep></entry>
 				</table>
