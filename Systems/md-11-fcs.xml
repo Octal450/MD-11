@@ -81,7 +81,7 @@
 		</fcs_function>
 		
 		<switch name="hydraulics/aileron-out-l/switch">
-			<default value="hydraulics/aileron-droop"/>
+			<default value="0.2"/> <!-- Doesn't droop apparently for some reason -->
 			<test logic="OR" value="hydraulics/aileron-out-l/function">
 				/systems/hydraulics/sys-2-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
@@ -260,7 +260,7 @@
 		</fcs_function>
 		
 		<switch name="hydraulics/aileron-out-r/switch">
-			<default value="hydraulics/aileron-droop"/>
+			<default value="0.2"/> <!-- Doesn't droop apparently for some reason -->
 			<test logic="OR" value="hydraulics/aileron-out-r/function">
 				/systems/hydraulics/sys-2-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
