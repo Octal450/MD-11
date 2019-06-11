@@ -72,7 +72,7 @@ var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft
 spinning.start();
 init_dlg.open();
 
-http.load("https://raw.githubusercontent.com/it0uchpods/IDG-MD-11/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
+http.load("https://raw.githubusercontent.com/Octal450/IDG-MD-11/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
 var revisionFile = (getprop("/sim/aircraft-dir") ~ "/revision.txt");
 var current_revision = io.readfile(revisionFile);
 print("IDG MD-11 Revision: " ~ current_revision);
