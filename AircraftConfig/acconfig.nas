@@ -48,7 +48,6 @@ setprop("/systems/acconfig/options/deflected-aileron-equipped", 1);
 setprop("/systems/acconfig/options/ead-rate", 1);
 setprop("/systems/acconfig/options/irs-skip", 0);
 setprop("/systems/acconfig/options/keyboard-mode", 0);
-setprop("/systems/acconfig/options/laptop-mode", 0);
 setprop("/systems/acconfig/options/nd-rate", 1);
 setprop("/systems/acconfig/options/no-rendering-warn", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
@@ -177,8 +176,6 @@ var readSettings = func {
 	setprop("/controls/hydraulics/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
 	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
-	setprop("/options/system/laptop-mode", getprop("/systems/acconfig/options/laptop-mode"));
-
 }
 
 var writeSettings = func {
@@ -187,7 +184,6 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulics/deflected-aileron-equipped"));
 	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
-	setprop("/systems/acconfig/options/laptop-mode", getprop("/options/system/laptop-mode"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11-config.xml", "/systems/acconfig/options");
 }
 

@@ -372,29 +372,6 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Laptop Mode (See Aircraft Help)</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<property>/options/system/laptop-mode</property>
-				<binding>
-					<command>property-toggle</command>
-					<property>/options/system/laptop-mode</property>
-				</binding>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
 				<property>/controls/irs/skip</property>
