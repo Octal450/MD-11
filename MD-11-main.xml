@@ -384,14 +384,18 @@
 	
 	<consumables n="0">
 		<fuel>
-			<tank n="0"><name>Tank 1</name></tank>
-			<tank n="1"><name>Tank 2</name></tank>
-			<tank n="2"><name>Tank 3</name></tank>
-			<tank n="3"><name>Aux Tank</name></tank>
-			<tank n="4"><name>Tail Tank</name></tank>
-			<tank n="5"><name>Engine 1 Pipes</name></tank>
-			<tank n="6"><name>Engine 2 Pipes</name></tank>
-			<tank n="7"><name>Engine 3 Pipes</name></tank>
+			<tank n="0"><name>Tank 1 Outboard</name></tank>
+			<tank n="1"><name>Tank 1 Inboard</name></tank>
+			<tank n="2"><name>Tank 2</name></tank>
+			<tank n="3"><name>Tank 3 Inboard</name></tank>
+			<tank n="4"><name>Tank 3 Outboard</name></tank>
+			<tank n="5"><name>Upper Aux Tank</name></tank>
+			<tank n="6"><name>Lower Aux Tank</name></tank>
+			<tank n="7"><name>Tail Tank</name></tank>
+			<tank n="8"><name>Engine 1 Pipe</name></tank>
+			<tank n="9"><name>Engine 2 Pipe</name></tank>
+			<tank n="10"><name>Engine 3 Pipe</name></tank>
+			<tank n="11"><name>APU Pipe</name></tank>
 		</fuel>
 	</consumables>
 	
@@ -489,15 +493,22 @@
 		</flight>
 		<fuel n="0">
 			<switches n="0">
-				<tank0-x-feed type="bool">0</tank0-x-feed>
-				<tank0-fill type="bool">0</tank0-fill>
-				<tank0-trans type="bool">0</tank0-trans>
-				<tank1-x-feed type="bool">0</tank1-x-feed>
-				<tank1-fill type="bool">0</tank1-fill>
-				<tank1-trans type="bool">0</tank1-trans>
-				<tank2-x-feed type="bool">0</tank2-x-feed>
-				<tank2-fill type="bool">0</tank2-fill>
-				<tank2-trans type="bool">0</tank2-trans>
+				<alt-pump type="bool">0</alt-pump>
+				<fill-1 type="bool">0</fill-1>
+				<fill-2 type="bool">0</fill-2>
+				<fill-3 type="bool">0</fill-3>
+				<pumps-1 type="bool">0</pumps-1>
+				<pumps-2 type="bool">0</pumps-2>
+				<pumps-3 type="bool">0</pumps-3>
+				<trans-aux-l type="bool">0</trans-aux-l>
+				<trans-aux-r type="bool">0</trans-aux-r>
+				<trans-tail type="bool">0</trans-tail>
+				<trans-1 type="bool">0</trans-1>
+				<trans-2 type="bool">0</trans-2>
+				<trans-3 type="bool">0</trans-3>
+				<x-feed-1 type="bool">0</x-feed-1>
+				<x-feed-2 type="bool">0</x-feed-2>
+				<x-feed-3 type="bool">0</x-feed-3>
 			</switches>
 		</fuel>
 		<gear>
@@ -1340,6 +1351,13 @@
 				<yd-lower-a type="bool">0</yd-lower-a>
 				<yd-lower-b type="bool">0</yd-lower-b>
 			</fctl>
+			<fuel n="0">
+				<pumps-aux-l type="bool">0</pumps-aux-l>
+				<pumps-aux-r type="bool">0</pumps-aux-r>
+				<pumps-1 type="bool">0</pumps-1>
+				<pumps-2 type="bool">0</pumps-2>
+				<pumps-3 type="bool">0</pumps-3>
+			</fuel>
 			<hydraulics n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
@@ -1370,25 +1388,7 @@
 			</pneumatics>
 		</failures>
 		<fuel n="0">
-			<tank n="0">
-				<feed type="bool">0</feed>
-				<x-feed type="bool">0</x-feed>
-			</tank>
-			<tank n="1">
-				<feed type="bool">0</feed>
-				<x-feed type="bool">0</x-feed>
-			</tank>
-			<tank n="2">
-				<feed type="bool">0</feed>
-				<x-feed type="bool">0</x-feed>
-			</tank>
-			<tank n="3">
-				<feed type="bool">0</feed>
-			</tank>
-			<tank n="4">
-				<feed type="bool">0</feed>
-				<alt-feed type="bool">0</alt-feed>
-			</tank>
+			<system type="bool">1</system>
 		</fuel>
 		<hydraulics n="0">
 			<sys-1-qty-input type="double">8.0</sys-1-qty-input> <!-- Randomized later in sim init -->

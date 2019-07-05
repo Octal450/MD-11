@@ -346,7 +346,7 @@
 			<checkbox>
 				<label>Tank 1 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank0pumps</property>
+				<property>/systems/failures/fuel/pumps-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -356,7 +356,7 @@
 			<checkbox>
 				<label>Tank 2 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank1pumps</property>
+				<property>/systems/failures/fuel/pumps-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -366,7 +366,7 @@
 			<checkbox>
 				<label>Tank 3 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank2pumps</property>
+				<property>/systems/failures/fuel/pumps-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -376,7 +376,7 @@
 			<checkbox>
 				<label>Aux Tank L Trans</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank3pumpl</property>
+				<property>/systems/failures/fuel/pumps-aux-l</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -386,7 +386,7 @@
 			<checkbox>
 				<label>Aux Tank R Trans</label>
 				<halign>left</halign>
-				<property>/systems/failures/tank3pumpr</property>
+				<property>/systems/failures/fuel/pumps-aux-r</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

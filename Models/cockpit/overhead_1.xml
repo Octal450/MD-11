@@ -31,31 +31,6 @@
 		<object-name>CabinPressNeedle</object-name>
 		<object-name>Plane.022</object-name>
 		<object-name>CVRNeedle</object-name>
-		<object-name>ltank.1</object-name>
-		<object-name>ltank.2</object-name>
-		<object-name>ltank.3</object-name>
-		<object-name>ltank.4</object-name>
-		<object-name>ltank.5</object-name>
-		<object-name>ctank.1</object-name>
-		<object-name>ctank.2</object-name>
-		<object-name>ctank.3</object-name>
-		<object-name>ctank.4</object-name>
-		<object-name>ctank.5</object-name>
-		<object-name>rtank.1</object-name>
-		<object-name>rtank.2</object-name>
-		<object-name>rtank.3</object-name>
-		<object-name>rtank.4</object-name>
-		<object-name>rtank.5</object-name>
-		<object-name>atank.1</object-name>
-		<object-name>atank.2</object-name>
-		<object-name>atank.3</object-name>
-		<object-name>atank.4</object-name>
-		<object-name>atank.5</object-name>
-		<object-name>ttank.1</object-name>
-		<object-name>ttank.2</object-name>
-		<object-name>ttank.3</object-name>
-		<object-name>ttank.4</object-name>
-		<object-name>ttank.5</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -5269,15 +5244,15 @@
 					<value>0</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/switches/manual-flash</property>
+					<property>systems/fuel/light/manual-flash</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/switches/manual-flash</property>
+					<property>systems/fuel/light/manual-flash</property>
 					<value>3</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/switches/manual-flash</property>
+					<property>systems/fuel/light/manual-flash</property>
 					<value>5</value>
 				</equals>
 				<equals>
@@ -5322,7 +5297,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank0-fill</property>
+				<property>controls/fuel/switches/fill-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5362,10 +5337,16 @@
 		<object-name>Tank1Fill.arm</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fuel/switches/tank0-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-1</property>
+						<value>0</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5378,10 +5359,16 @@
 		<object-name>Tank1Fill.fill</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank0-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-1</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5423,7 +5410,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank0-pumps</property>
+				<property>controls/fuel/switches/pumps-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5463,10 +5450,16 @@
 		<object-name>Tank1Pumps.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank0-pumps-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/pumps-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-1-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5480,7 +5473,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank0-pumps</property>
+					<property>controls/fuel/switches/pumps-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5524,7 +5517,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank0-x-feed</property>
+				<property>controls/fuel/switches/x-feed-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5565,7 +5558,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank0-x-feed</property>
+					<property>controls/fuel/switches/x-feed-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5581,7 +5574,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank0-x-feed-disag</property>
+					<property>systems/fuel/light/x-feed-1-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5625,7 +5618,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank0-trans</property>
+				<property>controls/fuel/switches/trans-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5665,10 +5658,16 @@
 		<object-name>Tank1Trans.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank0-trans-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-1-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5682,7 +5681,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank0-trans</property>
+					<property>controls/fuel/switches/trans-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5727,7 +5726,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank1-fill</property>
+				<property>controls/fuel/switches/fill-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5767,10 +5766,16 @@
 		<object-name>Tank2Fill.arm</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fuel/switches/tank1-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-2</property>
+						<value>0</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5783,10 +5788,16 @@
 		<object-name>Tank2Fill.fill</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank1-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-2</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5828,7 +5839,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank1-pumps</property>
+				<property>controls/fuel/switches/pumps-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5868,10 +5879,16 @@
 		<object-name>Tank2Pumps.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank1-pumps-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/pumps-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-2-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -5885,7 +5902,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank1-pumps</property>
+					<property>controls/fuel/switches/pumps-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5929,7 +5946,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank1-x-feed</property>
+				<property>controls/fuel/switches/x-feed-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5970,7 +5987,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank1-x-feed</property>
+					<property>controls/fuel/switches/x-feed-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5986,7 +6003,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank1-x-feed-disag</property>
+					<property>systems/fuel/light/x-feed-2-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6030,7 +6047,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank1-trans</property>
+				<property>controls/fuel/switches/trans-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6070,10 +6087,16 @@
 		<object-name>Tank2Trans.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank1-trans-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-2</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-2-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6087,7 +6110,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank1-trans</property>
+					<property>controls/fuel/switches/trans-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6132,7 +6155,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank2-fill</property>
+				<property>controls/fuel/switches/fill-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6172,10 +6195,16 @@
 		<object-name>Tank3Fill.arm</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>controls/fuel/switches/tank2-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-3</property>
+						<value>0</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6188,10 +6217,16 @@
 		<object-name>Tank3Fill.fill</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank2-fill</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/fill-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/fill-arm-3</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6233,7 +6268,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank2-pumps</property>
+				<property>controls/fuel/switches/pumps-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6273,10 +6308,16 @@
 		<object-name>Tank3Pumps.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank2-pumps-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/pumps-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-3-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6290,7 +6331,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank2-pumps</property>
+					<property>controls/fuel/switches/pumps-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6334,7 +6375,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank2-x-feed</property>
+				<property>controls/fuel/switches/x-feed-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6375,7 +6416,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank2-x-feed</property>
+					<property>controls/fuel/switches/x-feed-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6391,7 +6432,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank2-x-feed-disag</property>
+					<property>systems/fuel/light/x-feed-3-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6435,7 +6476,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank2-trans</property>
+				<property>controls/fuel/switches/trans-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6475,10 +6516,16 @@
 		<object-name>Tank3Trans.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/tank2-trans-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-3</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/pumps-trans-3-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6492,7 +6539,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank2-trans</property>
+					<property>controls/fuel/switches/trans-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6537,7 +6584,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank3-ltrans</property>
+				<property>controls/fuel/switches/trans-aux-l</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6578,7 +6625,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank3-ltrans</property>
+					<property>controls/fuel/switches/trans-aux-l</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6594,7 +6641,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank3-ltrans-low</property>
+					<property>systems/fuel/light/trans-aux-l-low</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6638,7 +6685,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/tank3-rtrans</property>
+				<property>controls/fuel/switches/trans-aux-r</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6679,7 +6726,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/tank3-rtrans</property>
+					<property>controls/fuel/switches/trans-aux-r</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6695,7 +6742,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/fuel/light/tank3-rtrans-low</property>
+					<property>systems/fuel/light/trans-aux-r-low</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6709,7 +6756,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>ltank.1</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
+		<property>systems/fuel/tank-1-lbs</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
 		<axis>
@@ -6718,11 +6765,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ltank.2</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
+		<property>systems/fuel/tank-1-lbs</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
 		<axis>
@@ -6731,11 +6778,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ltank.3</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
+		<property>systems/fuel/tank-1-lbs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -6744,11 +6791,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ltank.4</object-name>
-		<property>consumables/fuel/tank/level-lbs</property>
+		<property>systems/fuel/tank-1-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -6757,11 +6804,44 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
+	<animation>
+		<type>select</type>
+		<object-name>ltank.1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-1-lbs</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ltank.2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-1-lbs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ltank.3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-1-lbs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ctank.1</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<property>systems/fuel/tank-2-lbs</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
 		<axis>
@@ -6770,11 +6850,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ctank.2</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<property>systems/fuel/tank-2-lbs</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
 		<axis>
@@ -6783,11 +6863,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ctank.3</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<property>systems/fuel/tank-2-lbs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -6796,11 +6876,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ctank.4</object-name>
-		<property>consumables/fuel/tank[1]/level-lbs</property>
+		<property>systems/fuel/tank-2-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -6809,11 +6889,44 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
+	<animation>
+		<type>select</type>
+		<object-name>ctank.1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-2-lbs</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ctank.2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-2-lbs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ctank.3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-2-lbs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>rtank.1</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<property>systems/fuel/tank-3-lbs</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
 		<axis>
@@ -6822,11 +6935,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>rtank.2</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<property>systems/fuel/tank-3-lbs</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
 		<axis>
@@ -6835,11 +6948,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>rtank.3</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<property>systems/fuel/tank-3-lbs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -6848,11 +6961,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>rtank.4</object-name>
-		<property>consumables/fuel/tank[2]/level-lbs</property>
+		<property>systems/fuel/tank-3-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -6861,11 +6974,44 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
+	<animation>
+		<type>select</type>
+		<object-name>rtank.1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-3-lbs</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>rtank.2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-3-lbs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>rtank.3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tank-3-lbs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>atank.1</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<property>systems/fuel/aux-tanks-lbs</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
 		<axis>
@@ -6874,11 +7020,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>atank.2</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<property>systems/fuel/aux-tanks-lbs</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
 		<axis>
@@ -6887,11 +7033,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>atank.3</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<property>systems/fuel/aux-tanks-lbs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -6900,11 +7046,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>atank.4</object-name>
-		<property>consumables/fuel/tank[3]/level-lbs</property>
+		<property>systems/fuel/aux-tanks-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -6913,11 +7059,44 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
+	<animation>
+		<type>select</type>
+		<object-name>atank.1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/aux-tanks-lbs</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>atank.2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/aux-tanks-lbs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>atank.3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/aux-tanks-lbs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ttank.1</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<property>systems/fuel/tail-tank-lbs</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
 		<axis>
@@ -6926,11 +7105,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ttank.2</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<property>systems/fuel/tail-tank-lbs</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
 		<axis>
@@ -6939,11 +7118,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ttank.3</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<property>systems/fuel/tail-tank-lbs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -6952,11 +7131,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>textranslate</type>
 		<object-name>ttank.4</object-name>
-		<property>consumables/fuel/tank[4]/level-lbs</property>
+		<property>systems/fuel/tail-tank-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -6964,6 +7143,39 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ttank.1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tail-tank-lbs</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ttank.2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tail-tank-lbs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ttank.3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/fuel/tail-tank-lbs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
 	</animation>
 	
 	<!-- FADEC/Engine Ignition Panel -->

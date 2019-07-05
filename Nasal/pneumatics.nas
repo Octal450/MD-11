@@ -12,12 +12,24 @@ var PNEU = {
 		pack2: props.globals.getNode("/systems/failures/pneumatics/pack-2"),
 		pack3: props.globals.getNode("/systems/failures/pneumatics/pack-3"),
 	},
+	Flow: {
+		pack1: props.globals.getNode("/systems/pneumatics/pack-1-flow"),
+		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),
+		pack3: props.globals.getNode("/systems/pneumatics/pack-3-flow"),
+	},
 	Light: {
 		manualFlash: props.globals.initNode("/systems/pneumatics/light/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Psi: {
-#		: props.globals.getNode(""),
+		apu: props.globals.getNode("/systems/pneumatics/apu-psi"),
+		bleed1: props.globals.getNode("/systems/pneumatics/bleed-1-psi"),
+		bleed2: props.globals.getNode("/systems/pneumatics/bleed-2-psi"),
+		bleed3: props.globals.getNode("/systems/pneumatics/bleed-3-psi"),
+		eng1: props.globals.getNode("/systems/pneumatics/eng-1-psi"),
+		eng2: props.globals.getNode("/systems/pneumatics/eng-2-psi"),
+		eng3: props.globals.getNode("/systems/pneumatics/eng-3-psi"),
+		ground: props.globals.getNode("/systems/pneumatics/ground-psi"),
 	},
 	Switch: {
 		aftTemp: props.globals.getNode("/controls/pneumatics/switches/aft-temp"),

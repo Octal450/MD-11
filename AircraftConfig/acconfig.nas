@@ -21,20 +21,11 @@ var spinning = maketimer(0.05, func {
 var failReset = func {
 	systems.ELEC.resetFail();
 	systems.FCTL.resetFail();
+	systems.FUEL.resetFail();
 	systems.HYD.resetFail();
 	systems.PNEU.resetFail();
-	failResetOld();
 }
 
-var failResetOld = func {
-	setprop("/systems/failures/tank0pumps", 0);
-	setprop("/systems/failures/tank1pumps", 0);
-	setprop("/systems/failures/tank2pumps", 0);
-	setprop("/systems/failures/tank3pumpl", 0);
-	setprop("/systems/failures/tank3pumpr", 0);
-}
-
-failResetOld();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
@@ -214,7 +205,6 @@ var colddark = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-		failResetOld();
 		if (getprop("/engines/engine[1]/n2-actual") < 2) {
 			colddark_b();
 		} else {
@@ -263,7 +253,6 @@ var beforestart = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-		failResetOld();
 		setprop("/controls/APU/start", 0);
 		
 		# Now the Startup!
@@ -326,7 +315,6 @@ var taxi = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-		failResetOld();
 		setprop("/controls/APU/start", 0);
 		
 		# Now the Startup!

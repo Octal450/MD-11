@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
+<turbine_engine name="700-4E">
+	
+	<milthrust>0</milthrust>
+	<tsfc>0.102</tsfc>
+	<bleed>0.03</bleed>
+	<idlen1>63</idlen1>
+	<idlen2>100</idlen2>
+	<n1spinup>1</n1spinup>
+	<n2spinup>5</n2spinup>
+	<maxn1>100</maxn1>
+	<maxn2>100</maxn2>
+	<augmented>0</augmented>
+	<injected>0</injected>
+
+</turbine_engine>

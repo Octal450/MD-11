@@ -24,9 +24,9 @@
 			<orient unit="DEG">
 				<roll>0</roll>
 				<pitch>2.2</pitch>
-				<yaw>1</yaw>
+				<yaw>2</yaw>
 			</orient>
-			<feed>5</feed>
+			<feed>8</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x>-5.29297</x>	
@@ -36,7 +36,7 @@
 				<orient unit="DEG">
 					<roll>0</roll>
 					<pitch>2.2</pitch>
-					<yaw>1</yaw>
+					<yaw>2</yaw>
 				</orient>
 			</thruster>
 		</engine>
@@ -52,7 +52,7 @@
 				<pitch>0</pitch>
 				<yaw>0</yaw>
 			</orient>
-			<feed>6</feed>
+			<feed>9</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x>25.2146</x>	
@@ -76,9 +76,9 @@
 			<orient unit="DEG">
 				<roll>0</roll>
 				<pitch>2.2</pitch>
-				<yaw>-1</yaw>
+				<yaw>-2</yaw>
 			</orient>
-			<feed>7</feed>
+			<feed>10</feed>
 			<thruster file="direct">
 				<location unit="M">
 					<x>-5.29297</x>	
@@ -88,19 +88,33 @@
 				<orient unit="DEG">
 					<roll>0</roll>
 					<pitch>2.2</pitch>
-					<yaw>-1</yaw>
+					<yaw>-2</yaw>
 				</orient>
 			</thruster>
 		</engine>
 		
-		<tank type="FUEL">    <!-- Tank 1 -->
+		<!-- Fuel Tank Capacities from FCOM -->
+		<tank type="FUEL">    <!-- Tank 1 Outboard -->
+			<location unit="M">
+				<x>2.6152</x>
+				<y>-17.0253</y>
+				<z>5.69282</z>
+			</location>
+			<capacity unit="LBS">6500</capacity>
+			<contents unit="LBS">6500</contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>2</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Tank 1 Inboard -->
 			<location unit="M">
 				<x>2.6152</x>
 				<y>-11.3314</y>
 				<z>5.69282</z>
 			</location>
-			<capacity unit="LBS">40500</capacity>
-			<contents unit="LBS">20000</contents>
+			<capacity unit="LBS">33988</capacity>
+			<contents unit="LBS">13500</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
 			<type>JET-A1</type>
@@ -112,33 +126,59 @@
 				<y>0</y>
 				<z>5.69282</z>
 			</location>
-			<capacity unit="LBS">64050</capacity>
+			<capacity unit="LBS">64040</capacity>
 			<contents unit="LBS">20000</contents>
 			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tank 3 -->
+		<tank type="FUEL">    <!-- Tank 3 Inboard -->
 			<location unit="M">
 				<x>2.6152</x>
 				<y>11.3314</y>
 				<z>5.69282</z>
 			</location>
-			<capacity unit="LBS">40500</capacity>
-			<contents unit="LBS">20000</contents>
+			<capacity unit="LBS">33988</capacity>
+			<contents unit="LBS">13500</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>2</priority>
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Aux Tank -->
+		<tank type="FUEL">    <!-- Tank 3 Outboard -->
+			<location unit="M">
+				<x>2.6152</x>
+				<y>17.0253</y>
+				<z>5.69282</z>
+			</location>
+			<capacity unit="LBS">6500</capacity>
+			<contents unit="LBS">6500</contents>
+			<standpipe unit="LBS">31</standpipe>
+			<priority>2</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Upper Aux Tank -->
 			<location unit="M">
 				<x>2.6152</x>
 				<y>0</y>
 				<z>5.69282</z>
 			</location>
-			<capacity unit="LBS">98100</capacity>
+			<capacity unit="LBS">87105</capacity>
+			<contents unit="LBS">0</contents>
+			<standpipe unit="LBS">43</standpipe>
+			<priority>1</priority>
+			<type>JET-A1</type>
+			<temperature>50</temperature>
+		</tank>
+		<tank type="FUEL">    <!-- Lower Aux Tank -->
+			<location unit="M">
+				<x>2.6152</x>
+				<y>0</y>
+				<z>5.69282</z>
+			</location>
+			<capacity unit="LBS">11001</capacity>
 			<contents unit="LBS">0</contents>
 			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
@@ -151,7 +191,7 @@
 				<y>0</y>
 				<z>5.69282</z>
 			</location>
-			<capacity unit="LBS">13100</capacity>
+			<capacity unit="LBS">13118</capacity>
 			<contents unit="LBS">0</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>1</priority>
@@ -187,6 +227,17 @@
 				<z>5.69282</z>
 			</location>
 			<capacity unit="LBS">10</capacity>
+			<contents unit="LBS">0</contents>
+			<priority>1</priority>
+			<type>JET-A1</type>
+		</tank>
+		<tank type="FUEL">    <!-- APU Pipe -->
+			<location unit="M">
+				<x>2.6152</x>
+				<y>0</y>
+				<z>5.69282</z>
+			</location>
+			<capacity unit="LBS">5</capacity>
 			<contents unit="LBS">0</contents>
 			<priority>1</priority>
 			<type>JET-A1</type>

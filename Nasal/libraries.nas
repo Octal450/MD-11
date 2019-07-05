@@ -35,7 +35,6 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
-	systems.FUEL.loop();
 	systems.IRS.loop();
 	systems.eng_loop();
 	fadec.fadecLoop();
@@ -63,13 +62,13 @@ var systemsLoop = maketimer(0.1, func {
 		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
 	}
 	
-	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[5]/contents-lbs") < 1) {
+	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[8]/contents-lbs") < 1) {
 		systems.cutoff_one();
 	}
-	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and (getprop("/fdm/jsbsim/propulsion/tank[6]/contents-lbs") < 1 or systems.HYD.Fail.catastrophicAft.getBoolValue())) {
+	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and (getprop("/fdm/jsbsim/propulsion/tank[9]/contents-lbs") < 1 or systems.HYD.Fail.catastrophicAft.getBoolValue())) {
 		systems.cutoff_two();
 	}
-	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[7]/contents-lbs") < 1) {
+	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[10]/contents-lbs") < 1) {
 		systems.cutoff_three();
 	}
 	
