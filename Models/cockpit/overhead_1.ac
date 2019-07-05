@@ -6,9 +6,8 @@ MATERIAL "Buttons" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 20.8842  tr
 MATERIAL "DefaultWhite.003" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.0125 0.0125 0.0125  shi 20.8842  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
-MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 396
+kids 372
 OBJECT poly
 name "wiper.knob2"
 loc -21.7923 -18.0508 -0.224346
@@ -22172,9 +22171,13 @@ refs 4
 9 0.538893 0.995397
 8 0.459944 0.995397
 kids 0
+OBJECT group
+name "LCD"
+loc -21.7984 -17.9889 -0.00620813
+kids 25
 OBJECT poly
 name "atank.1"
-loc -21.7984 -18.0053 0.0096182
+loc 0 -0.0164356 0.0158263
 data 12
 atank.1.mesh
 texture "numbers.png"
@@ -22186,7 +22189,7 @@ numvert 4
 0 0.00359917 0.0024
 numsurf 1
 SURF 0x10
-mat 7
+mat 6
 refs 4
 0 0.660079 0.09677
 3 0.163859 0.09677
@@ -22195,7 +22198,7 @@ refs 4
 kids 0
 OBJECT poly
 name "atank.2"
-loc -21.7984 -18.0053 0.0048218
+loc 0 -0.0164356 0.0110299
 data 12
 atank.2.mesh
 texture "numbers.png"
@@ -22207,7 +22210,7 @@ numvert 4
 0 0.00359917 0.0024
 numsurf 1
 SURF 0x10
-mat 7
+mat 6
 refs 4
 0 0.660079 0.09677
 3 0.163859 0.09677
@@ -22216,7 +22219,7 @@ refs 4
 kids 0
 OBJECT poly
 name "atank.3"
-loc -21.7984 -18.0053 2.52984e-05
+loc 0 -0.0164356 0.00623343
 data 12
 atank.3.mesh
 texture "numbers.png"
@@ -22228,7 +22231,7 @@ numvert 4
 0 0.00359917 0.0024
 numsurf 1
 SURF 0x10
-mat 7
+mat 6
 refs 4
 0 0.660079 0.09677
 3 0.163859 0.09677
@@ -22237,7 +22240,7 @@ refs 4
 kids 0
 OBJECT poly
 name "atank.4"
-loc -21.7984 -18.0053 -0.0048283
+loc 0 -0.0164356 0.00137983
 data 12
 atank.4.mesh
 texture "numbers.png"
@@ -22249,7 +22252,7 @@ numvert 4
 0 0.00359917 0.0024
 numsurf 1
 SURF 0x10
-mat 7
+mat 6
 refs 4
 0 0.660079 0.09677
 3 0.163859 0.09677
@@ -22258,7 +22261,7 @@ refs 4
 kids 0
 OBJECT poly
 name "atank.5"
-loc -21.7984 -18.0053 -0.0095677
+loc 0 -0.0164356 -0.00335957
 data 12
 atank.5.mesh
 texture "numbers.png"
@@ -22270,7 +22273,427 @@ numvert 4
 0 0.00359917 0.0024
 numsurf 1
 SURF 0x10
-mat 7
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ctank.1"
+loc 0 0.0109653 0.0291306
+data 12
+ctank.1.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ctank.2"
+loc 0 0.0109653 0.0243341
+data 12
+ctank.2.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ctank.3"
+loc 0 0.0109653 0.0195376
+data 12
+ctank.3.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ctank.4"
+loc 0 0.0109653 0.014684
+data 12
+ctank.4.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ctank.5"
+loc 0 0.0109653 0.00994473
+data 12
+ctank.5.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ltank.1"
+loc 0 0.0109653 0.103344
+data 12
+ltank.1.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.00240001
+0 -0.00359917 -0.00240001
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ltank.2"
+loc 0 0.0109653 0.0985472
+data 12
+ltank.2.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.00240001
+0 -0.00359917 -0.00240001
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ltank.3"
+loc 0 0.0109653 0.0937508
+data 12
+ltank.3.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.00240001
+0 0.00359917 0.00240001
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ltank.4"
+loc 0 0.0109653 0.0888972
+data 12
+ltank.4.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ltank.5"
+loc 0 0.0109653 0.0841578
+data 12
+ltank.5.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "rtank.1"
+loc 0 0.0109653 -0.0433941
+data 12
+rtank.1.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "rtank.2"
+loc 0 0.0109653 -0.0481906
+data 12
+rtank.2.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "rtank.3"
+loc 0 0.0109653 -0.052987
+data 12
+rtank.3.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "rtank.4"
+loc 0 0.0109653 -0.0578406
+data 12
+rtank.4.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "rtank.5"
+loc 0 0.0109653 -0.06258
+data 12
+rtank.5.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ttank.1"
+loc 0 -0.0164356 -0.0566351
+data 12
+ttank.1.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ttank.2"
+loc 0 -0.0164356 -0.0617437
+data 12
+ttank.2.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ttank.3"
+loc 0 -0.0164356 -0.0665402
+data 12
+ttank.3.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ttank.4"
+loc 0 -0.0164356 -0.0713938
+data 12
+ttank.4.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
+refs 4
+0 0.660079 0.09677
+3 0.163859 0.09677
+2 0.163859 0.003814
+1 0.660079 0.003814
+kids 0
+OBJECT poly
+name "ttank.5"
+loc 0 -0.0164356 -0.0761331
+data 12
+ttank.5.mesh
+texture "numbers.png"
+crease 45.000000
+numvert 4
+0 0.00359917 -0.0024
+0 -0.00359917 -0.0024
+0 -0.00359917 0.0024
+0 0.00359917 0.0024
+numsurf 1
+SURF 0x10
+mat 6
 refs 4
 0 0.660079 0.09677
 3 0.163859 0.09677
@@ -23450,111 +23873,6 @@ refs 4
 131 0.006979 0.552811
 139 0.006998 0.55282
 140 0.006997 0.552815
-kids 0
-OBJECT poly
-name "ctank.1"
-loc -21.7984 -17.9779 0.0229225
-data 12
-ctank.1.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ctank.2"
-loc -21.7984 -17.9779 0.018126
-data 12
-ctank.2.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ctank.3"
-loc -21.7984 -17.9779 0.0133295
-data 12
-ctank.3.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ctank.4"
-loc -21.7984 -17.9779 0.0084759
-data 12
-ctank.4.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ctank.5"
-loc -21.7984 -17.9779 0.0037366
-data 12
-ctank.5.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
 kids 0
 OBJECT poly
 name "Cube"
@@ -128986,111 +129304,6 @@ refs 4
 10 0.124381 0.061869
 kids 0
 OBJECT poly
-name "ltank.1"
-loc -21.7984 -17.9779 0.0971356
-data 12
-ltank.1.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.00240001
-0 -0.00359917 -0.00240001
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ltank.2"
-loc -21.7984 -17.9779 0.0923391
-data 12
-ltank.2.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.00240001
-0 -0.00359917 -0.00240001
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ltank.3"
-loc -21.7984 -17.9779 0.0875427
-data 12
-ltank.3.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.00240001
-0 0.00359917 0.00240001
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ltank.4"
-loc -21.7984 -17.9779 0.0826891
-data 12
-ltank.4.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ltank.5"
-loc -21.7984 -17.9779 0.0779497
-data 12
-ltank.5.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
 name "NAV.btn.001"
 loc -21.807 -18.031 -0.0918381
 data 16
@@ -132321,111 +132534,6 @@ refs 4
 131 0.007045 0.558943
 139 0.007039 0.558941
 140 0.00704 0.558942
-kids 0
-OBJECT poly
-name "rtank.1"
-loc -21.7984 -17.9779 -0.0496022
-data 12
-rtank.1.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "rtank.2"
-loc -21.7984 -17.9779 -0.0543987
-data 12
-rtank.2.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "rtank.3"
-loc -21.7984 -17.9779 -0.0591951
-data 12
-rtank.3.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "rtank.4"
-loc -21.7984 -17.9779 -0.0640487
-data 12
-rtank.4.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "rtank.5"
-loc -21.7984 -17.9779 -0.0687881
-data 12
-rtank.5.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
 kids 0
 OBJECT poly
 name "seatbelts.lever"
@@ -135915,111 +136023,6 @@ refs 4
 121 0.004681 0.556099
 113 0.004622 0.556096
 112 0.004729 0.556251
-kids 0
-OBJECT poly
-name "ttank.1"
-loc -21.7984 -18.0053 -0.0628432
-data 12
-ttank.1.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ttank.2"
-loc -21.7984 -18.0053 -0.0679518
-data 12
-ttank.2.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ttank.3"
-loc -21.7984 -18.0053 -0.0727483
-data 12
-ttank.3.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ttank.4"
-loc -21.7984 -18.0053 -0.0776019
-data 12
-ttank.4.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
-kids 0
-OBJECT poly
-name "ttank.5"
-loc -21.7984 -18.0053 -0.0823412
-data 12
-ttank.5.mesh
-texture "numbers.png"
-crease 45.000000
-numvert 4
-0 0.00359917 -0.0024
-0 -0.00359917 -0.0024
-0 -0.00359917 0.0024
-0 0.00359917 0.0024
-numsurf 1
-SURF 0x10
-mat 7
-refs 4
-0 0.660079 0.09677
-3 0.163859 0.09677
-2 0.163859 0.003814
-1 0.660079 0.003814
 kids 0
 OBJECT poly
 name "wiper.knob1"

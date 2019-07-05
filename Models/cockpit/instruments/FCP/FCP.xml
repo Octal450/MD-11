@@ -1319,63 +1319,30 @@
 	<!-- Lighting -->
 	
 	<animation>
-		<name>Panel lighting</name>
-		<type>material</type>
-		<object-name>mcp_lcd</object-name>
-		<emission>
-			<red>1</red>
-			<green>0</green>
-			<blue>0</blue>
-			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
-		</emission>
-	</animation>
-	
-	<animation>
 		<name>Integ Panel lighting</name>
 		<type>material</type>
-		<object-name>IAS.led1</object-name>
-		<object-name>IAS.led2</object-name>
-		<object-name>IAS.led3</object-name>
-		<object-name>MACH.led1</object-name>
-		<object-name>MACH.led2</object-name>
-		<object-name>MACH.led3</object-name>
-		<object-name>ias.ind</object-name>
-		<object-name>mach.ind</object-name>
-		<object-name>hdg.ind</object-name>
-		<object-name>trk.ind</object-name>
-		<object-name>at_dis1</object-name>
-		<object-name>TRK.led1</object-name>
-		<object-name>TRK.led2</object-name>
-		<object-name>TRK.led3</object-name>
-		<object-name>VS.ledminus</object-name>
-		<object-name>FPA.ledminus</object-name>
-		<object-name>HDG.led1</object-name>
-		<object-name>HDG.led2</object-name>
-		<object-name>HDG.led3</object-name>
-		<object-name>ALT.led1</object-name>
-		<object-name>ALT.led2</object-name>
-		<object-name>ALT.led3</object-name>
-		<object-name>ALT.led4</object-name>
-		<object-name>ALT.led5</object-name>
-		<object-name>VS.led1</object-name>
-		<object-name>VS.led2</object-name>
-		<object-name>VS.led3</object-name>
-		<object-name>VS.led4</object-name>
-		<object-name>vs.ind</object-name>
-		<object-name>VS_dash</object-name>
-		<object-name>fpa.ind</object-name>
-		<object-name>FPA.led1</object-name>
-		<object-name>FPA.led2</object-name>
-		<object-name>HDG_dash</object-name>
 		<object-name>mcp_text</object-name>
 		<object-name>integlight.indicator</object-name>
 		<object-name>floodlight.indicator</object-name>
 		<object-name>BLimit.knob.indicator</object-name>
+		<object-name>mcp_lcd</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
 			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<name>Integ Panel LCD lighting</name>
+		<type>material</type>
+		<object-name>LCD</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/fcp-lcd-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	

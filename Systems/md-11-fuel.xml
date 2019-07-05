@@ -105,6 +105,22 @@
 			</test>
 		</switch>
 		
+		<!-- Crossfeed Valves -->
+		<actuator name="/systems/pneumatics/x-feed-1-valve">
+			<input>/controls/fuel/switches/x-feed-1</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<actuator name="/systems/pneumatics/x-feed-2-valve">
+			<input>/controls/fuel/switches/x-feed-2</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<actuator name="/systems/pneumatics/x-feed-3-valve">
+			<input>/controls/fuel/switches/x-feed-3</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
 		<!-- Transfer Pumps -->
 		<switch name="/systems/fuel/trans-pump-1">
 			<default value="0"/>
@@ -206,7 +222,7 @@
 		<switch name="/systems/fuel/light/pumps-trans-1-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				propulsion/tank[0]/contents-lbs le 100
+				propulsion/tank[1]/contents-lbs le 100
 				/systems/failures/fuel/pumps-1 eq 1
 			</test>
 		</switch>
@@ -214,7 +230,7 @@
 		<switch name="/systems/fuel/light/pumps-trans-2-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				propulsion/tank[1]/contents-lbs le 100
+				propulsion/tank[2]/contents-lbs le 100
 				/systems/failures/fuel/pumps-2 eq 1
 			</test>
 		</switch>
@@ -222,7 +238,7 @@
 		<switch name="/systems/fuel/light/pumps-trans-3-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
+				propulsion/tank[3]/contents-lbs le 100
 				/systems/failures/fuel/pumps-3 eq 1
 			</test>
 		</switch>
@@ -230,7 +246,7 @@
 		<switch name="/systems/fuel/light/trans-aux-l-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				propulsion/tank[3]/contents-lbs le 100
+				propulsion/tank[5]/contents-lbs le 100
 				/systems/failures/fuel/pumps-aux-l eq 1
 			</test>
 		</switch>
@@ -238,7 +254,7 @@
 		<switch name="/systems/fuel/light/trans-aux-r-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				propulsion/tank[3]/contents-lbs le 100
+				propulsion/tank[5]/contents-lbs le 100
 				/systems/failures/fuel/pumps-aux-r eq 1
 			</test>
 		</switch>
@@ -267,27 +283,93 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-1-in eq 1
-				propulsion/tank[1]/contents-lbs gt 60
+				propulsion/tank[1]/contents-lbs gt 20
+				propulsion/tank[8]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-2-eng-1">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-2 eq 1
+				/systems/pneumatics/x-feed-1-valve eq 1
+				/systems/fuel/trans-pump-2 eq 1
+				propulsion/tank[2]/contents-lbs gt 20
+				propulsion/tank[8]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-in-eng-1">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-3-in eq 1
+				/systems/pneumatics/x-feed-1-valve eq 1
+				/systems/fuel/trans-pump-3 eq 1
+				propulsion/tank[3]/contents-lbs gt 20
 				propulsion/tank[8]/contents-lbs lt 9
 			</test>
 		</switch>
 		
 		<!-- Main Tanks to Engine 2 Pipe -->
+		<switch name="/systems/fuel/internal/tank-1-in-eng-2">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-1-in eq 1
+				/systems/pneumatics/x-feed-2-valve eq 1
+				/systems/fuel/trans-pump-1 eq 1
+				propulsion/tank[1]/contents-lbs gt 20
+				propulsion/tank[9]/contents-lbs lt 9
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/internal/tank-2-eng-2">
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-2 eq 1
-				propulsion/tank[2]/contents-lbs gt 60
+				propulsion/tank[2]/contents-lbs gt 20
+				propulsion/tank[9]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-in-eng-2">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-3-in eq 1
+				/systems/pneumatics/x-feed-2-valve eq 1
+				/systems/fuel/trans-pump-3 eq 1
+				propulsion/tank[3]/contents-lbs gt 20
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
 		</switch>
 		
 		<!-- Main Tanks to Engine 3 Pipe -->
+		<switch name="/systems/fuel/internal/tank-1-in-eng-3">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-1-in eq 1
+				/systems/pneumatics/x-feed-3-valve eq 1
+				/systems/fuel/trans-pump-1 eq 1
+				propulsion/tank[1]/contents-lbs gt 20
+				propulsion/tank[10]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-2-eng-3">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/feed-2 eq 1
+				/systems/pneumatics/x-feed-3-valve eq 1
+				/systems/fuel/trans-pump-2 eq 1
+				propulsion/tank[2]/contents-lbs gt 20
+				propulsion/tank[10]/contents-lbs lt 9
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/internal/tank-3-in-eng-3">
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-in eq 1
-				propulsion/tank[3]/contents-lbs gt 60
+				propulsion/tank[3]/contents-lbs gt 20
 				propulsion/tank[10]/contents-lbs lt 9
 			</test>
 		</switch>
@@ -297,7 +379,7 @@
 			<default value="0"/>
 			<test logic="AND" value="4">
 				/systems/fuel/feed-apu eq 1
-				propulsion/tank[2]/contents-lbs gt 60
+				propulsion/tank[2]/contents-lbs gt 20
 				propulsion/tank[11]/contents-lbs lt 4
 			</test>
 			<output>propulsion/tank[11]/external-flow-rate-pps</output>
@@ -320,20 +402,6 @@
 			</test>
 		</switch>
 		
-		<!-- Tank Flow Rates Out Only -->
-		<summer name="/systems/fuel/internal/tank-1-in-flow-rate-out">
-			<input>-/systems/fuel/internal/tank-1-in-eng-1</input>
-		</summer>
-		
-		<summer name="/systems/fuel/internal/tank-2-flow-rate-out">
-			<input>-/systems/fuel/internal/tank-2-eng-2</input>
-			<input>-/systems/fuel/internal/tank-2-apu</input>
-		</summer>
-		
-		<summer name="/systems/fuel/internal/tank-3-in-flow-rate-out">
-			<input>-/systems/fuel/internal/tank-3-in-eng-3</input>
-		</summer>
-		
 		<!-- Tank Final Flow Rates -->
 		<summer name="/systems/fuel/internal/tank-1-out-flow-rate">
 			<input>-/systems/fuel/internal/tank-1-outer-inner</input>
@@ -341,18 +409,25 @@
 		</summer>
 		
 		<summer name="/systems/fuel/internal/tank-1-in-flow-rate">
-			<input>/systems/fuel/internal/tank-1-in-flow-rate-out</input>
+			<input>-/systems/fuel/internal/tank-1-in-eng-1</input>
+			<input>-/systems/fuel/internal/tank-1-in-eng-2</input>
+			<input>-/systems/fuel/internal/tank-1-in-eng-3</input>
 			<input>/systems/fuel/internal/tank-1-outer-inner</input>
 			<output>propulsion/tank[1]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/tank-2-flow-rate">
-			<input>/systems/fuel/internal/tank-2-flow-rate-out</input>
+			<input>-/systems/fuel/internal/tank-2-eng-1</input>
+			<input>-/systems/fuel/internal/tank-2-eng-2</input>
+			<input>-/systems/fuel/internal/tank-2-eng-3</input>
+			<input>-/systems/fuel/internal/tank-2-apu</input>
 			<output>propulsion/tank[2]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/tank-3-in-flow-rate">
-			<input>/systems/fuel/internal/tank-3-in-flow-rate-out</input>
+			<input>-/systems/fuel/internal/tank-3-in-eng-1</input>
+			<input>-/systems/fuel/internal/tank-3-in-eng-2</input>
+			<input>-/systems/fuel/internal/tank-3-in-eng-3</input>
 			<input>/systems/fuel/internal/tank-3-outer-inner</input>
 			<output>propulsion/tank[3]/external-flow-rate-pps</output>
 		</summer>
@@ -365,22 +440,28 @@
 		<!-- Pipe Final Flow Rates -->
 		<summer name="/systems/fuel/internal/eng-1-flow-rate">
 			<input>/systems/fuel/internal/tank-1-in-eng-1</input>
+			<input>/systems/fuel/internal/tank-2-eng-1</input>
+			<input>/systems/fuel/internal/tank-3-in-eng-1</input>
 			<output>propulsion/tank[8]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/eng-2-flow-rate">
+			<input>/systems/fuel/internal/tank-1-in-eng-2</input>
 			<input>/systems/fuel/internal/tank-2-eng-2</input>
+			<input>/systems/fuel/internal/tank-3-in-eng-2</input>
 			<output>propulsion/tank[9]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/eng-3-flow-rate">
+			<input>/systems/fuel/internal/tank-1-in-eng-3</input>
+			<input>/systems/fuel/internal/tank-2-eng-3</input>
 			<input>/systems/fuel/internal/tank-3-in-eng-3</input>
 			<output>propulsion/tank[10]/external-flow-rate-pps</output>
 		</summer>
 	
 	</channel>
 	
-	<channel name="Fuel Rounders" execrate="16"> <!-- Rounds and sums appropriate tanks for good cockpit indication -->
+	<channel name="Fuel Indicators" execrate="16"> <!-- Rounds and sums appropriate tanks for good cockpit indication -->
 		
 		<fcs_function name="/systems/fuel/tank-1-lbs">
 			<function>

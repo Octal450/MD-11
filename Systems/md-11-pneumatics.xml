@@ -161,7 +161,7 @@
 	<channel name="Main Pneumatics" execrate="8">
 		
 		<!-- Bleed Inputs -->
-		<actuator name="/systems/pneumatics/apu-valve-status">
+		<actuator name="/systems/pneumatics/apu-valve-valve">
 			<input>/controls/pneumatics/switches/bleed-apu</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
@@ -169,7 +169,7 @@
 		<switch name="/systems/pneumatics/apu-active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/apu-valve-status eq 1
+				/systems/pneumatics/apu-valve-valve eq 1
 				/systems/apu/n2 ge 94.9
 				/systems/failures/pneumatics/bleed-apu ne 1
 			</test>
@@ -484,7 +484,7 @@
 		</actuator>
 		
 		<!-- Isolation Valve 1-2 Valve -->
-		<actuator name="/systems/pneumatics/isol/isol-1-2-status">
+		<actuator name="/systems/pneumatics/isol/isol-1-2-valve">
 			<input>/controls/pneumatics/switches/isol-1-2</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
@@ -492,19 +492,19 @@
 		<switch name="/systems/pneumatics/isol/from-1-to-2">
 			<default value="0"/>
 			<test value="/systems/pneumatics/eng-1-psi">
-				/systems/pneumatics/isol/isol-1-2-status eq 1
+				/systems/pneumatics/isol/isol-1-2-valve eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/pneumatics/isol/from-2-to-1">
 			<default value="0"/>
 			<test value="/systems/pneumatics/bleed-2-psi-pre-input">
-				/systems/pneumatics/isol/isol-1-2-status eq 1
+				/systems/pneumatics/isol/isol-1-2-valve eq 1
 			</test>
 		</switch>
 		
 		<!-- Isolation Valve 1-3 Valve -->
-		<actuator name="/systems/pneumatics/isol/isol-1-3-status">
+		<actuator name="/systems/pneumatics/isol/isol-1-3-valve">
 			<input>/controls/pneumatics/switches/isol-1-3</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
@@ -512,14 +512,14 @@
 		<switch name="/systems/pneumatics/isol/from-1-to-3">
 			<default value="0"/>
 			<test value="/systems/pneumatics/eng-1-psi">
-				/systems/pneumatics/isol/isol-1-3-status eq 1
+				/systems/pneumatics/isol/isol-1-3-valve eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/pneumatics/isol/from-3-to-1">
 			<default value="0"/>
 			<test value="/systems/pneumatics/eng-3-psi">
-				/systems/pneumatics/isol/isol-1-3-status eq 1
+				/systems/pneumatics/isol/isol-1-3-valve eq 1
 			</test>
 		</switch>
 		
@@ -527,8 +527,8 @@
 		<switch name="/systems/pneumatics/isol/multi-thru-1">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/total-1-isol-psi">
-				/systems/pneumatics/isol/isol-1-2-status eq 1
-				/systems/pneumatics/isol/isol-1-3-status eq 1
+				/systems/pneumatics/isol/isol-1-2-valve eq 1
+				/systems/pneumatics/isol/isol-1-3-valve eq 1
 			</test>
 		</switch>
 		
@@ -691,8 +691,8 @@
 		<switch name="/systems/pneumatics/light/isol-1-2-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/isol/isol-1-2-status ne 0
-				/systems/pneumatics/isol/isol-1-2-status ne 1
+				/systems/pneumatics/isol/isol-1-2-valve ne 0
+				/systems/pneumatics/isol/isol-1-2-valve ne 1
 				/systems/pneumatics/system ne 1
 			</test>
 		</switch>
@@ -700,8 +700,8 @@
 		<switch name="/systems/pneumatics/light/isol-1-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/isol/isol-1-3-status ne 0
-				/systems/pneumatics/isol/isol-1-3-status ne 1
+				/systems/pneumatics/isol/isol-1-3-valve ne 0
+				/systems/pneumatics/isol/isol-1-3-valve ne 1
 				/systems/pneumatics/system ne 1
 			</test>
 		</switch>

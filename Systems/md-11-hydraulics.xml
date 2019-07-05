@@ -480,7 +480,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/hydraulics/r-eng-1-pump-status">
+		<switch name="/systems/hydraulics/r-eng-1-pump-valve">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- ON -->
 				/controls/hydraulics/switches/r-pump-1 eq 1
@@ -495,7 +495,7 @@
 		<switch name="/systems/hydraulics/r-eng-1-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/r-eng-1-pump-psi-input">
-				/systems/hydraulics/r-eng-1-pump-status eq 1
+				/systems/hydraulics/r-eng-1-pump-valve eq 1
 			</test>
 		</switch>
 		
@@ -585,7 +585,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/hydraulics/r-eng-2-pump-status">
+		<switch name="/systems/hydraulics/r-eng-2-pump-valve">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- ON -->
 				/controls/hydraulics/switches/r-pump-2 eq 1
@@ -600,7 +600,7 @@
 		<switch name="/systems/hydraulics/r-eng-2-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/r-eng-2-pump-psi-input">
-				/systems/hydraulics/r-eng-2-pump-status eq 1
+				/systems/hydraulics/r-eng-2-pump-valve eq 1
 			</test>
 		</switch>
 		
@@ -690,7 +690,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/hydraulics/r-eng-3-pump-status">
+		<switch name="/systems/hydraulics/r-eng-3-pump-valve">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- ON -->
 				/controls/hydraulics/switches/r-pump-3 eq 1
@@ -705,7 +705,7 @@
 		<switch name="/systems/hydraulics/r-eng-3-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/r-eng-3-pump-psi-input">
-				/systems/hydraulics/r-eng-3-pump-status eq 1
+				/systems/hydraulics/r-eng-3-pump-valve eq 1
 			</test>
 		</switch>
 		
@@ -810,7 +810,7 @@
 		</actuator>
 		
 		<!-- Reversible Motor Pump 1-3 -->
-		<actuator name="/systems/hydraulics/rmp/rmp-1-3-status">
+		<actuator name="/systems/hydraulics/rmp/rmp-1-3-valve">
 			<input>/controls/hydraulics/switches/rmp-1-3</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
@@ -818,7 +818,7 @@
 		<switch name="/systems/hydraulics/rmp/sys-1-to-sys-3">
 			<default value="0"/>
 			<test logic="AND" value="/systems/hydraulics/sys-1-pre-psi-cmd">
-				/systems/hydraulics/rmp/rmp-1-3-status eq 1
+				/systems/hydraulics/rmp/rmp-1-3-valve eq 1
 				/systems/failures/hydraulics/rmp-1-3 ne 1
 			</test>
 		</switch>
@@ -826,13 +826,13 @@
 		<switch name="/systems/hydraulics/rmp/sys-3-to-sys-1">
 			<default value="0"/>
 			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
-				/systems/hydraulics/rmp/rmp-1-3-status eq 1
+				/systems/hydraulics/rmp/rmp-1-3-valve eq 1
 				/systems/failures/hydraulics/rmp-1-3 ne 1
 			</test>
 		</switch>
 		
 		<!-- Reversible Motor Pump 2-3 -->
-		<actuator name="/systems/hydraulics/rmp/rmp-2-3-status">
+		<actuator name="/systems/hydraulics/rmp/rmp-2-3-valve">
 			<input>/controls/hydraulics/switches/rmp-2-3</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
@@ -840,7 +840,7 @@
 		<switch name="/systems/hydraulics/rmp/sys-2-to-sys-3">
 			<default value="0"/>
 			<test logic="AND" value="/systems/hydraulics/sys-2-pre-psi-cmd">
-				/systems/hydraulics/rmp/rmp-2-3-status eq 1
+				/systems/hydraulics/rmp/rmp-2-3-valve eq 1
 				/systems/failures/hydraulics/rmp-2-3 ne 1
 			</test>
 		</switch>
@@ -848,7 +848,7 @@
 		<switch name="/systems/hydraulics/rmp/sys-3-to-sys-2">
 			<default value="0"/>
 			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
-				/systems/hydraulics/rmp/rmp-2-3-status eq 1
+				/systems/hydraulics/rmp/rmp-2-3-valve eq 1
 				/systems/failures/hydraulics/rmp-2-3 ne 1
 			</test>
 		</switch>
@@ -857,9 +857,9 @@
 		<switch name="/systems/hydraulics/rmp/sys-multi-thru-sys-3">
 			<default value="0"/>
 			<test logic="AND" value="/systems/hydraulics/sys-3-rmp-psi-cmd">
-				/systems/hydraulics/rmp/rmp-1-3-status eq 1
+				/systems/hydraulics/rmp/rmp-1-3-valve eq 1
 				/systems/failures/hydraulics/rmp-1-3 ne 1
-				/systems/hydraulics/rmp/rmp-2-3-status eq 1
+				/systems/hydraulics/rmp/rmp-2-3-valve eq 1
 				/systems/failures/hydraulics/rmp-2-3 ne 1
 			</test>
 		</switch>
@@ -953,16 +953,16 @@
 		<switch name="/systems/hydraulics/light/rmp-1-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/hydraulics/rmp/rmp-1-3-status ne 0
-				/systems/hydraulics/rmp/rmp-1-3-status ne 1
+				/systems/hydraulics/rmp/rmp-1-3-valve ne 0
+				/systems/hydraulics/rmp/rmp-1-3-valve ne 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/hydraulics/light/rmp-2-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/hydraulics/rmp/rmp-2-3-status ne 0
-				/systems/hydraulics/rmp/rmp-2-3-status ne 1
+				/systems/hydraulics/rmp/rmp-2-3-valve ne 0
+				/systems/hydraulics/rmp/rmp-2-3-valve ne 1
 			</test>
 		</switch>
 	

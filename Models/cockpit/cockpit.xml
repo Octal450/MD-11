@@ -40,7 +40,7 @@
 </animation>
 
 	<animation>
-		<name>Panel lighting</name>
+		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>dashboard.text</object-name>
 		<object-name>sidepanel.text</object-name>
@@ -53,7 +53,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/main-panel-norm</factor-prop>
+			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	

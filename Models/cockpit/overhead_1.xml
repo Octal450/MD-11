@@ -7,7 +7,7 @@
 	<path>overhead_1.ac</path>
 	
 	<animation>
-		<name>Panel lighting</name>
+		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>overhead.text</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
@@ -31,23 +31,24 @@
 		<object-name>CabinPressNeedle</object-name>
 		<object-name>Plane.022</object-name>
 		<object-name>CVRNeedle</object-name>
+		<object-name>ovhd_lcd</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-panel-norm</factor-prop>
+			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
 		</emission>
 	</animation>
-
+	
 	<animation>
-		<name>Panel lighting</name>
+		<name>Integ Panel LCD lighting</name>
 		<type>material</type>
-		<object-name>ovhd_lcd</object-name>
+		<object-name>LCD</object-name>
 		<emission>
-			<red>1</red>
-			<green>0</green>
-			<blue>0</blue>
-			<factor-prop>controls/lighting/overhead-panel-norm</factor-prop>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/overhead-lcd-integ-norm</factor-prop>
 		</emission>
 	</animation>
 
@@ -62,7 +63,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-panel-knb</property>
+				<property>controls/lighting/overhead-integ-knb</property>
 				<step>0.05</step>
 				<max>1</max>
 			</binding>
@@ -73,7 +74,7 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-panel-knb</property>
+				<property>controls/lighting/overhead-integ-knb</property>
 				<step>-0.05</step>
 				<min>0</min>
 			</binding>
@@ -91,7 +92,7 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-panel-knb</property>
+				<property>controls/lighting/main-integ-knb</property>
 				<step>0.05</step>
 				<max>1</max>
 			</binding>
@@ -102,7 +103,7 @@
 			<repeatable type="bool">true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-panel-knb</property>
+				<property>controls/lighting/main-integ-knb</property>
 				<step>-0.05</step>
 				<min>0</min>
 			</binding>
@@ -153,7 +154,7 @@
 		<type>rotate</type>
 		<object-name>maininteg.knob</object-name>
 		<object-name>maininteg.indicator</object-name>
-		<property>controls/lighting/main-panel-knb</property>
+		<property>controls/lighting/main-integ-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -172,7 +173,7 @@
 		<type>rotate</type>
 		<object-name>ovhdinteg.knob</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
-		<property>controls/lighting/overhead-panel-knb</property>
+		<property>controls/lighting/overhead-integ-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -5588,8 +5589,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank1Trans</object-name>
-		<object-name>Tank1Trans.low</object-name>
 		<object-name>Tank1Trans.on</object-name>
+		<object-name>Tank1Trans.low</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5655,6 +5656,22 @@
 	</animation>
 	<animation>
 		<type>select</type>
+		<object-name>Tank1Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/trans-1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
 		<object-name>Tank1Trans.low</object-name>
 		<condition>
 			<or>
@@ -5668,22 +5685,6 @@
 						<value>1</value>
 					</equals>
 				</and>
-				<equals>
-					<property>controls/switches/annun-test</property>
-					<value>1</value>
-				</equals>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Tank1Trans.on</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>controls/fuel/switches/trans-1</property>
-					<value>1</value>
-				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6017,8 +6018,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank2Trans</object-name>
-		<object-name>Tank2Trans.low</object-name>
 		<object-name>Tank2Trans.on</object-name>
+		<object-name>Tank2Trans.low</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6084,6 +6085,22 @@
 	</animation>
 	<animation>
 		<type>select</type>
+		<object-name>Tank2Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/trans-2</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
 		<object-name>Tank2Trans.low</object-name>
 		<condition>
 			<or>
@@ -6097,22 +6114,6 @@
 						<value>1</value>
 					</equals>
 				</and>
-				<equals>
-					<property>controls/switches/annun-test</property>
-					<value>1</value>
-				</equals>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Tank2Trans.on</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>controls/fuel/switches/trans-2</property>
-					<value>1</value>
-				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6446,8 +6447,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank3Trans</object-name>
-		<object-name>Tank3Trans.low</object-name>
 		<object-name>Tank3Trans.on</object-name>
+		<object-name>Tank3Trans.low</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6513,6 +6514,22 @@
 	</animation>
 	<animation>
 		<type>select</type>
+		<object-name>Tank3Trans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/trans-3</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
 		<object-name>Tank3Trans.low</object-name>
 		<condition>
 			<or>
@@ -6526,22 +6543,6 @@
 						<value>1</value>
 					</equals>
 				</and>
-				<equals>
-					<property>controls/switches/annun-test</property>
-					<value>1</value>
-				</equals>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Tank3Trans.on</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>controls/fuel/switches/trans-3</property>
-					<value>1</value>
-				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6640,10 +6641,16 @@
 		<object-name>LTrans.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/trans-aux-l-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-aux-l</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/trans-aux-l-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>
@@ -6741,10 +6748,16 @@
 		<object-name>RTrans.low</object-name>
 		<condition>
 			<or>
-				<equals>
-					<property>systems/fuel/light/trans-aux-r-low</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-aux-r</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/trans-aux-r-low</property>
+						<value>1</value>
+					</equals>
+				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>

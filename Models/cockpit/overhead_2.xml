@@ -21,14 +21,14 @@
 	</animation>
 	
 	<animation>
-		<name>Panel lighting</name>
+		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>overhead.text.2</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-panel-norm</factor-prop>
+			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	
