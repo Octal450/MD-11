@@ -2483,7 +2483,7 @@
 							</greater-than-equals>
 						</or>
 						<equals>
-							<property>controls/APU/start</property>
+							<property>controls/apu/start</property>
 							<value>1</value>
 						</equals>
 					</and>
@@ -5345,7 +5345,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-1</property>
-						<value>0</value>
+						<value>1</value>
 					</equals>
 				</and>
 				<equals>
@@ -5367,7 +5367,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-1</property>
-						<value>1</value>
+						<value>2</value>
 					</equals>
 				</and>
 				<equals>
@@ -5774,7 +5774,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-2</property>
-						<value>0</value>
+						<value>1</value>
 					</equals>
 				</and>
 				<equals>
@@ -5796,7 +5796,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-2</property>
-						<value>1</value>
+						<value>2</value>
 					</equals>
 				</and>
 				<equals>
@@ -6203,7 +6203,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-3</property>
-						<value>0</value>
+						<value>1</value>
 					</equals>
 				</and>
 				<equals>
@@ -6225,7 +6225,7 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/fill-arm-3</property>
-						<value>1</value>
+						<value>2</value>
 					</equals>
 				</and>
 				<equals>

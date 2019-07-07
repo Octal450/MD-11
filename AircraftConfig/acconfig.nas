@@ -219,7 +219,7 @@ var colddark = func {
 }
 var colddark_b = func {
 	# Continues the Cold and Dark script, after engines fully shutdown.
-	setprop("/controls/APU/start", 0);
+	setprop("/controls/apu/start", 0);
 	settimer(func {
 		setprop("/controls/gear/brake-left", 0);
 		setprop("/controls/gear/brake-right", 0);
@@ -253,13 +253,13 @@ var beforestart = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-		setprop("/controls/APU/start", 0);
+		setprop("/controls/apu/start", 0);
 		
 		# Now the Startup!
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
 		settimer(func {
-			setprop("/controls/APU/start", 1);
+			setprop("/controls/apu/start", 1);
 			var apu_rpm_chk = setlistener("/systems/apu/n2", func {
 				if (getprop("/systems/apu/n2") >= 98) {
 					removelistener(apu_rpm_chk);
@@ -315,13 +315,13 @@ var taxi = func {
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/controls/flight/elevator-trim", -0.25);
 		libraries.systemsInit();
-		setprop("/controls/APU/start", 0);
+		setprop("/controls/apu/start", 0);
 		
 		# Now the Startup!
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
 		settimer(func {
-			setprop("/controls/APU/start", 1);
+			setprop("/controls/apu/start", 1);
 			var apu_rpm_chk = setlistener("/systems/apu/n2", func {
 				if (getprop("/systems/apu/n2") >= 98) {
 					removelistener(apu_rpm_chk);
@@ -361,7 +361,7 @@ var taxi_c = func {
 }
 var taxi_d = func {
 	# After Start items.
-	setprop("/controls/APU/start", 0);
+	setprop("/controls/apu/start", 0);
 	setprop("/controls/gear/brake-left", 0);
 	setprop("/controls/gear/brake-right", 0);
 	setprop("/systems/acconfig/autoconfig-running", 0);

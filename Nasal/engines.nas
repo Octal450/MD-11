@@ -17,14 +17,14 @@ setprop("/systems/apu/oilqty", oilqty);
 setprop("/systems/apu/n1", 0);
 setprop("/systems/apu/n2", 0);
 setprop("/systems/apu/egt", oat);
-setprop("/controls/APU/on-light", 0);
+setprop("/controls/apu/on-light", 0);
 setprop("/controls/engines/engine[0]/reverser", 0);
 setprop("/controls/engines/engine[1]/reverser", 0);
 setprop("/controls/engines/engine[2]/reverser", 0);
 
 # Start APU
-setlistener("/controls/APU/start", func {
-	if (getprop("/controls/APU/start") == 1 and (getprop("/systems/electrical/bus/dc-bat") >= 25 or getprop("/systems/electrical/bus/dc-1") >= 25 or getprop("/systems/electrical/bus/dc-2") >= 25 or getprop("/systems/electrical/bus/dc-3") >= 25)) {
+setlistener("/controls/apu/start", func {
+	if (getprop("/controls/apu/start") == 1 and (getprop("/systems/electrical/bus/dc-bat") >= 25 or getprop("/systems/electrical/bus/dc-1") >= 25 or getprop("/systems/electrical/bus/dc-2") >= 25 or getprop("/systems/electrical/bus/dc-3") >= 25)) {
 		if (getprop("/systems/acconfig/autoconfig-running") == 0) {
 			interpolate("/systems/apu/n1", apu_max, spinup_time);
 			interpolate("/systems/apu/n2", apu_max_n2, spinup_time);
@@ -34,16 +34,16 @@ setlistener("/controls/APU/start", func {
 			apu_start_loop.start();
 		} else if (getprop("/systems/acconfig/autoconfig-running") == 1) {
 			apu_start_loop.stop();
-			setprop("/controls/APU/on-light", 1);
+			setprop("/controls/apu/on-light", 1);
 			interpolate("/systems/apu/n1", apu_max, 5);
 			interpolate("/systems/apu/n2", apu_max_n2, 5);
 			interpolate("/systems/apu/egt", apu_egt_max, 5);
 			oilqty = getprop("/systems/apu/oilqty");
 			setprop("/systems/apu/oilqty", oilqty - oildrop);
 		}
-	} else if (getprop("/controls/APU/start") == 0) {
+	} else if (getprop("/controls/apu/start") == 0) {
 		apu_start_loop.stop();
-		setprop("/controls/APU/on-light", 0);
+		setprop("/controls/apu/on-light", 0);
 		apu_egt_check.stop();
 		apu_egt2_check.stop();
 		apu_stop();
@@ -68,15 +68,15 @@ var apu_egt2_check = maketimer(0.5, func {
 var apu_start_loop = maketimer(0.5, func {
 	if (getprop("/systems/apu/n2") < 94.9) {
 	# Remember that this STOPS when APU N2 is greater than 94.9%
-		apu_on_lt2 = getprop("/controls/APU/on-light");
+		apu_on_lt2 = getprop("/controls/apu/on-light");
 		if (apu_on_lt2 == 0) {
-			setprop("/controls/APU/on-light", 1);
+			setprop("/controls/apu/on-light", 1);
 		} else {
-			setprop("/controls/APU/on-light", 0);
+			setprop("/controls/apu/on-light", 0);
 		}
 	} else {
 		apu_start_loop.stop();
-		setprop("/controls/APU/on-light", 1);
+		setprop("/controls/apu/on-light", 1);
 	}
 	
 	oilqty = getprop("/systems/apu/oilqty");

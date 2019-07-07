@@ -89,7 +89,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/APU/start</property>
+				<property>controls/apu/start</property>
 		    </binding>
 			<binding>
 				<command>nasal</command>
@@ -103,7 +103,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/APU/on-light</property>
+					<property>controls/apu/on-light</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -120,7 +120,7 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/APU/start</property>
+						<property>controls/apu/start</property>
 						<value>0</value>
 					</equals>
 					<greater-than>
