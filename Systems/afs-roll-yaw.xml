@@ -271,8 +271,8 @@
 						</table>
 						<table> <!-- Reduce deflection if outer ailerons are not locked -->
 							<property>/fdm/jsbsim/hydraulics/aileron-out-enable</property>
-							<entry><ind>0</ind><dep>1.0</dep></entry>
-							<entry><ind>1</ind><dep>0.6</dep></entry>
+							<entry><ind>0</ind><dep>1.00</dep></entry>
+							<entry><ind>1</ind><dep>0.74</dep></entry> <!-- Calculated based on Cl moment -->
 						</table>
 					</product>
 				</expression>

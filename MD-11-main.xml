@@ -37,18 +37,14 @@
 						<label>Aircraft Config</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.main_dlg.open();
-							</script>
+							<script>acconfig.main_dlg.open();</script>
 						</binding>
 					</item>
 					<item>
 						<label>About This Aircraft</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.about_dlg.open();
-							</script>
+							<script>acconfig.about_dlg.open();</script>
 						</binding>
 					</item>
 				</menu>
@@ -75,27 +71,21 @@
 						<label>Captain's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							canvas_pfd.showPFD1();
-							</script>
+							<script>canvas_pfd.showPFD1();</script>
 						</binding>
 					</item>
 					<item>
 						<label>First Officer's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							canvas_pfd.showPFD2();
-							</script>
+							<script>canvas_pfd.showPFD2();</script>
 						</binding>
 					</item>
 					<item>
 						<label>EAD</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							canvas_ead.showEAD();
-							</script>
+							<script>canvas_ead.showEAD();</script>
 						</binding>
 					</item>
 				</menu>
@@ -105,9 +95,7 @@
 						<label>Select Livery</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							aircraft.livery.dialog.toggle();
-							</script>
+							<script>aircraft.livery.dialog.toggle();</script>
 						</binding>
 					</item>
 					<item>
