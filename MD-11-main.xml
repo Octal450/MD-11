@@ -391,7 +391,7 @@
 			<tank n="4"><name>Tank 3 Outboard</name></tank>
 			<tank n="5"><name>Upper Aux Tank</name></tank>
 			<tank n="6"><name>Lower Aux Tank</name></tank>
-			<tank n="7"><name>Tail Tank</name></tank>
+			<tank n="7"><name>Tail Tank (INOP)</name></tank>
 			<tank n="8"><name>Engine 1 Pipe</name></tank>
 			<tank n="9"><name>Engine 2 Pipe</name></tank>
 			<tank n="10"><name>Engine 3 Pipe</name></tank>
@@ -641,6 +641,9 @@
 					<right-in-active type="bool">0</right-in-active>
 					<right-out-active type="bool">0</right-out-active>
 				</lsas>
+				<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>
+				<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
+				<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
 				<yaw>
 					<avail-upr type="bool">0</avail-upr>
 					<avail-lwr type="bool">0</avail-lwr>
@@ -1264,46 +1267,48 @@
 		</nav>
 		<tcas>
 			<inputs>
-				<mode type="int">3</mode><!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
+				<mode type="int">3</mode>
 			</inputs>
 			<voice>
 				<file-prefix type="string">Sounds/tcas/female/</file-prefix>
-				<!-- sound file path and prefix -->
 			</voice>
-			<serviceable type="bool">true</serviceable><!-- TCAS ENABLE -->
-			<speaker><!-- Speaker Configuration -->
-				<max-dist> 2 </max-dist><!-- Max. distance where speaker is heard -->
-				<reference-dist> 1 </reference-dist> <!-- Distance to pilot -->
-				<volume> 0.8 </volume> <!-- Volume at reference distance -->
+			<serviceable type="bool">true</serviceable>
+			<speaker>
+				<max-dist>2</max-dist>
+				<reference-dist>1</reference-dist>
+				<volume>0.8</volume>
 			</speaker>
 		</tcas>
 	</instrumentation>
 	
 	<it-autoflight>
-		<custom>
-			<alt-knb>0</alt-knb>
-			<hdg-sel>0</hdg-sel>
-			<hdg-knb>0</hdg-knb>
-			<spd-knb>0</spd-knb>
-			<vs-knb>0</vs-knb>
+		<custom n="0">
+			<alt-knb type="int">0</alt-knb>
+			<hdg-sel type="int">0</hdg-sel>
+			<hdg-knb type="int">0</hdg-knb>
+			<spd-knb type="int">0</spd-knb>
+			<vs-knb type="int">0</vs-knb>
 		</custom>
-		<input>
-			<ovrd1>0</ovrd1>
-			<ovrd2>0</ovrd2>
+		<input n="0">
+			<fpa type="double">0</fpa>
+			<ovrd1 type="bool">0</ovrd1>
+			<ovrd2 type="bool">0</ovrd2>
+			<vs type="int">0</vs>
 		</input>
-		<output>
-			<ap1>0</ap1>
-			<ap2>0</ap2>
-			<lat>0</lat>
-			<vert>0</vert>
+		<output n="0">
+			<ap1 type="bool">0</ap1>
+			<ap2 type="bool">0</ap2>
+			<lat type="int">0</lat>
+			<thr-mode type="int">0</thr-mode>
+			<vert type="int">0</vert>
 		</output>
 	</it-autoflight>
 	
 	<modes>
-		<altimeter>
-			<inhg>1</inhg>
-			<std>0</std>
-			<oldqnh>29.92</oldqnh>
+		<altimeter n="0">
+			<inhg type="bool">1</inhg>
+			<oldqnh type="double">29.92</oldqnh>
+			<std type="bool">0</std>
 		</altimeter>
 	</modes>
 	

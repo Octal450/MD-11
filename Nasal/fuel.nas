@@ -37,9 +37,9 @@ var FUEL = {
 		me.Switch.fill1.setBoolValue(0);
 		me.Switch.fill2.setBoolValue(0);
 		me.Switch.fill3.setBoolValue(0);
-		me.Switch.pumps1.setBoolValue(1); # Should be 0
-		me.Switch.pumps2.setBoolValue(1); # Should be 0
-		me.Switch.pumps3.setBoolValue(1); # Should be 0
+		me.Switch.pumps1.setBoolValue(0);
+		me.Switch.pumps2.setBoolValue(0);
+		me.Switch.pumps3.setBoolValue(0);
 		me.Switch.transAuxL.setBoolValue(0);
 		me.Switch.transAuxR.setBoolValue(0);
 		me.Switch.trans1.setBoolValue(0);

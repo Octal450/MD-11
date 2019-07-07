@@ -40,16 +40,19 @@
 		<lag_filter name="fcc/throttle-lever[0]">
 			<input>/controls/engines/engine[0]/throttle-pos</input>
 			<c1>20</c1>
+			<output>fcc/throttle-lever-feedback[0]</output>
 		</lag_filter>
 		
 		<lag_filter name="fcc/throttle-lever[1]">
 			<input>/controls/engines/engine[1]/throttle-pos</input>
 			<c1>20</c1>
+			<output>fcc/throttle-lever-feedback[1]</output>
 		</lag_filter>
 		
 		<lag_filter name="fcc/throttle-lever[2]">
 			<input>/controls/engines/engine[2]/throttle-pos</input>
 			<c1>20</c1>
+			<output>fcc/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
 		<lag_filter name="fcc/reverse-lever[0]">

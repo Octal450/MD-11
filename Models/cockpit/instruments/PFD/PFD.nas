@@ -1120,11 +1120,13 @@ var PFD_update_fast = maketimer(0.05, func {
 var showPFD1 = func {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(PFD1_display);
+	dlg.set("title", "Captain's PFD");
 }
 
 var showPFD2 = func {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(PFD2_display);
+	dlg.set("title", "First Officer's PFD");
 }
 
 var roundabout = func(x) {

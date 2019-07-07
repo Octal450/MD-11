@@ -7,8 +7,8 @@
 # Initialize all used variables and property nodes
 # Sim
 var Controls = {
-	aileron: props.globals.getNode("/controls/flight/aileron", 1),
-	elevator: props.globals.getNode("/controls/flight/elevator", 1),
+	aileron: props.globals.getNode("/controls/flight/aileron", 1), # Not written to, so lets use actual yoke value
+	elevator: props.globals.getNode("/controls/flight/elevator", 1), # Not written to, so lets use actual yoke value
 	rudder: props.globals.getNode("/controls/flight/rudder", 1),
 };
 
