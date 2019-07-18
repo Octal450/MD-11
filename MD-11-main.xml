@@ -979,7 +979,6 @@
 			<key n="88">
 				<name>X</name>
 				<desc>Increase field of view</desc>
-				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>libraries.fovZoom(1);</script>
@@ -988,7 +987,6 @@
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
-				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>libraries.fovZoom(-1);</script>
