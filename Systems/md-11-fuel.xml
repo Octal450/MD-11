@@ -827,6 +827,23 @@
 			</test>
 		</switch>
 		
+		<!-- Inner Tanks flow to Outer Tanks --> <!-- Unconfirmed behavior, but happens as far as I know -->
+		<switch name="/systems/fuel/internal/tank-1-inner-outer">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				propulsion/tank[0]/contents-lbs lt 6490
+				propulsion/tank[1]/contents-lbs gt 6500
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-inner-outer">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				propulsion/tank[4]/contents-lbs lt 6490
+				propulsion/tank[3]/contents-lbs gt 6500
+			</test>
+		</switch>
+		
 		<!-- Lower Aux Tank to Upper Aux Tank -->
 		<switch name="/systems/fuel/internal/aux-tank-lower-upper">
 			<default value="0"/>
@@ -947,6 +964,7 @@
 		<!-- Tank Final Flow Rates -->
 		<summer name="/systems/fuel/internal/tank-1-outer-flow-rate">
 			<input>-/systems/fuel/internal/tank-1-outer-inner</input>
+			<input>/systems/fuel/internal/tank-1-inner-outer</input>
 			<output>propulsion/tank[0]/external-flow-rate-pps</output>
 		</summer>
 		
@@ -954,6 +972,7 @@
 			<input>-/systems/fuel/internal/tank-1-inner-eng-1</input>
 			<input>-/systems/fuel/internal/tank-1-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-1-inner-eng-3</input>
+			<input>-/systems/fuel/internal/tank-1-inner-outer</input>
 			<input>/systems/fuel/internal/tank-1-outer-inner</input>
 			<input>/systems/fuel/internal/tank-2-tank-1-inner</input>
 			<input>/systems/fuel/internal/aux-tank-upper-tank-1-inner</input>
@@ -977,6 +996,7 @@
 			<input>-/systems/fuel/internal/tank-3-inner-eng-1</input>
 			<input>-/systems/fuel/internal/tank-3-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-3-inner-eng-3</input>
+			<input>-/systems/fuel/internal/tank-3-inner-outer</input>
 			<input>/systems/fuel/internal/tank-3-outer-inner</input>
 			<input>/systems/fuel/internal/tank-2-tank-3-inner</input>
 			<input>/systems/fuel/internal/aux-tank-upper-tank-3-inner</input>
@@ -985,6 +1005,7 @@
 		
 		<summer name="/systems/fuel/internal/tank-3-outer-flow-rate">
 			<input>-/systems/fuel/internal/tank-3-outer-inner</input>
+			<input>/systems/fuel/internal/tank-3-inner-outer</input>
 			<output>propulsion/tank[4]/external-flow-rate-pps</output>
 		</summer>
 		
