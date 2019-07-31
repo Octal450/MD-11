@@ -148,16 +148,22 @@ var ELEC = {
 			voltGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-volt"),
 		},
 		Idg1: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg-1/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg-1/output-volt"),
+			outputHertz: props.globals.getNode("/systems/electrical/sources/idg-1/output-hertz"),
+			outputVolt: props.globals.getNode("/systems/electrical/sources/idg-1/output-volt"),
+			pmgHertz: props.globals.getNode("/systems/electrical/sources/idg-1/pmg-hertz"),
+			pmgVolt: props.globals.getNode("/systems/electrical/sources/idg-1/pmg-volt"),
 		},
 		Idg2: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg-2/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg-2/output-volt"),
+			outputHertz: props.globals.getNode("/systems/electrical/sources/idg-2/output-hertz"),
+			outputVolt: props.globals.getNode("/systems/electrical/sources/idg-2/output-volt"),
+			pmgHertz: props.globals.getNode("/systems/electrical/sources/idg-2/pmg-hertz"),
+			pmgVolt: props.globals.getNode("/systems/electrical/sources/idg-2/pmg-volt"),
 		},
 		Idg3: {
-			hertz: props.globals.getNode("/systems/electrical/sources/idg-3/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/idg-3/output-volt"),
+			outputHertz: props.globals.getNode("/systems/electrical/sources/idg-3/output-hertz"),
+			outputVolt: props.globals.getNode("/systems/electrical/sources/idg-3/output-volt"),
+			pmgHertz: props.globals.getNode("/systems/electrical/sources/idg-3/pmg-hertz"),
+			pmgVolt: props.globals.getNode("/systems/electrical/sources/idg-3/pmg-volt"),
 		},
 		Si1: {
 			volt: props.globals.getNode("/systems/electrical/sources/si-1/output-volt"),
@@ -237,6 +243,9 @@ var ELEC = {
 		me.Source.Ext.cart.setBoolValue(0);
 	},
 	resetFail: func() {
+		me.Switch.genDrive1.setBoolValue(1);
+		me.Switch.genDrive2.setBoolValue(1);
+		me.Switch.genDrive3.setBoolValue(1);
 		me.Fail.apu.setBoolValue(0);
 		me.Fail.bat1.setBoolValue(0);
 		me.Fail.bat2.setBoolValue(0);

@@ -2994,28 +2994,31 @@
 		<object-name>Drive1.disc</object-name>
 		<object-name>Drive1.fault</object-name>
 		<action>
-			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<and>
+						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-bat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/electrical/switches/gen-drive-1</property>
@@ -3023,7 +3026,11 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+				<script>
+					if (getprop("/devices/status/keyboard/shift") == 1) {
+						setprop("/sim/sounde/oh-btn", 1);
+					}
+				</script>
 			</binding>
 		</action>
 	</animation>
@@ -3173,28 +3180,31 @@
 		<object-name>Drive2.disc</object-name>
 		<object-name>Drive2.fault</object-name>
 		<action>
-			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<and>
+						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-bat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/electrical/switches/gen-drive-2</property>
@@ -3202,7 +3212,11 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+				<script>
+					if (getprop("/devices/status/keyboard/shift") == 1) {
+						setprop("/sim/sounde/oh-btn", 1);
+					}
+				</script>
 			</binding>
 		</action>
 	</animation>
@@ -3352,28 +3366,31 @@
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
 		<action>
-			<button>1</button> <!-- This should be hard to do as it is not reversable! -->
+			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<and>
+						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<or>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-bat</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-1</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-2</property>
+								<value>25</value>
+							</greater-than-equals>
+							<greater-than-equals>
+								<property>systems/electrical/bus/dc-3</property>
+								<value>25</value>
+							</greater-than-equals>
+						</or>
+					</and>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/electrical/switches/gen-drive-3</property>
@@ -3381,7 +3398,11 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+				<script>
+					if (getprop("/devices/status/keyboard/shift") == 1) {
+						setprop("/sim/sounde/oh-btn", 1);
+					}
+				</script>
 			</binding>
 		</action>
 	</animation>

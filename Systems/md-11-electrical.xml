@@ -227,182 +227,237 @@
 			</test>
 		</switch>
 		
+		<!-- IDG at 100% N2 9970RPM - unknown how accurate this is, CSD target is 8000RPM -->
 		<!-- IDG Engine 1 -->
-		<fcs_function name="/systems/electrical/sources/idg-1/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<pure_gain name="/systems/electrical/sources/idg-1/drive-rpm-input">
+			<input>/engines/engine[0]/n2-actual</input>
+			<gain>59.82</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-1/drive-rpm">
+			<input>/systems/electrical/sources/idg-1/drive-rpm-input</input>
+			<gain>/controls/electrical/switches/gen-drive-1</gain>
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/idg-1/csd-gearbox-ratio-cmd">
 			<function>
-				<table>
-					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
-					<tableData>
-						 60  1.25000000000
-						 70  1.07142857143
-						 75  1.00000000000
-						 80  0.93750000000
-						 90  0.83333333333
-						100  0.75000000000
-						110  0.68181818182
-						120  0.62500000000
-					</tableData>
-				</table>
+				<quotient>
+					<value>8000</value>
+					<property>/systems/electrical/sources/idg-1/drive-rpm</property>
+				</quotient>
 			</function>
+			<clipto>
+				<min>1.1</min>
+				<max>2.8</max>
+			</clipto>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg-1/csd-percent-rpm">
-			<input>/engines/engine[0]/n2-actual</input>
+		<lag_filter name="/systems/electrical/sources/idg-1/csd-gearbox-ratio">
+			<input>/systems/electrical/sources/idg-1/csd-gearbox-ratio-cmd</input>
+			<c1>40</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/electrical/sources/idg-1/csd-rpm">
+			<input>/systems/electrical/sources/idg-1/drive-rpm</input>
 			<gain>/systems/electrical/sources/idg-1/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg-1/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-1/pmg-volt">
 			<function>
 				<product>
-					<property>/controls/electrical/switches/gen-drive-1</property>
-					<ifthen>
-						<eq>
-							<property>/systems/failures/electrical/gen-1</property>
-							<value>1</value>
-						</eq>
-						<value>0</value>
-						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg-1/csd-percent-rpm</independentVar>
-							<tableData>
-								74    0
-								75  115
-							</tableData>
-						</table>
-					</ifthen>
+					<property>/systems/electrical/sources/idg-1/csd-rpm</property>
+					<quotient>
+						<value>115</value>
+						<value>8000</value>
+					</quotient>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg-1/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-1/pmg-hertz">
 			<function>
-				<ifthen>
-					<ge>
-						<property>/systems/electrical/sources/idg-1/output-volt</property>
-						<value>110</value>
-					</ge>
-					<value>400</value>
-					<value>0</value>
-				</ifthen>
+				<quotient>
+					<product>
+						<property>/systems/electrical/sources/idg-1/csd-rpm</property>
+						<value>4</value> <!-- Number of poles in generator -->
+					</product>
+					<value>80</value>
+				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/idg-1/gcr-relay">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/gen-1 eq 1
+				/systems/failures/electrical/gen-1 ne 1
+				/systems/electrical/sources/idg-1/csd-rpm ge 7650
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/electrical/sources/idg-1/output-volt">
+			<input>/systems/electrical/sources/idg-1/pmg-volt</input>
+			<gain>/systems/electrical/sources/idg-1/gcr-relay</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-1/output-hertz">
+			<input>/systems/electrical/sources/idg-1/pmg-hertz</input>
+			<gain>/systems/electrical/sources/idg-1/gcr-relay</gain>
+		</pure_gain>
 		
 		<!-- IDG Engine 2 -->
-		<fcs_function name="/systems/electrical/sources/idg-2/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<pure_gain name="/systems/electrical/sources/idg-2/drive-rpm-input">
+			<input>/engines/engine[1]/n2-actual</input>
+			<gain>59.82</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-2/drive-rpm">
+			<input>/systems/electrical/sources/idg-2/drive-rpm-input</input>
+			<gain>/controls/electrical/switches/gen-drive-2</gain>
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/idg-2/csd-gearbox-ratio-cmd">
 			<function>
-				<table>
-					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
-					<tableData>
-						 60  1.25000000000
-						 70  1.07142857143
-						 75  1.00000000000
-						 80  0.93750000000
-						 90  0.83333333333
-						100  0.75000000000
-						110  0.68181818182
-						120  0.62500000000
-					</tableData>
-				</table>
+				<quotient>
+					<value>8000</value>
+					<property>/systems/electrical/sources/idg-2/drive-rpm</property>
+				</quotient>
 			</function>
+			<clipto>
+				<min>1.1</min>
+				<max>2.8</max>
+			</clipto>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg-2/csd-percent-rpm">
-			<input>/engines/engine[1]/n2-actual</input>
+		<lag_filter name="/systems/electrical/sources/idg-2/csd-gearbox-ratio">
+			<input>/systems/electrical/sources/idg-2/csd-gearbox-ratio-cmd</input>
+			<c1>40</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/electrical/sources/idg-2/csd-rpm">
+			<input>/systems/electrical/sources/idg-2/drive-rpm</input>
 			<gain>/systems/electrical/sources/idg-2/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg-2/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-2/pmg-volt">
 			<function>
 				<product>
-					<property>/controls/electrical/switches/gen-drive-2</property>
-					<ifthen>
-						<eq>
-							<property>/systems/failures/electrical/gen-2</property>
-							<value>1</value>
-						</eq>
-						<value>0</value>
-						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg-2/csd-percent-rpm</independentVar>
-							<tableData>
-								74    0
-								75  115
-							</tableData>
-						</table>
-					</ifthen>
+					<property>/systems/electrical/sources/idg-2/csd-rpm</property>
+					<quotient>
+						<value>115</value>
+						<value>8000</value>
+					</quotient>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg-2/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-2/pmg-hertz">
 			<function>
-				<ifthen>
-					<ge>
-						<property>/systems/electrical/sources/idg-2/output-volt</property>
-						<value>110</value>
-					</ge>
-					<value>400</value>
-					<value>0</value>
-				</ifthen>
+				<quotient>
+					<product>
+						<property>/systems/electrical/sources/idg-2/csd-rpm</property>
+						<value>4</value> <!-- Number of poles in generator -->
+					</product>
+					<value>80</value>
+				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/idg-2/gcr-relay">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/gen-2 eq 1
+				/systems/failures/electrical/gen-2 ne 1
+				/systems/electrical/sources/idg-2/csd-rpm ge 7650
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/electrical/sources/idg-2/output-volt">
+			<input>/systems/electrical/sources/idg-2/pmg-volt</input>
+			<gain>/systems/electrical/sources/idg-2/gcr-relay</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-2/output-hertz">
+			<input>/systems/electrical/sources/idg-2/pmg-hertz</input>
+			<gain>/systems/electrical/sources/idg-2/gcr-relay</gain>
+		</pure_gain>
 		
 		<!-- IDG Engine 3 -->
-		<fcs_function name="/systems/electrical/sources/idg-3/csd-gearbox-ratio"> <!-- Goal is 75% RPM -->
+		<pure_gain name="/systems/electrical/sources/idg-3/drive-rpm-input">
+			<input>/engines/engine[2]/n2-actual</input>
+			<gain>59.82</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-3/drive-rpm">
+			<input>/systems/electrical/sources/idg-3/drive-rpm-input</input>
+			<gain>/controls/electrical/switches/gen-drive-3</gain>
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/idg-3/csd-gearbox-ratio-cmd">
 			<function>
-				<table>
-					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-					<tableData>
-						 60  1.25000000000
-						 70  1.07142857143
-						 75  1.00000000000
-						 80  0.93750000000
-						 90  0.83333333333
-						100  0.75000000000
-						110  0.68181818182
-						120  0.62500000000
-					</tableData>
-				</table>
+				<quotient>
+					<value>8000</value>
+					<property>/systems/electrical/sources/idg-3/drive-rpm</property>
+				</quotient>
 			</function>
+			<clipto>
+				<min>1.1</min>
+				<max>2.8</max>
+			</clipto>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/idg-3/csd-percent-rpm">
-			<input>/engines/engine[2]/n2-actual</input>
+		<lag_filter name="/systems/electrical/sources/idg-3/csd-gearbox-ratio">
+			<input>/systems/electrical/sources/idg-3/csd-gearbox-ratio-cmd</input>
+			<c1>40</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/electrical/sources/idg-3/csd-rpm">
+			<input>/systems/electrical/sources/idg-3/drive-rpm</input>
 			<gain>/systems/electrical/sources/idg-3/csd-gearbox-ratio</gain>
 		</pure_gain>
 		
-		<fcs_function name="/systems/electrical/sources/idg-3/output-volt">
+		<fcs_function name="/systems/electrical/sources/idg-3/pmg-volt">
 			<function>
 				<product>
-					<property>/controls/electrical/switches/gen-drive-3</property>
-					<ifthen>
-						<eq>
-							<property>/systems/failures/electrical/gen-3</property>
-							<value>1</value>
-						</eq>
-						<value>0</value>
-						<table>
-							<independentVar lookup="row">/systems/electrical/sources/idg-3/csd-percent-rpm</independentVar>
-							<tableData>
-								74    0
-								75  115
-							</tableData>
-						</table>
-					</ifthen>
+					<property>/systems/electrical/sources/idg-3/csd-rpm</property>
+					<quotient>
+						<value>115</value>
+						<value>8000</value>
+					</quotient>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/idg-3/output-hertz">
+		<fcs_function name="/systems/electrical/sources/idg-3/pmg-hertz">
 			<function>
-				<ifthen>
-					<ge>
-						<property>/systems/electrical/sources/idg-3/output-volt</property>
-						<value>110</value>
-					</ge>
-					<value>400</value>
-					<value>0</value>
-				</ifthen>
+				<quotient>
+					<product>
+						<property>/systems/electrical/sources/idg-3/csd-rpm</property>
+						<value>4</value> <!-- Number of poles in generator -->
+					</product>
+					<value>80</value>
+				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/idg-3/gcr-relay">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/gen-3 eq 1
+				/systems/failures/electrical/gen-3 ne 1
+				/systems/electrical/sources/idg-3/csd-rpm ge 7650
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/electrical/sources/idg-3/output-volt">
+			<input>/systems/electrical/sources/idg-3/pmg-volt</input>
+			<gain>/systems/electrical/sources/idg-3/gcr-relay</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/idg-3/output-hertz">
+			<input>/systems/electrical/sources/idg-3/pmg-hertz</input>
+			<gain>/systems/electrical/sources/idg-3/gcr-relay</gain>
+		</pure_gain>
 		
 		<!-- APU Gen -->
 		<fcs_function name="/systems/electrical/sources/apu/output-volt">
@@ -502,9 +557,8 @@
 		<!-- IDG AC Gen Bus Relays -->
 		<switch name="/systems/electrical/relay/idg-ac-gen-1/command-pos">
 			<default value="0"/>
-			<test logic="AND" value="1">
+			<test value="1">
 				/controls/electrical/switches/gen-1 eq 1
-				/controls/electrical/switches/gen-drive-1 eq 1
 			</test>
 		</switch>
 		
@@ -525,9 +579,8 @@
 		
 		<switch name="/systems/electrical/relay/idg-ac-gen-2/command-pos">
 			<default value="0"/>
-			<test logic="AND" value="1">
+			<test value="1">
 				/controls/electrical/switches/gen-2 eq 1
-				/controls/electrical/switches/gen-drive-2 eq 1
 			</test>
 		</switch>
 		
@@ -548,9 +601,8 @@
 		
 		<switch name="/systems/electrical/relay/idg-ac-gen-3/command-pos">
 			<default value="0"/>
-			<test logic="AND" value="1">
+			<test value="1">
 				/controls/electrical/switches/gen-3 eq 1
-				/controls/electrical/switches/gen-drive-3 eq 1
 			</test>
 		</switch>
 		
