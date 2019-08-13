@@ -848,7 +848,7 @@ var ITAF = {
 			if (Output.latTemp == 2) {
 				Output.apprArm.setBoolValue(0);
 			}
-			if (abs(Input.altDiff) > 50) { # SPD CLB or SPD DES
+			if (abs(Input.altDiff) >= 125) { # SPD CLB or SPD DES
 				if (Input.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) { # Usually set Thrust Mode Selector, but we do it now due to timer lag
 					Text.vert.setValue("SPD CLB");
 				} else {
