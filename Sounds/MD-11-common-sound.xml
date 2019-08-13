@@ -877,5 +877,31 @@
 			<max-dist>100.0</max-dist>
 		</gpws>
 		
+	    <caws>
+			<name>Altitude Alert</name>
+			<path>Aircraft/IDG-MD-11/Sounds/CAWS/altitude-alert.wav</path>
+			<mode>once</mode>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/internal/alt-alert</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/internal/alt-alert-aural</property>
+						<value>1</value>
+					</equals>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/mk-viii</property>
+						<value>25</value>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<volume>
+				<factor>8</factor>
+			</volume>
+			<reference-dist>20.0</reference-dist>
+			<max-dist>100.0</max-dist>
+		</caws>
 	</fx>
 </PropertyList>

@@ -118,6 +118,8 @@ var Input = {
 
 var Internal = {
 	alt: props.globals.initNode("/it-autoflight/internal/alt", 10000, "INT"),
+	altAlert: props.globals.initNode("/it-autoflight/internal/alt-alert", 0, "BOOL"),
+	altAlertAural: props.globals.initNode("/it-autoflight/internal/alt-alert-aural", 0, "BOOL"),
 	altCaptureActive: 0,
 	altDiff: 0,
 	altTemp: 0,
@@ -406,8 +408,28 @@ var ITAF = {
 			}
 		}
 		
+		# Altitude Alert
+		Text.vertTemp = Text.vert.getValue(); # We want it updated so that the sound doesn't play as wrong time
+		if (Output.vertTemp != 2 and Output.vertTemp != 6 and Misc.flapDeg.getValue() < 31.5) {
+			if (abs(Internal.altDiff) >= 150 and Text.vertTemp == "ALT HLD") {
+				Internal.altAlert.setBoolValue(1);
+			} else if (abs(Internal.altDiff) >= 150 and abs(Internal.altDiff) <= 1000 and Text.vertTemp != "ALT HLD") {
+				Internal.altAlert.setBoolValue(1);
+			} else {
+				Internal.altAlert.setBoolValue(0);
+			}
+		} else {
+			Internal.altAlert.setBoolValue(0);
+		}
+		
+		if (abs(Internal.altDiff) > 1050) {
+			Internal.altAlertAural.setBoolValue(1);
+		} else if (abs(Internal.altDiff) < 950 and !Internal.altAlert.getBoolValue()) {
+			Internal.altAlertAural.setBoolValue(0);
+		}
+		
 		# Thrust Mode Selector
-		if (Output.athrTemp and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.6) {
+		if (Output.athrTemp and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
 			Custom.retardLock = 1;
@@ -419,13 +441,13 @@ var ITAF = {
 				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp) {
 					Output.thrMode.setValue(2);
 					Text.thr.setValue("PITCH");
-					if (Internal.flchActive) {
+					if (Internal.flchActive) { # Set before mode change to prevent it from overwriting by mistake
 						Text.vert.setValue("SPD CLB");
 					}
 				} else {
 					Output.thrMode.setValue(1);
 					Text.thr.setValue("PITCH");
-					if (Internal.flchActive) {
+					if (Internal.flchActive) { # Set before mode change to prevent it from overwriting by mistake
 						Text.vert.setValue("SPD DES");
 					}
 				}
@@ -826,10 +848,12 @@ var ITAF = {
 			if (Output.latTemp == 2) {
 				Output.apprArm.setBoolValue(0);
 			}
-			Output.vert.setValue(1);
-			Internal.alt.setValue(Input.alt.getValue());
-			Internal.altDiff = Internal.alt.getValue() - Position.indicatedAltitudeFt.getValue();
-			if (abs(Internal.altDiff) >= 250) { # SPD CLB or SPD DES
+			if (abs(Input.altDiff) > 50) { # SPD CLB or SPD DES
+				if (Input.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) { # Usually set Thrust Mode Selector, but we do it now due to timer lag
+					Text.vert.setValue("SPD CLB");
+				} else {
+					Text.vert.setValue("SPD DES");
+				}
 				Custom.retardLock = 0;
 				Internal.altCaptureActive = 0;
 				Output.vert.setValue(4);
