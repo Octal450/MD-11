@@ -67,7 +67,7 @@
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
 							<tableData>
-									  0     1
+								      0     1
 								 0.5  0.20  0.20
 								 9.5  0.20  0.75
 								28.5  0.20  0.75
@@ -81,7 +81,7 @@
 		</fcs_function>
 		
 		<switch name="hydraulics/aileron-out-l/switch">
-			<default value="0.2"/> <!-- Doesn't droop apparently for some reason -->
+			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-l/function">
 				/systems/hydraulics/sys-2-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
@@ -246,7 +246,7 @@
 							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
 							<tableData>
-									  0     1
+								      0     1
 								 0.5  0.20  0.20
 								 9.5  0.20  0.75
 								28.5  0.20  0.75
@@ -260,7 +260,7 @@
 		</fcs_function>
 		
 		<switch name="hydraulics/aileron-out-r/switch">
-			<default value="0.2"/> <!-- Doesn't droop apparently for some reason -->
+			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-r/function">
 				/systems/hydraulics/sys-2-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
@@ -291,7 +291,7 @@
 	<channel name="Elevator L Outer">
 		
 		<switch name="hydraulics/elevator-out-l/switch">
-			<default value="0"/> <!-- Doesn't droop apparently for some reason -->
+			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-l-output">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-2-psi ge 1500
@@ -384,7 +384,7 @@
 	<channel name="Elevator R Outer">
 		
 		<switch name="hydraulics/elevator-out-r/switch">
-			<default value="0"/> <!-- Doesn't droop apparently for some reason -->
+			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-r-output">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-2-psi ge 1500
