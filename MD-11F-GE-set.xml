@@ -21,6 +21,12 @@
 			</livery>
 			<path>Aircraft/IDG-MD-11/Models/MD-11F-GE.xml</path>
 		</model>
+		<rating>
+			<FDM type="int">5</FDM>
+			<systems type="int">4</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">5</model>
+		</rating>
 		<sound>
 			<path>Aircraft/IDG-MD-11/Sounds/cf680-sound.xml</path>
 		</sound>
