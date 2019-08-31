@@ -291,7 +291,7 @@
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 						<tableData>
 							16500  0.3
 							20000  1.0
