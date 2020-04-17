@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2019 Josh Davidson (Octal450)");
+print("Copyright (c) 2017-2020 Josh Davidson (Octal450)");
 print("-----------------------------------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[0]/item[0]/enabled", 0);

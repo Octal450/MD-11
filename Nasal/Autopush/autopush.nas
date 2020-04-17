@@ -3,12 +3,11 @@
 #
 # Copyright (c) 2018 Autopush authors:
 #  Michael Danilov <mike.d.ft402 -eh- gmail.com>
-#  Josh Davidson http://github.com/Octal450
+#  Joshua Davidson http://github.com/Octal450
 #  Merspieler http://gitlab.com/merspieler
 # Distribute under the terms of GPLv2.
 
 
-var _enabled = 0;
 var _K_p = nil;
 var _F_p = nil;
 var _K_i = nil;
@@ -134,10 +133,9 @@ var _stop = func() {
 
 setlistener("/sim/model/autopush/enabled", func(p) {
 	var enabled = p.getValue();
-	if ((enabled > _enabled) and getprop("/sim/model/autopush/available")) {
+	if ((enabled) and getprop("/sim/model/autopush/available")) {
 		_start();
-	} else if (enabled < _enabled) {
+	} else {
 		_stop();
 	}
-	_enabled = enabled;
-});
+}, 1, 0);

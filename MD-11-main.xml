@@ -127,7 +127,7 @@
 				</menu>
 			</default>
 		</menubar>
-		<minimum-fg-version>2018.1.0</minimum-fg-version>
+		<minimum-fg-version>2019.2.0</minimum-fg-version>
 		<model n="0">
 			<autopush>
 				<available type="int">1</available>
@@ -135,8 +135,11 @@
 				<connected type="bool">0</connected>
 				<debug type="bool">0</debug>
 				<driver>
-					<F_V type="float">5.5</F_V>
+					<F_V type="float">8.0</F_V>
 					<K_psi type="float">0.03</K_psi>
+					<F_psi type="float">1.0</F_psi>
+					<K_psidot type="float">0.03</K_psidot>
+					<F_psidot type="float">1.0</F_psidot>
 				</driver>
 				<enabled type="int"/>
 				<F_d type="float">0.0</F_d>
@@ -1432,16 +1435,16 @@
 			<file>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.nas</file>
 		</canvas_ead>
 		<autopush>
-			<file>Aircraft/MD-11/Nasal/autopush.nas</file>
+			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>
 		</autopush>
 		<autopush_driver>
-			<file>Aircraft/MD-11/Nasal/autopush_driver.nas</file>
+			<file>Aircraft/MD-11/Nasal/Autopush/driver.nas</file>
 		</autopush_driver>
 		<dynarr>
-			<file>Aircraft/MD-11/Nasal/dynarr.nas</file>
+			<file>Aircraft/MD-11/Nasal/Autopush/dynarr.nas</file>
 		</dynarr>
 		<autopush_route>
-			<file>Aircraft/MD-11/Nasal/autopush_route.nas</file>
+			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
 	</nasal>
 
