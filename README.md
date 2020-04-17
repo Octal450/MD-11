@@ -12,6 +12,3 @@ Present pack includes the following McDonnell Douglas MD-11 variants:
 
 ## Frequently Asked Questions
 For answers on frequently asked questions, refer to our [FAQ page](https://github.com/Octal450/MD-11/blob/master/FAQ.md).
-
-## Unapproved Distributors
-If you get this aircraft from **anywhere but** [Octal450's repo](https://github.com/Octal450/MD-11.git) you are not getting the aircraft from us, but from a 3rd party distributor. **This is strongly discouraged and you will not receive any support from us!**
