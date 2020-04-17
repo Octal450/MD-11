@@ -1,4 +1,4 @@
-# MD-11 Autobrake
+# MD-11 Autobrake System
 # Josh Davidson (Octal450)
 
 # Copyright (c) 2020 Josh Davidson (Octal450)

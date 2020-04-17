@@ -1409,24 +1409,24 @@
 			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<file>Aircraft/MD-11/Nasal/electrical.nas</file>
-			<file>Aircraft/MD-11/Nasal/pneumatics.nas</file>
-			<file>Aircraft/MD-11/Nasal/hydraulics.nas</file>
-			<file>Aircraft/MD-11/Nasal/fuel.nas</file>
-			<file>Aircraft/MD-11/Nasal/master-system.nas</file>
-			<file>Aircraft/MD-11/Nasal/engines.nas</file>
-			<file>Aircraft/MD-11/Nasal/brakes.nas</file>
-			<file>Aircraft/MD-11/Nasal/IRS.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/electrical.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/pneumatics.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/brakes.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
 		</systems>
 		<afs>
-			<file>Aircraft/MD-11/Nasal/AFS.nas</file>
-			<file>Aircraft/MD-11/Nasal/AFS-b.nas</file>
+			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>
+			<file>Aircraft/MD-11/Nasal/AFS/AFS-b.nas</file>
 		</afs>
 		<fadec>
-			<file>Aircraft/MD-11/Nasal/fadec-common.nas</file>
+			<file>Aircraft/MD-11/Nasal/FADEC/fadec-common.nas</file>
 		</fadec>
 		<fms>
-			<file>Aircraft/MD-11/Nasal/FMS.nas</file>
+			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
 			<file>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD.nas</file>
