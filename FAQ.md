@@ -6,15 +6,15 @@
 
 Try to download the aircraft again. The download may have failed for some reason.
 
-### Q. I found other distributors offering downloads of the this IDG aircraft. Can I use them?
+### Q. I found other distributors offering downloads of the this aircraft. Can I use them?
 
-**Using other distributors is strongly discouraged and you will not receive any support from IDG!** You should get the aircraft from [Octal450's repo](https://github.com/Octal450/IDG-MD-11.git).
+**Using other distributors is strongly discouraged and you will not receive any support from us!** You should get the aircraft from [Octal450's repo](https://github.com/Octal450/MD-11.git).
 
 ## Startup
 
 ### Q. Error Code: 0x121 appears. Why?
 
-This error occurs if you are attempting to use this IDG Aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/Octal450/IDG-MD-11/blob/master/INSTALL.md) for more information.
+This error occurs if you are attempting to use this aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/Octal450/MD-11/blob/master/INSTALL.md) for more information.
 
 ### Q. Error Code: 0x223 appears. Why?
 
@@ -54,7 +54,7 @@ The flight recording system does not record the systems or internal functions of
 
 ### Q. Where should I report issues?
 
-Please use our [issues page](https://github.com/Octal450/IDG-MD-11/issues/new) to report bugs. Please fill out the template there to the best of your knowledge. Issues submitted with blank templates will be closed.
+Please use our [issues page](https://github.com/Octal450/MD-11/issues/new) to report bugs. Please fill out the template there to the best of your knowledge. Issues submitted with blank templates will be closed.
 
 ### Q. I encountered a strange behavior while flying. Should I report a bug?
 
@@ -72,18 +72,18 @@ Besides describing it with words, you may do two things, which helps us reproduc
 
 1. Hit the screenshot buttons (hotkey `F3` by default) often and send them all in! Five screenshots with redundant data isn't a problem to sort out, but one screenshot missing out which would have contained vital information may prevent understanding the problem properly.
 
-2. If able you may also dump the property tree. That is also a very helpful source of information. To do so, please open the "Nasal Console" from the "Debug" menu, paste this command, and press "Execute". `io.write_properties(getprop("/sim/fg-home") ~ "/Export/IDG-MD-11-dump.xml", "/");` The dumped file will be located in `$FGHOME/Export`.
+2. If able you may also dump the property tree. That is also a very helpful source of information. To do so, please open the "Nasal Console" from the "Debug" menu, paste this command, and press "Execute". `io.write_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-dump.xml", "/");` The dumped file will be located in `$FGHOME/Export`.
 
 ## Do's and Don'ts
 
 ### Q. The current version has a bug, but I still want to keep flying. Can I downgrade?
 
-First of all, did you ensure that the bug is reported on our [issues page](https://github.com/Octal450/IDG-MD-11/issues/new)? If not, please do so (see also questions above on how to report them)!
+First of all, did you ensure that the bug is reported on our [issues page](https://github.com/Octal450/MD-11/issues/new)? If not, please do so (see also questions above on how to report them)!
 
-IDG suggests **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `IDG-MD-11-config.xml` file. You may find it in `$FGHOME/Export`.
+We suggest **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `MD-11-config.xml` file. You may find it in `$FGHOME/Export`.
 
 ### Q. I like increasing the simulation speed on long flights. However, I encounter issues with it once in a while. What's up?
 
-Increasing the simulation speed is quite tricky for the simulator. Depending on hardware capabilities it can be very stressful and the algorithms behind the scenes can be challenged quite heavily. If the simulation is running faster than the corresponding algorithms can be computed, many funny (or even ugly things) may happen. **IDG suggests not setting simulation speed above 4x or below 1/2x at any time**.
+Increasing the simulation speed is quite tricky for the simulator. Depending on hardware capabilities it can be very stressful and the algorithms behind the scenes can be challenged quite heavily. If the simulation is running faster than the corresponding algorithms can be computed, many funny (or even ugly things) may happen. **we suggest not setting simulation speed above 4x or below 1/2x at any time**.
 
 Check your frame rate ("View" menu, option "View Options", toggle "Show frame rate") when increasing the simulation speed. As a rule of thumb, if the frame rate stays constantly above 10fps, you are fine. Keep in mind that already one little phase (and not just the average) where the frame rate drops below 10 frames per second, you are in danger facing issues.

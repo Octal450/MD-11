@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList include="MD-11-main.xml">
 
@@ -25,7 +25,7 @@
 			<livery>
 				<file type="string">MCD</file>
 			</livery>
-			<path>Aircraft/IDG-MD-11/Models/MD-11-PW.xml</path>
+			<path>Aircraft/MD-11/Models/MD-11-PW.xml</path>
 		</model>
 		<primary-set>true</primary-set>
 		<rating>
@@ -35,14 +35,19 @@
 			<model type="int">5</model>
 		</rating>
 		<sound>
-			<path>Aircraft/IDG-MD-11/Sounds/pw4000-sound.xml</path>
+			<path>Aircraft/MD-11/Sounds/pw4000-sound.xml</path>
 		</sound>
 		<systems n="0">
 			<autopilot n="6">
-				<path>Aircraft/IDG-MD-11/Systems/fadec-pw.xml</path>
+				<path>Aircraft/MD-11/Systems/fadec-pw.xml</path>
 			</autopilot>
 		</systems>
     </sim>
+	
+	<MCDUC n="0">
+		<eng>PW4460</eng>
+		<type>MD-11 DEF AIL</type>
+	</MCDUC>
 	
 	<options n="0">
 		<eng>PW</eng>
@@ -95,7 +100,7 @@
     
     <nasal n="0">
 		<setup>
-			<script>aircraft.livery.init("Aircraft/IDG-MD-11/Models/Liveries/MD-11/PW");</script>
+			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11/PW");</script>
 		</setup>
     </nasal>
 

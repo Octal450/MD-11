@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -10,7 +10,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/IDG-MD-11/Models/lights/ALS/left-rear-strobe</inherits-from>
+   <inherits-from>Aircraft/MD-11/Models/lights/ALS/left-rear-strobe</inherits-from>
    <object-name>left-strobeals</object-name>
  </effect>
  

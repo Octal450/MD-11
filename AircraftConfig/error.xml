@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <!-- MD-11 Aircraft Config Dialog -->
 
 <PropertyList>
 
-	<name>aircraft-config-mismatch</name>
+	<name>aircraft-config-error</name>
 	<layout>vbox</layout>
 	<color>
 		<red>0.5</red>
@@ -41,7 +41,7 @@
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>The error code and cause are listed below. Please include this information if contacting IDG.</label>
+			<label>The error code and cause are listed below. Please include this information if contacting us.</label>
 		</text>
 		
 		<hrule>
@@ -64,7 +64,7 @@
 			<text>
 				<border>1</border>
 				<label>99999</label>
-				<property>/systems/acconfig/mismatch-code</property>
+				<property>/systems/acconfig/error-code</property>
 				<live>1</live>
 			</text>
 		</group>
@@ -80,7 +80,7 @@
 			<text>
 				<border>1</border>
 				<label>9999999999999999999999999999999999</label>
-				<property>/systems/acconfig/mismatch-reason</property>
+				<property>/systems/acconfig/error-reason</property>
 				<live>1</live>
 			</text>
 		</group>
@@ -105,8 +105,23 @@
 				<alpha>0.95</alpha>
 			</color>
 			<halign>center</halign>
+			<legend>GitHub Issues</legend>
+			<pref-width>275</pref-width>
+			<binding>
+				<command>open-browser</command>
+				<path>http://github.com/Octal450/MD-11/issues</path>
+			</binding>
+		</button>
+		<button>
+			<color>
+				<red>0.6</red>
+				<green>0</green>
+				<blue>0</blue>
+				<alpha>0.95</alpha>
+			</color>
+			<halign>center</halign>
 			<legend>FlightGear Forums</legend>
-			<pref-width>550</pref-width>
+			<pref-width>275</pref-width>
 			<binding>
 				<command>open-browser</command>
 				<path>http://forum.flightgear.org</path>

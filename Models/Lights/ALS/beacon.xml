@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -39,7 +39,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/IDG-MD-11/Models/lights/ALS/beacon</inherits-from>
+   <inherits-from>Aircraft/MD-11/Models/lights/ALS/beacon</inherits-from>
    <object-name>beaconals</object-name>
  </effect>
 

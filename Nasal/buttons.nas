@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Buttons and Switches
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 # Resets buttons to the default values
 var variousReset = func {

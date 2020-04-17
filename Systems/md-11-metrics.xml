@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 JSBsim -->
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <metrics>
 	
 	<wingarea unit="FT2">3648</wingarea> <!-- Without winglet -->
 	<wingspan unit="FT">169.52</wingspan> <!-- Without winglet -->
-	<wing_incidence unit="DEG">1.03</wing_incidence>
 	<chord unit="FT">25.19</chord>
 	<htailarea unit="FT2">920.31</htailarea>
 	<vtailarea unit="FT2">604.93</vtailarea>

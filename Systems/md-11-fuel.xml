@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 Fuel System -->
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <system name="MD-11: Fuel">
 	
@@ -467,17 +467,17 @@
 		</actuator>
 		
 		<!-- Crossfeed Valves -->
-		<actuator name="/systems/pneumatics/x-feed-1-valve">
+		<actuator name="/systems/fuel/x-feed-1-valve">
 			<input>/controls/fuel/switches/x-feed-1</input>
 			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
 		</actuator>
 		
-		<actuator name="/systems/pneumatics/x-feed-2-valve">
+		<actuator name="/systems/fuel/x-feed-2-valve">
 			<input>/controls/fuel/switches/x-feed-2</input>
 			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
 		</actuator>
 		
-		<actuator name="/systems/pneumatics/x-feed-3-valve">
+		<actuator name="/systems/fuel/x-feed-3-valve">
 			<input>/controls/fuel/switches/x-feed-3</input>
 			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
 		</actuator>
@@ -717,7 +717,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-2 eq 1
-				/systems/pneumatics/x-feed-1-valve eq 1
+				/systems/fuel/x-feed-1-valve eq 1
 				/systems/fuel/trans-pump-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[8]/contents-lbs lt 9
@@ -728,7 +728,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-inner eq 1
-				/systems/pneumatics/x-feed-1-valve eq 1
+				/systems/fuel/x-feed-1-valve eq 1
 				/systems/fuel/trans-pump-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[8]/contents-lbs lt 9
@@ -740,7 +740,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-1-inner eq 1
-				/systems/pneumatics/x-feed-2-valve eq 1
+				/systems/fuel/x-feed-2-valve eq 1
 				/systems/fuel/trans-pump-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
@@ -760,7 +760,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-inner eq 1
-				/systems/pneumatics/x-feed-2-valve eq 1
+				/systems/fuel/x-feed-2-valve eq 1
 				/systems/fuel/trans-pump-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
@@ -772,7 +772,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-1-inner eq 1
-				/systems/pneumatics/x-feed-3-valve eq 1
+				/systems/fuel/x-feed-3-valve eq 1
 				/systems/fuel/trans-pump-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[10]/contents-lbs lt 9
@@ -783,7 +783,7 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-2 eq 1
-				/systems/pneumatics/x-feed-3-valve eq 1
+				/systems/fuel/x-feed-3-valve eq 1
 				/systems/fuel/trans-pump-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[10]/contents-lbs lt 9
@@ -988,6 +988,8 @@
 			<input>-/systems/fuel/internal/tank-2-eng-2</input>
 			<input>-/systems/fuel/internal/tank-2-eng-3</input>
 			<input>-/systems/fuel/internal/tank-2-apu</input>
+			<input>-/systems/fuel/internal/tank-2-tank-1-inner</input>
+			<input>-/systems/fuel/internal/tank-2-tank-3-inner</input>
 			<input>/systems/fuel/internal/tank-2-fill-rate</input>
 			<output>propulsion/tank[2]/external-flow-rate-pps</output>
 		</summer>

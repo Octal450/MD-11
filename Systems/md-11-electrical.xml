@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 Electrical System -->
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <system name="MD-11: Electrical">
 	
@@ -279,9 +279,9 @@
 				<quotient>
 					<product>
 						<property>/systems/electrical/sources/idg-1/csd-rpm</property>
-						<value>4</value> <!-- Number of poles in generator -->
+						<value>6</value> <!-- Number of poles in generator -->
 					</product>
-					<value>80</value>
+					<value>120</value>
 				</quotient>
 			</function>
 		</fcs_function>
@@ -356,9 +356,9 @@
 				<quotient>
 					<product>
 						<property>/systems/electrical/sources/idg-2/csd-rpm</property>
-						<value>4</value> <!-- Number of poles in generator -->
+						<value>6</value> <!-- Number of poles in generator -->
 					</product>
-					<value>80</value>
+					<value>120</value>
 				</quotient>
 			</function>
 		</fcs_function>
@@ -433,9 +433,9 @@
 				<quotient>
 					<product>
 						<property>/systems/electrical/sources/idg-3/csd-rpm</property>
-						<value>4</value> <!-- Number of poles in generator -->
+						<value>6</value> <!-- Number of poles in generator -->
 					</product>
-					<value>80</value>
+					<value>120</value>
 				</quotient>
 			</function>
 		</fcs_function>

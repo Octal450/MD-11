@@ -1,6 +1,6 @@
 # MD-11 JSB Engine System
 
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 io.include("engines-b.nas");
 

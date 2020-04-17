@@ -1,6 +1,6 @@
-# MD-11 PW FADEC by Joshua Davidson (Octal450)
+# MD-11 PW FADEC by Josh Davidson (Octal450)
 
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 setprop("/systems/fadec/eng1/epr", 0);
 setprop("/systems/fadec/eng1/egt", 0);

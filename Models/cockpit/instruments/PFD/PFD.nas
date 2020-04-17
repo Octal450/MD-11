@@ -1,11 +1,11 @@
 # MD-11 PFD
 
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 var PFD_1 = nil;
 var PFD_2 = nil;
-var PFD_1_mismatch = nil;
-var PFD_2_mismatch = nil;
+var PFD_1_error = nil;
+var PFD_2_error = nil;
 var PFD1_display = nil;
 var PFD2_display = nil;
 var updateL = 0;
@@ -103,7 +103,7 @@ var althp = props.globals.getNode("/instrumentation/altimeter/setting-hpa", 1);
 var fpa = props.globals.getNode("/it-autoflight/input/fpa", 1);
 var apfpa = props.globals.getNode("/it-autoflight/custom/vs-fpa", 1);
 var pfdrate = props.globals.getNode("/systems/acconfig/options/pfd-rate", 1);
-var mismatch = props.globals.getNode("/systems/acconfig/mismatch-code", 1);
+var error = props.globals.getNode("/systems/acconfig/error-code", 1);
 var nav0defl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
 var gs0defl = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1);
 var nav0range = props.globals.getNode("/instrumentation/nav[0]/in-range", 1);
@@ -170,9 +170,9 @@ var canvas_PFD_base = {
 		"GS_scale","GS_pointer","GS_no","RA","RA_box","Minimums"];
 	},
 	update: func() {
-		if (mismatch.getValue() == "0x000") {
-			PFD_1_mismatch.page.hide();
-			PFD_2_mismatch.page.hide();
+		if (error.getValue() == "0x000") {
+			PFD_1_error.page.hide();
+			PFD_2_error.page.hide();
 			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
 				PFD_1.updateFast();
 				PFD_1.update();
@@ -196,10 +196,10 @@ var canvas_PFD_base = {
 			updateR = 0;
 			PFD_1.page.hide();
 			PFD_2.page.hide();
-			PFD_1_mismatch.update();
-			PFD_2_mismatch.update();
-			PFD_1_mismatch.page.show();
-			PFD_2_mismatch.page.show();
+			PFD_1_error.update();
+			PFD_2_error.update();
+			PFD_1_error.page.show();
+			PFD_2_error.page.show();
 		}
 	},
 	updateSlow: func() {
@@ -243,9 +243,13 @@ var canvas_PFD_base = {
 			me["FMA_Land"].hide();
 			me["FMA_Pitch_Land"].hide();
 			FMAAlt = apalt.getValue();
-			me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(FMAAlt / 1000)));
+			if (FMAAlt < 1000) {
+				me["FMA_Altitude_Thousand"].hide();
+			} else {
+				me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(FMAAlt / 1000)));
+				me["FMA_Altitude_Thousand"].show();
+			}
 			me["FMA_Altitude"].setText(right(sprintf("%03d", FMAAlt), 3));
-			me["FMA_Altitude_Thousand"].show();
 			me["FMA_Altitude"].show();
 		}
 		
@@ -538,13 +542,13 @@ var canvas_PFD_base = {
 		me["ASI_max_flap"].setTranslation(0, ASIflapmax * -4.48656);
 		me["ASI"].setText(sprintf("%3.0f", speedx));
 		
-		if (speedx > IASmax.getValue()) {
+		if (speedx > IASmax.getValue() + 0.5) {
 			me["ASI"].setColor(1,0,0);
 			me["ASI_mach"].setColor(1,0,0);
 			me["ASI_mach_decimal"].setColor(1,0,0);
 			me["ASI_bowtie_L"].setColor(1,0,0);
 			me["ASI_bowtie_R"].setColor(1,0,0);
-		} else if (speedx > IASflapmax.getValue() and IASflapmax.getValue() >= 0) {
+		} else if (speedx > IASflapmax.getValue() + 0.5 and IASflapmax.getValue() >= 0) {
 			me["ASI"].setColor(0.9647,0.8196,0.07843);
 			me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
 			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
@@ -1015,7 +1019,7 @@ var canvas_PFD_2 = {
 	},
 };
 
-var canvas_PFD_1_mismatch = {
+var canvas_PFD_1_error = {
 	init: func(canvas_group, file) {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
@@ -1033,7 +1037,7 @@ var canvas_PFD_1_mismatch = {
 		return me;
 	},
 	new: func(canvas_group, file) {
-		var m = {parents: [canvas_PFD_1_mismatch]};
+		var m = {parents: [canvas_PFD_1_error]};
 		m.init(canvas_group, file);
 
 		return m;
@@ -1042,11 +1046,11 @@ var canvas_PFD_1_mismatch = {
 		return ["ERRCODE"];
 	},
 	update: func() {
-		me["ERRCODE"].setText(mismatch.getValue());
+		me["ERRCODE"].setText(error.getValue());
 	},
 };
 
-var canvas_PFD_2_mismatch = {
+var canvas_PFD_2_error = {
 	init: func(canvas_group, file) {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
@@ -1064,7 +1068,7 @@ var canvas_PFD_2_mismatch = {
 		return me;
 	},
 	new: func(canvas_group, file) {
-		var m = {parents: [canvas_PFD_2_mismatch]};
+		var m = {parents: [canvas_PFD_2_error]};
 		m.init(canvas_group, file);
 
 		return m;
@@ -1073,7 +1077,7 @@ var canvas_PFD_2_mismatch = {
 		return ["ERRCODE"];
 	},
 	update: func() {
-		me["ERRCODE"].setText(mismatch.getValue());
+		me["ERRCODE"].setText(error.getValue());
 	},
 };
 
@@ -1093,14 +1097,14 @@ setlistener("sim/signals/fdm-initialized", func {
 	PFD1_display.addPlacement({"node": "pfd1.screen"});
 	PFD2_display.addPlacement({"node": "pfd2.screen"});
 	var group_pfd1 = PFD1_display.createGroup();
-	var group_pfd1_mismatch = PFD1_display.createGroup();
+	var group_pfd1_error = PFD1_display.createGroup();
 	var group_pfd2 = PFD2_display.createGroup();
-	var group_pfd2_mismatch = PFD2_display.createGroup();
+	var group_pfd2_error = PFD2_display.createGroup();
 
-	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_1_mismatch = canvas_PFD_1_mismatch.new(group_pfd1_mismatch, "Aircraft/IDG-MD-11/Models/cockpit/instruments/Common/res/mismatch.svg");
-	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_2_mismatch = canvas_PFD_2_mismatch.new(group_pfd2_mismatch, "Aircraft/IDG-MD-11/Models/cockpit/instruments/Common/res/mismatch.svg");
+	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_1_error = canvas_PFD_1_error.new(group_pfd1_error, "Aircraft/MD-11/Models/cockpit/instruments/Common/res/error.svg");
+	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
+	PFD_2_error = canvas_PFD_2_error.new(group_pfd2_error, "Aircraft/MD-11/Models/cockpit/instruments/Common/res/error.svg");
 	
 	PFD_update.start();
 	PFD_update_fast.start();

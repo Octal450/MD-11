@@ -1,6 +1,6 @@
-# MD-11 FADEC by Joshua Davidson (Octal450)
+# MD-11 FADEC by Josh Davidson (Octal450)
 
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 if (getprop("/options/eng") == "PW") {
 	io.include("fadec-pw.nas");

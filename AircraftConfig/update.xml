@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <!-- MD-11 Aircraft Config Dialog -->
 
@@ -37,7 +37,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Attention: Your IDG-MD-11 is out of date! This means you are missing out on bugfixes, and new features!</label>
+			<label>Attention: Your MD-11 is out of date! This means you are missing out on bugfixes, and new features!</label>
 		</text>
 		
 		<group>
@@ -108,7 +108,7 @@
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>HTTP: http://www.github.com/Octal450/IDG-MD-11.git or SSH: git@github.com:Octal450/IDG-MD-11.git</label>
+			<label>HTTP: http://www.github.com/Octal450/MD-11.git or SSH: git@github.com:Octal450/MD-11.git</label>
 		</text>
 	</group>
 	
@@ -136,7 +136,7 @@
 			<pref-width>220</pref-width>
 			<binding>
 				<command>open-browser</command>
-				<path>https://www.github.com/Octal450/IDG-MD-11/archive/master.zip</path>
+				<path>https://www.github.com/Octal450/MD-11/archive/master.zip</path>
 			</binding>
 			<binding>
 				<command>exit</command>
@@ -158,12 +158,12 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/systems/acconfig/mismatch-code") == "0x000") {
+				if (getprop("/systems/acconfig/error-code") == "0x000") {
 					if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
 						acconfig.welcome_dlg.open();
 					}
 				} else {
-					acconfig.error_mismatch.open();
+					acconfig.error.open();
 				}
 				</script>
 			</binding>

@@ -1,8 +1,8 @@
 # McDonnell Douglas MD-11 Main Libraries
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2019 Joshua Davidson (Octal450)");
+print("Copyright (c) 2017-2019 Josh Davidson (Octal450)");
 print("-----------------------------------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[0]/item[0]/enabled", 0);

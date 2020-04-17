@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Electrical System
-# Copyright (c) 2019 Joshua Davidson (Octal450)
+# Copyright (c) 2020 Josh Davidson (Octal450)
 
 var ELEC = {
 	Bus: { # Volts

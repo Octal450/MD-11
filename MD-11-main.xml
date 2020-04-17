@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 
 	<sim>
-		<author>Immersive Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), Semir Gebran (CaptB)</author>
+		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D and Textures)</author>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
@@ -23,7 +23,7 @@
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
 		<instrumentation>
-			<path>Aircraft/IDG-MD-11/Systems/instrumentation.xml</path>
+			<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
 		</instrumentation>
 		<menubar>
 			<default>
@@ -196,7 +196,7 @@
 			</preview>
 		</previews>
 		<startup>
-			<splash-texture>Aircraft/IDG-MD-11/Splash/SplashOld.png</splash-texture>
+			<splash-texture>Aircraft/MD-11/Splash/SplashOld.png</splash-texture>
 		</startup>
 		<status>Pre V1.0</status>
 		<systems n="0">
@@ -204,29 +204,29 @@
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<path>Aircraft/IDG-MD-11/Systems/afs-drivers.xml</path>
+				<path>Aircraft/MD-11/Systems/afs-drivers.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/IDG-MD-11/Systems/afs-roll-yaw.xml</path>
+				<path>Aircraft/MD-11/Systems/afs-roll-yaw.xml</path>
 			</autopilot>
 			<autopilot n="2">
-				<path>Aircraft/IDG-MD-11/Systems/afs-pitch.xml</path>
+				<path>Aircraft/MD-11/Systems/afs-pitch.xml</path>
 			</autopilot>
 			<autopilot n="3">
-				<path>Aircraft/IDG-MD-11/Systems/afs-thrust.xml</path>
+				<path>Aircraft/MD-11/Systems/afs-thrust.xml</path>
 			</autopilot>
 			<autopilot n="4">
-				<path>Aircraft/IDG-MD-11/Systems/libraries.xml</path>
+				<path>Aircraft/MD-11/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/IDG-MD-11/Sounds/MD-11-sound-variables.xml</path>
+				<path>Aircraft/MD-11/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
 			<!-- 6 is FADEC -->
 			<autopilot n="7">
-				<path>Aircraft/IDG-MD-11/Systems/EAD.xml</path>
+				<path>Aircraft/MD-11/Systems/EAD.xml</path>
 			</autopilot>
 			<autopilot n="8">
-				<path>Aircraft/IDG-MD-11/Systems/pfd.xml</path>
+				<path>Aircraft/MD-11/Systems/pfd.xml</path>
 			</autopilot>
 		</systems>
 		<tags>
@@ -1391,57 +1391,57 @@
 	
 	<nasal n="0">
 		<pts>
-			<file>Aircraft/IDG-MD-11/Nasal/property-tree-setup.nas</file>
+			<file>Aircraft/MD-11/Nasal/property-tree-setup.nas</file>
 		</pts>
 		<libraries>
-			<file>Aircraft/IDG-MD-11/Nasal/libraries.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/efis.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/buttons.nas</file>
-			<file>Aircraft/IDG-MD-11/Models/cockpit/instruments/ND/ND.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/shake.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/light-manager.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/zoom-views.nas</file>
+			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
+			<file>Aircraft/MD-11/Nasal/efis.nas</file>
+			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
+			<file>Aircraft/MD-11/Models/cockpit/instruments/ND/ND.nas</file>
+			<file>Aircraft/MD-11/Nasal/shake.nas</file>
+			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
+			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
 		</libraries>
 		<acconfig>
-			<file>Aircraft/IDG-MD-11/AircraftConfig/acconfig.nas</file>
+			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<file>Aircraft/IDG-MD-11/Nasal/electrical.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/pneumatics.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/hydraulics.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/fuel.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/master-system.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/engines.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/brakes.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/IRS.nas</file>
+			<file>Aircraft/MD-11/Nasal/electrical.nas</file>
+			<file>Aircraft/MD-11/Nasal/pneumatics.nas</file>
+			<file>Aircraft/MD-11/Nasal/hydraulics.nas</file>
+			<file>Aircraft/MD-11/Nasal/fuel.nas</file>
+			<file>Aircraft/MD-11/Nasal/master-system.nas</file>
+			<file>Aircraft/MD-11/Nasal/engines.nas</file>
+			<file>Aircraft/MD-11/Nasal/brakes.nas</file>
+			<file>Aircraft/MD-11/Nasal/IRS.nas</file>
 		</systems>
 		<afs>
-			<file>Aircraft/IDG-MD-11/Nasal/AFS.nas</file>
-			<file>Aircraft/IDG-MD-11/Nasal/AFS-b.nas</file>
+			<file>Aircraft/MD-11/Nasal/AFS.nas</file>
+			<file>Aircraft/MD-11/Nasal/AFS-b.nas</file>
 		</afs>
 		<fadec>
-			<file>Aircraft/IDG-MD-11/Nasal/fadec-common.nas</file>
+			<file>Aircraft/MD-11/Nasal/fadec-common.nas</file>
 		</fadec>
 		<fms>
-			<file>Aircraft/IDG-MD-11/Nasal/FMS.nas</file>
+			<file>Aircraft/MD-11/Nasal/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
-			<file>Aircraft/IDG-MD-11/Models/cockpit/instruments/PFD/PFD.nas</file>
+			<file>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_ead>
-			<file>Aircraft/IDG-MD-11/Models/cockpit/instruments/EAD/EAD.nas</file>
+			<file>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.nas</file>
 		</canvas_ead>
 		<autopush>
-			<file>Aircraft/IDG-MD-11/Nasal/autopush.nas</file>
+			<file>Aircraft/MD-11/Nasal/autopush.nas</file>
 		</autopush>
 		<autopush_driver>
-			<file>Aircraft/IDG-MD-11/Nasal/autopush_driver.nas</file>
+			<file>Aircraft/MD-11/Nasal/autopush_driver.nas</file>
 		</autopush_driver>
 		<dynarr>
-			<file>Aircraft/IDG-MD-11/Nasal/dynarr.nas</file>
+			<file>Aircraft/MD-11/Nasal/dynarr.nas</file>
 		</dynarr>
 		<autopush_route>
-			<file>Aircraft/IDG-MD-11/Nasal/autopush_route.nas</file>
+			<file>Aircraft/MD-11/Nasal/autopush_route.nas</file>
 		</autopush_route>
 	</nasal>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 JSBsim -->
-<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <mass_balance>
 	
@@ -11,7 +11,7 @@
 	<ixy unit="SLUG*FT2">0</ixy>
 	<ixz unit="SLUG*FT2">0</ixz>
 	<iyz unit="SLUG*FT2">0</iyz>
-	<emptywt unit="LBS">255500</emptywt>
+	<emptywt unit="LBS">286965</emptywt> <!-- GE -->
 	
 	<location name="CG" unit="M">
 		<x>2.6152</x>
