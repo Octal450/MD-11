@@ -497,7 +497,7 @@
 			<checkbox>
 				<label>Elevator Feel</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/lsas-elev-feel</property>
+				<property>/systems/failures/fctl/elevator-feel</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

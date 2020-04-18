@@ -459,8 +459,8 @@
 		</engines>
 		<fctl n="0">
 			<flap-limit-knob type="int">0</flap-limit-knob>
-			<lsas-feel-knob type="int">0</lsas-feel-knob>
-			<lsas-feel-man type="bool">0</lsas-feel-man>
+			<elevator-feel-knob type="int">0</elevator-feel-knob>
+			<elevator-feel-man type="bool">0</elevator-feel-man>
 			<lsas-left-in type="bool">1</lsas-left-in>
 			<lsas-left-out type="bool">1</lsas-left-out>
 			<lsas-right-in type="bool">1</lsas-right-in>
@@ -622,8 +622,10 @@
 				</tractor>
 			</external_reactions>
 			<fcc n="0">
-				<lsas>
-					<elevator-feel-auto type="bool">1</elevator-feel-auto>
+				<elevator-feel n="0">
+					<auto type="bool">1</auto>
+				</elevator-feel>
+				<lsas n="0">
 					<left-in-active type="bool">0</left-in-active>
 					<left-out-active type="bool">0</left-out-active>
 					<right-in-active type="bool">0</right-in-active>
@@ -632,7 +634,7 @@
 				<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>
 				<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
 				<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
-				<yaw>
+				<yaw n="0">
 					<avail-upr type="bool">0</avail-upr>
 					<avail-lwr type="bool">0</avail-lwr>
 				</yaw>
@@ -1331,8 +1333,8 @@
 				<gen-3 type="bool">0</gen-3>
 			</electrical>
 			<fctl n="0">
+				<elevator-feel type="bool">0</elevator-feel>
 				<flap-limit type="bool">0</flap-limit>
-				<lsas-elev-feel type="bool">0</lsas-elev-feel>
 				<lsas-left-in type="bool">0</lsas-left-in>
 				<lsas-left-out type="bool">0</lsas-left-out>
 				<lsas-right-in type="bool">0</lsas-right-in>

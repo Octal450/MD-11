@@ -636,6 +636,11 @@ var ITAF = {
 				}
 			}
 		}
+		
+		# System Reset in non-autoland condition
+		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Text.vert.getValue() == "T/O CLB") {
+			fms.CORE.resetFMS();
+		}
 	},
 	ap1Master: func(s) {
 		if (s == 1) {

@@ -3,8 +3,8 @@
 
 var FCTL = {
 	Fail: {
+		elevatorFeel: props.globals.getNode("/systems/failures/fctl/elevator-feel"),
 		flapLimit: props.globals.getNode("/systems/failures/fctl/flap-limit"),
-		lsasElevFeel: props.globals.getNode("/systems/failures/fctl/lsas-elev-feel"),
 		lsasLeftIn: props.globals.getNode("/systems/failures/fctl/lsas-left-in"),
 		lsasLeftOut: props.globals.getNode("/systems/failures/fctl/lsas-left-out"),
 		lsasRightIn: props.globals.getNode("/systems/failures/fctl/lsas-right-in"),
@@ -15,9 +15,9 @@ var FCTL = {
 		ydLowerB: props.globals.getNode("/systems/failures/fctl/yd-lower-b"),
 	},
 	Switch: {
+		elevatorFeelKnob: props.globals.getNode("/controls/fctl/elevator-feel-knob"),
+		elevatorFeelMan: props.globals.getNode("/controls/fctl/elevator-feel-man"),
 		flapLimit: props.globals.getNode("/controls/fctl/flap-limit-knob"),
-		lsasFeelKnob: props.globals.getNode("/controls/fctl/lsas-feel-knob"),
-		lsasFeelMan: props.globals.getNode("/controls/fctl/lsas-feel-man"),
 		lsasLeftIn: props.globals.getNode("/controls/fctl/lsas-left-in"),
 		lsasLeftOut: props.globals.getNode("/controls/fctl/lsas-left-out"),
 		lsasRightIn: props.globals.getNode("/controls/fctl/lsas-right-in"),
@@ -29,9 +29,9 @@ var FCTL = {
 	},
 	init: func() {
 		me.resetFail();
+		me.Switch.elevatorFeelKnob.setValue(0);
+		me.Switch.elevatorFeelMan.setBoolValue(0);
 		me.Switch.flapLimit.setValue(0);
-		me.Switch.lsasFeelKnob.setValue(0);
-		me.Switch.lsasFeelMan.setBoolValue(0);
 		me.Switch.lsasLeftIn.setBoolValue(1);
 		me.Switch.lsasLeftOut.setBoolValue(1);
 		me.Switch.lsasRightIn.setBoolValue(1);
@@ -42,8 +42,8 @@ var FCTL = {
 		me.Switch.ydLowerB.setBoolValue(1);
 	},
 	resetFail: func() {
+		me.Fail.elevatorFeel.setBoolValue(0);
 		me.Fail.flapLimit.setBoolValue(0);
-		me.Fail.lsasElevFeel.setBoolValue(0);
 		me.Fail.lsasLeftIn.setBoolValue(0);
 		me.Fail.lsasLeftOut.setBoolValue(0);
 		me.Fail.lsasRightIn.setBoolValue(0);

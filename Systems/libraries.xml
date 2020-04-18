@@ -318,11 +318,11 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-power</property>
+						<property>/fdm/jsbsim/fcc/elevator-feel/power</property>
 						<value>1</value>
 					</equals>
 					<not-equals>
-						<property>/fdm/jsbsim/fcc/lsas/elevator-feel-auto</property>
+						<property>/fdm/jsbsim/fcc/elevator-feel/auto</property>
 						<value>1</value>
 					</not-equals>
 				</and>
@@ -331,12 +331,12 @@
 		<input>
 			<expression>
 				<sum>
-					<property>/fdm/jsbsim/fcc/lsas/elevator-feel-speed</property>
-					<property>/controls/fctl/lsas-feel-knob</property>
+					<property>/fdm/jsbsim/fcc/elevator-feel/speed</property>
+					<property>/controls/fctl/elevator-feel-knob</property>
 				</sum>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fcc/lsas/elevator-feel-speed</output>
+		<output>/fdm/jsbsim/fcc/elevator-feel/speed</output>
 		<min>120</min>
 		<max>300</max>
 	</filter>

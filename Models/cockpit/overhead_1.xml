@@ -7709,7 +7709,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/light/lsas-feel-manual</property>
+					<property>controls/fctl/light/elevator-feel-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7730,12 +7730,12 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fctl/lsas-feel-knob</property>
+				<property>controls/fctl/elevator-feel-knob</property>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/fctl/lsas-feel-man</property>
+				<property>controls/fctl/elevator-feel-man</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7753,8 +7753,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
-					setprop("/controls/fctl/lsas-feel-knob", -2);
+				if (getprop("/controls/fctl/elevator-feel-man") == 1) {
+					setprop("/controls/fctl/elevator-feel-knob", -2);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7763,7 +7763,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas-feel-knob", 0);
+					setprop("/controls/fctl/elevator-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7780,8 +7780,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
-					setprop("/controls/fctl/lsas-feel-knob", -1);
+				if (getprop("/controls/fctl/elevator-feel-man") == 1) {
+					setprop("/controls/fctl/elevator-feel-knob", -1);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7790,7 +7790,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas-feel-knob", 0);
+					setprop("/controls/fctl/elevator-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7807,8 +7807,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
-					setprop("/controls/fctl/lsas-feel-knob", 1);
+				if (getprop("/controls/fctl/elevator-feel-man") == 1) {
+					setprop("/controls/fctl/elevator-feel-knob", 1);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7817,7 +7817,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas-feel-knob", 0);
+					setprop("/controls/fctl/elevator-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7834,8 +7834,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/lsas-feel-man") == 1) {
-					setprop("/controls/fctl/lsas-feel-knob", 2);
+				if (getprop("/controls/fctl/elevator-feel-man") == 1) {
+					setprop("/controls/fctl/elevator-feel-knob", 2);
 					setprop("/sim/sounde/knb1", 1);
 				}
 				</script>
@@ -7844,7 +7844,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/lsas-feel-knob", 0);
+					setprop("/controls/fctl/elevator-feel-knob", 0);
 					setprop("/sim/sounde/knb1", 1);
 					</script>
 				</binding>
@@ -7856,7 +7856,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/lsas-feel-man</property>
+		<property>controls/fctl/elevator-feel-man</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -7869,7 +7869,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/lsas-feel-knob</property>
+		<property>controls/fctl/elevator-feel-knob</property>
 		<interpolation>
 			<entry><ind>-2</ind><dep> 65</dep></entry>
 			<entry><ind>-1</ind><dep> 32</dep></entry>

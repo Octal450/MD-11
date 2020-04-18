@@ -138,11 +138,11 @@
 	
 	<channel name="Lights" execrate="8">
 		
-		<switch name="/controls/fctl/light/lsas-feel-manual">
+		<switch name="/controls/fctl/light/elevator-feel-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/lsas/elevator-feel-auto ne 1
-				/systems/failures/fctl/lsas-elev-feel eq 1
+				fcc/elevator-feel/auto ne 1
+				/systems/failures/fctl/elevator-feel eq 1
 			</test>
 		</switch>
 		
