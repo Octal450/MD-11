@@ -664,7 +664,7 @@
 		</summer>
 		
 		<switch name="fcc/elevator-o-l-output">
-			<default value="/controls/flight/elevator"/>
+			<default value="fcc/elevator-feel/output"/>
 			<test logic="AND" value="fcc/lsas/elevator-output">
 				fcc/lsas/left-out-active eq 1
 				fcc/afs/enabled ne 1
@@ -675,7 +675,7 @@
 		</switch>
 		
 		<switch name="fcc/elevator-i-l-output">
-			<default value="/controls/flight/elevator"/>
+			<default value="fcc/elevator-feel/output"/>
 			<test logic="AND" value="fcc/lsas/elevator-output">
 				fcc/lsas/left-in-active eq 1
 				fcc/afs/enabled ne 1
@@ -686,7 +686,7 @@
 		</switch>
 		
 		<switch name="fcc/elevator-i-r-output">
-			<default value="/controls/flight/elevator"/>
+			<default value="fcc/elevator-feel/output"/>
 			<test logic="AND" value="fcc/lsas/elevator-output">
 				fcc/lsas/right-in-active eq 1
 				fcc/afs/enabled ne 1
@@ -697,7 +697,7 @@
 		</switch>
 		
 		<switch name="fcc/elevator-o-r-output">
-			<default value="/controls/flight/elevator"/>
+			<default value="fcc/elevator-feel/output"/>
 			<test logic="AND" value="fcc/lsas/elevator-output">
 				fcc/lsas/right-out-active eq 1
 				fcc/afs/enabled ne 1
