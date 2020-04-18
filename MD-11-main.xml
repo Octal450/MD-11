@@ -499,7 +499,10 @@
 				<x-feed-3 type="bool">0</x-feed-3>
 			</switches>
 		</fuel>
-		<gear>
+		<gear n="0">
+			<abs n="0">
+				<knob type="int">0</knob>
+			</abs>
 			<brake-parking type="bool">0</brake-parking>
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
@@ -646,6 +649,9 @@
 	</fdm>
 	
 	<gear n="0">
+		<abs n="0">
+			<active type="bool">0</active>
+		</abs>
 		<gear n="0">
 			<tyre-smoke type="bool">0</tyre-smoke>
 			<sprayspeed-ms type="double">0</sprayspeed-ms>
@@ -1324,6 +1330,9 @@
 			<system type="bool">1</system>
 		</electrical>
 		<failures n="0">
+			<brakes n="0">
+				<abs type="bool">0</abs>
+			</brakes>
 			<electrical n="0">
 				<apu type="bool">0</apu>
 				<bat-1 type="bool">0</bat-1>

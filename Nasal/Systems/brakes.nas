@@ -3,6 +3,24 @@
 
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
+var BRAKES = {
+	Abs: {
+		active: props.globals.getNode("/gear/abs/active"),
+		decelRate: props.globals.getNode("/gear/abs/decel-rate"),
+	},
+	Fail: {
+		abs: props.globals.getNode("/systems/failures/brakes/abs"),
+	},
+	Light: {
+		absDisarm: props.globals.initNode("/gear/abs/light/disarm", 0, "BOOL"),
+	},
+	Switch: {
+		abs: props.globals.getNode("/controls/gear/abs/knob"),
+	},
+};
+
+# Old System
+
 var thr1 = 0;
 var thr3 = 0;
 var wow0 = 0;

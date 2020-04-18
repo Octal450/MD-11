@@ -41,6 +41,9 @@ var Sim = {
 };
 
 var Systems = {
+	Acconfig: {
+		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
+	},
 	Shake: {
 		effect: props.globals.initNode("/systems/shake/effect", 0, "BOOL"),
 	},

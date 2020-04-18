@@ -637,8 +637,8 @@ var ITAF = {
 			}
 		}
 		
-		# System Reset in non-autoland condition
-		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Text.vert.getValue() == "T/O CLB") {
+		# Reset system once flight complete
+		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Text.vert.getValue() != "T/O CLB") {
 			fms.CORE.resetFMS();
 		}
 	},
@@ -939,9 +939,9 @@ var ITAF = {
 		}
 	},
 	checkLNAV: func(t) {
-		if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue() and Position.gearAglFt.getValue() >= 150) {
+		if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue() and Position.gearAglFt.getValue() >= 100) {
 			me.activateLNAV();
-		} else if (Output.lat.getValue() != 1 and t != 1) {
+		} else if (FPLN.active.getBoolValue() and Output.lat.getValue() != 1 and t != 1) {
 			Output.lnavArm.setBoolValue(1);
 			me.armTextCheck();
 		}
