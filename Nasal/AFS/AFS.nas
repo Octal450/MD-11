@@ -102,6 +102,7 @@ var Input = {
 	fd2: props.globals.initNode("/it-autoflight/input/fd2", 1, "BOOL"),
 	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
 	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
+	hdgCalc: 0,
 	hdgSet: 0,
 	ias: props.globals.initNode("/it-autoflight/input/spd-kts", 250, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/input/kts-mach", 0, "BOOL"),
@@ -110,6 +111,7 @@ var Input = {
 	mach: props.globals.initNode("/it-autoflight/input/spd-mach", 0.5, "DOUBLE"),
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
+	trkTemp: 0,
 	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
 	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
 	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
@@ -127,6 +129,7 @@ var Internal = {
 	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "INT"),
 	bankLimitAuto: 25,
 	captVS: 0,
+	driftAngle: props.globals.initNode("/it-autoflight/internal/drift-angle-deg", 0, "DOUBLE"),
 	flchActive: 0,
 	fpa: props.globals.initNode("/it-autoflight/internal/fpa", 0, "DOUBLE"),
 	hdg: props.globals.initNode("/it-autoflight/internal/heading-deg", 0, "DOUBLE"),
@@ -1057,9 +1060,6 @@ var ITAF = {
 	},
 	syncHDG: func() {
 		Input.hdgSet = math.round(Internal.hdgPredicted.getValue()); # Switches to track automatically
-		if (Input.hdgSet == 360) {
-			Input.hdgSet = 0;
-		}
 		Input.hdg.setValue(Input.hdgSet);
 		Custom.hdgSel.setValue(Input.hdgSet);
 	},
@@ -1294,6 +1294,31 @@ var atsKill = maketimer(0.3, func {
 		Custom.atsWarn.setBoolValue(0);
 	}
 });
+
+setlistener("/it-autoflight/input/trk", func {
+	Input.trkTemp = Input.trk.getBoolValue();
+	if (Input.trkTemp) {
+		Input.hdgCalc = Input.hdg.getValue() + math.round(Internal.driftAngle.getValue());
+		if (Input.hdgCalc > 359) { # It's rounded, so this is ok. Otherwise do >= 359.5
+			Input.hdgCalc = Input.hdgCalc - 360;
+		} else if (Input.hdgCalc < 0) { # It's rounded, so this is ok. Otherwise do < -0.5
+			Input.hdgCalc = Input.hdgCalc + 360;
+		}
+		Input.hdg.setValue(Input.hdgCalc);
+		Custom.hdgSel.setValue(Input.hdgCalc);
+	} else {
+		Input.hdgCalc = Input.hdg.getValue() - math.round(Internal.driftAngle.getValue());
+		if (Input.hdgCalc > 359) { # It's rounded, so this is ok. Otherwise do >= 359.5
+			Input.hdgCalc = Input.hdgCalc - 360;
+		} else if (Input.hdgCalc < 0) { # It's rounded, so this is ok. Otherwise do < -0.5
+			Input.hdgCalc = Input.hdgCalc + 360;
+		}
+		Input.hdg.setValue(Input.hdgCalc);
+		Custom.hdgSel.setValue(Input.hdgCalc);
+	}
+	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
+	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
+}, 0, 0);
 
 setlistener("/it-autoflight/input/ovrd1", func {
 	ITAF.updateOVRD();

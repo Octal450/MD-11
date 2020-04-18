@@ -29,6 +29,12 @@ var Gear = {
 	wow: [props.globals.getNode("/gear/gear[0]/wow"), props.globals.getNode("/gear/gear[1]/wow"), props.globals.getNode("/gear/gear[2]/wow"), props.globals.getNode("/gear/gear[3]/wow")],
 };
 
+var Instrumentation = {
+	Efis: {
+		hdgTrkSelected: [props.globals.initNode("/instrumentation/efis[0]/hdg-trk-selected", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/hdg-trk-selected", 0, "BOOL")],
+	},
+};
+
 var Sim = {
 	Replay: {
 		replayState: props.globals.getNode("/sim/replay/replay-state"),

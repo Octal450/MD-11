@@ -331,10 +331,10 @@
         <input> 
             <expression>
                 <table>
-                    <property>/position/gear-agl-ft</property> 
-                    <entry><ind>100</ind><dep>-700</dep></entry>
-                    <entry><ind> 50</ind><dep>-500</dep></entry>
-                    <entry><ind> 40</ind><dep>-400</dep></entry>
+                    <property>/position/gear-agl-ft</property>
+                    <entry><ind>100</ind><dep>-750</dep></entry>
+                    <entry><ind> 50</ind><dep>-600</dep></entry>
+                    <entry><ind> 40</ind><dep>-450</dep></entry>
                     <entry><ind> 30</ind><dep>-300</dep></entry>
                     <entry><ind> 20</ind><dep>-200</dep></entry>
                     <entry><ind> 10</ind><dep>-150</dep></entry>
@@ -638,7 +638,7 @@
 							<property>/orientation/pitch-deg</property>
 							<value>5</value>
 						</sum>
-						<value>30</value>
+						<value>25</value>
 					</min>
 				</expression>
 			</u_max>
@@ -681,8 +681,8 @@
 		</enable>
 		<input>/orientation/pitch-deg</input>
 		<output>/it-autoflight/internal/target-pitch-deg</output>
-		<min>-15</min>
-		<max>30</max>
+		<min>-10</min>
+		<max>25</max>
 	</filter>
 
 	<filter>
