@@ -385,7 +385,7 @@
 	</consumables>
 	
 	<controls n="0">
-		<apu>
+		<apu n="0">
 			<bleed type="bool">0</bleed>
 			<fire-btn type="bool">0</fire-btn>
 			<fire-btn-cover type="bool">0</fire-btn-cover>
@@ -393,7 +393,7 @@
 			<on-light type="bool">0</on-light>
 			<start type="bool">0</start>
 		</apu>
-		<autobrake>
+		<autobrake n="0">
 			<active type="bool">0</active>
 			<brake-left type="double">0</brake-left>
 			<brake-right type="double">0</brake-right>
@@ -539,7 +539,7 @@
 			</ir>
 			<skip type="bool">0</skip>
 		</irs>
-		<lighting>
+		<lighting n="0">
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
 			<landing-light-l type="double">0</landing-light-l>
@@ -582,6 +582,7 @@
 			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
 			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
 			<cart type="bool">0</cart>
+			<minimums type="int">200</minimums>
 		</switches>
 	</controls>
 	
@@ -992,6 +993,14 @@
 					<script>libraries.fovZoom(1);</script>
 				</binding>
 			</key>
+			<key n="99">
+				<name>c</name>
+				<desc>Reset view to center</desc>
+				<binding>
+					<command>nasal</command>
+					<script>libraries.resetView();</script>
+				</binding>
+			</key>
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
@@ -1123,7 +1132,10 @@
 			<indicated-speed-kt type="double">0</indicated-speed-kt>
 		</airspeed-indicator>
 		<altimeter n="0">
+			<inhg type="bool">1</inhg>
 			<indicated-altitude-ft type="double">0</indicated-altitude-ft>
+			<oldqnh type="double">29.92</oldqnh>
+			<std type="bool">0</std>
 		</altimeter>
 		<chrono n="0">
 			<started type="bool">0</started>
@@ -1298,14 +1310,6 @@
 		</output>
 	</it-autoflight>
 	
-	<modes>
-		<altimeter n="0">
-			<inhg type="bool">1</inhg>
-			<oldqnh type="double">29.92</oldqnh>
-			<std type="bool">0</std>
-		</altimeter>
-	</modes>
-	
 	<options n="0">
 		<keyboard-mode type="bool">0</keyboard-mode>
 		<laptop-mode type="bool">0</laptop-mode>
@@ -1401,6 +1405,10 @@
 		<pneumatics n="0">
 			<system type="bool">1</system>
 		</pneumatics>
+		<shake n="0">
+			<effect type="bool">0</effect>
+			<shaking type="bool">0</shaking>
+		</shake>
 	</systems>
 	
 	<nasal n="0">

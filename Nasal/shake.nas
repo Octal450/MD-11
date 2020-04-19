@@ -17,7 +17,7 @@ var theShakeEffect = func{
 		settimer(theShakeEffect, 0.09);	
 	} else {
 		pts.Systems.Shake.effect.setBoolValue(0);
-		setprop("/systems/shake/shaking", 0); # Why do props.nas when I need interpolate above anyways...
+		pts.Systems.Shake.shaking.setBoolValue(0);
 	}	    
 }
 

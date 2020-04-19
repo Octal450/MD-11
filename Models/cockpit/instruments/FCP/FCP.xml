@@ -665,7 +665,7 @@
 		<type>translate</type>
 		<object-name>BaroSet.L</object-name>
 		<property>controls/switches/baro-l-knob</property>
-		<factor>0.003</factor>
+		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -677,7 +677,7 @@
 		<type>translate</type>
 		<object-name>BaroSet.R</object-name>
 		<property>controls/switches/baro-r-knob</property>
-		<factor>0.003</factor>
+		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -1456,7 +1456,7 @@
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>property-cycle</command>
-				<property>modes/altimeter/inhg</property>
+				<property>instrumentation/altimeter/inhg</property>
 				<value>0</value>
 				<value>1</value>
 			</binding>
@@ -1487,7 +1487,7 @@
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.toggleSTD();</script>
+				<script>libraries.STD();</script>
 			</binding>
 		</action>
 		<action>
@@ -1498,34 +1498,34 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") + 0.01);</script>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") + 0.01);</script>
 			</binding>
 			<binding>
 				<condition>
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") + 1.0);</script>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") + 1.0);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -1551,34 +1551,34 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("instrumentation/altimeter/setting-inhg") - 0.01);</script>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") - 0.01);</script>
 			</binding>
 			<binding>
 				<condition>
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("instrumentation/altimeter/setting-hpa") - 1.0);</script>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") - 1.0);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -1639,7 +1639,7 @@
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.toggleSTD();</script>
+				<script>libraries.STD();</script>
 			</binding>
 		</action>
 		<action>
@@ -1650,11 +1650,11 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
@@ -1667,11 +1667,11 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
@@ -1703,11 +1703,11 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>
@@ -1720,11 +1720,11 @@
 					<and>
 						<property>systems/electrical/outputs/fcp-power</property>
 						<equals>
-							<property>modes/altimeter/inhg</property>
+							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>modes/altimeter/std</property>
+							<property>instrumentation/altimeter/std</property>
 							<value>0</value>
 						</equals>
 					</and>

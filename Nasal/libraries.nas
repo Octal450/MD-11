@@ -257,6 +257,8 @@ setlistener("/controls/flight/elevator-trim", func {
 
 setlistener("/controls/flight/auto-coordination", func {
 	setprop("/controls/flight/auto-coordination", 0);
+	print("System: Auto Coordination has been turned off as it is not compatible with the flight control system of this aircraft.");
+	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
 
 if (getprop("/controls/flight/auto-coordination") == 1) {
@@ -264,6 +266,36 @@ if (getprop("/controls/flight/auto-coordination") == 1) {
 	setprop("/controls/flight/aileron-drives-tiller", 1);
 } else {
 	setprop("/controls/flight/aileron-drives-tiller", 0);
+}
+
+var _shakeFlag = 0;
+var hd_t = 360;
+var resetView = func() {
+	if (!pts.Sim.CurrentView.viewNumber.getBoolValue()) {
+		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
+			_shakeFlag = 1;
+			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);
+		} else {
+			_shakeFlag = 0;
+		}
+		
+		hd_t = 360;
+		if (pts.Sim.CurrentView.headingOffsetDeg.getValue() < 180) {
+			hd_t = hd_t - 360;
+		}
+		
+		interpolate("sim/current-view/field-of-view", 82, 0.33);
+		interpolate("sim/current-view/heading-offset-deg", hd_t, 0.33);
+		interpolate("sim/current-view/pitch-offset-deg", -14.5, 0.33);
+		interpolate("sim/current-view/roll-offset-deg", 0, 0.33);
+		interpolate("sim/current-view/x-offset-m", -0.5225, 0.33); 
+		interpolate("sim/current-view/y-offset-m", 1.3201, 0.33); 
+		interpolate("sim/current-view/z-offset-m", -26.8, 0.33);
+		
+		if (_shakeFlag) {
+			pts.Sim.Rendering.Headshake.enabled.setBoolValue(1);
+		}
+	} 
 }
 
 # Custom Sounds

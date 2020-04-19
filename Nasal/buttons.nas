@@ -3,19 +3,17 @@
 
 # Resets buttons to the default values
 var variousReset = func {
-	setprop("/controls/flight/dial-a-flap", 15);
-	setprop("/controls/lighting/beacon", 0);
-	setprop("/controls/lighting/landing-light-l", 0.0);
-	setprop("/controls/lighting/landing-light-n", 0.0);
-	setprop("/controls/lighting/landing-light-r", 0.0);
-	setprop("/controls/lighting/logo-lights", 0);
-	setprop("/controls/lighting/nav-lights", 0);
-	setprop("/controls/lighting/strobe", 0);
-	setprop("/controls/switches/adg-handle", 0);
-	setprop("/controls/switches/minimums", 200);
+	pts.Controls.Flight.dialAFlap.setValue(15); 
+	pts.Controls.Lighting.beacon.setBoolValue(0);
+	pts.Controls.Lighting.landingLightL.setValue(0);
+	pts.Controls.Lighting.landingLightN.setValue(0);
+	pts.Controls.Lighting.landingLightR.setValue(0);
+	pts.Controls.Lighting.logoLights.setBoolValue(0);
+	pts.Controls.Lighting.navLights.setBoolValue(0);
+	pts.Controls.Lighting.strobe.setBoolValue(0);
+	pts.Controls.Switches.adgHandle.setValue(0);
+	pts.Controls.Switches.minimums.setValue(250);
 }
-
-
 
 var APPanel = {
 	altTemp: 0,
@@ -237,25 +235,17 @@ var APPanel = {
 	},
 };
 
-var toggleSTD = func {
-	var Std = getprop("/modes/altimeter/std");
-	if (Std == 1) {
-		var oldqnh = getprop("/modes/altimeter/oldqnh");
-		setprop("/instrumentation/altimeter/setting-inhg", oldqnh);
-		setprop("/modes/altimeter/std", 0);
-	} else if (Std == 0) {
-		var qnh = getprop("/instrumentation/altimeter/setting-inhg");
-		setprop("/modes/altimeter/oldqnh", qnh);
-		setprop("/instrumentation/altimeter/setting-inhg", 29.92);
-		setprop("/modes/altimeter/std", 1);
+var STD = func {
+	if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
+		pts.Instrumentation.Altimeter.oldQnh.setValue(pts.Instrumentation.Altimeter.settingInhg.getValue());
+		pts.Instrumentation.Altimeter.settingInhg.setValue(29.92);
+		pts.Instrumentation.Altimeter.std.setBoolValue(1);
 	}
 }
 
 var unSTD = func {
-	var Std = getprop("/modes/altimeter/std");
-	if (Std == 1) {
-		var oldqnh = getprop("/modes/altimeter/oldqnh");
-		setprop("/instrumentation/altimeter/setting-inhg", oldqnh);
-		setprop("/modes/altimeter/std", 0);
+	if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
+		pts.Instrumentation.Altimeter.settingInhg.setValue(pts.Instrumentation.Altimeter.oldQnh.getValue());
+		pts.Instrumentation.Altimeter.std.setBoolValue(0);
 	}
 }
