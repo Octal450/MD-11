@@ -5,6 +5,9 @@
 # Usage Example: pts.Class.SubClass.node.getValue()
 
 var Controls = {
+	Engines: {
+		throttleMax: props.globals.getNode("/controls/engines/throttle-max"),
+	},
 	Flight: {
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
@@ -106,7 +109,7 @@ var Systems = {
 	},
 	Shake: {
 		effect: props.globals.initNode("/systems/shake/effect", 0, "BOOL"),
-		shaking: props.globals.initNode("/systems/shake/shaking", 0, "BOOL"),
+		shaking: props.globals.initNode("/systems/shake/shaking", 0, "DOUBLE"),
 	},
 };
 

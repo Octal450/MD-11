@@ -456,6 +456,7 @@
 				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<packs-off type="bool">0</packs-off>
+			<throttle-max type="double">0</throttle-max>
 		</engines>
 		<fctl n="0">
 			<flap-limit-knob type="int">0</flap-limit-knob>
@@ -1407,7 +1408,7 @@
 		</pneumatics>
 		<shake n="0">
 			<effect type="bool">0</effect>
-			<shaking type="bool">0</shaking>
+			<shaking type="double">0</shaking>
 		</shake>
 	</systems>
 	
