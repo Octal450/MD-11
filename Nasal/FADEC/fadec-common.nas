@@ -1,5 +1,4 @@
-# MD-11 FADEC by Josh Davidson (Octal450)
-
+# McDonnell Douglas MD-11 FADEC
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 if (getprop("/options/eng") == "PW") {
@@ -7,6 +6,10 @@ if (getprop("/options/eng") == "PW") {
 } else {
 	io.include("fadec-ge.nas");
 }
+
+var Output = {
+	thrustLimitMode: props.globals.initNode("/controls/engines/thrust-limit", "T/O", "STRING"),
+};
 
 var eprga = 0;
 var eprto = 0;
@@ -33,7 +36,6 @@ setprop("/systems/thrust/n1/mct-lim", 0.0);
 setprop("/systems/thrust/n1/flx-lim", 0.0);
 setprop("/systems/thrust/n1/clb-lim", 0.0);
 setprop("/systems/thrust/n1/crz-lim", 0.0);
-setprop("/controls/engines/thrust-limit", "T/O");
 setprop("/controls/engines/n1-limit", 0.0);
 setprop("/controls/engines/epr-limit", 1.0);
 
@@ -62,19 +64,19 @@ var fadecLoop = func {
 	mode = getprop("/it-autoflight/mode/vert");
 	flap = getprop("/controls/flight/flaps-input");
 	if (mode == "G/A CLB") {
-		setprop("/controls/engines/thrust-limit", "G/A");
+		Output.thrustLimitMode.setValue("G/A");
 		setprop("/controls/engines/n1-limit", n1ga);
 		setprop("/controls/engines/epr-limit", eprga);
 	} else if (mode == "T/O CLB") {
-		setprop("/controls/engines/thrust-limit", "T/O");
+		Output.thrustLimitMode.setValue("T/O");
 		setprop("/controls/engines/n1-limit", n1to);
 		setprop("/controls/engines/epr-limit", eprto);
 	} else if (mode == "SPD CLB" or (mode == "V/S" and getprop("/it-autoflight/input/vs") >= 50) or flap >= 2) {
-		setprop("/controls/engines/thrust-limit", "CLB");
+		Output.thrustLimitMode.setValue("CLB");
 		setprop("/controls/engines/n1-limit", n1clb);
 		setprop("/controls/engines/epr-limit", eprclb);
 	} else {
-		setprop("/controls/engines/thrust-limit", "CRZ");
+		Output.thrustLimitMode.setValue("CRZ");
 		setprop("/controls/engines/n1-limit", n1crz);
 		setprop("/controls/engines/epr-limit", eprcrz);
 	}

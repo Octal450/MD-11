@@ -1,192 +1,161 @@
-# MD-11 AFS Interface
+# McDonnell Douglas MD-11 AFS Interface
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
-var lat = "";
-var vert = "";
-var thrustLimMode = "";
-var stopClampCheck = 0;
-var stopThrottleReset = 0;
-var clamp = 0;
-var clampFMA = 0;
-var thr = 0;
-setprop("/controls/engines/throttle-max", 0);
+var FMA = {
+	ap: props.globals.initNode("/instrumentation/pfd/fma/ap-mode", "", "STRING"),
+	pitch: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode", "T/O CLAMP", "STRING"),
+	pitchArm: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode-armed", "", "STRING"),
+	roll: props.globals.initNode("/instrumentation/pfd/fma/roll-mode", "TAKEOFF", "STRING"),
+	rollArm: props.globals.initNode("/instrumentation/pfd/fma/roll-mode-armed", "", "STRING"),
+};
 
-setlistener("sim/signals/fdm-initialized", func {
-	loopFMA.start();
-});
-
-var loopFMA = maketimer(0.05, func {
-	vert = getprop("/it-autoflight/mode/vert");
-	thrustLimMode = getprop("/controls/engines/thrust-limit");
-	thr = getprop("/controls/engines/throttle-max");
-	
-	if (vert == "T/O CLB") {
-		if (getprop("/it-autoflight/output/athr") == 1 and getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 80) {
-			if (thr >= 0.6) {
-				clamp = 0;
-			}
+var updateFMA = {
+	ap1: 0,
+	ap2: 0,
+	clampFMA: 0,
+	pitchText: "T/O CLB",
+	rollText: "T/O",
+	roll: func() {
+		me.rollText = Text.lat.getValue();
+		if (me.rollText == "HDG") {
+			FMA.roll.setValue("HEADING");
+		} else if (me.rollText == "LNAV") {
+			FMA.roll.setValue("NAV" ~ Custom.Internal.activeFMS.getValue());
+		} else if (me.rollText == "LOC") {
+			FMA.roll.setValue("LOC");
+		} else if (me.rollText == "ALGN") {
+			FMA.roll.setValue("ALIGN");
+		} else if (me.rollText == "T/O") {
+			FMA.roll.setValue("TAKEOFF");
+		} else if (me.rollText == "RLOU") {
+			FMA.roll.setValue("ROLLOUT");
+		}
+	},
+	pitch: func() {
+		me.pitchText = Text.vert.getValue();
+		if (me.pitchText == "SPD DES") {
+			FMA.pitch.setValue("IDLE CLAMP");
+		} else if (me.pitchText == "G/A CLB") {
+			FMA.pitch.setValue("GO AROUND");
+		} else if (me.pitchText == "ALT HLD") {
+			FMA.pitch.setValue("HOLD");
+		} else if (me.pitchText == "ALT CAP") {
+			FMA.pitch.setValue("HOLD");
+		} else if (me.pitchText == "V/S") {
+			FMA.pitch.setValue("V/S");
+		} else if (me.pitchText == "G/S") {
+			FMA.pitch.setValue("G/S");
+		} else if (me.pitchText == "FPA") {
+			FMA.pitch.setValue("FPA");
+		} else if (me.pitchText == "FLARE") {
+			FMA.pitch.setValue("FLARE");
+		} else if (me.pitchText == "ROLLOUT") {
+			FMA.pitch.setValue("ROLLOUT");
+		}
+	},
+	arm: func() {
+		if (Output.locArm.getBoolValue()) {
+			FMA.rollArm.setValue("LAND ARMED");
+		} else if (Output.lnavArm.getBoolValue()) {
+			FMA.rollArm.setValue("NAV ARMED");
 		} else {
-			clamp = 1;
+			FMA.rollArm.setValue("");
 		}
-	} else if (vert == "SPD CLB") {
-		stopClampCheck = 0;
-		stopThrottleReset = 0;
-		clamp = 0;
-	} else if (vert == "SPD DES") {
-		if (thr <= 0.01) {
-			stopClampCheck = 1;
-			clamp = 1;
-			if (stopThrottleReset != 1) {
-				stopThrottleReset = 1;
-				setprop("/controls/engines/engine[0]/throttle", 0);
-				setprop("/controls/engines/engine[1]/throttle", 0);
-				setprop("/controls/engines/engine[2]/throttle", 0);
-			}
-		} else if (stopClampCheck != 1) {
-			stopThrottleReset = 0;
-			clamp = 0;
-		}
-	} else {
-		stopClampCheck = 0;
-		stopThrottleReset = 0;
-		clamp = 0;
-	}
-	
-	if (getprop("/it-autoflight/output/clamp") != clamp) {
-		setprop("/it-autoflight/output/clamp", clamp);
-	}
-	
-	if (vert == "T/O CLB") {
-		if (clamp) {
-			clampFMA = 1;
+		if (Output.apprArm.getBoolValue() and !Output.locArm.getBoolValue()) {
+			FMA.pitchArm.setValue("LAND ARMED");
 		} else {
-			clampFMA = 0;
+			FMA.pitchArm.setValue("");
 		}
-	} else if (vert == "SPD CLB") {
-		clampFMA = 0;
-	} else if (vert == "SPD DES") {
-		clampFMA = 1;
-	} else {
-		clampFMA = 0;
-	}
-	
-	if (vert == "SPD CLB" or vert == "T/O CLB") {
-		if (clampFMA) {
-			setprop("/modes/pfd/fma/pitch-mode", thrustLimMode ~ " CLAMP");
-		} else {
-			setprop("/modes/pfd/fma/pitch-mode", thrustLimMode ~ " THRUST");
+	},
+	ap: func() {
+		ap1 = Output.ap1.getBoolValue();
+		ap2 = Output.ap2.getBoolValue();
+		if (ap1 and ap2) {
+			FMA.ap.setValue("AP1");
+		} else if (ap1 and !ap2) {
+			FMA.ap.setValue("AP1");
+		} else if (ap2 and !ap1) {
+			FMA.ap.setValue("AP2");
+		} else if (!ap1 and !ap2) {
+			FMA.ap.setValue("");
 		}
-	} else if (vert == "SPD DES") {
-		if (clampFMA) {
-			setprop("/modes/pfd/fma/pitch-mode", "IDLE CLAMP");
-		} else {
-			setprop("/modes/pfd/fma/pitch-mode", "IDLE THRUST");
-		}
-	} else if (vert == "G/A CLB") {
-		setprop("/modes/pfd/fma/pitch-mode", "GO AROUND");
-	}
-});
-
-# Master Lateral
-setlistener("/it-autoflight/mode/lat", func {
-	updateLateral();
-});
-
-setlistener("/it-autoflight/internal/active-fms", func {
-	updateLateral();
-}, 0, 0);
-
-var updateLateral = func {
-	lat = getprop("/it-autoflight/mode/lat");
-	if (lat == "HDG") {
-		setprop("/modes/pfd/fma/roll-mode", "HEADING");
-	} else if (lat == "LNAV") {
-		setprop("/modes/pfd/fma/roll-mode", "NAV" ~ Custom.Internal.activeFMS.getValue());
-	} else if (lat == "LOC") {
-		setprop("/modes/pfd/fma/roll-mode", "LOC");
-	} else if (lat == "ALGN") {
-		setprop("/modes/pfd/fma/roll-mode", "ALIGN");
-	} else if (lat == "T/O") {
-		setprop("/modes/pfd/fma/roll-mode", "TAKEOFF");
-	} else if (lat == "RLOU") {
-		setprop("/modes/pfd/fma/roll-mode", "ROLLOUT");
-	}
-}
-
-# Master Vertical
-setlistener("/it-autoflight/mode/vert", func {
-	vert = getprop("/it-autoflight/mode/vert");
-	if (vert == "ALT HLD") {
-		setprop("/modes/pfd/fma/pitch-mode", "HOLD");
-	} else if (vert == "ALT CAP") {
-		setprop("/modes/pfd/fma/pitch-mode", "HOLD");
-	} else if (vert == "V/S") {
-		setprop("/modes/pfd/fma/pitch-mode", "V/S");
-	} else if (vert == "G/S") {
-		setprop("/modes/pfd/fma/pitch-mode", "G/S");
-	} else if (vert == "FPA") {
-		setprop("/modes/pfd/fma/pitch-mode", "FPA");
-	} else if (vert == "FLARE") {
-		setprop("/modes/pfd/fma/pitch-mode", "FLARE");
-	} else if (vert == "ROLLOUT") {
-		setprop("/modes/pfd/fma/pitch-mode", "ROLLOUT");
-	}
-});
-
-setlistener("/it-autoflight/output/lnav-armed", func {
-	lateral_arm();
-});
-
-# Arm LOC
-setlistener("/it-autoflight/output/loc-armed", func {
-	lateral_arm();
-});
-
-var lateral_arm = func {
-	var loca = getprop("/it-autoflight/output/loc-armed");
-	if (loca) {
-		setprop("/modes/pfd/fma/roll-mode-armed", "LAND ARMED");
-	} else if (getprop("/it-autoflight/output/lnav-armed") == 1) {
-		setprop("/modes/pfd/fma/roll-mode-armed", "NAV ARMED");
-	} else {
-		setprop("/modes/pfd/fma/roll-mode-armed", "");
-	}
-	appr_arm();
-}
-
-# Arm G/S
-setlistener("/it-autoflight/output/appr-armed", func {
-	appr_arm();
-});
-
-var appr_arm = func {
-	var loca = getprop("/it-autoflight/output/loc-armed");
-	var appa = getprop("/it-autoflight/output/appr-armed");
-	if (appa and !loca) {
-		setprop("/modes/pfd/fma/pitch-mode-armed", "LAND ARMED");
-	} else {
-		setprop("/modes/pfd/fma/pitch-mode-armed", "");
-	}
-}
-
-# AP
-var ap = func {
-	var ap1 = getprop("/it-autoflight/output/ap1");
-	var ap2 = getprop("/it-autoflight/output/ap2");
-	if (ap1 and ap2) {
-		setprop("/modes/pfd/fma/ap-mode", "AP1");
-	} else if (ap1 and !ap2) {
-		setprop("/modes/pfd/fma/ap-mode", "AP1");
-	} else if (ap2 and !ap1) {
-		setprop("/modes/pfd/fma/ap-mode", "AP2");
-	} else if (!ap1 and !ap2) {
-		setprop("/modes/pfd/fma/ap-mode", "");
-	}
-}
+	},
+};
 
 setlistener("/it-autoflight/output/ap1", func {
-	ap();
-});
+	updateFMA.ap();
+}, 0, 0);
 setlistener("/it-autoflight/output/ap2", func {
-	ap();
-});
+	updateFMA.ap();
+}, 0, 0);
+
+var Clamp = {
+	active: 0,
+	fmaOutput: 0,
+	pitchText: "T/O CLB",
+	stopCheck: 0,
+	stopThrottleReset: 0,
+	throttleMax: 0,
+	loop: func() {
+		me.pitchText = Text.vert.getValue();
+		me.throttleMax = pts.Controls.Engines.throttleMax.getValue();
+		
+		if (me.pitchText == "T/O CLB") {
+			if (Output.athr.getBoolValue() and pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() < 80) {
+				if (me.throttleMax >= 0.6) {
+					me.active = 0;
+				}
+			} else {
+				me.active = 1;
+			}
+		} else if (me.pitchText == "SPD CLB") {
+			me.stopCheck = 0;
+			me.stopThrottleReset = 0;
+			me.active = 0;
+		} else if (me.pitchText == "SPD DES") {
+			if (me.throttleMax <= 0.01) {
+				me.stopCheck = 1;
+				me.active = 1;
+				if (me.stopThrottleReset != 1) {
+					me.stopThrottleReset = 1;
+					setprop("/controls/engines/engine[0]/throttle", 0);
+					setprop("/controls/engines/engine[1]/throttle", 0);
+					setprop("/controls/engines/engine[2]/throttle", 0);
+				}
+			} else if (me.stopCheck != 1) {
+				me.stopThrottleReset = 0;
+				me.active = 0;
+			}
+		} else {
+			me.stopCheck = 0;
+			me.stopThrottleReset = 0;
+			me.active = 0;
+		}
+		
+		if (getprop("/it-autoflight/output/clamp") != me.active) {
+			setprop("/it-autoflight/output/clamp", me.active);
+		}
+		
+		if (me.pitchText == "T/O CLB") {
+			if (me.active) {
+				me.fmaOutput = 1;
+			} else {
+				me.fmaOutput = 0;
+			}
+		} else if (me.pitchText == "SPD DES") {
+			me.fmaOutput = 1;
+		} else {
+			me.fmaOutput = 0;
+		}
+		
+		if (me.pitchText == "SPD CLB" or me.pitchText == "T/O CLB") {
+			if (me.fmaOutput) {
+				FMA.pitch.setValue(fadec.Output.thrustLimitMode.getValue() ~ " CLAMP");
+			} else {
+				FMA.pitch.setValue(fadec.Output.thrustLimitMode.getValue() ~ " THRUST");
+			}
+		}
+	},
+};
+
+var clampLoop = maketimer(0.05, Clamp, Clamp.loop);

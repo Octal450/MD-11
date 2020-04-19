@@ -147,7 +147,7 @@
 				<border>1</border>
 				<label>999</label>
 				<valign>center</valign>
-				<property>/modes/pfd/fma/ap-mode</property>
+				<property>/instrumentation/pfd/fma/ap-mode</property>
 				<live>1</live>
 			</text>
 			<vrule/>
@@ -198,7 +198,7 @@
 					</or>
 				</visible>
 				<valign>center</valign>
-				<property>/modes/pfd/fma/roll-mode-armed</property>
+				<property>/instrumentation/pfd/fma/roll-mode-armed</property>
 				<live>1</live>
 			</text>
 			<vrule/>
@@ -226,7 +226,7 @@
 					</or>
 				</visible>
 				<valign>center</valign>
-				<property>/modes/pfd/fma/roll-mode</property>
+				<property>/instrumentation/pfd/fma/roll-mode</property>
 				<live>1</live>
 			</text>
 			<text>
@@ -265,7 +265,7 @@
 					</or>
 				</visible>
 				<valign>center</valign>
-				<property>/modes/pfd/fma/pitch-mode-armed</property>
+				<property>/instrumentation/pfd/fma/pitch-mode-armed</property>
 				<live>1</live>
 			</text>
 			<vrule/>
@@ -293,7 +293,7 @@
 					</or>
 				</visible>
 				<valign>center</valign>
-				<property>/modes/pfd/fma/pitch-mode</property>
+				<property>/instrumentation/pfd/fma/pitch-mode</property>
 				<live>1</live>
 			</text>
 			<text>

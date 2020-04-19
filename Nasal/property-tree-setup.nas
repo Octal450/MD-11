@@ -47,6 +47,10 @@ var Gear = {
 };
 
 var Instrumentation = {
+	AirspeedIndicator: {
+		indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach"),
+		indicatedSpeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt"),
+	},
 	Altimeter: {
 		oldQnh: props.globals.getNode("/instrumentation/altimeter/oldqnh"),
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
