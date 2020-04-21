@@ -67,6 +67,27 @@
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/custom/hdg-sel</property>
+					<product>
+						<property>/it-autoflight/internal/drift-angle-deg</property>
+						<value>-1</value>
+					</product>
+				</sum>
+			</expression>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<input>
 			<property>/it-autoflight/custom/hdg-sel</property>
 			<period>
 				<min>-180.0</min>
@@ -92,6 +113,27 @@
 		<type>gain</type>
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/input/hdg</property>
+					<product>
+						<property>/it-autoflight/internal/drift-angle-deg</property>
+						<value>-1</value>
+					</product>
+				</sum>
+			</expression>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
 		<input>
 			<property>/it-autoflight/input/hdg</property>
 			<period>

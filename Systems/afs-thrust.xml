@@ -263,15 +263,6 @@
 		<output>/controls/engines/engine[0]/throttle</output>
 		<max-rate-of-change>
 			<condition>
-				<equals>
-					<property>/it-autoflight/mode/thr</property>
-					<value>RETARD</value>
-				</equals>
-			</condition>
-			<value>0.1</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
@@ -313,15 +304,6 @@
 		<output>/controls/engines/engine[1]/throttle</output>
 		<max-rate-of-change>
 			<condition>
-				<equals>
-					<property>/it-autoflight/mode/thr</property>
-					<value>RETARD</value>
-				</equals>
-			</condition>
-			<value>0.1</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
@@ -361,15 +343,6 @@
 		<initialize-to>output</initialize-to>
 		<input>/controls/engines/throttle-cmd-pid</input>
 		<output>/controls/engines/engine[2]/throttle</output>
-		<max-rate-of-change>
-			<condition>
-				<equals>
-					<property>/it-autoflight/mode/thr</property>
-					<value>RETARD</value>
-				</equals>
-			</condition>
-			<value>0.1</value>
-		</max-rate-of-change>
 		<max-rate-of-change>
 			<condition>
 				<or>

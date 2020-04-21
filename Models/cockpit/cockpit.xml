@@ -3,42 +3,42 @@
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
-
+	
 	<path>cockpit.ac</path>
 	
 	<animation>
 		<type>translate</type>
 		<property>systems/shake/shaking</property>
 		<axis>
-			<x1-m>   0</x1-m>
-			<y1-m>   0</y1-m>
-			<z1-m>   0</z1-m>
-			<x2-m> 0.5</x2-m>
+			<x1-m>0.0</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.0</z1-m>
+			<x2-m>0.5</x2-m>
 			<y2-m>-0.5</y2-m>
 			<z2-m> 0.8</z2-m>
 		</axis>
 	</animation>
 	
-	  <effect>
-<inherits-from>Aircraft/MD-11/Models/Effects/bumpspec-floor</inherits-from>
-<object-name>floor</object-name>
- </effect>
-
-				  <animation>
-<type>shader</type>
-<shader>chrome</shader>
-<texture>chrome_cockpit.png</texture>
-<object-name>ctr.gear.glass</object-name>
-<object-name>crank.handle.left</object-name>
-</animation>
-
-				  <animation>
-<type>shader</type>
-<shader>chrome</shader>
-<texture>windshield.png</texture>
-<object-name>Windshield.inner</object-name>
-</animation>
-
+	<effect>
+		<inherits-from>Aircraft/MD-11/Models/Effects/bumpspec-floor</inherits-from>
+		<object-name>floor</object-name>
+	</effect>
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>chrome_cockpit.png</texture>
+		<object-name>ctr.gear.glass</object-name>
+		<object-name>crank.handle.left</object-name>
+	</animation>
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>windshield.png</texture>
+		<object-name>Windshield.inner</object-name>
+	</animation>
+	
 	<animation>
 		<name>Integ Panel lighting</name>
 		<type>material</type>
@@ -64,7 +64,7 @@
 			<pitch-deg>55</pitch-deg>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>Compass</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/compass/compass.xml</path>
@@ -72,102 +72,97 @@
 			<x-m>0.05</x-m>
 		</offsets>
 	</model>
-
- <animation>
-   <type>pick</type>
-   <object-name>Compass</object-name>
-   <visible>true</visible>
-   <action>
-	 <button>0</button>
-	 <repeatable>false</repeatable>
-	 <!--binding>
-	   <command>nasal</command>
-	   <script>MD11.COMPASS.toggle();</script>
-	 </binding-->
-   </action>
- </animation>
- 
- 
-		<animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Compass</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<!--binding>
+				<command>nasal</command>
+				<script>MD11.COMPASS.toggle();</script>
+			</binding-->
+		</action>
+	</animation>
+	
+	<animation>
 		<type>translate</type>
 		<object-name>Compass</object-name>
-	<property>sim/model/door-positions/compass/position-norm</property>
+		<property>sim/model/door-positions/compass/position-norm</property>
 		<factor>0.05</factor>
- <axis>
-  <x>0</x>
-  <y>0.0</y>
-  <z>1</z>
- </axis>
+		<axis>
+			<x>0</x>
+			<y>0.0</y>
+			<z>1</z>
+		</axis>
 	</animation>
-
-<model>
-	<name>Overhead 2</name>
-	<path>Aircraft/MD-11/Models/cockpit/overhead_2.xml</path>
-			<offsets>
+	
+	<model>
+		<name>Overhead 2</name>
+		<path>Aircraft/MD-11/Models/cockpit/overhead_2.xml</path>
+		<offsets>
 			<pitch-deg>69.19</pitch-deg>
 		</offsets>
-</model>
+	</model>
 	
-	
-
-<model>
-	<name>FCP</name>
-	<path>Aircraft/MD-11/Models/cockpit/instruments/FCP/FCP.xml</path>
-			<offsets>
+	<model>
+		<name>FCP</name>
+		<path>Aircraft/MD-11/Models/cockpit/instruments/FCP/FCP.xml</path>
+		<offsets>
 			<pitch-deg>-10</pitch-deg>
 		</offsets>
-</model>
-
-<model>
-	<name>1st seat</name>
-	<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
-			<offsets>
-	  <x-m>-26.8662</x-m>
-	  <y-m>-0.5256</y-m>
-	  <z-m>6.3334</z-m>
+	</model>
+	
+	<model>
+		<name>1st seat</name>
+		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<offsets>
+			<x-m>-26.8662</x-m>
+			<y-m>-0.5256</y-m>
+			<z-m>6.3334</z-m>
 		</offsets>
-</model>
-
-<model>
-	<name>2nd seat</name>
-	<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
-			<offsets>
-	  <x-m>-26.8662</x-m>
-	  <y-m>0.5256</y-m>
-	  <z-m>6.3334</z-m>
+	</model>
+	
+	<model>
+		<name>2nd seat</name>
+		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<offsets>
+			<x-m>-26.8662</x-m>
+			<y-m>0.5256</y-m>
+			<z-m>6.3334</z-m>
 		</offsets>
-</model>
-
-<model>
-	<name>3rd seat</name>
-	<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
-			<offsets>
-	  <heading-deg>-90</heading-deg>
-	  <x-m>-26.0424</x-m>
-	  <y-m>0.436</y-m>
-	  <z-m>6.2319</z-m>
+	</model>
+	
+	<model>
+		<name>3rd seat</name>
+		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<offsets>
+			<heading-deg>-90</heading-deg>
+			<x-m>-26.0424</x-m>
+			<y-m>0.436</y-m>
+			<z-m>6.2319</z-m>
 		</offsets>
-</model>
-
-<model>
-	<name>Pedestal</name>
-	<path>Aircraft/MD-11/Models/cockpit/pedestal.xml</path>
-</model>
-
-
-<model>
-	<name>3. Audio selector</name>
-	<path>Aircraft/MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
-			<offsets>
+	</model>
+	
+	<model>
+		<name>Pedestal</name>
+		<path>Aircraft/MD-11/Models/cockpit/pedestal.xml</path>
+	</model>
+	
+	<model>
+		<name>3. Audio selector</name>
+		<path>Aircraft/MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+		<offsets>
 			<pitch-deg>90</pitch-deg>
-	  <heading-deg>-90</heading-deg>
-	  <x-m>-26.3494</x-m>
-	  <y-m>0.9785</y-m>
-	  <z-m>6.7392</z-m>
+			<heading-deg>-90</heading-deg>
+			<x-m>-26.3494</x-m>
+			<y-m>0.9785</y-m>
+			<z-m>6.7392</z-m>
 		</offsets>
-</model>
-
-
+	</model>
+	
 	<model>
 		<name>PFD</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD1.xml</path>
@@ -178,7 +173,7 @@
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>EAD</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.xml</path>
@@ -189,7 +184,7 @@
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
 	</model>
-
+	
 	<!--model>
 		<name>SD</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/EAD/SD.xml</path>
@@ -200,7 +195,7 @@
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
 	</model-->
-
+	
 	<model>
 		<name>PFD2</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD2.xml</path>
@@ -211,7 +206,7 @@
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
 	</model>
-
+	
 	<animation>
 		<type>select</type>
 		<object-name>ND.screenL</object-name>
@@ -233,32 +228,32 @@
 			</greater-than-equals>
 		</condition>
 	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ND.screenL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.showNd();</script>
+			</binding>
+		</action>
+	</animation>
 
-<animation>
-	<type>pick</type>
-	<object-name>ND.screenL</object-name>
-	<action>
-		<button>0</button>
-		<repeatable>false</repeatable>
-		<binding>
-			<command>nasal</command>
-			<script>libraries.showNd();</script>
-		</binding>
-	</action>
-</animation>
-
-<animation>
-	<type>pick</type>
-	<object-name>ND.screenR</object-name>
-	<action>
-		<button>0</button>
-		<repeatable>false</repeatable>
-		<binding>
-			<command>nasal</command>
-			<script>libraries.showNd("fo");</script>
-		</binding>
-	</action>
-</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>ND.screenR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.showNd("fo");</script>
+			</binding>
+		</action>
+	</animation>
 
 	<animation>
  <type>translate</type>
@@ -791,68 +786,149 @@
   <z>1.0</z>
  </axis>
 </animation>
-
-	<animation>
+	
+	<!-- No button lights without power! -->
+	<!--animation>
 		<type>select</type>
-		<object-name>master_warning_light_on</object-name>
+		<object-name></object-name>
 		<condition>
 			<or>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
-				<property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
-				<property>instrumentation/weu/light/master-warning</property>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-bat</property>
+					<value>25</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-1</property>
+					<value>25</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-2</property>
+					<value>25</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-3</property>
+					<value>25</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+	</animation-->
+	
+	<animation>
+		<type>select</type>
+		<object-name>FD1.off</object-name>
+		<object-name>FD2.off</object-name>
+		<condition>
+			<or>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-1</property>
+					<value>25</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-2</property>
+					<value>25</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-3</property>
+					<value>25</value>
+				</greater-than-equals>
 			</or>
 		</condition>
 	</animation>
 	
-		<animation>
+	<animation>
+		<type>select</type>
+		<object-name>master_warning_light_on</object-name>
+		<condition>
+			<property>sim/unused/unused</property>
+		</condition>
+	</animation>
+
+	<animation>
 		<type>select</type>
 		<object-name>master_caution_light_on</object-name>
 		<condition>
-			<property>instrumentation/weu/light/master-caution</property>
+			<property>sim/unused/unused</property>
 		</condition>
 	</animation>
-	
-		<animation>
+
+	<!--animation>
 		<type>select</type>
 		<object-name>master_warning_light_off</object-name>
 		<condition>
-			<and>
-				<not><property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property></not>
-				<not><property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property></not>
-				<not><property>instrumentation/weu/light/master-warning</property></not>
-			</and>
 		</condition>
-	</animation>
-	
-		<animation>
+	</animation-->
+
+	<!--animation>
 		<type>select</type>
 		<object-name>master_caution_light_off</object-name>
 		<condition>
-		<not>
-			<property>instrumentation/weu/light/master-caution</property>
-			</not>
 		</condition>
-	</animation>
+	</animation-->
 	
-	<!--animation>
+	<animation>
 		<type>pick</type>
-		<object-name>flt_dr</object-name>
+		<object-name>FD1.Button</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>instrumentation/afds/inputs/FD</property>
+				<property>it-autoflight/input/fd1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>
-					controls.click(1);
-					MD11.afds.input(3,2);
-				</script>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
 			</binding>
 		</action>
-	</animation-->
- 
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FD1.off</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>it-autoflight/output/fd1</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FD2.Button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/fd2</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/oh-btn", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>FD2.off</object-name>
+		<condition>
+			<or>
+				<not-equals>
+					<property>it-autoflight/output/fd2</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
 
 </PropertyList>

@@ -14,6 +14,12 @@ var FCTL = {
 		ydLowerA: props.globals.getNode("/systems/failures/fctl/yd-lower-a"),
 		ydLowerB: props.globals.getNode("/systems/failures/fctl/yd-lower-b"),
 	},
+	Lsas: {
+		leftInActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/left-in-active", 1),
+		leftOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/left-out-active", 1),
+		RightInActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-in-active", 1),
+		RightOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-out-active", 1),
+	},
 	Switch: {
 		elevatorFeelKnob: props.globals.getNode("/controls/fctl/elevator-feel-knob"),
 		elevatorFeelMan: props.globals.getNode("/controls/fctl/elevator-feel-man"),

@@ -1,5 +1,4 @@
-# MD-11 PFD
-
+# McDonnell Douglas MD-11 PFD
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var PFD_1 = nil;
@@ -262,10 +261,7 @@ var canvas_PFD_base = {
 		if (atsflash.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
-		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
-			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
-			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
-		} else if ((eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3) or rev1.getValue() >= 0.01 or rev2.getValue() >= 0.01 or rev3.getValue() >= 0.01) {
+		} else if (!afs.Custom.Output.atsAvail.getBoolValue()) {
 			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
 			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else {
@@ -276,16 +272,10 @@ var canvas_PFD_base = {
 		if (apsound.getValue() == 1) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
-		} else if (ovrd1.getBoolValue() and ovrd2.getBoolValue()) {
+		} else if (!afs.Custom.Output.ap1Avail.getBoolValue() and !afs.Custom.Output.ap2Avail.getBoolValue()) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
-		} else if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
-		} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else {
@@ -323,28 +313,12 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setColor(1,0,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
-		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (ovrd1.getBoolValue() and ovrd2.getBoolValue())) {
+		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (!afs.Custom.Output.ap1Avail.getBoolValue() and !afs.Custom.Output.ap2Avail.getBoolValue())) {
 			me["FMA_AP"].setColor(0.9412,0.7255,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
-		} else if (throttle_mode.getValue() == "PITCH") {
-			if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
-				me["FMA_AP"].setColor(0.9412,0.7255,0);
-			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-				me["FMA_AP"].setColor(0.9412,0.7255,0);
-			} else {
-				me["FMA_AP"].setColor(1,1,1);
-			}
-			me["FMA_AP"].setText("AP OFF");
-			me["FMA_AP"].show();
 		} else {
-			if (IR0aligned.getValue() == 0 and IR1aligned.getValue() == 0 and IR2aligned.getValue() == 0) {
-				me["FMA_AP"].setColor(0.9412,0.7255,0);
-			} else if (eng0state.getValue() != 3 and eng1state.getValue() != 3 and eng2state.getValue() != 3 and wow1.getValue() != 0 and wow2.getValue() != 0) {
-				me["FMA_AP"].setColor(0.9412,0.7255,0);
-			} else {
-				me["FMA_AP"].setColor(1,1,1);
-			}
+			me["FMA_AP"].setColor(1,1,1);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		}
@@ -381,7 +355,7 @@ var canvas_PFD_base = {
 		}
 		
 		me["FMA_Thrust"].setText(sprintf("%s", throttle_mode.getValue()));
-		if (roll_mode.getValue() == "HEADING") {
+		if (roll_mode.getValue() == "HEADING" or roll_mode.getValue() == "TRACK") {
 			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue() ~ " " ~ sprintf("%03d", aphdg.getValue())));
 		} else {
 			me["FMA_Roll"].setText(sprintf("%s", roll_mode.getValue()));

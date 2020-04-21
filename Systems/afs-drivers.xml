@@ -4,6 +4,123 @@
 
 <PropertyList>
 	
+	<!-- Logic -->
+	<logic>
+		<input>
+			<and>
+				<not><property>/it-autoflight/input/ovrd1</property></not>
+				<or>
+					<equals>
+						<property>/instrumentation/irs/ir[0]/aligned</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/irs/ir[1]/aligned</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/irs/ir[2]/aligned</property>
+						<value>1</value>
+					</equals>
+				</or>
+				<greater-than-equals> <!-- Controls -->
+					<property>/systems/hydraulics/sys-2-psi</property>
+					<value>1500</value>
+				</greater-than-equals>
+				<greater-than-equals> <!-- Autotrim -->
+					<property>/systems/hydraulics/sys-3-psi</property>
+					<value>1500</value>
+				</greater-than-equals>
+				<or>
+					<equals>
+						<property>/fdm/jsbsim/fcc/lsas/left-out-active</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/fdm/jsbsim/fcc/lsas/right-in-active</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</and>
+		</input>
+		<output>/it-autoflight/output/ap1-available</output>
+	</logic>
+	
+	<logic>
+		<input>
+			<and>
+				<not><property>/it-autoflight/input/ovrd2</property></not>
+				<or>
+					<equals>
+						<property>/instrumentation/irs/ir[0]/aligned</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/irs/ir[1]/aligned</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/irs/ir[2]/aligned</property>
+						<value>1</value>
+					</equals>
+				</or>
+				<greater-than-equals>
+					<property>/systems/hydraulics/sys-1-psi</property>
+					<value>1500</value>
+				</greater-than-equals>
+				<or>
+					<equals>
+						<property>/fdm/jsbsim/fcc/lsas/left-in-active</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/fdm/jsbsim/fcc/lsas/right-out-active</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</and>
+		</input>
+		<output>/it-autoflight/output/ap2-available</output>
+	</logic>
+	
+	<logic>
+		<input>
+			<and>
+				<or>
+					<not><property>/it-autoflight/input/ovrd1</property></not>
+					<not><property>/it-autoflight/input/ovrd2</property></not>
+				</or>
+				<or>
+					<equals>
+						<property>/engines/engine[0]/state</property>
+						<value>3</value>
+					</equals>
+					<equals>
+						<property>/engines/engine[1]/state</property>
+						<value>3</value>
+					</equals>
+					<equals>
+						<property>/engines/engine[2]/state</property>
+						<value>3</value>
+					</equals>
+				</or>
+				<less-than>
+					<property>/engines/engine[0]/reverser-pos-norm</property>
+					<value>0.01</value>
+				</less-than>
+				<less-than>
+					<property>/engines/engine[1]/reverser-pos-norm</property>
+					<value>0.01</value>
+				</less-than>
+				<less-than>
+					<property>/engines/engine[2]/reverser-pos-norm</property>
+					<value>0.01</value>
+				</less-than>
+			</and>
+		</input>
+		<output>/it-autoflight/output/ats-available</output>
+	</logic>
+	
 	<!-- Predictors -->
 	
 	<predict-simple>

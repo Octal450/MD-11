@@ -18,7 +18,11 @@ var updateFMA = {
 	roll: func() {
 		me.rollText = Text.lat.getValue();
 		if (me.rollText == "HDG") {
-			FMA.roll.setValue("HEADING");
+			if (Input.trk.getBoolValue()) {
+				FMA.roll.setValue("TRACK");
+			} else {
+				FMA.roll.setValue("HEADING");
+			}
 		} else if (me.rollText == "LNAV") {
 			FMA.roll.setValue("NAV" ~ Custom.Internal.activeFMS.getValue());
 		} else if (me.rollText == "LOC") {
@@ -118,9 +122,9 @@ var Clamp = {
 				me.active = 1;
 				if (me.stopThrottleReset != 1) {
 					me.stopThrottleReset = 1;
-					setprop("/controls/engines/engine[0]/throttle", 0);
-					setprop("/controls/engines/engine[1]/throttle", 0);
-					setprop("/controls/engines/engine[2]/throttle", 0);
+					pts.Controls.Engines.Engine.throttle[0].setValue(0);
+					pts.Controls.Engines.Engine.throttle[1].setValue(0);
+					pts.Controls.Engines.Engine.throttle[2].setValue(0);
 				}
 			} else if (me.stopCheck != 1) {
 				me.stopThrottleReset = 0;

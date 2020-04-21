@@ -1,5 +1,4 @@
-# MD-11 EAD
-
+# McDonnell Douglas MD-11 EAD
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var EAD_GE = nil;
