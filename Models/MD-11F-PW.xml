@@ -584,15 +584,14 @@
 		</axis>
 	</animation>
 	
-<!-- Rudder -->
-
-<animation>
+	<!-- Rudder -->
+	<animation>
 		<name>Rudder U rotate</name>
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
 		<object-name>rudder_trailing.u</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
-		<factor>-1</factor>
+		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
 			<y1-m>0</y1-m>
@@ -603,12 +602,12 @@
 		</axis>
 	</animation>
 	
-<animation>
+		<animation>
 		<name>Rudder trailing U rotate</name>
 		<type>rotate</type>
 		<object-name>rudder_trailing.u</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
-		<factor>-0.5</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>30.0511</x1-m>
 			<y1-m>0</y1-m>
@@ -626,7 +625,7 @@
 		<object-name>rudder.l</object-name>
 		<object-name>rudder_trailing.l</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
-		<factor>-1</factor>
+		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
 			<y1-m>0</y1-m>
@@ -642,7 +641,7 @@
 		<type>rotate</type>
 		<object-name>rudder_trailing.l</object-name>
 		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
-		<factor>-0.5</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>28.4977</x1-m>
 			<y1-m>0</y1-m>
