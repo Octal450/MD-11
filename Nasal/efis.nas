@@ -1,32 +1,9 @@
 # MD-11 EFIS Controller
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
-var rng = 0;
+var rng = 10;
 var lh = 0;
 var rh = 0;
-
-setlistener("/sim/signals/fdm-initialized", func {
-	setprop("/instrumentation/efis[0]/mfd/display-mode", "MAP");
-	setprop("/instrumentation/efis[0]/inputs/nd-centered", 0);
-	setprop("/instrumentation/efis[0]/inputs/range-nm", 10);
-	setprop("/instrumentation/efis[0]/inputs/tfc", 0);
-	setprop("/instrumentation/efis[0]/inputs/data", 0);
-	setprop("/instrumentation/efis[0]/inputs/wpt", 0);
-	setprop("/instrumentation/efis[0]/inputs/sta", 0);
-	setprop("/instrumentation/efis[0]/inputs/arpt", 0);
-	setprop("/instrumentation/efis[0]/inputs/lh-vor-adf", 0);
-	setprop("/instrumentation/efis[0]/inputs/rh-vor-adf", 0);
-	setprop("/instrumentation/efis[1]/mfd/display-mode", "MAP");
-	setprop("/instrumentation/efis[1]/inputs/nd-centered", 0);
-	setprop("/instrumentation/efis[1]/inputs/range-nm", 10);
-	setprop("/instrumentation/efis[1]/inputs/tfc", 0);
-	setprop("/instrumentation/efis[1]/inputs/data", 0);
-	setprop("/instrumentation/efis[1]/inputs/wpt", 0);
-	setprop("/instrumentation/efis[1]/inputs/sta", 0);
-	setprop("/instrumentation/efis[1]/inputs/arpt", 0);
-	setprop("/instrumentation/efis[1]/inputs/lh-vor-adf", 0);
-	setprop("/instrumentation/efis[1]/inputs/rh-vor-adf", 0);
-});
 
 var setCptND = func(m) {
 	pts.Instrumentation.Efis.Mfd.displayMode[0].setValue(m);
