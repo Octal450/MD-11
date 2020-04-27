@@ -1414,16 +1414,16 @@
 	
 	<nasal n="0">
 		<pts>
-			<file>Aircraft/MD-11/Nasal/property-tree-setup.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/property-tree-setup.nas</file>
 		</pts>
 		<libraries>
-			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
-			<file>Aircraft/MD-11/Nasal/efis.nas</file>
-			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/libraries.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/efis.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/buttons.nas</file>
 			<file>Aircraft/MD-11/Models/cockpit/instruments/ND/ND.nas</file>
-			<file>Aircraft/MD-11/Nasal/shake.nas</file>
-			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
-			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/shake.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/light-manager.nas</file>
+			<file>Aircraft/MD-11/Nasal/Libraries/zoom-views.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
