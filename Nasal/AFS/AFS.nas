@@ -346,6 +346,16 @@ var ITAF = {
 			}
 		}
 		
+		# Kill Autoland if the system should not autoland without AP, and AP is off
+		if (!Output.ap1Temp and !Output.ap2Temp) {
+			if (Output.latTemp == 4) {
+				me.activateLOC();
+			}
+			if (Output.vertTemp == 6) {
+				me.activateGS();
+			}
+		}
+		
 		# Update LNAV engage altitude
 		if (Output.ap1Temp or Output.ap2Temp) {
 			Internal.lnavEngageFt = 400;
