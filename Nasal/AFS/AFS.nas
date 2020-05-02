@@ -346,7 +346,7 @@ var ITAF = {
 			}
 		}
 		
-		# Kill Autoland if the system should not autoland without AP, and AP is off
+		# Kill Autoland if AP is turned off
 		if (!Output.ap1Temp and !Output.ap2Temp) {
 			if (Output.latTemp == 4) {
 				me.activateLOC();
