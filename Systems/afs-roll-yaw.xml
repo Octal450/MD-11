@@ -310,16 +310,7 @@
 				</or>
 			</condition>
 		</enable>
-		<input>
-			<expression>
-				<table>
-					<property>/orientation/roll-deg</property>
-					<entry><ind>-30</ind><dep>-30</dep></entry>
-					<entry><ind>  0</ind><dep>  0</dep></entry>
-					<entry><ind> 30</ind><dep> 30</dep></entry>
-				</table>
-			</expression>
-		</input>
+		<input>/orientation/roll-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/aileron-rollout</output>
 	</filter>
