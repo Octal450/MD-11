@@ -103,14 +103,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<property>/controls/engines/throttle-scale</property>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
@@ -128,17 +127,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<product>
-									<value>0.97</value>
-									<property>/controls/engines/throttle-scale</property>
-								</product>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
@@ -156,17 +151,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<product>
-									<value>0.96</value>
-									<property>/controls/engines/throttle-scale</property>
-								</product>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
@@ -184,17 +175,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<product>
-									<value>0.97</value>
-									<property>/engines/flx-throttle</property>
-								</product>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
@@ -212,17 +199,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<product>
-									<value>0.90</value>
-									<property>/controls/engines/throttle-scale</property>
-								</product>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
@@ -240,17 +223,13 @@
 			<expression>
 				<div>
 					<floor>
-						<product>
-							<table>
-								<product>
-									<value>0.89</value>
-									<property>/controls/engines/throttle-scale</property>
-								</product>
-								<entry><ind>0.00</ind><dep> 23.7</dep></entry>
-								<entry><ind>1.00</ind><dep>117.5</dep></entry>
-							</table>
-							<value>10</value>
-						</product>
+						<sum>
+							<product>
+								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
 					</floor>
 					<value>10</value>
 				</div>
