@@ -92,13 +92,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/aileron-out-l/cmd-deg">
+		<pure_gain name="hydraulics/aileron-out-l/cmd-deg">
 			<input>hydraulics/aileron-out-l/switch</input>
-			<range>
-				<min>-20</min>
-				<max>20</max>
-			</range>
-		</aerosurface_scale>
+			<gain>20</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/aileron-out-l/final-actuator">
 			<input>hydraulics/aileron-out-l/cmd-deg</input>
@@ -150,13 +147,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/aileron-in-l/cmd-deg">
+		<pure_gain name="hydraulics/aileron-in-l/cmd-deg">
 			<input>hydraulics/aileron-in-l/switch</input>
-			<range>
-				<min>-20</min>
-				<max>20</max>
-			</range>
-		</aerosurface_scale>
+			<gain>20</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/aileron-in-l/final-actuator">
 			<input>hydraulics/aileron-in-l/cmd-deg</input>
@@ -208,13 +202,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/aileron-in-r/cmd-deg">
+		<pure_gain name="hydraulics/aileron-in-r/cmd-deg">
 			<input>hydraulics/aileron-in-r/switch</input>
-			<range>
-				<min>-20</min>
-				<max>20</max>
-			</range>
-		</aerosurface_scale>
+			<gain>20</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/aileron-in-r/final-actuator">
 			<input>hydraulics/aileron-in-r/cmd-deg</input>
@@ -271,13 +262,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/aileron-out-r/cmd-deg">
+		<pure_gain name="hydraulics/aileron-out-r/cmd-deg">
 			<input>hydraulics/aileron-out-r/switch</input>
-			<range>
-				<min>-20</min>
-				<max>20</max>
-			</range>
-		</aerosurface_scale>
+			<gain>20</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/aileron-out-r/final-actuator">
 			<input>hydraulics/aileron-out-r/cmd-deg</input>
@@ -302,13 +290,14 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/elevator-out-l/cmd-deg">
+		<pure_gain name="hydraulics/elevator-out-l/cmd-deg">
 			<input>hydraulics/elevator-out-l/switch</input>
-			<range>
+			<gain>20.1</gain>
+			<clipto>
 				<min>-20.1</min>
 				<max>17.2</max>
-			</range>
-		</aerosurface_scale>
+			</clipto>
+		</pure_gain>
 		
 		<actuator name="hydraulics/elevator-out-l/final-actuator">
 			<input>hydraulics/elevator-out-l/cmd-deg</input>
@@ -333,13 +322,14 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/elevator-in-l/cmd-deg">
+		<pure_gain name="hydraulics/elevator-in-l/cmd-deg">
 			<input>hydraulics/elevator-in-l/switch</input>
-			<range>
+			<gain>20.1</gain>
+			<clipto>
 				<min>-20.1</min>
 				<max>17.2</max>
-			</range>
-		</aerosurface_scale>
+			</clipto>
+		</pure_gain>
 		
 		<actuator name="hydraulics/elevator-in-l/final-actuator">
 			<input>hydraulics/elevator-in-l/cmd-deg</input>
@@ -364,13 +354,14 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/elevator-in-r/cmd-deg">
+		<pure_gain name="hydraulics/elevator-in-r/cmd-deg">
 			<input>hydraulics/elevator-in-r/switch</input>
-			<range>
+			<gain>20.1</gain>
+			<clipto>
 				<min>-20.1</min>
 				<max>17.2</max>
-			</range>
-		</aerosurface_scale>
+			</clipto>
+		</pure_gain>
 		
 		<actuator name="hydraulics/elevator-in-r/final-actuator">
 			<input>hydraulics/elevator-in-r/cmd-deg</input>
@@ -395,13 +386,14 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/elevator-out-r/cmd-deg">
+		<pure_gain name="hydraulics/elevator-out-r/cmd-deg">
 			<input>hydraulics/elevator-out-r/switch</input>
-			<range>
+			<gain>20.1</gain>
+			<clipto>
 				<min>-20.1</min>
 				<max>17.2</max>
-			</range>
-		</aerosurface_scale>
+			</clipto>
+		</pure_gain>
 		
 		<actuator name="hydraulics/elevator-out-r/final-actuator">
 			<input>hydraulics/elevator-out-r/cmd-deg</input>
@@ -494,13 +486,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/rudder-upper/cmd-deg">
+		<pure_gain name="hydraulics/rudder-upper/cmd-deg">
 			<input>hydraulics/rudder-upper/switch</input>
-			<range>
-				<min>-30</min>
-				<max>30</max>
-			</range>
-		</aerosurface_scale>
+			<gain>30</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/rudder-upper/final-actuator">
 			<input>hydraulics/rudder-upper/cmd-deg</input>
@@ -534,13 +523,10 @@
 			</clipto>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/rudder-lower/cmd-deg">
+		<pure_gain name="hydraulics/rudder-lower/cmd-deg">
 			<input>hydraulics/rudder-lower/switch</input>
-			<range>
-				<min>-30</min>
-				<max>30</max>
-			</range>
-		</aerosurface_scale>
+			<gain>30</gain>
+		</pure_gain>
 		
 		<actuator name="hydraulics/rudder-lower/final-actuator">
 			<input>hydraulics/rudder-lower/cmd-deg</input>
