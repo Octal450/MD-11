@@ -38,6 +38,14 @@
 		<variant-of>MD-11F-PW</variant-of>
     </sim>
 	
+	<limits>
+		<mass-and-balance> <!--Data source: TCDS -->
+			<maximum-takeoff-mass-lbs>633000</maximum-takeoff-mass-lbs>
+			<maximum-landing-mass-lbs>491500</maximum-landing-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>461300</maximum-zero-fuel-mass-lbs>
+		</mass-and-balance>
+	</limits>
+	
 	<MCDUC n="0">
 		<eng>CF6-80C2</eng>
 		<type>MD-11 DEF AIL</type>
