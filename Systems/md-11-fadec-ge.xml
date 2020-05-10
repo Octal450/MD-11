@@ -6,6 +6,8 @@
 <system name="MD-11: FADEC GE">
 	
 	<property value="1">fadec/limits/packs-off</property>
+	<property value="0">fadec/limits/flex-active</property>
+	<property value="30">fadec/limits/flex-temp</property>
 	
 	<channel name="Thrust Limits">
 		
@@ -122,12 +124,19 @@
 		</fcs_function>
 		
 		<!-- Limits -->
+		<switch name="fadec/limits/to-ref-temp">
+			<default value="/environment/temperature-degc"/>
+			<test value="fadec/limits/flex-temp">
+				fadec/limits/flex-active eq 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fadec/limits/takeoff"> <!-- From FCOM -->
 			<function>
 				<sum>
 					<table>
 						<independentVar lookup="row">/position/altitude-ft</independentVar>
-						<independentVar lookup="column">/environment/temperature-degc</independentVar>
+						<independentVar lookup="column">fadec/limits/to-ref-temp</independentVar>
 						<tableData>
 								  -30    -20    -10     0      10     20     30     40     50
 							-1000   98.9  100.7  102.5  104.3  106.1  107.8  109.6  108.7  107.0
