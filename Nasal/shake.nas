@@ -3,7 +3,7 @@
 
 var sf = 0;
 
-var theShakeEffect = func{
+var theShakeEffect = func {
 	sf = pts.Gear.rollspeedMs[0].getValue() / 94000;
 	
 	if (pts.Systems.Shake.effect.getBoolValue() and (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue())) {
@@ -16,7 +16,6 @@ var theShakeEffect = func{
 		}, 0.12);
 		settimer(theShakeEffect, 0.09);	
 	} else {
-		pts.Systems.Shake.effect.setBoolValue(0);
 		pts.Systems.Shake.shaking.setBoolValue(0);
 	}	    
 }

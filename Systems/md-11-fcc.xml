@@ -954,7 +954,6 @@
 			<test value="5"> <!-- 50/EXT -->
 				/controls/flight/flaps ge 0.84
 			</test>
-			<output>/controls/flight/flaps-input-out</output>
 		</switch>
 		
 		<fcs_function name="/controls/flight/dial-a-flap-int">

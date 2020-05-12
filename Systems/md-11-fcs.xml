@@ -5,8 +5,9 @@
 
 <system name="MD-11: FCS">
 	
-	<channel name="Common">
+	<channel name="Libraries">
 		
+		<!-- Surface Droop -->
 		<fcs_function name="hydraulics/aileron-droop">
 			<function>
 				<table>
@@ -39,10 +40,80 @@
 			</test>
 		</switch>
 		
+		<!-- Deflected Aileron System -->
+		<switch name="/controls/hydraulics/deflected-aileron-flaps-active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/flight/flaps-input eq 2
+				/controls/flight/flaps-input eq 3
+			</test>
+		</switch>
+		
+		<switch name="/controls/hydraulics/deflected-aileron"> <!-- Flip flop controller -->
+			<default value="/controls/hydraulics/deflected-aileron"/>
+			<test value="0">
+				/controls/hydraulics/deflected-aileron-flaps-active ne 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/hydraulics/deflected-aileron-flaps-active eq 1
+				/gear/gear[0]/wow eq 1
+			</test>
+		</switch>
+		
 		<pure_gain name="hydraulics/deflected-aileron-active">
 			<input>/controls/hydraulics/deflected-aileron</input>
 			<gain>/controls/hydraulics/deflected-aileron-equipped</gain>
 		</pure_gain>
+		
+		<switch name="hydraulics/aileron-droop-rate">
+			<default value="0.2"/> <!-- Just a little bit faster than flaps -->
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="hydraulics/deflected-aileron-inner-cmd"> <!-- 11.5 deg -->
+			<function>
+				<product>
+					<table>
+						<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+						<tableData>
+							 0.5  0.000
+							 9.5  0.575
+							28.5  0.575
+							34.5  0.000
+						</tableData>
+					</table>
+					<property>hydraulics/deflected-aileron-active</property>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<actuator name="hydraulics/deflected-aileron-inner">
+			<input>hydraulics/deflected-aileron-inner-cmd</input>
+			<rate_limit>hydraulics/aileron-droop-rate</rate_limit> <!-- Actuator speed limit -->
+		</actuator>
+		
+		<fcs_function name="hydraulics/deflected-aileron-outer-cmd"> <!-- 15 deg dropped, 4 deg normal -->
+			<function>
+				<table>
+					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+					<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
+					<tableData>
+						      0     1
+						 0.5  0.20  0.20
+						 9.5  0.20  0.75
+						28.5  0.20  0.75
+						34.5  0.20  0.20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="hydraulics/deflected-aileron-outer">
+			<input>hydraulics/deflected-aileron-outer-cmd</input>
+			<rate_limit>hydraulics/aileron-droop-rate</rate_limit> <!-- Actuator speed limit -->
+		</actuator>
 	
 	</channel>
 	
@@ -62,20 +133,7 @@
 						</table>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
-							<tableData>
-								      0     1
-								 0.5  0.20  0.20
-								 9.5  0.20  0.75
-								28.5  0.20  0.75
-								34.5  0.20  0.20
-							</tableData>
-						</table>
-						<property>/controls/hydraulics/deflected-aileron-equipped</property>
-					</product>
+					<property>hydraulics/deflected-aileron-outer</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -119,18 +177,7 @@
 							 0.95  1.0
 						</tableData>
 					</table>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<tableData>
-								 0.5  0.000
-								 9.5  0.575
-								28.5  0.575
-								34.5  0.000
-							</tableData>
-						</table>
-						<property>hydraulics/deflected-aileron-active</property>
-					</product>
+					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -174,18 +221,7 @@
 							 0.95 -1.0
 						</tableData>
 					</table>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<tableData>
-								 0.5  0.000
-								 9.5  0.575
-								28.5  0.575
-								34.5  0.000
-							</tableData>
-						</table>
-						<property>hydraulics/deflected-aileron-active</property>
-					</product>
+					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -232,20 +268,7 @@
 						</table>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
-					<product>
-						<table>
-							<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-							<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
-							<tableData>
-								      0     1
-								 0.5  0.20  0.20
-								 9.5  0.20  0.75
-								28.5  0.20  0.75
-								34.5  0.20  0.20
-							</tableData>
-						</table>
-						<property>/controls/hydraulics/deflected-aileron-equipped</property>
-					</product>
+					<property>hydraulics/deflected-aileron-outer</property>
 				</sum>
 			</function>
 		</fcs_function>
