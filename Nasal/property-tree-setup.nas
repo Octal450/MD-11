@@ -16,7 +16,6 @@ var Controls = {
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
 		flapsTemp: 0,
-		flapsInputOut: props.globals.getNode("/controls/flight/flaps-input-out"),
 		speedbrake: props.globals.getNode("/controls/flight/speedbrake"),
 		speedbrakeArm: props.globals.getNode("/controls/flight/speedbrake-arm"),
 		speedbrakeTemp: 0,
@@ -34,9 +33,6 @@ var Controls = {
 		logoLights: props.globals.getNode("/controls/lighting/logo-lights"),
 		navLights: props.globals.getNode("/controls/lighting/nav-lights"),
 		strobe: props.globals.getNode("/controls/lighting/strobe"),
-	},
-	Hydraulics: {
-		deflectedAileron: props.globals.getNode("/controls/hydraulics/deflected-aileron"),
 	},
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
@@ -115,7 +111,7 @@ var Systems = {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
 	},
 	Shake: {
-		effect: props.globals.initNode("/systems/shake/effect", 0, "BOOL"),
+		effect: props.globals.getNode("/systems/shake/effect"),
 		shaking: props.globals.initNode("/systems/shake/shaking", 0, "DOUBLE"),
 	},
 };

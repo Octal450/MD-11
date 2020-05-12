@@ -50,18 +50,6 @@ var systemsLoop = maketimer(0.1, func {
 		}
 	}
 
-	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
-		pts.Systems.Shake.effect.setBoolValue(1);
-	} else {
-		pts.Systems.Shake.effect.setBoolValue(0);
-	}
-	
-	if (pts.Sim.Replay.replayState.getBoolValue()) {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
-	} else {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
-	}
-	
 	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[8]/contents-lbs") < 1) {
 		systems.cutoff_one();
 	}
@@ -89,17 +77,6 @@ setlistener("/controls/gear/gear-down", func {
 		}
 	}
 });
-
-# Enable/Disable the drooped aileron when flap lever moved
-setlistener("/controls/flight/flaps-input-out", func {
-	if (pts.Controls.Flight.flapsInputOut.getValue() == 2 or pts.Controls.Flight.flapsInputOut.getValue() == 3) {
-		if (pts.Gear.wow[0].getBoolValue()) {
-			pts.Controls.Hydraulics.deflectedAileron.setBoolValue(1);
-		}
-	} else {
-		pts.Controls.Hydraulics.deflectedAileron.setBoolValue(0);
-	}
-}, 0, 0);
 
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
