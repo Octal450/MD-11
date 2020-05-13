@@ -164,7 +164,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[0]/throttle-fdm</property>
+							<property>/fdm/jsbsim/fcc/throttle-lever[0]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -239,7 +239,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[1]/throttle-fdm</property>
+							<property>/fdm/jsbsim/fcc/throttle-lever[1]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -314,7 +314,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/controls/engines/engine[2]/throttle-fdm</property>
+							<property>/fdm/jsbsim/fcc/throttle-lever[2]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -762,16 +762,10 @@
 		</input>
 		<input>0</input>
 		<output>/controls/engines/engine[0]/throttle-pos</output>
-		<min>
-			<condition>
-				<not><property>/controls/fadec/eng1-alnt</property></not>
-			</condition>
-			<property>/controls/engines/idle-limit</property>
-		</min>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng1-alnt</property></not>
+				<not><property>/controls/fadec/eng1-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -801,6 +795,14 @@
 			<property>/controls/engines/engine[0]/throttle-rev</property>
 		</input>
 		<output>/controls/engines/engine[0]/throttle-output</output>
+		<min>
+			<condition>
+				<not><property>/controls/fadec/eng1-altn</property></not>
+			</condition>
+			<property>/controls/engines/idle-limit</property>
+		</min>
+		<min>0.0</min>
+		<max>1.0</max>
 	</filter>
 	
 	<filter>
@@ -818,16 +820,10 @@
 		</input>
 		<input>0</input>
 		<output>/controls/engines/engine[1]/throttle-pos</output>
-		<min>
-			<condition>
-				<not><property>/controls/fadec/eng2-alnt</property></not>
-			</condition>
-			<property>/controls/engines/idle-limit</property>
-		</min>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng2-alnt</property></not>
+				<not><property>/controls/fadec/eng2-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -857,6 +853,14 @@
 			<property>/controls/engines/engine[1]/throttle-rev</property>
 		</input>
 		<output>/controls/engines/engine[1]/throttle-output</output>
+		<min>
+			<condition>
+				<not><property>/controls/fadec/eng2-altn</property></not>
+			</condition>
+			<property>/controls/engines/idle-limit</property>
+		</min>
+		<min>0.0</min>
+		<max>1.0</max>
 	</filter>
 	
 	<filter>
@@ -874,16 +878,10 @@
 		</input>
 		<input>0</input>
 		<output>/controls/engines/engine[2]/throttle-pos</output>
-		<min>
-			<condition>
-				<not><property>/controls/fadec/eng3-alnt</property></not>
-			</condition>
-			<property>/controls/engines/idle-limit</property>
-		</min>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng3-alnt</property></not>
+				<not><property>/controls/fadec/eng3-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -913,6 +911,14 @@
 			<property>/controls/engines/engine[2]/throttle-rev</property>
 		</input>
 		<output>/controls/engines/engine[2]/throttle-output</output>
+		<min>
+			<condition>
+				<not><property>/controls/fadec/eng3-altn</property></not>
+			</condition>
+			<property>/controls/engines/idle-limit</property>
+		</min>
+		<min>0.0</min>
+		<max>1.0</max>
 	</filter>
 	
 	<filter>

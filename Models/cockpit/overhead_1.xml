@@ -7243,7 +7243,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng1-alnt</property>
+				<property>controls/fadec/eng1-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7257,7 +7257,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng1-alnt</property>
+					<property>controls/fadec/eng1-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7298,7 +7298,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng1-alnt</property>
+				<property>controls/fadec/eng1-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7312,7 +7312,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng1-alnt</property>
+					<property>controls/fadec/eng1-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7353,7 +7353,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng2-alnt</property>
+				<property>controls/fadec/eng2-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7367,7 +7367,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng2-alnt</property>
+					<property>controls/fadec/eng2-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7408,7 +7408,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng3-alnt</property>
+				<property>controls/fadec/eng3-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7422,7 +7422,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng3-alnt</property>
+					<property>controls/fadec/eng3-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>

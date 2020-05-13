@@ -546,7 +546,7 @@
 				<property>metrics/bw-ft</property>
 				<property>aero/bi2vel</property>
 				<property>velocities/p-aero-rad_sec</property>
-				<value>-0.54</value>
+				<value>-0.61</value>
 			</product>
 		</function>
 		
@@ -569,7 +569,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians>
-				<value>0.0127354</value>
+				<value>0.0131354</value>
 			</product>
 		</function>
 		
@@ -602,7 +602,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians>
-				<value>-0.0127354</value>
+				<value>-0.0131354</value>
 			</product>
 		</function>
 		
@@ -694,7 +694,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
-				<value>-28.9</value>
+				<value>-31.9</value>
 			</product>
 		</function>
 		

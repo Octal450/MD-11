@@ -18,7 +18,7 @@
 		<y>0</y>
 		<z>5.69282</z>
 	</location>
-
+	
 	<pointmass name="Crew">
 		<weight unit="LBS">320</weight>
 		<location name="POINTMASS" unit="M">
@@ -36,7 +36,6 @@
 			<z>6.8</z>
 		</location>
 	</pointmass>
-	
 	<pointmass name="Center Cabin">
 		<weight unit="LBS">15840</weight>
 		<location name="POINTMASS" unit="M">
@@ -45,7 +44,6 @@
 			<z>6.8</z>
 		</location>
 	</pointmass>
-	
 	<pointmass name="Aft Cabin">
 		<weight unit="LBS">20520</weight>
 		<location name="POINTMASS" unit="M">
@@ -63,7 +61,6 @@
 			<z>5.0</z>
 		</location>
 	</pointmass>
-	
 	<pointmass name="Center Cargo">
 		<weight unit="LBS">24000</weight>
 		<location name="POINTMASS" unit="M">
@@ -72,7 +69,6 @@
 			<z>5.0</z>
 		</location>
 	</pointmass>
-	
 	<pointmass name="Aft Cargo">
 		<weight unit="LBS">2000</weight>
 		<location name="POINTMASS" unit="M">
