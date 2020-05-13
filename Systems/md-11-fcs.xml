@@ -96,17 +96,20 @@
 		
 		<fcs_function name="hydraulics/deflected-aileron-outer-cmd"> <!-- 15 deg dropped, 4 deg normal -->
 			<function>
-				<table>
-					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-					<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
-					<tableData>
-						      0     1
-						 0.5  0.20  0.20
-						 9.5  0.20  0.75
-						28.5  0.20  0.75
-						34.5  0.20  0.20
-					</tableData>
-				</table>
+				<product>
+					<table>
+						<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+						<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
+						<tableData>
+								  0     1
+							 0.5  0.20  0.20
+							 9.5  0.20  0.75
+							28.5  0.20  0.75
+							34.5  0.20  0.20
+						</tableData>
+					</table>
+					<property>/controls/hydraulics/deflected-aileron-equipped</property> <!-- No deflection whatsoever without Defl Aileron Package -->
+				</product>
 			</function>
 		</fcs_function>
 		
