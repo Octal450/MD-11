@@ -24,6 +24,43 @@
 		</instrument-options>
 		<instrumentation>
 			<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
+			<!-- See http://wiki.flightgear.org/index.php/GPWS -->
+			<mk-viii n="0">
+				<serviceable type="bool">true</serviceable>
+				<configuration-module>
+					<category-1 type="int">255</category-1>
+					<category-3 type="int">2</category-3>
+					<category-4 type="int">13</category-4>
+					<category-5 type="int">0</category-5>
+					<category-6 type="int">1</category-6>
+					<category-7 type="int">124</category-7>
+					<category-8 type="int">3</category-8>
+					<category-9 type="int">3</category-9> 
+					<category-10 type="int">6</category-10>
+					<category-13 type="int">7</category-13>
+					<category-14 type="int">0</category-14>
+				</configuration-module>
+				<input-feeders>
+					<discretes>
+						<!-- disable the built-in input feeder -->
+						<landing-flaps type="bool">false</landing-flaps>
+					</discretes>
+				</input-feeders>
+				<inputs>
+					<arinc429>
+						<decision-height-ncd type="bool">0</decision-height-ncd>
+						<decision-height type="double">250</decision-height>
+					</arinc429>
+				</inputs>
+				<speaker>
+					<max-dist type="double">100</max-dist>
+					<reference-dist type="double">20</reference-dist>
+					<volume type="double">2</volume>
+				</speaker>
+				<voice>
+					<file-prefix>Aircraft/MD-11/Sounds/GPWS/</file-prefix>
+				</voice>
+			</mk-viii>
 		</instrumentation>
 		<menubar>
 			<default>
