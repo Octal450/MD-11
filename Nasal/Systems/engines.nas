@@ -119,9 +119,9 @@ var toggleFastRevThrust = func {
 		setprop("/controls/engines/engine[0]/reverser", 1);
 		setprop("/controls/engines/engine[1]/reverser", 1);
 		setprop("/controls/engines/engine[2]/reverser", 1);
-		setprop("/controls/engines/engine[0]/throttle-rev", 0.3);
-		setprop("/controls/engines/engine[1]/throttle-rev", 0.3);
-		setprop("/controls/engines/engine[2]/throttle-rev", 0.3);
+		setprop("/controls/engines/engine[0]/throttle-rev", 0.6);
+		setprop("/controls/engines/engine[1]/throttle-rev", 0.6);
+		setprop("/controls/engines/engine[2]/throttle-rev", 0.6);
 		setprop("/fdm/jsbsim/propulsion/engine[0]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[1]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[2]/reverser-angle-rad", 3.14);
@@ -147,14 +147,14 @@ var doRevThrust = func {
 		var pos1 = getprop("/controls/engines/engine[0]/throttle-rev");
 		var pos2 = getprop("/controls/engines/engine[1]/throttle-rev");
 		var pos3 = getprop("/controls/engines/engine[2]/throttle-rev");
-		if (pos1 < 0.299) {
-			setprop("/controls/engines/engine[0]/throttle-rev", pos1 + 0.1);
+		if (pos1 < 0.599) {
+			setprop("/controls/engines/engine[0]/throttle-rev", pos1 + 0.2);
 		}
-		if (pos2 < 0.299) {
-			setprop("/controls/engines/engine[1]/throttle-rev", pos2 + 0.1);
+		if (pos2 < 0.599) {
+			setprop("/controls/engines/engine[1]/throttle-rev", pos2 + 0.2);
 		}
-		if (pos3 < 0.299) {
-			setprop("/controls/engines/engine[2]/throttle-rev", pos3 + 0.1);
+		if (pos3 < 0.599) {
+			setprop("/controls/engines/engine[2]/throttle-rev", pos3 + 0.2);
 		}
 	}
 	var eng1thr = getprop("/controls/engines/engine[0]/throttle-pos");

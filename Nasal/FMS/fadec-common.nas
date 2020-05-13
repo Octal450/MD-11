@@ -39,9 +39,9 @@ setprop("/controls/engines/epr-limit", 1.0);
 
 var fadec_reset = func {
 	setprop("/systems/thrust/clbthrust-ft", "1500");
-	setprop("/controls/fadec/eng1-alnt", 0);
-	setprop("/controls/fadec/eng2-alnt", 0);
-	setprop("/controls/fadec/eng3-alnt", 0);
+	setprop("/controls/fadec/eng1-altn", 0);
+	setprop("/controls/fadec/eng2-altn", 0);
+	setprop("/controls/fadec/eng3-altn", 0);
 }
 
 fadec_reset();

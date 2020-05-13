@@ -193,7 +193,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>0.0</input>
+		<input>0</input>
 		<output>/controls/engines/throttle-cmd-pid</output>
 	</filter>
 	
@@ -220,20 +220,6 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/mode/vert</property>
-					<value>T/O CLB</value>
-				</equals>
-			</condition>
-			<expression>
-				<product>
-					<value>0.97</value> <!-- Number in TO on FADEC -->
-					<property>/controls/engines/throttle-scale</property>
-				</product>
-			</expression>
-		</input>
 		<input>/controls/engines/throttle-limit</input>
 		<output>/controls/engines/throttle-cmd-pid</output>
 	</filter>
