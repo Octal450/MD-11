@@ -2,9 +2,9 @@
 
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
-<turbine_engine name="PW4460">
+<turbine_engine name="PW4462">
 	
-	<milthrust>60000</milthrust>
+	<milthrust>62000</milthrust>
 	<tsfc>0.445</tsfc>
 	<bleed>0.03</bleed>
 	<idlen1>23.8</idlen1>
@@ -18,7 +18,7 @@
 	
 	<function name="N1SpoolUp">
 		<table>
-			<independentVar lookup="row">/engines/engine[1]/n1</independentVar>
+			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -33,7 +33,7 @@
 	
 	<function name="N1SpoolDown">
 		<table>
-			<independentVar lookup="row">/engines/engine[1]/n1</independentVar>
+			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -48,7 +48,7 @@
 	
 	<function name="N2SpoolUp">
 		<table>
-			<independentVar lookup="row">/engines/engine[1]/n1</independentVar>
+			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -63,7 +63,7 @@
 	
 	<function name="N2SpoolDown">
 		<table>
-			<independentVar lookup="row">/engines/engine[1]/n1</independentVar>
+			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9

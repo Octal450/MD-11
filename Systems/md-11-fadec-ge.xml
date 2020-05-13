@@ -54,14 +54,14 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>61500</value>
+						<value>61960</value>
 					</product>
 					<product>
 						<difference>
-							<value>61500</value>
+							<value>61960</value>
 							<product>
 								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-								<value>61500</value>
+								<value>61960</value>
 							</product>
 						</difference>
 						<property>fadec/limits/milthrust-unmodified</property>
@@ -75,15 +75,15 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>61500</value>
+						<value>61960</value>
 					</product>
 					<product>
 						<product>
 							<difference>
-								<value>61500</value>
+								<value>61960</value>
 								<product>
 									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-									<value>61500</value>
+									<value>61960</value>
 								</product>
 							</difference>
 							<property>fadec/limits/milthrust-unmodified</property>

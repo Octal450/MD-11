@@ -105,7 +105,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/go-around</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -129,7 +129,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/takeoff</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -153,7 +153,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/mct</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -177,7 +177,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/takeoff</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -201,7 +201,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/climb</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -225,7 +225,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/fdm/jsbsim/fadec/limits/rated-thrust-n1</property>
+								<property>/fdm/jsbsim/fadec/limits/cruise</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
