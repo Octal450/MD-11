@@ -40,6 +40,14 @@ var Controls = {
 	},
 };
 
+var Fdm = {
+	JSBsim: {
+		Propulsion: {
+			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),
+		},
+	},
+};
+
 var Gear = {
 	rollspeedMs: [props.globals.getNode("/gear/gear[0]/rollspeed-ms"), props.globals.getNode("/gear/gear[1]/rollspeed-ms"), props.globals.getNode("/gear/gear[2]/rollspeed-ms"), props.globals.getNode("/gear/gear[3]/rollspeed-ms")],
 	wow: [props.globals.getNode("/gear/gear[0]/wow"), props.globals.getNode("/gear/gear[1]/wow"), props.globals.getNode("/gear/gear[2]/wow"), props.globals.getNode("/gear/gear[3]/wow")],

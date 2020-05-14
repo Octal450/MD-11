@@ -11,11 +11,11 @@
 	
 	<channel name="Thrust Limits">
 		
-		<fcs_function name="fadec/limits/rated-thrust-n1">
+		<fcs_function name="fadec/limits/rated-thrust-n1"> <!-- Not 100% sure on this -->
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
-					<independentVar lookup="column">/environment/temperature-degc</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60    -30     0      30     60
 						    0   94.9  100.9  106.4  111.7  106.2
@@ -125,7 +125,7 @@
 		
 		<!-- Limits -->
 		<switch name="fadec/limits/to-ref-temp">
-			<default value="/environment/temperature-degc"/>
+			<default value="propulsion/tat-c"/>
 			<test value="fadec/limits/flex-temp">
 				fadec/limits/flex-active eq 1
 			</test>
@@ -180,7 +180,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
-					<independentVar lookup="column">/environment/temperature-degc</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60    -30     0      30     60
 						    0   92.0   92.0   97.4  102.4  104.6
@@ -195,10 +195,10 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
-					<independentVar lookup="column">/environment/temperature-degc</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60    -30     0      30     60
-						    0   89.8   89.8   95.1  100.2  98.1
+						    0   89.9   89.9   95.2  100.2  98.1
 						10000   97.9   97.9  103.2  104.5  98.1
 						43000  102.6  103.2  102.6  103.1  98.1
 					</tableData>
@@ -210,10 +210,10 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
-					<independentVar lookup="column">/environment/temperature-degc</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60   -30    0      30    60
-						    0  85.7  85.8  90.8  95.7  93.7
+						    0  85.8  85.8  90.9  95.7  93.7
 						10000  93.5  93.5  98.6  99.8  93.7
 						43000  98.0  98.8  97.9  98.5  93.7
 					</tableData>

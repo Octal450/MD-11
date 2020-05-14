@@ -35,6 +35,10 @@ setprop("/DU/EAD/N2[0]", 0);
 setprop("/DU/EAD/N2[1]", 0);
 setprop("/DU/EAD/N2[2]", 0);
 
+var Value = {
+	TAT: 0,
+};
+
 var canvas_EAD_base = {
 	init: func(canvas_group, file) {
 		var font_mapper = func(family, weight) {
@@ -87,6 +91,14 @@ var canvas_EAD_base = {
 		}
 	},
 	updateBase: func() {
+		# TAT Indication
+		Value.TAT = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
+		if (Value.TAT < 0) {
+			me["TAT"].setText("-" ~ Value.TAT);
+		} else {
+			me["TAT"].setText("+" ~ Value.TAT);
+		}
+		
 		# Reversers
 		if (getprop("/engines/engine[0]/reverser-pos-norm") and getprop("/options/eng") == "GE" and getprop("/systems/fadec/eng1/n1") == 1) {
 			me["REV1"].show();
@@ -143,7 +155,7 @@ var canvas_EAD_GE = {
 		return ["N11","N11-decpnt","N11-decimal","N11-box","N11-needle","N11-lim","N11-thr","N11-redline","EGT1","EGT1-needle","EGT1-redstart","EGT1-yline","EGT1-redline","EGT1-ignition","N21","N21-decpnt","N21-decimal","N21-needle","N21-cline","N21-redline",
 		"FF1","FFOff1","N12","N12-decpnt","N12-decimal","N12-box","N12-needle","N12-lim","N12-thr","N12-redline","EGT2","EGT2-needle","EGT2-redstart","EGT2-yline","EGT2-redline","EGT2-ignition","N22","N22-decpnt","N22-decimal","N22-needle","N22-cline",
 		"N22-redline","FF2","FFOff2","N13","N13-decpnt","N13-decimal","N13-box","N13-needle","N13-lim","N13-thr","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle",
-		"N23-cline","N23-redline","FF3","FFOff3","N1Lim","N1Lim-decimal","N1LimMode","REV1","REV2","REV3"];
+		"N23-cline","N23-redline","FF3","FFOff3","N1Lim","N1Lim-decimal","N1LimMode","REV1","REV2","REV3","TAT"];
 	},
 	update: func() {
 		# N1
@@ -445,7 +457,7 @@ var canvas_EAD_PW = {
 		"N21-decimal","N21-needle","N21-cline","N21-redline","FF1","FFOff1","EPR2","EPR2-decpnt","EPR2-T","EPR2-H","EPR2-box","EPR2-needle","EPR2-lim","EPR2-thr","N12","N12-decpnt","N12-decimal","N12-needle","N12-redline","EGT2","EGT2-needle","EGT2-redstart",
 		"EGT2-yline","EGT2-redline","EGT2-ignition","N22","N22-decpnt","N22-decimal","N22-needle","N22-cline","N22-redline","FF2","FFOff2","EPR3","EPR3-decpnt","EPR3-T","EPR3-H","EPR3-box","EPR3-needle","EPR3-lim","EPR3-thr","N13","N13-decpnt","N13-decimal",
 		"N13-needle","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle","N23-cline","N23-redline","FF3","FFOff3","EPRLim","EPRLim-decimal","EPRLimMode","REV1","REV2",
-		"REV3"];
+		"REV3","TAT"];
 	},
 	update: func() {
 		# EPR
