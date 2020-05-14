@@ -186,17 +186,17 @@ var unRevThrust = func {
 		var pos2 = getprop("/controls/engines/engine[1]/throttle-rev");
 		var pos3 = getprop("/controls/engines/engine[2]/throttle-rev");
 		if (pos1 > 0.001) {
-			setprop("/controls/engines/engine[0]/throttle-rev", pos1 - 0.1);
+			setprop("/controls/engines/engine[0]/throttle-rev", pos1 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos2 > 0.001) {
-			setprop("/controls/engines/engine[1]/throttle-rev", pos2 - 0.1);
+			setprop("/controls/engines/engine[1]/throttle-rev", pos2 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos3 > 0.001) {
-			setprop("/controls/engines/engine[2]/throttle-rev", pos3 - 0.1);
+			setprop("/controls/engines/engine[2]/throttle-rev", pos3 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
