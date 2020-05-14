@@ -206,12 +206,12 @@ var Custom = {
 	targetHDGError: 0,
 	targetIAS: 0,
 	targetIASError: 0,
-	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"),
 	vsFpa: props.globals.initNode("/it-autoflight/custom/vs-fpa", 0, "BOOL"),
 	FMS: {
 		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
 	},
 	Input: {
+		vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"),
 		ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
 		ovrd1Temp: 0,
 		ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
@@ -225,6 +225,7 @@ var Custom = {
 		ap1Avail: props.globals.initNode("/it-autoflight/output/ap1-available", 0, "BOOL"),
 		ap2Avail: props.globals.initNode("/it-autoflight/output/ap2-available", 0, "BOOL"),
 		atsAvail: props.globals.initNode("/it-autoflight/output/ats-available", 0, "BOOL"),
+		clamp: props.globals.initNode("/it-autoflight/output/clamp", 0, "BOOL"),
 		hdgCaptured: 1,
 		spdCaptured: 1,
 	},
@@ -1433,7 +1434,7 @@ setlistener("/it-autoflight/input/trk", func {
 }, 0, 0);
 
 setlistener("/it-autoflight/input/vs", func {
-	Custom.vsAbs.setValue(abs(Input.vs.getValue()));
+	Custom.Input.vsAbs.setValue(abs(Input.vs.getValue()));
 });
 
 setlistener("/it-autoflight/input/fpa", func {

@@ -30,12 +30,7 @@
 		<sound>
 			<path>Aircraft/MD-11/Sounds/cf680-sound.xml</path>
 		</sound>
-		<systems n="0">
-			<autopilot n="6">
-				<path>Aircraft/MD-11/Systems/fadec-ge.xml</path>
-			</autopilot>
-		</systems>
-		<variant-of>MD-11F-PW</variant-of>
+		<!--variant-of>MD-11F-PW</variant-of-->
     </sim>
 	
 	<limits>

@@ -108,9 +108,9 @@ var doFullThrust = func {
 
 # Reverse Thrust System
 var toggleFastRevThrust = func {
-	var eng1thr = getprop("/controls/engines/engine[0]/throttle-pos");
-	var eng2thr = getprop("/controls/engines/engine[1]/throttle-pos");
-	var eng3thr = getprop("/controls/engines/engine[2]/throttle-pos");
+	var eng1thr = getprop("/fdm/jsbsim/fadec/control-1/throttle-pos");
+	var eng2thr = getprop("/fdm/jsbsim/fadec/control-2/throttle-pos");
+	var eng3thr = getprop("/fdm/jsbsim/fadec/control-3/throttle-pos");
 	if (eng1thr <= 0.05 and eng2thr <= 0.05 and eng3thr <= 0.05 and getprop("/controls/engines/engine[0]/reverser") == "0" and getprop("/controls/engines/engine[1]/reverser") == "0" and getprop("/controls/engines/engine[2]/reverser") == "0" 
 	and getprop("/gear/gear[1]/wow") == 1 and getprop("/gear/gear[2]/wow") == 1) {
 		interpolate("/engines/engine[0]/reverser-pos-norm", 1, 1.4);
@@ -119,17 +119,17 @@ var toggleFastRevThrust = func {
 		setprop("/controls/engines/engine[0]/reverser", 1);
 		setprop("/controls/engines/engine[1]/reverser", 1);
 		setprop("/controls/engines/engine[2]/reverser", 1);
-		setprop("/controls/engines/engine[0]/throttle-rev", 0.6);
-		setprop("/controls/engines/engine[1]/throttle-rev", 0.6);
-		setprop("/controls/engines/engine[2]/throttle-rev", 0.6);
+		setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0.6);
+		setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0.6);
+		setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0.6);
 		setprop("/fdm/jsbsim/propulsion/engine[0]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[1]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[2]/reverser-angle-rad", 3.14);
 	} else if ((getprop("/controls/engines/engine[0]/reverser") == "1" or getprop("/controls/engines/engine[1]/reverser") == "1" or getprop("/controls/engines/engine[2]/reverser") == "0") and getprop("/gear/gear[1]/wow") == 1 
 	and getprop("/gear/gear[2]/wow") == 1) {
-		setprop("/controls/engines/engine[0]/throttle-rev", 0);
-		setprop("/controls/engines/engine[1]/throttle-rev", 0);
-		setprop("/controls/engines/engine[2]/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0);
 		interpolate("/engines/engine[0]/reverser-pos-norm", 0, 1.0);
 		interpolate("/engines/engine[2]/reverser-pos-norm", 0, 1.0);
 		interpolate("/engines/engine[1]/reverser-pos-norm", 0, 1.0);
@@ -144,27 +144,27 @@ var toggleFastRevThrust = func {
 
 var doRevThrust = func {
 	if (getprop("/controls/engines/engine[0]/reverser") == "1" and getprop("/controls/engines/engine[1]/reverser") == "1" and getprop("/controls/engines/engine[2]/reverser") == "1" and getprop("/gear/gear[1]/wow") == 1 and getprop("/gear/gear[2]/wow") == 1) {
-		var pos1 = getprop("/controls/engines/engine[0]/throttle-rev");
-		var pos2 = getprop("/controls/engines/engine[1]/throttle-rev");
-		var pos3 = getprop("/controls/engines/engine[2]/throttle-rev");
+		var pos1 = getprop("/fdm/jsbsim/fadec/control-1/throttle-rev");
+		var pos2 = getprop("/fdm/jsbsim/fadec/control-2/throttle-rev");
+		var pos3 = getprop("/fdm/jsbsim/fadec/control-3/throttle-rev");
 		if (pos1 < 0.599) {
-			setprop("/controls/engines/engine[0]/throttle-rev", pos1 + 0.2);
+			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 + 0.2);
 		}
 		if (pos2 < 0.599) {
-			setprop("/controls/engines/engine[1]/throttle-rev", pos2 + 0.2);
+			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 + 0.2);
 		}
 		if (pos3 < 0.599) {
-			setprop("/controls/engines/engine[2]/throttle-rev", pos3 + 0.2);
+			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 + 0.2);
 		}
 	}
-	var eng1thr = getprop("/controls/engines/engine[0]/throttle-pos");
-	var eng2thr = getprop("/controls/engines/engine[1]/throttle-pos");
-	var eng3thr = getprop("/controls/engines/engine[2]/throttle-pos");
+	var eng1thr = getprop("/fdm/jsbsim/fadec/control-1/throttle-pos");
+	var eng2thr = getprop("/fdm/jsbsim/fadec/control-2/throttle-pos");
+	var eng3thr = getprop("/fdm/jsbsim/fadec/control-3/throttle-pos");
 	if (eng1thr <= 0.05 and eng2thr <= 0.05 and eng3thr <= 0.05 and getprop("/controls/engines/engine[0]/reverser") == "0" and getprop("/controls/engines/engine[1]/reverser") == "0" and getprop("/controls/engines/engine[2]/reverser") == "0" 
 	and getprop("/gear/gear[1]/wow") == 1 and getprop("/gear/gear[2]/wow") == 1) {
-		setprop("/controls/engines/engine[0]/throttle-rev", 0);
-		setprop("/controls/engines/engine[1]/throttle-rev", 0);
-		setprop("/controls/engines/engine[2]/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0);
+		setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0);
 		interpolate("/engines/engine[0]/reverser-pos-norm", 1, 1.4);
 		interpolate("/engines/engine[2]/reverser-pos-norm", 1, 1.4);
 		interpolate("/engines/engine[1]/reverser-pos-norm", 1, 1.4);
@@ -178,25 +178,25 @@ var doRevThrust = func {
 }
 
 var unRevThrust = func {
-	var eng1thr = getprop("/controls/engines/engine[0]/throttle-pos");
-	var eng2thr = getprop("/controls/engines/engine[1]/throttle-pos");
-	var eng3thr = getprop("/controls/engines/engine[2]/throttle-pos");
+	var eng1thr = getprop("/fdm/jsbsim/fadec/control-1/throttle-pos");
+	var eng2thr = getprop("/fdm/jsbsim/fadec/control-2/throttle-pos");
+	var eng3thr = getprop("/fdm/jsbsim/fadec/control-3/throttle-pos");
 	if (eng1thr <= 0.05 and eng2thr <= 0.05 and eng3thr <= 0.05 and (getprop("/controls/engines/engine[0]/reverser") == "1" or getprop("/controls/engines/engine[1]/reverser") == "1" or getprop("/controls/engines/engine[2]/reverser") == "1")) {
-		var pos1 = getprop("/controls/engines/engine[0]/throttle-rev");
-		var pos2 = getprop("/controls/engines/engine[1]/throttle-rev");
-		var pos3 = getprop("/controls/engines/engine[2]/throttle-rev");
+		var pos1 = getprop("/fdm/jsbsim/fadec/control-1/throttle-rev");
+		var pos2 = getprop("/fdm/jsbsim/fadec/control-2/throttle-rev");
+		var pos3 = getprop("/fdm/jsbsim/fadec/control-3/throttle-rev");
 		if (pos1 > 0.001) {
-			setprop("/controls/engines/engine[0]/throttle-rev", pos1 - 0.1);
+			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos2 > 0.001) {
-			setprop("/controls/engines/engine[1]/throttle-rev", pos2 - 0.1);
+			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos3 > 0.001) {
-			setprop("/controls/engines/engine[2]/throttle-rev", pos3 - 0.1);
+			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 - 0.2);
 		} else {
 			unRevThrust_b();
 		}
@@ -204,9 +204,9 @@ var unRevThrust = func {
 }
 
 var unRevThrust_b = func {
-	setprop("/controls/engines/engine[0]/throttle-rev", 0);
-	setprop("/controls/engines/engine[1]/throttle-rev", 0);
-	setprop("/controls/engines/engine[2]/throttle-rev", 0);
+	setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0);
+	setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0);
+	setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0);
 	interpolate("/engines/engine[0]/reverser-pos-norm", 0, 1.0);
 	interpolate("/engines/engine[2]/reverser-pos-norm", 0, 1.0);
 	interpolate("/engines/engine[1]/reverser-pos-norm", 0, 1.0);

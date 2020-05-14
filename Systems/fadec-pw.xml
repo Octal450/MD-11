@@ -164,7 +164,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/fdm/jsbsim/fcc/throttle-lever[0]</property>
+							<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -239,7 +239,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/fdm/jsbsim/fcc/throttle-lever[1]</property>
+							<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -314,7 +314,7 @@
 				<table>
 					<pow>
 						<table>
-							<property>/fdm/jsbsim/fcc/throttle-lever[2]</property>
+							<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
 							<entry><ind>0.0</ind><dep> 23.8</dep></entry>
 							<entry><ind>1.0</ind><dep>111.4</dep></entry>
 						</table>
@@ -738,7 +738,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/engines/n1-limit</property>
+					<property>/fdm/jsbsim/fadec/limit/active</property>
 					<entry><ind> 23.8</ind><dep>0.00</dep></entry>
 					<entry><ind>111.4</ind><dep>1.00</dep></entry>
 				</table>
@@ -761,11 +761,11 @@
 			<property>/controls/engines/engine[0]/throttle</property>
 		</input>
 		<input>0</input>
-		<output>/controls/engines/engine[0]/throttle-pos</output>
+		<output>/fdm/jsbsim/fadec/control-1/throttle-pos</output>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng1-altn</property></not>
+				<not><property>/controls/fadec/eng-1-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -783,7 +783,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[0]/throttle-pos</property>
+			<property>/fdm/jsbsim/fadec/control-1/throttle-pos</property>
 		</input>
 		<input>
 			<condition>
@@ -792,12 +792,12 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[0]/throttle-rev</property>
+			<property>/fdm/jsbsim/fadec/control-1/throttle-rev</property>
 		</input>
-		<output>/controls/engines/engine[0]/throttle-output</output>
+		<output>/fdm/jsbsim/fadec/control-1/throttle-output</output>
 		<min>
 			<condition>
-				<not><property>/controls/fadec/eng1-altn</property></not>
+				<not><property>/controls/fadec/eng-1-altn</property></not>
 			</condition>
 			<property>/controls/engines/idle-limit</property>
 		</min>
@@ -819,11 +819,11 @@
 			<property>/controls/engines/engine[1]/throttle</property>
 		</input>
 		<input>0</input>
-		<output>/controls/engines/engine[1]/throttle-pos</output>
+		<output>/fdm/jsbsim/fadec/control-2/throttle-pos</output>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng2-altn</property></not>
+				<not><property>/controls/fadec/eng-2-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -841,7 +841,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[1]/throttle-pos</property>
+			<property>/fdm/jsbsim/fadec/control-2/throttle-pos</property>
 		</input>
 		<input>
 			<condition>
@@ -850,12 +850,12 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[1]/throttle-rev</property>
+			<property>/fdm/jsbsim/fadec/control-2/throttle-rev</property>
 		</input>
-		<output>/controls/engines/engine[1]/throttle-output</output>
+		<output>/fdm/jsbsim/fadec/control-2/throttle-output</output>
 		<min>
 			<condition>
-				<not><property>/controls/fadec/eng2-altn</property></not>
+				<not><property>/controls/fadec/eng-2-altn</property></not>
 			</condition>
 			<property>/controls/engines/idle-limit</property>
 		</min>
@@ -877,11 +877,11 @@
 			<property>/controls/engines/engine[2]/throttle</property>
 		</input>
 		<input>0</input>
-		<output>/controls/engines/engine[2]/throttle-pos</output>
+		<output>/fdm/jsbsim/fadec/control-3/throttle-pos</output>
 		<min>0.0</min>
 		<max>
 			<condition>
-				<not><property>/controls/fadec/eng3-altn</property></not>
+				<not><property>/controls/fadec/eng-3-altn</property></not>
 			</condition>
 			<property>/controls/engines/throttle-limit</property>
 		</max>
@@ -899,7 +899,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[2]/throttle-pos</property>
+			<property>/fdm/jsbsim/fadec/control-3/throttle-pos</property>
 		</input>
 		<input>
 			<condition>
@@ -908,12 +908,12 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/controls/engines/engine[2]/throttle-rev</property>
+			<property>/fdm/jsbsim/fadec/control-3/throttle-rev</property>
 		</input>
-		<output>/controls/engines/engine[2]/throttle-output</output>
+		<output>/fdm/jsbsim/fadec/control-3/throttle-output</output>
 		<min>
 			<condition>
-				<not><property>/controls/fadec/eng3-altn</property></not>
+				<not><property>/controls/fadec/eng-3-altn</property></not>
 			</condition>
 			<property>/controls/engines/idle-limit</property>
 		</min>

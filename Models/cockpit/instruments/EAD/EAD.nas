@@ -36,6 +36,11 @@ setprop("/DU/EAD/N2[1]", 0);
 setprop("/DU/EAD/N2[2]", 0);
 
 var Value = {
+	FADEC: {
+		eng1Powered: 0,
+		eng2Powered: 0,
+		eng3Powered: 0,
+	},
 	TAT: 0,
 };
 
@@ -100,9 +105,7 @@ var canvas_EAD_base = {
 		}
 		
 		# Reversers
-		if (getprop("/engines/engine[0]/reverser-pos-norm") and getprop("/options/eng") == "GE" and getprop("/systems/fadec/eng1/n1") == 1) {
-			me["REV1"].show();
-		} else if (getprop("/engines/engine[0]/reverser-pos-norm") and getprop("/options/eng") == "PW" and getprop("/systems/fadec/eng1/epr") == 1) {
+		if (getprop("/engines/engine[0]/reverser-pos-norm") and systems.FADEC.eng1Powered.getBoolValue()) {
 			me["REV1"].show();
 		} else {
 			me["REV1"].hide();
@@ -114,9 +117,7 @@ var canvas_EAD_base = {
 			me["REV1"].setColor(1,1,0);
 		}
 		
-		if (getprop("/engines/engine[1]/reverser-pos-norm") and getprop("/options/eng") == "GE" and getprop("/systems/fadec/eng2/n1") == 1) {
-			me["REV2"].show();
-		} else if (getprop("/engines/engine[1]/reverser-pos-norm") and getprop("/options/eng") == "PW" and getprop("/systems/fadec/eng2/epr") == 1) {
+		if (getprop("/engines/engine[1]/reverser-pos-norm") and systems.FADEC.eng2Powered.getBoolValue()) {
 			me["REV2"].show();
 		} else {
 			me["REV2"].hide();
@@ -128,9 +129,7 @@ var canvas_EAD_base = {
 			me["REV2"].setColor(1,1,0);
 		}
 		
-		if (getprop("/engines/engine[2]/reverser-pos-norm") and getprop("/options/eng") == "GE" and getprop("/systems/fadec/eng3/n1") == 1) {
-			me["REV3"].show();
-		} else if (getprop("/engines/engine[2]/reverser-pos-norm") and getprop("/options/eng") == "PW" and getprop("/systems/fadec/eng3/epr") == 1) {
+		if (getprop("/engines/engine[2]/reverser-pos-norm") and systems.FADEC.eng3Powered.getBoolValue()) {
 			me["REV3"].show();
 		} else {
 			me["REV3"].hide();
@@ -158,6 +157,10 @@ var canvas_EAD_GE = {
 		"N23-cline","N23-redline","FF3","FFOff3","N1Lim","N1Lim-decimal","N1LimMode","REV1","REV2","REV3","TAT"];
 	},
 	update: func() {
+		Value.FADEC.eng1Powered = systems.FADEC.eng1Powered.getBoolValue();
+		Value.FADEC.eng2Powered = systems.FADEC.eng2Powered.getBoolValue();
+		Value.FADEC.eng3Powered = systems.FADEC.eng3Powered.getBoolValue();
+		
 		# N1
 		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1-actual") + 0.01)));
 		me["N11-decimal"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[0]/n1-actual"), 1)) * 33.65, 0.1));
@@ -176,7 +179,7 @@ var canvas_EAD_GE = {
 		me["N13-thr"].setRotation((getprop("/DU/EAD/N1thr[2]") + 90) * D2R);
 		me["N13-lim"].setRotation((getprop("/DU/EAD/N1Limit") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/n1") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["N11"].show();
 			me["N11-decpnt"].show();
 			me["N11-decimal"].show();
@@ -192,7 +195,7 @@ var canvas_EAD_GE = {
 			me["N11-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/n2") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["N12"].show();
 			me["N12-decpnt"].show();
 			me["N12-decimal"].show();
@@ -208,7 +211,7 @@ var canvas_EAD_GE = {
 			me["N12-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/n2") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["N13"].show();
 			me["N13-decpnt"].show();
 			me["N13-decimal"].show();
@@ -224,19 +227,19 @@ var canvas_EAD_GE = {
 			me["N13-redline"].hide();
 		}
 		
-		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng1/n1") == 1) {
+		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and Value.FADEC.eng1Powered) {
 			me["N11-thr"].show();
 		} else {
 			me["N11-thr"].hide();
 		}
 		
-		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng2/n1") == 1) {
+		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and Value.FADEC.eng2Powered) {
 			me["N12-thr"].show();
 		} else {
 			me["N12-thr"].hide();
 		}
 		
-		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng3/n1") == 1) {
+		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and Value.FADEC.eng3Powered) {
 			me["N13-thr"].show();
 		} else {
 			me["N13-thr"].hide();
@@ -251,7 +254,7 @@ var canvas_EAD_GE = {
 		me["EGT2-needle"].setRotation((getprop("/DU/EAD/EGT[1]") + 90) * D2R);
 		me["EGT3-needle"].setRotation((getprop("/DU/EAD/EGT[2]") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/egt") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["EGT1"].show();
 			me["EGT1-needle"].show();
 			me["EGT1-yline"].show();
@@ -263,7 +266,7 @@ var canvas_EAD_GE = {
 			me["EGT1-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/egt") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["EGT2"].show();
 			me["EGT2-needle"].show();
 			me["EGT2-yline"].show();
@@ -275,7 +278,7 @@ var canvas_EAD_GE = {
 			me["EGT2-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/egt") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["EGT3"].show();
 			me["EGT3-needle"].show();
 			me["EGT3-yline"].show();
@@ -287,37 +290,37 @@ var canvas_EAD_GE = {
 			me["EGT3-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-1") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+		if (getprop("/controls/engines/ignition-1") == 1 and Value.FADEC.eng1Powered) {
 			me["EGT1-ignition"].show();
 		} else {
 			me["EGT1-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+		if (getprop("/controls/engines/ignition-2") == 1 and Value.FADEC.eng2Powered) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+		if (getprop("/controls/engines/ignition-3") == 1 and Value.FADEC.eng3Powered) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and Value.FADEC.eng1Powered) {
 			me["EGT1-redstart"].show();
 		} else {
 			me["EGT1-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and Value.FADEC.eng2Powered) {
 			me["EGT2-redstart"].show();
 		} else {
 			me["EGT2-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and Value.FADEC.eng3Powered) {
 			me["EGT3-redstart"].show();
 		} else {
 			me["EGT3-redstart"].hide();
@@ -335,7 +338,7 @@ var canvas_EAD_GE = {
 		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90) * D2R);
 		me["N23-needle"].setRotation((getprop("/DU/EAD/N2[2]") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/n2") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["N21"].show();
 			me["N21-decpnt"].show();
 			me["N21-decimal"].show();
@@ -349,7 +352,7 @@ var canvas_EAD_GE = {
 			me["N21-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/n2") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["N22"].show();
 			me["N22-decpnt"].show();
 			me["N22-decimal"].show();
@@ -363,7 +366,7 @@ var canvas_EAD_GE = {
 			me["N22-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/n2") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["N23"].show();
 			me["N23-decpnt"].show();
 			me["N23-decimal"].show();
@@ -377,19 +380,19 @@ var canvas_EAD_GE = {
 			me["N23-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and getprop("/systems/fadec/eng1/n2") == 1) {
+		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and Value.FADEC.eng1Powered) {
 			me["N21-cline"].show();
 		} else {
 			me["N21-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and getprop("/systems/fadec/eng2/n2") == 1) {
+		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and Value.FADEC.eng2Powered) {
 			me["N22-cline"].show();
 		} else {
 			me["N22-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and getprop("/systems/fadec/eng3/n2") == 1) {
+		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and Value.FADEC.eng3Powered) {
 			me["N23-cline"].show();
 		} else {
 			me["N23-cline"].hide();
@@ -400,19 +403,19 @@ var canvas_EAD_GE = {
 		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
 		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
 		
-		if (getprop("/systems/fadec/eng1/ff") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["FF1"].show();
 		} else {
 			me["FF1"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/ff") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["FF2"].show();
 		} else {
 			me["FF2"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/ff") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["FF3"].show();
 		} else {
 			me["FF3"].hide();
@@ -437,9 +440,9 @@ var canvas_EAD_GE = {
 		}
 		
 		# N1 Limit
-		me["N1LimMode"].setText(sprintf("%s", getprop("/controls/engines/thrust-limit")));
-		me["N1Lim"].setText(sprintf("%s", math.floor(getprop("/controls/engines/n1-limit") + 0.05)));
-		me["N1Lim-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/controls/engines/n1-limit") + 0.05, 1))));
+		me["N1LimMode"].setText(sprintf("%s", getprop("/fdm/jsbsim/fadec/limit/active-mode")));
+		me["N1Lim"].setText(sprintf("%s", math.floor(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05)));
+		me["N1Lim-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05, 1))));
 		
 		me.updateBase();
 	},
@@ -460,6 +463,10 @@ var canvas_EAD_PW = {
 		"REV3","TAT"];
 	},
 	update: func() {
+		Value.FADEC.eng1Powered = systems.FADEC.eng1Powered.getBoolValue();
+		Value.FADEC.eng2Powered = systems.FADEC.eng2Powered.getBoolValue();
+		Value.FADEC.eng3Powered = systems.FADEC.eng3Powered.getBoolValue();
+		
 		# EPR
 		me["EPR1"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/epr-actual") + 0.0001)));
 		me["EPR1-T"].setText(sprintf("%01d", math.floor((getprop("/engines/engine[0]/epr-actual") - int(getprop("/engines/engine[0]/epr-actual"))) * 10)));
@@ -481,7 +488,7 @@ var canvas_EAD_PW = {
 		me["EPR3-thr"].setRotation((getprop("/DU/EAD/EPRthr[2]") + 90) * D2R);
 		me["EPR3-lim"].setRotation((getprop("/DU/EAD/EPRLimit") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/epr") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["EPR1"].show();
 			me["EPR1-decpnt"].show();
 			me["EPR1-T"].show();
@@ -497,7 +504,7 @@ var canvas_EAD_PW = {
 			me["EPR1-needle"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/n2") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["EPR2"].show();
 			me["EPR2-decpnt"].show();
 			me["EPR2-T"].show();
@@ -513,7 +520,7 @@ var canvas_EAD_PW = {
 			me["EPR2-needle"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/n2") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["EPR3"].show();
 			me["EPR3-decpnt"].show();
 			me["EPR3-T"].show();
@@ -529,19 +536,19 @@ var canvas_EAD_PW = {
 			me["EPR3-needle"].hide();
 		}
 		
-		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng1/epr") == 1) {
+		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and Value.FADEC.eng1Powered) {
 			me["EPR1-thr"].show();
 		} else {
 			me["EPR1-thr"].hide();
 		}
 		
-		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng2/epr") == 1) {
+		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and Value.FADEC.eng2Powered) {
 			me["EPR2-thr"].show();
 		} else {
 			me["EPR2-thr"].hide();
 		}
 		
-		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and getprop("/systems/fadec/eng3/epr") == 1) {
+		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and Value.FADEC.eng3Powered) {
 			me["EPR3-thr"].show();
 		} else {
 			me["EPR3-thr"].hide();
@@ -559,7 +566,7 @@ var canvas_EAD_PW = {
 		me["N12-needle"].setRotation((getprop("/DU/EAD/N1[1]") + 90) * D2R);
 		me["N13-needle"].setRotation((getprop("/DU/EAD/N1[2]") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/n1") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["N11"].show();
 			me["N11-decpnt"].show();
 			me["N11-decimal"].show();
@@ -573,7 +580,7 @@ var canvas_EAD_PW = {
 			me["N11-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/n1") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["N12"].show();
 			me["N12-decpnt"].show();
 			me["N12-decimal"].show();
@@ -587,7 +594,7 @@ var canvas_EAD_PW = {
 			me["N12-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/n1") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["N13"].show();
 			me["N13-decpnt"].show();
 			me["N13-decimal"].show();
@@ -610,7 +617,7 @@ var canvas_EAD_PW = {
 		me["EGT2-needle"].setRotation((getprop("/DU/EAD/EGT[1]") + 90) * D2R);
 		me["EGT3-needle"].setRotation((getprop("/DU/EAD/EGT[2]") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/egt") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["EGT1"].show();
 			me["EGT1-needle"].show();
 			me["EGT1-yline"].show();
@@ -622,7 +629,7 @@ var canvas_EAD_PW = {
 			me["EGT1-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/egt") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["EGT2"].show();
 			me["EGT2-needle"].show();
 			me["EGT2-yline"].show();
@@ -634,7 +641,7 @@ var canvas_EAD_PW = {
 			me["EGT2-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/egt") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["EGT3"].show();
 			me["EGT3-needle"].show();
 			me["EGT3-yline"].show();
@@ -646,37 +653,37 @@ var canvas_EAD_PW = {
 			me["EGT3-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-1") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+		if (getprop("/controls/engines/ignition-1") == 1 and Value.FADEC.eng1Powered) {
 			me["EGT1-ignition"].show();
 		} else {
 			me["EGT1-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-2") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+		if (getprop("/controls/engines/ignition-2") == 1 and Value.FADEC.eng2Powered) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-3") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+		if (getprop("/controls/engines/ignition-3") == 1 and Value.FADEC.eng3Powered) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and getprop("/systems/fadec/eng1/egt") == 1) {
+		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and Value.FADEC.eng1Powered) {
 			me["EGT1-redstart"].show();
 		} else {
 			me["EGT1-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and getprop("/systems/fadec/eng2/egt") == 1) {
+		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and Value.FADEC.eng2Powered) {
 			me["EGT2-redstart"].show();
 		} else {
 			me["EGT2-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and getprop("/systems/fadec/eng3/egt") == 1) {
+		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and Value.FADEC.eng3Powered1) {
 			me["EGT3-redstart"].show();
 		} else {
 			me["EGT3-redstart"].hide();
@@ -694,7 +701,7 @@ var canvas_EAD_PW = {
 		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90) * D2R);
 		me["N23-needle"].setRotation((getprop("/DU/EAD/N2[2]") + 90) * D2R);
 		
-		if (getprop("/systems/fadec/eng1/n2") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["N21"].show();
 			me["N21-decpnt"].show();
 			me["N21-decimal"].show();
@@ -708,7 +715,7 @@ var canvas_EAD_PW = {
 			me["N21-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/n2") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["N22"].show();
 			me["N22-decpnt"].show();
 			me["N22-decimal"].show();
@@ -722,7 +729,7 @@ var canvas_EAD_PW = {
 			me["N22-redline"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/n2") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["N23"].show();
 			me["N23-decpnt"].show();
 			me["N23-decimal"].show();
@@ -736,19 +743,19 @@ var canvas_EAD_PW = {
 			me["N23-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and getprop("/systems/fadec/eng1/n2") == 1) {
+		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and Value.FADEC.eng1Powered) {
 			me["N21-cline"].show();
 		} else {
 			me["N21-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and getprop("/systems/fadec/eng2/n2") == 1) {
+		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and Value.FADEC.eng2Powered) {
 			me["N22-cline"].show();
 		} else {
 			me["N22-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and getprop("/systems/fadec/eng3/n2") == 1) {
+		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and Value.FADEC.eng3Powered) {
 			me["N23-cline"].show();
 		} else {
 			me["N23-cline"].hide();
@@ -759,19 +766,19 @@ var canvas_EAD_PW = {
 		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
 		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
 		
-		if (getprop("/systems/fadec/eng1/ff") == 1) {
+		if (Value.FADEC.eng1Powered) {
 			me["FF1"].show();
 		} else {
 			me["FF1"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng2/ff") == 1) {
+		if (Value.FADEC.eng2Powered) {
 			me["FF2"].show();
 		} else {
 			me["FF2"].hide();
 		}
 		
-		if (getprop("/systems/fadec/eng3/ff") == 1) {
+		if (Value.FADEC.eng3Powered) {
 			me["FF3"].show();
 		} else {
 			me["FF3"].hide();
@@ -796,8 +803,8 @@ var canvas_EAD_PW = {
 		}
 		
 		# EPR Limit
-		eprFixed = getprop("/controls/engines/epr-limit") + 0.003;
-		me["EPRLimMode"].setText(sprintf("%s", getprop("/controls/engines/thrust-limit")));
+		eprFixed = getprop("/fdm/jsbsim/fadec/limit/active") + 0.003;
+		me["EPRLimMode"].setText(sprintf("%s", getprop("/fdm/jsbsim/fadec/limit/active-mode")));
 		me["EPRLim"].setText(sprintf("%1.0f", math.floor(eprFixed)));
 		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(eprFixed - int(eprFixed), 0.01) * 100));
 		

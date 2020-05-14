@@ -122,8 +122,8 @@
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
 			<Td>0.00001</Td>
-			<u_min>/controls/engines/idle-limit</u_min>
-			<u_max>/controls/engines/throttle-limit</u_max>
+			<u_min>/fdm/jsbsim/fadec/limit/idle-norm</u_min>
+			<u_max>/fdm/jsbsim/fadec/limit/active-norm</u_max>
 		</config>
 	</pid-controller>
 	
@@ -165,8 +165,8 @@
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
 			<Td>0.00001</Td>
-			<u_min>/controls/engines/idle-limit</u_min>
-			<u_max>/controls/engines/throttle-limit</u_max>
+			<u_min>/fdm/jsbsim/fadec/limit/idle-norm</u_min>
+			<u_max>/fdm/jsbsim/fadec/limit/active-norm</u_max>
 		</config>
 	</pid-controller>
 	
@@ -220,7 +220,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/controls/engines/throttle-limit</input>
+		<input>/fdm/jsbsim/fadec/limit/active-norm</input>
 		<output>/controls/engines/throttle-cmd-pid</output>
 	</filter>
 	
@@ -247,6 +247,8 @@
 		<initialize-to>output</initialize-to>
 		<input>/controls/engines/throttle-cmd-pid</input>
 		<output>/controls/engines/engine[0]/throttle</output>
+		<min>0</min>
+		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -288,6 +290,8 @@
 		<initialize-to>output</initialize-to>
 		<input>/controls/engines/throttle-cmd-pid</input>
 		<output>/controls/engines/engine[1]/throttle</output>
+		<min>0</min>
+		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -329,6 +333,8 @@
 		<initialize-to>output</initialize-to>
 		<input>/controls/engines/throttle-cmd-pid</input>
 		<output>/controls/engines/engine[2]/throttle</output>
+		<min>0</min>
+		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -354,9 +360,9 @@
 		<input>
 			<expression>
 				<max>
-					<property>/controls/engines/engine[0]/throttle</property>
-					<property>/controls/engines/engine[1]/throttle</property>
-					<property>/controls/engines/engine[2]/throttle</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
 				</max>
 			</expression>
 		</input>

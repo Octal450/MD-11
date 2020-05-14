@@ -83,7 +83,7 @@ var eng_loop = func {
 		}
 	}
 	
-	if ((getprop("/controls/engines/thrust-limit") == "T/O" or getprop("/controls/engines/thrust-limit") == "G/A") and (thr1 >= 0.7 or thr2 >= 0.7)) {
+	if ((getprop("/fdm/jsbsim/fadec/limit/active-mode") == "T/O" or getprop("/fdm/jsbsim/fadec/limit/active-mode") == "G/A") and (thr1 >= 0.7 or thr2 >= 0.7)) {
 		IGNTOGA = 1;
 	} else {
 		IGNTOGA = 0;

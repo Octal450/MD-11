@@ -224,11 +224,7 @@
 			<autopilot n="5">
 				<path>Aircraft/MD-11/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
-			<!-- 6 is FADEC -->
-			<autopilot n="7">
-				<path>Aircraft/MD-11/Systems/EAD.xml</path>
-			</autopilot>
-			<autopilot n="8">
+			<autopilot n="6">
 				<path>Aircraft/MD-11/Systems/pfd.xml</path>
 			</autopilot>
 		</systems>
@@ -430,34 +426,27 @@
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
-				<throttle-fdm type="double">0</throttle-fdm>
-				<throttle-output type="double">0</throttle-output>
-				<throttle-pos type="double">0</throttle-pos>
-				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<engine n="1">
 				<cutoff type="bool">true</cutoff>
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
-				<throttle-fdm type="double">0</throttle-fdm>
-				<throttle-output type="double">0</throttle-output>
-				<throttle-pos type="double">0</throttle-pos>
-				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<engine n="2">
 				<cutoff type="bool">true</cutoff>
 				<cutoff-switch type="bool">true</cutoff-switch>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
-				<throttle-fdm type="double">0</throttle-fdm>
-				<throttle-output type="double">0</throttle-output>
-				<throttle-pos type="double">0</throttle-pos>
-				<throttle-rev type="double">0</throttle-rev>
 			</engine>
 			<packs-off type="bool">0</packs-off>
 			<throttle-max type="double">0</throttle-max>
 		</engines>
+		<fadec n="0">
+			<eng-1-altn type="bool">0</eng-1-altn>
+			<eng-2-altn type="bool">0</eng-2-altn>
+			<eng-3-altn type="bool">0</eng-3-altn>
+		</fadec>
 		<fctl n="0">
 			<flap-limit-knob type="int">0</flap-limit-knob>
 			<elevator-feel-knob type="int">0</elevator-feel-knob>
@@ -625,6 +614,22 @@
 					<y alias="/sim/model/autopush/force-y"/>
 				</tractor>
 			</external_reactions>
+			<fadec n="0">
+				<control-1 n="0">
+					<throttle-rev type="double">0</throttle-rev>
+				</control-1>
+				<control-2 n="0">
+					<throttle-rev type="double">0</throttle-rev>
+				</control-2>
+				<control-3 n="0">
+					<throttle-rev type="double">0</throttle-rev>
+				</control-3>
+				<limit n="0">
+					<active-mode type="string">T/O</active-mode>
+					<active-mode-int type="int">0</active-mode-int>
+					<active type="double">0</active>
+				</limit>
+			</fadec>
 			<fcc n="0">
 				<elevator-feel n="0">
 					<auto type="bool">1</auto>
@@ -1477,9 +1482,6 @@
 			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>
 			<file>Aircraft/MD-11/Nasal/AFS/AFS-b.nas</file>
 		</afs>
-		<fadec>
-			<file>Aircraft/MD-11/Nasal/FADEC/fadec-common.nas</file>
-		</fadec>
 		<fms>
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>

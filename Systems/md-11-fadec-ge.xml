@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 FADEC GE -->
+<!-- McDonnell Douglas MD-11 GE CF6-80C2D1F FADEC -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <system name="MD-11: FADEC GE">
 	
-	<property value="1">fadec/limits/packs-off</property>
-	<property value="0">fadec/limits/flex-active</property>
-	<property value="30">fadec/limits/flex-temp</property>
+	<property value="1">fadec/limit/packs-off</property>
+	<property value="0">fadec/limit/flex-active</property>
+	<property value="30">fadec/limit/flex-temp</property>
 	
 	<channel name="Thrust Limits">
 		
-		<fcs_function name="fadec/limits/rated-thrust-n1"> <!-- Not 100% sure on this -->
+		<fcs_function name="fadec/limit/rated-thrust-n1"> <!-- Not 100% sure on this -->
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -26,7 +26,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limits/milthrust-unmodified"> <!-- Copy of MilThrust table in engines file -->
+		<fcs_function name="fadec/limit/milthrust-unmodified"> <!-- Copy of MilThrust table in engines file -->
 			<function>
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
@@ -49,7 +49,7 @@
 		
 		<!-- Following functions fix a FGTurbine inaccuracy... rated thrust N1% should be rated thrust lbs -->
 		<!-- These calculations change it so that the rated power at sea level is at the correct N1% value. It still changes with altitude and mach as it should -->
-		<fcs_function name="fadec/limits/fgturbine-thrust-lbs">
+		<fcs_function name="fadec/limit/fgturbine-thrust-lbs">
 			<function>
 				<sum>
 					<product>
@@ -64,13 +64,13 @@
 								<value>61960</value>
 							</product>
 						</difference>
-						<property>fadec/limits/milthrust-unmodified</property>
+						<property>fadec/limit/milthrust-unmodified</property>
 					</product>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limits/rated-thrust-lbs">
+		<fcs_function name="fadec/limit/rated-thrust-lbs">
 			<function>
 				<sum>
 					<product>
@@ -86,18 +86,18 @@
 									<value>61960</value>
 								</product>
 							</difference>
-							<property>fadec/limits/milthrust-unmodified</property>
+							<property>fadec/limit/milthrust-unmodified</property>
 						</product>
 						<quotient>
 							<difference>
-								<property>fadec/limits/rated-thrust-n1</property>
+								<property>fadec/limit/rated-thrust-n1</property>
 								<value>23.7</value>
 							</difference>
 							<value>93.8</value>
 						</quotient>
 						<quotient>
 							<difference>
-								<property>fadec/limits/rated-thrust-n1</property>
+								<property>fadec/limit/rated-thrust-n1</property>
 								<value>23.7</value>
 							</difference>
 							<value>93.8</value>
@@ -107,40 +107,56 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limits/rated-thrust-factor"> <!-- Normalize -->
+		<fcs_function name="fadec/limit/rated-thrust-factor"> <!-- Normalize -->
 			<function>
 				<ifthen>
 					<nq> <!-- Prevent divide by 0 -->
-						<property>fadec/limits/rated-thrust-lbs</property>
+						<property>fadec/limit/rated-thrust-lbs</property>
 						<value>0</value>
 					</nq>
 					<quotient>
-						<property>fadec/limits/fgturbine-thrust-lbs</property>
-						<property>fadec/limits/rated-thrust-lbs</property>
+						<property>fadec/limit/fgturbine-thrust-lbs</property>
+						<property>fadec/limit/rated-thrust-lbs</property>
 					</quotient>
 					<value>1</value>
 				</ifthen>
 			</function>
 		</fcs_function>
 		
-		<!-- Limits -->
-		<switch name="fadec/limits/to-ref-temp">
+		<fcs_function name="fadec/limit/go-around">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/rated-thrust-n1</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<switch name="fadec/limit/to-ref-temp">
 			<default value="propulsion/tat-c"/>
-			<test value="fadec/limits/flex-temp">
-				fadec/limits/flex-active eq 1
+			<test value="fadec/limit/flex-temp">
+				fadec/limit/flex-active eq 1
 			</test>
 		</switch>
 		
-		<fcs_function name="fadec/limits/takeoff"> <!-- From FCOM -->
+		<fcs_function name="fadec/limit/takeoff-ref"> <!-- From FCOM -->
 			<function>
 				<sum>
 					<table>
 						<independentVar lookup="row">/position/altitude-ft</independentVar>
-						<independentVar lookup="column">fadec/limits/to-ref-temp</independentVar>
+						<independentVar lookup="column">fadec/limit/to-ref-temp</independentVar>
 						<tableData>
-								  -30    -20    -10     0      10     20     30     40     50
+							      -30    -20    -10     0      10     20     30     40     50
 							-1000   98.9  100.7  102.5  104.3  106.1  107.8  109.6  108.7  107.0
-								0  100.5  102.4  104.2  106.0  107.8  109.6  111.4  109.5  107.5
+							    0  100.5  102.4  104.2  106.0  107.8  109.6  111.4  109.5  107.5
 							 1000  101.2  103.1  104.9  106.8  108.5  110.3  111.4  109.5  107.4
 							 2000  101.9  103.8  105.6  107.5  109.2  111.0  111.3  109.4  107.3
 							 3000  102.7  104.5  106.4  108.2  110.0  111.8  111.3  109.2  107.3
@@ -157,7 +173,7 @@
 						<table>
 							<independentVar lookup="row">/position/altitude-ft</independentVar>
 							<tableData>
-									0  0.3
+								    0  0.3
 								 2000  0.4
 								 4000  0.4
 								 6000  0.3
@@ -165,18 +181,30 @@
 								10000  0.4
 							</tableData>
 						</table>
-						<property>fadec/limits/packs-off</property>
+						<property>fadec/limit/packs-off</property>
 					</product>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="fadec/limits/go-around">
-			<input>fadec/limits/rated-thrust-n1</input>
-			<gain>1.0</gain>
-		</pure_gain>
+		<fcs_function name="fadec/limit/takeoff">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/takeoff-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
 		
-		<fcs_function name="fadec/limits/mct">
+		<fcs_function name="fadec/limit/mct-ref">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -191,7 +219,24 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limits/climb">
+		<fcs_function name="fadec/limit/mct">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/mct-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/climb-ref">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -206,7 +251,24 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limits/cruise">
+		<fcs_function name="fadec/limit/climb">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/climb-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/cruise-ref">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -220,6 +282,386 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="fadec/limit/cruise">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/cruise-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/idle-ref">
+			<function>
+				<sum> <!-- Temporary, haven't done it yet -->
+					<value>0</value>
+					<value>0</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/idle">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/idle-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
+	<channel name="Engine Control">
+		
+		<fcs_function name="fadec/limit/active-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/active</independentVar> <!-- Selected by nasal -->
+					<tableData>
+						 23.7  0
+						117.5  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/ga-mct-max">
+			<function>
+				<max> <!-- Sometimes G/A is higher than MCT -->
+					<property>fadec/limit/go-around</property>
+					<property>fadec/limit/mct</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<switch name="fadec/limit/max-throttle-n1">
+			<default value="fadec/limit/ga-mct-max"/>
+			<test value="fadec/limit/takeoff"> <!-- Should be based on FMS State in state before Climb -->
+				fadec/limit/active-mode-int eq 0
+			</test>
+		</switch>
+		
+		<fcs_function name="fadec/limit/max-throttle-n1-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/max-throttle-n1</independentVar>
+					<tableData>
+						 23.7  0
+						117.5  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/idle-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/idle</independentVar>
+					<tableData>
+						 23.7  0
+						117.5  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!-- Engine 1 -->
+		<switch name="fadec/control-1/max">
+			<default value="fadec/limit/max-throttle-n1-norm"/>
+			<test value="1">
+				/controls/fadec/eng-1-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-1/min">
+			<default value="fadec/limit/idle-norm"/>
+			<test value="0">
+				/controls/fadec/eng-1-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-1/throttle-pos">
+			<default value="/controls/engines/engine[0]/throttle"/>
+			<test value="0">
+				/controls/engines/engine[0]/reverser ne 0
+			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-1/max</max>
+			</clipto>
+		</switch>
+		
+		<lag_filter name="fadec/throttle-lever[0]">
+			<input>fadec/control-1/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[0]</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/control-1/throttle-n1">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/throttle-lever[0]</independentVar>
+					<tableData>
+						0   23.7
+						1  117.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fadec/control-1/throttle-pos-clamped">
+			<input>fadec/control-1/throttle-pos</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>fadec/control-1/min</min>
+				<max>fadec/control-1/max</max>
+			</clipto>
+		</pure_gain>
+		
+		<switch name="fadec/control-1/throttle-output">
+			<default value="fadec/control-1/throttle-pos-clamped"/>
+			<test value="fadec/control-1/throttle-rev">
+				/controls/engines/engine[0]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fcs/control-1/throttle-fdm">
+			<input>fadec/control-1/throttle-output</input>
+			<c1>0.75</c1>
+			<output>fcs/throttle-pos-norm[0]</output>
+		</lag_filter>
+		
+		<!-- Engine 2 -->
+		<switch name="fadec/control-2/max">
+			<default value="fadec/limit/max-throttle-n1-norm"/>
+			<test value="1">
+				/controls/fadec/eng-2-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-2/min">
+			<default value="fadec/limit/idle-norm"/>
+			<test value="0">
+				/controls/fadec/eng-2-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-2/throttle-pos">
+			<default value="/controls/engines/engine[1]/throttle"/>
+			<test value="0">
+				/controls/engines/engine[1]/reverser ne 0
+			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-2/max</max>
+			</clipto>
+		</switch>
+		
+		<lag_filter name="fadec/throttle-lever[1]">
+			<input>fadec/control-2/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[1]</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/control-2/throttle-n1">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/throttle-lever[1]</independentVar>
+					<tableData>
+						0   23.7
+						1  117.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fadec/control-2/throttle-pos-clamped">
+			<input>fadec/control-2/throttle-pos</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>fadec/control-2/min</min>
+				<max>fadec/control-2/max</max>
+			</clipto>
+		</pure_gain>
+		
+		<switch name="fadec/control-2/throttle-output">
+			<default value="fadec/control-2/throttle-pos-clamped"/>
+			<test value="fadec/control-2/throttle-rev">
+				/controls/engines/engine[1]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fcs/control-2/throttle-fdm">
+			<input>fadec/control-2/throttle-output</input>
+			<c1>0.75</c1>
+			<output>fcs/throttle-pos-norm[1]</output>
+		</lag_filter>
+		
+		<!-- Engine 3 -->
+		<switch name="fadec/control-3/max">
+			<default value="fadec/limit/max-throttle-n1-norm"/>
+			<test value="1">
+				/controls/fadec/eng-3-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-3/min">
+			<default value="fadec/limit/idle-norm"/>
+			<test value="0">
+				/controls/fadec/eng-3-altn eq 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/control-3/throttle-pos">
+			<default value="/controls/engines/engine[2]/throttle"/>
+			<test value="0">
+				/controls/engines/engine[2]/reverser ne 0
+			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-3/max</max>
+			</clipto>
+		</switch>
+		
+		<lag_filter name="fadec/throttle-lever[2]">
+			<input>fadec/control-3/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[2]</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/control-3/throttle-n1">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/throttle-lever[2]</independentVar>
+					<tableData>
+						0   23.7
+						1  117.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fadec/control-3/throttle-pos-clamped">
+			<input>fadec/control-3/throttle-pos</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>fadec/control-3/min</min>
+				<max>fadec/control-3/max</max>
+			</clipto>
+		</pure_gain>
+		
+		<switch name="fadec/control-3/throttle-output">
+			<default value="fadec/control-3/throttle-pos-clamped"/>
+			<test value="fadec/control-3/throttle-rev">
+				/controls/engines/engine[2]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fcs/control-3/throttle-fdm">
+			<input>fadec/control-3/throttle-output</input>
+			<c1>0.75</c1>
+			<output>fcs/throttle-pos-norm[2]</output>
+		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Engine Parameters" execrate="2">
+		
+		<lag_filter name="fadec/n1-actual1">
+			<input>/engines/engine[0]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[0]/n1-actual</output>
+			<output>/engines/engine[4]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/n1-actual2">
+			<input>/engines/engine[1]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[1]/n1-actual</output>
+			<output>/engines/engine[5]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/n1-actual3">
+			<input>/engines/engine[2]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[2]/n1-actual</output>
+			<output>/engines/engine[6]/n1</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/n2-actual1">
+			<input>/engines/engine[0]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[0]/n2-actual</output>
+			<output>/engines/engine[4]/n2</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/n2-actual2">
+			<input>/engines/engine[1]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[1]/n2-actual</output>
+			<output>/engines/engine[5]/n2</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/n2-actual3">
+			<input>/engines/engine[2]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[2]/n2-actual</output>
+			<output>/engines/engine[6]/n2</output>
+		</lag_filter>
+	
+	</channel>
+	
+	<channel name="EAD" execrate="8">
+		
+		<switch name="fadec/eng-1-powered">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[0]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/systems/electrical/outputs/efis ge 25
+				/engines/engine[0]/n2-actual ge 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/eng-2-powered">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[1]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/systems/electrical/outputs/efis ge 25
+				/engines/engine[1]/n2-actual ge 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/eng-3-powered">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[2]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/systems/electrical/outputs/efis ge 25
+				/engines/engine[2]/n2-actual ge 1
+			</test>
+		</switch>
 	
 	</channel>
 

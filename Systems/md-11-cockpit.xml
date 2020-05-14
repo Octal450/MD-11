@@ -37,65 +37,49 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/throttle-lever[0]">
-			<input>/controls/engines/engine[0]/throttle-pos</input>
-			<c1>20</c1>
-			<output>fcc/throttle-lever-feedback[0]</output>
-		</lag_filter>
+		<!-- Throttle Lever Position is in FADEC -->
 		
-		<lag_filter name="fcc/throttle-lever[1]">
-			<input>/controls/engines/engine[1]/throttle-pos</input>
-			<c1>20</c1>
-			<output>fcc/throttle-lever-feedback[1]</output>
-		</lag_filter>
-		
-		<lag_filter name="fcc/throttle-lever[2]">
-			<input>/controls/engines/engine[2]/throttle-pos</input>
-			<c1>20</c1>
-			<output>fcc/throttle-lever-feedback[2]</output>
-		</lag_filter>
-		
-		<lag_filter name="fcc/reverse-lever[0]">
+		<lag_filter name="fadec/reverse-lever[0]">
 			<input>/controls/engines/engine[0]/reverser</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/reverse-lever[1]">
+		<lag_filter name="fadec/reverse-lever[1]">
 			<input>/controls/engines/engine[1]/reverser</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/reverse-lever[2]">
+		<lag_filter name="fadec/reverse-lever[2]">
 			<input>/controls/engines/engine[2]/reverser</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/reverse-thr-lever[0]">
-			<input>/controls/engines/engine[0]/throttle-rev</input>
+		<lag_filter name="fadec/reverse-thr-lever[0]">
+			<input>fadec/control-1/throttle-rev</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/reverse-thr-lever[1]">
-			<input>/controls/engines/engine[1]/throttle-rev</input>
+		<lag_filter name="fadec/reverse-thr-lever[1]">
+			<input>fadec/control-2/throttle-rev</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/reverse-thr-lever[2]">
-			<input>/controls/engines/engine[2]/throttle-rev</input>
+		<lag_filter name="fadec/reverse-thr-lever[2]">
+			<input>fadec/control-3/throttle-rev</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/engine-cutoff[0]">
+		<lag_filter name="fadec/engine-cutoff[0]">
 			<input>/controls/engines/engine[0]/cutoff-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/engine-cutoff[1]">
+		<lag_filter name="fadec/engine-cutoff[1]">
 			<input>/controls/engines/engine[1]/cutoff-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/engine-cutoff[2]">
+		<lag_filter name="fadec/engine-cutoff[2]">
 			<input>/controls/engines/engine[2]/cutoff-switch</input>
 			<c1>20</c1>
 		</lag_filter>
@@ -133,6 +117,166 @@
 			<input>/sim/model/armrest-translate-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
+	
+	</channel>
+	
+	<channel name="EAD" execrate="2">
+		
+		<fcs_function name="/DU/EAD/N1[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-1/throttle-n1</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-2/throttle-n1</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-3/throttle-n1</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1Limit">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/active</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!--fcs_function name="/DU/EAD/EGT[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/EGT[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/EGT[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function-->
+		
+		<fcs_function name="/DU/EAD/N2[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N2[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N2[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

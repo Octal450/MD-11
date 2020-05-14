@@ -136,8 +136,8 @@ var Clamp = {
 			me.active = 0;
 		}
 		
-		if (getprop("/it-autoflight/output/clamp") != me.active) {
-			setprop("/it-autoflight/output/clamp", me.active);
+		if (Custom.Output.clamp.getBoolValue() != me.active) {
+			Custom.Output.clamp.setBoolValue(me.active);
 		}
 		
 		if (me.pitchText == "T/O CLB") {
@@ -154,9 +154,9 @@ var Clamp = {
 		
 		if (me.pitchText == "SPD CLB" or me.pitchText == "T/O CLB") {
 			if (me.fmaOutput) {
-				FMA.pitch.setValue(fadec.Output.thrustLimitMode.getValue() ~ " CLAMP");
+				FMA.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " CLAMP");
 			} else {
-				FMA.pitch.setValue(fadec.Output.thrustLimitMode.getValue() ~ " THRUST");
+				FMA.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " THRUST");
 			}
 		}
 	},

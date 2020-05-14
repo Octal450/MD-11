@@ -52,15 +52,15 @@
 			</test>
 			<test logic="AND" value="1">
 				/it-autoflight/output/vert eq 7
-				fcc/throttle-lever-feedback[0] ge 0.7
+				fadec/throttle-lever-feedback[0] ge 0.7
 			</test>
 			<test logic="AND" value="1">
 				/it-autoflight/output/vert eq 7
-				fcc/throttle-lever-feedback[1] ge 0.7
+				fadec/throttle-lever-feedback[1] ge 0.7
 			</test>
 			<test logic="AND" value="1">
 				/it-autoflight/output/vert eq 7
-				fcc/throttle-lever-feedback[2] ge 0.7
+				fadec/throttle-lever-feedback[2] ge 0.7
 			</test>
 			<test logic="AND" value="0"> <!-- To stop last condition from triggering in climbing, but not in descending -->
 				/it-autoflight/output/vert eq 4

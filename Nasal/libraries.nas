@@ -20,8 +20,8 @@ var systemsInit = func {
 	systems.HYD.init();
 	systems.IRS.init();
 	systems.PNEU.init();
+	systems.FADEC.init();
 	systems.eng_init();
-	fadec.fadec_reset();
 	afs.ITAF.init(0);
 	lightsLoop.start();
 	systemsLoop.start();
@@ -36,8 +36,8 @@ setlistener("sim/signals/fdm-initialized", func {
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.IRS.loop();
+	systems.FADEC.loop();
 	systems.eng_loop();
-	fadec.fadecLoop();
 	
 	if ((pts.Velocities.groundspeedKt.getValue() >= 2) or !pts.Controls.Gear.brakeParking.getBoolValue()) {
 		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {

@@ -60,3 +60,48 @@ var FCTL = {
 		me.Fail.ydLowerB.setBoolValue(0);
 	},
 };
+
+var FADEC = {
+	eng1Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"),
+	eng2Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"),
+	eng3Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered"),
+	pitchMode: 0,
+	Limit: {
+		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
+		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),
+		activeModeInt: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode-int"), # 0 T/O, 1 G/A, 2 MCT, 3 CLB, 4 CRZ
+		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
+		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
+		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
+		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
+		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
+	},
+	Switch: {
+		eng1Altn: props.globals.getNode("/controls/fadec/eng-1-altn"),
+		eng2Altn: props.globals.getNode("/controls/fadec/eng-2-altn"),
+		eng3Altn: props.globals.getNode("/controls/fadec/eng-3-altn"),
+	},
+	init: func() {
+		me.Limit.activeMode.setValue("T/O");
+	},
+	loop: func() {
+		me.pitchMode = afs.Text.vert.getValue();
+		if (me.pitchMode == "G/A CLB") {
+			me.Limit.activeModeInt.setValue(1);
+			me.Limit.activeMode.setValue("G/A");
+			me.Limit.active.setValue(me.Limit.goAround.getValue());
+		} else if (me.pitchMode == "T/O CLB") {
+			me.Limit.activeModeInt.setValue(0);
+			me.Limit.activeMode.setValue("T/O");
+			me.Limit.active.setValue(me.Limit.takeoff.getValue());
+		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
+			me.Limit.activeModeInt.setValue(3);
+			me.Limit.activeMode.setValue("CLB");
+			me.Limit.active.setValue(me.Limit.climb.getValue());
+		} else {
+			me.Limit.activeModeInt.setValue(4);
+			me.Limit.activeMode.setValue("CRZ");
+			me.Limit.active.setValue(me.Limit.cruise.getValue());
+		}
+	},
+};

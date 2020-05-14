@@ -5,8 +5,8 @@
 <PropertyList include="MD-11-main.xml">
 
     <sim>
-		<aero>MD-11F-PW</aero>
-		<description>McDonnell Douglas MD-11F (PW4462)</description>
+		<aero>MD-11-PW</aero>
+		<description>McDonnell Douglas MD-11 (PW4462)</description>
 		<flight-model>jsb</flight-model>
 		<model n="0">
 			<armrest type="bool">1</armrest>
@@ -16,10 +16,16 @@
 				<position-y-m type="float">-2.3</position-y-m>
 				<position-z-m type="float">6.0</position-z-m>
 			</door>
+			<door n="1">
+				<jetway-hood-deg type="float">1</jetway-hood-deg>
+				<position-x-m type="float">-14.5</position-x-m>
+				<position-y-m type="float">-2.8</position-y-m>
+				<position-z-m type="float">6.0</position-z-m>
+			</door>
 			<livery>
-				<file type="string">White</file>
+				<file type="string">MCD</file>
 			</livery>
-			<path>Aircraft/MD-11/Models/MD-11F-PW.xml</path>
+			<path>Aircraft/MD-11/Models/MD-11-PW.xml</path>
 		</model>
 		<primary-set>true</primary-set>
 		<rating>
@@ -31,18 +37,13 @@
 		<sound>
 			<path>Aircraft/MD-11/Sounds/pw4000-sound.xml</path>
 		</sound>
-		<systems n="0">
-			<autopilot n="6">
-				<path>Aircraft/MD-11/Systems/fadec-pw.xml</path>
-			</autopilot>
-		</systems>
     </sim>
 	
 	<limits>
 		<mass-and-balance> <!--Data source: TCDS -->
 			<maximum-takeoff-mass-lbs>633000</maximum-takeoff-mass-lbs>
-			<maximum-landing-mass-lbs>491500</maximum-landing-mass-lbs>
-			<maximum-zero-fuel-mass-lbs>461300</maximum-zero-fuel-mass-lbs>
+			<maximum-landing-mass-lbs>458000</maximum-landing-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>430000</maximum-zero-fuel-mass-lbs>
 		</mass-and-balance>
 	</limits>
 	
@@ -63,37 +64,37 @@
 			<max-lb type="double">440</max-lb>
 		</weight>
 		<weight n="1">
-			<name>Forward Upper Cargo</name>
+			<name>Forward Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">33600</max-lb>
+			<max-lb type="double">6120</max-lb>
 		</weight>
 		<weight n="2">
-			<name>Center Upper Cargo</name>
+			<name>Center Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">33600</max-lb>
+			<max-lb type="double">21960</max-lb>
 		</weight>
 		<weight n="3">
-			<name>Aft Upper Cargo</name>
+			<name>Aft Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">42000</max-lb>
+			<max-lb type="double">29880</max-lb>
 		</weight>
 		<weight n="4">
-			<name>Forward Lower Cargo</name>
+			<name>Forward Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">25200</max-lb>
 		</weight>
 		<weight n="5">
-			<name>Center Lower Cargo</name>
+			<name>Center Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">33600</max-lb>
 		</weight>
 		<weight n="6">
-			<name>Aft Lower Cargo</name>
+			<name>Aft Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">2000</max-lb>
@@ -102,7 +103,7 @@
     
     <nasal n="0">
 		<setup>
-			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11F/PW");</script>
+			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11/PW");</script>
 		</setup>
     </nasal>
 
