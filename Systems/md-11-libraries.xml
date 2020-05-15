@@ -48,22 +48,6 @@
 	
 	<channel name="Execrate 8 Libraries" execrate="8">
 		
-		<!-- Wingflex Controller -->
-		<switch name="/controls/flight/wingflex-enable">
-			<default value="1"/>
-			<test value="0">
-				/sim/replay/replay-state eq 1
-			</test>
-		</switch>
-		
-		<!-- Shake Effect Controller -->
-		<switch name="/systems/shake/effect">
-			<default value="0"/>
-			<test value="1">
-				/velocities/groundspeed-kt ge 15
-			</test>
-		</switch>
-		
 		<!-- VMO/MMO -->
 		<fcs_function name="/controls/fctl/mmo-kts">
 			<function>

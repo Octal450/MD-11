@@ -39,6 +39,18 @@ var systemsLoop = maketimer(0.1, func {
 	systems.FADEC.loop();
 	systems.eng_loop();
 	
+	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
+		pts.Systems.Shake.effect.setBoolValue(1);
+	} else {
+		pts.Systems.Shake.effect.setBoolValue(0);
+	}
+	
+	if (pts.Sim.Replay.replayState.getBoolValue()) {
+		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
+	} else {
+		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
+	}
+	
 	if ((pts.Velocities.groundspeedKt.getValue() >= 2) or !pts.Controls.Gear.brakeParking.getBoolValue()) {
 		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
 			systems.ELEC.Source.Ext.cart.setBoolValue(0);
