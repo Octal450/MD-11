@@ -402,6 +402,10 @@
 			<test value="0">
 				/controls/engines/engine[0]/reverser ne 0
 			</test>
+			<test logic="AND" value="fadec/ats-cmd-1">
+				/it-autoflight/output/athr eq 1
+				/it-autoflight/output/clamp eq 0
+			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
 				<max>fadec/control-1/max</max>
@@ -474,6 +478,10 @@
 			<test value="0">
 				/controls/engines/engine[1]/reverser ne 0
 			</test>
+			<test logic="AND" value="fadec/ats-cmd-2">
+				/it-autoflight/output/athr eq 1
+				/it-autoflight/output/clamp eq 0
+			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
 				<max>fadec/control-2/max</max>
@@ -545,6 +553,10 @@
 			<default value="/controls/engines/engine[2]/throttle"/>
 			<test value="0">
 				/controls/engines/engine[2]/reverser ne 0
+			</test>
+			<test logic="AND" value="fadec/ats-cmd-3">
+				/it-autoflight/output/athr eq 1
+				/it-autoflight/output/clamp eq 0
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->

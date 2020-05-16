@@ -66,6 +66,7 @@ var FADEC = {
 	eng2Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"),
 	eng3Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered"),
 	pitchMode: 0,
+	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
 	Limit: {
 		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
 		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),

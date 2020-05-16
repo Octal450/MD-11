@@ -102,7 +102,7 @@ var Clamp = {
 	throttleMax: 0,
 	loop: func() {
 		me.pitchText = Text.vert.getValue();
-		me.throttleMax = pts.Controls.Engines.throttleMax.getValue();
+		me.throttleMax = systems.FADEC.throttleCompareMax.getValue();
 		
 		if (me.pitchText == "T/O CLB") {
 			if (Output.athr.getBoolValue() and pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() < 80) {
@@ -122,9 +122,6 @@ var Clamp = {
 				me.active = 1;
 				if (me.stopThrottleReset != 1) {
 					me.stopThrottleReset = 1;
-					pts.Controls.Engines.Engine.throttle[0].setValue(0);
-					pts.Controls.Engines.Engine.throttle[1].setValue(0);
-					pts.Controls.Engines.Engine.throttle[2].setValue(0);
 				}
 			} else if (me.stopCheck != 1) {
 				me.stopThrottleReset = 0;

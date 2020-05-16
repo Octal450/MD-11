@@ -9,7 +9,6 @@ var Controls = {
 		Engine: {
 			throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 		},
-		throttleMax: props.globals.getNode("/controls/engines/throttle-max"),
 	},
 	Flight: {
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
