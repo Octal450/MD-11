@@ -577,15 +577,20 @@
 	
 	<engines n="0">
 		<engine n="0">
-			<egt-actual type="float">0</egt-actual>
-			<state type="int">0</state>
+			<egt-actual type="double">0</egt-actual>
+			<epr-actual type="double">1</epr-actual>
+			<ff-actual type="double">0</ff-actual>
+			<n1-actual type="double">0</n1-actual>
+			<n2-actual type="double">0</n2-actual>
 			<on-fire type="bool">0</on-fire>
 			<reverser-pos-norm type="double">0</reverser-pos-norm>
 			<running type="bool">0</running>
+			<state type="int">0</state>
 		</engine>
 		<engine n="1">
 			<egt-actual type="double">0</egt-actual>
 			<epr-actual type="double">1</epr-actual>
+			<ff-actual type="double">0</ff-actual>
 			<n1-actual type="double">0</n1-actual>
 			<n2-actual type="double">0</n2-actual>
 			<on-fire type="bool">0</on-fire>
@@ -596,6 +601,7 @@
 		<engine n="2">
 			<egt-actual type="double">0</egt-actual>
 			<epr-actual type="double">1</epr-actual>
+			<ff-actual type="double">0</ff-actual>
 			<n1-actual type="double">0</n1-actual>
 			<n2-actual type="double">0</n2-actual>
 			<on-fire type="bool">0</on-fire>

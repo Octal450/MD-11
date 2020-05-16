@@ -37,7 +37,23 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<!-- Throttle Lever Position is in FADEC -->
+		<lag_filter name="fadec/throttle-lever[0]">
+			<input>fadec/control-1/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[0]</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/throttle-lever[1]">
+			<input>fadec/control-2/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[1]</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/throttle-lever[2]">
+			<input>fadec/control-3/throttle-pos</input>
+			<c1>20</c1>
+			<output>fadec/throttle-lever-feedback[2]</output>
+		</lag_filter>
 		
 		<lag_filter name="fadec/reverse-lever[0]">
 			<input>/controls/engines/engine[0]/reverser</input>

@@ -5,15 +5,6 @@ var EAD_GE = nil;
 var EAD_PW = nil;
 var EAD_display = nil;
 var eprFixed = 1.00;
-setprop("/engines/engine[0]/epr-actual", 1);
-setprop("/engines/engine[1]/epr-actual", 1);
-setprop("/engines/engine[2]/epr-actual", 1);
-setprop("/engines/engine[0]/egt-actual", 0);
-setprop("/engines/engine[1]/egt-actual", 0);
-setprop("/engines/engine[2]/egt-actual", 0);
-setprop("/engines/engine[0]/fuel-flow_actual", 0);
-setprop("/engines/engine[1]/fuel-flow_actual", 0);
-setprop("/engines/engine[2]/fuel-flow_actual", 0);
 setprop("/DU/EAD/EPR[0]", 0);
 setprop("/DU/EAD/EPR[1]", 0);
 setprop("/DU/EAD/EPR[2]", 0);
@@ -21,19 +12,9 @@ setprop("/DU/EAD/EPRthr[0]", 0);
 setprop("/DU/EAD/EPRthr[1]", 0);
 setprop("/DU/EAD/EPRthr[2]", 0);
 setprop("/DU/EAD/EPRLimit", 0);
-setprop("/DU/EAD/N1[0]", 0);
-setprop("/DU/EAD/N1[1]", 0);
-setprop("/DU/EAD/N1[2]", 0);
-setprop("/DU/EAD/N1thr[0]", 0);
-setprop("/DU/EAD/N1thr[1]", 0);
-setprop("/DU/EAD/N1thr[2]", 0);
-setprop("/DU/EAD/N1Limit", 0);
 setprop("/DU/EAD/EGT[0]", 0);
 setprop("/DU/EAD/EGT[1]", 0);
 setprop("/DU/EAD/EGT[2]", 0);
-setprop("/DU/EAD/N2[0]", 0);
-setprop("/DU/EAD/N2[1]", 0);
-setprop("/DU/EAD/N2[2]", 0);
 
 var Value = {
 	FADEC: {
@@ -112,8 +93,10 @@ var canvas_EAD_base = {
 		}
 		
 		if (getprop("/engines/engine[0]/reverser-pos-norm") >= 0.95) {
+			me["REV1"].setText("REV");
 			me["REV1"].setColor(0,1,0);
 		} else {
+			me["REV1"].setText("U/L");
 			me["REV1"].setColor(1,1,0);
 		}
 		
@@ -124,8 +107,10 @@ var canvas_EAD_base = {
 		}
 		
 		if (getprop("/engines/engine[1]/reverser-pos-norm") >= 0.95) {
+			me["REV2"].setText("REV");
 			me["REV2"].setColor(0,1,0);
 		} else {
+			me["REV2"].setText("U/L");
 			me["REV2"].setColor(1,1,0);
 		}
 		
@@ -136,8 +121,10 @@ var canvas_EAD_base = {
 		}
 		
 		if (getprop("/engines/engine[2]/reverser-pos-norm") >= 0.95) {
+			me["REV3"].setText("REV");
 			me["REV3"].setColor(0,1,0);
 		} else {
+			me["REV3"].setText("U/L");
 			me["REV3"].setColor(1,1,0);
 		}
 	},
@@ -181,6 +168,7 @@ var canvas_EAD_GE = {
 		
 		if (Value.FADEC.eng1Powered) {
 			me["N11"].show();
+			me["N11-thr"].show();
 			me["N11-decpnt"].show();
 			me["N11-decimal"].show();
 			me["N11-box"].show();
@@ -188,6 +176,7 @@ var canvas_EAD_GE = {
 			me["N11-redline"].show();
 		} else {
 			me["N11"].hide();
+			me["N11-thr"].hide();
 			me["N11-decpnt"].hide();
 			me["N11-decimal"].hide();
 			me["N11-box"].hide();
@@ -197,6 +186,7 @@ var canvas_EAD_GE = {
 		
 		if (Value.FADEC.eng2Powered) {
 			me["N12"].show();
+			me["N12-thr"].show();
 			me["N12-decpnt"].show();
 			me["N12-decimal"].show();
 			me["N12-box"].show();
@@ -204,6 +194,7 @@ var canvas_EAD_GE = {
 			me["N12-redline"].show();
 		} else {
 			me["N12"].hide();
+			me["N12-thr"].hide();
 			me["N12-decpnt"].hide();
 			me["N12-decimal"].hide();
 			me["N12-box"].hide();
@@ -213,6 +204,7 @@ var canvas_EAD_GE = {
 		
 		if (Value.FADEC.eng3Powered) {
 			me["N13"].show();
+			me["N13-thr"].show();
 			me["N13-decpnt"].show();
 			me["N13-decimal"].show();
 			me["N13-box"].show();
@@ -220,29 +212,12 @@ var canvas_EAD_GE = {
 			me["N13-redline"].show();
 		} else {
 			me["N13"].hide();
+			me["N13-thr"].hide();
 			me["N13-decpnt"].hide();
 			me["N13-decimal"].hide();
 			me["N13-box"].hide();
 			me["N13-needle"].hide();
 			me["N13-redline"].hide();
-		}
-		
-		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and Value.FADEC.eng1Powered) {
-			me["N11-thr"].show();
-		} else {
-			me["N11-thr"].hide();
-		}
-		
-		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and Value.FADEC.eng2Powered) {
-			me["N12-thr"].show();
-		} else {
-			me["N12-thr"].hide();
-		}
-		
-		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and Value.FADEC.eng3Powered) {
-			me["N13-thr"].show();
-		} else {
-			me["N13-thr"].hide();
 		}
 		
 		# EGT
@@ -490,6 +465,7 @@ var canvas_EAD_PW = {
 		
 		if (Value.FADEC.eng1Powered) {
 			me["EPR1"].show();
+			me["EPR1-thr"].show();
 			me["EPR1-decpnt"].show();
 			me["EPR1-T"].show();
 			me["EPR1-H"].show();
@@ -497,6 +473,7 @@ var canvas_EAD_PW = {
 			me["EPR1-needle"].show();
 		} else {
 			me["EPR1"].hide();
+			me["EPR1-thr"].hide();
 			me["EPR1-decpnt"].hide();
 			me["EPR1-T"].hide();
 			me["EPR1-H"].hide();
@@ -506,6 +483,7 @@ var canvas_EAD_PW = {
 		
 		if (Value.FADEC.eng2Powered) {
 			me["EPR2"].show();
+			me["EPR2-thr"].show();
 			me["EPR2-decpnt"].show();
 			me["EPR2-T"].show();
 			me["EPR2-H"].show();
@@ -513,6 +491,7 @@ var canvas_EAD_PW = {
 			me["EPR2-needle"].show();
 		} else {
 			me["EPR2"].hide();
+			me["EPR2-thr"].hide();
 			me["EPR2-decpnt"].hide();
 			me["EPR2-T"].hide();
 			me["EPR2-H"].hide();
@@ -522,6 +501,7 @@ var canvas_EAD_PW = {
 		
 		if (Value.FADEC.eng3Powered) {
 			me["EPR3"].show();
+			me["EPR3-thr"].show();
 			me["EPR3-decpnt"].show();
 			me["EPR3-T"].show();
 			me["EPR3-H"].show();
@@ -529,29 +509,12 @@ var canvas_EAD_PW = {
 			me["EPR3-needle"].show();
 		} else {
 			me["EPR3"].hide();
+			me["EPR3-thr"].hide();
 			me["EPR3-decpnt"].hide();
 			me["EPR3-T"].hide();
 			me["EPR3-H"].hide();
 			me["EPR3-box"].hide();
 			me["EPR3-needle"].hide();
-		}
-		
-		if (getprop("/engines/engine[0]/reverser-pos-norm") < 0.01 and Value.FADEC.eng1Powered) {
-			me["EPR1-thr"].show();
-		} else {
-			me["EPR1-thr"].hide();
-		}
-		
-		if (getprop("/engines/engine[1]/reverser-pos-norm") < 0.01 and Value.FADEC.eng2Powered) {
-			me["EPR2-thr"].show();
-		} else {
-			me["EPR2-thr"].hide();
-		}
-		
-		if (getprop("/engines/engine[2]/reverser-pos-norm") < 0.01 and Value.FADEC.eng3Powered) {
-			me["EPR3-thr"].show();
-		} else {
-			me["EPR3-thr"].hide();
 		}
 		
 		# N1

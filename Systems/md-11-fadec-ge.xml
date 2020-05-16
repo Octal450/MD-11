@@ -408,16 +408,22 @@
 			</clipto>
 		</switch>
 		
-		<lag_filter name="fadec/throttle-lever[0]">
-			<input>fadec/control-1/throttle-pos</input>
+		<switch name="fadec/control-1/throttle-n1-cmd">
+			<default value="fadec/control-1/throttle-pos"/>
+			<test value="fadec/control-1/throttle-rev">
+				/controls/engines/engine[0]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fadec/control-1/throttle-n1-lag">
+			<input>fadec/control-1/throttle-n1-cmd</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[0]</output>
 		</lag_filter>
 		
 		<fcs_function name="fadec/control-1/throttle-n1">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/throttle-lever[0]</independentVar>
+					<independentVar lookup="row">fadec/control-1/throttle-n1-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5
@@ -474,16 +480,22 @@
 			</clipto>
 		</switch>
 		
-		<lag_filter name="fadec/throttle-lever[1]">
-			<input>fadec/control-2/throttle-pos</input>
+		<switch name="fadec/control-2/throttle-n1-cmd">
+			<default value="fadec/control-2/throttle-pos"/>
+			<test value="fadec/control-2/throttle-rev">
+				/controls/engines/engine[1]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fadec/control-2/throttle-n1-lag">
+			<input>fadec/control-2/throttle-n1-cmd</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[1]</output>
 		</lag_filter>
 		
 		<fcs_function name="fadec/control-2/throttle-n1">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/throttle-lever[1]</independentVar>
+					<independentVar lookup="row">fadec/control-2/throttle-n1-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5
@@ -540,16 +552,22 @@
 			</clipto>
 		</switch>
 		
-		<lag_filter name="fadec/throttle-lever[2]">
-			<input>fadec/control-3/throttle-pos</input>
+		<switch name="fadec/control-3/throttle-n1-cmd">
+			<default value="fadec/control-3/throttle-pos"/>
+			<test value="fadec/control-3/throttle-rev">
+				/controls/engines/engine[2]/reverser ne 0
+			</test>
+		</switch>
+		
+		<lag_filter name="fadec/control-3/throttle-n1-lag">
+			<input>fadec/control-3/throttle-n1-cmd</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
 		<fcs_function name="fadec/control-3/throttle-n1">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/throttle-lever[2]</independentVar>
+					<independentVar lookup="row">fadec/control-3/throttle-n1-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5

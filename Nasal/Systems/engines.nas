@@ -119,9 +119,9 @@ var toggleFastRevThrust = func {
 		setprop("/controls/engines/engine[0]/reverser", 1);
 		setprop("/controls/engines/engine[1]/reverser", 1);
 		setprop("/controls/engines/engine[2]/reverser", 1);
-		setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0.6);
-		setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0.6);
-		setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0.6);
+		setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", 0.84);
+		setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", 0.84);
+		setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", 0.84);
 		setprop("/fdm/jsbsim/propulsion/engine[0]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[1]/reverser-angle-rad", 3.14);
 		setprop("/fdm/jsbsim/propulsion/engine[2]/reverser-angle-rad", 3.14);
@@ -147,14 +147,14 @@ var doRevThrust = func {
 		var pos1 = getprop("/fdm/jsbsim/fadec/control-1/throttle-rev");
 		var pos2 = getprop("/fdm/jsbsim/fadec/control-2/throttle-rev");
 		var pos3 = getprop("/fdm/jsbsim/fadec/control-3/throttle-rev");
-		if (pos1 < 0.599) {
-			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 + 0.2);
+		if (pos1 < 0.839) {
+			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 + 0.28);
 		}
-		if (pos2 < 0.599) {
-			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 + 0.2);
+		if (pos2 < 0.839) {
+			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 + 0.28);
 		}
-		if (pos3 < 0.599) {
-			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 + 0.2);
+		if (pos3 < 0.839) {
+			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 + 0.28);
 		}
 	}
 	var eng1thr = getprop("/fdm/jsbsim/fadec/control-1/throttle-pos");
@@ -186,17 +186,17 @@ var unRevThrust = func {
 		var pos2 = getprop("/fdm/jsbsim/fadec/control-2/throttle-rev");
 		var pos3 = getprop("/fdm/jsbsim/fadec/control-3/throttle-rev");
 		if (pos1 > 0.001) {
-			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 - 0.2);
+			setprop("/fdm/jsbsim/fadec/control-1/throttle-rev", pos1 - 0.28);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos2 > 0.001) {
-			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 - 0.2);
+			setprop("/fdm/jsbsim/fadec/control-2/throttle-rev", pos2 - 0.28);
 		} else {
 			unRevThrust_b();
 		}
 		if (pos3 > 0.001) {
-			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 - 0.2);
+			setprop("/fdm/jsbsim/fadec/control-3/throttle-rev", pos3 - 0.28);
 		} else {
 			unRevThrust_b();
 		}
