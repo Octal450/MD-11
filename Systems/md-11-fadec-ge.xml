@@ -302,10 +302,28 @@
 		
 		<fcs_function name="fadec/limit/idle-ref">
 			<function>
-				<sum> <!-- Temporary, haven't done it yet -->
+				<ifthen>
+					<eq>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</eq>
+					<table>
+						<independentVar lookup="row">velocities/mach</independentVar>
+						<independentVar lookup="column">/controls/flight/flaps-input</independentVar>
+						<independentVar lookup="table">/position/altitude-ft</independentVar>
+						<tableData breakPoint="0">
+							      0     1
+							0.21  30.3  39.3
+							0.70  45.1  49.1
+						</tableData>
+						<tableData breakPoint="43000">
+							      0     1
+							0.55  52.1  59.1
+							0.90  62.4  65.4
+						</tableData>
+					</table>
 					<value>0</value>
-					<value>0</value>
-				</sum>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
