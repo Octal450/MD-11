@@ -80,7 +80,7 @@ var canvas_EAD_base = {
 		# TAT Indication
 		Value.TAT = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
 		if (Value.TAT < 0) {
-			me["TAT"].setText("-" ~ Value.TAT);
+			me["TAT"].setText("-" ~ Value.TAT  * -1);
 		} else {
 			me["TAT"].setText("+" ~ Value.TAT);
 		}
