@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 GE CF6-80C2D1F FADEC -->
+<!-- McDonnell Douglas MD-11 GE CF6-80C2D1F Engine/FADEC -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
-<system name="MD-11: FADEC GE">
+<system name="MD-11: GE Engine/FADEC">
 	
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="0">fadec/limit/flex-active</property>
 	<property value="30">fadec/limit/flex-temp</property>
+	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
 	
 	<channel name="Thrust Limits">
 		
@@ -304,7 +305,7 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/gear/gear[0]/wow</property>
+						<property>position/wow</property>
 						<value>0</value>
 					</eq>
 					<table>
@@ -343,6 +344,211 @@
 				</quotient>
 			</function>
 		</fcs_function>
+	
+	</channel>
+	
+	<channel name="Reversers">
+		
+		<!-- Engine 1 -->
+		<switch name="fadec/reverse-1/position-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/engines/engine[0]/reverse-lever ge 0.25
+			</test>
+			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
+				/engines/engine[0]/n1-actual ge 30
+				fadec/reverse-1/position-cmd eq 1
+			</test>
+			<output>/controls/engines/engine[0]/reverser</output>
+		</switch>
+		
+		<switch name="fadec/reverse-1/position-rate">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pneumatics/eng-1-psi ge 20
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<actuator name="fadec/reverse-1/position-norm">
+			<input>fadec/reverse-1/position-cmd</input>
+			<rate_limit>fadec/reverse-1/position-rate</rate_limit>
+			<output>/engines/engine[0]/reverser-pos-norm</output>
+		</actuator>
+		
+		<pure_gain name="propulsion/engine[0]/reverser-angle-rad">
+			<input>fadec/reverse-1/position-norm</input>
+			<gain>3.14</gain>
+		</pure_gain>
+		
+		<switch name="fadec/reverse-1/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
+			<default value="fadec/reverse-1/interlock"/>
+			<test value="0">
+				/engines/engine[0]/reverser-pos-norm ge 0.6
+			</test>
+			<test value="1">
+				/engines/engine[0]/reverser-pos-norm le 0.2
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-1/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
+			<default value="0"/>
+			<test value="0.84">
+				/controls/engines/engine[0]/reverse-lever eq 1
+			</test>
+			<test value="0.56">
+				/controls/engines/engine[0]/reverse-lever eq 0.75
+			</test>
+			<test value="0.28">
+				/controls/engines/engine[0]/reverse-lever eq 0.5
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-1/throttle-rev">
+			<default value="0"/>
+			<test logic="OR" value="0">
+				fadec/reverse-1/interlock eq 1
+				/engines/engine[0]/reverser-pos-norm lt 1
+			</test>
+			<test value="fadec/reverse-1/throttle-rev-cmd">
+				/controls/engines/engine[0]/reverse-lever ge 0.5
+			</test>
+		</switch>
+		
+		<!-- Engine 2 -->
+		<switch name="fadec/reverse-2/position-cmd">
+			<default value="0"/>
+			<test value="0">
+				/gear/gear[0]/wow ne 1
+			</test>
+			<test value="1">
+				/controls/engines/engine[1]/reverse-lever ge 0.25
+			</test>
+			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
+				/engines/engine[1]/n1-actual ge 30
+				fadec/reverse-2/position-cmd eq 1
+			</test>
+			<output>/controls/engines/engine[1]/reverser</output>
+		</switch>
+		
+		<switch name="fadec/reverse-2/position-rate">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pneumatics/eng-2-psi ge 20
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<actuator name="fadec/reverse-2/position-norm">
+			<input>fadec/reverse-2/position-cmd</input>
+			<rate_limit>fadec/reverse-2/position-rate</rate_limit>
+			<output>/engines/engine[1]/reverser-pos-norm</output>
+		</actuator>
+		
+		<pure_gain name="propulsion/engine[1]/reverser-angle-rad">
+			<input>fadec/reverse-2/position-norm</input>
+			<gain>3.14</gain>
+		</pure_gain>
+		
+		<switch name="fadec/reverse-2/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
+			<default value="fadec/reverse-2/interlock"/>
+			<test value="0">
+				/engines/engine[1]/reverser-pos-norm ge 0.6
+			</test>
+			<test value="1">
+				/engines/engine[1]/reverser-pos-norm le 0.2
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-2/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
+			<default value="0"/>
+			<test value="0.84">
+				/controls/engines/engine[1]/reverse-lever eq 1
+			</test>
+			<test value="0.56">
+				/controls/engines/engine[1]/reverse-lever eq 0.75
+			</test>
+			<test value="0.28">
+				/controls/engines/engine[1]/reverse-lever eq 0.5
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-2/throttle-rev">
+			<default value="0"/>
+			<test logic="OR" value="0">
+				fadec/reverse-2/interlock eq 1
+				/engines/engine[1]/reverser-pos-norm lt 1
+			</test>
+			<test value="fadec/reverse-2/throttle-rev-cmd">
+				/controls/engines/engine[1]/reverse-lever ge 0.5
+			</test>
+		</switch>
+		
+		<!-- Engine 3 -->
+		<switch name="fadec/reverse-3/position-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/engines/engine[2]/reverse-lever ge 0.25
+			</test>
+			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
+				/engines/engine[2]/n1-actual ge 30
+				fadec/reverse-3/position-cmd eq 1
+			</test>
+			<output>/controls/engines/engine[2]/reverser</output>
+		</switch>
+		
+		<switch name="fadec/reverse-3/position-rate">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pneumatics/eng-3-psi ge 20
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<actuator name="fadec/reverse-3/position-norm">
+			<input>fadec/reverse-3/position-cmd</input>
+			<rate_limit>fadec/reverse-3/position-rate</rate_limit>
+			<output>/engines/engine[2]/reverser-pos-norm</output>
+		</actuator>
+		
+		<pure_gain name="propulsion/engine[2]/reverser-angle-rad">
+			<input>fadec/reverse-3/position-norm</input>
+			<gain>3.14</gain>
+		</pure_gain>
+		
+		<switch name="fadec/reverse-3/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
+			<default value="fadec/reverse-3/interlock"/>
+			<test value="0">
+				/engines/engine[2]/reverser-pos-norm ge 0.6
+			</test>
+			<test value="1">
+				/engines/engine[2]/reverser-pos-norm le 0.2
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-3/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
+			<default value="0"/>
+			<test value="0.84">
+				/controls/engines/engine[2]/reverse-lever eq 1
+			</test>
+			<test value="0.56">
+				/controls/engines/engine[2]/reverse-lever eq 0.75
+			</test>
+			<test value="0.28">
+				/controls/engines/engine[2]/reverse-lever eq 0.5
+			</test>
+		</switch>
+		
+		<switch name="fadec/reverse-3/throttle-rev">
+			<default value="0"/>
+			<test logic="OR" value="0">
+				fadec/reverse-3/interlock eq 1
+				/engines/engine[2]/reverser-pos-norm lt 1
+			</test>
+			<test value="fadec/reverse-3/throttle-rev-cmd">
+				/controls/engines/engine[2]/reverse-lever ge 0.5
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -418,7 +624,7 @@
 		<switch name="fadec/control-1/throttle-pos">
 			<default value="/controls/engines/engine[0]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[0]/reverser ne 0
+				fadec/reverse-1/position-norm ne 0
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-1">
 				/it-autoflight/output/athr eq 1
@@ -432,8 +638,8 @@
 		
 		<switch name="fadec/control-1/throttle-n1-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
-			<test value="fadec/control-1/throttle-rev">
-				/controls/engines/engine[0]/reverser ne 0
+			<test value="fadec/reverse-1/throttle-rev-cmd">
+				/controls/engines/engine[0]/reverse-lever gt 0
 			</test>
 		</switch>
 		
@@ -465,8 +671,8 @@
 		
 		<switch name="fadec/control-1/throttle-output">
 			<default value="fadec/control-1/throttle-pos-clamped"/>
-			<test value="fadec/control-1/throttle-rev">
-				/controls/engines/engine[0]/reverser ne 0
+			<test value="fadec/reverse-1/throttle-rev">
+				fadec/reverse-1/position-norm ne 0
 			</test>
 		</switch>
 		
@@ -494,7 +700,7 @@
 		<switch name="fadec/control-2/throttle-pos">
 			<default value="/controls/engines/engine[1]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[1]/reverser ne 0
+				fadec/reverse-2/position-norm ne 0
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-2">
 				/it-autoflight/output/athr eq 1
@@ -508,8 +714,8 @@
 		
 		<switch name="fadec/control-2/throttle-n1-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
-			<test value="fadec/control-2/throttle-rev">
-				/controls/engines/engine[1]/reverser ne 0
+			<test value="fadec/reverse-2/throttle-rev-cmd">
+				/controls/engines/engine[1]/reverse-lever gt 0
 			</test>
 		</switch>
 		
@@ -541,8 +747,8 @@
 		
 		<switch name="fadec/control-2/throttle-output">
 			<default value="fadec/control-2/throttle-pos-clamped"/>
-			<test value="fadec/control-2/throttle-rev">
-				/controls/engines/engine[1]/reverser ne 0
+			<test value="fadec/reverse-2/throttle-rev">
+				fadec/reverse-2/position-norm ne 0
 			</test>
 		</switch>
 		
@@ -570,7 +776,7 @@
 		<switch name="fadec/control-3/throttle-pos">
 			<default value="/controls/engines/engine[2]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[2]/reverser ne 0
+				fadec/reverse-3/position-norm ne 0
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-3">
 				/it-autoflight/output/athr eq 1
@@ -584,8 +790,8 @@
 		
 		<switch name="fadec/control-3/throttle-n1-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
-			<test value="fadec/control-3/throttle-rev">
-				/controls/engines/engine[2]/reverser ne 0
+			<test value="fadec/reverse-3/throttle-rev-cmd">
+				/controls/engines/engine[2]/reverse-lever gt 0
 			</test>
 		</switch>
 		
@@ -617,8 +823,8 @@
 		
 		<switch name="fadec/control-3/throttle-output">
 			<default value="fadec/control-3/throttle-pos-clamped"/>
-			<test value="fadec/control-3/throttle-rev">
-				/controls/engines/engine[2]/reverser ne 0
+			<test value="fadec/reverse-3/throttle-rev">
+				fadec/reverse-3/position-norm ne 0
 			</test>
 		</switch>
 		
@@ -708,6 +914,39 @@
 			<test logic="AND" value="1">
 				/systems/electrical/outputs/efis ge 25
 				/engines/engine[2]/n2-actual ge 1
+			</test>
+		</switch>
+		
+		<switch name="fadec/eng-1-rev-state">
+			<default value="0"/>
+			<test value="2"> <!-- REV -->
+				fadec/reverse-1/position-norm eq 1
+			</test>
+			<test logic="OR" value="1"> <!-- U/L -->
+				/controls/engines/engine[0]/reverse-lever gt 0
+				fadec/reverse-1/position-norm gt 0
+			</test>
+		</switch>
+		
+		<switch name="fadec/eng-2-rev-state">
+			<default value="0"/>
+			<test value="2"> <!-- REV -->
+				fadec/reverse-2/position-norm eq 1
+			</test>
+			<test logic="OR" value="1"> <!-- U/L -->
+				/controls/engines/engine[1]/reverse-lever gt 0
+				fadec/reverse-2/position-norm gt 0
+			</test>
+		</switch>
+		
+		<switch name="fadec/eng-3-rev-state">
+			<default value="0"/>
+			<test value="2"> <!-- REV -->
+				fadec/reverse-3/position-norm eq 1
+			</test>
+			<test logic="OR" value="1"> <!-- U/L -->
+				/controls/engines/engine[2]/reverse-lever gt 0
+				fadec/reverse-3/position-norm gt 0
 			</test>
 		</switch>
 	

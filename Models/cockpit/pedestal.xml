@@ -217,28 +217,8 @@
 		<object-name>reverse.1</object-name>
 		<property>fdm/jsbsim/fadec/reverse-lever[0]</property>
 		<interpolation>
-			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-27.14</x-m>
-			<y-m>0</y-m>
-			<z-m>6.83</z-m>
-		</center>
-	</animation>
-	<animation>
-		<name>Engine 1 reverser lever 2</name>
-		<type>rotate</type>
-		<object-name>reverse.1</object-name>
-		<property>fdm/jsbsim/fadec/reverse-thr-lever[0]</property>
-		<interpolation>
-			<entry><ind>0.84</ind><dep>75.0</dep></entry>
-			<entry><ind>0.00</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -307,28 +287,8 @@
 		<object-name>reverse.2</object-name>
 		<property>fdm/jsbsim/fadec/reverse-lever[1]</property>
 		<interpolation>
-			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-27.14</x-m>
-			<y-m>0</y-m>
-			<z-m>6.83</z-m>
-		</center>
-	</animation>
-	<animation>
-		<name>Engine 2 reverser lever 2</name>
-		<type>rotate</type>
-		<object-name>reverse.2</object-name>
-		<property>fdm/jsbsim/fadec/reverse-thr-lever[1]</property>
-		<interpolation>
-			<entry><ind>0.84</ind><dep>75.0</dep></entry>
-			<entry><ind>0.00</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -397,28 +357,8 @@
 		<object-name>reverse.3</object-name>
 		<property>fdm/jsbsim/fadec/reverse-lever[2]</property>
 		<interpolation>
-			<entry><ind>1</ind><dep>10</dep></entry>
+			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-27.14</x-m>
-			<y-m>0</y-m>
-			<z-m>6.83</z-m>
-		</center>
-	</animation>
-	<animation>
-		<name>Engine 3 reverser lever 2</name>
-		<type>rotate</type>
-		<object-name>reverse.3</object-name>
-		<property>fdm/jsbsim/fadec/reverse-thr-lever[2]</property>
-		<interpolation>
-			<entry><ind>0.84</ind><dep>75.0</dep></entry>
-			<entry><ind>0.00</ind><dep> 0.0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>

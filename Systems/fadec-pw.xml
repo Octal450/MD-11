@@ -754,7 +754,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[0]/reverser</property>
+					<property>/controls/engines/engine[0]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -779,7 +779,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[0]/reverser</property>
+					<property>/controls/engines/engine[0]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -788,7 +788,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[0]/reverser</property>
+					<property>/controls/engines/engine[0]/reverse-lever</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -812,7 +812,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[1]/reverser</property>
+					<property>/controls/engines/engine[1]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -837,7 +837,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[1]/reverser</property>
+					<property>/controls/engines/engine[1]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -846,7 +846,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[1]/reverser</property>
+					<property>/controls/engines/engine[1]/reverse-lever</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -870,7 +870,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[2]/reverser</property>
+					<property>/controls/engines/engine[2]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -895,7 +895,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[2]/reverser</property>
+					<property>/controls/engines/engine[2]/reverse-lever</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -904,7 +904,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/controls/engines/engine[2]/reverser</property>
+					<property>/controls/engines/engine[2]/reverse-lever</property>
 					<value>1</value>
 				</equals>
 			</condition>

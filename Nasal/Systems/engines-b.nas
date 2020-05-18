@@ -44,8 +44,8 @@ var eng_init = func {
 }
 
 var eng_loop = func {
-	thr1 = getprop("/controls/engines/engine[0]/throttle");
-	thr2 = getprop("/controls/engines/engine[1]/throttle");
+	thr1 = pts.Fdm.JSBsim.Fadec.throttleLever[0].getValue();
+	thr2 = pts.Fdm.JSBsim.Fadec.throttleLever[1].getValue();
 	state1 = getprop("/engines/engine[0]/state");
 	state2 = getprop("/engines/engine[1]/state");
 	state3 = getprop("/engines/engine[2]/state");

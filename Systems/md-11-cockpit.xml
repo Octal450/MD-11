@@ -56,32 +56,17 @@
 		</lag_filter>
 		
 		<lag_filter name="fadec/reverse-lever[0]">
-			<input>/controls/engines/engine[0]/reverser</input>
+			<input>/controls/engines/engine[0]/reverse-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="fadec/reverse-lever[1]">
-			<input>/controls/engines/engine[1]/reverser</input>
+			<input>/controls/engines/engine[1]/reverse-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="fadec/reverse-lever[2]">
-			<input>/controls/engines/engine[2]/reverser</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fadec/reverse-thr-lever[0]">
-			<input>fadec/control-1/throttle-rev</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fadec/reverse-thr-lever[1]">
-			<input>fadec/control-2/throttle-rev</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="fadec/reverse-thr-lever[2]">
-			<input>fadec/control-3/throttle-rev</input>
+			<input>/controls/engines/engine[2]/reverse-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		

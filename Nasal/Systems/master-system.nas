@@ -62,10 +62,9 @@ var FCTL = {
 };
 
 var FADEC = {
-	eng1Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"),
-	eng2Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"),
-	eng3Powered: props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered"),
+	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
 	pitchMode: 0,
+	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
 	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
 	Limit: {
 		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
@@ -106,3 +105,98 @@ var FADEC = {
 		}
 	},
 };
+
+# Engine Sim Control Stuff
+# Don't want to change the bindings yet
+# Intentionally not using + or -, floating point error would be BAD
+# We just based it off Engine 2
+var doRevThrust = func {
+	pts.Controls.Engines.Engine.reverseLeverTemp[1] = pts.Controls.Engines.Engine.reverseLever[1].getValue();
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+		if (pts.Controls.Engines.Engine.reverseLeverTemp[1] < 0.25) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.25);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.25);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.25);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] < 0.5) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.5);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.5);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.5);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] < 0.75) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.75);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.75);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.75);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] < 1.0) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(1.0);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(1.0);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(1.0);
+		}
+		pts.Controls.Engines.Engine.throttle[0].setValue(0);
+		pts.Controls.Engines.Engine.throttle[1].setValue(0);
+		pts.Controls.Engines.Engine.throttle[2].setValue(0);
+	} else {
+		pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
+		pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+		pts.Controls.Engines.Engine.reverseLever[2].setValue(0);
+	}
+}
+
+var unRevThrust = func {
+	pts.Controls.Engines.Engine.reverseLeverTemp[1] = pts.Controls.Engines.Engine.reverseLever[1].getValue();
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+		if (pts.Controls.Engines.Engine.reverseLeverTemp[1] > 0.75) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.75);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.75);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.75);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] > 0.5) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.5);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.5);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.5);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] > 0.25) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.25);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.25);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0.25);
+		} else if (pts.Controls.Engines.Engine.reverseLeverTemp[1] > 0) {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0);
+		}
+		pts.Controls.Engines.Engine.throttle[0].setValue(0);
+		pts.Controls.Engines.Engine.throttle[1].setValue(0);
+		pts.Controls.Engines.Engine.throttle[2].setValue(0);
+	} else {
+		pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
+		pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+		pts.Controls.Engines.Engine.reverseLever[2].setValue(0);
+	}
+}
+
+var toggleFastRevThrust = func {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+		if (pts.Controls.Engines.Engine.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(0);
+		} else {
+			pts.Controls.Engines.Engine.reverseLever[0].setValue(1);
+			pts.Controls.Engines.Engine.reverseLever[1].setValue(1);
+			pts.Controls.Engines.Engine.reverseLever[2].setValue(1);
+		}
+		pts.Controls.Engines.Engine.throttle[0].setValue(0);
+		pts.Controls.Engines.Engine.throttle[1].setValue(0);
+		pts.Controls.Engines.Engine.throttle[2].setValue(0);
+	} else {
+		pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+	}
+}
+
+var doIdleThrust = func {
+	pts.Controls.Engines.Engine.throttle[0].setValue(0);
+	pts.Controls.Engines.Engine.throttle[1].setValue(0);
+	pts.Controls.Engines.Engine.throttle[2].setValue(0);
+}
+
+var doFullThrust = func {
+	pts.Controls.Engines.Engine.throttle[0].setValue(1);
+	pts.Controls.Engines.Engine.throttle[1].setValue(1);
+	pts.Controls.Engines.Engine.throttle[2].setValue(1);
+}

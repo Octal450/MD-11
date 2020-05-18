@@ -71,21 +71,21 @@
 		<switch name="spoilers/throttle[0]">
 			<default value="/controls/engines/engine[0]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[0]/reverser eq 1
+				/controls/engines/engine[0]/reverse-lever ne 0
 			</test>
 		</switch>
 		
 		<switch name="spoilers/throttle[1]">
 			<default value="/controls/engines/engine[1]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[1]/reverser eq 1
+				/controls/engines/engine[1]/reverse-lever ne 0
 			</test>
 		</switch>
 		
 		<switch name="spoilers/throttle[2]">
 			<default value="/controls/engines/engine[2]/throttle"/>
 			<test value="0">
-				/controls/engines/engine[2]/reverser eq 1
+				/controls/engines/engine[2]/reverse-lever ne 0
 			</test>
 		</switch>
 		

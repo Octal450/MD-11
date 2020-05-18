@@ -492,9 +492,9 @@
 		<input>
 			<expression>
 				<max>
-					<property>/fdm/jsbsim/fadec/control-1/throttle-n1-lag</property>
-					<property>/fdm/jsbsim/fadec/control-2/throttle-n1-lag</property>
-					<property>/fdm/jsbsim/fadec/control-3/throttle-n1-lag</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
 				</max>
 			</expression>
 		</input>

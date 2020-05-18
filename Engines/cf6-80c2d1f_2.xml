@@ -6,7 +6,7 @@
 	
 	<milthrust>61960</milthrust>
 	<tsfc>0.441</tsfc>
-	<bleed>0.0</bleed>
+	<bleed>0.03</bleed>
 	<idlen1>23.7</idlen1>
 	<idlen2>62.9</idlen2>
 	<n1spinup>0.2</n1spinup>
@@ -92,7 +92,7 @@
 		</table>
 	</function>
 	
-	<function name="MilThrust"> <!-- If you change this, make sure you update the table in the FADEC system file -->
+	<function name="MilThrust"> <!-- If you change this, make sure you update the table in the engine system file -->
 		<product>
 			<table>
 				<independentVar lookup="row">velocities/mach</independentVar>
@@ -114,8 +114,8 @@
 			<table> <!-- Thrust loss due to reverser angle -->
 				<independentVar lookup="row">/engines/engine[1]/reverser-pos-norm</independentVar>
 				<tableData>
-					0  1.00
-					1  0.65
+					0.01  1.00
+					1.00  0.65
 				</tableData>
 			</table>
 		</product>

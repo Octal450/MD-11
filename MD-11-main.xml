@@ -424,18 +424,21 @@
 			<engine n="0">
 				<cutoff type="bool">true</cutoff>
 				<cutoff-switch type="bool">true</cutoff-switch>
+				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="1">
 				<cutoff type="bool">true</cutoff>
 				<cutoff-switch type="bool">true</cutoff-switch>
+				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="2">
 				<cutoff type="bool">true</cutoff>
 				<cutoff-switch type="bool">true</cutoff-switch>
+				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
@@ -621,15 +624,6 @@
 				</tractor>
 			</external_reactions>
 			<fadec n="0">
-				<control-1 n="0">
-					<throttle-rev type="double">0</throttle-rev>
-				</control-1>
-				<control-2 n="0">
-					<throttle-rev type="double">0</throttle-rev>
-				</control-2>
-				<control-3 n="0">
-					<throttle-rev type="double">0</throttle-rev>
-				</control-3>
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>

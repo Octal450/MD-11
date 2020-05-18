@@ -192,6 +192,9 @@ var colddark = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# Initial shutdown, and reinitialization.
+		setprop("/controls/engines/engine[0]/reverse-lever", 0);
+		setprop("/controls/engines/engine[1]/reverse-lever", 0);
+		setprop("/controls/engines/engine[2]/reverse-lever", 0);
 		setprop("/controls/engines/engine[0]/start-switch", 0);
 		setprop("/controls/engines/engine[1]/start-switch", 0);
 		setprop("/controls/engines/engine[2]/start-switch", 0);
@@ -240,6 +243,9 @@ var beforestart = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# First, we set everything to cold and dark.
+		setprop("/controls/engines/engine[0]/reverse-lever", 0);
+		setprop("/controls/engines/engine[1]/reverse-lever", 0);
+		setprop("/controls/engines/engine[2]/reverse-lever", 0);
 		setprop("/controls/engines/engine[0]/start-switch", 0);
 		setprop("/controls/engines/engine[1]/start-switch", 0);
 		setprop("/controls/engines/engine[2]/start-switch", 0);
@@ -302,6 +308,9 @@ var taxi = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# First, we set everything to cold and dark.
+		setprop("/controls/engines/engine[0]/reverse-lever", 0);
+		setprop("/controls/engines/engine[1]/reverse-lever", 0);
+		setprop("/controls/engines/engine[2]/reverse-lever", 0);
 		setprop("/controls/engines/engine[0]/start-switch", 0);
 		setprop("/controls/engines/engine[1]/start-switch", 0);
 		setprop("/controls/engines/engine[2]/start-switch", 0);

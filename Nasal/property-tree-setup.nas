@@ -7,6 +7,8 @@
 var Controls = {
 	Engines: {
 		Engine: {
+			reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
+			reverseLeverTemp: [0, 0, 0],
 			throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 		},
 	},
@@ -42,6 +44,10 @@ var Controls = {
 
 var Fdm = {
 	JSBsim: {
+		Fadec: {
+			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
+			throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
+		},
 		Propulsion: {
 			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),
 		},
