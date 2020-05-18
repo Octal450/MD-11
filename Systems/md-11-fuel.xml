@@ -926,6 +926,41 @@
 			</test>
 		</switch>
 		
+		<!-- Tank 1 to Tanks 2 and 3 Inner -->
+		<switch name="/systems/fuel/internal/tank-1-inner-tank-2-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/trans-pump-1 eq 1
+				/controls/fuel/switches/fill-2 eq 1
+				propulsion/tank[1]/contents-lbs gt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-1-inner-tank-2">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				/systems/fuel/internal/tank-1-inner-tank-2-cmd eq 1
+				propulsion/tank[2]/contents-lbs lt 64030
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-1-inner-tank-3-inner-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/trans-pump-1 eq 1
+				/controls/fuel/switches/fill-3 eq 1
+				propulsion/tank[1]/contents-lbs gt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-1-inner-tank-3-inner">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				/systems/fuel/internal/tank-1-inner-tank-3-inner-cmd eq 1
+				propulsion/tank[3]/contents-lbs lt 33980
+			</test>
+		</switch>
+		
 		<!-- Tank 2 to Tanks 1 Inner and 3 Inner -->
 		<switch name="/systems/fuel/internal/tank-2-tank-1-inner-cmd">
 			<default value="0"/>
@@ -961,6 +996,41 @@
 			</test>
 		</switch>
 		
+		<!-- Tank 3 to 1 Inner and Tanks 2 -->
+		<switch name="/systems/fuel/internal/tank-3-inner-tank-1-inner-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/trans-pump-3 eq 1
+				/controls/fuel/switches/fill-1 eq 1
+				propulsion/tank[3]/contents-lbs gt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-inner-tank-1-inner">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				/systems/fuel/internal/tank-3-inner-tank-1-inner-cmd eq 1
+				propulsion/tank[1]/contents-lbs lt 33980
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-inner-tank-2-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/trans-pump-3 eq 1
+				/controls/fuel/switches/fill-2 eq 1
+				propulsion/tank[3]/contents-lbs gt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-inner-tank-2">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				/systems/fuel/internal/tank-3-inner-tank-2-cmd eq 1
+				propulsion/tank[2]/contents-lbs lt 64030
+			</test>
+		</switch>
+		
 		<!-- Tank Final Flow Rates -->
 		<summer name="/systems/fuel/internal/tank-1-outer-flow-rate">
 			<input>-/systems/fuel/internal/tank-1-outer-inner</input>
@@ -973,14 +1043,19 @@
 			<input>-/systems/fuel/internal/tank-1-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-1-inner-eng-3</input>
 			<input>-/systems/fuel/internal/tank-1-inner-outer</input>
+			<input>-/systems/fuel/internal/tank-1-inner-tank-2</input>
+			<input>-/systems/fuel/internal/tank-1-inner-tank-3-inner</input>
 			<input>/systems/fuel/internal/tank-1-outer-inner</input>
 			<input>/systems/fuel/internal/tank-2-tank-1-inner</input>
+			<input>/systems/fuel/internal/tank-3-inner-tank-1-inner</input>
 			<input>/systems/fuel/internal/aux-tank-upper-tank-1-inner</input>
 			<output>propulsion/tank[1]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/tank-2-fill-rate">
 			<input>/systems/fuel/internal/aux-tank-upper-tank-2</input>
+			<input>/systems/fuel/internal/tank-1-inner-tank-2</input>
+			<input>/systems/fuel/internal/tank-3-inner-tank-2</input>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/tank-2-flow-rate">
@@ -999,7 +1074,10 @@
 			<input>-/systems/fuel/internal/tank-3-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-3-inner-eng-3</input>
 			<input>-/systems/fuel/internal/tank-3-inner-outer</input>
+			<input>-/systems/fuel/internal/tank-3-inner-tank-1-inner</input>
+			<input>-/systems/fuel/internal/tank-3-inner-tank-2</input>
 			<input>/systems/fuel/internal/tank-3-outer-inner</input>
+			<input>/systems/fuel/internal/tank-1-inner-tank-3-inner</input>
 			<input>/systems/fuel/internal/tank-2-tank-3-inner</input>
 			<input>/systems/fuel/internal/aux-tank-upper-tank-3-inner</input>
 			<output>propulsion/tank[3]/external-flow-rate-pps</output>
@@ -1062,6 +1140,7 @@
 			<test logic="OR" value="2"> <!-- FILL -->
 				/systems/fuel/internal/aux-tank-upper-tank-1-inner-cmd eq 1
 				/systems/fuel/internal/tank-2-tank-1-inner-cmd eq 1
+				/systems/fuel/internal/tank-3-inner-tank-1-inner-cmd eq 1
 			</test>
 		</switch>
 		
@@ -1076,6 +1155,8 @@
 			</test>
 			<test logic="OR" value="2"> <!-- FILL -->
 				/systems/fuel/internal/aux-tank-upper-tank-2-cmd eq 1
+				/systems/fuel/internal/tank-1-inner-tank-2-cmd eq 1
+				/systems/fuel/internal/tank-3-inner-tank-2-cmd eq 1
 			</test>
 		</switch>
 		
@@ -1090,6 +1171,7 @@
 			</test>
 			<test logic="OR" value="2"> <!-- FILL -->
 				/systems/fuel/internal/aux-tank-upper-tank-3-inner-cmd eq 1
+				/systems/fuel/internal/tank-1-inner-tank-3-inner-cmd eq 1
 				/systems/fuel/internal/tank-2-tank-3-inner-cmd eq 1
 			</test>
 		</switch>
