@@ -7243,7 +7243,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng1-altn</property>
+				<property>controls/fadec/eng-1-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7257,62 +7257,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng1-altn</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>controls/switches/annun-test</property>
-					<value>1</value>
-				</equals>
-			</or>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>FADEC_MODE1</object-name>
-		<object-name>FADEC_MODE1.select</object-name>
-		<object-name>FADEC_MODE1.altn</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
-				</condition>
-				<command>property-toggle</command>
-				<property>controls/fadec/eng1-altn</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>setprop("/sim/sounde/oh-btn", 1);</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>FADEC_MODE1.altn</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>controls/fadec/eng1-altn</property>
+					<property>controls/fadec/eng-1-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7353,7 +7298,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng2-altn</property>
+				<property>controls/fadec/eng-2-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7367,7 +7312,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng2-altn</property>
+					<property>controls/fadec/eng-2-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7408,7 +7353,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng3-altn</property>
+				<property>controls/fadec/eng-3-altn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7422,7 +7367,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng3-altn</property>
+					<property>controls/fadec/eng-3-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
