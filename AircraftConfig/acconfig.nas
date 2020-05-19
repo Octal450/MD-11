@@ -264,6 +264,7 @@ var beforestart = func {
 		# Now the Startup!
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
+		setprop("/controls/switches/seatbelt-sign", 1);
 		settimer(func {
 			setprop("/controls/apu/start", 1);
 			var apu_rpm_chk = setlistener("/systems/apu/n2", func {
@@ -329,6 +330,7 @@ var taxi = func {
 		# Now the Startup!
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
+		setprop("/controls/switches/seatbelt-sign", 1);
 		settimer(func {
 			setprop("/controls/apu/start", 1);
 			var apu_rpm_chk = setlistener("/systems/apu/n2", func {

@@ -142,12 +142,6 @@ var lightsLoop = maketimer(0.2, func {
 });
 
 # Custom controls.nas overwrites
-var slewProp = func(prop, delta) {
-	delta *= pts.Sim.Time.deltaRealtimeSec.getValue();
-	setprop(prop, getprop(prop) + delta);
-	return getprop(prop);
-}
-
 controls.flapsDown = func(step) {
 	pts.Controls.Flight.flapsTemp = pts.Controls.Flight.flaps.getValue();
 	if (step == 1) {
@@ -232,8 +226,17 @@ var retractSpeedbrake = func {
 	}
 }
 
+var delta = 0;
+var output = 0;
+var slewProp = func(prop, delta) {
+	delta *= pts.Sim.Time.deltaRealtimeSec.getValue();
+	output = props.globals.getNode(prop).getValue() + delta;
+	props.globals.getNode(prop).setValue(output);
+	return output;
+}
+
 controls.elevatorTrim = func(d) {
-	if (getprop("/systems/hydraulics/sys-1-psi") >= 1500 or getprop("/systems/hydraulics/sys-3-psi") >= 1500) {
+	if (systems.HYD.Psi.sys1.getValue() >= 1500 or systems.HYD.Psi.sys3.getValue() >= 1500) {
 		slewProp("/controls/flight/elevator-trim", d * 0.0162); # 0.0162 is the rate in JSB normalized (0.25 / 15.5)
 	}
 }
@@ -244,18 +247,18 @@ setlistener("/controls/flight/elevator-trim", func {
 	}
 }, 0, 0);
 
+if (pts.Controls.Flight.autoCoordination.getBoolValue()) {
+	pts.Controls.Flight.autoCoordination.setBoolValue(0);
+	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(1);
+} else {
+	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(0);
+}
+
 setlistener("/controls/flight/auto-coordination", func {
-	setprop("/controls/flight/auto-coordination", 0);
+	pts.Controls.Flight.autoCoordination.setBoolValue(0);
 	print("System: Auto Coordination has been turned off as it is not compatible with the flight control system of this aircraft.");
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
-
-if (getprop("/controls/flight/auto-coordination") == 1) {
-	setprop("/controls/flight/auto-coordination", 0);
-	setprop("/controls/flight/aileron-drives-tiller", 1);
-} else {
-	setprop("/controls/flight/aileron-drives-tiller", 0);
-}
 
 var _shakeFlag = 0;
 var hd_t = 360;
@@ -288,64 +291,78 @@ var resetView = func() {
 }
 
 # Custom Sounds
-# TODO: Refactor this rubbish
-setlistener("/sim/sounde/btn1", func {
-	if (!getprop("/sim/sounde/btn1")) {
+var Sound = {
+	btn1: func() {
+		if (pts.Sim.Sound.btn1.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.btn1.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.btn1.setBoolValue(0);
+		}, 0.2);
+	},
+	btn3: func() {
+		if (pts.Sim.Sound.btn3.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.btn3.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.btn3.setBoolValue(0);
+		}, 0.2);
+	},
+	knb1: func() {
+		if (pts.Sim.Sound.knb1.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.knb1.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.knb1.setBoolValue(0);
+		}, 0.2);
+	},
+	ohBtn: func() {
+		if (pts.Sim.Sound.ohBtn.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.ohBtn.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.ohBtn.setBoolValue(0);
+		}, 0.2);
+	},
+	switch1: func() {
+		if (pts.Sim.Sound.switch1.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.switch1.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.switch1.setBoolValue(0);
+		}, 0.2);
+	},
+};
+
+setlistener("/controls/switches/seatbelt-sign-status", func {
+	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;
 	}
-	settimer(func {
-		props.globals.getNode("/sim/sounde/btn1").setBoolValue(0);
-	}, 0.05);
-});
+	if (systems.ELEC.Generic.efis.getValue() >= 25) {
+		pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(1); # Prevent no smoking sound from playing at same time
+		pts.Sim.Sound.seatbeltSign.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.seatbeltSign.setBoolValue(0);
+			pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(0);
+		}, 2);
+	}
+}, 0, 0);
 
-setlistener("/sim/sounde/oh-btn", func {
-	if (!getprop("/sim/sounde/oh-btn")) {
+setlistener("/controls/switches/no-smoking-sign-status", func {
+	if (pts.Sim.Sound.noSmokingSign.getBoolValue()) {
 		return;
 	}
-	settimer(func {
-		props.globals.getNode("/sim/sounde/oh-btn").setBoolValue(0);
-	}, 0.05);
-});
-
-setlistener("/sim/sounde/btn3", func {
-	if (!getprop("/sim/sounde/btn3")) {
-		return;
+	if (systems.ELEC.Generic.efis.getValue() >= 25 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
+		pts.Sim.Sound.noSmokingSign.setBoolValue(1);
+		settimer(func {
+			pts.Sim.Sound.noSmokingSign.setBoolValue(0);
+		}, 1);
 	}
-	settimer(func {
-		props.globals.getNode("/sim/sounde/btn3").setBoolValue(0);
-	}, 0.05);
-});
-
-setlistener("/sim/sounde/knb1", func {
-	if (!getprop("/sim/sounde/knb1")) {
-		return;
-	}
-	settimer(func {
-		props.globals.getNode("/sim/sounde/knb1").setBoolValue(0);
-	}, 0.05);
-});
-
-setlistener("/sim/sounde/switch1", func {
-	if (!getprop("/sim/sounde/switch1")) {
-		return;
-	}
-	settimer(func {
-		props.globals.getNode("/sim/sounde/switch1").setBoolValue(0);
-	}, 0.05);
-});
-
-setlistener("/controls/switches/seatbelt-sign", func {
-	props.globals.getNode("/sim/sounde/seatbelt-sign").setBoolValue(1);
-	settimer(func {
-		props.globals.getNode("/sim/sounde/seatbelt-sign").setBoolValue(0);
-	}, 2);
-});
-
-setlistener("/controls/switches/no-smoking-sign", func {
-	props.globals.getNode("/sim/sounde/no-smoking-sign").setBoolValue(1);
-	settimer(func {
-		props.globals.getNode("/sim/sounde/no-smoking-sign").setBoolValue(0);
-	}, 1);
-});
+}, 0, 0);
 
 setprop("/systems/acconfig/libraries-loaded", 1);

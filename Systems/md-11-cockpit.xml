@@ -362,6 +362,35 @@
 				/systems/failures/fctl/yd-lower-b eq 1
 			</test>
 		</switch>
+		
+		<switch name="/controls/switches/seatbelt-sign-status">
+			<default value="0"/>
+			<test value="1">
+				/controls/switches/seatbelt-sign eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/switches/seatbelt-sign eq 0.5
+				/controls/flight/flaps-input ne 0
+			</test>
+			<test logic="AND" value="1">
+				/controls/switches/seatbelt-sign eq 0.5
+				/controls/gear/gear-down eq 1
+			</test>
+			<!--test logic="AND" value="1">
+				/cabin/alt/prop gt 10000
+			</test-->
+		</switch>
+		
+		<switch name="/controls/switches/no-smoking-sign-status">
+			<default value="0"/>
+			<test value="1">
+				/controls/switches/no-smoking-sign eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/switches/no-smoking-sign eq 0.5
+				/controls/gear/gear-down eq 1
+			</test>
+		</switch>
 	
 	</channel>
 

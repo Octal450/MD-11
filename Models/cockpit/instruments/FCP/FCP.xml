@@ -728,7 +728,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/switch1", 1);</script>
+				<script>libraries.Sound.switch1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -746,7 +746,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/switch1", 1);</script>
+				<script>libraries.Sound.switch1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -763,7 +763,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -780,7 +780,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -797,7 +797,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -815,7 +815,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -835,7 +835,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -853,7 +853,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -1136,7 +1136,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation-->
@@ -1967,7 +1967,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2000,7 +2000,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2033,7 +2033,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2066,7 +2066,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2099,7 +2099,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2132,7 +2132,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2165,7 +2165,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2198,7 +2198,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2231,7 +2231,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2264,7 +2264,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2297,7 +2297,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2330,7 +2330,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2363,7 +2363,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2396,7 +2396,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2429,7 +2429,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2464,7 +2464,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2497,7 +2497,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2530,7 +2530,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2563,7 +2563,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2596,7 +2596,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2629,7 +2629,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2662,7 +2662,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2695,7 +2695,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2728,7 +2728,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2761,7 +2761,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2794,7 +2794,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2827,7 +2827,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2860,7 +2860,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2893,7 +2893,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>
@@ -2926,7 +2926,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>setprop("/sim/sounde/btn1", 1);</script>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
 	</animation>

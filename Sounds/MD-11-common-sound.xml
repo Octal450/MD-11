@@ -33,6 +33,42 @@
 			</volume>
 		</apoff>
 		
+		<sb>
+			<mode>once</mode>
+			<name>sb</name>
+			<path>Aircraft/MD-11/Sounds/Cockpit/seatbelt.wav</path>
+			<condition>
+				<and>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/efis</property>
+						<value>25</value>
+					</greater-than-equals>
+					<property>/sim/sound/seatbelt-sign</property>
+				</and>
+			</condition>
+			<volume>
+				<property>/sim/current-view/internal</property>
+			</volume>
+		</sb>
+		
+		<ns>
+			<mode>once</mode>
+			<name>ns</name>
+			<path>Aircraft/MD-11/Sounds/Cockpit/nosmoko.wav</path>
+			<condition>
+				<and>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/efis</property>
+						<value>25</value>
+					</greater-than-equals>
+					<property>/sim/sound/no-smoking-sign</property>
+				</and>
+			</condition>
+			<volume>
+				<property>/sim/current-view/internal</property>
+			</volume>
+		</ns>
+		
 		<switch>
 			<name>Clamp on</name>
 			<mode>once</mode>
@@ -58,11 +94,11 @@
 		</switch>
 		
 		<switch>
-			<name>Button</name>
+			<name>Button1</name>
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/button.wav</path>
 			<condition>
-				<property>/sim/sounde/btn1</property>
+				<property>/sim/sound/btn1</property>
 			</condition>
 			<volume>
 				<factor>0.75</factor>
@@ -74,7 +110,7 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/button2.wav</path>
 			<condition>
-				<property>/sim/sounde/oh-btn</property>
+				<property>/sim/sound/oh-btn</property>
 			</condition>
 			<volume>
 				<factor>0.75</factor>
@@ -86,7 +122,7 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/button3.wav</path>
 			<condition>
-				<property>/sim/sounde/btn3</property>
+				<property>/sim/sound/btn3</property>
 			</condition>
 			<volume>
 				<factor>0.75</factor>
@@ -98,7 +134,7 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/knob.wav</path>
 			<condition>
-				<property>/sim/sounde/knb1</property>
+				<property>/sim/sound/knb1</property>
 			</condition>
 			<volume>
 				<factor>0.60</factor>
@@ -110,7 +146,7 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/switch.wav</path>
 			<condition>
-				<property>/sim/sounde/switch1</property>
+				<property>/sim/sound/switch1</property>
 			</condition>
 			<volume>
 				<factor>0.75</factor>

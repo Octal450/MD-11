@@ -79,9 +79,9 @@ var canvas_EAD_base = {
 		# TAT Indication
 		Value.Tat = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
 		if (Value.Tat < 0) {
-			me["TAT"].setText(Value.Tat);
+			me["TAT"].setText(sprintf("%2.0f", Value.Tat));
 		} else {
-			me["TAT"].setText("+" ~ Value.Tat);
+			me["TAT"].setText("+" ~ sprintf("%2.0f", Value.Tat));
 		}
 		
 		# Reversers

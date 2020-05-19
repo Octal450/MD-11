@@ -13,6 +13,8 @@ var Controls = {
 		},
 	},
 	Flight: {
+		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
+		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
@@ -39,6 +41,8 @@ var Controls = {
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
 		minimums: props.globals.getNode("/controls/switches/minimums"),
+		noSmokingSign: props.globals.getNode("/controls/switches/no-smoking-sign"),
+		seatbeltSign: props.globals.getNode("/controls/switches/seatbelt-sign"),
 	},
 };
 
@@ -108,6 +112,16 @@ var Sim = {
 	Replay: {
 		replayState: props.globals.getNode("/sim/replay/replay-state"),
 		wasActive: props.globals.initNode("/sim/replay/was-active", 0, "BOOL"),
+	},
+	Sound: {
+		btn1: props.globals.initNode("/sim/sound/btn1", 0, "BOOL"),
+		btn3: props.globals.initNode("/sim/sound/btn3", 0, "BOOL"),
+		knb1: props.globals.initNode("/sim/sound/knb1", 0, "BOOL"),
+		noSmokingSign: props.globals.initNode("/sim/sound/no-smoking-sign", 0, "BOOL"),
+		noSmokingSignInhibit: props.globals.initNode("/sim/sound/no-smoking-sign-inhibit", 0, "BOOL"),
+		ohBtn: props.globals.initNode("/sim/sound/oh-btn", 0, "BOOL"),
+		seatbeltSign: props.globals.initNode("/sim/sound/seatbelt-sign", 0, "BOOL"),
+		switch1: props.globals.initNode("/sim/sound/switch1", 0, "BOOL"),
 	},
 	Time: {
 		deltaRealtimeSec: props.globals.getNode("/sim/time/delta-realtime-sec"),

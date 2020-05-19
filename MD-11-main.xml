@@ -576,6 +576,10 @@
 			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
 			<cart type="bool">0</cart>
 			<minimums type="int">200</minimums>
+			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
+			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>
+			<seatbelt-sign type="double">0</seatbelt-sign>
+			<seatbelt-sign-status type="bool">0</seatbelt-sign-status>
 		</switches>
 	</controls>
 	

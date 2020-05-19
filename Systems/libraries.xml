@@ -281,7 +281,7 @@
 		<type>noise-spike</type>
 		<update-interval-secs type="double">0.02</update-interval-secs>
 		<input>/controls/gear/gear-down</input>
-		<output>controls/gear/gearlever/position-norm</output>
+		<output>/controls/gear/gearlever/position-norm</output>
 		<max-rate-of-change>1.5</max-rate-of-change>
 	</filter>
 	

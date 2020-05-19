@@ -13,6 +13,8 @@ var variousReset = func {
 	pts.Controls.Lighting.strobe.setBoolValue(0);
 	pts.Controls.Switches.adgHandle.setValue(0);
 	pts.Controls.Switches.minimums.setValue(250);
+	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
+	pts.Controls.Switches.seatbeltSign.setValue(0);
 }
 
 var APPanel = {
