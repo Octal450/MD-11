@@ -235,7 +235,7 @@
 		<output>/sim/sound/cockpit/idle-3-p</output>
 	</filter>
 	
-	
+	<!-- Idle Whistle -->
 	<filter>
 		<type>gain</type>
 		<gain>1</gain>
@@ -246,9 +246,9 @@
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind>10.000</ind><dep>0.0</dep></entry>
-					<entry><ind>25.200</ind><dep>0.4</dep></entry>
-					<entry><ind>50.000</ind><dep>0.0</dep></entry>
+					<entry><ind>10.0</ind><dep>0.0</dep></entry>
+					<entry><ind>23.2</ind><dep>0.4</dep></entry>
+					<entry><ind>50.0</ind><dep>0.0</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -265,9 +265,9 @@
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind>10.000</ind><dep>0.0</dep></entry>
-					<entry><ind>25.200</ind><dep>0.4</dep></entry>
-					<entry><ind>50.000</ind><dep>0.0</dep></entry>
+					<entry><ind>10.0</ind><dep>0.0</dep></entry>
+					<entry><ind>23.2</ind><dep>0.4</dep></entry>
+					<entry><ind>50.0</ind><dep>0.0</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -304,13 +304,13 @@
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind>23</ind><dep>0.950</dep></entry>
-					<entry><ind>55</ind><dep>1.300</dep></entry>
+					<entry><ind>23</ind><dep>0.95</dep></entry>
+					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
 			</expression> 
 		</input>
 		<input>0</input>
-		<output>/sim/sound/cockpit/idle-1-p</output>
+		<output>/sim/sound/cockpit/idle-whistle-1-p</output>
 	</filter>
 	<filter>
 		<type>gain</type>
@@ -322,8 +322,8 @@
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind>23</ind><dep>0.950</dep></entry>
-					<entry><ind>55</ind><dep>1.300</dep></entry>
+					<entry><ind>23</ind><dep>0.95</dep></entry>
+					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -340,8 +340,8 @@
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n1-actual</property>
-					<entry><ind>23</ind><dep>0.950</dep></entry>
-					<entry><ind>55</ind><dep>1.300</dep></entry>
+					<entry><ind>23</ind><dep>0.95</dep></entry>
+					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -363,7 +363,7 @@
 					<entry><ind>32.000</ind><dep>0.0000</dep></entry>
 					<entry><ind>74.238</ind><dep>0.3447</dep></entry>
 					<entry><ind>90.000</ind><dep>0.2532</dep></entry>
-					<entry><ind>95.000</ind><dep>0.0000</dep></entry>
+					<entry><ind>99.000</ind><dep>0.0000</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -383,7 +383,7 @@
 					<entry><ind>32.000</ind><dep>0.0000</dep></entry>
 					<entry><ind>74.238</ind><dep>0.3447</dep></entry>
 					<entry><ind>90.000</ind><dep>0.2532</dep></entry>
-					<entry><ind>95.000</ind><dep>0.0000</dep></entry>
+					<entry><ind>99.000</ind><dep>0.0000</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -403,7 +403,7 @@
 					<entry><ind>32.000</ind><dep>0.0000</dep></entry>
 					<entry><ind>74.238</ind><dep>0.3447</dep></entry>
 					<entry><ind>90.000</ind><dep>0.2532</dep></entry>
-					<entry><ind>95.000</ind><dep>0.0000</dep></entry>
+					<entry><ind>99.000</ind><dep>0.0000</dep></entry>
 				</table>
 			</expression> 
 		</input>
