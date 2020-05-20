@@ -747,6 +747,9 @@
 		
 		<switch name="hydraulics/tiller/rate">
 			<default value="0"/>
+			<test value="70">
+				/sim/model/autopush/connected eq 1
+			</test>
 			<test logic="OR" value="70">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
@@ -755,6 +758,9 @@
 		
 		<switch name="hydraulics/tiller/min-deg">
 			<default value="-25"/>
+			<test value="-70">
+				/sim/model/autopush/connected eq 1
+			</test>
 			<test logic="OR" value="-70">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
@@ -762,6 +768,9 @@
 		
 		<switch name="hydraulics/tiller/max-deg">
 			<default value="25"/>
+			<test value="70">
+				/sim/model/autopush/connected eq 1
+			</test>
 			<test logic="OR" value="70">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>

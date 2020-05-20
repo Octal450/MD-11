@@ -220,7 +220,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/limit/active-norm</input>
+		<input>/fdm/jsbsim/fadec/limit/ats-pitch-max</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd</output>
 	</filter>
 	
@@ -248,7 +248,7 @@
 		<input>/fdm/jsbsim/fadec/ats-cmd</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
 		<min>0</min>
-		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
+		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -335,7 +335,7 @@
 		<input>/fdm/jsbsim/fadec/ats-cmd</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
 		<min>0</min>
-		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
+		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -422,7 +422,7 @@
 		<input>/fdm/jsbsim/fadec/ats-cmd</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
 		<min>0</min>
-		<max>/fdm/jsbsim/fadec/limit/max-throttle-n1-norm</max>
+		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
