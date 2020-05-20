@@ -993,6 +993,18 @@
 				/controls/flight/flaps-input ge 1
 			</test>
 		</switch>
+		
+		<switch name="/controls/flight/slats-cmd-limited">
+			<default value="/controls/flight/slats-cmd"/>
+			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
+				/controls/flight/flaps-input eq 1
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 280
+			</test>
+			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
+				/controls/flight/flaps-input eq 1
+				/instrumentation/airspeed-indicator/indicated-mach ge 0.55
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -1033,7 +1045,7 @@
 		</pure_gain>
 		
 		<pure_gain name="fcc/slat/cmd-deg">
-			<input>/controls/flight/slats-cmd</input>
+			<input>/controls/flight/slats-cmd-limited</input>
 			<gain>1.0</gain>
 			<output>fcc/slat/cmd-deg-feedback</output>
 		</pure_gain>

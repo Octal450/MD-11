@@ -22,6 +22,7 @@
 		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>pedestal.text</object-name>
+		<object-name>aileron.light</object-name>
 		<object-name>rudder.light</object-name>
 		<object-name>mcdu_glare</object-name>
 		<emission>
@@ -490,10 +491,60 @@
 	</animation>
 	
 	<animation>
+		<name>Aileron</name>
+		<type>rotate</type>
+		<object-name>aileron.trim</object-name>
+		<object-name>aileron.light</object-name>
+		<property>fdm/jsbsim/fcc/aileron-trim-wheel</property>
+		<factor>40</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.00019</y-m>
+			<z-m>6.67552</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>aileron.trim</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/aileron-trim</property>
+				<step>0.02</step>
+				<min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/aileron-trim</property>
+				<step>-0.02</step>
+				<min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
 		<name>Rudder</name>
 		<type>rotate</type>
 		<object-name>rudder.trim</object-name>
-		<property>controls/flight/rudder-trim</property>
+		<property>fdm/jsbsim/fcc/rudder-trim-knob</property>
 		<factor>90</factor>
 		<axis>
 			<x>0</x>
@@ -511,8 +562,8 @@
 		<type>rotate</type>
 		<object-name>rudder.light</object-name>
 		<object-name>rudder.trim2</object-name>
-		<property>controls/flight/rudder-trim</property>
-		<factor>66</factor>
+		<property>fdm/jsbsim/fcc/rudder-trim-knob</property>
+		<factor>85.8</factor> <!-- +/- 13 deg -->
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -525,74 +576,37 @@
 		</center>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>pick</type>
 		<object-name>rudder.trim</object-name>
 		<action>
 			<button>0</button>
+			<button>3</button>
 			<repeatable>false</repeatable>
-			 <binding>
-			 <command>property-adjust</command>
-			<property>controls/flight/rudder-trim</property>
-			<step>0.01</step>
-			<min>-1.0</min>
-			<max>1.0</max>
-			<wrap>0</wrap>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/rudder-trim</property>
+				<step>0.02</step>
+				<min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
 			</binding>
 		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>rudder.trim</object-name>
-		<action>
-			<button>3</button> <!--  scroll up -->
-			<repeatable>false</repeatable>
-			 <binding>
-			 <command>property-adjust</command>
-			<property>controls/flight/rudder-trim</property>
-			<step>0.01</step>
-			<min>-1.0</min>
-			<max>1.0</max>
-			<wrap>0</wrap>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>rudder.trim</object-name>
 		<action>
 			<button>1</button>
+			<button>4</button>
 			<repeatable>false</repeatable>
-			 <binding>
-			 <command>property-adjust</command>
-			<property>controls/flight/rudder-trim</property>
-			<step>-0.01</step>
-			<min>-1.0</min>
-			<max>1.0</max>
-			<wrap>0</wrap>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/rudder-trim</property>
+				<step>-0.02</step>
+				<min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
 			</binding>
 		</action>
 	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>rudder.trim</object-name>
-		<action>
-			<button>4</button> <!--  scroll down -->
-			<repeatable>false</repeatable>
-			 <binding>
-			 <command>property-adjust</command>
-			<property>controls/flight/rudder-trim</property>
-			<step>-0.01</step>
-			<min>-1.0</min>
-			<max>1.0</max>
-			<wrap>0</wrap>
-			</binding>
-		</action>
-	</animation>
-
+	
 	<!-- Cutoff switches -->
 	<animation>
 		<name>Engine 1 cutoff switch pick</name>

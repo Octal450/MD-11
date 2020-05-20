@@ -12,6 +12,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="fcc/aileron-trim-wheel">
+			<input>/controls/flight/aileron-trim</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="fcc/elevator-yoke">
 			<input>fcc/elevator-yoke-switch</input>
 			<c1>20</c1>
@@ -24,6 +29,11 @@
 		
 		<lag_filter name="fcc/rudder-pedal">
 			<input>fcc/rudder-pedal-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="fcc/rudder-trim-knob">
+			<input>/controls/flight/rudder-trim</input>
 			<c1>20</c1>
 		</lag_filter>
 		

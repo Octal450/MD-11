@@ -126,14 +126,24 @@
 			<function>
 				<sum>
 					<product>
-						<table>
-							<independentVar lookup="row">fcc/aileron-output</independentVar>
-							<tableData>
-								-0.95 -1.0
-								 0.00  0.0
-								 0.95  1.0
-							</tableData>
-						</table>
+						<sum>
+							<table>
+								<independentVar lookup="row">fcc/aileron-output</independentVar>
+								<tableData>
+									-0.95 -1.0
+									 0.00  0.0
+									 0.95  1.0
+								</tableData>
+							</table>
+							<table>
+								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+								<tableData>
+									-1.0 -0.5
+									 0.0  0.0
+									 1.0  0.5
+								</tableData>
+							</table>
+						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
 					<property>hydraulics/deflected-aileron-outer</property>
@@ -180,6 +190,14 @@
 							 0.95  1.0
 						</tableData>
 					</table>
+					<table>
+						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+						<tableData>
+							-1.0 -0.5
+							 0.0  0.0
+							 1.0  0.5
+						</tableData>
+					</table>
 					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
@@ -224,6 +242,14 @@
 							 0.95 -1.0
 						</tableData>
 					</table>
+					<table>
+						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+						<tableData>
+							-1.0  0.5
+							 0.0  0.0
+							 1.0 -0.5
+						</tableData>
+					</table>
 					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
@@ -261,14 +287,24 @@
 			<function>
 				<sum>
 					<product>
-						<table>
-							<independentVar lookup="row">fcc/aileron-output</independentVar>
-							<tableData>
-								-0.95  1.0
-								 0.00  0.0
-								 0.95 -1.0
-							</tableData>
-						</table>
+						<sum>
+							<table>
+								<independentVar lookup="row">fcc/aileron-output</independentVar>
+								<tableData>
+									-0.95  1.0
+									 0.00  0.0
+									 0.95 -1.0
+								</tableData>
+							</table>
+							<table>
+								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+								<tableData>
+									-1.0  0.5
+									 0.0  0.0
+									 1.0 -0.5
+								</tableData>
+							</table>
+						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
 					<property>hydraulics/deflected-aileron-outer</property>
