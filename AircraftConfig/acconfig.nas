@@ -206,7 +206,7 @@ var colddark = func {
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
-		setprop("/controls/flight/elevator-trim", -0.25);
+		setprop("/controls/flight/elevator-trim", -0.194);
 		libraries.systemsInit();
 		if (getprop("/engines/engine[1]/n2-actual") < 2) {
 			colddark_b();
@@ -257,7 +257,7 @@ var beforestart = func {
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
-		setprop("/controls/flight/elevator-trim", -0.25);
+		setprop("/controls/flight/elevator-trim", -0.194);
 		libraries.systemsInit();
 		setprop("/controls/apu/start", 0);
 		
@@ -323,7 +323,7 @@ var taxi = func {
 		setprop("/controls/flight/speedbrake-arm", 0);
 		setprop("/controls/flight/speedbrake", 0);
 		setprop("/controls/gear/gear-down", 1);
-		setprop("/controls/flight/elevator-trim", -0.25);
+		setprop("/controls/flight/elevator-trim", -0.194);
 		libraries.systemsInit();
 		setprop("/controls/apu/start", 0);
 		
@@ -402,7 +402,7 @@ var takeoff = func {
 				} else {
 					setprop("/controls/hydraulics/deflected-aileron", 0);
 				}
-				setprop("/controls/flight/elevator-trim", -0.29);
+				setprop("/controls/flight/elevator-trim", -0.352); # About 5.2ANU -->
 				setprop("/controls/autobrake/switch", -1);
 			}
 		});
