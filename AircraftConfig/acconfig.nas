@@ -395,13 +395,6 @@ var takeoff = func {
 				setprop("/controls/lighting/landing-light-r", 1);
 				setprop("/controls/flight/speedbrake-arm", 1);
 				setprop("/controls/flight/flaps", 0.36); # 10-25/EXT
-				if (getprop("/controls/hydraulics/deflected-aileron-equipped") == 1) {
-					if (getprop("/gear/gear[0]/wow") == 1) {
-						setprop("/controls/hydraulics/deflected-aileron", 1);
-					}
-				} else {
-					setprop("/controls/hydraulics/deflected-aileron", 0);
-				}
 				setprop("/controls/flight/elevator-trim", -0.352); # About 5.2ANU -->
 				setprop("/controls/autobrake/switch", -1);
 			}

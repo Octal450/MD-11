@@ -663,6 +663,28 @@
 			</test>
 		</switch>
 		
+		<switch name="hydraulics/tiller/rate">
+			<default value="0"/>
+			<test logic="OR" value="70">
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/tiller/min-deg">
+			<default value="-25"/>
+			<test logic="OR" value="-70">
+				/systems/hydraulics/sys-1-psi ge 1500
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/tiller/max-deg">
+			<default value="25"/>
+			<test logic="OR" value="70">
+				/systems/hydraulics/sys-3-psi ge 1500
+			</test>
+		</switch>
+		
 		<fcs_function name="hydraulics/tiller/function">
 			<function>
 				<ifthen>
@@ -674,24 +696,29 @@
 						<property>hydraulics/tiller/autopush-cmd</property>
 						<value>70</value>
 					</product>
-					<table>
-						<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
-						<independentVar lookup="column">hydraulics/tiller/switch</independentVar>
-						<tableData>
-								    -1  0   1
-							 0.500   0  0   0
-							 1.000 -70  0  70
-							30.000 -70  0  70
-							30.001 -10  0  10
-						</tableData>
-					</table>
+					<product>
+						<property>/gear/gear[0]/wow</property>
+						<table>
+							<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+							<independentVar lookup="column">hydraulics/tiller/switch</independentVar>
+							<tableData>
+									  -1  0   1
+								 0.5   0  0   0
+								 1.0 -70  0  70
+								15.0 -70  0  70
+								45.0 -10  0  10
+							</tableData>
+						</table>
+					</product>
 				</ifthen>
 			</function>
+			<min>hydraulics/tiller/min-deg</min>
+			<max>hydraulics/tiller/max-deg</max>
 		</fcs_function>
 		
 		<actuator name="fcs/steer-deg">
 			<input>hydraulics/tiller/function</input>
-			<rate_limit>70</rate_limit>
+			<rate_limit>hydraulics/tiller/rate</rate_limit>
 			<output>fcs/steer-pos-deg[0]</output>
 		</actuator>
 		
