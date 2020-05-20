@@ -495,7 +495,7 @@
 		<type>rotate</type>
 		<object-name>aileron.trim</object-name>
 		<object-name>aileron.light</object-name>
-		<property>fdm/jsbsim/fcc/aileron-trim-wheel</property>
+		<property>fdm/jsbsim/hydraulics/aileron-trim-wheel</property>
 		<factor>40</factor>
 		<axis>
 			<x>-1</x>
@@ -544,7 +544,7 @@
 		<name>Rudder</name>
 		<type>rotate</type>
 		<object-name>rudder.trim</object-name>
-		<property>fdm/jsbsim/fcc/rudder-trim-knob</property>
+		<property>fdm/jsbsim/hydraulics/rudder-trim-knob</property>
 		<factor>90</factor>
 		<axis>
 			<x>0</x>
@@ -562,7 +562,7 @@
 		<type>rotate</type>
 		<object-name>rudder.light</object-name>
 		<object-name>rudder.trim2</object-name>
-		<property>fdm/jsbsim/fcc/rudder-trim-knob</property>
+		<property>fdm/jsbsim/hydraulics/rudder-trim-knob</property>
 		<factor>85.8</factor> <!-- +/- 13 deg -->
 		<axis>
 			<x>0</x>
@@ -1027,7 +1027,7 @@
 		<type>rotate</type>
 		<object-name>PitchTrim</object-name>
 		<object-name>PitchTrim.circle</object-name>
-		<property>fdm/jsbsim/fcc/elevator-trim-lever</property>
+		<property>fdm/jsbsim/hydraulics/elevator-trim-lever</property>
 		<interpolation>
 			<entry>
 				<ind>-1.0</ind>

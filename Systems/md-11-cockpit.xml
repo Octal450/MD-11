@@ -7,32 +7,32 @@
 	
 	<channel name="Animations">
 		
-		<lag_filter name="fcc/aileron-yoke">
-			<input>fcc/aileron-yoke-switch</input>
+		<lag_filter name="hydraulics/aileron-yoke">
+			<input>hydraulics/aileron/output</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/aileron-trim-wheel">
+		<lag_filter name="hydraulics/aileron-trim-wheel">
 			<input>/controls/flight/aileron-trim</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/elevator-yoke">
-			<input>fcc/elevator-yoke-switch</input>
+		<lag_filter name="hydraulics/elevator-yoke">
+			<input>hydraulics/elevator-yoke-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/elevator-trim-lever">
+		<lag_filter name="hydraulics/elevator-trim-lever">
 			<input>/controls/flight/elevator-trim-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/rudder-pedal">
-			<input>fcc/rudder-pedal-switch</input>
+		<lag_filter name="hydraulics/rudder-pedal">
+			<input>hydraulics/rudder/pedal-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcc/rudder-trim-knob">
+		<lag_filter name="hydraulics/rudder-trim-knob">
 			<input>/controls/flight/rudder-trim</input>
 			<c1>20</c1>
 		</lag_filter>

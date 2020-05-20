@@ -120,6 +120,46 @@
 	
 	</channel>
 	
+	<channel name="Aileron General">
+		
+		<switch name="hydraulics/aileron/output-notrim">
+			<default value="/controls/flight/aileron"/>
+			<test value="fcc/afs/roll-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<pure_gain name="hydraulics/aileron/trim-overall">
+			<input>/controls/flight/aileron-trim</input>
+			<gain>0.25</gain>
+		</pure_gain>
+		
+		<summer name="hydraulics/aileron/output">
+			<input>hydraulics/aileron/output-notrim</input>
+			<input>hydraulics/aileron/trim-overall</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
+		<!-- 
+		Undoes summing aileron with trim, but keeps the clamp so it works properly
+		Without it, we could move the surfaces more than the yoke, must be done this way
+		Because the deflection of ailerons and spoiler to trim is not linear like aileron
+		So we can't just sum and clip aileron and send it to the surfaces - trust me, I tried
+		-->
+		<summer name="hydraulics/output-surfaces">
+			<input>hydraulics/aileron/output</input>
+			<input>-hydraulics/aileron/trim-overall</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+	
+	</channel>
+	
 	<channel name="Aileron L Outer">
 		
 		<fcs_function name="hydraulics/aileron-out-l/function">
@@ -128,19 +168,19 @@
 					<product>
 						<sum>
 							<table>
-								<independentVar lookup="row">fcc/aileron-output</independentVar>
+								<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
 								<tableData>
 									-0.95 -1.0
 									 0.00  0.0
 									 0.95  1.0
 								</tableData>
 							</table>
-							<table>
+							<table> <!-- Slew neutral point -->
 								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
 								<tableData>
-									-1.0 -0.5
-									 0.0  0.0
-									 1.0  0.5
+									-1.0 -0.25
+									 0.0  0.00
+									 1.0  0.25
 								</tableData>
 							</table>
 						</sum>
@@ -183,19 +223,19 @@
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
 						<tableData>
 							-0.95 -1.0
 							 0.00  0.0
 							 0.95  1.0
 						</tableData>
 					</table>
-					<table>
+					<table> <!-- Slew neutral point -->
 						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
 						<tableData>
-							-1.0 -0.5
-							 0.0  0.0
-							 1.0  0.5
+							-1.0 -0.25
+							 0.0  0.00
+							 1.0  0.25
 						</tableData>
 					</table>
 					<property>hydraulics/deflected-aileron-inner</property>
@@ -235,19 +275,19 @@
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">fcc/aileron-output</independentVar>
+						<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
 						<tableData>
 							-0.95  1.0
 							 0.00  0.0
 							 0.95 -1.0
 						</tableData>
 					</table>
-					<table>
+					<table> <!-- Slew neutral point -->
 						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
 						<tableData>
-							-1.0  0.5
-							 0.0  0.0
-							 1.0 -0.5
+							-1.0  0.25
+							 0.0  0.00
+							 1.0 -0.25
 						</tableData>
 					</table>
 					<property>hydraulics/deflected-aileron-inner</property>
@@ -289,19 +329,19 @@
 					<product>
 						<sum>
 							<table>
-								<independentVar lookup="row">fcc/aileron-output</independentVar>
+								<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
 								<tableData>
 									-0.95  1.0
 									 0.00  0.0
 									 0.95 -1.0
 								</tableData>
 							</table>
-							<table>
+							<table> <!-- Slew neutral point -->
 								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
 								<tableData>
-									-1.0  0.5
-									 0.0  0.0
-									 1.0 -0.5
+									-1.0  0.25
+									 0.0  0.00
+									 1.0 -0.25
 								</tableData>
 							</table>
 						</sum>
@@ -335,6 +375,17 @@
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-out-r/final-deg</output>
 		</actuator>
+	
+	</channel>
+	
+	<channel name="Elevator General">
+		
+		<switch name="hydraulics/elevator-yoke-switch">
+			<default value="/controls/flight/elevator"/>
+			<test value="fcc/afs/pitch-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -497,48 +548,54 @@
 	
 	</channel>
 	
-	<channel name="Rudder Trim">
+	<channel name="Rudder General">
 		
-		<aerosurface_scale name="hydraulics/rudder/trim-cmd-deg">
+		<switch name="hydraulics/rudder/pedal-switch">
+			<default value="fcc/yaw/rudder-nul"/>
+			<test value="fcc/yaw/afs-cmd">
+				fcc/yaw/autoland-switch eq 1
+			</test>
+		</switch>
+		
+		<pure_gain name="hydraulics/rudder/trim">
 			<input>/controls/flight/rudder-trim</input>
-			<domain>
-				<min>-1.0</min>
-				<max>1.0</max>
-			</domain>
-			<range>
-				<min>-13</min>
-				<max>13</max>
-			</range>
-		</aerosurface_scale>
+			<gain>0.43333333333333333333333333333333</gain> <!-- 13 deg trim/30 deg rudder -->
+		</pure_gain>
 		
-		<aerosurface_scale name="hydraulics/rudder/trim-norm">
-			<input>hydraulics/rudder/trim-cmd-deg</input>
-			<domain>
-				<min>-30</min>
-				<max>30</max>
-			</domain>
-			<range>
-				<min>-1.0</min>
-				<max>1.0</max>
-			</range>
-		</aerosurface_scale>
-	
-	</channel>
-	
-	<channel name="Rudder Upper">
-		
-		<summer name="hydraulics/rudder-upper/summer">
+		<summer name="hydraulics/rudder/upper-sum">
 			<input>fcc/rudder-upper-output</input>
-			<input>hydraulics/rudder/trim-norm</input>
+			<input>hydraulics/rudder/trim</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
 		
+		<summer name="hydraulics/rudder/lower-sum">
+			<input>fcc/rudder-lower-output</input>
+			<input>hydraulics/rudder/trim</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
+		<summer name="hydraulics/rudder/pedal-sum">
+			<input>hydraulics/rudder/pedal-switch</input>
+			<input>hydraulics/rudder/trim</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+	
+	</channel>
+	
+	<channel name="Rudder Upper">
+		
 		<switch name="hydraulics/rudder-upper/switch">
 			<default value="0"/>
-			<test logic="OR" value="hydraulics/rudder-upper/summer">
+			<test logic="OR" value="hydraulics/rudder/upper-sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
 			</test>
@@ -564,18 +621,9 @@
 	
 	<channel name="Rudder Lower">
 		
-		<summer name="hydraulics/rudder-lower/summer">
-			<input>fcc/rudder-lower-output</input>
-			<input>hydraulics/rudder/trim-norm</input>
-			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
-			</clipto>
-		</summer>
-		
 		<switch name="hydraulics/rudder-lower/switch">
 			<default value="0"/>
-			<test logic="OR" value="hydraulics/rudder-lower/summer">
+			<test logic="OR" value="hydraulics/rudder/lower-sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
 			</test>

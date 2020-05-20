@@ -395,24 +395,6 @@
 	
 	</channel>
 	
-	<channel name="FCC: Roll Axis">
-		
-		<switch name="fcc/aileron-output">
-			<default value="/controls/flight/aileron"/>
-			<test value="fcc/afs/roll-cmd">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
-		
-		<switch name="fcc/aileron-yoke-switch">
-			<default value="/controls/flight/aileron"/>
-			<test value="fcc/afs/roll-cmd">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
-	
-	</channel>
-	
 	<channel name="FCC: Pitch Axis and LSAS">
 		
 		<fcs_function name="fcc/lsas/thetadot-rad_sec">
@@ -707,13 +689,6 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/elevator-yoke-switch">
-			<default value="/controls/flight/elevator"/>
-			<test value="fcc/afs/pitch-cmd">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
-		
 		<switch name="fcc/lsas/autotrim-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
@@ -911,21 +886,12 @@
 			<test value="fcc/yaw/upper-output">
 				fcc/yaw/rudder-nul eq 0
 			</test>
-			<output>/controls/flight/rudder-fcc</output>
 		</switch>
 		
 		<switch name="fcc/rudder-lower-output">
 			<default value="fcc/yaw/rudder-nul"/>
 			<test value="fcc/yaw/lower-output">
 				fcc/yaw/rudder-nul eq 0
-			</test>
-			<output>/controls/flight/rudder-fcc</output>
-		</switch>
-		
-		<switch name="fcc/rudder-pedal-switch">
-			<default value="fcc/yaw/rudder-nul"/>
-			<test value="fcc/yaw/afs-cmd">
-				fcc/yaw/autoland-switch eq 1
 			</test>
 		</switch>
 	
