@@ -199,6 +199,9 @@
 				<path>Splash/splash1.png</path>
 			</preview>
 		</previews>
+		<sound n="0">
+			<suppress-warning type="bool">1</suppress-warning>
+		</sound>
 		<startup>
 			<splash-texture>Aircraft/MD-11/Splash/SplashOld.png</splash-texture>
 		</startup>
@@ -223,10 +226,11 @@
 				<path>Aircraft/MD-11/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/MD-11/Sounds/MD-11-sound-variables.xml</path>
-			</autopilot>
-			<autopilot n="6">
 				<path>Aircraft/MD-11/Systems/pfd.xml</path>
+			</autopilot>
+			<!-- 6 is sound -->
+			<autopilot n="7">
+				<path>Aircraft/MD-11/Sounds/MD-11-common-sound-control.xml</path>
 			</autopilot>
 		</systems>
 		<tags>

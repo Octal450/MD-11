@@ -34,9 +34,14 @@
 			<cockpit type="int">4</cockpit>
 			<model type="int">5</model>
 		</rating>
-		<sound>
+		<sound n="0">
 			<path>Aircraft/MD-11/Sounds/pw4000-sound.xml</path>
 		</sound>
+		<systems n="0">
+			<autopilot n="6">
+				<path>Aircraft/MD-11/Sounds/cf680-sound-control.xml</path>
+			</autopilot>
+		</systems>
     </sim>
 	
 	<limits>
