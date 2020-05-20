@@ -197,6 +197,70 @@
 		</engine>
 		
 		<engine>
+			<name>Cockpit Idle Whistle  1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-whistle-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-whistle-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0</x>
+				<y>20</y>
+				<z>0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle Whistle  2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-whistle-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-whistle-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>20</x>
+				<y>0</y>
+				<z>0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle Whistle  3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-whistle-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-whistle-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0</x>
+				<y>-20</y>
+				<z>0</z>
+			</position>
+		</engine>
+		
+		<engine>
 			<name>Cockpit Spool 1</name>
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Spool.wav</path>
