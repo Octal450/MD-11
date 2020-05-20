@@ -149,7 +149,7 @@
 		Because the deflection of ailerons and spoiler to trim is not linear like aileron
 		So we can't just sum and clip aileron and send it to the surfaces - trust me, I tried
 		-->
-		<summer name="hydraulics/output-surfaces">
+		<summer name="hydraulics/aileron/output-surfaces">
 			<input>hydraulics/aileron/output</input>
 			<input>-hydraulics/aileron/trim-overall</input>
 			<clipto>
@@ -157,6 +157,32 @@
 				<max>1.0</max>
 			</clipto>
 		</summer>
+		
+		<fcs_function name="hydraulics/aileron/trim-left"> <!-- 7/20 -->
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+					<tableData>
+						-1.0 -0.35
+						 0.0  0.00
+						 1.0  0.35
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron/trim-right"> <!-- 7/20 -->
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
+					<tableData>
+						-1.0  0.35
+						 0.0  0.00
+						 1.0 -0.35
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -168,21 +194,14 @@
 					<product>
 						<sum>
 							<table>
-								<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
+								<independentVar lookup="row">hydraulics/aileron/output-surfaces</independentVar>
 								<tableData>
 									-0.95 -1.0
 									 0.00  0.0
 									 0.95  1.0
 								</tableData>
 							</table>
-							<table> <!-- Slew neutral point -->
-								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
-								<tableData>
-									-1.0 -0.25
-									 0.0  0.00
-									 1.0  0.25
-								</tableData>
-							</table>
+							<property>hydraulics/aileron/trim-left</property> <!-- Slew neutral point -->
 						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
@@ -223,21 +242,14 @@
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
+						<independentVar lookup="row">hydraulics/aileron/output-surfaces</independentVar>
 						<tableData>
 							-0.95 -1.0
 							 0.00  0.0
 							 0.95  1.0
 						</tableData>
 					</table>
-					<table> <!-- Slew neutral point -->
-						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
-						<tableData>
-							-1.0 -0.25
-							 0.0  0.00
-							 1.0  0.25
-						</tableData>
-					</table>
+					<property>hydraulics/aileron/trim-left</property> <!-- Slew neutral point -->
 					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
@@ -275,21 +287,14 @@
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
+						<independentVar lookup="row">hydraulics/aileron/output-surfaces</independentVar>
 						<tableData>
 							-0.95  1.0
 							 0.00  0.0
 							 0.95 -1.0
 						</tableData>
 					</table>
-					<table> <!-- Slew neutral point -->
-						<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
-						<tableData>
-							-1.0  0.25
-							 0.0  0.00
-							 1.0 -0.25
-						</tableData>
-					</table>
+					<property>hydraulics/aileron/trim-right</property> <!-- Slew neutral point -->
 					<property>hydraulics/deflected-aileron-inner</property>
 				</sum>
 			</function>
@@ -329,21 +334,14 @@
 					<product>
 						<sum>
 							<table>
-								<independentVar lookup="row">hydraulics/output-surfaces</independentVar>
+								<independentVar lookup="row">hydraulics/aileron/output-surfaces</independentVar>
 								<tableData>
 									-0.95  1.0
 									 0.00  0.0
 									 0.95 -1.0
 								</tableData>
 							</table>
-							<table> <!-- Slew neutral point -->
-								<independentVar lookup="row">/controls/flight/aileron-trim</independentVar>
-								<tableData>
-									-1.0  0.25
-									 0.0  0.00
-									 1.0 -0.25
-								</tableData>
-							</table>
+							<property>hydraulics/aileron/trim-right</property> <!-- Slew neutral point -->
 						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
