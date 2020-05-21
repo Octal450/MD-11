@@ -615,22 +615,22 @@
 			</clipto>
 		</switch>
 		
-		<switch name="fadec/control-1/throttle-n1-cmd">
+		<switch name="fadec/control-1/throttle-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
 			<test value="fadec/reverse-1/throttle-rev-cmd">
 				/controls/engines/engine[0]/reverse-lever gt 0
 			</test>
 		</switch>
 		
-		<lag_filter name="fadec/control-1/throttle-n1-lag">
-			<input>fadec/control-1/throttle-n1-cmd</input>
+		<lag_filter name="fadec/control-1/throttle-lag">
+			<input>fadec/control-1/throttle-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-1/throttle-n1">
+		<fcs_function name="fadec/control-1/throttle">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-1/throttle-n1-lag</independentVar>
+					<independentVar lookup="row">fadec/control-1/throttle-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5
@@ -691,22 +691,22 @@
 			</clipto>
 		</switch>
 		
-		<switch name="fadec/control-2/throttle-n1-cmd">
+		<switch name="fadec/control-2/throttle-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
 			<test value="fadec/reverse-2/throttle-rev-cmd">
 				/controls/engines/engine[1]/reverse-lever gt 0
 			</test>
 		</switch>
 		
-		<lag_filter name="fadec/control-2/throttle-n1-lag">
-			<input>fadec/control-2/throttle-n1-cmd</input>
+		<lag_filter name="fadec/control-2/throttle-lag">
+			<input>fadec/control-2/throttle-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-2/throttle-n1">
+		<fcs_function name="fadec/control-2/throttle">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-2/throttle-n1-lag</independentVar>
+					<independentVar lookup="row">fadec/control-2/throttle-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5
@@ -767,22 +767,22 @@
 			</clipto>
 		</switch>
 		
-		<switch name="fadec/control-3/throttle-n1-cmd">
+		<switch name="fadec/control-3/throttle-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
 			<test value="fadec/reverse-3/throttle-rev-cmd">
 				/controls/engines/engine[2]/reverse-lever gt 0
 			</test>
 		</switch>
 		
-		<lag_filter name="fadec/control-3/throttle-n1-lag">
-			<input>fadec/control-3/throttle-n1-cmd</input>
+		<lag_filter name="fadec/control-3/throttle-lag">
+			<input>fadec/control-3/throttle-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-3/throttle-n1">
+		<fcs_function name="fadec/control-3/throttle">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-3/throttle-n1-lag</independentVar>
+					<independentVar lookup="row">fadec/control-3/throttle-lag</independentVar>
 					<tableData>
 						0   23.7
 						1  117.5
@@ -817,42 +817,42 @@
 	
 	<channel name="Engine Parameters" execrate="2">
 		
-		<lag_filter name="fadec/n1-actual1">
+		<lag_filter name="fadec/n1-actual-1">
 			<input>/engines/engine[0]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[0]/n1-actual</output>
 			<output>/engines/engine[4]/n1</output>
 		</lag_filter>
 		
-		<lag_filter name="fadec/n1-actual2">
+		<lag_filter name="fadec/n1-actual-2">
 			<input>/engines/engine[1]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[1]/n1-actual</output>
 			<output>/engines/engine[5]/n1</output>
 		</lag_filter>
 		
-		<lag_filter name="fadec/n1-actual3">
+		<lag_filter name="fadec/n1-actual-3">
 			<input>/engines/engine[2]/n1</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[2]/n1-actual</output>
 			<output>/engines/engine[6]/n1</output>
 		</lag_filter>
 		
-		<lag_filter name="fadec/n2-actual1">
+		<lag_filter name="fadec/n2-actual-1">
 			<input>/engines/engine[0]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[0]/n2-actual</output>
 			<output>/engines/engine[4]/n2</output>
 		</lag_filter>
 		
-		<lag_filter name="fadec/n2-actual2">
+		<lag_filter name="fadec/n2-actual-2">
 			<input>/engines/engine[1]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[1]/n2-actual</output>
 			<output>/engines/engine[5]/n2</output>
 		</lag_filter>
 		
-		<lag_filter name="fadec/n2-actual3">
+		<lag_filter name="fadec/n2-actual-3">
 			<input>/engines/engine[2]/n2</input>
 			<c1>2.25</c1>
 			<output>/engines/engine[2]/n2-actual</output>
@@ -928,6 +928,166 @@
 				fadec/reverse-3/position-norm gt 0
 			</test>
 		</switch>
+	
+	</channel>
+	
+	<channel name="EAD" execrate="2">
+		
+		<fcs_function name="/DU/EAD/N1[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1thr[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N1Limit">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/active</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!--fcs_function name="/DU/EAD/EGT[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/EGT[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/EGT[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/egt-actual</independentVar>
+					<tableData>
+						   0 -134
+						1000   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function-->
+		
+		<fcs_function name="/DU/EAD/N2[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N2[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/DU/EAD/N2[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+					<tableData>
+						  0.0 -134
+						117.5   40
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 

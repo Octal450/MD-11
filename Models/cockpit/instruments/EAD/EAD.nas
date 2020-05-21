@@ -18,7 +18,9 @@ setprop("/DU/EAD/EGT[2]", 0);
 
 var Value = {
 	Fadec: {
+		activeMode: "T/O",
 		engPowered: [0,0,0],
+		eprFixed: 0,
 		revState: [0,0,0],
 	},
 	Tat: 0,
@@ -437,8 +439,8 @@ var canvas_EAD_PW = {
 		return ["EPR1","EPR1-decpnt","EPR1-T","EPR1-H","EPR1-box","EPR1-needle","EPR1-lim","EPR1-thr","N11","N11-decpnt","N11-decimal","N11-needle","N11-redline","EGT1","EGT1-needle","EGT1-redstart","EGT1-yline","EGT1-redline","EGT1-ignition","N21","N21-decpnt",
 		"N21-decimal","N21-needle","N21-cline","N21-redline","FF1","FFOff1","EPR2","EPR2-decpnt","EPR2-T","EPR2-H","EPR2-box","EPR2-needle","EPR2-lim","EPR2-thr","N12","N12-decpnt","N12-decimal","N12-needle","N12-redline","EGT2","EGT2-needle","EGT2-redstart",
 		"EGT2-yline","EGT2-redline","EGT2-ignition","N22","N22-decpnt","N22-decimal","N22-needle","N22-cline","N22-redline","FF2","FFOff2","EPR3","EPR3-decpnt","EPR3-T","EPR3-H","EPR3-box","EPR3-needle","EPR3-lim","EPR3-thr","N13","N13-decpnt","N13-decimal",
-		"N13-needle","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle","N23-cline","N23-redline","FF3","FFOff3","EPRLim","EPRLim-decimal","EPRLimMode","REV1","REV2",
-		"REV3","TAT"];
+		"N13-needle","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle","N23-cline","N23-redline","FF3","FFOff3","EPRLim","EPRLim-decimal","EPRLimRating","EPRLimMode",
+		"EPRLimModeGroup","REV1","REV2","REV3","TAT"];
 	},
 	update: func() {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
@@ -769,10 +771,18 @@ var canvas_EAD_PW = {
 		}
 		
 		# EPR Limit
-		eprFixed = getprop("/fdm/jsbsim/fadec/limit/active") + 0.003;
-		me["EPRLimMode"].setText(sprintf("%s", getprop("/fdm/jsbsim/fadec/limit/active-mode")));
-		me["EPRLim"].setText(sprintf("%1.0f", math.floor(eprFixed)));
-		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(eprFixed - int(eprFixed), 0.01) * 100));
+		Value.Fadec.eprFixed = systems.FADEC.Limit.active.getValue();
+		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
+		me["EPRLimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
+		if (Value.Fadec.activeMode != "T/O" and Value.Fadec.activeMode != "G/A") {
+			me["EPRLimRating"].hide();
+			me["EPRLimModeGroup"].setTranslation(-90, 0);
+		} else {
+			me["EPRLimModeGroup"].setTranslation(0, 0);
+			me["EPRLimRating"].show();
+		}
+		me["EPRLim"].setText(sprintf("%1.0f", math.floor(Value.Fadec.eprFixed)));
+		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(Value.Fadec.eprFixed - int(Value.Fadec.eprFixed), 0.01) * 100));
 		
 		me.updateBase();
 	},

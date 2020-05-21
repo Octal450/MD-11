@@ -19,6 +19,13 @@
 			</test>
 		</switch>
 		
+		<switch name="aero/alpha-deg-norm">
+			<default value="0"/>
+			<test value="aero/alpha-deg">
+				gear/unit[0]/WOW eq 0
+			</test>
+		</switch>
+		
 		<switch name="libraries/multi-engine-out">
 			<default value="0"/>
 			<test logic="AND" value="1">

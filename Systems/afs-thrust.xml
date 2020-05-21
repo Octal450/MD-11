@@ -307,7 +307,7 @@
 				</or>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/control-1/throttle-n1-lag</input>
+		<input>/fdm/jsbsim/fadec/control-1/throttle-lag</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
 	</filter>
 	
@@ -394,7 +394,7 @@
 				</or>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/control-2/throttle-n1-lag</input>
+		<input>/fdm/jsbsim/fadec/control-2/throttle-lag</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
 	</filter>
 	
@@ -481,7 +481,7 @@
 				</or>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/control-3/throttle-n1-lag</input>
+		<input>/fdm/jsbsim/fadec/control-3/throttle-lag</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
 	</filter>
 	
