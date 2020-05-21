@@ -31,7 +31,8 @@
 		<sound>
 			<path>Aircraft/MD-11/Sounds/pw4000-sound.xml</path>
 		</sound>
-    </sim>
+		<variant-of>MD-11F-GE</variant-of>
+	</sim>
 	
 	<limits>
 		<mass-and-balance> <!--Data source: TCDS -->

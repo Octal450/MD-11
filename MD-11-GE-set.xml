@@ -27,6 +27,7 @@
 			</livery>
 			<path>Aircraft/MD-11/Models/MD-11-GE.xml</path>
 		</model>
+		<primary-set>true</primary-set>
 		<rating>
 			<FDM type="int">5</FDM>
 			<systems type="int">4</systems>
@@ -36,8 +37,7 @@
 		<sound>
 			<path>Aircraft/MD-11/Sounds/cf680-sound.xml</path>
 		</sound>
-		<!--variant-of>MD-11-PW</variant-of-->
-    </sim>
+	</sim>
 	
 	<limits>
 		<mass-and-balance> <!--Data source: TCDS -->
