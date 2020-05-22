@@ -759,6 +759,25 @@
 					</binding>
 				</mod-up>
 			</key>
+			<key n="7">
+				<name>CTRL-g</name>
+				<desc>Go Around</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/switches/ga-button", 1);
+						libraries.APPanel.GAButton();
+					</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>
+							setprop("/controls/switches/ga-button", 0);
+						</script>
+					</binding>
+				</mod-up>
+			</key>
 			<key n="24">
 				<name>Ctrl-x</name>
 				<desc>Reset zoom to default</desc>
@@ -773,9 +792,9 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -785,9 +804,9 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -846,9 +865,9 @@
 					</condition>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -968,9 +987,9 @@
 					</condition>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
