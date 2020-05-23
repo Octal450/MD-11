@@ -283,7 +283,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Tiller</object-name>
-		<property>fdm/jsbsim/hydraulics/tiller</property>
+		<property>fdm/jsbsim/hydraulics/tiller-handle</property>
 		<factor>-70</factor>
 		<center>
 			<x-m>-27.2143</x-m>
@@ -300,7 +300,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Tiller.2</object-name>
-		<property>fdm/jsbsim/hydraulics/tiller</property>
+		<property>fdm/jsbsim/hydraulics/tiller-handle</property>
 		<factor>-70</factor>
 		<center>
 			<x-m>-27.2143</x-m>
