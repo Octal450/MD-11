@@ -761,7 +761,7 @@
 			<test value="-70">
 				/sim/model/autopush/connected eq 1
 			</test>
-			<test logic="OR" value="-70">
+			<test value="-70">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
 		</switch>
@@ -771,7 +771,7 @@
 			<test value="70">
 				/sim/model/autopush/connected eq 1
 			</test>
-			<test logic="OR" value="70">
+			<test value="70">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 		</switch>
