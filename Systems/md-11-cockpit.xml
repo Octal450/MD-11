@@ -37,6 +37,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="hydraulics/tiller">
+			<input>hydraulics/tiller/switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="spoilers/main-lever">
 			<input>spoilers/lever-cmd</input>
 			<c1>20</c1>

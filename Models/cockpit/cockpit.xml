@@ -280,45 +280,39 @@
 </animation>
 
 	
-	  <animation>
-	<type>rotate</type>
+	<animation>
+		<type>rotate</type>
 		<object-name>Tiller</object-name>
-		<condition>
-			<property>controls/gear/tiller-enabled</property>
-		</condition>
-	<property>sim/gui/dialogs/tiller-steering/value</property>
-	<factor>-1</factor>
-	<center>
-	  <x-m>-27.2143</x-m>
-	  <y-m>-0.9685</y-m>
-	  <z-m>0.0</z-m>
-	</center>
-	<axis>
-	  <x> 0 </x> 
-	  <y> 0 </y> 
-	  <z> 1 </z> 
-	</axis>
-  </animation>
-  
-	  <animation>
-	<type>rotate</type>
+		<property>fdm/jsbsim/hydraulics/tiller</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>-27.2143</x-m>
+			<y-m>-0.9685</y-m>
+			<z-m>0.0</z-m>
+		</center>
+		<axis>
+			<x>0</x> 
+			<y>0</y> 
+			<z>1</z> 
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
 		<object-name>Tiller.2</object-name>
-		<condition>
-			<property>controls/gear/tiller-enabled</property>
-		</condition>
-	<property>sim/gui/dialogs/tiller-steering/value</property>
-	<factor>-1</factor>
-	<center>
-	  <x-m>-27.2143</x-m>
-	  <y-m>0.9685</y-m>
-	  <z-m>0.0</z-m>
-	</center>
-	<axis>
-	  <x> 0 </x> 
-	  <y> 0 </y> 
-	  <z> 1 </z> 
-	</axis>
-  </animation>
+		<property>fdm/jsbsim/hydraulics/tiller</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>-27.2143</x-m>
+			<y-m>0.9685</y-m>
+			<z-m>0.0</z-m>
+		</center>
+		<axis>
+			<x>0</x> 
+			<y>0</y> 
+			<z>1</z> 
+		</axis>
+	</animation>
   
   
 	<!-- Gear lever -->

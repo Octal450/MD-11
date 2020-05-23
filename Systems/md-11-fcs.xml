@@ -736,6 +736,9 @@
 		
 		<switch name="hydraulics/tiller/switch">
 			<default value="/controls/flight/rudder"/>
+			<test value="0">
+				/gear/gear[0]/wow ne 1
+			</test>
 			<test logic="AND" value="/controls/flight/aileron">
 				fcc/afs/enabled eq 0
 				/controls/flight/aileron-drives-tiller eq 1
