@@ -690,7 +690,7 @@ var ITAF = {
 		}
 		
 		# Reset system once flight complete
-		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Text.vert.getValue() != "T/O CLB") {
+		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Gear.wow0.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Text.vert.getValue() != "T/O CLB") {
 			fms.CORE.resetFMS();
 		}
 	},

@@ -19,9 +19,10 @@ setprop("/DU/EAD/EGT[2]", 0);
 var Value = {
 	Fadec: {
 		activeMode: "T/O",
-		engPowered: [0,0,0],
-		eprFixed: 0,
-		revState: [0,0,0],
+		engPowered: [0, 0, 0],
+		eprFixed: [0, 0, 0],
+		eprLimFixed: 0,
+		revState: [0, 0, 0],
 	},
 	Tat: 0,
 };
@@ -154,11 +155,11 @@ var canvas_EAD_GE = {
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
 		
 		# N1
-		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1-actual") + 0.01)));
+		me["N11"].setText(sprintf("%d", getprop("/engines/engine[0]/n1-actual") + 0.03));
 		me["N11-decimal"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[0]/n1-actual"), 1)) * 33.65, 0.1));
-		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1-actual") + 0.01)));
+		me["N12"].setText(sprintf("%d", getprop("/engines/engine[1]/n1-actual") + 0.03));
 		me["N12-decimal"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[1]/n1-actual"), 1)) * 33.65, 0.1));
-		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1-actual") + 0.01)));
+		me["N13"].setText(sprintf("%d", getprop("/engines/engine[2]/n1-actual") + 0.03));
 		me["N13-decimal"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[2]/n1-actual"), 1)) * 33.65, 0.1));
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90) * D2R);
@@ -226,9 +227,9 @@ var canvas_EAD_GE = {
 		}
 		
 		# EGT
-		me["EGT1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/egt-actual"))));
-		me["EGT2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/egt-actual"))));
-		me["EGT3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/egt-actual"))));
+		me["EGT1"].setText(sprintf("%d", getprop("/engines/engine[0]/egt-actual")));
+		me["EGT2"].setText(sprintf("%d", getprop("/engines/engine[1]/egt-actual")));
+		me["EGT3"].setText(sprintf("%d", getprop("/engines/engine[2]/egt-actual")));
 		
 		me["EGT1-needle"].setRotation((getprop("/DU/EAD/EGT[0]") + 90) * D2R);
 		me["EGT2-needle"].setRotation((getprop("/DU/EAD/EGT[1]") + 90) * D2R);
@@ -307,12 +308,12 @@ var canvas_EAD_GE = {
 		}
 		
 		# N2
-		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2-actual") + 0.05)));
-		me["N21-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[0]/n2-actual") + 0.05, 1))));
-		me["N22"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n2-actual") + 0.05)));
-		me["N22-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[1]/n2-actual") + 0.05, 1))));
-		me["N23"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n2-actual") + 0.05)));
-		me["N23-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05, 1))));
+		me["N21"].setText(sprintf("%d", getprop("/engines/engine[0]/n2-actual") + 0.05));
+		me["N21-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[0]/n2-actual") + 0.05, 1))));
+		me["N22"].setText(sprintf("%d", getprop("/engines/engine[1]/n2-actual") + 0.05));
+		me["N22-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[1]/n2-actual") + 0.05, 1))));
+		me["N23"].setText(sprintf("%d", getprop("/engines/engine[2]/n2-actual") + 0.05));
+		me["N23-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05, 1))));
 		
 		me["N21-needle"].setRotation((getprop("/DU/EAD/N2[0]") + 90) * D2R);
 		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90) * D2R);
@@ -379,9 +380,9 @@ var canvas_EAD_GE = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
-		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
-		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
+		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
+		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
+		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
 		
 		if (Value.Fadec.engPowered[0]) {
 			me["FF1"].show();
@@ -421,8 +422,8 @@ var canvas_EAD_GE = {
 		
 		# N1 Limit
 		me["N1LimMode"].setText(sprintf("%s", getprop("/fdm/jsbsim/fadec/limit/active-mode")));
-		me["N1Lim"].setText(sprintf("%s", math.floor(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05)));
-		me["N1Lim-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05, 1))));
+		me["N1Lim"].setText(sprintf("%d", math.floor(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05)));
+		me["N1Lim-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/fdm/jsbsim/fadec/limit/active") + 0.05, 1))));
 		
 		me.updateBase();
 	},
@@ -448,14 +449,17 @@ var canvas_EAD_PW = {
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
 		
 		# EPR
-		me["EPR1"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/epr-actual") + 0.0001)));
-		me["EPR1-T"].setText(sprintf("%01d", math.floor((getprop("/engines/engine[0]/epr-actual") - int(getprop("/engines/engine[0]/epr-actual"))) * 10)));
+		Value.Fadec.eprFixed[0] = getprop("/engines/engine[0]/epr-actual") + 0.003;
+		Value.Fadec.eprFixed[1] = getprop("/engines/engine[1]/epr-actual") + 0.003;
+		Value.Fadec.eprFixed[2] = getprop("/engines/engine[2]/epr-actual") + 0.003;
+		me["EPR1"].setText(sprintf("%d", Value.Fadec.eprFixed[0]));
+		me["EPR1-T"].setText(sprintf("%d", math.floor((Value.Fadec.eprFixed[0] - int(Value.Fadec.eprFixed[0])) * 10)));
 		me["EPR1-H"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[0]/epr-actual") * 10, 1)) * 33.65, 0.1));
-		me["EPR2"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/epr-actual") + 0.0001)));
-		me["EPR2-T"].setText(sprintf("%01d", math.floor((getprop("/engines/engine[1]/epr-actual") - int(getprop("/engines/engine[1]/epr-actual"))) * 10)));
+		me["EPR2"].setText(sprintf("%d", Value.Fadec.eprFixed[1]));
+		me["EPR2-T"].setText(sprintf("%d", math.floor((Value.Fadec.eprFixed[1] - int(Value.Fadec.eprFixed[1])) * 10)));
 		me["EPR2-H"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[1]/epr-actual") * 10, 1)) * 33.65, 0.1));
-		me["EPR3"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/epr-actual") + 0.0001)));
-		me["EPR3-T"].setText(sprintf("%01d", math.floor((getprop("/engines/engine[2]/epr-actual") - int(getprop("/engines/engine[2]/epr-actual"))) * 10)));
+		me["EPR3"].setText(sprintf("%d", Value.Fadec.eprFixed[2]));
+		me["EPR3-T"].setText(sprintf("%d", math.floor((Value.Fadec.eprFixed[2] - int(Value.Fadec.eprFixed[2])) * 10)));
 		me["EPR3-H"].setTranslation(0, math.round((10 * math.mod(getprop("/engines/engine[2]/epr-actual") * 10, 1)) * 33.65, 0.1));
 		
 		me["EPR1-needle"].setRotation((getprop("/DU/EAD/EPR[0]") + 90) * D2R);
@@ -523,12 +527,12 @@ var canvas_EAD_PW = {
 		}
 		
 		# N1
-		me["N11"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n1-actual") + 0.05)));
-		me["N11-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[0]/n1-actual") + 0.05, 1))));
-		me["N12"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n1-actual") + 0.05)));
-		me["N12-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[1]/n1-actual") + 0.05, 1))));
-		me["N13"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n1-actual") + 0.05)));
-		me["N13-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[2]/n1-actual") + 0.05, 1))));
+		me["N11"].setText(sprintf("%d", getprop("/engines/engine[0]/n1-actual") + 0.05));
+		me["N11-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[0]/n1-actual") + 0.05, 1))));
+		me["N12"].setText(sprintf("%d", getprop("/engines/engine[1]/n1-actual") + 0.05));
+		me["N12-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[1]/n1-actual") + 0.05, 1))));
+		me["N13"].setText(sprintf("%d", getprop("/engines/engine[2]/n1-actual") + 0.05));
+		me["N13-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[2]/n1-actual") + 0.05, 1))));
 		
 		me["N11-needle"].setRotation((getprop("/DU/EAD/N1[0]") + 90) * D2R);
 		me["N12-needle"].setRotation((getprop("/DU/EAD/N1[1]") + 90) * D2R);
@@ -577,9 +581,9 @@ var canvas_EAD_PW = {
 		}
 		
 		# EGT
-		me["EGT1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/egt-actual"))));
-		me["EGT2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/egt-actual"))));
-		me["EGT3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/egt-actual"))));
+		me["EGT1"].setText(sprintf("%d", getprop("/engines/engine[0]/egt-actual")));
+		me["EGT2"].setText(sprintf("%d", getprop("/engines/engine[1]/egt-actual")));
+		me["EGT3"].setText(sprintf("%d", getprop("/engines/engine[2]/egt-actual")));
 		
 		me["EGT1-needle"].setRotation((getprop("/DU/EAD/EGT[0]") + 90) * D2R);
 		me["EGT2-needle"].setRotation((getprop("/DU/EAD/EGT[1]") + 90) * D2R);
@@ -658,12 +662,12 @@ var canvas_EAD_PW = {
 		}
 		
 		# N2
-		me["N21"].setText(sprintf("%s", math.floor(getprop("/engines/engine[0]/n2-actual") + 0.05)));
-		me["N21-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[0]/n2-actual") + 0.05, 1))));
-		me["N22"].setText(sprintf("%s", math.floor(getprop("/engines/engine[1]/n2-actual") + 0.05)));
-		me["N22-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[1]/n2-actual") + 0.05, 1))));
-		me["N23"].setText(sprintf("%s", math.floor(getprop("/engines/engine[2]/n2-actual") + 0.05)));
-		me["N23-decimal"].setText(sprintf("%s", int(10 * math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05, 1))));
+		me["N21"].setText(sprintf("%d", getprop("/engines/engine[0]/n2-actual") + 0.05));
+		me["N21-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[0]/n2-actual") + 0.05, 1))));
+		me["N22"].setText(sprintf("%d", getprop("/engines/engine[1]/n2-actual") + 0.05));
+		me["N22-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[1]/n2-actual") + 0.05, 1))));
+		me["N23"].setText(sprintf("%d", getprop("/engines/engine[2]/n2-actual") + 0.05));
+		me["N23-decimal"].setText(sprintf("%d", int(10 * math.mod(getprop("/engines/engine[2]/n2-actual") + 0.05, 1))));
 		
 		me["N21-needle"].setRotation((getprop("/DU/EAD/N2[0]") + 90) * D2R);
 		me["N22-needle"].setRotation((getprop("/DU/EAD/N2[1]") + 90) * D2R);
@@ -730,9 +734,9 @@ var canvas_EAD_PW = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%s", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
-		me["FF2"].setText(sprintf("%s", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
-		me["FF3"].setText(sprintf("%s", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
+		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
+		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
+		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
 		
 		if (Value.Fadec.engPowered[0]) {
 			me["FF1"].show();
@@ -771,7 +775,7 @@ var canvas_EAD_PW = {
 		}
 		
 		# EPR Limit
-		Value.Fadec.eprFixed = systems.FADEC.Limit.active.getValue();
+		Value.Fadec.eprLimFixed = systems.FADEC.Limit.active.getValue() + 0.006;
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
 		me["EPRLimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
 		if (Value.Fadec.activeMode != "T/O" and Value.Fadec.activeMode != "G/A") {
@@ -781,8 +785,8 @@ var canvas_EAD_PW = {
 			me["EPRLimModeGroup"].setTranslation(0, 0);
 			me["EPRLimRating"].show();
 		}
-		me["EPRLim"].setText(sprintf("%1.0f", math.floor(Value.Fadec.eprFixed)));
-		me["EPRLim-decimal"].setText(sprintf("%02d", math.round(Value.Fadec.eprFixed - int(Value.Fadec.eprFixed), 0.01) * 100));
+		me["EPRLim"].setText(sprintf("%1.0f", math.floor(Value.Fadec.eprLimFixed)));
+		me["EPRLim-decimal"].setText(sprintf("%d", math.floor((Value.Fadec.eprLimFixed - int(Value.Fadec.eprLimFixed)) * 100)));
 		
 		me.updateBase();
 	},
