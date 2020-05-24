@@ -38,7 +38,7 @@
 		</lag_filter>
 		
 		<lag_filter name="hydraulics/tiller-handle">
-			<input>hydraulics/tiller/switch</input>
+			<input>hydraulics/tiller/handle-scheduled</input>
 			<c1>20</c1>
 		</lag_filter>
 		

@@ -44,6 +44,7 @@ setprop("/systems/acconfig/options/no-rendering-warn", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/options/sd-rate", 1);
+setprop("/systems/acconfig/options/seperate-tiller-axis", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/MD-11/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/MD-11/AircraftConfig/welcome.xml");
