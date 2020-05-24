@@ -154,13 +154,9 @@
 		
 		<switch name="hydraulics/spoiler-l1/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l1/sum">
+			<test value="hydraulics/spoiler-l1/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l1/cmd-deg">
@@ -191,13 +187,9 @@
 		
 		<switch name="hydraulics/spoiler-l2/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l2/sum">
+			<test value="hydraulics/spoiler-l2/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l2/cmd-deg">
@@ -228,13 +220,9 @@
 		
 		<switch name="hydraulics/spoiler-l3/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l3/sum">
+			<test value="hydraulics/spoiler-l3/sum">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l3/cmd-deg">
@@ -265,13 +253,9 @@
 		
 		<switch name="hydraulics/spoiler-l4/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l4/sum">
+			<test value="hydraulics/spoiler-l4/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l4/cmd-deg">
@@ -302,13 +286,9 @@
 		
 		<switch name="hydraulics/spoiler-l5/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l5/sum">
+			<test value="hydraulics/spoiler-l5/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l5/cmd-deg">
@@ -339,13 +319,9 @@
 		
 		<switch name="hydraulics/spoiler-r1/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r1/sum">
+			<test value="hydraulics/spoiler-r1/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r1/cmd-deg">
@@ -376,13 +352,9 @@
 		
 		<switch name="hydraulics/spoiler-r2/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r2/sum">
+			<test value="hydraulics/spoiler-r2/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r2/cmd-deg">
@@ -413,13 +385,9 @@
 		
 		<switch name="hydraulics/spoiler-r3/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r3/sum">
+			<test value="hydraulics/spoiler-r3/sum">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r3/cmd-deg">
@@ -450,13 +418,9 @@
 		
 		<switch name="hydraulics/spoiler-r4/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r4/sum">
+			<test value="hydraulics/spoiler-r4/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r4/cmd-deg">
@@ -487,13 +451,9 @@
 		
 		<switch name="hydraulics/spoiler-r5/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r5/sum">
+			<test value="hydraulics/spoiler-r5/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r5/cmd-deg">
