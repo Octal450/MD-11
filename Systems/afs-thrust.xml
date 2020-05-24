@@ -251,6 +251,27 @@
 		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/mode/thr</property>
+						<value>RETARD</value>
+					</equals>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+			<value>0.3</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
@@ -338,6 +359,27 @@
 		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/mode/thr</property>
+						<value>RETARD</value>
+					</equals>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+			<value>0.3</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
@@ -423,6 +465,27 @@
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
 		<min>0</min>
 		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/mode/thr</property>
+						<value>RETARD</value>
+					</equals>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+			<value>0.3</value>
+		</max-rate-of-change>
 		<max-rate-of-change>
 			<condition>
 				<or>

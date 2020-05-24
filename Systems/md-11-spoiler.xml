@@ -68,40 +68,15 @@
 			</test>
 		</switch>
 		
-		<switch name="spoilers/throttle[0]">
-			<default value="/controls/engines/engine[0]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[0]/reverse-lever ne 0
-			</test>
-		</switch>
-		
-		<switch name="spoilers/throttle[1]">
-			<default value="/controls/engines/engine[1]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[1]/reverse-lever ne 0
-			</test>
-		</switch>
-		
-		<switch name="spoilers/throttle[2]">
-			<default value="/controls/engines/engine[2]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[2]/reverse-lever ne 0
-			</test>
-		</switch>
-		
 		<switch name="spoilers/auto-speedbrake">
 			<description>Flip flop for autospeedbrake</description>
 			<default value="spoilers/auto-speedbrake"/>
 			<test logic="OR" value="0"> <!-- Reset -->
-				spoilers/throttle[0] ge 0.05
-				spoilers/throttle[1] ge 0.05
-				spoilers/throttle[2] ge 0.05
+				fadec/throttle-lever-feedback[1] ge 0.05
 				/controls/flight/speedbrake-arm ne 1
 			</test>
 			<test logic="AND" value="4"> <!-- Set -->
-				spoilers/throttle[0] lt 0.05
-				spoilers/throttle[1] lt 0.05
-				spoilers/throttle[2] lt 0.05
+				fadec/throttle-lever-feedback[1] lt 0.05
 				/controls/flight/speedbrake-arm eq 1
 				spoilers/main-gear-or eq 1
 				/velocities/groundspeed-kt ge 60
