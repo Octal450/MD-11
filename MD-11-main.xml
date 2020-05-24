@@ -1382,7 +1382,7 @@
 	
 	<systems n="0">
 		<acconfig n="0">
-			<autoconfig-running>0</autoconfig-running>
+			<autoconfig-running type="bool">0</autoconfig-running>
 		</acconfig>
 		<apu n="0">
 			<n2 type="double">0</n2>
