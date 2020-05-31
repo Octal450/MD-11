@@ -359,7 +359,7 @@
 				/engines/engine[0]/n1-actual ge 30
 				fadec/reverse-1/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[0]/reverser</output>
+			<output>/controls/engines/engine[0]/reverse-cmd</output>
 		</switch>
 		
 		<switch name="fadec/reverse-1/position-rate">
@@ -428,7 +428,7 @@
 				/engines/engine[1]/n1-actual ge 30
 				fadec/reverse-2/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[1]/reverser</output>
+			<output>/controls/engines/engine[1]/reverse-cmd</output>
 		</switch>
 		
 		<switch name="fadec/reverse-2/position-rate">
@@ -494,7 +494,7 @@
 				/engines/engine[2]/n1-actual ge 30
 				fadec/reverse-3/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[2]/reverser</output>
+			<output>/controls/engines/engine[2]/reverse-cmd</output>
 		</switch>
 		
 		<switch name="fadec/reverse-3/position-rate">

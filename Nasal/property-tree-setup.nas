@@ -27,6 +27,8 @@ var Controls = {
 	},
 	Gear: {
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
+		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
+		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
 		gearDown: props.globals.getNode("/controls/gear/gear-down"),
 	},
 	Lighting: {
@@ -51,6 +53,10 @@ var Fdm = {
 		Fadec: {
 			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
 			throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
+		},
+		Position: {
+			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
+			wowTemp: 0,
 		},
 		Propulsion: {
 			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),

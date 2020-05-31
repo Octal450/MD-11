@@ -32,7 +32,7 @@
 		<type>rotate</type>
 		<object-name>AutoBrake.knob</object-name>
 		<object-name>Abrake.001</object-name>
-		<property>controls/autobrake/switch</property>
+		<property>controls/gear/abs/knob</property>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-45</dep></entry>
 			<entry><ind> 0</ind><dep>  0</dep></entry>
@@ -95,7 +95,7 @@
 			<button>3</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/autobrake/switch</property>
+				<property>controls/gear/abs/knob</property>
 				<step>1</step>
 				<min>-1</min>
 				<max>3</max>
@@ -110,7 +110,7 @@
 			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/autobrake/switch</property>
+				<property>controls/gear/abs/knob</property>
 				<step>-1</step>
 				<min>-1</min>
 				<max>3</max>

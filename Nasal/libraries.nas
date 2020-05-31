@@ -14,18 +14,18 @@ setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 
 var systemsInit = func {
+	systems.BRAKES.init();
 	systems.ELEC.init();
+	systems.FADEC.init();
 	systems.FCTL.init();
 	systems.FUEL.init();
 	systems.HYD.init();
 	systems.IRS.init();
 	systems.PNEU.init();
-	systems.FADEC.init();
 	systems.eng_init();
 	afs.ITAF.init(0);
 	lightsLoop.start();
 	systemsLoop.start();
-	systems.autobrake_init();
 	libraries.variousReset();
 }
 
@@ -246,6 +246,16 @@ setlistener("/controls/flight/elevator-trim", func {
 		pts.Controls.Flight.elevatorTrim.setValue(0.064516);
 	}
 }, 0, 0);
+
+# Override FG's generic brake
+controls.applyBrakes = func(v, which = 0) { # No interpolate, that's bad, we will apply rate-limit in JSBsim
+	if (which <= 0) {
+		pts.Controls.Gear.brakeLeft.setValue(v);
+	}
+	if (which >= 0) {
+		pts.Controls.Gear.brakeRight.setValue(v);
+	}
+}
 
 if (pts.Controls.Flight.autoCoordination.getBoolValue()) {
 	pts.Controls.Flight.autoCoordination.setBoolValue(0);

@@ -55,6 +55,7 @@ var ELEC = {
 		fuelPump1: props.globals.initNode("/systems/electrical/outputs/fuel-pump[1]", 0, "DOUBLE"),
 		fuelPump2: props.globals.initNode("/systems/electrical/outputs/fuel-pump[2]", 0, "DOUBLE"),
 		gps: props.globals.initNode("/systems/electrical/outputs/gps", 0, "DOUBLE"),
+		idk: props.globals.initNode("/systems/electrical/outputs/idk", 0, "DOUBLE"),
 		mkViii: props.globals.initNode("/systems/electrical/outputs/mk-viii", 0, "DOUBLE"),
 		nav0: props.globals.initNode("/systems/electrical/outputs/nav[0]", 0, "DOUBLE"),
 		nav1: props.globals.initNode("/systems/electrical/outputs/nav[1]", 0, "DOUBLE"),

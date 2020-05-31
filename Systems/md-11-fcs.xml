@@ -909,36 +909,70 @@
 	
 	<channel name="Brakes">
 		
-		<summer name="fcs/left-brake-summer">
-			<input>/controls/gear/brake-left</input>
-			<input>/controls/gear/brake-parking</input>
+		<switch name="fcs/brake-avail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
+			</test>
+		</switch>
+		
+		<fcs_function name="fcs/left-brake-input">
+			<function>
+				<product>
+					<property>fcs/brake-avail</property>
+					<max>
+						<property>/controls/gear/brake-left</property>
+						<property>/controls/gear/brake-parking</property>
+						<property>/gear/abs/brake-output</property>
+					</max>
+				</product>
+			</function>
 			<clipto>
 				<min>0</min>
 				<max>1</max>
 			</clipto>
-		</summer>
+		</fcs_function>
+		
+		<actuator name="fcs/left-brake-actuator">
+			<input>fcs/left-brake-input</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
 		
 		<switch name="rubbish/left-brake-cmd-norm">
-			<default value="fcs/left-brake-summer"/>
-			<test value="/controls/autobrake/brake-left">
-				/controls/autobrake/active eq 1
+			<default value="fcs/left-brake-actuator"/>
+			<test value="1">
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
 		
-		<summer name="fcs/right-brake-summer">
-			<input>/controls/gear/brake-right</input>
-			<input>/controls/gear/brake-parking</input>
+		<fcs_function name="fcs/right-brake-input">
+			<function>
+				<product>
+					<property>fcs/brake-avail</property>
+					<max>
+						<property>/controls/gear/brake-right</property>
+						<property>/controls/gear/brake-parking</property>
+						<property>/gear/abs/brake-output</property>
+					</max>
+				</product>
+			</function>
 			<clipto>
 				<min>0</min>
 				<max>1</max>
 			</clipto>
-		</summer>
+		</fcs_function>
+		
+		<actuator name="fcs/right-brake-actuator">
+			<input>fcs/right-brake-input</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
 		
 		<switch name="rubbish/right-brake-cmd-norm">
-			<default value="fcs/right-brake-summer"/>
-			<test value="/controls/autobrake/brake-right">
-				/controls/autobrake/active eq 1
+			<default value="fcs/right-brake-actuator"/>
+			<test value="1">
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<output>fcs/right-brake-cmd-norm</output>
 		</switch>

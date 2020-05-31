@@ -397,7 +397,7 @@ var takeoff = func {
 				setprop("/controls/flight/speedbrake-arm", 1);
 				setprop("/controls/flight/flaps", 0.36); # 10-25/EXT
 				setprop("/controls/flight/elevator-trim", -0.29677); # About 4.6ANU -->
-				setprop("/controls/autobrake/switch", -1);
+				setprop("/controls/gear/abs/knob", -1);
 			}
 		});
 	}

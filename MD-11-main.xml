@@ -425,6 +425,7 @@
 			<engine n="0">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
@@ -432,6 +433,7 @@
 			<engine n="1">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
@@ -439,6 +441,7 @@
 			<engine n="2">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
@@ -662,7 +665,9 @@
 	
 	<gear n="0">
 		<abs n="0">
-			<active type="bool">0</active>
+			<armed type="bool">0</armed>
+			<mode type="int">0</mode>
+			<knob type="int">0</knob>
 		</abs>
 		<gear n="0">
 			<tyre-smoke type="bool">0</tyre-smoke>
@@ -1503,7 +1508,6 @@
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/brakes.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
 		</systems>
 		<afs>

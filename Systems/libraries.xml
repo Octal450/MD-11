@@ -61,55 +61,6 @@
 		<filter-time>0.32</filter-time>
 	</filter>
 	
-	<filter>
-		<name>Groundspeed Meters Per Second</name>
-		<type>gain</type>
-		<gain>0.5144444444444</gain>
-		<input>/velocities/groundspeed-kt</input>
-		<output>/velocities/groundspeed-mps</output>
-		<min>0</min>
-		<max>1000</max>
-	</filter>
-	
-	<predict-simple>
-		<name>Groundspeed Meters Per Second Ahead</name>
-		<debug>false</debug>
-		<input>/velocities/groundspeed-mps</input>
-		<output>/velocities/groundspeed-mps-ahead</output>
-		<seconds>1.5</seconds>
-		<filter-gain>0.0</filter-gain>
-	</predict-simple>
-	
-	<filter>
-		<name>Gear AGL Altitude FT</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>/position/altitude-agl-ft</property>
-					<value>17.283</value>
-				</dif>
-			</expression>
-		</input>
-		<output>/position/gear-agl-ft</output>
-	</filter>
-	
-	<filter>
-		<name>Gear AGL Altitude M</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<product>
-					<property>/position/gear-agl-ft</property>
-					<value>0.3048</value>
-				</product>
-			</expression>
-		</input>
-		<output>/position/gear-agl-m</output>
-	</filter>
-
 	<predict-simple>
 		<name>Gear AGL Altitude</name>
 		<debug>false</debug>
@@ -364,7 +315,7 @@
 		<output>fdm/jsbsim/inertia/weight-kg</output>
 	</filter>
 	
-	<filter>
+	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -397,52 +348,6 @@
 		<min>120</min>
 		<max>300</max>
 	</filter>
-	
-	<!-- Braking -->
-	
-	<filter>
-		<name>Autobrake Decel Error</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>/velocities/groundspeed-mps</property>
-					<property>/velocities/groundspeed-mps-ahead</property>
-				</dif>
-			</expression>
-		</input>
-		<output>/controls/autobrake/decel-error</output>
-	</filter>
-	
-	<pi-simple-controller>
-		<name>IT-CONTROLLER: AUTOBRAKE DECEL</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<equals>
-					<property>/controls/autobrake/active</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<property>/controls/autobrake/decel-error</property>
-		</input>
-		<reference>
-			<property>/controls/autobrake/decel-rate</property>
-		</reference>
-		<output>
-			<property>/controls/autobrake/brake-left</property>
-			<property>/controls/autobrake/brake-right</property>
-		</output>
-		<config>
-			<Kp>0.45</Kp>
-			<Ki>0.25</Ki>
-			<min>0.0</min>
-			<max>1.0</max>
-		</config>
-	</pi-simple-controller>
 	
 	<!-- GPWS Controller -->
 	<logic>
