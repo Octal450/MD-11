@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0"?>
 
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	<fx>
-	
+		
 		<apoff>
 			<name>apoff</name>
 			<mode>looped</mode>
@@ -939,9 +939,8 @@
 			<reference-dist>20.0</reference-dist>
 			<max-dist>100.0</max-dist>
 		</caws>
-
+		
 		<!-- Effects -->
-
 		<ambience>
 			<name>AmbienceOutside</name>
 			<mode>looped</mode>
@@ -962,7 +961,7 @@
 				<factor>0.265</factor>
 			</volume>
 		</ambience>
-
+		
 		<rain>
 			<name>RainOutside</name>
 			<mode>looped</mode>
@@ -981,7 +980,7 @@
 				<factor>0.39</factor>
 			</volume>
 		</rain>
-
+		
 		<rain>
 			<name>RainInside</name>
 			<mode>looped</mode>
@@ -998,7 +997,7 @@
 				<factor>0.095</factor>
 			</volume>
 		</rain>
-
+		
 		<rain-windshield>
 			<name>RainWindshieldInside</name>
 			<mode>looped</mode>
@@ -1017,7 +1016,7 @@
 				<max>0.38</max>
 			</volume>
 		</rain-windshield>
-
+		
 		<thunder1>
 			<name>thunder1</name>
 			<mode>once</mode>
@@ -1035,7 +1034,7 @@
 				<property>md11/sound/dist-thunder1</property>
 			</volume>
 		</thunder1>
-
+		
 		<thunder2>
 			<name>thunder2</name>
 			<mode>once</mode>
@@ -1053,7 +1052,7 @@
 				<property>md11/sound/dist-thunder2</property>
 			</volume>
 		</thunder2>
-
+		
 		<thunder3>
 			<name>thunder3</name>
 			<mode>once</mode>
@@ -1071,7 +1070,7 @@
 				<property>md11/sound/dist-thunder3</property>
 			</volume>
 		</thunder3>
-
+		
 		<thunder4>
 			<name>thunder4</name>
 			<mode>once</mode>
@@ -1089,7 +1088,7 @@
 				<property>md11/sound/dist-thunder4</property>
 			</volume>
 		</thunder4>
-
+		
 		<thunder5>
 			<name>thunder5</name>
 			<mode>once</mode>
@@ -1107,7 +1106,7 @@
 				<property>md11/sound/dist-thunder5</property>
 			</volume>
 		</thunder5>
-
+		
 		<pushback>
 			<name>Pushback_outside</name>
 			<mode>looped</mode>
@@ -1131,7 +1130,7 @@
 				<max>0.65</max>
 			</pitch>
 		</pushback>
-
+		
 		<pushback>
 			<name>Pushback_inside</name>
 			<mode>looped</mode>
@@ -1153,6 +1152,6 @@
 				<max>0.65</max>
 			</pitch>
 		</pushback>
-		
+	
 	</fx>
 </PropertyList>

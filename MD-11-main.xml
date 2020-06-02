@@ -1497,6 +1497,7 @@
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
 			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
+			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
@@ -1535,9 +1536,6 @@
 		<autopush_route>
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
-		<thunder-effects>
-			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
-		</thunder-effects>
 	</nasal>
 
 </PropertyList>
