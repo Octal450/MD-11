@@ -1,11 +1,11 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 0.988235 0.988235 0.988235  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
 MATERIAL "Material.002" rgb 0.0134 0.0124 0.0133  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 OBJECT world
 kids 33
 OBJECT poly
 name "Cube"
-loc 4e-006 -1.8e-006 0
+loc 4e-06 -1.8e-06 0
 texture "screenselector.png"
 crease 45.000000
 numvert 140
@@ -1152,7 +1152,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Cube.050"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0149533 0.0019664 0.0116603
@@ -1234,7 +1234,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.200"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0149533 0.0019664 0.0249187
@@ -1316,7 +1316,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.201"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0149533 0.0019664 0.0381472
@@ -1398,7 +1398,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.202"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0150084 0.0019664 -0.0015659
@@ -1480,7 +1480,7 @@ refs 4
 kids 0
 OBJECT poly
 name "config"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0150084 0.0019664 -0.0147944
@@ -1562,7 +1562,7 @@ refs 4
 kids 0
 OBJECT poly
 name "misc"
-loc 2e-007 -1.8e-006 0
+loc 2e-07 -1.8e-06 0
 crease 45.000000
 numvert 12
 0.0150084 0.0019664 -0.0280528
@@ -1644,7 +1644,7 @@ refs 4
 kids 0
 OBJECT poly
 name "status"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016254 0.0019664 -0.0280528
@@ -1726,7 +1726,7 @@ refs 4
 kids 0
 OBJECT poly
 name "conseq"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016254 0.0019664 -0.0147944
@@ -1808,7 +1808,7 @@ refs 4
 kids 0
 OBJECT poly
 name "nd"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016254 0.0019664 -0.0015659
@@ -1890,7 +1890,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.208"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016805 0.0019664 0.0381472
@@ -1972,7 +1972,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.209"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016805 0.0019664 0.0249187
@@ -2054,7 +2054,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.210"
-loc 2.1e-006 -1.8e-006 0
+loc 2.1e-06 -1.8e-06 0
 crease 45.000000
 numvert 12
 -0.0016805 0.0019664 0.0116603
@@ -2136,7 +2136,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.005"
-loc -0.0448524 -4e-007 0
+loc -0.0448524 -4e-07 0
 texture "screenselector.png"
 crease 45.000000
 numvert 40
@@ -2439,7 +2439,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.006"
-loc -0.0448524 -4e-007 0
+loc -0.0448524 -4e-07 0
 texture "screenselector.png"
 crease 45.000000
 numvert 40
@@ -2742,7 +2742,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.007"
-loc -3.7e-006 -4e-007 0
+loc -3.7e-06 -4e-07 0
 texture "screenselector.png"
 crease 45.000000
 numvert 40
@@ -3045,7 +3045,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.906"
-loc -3.7e-006 -4e-007 0
+loc -3.7e-06 -4e-07 0
 texture "screenselector.png"
 crease 45.000000
 numvert 40

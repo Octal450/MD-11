@@ -91,7 +91,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cube.051"
-loc -8e-007 2.2e-006 0
+loc -8e-07 2.2e-06 0
 data 13
 Cube.051.mesh
 texture "tcas.png"
@@ -923,7 +923,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.000"
-loc -2.7e-006 2.2e-006 7e-007
+loc -2.7e-06 2.2e-06 7e-07
 data 17
 Cylinder.000.mesh
 texture "tcas.png"
@@ -1228,7 +1228,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.001"
-loc -2.7e-006 2.2e-006 0.0005356
+loc -2.7e-06 2.2e-06 0.0005356
 data 17
 Cylinder.001.mesh
 texture "tcas.png"
@@ -1533,7 +1533,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.002"
-loc -2.7e-006 2.2e-006 0.0005356
+loc -2.7e-06 2.2e-06 0.0005356
 data 17
 Cylinder.002.mesh
 texture "tcas.png"
@@ -2184,7 +2184,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.058"
-loc -2.7e-006 2.2e-006 7e-007
+loc -2.7e-06 2.2e-06 7e-07
 data 17
 Cylinder.058.mesh
 texture "tcas.png"
@@ -3093,7 +3093,7 @@ refs 3
 kids 0
 OBJECT poly
 name "tcas.0"
-loc -8e-007 1.7e-006 0
+loc -8e-07 1.7e-06 0
 data 13
 Cube.170.mesh
 crease 45.000000
@@ -3145,7 +3145,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.1"
-loc -8e-007 2.7e-006 0
+loc -8e-07 2.7e-06 0
 data 13
 Cube.163.mesh
 crease 45.000000
@@ -3197,7 +3197,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.2"
-loc -8e-007 2.7e-006 0
+loc -8e-07 2.7e-06 0
 data 13
 Cube.171.mesh
 crease 45.000000
@@ -3249,18 +3249,18 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.3"
-loc -8e-007 2.7e-006 0
+loc -8e-07 2.7e-06 0
 data 13
 Cube.164.mesh
 crease 45.000000
 numvert 8
 -0.01801 0.00119 0.00677
--0.01801 0.00119 5e-005
--0.01129 0.00119 5e-005
+-0.01801 0.00119 5e-05
+-0.01129 0.00119 5e-05
 -0.01129 0.00119 0.00677
 -0.01801 0.00791 0.00677
--0.01801 0.00791 5e-005
--0.01129 0.00791 5e-005
+-0.01801 0.00791 5e-05
+-0.01129 0.00791 5e-05
 -0.01129 0.00791 0.00677
 numsurf 5
 SURF 0x30
@@ -3301,7 +3301,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.4"
-loc 1.1e-006 2.2e-006 0
+loc 1.1e-06 2.2e-06 0
 data 13
 Cube.167.mesh
 crease 45.000000
@@ -3353,7 +3353,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.5"
-loc 1.1e-006 2.2e-006 0
+loc 1.1e-06 2.2e-06 0
 data 13
 Cube.169.mesh
 crease 45.000000
@@ -3405,18 +3405,18 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.6"
-loc 1.1e-006 2.2e-006 0
+loc 1.1e-06 2.2e-06 0
 data 13
 Cube.168.mesh
 crease 45.000000
 numvert 8
 -0.00522 0.00119 0.00677
--0.00522 0.00119 5e-005
-0.00151 0.00119 5e-005
+-0.00522 0.00119 5e-05
+0.00151 0.00119 5e-05
 0.00151 0.00119 0.00677
 -0.00522 0.00791 0.00677
--0.00522 0.00791 5e-005
-0.00151 0.00791 5e-005
+-0.00522 0.00791 5e-05
+0.00151 0.00791 5e-05
 0.00151 0.00791 0.00677
 numsurf 5
 SURF 0x30
@@ -3457,7 +3457,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.7"
-loc -8e-007 1.7e-006 0
+loc -8e-07 1.7e-06 0
 data 13
 Cube.166.mesh
 crease 45.000000
@@ -3509,18 +3509,18 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.clr"
-loc -8e-007 1.7e-006 0
+loc -8e-07 1.7e-06 0
 data 13
 Cube.165.mesh
 crease 45.000000
 numvert 8
 0.00821 0.00119 0.00677
-0.00821 0.00119 5e-005
-0.01493 0.00119 5e-005
+0.00821 0.00119 5e-05
+0.01493 0.00119 5e-05
 0.01493 0.00119 0.00677
 0.00821 0.00791 0.00677
-0.00821 0.00791 5e-005
-0.01493 0.00791 5e-005
+0.00821 0.00791 5e-05
+0.01493 0.00791 5e-05
 0.01493 0.00791 0.00677
 numsurf 5
 SURF 0x30
@@ -3581,7 +3581,7 @@ refs 4
 kids 0
 OBJECT poly
 name "TCAS.knob"
-loc 3e-006 1.7e-006 0
+loc 3e-06 1.7e-06 0
 data 14
 TCAS.knob.mesh
 texture "tcas.png"
@@ -4331,7 +4331,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tcas.text"
-loc -8e-007 0.0001666 0
+loc -8e-07 0.0001666 0
 data 14
 tcas.text.mesh
 texture "tcas.png"
