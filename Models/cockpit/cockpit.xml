@@ -221,20 +221,20 @@
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
 		<parameters>
-			<inner-angle type="float">45</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">60</outer-angle><!-- 0-90, but greater than inner -->
-			<black-angle type="float">75</black-angle><!-- 0-90, but greater than outer -->
+			<inner-angle type="float">90</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle type="float">90</outer-angle><!-- 0-90, but greater than inner -->
+			<black-angle type="float">90</black-angle><!-- 0-90, but greater than outer -->
 			<dirt-factor>0.08</dirt-factor>
 			<contrast type="float">0.85</contrast>
 		</parameters>
 		<texture n="1">
-				<type>2d</type>
-				<filter>linear-mipmap-linear</filter>
-				<wrap-s>clamp</wrap-s>
-				<wrap-t>clamp</wrap-t>
-				<internal-format>normalized</internal-format>
-				<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
-			</texture>
+			<type>2d</type>
+			<filter>linear-mipmap-linear</filter>
+			<wrap-s>clamp</wrap-s>
+			<wrap-t>clamp</wrap-t>
+			<internal-format>normalized</internal-format>
+			<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
+		</texture>
 		<object-name>ND.screenL</object-name>
 	</effect>
 	
@@ -252,20 +252,20 @@
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
 		<parameters>
-			<inner-angle type="float">45</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">60</outer-angle><!-- 0-90, but greater than inner -->
-			<black-angle type="float">75</black-angle><!-- 0-90, but greater than outer -->
+			<inner-angle type="float">90</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle type="float">90</outer-angle><!-- 0-90, but greater than inner -->
+			<black-angle type="float">90</black-angle><!-- 0-90, but greater than outer -->
 			<dirt-factor>0.08</dirt-factor>
 			<contrast type="float">0.85</contrast>
 		</parameters>
 		<texture n="1">
-				<type>2d</type>
-				<filter>linear-mipmap-linear</filter>
-				<wrap-s>clamp</wrap-s>
-				<wrap-t>clamp</wrap-t>
-				<internal-format>normalized</internal-format>
-				<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
-			</texture>
+			<type>2d</type>
+			<filter>linear-mipmap-linear</filter>
+			<wrap-s>clamp</wrap-s>
+			<wrap-t>clamp</wrap-t>
+			<internal-format>normalized</internal-format>
+			<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
+		</texture>
 		<object-name>ND.screenR</object-name>
 	</effect>
 	
