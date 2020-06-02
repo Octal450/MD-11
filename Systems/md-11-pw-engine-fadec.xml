@@ -809,10 +809,6 @@
 				/it-autoflight/output/athr eq 1
 				/it-autoflight/output/clamp eq 0
 			</test>
-			<clipto>
-				<min>0</min> <!-- Intentional -->
-				<max>fadec/control-1/max</max>
-			</clipto>
 		</switch>
 		
 		<switch name="fadec/control-1/throttle-cmd">
@@ -820,6 +816,10 @@
 			<test value="fadec/reverse-1/throttle-rev-cmd">
 				/controls/engines/engine[0]/reverse-lever gt 0
 			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-1/max</max>
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-1/throttle-lag">
@@ -907,10 +907,6 @@
 				/it-autoflight/output/athr eq 1
 				/it-autoflight/output/clamp eq 0
 			</test>
-			<clipto>
-				<min>0</min> <!-- Intentional -->
-				<max>fadec/control-2/max</max>
-			</clipto>
 		</switch>
 		
 		<switch name="fadec/control-2/throttle-cmd">
@@ -918,6 +914,10 @@
 			<test value="fadec/reverse-2/throttle-rev-cmd">
 				/controls/engines/engine[1]/reverse-lever gt 0
 			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-2/max</max>
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-2/throttle-lag">
@@ -1005,10 +1005,6 @@
 				/it-autoflight/output/athr eq 1
 				/it-autoflight/output/clamp eq 0
 			</test>
-			<clipto>
-				<min>0</min> <!-- Intentional -->
-				<max>fadec/control-3/max</max>
-			</clipto>
 		</switch>
 		
 		<switch name="fadec/control-3/throttle-cmd">
@@ -1016,6 +1012,10 @@
 			<test value="fadec/reverse-3/throttle-rev-cmd">
 				/controls/engines/engine[2]/reverse-lever gt 0
 			</test>
+			<clipto>
+				<min>0</min> <!-- Intentional -->
+				<max>fadec/control-3/max</max>
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-3/throttle-lag">
