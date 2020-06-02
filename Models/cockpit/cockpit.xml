@@ -965,4 +965,9 @@
 		</condition>
 	</animation>
 
+	<effect>
+		<inherits-from>Effects/glass</inherits-from>
+		<object-name>Windshield.inner</object-name>
+	</effect>
+
 </PropertyList>
