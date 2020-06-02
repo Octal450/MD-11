@@ -164,11 +164,22 @@
 	</model>
 	
 	<model>
-		<name>PFD</name>
+		<name>PFD1</name>
 		<path>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD1.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.55437</y-m>
+			<z-m>6.9076</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>ND1</name>
+		<path>Aircraft/MD-11/Models/cockpit/instruments/ND/ND1.xml</path>
+		<offsets>
+			<x-m>-27.512</x-m>
+			<y-m>-0.35225</y-m>
 			<z-m>6.9076</z-m>
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
@@ -185,16 +196,27 @@
 		</offsets>
 	</model>
 	
-	<!--model>
+	<model>
 		<name>SD</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/EAD/SD.xml</path>
+		<path>Aircraft/MD-11/Models/cockpit/instruments/SD/SD.xml</path>
 		<offsets>
-			<x-m>-27.5138</x-m>
-			<y-m>0.15</y-m>
-			<z-m>6.9072</z-m>
+			<x-m>-27.512</x-m>
+			<y-m>0.14961</y-m>
+			<z-m>6.9076</z-m>
 			<pitch-deg>-11.51</pitch-deg>
 		</offsets>
-	</model-->
+	</model>
+	
+	<model>
+		<name>ND2</name>
+		<path>Aircraft/MD-11/Models/cockpit/instruments/ND/ND2.xml</path>
+		<offsets>
+			<x-m>-27.512</x-m>
+			<y-m>0.35172</y-m>
+			<z-m>6.9076</z-m>
+			<pitch-deg>-11.51</pitch-deg>
+		</offsets>
+	</model>
 	
 	<model>
 		<name>PFD2</name>
@@ -207,94 +229,6 @@
 		</offsets>
 	</model>
 	
-	<animation>
-		<type>select</type>
-		<object-name>ND.screenL</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/bus/ac-1</property>
-				<value>110</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-
-	<effect>
-		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
-		<parameters>
-			<inner-angle type="float">90</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">90</outer-angle><!-- 0-90, but greater than inner -->
-			<black-angle type="float">90</black-angle><!-- 0-90, but greater than outer -->
-			<dirt-factor>0.08</dirt-factor>
-			<contrast type="float">0.9</contrast>
-		</parameters>
-		<texture n="1">
-			<type>2d</type>
-			<filter>linear-mipmap-linear</filter>
-			<wrap-s>clamp</wrap-s>
-			<wrap-t>clamp</wrap-t>
-			<internal-format>normalized</internal-format>
-			<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
-		</texture>
-		<object-name>ND.screenL</object-name>
-	</effect>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ND.screenR</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/bus/ac-3</property>
-				<value>110</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-
-	<effect>
-		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
-		<parameters>
-			<inner-angle type="float">90</inner-angle><!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">90</outer-angle><!-- 0-90, but greater than inner -->
-			<black-angle type="float">90</black-angle><!-- 0-90, but greater than outer -->
-			<dirt-factor>0.08</dirt-factor>
-			<contrast type="float">0.9</contrast>
-		</parameters>
-		<texture n="1">
-			<type>2d</type>
-			<filter>linear-mipmap-linear</filter>
-			<wrap-s>clamp</wrap-s>
-			<wrap-t>clamp</wrap-t>
-			<internal-format>normalized</internal-format>
-			<image>Aircraft/MD-11/Models/Effects/dust2.png</image>
-		</texture>
-		<object-name>ND.screenR</object-name>
-	</effect>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>ND.screenL</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.showNd();</script>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
-		<object-name>ND.screenR</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.showNd("fo");</script>
-			</binding>
-		</action>
-	</animation>
-
 	<animation>
  <type>translate</type>
  <object-name>pedals.left</object-name>
