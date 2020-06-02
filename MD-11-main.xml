@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures)</author>
+		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures), J Maverick 16 (Effects)</author>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
@@ -1535,6 +1535,9 @@
 		<autopush_route>
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
+		<thunder-effects>
+			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
+		</thunder-effects>
 	</nasal>
 
 </PropertyList>
