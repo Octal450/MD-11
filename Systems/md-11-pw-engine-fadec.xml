@@ -877,7 +877,7 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="fcs/control-1/throttle-fdm">
+		<lag_filter name="fadec/control-1/throttle-fdm">
 			<input>fadec/control-1/throttle-output</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[0]</output>
@@ -975,7 +975,7 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="fcs/control-2/throttle-fdm">
+		<lag_filter name="fadec/control-2/throttle-fdm">
 			<input>fadec/control-2/throttle-output</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[1]</output>
@@ -1073,7 +1073,7 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="fcs/control-3/throttle-fdm">
+		<lag_filter name="fadec/control-3/throttle-fdm">
 			<input>fadec/control-3/throttle-output</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[2]</output>
