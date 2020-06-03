@@ -51,7 +51,7 @@ var Controls = {
 var Fdm = {
 	JSBsim: {
 		Fadec: {
-			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"),props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
+			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
 			throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
 		},
 		Position: {
