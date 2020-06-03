@@ -1,4 +1,4 @@
-# MD-11 Master System
+# McDonnell Douglas MD-11 Master System
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var BRAKES = {
@@ -152,7 +152,9 @@ var toggleFastRevThrust = func {
 		pts.Controls.Engines.Engine.throttle[1].setValue(0);
 		pts.Controls.Engines.Engine.throttle[2].setValue(0);
 	} else {
+		pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
 		pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
+		pts.Controls.Engines.Engine.reverseLever[2].setValue(0);
 	}
 }
 
