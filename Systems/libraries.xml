@@ -13,8 +13,8 @@
 			<expression>
 				<table>
 					<property>/position/altitude-ft</property>
-					<entry><ind>    0</ind><dep>0.760</dep></entry>
-					<entry><ind>43000</ind><dep>1.100</dep></entry>
+					<entry><ind>    0</ind><dep>0.76</dep></entry>
+					<entry><ind>43000</ind><dep>1.10</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -199,21 +199,33 @@
 	</filter>
 	
 	<filter>
-		<name>OAT Thrust Scale</name>
+		<name>VS Abs</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
 			<expression>
-				<table>
-					<property>/environment/temperature-degc</property>
-					<entry><ind> 70</ind><dep>0.910</dep></entry>
-					<entry><ind> 40</ind><dep>0.931</dep></entry>
-					<entry><ind>-60</ind><dep>1.000</dep></entry>
-				</table>
+				<abs>
+					<property>/it-autoflight/input/vs</property>
+				</abs>
 			</expression>
 		</input>
-		<output>/controls/engines/throttle-scale</output>
+		<output>/it-autoflight/input/vs-abs</output>
+	</filter>
+	
+	<filter>
+		<name>FPA Abs</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
+			<expression>
+				<abs>
+					<property>/it-autoflight/input/fpa</property>
+				</abs>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/fpa-abs</output>
 	</filter>
 	
 	<!--filter>

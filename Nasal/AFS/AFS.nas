@@ -191,7 +191,6 @@ var Custom = {
 	atsWarn: props.globals.initNode("/it-autoflight/custom/atswarn", 0, "BOOL"),
 	canAutoland: 0,
 	enableAtsOff: 0,
-	fpaAbs: props.globals.initNode("/it-autoflight/input/fpa-abs", 0, "DOUBLE"),
 	hdgSel: props.globals.initNode("/it-autoflight/custom/hdg-sel", 0, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/custom/kts-mach", 0, "BOOL"),
 	ktsMachTemp: 0,
@@ -211,7 +210,6 @@ var Custom = {
 		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
 	},
 	Input: {
-		vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"),
 		ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
 		ovrd1Temp: 0,
 		ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
@@ -1433,14 +1431,6 @@ setlistener("/it-autoflight/input/trk", func {
 	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 }, 0, 0);
-
-setlistener("/it-autoflight/input/vs", func {
-	Custom.Input.vsAbs.setValue(abs(Input.vs.getValue()));
-});
-
-setlistener("/it-autoflight/input/fpa", func {
-	Custom.fpaAbs.setValue(abs(Input.fpa.getValue()));
-});
 
 # For Canvas Nav Display.
 setlistener("/it-autoflight/custom/hdg-sel", func {
