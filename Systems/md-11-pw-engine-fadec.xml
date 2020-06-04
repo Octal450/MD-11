@@ -488,7 +488,7 @@
 				/controls/engines/engine[0]/reverse-lever ge 0.25
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
-				/engines/engine[0]/n1-actual ge 30
+				/engines/engine[0]/n1-actual ge 40
 				fadec/reverse-1/position-cmd eq 1
 			</test>
 			<output>/controls/engines/engine[0]/reverse-cmd</output>
@@ -538,9 +538,8 @@
 		
 		<switch name="fadec/reverse-1/throttle-rev">
 			<default value="0"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				fadec/reverse-1/interlock eq 1
-				/engines/engine[0]/reverser-pos-norm lt 1
 			</test>
 			<test value="fadec/reverse-1/throttle-rev-cmd">
 				/controls/engines/engine[0]/reverse-lever ge 0.5
@@ -557,7 +556,7 @@
 				/controls/engines/engine[1]/reverse-lever ge 0.25
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
-				/engines/engine[1]/n1-actual ge 30
+				/engines/engine[1]/n1-actual ge 40
 				fadec/reverse-2/position-cmd eq 1
 			</test>
 			<output>/controls/engines/engine[1]/reverse-cmd</output>
@@ -607,9 +606,8 @@
 		
 		<switch name="fadec/reverse-2/throttle-rev">
 			<default value="0"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				fadec/reverse-2/interlock eq 1
-				/engines/engine[1]/reverser-pos-norm lt 1
 			</test>
 			<test value="fadec/reverse-2/throttle-rev-cmd">
 				/controls/engines/engine[1]/reverse-lever ge 0.5
@@ -623,7 +621,7 @@
 				/controls/engines/engine[2]/reverse-lever ge 0.25
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
-				/engines/engine[2]/n1-actual ge 30
+				/engines/engine[2]/n1-actual ge 40
 				fadec/reverse-3/position-cmd eq 1
 			</test>
 			<output>/controls/engines/engine[2]/reverse-cmd</output>
@@ -673,9 +671,8 @@
 		
 		<switch name="fadec/reverse-3/throttle-rev">
 			<default value="0"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				fadec/reverse-3/interlock eq 1
-				/engines/engine[2]/reverser-pos-norm lt 1
 			</test>
 			<test value="fadec/reverse-3/throttle-rev-cmd">
 				/controls/engines/engine[2]/reverse-lever ge 0.5
