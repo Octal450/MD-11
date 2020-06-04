@@ -1075,10 +1075,10 @@ setlistener("sim/signals/fdm-initialized", func {
 	var group_pfd2 = PFD2_display.createGroup();
 	var group_pfd2_error = PFD2_display.createGroup();
 
-	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_1_error = canvas_PFD_1_error.new(group_pfd1_error, "Aircraft/MD-11/Models/cockpit/instruments/Common/res/error.svg");
-	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/MD-11/Models/cockpit/instruments/PFD/res/pfd.svg");
-	PFD_2_error = canvas_PFD_2_error.new(group_pfd2_error, "Aircraft/MD-11/Models/cockpit/instruments/Common/res/error.svg");
+	PFD_1 = canvas_PFD_1.new(group_pfd1, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/pfd.svg");
+	PFD_1_error = canvas_PFD_1_error.new(group_pfd1_error, "Aircraft/MD-11/Models/Cockpit/Instruments/Common/res/error.svg");
+	PFD_2 = canvas_PFD_2.new(group_pfd2, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/pfd.svg");
+	PFD_2_error = canvas_PFD_2_error.new(group_pfd2_error, "Aircraft/MD-11/Models/Cockpit/Instruments/Common/res/error.svg");
 	
 	PFD_update.start();
 	PFD_update_fast.start();

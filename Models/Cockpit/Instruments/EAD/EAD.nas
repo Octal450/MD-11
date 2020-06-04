@@ -803,8 +803,8 @@ setlistener("sim/signals/fdm-initialized", func {
 	var group_EAD_GE = EAD_display.createGroup();
 	var group_EAD_PW = EAD_display.createGroup();
 
-	EAD_GE = canvas_EAD_GE.new(group_EAD_GE, "Aircraft/MD-11/Models/cockpit/instruments/EAD/res/ge.svg");
-	EAD_PW = canvas_EAD_PW.new(group_EAD_PW, "Aircraft/MD-11/Models/cockpit/instruments/EAD/res/pw.svg");
+	EAD_GE = canvas_EAD_GE.new(group_EAD_GE, "Aircraft/MD-11/Models/Cockpit/Instruments/EAD/res/ge.svg");
+	EAD_PW = canvas_EAD_PW.new(group_EAD_PW, "Aircraft/MD-11/Models/Cockpit/Instruments/EAD/res/pw.svg");
 
 	EAD_update.start();
 	if (getprop("/systems/acconfig/options/ead-rate") > 1) {

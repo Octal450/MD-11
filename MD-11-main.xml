@@ -1390,6 +1390,7 @@
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<options n="0">
+				<throttle-override type="string">Only In Clamp</throttle-override>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 			</options>
 		</acconfig>
@@ -1493,7 +1494,7 @@
 			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
 			<file>Aircraft/MD-11/Nasal/efis.nas</file>
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/ND/ND.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
 			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
@@ -1519,10 +1520,10 @@
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_ead>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.nas</file>
 		</canvas_ead>
 		<autopush>
 			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>

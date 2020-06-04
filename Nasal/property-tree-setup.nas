@@ -143,6 +143,9 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
+		Options: {
+			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
+		}
 	},
 	Shake: {
 		effect: props.globals.getNode("/systems/shake/effect"),

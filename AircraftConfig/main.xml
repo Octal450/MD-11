@@ -25,9 +25,7 @@
 			<legend>?</legend>
 			<binding>
 				<command>nasal</command>
-				<script>
-				acconfig.help_dlg.open();
-				</script>
+				<script>acconfig.help_dlg.open();</script>
 			</binding>
 		</button>
 		<button>
@@ -59,9 +57,7 @@
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>
-						acconfig.welcome_dlg.open();
-						</script>
+						<script>acconfig.welcome_dlg.open();</script>
 					</binding>
 				</button>
 				<button>
@@ -70,9 +66,16 @@
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>
-						aircraft.livery.dialog.toggle();
-						</script>
+						<script>aircraft.livery.dialog.toggle();</script>
+					</binding>
+				</button>
+				<button>
+					<halign>center</halign>
+					<legend>Aircraft Help</legend>
+					<pref-width>140</pref-width>
+					<binding>
+						<command>nasal</command>
+						<script>acconfig.help_dlg.open();</script>
 					</binding>
 				</button>
 				<button>
@@ -81,9 +84,7 @@
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>
-						acconfig.du_quality.open();
-						</script>
+						<script>acconfig.du_quality.open();</script>
 					</binding>
 				</button>
 				<button>
@@ -92,9 +93,7 @@
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>
-						acconfig.about_dlg.open();
-						</script>
+						<script>acconfig.about_dlg.open();</script>
 					</binding>
 				</button>
 			</group>
@@ -227,9 +226,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>
-					gui.popupTip("The Aircraft was De-iced!");
-					</script>
+					<script>gui.popupTip("The Aircraft was De-iced!");</script>
 				</binding>
 			</button>
 			
@@ -364,9 +361,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
+					<script>acconfig.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -384,9 +379,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
+					<script>acconfig.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -404,9 +397,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
+					<script>acconfig.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -424,12 +415,34 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
+					<script>acconfig.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
+			
+			<group>
+				<layout>hbox</layout>
+				
+				<text>
+					<halign>left</halign>
+					<label>ATS Override:</label>
+				</text>
+				<combo>
+					<halign>right</halign>
+					<pref-width>150</pref-width>
+					<property>/systems/acconfig/options/throttle-override</property>
+					<value>Only in Clamp</value>
+					<value>Never</value>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>acconfig.writeSettings();</script>
+					</binding>
+					<live>true</live>
+				</combo>
+			</group>
 			
 			<group>
 				<layout>hbox</layout>
@@ -440,9 +453,7 @@
 					<padding>5</padding>
 					<binding>
 						<command>nasal</command>
-						<script>
-						acconfig.fctl_dlg.open();
-						</script>
+						<script>acconfig.fctl_dlg.open();</script>
 					</binding>
 				</button>
 				
@@ -455,9 +466,7 @@
 					</enable>
 					<binding>
 						<command>nasal</command>
-						<script>
-						acconfig.fail_dlg.open();
-						</script>
+						<script>acconfig.fail_dlg.open();</script>
 					</binding>
 				</button>
 				

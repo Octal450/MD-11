@@ -59,7 +59,7 @@
 	
 	<model>
 		<name>Overhead 1</name>
-		<path>Aircraft/MD-11/Models/cockpit/overhead_1.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/overhead_1.xml</path>
 		<offsets>
 			<pitch-deg>55</pitch-deg>
 		</offsets>
@@ -67,7 +67,7 @@
 	
 	<model>
 		<name>Compass</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/compass/compass.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/compass/compass.xml</path>
 		<offsets>
 			<x-m>0.05</x-m>
 		</offsets>
@@ -101,7 +101,7 @@
 	
 	<model>
 		<name>Overhead 2</name>
-		<path>Aircraft/MD-11/Models/cockpit/overhead_2.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/overhead_2.xml</path>
 		<offsets>
 			<pitch-deg>69.19</pitch-deg>
 		</offsets>
@@ -109,7 +109,7 @@
 	
 	<model>
 		<name>FCP</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/FCP/FCP.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/FCP/FCP.xml</path>
 		<offsets>
 			<pitch-deg>-10</pitch-deg>
 		</offsets>
@@ -117,7 +117,7 @@
 	
 	<model>
 		<name>1st seat</name>
-		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/seat.xml</path>
 		<offsets>
 			<x-m>-26.8062</x-m>
 			<y-m>-0.5256</y-m>
@@ -127,7 +127,7 @@
 	
 	<model>
 		<name>2nd seat</name>
-		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/seat.xml</path>
 		<offsets>
 			<x-m>-26.8062</x-m>
 			<y-m>0.5256</y-m>
@@ -137,7 +137,7 @@
 	
 	<model>
 		<name>3rd seat</name>
-		<path>Aircraft/MD-11/Models/cockpit/seat.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/seat.xml</path>
 		<offsets>
 			<heading-deg>-90</heading-deg>
 			<x-m>-26.0424</x-m>
@@ -148,12 +148,12 @@
 	
 	<model>
 		<name>Pedestal</name>
-		<path>Aircraft/MD-11/Models/cockpit/pedestal.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/pedestal.xml</path>
 	</model>
 	
 	<model>
 		<name>3. Audio selector</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/audioselector/audioselector.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/audioselector/audioselector.xml</path>
 		<offsets>
 			<pitch-deg>90</pitch-deg>
 			<heading-deg>-90</heading-deg>
@@ -165,7 +165,7 @@
 	
 	<model>
 		<name>PFD1</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD1.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD1.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.55437</y-m>
@@ -176,7 +176,7 @@
 	
 	<model>
 		<name>ND1</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/ND/ND1.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND1.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.35225</y-m>
@@ -187,7 +187,7 @@
 	
 	<model>
 		<name>EAD</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.15089</y-m>
@@ -198,7 +198,7 @@
 	
 	<model>
 		<name>SD</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/SD/SD.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/SD/SD.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.14961</y-m>
@@ -209,7 +209,7 @@
 	
 	<model>
 		<name>ND2</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/ND/ND2.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND2.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.35172</y-m>
@@ -220,7 +220,7 @@
 	
 	<model>
 		<name>PFD2</name>
-		<path>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD2.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD2.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.55309</y-m>
