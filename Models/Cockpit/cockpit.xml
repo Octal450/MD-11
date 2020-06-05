@@ -783,8 +783,11 @@
 	
 	<animation>
 		<type>select</type>
+		<object-name>AbsDisarm.light</object-name>
 		<object-name>FD1.off</object-name>
 		<object-name>FD2.off</object-name>
+		<object-name>master_warning_light_on</object-name>
+		<object-name>master_caution_light_on</object-name>
 		<condition>
 			<or>
 				<greater-than-equals>
@@ -807,7 +810,7 @@
 		<type>select</type>
 		<object-name>master_warning_light_on</object-name>
 		<condition>
-			<property>sim/unused/unused</property>
+			<property>controls/switches/annun-test</property>
 		</condition>
 	</animation>
 
@@ -815,23 +818,26 @@
 		<type>select</type>
 		<object-name>master_caution_light_on</object-name>
 		<condition>
-			<property>sim/unused/unused</property>
+			<property>controls/switches/annun-test</property>
 		</condition>
 	</animation>
-
-	<!--animation>
+	
+	<animation>
 		<type>select</type>
-		<object-name>master_warning_light_off</object-name>
+		<object-name>AbsDisarm.light</object-name>
 		<condition>
+			<or>
+				<equals>
+					<property>gear/abs/light/disarm</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
 		</condition>
-	</animation-->
-
-	<!--animation>
-		<type>select</type>
-		<object-name>master_caution_light_off</object-name>
-		<condition>
-		</condition>
-	</animation-->
+	</animation>
 	
 	<animation>
 		<type>pick</type>

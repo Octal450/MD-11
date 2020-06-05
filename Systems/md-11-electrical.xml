@@ -522,6 +522,23 @@
 		</fcs_function>
 		
 		<!-- Air Driven Generator Power -->
+		<scheduled_gain name="/systems/electrical/sources/adg/input-vc-raw">
+			<input>velocities/vc-kts</input>
+			<table>
+				<independentVar lookup="row">aero/alpha-deg-norm</independentVar>
+				<tableData>
+					-90  0
+					  0  1
+					 90  0
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<lag_filter name="/systems/electrical/sources/adg/input-vc">
+			<input>/systems/electrical/sources/adg/input-vc-raw</input>
+			<c1>10</c1>
+		</lag_filter>
+		
 		<fcs_function name="/systems/electrical/sources/adg/output-volt">
 			<function>
 				<ifthen>
@@ -530,7 +547,7 @@
 						<value>1</value>
 					</eq>
 					<table>
-						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<independentVar lookup="row">/systems/electrical/sources/adg/input-vc</independentVar>
 						<tableData>
 							 50    0
 							 80  115
