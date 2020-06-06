@@ -769,7 +769,7 @@
 		
 		<summer name="hydraulics/tiller/afs-cmd-input">
 			<input>fcc/afs/yaw-cmd</input>
-			<input>hydraulics/rudder/trim</input> <!-- 13/13 of -30/30 -->
+			<input>hydraulics/rudder/trim</input> <!-- 13 of 30 -->
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
@@ -796,7 +796,7 @@
 		
 		<summer name="hydraulics/tiller/rudder-cmd-input">
 			<input>hydraulics/tiller/rudder-cmd-switch</input>
-			<input>hydraulics/rudder/trim</input> <!-- 13/13 of -30/30 -->
+			<input>hydraulics/rudder/trim</input> <!-- 13 of 30 -->
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
