@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!-- McDonnell Douglas MD-11 Flight Recorder -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
-
-<!-- MD-11 Flight Recorder -->
 
 <PropertyList>
 	<replay-config type="int">0</replay-config>
@@ -33,6 +32,14 @@
 			<signal>
 				<type>float</type>
 				<property>/position/gear-agl-ft</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/gear/gear[1]/angle-deg</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/gear/gear[2]/angle-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>

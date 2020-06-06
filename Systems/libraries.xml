@@ -4,55 +4,63 @@
 
 <PropertyList>
 	
+	<!-- Not in JSBsim, cause then it takes too long to tune -->
 	<filter>
-		<name>Groundspeed Meters Per Second</name>
-		<type>gain</type>
-		<gain>0.5144444444444</gain>
-		<input>/velocities/groundspeed-kt</input>
-		<output>/velocities/groundspeed-mps</output>
-		<min>0</min>
-		<max>1000</max>
-	</filter>
-	
-	<predict-simple>
-		<name>Groundspeed Meters Per Second Ahead</name>
-		<debug>false</debug>
-		<input>/velocities/groundspeed-mps</input>
-		<output>/velocities/groundspeed-mps-ahead</output>
-		<seconds>1.5</seconds>
-		<filter-gain>0.0</filter-gain>
-	</predict-simple>
-	
-	<filter>
-		<name>Gear AGL Altitude FT</name>
+		<name>EPR C1</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<expression>
-				<dif>
-					<property>/position/altitude-agl-ft</property>
-					<value>17.283</value>
-				</dif>
+				<table>
+					<property>/position/altitude-ft</property>
+					<entry><ind>    0</ind><dep>0.76</dep></entry>
+					<entry><ind>43000</ind><dep>1.10</dep></entry>
+				</table>
 			</expression>
 		</input>
-		<output>/position/gear-agl-ft</output>
+		<output>/fdm/jsbsim/fadec/epr/c1</output>
 	</filter>
 	
 	<filter>
-		<name>Gear AGL Altitude M</name>
+		<name>EPR C2</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<expression>
-				<product>
-					<property>/position/gear-agl-ft</property>
-					<value>0.3048</value>
-				</product>
+				<difference>
+					<table>
+						<property>/position/altitude-ft</property>
+						<entry><ind>    0</ind><dep>0.986</dep></entry>
+						<entry><ind>43000</ind><dep>0.844</dep></entry>
+					</table>
+					<table>
+						<property>/fdm/jsbsim/velocities/mach</property>
+						<entry><ind>0.00</ind><dep>0.000</dep></entry>
+						<entry><ind>0.09</ind><dep>0.000</dep></entry>
+						<entry><ind>0.15</ind><dep>0.017</dep></entry>
+						<entry><ind>0.22</ind><dep>0.023</dep></entry>
+						<entry><ind>1.00</ind><dep>0.015</dep></entry>
+					</table>
+					<table>
+						<property>/fdm/jsbsim/aero/alpha-deg-norm</property>
+						<entry><ind> 0.0</ind><dep>0.00</dep></entry>
+						<entry><ind> 7.5</ind><dep>0.01</dep></entry>
+						<entry><ind>17.0</ind><dep>0.03</dep></entry>
+					</table>
+				</difference>
 			</expression>
 		</input>
-		<output>/position/gear-agl-m</output>
+		<output>/fdm/jsbsim/fadec/epr/c2-raw</output>
 	</filter>
-
+	
+	<filter>
+		<name>EPR C2 Lag</name>
+		<type>exponential</type>
+		<input>/fdm/jsbsim/fadec/epr/c2-raw</input>
+		<output>/fdm/jsbsim/fadec/epr/c2</output>
+		<filter-time>0.32</filter-time>
+	</filter>
+	
 	<predict-simple>
 		<name>Gear AGL Altitude</name>
 		<debug>false</debug>
@@ -191,40 +199,34 @@
 	</filter>
 	
 	<filter>
-		<name>OAT Thrust Scale</name>
+		<name>VS Abs</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
 			<expression>
-				<table>
-					<property>/environment/temperature-degc</property>
-					<entry><ind> 70</ind><dep>0.910</dep></entry>
-					<entry><ind> 40</ind><dep>0.931</dep></entry>
-					<entry><ind>-60</ind><dep>1.000</dep></entry>
-				</table>
+				<abs>
+					<property>/it-autoflight/input/vs</property>
+				</abs>
 			</expression>
 		</input>
-		<output>/controls/engines/throttle-scale</output>
+		<output>/it-autoflight/input/vs-abs</output>
 	</filter>
 	
-	<!--filter>
-		<name>FLX Thrust Scale</name>
+	<filter>
+		<name>FPA Abs</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input> 
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
 			<expression>
-				<table>
-					<property>/FMC/internal/flex</property>
-					<entry><ind> 70</ind><dep>0.910</dep></entry>
-					<entry><ind> 40</ind><dep>0.931</dep></entry>
-					<entry><ind>-60</ind><dep>1.000</dep></entry>
-				</table>
+				<abs>
+					<property>/it-autoflight/input/fpa</property>
+				</abs>
 			</expression>
 		</input>
-		<output>/controls/engines/flx-scale</output>
-	</filter-->
+		<output>/it-autoflight/input/fpa-abs</output>
+	</filter>
 	
 	<filter>
 		<name>FF 1</name>
@@ -307,7 +309,7 @@
 		<output>fdm/jsbsim/inertia/weight-kg</output>
 	</filter>
 	
-	<filter>
+	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -340,52 +342,6 @@
 		<min>120</min>
 		<max>300</max>
 	</filter>
-	
-	<!-- Braking -->
-	
-	<filter>
-		<name>Autobrake Decel Error</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<dif>
-					<property>/velocities/groundspeed-mps</property>
-					<property>/velocities/groundspeed-mps-ahead</property>
-				</dif>
-			</expression>
-		</input>
-		<output>/controls/autobrake/decel-error</output>
-	</filter>
-	
-	<pi-simple-controller>
-		<name>IT-CONTROLLER: AUTOBRAKE DECEL</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<equals>
-					<property>/controls/autobrake/active</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<property>/controls/autobrake/decel-error</property>
-		</input>
-		<reference>
-			<property>/controls/autobrake/decel-rate</property>
-		</reference>
-		<output>
-			<property>/controls/autobrake/brake-left</property>
-			<property>/controls/autobrake/brake-right</property>
-		</output>
-		<config>
-			<Kp>0.45</Kp>
-			<Ki>0.25</Ki>
-			<min>0.0</min>
-			<max>1.0</max>
-		</config>
-	</pi-simple-controller>
 	
 	<!-- GPWS Controller -->
 	<logic>

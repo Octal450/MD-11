@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<path>res/ND1.ac</path>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ND.screenL</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.showNd();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<effect>
+		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
+		<parameters>
+			<inner-angle type="float">90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle type="float">90</outer-angle> <!-- 0-90, but greater than inner -->
+			<black-angle type="float">90</black-angle> <!-- 0-90, but greater than outer -->
+			<dirt-factor>0.07</dirt-factor>
+			<contrast type="float">0.9</contrast>
+		</parameters>
+		<object-name>ND.screenL</object-name>
+		<object-name>ND.offL</object-name>
+		<object-name>ND.borderL</object-name>
+	</effect>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ND.screenL</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/bus/ac-1</property>
+				<value>110</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ND.offL</object-name>
+		<condition>
+			<less-than>
+				<property>systems/electrical/bus/ac-1</property>
+				<value>110</value>
+			</less-than>
+		</condition>
+	</animation>
+
+</PropertyList>

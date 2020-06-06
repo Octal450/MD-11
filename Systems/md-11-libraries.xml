@@ -19,30 +19,28 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/multi-engine-out">
+		<switch name="aero/alpha-deg-norm">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/engines/engine[0]/state ne 3
-				/engines/engine[1]/state ne 3
-			</test>
-			<test logic="AND" value="1">
-				/engines/engine[0]/state ne 3
-				/engines/engine[2]/state ne 3
-			</test>
-			<test logic="AND" value="1">
-				/engines/engine[1]/state ne 3
-				/engines/engine[2]/state ne 3
+			<test value="aero/alpha-deg">
+				gear/unit[0]/WOW eq 0
 			</test>
 		</switch>
 		
-		<switch name="libraries/any-irs-aligned">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/instrumentation/irs/ir[0]/aligned eq 1
-				/instrumentation/irs/ir[1]/aligned eq 1
-				/instrumentation/irs/ir[2]/aligned eq 1
-			</test>
-		</switch>
+		<fcs_function name="/position/gear-agl-ft-tie">
+			<function>
+				<difference>
+					<property>/position/altitude-agl-ft</property>
+					<value>14.201</value>
+				</difference>
+			</function>
+			<output>/position/gear-agl-ft</output> <!-- So flight recorder can override it -->
+		</fcs_function>
+		
+		<pure_gain name="/position/gear-agl-m-tie">
+			<input>/position/gear-agl-ft</input>
+			<gain>0.3048</gain>
+			<output>/position/gear-agl-m</output> <!-- So flight recorder can override it -->
+		</pure_gain>
 	
 	</channel>
 	
@@ -189,6 +187,31 @@
 			</test>
 			<test value="/controls/fctl/gear-max-kts">
 				/controls/gear/gear-down ne 0
+			</test>
+		</switch>
+		
+		<switch name="libraries/multi-engine-out">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state ne 3
+				/engines/engine[1]/state ne 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state ne 3
+				/engines/engine[2]/state ne 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[1]/state ne 3
+				/engines/engine[2]/state ne 3
+			</test>
+		</switch>
+		
+		<switch name="libraries/any-irs-aligned">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/instrumentation/irs/ir[0]/aligned eq 1
+				/instrumentation/irs/ir[1]/aligned eq 1
+				/instrumentation/irs/ir[2]/aligned eq 1
 			</test>
 		</switch>
 	

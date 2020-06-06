@@ -9,6 +9,7 @@ These examples will show the guidelines for contributing. Please try to follow t
 - Do not add a comment to every line, only to functions/groups of code.
 - Remove .bak or .blend files, unless absolutely needed.
 - Leave one extra line at the bottom of each file.
+- DO NOT USE setprop/getprop unless its only done once! Use props.nas and Property Tree Setup.
 
 ## Formatting Guidelines:
 Indenting and Line Breaks:
@@ -38,7 +39,7 @@ var someOtherThing = func {
 		something = 1;
 	}
 	settimer(func {
-		setprop("/something", something);
+		props.globals.getNode("/something").setValue(something);
 	}, 5);
 }
 ```

@@ -143,7 +143,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
-				<value>0.04679875</value>
+				<value>0.0316548</value>
 			</product>
 		</function>
 		
@@ -153,7 +153,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
-				<value>0.04679875</value>
+				<value>0.0316548</value>
 			</product>
 		</function>
 		
@@ -163,7 +163,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
-				<value>0.04679875</value>
+				<value>0.0316548</value>
 			</product>
 		</function>
 		
@@ -173,7 +173,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
-				<value>0.04679875</value>
+				<value>0.0316548</value>
 			</product>
 		</function>
 		
@@ -183,7 +183,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>hydraulics/stabilizer/final-deg</property></toradians>
-				<value>0.0092075</value>
+				<value>0.0021645</value>
 			</product>
 		</function>
 		
@@ -384,7 +384,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>hydraulics/stabilizer/final-deg</property></toradians></abs>
-				<value>0.0076</value>
+				<value>0.0043</value>
 			</product>
 		</function>
 		
@@ -394,7 +394,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
+				<value>0.0023456688</value>
 			</product>
 		</function>
 		
@@ -404,7 +404,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
+				<value>0.0023456688</value>
 			</product>
 		</function>
 		
@@ -414,7 +414,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
+				<value>0.0023456688</value>
 			</product>
 		</function>
 		
@@ -424,7 +424,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians></abs>
-				<value>0.0029271086286386</value>
+				<value>0.0023456688</value>
 			</product>
 		</function>
 		

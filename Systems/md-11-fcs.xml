@@ -734,15 +734,149 @@
 	
 	<channel name="Tiller">
 		
-		<switch name="hydraulics/tiller/switch">
+		<switch name="/controls/gear/steering-switched">
 			<default value="/controls/flight/rudder"/>
-			<test logic="AND" value="/controls/flight/aileron">
-				fcc/afs/enabled eq 0
+			<test value="0">
+				/gear/gear[0]/wow ne 1
+			</test>
+			<test value="/controls/gear/steering">
+				/systems/acconfig/options/seperate-tiller-axis eq 1
+			</test>
+			<test value="/controls/flight/aileron">
 				/controls/flight/aileron-drives-tiller eq 1
 			</test>
-			<test value="fcc/afs/yaw-cmd">
+		</switch>
+		
+		<scheduled_gain name="hydraulics/tiller/handle-scheduled">
+			<input>/controls/gear/steering-switched</input>
+			<table>
+				<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+				<independentVar lookup="column">/systems/acconfig/options/seperate-tiller-axis</independentVar>
+				<tableData> <!-- 0.142857 is 10/70 -->
+					      0         1
+					 0.5  0.000000  0.000000
+					 1.0  1.000000  1.000000
+					15.0  1.000000  1.000000
+					45.0  0.142857  1.000000
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<pure_gain name="hydraulics/tiller/autopush-cmd-deg">
+			<input>hydraulics/tiller/autopush-cmd</input>
+			<gain>70</gain>
+		</pure_gain>
+		
+		<summer name="hydraulics/tiller/afs-cmd-input">
+			<input>fcc/afs/yaw-cmd</input>
+			<input>hydraulics/rudder/trim</input> <!-- 13 of 30 -->
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
+		<scheduled_gain name="hydraulics/tiller/afs-cmd-deg">
+			<input>hydraulics/tiller/afs-cmd-input</input>
+			<table>
+				<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+				<tableData>
+					  0.5   0
+					  1.0  10
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<switch name="hydraulics/tiller/rudder-cmd-switch">
+			<default value="/controls/flight/rudder"/>
+			<test value="/controls/flight/aileron">
+				/controls/flight/aileron-drives-tiller eq 1
+			</test>
+		</switch>
+		
+		<summer name="hydraulics/tiller/rudder-cmd-input">
+			<input>hydraulics/tiller/rudder-cmd-switch</input>
+			<input>hydraulics/rudder/trim</input> <!-- 13 of 30 -->
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="hydraulics/tiller/rudder-cmd-deg"> <!-- Combines rudder and tiller into just rudder -->
+			<function>
+				<table>
+					<independentVar lookup="row">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
+					<independentVar lookup="column">hydraulics/tiller/rudder-cmd-input</independentVar>
+					<independentVar lookup="table">/velocities/groundspeed-kt</independentVar>
+					<tableData breakPoint="0.5">
+						  -1.00 -0.01  0.01  1.00
+						0  0     0     0     0
+						1  0     0     0     0
+					</tableData>
+					<tableData breakPoint="1.0">
+						  -1.00 -0.01  0.01  1.00
+						0 -70    0     0     70
+						1 -70    0     0     70
+					</tableData>
+					<tableData breakPoint="15.0">
+						  -1.00 -0.01  0.01  1.00
+						0 -70    0     0     70
+						1 -70    0     0     70
+					</tableData>
+					<tableData breakPoint="45.0">
+						  -1   0  1
+						0 -10  0  10
+						1 -10  0  10
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/tiller/tiller-cmd-deg">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+						<independentVar lookup="column">/controls/gear/steering</independentVar>
+						<tableData>
+							    -1.00 -0.01  0.01  1.00
+							0.5  0     0     0     0
+							1.0 -70    0     0     70
+						</tableData>
+					</table>
+					<product>
+						<property>hydraulics/tiller/rudder-cmd-input</property>
+						<table>
+							<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
+							<tableData>
+								0.5   0
+								1.0  10
+							</tableData>
+						</table>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<switch name="hydraulics/tiller/cmd-deg">
+			<default value="hydraulics/tiller/rudder-cmd-deg"/>
+			<test value="0">
+				/gear/gear[0]/wow ne 1
+			</test>
+			<test value="hydraulics/tiller/autopush-cmd-deg">
+				/sim/model/autopush/connected eq 1
+			</test>
+			<test value="hydraulics/tiller/afs-cmd-deg">
 				fcc/afs/enabled eq 1
 			</test>
+			<test value="hydraulics/tiller/tiller-cmd-deg">
+				/systems/acconfig/options/seperate-tiller-axis eq 1
+			</test>
+			<clipto>
+				<min>hydraulics/tiller/min-deg</min>
+				<max>hydraulics/tiller/max-deg</max>
+			</clipto>
 		</switch>
 		
 		<switch name="hydraulics/tiller/rate">
@@ -750,7 +884,7 @@
 			<test value="70">
 				/sim/model/autopush/connected eq 1
 			</test>
-			<test logic="OR" value="70">
+			<test logic="OR" value="35">
 				/systems/hydraulics/sys-1-psi ge 1500
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
@@ -761,7 +895,7 @@
 			<test value="-70">
 				/sim/model/autopush/connected eq 1
 			</test>
-			<test logic="OR" value="-70">
+			<test value="-70">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
 		</switch>
@@ -771,44 +905,13 @@
 			<test value="70">
 				/sim/model/autopush/connected eq 1
 			</test>
-			<test logic="OR" value="70">
+			<test value="70">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
 		</switch>
 		
-		<fcs_function name="hydraulics/tiller/function">
-			<function>
-				<ifthen>
-					<eq>
-						<property>/sim/model/autopush/connected</property>
-						<value>1</value>
-					</eq>
-					<product>
-						<property>hydraulics/tiller/autopush-cmd</property>
-						<value>70</value>
-					</product>
-					<product>
-						<property>/gear/gear[0]/wow</property>
-						<table>
-							<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
-							<independentVar lookup="column">hydraulics/tiller/switch</independentVar>
-							<tableData>
-									  -1  0   1
-								 0.5   0  0   0
-								 1.0 -70  0  70
-								15.0 -70  0  70
-								45.0 -10  0  10
-							</tableData>
-						</table>
-					</product>
-				</ifthen>
-			</function>
-			<min>hydraulics/tiller/min-deg</min>
-			<max>hydraulics/tiller/max-deg</max>
-		</fcs_function>
-		
 		<actuator name="fcs/steer-deg">
-			<input>hydraulics/tiller/function</input>
+			<input>hydraulics/tiller/cmd-deg</input>
 			<rate_limit>hydraulics/tiller/rate</rate_limit>
 			<output>fcs/steer-pos-deg[0]</output>
 		</actuator>
@@ -824,36 +927,70 @@
 	
 	<channel name="Brakes">
 		
-		<summer name="fcs/left-brake-summer">
-			<input>/controls/gear/brake-left</input>
-			<input>/controls/gear/brake-parking</input>
+		<switch name="fcs/brake-avail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
+			</test>
+		</switch>
+		
+		<fcs_function name="fcs/left-brake-input">
+			<function>
+				<product>
+					<property>fcs/brake-avail</property>
+					<max>
+						<property>/controls/gear/brake-left</property>
+						<property>/controls/gear/brake-parking</property>
+						<property>/gear/abs/brake-output</property>
+					</max>
+				</product>
+			</function>
 			<clipto>
 				<min>0</min>
 				<max>1</max>
 			</clipto>
-		</summer>
+		</fcs_function>
+		
+		<actuator name="fcs/left-brake-actuator">
+			<input>fcs/left-brake-input</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
 		
 		<switch name="rubbish/left-brake-cmd-norm">
-			<default value="fcs/left-brake-summer"/>
-			<test value="/controls/autobrake/brake-left">
-				/controls/autobrake/active eq 1
+			<default value="fcs/left-brake-actuator"/>
+			<test value="1">
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
 		
-		<summer name="fcs/right-brake-summer">
-			<input>/controls/gear/brake-right</input>
-			<input>/controls/gear/brake-parking</input>
+		<fcs_function name="fcs/right-brake-input">
+			<function>
+				<product>
+					<property>fcs/brake-avail</property>
+					<max>
+						<property>/controls/gear/brake-right</property>
+						<property>/controls/gear/brake-parking</property>
+						<property>/gear/abs/brake-output</property>
+					</max>
+				</product>
+			</function>
 			<clipto>
 				<min>0</min>
 				<max>1</max>
 			</clipto>
-		</summer>
+		</fcs_function>
+		
+		<actuator name="fcs/right-brake-actuator">
+			<input>fcs/right-brake-input</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
 		
 		<switch name="rubbish/right-brake-cmd-norm">
-			<default value="fcs/right-brake-summer"/>
-			<test value="/controls/autobrake/brake-right">
-				/controls/autobrake/active eq 1
+			<default value="fcs/right-brake-actuator"/>
+			<test value="1">
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<output>fcs/right-brake-cmd-norm</output>
 		</switch>

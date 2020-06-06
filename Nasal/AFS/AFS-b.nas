@@ -133,8 +133,14 @@ var Clamp = {
 			me.active = 0;
 		}
 		
-		if (Custom.Output.clamp.getBoolValue() != me.active) {
-			Custom.Output.clamp.setBoolValue(me.active);
+		if (pts.Systems.Acconfig.Options.throttleOverride.getValue() == "Never") {
+			if (Custom.Output.clamp.getBoolValue() != 0) {
+				Custom.Output.clamp.setBoolValue(0);
+			}
+		} else {
+			if (Custom.Output.clamp.getBoolValue() != me.active) {
+				Custom.Output.clamp.setBoolValue(me.active);
+			}
 		}
 		
 		if (me.pitchText == "T/O CLB") {

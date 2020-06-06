@@ -44,6 +44,7 @@ setprop("/systems/acconfig/options/no-rendering-warn", 0);
 setprop("/systems/acconfig/options/pfd-rate", 1);
 setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/options/sd-rate", 1);
+setprop("/systems/acconfig/options/seperate-tiller-axis", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/MD-11/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/MD-11/AircraftConfig/welcome.xml");
@@ -77,9 +78,9 @@ setlistener("/systems/acconfig/new-revision", func {
 });
 
 var error_chk = func {
-	if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < 201920) {
+	if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < 202011) {
 		setprop("/systems/acconfig/error-code", "0x121");
-		setprop("/systems/acconfig/error-reason", "FGFS version is too old! Please update FlightGear to at least 2019.2.0.");
+		setprop("/systems/acconfig/error-reason", "FGFS version is too old! Please update FlightGear to at least 2020.1.1.");
 		if (getprop("/systems/acconfig/out-of-date") != 1) {
 			error.open();
 		}
@@ -396,7 +397,7 @@ var takeoff = func {
 				setprop("/controls/flight/speedbrake-arm", 1);
 				setprop("/controls/flight/flaps", 0.36); # 10-25/EXT
 				setprop("/controls/flight/elevator-trim", -0.29677); # About 4.6ANU -->
-				setprop("/controls/autobrake/switch", -1);
+				setprop("/controls/gear/abs/knob", -1);
 			}
 		});
 	}

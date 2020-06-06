@@ -117,7 +117,7 @@
 		</enable>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 		<reference>/it-autoflight/internal/kts</reference>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 		<config>
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
@@ -160,7 +160,7 @@
 			<property>/it-autoflight/internal/mach</property>
 			<scale>1000.0</scale>
 		</reference>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 		<config>
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
@@ -194,7 +194,7 @@
 			</condition>
 		</enable>
 		<input>0</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -221,12 +221,11 @@
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/limit/ats-pitch-max</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 	</filter>
 	
-	<!-- Engine 1 -->
 	<filter>
-		<name>Thrust Filter 1</name>
+		<name>Thrust CMD Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -245,10 +244,40 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
-		<min>0</min>
+		<input>/fdm/jsbsim/fadec/ats-cmd-raw</input>
+		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<min>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/thr-mode</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<value>0</value>
+		</min>
+		<min>/fdm/jsbsim/fadec/limit/idle-norm</min>
 		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/mode/thr</property>
+						<value>RETARD</value>
+					</equals>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+			<value>0.3</value>
+		</max-rate-of-change>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -265,6 +294,85 @@
 			<value>0.05</value>
 		</max-rate-of-change>
 		<max-rate-of-change>0.3</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>Throttle Comparator</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<max>
+					<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
+					<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
+				</max>
+			</expression>
+		</input>
+		<output>/fdm/jsbsim/fadec/throttle-compare-max</output>
+	</filter>
+	
+	<filter>
+		<name>Thrust CMD Backdrive</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<or>
+					<not-equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</not-equals>
+				</or>
+			</condition>
+		</enable>
+		<input>/fdm/jsbsim/fadec/throttle-compare-max</input>
+		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+	</filter>
+	
+	<!-- Engine 1 -->
+	<filter>
+		<name>Thrust Filter 1</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<initialize-to>output</initialize-to>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+		</input>
+		<input>/fdm/jsbsim/fadec/throttle-lever[0]</input>
+		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/athr</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.3</value>
+		</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -289,36 +397,13 @@
 		<output>/controls/engines/engine[0]/throttle</output>
 	</filter>
 	
-	<filter>
-		<name>Thrust Backdrive 1</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<or>
-					<not-equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</not-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/control-1/throttle-n1-lag</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
-	</filter>
-	
 	<!-- Engine 2 -->
 	<filter>
 		<name>Thrust Filter 2</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<enable>
+		<input>
 			<condition>
 				<and>
 					<equals>
@@ -331,27 +416,26 @@
 					</equals>
 				</and>
 			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd</input>
+			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+		</input>
+		<input>/fdm/jsbsim/fadec/throttle-lever[1]</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
-		<min>0</min>
-		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
-				<or>
+				<and>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
+						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>2</value>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
 					</equals>
-				</or>
+				</and>
 			</condition>
-			<value>0.05</value>
+			<value>0.3</value>
 		</max-rate-of-change>
-		<max-rate-of-change>0.3</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -376,36 +460,13 @@
 		<output>/controls/engines/engine[1]/throttle</output>
 	</filter>
 	
-	<filter>
-		<name>Filter Backdrive 2</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<or>
-					<not-equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</not-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/control-2/throttle-n1-lag</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
-	</filter>
-	
 	<!-- Engine 3 -->
 	<filter>
 		<name>Thrust Filter 3</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<enable>
+		<input>
 			<condition>
 				<and>
 					<equals>
@@ -418,27 +479,26 @@
 					</equals>
 				</and>
 			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd</input>
+			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+		</input>
+		<input>/fdm/jsbsim/fadec/throttle-lever[2]</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
-		<min>0</min>
-		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
 		<max-rate-of-change>
 			<condition>
-				<or>
+				<and>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
+						<property>/it-autoflight/output/athr</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>2</value>
+						<property>/it-autoflight/output/clamp</property>
+						<value>0</value>
 					</equals>
-				</or>
+				</and>
 			</condition>
-			<value>0.05</value>
+			<value>0.3</value>
 		</max-rate-of-change>
-		<max-rate-of-change>0.3</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -461,44 +521,6 @@
 		</enable>
 		<input>/fdm/jsbsim/fadec/ats-cmd-3</input>
 		<output>/controls/engines/engine[2]/throttle</output>
-	</filter>
-	
-	<filter>
-		<name>Thrust Backdrive 3</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<or>
-					<not-equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</not-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/control-3/throttle-n1-lag</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
-	</filter>
-	
-	<filter>
-		<name>Throttle Comparator</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<max>
-					<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
-					<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
-					<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
-				</max>
-			</expression>
-		</input>
-		<output>/fdm/jsbsim/fadec/throttle-compare-max</output>
 	</filter>
 	
 	<filter>

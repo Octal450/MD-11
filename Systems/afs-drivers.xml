@@ -116,6 +116,9 @@
 					<property>/engines/engine[2]/reverser-pos-norm</property>
 					<value>0.01</value>
 				</less-than>
+				<not><property>/controls/fadec/eng-1-altn</property></not>
+				<not><property>/controls/fadec/eng-2-altn</property></not>
+				<not><property>/controls/fadec/eng-3-altn</property></not>
 			</and>
 		</input>
 		<output>/it-autoflight/output/ats-available</output>

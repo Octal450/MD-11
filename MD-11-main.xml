@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures)</author>
+		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures), J Maverick 16 (Effects)</author>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
@@ -427,22 +427,25 @@
 		</electrical>
 		<engines n="0">
 			<engine n="0">
-				<cutoff type="bool">true</cutoff>
-				<cutoff-switch type="bool">true</cutoff-switch>
+				<cutoff type="bool">1</cutoff>
+				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="1">
-				<cutoff type="bool">true</cutoff>
-				<cutoff-switch type="bool">true</cutoff-switch>
+				<cutoff type="bool">1</cutoff>
+				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="2">
-				<cutoff type="bool">true</cutoff>
-				<cutoff-switch type="bool">true</cutoff-switch>
+				<cutoff type="bool">1</cutoff>
+				<cutoff-switch type="bool">1</cutoff-switch>
+				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
@@ -660,12 +663,15 @@
 			<fcs n="0">
 				<slat-pos-deg type="double">0</slat-pos-deg>
 			</fcs>
+			<zero type="int">0</zero>
 		</jsbsim>
 	</fdm>
 	
 	<gear n="0">
 		<abs n="0">
-			<active type="bool">0</active>
+			<armed type="bool">0</armed>
+			<mode type="int">0</mode>
+			<knob type="int">0</knob>
 		</abs>
 		<gear n="0">
 			<tyre-smoke type="bool">0</tyre-smoke>
@@ -763,6 +769,25 @@
 					</binding>
 				</mod-up>
 			</key>
+			<key n="7">
+				<name>CTRL-g</name>
+				<desc>Go Around</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						setprop("/controls/switches/ga-button", 1);
+						libraries.APPanel.GAButton();
+					</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>
+							setprop("/controls/switches/ga-button", 0);
+						</script>
+					</binding>
+				</mod-up>
+			</key>
 			<key n="24">
 				<name>Ctrl-x</name>
 				<desc>Reset zoom to default</desc>
@@ -777,9 +802,9 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -789,9 +814,9 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -850,9 +875,9 @@
 					</condition>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") - 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") - 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -972,9 +997,9 @@
 					</condition>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01);
-						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
-						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[0]/throttle") + 0.01); # Not a typo, always use engine[0] as a reference
+						setprop("/controls/engines/engine[0]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
+						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01);
+						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
 				</binding>
 			</key>
@@ -1367,7 +1392,11 @@
 	
 	<systems n="0">
 		<acconfig n="0">
-			<autoconfig-running>0</autoconfig-running>
+			<autoconfig-running type="bool">0</autoconfig-running>
+			<options n="0">
+				<throttle-override type="string">Only In Clamp</throttle-override>
+				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
+			</options>
 		</acconfig>
 		<apu n="0">
 			<n2 type="double">0</n2>
@@ -1469,10 +1498,11 @@
 			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
 			<file>Aircraft/MD-11/Nasal/efis.nas</file>
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/ND/ND.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
 			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
+			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
@@ -1484,7 +1514,6 @@
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/brakes.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
 		</systems>
 		<afs>
@@ -1495,10 +1524,10 @@
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/PFD/PFD.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_ead>
-			<file>Aircraft/MD-11/Models/cockpit/instruments/EAD/EAD.nas</file>
+			<file>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.nas</file>
 		</canvas_ead>
 		<autopush>
 			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>

@@ -276,7 +276,6 @@
 	<object-name>flap.14.part2</object-name>
 	<object-name>wing.antennas.right</object-name>
 	<object-name>AileronR2</object-name>
-	<object-name>greenlightsphere</object-name>
 	<object-name>GreenLight</object-name>
 	<object-name>GreenLightALS</object-name>
 	<object-name>Strobelight.2</object-name>
@@ -311,7 +310,6 @@
 	<object-name>wing.antennas.right</object-name>
 	<object-name>AileronR2</object-name>
 	<object-name>wing.2.part3</object-name>
-	<object-name>greenlightsphere</object-name>
 	<object-name>GreenLight</object-name>
 	<object-name>GreenLightALS</object-name>
 	<object-name>Strobelight.2</object-name>
@@ -360,7 +358,7 @@
 
 <model>
 	<name>Cockpit</name>
-	<path>Aircraft/MD-11/Models/cockpit/cockpit.xml</path>
+	<path>Aircraft/MD-11/Models/Cockpit/cockpit.xml</path>
 </model>
 
 	<animation>
@@ -918,7 +916,7 @@
 <object-name>front.strut.low</object-name>
     <object-name>front.strut.high.2</object-name>
         <property>sim/multiplay/generic/float[10]</property>
-		<factor>68</factor>
+		<factor>70</factor>
 	 	<axis>
 			<x1-m>-20.4239</x1-m>
 			<y1-m>0</y1-m>

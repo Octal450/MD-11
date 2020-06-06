@@ -68,24 +68,69 @@
 			</test>
 		</switch>
 		
-		<switch name="spoilers/throttle[0]">
-			<default value="/controls/engines/engine[0]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[0]/reverse-lever ne 0
+		<switch name="spoilers/arm-input-wow"> <!-- Latching Switch -->
+			<default value="position/wow"/>
+			<test logic="AND" value="spoilers/arm-input-wow">
+				/controls/flight/speedbrake-arm eq 1
+				position/wow eq 1
 			</test>
 		</switch>
 		
-		<switch name="spoilers/throttle[1]">
-			<default value="/controls/engines/engine[1]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[1]/reverse-lever ne 0
+		<switch name="spoilers/rto-input-kts"> <!-- Latching Switch -->
+			<default value="/instrumentation/airspeed-indicator/indicated-speed-kt"/>
+			<test logic="AND" value="spoilers/rto-input-kts">
+				/controls/flight/speedbrake-arm eq 1
+				spoilers/auto-speedbrake-feedback gt 0
 			</test>
 		</switch>
 		
-		<switch name="spoilers/throttle[2]">
-			<default value="/controls/engines/engine[2]/throttle"/>
-			<test value="0">
-				/controls/engines/engine[2]/reverse-lever ne 0
+		<switch name="spoilers/auto-speedbrake-arm-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Landing -->
+				/controls/flight/speedbrake-arm eq 1
+				spoilers/arm-input-wow ne 1
+			</test>
+			<test logic="AND" value="2"> <!-- RTO 1 -->
+				/controls/flight/speedbrake-arm eq 1
+				spoilers/arm-input-wow eq 1
+				spoilers/rto-input-kts lt 80
+			</test>
+			<test logic="AND" value="3"> <!-- RTO 2 -->
+				/controls/flight/speedbrake-arm eq 1
+				spoilers/arm-input-wow eq 1
+				spoilers/rto-input-kts ge 80
+			</test>
+		</switch>
+		
+		<switch name="spoilers/multi-reverse">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/engines/engine[0]/reverse-cmd eq 1
+				/controls/engines/engine[1]/reverse-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/engines/engine[0]/reverse-cmd eq 1
+				/controls/engines/engine[2]/reverse-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/engines/engine[1]/reverse-cmd eq 1
+				/controls/engines/engine[2]/reverse-cmd eq 1
+			</test>
+		</switch>
+		
+		<switch name="spoilers/multi-idle">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fadec/throttle-lever-feedback[0] lt 0.05
+				fadec/throttle-lever-feedback[1] lt 0.05
+			</test>
+			<test logic="AND" value="1">
+				fadec/throttle-lever-feedback[0] lt 0.05
+				fadec/throttle-lever-feedback[2] lt 0.05
+			</test>
+			<test logic="AND" value="1">
+				fadec/throttle-lever-feedback[1] lt 0.05
+				fadec/throttle-lever-feedback[2] lt 0.05
 			</test>
 		</switch>
 		
@@ -93,19 +138,31 @@
 			<description>Flip flop for autospeedbrake</description>
 			<default value="spoilers/auto-speedbrake"/>
 			<test logic="OR" value="0"> <!-- Reset -->
-				spoilers/throttle[0] ge 0.05
-				spoilers/throttle[1] ge 0.05
-				spoilers/throttle[2] ge 0.05
-				/controls/flight/speedbrake-arm ne 1
+				fadec/throttle-lever-feedback[1] ge 0.05
+				spoilers/auto-speedbrake-arm-cmd eq 0
+				/systems/electrical/outputs/idk lt 25
 			</test>
-			<test logic="AND" value="4"> <!-- Set -->
-				spoilers/throttle[0] lt 0.05
-				spoilers/throttle[1] lt 0.05
-				spoilers/throttle[2] lt 0.05
-				/controls/flight/speedbrake-arm eq 1
+			<test logic="AND" value="4"> <!-- Set --> <!-- Landing -->
+				fadec/throttle-lever-feedback[1] lt 0.05
+				spoilers/auto-speedbrake-arm-cmd eq 1
 				spoilers/main-gear-or eq 1
 				/velocities/groundspeed-kt ge 60
 				fcs/flap-pos-deg ge 31
+				/systems/electrical/outputs/idk ge 25
+			</test>
+			<test logic="AND" value="4"> <!-- Set --> <!-- RTO 1 -->
+				spoilers/multi-reverse eq 1
+				spoilers/auto-speedbrake-arm-cmd eq 2
+				spoilers/main-gear-or eq 1
+				/velocities/groundspeed-kt ge 60
+				/systems/electrical/outputs/idk ge 25
+			</test>
+			<test logic="AND" value="4"> <!-- Set --> <!-- RTO 2 -->
+				spoilers/multi-idle eq 1
+				spoilers/auto-speedbrake-arm-cmd eq 3
+				spoilers/main-gear-or eq 1
+				/velocities/groundspeed-kt ge 60
+				/systems/electrical/outputs/idk ge 25
 			</test>
 			<clipto>
 				<min>0</min>
@@ -135,6 +192,7 @@
 			<test value="60">
 				spoilers/lever-cmd eq 4
 			</test>
+			<output>/gear/abs/spoilers-cmd-deg</output>
 		</switch>
 		
 		<aerosurface_scale name="spoilers/main-cmd">
@@ -179,13 +237,9 @@
 		
 		<switch name="hydraulics/spoiler-l1/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l1/sum">
+			<test value="hydraulics/spoiler-l1/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l1/cmd-deg">
@@ -216,13 +270,9 @@
 		
 		<switch name="hydraulics/spoiler-l2/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l2/sum">
+			<test value="hydraulics/spoiler-l2/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l2/cmd-deg">
@@ -253,13 +303,9 @@
 		
 		<switch name="hydraulics/spoiler-l3/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l3/sum">
+			<test value="hydraulics/spoiler-l3/sum">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l3/cmd-deg">
@@ -290,13 +336,9 @@
 		
 		<switch name="hydraulics/spoiler-l4/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l4/sum">
+			<test value="hydraulics/spoiler-l4/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l4/cmd-deg">
@@ -327,13 +369,9 @@
 		
 		<switch name="hydraulics/spoiler-l5/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-l5/sum">
+			<test value="hydraulics/spoiler-l5/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-l5/cmd-deg">
@@ -364,13 +402,9 @@
 		
 		<switch name="hydraulics/spoiler-r1/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r1/sum">
+			<test value="hydraulics/spoiler-r1/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r1/cmd-deg">
@@ -401,13 +435,9 @@
 		
 		<switch name="hydraulics/spoiler-r2/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r2/sum">
+			<test value="hydraulics/spoiler-r2/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r2/cmd-deg">
@@ -438,13 +468,9 @@
 		
 		<switch name="hydraulics/spoiler-r3/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r3/sum">
+			<test value="hydraulics/spoiler-r3/sum">
 				/systems/hydraulics/sys-3-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r3/cmd-deg">
@@ -475,13 +501,9 @@
 		
 		<switch name="hydraulics/spoiler-r4/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r4/sum">
+			<test value="hydraulics/spoiler-r4/sum">
 				/systems/hydraulics/sys-1-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r4/cmd-deg">
@@ -512,13 +534,9 @@
 		
 		<switch name="hydraulics/spoiler-r5/switch">
 			<default value="0"/>
-			<test logic="AND" value="hydraulics/spoiler-r5/sum">
+			<test value="hydraulics/spoiler-r5/sum">
 				/systems/hydraulics/sys-2-psi ge 1500
 			</test>
-			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<pure_gain name="hydraulics/spoiler-r5/cmd-deg">
