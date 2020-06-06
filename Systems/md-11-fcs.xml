@@ -767,8 +767,17 @@
 			<gain>70</gain>
 		</pure_gain>
 		
-		<scheduled_gain name="hydraulics/tiller/afs-cmd-deg">
+		<summer name="hydraulics/tiller/afs-cmd-input">
 			<input>fcc/afs/yaw-cmd</input>
+			<input>hydraulics/rudder/trim</input> <!-- 13/13 of -30/30 -->
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
+		<scheduled_gain name="hydraulics/tiller/afs-cmd-deg">
+			<input>hydraulics/tiller/afs-cmd-input</input>
 			<table>
 				<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
 				<tableData>
@@ -778,12 +787,21 @@
 			</table>
 		</scheduled_gain>
 		
-		<switch name="hydraulics/tiller/rudder-cmd-input">
+		<switch name="hydraulics/tiller/rudder-cmd-switch">
 			<default value="/controls/flight/rudder"/>
 			<test value="/controls/flight/aileron">
 				/controls/flight/aileron-drives-tiller eq 1
 			</test>
 		</switch>
+		
+		<summer name="hydraulics/tiller/rudder-cmd-input">
+			<input>hydraulics/tiller/rudder-cmd-switch</input>
+			<input>hydraulics/rudder/trim</input> <!-- 13/13 of -30/30 -->
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
 		
 		<fcs_function name="hydraulics/tiller/rudder-cmd-deg"> <!-- Combines rudder and tiller into just rudder -->
 			<function>
