@@ -9,8 +9,10 @@
 	<bleed>0.03</bleed>
 	<idlen1>23.8</idlen1>
 	<idlen2>65.2</idlen2>
-	<n1spinup>0.2</n1spinup>
-	<n2spinup>1.0</n2spinup>
+	<n1spinup>0.0</n1spinup> <!-- No N1 spin during cranking -->
+	<n2spinup>0.958</n2spinup> <!-- ~11.5 seconds -->
+	<n1startrate>0.580</n1startrate> <!-- ~41 seconds -->
+	<n2startrate>1.249</n2startrate> <!-- ~41 seconds -->
 	<maxn1>111.4</maxn1>
 	<maxn2>105.6</maxn2>
 	<augmented>0</augmented>
@@ -18,7 +20,7 @@
 	
 	<function name="N1SpoolUp">
 		<table>
-			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -33,7 +35,7 @@
 	
 	<function name="N1SpoolDown">
 		<table>
-			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -46,32 +48,32 @@
 		</table>
 	</function>
 	
-	<function name="N2SpoolUp">
+	<function name="N2SpoolUp"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<tableData>
-				 24   1.1
-				 28   2.9
-				 46   9.7
-				 68  15.4
-				 80  19.6
-				 94  21.4
-				103  23.6
+				 24   0.5
+				 28   1.3
+				 46   4.5
+				 68   7.1
+				 80   9.0
+				 94   9.9
+				103  10.9
 			</tableData>
 		</table>
 	</function>
 	
-	<function name="N2SpoolDown">
+	<function name="N2SpoolDown"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<tableData>
-				 24   1.1
-				 28   2.9
-				 46   9.7
-				 68  15.4
-				 80  19.6
-				 94  21.4
-				103  23.6
+				 24   0.5
+				 28   1.3
+				 46   4.5
+				 68   7.1
+				 80   9.0
+				 94   9.9
+				103  10.9
 			</tableData>
 		</table>
 	</function>
