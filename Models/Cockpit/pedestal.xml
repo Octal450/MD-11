@@ -866,6 +866,11 @@
 		<action>
 			<button>3</button>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/speedbrake-arm</property>
+				<value>0</value>
+			</binding>
+			<binding>
 				<condition>
 					<equals>
 						<property>gear/gear[0]/wow</property>
@@ -897,6 +902,11 @@
 		</action>
 		<action>
 			<button>4</button>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/flight/speedbrake-arm</property>
+				<value>0</value>
+			</binding>
 			<binding>
 				<condition>
 					<equals>
