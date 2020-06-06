@@ -50,7 +50,7 @@
 	
 	<function name="N2SpoolUp"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[2]/n1</independentVar>
 			<tableData>
 				 24   0.5
 				 28   1.3
@@ -65,7 +65,7 @@
 	
 	<function name="N2SpoolDown"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[2]/n1</independentVar>
 			<tableData>
 				 24   0.5
 				 28   1.3
