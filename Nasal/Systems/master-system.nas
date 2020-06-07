@@ -253,6 +253,7 @@ var FADEC = {
 		eng3Altn: props.globals.getNode("/controls/fadec/eng-3-altn"),
 	},
 	init: func() {
+		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
 	},
 	loop: func() {
