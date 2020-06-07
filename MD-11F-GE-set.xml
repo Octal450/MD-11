@@ -21,6 +21,13 @@
 			</livery>
 			<path>Aircraft/MD-11/Models/MD-11F-GE.xml</path>
 		</model>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>gui/splash/md-11f-ge.png</path>
+			</preview>
+		</previews>
 		<primary-set>true</primary-set>
 		<rating>
 			<FDM type="int">5</FDM>
