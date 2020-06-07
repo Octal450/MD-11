@@ -192,13 +192,6 @@
 				<int n="8" alias="/controls/lighting/wing-lights"/>
 			</generic>
 		</multiplay>
-		<previews>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/splash1.png</path>
-			</preview>
-		</previews>
 		<startup>
 			<splash-texture>Aircraft/MD-11/Splash/SplashOld.png</splash-texture>
 		</startup>
