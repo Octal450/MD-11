@@ -476,6 +476,25 @@
 				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="fadec/limit/active">
+			<default value="1.5"/>
+			<test value="fadec/limit/takeoff">
+				fadec/limit/active-mode-int eq 0
+			</test>
+			<test value="fadec/limit/go-around">
+				fadec/limit/active-mode-int eq 1
+			</test>
+			<test value="fadec/limit/mct">
+				fadec/limit/active-mode-int eq 2
+			</test>
+			<test value="fadec/limit/climb">
+				fadec/limit/active-mode-int eq 3
+			</test>
+			<test value="fadec/limit/cruise">
+				fadec/limit/active-mode-int eq 4
+			</test>
+		</switch>
 	
 	</channel>
 	

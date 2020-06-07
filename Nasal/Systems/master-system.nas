@@ -260,19 +260,15 @@ var FADEC = {
 		if (me.pitchMode == "G/A CLB") {
 			me.Limit.activeModeInt.setValue(1);
 			me.Limit.activeMode.setValue("G/A");
-			me.Limit.active.setValue(me.Limit.goAround.getValue());
 		} else if (me.pitchMode == "T/O CLB") {
 			me.Limit.activeModeInt.setValue(0);
 			me.Limit.activeMode.setValue("T/O");
-			me.Limit.active.setValue(me.Limit.takeoff.getValue());
 		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
 			me.Limit.activeModeInt.setValue(3);
 			me.Limit.activeMode.setValue("CLB");
-			me.Limit.active.setValue(me.Limit.climb.getValue());
 		} else {
 			me.Limit.activeModeInt.setValue(4);
 			me.Limit.activeMode.setValue("CRZ");
-			me.Limit.active.setValue(me.Limit.cruise.getValue());
 		}
 	},
 };
