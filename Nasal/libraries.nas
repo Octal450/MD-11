@@ -12,6 +12,7 @@ setprop("/sim/menubar/default/menu[3]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[9]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
+setprop("/sim/multiplay/visibility-range-nm", 130);
 
 var systemsInit = func {
 	systems.BRAKES.init();
@@ -375,5 +376,4 @@ setlistener("/controls/switches/no-smoking-sign-status", func {
 	}
 }, 0, 0);
 
-setprop("sim/multiplay/visibility-range-nm", 130);
 setprop("/systems/acconfig/libraries-loaded", 1);
