@@ -25,8 +25,8 @@
 			<inner-angle type="float">90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
 			<outer-angle type="float">90</outer-angle> <!-- 0-90, but greater than inner -->
 			<black-angle type="float">90</black-angle> <!-- 0-90, but greater than outer -->
-			<dirt-factor>0.07</dirt-factor>
-			<contrast type="float">0.9</contrast>
+			<dirt-factor>0</dirt-factor>
+			<contrast type="float">0.85</contrast>
 		</parameters>
 		<object-name>pfd1.screen</object-name>
 		<object-name>pfd1.border</object-name>
