@@ -375,4 +375,5 @@ setlistener("/controls/switches/no-smoking-sign-status", func {
 	}
 }, 0, 0);
 
+setprop("sim/multiplay/visibility-range-nm", 130);
 setprop("/systems/acconfig/libraries-loaded", 1);

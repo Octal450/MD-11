@@ -191,6 +191,7 @@
 				<int n="7" alias="/sim/model/lights/nav-lights"/>
 				<int n="8" alias="/controls/lighting/wing-lights"/>
 			</generic>
+			<visibility-range-nm type="int">130</visibility-range-nm>
 		</multiplay>
 		<status>Pre V1.0</status>
 		<systems n="0">
