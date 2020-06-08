@@ -1,14 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0"?>
 
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <PropertyList>
-
+	
     <path>radio.ac</path>
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>chrome_cockpit.png</texture>
+		<object-name>cockpit.glass</object-name>
+	</animation>
 
+	<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>Plane</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Plane</object-name>
+	</effect>
+	
     <animation>
-        <type>select</type>
-        <object-name>Radio.pwr</object-name>
+        <name>comm1</name>
         <object-name>freq</object-name>
         <object-name>freq.001</object-name>
         <object-name>freq.002</object-name>
@@ -24,6 +47,11 @@
         <object-name>stby.004</object-name>
         <object-name>stby.005</object-name>
         <object-name>stby.006</object-name>
+        <object-name>vhf-l.btn.light</object-name>
+        <object-name>vhf-r.btn.light</object-name>
+        <object-name>hf-l.btn.light</object-name>
+        <object-name>hf-r.btn.light</object-name>
+        <type>select</type>
         <condition>
             <greater-than>
                 <property>systems/electrical/CPT-FLT-INST</property>
@@ -31,10 +59,8 @@
             </greater-than>
         </condition>
     </animation>
-
-
-<!-- Active freq nav mode -->
-
+	
+	<!-- Active freq nav mode -->
     <animation>
         <type>textranslate</type>
         <object-name>freq.007</object-name>

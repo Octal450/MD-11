@@ -17,10 +17,10 @@
 		<type>material</type>
 		<object-name>tcas.text</object-name>
 		<emission>
-			<red>1.5</red>
-			<green>1.27</green>
-			<blue>1</blue>
-			<factor-prop>controls/lighting/pedestal-panel-norm</factor-prop>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	
