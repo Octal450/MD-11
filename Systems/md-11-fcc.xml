@@ -1100,6 +1100,24 @@
 			</test>
 		</switch>
 		
+		<switch name="/gear/abs/to-flip-flop">
+			<default value="/gear/abs/to-flip-flop"/>
+			<test value="0">
+				/gear/abs/mode ge 0
+			</test>
+			<test value="1">
+				position/wow ne 1
+			</test>
+		</switch>
+		
+		<switch name="/gear/abs/to-wow-disarm"> <!-- Disarms if you left T/O on throughout full flight -->
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/gear/abs/to-flip-flop eq 1
+				position/wow eq 1
+			</test>
+		</switch>
+		
 		<switch name="/gear/abs/disarm">
 			<default value="0"/>
 			<test value="0">
@@ -1109,6 +1127,7 @@
 				/gear/abs/throttle-disarm eq 1
 				/controls/gear/brake-left gt /gear/abs/disarm-brake
 				/controls/gear/brake-right gt /gear/abs/disarm-brake
+				/gear/abs/to-wow-disarm eq 1
 			</test>
 		</switch>
 		
