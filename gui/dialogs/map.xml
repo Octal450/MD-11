@@ -30,7 +30,7 @@ command interface /autopilot/route-manager/input:
 		<open>
 			var mapDialog = cmdarg();
 			var setTransparency = func(updateDialog){
-				var alpha = (getprop("/gui/map/transparent") or 0);
+				var alpha = (getprop("/systems/acconfig/options/map-less-transparent") or 0);
 				mapDialog.getNode("color/alpha").setValue(0.75+alpha*0.2);
 				var n = props.Node.new({ "dialog-name": "map" });
 				if (updateDialog)
@@ -232,7 +232,7 @@ command interface /autopilot/route-manager/input:
 <!--
 				<pref-width>100</pref-width>
 -->
-				<property>/gui/map/transparent</property>
+				<property>/systems/acconfig/options/map-less-transparent</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -242,7 +242,10 @@ command interface /autopilot/route-manager/input:
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>setTransparency(1);</script>
+					<script>
+						setTransparency(1);
+						acconfig.writeSettings();
+					</script>
 				</binding>
 			</checkbox>
 

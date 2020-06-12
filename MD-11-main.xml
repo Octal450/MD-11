@@ -1380,8 +1380,10 @@
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<options n="0">
-				<throttle-override type="string">Only In Clamp</throttle-override>
+				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
+				<map-less-transparent type="bool">0</map-less-transparent>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
+				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>
 		</acconfig>
 		<apu n="0">

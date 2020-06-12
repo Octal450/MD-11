@@ -20,7 +20,7 @@
 			var self = cmdarg();
 			var listeners = [];
 			var setTransparency = func(updateDialog){
-				var alpha = (getprop("/sim/gui/dialogs/map-canvas/transparent") or 0);
+				var alpha = (getprop("/systems/acconfig/options/canvas-map-less-transparent") or 0);
 				self.getNode("color/alpha").setValue(0.75+alpha*0.2);
 				var n = props.Node.new({ "dialog-name": "map-canvas" });
 				if (updateDialog)
@@ -388,7 +388,7 @@
 			<checkbox>
 				<label>Less Transparent</label>
 				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/transparent</property>
+				<property>/systems/acconfig/options/canvas-map-less-transparent</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -398,7 +398,10 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>setTransparency(1);</script>
+					<script>
+						setTransparency(1);
+						acconfig.writeSettings();
+					</script>
 				</binding>
 			</checkbox>
 
