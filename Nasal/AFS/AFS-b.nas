@@ -112,10 +112,6 @@ var Clamp = {
 			} else {
 				me.active = 1;
 			}
-		} else if (me.pitchText == "SPD CLB") {
-			me.stopCheck = 0;
-			me.stopThrottleReset = 0;
-			me.active = 0;
 		} else if (me.pitchText == "SPD DES") {
 			if (me.throttleMax <= 0.01) {
 				me.stopCheck = 1;
