@@ -5,7 +5,6 @@
 <PropertyList>
 	
 	<!-- Roll Axis -->
-	
 	<filter>
 		<name>IT-CONTROLLER: HDG/LNAV ROLL</name>
 		<debug>false</debug>
@@ -379,7 +378,6 @@
 	</filter>
 	
 	<!-- Yaw Axis -->
-	
 	<pi-simple-controller>
 		<name>RUDDER VORLOC TRK</name>
 		<debug>false</debug>

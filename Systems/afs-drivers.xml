@@ -125,7 +125,6 @@
 	</logic>
 	
 	<!-- Predictors -->
-	
 	<predict-simple>
 		<name>IAS 5 SECOND PREDICTOR</name>
 		<debug>false</debug>
@@ -181,7 +180,6 @@
 	</predict-simple>
 	
 	<!-- Autopilot Helpers/Calculators -->
-	
 	<filter>
 		<name>AFS Target IAS Presel PFD</name>
 		<type>gain</type>
@@ -947,7 +945,6 @@
 	</logic>
 	
 	<!-- Flight Director -->
-	
 	<filter>
 		<name>IT-CONTROLLER: TARGET ROLL CMD</name>
 		<debug>false</debug>
