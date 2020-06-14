@@ -216,7 +216,7 @@ var APPanel = {
 				afs.Custom.vsFpa.setBoolValue(0);
 				afs.Input.vert.setValue(1);
 			} else {
-				afs.Custom.vsFpa.setBoolValue(afs.Custom.vsFpa.getBoolValue());
+				afs.Custom.vsFpa.setBoolValue(!afs.Custom.vsFpa.getBoolValue());
 			}
 		}
 	},

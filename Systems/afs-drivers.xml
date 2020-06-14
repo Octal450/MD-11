@@ -135,24 +135,6 @@
 	</predict-simple>
 	
 	<predict-simple>
-		<name>IAS 10 SECOND PREDICTOR</name>
-		<debug>false</debug>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/lookahead-10-sec-airspeed-kt</output>
-		<seconds>10.0</seconds>
-		<filter-gain>0.0</filter-gain>
-	</predict-simple>
-	
-	<predict-simple>
-		<name>IAS 15 SECOND PREDICTOR</name>
-		<debug>false</debug>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/lookahead-15-sec-airspeed-kt</output>
-		<seconds>15.0</seconds>
-		<filter-gain>0.0</filter-gain>
-	</predict-simple>
-	
-	<predict-simple>
 		<name>MACH 5 SECOND PREDICTOR</name>
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
@@ -162,11 +144,11 @@
 	</predict-simple>
 	
 	<predict-simple>
-		<name>MACH 10 SECOND PREDICTOR</name>
+		<name>IAS 15 SECOND PREDICTOR</name>
 		<debug>false</debug>
-		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
-		<output>/it-autoflight/internal/lookahead-10-sec-mach</output>
-		<seconds>10.0</seconds>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/internal/lookahead-15-sec-airspeed-kt</output>
+		<seconds>15.0</seconds>
 		<filter-gain>0.0</filter-gain>
 	</predict-simple>
 	
@@ -247,7 +229,7 @@
 	</filter>
 	
 	<filter>
-		<name>Target Speed Error</name>
+		<name>PFD Target Speed Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -340,10 +322,10 @@
 		<max-rate-of-change>1</max-rate-of-change>
 	</filter>
 	
-    <filter>
-        <name>IAS SYNC</name>
-        <type>gain</type>
-        <gain>1.0</gain>
+	<filter>
+		<name>IAS Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<equals>
@@ -352,7 +334,7 @@
 				</equals>
 			</condition>
 		</enable>
-        <input>
+		<input>
 			<expression>
 				<floor>
 					<sum>
@@ -363,12 +345,12 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/custom/kts-sel</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>MACH SYNC</name>
-        <type>gain</type>
-        <gain>1.0</gain>
+	<filter>
+		<name>Mach Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<equals>
@@ -377,7 +359,7 @@
 				</equals>
 			</condition>
 		</enable>
-        <input>
+		<input>
 			<expression>
 				<div>
 					<floor>
@@ -394,12 +376,12 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/custom/mach-sel</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>IAS SYNC 2</name>
-        <type>gain</type>
-        <gain>1.0</gain>
+	<filter>
+		<name>IAS SYNC 2</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<equals>
@@ -408,7 +390,7 @@
 				</equals>
 			</condition>
 		</enable>
-        <input>
+		<input>
 			<expression>
 				<floor>
 					<sum>
@@ -419,12 +401,12 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/input/spd-kts</output>
-    </filter>
+	</filter>
 	
-    <filter>
-        <name>MACH SYNC 2</name>
-        <type>gain</type>
-        <gain>1.0</gain>
+	<filter>
+		<name>MACH SYNC 2</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<enable>
 			<condition>
 				<equals>
@@ -433,7 +415,7 @@
 				</equals>
 			</condition>
 		</enable>
-        <input>
+		<input>
 			<expression>
 				<div>
 					<floor>
@@ -450,7 +432,7 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/input/spd-mach</output>
-    </filter>
+	</filter>
   
 	<filter>
 		<name>HEADING DEG</name>
@@ -659,7 +641,7 @@
 			</condition>
 			<value>300</value>
 		</max-rate-of-change>
-		<max-rate-of-change>2000</max-rate-of-change>
+		<max-rate-of-change>10000</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -707,86 +689,6 @@
 		<gain>1.0</gain>
 		<input>/instrumentation/gps/indicated-vertical-speed</input>
 		<output>/it-autoflight/internal/vert-speed-fpm</output>
-	</filter>
-	
-	<filter>
-		<name>INTERNAL VERTICAL SPEED COMPUTER SYNC 4</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<not>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>4</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>7</value>
-						</equals>
-					</or>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</not>
-			</condition>
-		</enable>
-		<input>/it-autoflight/internal/vert-speed-fpm</input>
-		<output>/it-autoflight/internal/target-fpm-b</output>
-	</filter>
-	
-	<filter>
-		<name>INTERNAL VERTICAL SPEED COMPUTER SYNC 5</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<not>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>5</value>
-					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</not>
-			</condition>
-		</enable>
-		<input>/it-autoflight/internal/vert-speed-fpm</input>
-		<output>/it-autoflight/internal/target-fpm-d</output>
 	</filter>
 	
 	<filter>
