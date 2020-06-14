@@ -491,9 +491,6 @@ var ITAF = {
 		if (Text.vertTemp != "T/O CLB") {
 			if (!Custom.Output.spdCaptured) {
 				Custom.ktsMachTemp = Custom.ktsMach.getBoolValue();
-				if (Input.ktsMach.getBoolValue() != Custom.ktsMachTemp) {
-					Input.ktsMach.setBoolValue(Custom.ktsMachTemp);
-				}
 				if (Custom.ktsMachTemp) {
 					Input.mach.setValue(Custom.machSel.getValue());
 					Custom.targetIAS = Input.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to IAS
