@@ -113,7 +113,7 @@ var Clamp = {
 				me.active = 1;
 			}
 		} else if (me.pitchText == "SPD DES") {
-			if (me.throttleMax <= 0.01) {
+			if (me.throttleMax <= 0.005) {
 				me.stopCheck = 1;
 				me.active = 1;
 				if (me.stopThrottleReset != 1) {
