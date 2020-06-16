@@ -521,27 +521,5 @@
 		<input>/fdm/jsbsim/fadec/ats-cmd-3</input>
 		<output>/controls/engines/engine[2]/throttle</output>
 	</filter>
-	
-	<filter>
-		<name>PID Backdrive</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<or>
-					<not-equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</not-equals>
-				</or>
-			</condition>
-		</enable>
-		<input>/fdm/jsbsim/fadec/throttle-compare-max</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
-	</filter>
 
 </PropertyList>
