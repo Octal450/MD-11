@@ -79,7 +79,7 @@ setlistener("/gear/abs/disarm", func {
 # We just based it off Engine 2
 var doRevThrust = func {
 	pts.Controls.Engines.Engine.reverseLeverTemp[1] = pts.Controls.Engines.Engine.reverseLever[1].getValue();
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (pts.Controls.Engines.Engine.reverseLeverTemp[1] < 0.25) {
 			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.25);
 			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.25);
@@ -109,7 +109,7 @@ var doRevThrust = func {
 
 var unRevThrust = func {
 	pts.Controls.Engines.Engine.reverseLeverTemp[1] = pts.Controls.Engines.Engine.reverseLever[1].getValue();
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (pts.Controls.Engines.Engine.reverseLeverTemp[1] > 0.75) {
 			pts.Controls.Engines.Engine.reverseLever[0].setValue(0.75);
 			pts.Controls.Engines.Engine.reverseLever[1].setValue(0.75);
@@ -138,7 +138,7 @@ var unRevThrust = func {
 }
 
 var toggleFastRevThrust = func {
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and pts.Fdm.JSBsim.Fadec.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (pts.Controls.Engines.Engine.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
 			pts.Controls.Engines.Engine.reverseLever[0].setValue(0);
 			pts.Controls.Engines.Engine.reverseLever[1].setValue(0);
