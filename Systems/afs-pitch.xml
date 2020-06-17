@@ -145,10 +145,10 @@
 					</equals>
 				</condition>
 				<expression>
-					<dif>
+					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 						<value>2500</value>
-					</dif>
+					</difference>
 				</expression>
 			</u_min>
 			<u_max>
@@ -215,10 +215,10 @@
 					</equals>
 				</condition>
 				<expression>
-					<dif>
+					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 						<value>2500</value>
-					</dif>
+					</difference>
 				</expression>
 			</u_min>
 			<u_max>
@@ -295,13 +295,13 @@
 		<input>
 			<expression>
 				<sum>
-					<dif> <!-- Fix an issue with the calculation -->
+					<difference> <!-- Fix an issue with the calculation -->
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 						<product>
 							<property>/velocities/vertical-speed-fps</property>
 							<value>60</value>
 						</product>
-					</dif>
+					</difference>
 					<product>
 						<sin>
 							<deg2rad>
@@ -317,10 +317,10 @@
 		<output>/it-autoflight/internal/target-fpm-fpa-raw</output>
 		<min>
 			<expression>
-				<dif>
+				<difference>
 					<property>/it-autoflight/internal/vert-speed-fpm</property>
 					<value>2500</value>
-				</dif>
+				</difference>
 			</expression>
 		</min>
 		<max>
@@ -541,10 +541,10 @@
 				</condition>
 				<expression>
 					<max>
-						<dif>
+						<difference>
 							<property>/orientation/pitch-deg</property>
 							<value>5</value>
-						</dif>
+						</difference>
 						<value>-10</value>
 					</max>
 				</expression>

@@ -4,7 +4,6 @@
 
 <PropertyList>
 	
-	<!-- Thrust Axis -->
 	<filter>
 		<name>KTS INPUT FILTER</name>
 		<debug>false</debug>
@@ -13,6 +12,22 @@
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-kts</input>
 		<output>/it-autoflight/internal/kts</output>
+		<min>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>10</value>
+				</difference>
+			</expression>
+		</min>
+		<min>
+			<expression>
+				<sum>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>10</value>
+				</sum>
+			</expression>
+		</min>
 		<max-rate-of-change>
 			<condition>
 				<and>
