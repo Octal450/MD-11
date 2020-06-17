@@ -20,14 +20,14 @@
 				</difference>
 			</expression>
 		</min>
-		<min>
+		<max>
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					<value>10</value>
 				</sum>
 			</expression>
-		</min>
+		</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -70,6 +70,22 @@
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-mach</input>
 		<output>/it-autoflight/internal/mach</output>
+		<min>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>0.01</value>
+				</difference>
+			</expression>
+		</min>
+		<max>
+			<expression>
+				<sum>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>0.01</value>
+				</sum>
+			</expression>
+		</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
