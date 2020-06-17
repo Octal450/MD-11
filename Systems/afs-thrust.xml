@@ -16,7 +16,7 @@
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>10</value>
+					<value>30</value>
 				</difference>
 			</expression>
 		</min>
@@ -24,7 +24,7 @@
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>10</value>
+					<value>30</value>
 				</sum>
 			</expression>
 		</max>
@@ -73,16 +73,16 @@
 		<min>
 			<expression>
 				<difference>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>0.01</value>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.05</value>
 				</difference>
 			</expression>
 		</min>
 		<max>
 			<expression>
 				<sum>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>0.01</value>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.05</value>
 				</sum>
 			</expression>
 		</max>

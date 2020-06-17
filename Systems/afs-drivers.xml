@@ -250,6 +250,22 @@
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-kts</input>
 		<output>/it-autoflight/internal/flch-kts</output>
+		<min>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>30</value>
+				</difference>
+			</expression>
+		</min>
+		<max>
+			<expression>
+				<sum>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>30</value>
+				</sum>
+			</expression>
+		</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -290,6 +306,22 @@
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-mach</input>
 		<output>/it-autoflight/internal/flch-mach</output>
+		<min>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.05</value>
+				</difference>
+			</expression>
+		</min>
+		<max>
+			<expression>
+				<sum>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.05</value>
+				</sum>
+			</expression>
+		</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
