@@ -5,18 +5,18 @@
 <PropertyList>
 	
 	<filter>
-		<name>KTS INPUT FILTER</name>
+		<name>A/THR KTS Input Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-kts</input>
-		<output>/it-autoflight/internal/kts</output>
+		<output>/it-autoflight/internal/athr-kts</output>
 		<min>
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>30</value>
+					<value>25</value>
 				</difference>
 			</expression>
 		</min>
@@ -24,7 +24,7 @@
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>30</value>
+					<value>25</value>
 				</sum>
 			</expression>
 		</max>
@@ -63,18 +63,18 @@
 	</filter>
 	
 	<filter>
-		<name>MACH INPUT FILTER</name>
+		<name>A/THR Mach Input Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/input/spd-mach</input>
-		<output>/it-autoflight/internal/mach</output>
+		<output>/it-autoflight/internal/athr-mach</output>
 		<min>
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.05</value>
+					<value>0.045</value>
 				</difference>
 			</expression>
 		</min>
@@ -82,7 +82,7 @@
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.05</value>
+					<value>0.045</value>
 				</sum>
 			</expression>
 		</max>
@@ -115,7 +115,7 @@
 					</equals>
 				</and>
 			</condition>
-			<value>0.1</value>
+			<value>0.08</value>
 		</max-rate-of-change>
 		<max-rate-of-change>2</max-rate-of-change>
 	</filter>
@@ -146,7 +146,7 @@
 			</condition>
 		</enable>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<reference>/it-autoflight/internal/kts</reference>
+		<reference>/it-autoflight/internal/athr-kts</reference>
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 		<config>
 			<Kp>0.055</Kp>
@@ -187,7 +187,7 @@
 			<scale>1000.0</scale>
 		</input>
 		<reference>
-			<property>/it-autoflight/internal/mach</property>
+			<property>/it-autoflight/internal/athr-mach</property>
 			<scale>1000.0</scale>
 		</reference>
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>

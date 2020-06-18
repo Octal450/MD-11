@@ -129,7 +129,7 @@
 		<name>IAS 5 SECOND PREDICTOR</name>
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/lookahead-5-sec-airspeed-kt</output>
+		<output>/it-autoflight/internal/kts-predicted-5</output>
 		<seconds>5.0</seconds>
 		<filter-gain>0.0</filter-gain>
 	</predict-simple>
@@ -138,7 +138,7 @@
 		<name>MACH 5 SECOND PREDICTOR</name>
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
-		<output>/it-autoflight/internal/lookahead-5-sec-mach</output>
+		<output>/it-autoflight/internal/mach-predicted-5</output>
 		<seconds>5.0</seconds>
 		<filter-gain>0.0</filter-gain>
 	</predict-simple>
@@ -147,7 +147,7 @@
 		<name>IAS 15 SECOND PREDICTOR</name>
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/lookahead-15-sec-airspeed-kt</output>
+		<output>/it-autoflight/internal/kts-predicted-15</output>
 		<seconds>15.0</seconds>
 		<filter-gain>0.0</filter-gain>
 	</predict-simple>
@@ -156,7 +156,7 @@
 		<name>MACH 15 SECOND PREDICTOR</name>
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
-		<output>/it-autoflight/internal/lookahead-15-sec-mach</output>
+		<output>/it-autoflight/internal/mach-predicted-15</output>
 		<seconds>15.0</seconds>
 		<filter-gain>0.0</filter-gain>
 	</predict-simple>
@@ -243,7 +243,7 @@
 	</filter>
 	
 	<filter>
-		<name>KTS INPUT FILTER</name>
+		<name>KTS Input Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -254,7 +254,7 @@
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>30</value>
+					<value>25</value>
 				</difference>
 			</expression>
 		</min>
@@ -262,7 +262,7 @@
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>30</value>
+					<value>25</value>
 				</sum>
 			</expression>
 		</max>
@@ -299,7 +299,7 @@
 	</filter>
 	
 	<filter>
-		<name>MACH INPUT FILTER</name>
+		<name>MACH Input Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -310,7 +310,7 @@
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.05</value>
+					<value>0.045</value>
 				</difference>
 			</expression>
 		</min>
@@ -318,7 +318,7 @@
 			<expression>
 				<sum>
 					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.05</value>
+					<value>0.045</value>
 				</sum>
 			</expression>
 		</max>
@@ -349,13 +349,13 @@
 					</equals>
 				</and>
 			</condition>
-			<value>0.05</value>
+			<value>0.04</value>
 		</max-rate-of-change>
 		<max-rate-of-change>1</max-rate-of-change>
 	</filter>
 	
 	<filter>
-		<name>IAS Sync</name>
+		<name>KTS Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>

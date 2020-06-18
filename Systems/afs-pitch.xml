@@ -75,7 +75,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/internal/lookahead-15-sec-airspeed-kt</property>
+			<property>/it-autoflight/internal/kts-predicted-15</property>
 		</input>
 		<input>
 			<condition>
@@ -84,8 +84,8 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/internal/lookahead-15-sec-mach</property>
-			<scale>750.0</scale>
+			<property>/it-autoflight/internal/mach-predicted-15</property>
+			<scale>750</scale>
 		</input>
 		<reference>
 			<condition>
@@ -104,28 +104,11 @@
 				</equals>
 			</condition>
 			<property>/it-autoflight/internal/flch-mach</property>
-			<scale>750.0</scale>
+			<scale>750</scale>
 		</reference>
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 		<config>
-			<Kp>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>4</value>
-					</equals>
-				</condition>
-				<value>-55</value>
-			</Kp>
-			<Kp>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>7</value>
-					</equals>
-				</condition>
-				<value>-60</value>
-			</Kp>
+			<Kp>-55</Kp>
 			<Ti>2.5</Ti>        
 			<Td>0.001</Td>
 			<u_min>
@@ -135,7 +118,7 @@
 						<value>2</value>
 					</equals>
 				</condition>
-				<value>150</value>
+				<value>120</value>
 			</u_min>
 			<u_min>
 				<condition>
@@ -205,7 +188,7 @@
 						<value>1</value>
 					</equals>
 				</condition>
-				<value>-150</value>
+				<value>-120</value>
 			</u_max>
 			<u_min>
 				<condition>

@@ -199,6 +199,15 @@
 	</filter>
 	
 	<filter>
+		<name>Mach x100</name>
+		<type>gain</type>
+		<gain>1000</gain>
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>/it-autoflight/custom/mach-sel</input>
+		<output>/it-autoflight/custom/mach-sel-x100</output>
+	</filter>
+	
+	<filter>
 		<name>VS Abs</name>
 		<type>gain</type>
 		<gain>1.0</gain>

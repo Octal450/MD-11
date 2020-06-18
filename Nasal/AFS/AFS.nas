@@ -83,9 +83,9 @@ var Velocities = {
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
 	groundspeedMps: 0,
 	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
-	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-airspeed-kt", 1),
+	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/kts-predicted-5", 1),
 	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
-	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/lookahead-5-sec-mach", 1),
+	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/mach-predicted-5", 1),
 	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
 	trueAirspeedKtTemp: 0,
 };
