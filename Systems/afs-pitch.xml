@@ -6,7 +6,7 @@
 	
 	<!-- Pitch Axis -->
 	<filter>
-		<name>ALTITUDE CAPTURE/HOLD</name>
+		<name>IT-CONTROLLER: Altitude Capture/Hold</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>-5</gain>
@@ -61,7 +61,7 @@
 	</logic>
 	
 	<pid-controller>
-		<name>FLCH SPEED BY PITCH</name>
+		<name>IT-CONTROLLER: Speed By Pitch</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -222,7 +222,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>INTERNAL VERTICAL SPEED COMPUTER SYNC 4</name>
+		<name>Speed By Pitch Inactive Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -317,7 +317,7 @@
 	</filter>
 	
 	<filter>
-		<name>FPA FPM FILTER</name>
+		<name>FPA FPM Filter</name>
 		<type>noise-spike</type>
 		<input>/it-autoflight/internal/target-fpm-fpa-raw</input>
 		<output>/it-autoflight/internal/target-fpm-fpa</output>
@@ -331,28 +331,47 @@
 	</filter>
 	
 	<filter>
-		<name>AUTOLAND FPM</name>
+		<name>IT-CONTROLLER: Flare</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input> 
+		<input>
 			<expression>
-				<table>
-					<property>/position/gear-agl-ft</property>
-					<entry><ind>100</ind><dep>-800</dep></entry>
-					<entry><ind> 50</ind><dep>-600</dep></entry>
-					<entry><ind> 40</ind><dep>-450</dep></entry>
-					<entry><ind> 30</ind><dep>-300</dep></entry>
-					<entry><ind> 20</ind><dep>-200</dep></entry>
-					<entry><ind> 10</ind><dep>-150</dep></entry>
-					<entry><ind>  5</ind><dep>-125</dep></entry>
-				</table>
+				<sum>
+					<difference> <!-- Fix an issue with the calculation -->
+						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<product>
+							<property>/velocities/vertical-speed-fps</property>
+							<value>60</value>
+						</product>
+					</difference>
+					<product>
+						<sin>
+							<deg2rad>
+								<table>
+									<property>/position/gear-agl-ft</property>
+									<entry><ind>100</ind><dep>-2.80</dep></entry>
+									<entry><ind> 50</ind><dep>-2.12</dep></entry>
+									<entry><ind> 40</ind><dep>-1.58</dep></entry>
+									<entry><ind> 30</ind><dep>-1.05</dep></entry>
+									<entry><ind> 20</ind><dep>-0.70</dep></entry>
+									<entry><ind> 10</ind><dep>-0.50</dep></entry>
+									<entry><ind>  5</ind><dep>-0.44</dep></entry>
+								</table>
+							</deg2rad>
+						</sin>
+						<property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+						<value>101.26859142607174</value> <!-- FPM to Knot -->
+					</product>
+				</sum>
 			</expression>
 		</input>
 		<output>/it-autoflight/internal/target-fpm-land</output>
+		<min>-1000</min>
+		<max>0</max>
 	</filter>
 	
 	<filter>
-		<name>TARGET FPM</name>
+		<name>Target FPM</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -441,7 +460,7 @@
 	</filter>
 	
 	<pid-controller>
-		<name>FPM HOLD</name>
+		<name>IT-CONTROLLER: FPM Hold</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -583,7 +602,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>PITCH DEG SYNC</name>
+		<name>System Command: Pitch Target Inactive Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -620,24 +639,10 @@
 	</filter>
 
 	<filter>
-		<name>System Command: Pitch Rate</name>
+		<name>System Command: Pitch Rate Target</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>-0.75</gain>
-		<enable>
-			<condition>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-				</or>
-			</condition>
-		</enable>
 		<input>/orientation/pitch-deg</input>
 		<reference>/it-autoflight/internal/target-pitch-deg</reference>
 		<output>/it-autoflight/internal/pitch-rate</output>
@@ -646,17 +651,13 @@
 	</filter>
 	
 	<pid-controller>
-		<name>IT-CONTROLLER: PITCH RATE</name>
+		<name>System Command: Elevator</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
 				<and>
 					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
+						<property>/gear/gear[0]/wow</property>
 						<value>0</value>
 					</equals>
 					<or>
@@ -673,6 +674,21 @@
 			</condition>
 		</enable>
 		<input>/orientation/pitch-rate-degps</input>
+		<reference>
+			<condition>
+				<or>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</condition>
+			<value>-1</value>
+		</reference>
 		<reference>/it-autoflight/internal/pitch-rate</reference>
 		<output>/it-autoflight/internal/elevator-cmd</output>
 		<config>
@@ -696,7 +712,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>ELEVATOR SYNC</name>
+		<name>System Command: Elevator Inactive Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -719,7 +735,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: PITCH CMD</name>
+		<name>System Command: Elevator Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -740,39 +756,12 @@
 		</enable>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/gear/gear[0]/wow</property>
+					<value>0</value>
+				</equals>
 			</condition>
 			<property>/it-autoflight/internal/elevator-cmd</property>
-		</input>
-		<input>
-			<condition>
-				<and>
-					<equals>
-						<property>/gear/gear[0]/wow</property>
-						<value>0</value>
-					</equals>
-					<or>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</and>
-			</condition>
-			<value>0.2</value>
 		</input>
 		<input>0.1</input>
 		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
@@ -780,7 +769,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: PITCH TRIM</name>
+		<name>System Command: Elevator Trim</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -840,7 +829,15 @@
 		<output>/controls/flight/elevator-trim</output>
 		<min>-1.0</min>
 		<max>0.064516</max>
-		<max-rate-of-change>0.01</max-rate-of-change>
+		<max-rate-of-change>
+			<expression>
+				<table>
+					<abs><property>/it-autoflight/internal/elevator-cmd</property></abs>
+					<entry><ind>0.01</ind><dep>0.001</dep></entry>
+					<entry><ind>0.10</ind><dep>0.010</dep></entry>
+				</table>
+			</expression>
+		</max-rate-of-change>
 	</filter>
 
 </PropertyList>

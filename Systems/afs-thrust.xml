@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<filter>
-		<name>A/THR KTS Input Filter</name>
+		<name>A/THR Knots Input Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -121,7 +121,7 @@
 	</filter>
 	
 	<pid-controller>
-		<name>IT-CONTROLLER: IAS THRUST</name>
+		<name>IT-CONTROLLER: Knots</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -158,7 +158,7 @@
 	</pid-controller>
 	
 	<pid-controller>
-		<name>IT-CONTROLLER: MACH THRUST</name>
+		<name>IT-CONTROLLER: Mach</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -201,7 +201,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>IDLE</name>
+		<name>IT-CONTROLLER: Idle Limit</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -228,7 +228,7 @@
 	</filter>
 	
 	<filter>
-		<name>THR LIM</name>
+		<name>IT-CONTROLLER: Thrust Limit</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -255,7 +255,7 @@
 	</filter>
 	
 	<filter>
-		<name>Thrust CMD Filter</name>
+		<name>System Command: Throttle</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -327,7 +327,7 @@
 	</filter>
 	
 	<filter>
-		<name>Throttle Comparator</name>
+		<name>System Command: Throttle Comparator</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -343,7 +343,7 @@
 	</filter>
 	
 	<filter>
-		<name>Thrust CMD Backdrive</name>
+		<name>System Command: Throttle Inactive Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
@@ -366,7 +366,7 @@
 	
 	<!-- Engine 1 -->
 	<filter>
-		<name>Thrust Filter 1</name>
+		<name>System Command: Throttle 1 Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<initialize-to>output</initialize-to>
@@ -406,7 +406,7 @@
 	</filter>
 	
 	<filter>
-		<name>Throttle Backdrive 1</name>
+		<name>System Command: Throttle Backdrive 1</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
@@ -429,7 +429,7 @@
 	
 	<!-- Engine 2 -->
 	<filter>
-		<name>Thrust Filter 2</name>
+		<name>System Command: Throttle 2 Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<initialize-to>output</initialize-to>
@@ -469,7 +469,7 @@
 	</filter>
 	
 	<filter>
-		<name>Throttle Backdrive 2</name>
+		<name>System Command: Throttle Backdrive 2</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
@@ -492,7 +492,7 @@
 	
 	<!-- Engine 3 -->
 	<filter>
-		<name>Thrust Filter 3</name>
+		<name>System Command: Throttle 3 Filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<initialize-to>output</initialize-to>
@@ -532,7 +532,7 @@
 	</filter>
 	
 	<filter>
-		<name>Throttle Backdrive 3</name>
+		<name>System Command: Throttle Backdrive 3</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
