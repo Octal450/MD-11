@@ -684,7 +684,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/settings/use-nav2-radio</property>
+					<property>/it-autoflight/input/use-nav2-radio</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -697,7 +697,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/settings/use-nav2-radio</property>
+					<property>/it-autoflight/input/use-nav2-radio</property>
 					<value>1</value>
 				</equals>
 			</condition>

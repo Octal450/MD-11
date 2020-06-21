@@ -114,6 +114,7 @@ var Input = {
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
 	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
+	useNav2Radio: props.globals.initNode("/it-autoflight/input/use-nav2-radio", 0, "BOOL"),
 	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
 	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
 	vertTemp: 7,
@@ -167,7 +168,6 @@ var Output = {
 
 var Setting = {
 	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1500, "INT"), # Will be changable from FMS
-	useNAV2Radio: props.globals.initNode("/it-autoflight/settings/use-nav2-radio", 0, "BOOL"),
 };
 
 var Sound = {
@@ -265,6 +265,7 @@ var ITAF = {
 			Custom.Input.ovrd1.setBoolValue(0);
 			Custom.Input.ovrd2.setBoolValue(0);
 		}
+		Input.useNav2Radio.setBoolValue(0);
 		Output.ap1.setBoolValue(0);
 		Output.ap2.setBoolValue(0);
 		Output.athr.setBoolValue(0);
@@ -276,7 +277,6 @@ var ITAF = {
 		Output.thrMode.setValue(0);
 		Output.lat.setValue(5);
 		Output.vert.setValue(7);
-		Setting.useNAV2Radio.setBoolValue(0);
 		Internal.minVS.setValue(-500);
 		Internal.maxVS.setValue(500);
 		Internal.bankLimit.setValue(25);
@@ -529,7 +529,7 @@ var ITAF = {
 		
 		# Autoland Logic
 		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
-			Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+			Radio.radioSel = Input.useNav2Radio.getBoolValue();
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
 			Custom.canAutoland = (abs(Radio.locDeflTemp) <= 0.1 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) or Gear.wow0.getBoolValue();
@@ -1039,7 +1039,7 @@ var ITAF = {
 		}
 	},
 	checkLOC: func(t, a) {
-		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
@@ -1059,7 +1059,7 @@ var ITAF = {
 		}
 	},
 	checkAPPR: func(t) {
-		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.gsDeflTemp = Radio.gsDefl[Radio.radioSel].getValue();
 			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2) { # Only capture if LOC is active
@@ -1075,7 +1075,7 @@ var ITAF = {
 		}
 	},
 	checkRadioRevision: func(l, v) { # Revert mode if signal lost
-		Radio.radioSel = Setting.useNAV2Radio.getBoolValue();
+		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		Radio.inRangeTemp = Radio.inRange[Radio.radioSel].getBoolValue();
 		if (!Radio.inRangeTemp) {
 			if (l == 4 or v == 6) {
