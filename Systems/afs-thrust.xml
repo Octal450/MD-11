@@ -184,11 +184,11 @@
 		</enable>
 		<input>
 			<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-			<scale>1000.0</scale>
+			<scale>1000</scale>
 		</input>
 		<reference>
 			<property>/it-autoflight/internal/athr-mach</property>
-			<scale>1000.0</scale>
+			<scale>1000</scale>
 		</reference>
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 		<config>
