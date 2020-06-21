@@ -130,8 +130,8 @@
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 		<output>/it-autoflight/internal/kts-predicted-5</output>
-		<seconds>5.0</seconds>
-		<filter-gain>0.0</filter-gain>
+		<seconds>5</seconds>
+		<filter-gain>0</filter-gain>
 	</predict-simple>
 	
 	<predict-simple>
@@ -139,8 +139,8 @@
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
 		<output>/it-autoflight/internal/mach-predicted-5</output>
-		<seconds>5.0</seconds>
-		<filter-gain>0.0</filter-gain>
+		<seconds>5</seconds>
+		<filter-gain>0</filter-gain>
 	</predict-simple>
 	
 	<predict-simple>
@@ -148,8 +148,8 @@
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 		<output>/it-autoflight/internal/kts-predicted-15</output>
-		<seconds>15.0</seconds>
-		<filter-gain>0.0</filter-gain>
+		<seconds>15</seconds>
+		<filter-gain>0</filter-gain>
 	</predict-simple>
 	
 	<predict-simple>
@@ -157,8 +157,8 @@
 		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
 		<output>/it-autoflight/internal/mach-predicted-15</output>
-		<seconds>15.0</seconds>
-		<filter-gain>0.0</filter-gain>
+		<seconds>15</seconds>
+		<filter-gain>0</filter-gain>
 	</predict-simple>
 	
 	<!-- Autopilot Helpers/Calculators -->
