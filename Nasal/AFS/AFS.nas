@@ -1106,7 +1106,9 @@ var ITAF = {
 		Output.vertTemp = Output.vert.getValue();
 		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocities.indicatedAirspeedKt.getValue() >= 80) {
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
-				systems.BRAKES.absSetOff(1); # Disarm autobrake
+				if (systems.BRAKES.Abs.armed.getBoolValue()) {
+					systems.BRAKES.absSetOff(1); # Disarm autobrake
+				}
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}
