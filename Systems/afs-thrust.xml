@@ -250,7 +250,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/limit/ats-pitch-max</input>
+		<input>/fdm/jsbsim/fadec/limit/ats-max</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 	</filter>
 	
@@ -286,7 +286,7 @@
 			<value>0</value>
 		</min>
 		<min>/fdm/jsbsim/fadec/limit/idle-norm</min>
-		<max>/fdm/jsbsim/fadec/limit/ats-pitch-max</max>
+		<max>/fdm/jsbsim/fadec/limit/ats-max</max>
 		<max-rate-of-change>
 			<condition>
 				<and>

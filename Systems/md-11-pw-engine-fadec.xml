@@ -760,7 +760,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/ats-pitch-max">
+		<switch name="fadec/limit/ats-max">
 			<default value="fadec/limit/active-norm"/>
 			<test value="1"> 
 				fadec/limit/active-mode-int eq 0
