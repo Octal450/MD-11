@@ -763,7 +763,7 @@
 			</condition>
 			<property>/it-autoflight/internal/elevator-cmd</property>
 		</input>
-		<input>0.1</input>
+		<input>0.05</input>
 		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
 		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
