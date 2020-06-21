@@ -72,10 +72,10 @@ command interface /autopilot/route-manager/input:
 
 	<hrule>
 		<color>
-			<red type="float">1.0</red>
-			<green type="float">1.0</green>
-			<blue type="float">1.0</blue>
-			<alpha type="float">1.0</alpha>
+			<alpha>0.95</alpha>
+			<blue>1.0</blue>
+			<green>1.0</green>
+			<red>1.0</red>
 		</color>
 	</hrule>
 
@@ -278,10 +278,10 @@ command interface /autopilot/route-manager/input:
 
 		<vrule>
 			<color>
-				<red type="float">1.0</red>
-				<green type="float">1.0</green>
-				<blue type="float">1.0</blue>
-				<alpha type="float">1.0</alpha>
+				<alpha>0.95</alpha>
+				<blue>1.0</blue>
+				<green>1.0</green>
+				<red>1.0</red>
 			</color>
 		</vrule>
 
@@ -300,10 +300,10 @@ command interface /autopilot/route-manager/input:
 
 			<hrule>
 				<color>
-					<red type="float">1.0</red>
-					<green type="float">1.0</green>
-					<blue type="float">1.0</blue>
-					<alpha type="float">1.0</alpha>
+					<alpha>0.95</alpha>
+					<blue>1.0</blue>
+					<green>1.0</green>
+					<red>1.0</red>
 				</color>
 			</hrule>
 
