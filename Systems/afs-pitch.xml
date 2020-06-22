@@ -352,10 +352,9 @@
 									<entry><ind>100</ind><dep>-2.80</dep></entry>
 									<entry><ind> 50</ind><dep>-2.12</dep></entry>
 									<entry><ind> 40</ind><dep>-1.58</dep></entry>
-									<entry><ind> 30</ind><dep>-1.05</dep></entry>
-									<entry><ind> 20</ind><dep>-0.70</dep></entry>
-									<entry><ind> 10</ind><dep>-0.50</dep></entry>
-									<entry><ind>  5</ind><dep>-0.44</dep></entry>
+									<entry><ind> 30</ind><dep>-1.23</dep></entry>
+									<entry><ind> 20</ind><dep>-0.92</dep></entry>
+									<entry><ind> 10</ind><dep>-0.61</dep></entry>
 								</table>
 							</deg2rad>
 						</sin>
@@ -687,7 +686,7 @@
 					</equals>
 				</or>
 			</condition>
-			<value>-1</value>
+			<value>-1.5</value>
 		</reference>
 		<reference>/it-autoflight/internal/pitch-rate</reference>
 		<output>/it-autoflight/internal/elevator-cmd</output>
