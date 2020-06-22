@@ -1105,6 +1105,11 @@ var ITAF = {
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
 		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocities.indicatedAirspeedKt.getValue() >= 80) {
+			me.setLatMode(3);
+			me.setVertMode(7);
+			me.updateVertText("G/A CLB");
+			Input.ktsMach.setBoolValue(0);
+			me.syncIASGA();
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
 				if (systems.BRAKES.Abs.armed.getBoolValue()) {
 					systems.BRAKES.absSetOff(1); # Disarm autobrake
@@ -1112,11 +1117,6 @@ var ITAF = {
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}
-			me.setLatMode(3);
-			me.setVertMode(7);
-			me.updateVertText("G/A CLB");
-			Input.ktsMach.setBoolValue(0);
-			me.syncIASGA();
 		}
 	},
 	armTextCheck: func() {
