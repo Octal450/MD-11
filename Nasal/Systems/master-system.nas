@@ -253,6 +253,9 @@ var FADEC = {
 		eng3Altn: props.globals.getNode("/controls/fadec/eng-3-altn"),
 	},
 	init: func() {
+		me.Switch.eng1Altn.setBoolValue(0);
+		me.Switch.eng2Altn.setBoolValue(0);
+		me.Switch.eng3Altn.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
 	},
@@ -271,5 +274,33 @@ var FADEC = {
 			me.Limit.activeModeInt.setValue(4);
 			me.Limit.activeMode.setValue("CRZ");
 		}
+	},
+};
+
+var IGNITION = {
+	cutoff1: props.globals.getNode("/systems/ignition/cutoff-1"),
+	cutoff2: props.globals.getNode("/systems/ignition/cutoff-2"),
+	cutoff3: props.globals.getNode("/systems/ignition/cutoff-3"),
+	ignA: props.globals.getNode("/systems/ignition/ign-a"),
+	ignAvail: props.globals.getNode("/systems/ignition/ign-avail"),
+	ignB: props.globals.getNode("/systems/ignition/ign-b"),
+	ign1: props.globals.getNode("/systems/ignition/ign-1"),
+	ign2: props.globals.getNode("/systems/ignition/ign-2"),
+	ign3: props.globals.getNode("/systems/ignition/ign-3"),
+	starter1: props.globals.getNode("/systems/ignition/starter-1"),
+	starter2: props.globals.getNode("/systems/ignition/starter-2"),
+	starter3: props.globals.getNode("/systems/ignition/starter-3"),
+	Switch: {
+		ignA: props.globals.getNode("/controls/ignition/ign-a"),
+		ignB: props.globals.getNode("/controls/ignition/ign-b"),
+		ignOvrd: props.globals.getNode("/controls/ignition/ign-ovrd"),
+	},
+	init: func() {
+		me.Switch.ignA.setBoolValue(0);
+		me.Switch.ignB.setBoolValue(0);
+		me.Switch.ignOvrd.setBoolValue(0);
+	},
+	loop: func() {
+		
 	},
 };

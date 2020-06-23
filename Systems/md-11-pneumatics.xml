@@ -63,7 +63,7 @@
 			<default value="/controls/pneumatics/switches/isol-1-2"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/controls/engines/packs-off eq 1
+				/systems/ignition/packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -111,7 +111,7 @@
 			<default value="/controls/pneumatics/switches/isol-1-3"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/controls/engines/packs-off eq 1
+				/systems/ignition/packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -588,18 +588,6 @@
 				</table>
 			</function>
 		</fcs_function>
-		
-		<!-- Keep compatibility with non-IntegratedSystems engine start -->
-		<fcs_function name="/systems/pneumatics/total-psi-tie">
-			<function>
-				<max>
-					<property>/systems/pneumatics/bleed-1-psi</property>
-					<property>/systems/pneumatics/bleed-2-psi</property>
-					<property>/systems/pneumatics/bleed-3-psi</property>
-				</max>
-			</function>
-			<output>/systems/pneumatics/total-psi</output>
-		</fcs_function>
 	
 	</channel>
 	
@@ -609,7 +597,7 @@
 			<default value="/controls/pneumatics/switches/pack-1"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/controls/engines/packs-off eq 1
+				/systems/ignition/packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -635,7 +623,7 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/controls/engines/packs-off eq 1
+				/systems/ignition/packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -651,7 +639,7 @@
 			<default value="/controls/pneumatics/switches/pack-3"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/controls/engines/packs-off eq 1
+				/systems/ignition/packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1

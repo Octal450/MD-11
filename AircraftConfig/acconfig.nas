@@ -364,9 +364,9 @@ var taxi_b = func {
 }
 var taxi_c = func {
 	# Start engines
-	systems.fast_start_one();
-	systems.fast_start_two();
-	systems.fast_start_three();
+#	systems.fast_start_one();
+#	systems.fast_start_two();
+#	systems.fast_start_three();
 	settimer(func {
 		taxi_d();
 	}, 10);

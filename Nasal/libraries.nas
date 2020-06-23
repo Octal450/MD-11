@@ -21,9 +21,9 @@ var systemsInit = func {
 	systems.FCTL.init();
 	systems.FUEL.init();
 	systems.HYD.init();
+	systems.IGNITION.init();
 	systems.IRS.init();
 	systems.PNEU.init();
-	systems.eng_init();
 	afs.ITAF.init(0);
 	lightsLoop.start();
 	systemsLoop.start();
@@ -36,9 +36,9 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
-	systems.IRS.loop();
 	systems.FADEC.loop();
-	systems.eng_loop();
+	systems.IGNITION.loop();
+	systems.IRS.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
 		pts.Systems.Shake.effect.setBoolValue(1);
@@ -61,16 +61,6 @@ var systemsLoop = maketimer(0.1, func {
 		if (systems.PNEU.Switch.groundAir.getBoolValue()) {
 			systems.PNEU.Switch.groundAir.setBoolValue(0);
 		}
-	}
-
-	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[8]/contents-lbs") < 1) {
-		systems.cutoff_one();
-	}
-	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and (getprop("/fdm/jsbsim/propulsion/tank[9]/contents-lbs") < 1 or systems.HYD.Fail.catastrophicAft.getBoolValue())) {
-		systems.cutoff_two();
-	}
-	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[10]/contents-lbs") < 1) {
-		systems.cutoff_three();
 	}
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {

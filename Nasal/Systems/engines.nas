@@ -1,8 +1,5 @@
 # MD-11 JSB Engine System
-
 # Copyright (c) 2020 Josh Davidson (Octal450)
-
-io.include("engines-b.nas");
 
 var spinup_time = math.round((rand() * 10 ) + 49, 0.1);
 var apu_max = 60;

@@ -7385,11 +7385,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/engines/ign-a</property>
+						<property>controls/ignition/ign-a</property>
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/engines/ign-b</property>
+						<property>controls/ignition/ign-b</property>
 						<value>0</value>
 					</equals>
 				</and>
@@ -7431,7 +7431,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/engines/ign-a</property>
+				<property>controls/ignition/ign-a</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7445,7 +7445,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/engines/ign-a</property>
+					<property>controls/ignition/ign-a</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7486,7 +7486,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/engines/ign-b</property>
+				<property>controls/ignition/ign-b</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7500,7 +7500,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/engines/ign-b</property>
+					<property>controls/ignition/ign-b</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7540,7 +7540,7 @@
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/engines/ign-ovrd</property>
+				<property>controls/ignition/ign-ovrd</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7554,7 +7554,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/engines/ign-ovrd</property>
+					<property>controls/ignition/ign-ovrd</property>
 					<value>1</value>
 				</equals>
 				<equals>

@@ -271,37 +271,37 @@ var canvas_EAD_GE = {
 			me["EGT3-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-1") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.ign1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["EGT1-ignition"].show();
 		} else {
 			me["EGT1-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-2") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.ign2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-3") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.ign3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.starter1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["EGT1-redstart"].show();
 		} else {
 			me["EGT1-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.starter2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["EGT2-redstart"].show();
 		} else {
 			me["EGT2-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.starter3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["EGT3-redstart"].show();
 		} else {
 			me["EGT3-redstart"].hide();
@@ -361,19 +361,19 @@ var canvas_EAD_GE = {
 			me["N23-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.starter1.getBoolValue() and systems.IGNITION.cutoff1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["N21-cline"].show();
 		} else {
 			me["N21-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.starter2.getBoolValue() and systems.IGNITION.cutoff2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["N22-cline"].show();
 		} else {
 			me["N22-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.starter3.getBoolValue() and systems.IGNITION.cutoff3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["N23-cline"].show();
 		} else {
 			me["N23-cline"].hide();
@@ -625,37 +625,37 @@ var canvas_EAD_PW = {
 			me["EGT3-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-1") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.ign1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["EGT1-ignition"].show();
 		} else {
 			me["EGT1-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-2") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.ign2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["EGT2-ignition"].show();
 		} else {
 			me["EGT2-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/ignition-3") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.ign3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["EGT3-ignition"].show();
 		} else {
 			me["EGT3-ignition"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/start-switch") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.starter1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["EGT1-redstart"].show();
 		} else {
 			me["EGT1-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/start-switch") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.starter2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["EGT2-redstart"].show();
 		} else {
 			me["EGT2-redstart"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/start-switch") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.starter3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["EGT3-redstart"].show();
 		} else {
 			me["EGT3-redstart"].hide();
@@ -715,19 +715,19 @@ var canvas_EAD_PW = {
 			me["N23-redline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[0]/starter") == 1 and getprop("/controls/engines/engine[0]/cutoff") == 1 and Value.Fadec.engPowered[0]) {
+		if (systems.IGNITION.starter1.getBoolValue() and systems.IGNITION.cutoff1.getBoolValue() and Value.Fadec.engPowered[0]) {
 			me["N21-cline"].show();
 		} else {
 			me["N21-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/starter") == 1 and getprop("/controls/engines/engine[1]/cutoff") == 1 and Value.Fadec.engPowered[1]) {
+		if (systems.IGNITION.starter2.getBoolValue() and systems.IGNITION.cutoff2.getBoolValue() and Value.Fadec.engPowered[1]) {
 			me["N22-cline"].show();
 		} else {
 			me["N22-cline"].hide();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/starter") == 1 and getprop("/controls/engines/engine[2]/cutoff") == 1 and Value.Fadec.engPowered[2]) {
+		if (systems.IGNITION.starter3.getBoolValue() and systems.IGNITION.cutoff3.getBoolValue() and Value.Fadec.engPowered[2]) {
 			me["N23-cline"].show();
 		} else {
 			me["N23-cline"].hide();

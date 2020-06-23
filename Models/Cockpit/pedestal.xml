@@ -1061,17 +1061,55 @@
 	</animation>
 	
 	<!-- Engine Starters -->
-	<animation>
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
 		<type>pick</type>
 		<object-name>starter.1.off</object-name>
-		<object-name>starter.1.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
+				<property>controls/engines/engine[0]/start-cmd</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/engines/engine[0]/start-switch</property>
+				<value>1</value>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[0]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
+		<type>pick</type>
+		<object-name>starter.1.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[0]/start-switch</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[0]/start-cmd</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[0]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	
@@ -1079,7 +1117,7 @@
 		<type>translate</type>
 		<object-name>starter.1.off</object-name>
 		<object-name>starter.1.on</object-name>
-		<property>controls/engines/engine[0]/start-switch</property>
+		<property>systems/ignition/start-switch-1</property>
 		<factor>-0.005</factor>
 		<axis>
 			<x1-m>-27.0331</x1-m>
@@ -1095,22 +1133,9 @@
 		<type>select</type>
 		<object-name>starter.1.off</object-name>
 		<condition>
-			<or>
-				<equals>
-					<property>controls/engines/engine[0]/start-switch</property>
-					<value>0</value>
-				</equals>
-				<and>
-					<equals>
-						<property>controls/engines/engine[0]/start-switch</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>engines/engine[0]/state</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</or>
+			<not>
+				<property>systems/ignition/starter-1</property>
+			</not>
 		</condition>
 	</animation>
 	
@@ -1118,30 +1143,59 @@
 		<type>select</type>
 		<object-name>starter.1.on</object-name>
 		<condition>
-			<and>
-				<equals>
-					<property>controls/engines/engine[0]/start-switch</property>
-					<value>1</value>
-				</equals>
-				<greater-than>
-					<property>engines/engine[0]/state</property>
-					<value>0</value>
-				</greater-than>
-			</and>
+			<property>systems/ignition/starter-1</property>
 		</condition>
 	</animation>
 	
-	<animation>
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
 		<type>pick</type>
 		<object-name>starter.2.off</object-name>
-		<object-name>starter.2.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
+				<property>controls/engines/engine[1]/start-cmd</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
 				<property>controls/engines/engine[1]/start-switch</property>
+				<value>1</value>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[1]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
+		<type>pick</type>
+		<object-name>starter.2.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[1]/start-switch</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[1]/start-cmd</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[1]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	
@@ -1149,7 +1203,7 @@
 		<type>translate</type>
 		<object-name>starter.2.off</object-name>
 		<object-name>starter.2.on</object-name>
-		<property>controls/engines/engine[1]/start-switch</property>
+		<property>systems/ignition/start-switch-2</property>
 		<factor>-0.005</factor>
 		<axis>
 			<x1-m>-27.0331</x1-m>
@@ -1165,22 +1219,9 @@
 		<type>select</type>
 		<object-name>starter.2.off</object-name>
 		<condition>
-			<or>
-				<equals>
-					<property>controls/engines/engine[1]/start-switch</property>
-					<value>0</value>
-				</equals>
-				<and>
-					<equals>
-						<property>controls/engines/engine[1]/start-switch</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>engines/engine[1]/state</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</or>
+			<not>
+				<property>systems/ignition/starter-2</property>
+			</not>
 		</condition>
 	</animation>
 	
@@ -1188,30 +1229,59 @@
 		<type>select</type>
 		<object-name>starter.2.on</object-name>
 		<condition>
-			<and>
-				<equals>
-					<property>controls/engines/engine[1]/start-switch</property>
-					<value>1</value>
-				</equals>
-				<greater-than>
-					<property>engines/engine[1]/state</property>
-					<value>0</value>
-				</greater-than>
-			</and>
+			<property>systems/ignition/starter-2</property>
 		</condition>
 	</animation>
 	
-	<animation>
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
 		<type>pick</type>
 		<object-name>starter.3.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[2]/start-cmd</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine[2]/start-switch</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[2]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation> <!-- Seperate so it looks properly in VC when holding -->
+		<type>pick</type>
 		<object-name>starter.3.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-assign</command>
 				<property>controls/engines/engine[2]/start-switch</property>
+				<value>1</value>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[2]/start-cmd</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine[2]/start-switch</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	
@@ -1219,7 +1289,7 @@
 		<type>translate</type>
 		<object-name>starter.3.off</object-name>
 		<object-name>starter.3.on</object-name>
-		<property>controls/engines/engine[2]/start-switch</property>
+		<property>systems/ignition/start-switch-3</property>
 		<factor>-0.005</factor>
 		<axis>
 			<x1-m>-27.0331</x1-m>
@@ -1235,22 +1305,9 @@
 		<type>select</type>
 		<object-name>starter.3.off</object-name>
 		<condition>
-			<or>
-				<equals>
-					<property>controls/engines/engine[2]/start-switch</property>
-					<value>0</value>
-				</equals>
-				<and>
-					<equals>
-						<property>controls/engines/engine[2]/start-switch</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>engines/engine[2]/state</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</or>
+			<not>
+				<property>systems/ignition/starter-3</property>
+			</not>
 		</condition>
 	</animation>
 	
@@ -1258,16 +1315,7 @@
 		<type>select</type>
 		<object-name>starter.3.on</object-name>
 		<condition>
-			<and>
-				<equals>
-					<property>controls/engines/engine[2]/start-switch</property>
-					<value>1</value>
-				</equals>
-				<greater-than>
-					<property>engines/engine[2]/state</property>
-					<value>0</value>
-				</greater-than>
-			</and>
+			<property>systems/ignition/starter-3</property>
 		</condition>
 	</animation>
 	
