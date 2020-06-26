@@ -102,6 +102,7 @@ var Input = {
 	fd1: props.globals.initNode("/it-autoflight/input/fd1", 1, "BOOL"),
 	fd2: props.globals.initNode("/it-autoflight/input/fd2", 1, "BOOL"),
 	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
+	fpaAbs: props.globals.initNode("/it-autoflight/input/fpa-abs", 0, "DOUBLE"), # Set by property rule
 	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
 	hdgCalc: 0,
 	hdgSet: 0,
@@ -116,6 +117,7 @@ var Input = {
 	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
 	useNav2Radio: props.globals.initNode("/it-autoflight/input/use-nav2-radio", 0, "BOOL"),
 	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
+	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"), # Set by property rule
 	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
 	vertTemp: 7,
 };

@@ -208,60 +208,6 @@
 	</filter>
 	
 	<filter>
-		<name>VS Abs</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>
-			<expression>
-				<abs>
-					<property>/it-autoflight/input/vs</property>
-				</abs>
-			</expression>
-		</input>
-		<output>/it-autoflight/input/vs-abs</output>
-	</filter>
-	
-	<filter>
-		<name>FPA Abs</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>
-			<expression>
-				<abs>
-					<property>/it-autoflight/input/fpa</property>
-				</abs>
-			</expression>
-		</input>
-		<output>/it-autoflight/input/fpa-abs</output>
-	</filter>
-	
-	<filter>
-		<name>FF 1</name>
-		<type>exponential</type>
-		<input>/engines/engine[0]/fuel-flow_pph</input>
-		<output>/engines/engine[0]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>FF 2</name>
-		<type>exponential</type>
-		<input>/engines/engine[1]/fuel-flow_pph</input>
-		<output>/engines/engine[1]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>FF 3</name>
-		<type>exponential</type>
-		<input>/engines/engine[2]/fuel-flow_pph</input>
-		<output>/engines/engine[2]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
 		<name>IAS/Mach</name>
 		<type>gain</type>
 		<gain>1.0</gain>
