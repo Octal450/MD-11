@@ -677,6 +677,36 @@
 	</filter>
 	
 	<filter>
+		<name>VS Abs</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
+			<expression>
+				<abs>
+					<property>/it-autoflight/input/vs</property>
+				</abs>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/vs-abs</output>
+	</filter>
+	
+	<filter>
+		<name>FPA Abs</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>
+			<expression>
+				<abs>
+					<property>/it-autoflight/input/fpa</property>
+				</abs>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/fpa-abs</output>
+	</filter>
+	
+	<filter>
 		<name>Nav Error Deg</name>
 		<debug>false</debug>
 		<type>gain</type>

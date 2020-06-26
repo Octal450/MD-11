@@ -1239,10 +1239,28 @@
 			<output>/engines/engine[2]/n2-actual</output>
 			<output>/engines/engine[6]/n2</output>
 		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-1">
+			<input>/engines/engine[0]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[0]/ff-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-2">
+			<input>/engines/engine[1]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[1]/ff-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-3">
+			<input>/engines/engine[2]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[2]/ff-actual</output>
+		</lag_filter>
 	
 	</channel>
 	
-	<channel name="EAD" execrate="8">
+	<channel name="EAD Reverser Status" execrate="8">
 		
 		<switch name="fadec/eng-1-powered">
 			<default value="0"/>
@@ -1312,7 +1330,7 @@
 	
 	</channel>
 	
-	<channel name="EAD" execrate="2">
+	<channel name="EAD Needles" execrate="4">
 		
 		<fcs_function name="/DU/EAD/EPR[0]">
 			<function>

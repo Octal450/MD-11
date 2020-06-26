@@ -380,9 +380,9 @@ var canvas_EAD_GE = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
-		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
-		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
+		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/ff-actual"), 10)));
+		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/ff-actual"), 10)));
+		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/ff-actual"), 10)));
 		
 		if (Value.Fadec.engPowered[0]) {
 			me["FF1"].show();
@@ -734,9 +734,9 @@ var canvas_EAD_PW = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/fuel-flow_actual"), 10)));
-		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/fuel-flow_actual"), 10)));
-		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/fuel-flow_actual"), 10)));
+		me["FF1"].setText(sprintf("%d", math.round(getprop("/engines/engine[0]/ff-actual"), 10)));
+		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/ff-actual"), 10)));
+		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/ff-actual"), 10)));
 		
 		if (Value.Fadec.engPowered[0]) {
 			me["FF1"].show();
