@@ -384,40 +384,28 @@ var canvas_EAD_GE = {
 		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/ff-actual"), 10)));
 		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/ff-actual"), 10)));
 		
-		if (Value.Fadec.engPowered[0]) {
-			me["FF1"].show();
-		} else {
+		if (systems.ENGINE.Switch.cutoffSwitch[0].getBoolValue()) {
 			me["FF1"].hide();
-		}
-		
-		if (Value.Fadec.engPowered[1]) {
-			me["FF2"].show();
-		} else {
-			me["FF2"].hide();
-		}
-		
-		if (Value.Fadec.engPowered[2]) {
-			me["FF3"].show();
-		} else {
-			me["FF3"].hide();
-		}
-		
-		if (getprop("/controls/engines/engine[0]/cutoff") == 1) {
 			me["FFOff1"].show();
 		} else {
 			me["FFOff1"].hide();
+			me["FF1"].show();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/cutoff") == 1) {
+		if (systems.ENGINE.Switch.cutoffSwitch[1].getBoolValue()) {
+			me["FF2"].hide();
 			me["FFOff2"].show();
 		} else {
 			me["FFOff2"].hide();
+			me["FF2"].show();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/cutoff") == 1) {
+		if (systems.ENGINE.Switch.cutoffSwitch[2].getBoolValue()) {
+			me["FF3"].hide();
 			me["FFOff3"].show();
 		} else {
 			me["FFOff3"].hide();
+			me["FF3"].show();
 		}
 		
 		# N1 Limit
@@ -738,40 +726,28 @@ var canvas_EAD_PW = {
 		me["FF2"].setText(sprintf("%d", math.round(getprop("/engines/engine[1]/ff-actual"), 10)));
 		me["FF3"].setText(sprintf("%d", math.round(getprop("/engines/engine[2]/ff-actual"), 10)));
 		
-		if (Value.Fadec.engPowered[0]) {
-			me["FF1"].show();
-		} else {
+		if (systems.ENGINE.Switch.cutoffSwitch[0].getBoolValue()) {
 			me["FF1"].hide();
-		}
-		
-		if (Value.Fadec.engPowered[1]) {
-			me["FF2"].show();
-		} else {
-			me["FF2"].hide();
-		}
-		
-		if (Value.Fadec.engPowered[2]) {
-			me["FF3"].show();
-		} else {
-			me["FF3"].hide();
-		}
-		
-		if (getprop("/controls/engines/engine[0]/cutoff") == 1) {
 			me["FFOff1"].show();
 		} else {
 			me["FFOff1"].hide();
+			me["FF1"].show();
 		}
 		
-		if (getprop("/controls/engines/engine[1]/cutoff") == 1) {
+		if (systems.ENGINE.Switch.cutoffSwitch[1].getBoolValue()) {
+			me["FF2"].hide();
 			me["FFOff2"].show();
 		} else {
 			me["FFOff2"].hide();
+			me["FF2"].show();
 		}
 		
-		if (getprop("/controls/engines/engine[2]/cutoff") == 1) {
+		if (systems.ENGINE.Switch.cutoffSwitch[2].getBoolValue()) {
+			me["FF3"].hide();
 			me["FFOff3"].show();
 		} else {
 			me["FFOff3"].hide();
+			me["FF3"].show();
 		}
 		
 		# EPR Limit
