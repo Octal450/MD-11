@@ -1467,17 +1467,22 @@
 				<pack-1 type="bool">0</pack-1>
 				<pack-2 type="bool">0</pack-2>
 				<pack-3 type="bool">0</pack-3>
+				<packs-off type="bool">0</packs-off>
 			</pneumatics>
 		</failures>
 		<fuel n="0">
 			<system type="bool">1</system>
 		</fuel>
 		<hydraulics n="0">
-			<sys-1-qty-input type="double">8.0</sys-1-qty-input> <!-- Randomized later in sim init -->
-			<sys-2-qty-input type="double">8.0</sys-2-qty-input> <!-- Randomized later in sim init -->
-			<sys-3-qty-input type="double">8.0</sys-3-qty-input> <!-- Randomized later in sim init -->
+			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
+			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->
+			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
+		<ignition n="0">
+			<toga-ign type="bool">0</toga-ign>
+			<toga-packs-off type="bool">0</toga-packs-off>
+		</ignition>
 		<pneumatics n="0">
 			<system type="bool">1</system>
 		</pneumatics>

@@ -20,6 +20,7 @@
 	<property value="0">/systems/pneumatics/pack-1-delta-psi</property>
 	<property value="0">/systems/pneumatics/pack-2-delta-psi</property>
 	<property value="0">/systems/pneumatics/pack-3-delta-psi</property>
+	<property value="0">/systems/pneumatics/ign-packs-off</property>
 	
 	<channel name="ESC Switches/Logic" execrate="16">
 		
@@ -63,7 +64,7 @@
 			<default value="/controls/pneumatics/switches/isol-1-2"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/ignition/packs-off eq 1
+				/systems/pneumatics/ign-packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -111,7 +112,7 @@
 			<default value="/controls/pneumatics/switches/isol-1-3"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/ignition/packs-off eq 1
+				/systems/pneumatics/ign-packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -597,7 +598,7 @@
 			<default value="/controls/pneumatics/switches/pack-1"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/ignition/packs-off eq 1
+				/systems/pneumatics/ign-packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -623,7 +624,7 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/ignition/packs-off eq 1
+				/systems/pneumatics/ign-packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -639,7 +640,7 @@
 			<default value="/controls/pneumatics/switches/pack-3"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/ignition/packs-off eq 1
+				/systems/pneumatics/ign-packs-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1

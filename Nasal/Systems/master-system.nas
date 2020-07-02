@@ -300,7 +300,4 @@ var IGNITION = {
 		me.Switch.ignB.setBoolValue(0);
 		me.Switch.ignOvrd.setBoolValue(0);
 	},
-	loop: func() {
-		
-	},
 };

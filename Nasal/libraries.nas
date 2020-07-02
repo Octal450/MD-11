@@ -37,7 +37,6 @@ setlistener("sim/signals/fdm-initialized", func {
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
 	systems.FADEC.loop();
-	systems.IGNITION.loop();
 	systems.IRS.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
