@@ -5,13 +5,6 @@
 # Usage Example: pts.Class.SubClass.node.getValue()
 
 var Controls = {
-	Engines: {
-		Engine: {
-			reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
-			reverseLeverTemp: [0, 0, 0],
-			throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
-		},
-	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
@@ -58,6 +51,7 @@ var Fdm = {
 			wowTemp: 0,
 		},
 		Propulsion: {
+			setRunning: props.globals.getNode("/fdm/jsbsim/propulsion/set-running"),
 			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),
 		},
 	},

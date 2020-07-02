@@ -17,6 +17,7 @@ setprop("/sim/multiplay/visibility-range-nm", 130);
 var systemsInit = func {
 	systems.BRAKES.init();
 	systems.ELEC.init();
+	systems.ENGINE.init();
 	systems.FADEC.init();
 	systems.FCTL.init();
 	systems.FUEL.init();

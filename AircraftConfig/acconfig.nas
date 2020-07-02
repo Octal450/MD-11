@@ -193,15 +193,6 @@ var colddark = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# Initial shutdown, and reinitialization.
-		setprop("/controls/engines/engine[0]/reverse-lever", 0);
-		setprop("/controls/engines/engine[1]/reverse-lever", 0);
-		setprop("/controls/engines/engine[2]/reverse-lever", 0);
-		setprop("/controls/engines/engine[0]/start-switch", 0);
-		setprop("/controls/engines/engine[1]/start-switch", 0);
-		setprop("/controls/engines/engine[2]/start-switch", 0);
-		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
 		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
@@ -244,15 +235,6 @@ var beforestart = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# First, we set everything to cold and dark.
-		setprop("/controls/engines/engine[0]/reverse-lever", 0);
-		setprop("/controls/engines/engine[1]/reverse-lever", 0);
-		setprop("/controls/engines/engine[2]/reverse-lever", 0);
-		setprop("/controls/engines/engine[0]/start-switch", 0);
-		setprop("/controls/engines/engine[1]/start-switch", 0);
-		setprop("/controls/engines/engine[2]/start-switch", 0);
-		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
 		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
@@ -310,15 +292,6 @@ var taxi = func {
 		setprop("/controls/gear/brake-left", 1);
 		setprop("/controls/gear/brake-right", 1);
 		# First, we set everything to cold and dark.
-		setprop("/controls/engines/engine[0]/reverse-lever", 0);
-		setprop("/controls/engines/engine[1]/reverse-lever", 0);
-		setprop("/controls/engines/engine[2]/reverse-lever", 0);
-		setprop("/controls/engines/engine[0]/start-switch", 0);
-		setprop("/controls/engines/engine[1]/start-switch", 0);
-		setprop("/controls/engines/engine[2]/start-switch", 0);
-		setprop("/controls/engines/engine[0]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[1]/cutoff-switch", 1);
-		setprop("/controls/engines/engine[2]/cutoff-switch", 1);
 		setprop("/controls/flight/flaps", 0);
 		setprop("/controls/hydraulics/deflected-aileron", 0);
 		setprop("/controls/flight/speedbrake-arm", 0);
@@ -364,9 +337,9 @@ var taxi_b = func {
 }
 var taxi_c = func {
 	# Start engines
-#	systems.fast_start_one();
-#	systems.fast_start_two();
-#	systems.fast_start_three();
+	systems.IGNITION.fastStart(0);
+	systems.IGNITION.fastStart(1);
+	systems.IGNITION.fastStart(2);
 	settimer(func {
 		taxi_d();
 	}, 10);
