@@ -12,6 +12,8 @@
 	<property value="0">/systems/pneumatics/eng-1-psi</property>
 	<property value="0">/systems/pneumatics/eng-2-psi</property>
 	<property value="0">/systems/pneumatics/eng-3-psi</property>
+	<property value="0">/systems/pneumatics/isol/isol-1-2-active</property>
+	<property value="0">/systems/pneumatics/isol/isol-1-3-active</property>
 	<property value="0">/systems/pneumatics/isol/from-1-to-2</property>
 	<property value="0">/systems/pneumatics/isol/from-1-to-3</property>
 	<property value="0">/systems/pneumatics/isol/from-2-to-1</property>
@@ -240,7 +242,17 @@
 			<function>
 				<sum>
 					<property>/systems/pneumatics/bleed-1-psi-pre-cmd</property>
-					<property>/systems/pneumatics/pack-1-delta-psi</property>
+					<min>
+						<property>/systems/pneumatics/pack-1-delta-psi</property>
+						<product>
+							<property>/systems/pneumatics/pack-2-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-2-active</property>
+						</product>
+						<product>
+							<property>/systems/pneumatics/pack-3-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-3-active</property>
+						</product>
+					</min>
 				</sum>
 			</function>
 		</fcs_function>
@@ -277,7 +289,18 @@
 			<function>
 				<sum>
 					<property>/systems/pneumatics/bleed-2-psi-pre-cmd</property>
-					<property>/systems/pneumatics/pack-2-delta-psi</property>
+					<min>
+						<product>
+							<property>/systems/pneumatics/pack-1-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-2-active</property>
+						</product>
+						<property>/systems/pneumatics/pack-2-delta-psi</property>
+						<product>
+							<property>/systems/pneumatics/pack-3-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-2-active</property>
+							<property>/systems/pneumatics/isol/isol-1-3-active</property>
+						</product>
+					</min>
 				</sum>
 			</function>
 		</fcs_function>
@@ -304,7 +327,18 @@
 			<function>
 				<sum>
 					<property>/systems/pneumatics/bleed-3-psi-pre-cmd</property>
-					<property>/systems/pneumatics/pack-3-delta-psi</property>
+					<min>
+						<product>
+							<property>/systems/pneumatics/pack-1-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-3-active</property>
+						</product>
+						<product>
+							<property>/systems/pneumatics/pack-2-delta-psi</property>
+							<property>/systems/pneumatics/isol/isol-1-2-active</property>
+							<property>/systems/pneumatics/isol/isol-1-3-active</property>
+						</product>
+						<property>/systems/pneumatics/pack-3-delta-psi</property>
+					</min>
 				</sum>
 			</function>
 		</fcs_function>
@@ -490,19 +524,22 @@
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
 		
-		<switch name="/systems/pneumatics/isol/from-1-to-2">
+		<switch name="/systems/pneumatics/isol/isol-1-2-active">
 			<default value="0"/>
-			<test value="/systems/pneumatics/eng-1-psi">
+			<test value="1">
 				/systems/pneumatics/isol/isol-1-2-valve eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/isol/from-2-to-1">
-			<default value="0"/>
-			<test value="/systems/pneumatics/bleed-2-psi-pre-input">
-				/systems/pneumatics/isol/isol-1-2-valve eq 1
-			</test>
-		</switch>
+		<pure_gain name="/systems/pneumatics/isol/from-1-to-2">
+			<input>/systems/pneumatics/eng-1-psi</input>
+			<gain>/systems/pneumatics/isol/isol-1-2-active</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/pneumatics/isol/from-2-to-1">
+			<input>/systems/pneumatics/bleed-2-psi-pre-input</input>
+			<gain>/systems/pneumatics/isol/isol-1-2-active</gain>
+		</pure_gain>
 		
 		<!-- Isolation Valve 1-3 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-3-valve">
@@ -510,26 +547,29 @@
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
 		
-		<switch name="/systems/pneumatics/isol/from-1-to-3">
+		<switch name="/systems/pneumatics/isol/isol-1-3-active">
 			<default value="0"/>
-			<test value="/systems/pneumatics/eng-1-psi">
+			<test value="1">
 				/systems/pneumatics/isol/isol-1-3-valve eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/isol/from-3-to-1">
-			<default value="0"/>
-			<test value="/systems/pneumatics/eng-3-psi">
-				/systems/pneumatics/isol/isol-1-3-valve eq 1
-			</test>
-		</switch>
+		<pure_gain name="/systems/pneumatics/isol/from-1-to-3">
+			<input>/systems/pneumatics/eng-1-psi</input>
+			<gain>/systems/pneumatics/isol/isol-1-3-active</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/pneumatics/isol/from-3-to-1">
+			<input>/systems/pneumatics/eng-3-psi</input>
+			<gain>/systems/pneumatics/isol/isol-1-3-active</gain>
+		</pure_gain>
 		
 		<!-- Isolation Valve Multi -->
 		<switch name="/systems/pneumatics/isol/multi-thru-1">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/total-1-isol-psi">
-				/systems/pneumatics/isol/isol-1-2-valve eq 1
-				/systems/pneumatics/isol/isol-1-3-valve eq 1
+				/systems/pneumatics/isol/isol-1-2-active eq 1
+				/systems/pneumatics/isol/isol-1-3-active eq 1
 			</test>
 		</switch>
 		
