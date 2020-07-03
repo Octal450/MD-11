@@ -29,6 +29,7 @@
 				/systems/ignition/ign-a eq 1
 				/systems/ignition/ign-b eq 1
 			</test>
+			<output>/systems/pneumatics/esc/ign-avail</output>
 		</switch>
 	
 	</channel>
