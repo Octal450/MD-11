@@ -327,7 +327,7 @@ var taxi_b = func {
 	systems.IRS.skip(1);
 	systems.IRS.skip(2);
 	setprop("/controls/irs/mcducbtn", 1);
-	setprop("/controls/engines/ign-a", 1);
+	setprop("/controls/ignition/ign-a", 1);
 	setprop("/controls/lighting/beacon", 1);
 	setprop("/controls/lighting/nav-lights", 1);
 	setprop("/controls/lighting/landing-light-l", 0.5);

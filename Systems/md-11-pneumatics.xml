@@ -22,7 +22,7 @@
 	<property value="0">/systems/pneumatics/pack-1-delta-psi</property>
 	<property value="0">/systems/pneumatics/pack-2-delta-psi</property>
 	<property value="0">/systems/pneumatics/pack-3-delta-psi</property>
-	<property value="0">/systems/pneumatics/ign-packs-off</property>
+	<property value="0">/systems/pneumatics/esc/ign-packs-off</property>
 	
 	<channel name="ESC Switches/Logic" execrate="16">
 		
@@ -62,11 +62,40 @@
 			<output>/controls/pneumatics/switches/bleed-3</output>
 		</switch>
 		
+		<switch name="/systems/pneumatics/esc/toga-packs-off">
+			<default value="/systems/pneumatics/esc/toga-packs-off"/>
+			<test logic="OR" value="0">
+				/position/gear-agl-ft ge 4500
+				fadec/limit/active-mode-int ne 0
+			</test>
+			<test logic="AND" value="0">
+				position/wow eq 1
+				/controls/engines/engine[0]/throttle lt 0.7
+				/controls/engines/engine[1]/throttle lt 0.7
+			</test>
+			<test logic="AND" value="1">
+				position/wow eq 1
+				/controls/engines/engine[0]/throttle ge 0.7
+			</test>
+			<test logic="AND" value="1">
+				position/wow eq 1
+				/controls/engines/engine[1]/throttle ge 0.7
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/packs-cmd-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pneumatics/esc/ign-packs-off eq 1
+				/systems/pneumatics/esc/toga-packs-off ge 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/pneumatics/esc/isol-1-2">
 			<default value="/controls/pneumatics/switches/isol-1-2"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/ign-packs-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -114,7 +143,7 @@
 			<default value="/controls/pneumatics/switches/isol-1-3"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/ign-packs-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -638,7 +667,7 @@
 			<default value="/controls/pneumatics/switches/pack-1"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/ign-packs-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -664,7 +693,7 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/ign-packs-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -680,7 +709,7 @@
 			<default value="/controls/pneumatics/switches/pack-3"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/ign-packs-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1

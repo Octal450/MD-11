@@ -169,7 +169,7 @@ var Output = {
 };
 
 var Setting = {
-	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1500, "INT"), # Will be changable from FMS
+	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1000, "INT"), # Will be changable from FMS
 };
 
 var Sound = {
