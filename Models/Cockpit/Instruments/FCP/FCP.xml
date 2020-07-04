@@ -938,7 +938,7 @@
 				<property>instrumentation/fcp/spd-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -964,7 +964,7 @@
 				<property>instrumentation/fcp/spd-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1056,7 +1056,7 @@
 				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1082,7 +1082,7 @@
 				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1221,7 +1221,7 @@
 				<property>instrumentation/fcp/alt-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1247,7 +1247,7 @@
 				<property>instrumentation/fcp/alt-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1278,7 +1278,7 @@
 				<property>instrumentation/fcp/vs-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1304,7 +1304,7 @@
 				<property>instrumentation/fcp/vs-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1533,7 +1533,7 @@
 				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1586,7 +1586,7 @@
 				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1685,7 +1685,7 @@
 				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1738,7 +1738,7 @@
 				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1804,7 +1804,7 @@
 				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1823,7 +1823,7 @@
 				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1889,7 +1889,7 @@
 				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1908,7 +1908,7 @@
 				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>

@@ -1241,6 +1241,16 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
+		<fcp n="0">
+			<alt-rotate type="int">50000</alt-rotate>
+			<baro-l-rotate type="int">50000</baro-l-rotate>
+			<baro-r-rotate type="int">50000</baro-r-rotate>
+			<hdg-rotate type="int">50000</hdg-rotate>
+			<mins-l-rotate type="int">50000</mins-l-rotate>
+			<mins-r-rotate type="int">50000</mins-r-rotate>
+			<spd-rotate type="int">50000</spd-rotate>
+			<vs-rotate type="int">50000</vs-rotate>
+		</fcp>
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
