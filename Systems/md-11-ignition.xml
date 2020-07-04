@@ -50,7 +50,7 @@
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-1-psi lt 20
 				/systems/electrical/bus/dc-bat lt 25
-				/engines/engine[0]/n2-actual ge 45
+				/engines/engine[0]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>
 			<test logic="AND" value="0"> <!-- So that starting is aborting if cutoff placed to off -->
@@ -120,7 +120,7 @@
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-2-psi lt 20
 				/systems/electrical/bus/dc-bat lt 25
-				/engines/engine[1]/n2-actual ge 45
+				/engines/engine[1]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>
 			<test logic="AND" value="0"> <!-- So that starting is aborting if cutoff placed to off -->
@@ -190,7 +190,7 @@
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-3-psi lt 20
 				/systems/electrical/bus/dc-bat lt 25
-				/engines/engine[2]/n2-actual ge 45
+				/engines/engine[2]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>
 			<test logic="AND" value="0"> <!-- So that starting is aborting if cutoff placed to off -->
@@ -267,8 +267,11 @@
 			<test value="0">
 				/systems/ignition/ign-avail ne 1
 			</test>
-			<test logic="OR" value="1">
+			<test logic="AND" value="1">
 				/systems/ignition/state-1 eq 2
+				/systems/ignition/starter-1 eq 1
+			</test>
+			<test logic="OR" value="1">
 				/controls/ignition/ign-ovrd eq 1
 				/systems/ignition/toga-ign eq 1
 			</test>
@@ -279,8 +282,11 @@
 			<test value="0">
 				/systems/ignition/ign-avail ne 1
 			</test>
-			<test logic="OR" value="1">
+			<test logic="AND" value="1">
 				/systems/ignition/state-2 eq 2
+				/systems/ignition/starter-2 eq 1
+			</test>
+			<test logic="OR" value="1">
 				/controls/ignition/ign-ovrd eq 1
 				/systems/ignition/toga-ign eq 1
 			</test>
@@ -291,8 +297,11 @@
 			<test value="0">
 				/systems/ignition/ign-avail ne 1
 			</test>
-			<test logic="OR" value="1">
+			<test logic="AND" value="1">
 				/systems/ignition/state-3 eq 2
+				/systems/ignition/starter-3 eq 1
+			</test>
+			<test logic="OR" value="1">
 				/controls/ignition/ign-ovrd eq 1
 				/systems/ignition/toga-ign eq 1
 			</test>

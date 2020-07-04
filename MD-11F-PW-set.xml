@@ -101,6 +101,12 @@
 			<max-lb type="double">2000</max-lb>
 		</weight>
 	</payload>
+	
+	<systems n="0">
+		<ignition n="0">
+			<starter-cutoff-n2 type="double">47</starter-cutoff-n2>
+		</ignition>
+	</systems>
     
     <nasal n="0">
 		<setup>
