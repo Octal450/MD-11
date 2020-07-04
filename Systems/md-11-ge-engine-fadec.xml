@@ -9,7 +9,6 @@
 	<property value="0">fadec/limit/flex-active</property>
 	<property value="30">fadec/limit/flex-temp</property>
 	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
-	<property value="1">c1</property> <!-- In afs-thrust.xml for a reason -->
 	
 	<channel name="Thrust Limits">
 		
@@ -867,6 +866,75 @@
 			<output>/engines/engine[6]/n1</output>
 		</lag_filter>
 		
+		<fcs_function name="fadec/egt-cmd-1">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n1</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<tableData>
+							     0    50000
+							 23  320  245
+							118  815  580
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-1">
+			<input>fadec/egt-cmd-1</input>
+			<c1>0.4</c1>
+			<output>/engines/engine[0]/egt-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/egt-cmd-2">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n1</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<tableData>
+							     0    50000
+							 23  320  205
+							118  815  620
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-2">
+			<input>fadec/egt-cmd-2</input>
+			<c1>0.4</c1>
+			<output>/engines/engine[1]/egt-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/egt-cmd-3">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n1</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<tableData>
+							     0    50000
+							 23  320  245
+							118  815  580
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-3">
+			<input>fadec/egt-cmd-3</input>
+			<c1>0.4</c1>
+			<output>/engines/engine[2]/egt-actual</output>
+		</lag_filter>
+		
 		<lag_filter name="fadec/n2-actual-1">
 			<input>/engines/engine[0]/n2</input>
 			<c1>2.25</c1>
@@ -1064,7 +1132,7 @@
 			</function>
 		</fcs_function>
 		
-		<!--fcs_function name="/DU/EAD/EGT[0]">
+		<fcs_function name="/DU/EAD/EGT[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
@@ -1098,7 +1166,7 @@
 					</tableData>
 				</table>
 			</function>
-		</fcs_function-->
+		</fcs_function>
 		
 		<fcs_function name="/DU/EAD/N2[0]">
 			<function>
