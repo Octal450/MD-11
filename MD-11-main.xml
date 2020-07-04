@@ -1358,13 +1358,6 @@
 	</instrumentation>
 	
 	<it-autoflight>
-		<custom n="0">
-			<alt-knb type="int">0</alt-knb>
-			<hdg-sel type="int">0</hdg-sel>
-			<hdg-knb type="int">0</hdg-knb>
-			<spd-knb type="int">0</spd-knb>
-			<vs-knb type="int">0</vs-knb>
-		</custom>
 		<input n="0">
 			<fpa type="double">0</fpa>
 			<ovrd1 type="bool">0</ovrd1>

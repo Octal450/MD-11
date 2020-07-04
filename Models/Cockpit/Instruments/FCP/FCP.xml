@@ -78,7 +78,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>SPD.knob</object-name>
-		<property>it-autoflight/custom/spd-knb</property>
+		<property>instrumentation/fcp/spd-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -95,7 +95,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HDG.knob</object-name>
-		<property>it-autoflight/custom/hdg-knb</property>
+		<property>instrumentation/fcp/hdg-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ALT.knob</object-name>
-		<property>it-autoflight/custom/alt-knb</property>
+		<property>instrumentation/fcp/alt-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -129,7 +129,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>VS.knob</object-name>
-		<property>it-autoflight/custom/vs-knb</property>
+		<property>instrumentation/fcp/vs-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>-25.7354</x-m>
@@ -223,7 +223,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led1</object-name>
-		<property>it-autoflight/custom/mach-sel-x100</property>
+		<property>it-autoflight/custom/mach-sel-x1000</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -236,7 +236,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led2</object-name>
-		<property>it-autoflight/custom/mach-sel-x100</property>
+		<property>it-autoflight/custom/mach-sel-x1000</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -249,7 +249,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led3</object-name>
-		<property>it-autoflight/custom/mach-sel-x100</property>
+		<property>it-autoflight/custom/mach-sel-x1000</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -622,13 +622,12 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-
-<!-- Knob push and pull -->
+	
+	<!-- Knob push and pull -->
 	<animation>
 		<type>translate</type>
 		<object-name>ALT.knob</object-name>
-		<property>controls/switches/alt-knob</property>
+		<property>instrumentation/fcp/alt-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -640,7 +639,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HDG.knob</object-name>
-		<property>controls/switches/hdg-knob</property>
+		<property>instrumentation/fcp/hdg-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -652,7 +651,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>SPD.knob</object-name>
-		<property>controls/switches/spd-knob</property>
+		<property>instrumentation/fcp/spd-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -664,7 +663,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet.L</object-name>
-		<property>controls/switches/baro-l-knob</property>
+		<property>instrumentation/fcp/baro-l-translate</property>
 		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
@@ -676,7 +675,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet.R</object-name>
-		<property>controls/switches/baro-r-knob</property>
+		<property>instrumentation/fcp/baro-r-translate</property>
 		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
@@ -688,7 +687,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>MINS.L</object-name>
-		<property>controls/switches/mins-l-knob</property>
+		<property>instrumentation/fcp/mins-l-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -700,7 +699,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>MINS.R</object-name>
-		<property>controls/switches/mins-r-knob</property>
+		<property>instrumentation/fcp/mins-r-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -709,12 +708,7 @@
 		</axis>
 	</animation>
 
-<!--
-
-###########   HOTSPOTS ###########
-
- -->
-
+	<!-- Clickspots -->
 	<animation>
 		<type>pick</type>
 		<object-name>OVRD1</object-name>			
@@ -869,7 +863,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -877,13 +871,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/spd-knob</property>
+					<property>instrumentation/fcp/spd-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -907,13 +901,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/spd-knob</property>
+					<property>instrumentation/fcp/spd-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -941,7 +935,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/spd-knb</property>
+				<property>instrumentation/fcp/spd-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -967,7 +961,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/spd-knb</property>
+				<property>instrumentation/fcp/spd-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -987,7 +981,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -995,13 +989,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/hdg-knob</property>
+					<property>instrumentation/fcp/hdg-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1025,13 +1019,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/hdg-knob</property>
+					<property>instrumentation/fcp/hdg-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1059,7 +1053,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-knb</property>
+				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1085,7 +1079,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-knb</property>
+				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1152,7 +1146,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -1160,13 +1154,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/alt-knob</property>
+					<property>instrumentation/fcp/alt-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1190,13 +1184,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/alt-knob</property>
+					<property>instrumentation/fcp/alt-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1224,7 +1218,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/alt-knb</property>
+				<property>instrumentation/fcp/alt-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1250,7 +1244,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/alt-knb</property>
+				<property>instrumentation/fcp/alt-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1281,7 +1275,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/vs-knb</property>
+				<property>instrumentation/fcp/vs-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1307,7 +1301,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/vs-knb</property>
+				<property>instrumentation/fcp/vs-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1472,13 +1466,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/baro-l-knob</property>
+				<property>instrumentation/fcp/baro-l-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/baro-l-knob</property>
+					<property>instrumentation/fcp/baro-l-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1536,7 +1530,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-l-rotate</property>
+				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1589,7 +1583,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-l-rotate</property>
+				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1601,7 +1595,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.L</object-name>
-		<property>controls/switches/baro-l-rotate</property>
+		<property>instrumentation/fcp/baro-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1624,13 +1618,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/baro-r-knob</property>
+				<property>instrumentation/fcp/baro-r-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/baro-r-knob</property>
+					<property>instrumentation/fcp/baro-r-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1688,7 +1682,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-r-rotate</property>
+				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1741,7 +1735,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-r-rotate</property>
+				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1753,7 +1747,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.R</object-name>
-		<property>controls/switches/baro-r-rotate</property>
+		<property>instrumentation/fcp/baro-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1776,13 +1770,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/mins-l-knob</property>
+				<property>instrumentation/fcp/mins-l-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/mins-l-knob</property>
+					<property>instrumentation/fcp/mins-l-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1807,7 +1801,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-l-rotate</property>
+				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1826,7 +1820,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-l-rotate</property>
+				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1838,7 +1832,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.L</object-name>
-		<property>controls/switches/mins-l-rotate</property>
+		<property>instrumentation/fcp/mins-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1861,13 +1855,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/mins-r-knob</property>
+				<property>instrumentation/fcp/mins-r-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/mins-r-knob</property>
+					<property>instrumentation/fcp/mins-r-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1892,7 +1886,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-r-rotate</property>
+				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1911,7 +1905,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-r-rotate</property>
+				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>10000</max>
@@ -1923,7 +1917,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.R</object-name>
-		<property>controls/switches/mins-r-rotate</property>
+		<property>instrumentation/fcp/mins-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
