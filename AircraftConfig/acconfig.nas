@@ -250,8 +250,8 @@ var beforestart = func {
 		setprop("/controls/switches/seatbelt-sign", 1);
 		settimer(func {
 			setprop("/controls/apu/start", 1);
-			var apu_rpm_chk = setlistener("/systems/apu/n2", func {
-				if (getprop("/systems/apu/n2") >= 98) {
+			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
+				if (getprop("/engines/engine[3]/n2-actual") >= 98) {
 					removelistener(apu_rpm_chk);
 					beforestart_b();
 				}
@@ -307,8 +307,8 @@ var taxi = func {
 		setprop("/controls/switches/seatbelt-sign", 1);
 		settimer(func {
 			setprop("/controls/apu/start", 1);
-			var apu_rpm_chk = setlistener("/systems/apu/n2", func {
-				if (getprop("/systems/apu/n2") >= 98) {
+			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
+				if (getprop("/engines/engine[3]/n2-actual") >= 98) {
 					removelistener(apu_rpm_chk);
 					taxi_b();
 				}

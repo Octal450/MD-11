@@ -261,7 +261,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/apu-valve-valve eq 1
-				/systems/apu/n2 ge 94.9
+				/engines/engine[3]/n2-actual ge 94.9
 				/systems/failures/pneumatics/bleed-apu ne 1
 			</test>
 		</switch>

@@ -5,7 +5,6 @@
 
 <system name="MD-11: Fuel">
 	
-	<property value="1">/systems/msc/apu-start-pump</property> <!-- Move to MSC later -->
 	<property value="10">/systems/fuel/internal/tank-2-balence-deadzone</property> <!-- Don't touch unless you know what you are doing! -->
 	
 	<channel name="FSC Switches/Logic" execrate="16">
@@ -25,7 +24,7 @@
 			<default value="/controls/fuel/switches/pumps-2"/>
 			<test logic="AND" value="0">
 				/engines/engine[1]/state eq 0
-				/systems/apu/n2 lt 95
+				/engines/engine[3]/n2-actual lt 95
 			</test>
 			<test value="1">
 				/systems/fuel/system eq 1
@@ -404,7 +403,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-bat ge 25
-				/systems/msc/apu-start-pump eq 1
+				/systems/apu/fuel-pump eq 1
 			</test>
 		</switch>
 		

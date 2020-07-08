@@ -374,12 +374,10 @@
 	
 	<controls n="0">
 		<apu n="0">
-			<bleed type="bool">0</bleed>
 			<fire-btn type="bool">0</fire-btn>
 			<fire-btn-cover type="bool">0</fire-btn-cover>
 			<fire-light type="bool">0</fire-light>
-			<on-light type="bool">0</on-light>
-			<start type="bool">0</start>
+			<start-switch type="bool">0</start-switch>
 		</apu>
 		<autobrake n="0">
 			<active type="bool">0</active>
@@ -438,6 +436,10 @@
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
+			</engine>
+			<engine n="3"> <!-- APU -->
+				<cutoff type="bool">1</cutoff>
+				<starter type="bool">0</starter>
 			</engine>
 			<throttle-max type="double">0</throttle-max>
 		</engines>
@@ -617,6 +619,16 @@
 			<n2-actual type="double">0</n2-actual>
 			<on-fire type="bool">0</on-fire>
 			<reverser-pos-norm type="double">0</reverser-pos-norm>
+			<running type="bool">0</running>
+			<state type="int">0</state>
+		</engine>
+		<engine n="3"> <!-- APU -->
+			<egt-actual type="double">0</egt-actual>
+			<ff-actual type="double">0</ff-actual>
+			<fuel-flow_pph type="double">0</fuel-flow_pph>
+			<n1-actual type="double">0</n1-actual>
+			<n2-actual type="double">0</n2-actual>
+			<on-fire type="bool">0</on-fire>
 			<running type="bool">0</running>
 			<state type="int">0</state>
 		</engine>
@@ -1399,7 +1411,7 @@
 			</options>
 		</acconfig>
 		<apu n="0">
-			<n2 type="double">0</n2>
+			<fuel-pump type="bool">0</fuel-pump>
 		</apu>
 		<electrical n="0">
 			<sources n="0">
@@ -1518,7 +1530,6 @@
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
 		</systems>
 		<afs>

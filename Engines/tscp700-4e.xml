@@ -8,12 +8,12 @@
 	<bypassratio>1</bypassratio>
 	<tsfc>0.441</tsfc>
 	<bleed>0.96</bleed>
-	<idlen1>63</idlen1>
-	<idlen2>99.99</idlen2> <!-- Should be 100 -->
 	<n1spinup>1.05</n1spinup>
 	<n2spinup>1.667</n2spinup>
 	<n1startrate>1.05</n1startrate> <!-- ~60 seconds -->
 	<n2startrate>1.667</n2startrate> <!-- ~60 seconds -->
+	<idlen1>63</idlen1>
+	<idlen2>99.99</idlen2> <!-- Should be 100 -->
 	<maxn1>100</maxn1>
 	<maxn2>100</maxn2>
 	<augmented>0</augmented>

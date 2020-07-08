@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 APU -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+
+<system name="MD-11: Ignition">
+	
+	<property value="0">/systems/apu/throttle-high</property>
+	
+	<channel name="APU Control">
+		
+		<switch name="/systems/apu/throttle-cmd-norm">
+			<default value="0"/>
+			<test value="1">
+				/systems/apu/throttle-high eq 1
+			</test>
+			<output>fcs/throttle-pos-norm[3]</output>
+		</switch>
+	
+	</channel>
+
+</system>

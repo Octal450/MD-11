@@ -93,6 +93,32 @@
 			</thruster>
 		</engine>
 		
+		<engine file="tscp700-4e">
+			<location unit="M">
+				<x>24.5364</x>	
+				<y>0</y>
+				<z>7.95507</z>
+			</location>
+			<orient unit="DEG">
+				<roll>0</roll>
+				<pitch>0</pitch>
+				<yaw>0</yaw>
+			</orient>
+			<feed>11</feed>
+			<thruster file="direct">
+				<location unit="M">
+					<x>24.5364</x>	
+					<y>0</y>
+					<z>7.95507</z>
+				</location>
+				<orient unit="DEG">
+					<roll>0</roll>
+					<pitch>0</pitch>
+					<yaw>0</yaw>
+				</orient>
+			</thruster>
+		</engine>
+		
 		<!-- Fuel Tank Capacities from FCOM -->
 		<tank type="FUEL">    <!-- Tank 1 Outboard -->
 			<location unit="M">
@@ -254,6 +280,7 @@
 	<system file="md-11-spoiler"/>
 	<system file="md-11-ignition"/>
 	<system file="md-11-pw-engine-fadec"/>
+	<system file="md-11-apu"/>
 	<system file="md-11-cockpit"/>
 	<system file="glass-effect"/>
 	

@@ -469,7 +469,7 @@
 					</eq>
 					<value>0</value>
 					<table>
-						<independentVar lookup="row">/systems/apu/n2</independentVar>
+						<independentVar lookup="row">/engines/engine[3]/n2-actual</independentVar>
 						<tableData>
 							94    0
 							95  115
