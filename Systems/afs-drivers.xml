@@ -163,7 +163,7 @@
 	
 	<!-- Autopilot Helpers/Calculators -->
 	<filter>
-		<name>AFS Target IAS Presel PFD</name>
+		<name>AFS Target Knots Presel PFD</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -196,7 +196,7 @@
 	</filter>
 	
 	<filter>
-		<name>AFS Target IAS Sel PFD</name>
+		<name>AFS Target Knots Sel PFD</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -754,7 +754,7 @@
 	</filter>
 	
 	<filter>
-		<name>NAV1 G/S FPM Calc</name>
+		<name>Nav1 G/S FPM Calc</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -765,7 +765,7 @@
 	</filter>
 	
 	<filter>
-		<name>NAV2 G/S FPM Calc</name>
+		<name>Nav2 G/S FPM Calc</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
