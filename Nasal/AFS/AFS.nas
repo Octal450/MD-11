@@ -106,11 +106,11 @@ var Input = {
 	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
 	hdgCalc: 0,
 	hdgSet: 0,
-	ias: props.globals.initNode("/it-autoflight/input/spd-kts", 250, "INT"),
+	kts: props.globals.initNode("/it-autoflight/input/kts", 250, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/input/kts-mach", 0, "BOOL"),
 	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
 	latTemp: 5,
-	mach: props.globals.initNode("/it-autoflight/input/spd-mach", 0.5, "DOUBLE"),
+	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
@@ -194,19 +194,19 @@ var Custom = {
 	canAutoland: 0,
 	enableAtsOff: 0,
 	hdgSel: props.globals.initNode("/it-autoflight/custom/hdg-sel", 0, "INT"),
+	ktsSel: props.globals.initNode("/it-autoflight/custom/kts-sel", 0, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/custom/kts-mach", 0, "BOOL"),
 	ktsMachTemp: 0,
 	landCondition: 0,
 	landModeActive: 0,
-	iasSel: props.globals.initNode("/it-autoflight/custom/kts-sel", 0, "INT"),
 	machSel: props.globals.initNode("/it-autoflight/custom/mach-sel", 0, "DOUBLE"),
 	retardLock: 0,
 	selfCheckStatus: 0,
 	selfCheckTime: 0,
 	showHdg: props.globals.initNode("/it-autoflight/custom/show-hdg", 1, "BOOL"),
 	targetHDGError: 0,
-	targetIAS: 0,
-	targetIASError: 0,
+	targetKts: 0,
+	targetKtsError: 0,
 	vsFpa: props.globals.initNode("/it-autoflight/custom/vs-fpa", 0, "BOOL"),
 	FMS: {
 		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
@@ -238,7 +238,7 @@ var ITAF = {
 	init: func(t) { # Not everything should be reset if the reset is type 1
 		if (t != 1) {
 			Custom.ktsMach.setBoolValue(0);
-			Custom.iasSel.setValue(250);
+			Custom.ktsSel.setValue(250);
 			Custom.machSel.setValue(0.5);
 			Custom.hdgSel.setValue(0);
 			Custom.vsFpa.setBoolValue(0);
@@ -287,7 +287,7 @@ var ITAF = {
 			Internal.alt.setValue(10000);
 		}
 		Internal.altCaptureActive = 0;
-		Input.ias.setValue(Custom.FMS.v2Speed.getValue());
+		Input.kts.setValue(Custom.FMS.v2Speed.getValue());
 		Input.mach.setValue(0.5);
 		Text.thr.setValue("PITCH");
 		Text.arm.setValue(" ");
@@ -495,13 +495,13 @@ var ITAF = {
 				Custom.ktsMachTemp = Custom.ktsMach.getBoolValue();
 				if (Custom.ktsMachTemp) {
 					Input.mach.setValue(Custom.machSel.getValue());
-					Custom.targetIAS = Input.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to IAS
+					Custom.targetKts = Input.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
 				} else {
-					Input.ias.setValue(Custom.iasSel.getValue());
-					Custom.targetIAS = Input.ias.getValue();
+					Input.kts.setValue(Custom.ktsSel.getValue());
+					Custom.targetKts = Input.kts.getValue();
 				}
-				Custom.targetIASError = Custom.targetIAS - Velocities.indicatedAirspeedKt5Sec.getValue();
-				if (abs(Custom.targetIASError) <= 2.5) {
+				Custom.targetKtsError = Custom.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
+				if (abs(Custom.targetKtsError) <= 2.5) {
 					Custom.Output.spdCaptured = 1;
 				}
 			}
@@ -1111,7 +1111,7 @@ var ITAF = {
 			me.setVertMode(7);
 			me.updateVertText("G/A CLB");
 			Input.ktsMach.setBoolValue(0);
-			me.syncIASGA();
+			me.syncKtsGa();
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
 				if (systems.BRAKES.Abs.armed.getBoolValue()) {
 					systems.BRAKES.absSetOff(1); # Disarm autobrake
@@ -1132,19 +1132,19 @@ var ITAF = {
 			Text.arm.setValue(" ");
 		}
 	},
-	syncIAS: func() {
-		Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
+	syncKts: func() {
+		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
-	syncIASGA: func() { # Same as syncIAS, except doesn't go below V2
-		Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
+	syncKtsGa: func() { # Same as syncKts, except doesn't go below V2
+		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
 	},
-	syncCIAS: func() {
-		Custom.iasSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
+	syncKtsSel: func() {
+		Custom.ktsSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
 	syncMach: func() {
 		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
 	},
-	syncCMach: func() {
+	syncMachSel: func() {
 		Custom.machSel.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
 	},
 	syncHDG: func() {
@@ -1173,14 +1173,14 @@ var ITAF = {
 				Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
 			} else {
 				Input.ktsMach.setBoolValue(0);
-				Custom.iasSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
-				Input.ias.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+				Custom.ktsSel.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
+				Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
 			}
 		} else {
 			if (Custom.ktsMach.getBoolValue()) {
-				me.syncCMach();
+				me.syncMachSel();
 			} else {
-				me.syncCIAS();
+				me.syncKtsSel();
 			}
 		}
 	},
@@ -1194,7 +1194,7 @@ var ITAF = {
 			if (Custom.ktsMachTemp) {
 				Input.mach.setValue(Custom.machSel.getValue());
 			} else {
-				Input.ias.setValue(Custom.iasSel.getValue());
+				Input.kts.setValue(Custom.ktsSel.getValue());
 			}
 			Custom.Output.spdCaptured = 0;
 		}
@@ -1332,9 +1332,9 @@ setlistener("/it-autoflight/input/fd2", func {
 
 setlistener("/it-autoflight/custom/kts-mach", func {
 	if (Custom.ktsMach.getBoolValue()) {
-		ITAF.syncCMach();
+		ITAF.syncMachSel();
 	} else {
-		ITAF.syncCIAS();
+		ITAF.syncKtsSel();
 	}
 }, 0, 0);
 
@@ -1342,7 +1342,7 @@ setlistener("/it-autoflight/input/kts-mach", func {
 	if (Input.ktsMach.getBoolValue()) {
 		ITAF.syncMach();
 	} else {
-		ITAF.syncIAS();
+		ITAF.syncKts();
 	}
 }, 0, 0);
 

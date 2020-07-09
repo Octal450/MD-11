@@ -219,7 +219,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/spd-kts</property>
+			<property>/it-autoflight/input/kts</property>
 		</input>
 		<input>
 			<condition>
@@ -228,7 +228,7 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/spd-mach</property>
+			<property>/it-autoflight/input/mach</property>
 		</input>
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>

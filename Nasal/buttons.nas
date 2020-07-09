@@ -86,13 +86,13 @@ var APPanel = {
 					afs.Custom.machSel.setValue(me.machTemp);
 				}
 			} else {
-				me.iasTemp = afs.Custom.iasSel.getValue() + d;
+				me.iasTemp = afs.Custom.ktsSel.getValue() + d;
 				if (me.iasTemp < 100) {
-					afs.Custom.iasSel.setValue(100);
+					afs.Custom.ktsSel.setValue(100);
 				} else if (me.iasTemp > 365) {
-					afs.Custom.iasSel.setValue(365);
+					afs.Custom.ktsSel.setValue(365);
 				} else {
-					afs.Custom.iasSel.setValue(me.iasTemp);
+					afs.Custom.ktsSel.setValue(me.iasTemp);
 				}
 			}
 		}
