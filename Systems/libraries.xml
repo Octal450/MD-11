@@ -199,15 +199,6 @@
 	</filter>
 	
 	<filter>
-		<name>Mach x1000</name>
-		<type>gain</type>
-		<gain>1000</gain>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>/it-autoflight/custom/mach-sel</input>
-		<output>/it-autoflight/custom/mach-sel-x1000</output>
-	</filter>
-	
-	<filter>
 		<name>IAS/Mach</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -215,20 +206,20 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/kts</property>
+			<property>/it-autoflight/internal/kts</property>
 		</input>
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/mach</property>
+			<property>/it-autoflight/internal/mach</property>
 		</input>
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>

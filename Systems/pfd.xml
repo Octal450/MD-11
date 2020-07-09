@@ -75,7 +75,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-autoflight/custom/hdg-sel</property>
+					<property>/it-autoflight/input/hdg</property>
 					<product>
 						<property>/it-autoflight/internal/drift-angle-deg</property>
 						<value>-1</value>
@@ -88,7 +88,7 @@
 			</period>
 		</input>
 		<input>
-			<property>/it-autoflight/custom/hdg-sel</property>
+			<property>/it-autoflight/input/hdg</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>
@@ -122,7 +122,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-autoflight/input/hdg</property>
+					<property>/it-autoflight/internal/hdg</property>
 					<product>
 						<property>/it-autoflight/internal/drift-angle-deg</property>
 						<value>-1</value>
@@ -135,7 +135,7 @@
 			</period>
 		</input>
 		<input>
-			<property>/it-autoflight/input/hdg</property>
+			<property>/it-autoflight/internal/hdg</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>

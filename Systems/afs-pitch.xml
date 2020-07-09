@@ -71,7 +71,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -80,7 +80,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -90,7 +90,7 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -99,7 +99,7 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>

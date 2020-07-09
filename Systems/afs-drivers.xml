@@ -169,39 +169,6 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/custom/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/custom/kts-sel</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/custom/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<product>
-					<div>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/custom/mach-sel</property>
-				</product>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/ias-presel</output>
-	</filter>
-	
-	<filter>
-		<name>AFS Target Knots Sel PFD</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
 					<value>0</value>
 				</equals>
@@ -222,6 +189,39 @@
 						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
 					</div>
 					<property>/it-autoflight/input/mach</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/ias-presel</output>
+	</filter>
+	
+	<filter>
+		<name>AFS Target Knots Sel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/kts</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/internal/mach</property>
 				</product>
 			</expression>
 		</input>
@@ -248,7 +248,7 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/input/kts</input>
+		<input>/it-autoflight/internal/kts</input>
 		<output>/it-autoflight/internal/flch-kts</output>
 		<min>
 			<expression>
@@ -280,7 +280,7 @@
 						</equals>
 					</or>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -304,7 +304,7 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/input/mach</input>
+		<input>/it-autoflight/internal/mach</input>
 		<output>/it-autoflight/internal/flch-mach</output>
 		<min>
 			<expression>
@@ -336,7 +336,7 @@
 						</equals>
 					</or>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>1</value>
 					</equals>
 					<equals>
@@ -361,6 +361,62 @@
 		<enable>
 			<condition>
 				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<floor>
+					<sum>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<value>0.5</value>
+					</sum>
+				</floor>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/kts</output>
+	</filter>
+	
+	<filter>
+		<name>Mach Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<div>
+					<floor>
+						<sum>
+							<product>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+								<value>1000</value>
+							</product>
+							<value>0.5</value>
+						</sum>
+					</floor>
+					<value>1000</value>
+				</div>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/mach</output>
+	</filter>
+	
+	<filter>
+		<name>Knots Knob Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
 					<value>1</value>
 				</equals>
@@ -380,7 +436,7 @@
 	</filter>
 	
 	<filter>
-		<name>Mach Sync</name>
+		<name>Mach Knob Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
@@ -408,62 +464,6 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/input/mach</output>
-	</filter>
-	
-	<filter>
-		<name>Knots Knob Sync</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>/it-autoflight/custom/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<floor>
-					<sum>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<value>0.5</value>
-					</sum>
-				</floor>
-			</expression>
-		</input>
-		<output>/it-autoflight/custom/kts-sel</output>
-	</filter>
-	
-	<filter>
-		<name>Mach Knob Sync</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>/it-autoflight/custom/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<div>
-					<floor>
-						<sum>
-							<product>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-								<value>1000</value>
-							</product>
-							<value>0.5</value>
-						</sum>
-					</floor>
-					<value>1000</value>
-				</div>
-			</expression>
-		</input>
-		<output>/it-autoflight/custom/mach-sel</output>
 	</filter>
 	
 	<filter>
@@ -556,7 +556,7 @@
 					</equals>
 				</and>
 			</condition>
-			<property>/it-autoflight/input/hdg</property>
+			<property>/it-autoflight/internal/hdg</property>
 			<offset>
 				<property>/it-autoflight/internal/heading-deg</property>
 				<scale>-1.0</scale>
@@ -575,7 +575,7 @@
 					</equals>
 				</and>
 			</condition>
-			<property>/it-autoflight/input/hdg</property>
+			<property>/it-autoflight/internal/hdg</property>
 			<offset>
 				<property>/it-autoflight/internal/track-deg</property>
 				<scale>-1.0</scale>
@@ -704,6 +704,15 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/input/fpa-abs</output>
+	</filter>
+	
+	<filter>
+		<name>Mach x1000</name>
+		<type>gain</type>
+		<gain>1000</gain>
+		<update-interval-secs type="double">0.02</update-interval-secs>
+		<input>/it-autoflight/input/mach</input>
+		<output>/it-autoflight/input/mach-x1000</output>
 	</filter>
 	
 	<filter>

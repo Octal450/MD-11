@@ -158,7 +158,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<not>
-					<property>it-autoflight/custom/kts-mach</property>
+					<property>it-autoflight/input/kts-mach</property>
 				</not>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -169,7 +169,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led1</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -182,7 +182,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led2</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -195,7 +195,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led3</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -214,7 +214,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/custom/kts-mach</property>
+				<property>it-autoflight/input/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
 		</condition>
@@ -223,7 +223,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led1</object-name>
-		<property>it-autoflight/custom/mach-sel-x1000</property>
+		<property>it-autoflight/input/mach-x1000</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -236,7 +236,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led2</object-name>
-		<property>it-autoflight/custom/mach-sel-x1000</property>
+		<property>it-autoflight/input/mach-x1000</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -249,7 +249,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led3</object-name>
-		<property>it-autoflight/custom/mach-sel-x1000</property>
+		<property>it-autoflight/input/mach-x1000</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -312,7 +312,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led1</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -325,7 +325,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led2</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -338,7 +338,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led3</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
