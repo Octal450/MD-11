@@ -30,7 +30,6 @@ var LOC = 0;
 var GS = 0;
 var FMAAlt = 0;
 var AICenter = nil;
-var alphaFixer = 0;
 
 # Fetch nodes:
 var ap1 = props.globals.getNode("/it-autoflight/output/ap1", 1);
@@ -592,7 +591,6 @@ var canvas_PFD_base = {
 		pitchx = pitch.getValue() or 0;
 		rollx = roll.getValue() or 0;
 		alphax = alpha.getValue() or 0;
-		alphaFixer = math.cos(rollx / 57.2957795131);
 		
 		AICenter = me["AI_center"].getCenter();
 		
@@ -601,7 +599,7 @@ var canvas_PFD_base = {
 		
 		trackdiffx = trackdiff.getValue();
 		if (apfpa.getValue() == 1) {
-			me.AI_fpv_trans.setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax * alphaFixer, -20, 20) * 10.246);
+			me.AI_fpv_trans.setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax, -20, 20) * 10.246);
 			me.AI_fpv_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpv"].show();
 		} else {
@@ -609,7 +607,7 @@ var canvas_PFD_base = {
 		}
 		
 		if (apvert.getValue() == 5) {
-			me.AI_fpd_trans.setTranslation(0, (pitchx - alphax + (alphax * alphaFixer) - fpa.getValue()) * 10.246);
+			me.AI_fpd_trans.setTranslation(0, (pitchx - fpa.getValue()) * 10.246);
 			me.AI_fpd_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpd"].show();
 		} else {
