@@ -29,6 +29,8 @@ var HDGsel = 0;
 var LOC = 0;
 var GS = 0;
 var FMAAlt = 0;
+var AICenter = nil;
+var alphaFixer = 0;
 
 # Fetch nodes:
 var ap1 = props.globals.getNode("/it-autoflight/output/ap1", 1);
@@ -152,6 +154,9 @@ var canvas_PFD_base = {
 		
 		me.AI_horizon_trans = me["AI_horizon"].createTransform();
 		me.AI_horizon_rot = me["AI_horizon"].createTransform();
+		
+		me.AI_fpv_trans = me["AI_fpv"].createTransform();
+		me.AI_fpv_rot = me["AI_fpv"].createTransform();
 		
 		me.AI_fpd_trans = me["AI_fpd"].createTransform();
 		me.AI_fpd_rot = me["AI_fpd"].createTransform();
@@ -587,21 +592,25 @@ var canvas_PFD_base = {
 		pitchx = pitch.getValue() or 0;
 		rollx = roll.getValue() or 0;
 		alphax = alpha.getValue() or 0;
+		alphaFixer = math.cos(rollx / 57.2957795131);
+		
+		AICenter = me["AI_center"].getCenter();
 		
 		me.AI_horizon_trans.setTranslation(0, pitchx * 10.246);
-		me.AI_horizon_rot.setRotation(-rollx * D2R, me["AI_center"].getCenter());
+		me.AI_horizon_rot.setRotation(-rollx * D2R, AICenter);
 		
 		trackdiffx = trackdiff.getValue();
-		me["AI_fpv"].setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax, -20, 20) * 10.246);
 		if (apfpa.getValue() == 1) {
+			me.AI_fpv_trans.setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax * alphaFixer, -20, 20) * 10.246);
+			me.AI_fpv_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpv"].show();
 		} else {
 			me["AI_fpv"].hide();
 		}
 		
 		if (apvert.getValue() == 5) {
-			me.AI_fpd_trans.setTranslation(0, (pitchx - alphax + (alphax * math.cos(rollx / 57.2957795131)) - fpa.getValue()) * 10.246);
-			me.AI_fpd_rot.setRotation(-rollx * D2R, me["AI_center"].getCenter());
+			me.AI_fpd_trans.setTranslation(0, (pitchx - alphax + (alphax * alphaFixer) - fpa.getValue()) * 10.246);
+			me.AI_fpd_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpd"].show();
 		} else {
 			me["AI_fpd"].hide();
