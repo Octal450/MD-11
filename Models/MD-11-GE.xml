@@ -165,43 +165,40 @@
  </condition>
 </model>
 	
-	
-	
-				<!-- Wing flex -->
-				
-		<animation>
+	<!-- Wing flex -->	
+	<animation>
 		<type>rotate</type>
 		<object-name>wing1.grey.part2</object-name>
-	<object-name>wing1.grey.part3</object-name>
+		<object-name>wing1.grey.part3</object-name>
 		<object-name>wing.1.part2</object-name>
-	<object-name>wing.1.part3</object-name>
-	<object-name>winglet.left</object-name>
-	<object-name>wing.glass.left</object-name>
+		<object-name>wing.1.part3</object-name>
+		<object-name>winglet.left</object-name>
+		<object-name>wing.glass.left</object-name>
 		<object-name>slat.1.part3</object-name>
-	<object-name>slat.1.part2</object-name>
-<object-name>sp.brake.left.1</object-name>
-<object-name>sp.brake.left.2</object-name>
-<object-name>sp.brake.left.3</object-name>
-<object-name>sp.brake.left.4</object-name>
-	<object-name>wing.glass.left</object-name>
-	<object-name>flap.1</object-name>
-	<object-name>flap.2</object-name>
-	<object-name>flap.9</object-name>
-	<object-name>flap.9.part2</object-name>
-	<object-name>flap.10</object-name>
-	<object-name>flap.10.part2</object-name>
-	<object-name>wing.antennas.left</object-name>
-	<object-name>AileronL2</object-name>
-	<object-name>redlightsphere</object-name>
-	<object-name>RedLight</object-name>
-	<object-name>RedLightALS</object-name>
-	<object-name>Strobelight.1</object-name>
-	<object-name>Strobelight.1ALS</object-name>
-	<object-name>Strobelight.3</object-name>
-	<object-name>Strobelight.3ALS</object-name>
-	<object-name>Rearnav.1</object-name>
-	<object-name>Rearnav.1ALS</object-name>
-	<object-name>fueldump.l</object-name>
+		<object-name>slat.1.part2</object-name>
+		<object-name>sp.brake.left.1</object-name>
+		<object-name>sp.brake.left.2</object-name>
+		<object-name>sp.brake.left.3</object-name>
+		<object-name>sp.brake.left.4</object-name>
+		<object-name>wing.glass.left</object-name>
+		<object-name>flap.1</object-name>
+		<object-name>flap.2</object-name>
+		<object-name>flap.9</object-name>
+		<object-name>flap.9.part2</object-name>
+		<object-name>flap.10</object-name>
+		<object-name>flap.10.part2</object-name>
+		<object-name>wing.antennas.left</object-name>
+		<object-name>AileronL2</object-name>
+		<object-name>redlightsphere</object-name>
+		<object-name>RedLight</object-name>
+		<object-name>RedLightALS</object-name>
+		<object-name>Strobelight.1</object-name>
+		<object-name>Strobelight.1ALS</object-name>
+		<object-name>Strobelight.3</object-name>
+		<object-name>Strobelight.3ALS</object-name>
+		<object-name>Rearnav.1</object-name>
+		<object-name>Rearnav.1ALS</object-name>
+		<object-name>fueldump.l</object-name>
 		<property>sim/multiplay/generic/float[16]</property>
 		<factor>-0.000005</factor>
 		<axis>
@@ -216,26 +213,25 @@
 		</center>
 	</animation>
 	
-	
-										<animation>
+	<animation>
 		<type>rotate</type>
-	<object-name>wing1.grey.part3</object-name>
-	<object-name>slat.1.part3</object-name>
-	<object-name>winglet.left</object-name>
-	<object-name>wing.glass.left</object-name>
-	<object-name>wing.antennas.left</object-name>
-	<object-name>AileronL2</object-name>
-	<object-name>wing.1.part3</object-name>
-	<object-name>redlightsphere</object-name>
-	<object-name>RedLight</object-name>
-	<object-name>RedLightALS</object-name>
-	<object-name>Strobelight.1</object-name>
-	<object-name>Strobelight.1ALS</object-name>
-	<object-name>Strobelight.3</object-name>
-	<object-name>Strobelight.3ALS</object-name>
-	<object-name>Rearnav.1</object-name>
-	<object-name>Rearnav.1ALS</object-name>
-	<object-name>fueldump.l</object-name>
+		<object-name>wing1.grey.part3</object-name>
+		<object-name>slat.1.part3</object-name>
+		<object-name>winglet.left</object-name>
+		<object-name>wing.glass.left</object-name>
+		<object-name>wing.antennas.left</object-name>
+		<object-name>AileronL2</object-name>
+		<object-name>wing.1.part3</object-name>
+		<object-name>redlightsphere</object-name>
+		<object-name>RedLight</object-name>
+		<object-name>RedLightALS</object-name>
+		<object-name>Strobelight.1</object-name>
+		<object-name>Strobelight.1ALS</object-name>
+		<object-name>Strobelight.3</object-name>
+		<object-name>Strobelight.3ALS</object-name>
+		<object-name>Rearnav.1</object-name>
+		<object-name>Rearnav.1ALS</object-name>
+		<object-name>fueldump.l</object-name>
 		<property>sim/multiplay/generic/float[16]</property>
 		<factor>-0.000005</factor>
 		<axis>
@@ -250,41 +246,38 @@
 		</center>
 	</animation>
 	
-	
-	
-	
-			<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>wing2.grey.part2</object-name>
-	<object-name>wing2.grey.part3</object-name>
+		<object-name>wing2.grey.part3</object-name>
 		<object-name>wing.2.part2</object-name>
-	<object-name>wing.2.part3</object-name>
-	<object-name>winglet.right</object-name>
-	<object-name>wing.glass.right</object-name>
+		<object-name>wing.2.part3</object-name>
+		<object-name>winglet.right</object-name>
+		<object-name>wing.glass.right</object-name>
 		<object-name>slat.4.part3</object-name>
-	<object-name>slat.4.part2</object-name>
-<object-name>sp.brake.right.1</object-name>
-<object-name>sp.brake.right.2</object-name>
-<object-name>sp.brake.right.3</object-name>
-<object-name>sp.brake.right.4</object-name>
-	<object-name>wing.glass.right</object-name>
-	<object-name>flap.7</object-name>
-	<object-name>flap.8</object-name>
-	<object-name>flap.13</object-name>
-	<object-name>flap.13.part2</object-name>
-	<object-name>flap.14</object-name>
-	<object-name>flap.14.part2</object-name>
-	<object-name>wing.antennas.right</object-name>
-	<object-name>AileronR2</object-name>
-	<object-name>GreenLight</object-name>
-	<object-name>GreenLightALS</object-name>
-	<object-name>Strobelight.2</object-name>
-	<object-name>Strobelight.2ALS</object-name>
-	<object-name>Strobelight.4</object-name>
-	<object-name>Strobelight.4ALS</object-name>
-	<object-name>Rearnav.2</object-name>
-	<object-name>Rearnav.2ALS</object-name>
-	<object-name>fueldump.r</object-name>
+		<object-name>slat.4.part2</object-name>
+		<object-name>sp.brake.right.1</object-name>
+		<object-name>sp.brake.right.2</object-name>
+		<object-name>sp.brake.right.3</object-name>
+		<object-name>sp.brake.right.4</object-name>
+		<object-name>wing.glass.right</object-name>
+		<object-name>flap.7</object-name>
+		<object-name>flap.8</object-name>
+		<object-name>flap.13</object-name>
+		<object-name>flap.13.part2</object-name>
+		<object-name>flap.14</object-name>
+		<object-name>flap.14.part2</object-name>
+		<object-name>wing.antennas.right</object-name>
+		<object-name>AileronR2</object-name>
+		<object-name>GreenLight</object-name>
+		<object-name>GreenLightALS</object-name>
+		<object-name>Strobelight.2</object-name>
+		<object-name>Strobelight.2ALS</object-name>
+		<object-name>Strobelight.4</object-name>
+		<object-name>Strobelight.4ALS</object-name>
+		<object-name>Rearnav.2</object-name>
+		<object-name>Rearnav.2ALS</object-name>
+		<object-name>fueldump.r</object-name>
 		<property>sim/multiplay/generic/float[16]</property>
 		<factor>0.000005</factor>
 		<axis>
@@ -299,7 +292,37 @@
 		</center>
 	</animation>
 	
-	
+	<animation>
+		<type>rotate</type>
+		<object-name>wing2.grey.part3</object-name>
+		<object-name>slat.4.part3</object-name>
+		<object-name>winglet.right</object-name>
+		<object-name>wing.glass.right</object-name>
+		<object-name>wing.antennas.right</object-name>
+		<object-name>AileronR2</object-name>
+		<object-name>wing.2.part3</object-name>
+		<object-name>GreenLight</object-name>
+		<object-name>GreenLightALS</object-name>
+		<object-name>Strobelight.2</object-name>
+		<object-name>Strobelight.2ALS</object-name>
+		<object-name>Strobelight.4</object-name>
+		<object-name>Strobelight.4ALS</object-name>
+		<object-name>Rearnav.2</object-name>
+		<object-name>Rearnav.2ALS</object-name>
+		<object-name>fueldump.r</object-name>
+		<property>sim/multiplay/generic/float[16]</property>
+		<factor>0.000005</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>8.7968</x-m>
+			<y-m>17.6849</y-m>
+			<z-m>5.7059</z-m>
+		</center>
+	</animation>
 	
 										<animation>
 		<type>rotate</type>
