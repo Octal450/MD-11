@@ -552,45 +552,46 @@
 	
 	
 	
-<filter>
-  <type>gain</type>
-  <gain>1</gain>
-  <input>
-    <expression>
-      <product>
-        <table>
-          <product><property>/velocities/groundspeed-kt</property><value>1</value>  </product>
-            <entry><ind>0.00</ind> <dep>0.07</dep></entry>
-			<entry><ind>450</ind>  <dep>1.00</dep></entry>
-        </table>
-		<property>sim/current-view/internal</property>
-      </product>
-    </expression> 
-  </input>
-  <output>
-    <prop>sim/sound/other/wind</prop>
-  </output>
-</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<product>
+				<table>
+				   <property>/velocities/airspeed-kt</property>
+					<entry><ind>170</ind>  <dep>0.00</dep></entry>
+					<entry><ind>198</ind>  <dep>0.10</dep></entry>
+					<entry><ind>250</ind>  <dep>0.10</dep></entry>
+				</table>
+				<property>sim/current-view/internal</property>
+				</product>
+			</expression> 
+		</input>
+		<output>
+			<prop>sim/sound/other/wind</prop>
+		</output>
+	</filter>
 
-<filter>
-  <type>gain</type>
-  <gain>1</gain>
-  <input>
-    <expression>
-      <product>
-        <table>
-          <product><property>/velocities/groundspeed-kt</property><value>1</value>  </product>
-            <entry><ind>0.00</ind> <dep>1.00</dep></entry>
-			<entry><ind>450</ind>  <dep>2.00</dep></entry>
-        </table>
-		<property>sim/current-view/internal</property>
-      </product>
-    </expression> 
-  </input>
-  <output>
-    <prop>sim/sound/other/windp</prop>
-  </output>
-</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<product>
+				<table>
+					<property>/velocities/airspeed-kt</property>
+					<entry><ind>150</ind> <dep>0.50</dep></entry>
+					<entry><ind>250</ind> <dep>1.00</dep></entry>
+				</table>
+				<property>sim/current-view/internal</property>
+				</product>
+			</expression> 
+		</input>
+		<output>
+			<prop>sim/sound/other/windp</prop>
+		</output>
+	</filter>
 
 <filter>
   <type>gain</type>
