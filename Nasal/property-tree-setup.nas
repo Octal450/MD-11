@@ -115,6 +115,7 @@ var Sim = {
 	Sound: {
 		btn1: props.globals.initNode("/sim/sound/btn1", 0, "BOOL"),
 		btn3: props.globals.initNode("/sim/sound/btn3", 0, "BOOL"),
+		flapsClick: props.globals.initNode("/sim/sound/flaps-click", 0, "BOOL"),
 		knb1: props.globals.initNode("/sim/sound/knb1", 0, "BOOL"),
 		noSmokingSign: props.globals.initNode("/sim/sound/no-smoking-sign", 0, "BOOL"),
 		noSmokingSignInhibit: props.globals.initNode("/sim/sound/no-smoking-sign-inhibit", 0, "BOOL"),

@@ -1158,13 +1158,13 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/wind.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
+				<property>/sim/current-view/internal</property>
 			</condition>
 			<volume>
-				<property>sim/sound/other/wind</property>
+				<property>/sim/sound/other/wind</property>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/windp</property>
+				<property>/sim/sound/other/windp</property>
 			</pitch>
 		</wind>
 		
@@ -1173,9 +1173,7 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/flaps-click.wav</path>
 			<condition>
-				<and>
-					<property>sim/sound/other/flaps-click</property>
-				</and>
+				<property>/sim/sound/flaps-click</property>
 			</condition>
 		</switch>
 	
