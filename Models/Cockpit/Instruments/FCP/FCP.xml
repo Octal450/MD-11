@@ -753,7 +753,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.IASMach();</script>
+				<script>libraries.apPanel.ktsMach();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -770,7 +770,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGTRK();</script>
+				<script>libraries.apPanel.hdgTrk();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -787,7 +787,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSFPA();</script>
+				<script>libraries.apPanel.vsFpa();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -805,7 +805,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.AUTOFLIGHT();</script>
+				<script>libraries.apPanel.autoflight();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -886,14 +886,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPush();</script>
+				<script>libraries.apPanel.spdPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPull();</script>
+				<script>libraries.apPanel.spdPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -913,7 +913,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPull();</script>
+				<script>libraries.apPanel.spdPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -924,14 +924,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(1);</script>
+				<script>libraries.apPanel.spdAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(10);</script>
+				<script>libraries.apPanel.spdAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -950,14 +950,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(-1);</script>
+				<script>libraries.apPanel.spdAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(-10);</script>
+				<script>libraries.apPanel.spdAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1004,14 +1004,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPush();</script>
+				<script>libraries.apPanel.hdgPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPull();</script>
+				<script>libraries.apPanel.hdgPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1031,7 +1031,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPull();</script>
+				<script>libraries.apPanel.hdgPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1042,14 +1042,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(1);</script>
+				<script>libraries.apPanel.hdgAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(10);</script>
+				<script>libraries.apPanel.hdgAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1068,14 +1068,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(-1);</script>
+				<script>libraries.apPanel.hdgAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(-10);</script>
+				<script>libraries.apPanel.hdgAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1126,7 +1126,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.PROF();</script>
+				<script>libraries.apPanel.PROF();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -1169,14 +1169,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPush();</script>
+				<script>libraries.apPanel.altPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPull();</script>
+				<script>libraries.apPanel.altPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1196,7 +1196,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPull();</script>
+				<script>libraries.apPanel.altPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1207,14 +1207,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(1);</script>
+				<script>libraries.apPanel.altAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(10);</script>
+				<script>libraries.apPanel.altAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1233,14 +1233,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(-1);</script>
+				<script>libraries.apPanel.altAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(-10);</script>
+				<script>libraries.apPanel.altAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1264,14 +1264,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(-1);</script>
+				<script>libraries.apPanel.vsAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(-10);</script>
+				<script>libraries.apPanel.vsAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1290,14 +1290,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(1);</script>
+				<script>libraries.apPanel.vsAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(10);</script>
+				<script>libraries.apPanel.vsAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>

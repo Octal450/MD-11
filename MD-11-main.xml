@@ -771,7 +771,7 @@
 					<script>
 						setprop("/controls/switches/ats-lever1", 1);
 						setprop("/controls/switches/ats-lever3", 1);
-						libraries.APPanel.ATDisc();
+						libraries.apPanel.atDisc();
 					</script>
 				</binding>
 				<mod-up>
@@ -791,7 +791,7 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/switches/ga-button", 1);
-						libraries.APPanel.GAButton();
+						libraries.apPanel.goAround();
 					</script>
 				</binding>
 				<mod-up>
@@ -1026,7 +1026,7 @@
 					<script>
 						setprop("/controls/switches/ap-yoke-button1", 1);
 						setprop("/controls/switches/ap-yoke-button2", 1);
-						libraries.APPanel.APDisc();
+						libraries.apPanel.apDisc();
 					</script>
 				</binding>
 				<mod-up>

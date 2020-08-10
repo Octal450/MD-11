@@ -17,7 +17,7 @@ var variousReset = func {
 	pts.Controls.Switches.seatbeltSign.setValue(0);
 }
 
-var APPanel = {
+var apPanel = {
 	altTemp: 0,
 	fpaTemp: 0,
 	hdgTemp: 0,
@@ -25,22 +25,22 @@ var APPanel = {
 	machTemp: 0,
 	vertTemp: 0,
 	vsTemp: 0,
-	AUTOFLIGHT: func() {
+	autoflight: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.ITAF.AUTOFLIGHT();
+			afs.ITAF.autoflight();
 		}
 	},
-	FD1: func() {
+	fd1: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.fd1Master(!afs.Output.fd1.getBoolValue());
 		}
 	},
-	FD2: func() {
+	fd2: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.fd2Master(!afs.Output.fd2.getBoolValue());
 		}
 	},
-	APDisc: func() {
+	apDisc: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.killAPWarn();
 			if (afs.Output.ap1.getBoolValue()) {
@@ -51,7 +51,7 @@ var APPanel = {
 			}
 		}
 	},
-	ATDisc: func() {
+	atDisc: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.killATSWarn();
 			if (afs.Output.athr.getBoolValue()) {
@@ -59,22 +59,22 @@ var APPanel = {
 			}
 		}
 	},
-	IASMach: func() {
+	ktsMach: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
-	SPDPush: func() {
+	spdPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.spdPush();
 		}
 	},
-	SPDPull: func() {
+	spdPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.spdPull();
 		}
 	},
-	SPDAdjust: func(d) {
+	spdAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			if (afs.Input.ktsMach.getBoolValue()) {
 				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
@@ -97,18 +97,18 @@ var APPanel = {
 			}
 		}
 	},
-	HDGPush: func() {
+	hdgPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.lat.setValue(3);
 		}
 	},
-	HDGPull: func() {
+	hdgPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Internal.hdg.setValue(afs.Input.hdg.getValue());
 			afs.Input.lat.setValue(0);
 		}
 	},
-	HDGAdjust: func(d) {
+	hdgAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Custom.showHdg.setBoolValue(1);
 			me.hdgTemp = afs.Input.hdg.getValue() + d;
@@ -121,27 +121,27 @@ var APPanel = {
 			}
 		}
 	},
-	HDGTRK: func() {
+	hdgTrk: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.trk.setValue(!afs.Input.trk.getBoolValue());
 		}
 	},
-	NAVButton: func() {
+	nav: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.lat.setValue(1);
 		}
 	},
-	ALTPush: func() {
+	altPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(0);
 		}
 	},
-	ALTPull: func() {
+	altPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(4);
 		}
 	},
-	ALTAdjust: func(d) {
+	altAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.altTemp = afs.Input.alt.getValue();
 			if (d == 1) {
@@ -168,7 +168,7 @@ var APPanel = {
 			}
 		}
 	},
-	VSAdjust: func(d) {
+	vsAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
@@ -206,7 +206,7 @@ var APPanel = {
 			}
 		}
 	},
-	VSFPA: func() {
+	vsFpa: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
@@ -220,17 +220,17 @@ var APPanel = {
 			}
 		}
 	},
-	APPRButton: func() {
+	appr: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(2);
 		}
 	},
-	PROFButton: func() {
+	prof: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			# Nothing yet
 		}
 	},
-	GAButton: func() {
+	goAround: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.toga.setValue(1);
 		}
