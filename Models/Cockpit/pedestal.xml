@@ -394,7 +394,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.ATDisc();</script>
+				<script>libraries.apPanel.atDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -432,7 +432,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.GAButton();</script>
+				<script>libraries.apPanel.goAround();</script>
 			</binding>
 		</action>
 	</animation>
@@ -473,7 +473,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.ATDisc();</script>
+				<script>libraries.apPanel.atDisc();</script>
 			</binding>
 		</action>
 	</animation>

@@ -36,7 +36,7 @@
 			<pref-width>110</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.AUTOFLIGHT();</script>
+				<script>libraries.apPanel.autoflight();</script>
 			</binding>
 		</button>
 		<button>
@@ -44,7 +44,7 @@
 			<pref-width>55</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.APDisc();</script>
+				<script>libraries.apPanel.apDisc();</script>
 			</binding>
 		</button>
 		<button>
@@ -52,7 +52,7 @@
 			<pref-width>55</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.ATDisc();</script>
+				<script>libraries.apPanel.atDisc();</script>
 			</binding>
 		</button>
 	</group>
@@ -64,7 +64,7 @@
 			<pref-width>110</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.APPRButton();</script>
+				<script>libraries.apPanel.appr();</script>
 			</binding>
 		</button>
 		<button>
@@ -72,7 +72,7 @@
 			<pref-width>55</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.FD1();</script>
+				<script>libraries.apPanel.fd1();</script>
 			</binding>
 		</button>
 		<button>
@@ -80,7 +80,7 @@
 			<pref-width>55</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.FD2();</script>
+				<script>libraries.apPanel.fd2();</script>
 			</binding>
 		</button>
 	</group>
@@ -322,7 +322,7 @@
 				<pref-width>65</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDPush();</script>
+					<script>libraries.apPanel.spdPush();</script>
 				</binding>
 			</button>
 			
@@ -331,7 +331,7 @@
 				<pref-width>65</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDPull();</script>
+					<script>libraries.apPanel.spdPull();</script>
 				</binding>
 			</button>
 			
@@ -339,7 +339,7 @@
 				<legend>Speed/Mach</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.IASMach();</script>
+					<script>libraries.apPanel.ktsMach();</script>
 				</binding>
 			</button>
 			
@@ -368,7 +368,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(-10);</script>
+					<script>libraries.apPanel.spdAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -385,7 +385,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(-1);</script>
+					<script>libraries.apPanel.spdAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -417,7 +417,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(1);</script>
+					<script>libraries.apPanel.spdAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -435,7 +435,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(10);</script>
+					<script>libraries.apPanel.spdAdjust(10);</script>
 				</binding>
 			</button>
 			
@@ -464,7 +464,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(-10);</script>
+					<script>libraries.apPanel.spdAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -481,7 +481,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(-1);</script>
+					<script>libraries.apPanel.spdAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -513,7 +513,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(1);</script>
+					<script>libraries.apPanel.spdAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -531,7 +531,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.SPDAdjust(10);</script>
+					<script>libraries.apPanel.spdAdjust(10);</script>
 				</binding>
 			</button>
 			
@@ -559,7 +559,7 @@
 				<pref-width>55</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGPush();</script>
+					<script>libraries.apPanel.hdgPush();</script>
 				</binding>
 			</button>
 			
@@ -568,7 +568,7 @@
 				<pref-width>55</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGPull();</script>
+					<script>libraries.apPanel.hdgPull();</script>
 				</binding>
 			</button>
 			
@@ -577,7 +577,7 @@
 				<pref-width>55</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.NAVButton();</script>
+					<script>libraries.apPanel.nav();</script>
 				</binding>
 			</button>
 			
@@ -586,7 +586,7 @@
 				<pref-width>60</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGTRK();</script>
+					<script>libraries.apPanel.hdgTrk();</script>
 				</binding>
 			</button>
 		</group>
@@ -608,7 +608,7 @@
 				<legend>&lt;&lt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGAdjust(-10);</script>
+					<script>libraries.apPanel.hdgAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -619,7 +619,7 @@
 				<legend>&lt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGAdjust(-1);</script>
+					<script>libraries.apPanel.hdgAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -645,7 +645,7 @@
 				<legend>&gt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGAdjust(1);</script>
+					<script>libraries.apPanel.hdgAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -657,7 +657,7 @@
 				<legend>&gt;&gt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.HDGAdjust(10);</script>
+					<script>libraries.apPanel.hdgAdjust(10);</script>
 				</binding>
 			</button>
 		</group>
@@ -684,7 +684,7 @@
 				<pref-width>55</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTPush();</script>
+					<script>libraries.apPanel.altPush();</script>
 				</binding>
 			</button>
 			
@@ -693,7 +693,7 @@
 				<pref-width>55</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTPull();</script>
+					<script>libraries.apPanel.altPull();</script>
 				</binding>
 			</button>
 			
@@ -715,7 +715,7 @@
 				<legend>VS/FPA</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSFPA();</script>
+					<script>libraries.apPanel.vsFpa();</script>
 				</binding>
 			</button>
 			
@@ -738,7 +738,7 @@
 				<legend>&lt;&lt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTAdjust(-10);</script>
+					<script>libraries.apPanel.altAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -749,7 +749,7 @@
 				<legend>&lt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTAdjust(-1);</script>
+					<script>libraries.apPanel.altAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -769,7 +769,7 @@
 				<legend>&gt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTAdjust(1);</script>
+					<script>libraries.apPanel.altAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -781,7 +781,7 @@
 				<legend>&gt;&gt;</legend>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.ALTAdjust(10);</script>
+					<script>libraries.apPanel.altAdjust(10);</script>
 				</binding>
 			</button>
 		</group>
@@ -809,7 +809,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(-10);</script>
+					<script>libraries.apPanel.vsAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -826,7 +826,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(-1);</script>
+					<script>libraries.apPanel.vsAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -858,7 +858,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(1);</script>
+					<script>libraries.apPanel.vsAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -876,7 +876,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(10);</script>
+					<script>libraries.apPanel.vsAdjust(10);</script>
 				</binding>
 			</button>
 		</group>
@@ -904,7 +904,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(-10);</script>
+					<script>libraries.apPanel.vsAdjust(-10);</script>
 				</binding>
 			</button>
 			<button>
@@ -921,7 +921,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(-1);</script>
+					<script>libraries.apPanel.vsAdjust(-1);</script>
 				</binding>
 			</button>
 
@@ -953,7 +953,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(1);</script>
+					<script>libraries.apPanel.vsAdjust(1);</script>
 				</binding>
 			</button>
 			<button>
@@ -971,7 +971,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.APPanel.VSAdjust(10);</script>
+					<script>libraries.apPanel.vsAdjust(10);</script>
 				</binding>
 			</button>
 		</group>
@@ -1036,7 +1036,7 @@
 			<legend>GO AROUND BUTTON</legend>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.GAButton();</script>
+				<script>libraries.apPanel.goAround();</script>
 			</binding>
 		</button>
 	

@@ -563,7 +563,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.APDisc();</script>
+				<script>libraries.apPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -660,7 +660,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.APDisc();</script>
+				<script>libraries.apPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>

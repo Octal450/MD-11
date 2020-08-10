@@ -1191,7 +1191,7 @@ var ITAF = {
 			Custom.Output.spdCaptured = 0;
 		}
 	},
-	AUTOFLIGHT: func() {
+	autoflight: func() {
 		Custom.Input.ovrd1Temp = Custom.Input.ovrd1.getBoolValue();
 		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
 		Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue();
