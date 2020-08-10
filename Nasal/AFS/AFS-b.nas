@@ -24,7 +24,7 @@ var updateFMA = {
 				FMA.roll.setValue("HEADING");
 			}
 		} else if (me.rollText == "LNAV") {
-			FMA.roll.setValue("NAV" ~ Custom.Internal.activeFMS.getValue());
+			FMA.roll.setValue("NAV" ~ Internal.activeFMS.getValue());
 		} else if (me.rollText == "LOC") {
 			FMA.roll.setValue("LOC");
 		} else if (me.rollText == "ALGN") {
@@ -130,12 +130,12 @@ var Clamp = {
 		}
 		
 		if (pts.Systems.Acconfig.Options.throttleOverride.getValue() == "Never") {
-			if (Custom.Output.clamp.getBoolValue() != 0) {
-				Custom.Output.clamp.setBoolValue(0);
+			if (Output.clamp.getBoolValue() != 0) {
+				Output.clamp.setBoolValue(0);
 			}
 		} else {
-			if (Custom.Output.clamp.getBoolValue() != me.active) {
-				Custom.Output.clamp.setBoolValue(me.active);
+			if (Output.clamp.getBoolValue() != me.active) {
+				Output.clamp.setBoolValue(me.active);
 			}
 		}
 		

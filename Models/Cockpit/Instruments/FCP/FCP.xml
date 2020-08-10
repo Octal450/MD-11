@@ -293,7 +293,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/custom/show-hdg</property>
+				<property>it-autoflight/output/show-hdg</property>
 			</and>
 		</condition>
 	</animation>
@@ -304,7 +304,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<not><property>it-autoflight/custom/show-hdg</property></not>
+				<not><property>it-autoflight/output/show-hdg</property></not>
 			</and>
 		</condition>
 	</animation>
@@ -357,7 +357,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/custom/vs-fpa</property>
+					<property>it-autoflight/output/vs-fpa</property>
 					<value>0</value>
 				</equals>
 			</and>
@@ -476,7 +476,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/custom/vs-fpa</property>
+					<property>it-autoflight/output/vs-fpa</property>
 					<value>1</value>
 				</equals>
 			</and>
