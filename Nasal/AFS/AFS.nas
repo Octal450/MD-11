@@ -1183,6 +1183,7 @@ var ITAF = {
 		Input.ovrd1Temp = Input.ovrd1.getBoolValue();
 		Input.ovrd2Temp = Input.ovrd2.getBoolValue();
 		Internal.activeFMSTemp = Internal.activeFMS.getValue();
+		
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
 				if (Internal.activeFMSTemp == 1 and Output.ap2Avail.getBoolValue()) {
