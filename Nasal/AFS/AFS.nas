@@ -279,15 +279,16 @@ var ITAF = {
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(Custom.FMS.v2Speed.getValue());
 		Internal.mach.setValue(0.5);
+		me.updateActiveFMS(1);
 		Text.thr.setValue("PITCH");
 		Text.arm.setValue(" ");
-		Text.lat.setValue("T/O");
-		Text.vert.setValue("T/O CLB");
+		updateFMA.arm();
+		me.updateLatText("T/O");
+		me.updateVertText("T/O CLB");
 		Custom.retardLock = 0;
 		Custom.Text.land.setValue("OFF");
 		Custom.Output.spdCaptured = 1;
 		Custom.Output.hdgCaptured = 1;
-		me.updateActiveFMS(1);
 		Custom.showHdg.setBoolValue(1);
 		if (t != 1) {
 			Sound.apOff.setBoolValue(0);
@@ -299,9 +300,6 @@ var ITAF = {
 			apKill.stop();
 			atsKill.stop();
 		}
-		updateFMA.roll();
-		updateFMA.pitch();
-		updateFMA.arm();
 		loopTimer.start();
 		slowLoopTimer.start();
 		clampLoop.start();
