@@ -171,7 +171,7 @@ var Output = {
 	vertTemp: 7,
 };
 
-var Setting = {
+var Settings = {
 	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1000, "INT"), # Will be changable from FMS
 };
 
@@ -386,10 +386,10 @@ var ITAF = {
 				me.activateLOC();
 				me.activateGS();
 			} else {
-				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5) {
+				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5 and Text.vert.getValue() != "FLARE") {
 					me.updateVertText("FLARE");
 				}
-				if (Gear.wow1Temp and Gear.wow2Temp) {
+				if (Gear.wow1Temp and Gear.wow2Temp and Text.vert.getValue() != "ROLLOUT") {
 					me.updateLatText("RLOU");
 					me.updateVertText("ROLLOUT");
 				}
@@ -398,7 +398,7 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
-			me.checkFLCH(Setting.reducAglFt.getValue());
+			me.checkFLCH(Settings.reducAglFt.getValue());
 		}
 		
 		# Altitude Capture/Sync Logic
@@ -421,7 +421,7 @@ var ITAF = {
 		
 		# Altitude Hold Min/Max Reset
 		if (Internal.altCaptureActive) {
-			if (abs(Internal.altDiff) <= 25) {
+			if (abs(Internal.altDiff) <= 25 and Text.vert.getValue() != "ALT HLD") {
 				me.resetClimbRateLim();
 				me.updateVertText("ALT HLD");
 			}
@@ -457,13 +457,13 @@ var ITAF = {
 				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp) {
 					Output.thrMode.setValue(2);
 					Text.thr.setValue("PITCH");
-					if (Internal.flchActive) { # Set before mode change to prevent it from overwriting by mistake
+					if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") { # Set before mode change to prevent it from overwriting by mistake
 						me.updateVertText("SPD CLB");
 					}
 				} else {
 					Output.thrMode.setValue(1);
 					Text.thr.setValue("PITCH");
-					if (Internal.flchActive) { # Set before mode change to prevent it from overwriting by mistake
+					if (Internal.flchActive and Text.vert.getValue() != "SPD DES") { # Set before mode change to prevent it from overwriting by mistake
 						me.updateVertText("SPD DES");
 					}
 				}
@@ -1256,7 +1256,6 @@ var ITAF = {
 		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
 		Input.athr.setBoolValue(0);
 	},
-	# Custom functions that will also update the custom FMA
 	updateActiveFMS: func(n) {
 		Custom.Internal.activeFMS.setValue(n);
 		updateFMA.roll();
