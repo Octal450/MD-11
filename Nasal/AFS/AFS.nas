@@ -235,10 +235,18 @@ var Custom = {
 var ITAF = {
 	init: func(t) { # Not everything should be reset if the reset is type 1
 		if (t != 1) {
+			Input.alt.setValue(10000);
+			Input.bankLimitSW.setValue(0);
 			Input.ktsMach.setBoolValue(0);
 			Input.kts.setValue(250);
 			Input.mach.setValue(0.5);
 			Input.hdg.setValue(0);
+			Input.trk.setBoolValue(0);
+			Input.trueCourse.setBoolValue(0);
+			Internal.alt.setValue(10000);
+			Internal.hdg.setValue(0);
+			Custom.Input.ovrd1.setBoolValue(0);
+			Custom.Input.ovrd2.setBoolValue(0);
 			Custom.vsFpa.setBoolValue(0);
 		}
 		Internal.ktsMach.setBoolValue(0);
@@ -247,24 +255,11 @@ var ITAF = {
 		Input.athr.setBoolValue(0);
 		Input.fd1.setBoolValue(1);
 		Input.fd2.setBoolValue(1);
-		if (t != 1) {
-			Internal.hdg.setValue(0);
-			Input.alt.setValue(10000);
-		}
 		Input.vs.setValue(0);
 		Input.fpa.setValue(0);
 		Input.lat.setValue(5);
 		Input.vert.setValue(7);
-		if (t != 1) {
-			Input.trk.setBoolValue(0);
-			Input.trueCourse.setBoolValue(0);
-		}
 		Input.toga.setBoolValue(0);
-		if (t != 1) {
-			Input.bankLimitSW.setValue(0);
-			Custom.Input.ovrd1.setBoolValue(0);
-			Custom.Input.ovrd2.setBoolValue(0);
-		}
 		Input.useNav2Radio.setBoolValue(0);
 		Output.ap1.setBoolValue(0);
 		Output.ap2.setBoolValue(0);
@@ -281,9 +276,6 @@ var ITAF = {
 		Internal.maxVs.setValue(500);
 		Internal.bankLimit.setValue(25);
 		Internal.bankLimitAuto = 25;
-		if (t != 1) {
-			Internal.alt.setValue(10000);
-		}
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(Custom.FMS.v2Speed.getValue());
 		Internal.mach.setValue(0.5);
