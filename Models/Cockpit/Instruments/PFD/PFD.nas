@@ -38,10 +38,10 @@ var ats = props.globals.getNode("/it-autoflight/output/athr", 1);
 var fd1 = props.globals.getNode("/it-autoflight/output/fd1", 1);
 var fd2 = props.globals.getNode("/it-autoflight/output/fd2", 1);
 var apvert = props.globals.getNode("/it-autoflight/output/vert", 1);
-var apwarn = props.globals.getNode("/it-autoflight/custom/apwarn", 1);
+var apwarn = props.globals.getNode("/it-autoflight/warning/ap", 1);
 var apsound = props.globals.getNode("/it-autoflight/sound/apoffsound", 1);
-var atswarn = props.globals.getNode("/it-autoflight/custom/atswarn", 1);
-var atsflash = props.globals.getNode("/it-autoflight/custom/atsflash", 1);
+var atswarn = props.globals.getNode("/it-autoflight/warning/ats", 1);
+var atsflash = props.globals.getNode("/it-autoflight/warning/atsflash", 1);
 var ovrd1 = props.globals.getNode("/it-autoflight/input/ovrd1");
 var ovrd2 = props.globals.getNode("/it-autoflight/input/ovrd2");
 var apdiscbtn1 = props.globals.getNode("/controls/switches/ap-yoke-button1", 1);
@@ -68,7 +68,7 @@ var banklimit = props.globals.getNode("/instrumentation/pfd/bank-limit", 1);
 var wow1 = props.globals.getNode("/gear/gear[1]/wow", 1);
 var wow2 = props.globals.getNode("/gear/gear[2]/wow", 1);
 var apmode = props.globals.getNode("/instrumentation/pfd/fma/ap-mode", 1);
-var showhdg = props.globals.getNode("/it-autoflight/custom/show-hdg", 1);
+var showhdg = props.globals.getNode("/it-autoflight/output/show-hdg", 1);
 var hdgscale = props.globals.getNode("/instrumentation/pfd/heading-scale", 1);
 var aplat = props.globals.getNode("/it-autoflight/output/lat", 1);
 var vspfd = props.globals.getNode("/it-autoflight/internal/vert-speed-fpm-pfd", 1);
@@ -101,7 +101,7 @@ var qnhstd = props.globals.getNode("/instrumentation/altimeter/std", 1);
 var altin = props.globals.getNode("/instrumentation/altimeter/setting-inhg", 1);
 var althp = props.globals.getNode("/instrumentation/altimeter/setting-hpa", 1);
 var fpa = props.globals.getNode("/it-autoflight/input/fpa", 1);
-var apfpa = props.globals.getNode("/it-autoflight/custom/vs-fpa", 1);
+var apfpa = props.globals.getNode("/it-autoflight/output/vs-fpa", 1);
 var pfdrate = props.globals.getNode("/systems/acconfig/options/pfd-rate", 1);
 var error = props.globals.getNode("/systems/acconfig/error-code", 1);
 var nav0defl = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1);
@@ -265,7 +265,7 @@ var canvas_PFD_base = {
 		if (atsflash.getValue() == 1) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
-		} else if (!afs.Custom.Output.atsAvail.getBoolValue()) {
+		} else if (!afs.Output.athrAvail.getBoolValue()) {
 			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
 			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else {
@@ -276,7 +276,7 @@ var canvas_PFD_base = {
 		if (apsound.getValue() == 1) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
-		} else if (!afs.Custom.Output.ap1Avail.getBoolValue() and !afs.Custom.Output.ap2Avail.getBoolValue()) {
+		} else if (!afs.Output.ap1Avail.getBoolValue() and !afs.Output.ap2Avail.getBoolValue()) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else if ((apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue()) and !ap1.getBoolValue() and !ap2.getBoolValue()) {
@@ -317,7 +317,7 @@ var canvas_PFD_base = {
 			me["FMA_AP"].setColor(1,0,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
-		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (!afs.Custom.Output.ap1Avail.getBoolValue() and !afs.Custom.Output.ap2Avail.getBoolValue())) {
+		} else if (apdiscbtn1.getBoolValue() or apdiscbtn2.getBoolValue() or (!afs.Output.ap1Avail.getBoolValue() and !afs.Output.ap2Avail.getBoolValue())) {
 			me["FMA_AP"].setColor(0.9412,0.7255,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();

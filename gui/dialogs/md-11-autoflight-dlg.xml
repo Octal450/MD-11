@@ -631,7 +631,7 @@
 				<live type="bool">true</live>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/show-hdg</property>
+						<property>/it-autoflight/output/show-hdg</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -803,7 +803,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<not-equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</not-equals>
 				</enable>
@@ -820,7 +820,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<not-equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</not-equals>
 				</enable>
@@ -852,7 +852,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<not-equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</not-equals>
 				</enable>
@@ -870,7 +870,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<not-equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</not-equals>
 				</enable>
@@ -898,7 +898,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -915,7 +915,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -947,7 +947,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -965,7 +965,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/vs-fpa</property>
+						<property>/it-autoflight/output/vs-fpa</property>
 						<value>1</value>
 					</equals>
 				</enable>

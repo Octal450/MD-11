@@ -110,7 +110,7 @@ var apPanel = {
 	},
 	hdgAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Custom.showHdg.setBoolValue(1);
+			afs.Output.showHdg.setBoolValue(1);
 			me.hdgTemp = afs.Input.hdg.getValue() + d;
 			if (me.hdgTemp < -0.5) {
 				afs.Input.hdg.setValue(me.hdgTemp + 360);
@@ -195,7 +195,7 @@ var apPanel = {
 					afs.Input.fpa.setValue(me.fpaTemp);
 				}
 			}
-			if (afs.Custom.vsFpa.getBoolValue()) {
+			if (afs.Output.vsFpa.getBoolValue()) {
 				if (me.vertTemp != 5) {
 					afs.Input.vert.setValue(5);
 				}
@@ -210,13 +210,13 @@ var apPanel = {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
-				afs.Custom.vsFpa.setBoolValue(1);
+				afs.Output.vsFpa.setBoolValue(1);
 				afs.Input.vert.setValue(5);
 			} else if (me.vertTemp == 5) {
-				afs.Custom.vsFpa.setBoolValue(0);
+				afs.Output.vsFpa.setBoolValue(0);
 				afs.Input.vert.setValue(1);
 			} else {
-				afs.Custom.vsFpa.setBoolValue(!afs.Custom.vsFpa.getBoolValue());
+				afs.Output.vsFpa.setBoolValue(!afs.Output.vsFpa.getBoolValue());
 			}
 		}
 	},

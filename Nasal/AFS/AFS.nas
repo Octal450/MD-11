@@ -109,6 +109,10 @@ var Input = {
 	ktsMachTemp: 0,
 	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
 	latTemp: 5,
+	ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
+	ovrd1Temp: 0,
+	ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
+	ovrd2Temp: 0,
 	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
@@ -122,6 +126,8 @@ var Input = {
 };
 
 var Internal = {
+	activeFMS: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
+	activeFMSTemp: 1,
 	alt: props.globals.initNode("/it-autoflight/internal/alt", 10000, "INT"),
 	altAlert: props.globals.initNode("/it-autoflight/internal/alt-alert", 0, "BOOL"),
 	altAlertAural: props.globals.initNode("/it-autoflight/internal/alt-alert-aural", 0, "BOOL"),
@@ -131,8 +137,10 @@ var Internal = {
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
 	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "INT"),
 	bankLimitAuto: 25,
+	canAutoland: 0,
 	captVs: 0,
 	driftAngle: props.globals.initNode("/it-autoflight/internal/drift-angle-deg", 0, "DOUBLE"),
+	enableAthrOff: 0,
 	flchActive: 0,
 	fpa: props.globals.initNode("/it-autoflight/internal/fpa", 0, "DOUBLE"),
 	hdg: props.globals.initNode("/it-autoflight/internal/hdg", 0, "INT"),
@@ -141,34 +149,50 @@ var Internal = {
 	kts: props.globals.initNode("/it-autoflight/internal/kts", 250, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/internal/kts-mach", 0, "BOOL"),
 	hdgPredicted: props.globals.initNode("/it-autoflight/internal/heading-predicted", 0, "DOUBLE"),
+	landCondition: 0,
+	landModeActive: 0,
 	lnavAdvanceNm: props.globals.initNode("/it-autoflight/internal/lnav-advance-nm", 0, "DOUBLE"),
 	lnavEngageFt: 100,
 	mach: props.globals.initNode("/it-autoflight/internal/mach", 0.5, "DOUBLE"),
 	minVs: props.globals.initNode("/it-autoflight/internal/min-vs", -500, "INT"),
 	maxVs: props.globals.initNode("/it-autoflight/internal/max-vs", 500, "INT"),
+	retardLock: 0,
+	selfCheckStatus: 0,
+	selfCheckTime: 0,
+	targetHdgError: 0,
+	targetKts: 0,
+	targetKtsError: 0,
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
 };
 
 var Output = {
 	ap1: props.globals.initNode("/it-autoflight/output/ap1", 0, "BOOL"),
+	ap1Avail: props.globals.initNode("/it-autoflight/output/ap1-available", 0, "BOOL"),
 	ap1Temp: 0,
 	ap2: props.globals.initNode("/it-autoflight/output/ap2", 0, "BOOL"),
+	ap2Avail: props.globals.initNode("/it-autoflight/output/ap2-available", 0, "BOOL"),
 	ap2Temp: 0,
 	apprArm: props.globals.initNode("/it-autoflight/output/appr-armed", 0, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/output/athr", 0, "BOOL"),
 	athrTemp: 0,
+	athrAvail: props.globals.initNode("/it-autoflight/output/athr-available", 0, "BOOL"),
+	clamp: props.globals.initNode("/it-autoflight/output/clamp", 0, "BOOL"),
 	fd1: props.globals.initNode("/it-autoflight/output/fd1", 1, "BOOL"),
 	fd1Temp: 0,
 	fd2: props.globals.initNode("/it-autoflight/output/fd2", 1, "BOOL"),
 	fd2Temp: 0,
+	hdgCaptured: 1,
 	lat: props.globals.initNode("/it-autoflight/output/lat", 5, "INT"),
 	latTemp: 5,
 	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-armed", 0, "BOOL"),
 	locArm: props.globals.initNode("/it-autoflight/output/loc-armed", 0, "BOOL"),
+	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
+	spdCaptured: 1,
 	thrMode: props.globals.initNode("/it-autoflight/output/thr-mode", 2, "INT"),
 	vert: props.globals.initNode("/it-autoflight/output/vert", 7, "INT"),
 	vertTemp: 7,
+	vsFpa: props.globals.initNode("/it-autoflight/output/vs-fpa", 0, "BOOL"),
 };
 
 var Settings = {
@@ -182,6 +206,7 @@ var Sound = {
 
 var Text = {
 	arm: props.globals.initNode("/it-autoflight/mode/arm", " ", "STRING"),
+	land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
 	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
 	latTemp: "T/O",
 	thr: props.globals.initNode("/it-autoflight/mode/thr", "PITCH", "STRING"),
@@ -189,47 +214,10 @@ var Text = {
 	vertTemp: "T/O CLB",
 };
 
-# MD-11 Custom
-var Custom = {
-	apWarn: props.globals.initNode("/it-autoflight/custom/apwarn", 0, "BOOL"),
-	atsFlash: props.globals.initNode("/it-autoflight/custom/atsflash", 0, "BOOL"),
-	atsWarn: props.globals.initNode("/it-autoflight/custom/atswarn", 0, "BOOL"),
-	canAutoland: 0,
-	enableAtsOff: 0,
-	landCondition: 0,
-	landModeActive: 0,
-	retardLock: 0,
-	selfCheckStatus: 0,
-	selfCheckTime: 0,
-	showHdg: props.globals.initNode("/it-autoflight/custom/show-hdg", 1, "BOOL"),
-	targetHDGError: 0,
-	targetKts: 0,
-	targetKtsError: 0,
-	vsFpa: props.globals.initNode("/it-autoflight/custom/vs-fpa", 0, "BOOL"),
-	FMS: {
-		v2Speed: props.globals.getNode("/FMS/internal/v2", 1),
-	},
-	Input: {
-		ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
-		ovrd1Temp: 0,
-		ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
-		ovrd2Temp: 0,
-	},
-	Internal: {
-		activeFMS: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
-		activeFMSTemp: 1,
-	},
-	Output: {
-		ap1Avail: props.globals.initNode("/it-autoflight/output/ap1-available", 0, "BOOL"),
-		ap2Avail: props.globals.initNode("/it-autoflight/output/ap2-available", 0, "BOOL"),
-		atsAvail: props.globals.initNode("/it-autoflight/output/ats-available", 0, "BOOL"),
-		clamp: props.globals.initNode("/it-autoflight/output/clamp", 0, "BOOL"),
-		hdgCaptured: 1,
-		spdCaptured: 1,
-	},
-	Text: {
-		land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
-	},
+var Warning = {
+	ap: props.globals.initNode("/it-autoflight/warning/ap", 0, "BOOL"),
+	atsFlash: props.globals.initNode("/it-autoflight/warning/atsflash", 0, "BOOL"),
+	ats: props.globals.initNode("/it-autoflight/warning/ats", 0, "BOOL"),
 };
 
 var ITAF = {
@@ -245,9 +233,9 @@ var ITAF = {
 			Input.trueCourse.setBoolValue(0);
 			Internal.alt.setValue(10000);
 			Internal.hdg.setValue(0);
-			Custom.Input.ovrd1.setBoolValue(0);
-			Custom.Input.ovrd2.setBoolValue(0);
-			Custom.vsFpa.setBoolValue(0);
+			Input.ovrd1.setBoolValue(0);
+			Input.ovrd2.setBoolValue(0);
+			Output.vsFpa.setBoolValue(0);
 		}
 		Internal.ktsMach.setBoolValue(0);
 		Input.ap1.setBoolValue(0);
@@ -281,7 +269,7 @@ var ITAF = {
 		Internal.bankLimit.setValue(25);
 		Internal.bankLimitAuto = 25;
 		Internal.altCaptureActive = 0;
-		Internal.kts.setValue(Custom.FMS.v2Speed.getValue());
+		Internal.kts.setValue(fms.Internal.v2.getValue());
 		Internal.mach.setValue(0.5);
 		me.updateActiveFMS(1);
 		Text.thr.setValue("PITCH");
@@ -289,18 +277,18 @@ var ITAF = {
 		updateFMA.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
-		Custom.retardLock = 0;
-		Custom.Text.land.setValue("OFF");
-		Custom.Output.spdCaptured = 1;
-		Custom.Output.hdgCaptured = 1;
-		Custom.showHdg.setBoolValue(1);
+		Internal.retardLock = 0;
+		Text.land.setValue("OFF");
+		Output.spdCaptured = 1;
+		Output.hdgCaptured = 1;
+		Output.showHdg.setBoolValue(1);
 		if (t != 1) {
 			Sound.apOff.setBoolValue(0);
-			Custom.apWarn.setBoolValue(0);
-			Custom.atsFlash.setBoolValue(0);
-			Custom.atsWarn.setBoolValue(0);
+			Warning.ap.setBoolValue(0);
+			Warning.atsFlash.setBoolValue(0);
+			Warning.ats.setBoolValue(0);
 			Sound.enableApOff = 0;
-			Custom.enableAtsOff = 0;
+			Internal.enableAthrOff = 0;
 			apKill.stop();
 			atsKill.stop();
 		}
@@ -455,8 +443,8 @@ var ITAF = {
 		if (Output.athrTemp and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
-			Custom.retardLock = 1;
-		} else if (Custom.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
+			Internal.retardLock = 1;
+		} else if (Internal.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
 			if (Output.vertTemp == 4) {
 				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp) {
 					Output.thrMode.setValue(2);
@@ -483,26 +471,26 @@ var ITAF = {
 		# Custom Stuff Below
 		# Speed Capture
 		if (Text.vertTemp != "T/O CLB") {
-			if (!Custom.Output.spdCaptured) {
+			if (!Output.spdCaptured) {
 				Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 				if (Input.ktsMachTemp) {
 					Internal.mach.setValue(Input.mach.getValue());
-					Custom.targetKts = Internal.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
+					Internal.targetKts = Internal.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
 				} else {
 					Internal.kts.setValue(Input.kts.getValue());
-					Custom.targetKts = Internal.kts.getValue();
+					Internal.targetKts = Internal.kts.getValue();
 				}
-				Custom.targetKtsError = Custom.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
-				if (abs(Custom.targetKtsError) <= 2.5) {
-					Custom.Output.spdCaptured = 1;
+				Internal.targetKtsError = Internal.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
+				if (abs(Internal.targetKtsError) <= 2.5) {
+					Output.spdCaptured = 1;
 				}
 			}
-		} else if (!Custom.Output.spdCaptured) {
-			Custom.Output.spdCaptured = 1;
+		} else if (!Output.spdCaptured) {
+			Output.spdCaptured = 1;
 		}
 		
 		# Heading Sync
-		if (!Custom.showHdg.getBoolValue()) {
+		if (!Output.showHdg.getBoolValue()) {
 			Misc.pfdHeadingScaleTemp = Misc.pfdHeadingScale.getValue();
 			Internal.hdg.setValue(Misc.pfdHeadingScaleTemp);
 			Input.hdg.setValue(Misc.pfdHeadingScaleTemp);
@@ -510,15 +498,15 @@ var ITAF = {
 		
 		# Heading Capture
 		if (Output.latTemp == 0) {
-			if (!Custom.Output.hdgCaptured) {
+			if (!Output.hdgCaptured) {
 				Internal.hdg.setValue(Input.hdg.getValue());
-				Custom.targetHDGError = Internal.hdg.getValue() - Internal.hdgPredicted.getValue();
-				if (abs(Custom.targetHDGError) <= 2.5) {
-					Custom.Output.hdgCaptured = 1;
+				Internal.targetHdgError = Internal.hdg.getValue() - Internal.hdgPredicted.getValue();
+				if (abs(Internal.targetHdgError) <= 2.5) {
+					Output.hdgCaptured = 1;
 				}
 			}
-		} else if (!Custom.Output.hdgCaptured) {
-			Custom.Output.hdgCaptured = 1;
+		} else if (!Output.hdgCaptured) {
+			Output.hdgCaptured = 1;
 		}
 		
 		# Autoland Logic
@@ -526,40 +514,40 @@ var ITAF = {
 			Radio.radioSel = Input.useNav2Radio.getBoolValue();
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
-			Custom.canAutoland = (abs(Radio.locDeflTemp) <= 0.1 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) or Gear.wow0.getBoolValue();
+			Internal.canAutoland = (abs(Radio.locDeflTemp) <= 0.1 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) or Gear.wow0.getBoolValue();
 		} else {
-			Custom.canAutoland = 0;
+			Internal.canAutoland = 0;
 		}
-		Custom.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
+		Internal.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
 		
-		if (Position.gearAglFtTemp <= 1500 and Custom.landModeActive) {
-			Custom.selfCheckStatus = 1;
-		} else if (!Custom.landModeActive) {
-			Custom.selfCheckStatus = 0;
+		if (Position.gearAglFtTemp <= 1500 and Internal.landModeActive) {
+			Internal.selfCheckStatus = 1;
+		} else if (!Internal.landModeActive) {
+			Internal.selfCheckStatus = 0;
 		}
 		
-		if (Custom.selfCheckStatus == 1) {
-			if (Custom.selfCheckStatus != 2 and Custom.selfCheckTime + 10 < Misc.elapsedSec.getValue()) {
-				Custom.selfCheckStatus = 2;
+		if (Internal.selfCheckStatus == 1) {
+			if (Internal.selfCheckStatus != 2 and Internal.selfCheckTime + 10 < Misc.elapsedSec.getValue()) {
+				Internal.selfCheckStatus = 2;
 			}
 		} else {
-			Custom.selfCheckTime = Misc.elapsedSec.getValue();
+			Internal.selfCheckTime = Misc.elapsedSec.getValue();
 		}
 		
-		if (Custom.canAutoland and Custom.landModeActive and Custom.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Custom.Output.ap1Avail.getBoolValue() and Custom.Output.ap2Avail.getBoolValue() and Output.athr.getBoolValue() and Position.gearAglFtTemp <= 1500) { # Don't engage DUAL LAND below 100ft
-				Custom.landCondition = "DUAL";
+		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and Output.athr.getBoolValue() and Position.gearAglFtTemp <= 1500) { # Don't engage DUAL LAND below 100ft
+				Internal.landCondition = "DUAL";
 			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) { # Don't engage SINGLE LAND below 100ft
-				Custom.landCondition = "SINGLE";
+				Internal.landCondition = "SINGLE";
 			} else {
-				Custom.landCondition = "APPR";
+				Internal.landCondition = "APPR";
 			}
 		} else {
-			Custom.landCondition = "OFF";
+			Internal.landCondition = "OFF";
 		}
 		
-		if (Custom.landCondition != Custom.Text.land.getValue()) {
-			Custom.Text.land.setValue(Custom.landCondition);
+		if (Internal.landCondition != Text.land.getValue()) {
+			Text.land.setValue(Internal.landCondition);
 		}
 		
 		# Trip system off
@@ -569,13 +557,13 @@ var ITAF = {
 				me.ap2Master(0);
 			}
 		}
-		if (!Custom.Output.ap1Avail.getBoolValue() and Output.ap1Temp) {
+		if (!Output.ap1Avail.getBoolValue() and Output.ap1Temp) {
 			me.ap1Master(0);
 		}
-		if (!Custom.Output.ap2Avail.getBoolValue() and Output.ap2Temp) {
+		if (!Output.ap2Avail.getBoolValue() and Output.ap2Temp) {
 			me.ap2Master(0);
 		}
-		if (!Custom.Output.atsAvail.getBoolValue() and Output.athrTemp) {
+		if (!Output.athrAvail.getBoolValue() and Output.athrTemp) {
 			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Silently kill ATS only if a reverser is deployed
 				me.killATSSilent();
 			} else {
@@ -583,7 +571,7 @@ var ITAF = {
 			}
 		}
 		
-		if (Custom.landCondition != "DUAL" and Custom.landCondition != "SINGLE" and Text.vert.getValue() != "G/A CLB") {
+		if (Internal.landCondition != "DUAL" and Internal.landCondition != "SINGLE" and Text.vert.getValue() != "G/A CLB") {
 			if (Position.gearAglFtTemp < 400 and Output.latTemp == 1) { # NAV trips at 400ft
 				if (Output.ap1Temp) {
 					me.ap1Master(0);
@@ -685,7 +673,7 @@ var ITAF = {
 	},
 	ap1Master: func(s) {
 		if (s == 1) {
-			if (me.apEngageAllowed() == 1 and Custom.Output.ap1Avail.getBoolValue()) {
+			if (me.apEngageAllowed() == 1 and Output.ap1Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap2.getBoolValue()) {
 					me.setLatMode(3); # HDG HOLD
 					if (abs(Internal.vs.getValue()) > 300) {
@@ -698,7 +686,7 @@ var ITAF = {
 				Output.ap1.setBoolValue(1);
 				me.updateActiveFMS(1);
 				apKill.stop();
-				Custom.apWarn.setBoolValue(0);
+				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
@@ -708,7 +696,7 @@ var ITAF = {
 			}
 		} else {
 			Output.ap1.setBoolValue(0);
-			if (Custom.Output.ap2Avail.getBoolValue()) {
+			if (Output.ap2Avail.getBoolValue()) {
 				me.updateActiveFMS(2);
 			}
 			me.apOffFunction();
@@ -720,7 +708,7 @@ var ITAF = {
 	},
 	ap2Master: func(s) {
 		if (s == 1) {
-			if (me.apEngageAllowed() == 1 and Custom.Output.ap2Avail.getBoolValue()) {
+			if (me.apEngageAllowed() == 1 and Output.ap2Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue()) {
 					me.setLatMode(3); # HDG HOLD
 					if (abs(Internal.vs.getValue()) > 300) {
@@ -733,7 +721,7 @@ var ITAF = {
 				Output.ap2.setBoolValue(1);
 				me.updateActiveFMS(2);
 				apKill.stop();
-				Custom.apWarn.setBoolValue(0);
+				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
@@ -743,7 +731,7 @@ var ITAF = {
 			}
 		} else {
 			Output.ap2.setBoolValue(0);
-			if (Custom.Output.ap1Avail.getBoolValue()) {
+			if (Output.ap1Avail.getBoolValue()) {
 				me.updateActiveFMS(1);
 			}
 			me.apOffFunction();
@@ -767,18 +755,18 @@ var ITAF = {
 	},
 	athrMaster: func(s) {
 		if (s == 1) {
-			if (Custom.Output.atsAvail.getBoolValue()) {
+			if (Output.athrAvail.getBoolValue()) {
 				Output.athr.setBoolValue(1);
 				atsKill.stop();
-				Custom.atsWarn.setBoolValue(0);
-				Custom.atsFlash.setBoolValue(0);
-				Custom.enableAtsOff = 1;
+				Warning.ats.setBoolValue(0);
+				Warning.atsFlash.setBoolValue(0);
+				Internal.enableAthrOff = 1;
 			}
 		} else {
 			Output.athr.setBoolValue(0);
-			if (Custom.enableAtsOff) {
-				Custom.atsFlash.setBoolValue(1);
-				Custom.enableAtsOff = 0;
+			if (Internal.enableAthrOff) {
+				Warning.atsFlash.setBoolValue(1);
+				Internal.enableAthrOff = 0;
 				atsKill.start();
 			}
 		}
@@ -828,12 +816,12 @@ var ITAF = {
 	setLatMode: func(n) {
 		Output.vertTemp = Output.vert.getValue();
 		if (n == 0) { # HDG SEL
-			Custom.Output.hdgCaptured = 0;
+			Output.hdgCaptured = 0;
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(0);
-			Custom.showHdg.setBoolValue(1);
+			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
@@ -854,7 +842,7 @@ var ITAF = {
 			me.updateApprArm(0);
 			me.syncHdg();
 			Output.lat.setValue(0);
-			Custom.showHdg.setBoolValue(1);
+			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
@@ -866,7 +854,7 @@ var ITAF = {
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(4);
-			Custom.showHdg.setBoolValue(0);
+			Output.showHdg.setBoolValue(0);
 			me.updateLatText("ALGN");
 			me.armTextCheck();
 		} else if (n == 5) { # T/O
@@ -874,7 +862,7 @@ var ITAF = {
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(5);
-			Custom.showHdg.setBoolValue(1);
+			Output.showHdg.setBoolValue(1);
 			me.updateLatText("T/O");
 			me.armTextCheck();
 		}
@@ -909,7 +897,7 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
-				Custom.vsFpa.setBoolValue(0);
+				Output.vsFpa.setBoolValue(0);
 				if (Output.latTemp == 2) {
 					me.updateApprArm(0);
 				}
@@ -940,7 +928,7 @@ var ITAF = {
 				} else {
 					me.updateVertText("SPD DES");
 				}
-				Custom.retardLock = 0;
+				Internal.retardLock = 0;
 				Internal.altCaptureActive = 0;
 				Output.vert.setValue(4);
 				Internal.flchActive = 1;
@@ -956,7 +944,7 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
-				Custom.vsFpa.setBoolValue(1);
+				Output.vsFpa.setBoolValue(1);
 				if (Output.latTemp == 2) {
 					me.updateApprArm(0);
 				}
@@ -974,7 +962,7 @@ var ITAF = {
 			Output.vert.setValue(6);
 			me.updateVertText("G/S");
 		} else if (n == 7) { # T/O CLB or G/A CLB, text is set by TOGA selector
-			Custom.retardLock = 0;
+			Internal.retardLock = 0;
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
 			if (Output.latTemp == 2) {
@@ -997,7 +985,7 @@ var ITAF = {
 				me.armTextCheck();
 			}
 		}
-		Custom.showHdg.setBoolValue(0);
+		Output.showHdg.setBoolValue(0);
 	},
 	activateLOC: func() {
 		if (Output.lat.getValue() != 2) {
@@ -1007,7 +995,7 @@ var ITAF = {
 			me.updateLatText("LOC");
 			me.armTextCheck();
 		}
-		Custom.showHdg.setBoolValue(0);
+		Output.showHdg.setBoolValue(0);
 	},
 	activateGS: func() {
 		if (Output.vert.getValue() != 2) {
@@ -1128,7 +1116,7 @@ var ITAF = {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
 	syncKtsGa: func() { # Same as syncKts, except doesn't go below V2
-		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), Custom.FMS.v2Speed.getValue(), 365));
+		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Internal.v2.getValue(), 365));
 	},
 	syncKtsSel: func() {
 		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
@@ -1156,9 +1144,9 @@ var ITAF = {
 	},
 	# Custom Stuff Below
 	spdPush: func() {
-		Custom.retardLock = 0;
+		Internal.retardLock = 0;
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
-			Custom.Output.spdCaptured = 1;
+			Output.spdCaptured = 1;
 			if (Input.ktsMach.getBoolValue()) {
 				Internal.ktsMach.setBoolValue(1);
 				Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
@@ -1177,7 +1165,7 @@ var ITAF = {
 		}
 	},
 	spdPull: func() {
-		Custom.retardLock = 0;
+		Internal.retardLock = 0;
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
 			Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 			if (Internal.ktsMach.getBoolValue() != Input.ktsMachTemp) {
@@ -1188,42 +1176,42 @@ var ITAF = {
 			} else {
 				Internal.kts.setValue(Input.kts.getValue());
 			}
-			Custom.Output.spdCaptured = 0;
+			Output.spdCaptured = 0;
 		}
 	},
 	autoflight: func() {
-		Custom.Input.ovrd1Temp = Custom.Input.ovrd1.getBoolValue();
-		Custom.Input.ovrd2Temp = Custom.Input.ovrd2.getBoolValue();
-		Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue();
+		Input.ovrd1Temp = Input.ovrd1.getBoolValue();
+		Input.ovrd2Temp = Input.ovrd2.getBoolValue();
+		Internal.activeFMSTemp = Internal.activeFMS.getValue();
 		
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
-				if (Custom.Internal.activeFMSTemp == 1 and Custom.Output.ap2Avail.getBoolValue()) {
+				if (Internal.activeFMSTemp == 1 and Output.ap2Avail.getBoolValue()) {
 					me.updateActiveFMS(2);
-				} else if (Custom.Internal.activeFMSTemp == 2 and Custom.Output.ap1Avail.getBoolValue()) {
+				} else if (Internal.activeFMSTemp == 2 and Output.ap1Avail.getBoolValue()) {
 					me.updateActiveFMS(1);
 				}
 			}
-			Custom.Internal.activeFMSTemp = Custom.Internal.activeFMS.getValue(); # Update it after we just set it
-			if (Custom.Internal.activeFMSTemp == 1) {
-				if (Custom.Output.ap1Avail.getBoolValue()) { # AP1 on
+			Internal.activeFMSTemp = Internal.activeFMS.getValue(); # Update it after we just set it
+			if (Internal.activeFMSTemp == 1) {
+				if (Output.ap1Avail.getBoolValue()) { # AP1 on
 					me.ap1Master(1);
 					me.ap2Master(0);
-				} else if (Custom.Output.ap2Avail.getBoolValue()) { # AP2 on because AP1 is not available
+				} else if (Output.ap2Avail.getBoolValue()) { # AP2 on because AP1 is not available
 					me.ap2Master(1); # Will set activeFMS to 2
 					me.ap1Master(0);
 				}
-			} else if (Custom.Internal.activeFMSTemp == 2) {
-				if (Custom.Output.ap2Avail.getBoolValue()) { # AP2 on
+			} else if (Internal.activeFMSTemp == 2) {
+				if (Output.ap2Avail.getBoolValue()) { # AP2 on
 					me.ap2Master(1);
 					me.ap1Master(0);
-				} else if (Custom.Output.ap1Avail.getBoolValue()) { # AP1 on because AP2 is not available
+				} else if (Output.ap1Avail.getBoolValue()) { # AP1 on because AP2 is not available
 					me.ap1Master(1); # Will set activeFMS to 1
 					me.ap2Master(0);
 				}
 			}
 		}
-		if (!Output.athr.getBoolValue() and Custom.Output.atsAvail.getBoolValue()) {
+		if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
 			me.athrMaster(1);
 		}
 	},
@@ -1255,13 +1243,13 @@ var ITAF = {
 	},
 	killATSSilent: func() {
 		Output.athr.setBoolValue(0);
-		Custom.atsFlash.setBoolValue(0);
-		Custom.enableAtsOff = 0;
+		Warning.atsFlash.setBoolValue(0);
+		Internal.enableAthrOff = 0;
 		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
 		Input.athr.setBoolValue(0);
 	},
 	updateActiveFMS: func(n) {
-		Custom.Internal.activeFMS.setValue(n);
+		Internal.activeFMS.setValue(n);
 		updateFMA.roll();
 	},
 	updateLatText: func(t) {
@@ -1363,38 +1351,38 @@ setlistener("/it-autoflight/input/vert", func {
 var killAPWarn = func {
 	if (Sound.apOff.getBoolValue()) { # Second press only
 		apKill.stop();
-		Custom.apWarn.setBoolValue(0);
+		Warning.ap.setBoolValue(0);
 		Sound.apOff.setBoolValue(0);
 	}
 }
 
 var killATSWarn = func {
-	if (Custom.atsFlash.getBoolValue()) { # Second press only
+	if (Warning.atsFlash.getBoolValue()) { # Second press only
 		atsKill.stop();
-		Custom.atsWarn.setBoolValue(0);
-		Custom.atsFlash.setBoolValue(0);
+		Warning.ats.setBoolValue(0);
+		Warning.atsFlash.setBoolValue(0);
 	}
 };
 
 var apKill = maketimer(0.3, func {
 	if (!Sound.apOff.getBoolValue()) {
 		apKill.stop();
-		Custom.apWarn.setBoolValue(0);
-	} else if (!Custom.apWarn.getBoolValue()) {
-		Custom.apWarn.setBoolValue(1);
+		Warning.ap.setBoolValue(0);
+	} else if (!Warning.ap.getBoolValue()) {
+		Warning.ap.setBoolValue(1);
 	} else {
-		Custom.apWarn.setBoolValue(0);
+		Warning.ap.setBoolValue(0);
 	}
 });
 
 var atsKill = maketimer(0.3, func {
-	if (!Custom.atsFlash.getBoolValue()) {
+	if (!Warning.atsFlash.getBoolValue()) {
 		atsKill.stop();
-		Custom.atsWarn.setBoolValue(0);
-	} else if (!Custom.atsWarn.getBoolValue()) {
-		Custom.atsWarn.setBoolValue(1);
+		Warning.ats.setBoolValue(0);
+	} else if (!Warning.ats.getBoolValue()) {
+		Warning.ats.setBoolValue(1);
 	} else {
-		Custom.atsWarn.setBoolValue(0);
+		Warning.ats.setBoolValue(0);
 	}
 });
 
