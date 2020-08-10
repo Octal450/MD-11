@@ -124,7 +124,7 @@
 						<value>0</value>
 					</equals>
 					<greater-than>
-						<property>systems/apu/n2</property>
+						<property>engines/engine[3]/n2-actual</property>
 						<value>5</value>
 					</greater-than>
 				</and>

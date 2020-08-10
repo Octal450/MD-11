@@ -3,8 +3,9 @@
 <!-- McDonnell Douglas MD-11 APU -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
-<system name="MD-11: Ignition">
+<system name="MD-11: APU">
 	
+	<property value="0">/systems/apu/egt-cmd</property>
 	<property value="0">/systems/apu/throttle-high</property>
 	
 	<channel name="APU Control">
@@ -16,6 +17,53 @@
 			</test>
 			<output>fcs/throttle-pos-norm[3]</output>
 		</switch>
+	
+	</channel>
+	
+	<channel name="APU Parameters" execrate="2">
+		
+		<lag_filter name="/systems/apu/n1-actual">
+			<input>/engines/engine[3]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[3]/n1-actual</output>
+		</lag_filter>
+		
+		<!--fcs_function name="/systems/apu/egt-cmd">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[3]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[3]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							
+						</tableData>
+						<tableData breakPoint="1">
+							
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function-->
+		
+		<lag_filter name="/systems/apu/egt-actual">
+			<input>/systems/apu/egt-cmd</input>
+			<c1>0.35</c1>
+			<output>/engines/engine[3]/egt-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="/systems/apu/n2-actual">
+			<input>/engines/engine[3]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[3]/n2-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="/systems/apu/ff-actual">
+			<input>/engines/engine[3]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[3]/ff-actual</output>
+		</lag_filter>
 	
 	</channel>
 
