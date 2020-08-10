@@ -362,7 +362,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -379,7 +379,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -393,11 +393,11 @@
 				<row>0</row>
 				<col>3</col>
 				<pref-width>50</pref-width>
-				<property>/it-autoflight/custom/kts-sel</property>
+				<property>/it-autoflight/input/kts</property>
 				<live type="bool">true</live>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -411,7 +411,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -429,7 +429,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>0</value>
 					</equals>
 				</enable>
@@ -458,7 +458,7 @@
 				<legend>&lt;&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -475,7 +475,7 @@
 				<legend>&lt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -489,11 +489,11 @@
 				<row>0</row>
 				<col>3</col>
 				<pref-width>50</pref-width>
-				<property>/it-autoflight/custom/mach-sel</property>
+				<property>/it-autoflight/input/mach</property>
 				<live type="bool">true</live>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -507,7 +507,7 @@
 				<legend>&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -525,7 +525,7 @@
 				<legend>&gt;&gt;</legend>
 				<enable>
 					<equals>
-						<property>/it-autoflight/custom/kts-mach</property>
+						<property>/it-autoflight/input/kts-mach</property>
 						<value>1</value>
 					</equals>
 				</enable>
@@ -627,7 +627,7 @@
 				<row>0</row>
 				<col>3</col>
 				<pref-width>40</pref-width>
-				<property>/it-autoflight/custom/hdg-sel</property>
+				<property>/it-autoflight/input/hdg</property>
 				<live type="bool">true</live>
 				<enable>
 					<equals>

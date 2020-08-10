@@ -1152,6 +1152,30 @@
 				<max>0.65</max>
 			</pitch>
 		</pushback>
+		
+		<wind>
+			<name>Wind</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/wind.wav</path>
+			<condition>
+				<property>/sim/current-view/internal</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/other/wind</property>
+			</volume>
+			<pitch>
+				<property>/sim/sound/other/windp</property>
+			</pitch>
+		</wind>
+		
+		<switch>
+			<name>Flaps Click</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/Cockpit/flaps-click.wav</path>
+			<condition>
+				<property>/sim/sound/flaps-click</property>
+			</condition>
+		</switch>
 	
 	</fx>
 </PropertyList>

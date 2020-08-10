@@ -10,7 +10,7 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/input/spd-kts</input>
+		<input>/it-autoflight/internal/kts</input>
 		<output>/it-autoflight/internal/athr-kts</output>
 		<min>
 			<expression>
@@ -44,7 +44,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -68,7 +68,7 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/input/spd-mach</input>
+		<input>/it-autoflight/internal/mach</input>
 		<output>/it-autoflight/internal/athr-mach</output>
 		<min>
 			<expression>
@@ -102,7 +102,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>1</value>
 					</equals>
 					<equals>
@@ -135,7 +135,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>0</value>
 					</equals>
 					<equals>
@@ -172,7 +172,7 @@
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/it-autoflight/internal/kts-mach</property>
 						<value>1</value>
 					</equals>
 					<equals>

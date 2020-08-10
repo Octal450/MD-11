@@ -340,6 +340,16 @@ var Sound = {
 	},
 };
 
+setlistener("/controls/flight/flaps-input", func {
+	if (pts.Sim.Sound.flapsClick.getBoolValue()) {
+		return;
+	}
+	pts.Sim.Sound.flapsClick.setBoolValue(1);
+	settimer(func {
+		pts.Sim.Sound.flapsClick.setBoolValue(0);
+	}, 0.4);
+}, 0, 0);
+
 setlistener("/controls/switches/seatbelt-sign-status", func {
 	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;

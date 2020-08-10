@@ -61,7 +61,7 @@ var APPanel = {
 	},
 	IASMach: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Custom.ktsMach.setBoolValue(!afs.Custom.ktsMach.getBoolValue());
+			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
 	SPDPush: func() {
@@ -76,23 +76,23 @@ var APPanel = {
 	},
 	SPDAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			if (afs.Custom.ktsMach.getBoolValue()) {
-				me.machTemp = math.round(afs.Custom.machSel.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
+			if (afs.Input.ktsMach.getBoolValue()) {
+				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
-					afs.Custom.machSel.setValue(0.50);
+					afs.Input.mach.setValue(0.50);
 				} else if (me.machTemp > 0.87) {
-					afs.Custom.machSel.setValue(0.87);
+					afs.Input.mach.setValue(0.87);
 				} else {
-					afs.Custom.machSel.setValue(me.machTemp);
+					afs.Input.mach.setValue(me.machTemp);
 				}
 			} else {
-				me.iasTemp = afs.Custom.iasSel.getValue() + d;
+				me.iasTemp = afs.Input.kts.getValue() + d;
 				if (me.iasTemp < 100) {
-					afs.Custom.iasSel.setValue(100);
+					afs.Input.kts.setValue(100);
 				} else if (me.iasTemp > 365) {
-					afs.Custom.iasSel.setValue(365);
+					afs.Input.kts.setValue(365);
 				} else {
-					afs.Custom.iasSel.setValue(me.iasTemp);
+					afs.Input.kts.setValue(me.iasTemp);
 				}
 			}
 		}
@@ -104,20 +104,20 @@ var APPanel = {
 	},
 	HDGPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Input.hdg.setValue(afs.Custom.hdgSel.getValue());
+			afs.Internal.hdg.setValue(afs.Input.hdg.getValue());
 			afs.Input.lat.setValue(0);
 		}
 	},
 	HDGAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Custom.showHdg.setBoolValue(1);
-			me.hdgTemp = afs.Custom.hdgSel.getValue() + d;
+			me.hdgTemp = afs.Input.hdg.getValue() + d;
 			if (me.hdgTemp < -0.5) {
-				afs.Custom.hdgSel.setValue(me.hdgTemp + 360);
+				afs.Input.hdg.setValue(me.hdgTemp + 360);
 			} else if (me.hdgTemp >= 359.5) {
-				afs.Custom.hdgSel.setValue(me.hdgTemp - 360);
+				afs.Input.hdg.setValue(me.hdgTemp - 360);
 			} else {
-				afs.Custom.hdgSel.setValue(me.hdgTemp);
+				afs.Input.hdg.setValue(me.hdgTemp);
 			}
 		}
 	},

@@ -29,6 +29,7 @@ var HDGsel = 0;
 var LOC = 0;
 var GS = 0;
 var FMAAlt = 0;
+var AICenter = nil;
 
 # Fetch nodes:
 var ap1 = props.globals.getNode("/it-autoflight/output/ap1", 1);
@@ -84,10 +85,10 @@ var eng0state = props.globals.getNode("/engines/engine[0]/state", 1);
 var eng1state = props.globals.getNode("/engines/engine[1]/state", 1);
 var eng2state = props.globals.getNode("/engines/engine[2]/state", 1);
 var gearagl = props.globals.getNode("/position/gear-agl-ft", 1);
-var ktsmach = props.globals.getNode("/it-autoflight/input/kts-mach", 1);
-var aphdg = props.globals.getNode("/it-autoflight/input/hdg", 1);
-var apspd = props.globals.getNode("/it-autoflight/input/spd-kts", 1);
-var apmach = props.globals.getNode("/it-autoflight/input/spd-mach", 1);
+var ktsmach = props.globals.getNode("/it-autoflight/internal/kts-mach", 1);
+var aphdg = props.globals.getNode("/it-autoflight/internal/hdg", 1);
+var apspd = props.globals.getNode("/it-autoflight/internal/kts", 1);
+var apmach = props.globals.getNode("/it-autoflight/internal/mach", 1);
 var apalt = props.globals.getNode("/it-autoflight/internal/alt", 1);
 var slat = props.globals.getNode("/controls/flight/slats-cmd", 1);
 var flap = props.globals.getNode("/controls/flight/flaps-cmd", 1);
@@ -152,6 +153,9 @@ var canvas_PFD_base = {
 		
 		me.AI_horizon_trans = me["AI_horizon"].createTransform();
 		me.AI_horizon_rot = me["AI_horizon"].createTransform();
+		
+		me.AI_fpv_trans = me["AI_fpv"].createTransform();
+		me.AI_fpv_rot = me["AI_fpv"].createTransform();
 		
 		me.AI_fpd_trans = me["AI_fpd"].createTransform();
 		me.AI_fpd_rot = me["AI_fpd"].createTransform();
@@ -588,20 +592,23 @@ var canvas_PFD_base = {
 		rollx = roll.getValue() or 0;
 		alphax = alpha.getValue() or 0;
 		
+		AICenter = me["AI_center"].getCenter();
+		
 		me.AI_horizon_trans.setTranslation(0, pitchx * 10.246);
-		me.AI_horizon_rot.setRotation(-rollx * D2R, me["AI_center"].getCenter());
+		me.AI_horizon_rot.setRotation(-rollx * D2R, AICenter);
 		
 		trackdiffx = trackdiff.getValue();
-		me["AI_fpv"].setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax, -20, 20) * 10.246);
 		if (apfpa.getValue() == 1) {
+			me.AI_fpv_trans.setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax, -20, 20) * 10.246);
+			me.AI_fpv_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpv"].show();
 		} else {
 			me["AI_fpv"].hide();
 		}
 		
 		if (apvert.getValue() == 5) {
-			me.AI_fpd_trans.setTranslation(0, (pitchx - alphax + (alphax * math.cos(rollx / 57.2957795131)) - fpa.getValue()) * 10.246);
-			me.AI_fpd_rot.setRotation(-rollx * D2R, me["AI_center"].getCenter());
+			me.AI_fpd_trans.setTranslation(0, (pitchx - fpa.getValue()) * 10.246);
+			me.AI_fpd_rot.setRotation(-rollx * D2R, AICenter);
 			me["AI_fpd"].show();
 		} else {
 			me["AI_fpd"].hide();

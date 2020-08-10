@@ -71,7 +71,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -80,7 +80,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -90,7 +90,7 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -99,7 +99,7 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -121,12 +121,6 @@
 				<value>120</value>
 			</u_min>
 			<u_min>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>1</value>
-					</equals>
-				</condition>
 				<expression>
 					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
@@ -134,32 +128,6 @@
 					</difference>
 				</expression>
 			</u_min>
-			<u_max>
-				<condition>
-					<and>
-						<equals>
-							<property>/it-autoflight/output/thr-mode</property>
-							<value>2</value>
-						</equals>
-						<and>
-							<equals>
-								<property>/gear/gear[1]/wow</property>
-								<value>0</value>
-							</equals>
-							<equals>
-								<property>/gear/gear[2]/wow</property>
-								<value>0</value>
-							</equals>
-						</and>
-					</and>
-				</condition>
-				<expression>
-					<sum>
-						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
-					</sum>
-				</expression>
-			</u_max>
 			<u_max>
 				<condition>
 					<and>
@@ -190,27 +158,7 @@
 				</condition>
 				<value>-120</value>
 			</u_max>
-			<u_min>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</equals>
-				</condition>
-				<expression>
-					<difference>
-						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
-					</difference>
-				</expression>
-			</u_min>
 			<u_max>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>0</value>
-					</equals>
-				</condition>
 				<expression>
 					<sum>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
@@ -535,23 +483,6 @@
 			<Td>0.0001</Td>
 			<u_min>
 				<condition>
-					<not-equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>6</value>
-					</not-equals>
-				</condition>
-				<expression>
-					<max>
-						<difference>
-							<property>/orientation/pitch-deg</property>
-							<value>5</value>
-						</difference>
-						<value>-10</value>
-					</max>
-				</expression>
-			</u_min>
-			<u_min>
-				<condition>
 					<equals>
 						<property>/it-autoflight/output/vert</property>
 						<value>6</value>
@@ -559,29 +490,17 @@
 				</condition>
 				<value>0</value>
 			</u_min>
-			<u_max>
-				<condition>
-					<and>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>0</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>0</value>
-						</equals>
-					</and>
-				</condition>
+			<u_min>
 				<expression>
-					<min>
-						<sum>
+					<max>
+						<dif>
 							<property>/orientation/pitch-deg</property>
 							<value>5</value>
-						</sum>
-						<value>25</value>
-					</min>
+						</dif>
+						<value>-10</value>
+					</max>
 				</expression>
-			</u_max>
+			</u_min>
 			<u_max>
 				<condition>
 					<or>
@@ -596,6 +515,17 @@
 					</or>
 				</condition>
 				<value>10</value>
+			</u_max>
+			<u_max>
+				<expression>
+					<min>
+						<sum>
+							<property>/orientation/pitch-deg</property>
+							<value>5</value>
+						</sum>
+						<value>25</value>
+					</min>
+				</expression>
 			</u_max>
 		</config>
 	</pid-controller>

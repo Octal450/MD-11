@@ -84,8 +84,8 @@ var IRS = {
 		}
 		if ((algnd1 or algnd2 or algnd3) and setHDG == 1) {
 			setHDG = 0;
-			setprop("/it-autoflight/custom/hdg-sel", hdg);
 			setprop("/it-autoflight/input/hdg", hdg);
+			setprop("/it-autoflight/internal/hdg", hdg);
 		}
 		
 		if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/output/lat") == 1) {
