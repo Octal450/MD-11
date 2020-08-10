@@ -21,7 +21,7 @@ var APPanel = {
 	altTemp: 0,
 	fpaTemp: 0,
 	hdgTemp: 0,
-	iasTemp: 0,
+	ktsTemp: 0,
 	machTemp: 0,
 	vertTemp: 0,
 	vsTemp: 0,
@@ -86,13 +86,13 @@ var APPanel = {
 					afs.Input.mach.setValue(me.machTemp);
 				}
 			} else {
-				me.iasTemp = afs.Input.kts.getValue() + d;
-				if (me.iasTemp < 100) {
+				me.ktsTemp = afs.Input.kts.getValue() + d;
+				if (me.ktsTemp < 100) {
 					afs.Input.kts.setValue(100);
-				} else if (me.iasTemp > 365) {
+				} else if (me.ktsTemp > 365) {
 					afs.Input.kts.setValue(365);
 				} else {
-					afs.Input.kts.setValue(me.iasTemp);
+					afs.Input.kts.setValue(me.ktsTemp);
 				}
 			}
 		}
