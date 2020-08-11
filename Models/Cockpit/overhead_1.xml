@@ -2482,8 +2482,8 @@
 							</greater-than-equals>
 						</or>
 						<equals>
-							<property>controls/apu/start</property>
-							<value>1</value>
+							<property>systems/apu/state</property>
+							<value>3</value>
 						</equals>
 					</and>
 				</condition>

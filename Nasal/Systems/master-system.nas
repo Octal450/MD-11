@@ -1,6 +1,18 @@
 # McDonnell Douglas MD-11 Master System
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
+var APU = {
+	Light: {
+		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
+	},
+	Switch: {
+		start: props.globals.getNode("/controls/apu/switches/start"),
+	},
+	init: func() {
+		
+	},
+};
+
 var BRAKES = {
 	Abs: {
 		armed: props.globals.getNode("/gear/abs/armed"),

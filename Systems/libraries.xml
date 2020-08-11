@@ -315,6 +315,14 @@
 	</filter>
 	
 	<filter>
+		<name>APU Cutoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/apu/cutoff</input>
+		<output>/controls/engines/engine[3]/cutoff</output>
+	</filter>
+	
+	<filter>
 		<name>Engine 1 Starter</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -336,6 +344,14 @@
 		<gain>1.0</gain>
 		<input>/systems/ignition/starter-jsb-3</input>
 		<output>/controls/engines/engine[2]/starter</output>
+	</filter>
+	
+	<filter>
+		<name>APU Starter</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/apu/starter</input>
+		<output>/controls/engines/engine[3]/starter</output>
 	</filter>
 	
 	<!-- GPWS Controller -->

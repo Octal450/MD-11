@@ -20,6 +20,10 @@
 	
 	</channel>
 	
+	<channel name="APU Start/Stop"> <!-- DEVOTION: Do NOT execrate! -->
+	
+	</channel>
+	
 	<channel name="APU Parameters" execrate="2">
 		
 		<lag_filter name="/systems/apu/n1-actual">

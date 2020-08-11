@@ -86,10 +86,14 @@
 							<property>systems/electrical/bus/dc-3</property>
 							<value>25</value>
 						</greater-than-equals>
+						<!--equals>
+							<property>systems/apu/start-allowed</property>
+							<value>1</value>
+						</equals-->
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/apu/start</property>
+				<property>controls/apu/switches/start</property>
 		    </binding>
 			<binding>
 				<command>nasal</command>
@@ -103,7 +107,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/apu/on-light</property>
+					<property>systems/apu/light/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -120,13 +124,13 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/apu/start</property>
+						<property>controls/apu/switches/start</property>
 						<value>0</value>
 					</equals>
-					<greater-than>
+					<greater-than-equals>
 						<property>engines/engine[3]/n2-actual</property>
-						<value>5</value>
-					</greater-than>
+						<value>2</value>
+					</greater-than-equals>
 				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>

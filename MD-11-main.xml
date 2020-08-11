@@ -374,10 +374,9 @@
 	
 	<controls n="0">
 		<apu n="0">
-			<fire-btn type="bool">0</fire-btn>
-			<fire-btn-cover type="bool">0</fire-btn-cover>
-			<fire-light type="bool">0</fire-light>
-			<start-switch type="bool">0</start-switch>
+			<switches n="0">
+				<start type="bool">0</start>
+			</switches>
 		</apu>
 		<autobrake n="0">
 			<active type="bool">0</active>
