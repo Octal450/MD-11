@@ -1402,7 +1402,7 @@
 		</output>
 	</it-autoflight>
 	
-	<options n="0">
+	<options n="0">where 
 		<keyboard-mode type="bool">0</keyboard-mode>
 		<laptop-mode type="bool">0</laptop-mode>
 	</options>
@@ -1418,7 +1418,7 @@
 			</options>
 		</acconfig>
 		<apu n="0">
-			<fuel-pump type="bool">0</fuel-pump>
+			<state type="int">0</state>
 		</apu>
 		<electrical n="0">
 			<sources n="0">
@@ -1458,6 +1458,7 @@
 			<fuel n="0">
 				<pumps-aux-l type="bool">0</pumps-aux-l>
 				<pumps-aux-r type="bool">0</pumps-aux-r>
+				<pumps-tail type="bool">0</pumps-tail>
 				<pumps-1 type="bool">0</pumps-1>
 				<pumps-2 type="bool">0</pumps-2>
 				<pumps-3 type="bool">0</pumps-3>

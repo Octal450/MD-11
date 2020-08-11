@@ -248,24 +248,10 @@
 		<object-name>SystemElec.manual</object-name>
 		<object-name>SystemElec.select</object-name>
 		<condition>
-			<or>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-bat</property>
-					<value>25</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-1</property>
-					<value>25</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-2</property>
-					<value>25</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-3</property>
-					<value>25</value>
-				</greater-than-equals>
-			</or>
+			<greater-than-equals>
+				<property>systems/electrical/bus/dc-bat</property>
+				<value>25</value>
+			</greater-than-equals>
 		</condition>
 	</animation>
 	
@@ -276,8 +262,6 @@
 		<object-name>APUBleed.on</object-name>
 		<object-name>AuxPump1.on</object-name>
 		<object-name>AuxPump2.on</object-name>
-		<object-name>AuxTailTrans.low</object-name>
-		<object-name>AuxTailTrans.on</object-name>
 		<object-name>AvionicsFan.flow</object-name>
 		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>BeaconLt.off</object-name>
@@ -356,6 +340,8 @@
 		<object-name>SystemHyd.select</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
+		<object-name>TailTrans.low</object-name>
+		<object-name>TailTrans.on</object-name>
 		<object-name>Tank1Fill.arm</object-name>
 		<object-name>Tank1Fill.fill</object-name>
 		<object-name>Tank2Fill.arm</object-name>
@@ -436,10 +422,6 @@
 	<!-- These are not simulated yet, so they only illuminate when the test is on. Remove each light/button once you add its select animation. -JD -->
 	<animation>
 		<type>select</type>
-		<object-name>AltPump.low</object-name>
-		<object-name>AltPump.on</object-name>
-		<object-name>AuxTailTrans.low</object-name>
-		<object-name>AuxTailTrans.on</object-name>
 		<object-name>AvionicsFan.flow</object-name>
 		<object-name>bleed-1B.manf</object-name>
 		<object-name>bleed-1B.temphi</object-name>
@@ -646,24 +628,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -673,24 +641,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -730,24 +684,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -757,24 +697,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -814,24 +740,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -841,24 +753,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -899,24 +797,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
 				<script>systems.HYD.systemMode();</script>
@@ -982,24 +866,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/hydraulics/switches/aux-pump-1</property>
@@ -1036,24 +906,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/hydraulics/switches/aux-pump-2</property>
@@ -1094,24 +950,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1121,24 +963,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1201,24 +1029,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1228,24 +1042,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1308,24 +1108,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1335,24 +1121,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1415,24 +1187,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1442,24 +1200,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1522,24 +1266,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1549,24 +1279,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1629,24 +1345,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1656,24 +1358,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1737,24 +1425,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1764,24 +1438,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -1838,24 +1498,10 @@
 				<condition>
 					<and>
 						<not><property>systems/hydraulics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -1865,24 +1511,10 @@
 				<condition>
 					<and>
 						<property>systems/hydraulics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2010,24 +1642,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
 				<script>systems.ELEC.systemMode();</script>
@@ -2147,24 +1765,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2174,24 +1778,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2231,24 +1821,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2258,24 +1834,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2315,24 +1877,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/ext-pwr</property>
@@ -2386,24 +1934,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/extg-pwr</property>
@@ -2463,24 +1997,10 @@
 							<property>systems/electrical/epcu/allow-apu</property>
 							<value>1</value>
 						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 						<equals>
 							<property>systems/apu/state</property>
 							<value>3</value>
@@ -2562,24 +2082,10 @@
 							<property>systems/electrical/epcu/allow-ac-tie-1</property>
 							<value>1</value>
 						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2589,24 +2095,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2673,24 +2165,10 @@
 							<property>systems/electrical/epcu/allow-ac-tie-2</property>
 							<value>1</value>
 						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2700,24 +2178,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2784,24 +2248,10 @@
 							<property>systems/electrical/epcu/allow-ac-tie-3</property>
 							<value>1</value>
 						</equals>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2811,24 +2261,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2892,24 +2328,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -2919,24 +2341,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -2999,24 +2407,10 @@
 				<condition>
 					<and>
 						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-assign</command>
@@ -3078,24 +2472,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -3105,24 +2485,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -3185,24 +2551,10 @@
 				<condition>
 					<and>
 						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-assign</command>
@@ -3264,24 +2616,10 @@
 				<condition>
 					<and>
 						<not><property>systems/electrical/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -3291,24 +2629,10 @@
 				<condition>
 					<and>
 						<property>systems/electrical/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -3371,24 +2695,10 @@
 				<condition>
 					<and>
 						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-assign</command>
@@ -3542,24 +2852,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/adg-elec</property>
@@ -3596,24 +2892,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/electrical/switches/cab-bus</property>
@@ -3860,24 +3142,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
 				<script>systems.PNEU.systemMode();</script>
@@ -4155,24 +3423,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4182,24 +3436,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4256,24 +3496,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4283,24 +3509,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4357,24 +3569,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4384,24 +3582,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4459,24 +3643,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4486,24 +3656,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4560,24 +3716,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4587,24 +3729,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4662,24 +3790,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4689,24 +3803,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4763,24 +3863,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4790,24 +3876,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -4861,24 +3933,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/pneumatics/switches/bleed-apu</property>
@@ -4918,24 +3976,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -4945,24 +3989,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5018,24 +4048,10 @@
 				<condition>
 					<and>
 						<not><property>systems/pneumatics/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5045,24 +4061,10 @@
 				<condition>
 					<and>
 						<property>systems/pneumatics/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5100,24 +4102,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/pneumatics/switches/avionics-fan</property>
@@ -5154,24 +4142,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/pneumatics/switches/econ</property>
@@ -5211,24 +4185,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
 				<script>systems.FUEL.systemMode();</script>
@@ -5297,24 +4257,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5324,24 +4270,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5410,24 +4342,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5437,24 +4355,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5517,24 +4421,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5544,24 +4434,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5618,24 +4494,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5645,24 +4507,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5726,24 +4574,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5753,24 +4587,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5839,24 +4659,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5866,24 +4672,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -5946,24 +4738,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -5973,24 +4751,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6047,24 +4811,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6074,24 +4824,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6155,24 +4891,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6182,24 +4904,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6268,24 +4976,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6295,24 +4989,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6375,24 +5055,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6402,24 +5068,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6476,24 +5128,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6503,24 +5141,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6584,24 +5208,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6611,24 +5221,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6691,24 +5287,10 @@
 				<condition>
 					<and>
 						<not><property>systems/fuel/system</property></not>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>property-toggle</command>
@@ -6718,24 +5300,10 @@
 				<condition>
 					<and>
 						<property>systems/fuel/system</property>
-						<or>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-bat</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-1</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-2</property>
-								<value>25</value>
-							</greater-than-equals>
-							<greater-than-equals>
-								<property>systems/electrical/bus/dc-3</property>
-								<value>25</value>
-							</greater-than-equals>
-						</or>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -6775,6 +5343,164 @@
 					</equals>
 					<equals>
 						<property>systems/fuel/light/trans-aux-r-low</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>TailTrans</object-name>
+		<object-name>TailTrans.on</object-name>
+		<object-name>TailTrans.low</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/fuel/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fuel/switches/trans-tail</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/fuel/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualFuelLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.ohBtn();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TailTrans.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/trans-tail</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TailTrans.low</object-name>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/trans-tail</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/tail-low</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AltPump</object-name>
+		<object-name>AltPump.on</object-name>
+		<object-name>AltPump.low</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/fuel/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/fuel/switches/alt-pump</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/fuel/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualFuelLightt.start();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.ohBtn();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AltPump.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/fuel/switches/alt-pump</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AltPump.low</object-name>
+		<condition>
+			<or>
+				<and>
+					<equals>
+						<property>controls/fuel/switches/alt-pump</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>systems/fuel/light/tail-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -7222,24 +5948,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fadec/eng-1-altn</property>
@@ -7277,24 +5989,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fadec/eng-2-altn</property>
@@ -7332,24 +6030,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fadec/eng-3-altn</property>
@@ -7410,24 +6094,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/ignition/ign-a</property>
@@ -7465,24 +6135,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/ignition/ign-b</property>
@@ -7519,24 +6175,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/ignition/ign-ovrd</property>
@@ -7843,24 +6485,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-left-out</property>
@@ -7920,24 +6548,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-left-in</property>
@@ -7997,24 +6611,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-right-in</property>
@@ -8074,24 +6674,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/lsas-right-out</property>
@@ -8151,24 +6737,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-upper-a</property>
@@ -8228,24 +6800,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-upper-b</property>
@@ -8305,24 +6863,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-lower-a</property>
@@ -8382,24 +6926,10 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
 				<property>controls/fctl/yd-lower-b</property>

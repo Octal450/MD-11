@@ -11,7 +11,8 @@
 		
 		<switch name="/systems/fuel/fsc/pumps-1">
 			<default value="/controls/fuel/switches/pumps-1"/>
-			<test value="0">
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
 				/engines/engine[0]/state eq 0
 			</test>
 			<test value="1">
@@ -23,8 +24,9 @@
 		<switch name="/systems/fuel/fsc/pumps-2">
 			<default value="/controls/fuel/switches/pumps-2"/>
 			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
 				/engines/engine[1]/state eq 0
-				/engines/engine[3]/n2-actual lt 95
+				/engines/engine[3]/n2-actual lt 99.9
 			</test>
 			<test value="1">
 				/systems/fuel/system eq 1
@@ -34,7 +36,8 @@
 		
 		<switch name="/systems/fuel/fsc/pumps-3">
 			<default value="/controls/fuel/switches/pumps-3"/>
-			<test value="0">
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
 				/engines/engine[2]/state eq 0
 			</test>
 			<test value="1">
@@ -158,6 +161,31 @@
 				/systems/fuel/system eq 1
 			</test>
 			<output>/controls/fuel/switches/trans-aux-r</output>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/trans-tail">
+			<default value="/controls/fuel/switches/trans-tail"/>
+			<!--test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tail-pumps-cmd eq 1
+				propulsion/tank[7]/contents-lbs gt 10
+			</test-->
+			<test value="0">
+				/systems/fuel/system eq 1
+			</test>
+			<output>/controls/fuel/switches/trans-tail</output>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/alt-pump">
+			<default value="/controls/fuel/switches/alt-pump"/>
+			<!--test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				propulsion/tank[7]/contents-lbs gt 10
+			</test-->
+			<test value="0">
+				/systems/fuel/system eq 1
+			</test>
+			<output>/controls/fuel/switches/alt-pump</output>
 		</switch>
 		
 		<summer name="/systems/fuel/fsc/tank-1-level-bias">
@@ -354,6 +382,10 @@
 		
 		<switch name="/systems/fuel/aft-pump-2r">
 			<default value="0"/>
+			<test logic="AND" value="0"> <!-- When in AUTO and engine 2 is off, only left aft pump runs -->
+				/systems/fuel/system eq 1
+				/engines/engine[1]/state eq 0
+			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-1 ge 110
 				/controls/fuel/switches/pumps-2 eq 1
@@ -403,7 +435,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-bat ge 25
-				/systems/apu/fuel-pump eq 1
+				/systems/apu/dc-fuel-pump eq 1
 			</test>
 		</switch>
 		
@@ -1212,6 +1244,14 @@
 			<test logic="OR" value="1">
 				propulsion/tank[5]/contents-lbs le 100
 				/systems/failures/fuel/pumps-aux-r eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/light/tail-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[7]/contents-lbs le 100
+				/systems/failures/fuel/pumps-tail eq 1
 			</test>
 		</switch>
 	

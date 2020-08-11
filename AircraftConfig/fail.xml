@@ -392,6 +392,16 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
+			
+			<checkbox>
+				<label>Tail Trans and Alt Pumps</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-tail</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
 		
 		</group>
 		

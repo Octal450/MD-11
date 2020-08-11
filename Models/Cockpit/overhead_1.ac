@@ -6691,7 +6691,7 @@ refs 4
 33 0.000251 0.062427
 kids 0
 OBJECT poly
-name "AuxTailTrans"
+name "TailTrans"
 loc -21.8056 -18.0051 -0.03159
 data 18
 EXT_P.btn.007.mesh
@@ -151678,7 +151678,7 @@ refs 4
 0 0.561675 0
 kids 0
 OBJECT poly
-name "AuxTailTrans.low"
+name "TailTrans.low"
 loc -0.00265312 -0.186003 0.0363833
 texture "lights2.png"
 crease 45.000000
@@ -152077,7 +152077,7 @@ refs 4
 0 0.158709 0
 kids 0
 OBJECT poly
-name "AuxTailTrans.on"
+name "TailTrans.on"
 loc -0.00265312 -0.171803 -0.0445898
 texture "lights.png"
 crease 45.000000

@@ -6,7 +6,6 @@ var APU = {
 	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
 	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
-	pump: props.globals.getNode("/systems/apu/fuel-pump"),
 	Light: {
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
 		onTemp: 0,
@@ -17,17 +16,16 @@ var APU = {
 	init: func() {
 		me.Switch.start.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
-		me.pump.setBoolValue(0);
 	},
 	startStop: func() {
-		if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
-			me.pump.setBoolValue(1);
-			me.Switch.start.setBoolValue(1);
-			onLightt.start();
-		} else {
-			me.Switch.start.setBoolValue(0);
-			me.Light.on.setValue(0);
-			me.pump.setBoolValue(0);
+		if (ELEC.Bus.dcBat.getValue() >= 25) {
+			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
+				me.Switch.start.setBoolValue(1);
+				onLightt.start();
+			} else {
+				me.Switch.start.setBoolValue(0);
+				me.Light.on.setValue(0);
+			}
 		}
 	},
 	onLight: func() {
