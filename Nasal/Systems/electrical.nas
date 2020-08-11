@@ -124,6 +124,8 @@ var ELEC = {
 		Apu: {
 			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
+			pmgHertz: props.globals.getNode("/systems/electrical/sources/apu/pmg-hertz"),
+			pmgVolt: props.globals.getNode("/systems/electrical/sources/apu/pmg-volt"),
 		},
 		Bat1: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),

@@ -8,10 +8,12 @@
 	<bypassratio>1</bypassratio>
 	<tsfc>0.441</tsfc>
 	<bleed>0.96</bleed>
-	<n1spinup>1.05</n1spinup>
-	<n2spinup>1.667</n2spinup>
-	<n1startrate>1.05</n1startrate> <!-- ~60 seconds -->
-	<n2startrate>1.667</n2startrate> <!-- ~60 seconds -->
+	<ignitionn1>1</ignitionn1>
+	<ignitionn2>15.1</ignitionn2> <!-- Any lower and it won't start? -->
+	<n1spinup>1</n1spinup>
+	<n2spinup>15.1</n2spinup> <!-- Spins up to ignition% really fast -->
+	<n1startrate>0.954</n1startrate> <!-- ~65 seconds -->
+	<n2startrate>1.308</n2startrate> <!-- ~65 seconds -->
 	<idlen1>63</idlen1>
 	<idlen2>99.99</idlen2> <!-- Should be 100 -->
 	<maxn1>100</maxn1>

@@ -2502,10 +2502,10 @@
 		<condition>
 			<or>
 				<and>
-					<greater-than>
+					<greater-than-equals>
 						<property>engines/engine[3]/n2-actual</property>
-						<value>94.9</value>
-					</greater-than>
+						<value>99.9</value>
+					</greater-than-equals>
 					<not-equals>
 						<property>systems/failures/electrical/apu</property>
 						<value>1</value>
@@ -2524,10 +2524,10 @@
 		<condition>
 			<or>
 				<and>
-					<greater-than>
+					<greater-than-equals>
 						<property>engines/engine[3]/n2-actual</property>
-						<value>94.9</value>
-					</greater-than>
+						<value>99.9</value>
+					</greater-than-equals>
 					<equals>
 						<property>controls/electrical/switches/apu-pwr</property>
 						<value>1</value>

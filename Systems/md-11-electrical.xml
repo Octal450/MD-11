@@ -460,37 +460,52 @@
 		</pure_gain>
 		
 		<!-- APU Gen -->
-		<fcs_function name="/systems/electrical/sources/apu/output-volt">
+		<pure_gain name="/systems/electrical/sources/apu/drive-rpm">
+			<input>/engines/engine[3]/n2-actual</input>
+			<gain>160</gain> <!-- 16000rpm at 100% -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/apu/pmg-volt">
 			<function>
-				<ifthen>
-					<eq>
-						<property>/systems/failures/electrical/apu</property>
-						<value>1</value>
-					</eq>
-					<value>0</value>
-					<table>
-						<independentVar lookup="row">/engines/engine[3]/n2-actual</independentVar>
-						<tableData>
-							94    0
-							95  115
-						</tableData>
-					</table>
-				</ifthen>
+				<product>
+					<property>/systems/electrical/sources/apu/drive-rpm</property>
+					<quotient>
+						<value>115</value>
+						<value>16000</value>
+					</quotient>
+				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/apu/output-hertz">
+		<fcs_function name="/systems/electrical/sources/apu/pmg-hertz">
 			<function>
-				<ifthen>
-					<ge>
-						<property>/systems/electrical/sources/apu/output-volt</property>
-						<value>110</value>
-					</ge>
-					<value>400</value>
-					<value>0</value>
-				</ifthen>
+				<quotient>
+					<product>
+						<property>/systems/electrical/sources/apu/drive-rpm</property>
+						<value>3</value> <!-- Number of poles in generator -->
+					</product>
+					<value>120</value>
+				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/apu/gcr-relay">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/failures/electrical/apu ne 1
+				/systems/electrical/sources/apu/drive-rpm ge 15984
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/electrical/sources/apu/output-volt">
+			<input>/systems/electrical/sources/apu/pmg-volt</input>
+			<gain>/systems/electrical/sources/apu/gcr-relay</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/apu/output-hertz">
+			<input>/systems/electrical/sources/apu/pmg-hertz</input>
+			<gain>/systems/electrical/sources/apu/gcr-relay</gain>
+		</pure_gain>
 		
 		<!-- External Power -->
 		<fcs_function name="/systems/electrical/sources/ext/output-volt">
