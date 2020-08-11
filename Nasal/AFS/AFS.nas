@@ -267,7 +267,6 @@ var ITAF = {
 		Output.vert.setValue(7);
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
-		Internal.bankLimit.setValue(25);
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(fms.Internal.v2.getValue());
 		Internal.mach.setValue(0.5);
