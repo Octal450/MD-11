@@ -27,6 +27,20 @@
 	
 	<channel name="APU Start/Stop"> <!-- DEVOTION: Do NOT execrate! -->
 		
+		<switch name="/systems/apu/door-cmd">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/apu/switches/start eq 1
+				/engines/engine[3]/n2-actual ge 2
+			</test>
+		</switch>
+		
+		<actuator name="/systems/apu/door-norm">
+			<input>/systems/apu/door-cmd</input>
+			<rate_limit>0.5</rate_limit> <!-- 2 seconds? Guess -->
+			<output>/systems/apu/door-debug</output>
+		</actuator>
+		
 		<switch name="/systems/apu/cutoff-cmd">
 			<default value="1"/>
 			<test logic="AND" value="0"> <!-- Add timer for shutdown -->
@@ -44,6 +58,7 @@
 			<test logic="AND" value="0">
 				/systems/apu/cutoff-cmd eq 0
 				propulsion/tank[11]/contents-lbs ge 1
+				/systems/apu/door-norm eq 1
 			</test>
 		</switch>
 		
@@ -52,6 +67,7 @@
 			<test logic="AND" value="1">
 				/controls/apu/switches/start eq 1
 				propulsion/tank[11]/contents-lbs ge 1
+				/systems/apu/door-norm eq 1
 			</test>
 		</switch>
 	
