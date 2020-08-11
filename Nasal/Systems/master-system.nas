@@ -2,16 +2,49 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var APU = {
+	egt: props.globals.getNode("/engines/engine[3]/egt-actual"),
+	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
+	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
+	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
+	pump: props.globals.getNode("/systems/apu/fuel-pump"),
 	Light: {
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
+		onTemp: 0,
 	},
 	Switch: {
 		start: props.globals.getNode("/controls/apu/switches/start"),
 	},
 	init: func() {
-		
+		me.Switch.start.setBoolValue(0);
+		me.Light.on.setBoolValue(0);
+		me.pump.setBoolValue(0);
+	},
+	startStop: func() {
+		if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
+			me.pump.setBoolValue(1);
+			me.Switch.start.setBoolValue(1);
+			onLightt.start();
+		} else {
+			me.Switch.start.setBoolValue(0);
+			me.Light.on.setValue(0);
+			me.pump.setBoolValue(0);
+		}
+	},
+	onLight: func() {
+		me.Light.onTemp = me.Light.on.getValue();
+		if (!me.Switch.start.getBoolValue()) {
+			onLightt.stop();
+			me.Light.on.setValue(0);
+		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 99.9) {
+			onLightt.stop();
+			me.Light.on.setValue(1);
+		} else {
+			me.Light.on.setValue(!me.Light.onTemp);
+		}
 	},
 };
+
+var onLightt = maketimer(0.4, APU, APU.onLight);
 
 var BRAKES = {
 	Abs: {

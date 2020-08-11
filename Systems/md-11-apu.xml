@@ -21,6 +21,34 @@
 	</channel>
 	
 	<channel name="APU Start/Stop"> <!-- DEVOTION: Do NOT execrate! -->
+		
+		<switch name="/systems/apu/cutoff-cmd">
+			<default value="1"/>
+			<test logic="AND" value="0"> <!-- Add timer for shutdown -->
+				/controls/apu/switches/start eq 1
+				/engines/engine[3]/n2-actual ge 10
+			</test>
+			<!-- Add timer for shutdown -->
+			<!--test logic="AND" value="0">
+				
+			</test-->
+		</switch>
+		
+		<switch name="/systems/apu/cutoff">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/systems/apu/cutoff-cmd eq 0
+				propulsion/tank[11]/contents-lbs ge 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/starter">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/apu/switches/start eq 1
+				propulsion/tank[11]/contents-lbs ge 1
+			</test>
+		</switch>
 	
 	</channel>
 	

@@ -86,14 +86,10 @@
 							<property>systems/electrical/bus/dc-3</property>
 							<value>25</value>
 						</greater-than-equals>
-						<!--equals>
-							<property>systems/apu/start-allowed</property>
-							<value>1</value>
-						</equals-->
 					</or>
 				</condition>
-				<command>property-toggle</command>
-				<property>controls/apu/switches/start</property>
+				<command>nasal</command>
+				<script>systems.APU.startStop();</script>
 		    </binding>
 			<binding>
 				<command>nasal</command>
