@@ -47,6 +47,7 @@ var APU = {
 				onLightt.stop();
 				me.Switch.start.setBoolValue(0);
 				me.Light.on.setValue(0);
+				PNEU.Switch.bleedApu.setBoolValue(0);
 			}
 		}
 	},
@@ -54,6 +55,7 @@ var APU = {
 		onLightt.stop();
 		me.Switch.start.setBoolValue(0);
 		me.Light.on.setValue(0);
+		PNEU.Switch.bleedApu.setBoolValue(0);
 	},
 };
 

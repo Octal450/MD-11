@@ -90,7 +90,8 @@
 		
 		<switch name="/systems/electrical/epcu/apu-pwr">
 			<default value="/controls/electrical/switches/apu-pwr"/>
-			<test value="0">
+			<test logic="OR" value="0">
+				/systems/apu/state ne 3
 				/systems/electrical/epcu/allow-apu eq 0
 			</test>
 			<output>/controls/electrical/switches/apu-pwr</output>
