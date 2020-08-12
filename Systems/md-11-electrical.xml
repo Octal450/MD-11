@@ -29,6 +29,7 @@
 				/systems/electrical/bus/ac-gen-2-src ne 1
 				/systems/electrical/bus/ac-gen-3-src ne 1
 			</test>
+			<output>/systems/electrical/epcu/allow-apu-out</output>
 		</switch>
 		
 		<switch name="/systems/electrical/epcu/allow-ac-tie-1">

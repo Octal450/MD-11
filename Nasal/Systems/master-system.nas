@@ -21,11 +21,13 @@ var APU = {
 		me.Switch.start.setBoolValue(0);
 		me.Light.avail.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
+		me.autoConnect = 0;
 	},
 	fastStart: func() {
 		me.Switch.start.setBoolValue(1);
 		me.Light.avail.setValue(1);
 		me.Light.on.setValue(1);
+		me.autoConnect = 0;
 		settimer(func { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
 		}, 1);
@@ -79,6 +81,14 @@ var APU = {
 		me.autoConnect = 0;
 	},
 };
+
+setlistener("/systems/electrical/epcu/allow-apu-out", func {
+	if (APU.autoConnect) {
+		if (ELEC.Epcu.allowApu.getBoolValue()) {
+			ELEC.Switch.apuPwr.setBoolValue(1);
+		}
+	}
+}, 0, 0);
 
 var onLightt = maketimer(0.4, APU, APU.onLight);
 
