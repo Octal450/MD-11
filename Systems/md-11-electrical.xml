@@ -492,9 +492,9 @@
 		
 		<switch name="/systems/electrical/sources/apu/gcr-relay">
 			<default value="0"/>
-			<test logic="AND" value="1">
+			<test logic="AND" value="1"> <!-- 96% -->
 				/systems/failures/electrical/apu ne 1
-				/systems/electrical/sources/apu/drive-rpm ge 15984
+				/systems/electrical/sources/apu/drive-rpm ge 15360
 			</test>
 		</switch>
 		

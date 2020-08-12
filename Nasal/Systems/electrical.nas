@@ -36,6 +36,9 @@ var ELEC = {
 		rEmerAc: props.globals.getNode("/systems/electrical/bus/r-emer-ac"),
 		rEmerDc: props.globals.getNode("/systems/electrical/bus/r-emer-dc"),
 	},
+	Epcu: {
+		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu"),
+	},
 	Fail: {
 		apu: props.globals.getNode("/systems/failures/electrical/apu"),
 		bat1: props.globals.getNode("/systems/failures/electrical/bat-1"),

@@ -249,7 +249,7 @@ var beforestart = func {
 		settimer(func {
 			systems.APU.fastStart();
 			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
-				if (getprop("/engines/engine[3]/n2-actual") >= 99.9) {
+				if (getprop("/engines/engine[3]/n2-actual") >= 96) {
 					removelistener(apu_rpm_chk);
 					beforestart_b();
 				}
@@ -305,7 +305,7 @@ var taxi = func {
 		settimer(func {
 			systems.APU.fastStart();
 			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
-				if (getprop("/engines/engine[3]/n2-actual") >= 99.9) {
+				if (getprop("/engines/engine[3]/n2-actual") >= 96) {
 					removelistener(apu_rpm_chk);
 					taxi_b();
 				}

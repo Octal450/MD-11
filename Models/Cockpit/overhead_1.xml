@@ -2011,6 +2011,22 @@
 				<property>controls/electrical/switches/apu-pwr</property>
 			</binding>
 			<binding>
+				<condition>
+					<and>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+						<equals>
+							<property>systems/apu/state</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.APU.startStop(1);</script> <!-- Auto connect -->
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.ohBtn();</script>
 			</binding>
@@ -2022,10 +2038,10 @@
 		<condition>
 			<or>
 				<and>
-					<greater-than-equals>
-						<property>engines/engine[3]/n2-actual</property>
-						<value>99.9</value>
-					</greater-than-equals>
+					<equals>
+						<property>systems/apu/light/avail</property>
+						<value>1</value>
+					</equals>
 					<not-equals>
 						<property>systems/failures/electrical/apu</property>
 						<value>1</value>
@@ -2044,10 +2060,10 @@
 		<condition>
 			<or>
 				<and>
-					<greater-than-equals>
-						<property>engines/engine[3]/n2-actual</property>
-						<value>99.9</value>
-					</greater-than-equals>
+					<equals>
+						<property>systems/apu/state</property>
+						<value>3</value>
+					</equals>
 					<equals>
 						<property>controls/electrical/switches/apu-pwr</property>
 						<value>1</value>

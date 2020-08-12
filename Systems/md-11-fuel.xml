@@ -26,7 +26,7 @@
 			<test logic="AND" value="0">
 				/systems/fuel/system eq 1
 				/engines/engine[1]/state eq 0
-				/engines/engine[3]/n2-actual lt 99.9
+				/engines/engine[3]/n2-actual lt 96
 			</test>
 			<test value="1">
 				/systems/fuel/system eq 1

@@ -75,7 +75,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>systems.APU.startStop();</script>
+				<script>systems.APU.startStop(0);</script> <!-- No auto connect -->
 		    </binding>
 			<binding>
 				<command>nasal</command>

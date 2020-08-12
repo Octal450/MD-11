@@ -2,12 +2,14 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var APU = {
+	autoConnect: 0,
 	egt: props.globals.getNode("/engines/engine[3]/egt-actual"),
 	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
 	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
 	Light: {
+		avail: props.globals.initNode("/systems/apu/light/avail", 0, "BOOL"), # Elec Panel AVAIL light
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
 		onTemp: 0,
 	},
@@ -17,10 +19,12 @@ var APU = {
 	init: func() {
 		me.oilQty.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
 		me.Switch.start.setBoolValue(0);
+		me.Light.avail.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
 	},
 	fastStart: func() {
 		me.Switch.start.setBoolValue(1);
+		me.Light.avail.setValue(1);
 		me.Light.on.setValue(1);
 		settimer(func { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
@@ -30,32 +34,49 @@ var APU = {
 		me.Light.onTemp = me.Light.on.getValue();
 		if (!me.Switch.start.getBoolValue()) {
 			onLightt.stop();
+			me.Light.avail.setValue(0);
 			me.Light.on.setValue(0);
-		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 99.9) {
+		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 96) {
 			onLightt.stop();
+			me.Light.avail.setValue(1);
 			me.Light.on.setValue(1);
+			if (me.autoConnect) {
+				if (ELEC.Epcu.allowApu.getBoolValue()) {
+					ELEC.Switch.apuPwr.setBoolValue(1);
+				}
+			}
 		} else {
+			if (me.autoConnect) {
+				me.Light.avail.setValue(!me.Light.onTemp); 
+			} else {
+				me.Light.avail.setValue(0);
+			}
 			me.Light.on.setValue(!me.Light.onTemp);
 		}
 	},
-	startStop: func() {
+	startStop: func(t) {
 		if (ELEC.Bus.dcBat.getValue() >= 25) {
 			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
+				me.autoConnect = t;
 				me.Switch.start.setBoolValue(1);
 				onLightt.start();
 			} else {
 				onLightt.stop();
 				me.Switch.start.setBoolValue(0);
+				me.Light.avail.setValue(0);
 				me.Light.on.setValue(0);
 				PNEU.Switch.bleedApu.setBoolValue(0);
+				me.autoConnect = 0;
 			}
 		}
 	},
 	stop: func() {
 		onLightt.stop();
 		me.Switch.start.setBoolValue(0);
+		me.Light.avail.setValue(0);
 		me.Light.on.setValue(0);
 		PNEU.Switch.bleedApu.setBoolValue(0);
+		me.autoConnect = 0;
 	},
 };
 

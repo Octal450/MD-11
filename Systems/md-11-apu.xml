@@ -133,7 +133,7 @@
 			<default value="0"/>
 			<test logic="AND" value="3">
 				/systems/apu/cutoff eq 0
-				/engines/engine[3]/n2-actual ge 99.9
+				/engines/engine[3]/n2-actual ge 96
 			</test>
 			<test logic="AND" value="2">
 				/engines/engine[3]/n2-actual ge 16
