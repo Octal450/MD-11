@@ -6,6 +6,7 @@ var APU = {
 	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
 	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
+	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
 	Light: {
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
 		onTemp: 0,
@@ -14,19 +15,16 @@ var APU = {
 		start: props.globals.getNode("/controls/apu/switches/start"),
 	},
 	init: func() {
+		me.oilQty.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
 		me.Switch.start.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
 	},
-	startStop: func() {
-		if (ELEC.Bus.dcBat.getValue() >= 25) {
-			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
-				me.Switch.start.setBoolValue(1);
-				onLightt.start();
-			} else {
-				me.Switch.start.setBoolValue(0);
-				me.Light.on.setValue(0);
-			}
-		}
+	fastStart: func() {
+		me.Switch.start.setBoolValue(1);
+		me.Light.on.setValue(1);
+		settimer(func { # Give the fuel system a moment to provide fuel in the pipe
+			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
+		}, 1);
 	},
 	onLight: func() {
 		me.Light.onTemp = me.Light.on.getValue();
@@ -39,6 +37,23 @@ var APU = {
 		} else {
 			me.Light.on.setValue(!me.Light.onTemp);
 		}
+	},
+	startStop: func() {
+		if (ELEC.Bus.dcBat.getValue() >= 25) {
+			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
+				me.Switch.start.setBoolValue(1);
+				onLightt.start();
+			} else {
+				onLightt.stop();
+				me.Switch.start.setBoolValue(0);
+				me.Light.on.setValue(0);
+			}
+		}
+	},
+	stop: func() {
+		onLightt.stop();
+		me.Switch.start.setBoolValue(0);
+		me.Light.on.setValue(0);
 	},
 };
 

@@ -1,19 +1,72 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 APU -->
+<!-- McDonnell Douglas MD-11 Honeywell TSCP700-4E APU -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <system name="MD-11: APU">
 	
-	<property value="0">/systems/apu/egt-cmd</property>
-	<property value="0">/systems/apu/throttle-high</property>
-	
 	<channel name="MSC: APU Logic">
 		
-		<switch name="/systems/apu/throttle-cmd-norm">
+		<!-- Following 3 will show if the APU is powering the pack, doesn't care if engine is powering too -->
+		<switch name="/systems/apu/bleed/apu-pack-1">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-1-delta-psi lt 0
+				/systems/pneumatics/isol/isol-1-2-active eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/bleed/apu-pack-2">
 			<default value="0"/>
 			<test value="1">
-				/systems/apu/throttle-high eq 1
+				/systems/pneumatics/pack-2-delta-psi lt 0
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/bleed/apu-pack-3">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-3-delta-psi lt 0
+				/systems/pneumatics/isol/isol-1-2-active eq 1
+				/systems/pneumatics/isol/isol-1-3-active eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/throttle-cmd-norm">
+			<default value="0"/> <!-- 63% N1 -->
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[0]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[1]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[2]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="OR" value="0.324324"> <!-- 75% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
 			</test>
 			<output>fcs/throttle-pos-norm[3]</output>
 		</switch>
@@ -25,7 +78,7 @@
 	
 	</channel>
 	
-	<channel name="APU Start/Stop"> <!-- DEVOTION: Do NOT execrate! -->
+	<channel name="APU Start/Stop"> <!-- Do NOT execrate! -->
 		
 		<switch name="/systems/apu/door-cmd">
 			<default value="0"/>
@@ -43,9 +96,10 @@
 		
 		<switch name="/systems/apu/cutoff-cmd">
 			<default value="1"/>
-			<test logic="AND" value="0"> <!-- Add timer for shutdown -->
+			<test logic="AND" value="0">
 				/controls/apu/switches/start eq 1
 				/engines/engine[3]/n2-actual ge 10
+				propulsion/tank[11]/contents-lbs ge 1
 			</test>
 			<!-- Add timer for shutdown -->
 			<!--test logic="AND" value="0">
@@ -55,6 +109,10 @@
 		
 		<switch name="/systems/apu/cutoff">
 			<default value="1"/>
+			<test logic="AND" value="0">
+				/controls/apu/switches/start eq 1
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
 			<test logic="AND" value="0">
 				/systems/apu/cutoff-cmd eq 0
 				propulsion/tank[11]/contents-lbs ge 1
@@ -70,6 +128,23 @@
 				/systems/apu/door-norm eq 1
 			</test>
 		</switch>
+		
+		<switch name="/systems/apu/state">
+			<default value="0"/>
+			<test logic="AND" value="3">
+				/systems/apu/cutoff eq 0
+				/engines/engine[0]/n2-actual ge 99.9
+			</test>
+			<test logic="AND" value="2">
+				/engines/engine[0]/n2-actual ge 16
+				/systems/apu/cutoff eq 0
+				/systems/apu/starter eq 1
+			</test>
+			<test value="1">
+				/systems/apu/starter eq 1
+			</test>
+			<output>/engines/engine[3]/state</output>
+		</switch>
 	
 	</channel>
 	
@@ -81,24 +156,51 @@
 			<output>/engines/engine[3]/n1-actual</output>
 		</lag_filter>
 		
-		<!--fcs_function name="/systems/apu/egt-cmd">
+		<fcs_function name="/systems/apu/egt-fake-n2"> <!-- Blend N1 and N2 -->
 			<function>
 				<sum>
-					<property>propulsion/tat-c</property>
+					<property>/engines/engine[3]/n2</property>
 					<table>
-						<independentVar lookup="row">/engines/engine[3]/n2</independentVar>
-						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
-						<independentVar lookup="table">/controls/engines/engine[3]/cutoff</independentVar>
-						<tableData breakPoint="0">
-							
-						</tableData>
-						<tableData breakPoint="1">
-							
+						<independentVar lookup="row">/engines/engine[3]/n1</independentVar>
+						<tableData>
+							 63   0
+							100  50
 						</tableData>
 					</table>
 				</sum>
 			</function>
-		</fcs_function-->
+		</fcs_function>
+		
+		<fcs_function name="/systems/apu/egt-cmd">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/systems/apu/egt-fake-n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[3]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							       0    50000
+							 16    0    0
+							 40  460  355
+							 50  505  400
+							 55  535  425
+							 65  580  460
+							 75  545  440
+							 90  490  385
+							100  363  272
+							150  457  376
+						</tableData>
+						<tableData breakPoint="1">
+							       0    50000
+							 20    0    0
+							100  363  272
+							150  457  376
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
 		
 		<lag_filter name="/systems/apu/egt-actual">
 			<input>/systems/apu/egt-cmd</input>

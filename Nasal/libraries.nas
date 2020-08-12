@@ -15,6 +15,7 @@ setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 setprop("/sim/multiplay/visibility-range-nm", 130);
 
 var systemsInit = func {
+	systems.APU.init();
 	systems.BRAKES.init();
 	systems.ELEC.init();
 	systems.ENGINE.init();
