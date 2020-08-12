@@ -8,6 +8,7 @@ var APU = {
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
 	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
+	state: props.globals.getNode("/engines/engine[3]/state"),
 	Light: {
 		avail: props.globals.initNode("/systems/apu/light/avail", 0, "BOOL"), # Elec Panel AVAIL light
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
@@ -84,7 +85,7 @@ var APU = {
 
 setlistener("/systems/electrical/epcu/allow-apu-out", func {
 	if (APU.autoConnect) {
-		if (ELEC.Epcu.allowApu.getBoolValue()) {
+		if (ELEC.Epcu.allowApu.getBoolValue() and APU.state.getValue() == 3) {
 			ELEC.Switch.apuPwr.setBoolValue(1);
 		}
 	}
