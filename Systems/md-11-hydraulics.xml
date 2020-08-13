@@ -230,12 +230,13 @@
 		<switch name="/systems/hydraulics/hsc/l-pump-1">
 			<default value="/controls/hydraulics/switches/l-pump-1"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[0]/cutoff-switch eq 0
 				/engines/engine[0]/state ne 0
 				/engines/engine[0]/state ne 3
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/l-pump-1</output>
 		</switch>
@@ -243,13 +244,14 @@
 		<switch name="/systems/hydraulics/hsc/r-pump-1">
 			<default value="/controls/hydraulics/switches/r-pump-1"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[0]/cutoff-switch eq 0
 				/engines/engine[0]/state ne 0
 				/engines/engine[0]/state ne 3
 				position/wow eq 0
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/r-pump-1</output>
 		</switch>
@@ -257,12 +259,13 @@
 		<switch name="/systems/hydraulics/hsc/l-pump-2">
 			<default value="/controls/hydraulics/switches/l-pump-2"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[1]/cutoff-switch eq 0
 				/engines/engine[1]/state ne 0
 				/engines/engine[1]/state ne 3
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/l-pump-2</output>
 		</switch>
@@ -270,13 +273,14 @@
 		<switch name="/systems/hydraulics/hsc/r-pump-2">
 			<default value="/controls/hydraulics/switches/r-pump-2"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[1]/cutoff-switch eq 0
 				/engines/engine[1]/state ne 0
 				/engines/engine[1]/state ne 3
 				position/wow eq 0
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/r-pump-2</output>
 		</switch>
@@ -284,12 +288,13 @@
 		<switch name="/systems/hydraulics/hsc/l-pump-3">
 			<default value="/controls/hydraulics/switches/l-pump-3"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[2]/cutoff-switch eq 0
 				/engines/engine[2]/state ne 0
 				/engines/engine[2]/state ne 3
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/l-pump-3</output>
 		</switch>
@@ -297,13 +302,14 @@
 		<switch name="/systems/hydraulics/hsc/r-pump-3">
 			<default value="/controls/hydraulics/switches/r-pump-3"/>
 			<test logic="AND" value="0">
+				/systems/hydraulics/system eq 1
 				/controls/engines/engine[0]/cutoff-switch eq 0
 				/engines/engine[0]/state ne 0
 				/engines/engine[0]/state ne 3
 				position/wow eq 0
 			</test>
 			<test value="1">
-				/systems/electrical/system eq 1
+				/systems/hydraulics/system eq 1
 			</test>
 			<output>/controls/hydraulics/switches/r-pump-3</output>
 		</switch>
