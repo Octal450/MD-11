@@ -516,7 +516,7 @@
 		<switch name="fadec/reverse-1/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
@@ -588,7 +588,7 @@
 		<switch name="fadec/reverse-2/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
@@ -657,7 +657,7 @@
 		<switch name="fadec/reverse-3/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>

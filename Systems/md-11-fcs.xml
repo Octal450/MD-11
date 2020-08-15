@@ -7,31 +7,6 @@
 	
 	<channel name="Libraries">
 		
-		<!-- Surface Droop -->
-		<fcs_function name="hydraulics/aileron-droop">
-			<function>
-				<table>
-					<independentVar lookup="row">aero/qbar-psf</independentVar>
-					<tableData>
-						 7  1.0
-						31  0.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="hydraulics/elevator-droop">
-			<function>
-				<table>
-					<independentVar lookup="row">aero/qbar-psf</independentVar>
-					<tableData>
-						 8  1.0
-						32  0.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
 		<switch name="hydraulics/aileron-out-enable">
 			<default value="0"/>
 			<test logic="OR" value="1">
@@ -183,6 +158,42 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-droop">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 7  1
+						31  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-in-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 7  0.333333
+						31  2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/aileron-out-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 7  0.066667
+						31  2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -213,8 +224,8 @@
 		<switch name="hydraulics/aileron-out-l/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-l/function">
-				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -227,9 +238,17 @@
 			<gain>20</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/aileron-out-l/rate">
+			<default value="hydraulics/aileron-out-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/aileron-out-l/final-actuator">
 			<input>hydraulics/aileron-out-l/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/aileron-out-l/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-out-l/final-deg</output>
 		</actuator>
@@ -258,8 +277,8 @@
 		<switch name="hydraulics/aileron-in-l/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-l/function">
-				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -272,9 +291,17 @@
 			<gain>20</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/aileron-in-l/rate">
+			<default value="hydraulics/aileron-in-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/aileron-in-l/final-actuator">
 			<input>hydraulics/aileron-in-l/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/aileron-in-l/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-in-l/final-deg</output>
 		</actuator>
@@ -303,8 +330,8 @@
 		<switch name="hydraulics/aileron-in-r/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-in-r/function">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -317,9 +344,17 @@
 			<gain>20</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/aileron-in-r/rate">
+			<default value="hydraulics/aileron-in-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/aileron-in-r/final-actuator">
 			<input>hydraulics/aileron-in-r/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/aileron-in-r/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-in-r/final-deg</output>
 		</actuator>
@@ -353,8 +388,8 @@
 		<switch name="hydraulics/aileron-out-r/switch">
 			<default value="hydraulics/aileron-droop"/>
 			<test logic="OR" value="hydraulics/aileron-out-r/function">
-				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -367,9 +402,17 @@
 			<gain>20</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/aileron-out-r/rate">
+			<default value="hydraulics/aileron-out-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/aileron-out-r/final-actuator">
 			<input>hydraulics/aileron-out-r/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/aileron-out-r/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/aileron-out-r/final-deg</output>
 		</actuator>
@@ -384,6 +427,42 @@
 				fcc/afs/enabled eq 1
 			</test>
 		</switch>
+		
+		<fcs_function name="hydraulics/elevator-droop">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 8  1
+						32  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/elevator-in-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 8  0.333333
+						32  2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="hydraulics/elevator-out-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 8  0.066667
+						32  2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -392,8 +471,8 @@
 		<switch name="hydraulics/elevator-out-l/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-l-output">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -410,9 +489,17 @@
 			</clipto>
 		</pure_gain>
 		
+		<switch name="hydraulics/elevator-out-l/rate">
+			<default value="hydraulics/elevator-out-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/elevator-out-l/final-actuator">
 			<input>hydraulics/elevator-out-l/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/elevator-out-l/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-out-l/final-deg</output>
 		</actuator>
@@ -423,9 +510,9 @@
 		
 		<switch name="hydraulics/elevator-in-l/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-i-l-output">
-				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/sys-3-aft-psi ge 1500
+			<test logic="OR" value="fcc/elevator-i-r-output">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -442,9 +529,17 @@
 			</clipto>
 		</pure_gain>
 		
+		<switch name="hydraulics/elevator-in-l/rate">
+			<default value="hydraulics/elevator-in-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/sys-3-aft-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/elevator-in-l/final-actuator">
 			<input>hydraulics/elevator-in-l/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/elevator-in-l/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-in-l/final-deg</output>
 		</actuator>
@@ -456,8 +551,8 @@
 		<switch name="hydraulics/elevator-in-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-i-r-output">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-aft-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -474,9 +569,17 @@
 			</clipto>
 		</pure_gain>
 		
+		<switch name="hydraulics/elevator-in-r/rate">
+			<default value="hydraulics/elevator-in-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-aft-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/elevator-in-r/final-actuator">
 			<input>hydraulics/elevator-in-r/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/elevator-in-r/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-in-r/final-deg</output>
 		</actuator>
@@ -488,8 +591,8 @@
 		<switch name="hydraulics/elevator-out-r/switch">
 			<default value="hydraulics/elevator-droop"/>
 			<test logic="OR" value="fcc/elevator-o-r-output">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -506,9 +609,17 @@
 			</clipto>
 		</pure_gain>
 		
+		<switch name="hydraulics/elevator-out-r/rate">
+			<default value="hydraulics/elevator-out-droop-rate"/>
+			<test logic="OR" value="80">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/elevator-out-r/final-actuator">
 			<input>hydraulics/elevator-out-r/cmd-deg</input>
-			<rate_limit>80</rate_limit>
+			<rate_limit>hydraulics/elevator-out-r/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/elevator-out-r/final-deg</output>
 		</actuator>
@@ -520,8 +631,8 @@
 		<switch name="hydraulics/stabilizer/rate">
 			<default value="0"/>
 			<test logic="OR" value="0.25">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
@@ -586,6 +697,18 @@
 				<max>1.0</max>
 			</clipto>
 		</summer>
+		
+		<fcs_function name="hydraulics/rudder-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 7.5  0
+						31.5  2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -594,8 +717,8 @@
 		<switch name="hydraulics/rudder-upper/switch">
 			<default value="0"/>
 			<test logic="OR" value="hydraulics/rudder/upper-sum">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -608,9 +731,17 @@
 			<gain>30</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/rudder-upper/rate">
+			<default value="hydraulics/rudder-droop-rate"/>
+			<test logic="OR" value="75">
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/rudder-upper/final-actuator">
 			<input>hydraulics/rudder-upper/cmd-deg</input>
-			<rate_limit>75</rate_limit>
+			<rate_limit>hydraulics/rudder-upper/rate</rate_limit>
 			<lag>25.5</lag>
 			<output>hydraulics/rudder-upper/final-deg</output>
 		</actuator>
@@ -622,8 +753,8 @@
 		<switch name="hydraulics/rudder-lower/switch">
 			<default value="0"/>
 			<test logic="OR" value="hydraulics/rudder/lower-sum">
-				/systems/hydraulics/sys-2-psi ge 1500
-				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 			</test>
 			<clipto>
 				<min>-1.0</min>
@@ -636,9 +767,17 @@
 			<gain>30</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/rudder-lower/rate">
+			<default value="hydraulics/rudder-droop-rate"/>
+			<test logic="OR" value="75">
+				/systems/hydraulics/sys-2-psi ge 2200
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/rudder-lower/final-actuator">
 			<input>hydraulics/rudder-lower/cmd-deg</input>
-			<rate_limit>75</rate_limit>
+			<rate_limit>hydraulics/rudder-lower/rate</rate_limit>
 			<lag>25.5</lag>
 			<output>hydraulics/rudder-lower/final-deg</output>
 		</actuator>
@@ -653,8 +792,8 @@
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test logic="OR" value="1.66666666">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
 		</switch>
 		
@@ -687,8 +826,8 @@
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test logic="OR" value="3.1">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
@@ -885,8 +1024,8 @@
 				/sim/model/autopush/connected eq 1
 			</test>
 			<test logic="OR" value="35">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
@@ -896,7 +1035,7 @@
 				/sim/model/autopush/connected eq 1
 			</test>
 			<test value="-70">
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 			</test>
 		</switch>
 		
@@ -906,7 +1045,7 @@
 				/sim/model/autopush/connected eq 1
 			</test>
 			<test value="70">
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
@@ -930,8 +1069,8 @@
 		<switch name="fcs/brake-avail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-1-psi ge 1500
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
+				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		

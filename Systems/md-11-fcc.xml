@@ -61,14 +61,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-out eq 1
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/lsas-left-out ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-out eq 1
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/lsas-left-out ne 1
 				libraries/any-irs-aligned eq 1
@@ -79,14 +79,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-in eq 1
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/l-emer-dc ge 25
 				/systems/failures/fctl/lsas-left-in ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-in eq 1
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 2200
 				/systems/electrical/bus/l-emer-dc ge 25
 				/systems/failures/fctl/lsas-left-in ne 1
 				libraries/any-irs-aligned eq 1
@@ -97,14 +97,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-in eq 1
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/r-emer-dc ge 25
 				/systems/failures/fctl/lsas-right-in ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-in eq 1
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 2200
 				/systems/electrical/bus/r-emer-dc ge 25
 				/systems/failures/fctl/lsas-right-in ne 1
 				libraries/any-irs-aligned eq 1
@@ -115,14 +115,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-out eq 1
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/lsas-right-out ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-out eq 1
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/lsas-right-out ne 1
 				libraries/any-irs-aligned eq 1
@@ -205,14 +205,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-upper-a eq 1
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/yd-upper-a ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-upper-a eq 1
-				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/yd-upper-a ne 1
 				libraries/any-irs-aligned eq 1
@@ -223,14 +223,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-upper-b eq 1
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/yd-upper-b ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-upper-b eq 1
-				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 1500
+				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 				/systems/electrical/bus/dc-3 ge 25
 				/systems/failures/fctl/yd-upper-b ne 1
 				libraries/any-irs-aligned eq 1
@@ -241,14 +241,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-lower-a eq 1
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/yd-lower-a ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-lower-a eq 1
-				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/yd-lower-a ne 1
 				libraries/any-irs-aligned eq 1
@@ -259,14 +259,14 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-lower-b eq 1
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/yd-lower-b ne 1
 				libraries/any-irs-aligned eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/yd-lower-b eq 1
-				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 1500
+				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 				/systems/electrical/bus/dc-1 ge 25
 				/systems/failures/fctl/yd-lower-b ne 1
 				libraries/any-irs-aligned eq 1

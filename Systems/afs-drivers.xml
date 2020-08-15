@@ -25,11 +25,11 @@
 				</or>
 				<greater-than-equals> <!-- Controls -->
 					<property>/systems/hydraulics/sys-2-psi</property>
-					<value>1500</value>
+					<value>2200</value>
 				</greater-than-equals>
 				<greater-than-equals> <!-- Autotrim -->
 					<property>/systems/hydraulics/sys-3-psi</property>
-					<value>1500</value>
+					<value>2200</value>
 				</greater-than-equals>
 				<or>
 					<equals>
@@ -66,7 +66,7 @@
 				</or>
 				<greater-than-equals>
 					<property>/systems/hydraulics/sys-1-psi</property>
-					<value>1500</value>
+					<value>2200</value>
 				</greater-than-equals>
 				<or>
 					<equals>

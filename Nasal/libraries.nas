@@ -228,7 +228,7 @@ var slewProp = func(prop, delta) {
 }
 
 controls.elevatorTrim = func(d) {
-	if (systems.HYD.Psi.sys1.getValue() >= 1500 or systems.HYD.Psi.sys3.getValue() >= 1500) {
+	if (systems.HYD.Psi.sys1.getValue() >= 2200 or systems.HYD.Psi.sys3.getValue() >= 2200) {
 		slewProp("/controls/flight/elevator-trim", d * 0.0162); # 0.0162 is the rate in JSB normalized (0.25 / 15.5)
 	}
 }
