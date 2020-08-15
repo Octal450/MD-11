@@ -256,7 +256,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-l1/cmd-deg">
 			<input>hydraulics/spoiler-l1/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-l1/rate">
@@ -299,7 +299,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-l2/cmd-deg">
 			<input>hydraulics/spoiler-l2/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-l2/rate">
@@ -342,7 +342,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-l3/cmd-deg">
 			<input>hydraulics/spoiler-l3/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-l3/rate">
@@ -385,7 +385,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-l4/cmd-deg">
 			<input>hydraulics/spoiler-l4/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-l4/rate">
@@ -428,7 +428,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-l5/cmd-deg">
 			<input>hydraulics/spoiler-l5/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-l5/rate">
@@ -471,7 +471,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-r1/cmd-deg">
 			<input>hydraulics/spoiler-r1/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-r1/rate">
@@ -514,7 +514,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-r2/cmd-deg">
 			<input>hydraulics/spoiler-r2/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-r2/rate">
@@ -557,7 +557,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-r3/cmd-deg">
 			<input>hydraulics/spoiler-r3/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-r3/rate">
@@ -600,7 +600,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-r4/cmd-deg">
 			<input>hydraulics/spoiler-r4/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-r4/rate">
@@ -643,7 +643,7 @@
 		
 		<pure_gain name="hydraulics/spoiler-r5/cmd-deg">
 			<input>hydraulics/spoiler-r5/switch</input>
-			<gain>60.0</gain>
+			<gain>60</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/spoiler-r5/rate">
