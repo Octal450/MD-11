@@ -220,6 +220,18 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="hydraulics/spoiler-droop-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">aero/qbar-psf</independentVar>
+					<tableData>
+						 9  1
+						33  6
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -247,9 +259,19 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-l1/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-l1/final-actuator">
 			<input>hydraulics/spoiler-l1/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-l1/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-l1/final-deg</output>
 		</actuator>
@@ -280,9 +302,19 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-l2/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-1-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-l2/final-actuator">
 			<input>hydraulics/spoiler-l2/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-l2/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-l2/final-deg</output>
 		</actuator>
@@ -313,9 +345,19 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-l3/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-l3/final-actuator">
 			<input>hydraulics/spoiler-l3/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-l3/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-l3/final-deg</output>
 		</actuator>
@@ -346,9 +388,19 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-l4/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-1-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-l4/final-actuator">
 			<input>hydraulics/spoiler-l4/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-l4/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-l4/final-deg</output>
 		</actuator>
@@ -379,16 +431,26 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-l5/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-l5/final-actuator">
 			<input>hydraulics/spoiler-l5/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-l5/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-l5/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
-	<channel name="Spoiler L1">
+	<channel name="Spoiler R1">
 		
 		<summer name="hydraulics/spoiler-r1/sum">
 			<input>hydraulics/aileron/output-surfaces</input>
@@ -412,16 +474,26 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-r1/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-r1/final-actuator">
 			<input>hydraulics/spoiler-r1/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-r1/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-r1/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
-	<channel name="Spoiler L2">
+	<channel name="Spoiler R2">
 		
 		<summer name="hydraulics/spoiler-r2/sum">
 			<input>hydraulics/aileron/output-surfaces</input>
@@ -445,16 +517,26 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-r2/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-1-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-r2/final-actuator">
 			<input>hydraulics/spoiler-r2/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-r2/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-r2/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
-	<channel name="Spoiler L3">
+	<channel name="Spoiler R3">
 		
 		<summer name="hydraulics/spoiler-r3/sum">
 			<input>hydraulics/aileron/output-surfaces</input>
@@ -478,16 +560,26 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-r3/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-r3/final-actuator">
 			<input>hydraulics/spoiler-r3/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-r3/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-r3/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
-	<channel name="Spoiler L4">
+	<channel name="Spoiler R4">
 		
 		<summer name="hydraulics/spoiler-r4/sum">
 			<input>hydraulics/aileron/output-surfaces</input>
@@ -511,16 +603,26 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-r4/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-1-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-r4/final-actuator">
 			<input>hydraulics/spoiler-r4/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-r4/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-r4/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
-	<channel name="Spoiler L5">
+	<channel name="Spoiler R5">
 		
 		<summer name="hydraulics/spoiler-r5/sum">
 			<input>hydraulics/aileron/output-surfaces</input>
@@ -544,9 +646,19 @@
 			<gain>60.0</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/spoiler-r5/rate">
+			<default value="hydraulics/spoiler-droop-rate"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="40">
+				/systems/hydraulics/sys-2-psi ge 2200
+			</test>
+		</switch>
+		
 		<actuator name="hydraulics/spoiler-r5/final-actuator">
 			<input>hydraulics/spoiler-r5/cmd-deg</input>
-			<rate_limit>40</rate_limit>
+			<rate_limit>hydraulics/spoiler-r5/rate</rate_limit>
 			<lag>26.5</lag>
 			<output>hydraulics/spoiler-r5/final-deg</output>
 		</actuator>
