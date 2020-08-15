@@ -510,8 +510,8 @@
 		
 		<switch name="hydraulics/elevator-in-l/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-i-r-output">
-				/systems/hydraulics/sys-1-psi ge 2200
+			<test logic="OR" value="fcc/elevator-i-l-output">
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
 			<clipto>
