@@ -542,9 +542,32 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-<!-- Altitude -->
-
+	
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Second Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Altitude -->
 	<animation>
 		<type>select</type>
 		<object-name>alt.ind</object-name>
