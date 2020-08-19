@@ -25,6 +25,7 @@
 		<object-name>aileron.light</object-name>
 		<object-name>rudder.light</object-name>
 		<object-name>mcdu_glare</object-name>
+		<object-name>DialAFlapLabel</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -1457,6 +1458,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>DialAFlap</object-name>
+		<object-name>DialAFlapLabel</object-name>
 		<property>controls/flight/dial-a-flap</property>
 		<interpolation>
 			<entry><ind>10</ind><dep>190</dep></entry>
