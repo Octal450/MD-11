@@ -10,7 +10,7 @@ var APU = {
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
 	state: props.globals.getNode("/engines/engine[3]/state"),
 	Light: {
-		avail: props.globals.initNode("/systems/apu/light/avail", 0, "BOOL"), # Elec Panel AVAIL light
+		avail: props.globals.getNode("/systems/apu/light/avail-flash"), # Flashes Elec Panel AVAIL light
 		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
 		onTemp: 0,
 	},

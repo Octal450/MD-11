@@ -1420,6 +1420,9 @@
 			</options>
 		</acconfig>
 		<apu n="0">
+			<light n="0">
+				<avail-flash type="bool">0</avail-flash>
+			</light>
 			<state type="int">0</state>
 		</apu>
 		<electrical n="0">
