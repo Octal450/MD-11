@@ -601,6 +601,7 @@ var canvas_PFD_base = {
 		if (apfpa.getValue() == 1) {
 			me.AI_fpv_trans.setTranslation(math.clamp(trackdiffx, -20, 20) * 10.246, math.clamp(alphax, -20, 20) * 10.246);
 			me.AI_fpv_rot.setRotation(-rollx * D2R, AICenter);
+			me["AI_fpv"].setRotation(rollx * D2R); # It shouldn't be rotated, only the axis should be
 			me["AI_fpv"].show();
 		} else {
 			me["AI_fpv"].hide();
