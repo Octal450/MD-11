@@ -846,9 +846,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/lat</property>
-				<value>1</value>
+				<command>nasal</command>
+				<script>libraries.apPanel.nav();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -864,9 +863,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/vert</property>
-				<value>2</value>
+				<command>nasal</command>
+				<script>libraries.apPanel.appr();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
