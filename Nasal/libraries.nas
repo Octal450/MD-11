@@ -26,7 +26,7 @@ var systemsInit = func {
 	systems.IGNITION.init();
 	systems.IRS.init();
 	systems.PNEU.init();
-	afs.ITAF.init(0);
+	afs.ITAF.init();
 	lightsLoop.start();
 	systemsLoop.start();
 	libraries.variousReset();

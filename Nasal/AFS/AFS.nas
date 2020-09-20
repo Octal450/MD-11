@@ -206,7 +206,6 @@ var Sound = {
 };
 
 var Text = {
-	arm: props.globals.initNode("/it-autoflight/mode/arm", " ", "STRING"),
 	land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
 	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
 	latTemp: "T/O",
@@ -222,7 +221,7 @@ var Warning = {
 };
 
 var ITAF = {
-	init: func(t) { # Not everything should be reset if the reset is type 1
+	init: func(t = 0) { # Not everything should be reset if the reset is type 1
 		if (t != 1) {
 			Input.alt.setValue(10000);
 			Input.bankLimitSW.setValue(0);
@@ -272,7 +271,6 @@ var ITAF = {
 		Internal.mach.setValue(0.5);
 		me.updateActiveFMS(1);
 		Text.thr.setValue("PITCH");
-		Text.arm.setValue(" ");
 		updateFMA.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
@@ -350,7 +348,7 @@ var ITAF = {
 		
 		# VOR/LOC or ILS/LOC Capture
 		if (Output.locArm.getBoolValue()) {
-			me.checkLOC(1, 0);
+			me.checkLOC(1);
 		}
 		
 		# G/S Capture
@@ -816,17 +814,16 @@ var ITAF = {
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
-			} else {
-				me.armTextCheck();
 			}
 		} else if (n == 1) { # LNAV
 			if (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue()) { # Remember that IRS.nas kills NAV if the IR's fail
+				me.updateLocArm(0);
+				me.updateApprArm(0);
 				me.checkLNAV(0);
 			}
 		} else if (n == 2) { # VOR/LOC
 			me.updateLnavArm(0);
-			me.armTextCheck();
-			me.checkLOC(0, 0);
+			me.checkLOC(0);
 		} else if (n == 3) { # HDG HLD
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
@@ -837,8 +834,6 @@ var ITAF = {
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
-			} else {
-				me.armTextCheck();
 			}
 		} else if (n == 4) { # ALIGN
 			me.updateLnavArm(0);
@@ -847,7 +842,6 @@ var ITAF = {
 			Output.lat.setValue(4);
 			Output.showHdg.setBoolValue(0);
 			me.updateLatText("ALGN");
-			me.armTextCheck();
 		} else if (n == 5) { # T/O
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
@@ -855,19 +849,16 @@ var ITAF = {
 			Output.lat.setValue(5);
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("T/O");
-			me.armTextCheck();
 		}
 	},
 	setLatArm: func(n) {
 		if (n == 1) {
 			if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue()) {
 				me.updateLnavArm(1);
-				me.armTextCheck();
 			}
 		} else if (n == 3) {
 			me.syncHdg();
 			me.updateLnavArm(0);
-			me.armTextCheck();
 		} 
 	},
 	setVertMode: func(n) {
@@ -883,7 +874,6 @@ var ITAF = {
 			me.resetClimbRateLim();
 			me.updateVertText("ALT HLD");
 			me.syncAlt();
-			me.armTextCheck();
 		} else if (n == 1) { # V/S
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
@@ -895,13 +885,12 @@ var ITAF = {
 				Output.vert.setValue(1);
 				me.updateVertText("V/S");
 				me.syncVs();
-				me.armTextCheck();
 			} else {
 				me.updateApprArm(0);
-				me.armTextCheck();
 			}
 		} else if (n == 2) { # G/S
-			me.checkLOC(0, 1);
+			me.updateLnavArm(0);
+			me.checkLOC(0);
 			me.checkAPPR(0);
 		} else if (n == 3) { # ALT CAP
 			Internal.flchActive = 0;
@@ -930,7 +919,6 @@ var ITAF = {
 				Output.vert.setValue(0);
 				me.updateVertText("ALT CAP");
 			}
-			me.armTextCheck();
 		} else if (n == 5) { # FPA
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
@@ -942,10 +930,8 @@ var ITAF = {
 				Output.vert.setValue(5);
 				me.updateVertText("FPA");
 				me.syncFpa();
-				me.armTextCheck();
 			} else {
 				me.updateApprArm(0);
-				me.armTextCheck();
 			}
 		} else if (n == 6) { # FLARE/ROLLOUT
 			Internal.flchActive = 0;
@@ -960,7 +946,6 @@ var ITAF = {
 				me.updateApprArm(0);
 			}
 			Output.vert.setValue(7);
-			me.armTextCheck();
 		}
 	},
 	activateLNAV: func() {
@@ -972,8 +957,6 @@ var ITAF = {
 			me.updateLatText("LNAV");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
-			} else {
-				me.armTextCheck();
 			}
 		}
 		Output.showHdg.setBoolValue(0);
@@ -984,7 +967,6 @@ var ITAF = {
 			me.updateLocArm(0);
 			Output.lat.setValue(2);
 			me.updateLatText("LOC");
-			me.armTextCheck();
 		}
 		Output.showHdg.setBoolValue(0);
 	},
@@ -995,7 +977,6 @@ var ITAF = {
 			me.updateApprArm(0);
 			Output.vert.setValue(2);
 			me.updateVertText("G/S");
-			me.armTextCheck();
 		}
 	},
 	checkLNAV: func(t) {
@@ -1003,7 +984,6 @@ var ITAF = {
 			me.activateLNAV();
 		} else if (FPLN.active.getBoolValue() and Output.lat.getValue() != 1 and t != 1) {
 			me.updateLnavArm(1);
-			me.armTextCheck();
 		}
 	},
 	checkFLCH: func(a) {
@@ -1011,7 +991,7 @@ var ITAF = {
 			me.setVertMode(4);
 		}
 	},
-	checkLOC: func(t, a) {
+	checkLOC: func(t) {
 		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
@@ -1022,9 +1002,6 @@ var ITAF = {
 				if (Output.lat.getValue() != 2) {
 					me.updateLnavArm(0);
 					me.updateLocArm(1);
-					if (a != 1) { # Don't call this if arming with G/S
-						me.armTextCheck();
-					}
 				}
 			}
 		} else { # Prevent bad behavior due to FG not updating it when not in range
@@ -1041,7 +1018,6 @@ var ITAF = {
 				if (Output.vert.getValue() != 2) {
 					me.updateApprArm(1);
 				}
-				me.armTextCheck();
 			}
 		} else { # Prevent bad behavior due to FG not updating it when not in range
 			Radio.signalQuality[Radio.radioSel].setValue(0);
@@ -1090,17 +1066,6 @@ var ITAF = {
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}
-		}
-	},
-	armTextCheck: func() {
-		if (Output.apprArm.getBoolValue()) {
-			Text.arm.setValue("ILS");
-		} else if (Output.locArm.getBoolValue()) {
-			Text.arm.setValue("LOC");
-		} else if (Output.lnavArm.getBoolValue()) {
-			Text.arm.setValue("LNV");
-		} else {
-			Text.arm.setValue(" ");
 		}
 	},
 	syncKts: func() {
