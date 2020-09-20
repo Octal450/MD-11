@@ -327,10 +327,10 @@ var ITAF = {
 		# Kill Autoland if AP is turned off
 		if (!Output.ap1Temp and !Output.ap2Temp) {
 			if (Output.latTemp == 4) {
-				me.activateLOC();
+				me.activateLoc();
 			}
 			if (Output.vertTemp == 6) {
-				me.activateGS();
+				me.activateGs();
 			}
 		}
 		
@@ -343,17 +343,17 @@ var ITAF = {
 		
 		# LNAV Engagement
 		if (Output.lnavArm.getBoolValue()) {
-			me.checkLNAV(1);
+			me.checkLnav(1);
 		}
 		
 		# VOR/LOC or ILS/LOC Capture
 		if (Output.locArm.getBoolValue()) {
-			me.checkLOC(1);
+			me.checkLoc(1);
 		}
 		
 		# G/S Capture
 		if (Output.apprArm.getBoolValue()) {
-			me.checkAPPR(1);
+			me.checkAppr(1);
 		}
 		
 		# Autoland Logic
@@ -372,8 +372,8 @@ var ITAF = {
 			}
 		} else if (Output.vertTemp == 6) {
 			if (!Output.ap1Temp and !Output.ap2Temp) {
-				me.activateLOC();
-				me.activateGS();
+				me.activateLoc();
+				me.activateGs();
 			} else {
 				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5 and Text.vert.getValue() != "FLARE") {
 					me.updateVertText("FLARE");
@@ -387,7 +387,7 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
-			me.checkFLCH(Settings.reducAglFt.getValue());
+			me.checkFlch(Settings.reducAglFt.getValue());
 		}
 		
 		# Altitude Capture/Sync Logic
@@ -819,11 +819,11 @@ var ITAF = {
 			if (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue()) { # Remember that IRS.nas kills NAV if the IR's fail
 				me.updateLocArm(0);
 				me.updateApprArm(0);
-				me.checkLNAV(0);
+				me.checkLnav(0);
 			}
 		} else if (n == 2) { # VOR/LOC
 			me.updateLnavArm(0);
-			me.checkLOC(0);
+			me.checkLoc(0);
 		} else if (n == 3) { # HDG HLD
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
@@ -890,8 +890,8 @@ var ITAF = {
 			}
 		} else if (n == 2) { # G/S
 			me.updateLnavArm(0);
-			me.checkLOC(0);
-			me.checkAPPR(0);
+			me.checkLoc(0);
+			me.checkAppr(0);
 		} else if (n == 3) { # ALT CAP
 			Internal.flchActive = 0;
 			Output.vert.setValue(0);
@@ -948,7 +948,7 @@ var ITAF = {
 			Output.vert.setValue(7);
 		}
 	},
-	activateLNAV: func() {
+	activateLnav: func() {
 		if (Output.lat.getValue() != 1) {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
@@ -961,7 +961,7 @@ var ITAF = {
 		}
 		Output.showHdg.setBoolValue(0);
 	},
-	activateLOC: func() {
+	activateLoc: func() {
 		if (Output.lat.getValue() != 2) {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
@@ -970,7 +970,7 @@ var ITAF = {
 		}
 		Output.showHdg.setBoolValue(0);
 	},
-	activateGS: func() {
+	activateGs: func() {
 		if (Output.vert.getValue() != 2) {
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
@@ -979,25 +979,25 @@ var ITAF = {
 			me.updateVertText("G/S");
 		}
 	},
-	checkLNAV: func(t) {
+	checkLnav: func(t) {
 		if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue() and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
-			me.activateLNAV();
+			me.activateLnav();
 		} else if (FPLN.active.getBoolValue() and Output.lat.getValue() != 1 and t != 1) {
 			me.updateLnavArm(1);
 		}
 	},
-	checkFLCH: func(a) {
+	checkFlch: func(a) {
 		if (Position.gearAglFt.getValue() >= a and a != 0) {
 			me.setVertMode(4);
 		}
 	},
-	checkLOC: func(t) {
+	checkLoc: func(t) {
 		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
 			if (abs(Radio.locDeflTemp) <= 0.95 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) {
-				me.activateLOC();
+				me.activateLoc();
 			} else if (t != 1) { # Do not do this if loop calls it
 				if (Output.lat.getValue() != 2) {
 					me.updateLnavArm(0);
@@ -1008,12 +1008,12 @@ var ITAF = {
 			Radio.signalQuality[Radio.radioSel].setValue(0);
 		}
 	},
-	checkAPPR: func(t) {
+	checkAppr: func(t) {
 		Radio.radioSel = Input.useNav2Radio.getBoolValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.gsDeflTemp = Radio.gsDefl[Radio.radioSel].getValue();
 			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2) { # Only capture if LOC is active
-				me.activateGS();
+				me.activateGs();
 			} else if (t != 1) { # Do not do this if loop calls it
 				if (Output.vert.getValue() != 2) {
 					me.updateApprArm(1);
