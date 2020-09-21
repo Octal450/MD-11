@@ -336,7 +336,7 @@
 			</button>
 			
 			<button>
-				<legend>Speed/Mach</legend>
+				<legend>IAS/Mach</legend>
 				<binding>
 					<command>nasal</command>
 					<script>libraries.apPanel.ktsMach();</script>
@@ -351,7 +351,7 @@
 			<text>
 				<row>0</row>
 				<col>0</col>
-				<label>SPD:  </label>
+				<label>IAS:   </label>
 			</text>
 			
 			<button>
