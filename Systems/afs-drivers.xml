@@ -163,83 +163,115 @@
 	
 	<!-- Autopilot Helpers/Calculators -->
 	<filter>
-		<name>AFS Target Knots Presel PFD</name>
+		<name>Knots Knob Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/input/kts</property>
-		</input>
-		<input>
+		<enable>
 			<condition>
 				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
+		</enable>
+		<input>
 			<expression>
-				<product>
-					<div>
+				<floor>
+					<sum>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/input/mach</property>
-				</product>
+						<value>0.5</value>
+					</sum>
+				</floor>
 			</expression>
 		</input>
-		<output>/it-autoflight/internal/ias-presel</output>
+		<output>/it-autoflight/input/kts</output>
 	</filter>
 	
 	<filter>
-		<name>AFS Target Knots Sel PFD</name>
+		<name>Mach Knob Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
+		<enable>
 			<condition>
 				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
+					<property>/it-autoflight/input/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/internal/kts</property>
-		</input>
+		</enable>
 		<input>
+			<expression>
+				<div>
+					<floor>
+						<sum>
+							<product>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+								<value>1000</value>
+							</product>
+							<value>0.5</value>
+						</sum>
+					</floor>
+					<value>1000</value>
+				</div>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/mach</output>
+	</filter>
+	
+	<filter>
+		<name>Knots Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
 			<condition>
 				<equals>
 					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
+		</enable>
+		<input>
 			<expression>
-				<product>
-					<div>
+				<floor>
+					<sum>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/internal/mach</property>
-				</product>
+						<value>0.5</value>
+					</sum>
+				</floor>
 			</expression>
 		</input>
-		<output>/it-autoflight/internal/ias-sel</output>
+		<output>/it-autoflight/internal/kts</output>
 	</filter>
 	
 	<filter>
-		<name>PFD Target Speed Error</name>
+		<name>Mach Sync</name>
 		<type>gain</type>
 		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+		</enable>
 		<input>
-			<property>/it-autoflight/internal/ias-sel</property>
-			<offset>
-				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-				<scale>-1.0</scale>
-			</offset>
+			<expression>
+				<div>
+					<floor>
+						<sum>
+							<product>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+								<value>1000</value>
+							</product>
+							<value>0.5</value>
+						</sum>
+					</floor>
+					<value>1000</value>
+				</div>
+			</expression>
 		</input>
-		<output>/it-autoflight/internal/speed-error-kts</output>
+		<output>/it-autoflight/internal/mach</output>
 	</filter>
 	
 	<filter>
@@ -355,115 +387,83 @@
 	</filter>
 	
 	<filter>
-		<name>Knots Sync</name>
+		<name>AFS Target Knots Presel PFD</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
 		<input>
-			<expression>
-				<floor>
-					<sum>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<value>0.5</value>
-					</sum>
-				</floor>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/kts</output>
-	</filter>
-	
-	<filter>
-		<name>Mach Sync</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<div>
-					<floor>
-						<sum>
-							<product>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-								<value>1000</value>
-							</product>
-							<value>0.5</value>
-						</sum>
-					</floor>
-					<value>1000</value>
-				</div>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/mach</output>
-	</filter>
-	
-	<filter>
-		<name>Knots Knob Sync</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<floor>
-					<sum>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<value>0.5</value>
-					</sum>
-				</floor>
-			</expression>
-		</input>
-		<output>/it-autoflight/input/kts</output>
-	</filter>
-	
-	<filter>
-		<name>Mach Knob Sync</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
 			<condition>
 				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
-		</enable>
+			<property>/it-autoflight/input/kts</property>
+		</input>
 		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
 			<expression>
-				<div>
-					<floor>
-						<sum>
-							<product>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-								<value>1000</value>
-							</product>
-							<value>0.5</value>
-						</sum>
-					</floor>
-					<value>1000</value>
-				</div>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/input/mach</property>
+				</product>
 			</expression>
 		</input>
-		<output>/it-autoflight/input/mach</output>
+		<output>/it-autoflight/internal/ias-presel</output>
+	</filter>
+	
+	<filter>
+		<name>AFS Target Knots Sel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/kts</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/internal/mach</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/ias-sel</output>
+	</filter>
+	
+	<filter>
+		<name>PFD Target Speed Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/it-autoflight/internal/ias-sel</property>
+			<offset>
+				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/speed-error-kts</output>
 	</filter>
 	
 	<filter>
