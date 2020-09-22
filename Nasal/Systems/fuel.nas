@@ -11,7 +11,7 @@ var FUEL = {
 		pumps3: props.globals.getNode("/systems/failures/fuel/pumps-3"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/fuel/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/fuel/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Switch: {

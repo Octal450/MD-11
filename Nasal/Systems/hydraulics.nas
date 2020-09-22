@@ -21,7 +21,7 @@ var HYD = {
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/hydraulics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Psi: {

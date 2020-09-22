@@ -1159,7 +1159,7 @@
 	
 	<channel name="Overhead Lights" execrate="8">
 		
-		<switch name="/systems/fuel/light/fill-arm-1">
+		<switch name="/controls/fuel/lights/fill-arm-1">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/switches/fill-1 ne 1
@@ -1175,7 +1175,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/fill-arm-2">
+		<switch name="/controls/fuel/lights/fill-arm-2">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/switches/fill-2 ne 1
@@ -1191,7 +1191,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/fill-arm-3">
+		<switch name="/controls/fuel/lights/fill-arm-3">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/switches/fill-3 ne 1
@@ -1207,7 +1207,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/pumps-trans-1-low">
+		<switch name="/controls/fuel/lights/pumps-trans-1-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[1]/contents-lbs le 100
@@ -1215,7 +1215,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/pumps-trans-2-low">
+		<switch name="/controls/fuel/lights/pumps-trans-2-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[2]/contents-lbs le 100
@@ -1223,7 +1223,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/pumps-trans-3-low">
+		<switch name="/controls/fuel/lights/pumps-trans-3-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[3]/contents-lbs le 100
@@ -1231,7 +1231,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/trans-aux-l-low">
+		<switch name="/controls/fuel/lights/trans-aux-l-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[5]/contents-lbs le 100
@@ -1239,7 +1239,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/trans-aux-r-low">
+		<switch name="/controls/fuel/lights/trans-aux-r-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[5]/contents-lbs le 100
@@ -1247,7 +1247,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/light/tail-low">
+		<switch name="/controls/fuel/lights/tail-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[7]/contents-lbs le 100

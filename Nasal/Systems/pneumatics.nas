@@ -18,7 +18,7 @@ var PNEU = {
 		pack3: props.globals.getNode("/systems/pneumatics/pack-3-flow"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/pneumatics/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Psi: {
