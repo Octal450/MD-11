@@ -518,21 +518,15 @@
 			<ign-b type="bool">0</ign-b>
 			<ign-ovrd type="bool">0</ign-ovrd>
 		</ignition>
-		<irs n="0">
-			<ir n="0">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<ir n="1">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<ir n="2">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<skip type="bool">0</skip>
-		</irs>
+		<iru n="0">
+			<knob type="int">1</knob>
+		</iru>
+		<iru n="1">
+			<knob type="int">1</knob>
+		</iru>
+		<iru n="2">
+			<knob type="int">1</knob>
+		</iru>
 		<lighting n="0">
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
@@ -1544,7 +1538,7 @@
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/irs.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>
