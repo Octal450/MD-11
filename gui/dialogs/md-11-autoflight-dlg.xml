@@ -346,6 +346,7 @@
 		</button>
 		<button>
 			<legend>IAS/Mach</legend>
+			<pref-width>90</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.apPanel.ktsMach();</script>
@@ -402,7 +403,7 @@
 			<col>3</col>
 			<pref-width>50</pref-width>
 			<property>/it-autoflight/input/kts</property>
-			<live type="bool">true</live>
+			<live>true</live>
 			<enable>
 				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
@@ -497,7 +498,7 @@
 			<col>3</col>
 			<pref-width>50</pref-width>
 			<property>/it-autoflight/input/mach</property>
-			<live type="bool">true</live>
+			<live>true</live>
 			<enable>
 				<equals>
 					<property>/it-autoflight/input/kts-mach</property>
@@ -631,7 +632,7 @@
 			<col>3</col>
 			<pref-width>40</pref-width>
 			<property>/it-autoflight/input/hdg</property>
-			<live type="bool">true</live>
+			<live>true</live>
 			<enable>
 				<equals>
 					<property>/it-autoflight/output/show-hdg</property>
@@ -699,8 +700,8 @@
 			</binding>
 		</button>
 		<button>
-			<pref-width>55</pref-width>
 			<legend>PROF</legend>
+			<pref-width>55</pref-width>
 			<enable>
 				<property>/systems/unused/unused-button</property>
 			</enable>
@@ -711,8 +712,8 @@
 			</binding>
 		</button>
 		<button>
-			<pref-width>60</pref-width>
 			<legend>VS/FPA</legend>
+			<pref-width>60</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.apPanel.vsFpa();</script>
@@ -757,7 +758,7 @@
 			<col>3</col>
 			<pref-width>55</pref-width>
 			<property>/it-autoflight/input/alt</property>
-			<live type="bool">true</live>
+			<live>true</live>
 		</input>
 		
 		<button>
@@ -834,7 +835,7 @@
 			<col>3</col>
 			<pref-width>55</pref-width>
 			<property>/it-autoflight/input/vs</property>
-			<live type="bool">true</live>
+			<live>true</live>
 			<enable>
 				<equals>
 					<property>/it-autoflight/output/vert</property>
@@ -929,7 +930,7 @@
 			<col>3</col>
 			<pref-width>55</pref-width>
 			<property>/it-autoflight/input/fpa</property>
-			<live type="bool">true</live>
+			<live>true</live>
 			<enable>
 				<equals>
 					<property>/it-autoflight/output/vert</property>
