@@ -89,7 +89,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/apu/light/on</property>
+					<property>controls/apu/lights/on</property>
 					<value>1</value>
 				</equals>
 				<equals>

@@ -1882,14 +1882,14 @@
 	
 	<channel name="Overhead Lights" execrate="8">
 		
-		<switch name="/systems/electrical/light/emer-pw-off">
+		<switch name="/controls/electrical/lights/emer-pw-off">
 			<default value="0"/>
 			<test value="1">
 				/controls/electrical/switches/emer-pw-sw eq 0
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/emer-pw-on">
+		<switch name="/controls/electrical/lights/emer-pw-on">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
@@ -1897,98 +1897,98 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/bat-bus">
+		<switch name="/controls/electrical/lights/bat-bus">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-bat lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/l-emer-dc">
+		<switch name="/controls/electrical/lights/l-emer-dc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/l-emer-dc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-1">
+		<switch name="/controls/electrical/lights/dc-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-2">
+		<switch name="/controls/electrical/lights/dc-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-2 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-gnd">
+		<switch name="/controls/electrical/lights/dc-gnd">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-gndsvc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-3">
+		<switch name="/controls/electrical/lights/dc-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-3 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/r-emer-dc">
+		<switch name="/controls/electrical/lights/r-emer-dc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/r-emer-dc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/l-emer-ac">
+		<switch name="/controls/electrical/lights/l-emer-ac">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/l-emer-ac lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-1">
+		<switch name="/controls/electrical/lights/ac-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-2">
+		<switch name="/controls/electrical/lights/ac-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-2 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-gnd">
+		<switch name="/controls/electrical/lights/ac-gnd">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-gndsvc lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-3">
+		<switch name="/controls/electrical/lights/ac-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-3 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/r-emer-ac">
+		<switch name="/controls/electrical/lights/r-emer-ac">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/r-emer-ac lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-1-arm">
+		<switch name="/controls/electrical/lights/ac-tie-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
@@ -1996,7 +1996,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-2-arm">
+		<switch name="/controls/electrical/lights/ac-tie-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-2 eq 1
@@ -2004,7 +2004,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-3-arm">
+		<switch name="/controls/electrical/lights/ac-tie-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-3 eq 1
@@ -2012,21 +2012,21 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ext-pwr-on">
+		<switch name="/controls/electrical/lights/ext-pwr-on">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/relay/ext-ac-tie/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/extg-pwr-on">
+		<switch name="/controls/electrical/lights/extg-pwr-on">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/relay/extg-pwr/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-1-arm">
+		<switch name="/controls/electrical/lights/gen-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
@@ -2034,7 +2034,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-2-arm">
+		<switch name="/controls/electrical/lights/gen-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
@@ -2042,7 +2042,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-3-arm">
+		<switch name="/controls/electrical/lights/gen-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
@@ -2050,21 +2050,21 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-1">
+		<switch name="/controls/electrical/lights/galley-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-1 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-2">
+		<switch name="/controls/electrical/lights/galley-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-2 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-3">
+		<switch name="/controls/electrical/lights/galley-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-3 lt 110

@@ -69,7 +69,7 @@ var ELEC = {
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/electrical/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Misc: {

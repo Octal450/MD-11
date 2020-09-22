@@ -168,13 +168,13 @@
 			<output>/engines/engine[3]/state</output>
 		</switch>
 		
-		<switch name="/systems/apu/light/avail"> <!-- Make the light behave nice, so update fast -->
+		<switch name="/controls/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
 			<default value="0"/>
 			<test value="1">
-				/systems/apu/light/avail-flash eq 1
+				/controls/apu/lights/avail-flash eq 1
 			</test>
 			<test logic="AND" value="1">
-				/systems/apu/light/avail-flash eq 0
+				/controls/apu/lights/avail-flash eq 0
 				/systems/apu/n2-actual ge 96
 			</test>
 		</switch>

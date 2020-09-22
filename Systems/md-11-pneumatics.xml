@@ -784,28 +784,28 @@
 	
 	<channel name="Overhead Lights" execrate="8">
 		
-		<switch name="/systems/pneumatics/light/bleed-1-press">
+		<switch name="/controls/pneumatics/lights/bleed-1-press">
 			<default value="0"/>
 			<test value="1">
 				/systems/pneumatics/bleed-1-psi lt 10.5
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/bleed-2-press">
+		<switch name="/controls/pneumatics/lights/bleed-2-press">
 			<default value="0"/>
 			<test value="1">
 				/systems/pneumatics/bleed-2-psi lt 10.5
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/bleed-3-press">
+		<switch name="/controls/pneumatics/lights/bleed-3-press">
 			<default value="0"/>
 			<test value="1">
 				/systems/pneumatics/bleed-3-psi lt 10.5
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/isol-1-2-disag">
+		<switch name="/controls/pneumatics/lights/isol-1-2-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/isol/isol-1-2-valve ne 0
@@ -814,7 +814,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/isol-1-3-disag">
+		<switch name="/controls/pneumatics/lights/isol-1-3-disag">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/isol/isol-1-3-valve ne 0
@@ -823,7 +823,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/pack-1-flow">
+		<switch name="/controls/pneumatics/lights/pack-1-flow">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-1-valve ne 0
@@ -835,7 +835,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/pack-2-flow">
+		<switch name="/controls/pneumatics/lights/pack-2-flow">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-2-valve ne 0
@@ -847,7 +847,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pneumatics/light/pack-3-flow">
+		<switch name="/controls/pneumatics/lights/pack-3-flow">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-3-valve ne 0

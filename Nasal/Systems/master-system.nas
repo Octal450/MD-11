@@ -10,8 +10,8 @@ var APU = {
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
 	state: props.globals.getNode("/engines/engine[3]/state"),
 	Light: {
-		avail: props.globals.getNode("/systems/apu/light/avail-flash"), # Flashes Elec Panel AVAIL light
-		on: props.globals.initNode("/systems/apu/light/on", 0, "BOOL"),
+		avail: props.globals.getNode("/controls/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
+		on: props.globals.initNode("/controls/apu/lights/on", 0, "BOOL"),
 		onTemp: 0,
 	},
 	Switch: {
@@ -103,7 +103,7 @@ var BRAKES = {
 		abs: props.globals.getNode("/systems/failures/brakes/abs"),
 	},
 	Light: {
-		absDisarm: props.globals.initNode("/gear/abs/light/disarm", 0, "BOOL"),
+		absDisarm: props.globals.initNode("/gear/abs/lights/disarm", 0, "BOOL"),
 	},
 	Switch: {
 		abs: props.globals.getNode("/controls/gear/abs/knob"), # -1: RTO, 0: OFF, 1: MIN, 2: MED, 3: MAX
