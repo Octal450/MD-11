@@ -419,3 +419,20 @@ var IGNITION = {
 		pts.Fdm.JSBsim.Propulsion.setRunning.setValue(n);
 	},
 };
+
+var IRS = {
+	Iru: {
+		aligned: [props.globals.getNode("/systems/iru[0]/aligned"), props.globals.getNode("/systems/iru[1]/aligned"), props.globals.getNode("/systems/iru[2]/aligned")],
+		aligning: [props.globals.getNode("/systems/iru[0]/aligning"), props.globals.getNode("/systems/iru[1]/aligning"), props.globals.getNode("/systems/iru[2]/aligning")],
+	},
+	Switch: {
+		knob: [props.globals.getNode("/controls/iru[0]/switches/knob"), props.globals.getNode("/controls/iru[1]/switches/knob"), props.globals.getNode("/controls/iru[2]/switches/knob")],
+		mcduBtn: props.globals.getNode("/controls/iru-common/mcdu-btn"),
+	},
+	init: func() {
+		me.Switch.knob[0].setValue(0);
+		me.Switch.knob[1].setValue(0);
+		me.Switch.knob[2].setValue(0);
+		me.Switch.mcduBtn.setBoolValue(1); # Should be 0 once MCDU is implemented
+	},
+};

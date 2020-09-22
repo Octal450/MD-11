@@ -324,10 +324,6 @@
 				<label>Enable External Air</label>
 				<halign>left</halign>
 				<property>/controls/pneumatics/switches/ground-air</property>
-				<binding>
-					<command>property-toggle</command>
-					<property>/controls/pneumatics/switches/ground-air</property>
-				</binding>
 				<enable>
 					<and>
 					<equals>
@@ -353,10 +349,6 @@
 				<halign>left</halign>
 				<property>/options/system/keyboard-mode</property>
 				<binding>
-					<command>property-toggle</command>
-					<property>/options/system/keyboard-mode</property>
-				</binding>
-				<binding>
 					<command>dialog-apply</command>
 				</binding>
 				<binding>
@@ -369,11 +361,7 @@
 			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
-				<property>/controls/irs/skip</property>
-				<binding>
-					<command>property-toggle</command>
-					<property>/controls/irs/skip</property>
-				</binding>
+				<property>/systems/iru-common/align-instantly</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -389,10 +377,6 @@
 				<halign>left</halign>
 				<property>/controls/hydraulics/deflected-aileron-equipped</property>
 				<binding>
-					<command>property-toggle</command>
-					<property>/controls/hydraulics/deflected-aileron-equipped</property>
-				</binding>
-				<binding>
 					<command>dialog-apply</command>
 				</binding>
 				<binding>
@@ -406,10 +390,6 @@
 				<label>Use Seperate Tiller Axis</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/seperate-tiller-axis</property>
-				<binding>
-					<command>property-toggle</command>
-					<property>/systems/acconfig/options/seperate-tiller-axis</property>
-				</binding>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

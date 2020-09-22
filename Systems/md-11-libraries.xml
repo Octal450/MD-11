@@ -209,9 +209,9 @@
 		<switch name="libraries/any-irs-aligned">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/instrumentation/irs/ir[0]/aligned eq 1
-				/instrumentation/irs/ir[1]/aligned eq 1
-				/instrumentation/irs/ir[2]/aligned eq 1
+				/systems/iru[0]/aligned eq 1
+				/systems/iru[1]/aligned eq 1
+				/systems/iru[2]/aligned eq 1
 			</test>
 		</switch>
 	

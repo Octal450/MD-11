@@ -49,9 +49,9 @@ var Gear = {
 var Misc = {
 	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
-	ir0Align: props.globals.getNode("/instrumentation/irs/ir[0]/aligned", 1),
-	ir1Align: props.globals.getNode("/instrumentation/irs/ir[1]/aligned", 1),
-	ir2Align: props.globals.getNode("/instrumentation/irs/ir[2]/aligned", 1),
+	ir0Align: props.globals.getNode("/systems/iru[0]/aligned", 1),
+	ir1Align: props.globals.getNode("/systems/iru[1]/aligned", 1),
+	ir2Align: props.globals.getNode("/systems/iru[2]/aligned", 1),
 	irAnyAlign: 0,
 	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
 	pfdHeadingScaleTemp: 0,

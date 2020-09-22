@@ -1044,13 +1044,13 @@
 			<test logic="AND" value="/gear/abs/armed">
 				/gear/abs/mode gt 0
 				fcs/flap-pos-deg gt 28
-				/instrumentation/irs/ir[0]/aligned eq 1
-				/instrumentation/irs/ir[1]/aligned eq 1
+				/systems/iru[0]/aligned eq 1
+				/systems/iru[1]/aligned eq 1
 			</test>
 			<test logic="AND" value="/gear/abs/armed">
 				/gear/abs/mode lt 0
-				/instrumentation/irs/ir[0]/aligned eq 1
-				/instrumentation/irs/ir[1]/aligned eq 1
+				/systems/iru[0]/aligned eq 1
+				/systems/iru[1]/aligned eq 1
 			</test>
 		</switch>
 		

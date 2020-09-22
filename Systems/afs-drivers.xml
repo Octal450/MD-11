@@ -11,15 +11,15 @@
 				<not><property>/it-autoflight/input/ovrd1</property></not>
 				<or>
 					<equals>
-						<property>/instrumentation/irs/ir[0]/aligned</property>
+						<property>/systems/iru[0]/aligned</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/instrumentation/irs/ir[1]/aligned</property>
+						<property>/systems/iru[1]/aligned</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/instrumentation/irs/ir[2]/aligned</property>
+						<property>/systems/iru[2]/aligned</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -52,15 +52,15 @@
 				<not><property>/it-autoflight/input/ovrd2</property></not>
 				<or>
 					<equals>
-						<property>/instrumentation/irs/ir[0]/aligned</property>
+						<property>/systems/iru[0]/aligned</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/instrumentation/irs/ir[1]/aligned</property>
+						<property>/systems/iru[1]/aligned</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/instrumentation/irs/ir[2]/aligned</property>
+						<property>/systems/iru[2]/aligned</property>
 						<value>1</value>
 					</equals>
 				</or>

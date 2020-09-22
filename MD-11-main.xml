@@ -120,7 +120,7 @@
 						<label>Skip IRS</label>
 						<binding>
 							<command>property-assign</command>
-							<property>/controls/irs/skip</property>
+							<property>/systems/iru-common/align-instantly</property>
 							<value>1</value>
 						</binding>
 					</item>
@@ -522,14 +522,23 @@
 			<ign-ovrd type="bool">0</ign-ovrd>
 		</ignition>
 		<iru n="0">
-			<knob type="int">1</knob>
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
 		</iru>
 		<iru n="1">
-			<knob type="int">1</knob>
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
 		</iru>
 		<iru n="2">
-			<knob type="int">1</knob>
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
 		</iru>
+		<iru-common n="0">
+			<mcdu-btn type="bool">0</mcdu-btn>
+		</iru-common>
 		<lighting n="0">
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
@@ -1502,6 +1511,9 @@
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
+		<iru-common n="0">
+			<align-instantly type="bool">0</align-instantly>
+		</iru-common>
 		<pneumatics n="0">
 			<system type="bool">1</system>
 		</pneumatics>
@@ -1534,7 +1546,6 @@
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/irs.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>

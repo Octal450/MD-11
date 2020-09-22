@@ -166,7 +166,7 @@ var readSettings = func {
 	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
 	setprop("/controls/hydraulics/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
-	setprop("/controls/irs/skip", getprop("/systems/acconfig/options/irs-skip"));
+	setprop("/systems/iru-common/align-instantly", getprop("/systems/acconfig/options/irs-skip"));
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 }
 
@@ -174,7 +174,7 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
 	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
 	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulics/deflected-aileron-equipped"));
-	setprop("/systems/acconfig/options/irs-skip", getprop("/controls/irs/skip"));
+	setprop("/systems/acconfig/options/irs-skip", getprop("/systems/iru-common/align-instantly"));
 	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-config.xml", "/systems/acconfig/options");
 }
@@ -261,13 +261,10 @@ var beforestart_b = func {
 	# Continue with engine start prep.
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatics/switches/bleed-apu", 1);
-	setprop("/controls/irs/ir[0]/knob","1");
-	setprop("/controls/irs/ir[1]/knob","1");
-	setprop("/controls/irs/ir[2]/knob","1");
-	systems.IRS.skip(0);
-	systems.IRS.skip(1);
-	systems.IRS.skip(2);
-	setprop("/controls/irs/mcducbtn", 1);
+	setprop("/controls/iru[0]/switches/knob", 1);
+	setprop("/controls/iru[1]/switches/knob", 1);
+	setprop("/controls/iru[2]/switches/knob", 1);
+	setprop("/controls/iru-common/mcdu-btn", 1);
 	setprop("/controls/lighting/beacon", 1);
 	setprop("/controls/lighting/nav-lights", 1);
 	settimer(func {
@@ -317,13 +314,10 @@ var taxi_b = func {
 	# Continue with engine start prep
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatics/switches/bleed-apu", 1);
-	setprop("/controls/irs/ir[0]/knob","1");
-	setprop("/controls/irs/ir[1]/knob","1");
-	setprop("/controls/irs/ir[2]/knob","1");
-	systems.IRS.skip(0);
-	systems.IRS.skip(1);
-	systems.IRS.skip(2);
-	setprop("/controls/irs/mcducbtn", 1);
+	setprop("/controls/iru[0]/switches/knob", 1);
+	setprop("/controls/iru[1]/switches/knob", 1);
+	setprop("/controls/iru[2]/switches/knob", 1);
+	setprop("/controls/iru-common/mcdu-btn", 1);
 	setprop("/controls/ignition/ign-a", 1);
 	setprop("/controls/lighting/beacon", 1);
 	setprop("/controls/lighting/nav-lights", 1);

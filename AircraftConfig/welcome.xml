@@ -76,10 +76,6 @@
 			<halign>center</halign>
 			<property>/systems/acconfig/options/welcome-skip</property>
 			<binding>
-				<command>property-toggle</command>
-				<property>/systems/acconfig/options/welcome-skip</property>
-			</binding>
-			<binding>
 				<command>dialog-apply</command>
 			</binding>
 			<binding>
