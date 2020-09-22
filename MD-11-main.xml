@@ -1508,10 +1508,6 @@
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
-		<ignition n="0">
-			<toga-ign type="bool">0</toga-ign>
-			<toga-packs-off type="bool">0</toga-packs-off>
-		</ignition>
 		<pneumatics n="0">
 			<system type="bool">1</system>
 		</pneumatics>
