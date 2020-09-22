@@ -7,6 +7,8 @@
 	
 	<property value="0">fcc/flap/cmd-deg-feedback</property>
 	<property value="0">fcc/slat/cmd-deg-feedback</property>
+	<property value="0">/systems/iru-common/any-aligned-out</property>
+	<property value="0">/systems/iru-common/all-aligned-out</property>
 	
 	<channel name="FDM Rate Libraries">
 		
@@ -203,15 +205,6 @@
 			<test logic="AND" value="1">
 				/engines/engine[1]/state ne 3
 				/engines/engine[2]/state ne 3
-			</test>
-		</switch>
-		
-		<switch name="libraries/any-irs-aligned">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/iru[0]/aligned eq 1
-				/systems/iru[1]/aligned eq 1
-				/systems/iru[2]/aligned eq 1
 			</test>
 		</switch>
 	

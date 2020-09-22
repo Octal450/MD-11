@@ -91,6 +91,11 @@ var Instrumentation = {
 	},
 };
 
+var Orientation = {
+	headingDeg: props.globals.getNode("/orientation/heading-deg"),
+	headingMagneticDeg: props.globals.getNode("/orientation/heading-magnetic-deg"),
+};
+
 var Sim = {
 	CurrentView: {
 		fieldOfView: props.globals.getNode("/sim/current-view/field-of-view", 1),

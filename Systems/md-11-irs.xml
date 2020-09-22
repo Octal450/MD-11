@@ -58,7 +58,7 @@
 	
 	<channel name="IRU 1 Alignment" execrate="8">
 		
-		<switch name="/systems/iru[0]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be re-aligned -->
+		<switch name="/systems/iru[0]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[0]/can-align"/>
 			<test value="1">
 				/systems/iru[0]/aligned eq 1
@@ -114,7 +114,7 @@
 	
 	<channel name="IRU 2 Alignment" execrate="8">
 		
-		<switch name="/systems/iru[1]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be re-aligned -->
+		<switch name="/systems/iru[1]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[1]/can-align"/>
 			<test value="1">
 				/systems/iru[1]/aligned eq 1
@@ -170,7 +170,7 @@
 	
 	<channel name="IRU 3 Alignment" execrate="8">
 		
-		<switch name="/systems/iru[2]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be re-aligned -->
+		<switch name="/systems/iru[2]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[2]/can-align"/>
 			<test value="1">
 				/systems/iru[2]/aligned eq 1
@@ -220,6 +220,30 @@
 				/systems/iru[2]/align-cmd eq 1
 				/systems/iru[2]/aligned ne 1
 			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="More Logic" execrate="8">
+		
+		<switch name="/systems/iru-common/any-aligned">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/iru[0]/aligned eq 1
+				/systems/iru[1]/aligned eq 1
+				/systems/iru[2]/aligned eq 1
+			</test>
+			<output>/systems/iru-common/any-aligned-out</output>
+		</switch>
+		
+		<switch name="/systems/iru-common/all-aligned">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/iru[0]/aligned eq 1
+				/systems/iru[1]/aligned eq 1
+				/systems/iru[2]/aligned eq 1
+			</test>
+			<output>/systems/iru-common/all-aligned-out</output>
 		</switch>
 	
 	</channel>

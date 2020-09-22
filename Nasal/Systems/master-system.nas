@@ -421,6 +421,8 @@ var IGNITION = {
 };
 
 var IRS = {
+	hdg: 0,
+	setHdg: 1,
 	Iru: {
 		aligned: [props.globals.getNode("/systems/iru[0]/aligned"), props.globals.getNode("/systems/iru[1]/aligned"), props.globals.getNode("/systems/iru[2]/aligned")],
 		aligning: [props.globals.getNode("/systems/iru[0]/aligning"), props.globals.getNode("/systems/iru[1]/aligning"), props.globals.getNode("/systems/iru[2]/aligning")],
@@ -435,4 +437,22 @@ var IRS = {
 		me.Switch.knob[2].setValue(0);
 		me.Switch.mcduBtn.setBoolValue(1); # Should be 0 once MCDU is implemented
 	},
+	anyAlignedUpdate: func() { # Called when the logical OR of the 3 aligned changes
+		print("ding");
+		me.hdg = pts.Orientation.headingMagneticDeg.getValue();
+		if (!me.Iru.aligned[0].getBoolValue() and !me.Iru.aligned[1].getBoolValue() and !me.Iru.aligned[2].getBoolValue()) {
+			me.setHdg = 1;
+			print("dongRESET");
+		}
+		if ((me.Iru.aligned[0].getBoolValue() or me.Iru.aligned[1].getBoolValue() or me.Iru.aligned[2].getBoolValue()) and me.setHdg) {
+			me.setHdg = 0;
+			afs.Input.hdg.setValue(me.hdg);
+			afs.Internal.hdg.setValue(me.hdg);
+			print("dongSET");
+		}
+	},
 };
+
+setlistener("/systems/iru-common/any-aligned-out", func {
+	IRS.anyAlignedUpdate();
+}, 0, 0);

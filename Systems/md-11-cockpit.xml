@@ -157,7 +157,7 @@
 		<switch name="/controls/fctl/light/lsas-left-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-left-out eq 1
 			</test>
 		</switch>
@@ -165,7 +165,7 @@
 		<switch name="/controls/fctl/light/lsas-left-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-left-in eq 1
 			</test>
 		</switch>
@@ -173,7 +173,7 @@
 		<switch name="/controls/fctl/light/lsas-right-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-right-in eq 1
 			</test>
 		</switch>
@@ -181,7 +181,7 @@
 		<switch name="/controls/fctl/light/lsas-right-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-right-out eq 1
 			</test>
 		</switch>
@@ -189,7 +189,7 @@
 		<switch name="/controls/fctl/light/yd-upper-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-upper-a eq 1
 			</test>
 		</switch>
@@ -197,7 +197,7 @@
 		<switch name="/controls/fctl/light/yd-upper-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-upper-b eq 1
 			</test>
 		</switch>
@@ -205,7 +205,7 @@
 		<switch name="/controls/fctl/light/yd-lower-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-lower-a eq 1
 			</test>
 		</switch>
@@ -213,7 +213,7 @@
 		<switch name="/controls/fctl/light/yd-lower-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-lower-b eq 1
 			</test>
 		</switch>
