@@ -92,7 +92,7 @@ var IRS = {
 			afs.ITAF.setLatMode(3);
 		} else if (!algnd1 and !algnd2 and !algnd3 and getprop("/it-autoflight/output/lnav-armed") == 1) {
 			setprop("/it-autoflight/output/lnav-armed", 0);
-			afs.ITAF.armTextCheck();
+			afs.ITAF.updateLnavArm(0);
 		}
 	},
 	knob: func(k) {
