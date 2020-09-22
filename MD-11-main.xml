@@ -1281,17 +1281,6 @@
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
-		<irs n="0">
-			<ir n="0">
-				<aligned type="bool">0</aligned>
-			</ir>
-			<ir n="1">
-				<aligned type="bool">0</aligned>
-			</ir>
-			<ir n="2">
-				<aligned type="bool">0</aligned>
-			</ir>
-		</irs>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
 			<configuration-module>

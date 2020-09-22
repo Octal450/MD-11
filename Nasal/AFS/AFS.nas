@@ -49,10 +49,6 @@ var Gear = {
 var Misc = {
 	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
-	ir0Align: props.globals.getNode("/systems/iru[0]/aligned", 1),
-	ir1Align: props.globals.getNode("/systems/iru[1]/aligned", 1),
-	ir2Align: props.globals.getNode("/systems/iru[2]/aligned", 1),
-	irAnyAlign: 0,
 	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
 	pfdHeadingScaleTemp: 0,
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
@@ -608,9 +604,9 @@ var ITAF = {
 			Internal.bankLimit.setValue(Internal.bankLimitAuto);
 		}
 		
-		# If in LNAV mode and route is not longer active, switch to HDG HLD
+		# If in LNAV mode and route is not longer active, or IRUs unaligned, switch to HDG HLD
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
-			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue()) {
+			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
 				me.setLatMode(3);
 			}
 		}
@@ -816,7 +812,7 @@ var ITAF = {
 				me.setVertMode(1);
 			}
 		} else if (n == 1) { # LNAV
-			if (Misc.ir0Align.getBoolValue() or Misc.ir1Align.getBoolValue() or Misc.ir2Align.getBoolValue()) { # Remember that IRS.nas kills NAV if the IR's fail
+			if (systems.IRS.Iru.anyAligned.getBoolValue()) { # Remember that slowLoop kills NAV if the IRUs fail
 				me.updateLocArm(0);
 				me.updateApprArm(0);
 				me.checkLnav(0);
