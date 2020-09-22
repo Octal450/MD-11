@@ -92,13 +92,13 @@
 		<layout>hbox</layout>
 
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>Flight Modes</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
@@ -315,13 +315,13 @@
 		<layout>hbox</layout>
 		
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>Thrust Mode</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
@@ -547,13 +547,13 @@
 		<layout>hbox</layout>
 		
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>Lateral Mode</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
@@ -669,13 +669,13 @@
 		<layout>hbox</layout>
 		
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>Vertical Mode</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
@@ -979,13 +979,13 @@
 		<layout>hbox</layout>
 		
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>AFDS OVRD OFF</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
@@ -1018,13 +1018,13 @@
 		<layout>hbox</layout>
 		
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 		<text>
 			<label>GO AROUND</label>
 		</text>
 		<hrule>
-			<stretch type="bool">true</stretch>
+			<stretch>true</stretch>
 		</hrule>
 	</group>
 	
