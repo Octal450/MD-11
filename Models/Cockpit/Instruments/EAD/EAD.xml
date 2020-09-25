@@ -14,7 +14,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_ead.showEAD();</script>
+				<script>canvas_ead.showEad();</script>
 			</binding>
 		</action>
 	</animation>

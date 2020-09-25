@@ -694,9 +694,8 @@ var eadUpdate = maketimer(0.05, func() {
 	canvasBase.update();
 });
 
-var showEAD = func() {
+var showEad = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(display);
 	dlg.set("title", "EAD");
 }
-
