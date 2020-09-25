@@ -14,7 +14,7 @@ setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 setprop("/sim/multiplay/visibility-range-nm", 130);
 
-var systemsInit = func {
+var systemsInit = func() {
 	systems.APU.init();
 	systems.BRAKES.init();
 	systems.ELEC.init();
@@ -32,12 +32,12 @@ var systemsInit = func {
 	libraries.variousReset();
 }
 
-setlistener("sim/signals/fdm-initialized", func {
+setlistener("sim/signals/fdm-initialized", func() {
 	systemsInit();
 	canvas_ead.init();
 });
 
-var systemsLoop = maketimer(0.1, func {
+var systemsLoop = maketimer(0.1, func() {
 	systems.ELEC.loop();
 	systems.FADEC.loop();
 	
@@ -74,7 +74,7 @@ var systemsLoop = maketimer(0.1, func {
 });
 
 # Prevent gear up accidently while WoW
-setlistener("/controls/gear/gear-down", func {
+setlistener("/controls/gear/gear-down", func() {
 	if (!pts.Controls.Gear.gearDown.getBoolValue()) {
 		if (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) {
 			pts.Controls.Gear.gearDown.setBoolValue(1);
@@ -91,14 +91,14 @@ canvas.Text.setText = func(text) {
 	me.set("text", typeof(text) == "scalar" ? text : "");
 };
 canvas.Element._lastVisible = nil;
-canvas.Element.show = func {
+canvas.Element.show = func() {
 	if (1 == me._lastVisible) {
 		return me;
 	}
 	me._lastVisible = 1;
 	me.setBool("visible", 1);
 };
-canvas.Element.hide = func {
+canvas.Element.hide = func() {
 	if (0 == me._lastVisible) {
 		return me;
 	}
@@ -122,7 +122,7 @@ var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1
 var beacon_switch = props.globals.getNode("/controls/lighting/beacon", 2);
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
 
-var lightsLoop = maketimer(0.2, func {
+var lightsLoop = maketimer(0.2, func() {
 	# Logo and navigation lights
 	setting = getprop("/controls/lighting/nav-lights");
 	
@@ -172,7 +172,7 @@ controls.stepSpoilers = func(step) {
 	}
 }
 
-var deploySpeedbrake = func {
+var deploySpeedbrake = func() {
 	pts.Controls.Flight.speedbrakeTemp = pts.Controls.Flight.speedbrake.getValue();
 	if (pts.Gear.wow[0].getBoolValue()) {
 		if (pts.Controls.Flight.speedbrakeTemp < 0.2) {
@@ -195,7 +195,7 @@ var deploySpeedbrake = func {
 	}
 }
 
-var retractSpeedbrake = func {
+var retractSpeedbrake = func() {
 	pts.Controls.Flight.speedbrakeTemp = pts.Controls.Flight.speedbrake.getValue();
 	if (pts.Gear.wow[0].getBoolValue()) {
 		if (pts.Controls.Flight.speedbrakeTemp > 0.6) {
@@ -233,7 +233,7 @@ controls.elevatorTrim = func(d) {
 	}
 }
 
-setlistener("/controls/flight/elevator-trim", func {
+setlistener("/controls/flight/elevator-trim", func() {
 	if (pts.Controls.Flight.elevatorTrim.getValue() > 0.064516) {
 		pts.Controls.Flight.elevatorTrim.setValue(0.064516);
 	}
@@ -256,7 +256,7 @@ if (pts.Controls.Flight.autoCoordination.getBoolValue()) {
 	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(0);
 }
 
-setlistener("/controls/flight/auto-coordination", func {
+setlistener("/controls/flight/auto-coordination", func() {
 	pts.Controls.Flight.autoCoordination.setBoolValue(0);
 	print("System: Auto Coordination has been turned off as it is not compatible with the flight control system of this aircraft.");
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
@@ -299,7 +299,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.btn1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.btn1.setBoolValue(0);
 		}, 0.2);
 	},
@@ -308,7 +308,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.btn3.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.btn3.setBoolValue(0);
 		}, 0.2);
 	},
@@ -317,7 +317,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.knb1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.knb1.setBoolValue(0);
 		}, 0.2);
 	},
@@ -326,7 +326,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.ohBtn.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.ohBtn.setBoolValue(0);
 		}, 0.2);
 	},
@@ -335,43 +335,43 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.switch1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.switch1.setBoolValue(0);
 		}, 0.2);
 	},
 };
 
-setlistener("/controls/flight/flaps-input", func {
+setlistener("/controls/flight/flaps-input", func() {
 	if (pts.Sim.Sound.flapsClick.getBoolValue()) {
 		return;
 	}
 	pts.Sim.Sound.flapsClick.setBoolValue(1);
-	settimer(func {
+	settimer(func() {
 		pts.Sim.Sound.flapsClick.setBoolValue(0);
 	}, 0.4);
 }, 0, 0);
 
-setlistener("/controls/switches/seatbelt-sign-status", func {
+setlistener("/controls/switches/seatbelt-sign-status", func() {
 	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;
 	}
 	if (systems.ELEC.Generic.efis.getValue() >= 25) {
 		pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(1); # Prevent no smoking sound from playing at same time
 		pts.Sim.Sound.seatbeltSign.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.seatbeltSign.setBoolValue(0);
 			pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(0);
 		}, 2);
 	}
 }, 0, 0);
 
-setlistener("/controls/switches/no-smoking-sign-status", func {
+setlistener("/controls/switches/no-smoking-sign-status", func() {
 	if (pts.Sim.Sound.noSmokingSign.getBoolValue()) {
 		return;
 	}
 	if (systems.ELEC.Generic.efis.getValue() >= 25 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
 		pts.Sim.Sound.noSmokingSign.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.noSmokingSign.setBoolValue(0);
 		}, 1);
 	}

@@ -1063,7 +1063,7 @@ var canvas_PFD_2_error = {
 	},
 };
 
-setlistener("sim/signals/fdm-initialized", func {
+setlistener("sim/signals/fdm-initialized", func() {
 	PFD1_display = canvas.new({
 		"name": "PFD1",
 		"size": [1024, 1024],
@@ -1096,26 +1096,26 @@ setlistener("sim/signals/fdm-initialized", func {
 	}
 });
 
-var rateApply = func {
+var rateApply = func() {
 	PFD_update.restart(0.15 * pfdrate.getValue());
 	PFD_update_fast.restart(0.05 * pfdrate.getValue());
 }
 
-var PFD_update = maketimer(0.15, func {
+var PFD_update = maketimer(0.15, func() {
 	canvas_PFD_base.updateSlow();
 });
 
-var PFD_update_fast = maketimer(0.05, func {
+var PFD_update_fast = maketimer(0.05, func() {
 	canvas_PFD_base.update();
 });
 
-var showPFD1 = func {
+var showPFD1 = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(PFD1_display);
 	dlg.set("title", "Captain's PFD");
 }
 
-var showPFD2 = func {
+var showPFD2 = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(PFD2_display);
 	dlg.set("title", "First Officer's PFD");

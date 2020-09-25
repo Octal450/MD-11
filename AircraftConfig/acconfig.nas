@@ -1,7 +1,7 @@
 # Aircraft Config Center
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
-var spinning = maketimer(0.05, func {
+var spinning = maketimer(0.05, func() {
 	var spinning = getprop("/systems/acconfig/spinning");
 	if (spinning == 0) {
 		setprop("/systems/acconfig/spin", "\\");
@@ -18,7 +18,7 @@ var spinning = maketimer(0.05, func {
 	}
 });
 
-var failReset = func {
+var failReset = func() {
 	systems.ELEC.resetFail();
 	systems.FCTL.resetFail();
 	systems.FUEL.resetFail();
@@ -64,7 +64,7 @@ var current_revision = io.readfile(revisionFile);
 print("MD-11 Revision: " ~ current_revision);
 setprop("/systems/acconfig/revision", current_revision);
 
-setlistener("/systems/acconfig/new-revision", func {
+setlistener("/systems/acconfig/new-revision", func() {
 	if (getprop("/systems/acconfig/new-revision") > current_revision) {
 		setprop("/systems/acconfig/out-of-date", 1);
 	} else {
@@ -72,7 +72,7 @@ setlistener("/systems/acconfig/new-revision", func {
 	}
 });
 
-var error_chk = func {
+var error_chk = func() {
 	if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < 202011) {
 		setprop("/systems/acconfig/error-code", "0x121");
 		setprop("/systems/acconfig/error-reason", "FGFS version is too old! Please update FlightGear to at least 2020.1.1.");
@@ -103,7 +103,7 @@ var error_chk = func {
 	}
 }
 
-setlistener("/sim/signals/fdm-initialized", func {
+setlistener("/sim/signals/fdm-initialized", func() {
 	init_dlg.close();
 	if (getprop("/systems/acconfig/out-of-date") == 1) {
 		update_dlg.open();
@@ -156,7 +156,7 @@ var renderingSettings = {
 	},
 };
 
-var readSettings = func {
+var readSettings = func() {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-config.xml", "/systems/acconfig/options");
 	setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
@@ -165,7 +165,7 @@ var readSettings = func {
 	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 }
 
-var writeSettings = func {
+var writeSettings = func() {
 	setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
 	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
 	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulics/deflected-aileron-equipped"));
@@ -179,7 +179,7 @@ var writeSettings = func {
 ################
 
 # Cold and Dark
-var colddark = func {
+var colddark = func() {
 	if (getprop("/systems/acconfig/error-code") == "0x000") {
 		spinning.start();
 		ps_loaded_dlg.close();
@@ -198,7 +198,7 @@ var colddark = func {
 		if (getprop("/engines/engine[1]/n2-actual") < 2) {
 			colddark_b();
 		} else {
-			var colddark_eng_off = setlistener("/engines/engine[1]/n2-actual", func {
+			var colddark_eng_off = setlistener("/engines/engine[1]/n2-actual", func() {
 				if (getprop("/engines/engine[1]/n2-actual") < 2) {
 					removelistener(colddark_eng_off);
 					colddark_b();
@@ -207,9 +207,9 @@ var colddark = func {
 		}
 	}
 }
-var colddark_b = func {
+var colddark_b = func() {
 	# Continues the Cold and Dark script, after engines fully shutdown.
-	settimer(func {
+	settimer(func() {
 		setprop("/controls/gear/brake-left", 0);
 		setprop("/controls/gear/brake-right", 0);
 		setprop("/systems/acconfig/autoconfig-running", 0);
@@ -220,7 +220,7 @@ var colddark_b = func {
 }
 
 # Ready to Start Eng
-var beforestart = func {
+var beforestart = func() {
 	if (getprop("/systems/acconfig/error-code") == "0x000") {
 		spinning.start();
 		ps_loaded_dlg.close();
@@ -241,9 +241,9 @@ var beforestart = func {
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
 		setprop("/controls/switches/seatbelt-sign", 1);
-		settimer(func {
+		settimer(func() {
 			systems.APU.fastStart();
-			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
+			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func() {
 				if (getprop("/engines/engine[3]/n2-actual") >= 96) {
 					removelistener(apu_rpm_chk);
 					beforestart_b();
@@ -252,7 +252,7 @@ var beforestart = func {
 		}, 0.5);
 	}
 }
-var beforestart_b = func {
+var beforestart_b = func() {
 	# Continue with engine start prep.
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatics/switches/bleed-apu", 1);
@@ -262,7 +262,7 @@ var beforestart_b = func {
 	setprop("/controls/iru-common/mcdu-btn", 1);
 	setprop("/controls/lighting/beacon", 1);
 	setprop("/controls/lighting/nav-lights", 1);
-	settimer(func {
+	settimer(func() {
 		setprop("/controls/gear/brake-left", 0);
 		setprop("/controls/gear/brake-right", 0);
 		setprop("/systems/acconfig/autoconfig-running", 0);
@@ -273,7 +273,7 @@ var beforestart_b = func {
 }
 
 # Ready to Taxi
-var taxi = func {
+var taxi = func() {
 	if (getprop("/systems/acconfig/error-code") == "0x000") {
 		spinning.start();
 		ps_loaded_dlg.close();
@@ -294,9 +294,9 @@ var taxi = func {
 		setprop("/controls/electrical/switches/battery", 1);
 		setprop("/controls/electrical/switches/emer-pw-sw", 1);
 		setprop("/controls/switches/seatbelt-sign", 1);
-		settimer(func {
+		settimer(func() {
 			systems.APU.fastStart();
-			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func {
+			var apu_rpm_chk = setlistener("/engines/engine[3]/n2-actual", func() {
 				if (getprop("/engines/engine[3]/n2-actual") >= 96) {
 					removelistener(apu_rpm_chk);
 					taxi_b();
@@ -305,7 +305,7 @@ var taxi = func {
 		}, 0.5);
 	}
 }
-var taxi_b = func {
+var taxi_b = func() {
 	# Continue with engine start prep
 	setprop("/controls/electrical/switches/apu-pwr", 1);
 	setprop("/controls/pneumatics/switches/bleed-apu", 1);
@@ -321,16 +321,16 @@ var taxi_b = func {
 	setprop("/controls/lighting/landing-light-r", 0.5);
 	settimer(taxi_c, 2);
 }
-var taxi_c = func {
+var taxi_c = func() {
 	# Start engines
 	systems.IGNITION.fastStart(0);
 	systems.IGNITION.fastStart(1);
 	systems.IGNITION.fastStart(2);
-	settimer(func {
+	settimer(func() {
 		taxi_d();
 	}, 10);
 }
-var taxi_d = func {
+var taxi_d = func() {
 	# After Start items.
 	systems.APU.stop();
 	setprop("/controls/gear/brake-left", 0);
@@ -342,11 +342,11 @@ var taxi_d = func {
 }
 
 # Ready to Takeoff
-var takeoff = func {
+var takeoff = func() {
 	if (getprop("/systems/acconfig/error-code") == "0x000") {
 		# The same as taxi, except we set some things afterwards.
 		taxi();
-		var eng_one_chk_c = setlistener("/engines/engine[0]/state", func {
+		var eng_one_chk_c = setlistener("/engines/engine[0]/state", func() {
 			if (getprop("/engines/engine[0]/state") == 3) {
 				removelistener(eng_one_chk_c);
 				setprop("/controls/lighting/strobe", 1);

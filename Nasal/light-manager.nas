@@ -87,7 +87,7 @@ var light_manager = {
 	nd_ref_light5_z: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/eyerel-z-m[4]", 1),
 	nd_ref_light5_dir: props.globals.getNode("/sim/rendering/als-secondary-lights/lightspot/dir[4]", 1),
 
-	init: func {
+	init: func() {
 		# define your lights here
 
 		# lights ########
@@ -146,7 +146,7 @@ var light_manager = {
 		me.start();
 	},
 
-	start: func {
+	start: func() {
 		setprop("/sim/rendering/als-secondary-lights/num-lightspots", 5);
  
 		setprop("/sim/rendering/als-secondary-lights/lightspot/size", me.light1_size);
@@ -162,11 +162,11 @@ var light_manager = {
 		me.update();
 	},
 
-	stop: func {
+	stop: func() {
 		me.run = 0;
 	},
 
-	update: func {
+	update: func() {
 		if (me.run == 0) {
 			return;
 		}
@@ -324,7 +324,7 @@ var light_manager = {
 		settimer ( func me.update(), 0.0);
 	},
 
-	light1_on : func {
+	light1_on : func() {
  		if (me.light1_is_on == 1) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r", me.light1_r);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g", me.light1_g);
@@ -332,7 +332,7 @@ var light_manager = {
  		me.light1_is_on = 1;
 		},
  
-	light1_off : func {
+	light1_off : func() {
   		if (me.light1_is_on == 0) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r", 0.0);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g", 0.0);
@@ -344,7 +344,7 @@ var light_manager = {
 		setprop("/sim/rendering/als-secondary-lights/lightspot/size[0]", size);
 	},
  
-	light2_on : func {
+	light2_on : func() {
   		if (me.light2_is_on == 1) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[1]", me.light2_r);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[1]", me.light2_g);
@@ -352,7 +352,7 @@ var light_manager = {
   		me.light2_is_on = 1;
 		},
  
-	light2_off : func {
+	light2_off : func() {
   		if (me.light2_is_on == 0) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[1]", 0.0);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[1]", 0.0);
@@ -364,7 +364,7 @@ var light_manager = {
 		setprop("/sim/rendering/als-secondary-lights/lightspot/size[1]", size);
 	},
 	
-	light3_on : func {
+	light3_on : func() {
   		if (me.light3_is_on == 1) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[2]", me.light3_r);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[2]", me.light3_g);
@@ -372,7 +372,7 @@ var light_manager = {
   		me.light3_is_on = 1;
 		},
  
-	light3_off : func {
+	light3_off : func() {
   		if (me.light3_is_on == 0) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[2]", 0.0);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[2]", 0.0);
@@ -380,7 +380,7 @@ var light_manager = {
   		me.light3_is_on = 0;
 		},
 
-	light4_on : func {
+	light4_on : func() {
   		if (me.light4_is_on == 1) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[3]", me.light4_r);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[3]", me.light4_g);
@@ -388,7 +388,7 @@ var light_manager = {
   		me.light4_is_on = 1;
 		},
  
-	light4_off : func {
+	light4_off : func() {
   		if (me.light4_is_on == 0) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[3]", 0.0);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[3]", 0.0);
@@ -396,7 +396,7 @@ var light_manager = {
   		me.light4_is_on = 0;
 		},
 		
-	light5_on : func {
+	light5_on : func() {
   		if (me.light5_is_on == 1) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[4]", me.light5_r);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[4]", me.light5_g);
@@ -404,7 +404,7 @@ var light_manager = {
   		me.light5_is_on = 1;
 		},
  
-	light5_off : func {
+	light5_off : func() {
   		if (me.light5_is_on == 0) {return;}
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-r[4]", 0.0);
 		setprop("/sim/rendering/als-secondary-lights/lightspot/lightspot-g[4]", 0.0);

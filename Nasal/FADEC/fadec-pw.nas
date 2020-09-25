@@ -22,11 +22,11 @@ setprop("/systems/fadec/powered1", 0);
 setprop("/systems/fadec/powered2", 0);
 setprop("/systems/fadec/powered3", 0);
 
-setlistener("/sim/signals/fdm-initialized", func {
+setlistener("/sim/signals/fdm-initialized", func() {
 	fadecLoop2.start();
 });
 
-var fadecLoop2 = maketimer(0.7, func {
+var fadecLoop2 = maketimer(0.7, func() {
 	var state1 = getprop("/engines/engine[0]/state");
 	var state2 = getprop("/engines/engine[1]/state");
 	var state3 = getprop("/engines/engine[2]/state");

@@ -120,7 +120,7 @@ var stateR = 0;
 
 var iceables = [];
 
-var icingInit = func {
+var icingInit = func() {
 	setprop("controls/switches/windowprobeheat", 0);
 	setprop("controls/switches/wing", 0);
 	setprop("controls/switches/wingfault", 0);
@@ -145,7 +145,7 @@ var icingInit = func {
 	icing_timer.start();
 }
 
-var icingModel = func {
+var icingModel = func() {
 	speed = getprop("velocities/airspeed-kt");
 	pause = getprop("sim/freeze/master");
 	windowprobe = getprop("controls/deice/windowprobeheat");
@@ -215,7 +215,7 @@ var icingModel = func {
 # LEng Anti-Ice #
 #################
 
-setlistener("/controls/switches/leng", func {
+setlistener("/controls/switches/leng", func() {
 	if (getprop("controls/switches/leng") == 1 and getprop("engines/engine[0]/state") == 3) {
 		setprop("controls/switches/lengfault", 1);
 		settimer(func() {
@@ -231,7 +231,7 @@ setlistener("/controls/switches/leng", func {
 	}
 });
 
-setlistener("/engines/engine[0]/state", func {
+setlistener("/engines/engine[0]/state", func() {
 	if (getprop("engines/engine[0]/state") != 3) {
 		setprop("controls/switches/leng", 0);
 	}
@@ -241,7 +241,7 @@ setlistener("/engines/engine[0]/state", func {
 # REng Anti-Ice #
 #################
 
-setlistener("/controls/switches/reng", func {
+setlistener("/controls/switches/reng", func() {
 	if (getprop("controls/switches/reng") == 1 and getprop("engines/engine[1]/state") == 3) {
 		setprop("controls/switches/rengfault", 1);
 		settimer(func() {
@@ -257,7 +257,7 @@ setlistener("/controls/switches/reng", func {
 	}
 });
 
-setlistener("/engines/engine[1]/state", func {
+setlistener("/engines/engine[1]/state", func() {
 	if (getprop("engines/engine[1]/state") != 3) {
 		setprop("controls/switches/reng", 0);
 	}
@@ -267,7 +267,7 @@ setlistener("/engines/engine[1]/state", func {
 # Probe Anti-Ice #
 ##################
 
-setlistener("/controls/switches/windowprobeheat", func {
+setlistener("/controls/switches/windowprobeheat", func() {
 	windowprb = getprop("controls/switches/windowprobeheat");
 	if (windowprb == 0.5) { # if in auto 
 		wowl = getprop("gear/gear[1]/wow");
@@ -291,7 +291,7 @@ setlistener("/controls/switches/windowprobeheat", func {
 #################
 
 # Switching on the wing anti-ice
-setlistener("/controls/switches/wing", func {
+setlistener("/controls/switches/wing", func() {
 	wowl = getprop("gear/gear[1]/wow");
 	wowr = getprop("gear/gear[2]/wow");
 	wingBtn = getprop("controls/switches/wing");
@@ -327,7 +327,7 @@ setlistener("/controls/switches/wing", func {
 # Update Function #
 ###################
 
-var update_Icing = func {
+var update_Icing = func() {
 	icingModel();
 }
 

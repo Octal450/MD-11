@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 # Resets buttons to the default values
-var variousReset = func {
+var variousReset = func() {
 	pts.Controls.Flight.dialAFlap.setValue(15); 
 	pts.Controls.Lighting.beacon.setBoolValue(0);
 	pts.Controls.Lighting.landingLightL.setValue(0);
@@ -237,7 +237,7 @@ var apPanel = {
 	},
 };
 
-var STD = func {
+var STD = func() {
 	if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
 		pts.Instrumentation.Altimeter.oldQnh.setValue(pts.Instrumentation.Altimeter.settingInhg.getValue());
 		pts.Instrumentation.Altimeter.settingInhg.setValue(29.92);
@@ -245,7 +245,7 @@ var STD = func {
 	}
 }
 
-var unSTD = func {
+var unSTD = func() {
 	if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
 		pts.Instrumentation.Altimeter.settingInhg.setValue(pts.Instrumentation.Altimeter.oldQnh.getValue());
 		pts.Instrumentation.Altimeter.std.setBoolValue(0);

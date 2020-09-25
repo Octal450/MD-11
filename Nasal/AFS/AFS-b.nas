@@ -86,10 +86,10 @@ var updateFMA = {
 	},
 };
 
-setlistener("/it-autoflight/output/ap1", func {
+setlistener("/it-autoflight/output/ap1", func() {
 	updateFMA.ap();
 }, 0, 0);
-setlistener("/it-autoflight/output/ap2", func {
+setlistener("/it-autoflight/output/ap2", func() {
 	updateFMA.ap();
 }, 0, 0);
 

@@ -29,7 +29,7 @@ var APU = {
 		me.Light.avail.setValue(1);
 		me.Light.on.setValue(1);
 		me.autoConnect = 0;
-		settimer(func { # Give the fuel system a moment to provide fuel in the pipe
+		settimer(func() { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
 		}, 1);
 	},
@@ -83,7 +83,7 @@ var APU = {
 	},
 };
 
-setlistener("/systems/electrical/epcu/allow-apu-out", func {
+setlistener("/systems/electrical/epcu/allow-apu-out", func() {
 	if (APU.autoConnect) {
 		if (ELEC.Epcu.allowApu.getBoolValue() and APU.state.getValue() == 3) {
 			ELEC.Switch.apuPwr.setBoolValue(1);
@@ -157,11 +157,11 @@ var BRAKES = {
 	},
 };
 
-setlistener("/gear/abs/knob-input", func {
+setlistener("/gear/abs/knob-input", func() {
 	BRAKES.absSetUpdate(BRAKES.Switch.abs.getValue());
 }, 0, 0);
 
-setlistener("/gear/abs/disarm", func {
+setlistener("/gear/abs/disarm", func() {
 	BRAKES.absSetOff(1);
 }, 0, 0);
 
@@ -169,7 +169,7 @@ setlistener("/gear/abs/disarm", func {
 # Don't want to change the bindings yet
 # Intentionally not using + or -, floating point error would be BAD
 # We just based it off Engine 2
-var doRevThrust = func {
+var doRevThrust = func() {
 	systems.ENGINE.Switch.reverseLeverTemp[1] = systems.ENGINE.Switch.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (systems.ENGINE.Switch.reverseLeverTemp[1] < 0.25) {
@@ -199,7 +199,7 @@ var doRevThrust = func {
 	}
 }
 
-var unRevThrust = func {
+var unRevThrust = func() {
 	systems.ENGINE.Switch.reverseLeverTemp[1] = systems.ENGINE.Switch.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (systems.ENGINE.Switch.reverseLeverTemp[1] > 0.75) {
@@ -229,7 +229,7 @@ var unRevThrust = func {
 	}
 }
 
-var toggleFastRevThrust = func {
+var toggleFastRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (systems.ENGINE.Switch.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
 			systems.ENGINE.Switch.reverseLever[0].setValue(0);
@@ -250,13 +250,13 @@ var toggleFastRevThrust = func {
 	}
 }
 
-var doIdleThrust = func {
+var doIdleThrust = func() {
 	systems.ENGINE.Switch.throttle[0].setValue(0);
 	systems.ENGINE.Switch.throttle[1].setValue(0);
 	systems.ENGINE.Switch.throttle[2].setValue(0);
 }
 
-var doFullThrust = func {
+var doFullThrust = func() {
 	systems.ENGINE.Switch.throttle[0].setValue(1);
 	systems.ENGINE.Switch.throttle[1].setValue(1);
 	systems.ENGINE.Switch.throttle[2].setValue(1);
@@ -452,6 +452,6 @@ var IRS = {
 	},
 };
 
-setlistener("/systems/iru-common/any-aligned-out", func {
+setlistener("/systems/iru-common/any-aligned-out", func() {
 	IRS.anyAlignedUpdate();
 }, 0, 0);

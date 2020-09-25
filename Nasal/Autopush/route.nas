@@ -152,7 +152,7 @@ var top_view = func() {
 	setprop("/sim/current-view/z-offset-m", -500.0);
 	setprop("/sim/current-view/heading-offset-deg", _top_view_heading_offset_deg);
 	setprop("/sim/current-view/pitch-offset-deg", 90.0);
-	_view_listener = setlistener("/sim/current-view/name", func {
+	_view_listener = setlistener("/sim/current-view/name", func() {
 		_finalize_top_view();
 	}, 0, 0);
 }
@@ -358,7 +358,7 @@ var enter = func() {
 		wp.set_alt(H);
 	}
 	_add(wp);
-	_listener = setlistener("/sim/signals/click", func {
+	_listener = setlistener("/sim/signals/click", func() {
 		_add(geo.click_position());
 	});
 	# This property can be overridden manually, if needed.

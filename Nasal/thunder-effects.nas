@@ -19,7 +19,7 @@ var speed_of_sound = func (t, re) {
 	return math.sqrt(1.4 * 287.058 * v_T);
 };
 
-var thunder_listener = func {
+var thunder_listener = func() {
 	var thunderCalls = 0;
 	
 	var lightning_pos_x = getprop("/environment/lightning/lightning-pos-x");
@@ -39,7 +39,7 @@ var thunder_listener = func {
 	# Maximum volume at 5000 meter
 	var lightning_distance_norm = std.min(1.0, 1 / math.pow(lightning_distance / 5000.0, 2));
 	
-	settimer(func {
+	settimer(func() {
 		var thunder1 = getprop("md11/sound/thunder1");
 		var thunder2 = getprop("md11/sound/thunder2");
 		var thunder3 = getprop("md11/sound/thunder3");
@@ -82,12 +82,12 @@ var thunder_listener = func {
 var play_thunder = func (name, timeout=0.1, delay=0) {
 	var sound_prop = "/md11/sound/" ~ name;
 	
-	settimer(func {
+	settimer(func() {
 		# Play the sound
 		setprop(sound_prop, 1);
 		
 		# Reset the property after timeout so that the sound can be played again.
-		settimer(func {
+		settimer(func() {
 			setprop(sound_prop, 0);
 		}, timeout);
 	}, delay);
