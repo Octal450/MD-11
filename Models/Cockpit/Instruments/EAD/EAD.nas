@@ -359,10 +359,10 @@ var canvasGe = {
 		return m;
 	},
 	getKeys: func() {
-		return ["N11","N11-decpnt","N11-decimal","N11-box","N11-needle","N11-lim","N11-thr","N11-redline","EGT1","EGT1-needle","EGT1-redstart","EGT1-yline","EGT1-redline","EGT1-ignition","N21","N21-decpnt","N21-decimal","N21-needle","N21-cline","N21-redline",
-		"FF1","FFOff1","N12","N12-decpnt","N12-decimal","N12-box","N12-needle","N12-lim","N12-thr","N12-redline","EGT2","EGT2-needle","EGT2-redstart","EGT2-yline","EGT2-redline","EGT2-ignition","N22","N22-decpnt","N22-decimal","N22-needle","N22-cline",
-		"N22-redline","FF2","FFOff2","N13","N13-decpnt","N13-decimal","N13-box","N13-needle","N13-lim","N13-thr","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle",
-		"N23-cline","N23-redline","FF3","FFOff3","N1Lim","N1Lim-decimal","N1LimMode","REV1","REV2","REV3","TAT","Config"];
+		return ["N11", "N11-decpnt", "N11-decimal", "N11-box", "N11-needle", "N11-lim", "N11-thr", "N11-redline", "EGT1", "EGT1-needle", "EGT1-redstart", "EGT1-yline", "EGT1-redline", "EGT1-ignition", "N21", "N21-decpnt", "N21-decimal", "N21-needle", "N21-cline",
+		"N21-redline", "FF1", "FFOff1", "N12", "N12-decpnt", "N12-decimal", "N12-box", "N12-needle", "N12-lim", "N12-thr", "N12-redline", "EGT2", "EGT2-needle", "EGT2-redstart", "EGT2-yline", "EGT2-redline", "EGT2-ignition", "N22", "N22-decpnt", "N22-decimal",
+		"N22-needle", "N22-cline", "N22-redline", "FF2", "FFOff2", "N13", "N13-decpnt", "N13-decimal", "N13-box", "N13-needle", "N13-lim", "N13-thr", "N13-redline", "EGT3", "EGT3-needle", "EGT3-redstart", "EGT3-yline", "EGT3-redline", "EGT3-ignition", "N23",
+		"N23-decpnt", "N23-decimal", "N23-needle", "N23-cline", "N23-redline", "FF3", "FFOff3", "N1Lim", "N1Lim-decimal", "N1LimMode", "REV1", "REV2", "REV3", "TAT", "Config"];
 	},
 	setup: func() {
 		me["Config"].hide();
@@ -476,11 +476,11 @@ var canvasPw = {
 		return m;
 	},
 	getKeys: func() {
-		return ["EPR1","EPR1-decpnt","EPR1-T","EPR1-H","EPR1-box","EPR1-needle","EPR1-lim","EPR1-thr","N11","N11-decpnt","N11-decimal","N11-needle","N11-redline","EGT1","EGT1-needle","EGT1-redstart","EGT1-yline","EGT1-redline","EGT1-ignition","N21","N21-decpnt",
-		"N21-decimal","N21-needle","N21-cline","N21-redline","FF1","FFOff1","EPR2","EPR2-decpnt","EPR2-T","EPR2-H","EPR2-box","EPR2-needle","EPR2-lim","EPR2-thr","N12","N12-decpnt","N12-decimal","N12-needle","N12-redline","EGT2","EGT2-needle","EGT2-redstart",
-		"EGT2-yline","EGT2-redline","EGT2-ignition","N22","N22-decpnt","N22-decimal","N22-needle","N22-cline","N22-redline","FF2","FFOff2","EPR3","EPR3-decpnt","EPR3-T","EPR3-H","EPR3-box","EPR3-needle","EPR3-lim","EPR3-thr","N13","N13-decpnt","N13-decimal",
-		"N13-needle","N13-redline","EGT3","EGT3-needle","EGT3-redstart","EGT3-yline","EGT3-redline","EGT3-ignition","N23","N23-decpnt","N23-decimal","N23-needle","N23-cline","N23-redline","FF3","FFOff3","EPRLim","EPRLim-decimal","EPRLimRating","EPRLimMode",
-		"EPRLimModeGroup","REV1","REV2","REV3","TAT","Config"];
+		return ["EPR1", "EPR1-decpnt", "EPR1-T", "EPR1-H", "EPR1-box", "EPR1-needle", "EPR1-lim", "EPR1-thr", "N11", "N11-decpnt", "N11-decimal", "N11-needle", "N11-redline", "EGT1", "EGT1-needle", "EGT1-redstart", "EGT1-yline", "EGT1-redline", "EGT1-ignition",
+		"N21", "N21-decpnt", "N21-decimal", "N21-needle", "N21-cline", "N21-redline", "FF1", "FFOff1", "EPR2", "EPR2-decpnt", "EPR2-T", "EPR2-H", "EPR2-box", "EPR2-needle", "EPR2-lim", "EPR2-thr", "N12", "N12-decpnt", "N12-decimal", "N12-needle", "N12-redline",
+		"EGT2", "EGT2-needle", "EGT2-redstart", "EGT2-yline", "EGT2-redline", "EGT2-ignition", "N22", "N22-decpnt", "N22-decimal", "N22-needle", "N22-cline", "N22-redline", "FF2", "FFOff2", "EPR3", "EPR3-decpnt", "EPR3-T", "EPR3-H", "EPR3-box", "EPR3-needle",
+		"EPR3-lim", "EPR3-thr", "N13", "N13-decpnt", "N13-decimal", "N13-needle", "N13-redline", "EGT3", "EGT3-needle", "EGT3-redstart", "EGT3-yline", "EGT3-redline", "EGT3-ignition", "N23", "N23-decpnt", "N23-decimal", "N23-needle", "N23-cline", "N23-redline",
+		"FF3", "FFOff3", "EPRLim", "EPRLim-decimal", "EPRLimRating", "EPRLimMode", "EPRLimModeGroup", "REV1", "REV2", "REV3", "TAT", "Config"];
 	},
 	setup: func() {
 		me["Config"].hide();
