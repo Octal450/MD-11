@@ -34,6 +34,7 @@ var systemsInit = func {
 
 setlistener("sim/signals/fdm-initialized", func {
 	systemsInit();
+	canvas_ead.init();
 });
 
 var systemsLoop = maketimer(0.1, func {

@@ -961,7 +961,6 @@
 		
 		<actuator name="fadec/egt-actual-3">
 			<input>fadec/egt-cmd-3</input>
-			<rate_limit>100</rate_limit>
 			<lag>0.35</lag>
 			<output>/engines/engine[2]/egt-actual</output>
 		</actuator>
@@ -1079,157 +1078,157 @@
 	
 	<channel name="EAD Needles" execrate="4">
 		
-		<fcs_function name="/DU/EAD/N1[0]">
+		<fcs_function name="/instrumentation/ead/n1[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1[1]">
+		<fcs_function name="/instrumentation/ead/n1[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1[2]">
+		<fcs_function name="/instrumentation/ead/n1[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1thr[0]">
+		<fcs_function name="/instrumentation/ead/n1-thr[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1thr[1]">
+		<fcs_function name="/instrumentation/ead/n1-thr[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1thr[2]">
+		<fcs_function name="/instrumentation/ead/n1-thr[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1Limit">
+		<fcs_function name="/instrumentation/ead/n1-limit">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/limit/active</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EGT[0]">
+		<fcs_function name="/instrumentation/ead/egt[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
 					<tableData>
-						   0 -134
-						1000   40
+						   0  -44
+						1000  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EGT[1]">
+		<fcs_function name="/instrumentation/ead/egt[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/egt-actual</independentVar>
 					<tableData>
-						   0 -134
-						1000   40
+						   0  -44
+						1000  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EGT[2]">
+		<fcs_function name="/instrumentation/ead/egt[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/egt-actual</independentVar>
 					<tableData>
-						   0 -134
-						1000   40
+						   0  -44
+						1000  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[0]">
+		<fcs_function name="/instrumentation/ead/n2[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[1]">
+		<fcs_function name="/instrumentation/ead/n2[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[2]">
+		<fcs_function name="/instrumentation/ead/n2[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>

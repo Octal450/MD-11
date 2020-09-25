@@ -41,6 +41,16 @@ var Controls = {
 	},
 };
 
+var Engines = {
+	Engine: {
+		egtActual: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual")],
+		eprActual: [props.globals.getNode("/engines/engine[0]/epr-actual"), props.globals.getNode("/engines/engine[1]/epr-actual"), props.globals.getNode("/engines/engine[2]/epr-actual")],
+		ffActual: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual")],
+		n1Actual: [props.globals.getNode("/engines/engine[0]/n1-actual"), props.globals.getNode("/engines/engine[1]/n1-actual"), props.globals.getNode("/engines/engine[2]/n1-actual")],
+		n2Actual: [props.globals.getNode("/engines/engine[0]/n2-actual"), props.globals.getNode("/engines/engine[1]/n2-actual"), props.globals.getNode("/engines/engine[2]/n2-actual")],
+	},
+};
+
 var Fdm = {
 	JSBsim: {
 		Fadec: {
@@ -72,6 +82,16 @@ var Instrumentation = {
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
 		std: props.globals.getNode("/instrumentation/altimeter/std"),
 	},
+	Ead: {
+		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
+		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
+		eprLimit: props.globals.getNode("/instrumentation/ead/epr-limit"),
+		eprThr: [props.globals.getNode("/instrumentation/ead/epr-thr[0]"), props.globals.getNode("/instrumentation/ead/epr-thr[1]"), props.globals.getNode("/instrumentation/ead/epr-thr[2]")],
+		n1: [props.globals.getNode("/instrumentation/ead/n1[0]"), props.globals.getNode("/instrumentation/ead/n1[1]"), props.globals.getNode("/instrumentation/ead/n1[2]")],
+		n1Limit: props.globals.getNode("/instrumentation/ead/n1-limit"),
+		n1Thr: [props.globals.getNode("/instrumentation/ead/n1-thr[0]"), props.globals.getNode("/instrumentation/ead/n1-thr[1]"), props.globals.getNode("/instrumentation/ead/n1-thr[2]")],
+		n2: [props.globals.getNode("/instrumentation/ead/n2[0]"), props.globals.getNode("/instrumentation/ead/n2[1]"), props.globals.getNode("/instrumentation/ead/n2[2]")],
+	},
 	Efis: {
 		hdgTrkSelected: [props.globals.initNode("/instrumentation/efis[0]/hdg-trk-selected", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/hdg-trk-selected", 0, "BOOL")],
 		Inputs: {
@@ -89,6 +109,10 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 		},
 	},
+};
+
+var Options = {
+	eng: props.globals.getNode("/options/eng"),
 };
 
 var Orientation = {
@@ -143,6 +167,7 @@ var Systems = {
 	Acconfig: {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
 		Options: {
+			eadRate: props.globals.getNode("/systems/acconfig/options/ead-rate"),
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
 		}
 	},

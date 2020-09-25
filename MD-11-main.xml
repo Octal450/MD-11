@@ -1410,7 +1410,11 @@
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<options n="0">
 				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
+				<ead-rate type="double">1</ead-rate>
 				<map-less-transparent type="bool">0</map-less-transparent>
+				<nd-rate type="double">1</nd-rate>
+				<pfd-rate type="double">1</pfd-rate>
+				<sd-rate type="double">1</sd-rate>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>
