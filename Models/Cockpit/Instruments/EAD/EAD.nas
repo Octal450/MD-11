@@ -45,10 +45,11 @@ var canvasBase = {
 				var tran_rect = clip_el.getTransformedBounds();
 
 				var clip_rect = sprintf("rect(%d, %d, %d, %d)", 
-				tran_rect[1], # 0 ys
-				tran_rect[2], # 1 xe
-				tran_rect[3], # 2 ye
-				tran_rect[0]); # 3 xs
+					tran_rect[1], # 0 ys
+					tran_rect[2], # 1 xe
+					tran_rect[3], # 2 ye
+					tran_rect[0] # 3 xs
+				);
 				# Coordinates are top, right, bottom, left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
 				me[key].set("clip", clip_rect);
 				me[key].set("clip-frame", canvas.Element.PARENT);
