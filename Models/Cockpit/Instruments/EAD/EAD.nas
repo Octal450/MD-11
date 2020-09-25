@@ -50,6 +50,7 @@ var canvasBase = {
 					tran_rect[3], # 2 ye
 					tran_rect[0] # 3 xs
 				);
+				
 				# Coordinates are top, right, bottom, left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
 				me[key].set("clip", clip_rect);
 				me[key].set("clip-frame", canvas.Element.PARENT);
