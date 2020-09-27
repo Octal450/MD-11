@@ -87,6 +87,11 @@ var Velocities = {
 };
 
 # IT-AUTOFLIGHT
+var Fd = {
+	pitchBar: props.globals.initNode("/it-autoflight/fd/pitch-bar", 0, "DOUBLE"),
+	rollBar: props.globals.initNode("/it-autoflight/fd/roll-bar", 0, "DOUBLE"),
+};
+
 var Input = {
 	alt: props.globals.initNode("/it-autoflight/input/alt", 10000, "INT"),
 	ap1: props.globals.initNode("/it-autoflight/input/ap1", 0, "BOOL"),
