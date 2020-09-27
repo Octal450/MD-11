@@ -1,176 +1,281 @@
 <?xml version="1.0"?>
 
+<!-- Instrumentation Drivers -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
-
-<!-- Custom Instrumentation -->
 
 <PropertyList>
 	
-	<adf>
-		<name>adf</name>
-		<number>0</number>
-	</adf>
+	<filter>
+		<name>Target alt presel diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>/it-autoflight/input/alt</input>
+		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
+		<output>/instrumentation/pfd/alt-presel</output>
+	</filter>
 	
-	<adf>
-		<name>adf</name>
-		<number>1</number>
-	</adf>
+	<filter>
+		<name>Target alt sel diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>/it-autoflight/internal/alt</input>
+		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
+		<output>/instrumentation/pfd/alt-sel</output>
+	</filter>
 	
-	<airspeed-indicator>
-		<name>airspeed-indicator</name>
-		<number>0</number>
-		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</airspeed-indicator>
+	<filter>
+		<name>Track heading diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>/orientation/track-deg</input>
+		<reference>/instrumentation/pfd/heading-deg</reference>
+		<output>/instrumentation/pfd/track-diff</output>
+	</filter>
 	
-	<altimeter>
-		<name>altimeter</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>0</quantum>
-		<tau>0</tau>
-	</altimeter>
+	<filter>
+		<name>Heading scale</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<!--input>
+			<condition>
+				<property>/it-autoflight/custom/trk-fpa</property>
+			</condition>
+			<property>/instrumentation/pfd/track-deg</property>
+		</input-->
+		<input>/instrumentation/pfd/heading-deg</input>
+		<output>/instrumentation/pfd/heading-scale</output>
+	</filter>
 	
-	<attitude-indicator>
-		<name>attitude-indicator</name>
-		<number>0</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</attitude-indicator>
+	<filter>
+		<name>Heading bug pre diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/input/hdg</property>
+					<product>
+						<property>/it-autoflight/internal/drift-angle-deg</property>
+						<value>-1</value>
+					</product>
+				</sum>
+			</expression>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<input>
+			<property>/it-autoflight/input/hdg</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<reference>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</reference>
+		<output>/instrumentation/pfd/hdg-pre-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
+	</filter>
 	
-	<clock>
-		<name>clock</name>
-		<number>0</number>
-	</clock>
+	<filter>
+		<name>Heading bug diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/internal/hdg</property>
+					<product>
+						<property>/it-autoflight/internal/drift-angle-deg</property>
+						<value>-1</value>
+					</product>
+				</sum>
+			</expression>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<input>
+			<property>/it-autoflight/internal/hdg</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<reference>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</reference>
+		<output>/instrumentation/pfd/hdg-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
+	</filter>
 	
-	<comm-radio>
-		<name>comm</name>
-		<number>0</number>
-	</comm-radio>
+	<filter>
+		<name>Track bug diff</name>
+		<type>gain</type>
+		<update-interval-secs>0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/pfd/track-deg</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<reference>
+			<property>/instrumentation/pfd/heading-scale</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</reference>
+		<output>/instrumentation/pfd/track-hdg-diff</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
+	</filter>
 	
-	<comm-radio>
-		<name>comm</name>
-		<number>1</number>
-	</comm-radio>
+	<filter>
+		<name>Speed Predictor Input</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<difference>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>50</value>
+				</difference>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/speed-minus-50</output>
+		<min>0</min>
+		<max>450</max>
+	</filter>
 	
-	<comm-radio>
-		<name>comm</name>
-		<number>2</number>
-	</comm-radio>
+	<predict-simple>
+		<name>Speed Predictor (Smoothed)</name>
+		<debug>false</debug>
+		<input>/instrumentation/pfd/speed-minus-50</input>
+		<output>/instrumentation/pfd/speed-lookahead-cmd</output>
+		<seconds>10.0</seconds>
+		<filter-gain>0.01</filter-gain>
+	</predict-simple>
 	
-	<dme>
-		<name>dme</name>
-		<number>0</number>
-	</dme>
+	<filter>
+		<name>Speed Predictor Exponential</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/pfd/speed-lookahead-cmd</input>
+		<output>/instrumentation/pfd/speed-lookahead</output>
+		<filter-time>0.32</filter-time>
+	</filter>
 	
-	<dme>
-		<name>dme</name>
-		<number>1</number>
-	</dme>
+	<filter>
+		<name>Bank Limit</name>
+		<type>exponential</type>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/internal/bank-limit</property>
+					<entry><ind> 0</ind><dep>-25</dep></entry>
+					<entry><ind>25</ind><dep>  0</dep></entry>
+					<entry><ind>30</ind><dep>  5</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/bank-limit</output>
+		<filter-time>0.32</filter-time>
+	</filter>
 	
-	<dme>
-		<name>dme</name>
-		<number>2</number>
-	</dme>
+	<filter>
+		<name>Vertical Speed Needle UP</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/internal/vert-speed-fpm</property>
+					<entry><ind> 100</ind><dep>   0</dep></entry>
+					<entry><ind>1000</ind><dep>-121</dep></entry>
+					<entry><ind>2000</ind><dep>-189</dep></entry>
+					<entry><ind>4000</ind><dep>-257</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/vs-needle-up</output>
+	</filter>
 	
-	<dme>
-		<name>dme</name>
-		<number>3</number>
-	</dme>
+	<filter>
+		<name>Vertical Speed Needle DN</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/internal/vert-speed-fpm</property>
+					<entry><ind>-4000</ind><dep>257</dep></entry>
+					<entry><ind>-2000</ind><dep>189</dep></entry>
+					<entry><ind>-1000</ind><dep>121</dep></entry>
+					<entry><ind> -100</ind><dep>  0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/vs-needle-dn</output>
+	</filter>
 	
-	<altimeter>
-		<name>encoder</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-		<quantum>10</quantum>
-		<tau>0.1</tau>
-	</altimeter>
-	
-	<marker-beacon>
-		<name>marker-beacon</name>
-		<number>0</number>
-	</marker-beacon>
-	
-	<heading-indicator>
-		<name>heading-indicator</name>
-		<number>0</number>
-		<suction>/systems/vacuum/suction-inhg</suction>
-	</heading-indicator>
-	
-	<KT-70>
-		<name>kt-70</name>
-		<number>0</number>
-	</KT-70>
-	
-	<magnetic-compass>
-		<name>magnetic-compass</name>
-		<number>0</number>
-	</magnetic-compass>
-	
-	<mk-viii>
-		<name>mk-viii</name>
-		<number>0</number>
-	</mk-viii>
-	
-	<nav-radio>
-		<name>nav</name>
-		<number>0</number>
-	</nav-radio>
-	
-	<nav-radio>
-		<name>nav</name>
-		<number>1</number>
-	</nav-radio>
-	
-	<nav-radio>
-		<name>nav</name>
-		<number>2</number>
-	</nav-radio>
-	
-	<nav-radio>
-		<name>nav</name>
-		<number>3</number>
-	</nav-radio>
-	
-	<slip-skid-ball>
-		<name>slip-skid-ball</name>
-		<number>0</number>
-	</slip-skid-ball>
-	
-	<transponder>
-		<name>transponder</name>
-		<number>0</number>
-		<mode-c-altitude>/instrumentation/encoder/mode-c-alt-ft</mode-c-altitude>
-	</transponder>
-	
-	<turn-indicator>
-		<name>turn-indicator</name>
-		<number>0</number>
-	</turn-indicator>
-	
-	<vertical-speed-indicator>
-		<name>vertical-speed-indicator</name>
-		<number>0</number>
-		<static-pressure>/systems/static/pressure-inhg</static-pressure>
-	</vertical-speed-indicator>
-	
-	<gps>
-		<name>gps</name>
-		<number>0</number>
-	</gps>
-	
-	<tcas>
-		<name>tcas</name>
-		<number>0</number>
-	</tcas>
-	
-	<radar>
-		<name>wxradar</name>
-		<number>0</number>
-	</radar>
-	
-	<tacan>
-		<name>tacan</name>
-		<number>0</number>
-	</tacan>
+	<filter>
+		<name>Slip/Skid Indicator</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<property>/fdm/jsbsim/position/wow</property>
+			</condition>
+			<expression>
+				<product>
+					<property>/fdm/jsbsim/accelerations/Ny</property>
+					<value>-25</value>
+				</product>
+			</expression>
+		</input>
+		<input>/fdm/jsbsim/aero/beta-deg</input>
+		<output>/instrumentation/pfd/slip-skid</output>
+		<filter-time>0.16</filter-time>
+	</filter>
 
 </PropertyList>

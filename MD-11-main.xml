@@ -23,7 +23,7 @@
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
 		<instrumentation>
-			<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
+			<path>Aircraft/MD-11/Systems/instrumentation-setup.xml</path>
 		</instrumentation>
 		<menubar>
 			<default>
@@ -214,10 +214,10 @@
 				<path>Aircraft/MD-11/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/MD-11/Sounds/MD-11-sound-variables.xml</path>
+				<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
 			</autopilot>
 			<autopilot n="6">
-				<path>Aircraft/MD-11/Systems/pfd.xml</path>
+				<path>Aircraft/MD-11/Sounds/MD-11-sound-variables.xml</path>
 			</autopilot>
 		</systems>
 		<tags>
