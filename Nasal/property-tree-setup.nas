@@ -53,6 +53,9 @@ var Engines = {
 
 var Fdm = {
 	JSBsim: {
+		Aero: {
+			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
+		},
 		Fadec: {
 			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
 		},
@@ -109,6 +112,11 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 		},
 	},
+	Pfd: {
+		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
+		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
+		trackHdgDiff: props.globals.initNode("/instrumentation/pfd/track-hdg-diff", 0.0, "DOUBLE"),
+	},
 };
 
 var Options = {
@@ -118,6 +126,8 @@ var Options = {
 var Orientation = {
 	headingDeg: props.globals.getNode("/orientation/heading-deg"),
 	headingMagneticDeg: props.globals.getNode("/orientation/heading-magnetic-deg"),
+	pitchDeg: props.globals.getNode("/orientation/pitch-deg"),
+	rollDeg: props.globals.getNode("/orientation/roll-deg"),
 };
 
 var Sim = {
@@ -166,8 +176,10 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
+		errorCode: props.globals.getNode("/systems/acconfig/error-code"),
 		Options: {
 			eadRate: props.globals.getNode("/systems/acconfig/options/ead-rate"),
+			pfdRate: props.globals.getNode("/systems/acconfig/options/pfd-rate"),
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
 		}
 	},

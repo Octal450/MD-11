@@ -276,6 +276,8 @@
 		<input>/fdm/jsbsim/aero/beta-deg</input>
 		<output>/instrumentation/pfd/slip-skid</output>
 		<filter-time>0.16</filter-time>
+		<min>-15</min>
+		<max>15</max>
 	</filter>
 
 </PropertyList>

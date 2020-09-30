@@ -71,14 +71,14 @@
 						<label>Captain's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_pfd.showPFD1();</script>
+							<script>canvas_pfd.showPfd1();</script>
 						</binding>
 					</item>
 					<item>
 						<label>First Officer's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_pfd.showPFD2();</script>
+							<script>canvas_pfd.showPfd2();</script>
 						</binding>
 					</item>
 					<item>
@@ -1408,6 +1408,7 @@
 	<systems n="0">
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
+			<error-code type="string">0x000</error-code>
 			<options n="0">
 				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
 				<ead-rate type="double">1</ead-rate>
