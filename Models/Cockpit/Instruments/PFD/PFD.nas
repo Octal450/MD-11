@@ -44,6 +44,9 @@ var Value = {
 		aligned: [0, 0, 0],
 		aligning: [0, 0, 0],
 	},
+	Misc: {
+		minimums: 0,
+	},
 	Nav: {
 		Freq: {
 			selected: [0, 0],
@@ -53,6 +56,9 @@ var Value = {
 		gsInRange: [0, 0],
 		inRange: [0, 0],
 		signalQuality: [0, 0],
+	},
+	Ra: {
+		agl: 0,
 	},
 };
 
@@ -101,11 +107,11 @@ var canvasBase = {
 	},
 	getKeys: func() {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
-		"FMA_AP", "ASI_v_speed", "ASI_Taxi", "ASI_GroundSpd", "ASI_scale", "ASI_bowtie", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar",
-		"ASI_vmo_bar2", "ASI_flap_max", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn",
-		"FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel",
-		"ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Flaps", "Flaps_num", "Flaps_num2",
-		"Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
+		"FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel", "ASI_trend_up", "ASI_trend_down",
+		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
+		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T",
+		"ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Flaps",
+		"Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
 	},
 	update: func() {
 		if (pts.Systems.Acconfig.errorCode.getValue() == "0x000") {
@@ -147,150 +153,141 @@ var canvasBase = {
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
 		
-		if (Value.Asi.ias >= 50) {
-			me["ASI_GroundSpd"].hide();
-			me["ASI_Taxi"].hide();
-			me["ASI_bowtie"].show();
-			me["ASI_scale"].show();
-			me["ASI_presel"].show();
-			me["ASI_sel"].show();
-			me["ASI_vmo"].show();
-			me["ASI_flap_max"].show();
-		} else {
+		if (Value.Asi.ias < 50) {
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
-				me["ASI_Taxi"].setColor(0.9412,0.7255,0);
-				me["ASI_GroundSpd"].setColor(0.9412,0.7255,0);
-				me["ASI_GroundSpd"].setText("NO");
+				me["ASI_groundspeed"].setColor(0.9412,0.7255,0);
+				me["ASI_groundspeed"].setText("NO");
+				me["ASI_taxi"].setColor(0.9412,0.7255,0);
 			} else if (!Value.Iru.aligned[0] and !Value.Iru.aligned[1] and !Value.Iru.aligned[2]) {
-				me["ASI_Taxi"].setColor(1,1,1);
-				me["ASI_GroundSpd"].setColor(1,1,1);
-				me["ASI_GroundSpd"].setText("--");
+				me["ASI_groundspeed"].setColor(1,1,1);
+				me["ASI_groundspeed"].setText("--");
+				me["ASI_taxi"].setColor(1,1,1);
 			} else {
-				me["ASI_Taxi"].setColor(1,1,1);
-				me["ASI_GroundSpd"].setColor(1,1,1);
-				me["ASI_GroundSpd"].setText(sprintf("%3.0f", pts.Velocities.groundspeedKt.getValue()));
+				me["ASI_groundspeed"].setColor(1,1,1);
+				me["ASI_groundspeed"].setText(sprintf("%3.0f", pts.Velocities.groundspeedKt.getValue()));
+				me["ASI_taxi"].setColor(1,1,1);
 			}
-			me["ASI_GroundSpd"].show();
-			me["ASI_Taxi"].show();
-			me["ASI_bowtie"].hide();
-			me["ASI_scale"].hide();
-			me["ASI_presel"].hide();
-			me["ASI_sel"].hide();
-			me["ASI_vmo"].hide();
-			me["ASI_flap_max"].hide();
-		}
-		
-		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
-		if (Value.Asi.ias <= 50) {
-			Value.Asi.Tape.ias = 0;
-		} else if (Value.Asi.ias >= 500) {
-			Value.Asi.Tape.ias = 450;
+			
+			me["ASI_ias_group"].hide();
+			me["ASI_taxi_group"].show();
 		} else {
-			Value.Asi.Tape.ias = Value.Asi.ias - 50;
-		}
-		
-		Value.Asi.vmoMmo = pts.Controls.Fctl.vmoMmo.getValue();
-		if (Value.Asi.vmoMmo <= 50) {
-			Value.Asi.Tape.vmoMmo = 0 - Value.Asi.Tape.ias;
-		} else if (Value.Asi.vmoMmo >= 500) {
-			Value.Asi.Tape.vmoMmo = 450 - Value.Asi.Tape.ias;
-		} else {
-			Value.Asi.Tape.vmoMmo = Value.Asi.vmoMmo - 50 - Value.Asi.Tape.ias;
-		}
-		
-		Value.Asi.flapGearMax = pts.Controls.Fctl.flapGearMax.getValue();
-		if (Value.Asi.flapGearMax < 0) {
-			Value.Asi.Tape.flapGearMax = 0;
-			me["ASI_vmo_bar"].show();
-			me["ASI_vmo_bar2"].hide();
-			me["ASI_flap_max"].hide();
-		} else if (Value.Asi.flapGearMax <= 50) {
-			Value.Asi.Tape.flapGearMax = 0 - Value.Asi.Tape.ias;
-			me["ASI_vmo_bar"].hide();
-			me["ASI_vmo_bar2"].show();
-			me["ASI_flap_max"].show();
-		} else if (Value.Asi.flapGearMax >= 500) {
-			Value.Asi.Tape.flapGearMax = 450 - Value.Asi.Tape.ias;
-			me["ASI_vmo_bar"].hide();
-			me["ASI_vmo_bar2"].show();
-			me["ASI_flap_max"].show();
-		} else {
-			Value.Asi.Tape.flapGearMax = Value.Asi.flapGearMax - 50 - Value.Asi.Tape.ias;
-			me["ASI_vmo_bar"].hide();
-			me["ASI_vmo_bar2"].show();
-			me["ASI_flap_max"].show();
-		}
-		
-		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 4.48656);
-		me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
-		me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
-		me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
-		
-		if (Value.Asi.mach >= 0.5) {
-			if (Value.Asi.mach >= 0.999) {
-				me["ASI_mach"].setText("999");
+			# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
+			if (Value.Asi.ias <= 50) {
+				Value.Asi.Tape.ias = 0;
+			} else if (Value.Asi.ias >= 500) {
+				Value.Asi.Tape.ias = 450;
 			} else {
-				me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
+				Value.Asi.Tape.ias = Value.Asi.ias - 50;
 			}
-			me["ASI_bowtie_mach"].show();
-		} else {
-			me["ASI_bowtie_mach"].hide();
+			
+			Value.Asi.vmoMmo = pts.Controls.Fctl.vmoMmo.getValue();
+			if (Value.Asi.vmoMmo <= 50) {
+				Value.Asi.Tape.vmoMmo = 0 - Value.Asi.Tape.ias;
+			} else if (Value.Asi.vmoMmo >= 500) {
+				Value.Asi.Tape.vmoMmo = 450 - Value.Asi.Tape.ias;
+			} else {
+				Value.Asi.Tape.vmoMmo = Value.Asi.vmoMmo - 50 - Value.Asi.Tape.ias;
+			}
+			
+			Value.Asi.flapGearMax = pts.Controls.Fctl.flapGearMax.getValue();
+			if (Value.Asi.flapGearMax < 0) {
+				Value.Asi.Tape.flapGearMax = 0;
+				me["ASI_flap_max"].hide();
+				me["ASI_vmo_bar"].show();
+				me["ASI_vmo_bar2"].hide();
+			} else if (Value.Asi.flapGearMax <= 50) {
+				Value.Asi.Tape.flapGearMax = 0 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].show();
+				me["ASI_vmo_bar"].hide();
+				me["ASI_vmo_bar2"].show();
+			} else if (Value.Asi.flapGearMax >= 500) {
+				Value.Asi.Tape.flapGearMax = 450 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].show();
+				me["ASI_vmo_bar"].hide();
+				me["ASI_vmo_bar2"].show();
+			} else {
+				Value.Asi.Tape.flapGearMax = Value.Asi.flapGearMax - 50 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].show();
+				me["ASI_vmo_bar"].hide();
+				me["ASI_vmo_bar2"].show();
+			}
+			
+			me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 4.48656);
+			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
+			me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
+			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
+			
+			if (Value.Asi.mach >= 0.5) {
+				if (Value.Asi.mach >= 0.999) {
+					me["ASI_mach"].setText("999");
+				} else {
+					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
+				}
+				me["ASI_bowtie_mach"].show();
+			} else {
+				me["ASI_bowtie_mach"].hide();
+			}
+			
+			if (Value.Asi.ias > Value.Asi.vmoMmo + 0.5) {
+				me["ASI"].setColor(1,0,0);
+				me["ASI_bowtie_L"].setColor(1,0,0);
+				me["ASI_bowtie_R"].setColor(1,0,0);
+				me["ASI_mach"].setColor(1,0,0);
+				me["ASI_mach_decimal"].setColor(1,0,0);
+			} else if (Value.Asi.ias > Value.Asi.flapGearMax + 0.5 and Value.Asi.flapGearMax >= 0) {
+				me["ASI"].setColor(0.9647,0.8196,0.07843);
+				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
+			} else {
+				me["ASI"].setColor(1,1,1);
+				me["ASI_bowtie_L"].setColor(1,1,1);
+				me["ASI_bowtie_R"].setColor(1,1,1);
+				me["ASI_mach"].setColor(1,1,1);
+				me["ASI_mach_decimal"].setColor(1,1,1);
+			}
+			
+			Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
+			Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
+			
+			if (Value.Asi.preSel <= 50) {
+				Value.Asi.Tape.preSel = 0 - Value.Asi.Tape.ias;
+			} else if (Value.Asi.preSel >= 500) {
+				Value.Asi.Tape.preSel = 450 - Value.Asi.Tape.ias;
+			} else {
+				Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
+			}
+			
+			if (Value.Asi.sel <= 50) {
+				Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
+			} else if (Value.Asi.sel >= 500) {
+				Value.Asi.Tape.sel = 450 - Value.Asi.Tape.ias;
+			} else {
+				Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
+			}
+			
+			me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.48656);
+			me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.48656);
+			
+			# Let the whole ASI tape update before showing
+			me["ASI_ias_group"].show();
+			me["ASI_taxi_group"].hide();
 		}
 		
-		if (Value.Asi.ias > Value.Asi.vmoMmo + 0.5) {
-			me["ASI"].setColor(1,0,0);
-			me["ASI_mach"].setColor(1,0,0);
-			me["ASI_mach_decimal"].setColor(1,0,0);
-			me["ASI_bowtie_L"].setColor(1,0,0);
-			me["ASI_bowtie_R"].setColor(1,0,0);
-		} else if (Value.Asi.ias > Value.Asi.flapGearMax + 0.5 and Value.Asi.flapGearMax >= 0) {
-			me["ASI"].setColor(0.9647,0.8196,0.07843);
-			me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
-			me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
-			me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
-			me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
-		} else {
-			me["ASI"].setColor(1,1,1);
-			me["ASI_mach"].setColor(1,1,1);
-			me["ASI_mach_decimal"].setColor(1,1,1);
-			me["ASI_bowtie_L"].setColor(1,1,1);
-			me["ASI_bowtie_R"].setColor(1,1,1);
-		}
-		
+		# Keep trend outside if/else above so it animates nicely
 		if (Value.Asi.trend >= 2) {
+			me["ASI_trend_down"].hide();
 			me["ASI_trend_up"].setTranslation(0, math.clamp(Value.Asi.trend, 0, 60) * -4.48656);
 			me["ASI_trend_up"].show();
-			me["ASI_trend_down"].hide();
 		} else if (Value.Asi.trend <= -2) {
 			me["ASI_trend_down"].setTranslation(0, math.clamp(Value.Asi.trend, -60, 0) * -4.48656);
 			me["ASI_trend_down"].show();
 			me["ASI_trend_up"].hide();
 		} else {
-			me["ASI_trend_up"].hide();
 			me["ASI_trend_down"].hide();
+			me["ASI_trend_up"].hide();
 		}
-		
-		Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
-		Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
-		
-		if (Value.Asi.preSel <= 50) {
-			Value.Asi.Tape.preSel = 0 - Value.Asi.Tape.ias;
-		} else if (Value.Asi.preSel >= 500) {
-			Value.Asi.Tape.preSel = 450 - Value.Asi.Tape.ias;
-		} else {
-			Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
-		}
-		
-		if (Value.Asi.sel <= 50) {
-			Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
-		} else if (Value.Asi.sel >= 500) {
-			Value.Asi.Tape.sel = 450 - Value.Asi.Tape.ias;
-		} else {
-			Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
-		}
-		
-		me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.48656);
-		me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.48656);
 		
 		# AI
 		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
@@ -339,17 +336,82 @@ var canvasBase = {
 			me["AI_alphalim"].setColor(0.2156,0.5019,0.6627);
 		}
 		
-		me["AI_arrow_up"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
-		me["AI_arrow_dn"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
 		if (Value.Ai.pitch > 25) {
+			me["AI_arrow_up"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
+			me["AI_arrow_dn"].hide();
 			me["AI_arrow_up"].show();
-			me["AI_arrow_dn"].hide();
 		} else if (Value.Ai.pitch < -15) {
-			me["AI_arrow_up"].hide();
+			me["AI_arrow_dn"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
 			me["AI_arrow_dn"].show();
-		} else {
 			me["AI_arrow_up"].hide();
+		} else {
 			me["AI_arrow_dn"].hide();
+			me["AI_arrow_up"].hide();
+		}
+		
+		# ILS
+		#LOC = nav0defl.getValue() or 0;
+		#GS = gs0defl.getValue() or 0;
+		#me["LOC_pointer"].setTranslation(LOC * 200, 0);
+		#me["GS_pointer"].setTranslation(0, GS * -204);
+		#
+		#if (nav0range.getValue() == 1) {
+		#	me["LOC_scale"].show();
+		#	if (navloc.getValue() == 1 and nav0signal.getValue() > 0.99) {
+		#		me["LOC_pointer"].show();
+		#		me["LOC_no"].hide();
+		#	} else {
+		#		me["LOC_pointer"].hide();
+		#		me["LOC_no"].show();
+		#	}
+		#} else {
+		#	me["LOC_scale"].hide();
+		#	me["LOC_pointer"].hide();
+		#	me["LOC_no"].hide();
+		#}
+		#if (gs0range.getValue() == 1) {
+		#	me["GS_scale"].show();
+		#	if (hasgs.getValue() == 1 and nav0signal.getValue() > 0.99) {
+		#		me["GS_pointer"].show();
+		#		me["GS_no"].hide();
+		#	} else {
+		#		me["GS_pointer"].hide();
+		#		me["GS_no"].show();
+		#	}
+		#} else {
+		#	me["GS_scale"].hide();
+		#	me["GS_pointer"].hide();
+		#	me["GS_no"].hide();
+		#}
+		
+		# RA and Minimums - Move to slow
+		Value.Ra.agl = pts.Position.gearAglFt.getValue();
+		Value.Misc.minimums = pts.Controls.Switches.minimums.getValue();
+		
+		me["Minimums"].setText(sprintf("%4.0f", Value.Misc.minimums));
+		
+		if (Value.Ra.agl <= 2500) {
+			if (Value.Ra.agl <= Value.Misc.minimums) {
+				me["Minimums"].setColor(0.9412,0.7255,0);
+				me["RA"].setColor(0.9412,0.7255,0);
+				me["RA_box"].setColor(0.9412,0.7255,0);
+			} else {
+				me["Minimums"].setColor(1,1,1);
+				me["RA"].setColor(1,1,1);
+				me["RA_box"].setColor(1,1,1);
+			}
+			if (Value.Ra.agl <= 5) {
+				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl)));
+			} else if (Value.Ra.agl <= 50) {
+				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl, 5)));
+			} else {
+				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl, 10)));
+			}
+			me["RA"].show();
+			me["RA_box"].show();
+		} else {
+			me["RA"].hide();
+			me["RA_box"].hide();
 		}
 	},
 };

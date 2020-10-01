@@ -116,6 +116,15 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 		},
 	},
+	Nav: {
+		headingNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[3]/heading-needle-deflection-norm")],
+		gsInRange: [props.globals.getNode("/instrumentation/nav[0]/gs-in-range"), props.globals.getNode("/instrumentation/nav[1]/gs-in-range"), props.globals.getNode("/instrumentation/nav[2]/gs-in-range"), props.globals.getNode("/instrumentation/nav[3]/gs-in-range")],
+		gsNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[3]/gs-needle-deflection-norm")],
+		hasGs: [props.globals.getNode("/instrumentation/nav[0]/has-gs"), props.globals.getNode("/instrumentation/nav[1]/has-gs"), props.globals.getNode("/instrumentation/nav[2]/has-gs"), props.globals.getNode("/instrumentation/nav[3]/has-gs")],
+		inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range"), props.globals.getNode("/instrumentation/nav[1]/in-range"), props.globals.getNode("/instrumentation/nav[2]/in-range"), props.globals.getNode("/instrumentation/nav[3]/in-range")],
+		navLoc: [props.globals.getNode("/instrumentation/nav[0]/nav-loc"), props.globals.getNode("/instrumentation/nav[1]/nav-loc"), props.globals.getNode("/instrumentation/nav[2]/nav-loc"), props.globals.getNode("/instrumentation/nav[3]/nav-loc")],
+		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[3]/signal-quality-norm")],
+	},
 	Pfd: {
 		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
 		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-presel", 0, "DOUBLE"),
@@ -135,6 +144,10 @@ var Orientation = {
 	headingMagneticDeg: props.globals.getNode("/orientation/heading-magnetic-deg"),
 	pitchDeg: props.globals.getNode("/orientation/pitch-deg"),
 	rollDeg: props.globals.getNode("/orientation/roll-deg"),
+};
+
+var Position = {
+	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 };
 
 var Sim = {
