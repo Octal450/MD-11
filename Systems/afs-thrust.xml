@@ -289,22 +289,28 @@
 		<max>/fdm/jsbsim/fadec/limit/ats-max</max>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/mode/thr</property>
-						<value>RETARD</value>
+				<or>
+					<and>
+						<equals>
+							<property>/it-autoflight/mode/thr</property>
+							<value>RETARD</value>
+						</equals>
+						<or>
+							<equals>
+								<property>/gear/gear[1]/wow</property>
+								<value>1</value>
+							</equals>
+							<equals>
+								<property>/gear/gear[2]/wow</property>
+								<value>1</value>
+							</equals>
+						</or>
+					</and>
+					<equals> <!-- Don't slow throttle in T/O or G/A -->
+						<property>/it-autoflight/output/vert</property>
+						<value>7</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</and>
+				</or>
 			</condition>
 			<value>0.3</value>
 		</max-rate-of-change>
