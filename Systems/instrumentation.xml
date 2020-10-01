@@ -206,6 +206,21 @@
 	</filter>
 	
 	<filter>
+		<name>Speed Trend</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<difference>
+					<property>/instrumentation/pfd/speed-lookahead</property>
+					<property>/instrumentation/pfd/speed-minus-50</property>
+				</difference>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/speed-trend</output>
+	</filter>
+	
+	<filter>
 		<name>Bank Limit</name>
 		<type>exponential</type>
 		<input>
@@ -278,6 +293,56 @@
 		<filter-time>0.16</filter-time>
 		<min>-15</min>
 		<max>15</max>
+	</filter>
+	
+	<filter>
+		<name>AFS Target Knots Presel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/input/mach</property>
+				</product>
+			</expression>
+		</input>
+		<input>/it-autoflight/input/kts</input>
+		<output>/instrumentation/pfd/ias-presel</output>
+	</filter>
+	
+	<filter>
+		<name>AFS Target Knots Sel PFD</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<div>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</div>
+					<property>/it-autoflight/internal/mach</property>
+				</product>
+			</expression>
+		</input>
+		<input>/it-autoflight/internal/kts</input>
+		<output>/instrumentation/pfd/ias-sel</output>
 	</filter>
 
 </PropertyList>

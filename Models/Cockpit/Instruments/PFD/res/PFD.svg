@@ -41,9 +41,9 @@
      inkscape:window-height="1017"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="2.828427"
-     inkscape:cx="580.94426"
-     inkscape:cy="703.20011"
+     inkscape:zoom="0.99999996"
+     inkscape:cx="208.40833"
+     inkscape:cy="806.37647"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -1170,13 +1170,13 @@
      x="93.498398"
      height="533.88159"
      width="34.5784"
-     id="ASI_max_flap_clip"
+     id="ASI_flap_max_clip"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      transform="scale(1,-1)" />
   <rect
      transform="scale(1,-1)"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="ASI_max_clip"
+     id="ASI_vmo_clip"
      width="42.178398"
      height="533.88159"
      x="93.498398"
@@ -4148,7 +4148,7 @@
      d="m 89.215272,412.19708 16.825768,0 0,53.98264 -16.825768,0 0,-12.40841 15.827978,-14.58291 -15.827978,-14.58291 z"
      style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:3.24056077;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <g
-     id="ASI_max_flap"
+     id="ASI_flap_max"
      inkscape:label="#g4893"
      transform="translate(-0.4,-218.04055)">
     <path
@@ -4167,7 +4167,7 @@
        sodipodi:nodetypes="cc" />
   </g>
   <g
-     id="ASI_max"
+     id="ASI_vmo"
      inkscape:label="#g7242"
      transform="translate(505.6,3.999996)">
     <rect
@@ -4188,7 +4188,7 @@
        inkscape:label="#path5088"
        style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:8;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m -373.92326,435.5928 -34.17834,0"
-       id="ASI_max_bar"
+       id="ASI_vmo_bar"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <rect
@@ -4571,7 +4571,7 @@
        style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ASI_max_bar2"
+       id="ASI_vmo_bar2"
        width="19.7768"
        height="8"
        x="-399.89999"

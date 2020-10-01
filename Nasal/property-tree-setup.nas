@@ -5,6 +5,10 @@
 # Usage Example: pts.Class.SubClass.node.getValue()
 
 var Controls = {
+	Fctl: {
+		flapGearMax: props.globals.getNode("/controls/fctl/flap-gear-max"),
+		vmoMmo: props.globals.getNode("/controls/fctl/vmo-mmo"),
+	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
@@ -114,7 +118,10 @@ var Instrumentation = {
 	},
 	Pfd: {
 		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
+		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-presel", 0, "DOUBLE"),
+		iasSel: props.globals.initNode("/instrumentation/pfd/ias-sel", 0, "DOUBLE"),
 		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
+		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),
 		trackHdgDiff: props.globals.initNode("/instrumentation/pfd/track-hdg-diff", 0.0, "DOUBLE"),
 	},
 };

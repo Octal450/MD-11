@@ -423,51 +423,9 @@
 	</filter>
 	
 	<filter>
-		<name>AFS Target Knots Presel PFD</name>
+		<name>Target Speed Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/input/kts</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<product>
-					<div>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/input/mach</property>
-				</product>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/ias-presel</output>
-	</filter>
-	
-	<filter>
-		<name>AFS Target Knots Sel PFD</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/kts</property>
-		</input>
 		<input>
 			<condition>
 				<equals>
@@ -484,16 +442,13 @@
 					<property>/it-autoflight/internal/mach</property>
 				</product>
 			</expression>
+			<offset>
+				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+				<scale>-1.0</scale>
+			</offset>
 		</input>
-		<output>/it-autoflight/internal/ias-sel</output>
-	</filter>
-	
-	<filter>
-		<name>PFD Target Speed Error</name>
-		<type>gain</type>
-		<gain>1.0</gain>
 		<input>
-			<property>/it-autoflight/internal/ias-sel</property>
+			<property>/it-autoflight/internal/kts</property>
 			<offset>
 				<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 				<scale>-1.0</scale>
@@ -513,7 +468,6 @@
 			<property>/orientation/heading-deg</property>
 		</input>
 		<input>/orientation/heading-magnetic-deg</input>
-		<reference>0</reference>
 		<output>/it-autoflight/internal/heading-deg</output>
 		<output>/instrumentation/pfd/heading-deg</output>
 	</filter>
