@@ -7,8 +7,10 @@ var pfd1 = nil;
 var pfd1Error = nil;
 var pfd2 = nil;
 var pfd2Error = nil;
-setprop("test1", 0);
-setprop("test2", 0);
+
+# Slow update enable
+var updatePfd1 = 0;
+var updatePfd2 = 0;
 
 var Value = {
 	Afs: {
@@ -118,24 +120,38 @@ var canvasBase = {
 			pfd1Error.page.hide();
 			pfd2Error.page.hide();
 			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
+				updatePfd1 = 1;
 				pfd1.update();
 				pfd1.page.show();
 			} else {
+				updatePfd1 = 0;
 				pfd1.page.hide();
 			}
 			if (systems.ELEC.Bus.ac3.getValue() >= 110) {
+				updatePfd2 = 1;
 				pfd2.update();
 				pfd2.page.show();
 			} else {
+				updatePfd2 = 0;
 				pfd2.page.hide();
 			}
 		} else {
+			updatePfd1 = 0;
+			updatePfd2 = 0;
 			pfd1.page.hide();
 			pfd2.page.hide();
 			pfd1Error.update();
 			pfd2Error.update();
 			pfd1Error.page.show();
 			pfd2Error.page.show();
+		}
+	},
+	updateSlow: func() { # Turned on of off by the fast update so that syncing is correct
+		if (updatePfd1) {
+			pfd1.updateSlow();
+		}
+		if (updatePfd2) {
+			pfd2.updateSlow();
 		}
 	},
 	updateBase: func() {
@@ -349,7 +365,10 @@ var canvasBase = {
 			me["AI_arrow_up"].hide();
 		}
 		
-		# ILS
+		me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
+		me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
+		
+		# ILS - rewrite
 		#LOC = nav0defl.getValue() or 0;
 		#GS = gs0defl.getValue() or 0;
 		#me["LOC_pointer"].setTranslation(LOC * 200, 0);
@@ -414,6 +433,9 @@ var canvasBase = {
 			me["RA_box"].hide();
 		}
 	},
+	updateSlowBase: func() {
+		
+	},
 };
 
 var canvasPfd1 = {
@@ -424,6 +446,9 @@ var canvasPfd1 = {
 		return m;
 	},
 	update: func() {
+		me.updateBase();
+	},
+	updateSlow: func() {
 		# Provide the value to here and the base
 		Value.Afs.fd1 = afs.Output.fd1.getBoolValue();
 		
@@ -431,15 +456,12 @@ var canvasPfd1 = {
 		if (Value.Afs.fd1) {
 			me["FD_pitch"].show();
 			me["FD_roll"].show();
-			
-			me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
-			me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
 		}
 		
-		me.updateBase();
+		me.updateSlowBase();
 	},
 };
 
@@ -451,6 +473,9 @@ var canvasPfd2 = {
 		return m;
 	},
 	update: func() {
+		me.updateBase();
+	},
+	updateSlow: func() {
 		# Provide the value to here and the base
 		Value.Afs.fd2 = afs.Output.fd2.getBoolValue();
 		
@@ -458,15 +483,12 @@ var canvasPfd2 = {
 		if (Value.Afs.fd2) {
 			me["FD_pitch"].show();
 			me["FD_roll"].show();
-			
-			me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
-			me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
 		}
 		
-		me.updateBase();
+		me.updateSlowBase();
 	},
 };
 
@@ -560,6 +582,7 @@ var init = func() {
 	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/Error.svg");
 	
 	pfdUpdate.start();
+	pfdSlowUpdate.start();
 	
 	if (pts.Systems.Acconfig.Options.pfdRate.getValue() > 1) {
 		rateApply();
@@ -568,10 +591,15 @@ var init = func() {
 
 var rateApply = func() {
 	pfdUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.05);
+	pfdSlowUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.15);
 }
 
 var pfdUpdate = maketimer(0.05, func() {
 	canvasBase.update();
+});
+
+var pfdSlowUpdate = maketimer(0.15, func() {
+	canvasBase.updateSlow();
 });
 
 var showPfd1 = func() {
