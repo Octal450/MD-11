@@ -927,13 +927,14 @@ var ITAF = {
 		}
 	},
 	updateThrustMode: func() {
-		if (Output.athrTemp and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
+		Output.vertTemp = Output.vert.getValue();
+		if (Output.athr.getBoolValue() and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
 			Internal.retardLock = 1;
 		} else if (Internal.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
 			if (Output.vertTemp == 4) {
-				if (Internal.altTemp >= Position.indicatedAltitudeFtTemp) {
+				if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
 					Output.thrMode.setValue(2);
 					Text.thr.setValue("PITCH");
 					if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") { # Set before mode change to prevent it from overwriting by mistake
