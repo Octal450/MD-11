@@ -85,6 +85,7 @@ var Instrumentation = {
 		indicatedSpeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt"),
 	},
 	Altimeter: {
+		indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft"),
 		oldQnh: props.globals.getNode("/instrumentation/altimeter/oldqnh"),
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
 		std: props.globals.getNode("/instrumentation/altimeter/std"),
@@ -126,6 +127,8 @@ var Instrumentation = {
 		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[3]/signal-quality-norm")],
 	},
 	Pfd: {
+		altPreSel: props.globals.initNode("/instrumentation/pfd/alt-presel", 0, "DOUBLE"),
+		altSel: props.globals.initNode("/instrumentation/pfd/alt-sel", 0, "DOUBLE"),
 		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
 		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-presel", 0, "DOUBLE"),
 		iasSel: props.globals.initNode("/instrumentation/pfd/ias-sel", 0, "DOUBLE"),

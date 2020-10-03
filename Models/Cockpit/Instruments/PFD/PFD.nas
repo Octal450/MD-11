@@ -27,6 +27,24 @@ var Value = {
 		pitch: 0,
 		roll: 0,
 	},
+	Alt: {
+		indicated: 0,
+		Tape: {
+			five: 0,
+			fiveT: "000",
+			four: 0,
+			fourT: "000",
+			middleAltOffset: 0,
+			middleAltText: 0,
+			offset: 0,
+			one: 0,
+			oneT: "000",
+			three: 0,
+			threeT: "000",
+			two: 0,
+			twoT: "000",
+		},
+	},
 	Asi: {
 		flapGearMax: 0,
 		ias: 0,
@@ -50,11 +68,6 @@ var Value = {
 		minimums: 0,
 	},
 	Nav: {
-		Freq: {
-			selected: [0, 0],
-			selectedInteger: [0, 0],
-			selectedDecimal: [0, 0],
-		},
 		gsInRange: 0,
 		inRange: 0,
 		signalQuality: 0,
@@ -368,8 +381,95 @@ var canvasBase = {
 		me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
 		me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		
-		# Altitude
-		# todo
+		# ALT
+		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
+		Value.Alt.Tape.offset = Value.Alt.indicated / 500 - int(Value.Alt.indicated / 500);
+		Value.Alt.Tape.middleAltText = roundAboutAlt(Value.Alt.indicated / 100) * 100;
+		Value.Alt.Tape.middleAltOffset = nil;
+		
+		if (Value.Alt.Tape.offset > 0.5) {
+			Value.Alt.Tape.middleAltOffset = -(Value.Alt.Tape.offset - 1) * 254.508;
+		} else {
+			Value.Alt.Tape.middleAltOffset = -Value.Alt.Tape.offset * 254.508;
+		}
+		
+		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleAltOffset);
+		me["ALT_scale_num"].setTranslation(0, -Value.Alt.Tape.middleAltOffset);
+		me["ALT_scale"].update();
+		me["ALT_scale_num"].update();
+		
+		Value.Alt.Tape.five = int((Value.Alt.Tape.middleAltText + 1000) * 0.001);
+		me["ALT_five"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText + 1000) * 0.001) - Value.Alt.Tape.five))));
+		Value.Alt.Tape.fiveT = sprintf("%01d", abs(Value.Alt.Tape.five));
+		
+		if (Value.Alt.Tape.fiveT == 0) {
+			me["ALT_five_T"].setText(" ");
+		} else {
+			me["ALT_five_T"].setText(Value.Alt.Tape.fiveT);
+		}
+		
+		Value.Alt.Tape.four = int((Value.Alt.Tape.middleAltText + 500) * 0.001);
+		me["ALT_four"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText + 500) * 0.001) - Value.Alt.Tape.four))));
+		Value.Alt.Tape.fourT = sprintf("%01d", abs(Value.Alt.Tape.four));
+		
+		if (Value.Alt.Tape.fourT == 0) {
+			me["ALT_four_T"].setText(" ");
+		} else {
+			me["ALT_four_T"].setText(Value.Alt.Tape.fourT);
+		}
+		
+		Value.Alt.Tape.three = int(Value.Alt.Tape.middleAltText * 0.001);
+		me["ALT_three"].setText(sprintf("%03d", abs(1000 * ((Value.Alt.Tape.middleAltText  * 0.001) - Value.Alt.Tape.three))));
+		Value.Alt.Tape.threeT = sprintf("%01d", abs(Value.Alt.Tape.three));
+		
+		if (Value.Alt.Tape.threeT == 0) {
+			me["ALT_three_T"].setText(" ");
+		} else {
+			me["ALT_three_T"].setText(Value.Alt.Tape.threeT);
+		}
+		
+		Value.Alt.Tape.two = int((Value.Alt.Tape.middleAltText - 500) * 0.001);
+		me["ALT_two"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText - 500) * 0.001) - Value.Alt.Tape.two))));
+		Value.Alt.Tape.twoT = sprintf("%01d", abs(Value.Alt.Tape.two));
+		
+		if (Value.Alt.Tape.twoT == 0) {
+			me["ALT_two_T"].setText(" ");
+		} else {
+			me["ALT_two_T"].setText(Value.Alt.Tape.twoT);
+		}
+		
+		Value.Alt.Tape.one = int((Value.Alt.Tape.middleAltText - 1000) * 0.001);
+		me["ALT_one"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText - 1000) * 0.001) - Value.Alt.Tape.one))));
+		Value.Alt.Tape.oneT = sprintf("%01d", abs(Value.Alt.Tape.one));
+		
+		if (Value.Alt.Tape.oneT == 0) {
+			me["ALT_one_T"].setText(" ");
+		} else {
+			me["ALT_one_T"].setText(Value.Alt.Tape.oneT);
+		}
+		
+		if (Value.Alt.indicated < 0) {
+			altPolarity = "-";
+		} else {
+			altPolarity = "";
+		}
+		
+		me["ALT_thousands"].setText(sprintf("%s%d", altPolarity, math.abs(int(Value.Alt.indicated / 1000))));
+		me["ALT_hundreds"].setText(sprintf("%d", math.floor(num(right(sprintf("%03d", abs(Value.Alt.indicated)), 3)) / 100)));
+		altTens = num(right(sprintf("%02d", Value.Alt.indicated), 2));
+		me["ALT_tens"].setTranslation(0, altTens * 2.1325);
+		
+		if (afs.Internal.altAlert.getBoolValue()) {
+			me["ALT_bowtie"].setColor(0.9412,0.7255,0);
+		} else {
+			me["ALT_bowtie"].setColor(1,1,1);
+		}
+		
+		me["ALT_presel"].setTranslation(0, (pts.Instrumentation.Pfd.altPreSel.getValue() / 100) * -50.9016);
+		me["ALT_sel"].setTranslation(0, (pts.Instrumentation.Pfd.altSel.getValue() / 100) * -50.9016);
+		
+		Value.Ra.agl = pts.Position.gearAglFt.getValue();
+		me["ALT_agl"].setTranslation(0, (math.clamp(Value.Ra.agl, -700, 700) / 100) * 50.9016);
 		
 		# ILS
 		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[0].getBoolValue();
@@ -407,10 +507,8 @@ var canvasBase = {
 			me["GS_no"].hide();
 		}
 		
-		# RA and Minimums - Move to slow
-		Value.Ra.agl = pts.Position.gearAglFt.getValue();
+		# RA and Minimums
 		Value.Misc.minimums = pts.Controls.Switches.minimums.getValue();
-		
 		me["Minimums"].setText(sprintf("%4.0f", Value.Misc.minimums));
 		
 		if (Value.Ra.agl <= 2500) {

@@ -7,8 +7,8 @@
 	
 	<filter>
 		<name>Target alt presel diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>/it-autoflight/input/alt</input>
 		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
@@ -17,8 +17,8 @@
 	
 	<filter>
 		<name>Target alt sel diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>/it-autoflight/internal/alt</input>
 		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
@@ -27,8 +27,8 @@
 	
 	<filter>
 		<name>Track heading diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>/orientation/track-deg</input>
 		<reference>/instrumentation/pfd/heading-deg</reference>
@@ -37,8 +37,8 @@
 	
 	<filter>
 		<name>Heading scale</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<!--input>
 			<condition>
@@ -52,8 +52,8 @@
 	
 	<filter>
 		<name>Heading bug pre diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<condition>
@@ -99,8 +99,8 @@
 	
 	<filter>
 		<name>Heading bug diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<condition>
@@ -146,8 +146,8 @@
 	
 	<filter>
 		<name>Track bug diff</name>
-		<type>gain</type>
 		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<property>/instrumentation/pfd/track-deg</property>
@@ -297,6 +297,7 @@
 	
 	<filter>
 		<name>AFS Target Knots Presel PFD</name>
+		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -322,6 +323,7 @@
 	
 	<filter>
 		<name>AFS Target Knots Sel PFD</name>
+		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
