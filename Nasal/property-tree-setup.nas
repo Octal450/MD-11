@@ -5,17 +5,23 @@
 # Usage Example: pts.Class.SubClass.node.getValue()
 
 var Controls = {
+	Fctl: {
+		flapGearMax: props.globals.getNode("/controls/fctl/flap-gear-max"),
+		vmoMmo: props.globals.getNode("/controls/fctl/vmo-mmo"),
+	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
+		flapsCmd: props.globals.getNode("/controls/flight/flaps-cmd"),
 		flapsTemp: 0,
 		flapsInput: props.globals.getNode("/controls/flight/flaps-input"),
 		speedbrake: props.globals.getNode("/controls/flight/speedbrake"),
 		speedbrakeArm: props.globals.getNode("/controls/flight/speedbrake-arm"),
 		speedbrakeTemp: 0,
+		slatsCmd: props.globals.getNode("/controls/flight/slats-cmd"),
 		wingflexEnable: props.globals.getNode("/controls/flight/wingflex-enable"),
 	},
 	Gear: {
@@ -35,6 +41,8 @@ var Controls = {
 	},
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
+		apYokeButton1: props.globals.getNode("/controls/switches/ap-yoke-button1"),
+		apYokeButton2: props.globals.getNode("/controls/switches/ap-yoke-button2"),
 		minimums: props.globals.getNode("/controls/switches/minimums"),
 		noSmokingSign: props.globals.getNode("/controls/switches/no-smoking-sign"),
 		seatbeltSign: props.globals.getNode("/controls/switches/seatbelt-sign"),
@@ -53,8 +61,16 @@ var Engines = {
 
 var Fdm = {
 	JSBsim: {
+		Aero: {
+			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
+		},
 		Fadec: {
 			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
+		},
+		Fcc: {
+			Flap: {
+				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
+			},
 		},
 		Position: {
 			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
@@ -78,7 +94,10 @@ var Instrumentation = {
 		indicatedSpeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt"),
 	},
 	Altimeter: {
+		indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft"),
+		inhg: props.globals.getNode("/instrumentation/altimeter/inhg"),
 		oldQnh: props.globals.getNode("/instrumentation/altimeter/oldqnh"),
+		settingHpa: props.globals.getNode("/instrumentation/altimeter/setting-hpa"),
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
 		std: props.globals.getNode("/instrumentation/altimeter/std"),
 	},
@@ -109,6 +128,36 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 		},
 	},
+	Nav: {
+		headingNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[3]/heading-needle-deflection-norm")],
+		gsInRange: [props.globals.getNode("/instrumentation/nav[0]/gs-in-range"), props.globals.getNode("/instrumentation/nav[1]/gs-in-range"), props.globals.getNode("/instrumentation/nav[2]/gs-in-range"), props.globals.getNode("/instrumentation/nav[3]/gs-in-range")],
+		gsNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[3]/gs-needle-deflection-norm")],
+		hasGs: [props.globals.getNode("/instrumentation/nav[0]/has-gs"), props.globals.getNode("/instrumentation/nav[1]/has-gs"), props.globals.getNode("/instrumentation/nav[2]/has-gs"), props.globals.getNode("/instrumentation/nav[3]/has-gs")],
+		inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range"), props.globals.getNode("/instrumentation/nav[1]/in-range"), props.globals.getNode("/instrumentation/nav[2]/in-range"), props.globals.getNode("/instrumentation/nav[3]/in-range")],
+		navLoc: [props.globals.getNode("/instrumentation/nav[0]/nav-loc"), props.globals.getNode("/instrumentation/nav[1]/nav-loc"), props.globals.getNode("/instrumentation/nav[2]/nav-loc"), props.globals.getNode("/instrumentation/nav[3]/nav-loc")],
+		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[3]/signal-quality-norm")],
+	},
+	Pfd: {
+		altPreSel: props.globals.initNode("/instrumentation/pfd/alt-pre-sel", 0, "DOUBLE"),
+		altSel: props.globals.initNode("/instrumentation/pfd/alt-sel", 0, "DOUBLE"),
+		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
+		hdgPreSel: props.globals.initNode("/instrumentation/pfd/heading-pre-sel", 0, "DOUBLE"),
+		hdgSel: props.globals.initNode("/instrumentation/pfd/heading-sel", 0, "DOUBLE"),
+		hdgScale: props.globals.initNode("/instrumentation/pfd/heading-scale", 0, "DOUBLE"),
+		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-pre-sel", 0, "DOUBLE"),
+		iasSel: props.globals.initNode("/instrumentation/pfd/ias-sel", 0, "DOUBLE"),
+		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
+		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),
+		trackBug: props.globals.initNode("/instrumentation/pfd/track-bug", 0, "DOUBLE"),
+		vsNeedleDn: props.globals.initNode("/instrumentation/pfd/vs-needle-dn", 0, "DOUBLE"),
+		vsNeedleUp: props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0, "DOUBLE"),
+		vsDigit: props.globals.initNode("/instrumentation/pfd/vs-digit", 0, "DOUBLE"),
+	},
+	Transponder: {
+		Inputs: {
+			knobMode: props.globals.getNode("/instrumentation/transponder/inputs/knob-mode"),
+		},
+	},
 };
 
 var Options = {
@@ -118,6 +167,12 @@ var Options = {
 var Orientation = {
 	headingDeg: props.globals.getNode("/orientation/heading-deg"),
 	headingMagneticDeg: props.globals.getNode("/orientation/heading-magnetic-deg"),
+	pitchDeg: props.globals.getNode("/orientation/pitch-deg"),
+	rollDeg: props.globals.getNode("/orientation/roll-deg"),
+};
+
+var Position = {
+	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 };
 
 var Sim = {
@@ -166,8 +221,10 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
+		errorCode: props.globals.getNode("/systems/acconfig/error-code"),
 		Options: {
 			eadRate: props.globals.getNode("/systems/acconfig/options/ead-rate"),
+			pfdRate: props.globals.getNode("/systems/acconfig/options/pfd-rate"),
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
 		}
 	},

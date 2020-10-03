@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,19 +39,20 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1001"
+     inkscape:window-height="1017"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="411.26923"
-     inkscape:cy="607.01451"
-     inkscape:window-x="1591"
-     inkscape:window-y="1071"
+     inkscape:zoom="0.5"
+     inkscape:cx="354.27454"
+     inkscape:cy="698.60825"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2"
      showguides="false"
      inkscape:snap-global="false"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     inkscape:document-units="pt">
     <inkscape:grid
        type="xygrid"
        id="grid5153" />
@@ -69,7 +70,7 @@
        x="651.37177"
        y="207.16336"
        id="tspan4339"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:76px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">Severe Error</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:76px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">Critical Error</tspan></text>
   <image
      y="-2.2888184e-005"
      x="0"
@@ -105,37 +106,52 @@
      inkscape:label="#text4335"
      sodipodi:linespacing="125%"
      id="text4209"
-     y="407.30154"
+     y="395.88528"
      x="79.90657"
      style="font-style:normal;font-weight:normal;font-size:76px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
-       y="407.30154"
+       y="395.88528"
        x="79.90657"
        sodipodi:role="line"
-       id="tspan4213">A configuration error or internal error has </tspan><tspan
+       id="tspan4219">A critical internal error has occured.</tspan><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
-       y="467.30154"
+       y="455.88528"
        x="79.90657"
        sodipodi:role="line"
-       id="tspan4219">occurred. Please read the red dialog </tspan><tspan
+       id="tspan4156" /><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
-       y="527.30151"
+       y="515.88525"
        x="79.90657"
        sodipodi:role="line"
-       id="tspan3350">for more information.</tspan></text>
+       id="tspan3350">Please read the red error dialog for more</tspan><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
+       y="575.88525"
+       x="79.90657"
+       sodipodi:role="line"
+       id="tspan4162">information.</tspan><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
+       y="635.88525"
+       x="79.90657"
+       sodipodi:role="line"
+       id="tspan4146" /><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
+       y="695.88525"
+       x="79.90657"
+       sodipodi:role="line"
+       id="tspan4148">Simulation cannot continue.</tspan></text>
   <text
      transform="scale(0.999996,1.000004)"
      inkscape:label="#text4335"
      sodipodi:linespacing="125%"
-     id="ERRCODE"
-     y="637.62994"
-     x="78.12532"
+     id="Error_Code"
+     y="943.57428"
+     x="77.844131"
      style="font-style:normal;font-weight:normal;font-size:76px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1"
-       y="637.62994"
-       x="78.12532"
+       y="943.57428"
+       x="77.844131"
        sodipodi:role="line"
        id="tspan4244">0x000</tspan></text>
 </svg>

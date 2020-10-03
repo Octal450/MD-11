@@ -514,7 +514,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/iru[1]/switches/knob</property>
+				<property>controls/iru[2]/switches/knob</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -526,7 +526,7 @@
 		<type>rotate</type>
 		<object-name>IRAuxKnb</object-name>
 		<object-name>IRAuxKnb.light</object-name>
-		<property>controls/iru[1]/switches/knob</property>
+		<property>controls/iru[2]/switches/knob</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>45</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -548,7 +548,7 @@
 		<condition>
 			<or>
 				<not-equals>
-					<property>systems/iru[1]/aligned</property>
+					<property>systems/iru[2]/aligned</property>
 					<value>1</value>
 				</not-equals>
 				<equals>
@@ -571,7 +571,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/iru[2]/switches/knob</property>
+				<property>controls/iru[1]/switches/knob</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -583,7 +583,7 @@
 		<type>rotate</type>
 		<object-name>IR2Knb</object-name>
 		<object-name>IR2Knb.light</object-name>
-		<property>controls/iru[2]/switches/knob</property>
+		<property>controls/iru[1]/switches/knob</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>45</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -605,7 +605,7 @@
 		<condition>
 			<or>
 				<not-equals>
-					<property>systems/iru[2]/aligned</property>
+					<property>systems/iru[1]/aligned</property>
 					<value>1</value>
 				</not-equals>
 				<equals>

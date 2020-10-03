@@ -14,7 +14,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_pfd.showPFD2();</script>
+				<script>canvas_pfd.showPfd2();</script>
 			</binding>
 		</action>
 	</animation>
