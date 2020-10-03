@@ -989,6 +989,7 @@ var ITAF = {
 			me.updateApprArm(0);
 			Output.vert.setValue(2);
 			me.updateVertText("G/S");
+			me.updateThrustMode();
 		}
 	},
 	checkLnav: func(t) {
