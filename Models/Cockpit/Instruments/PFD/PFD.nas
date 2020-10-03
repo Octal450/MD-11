@@ -85,6 +85,9 @@ var Value = {
 		inRange: 0,
 		signalQuality: 0,
 	},
+	Qnh: {
+		inhg: 0,
+	},
 	Ra: {
 		agl: 0,
 	},
@@ -637,18 +640,18 @@ var canvasBase = {
 	},
 	updateSlowBase: func() {
 		# QNH
-		#qnhinhgx = qnhinhg.getValue();
-		#if (qnhstd.getValue() == 1) {
-		#	if (qnhinhgx == 0) {
-		#		me["QNH"].setText("1013");
-		#	} else if (qnhinhgx == 1) {
-		#		me["QNH"].setText("29.92");
-		#	}
-		#} else if (qnhinhgx == 0) {
-		#	me["QNH"].setText(sprintf("%4.0f", althp.getValue()));
-		#} else if (qnhinhgx == 1) {
-		#	me["QNH"].setText(sprintf("%2.2f", altin.getValue()));
-		#}
+		Value.Qnh.inhg = pts.Instrumentation.Altimeter.inhg.getBoolValue();
+		if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
+			if (Value.Qnh.inhg == 0) {
+				me["QNH"].setText("1013");
+			} else if (Value.Qnh.inhg == 1) {
+				me["QNH"].setText("29.92");
+			}
+		} else if (Value.Qnh.inhg == 0) {
+			me["QNH"].setText(sprintf("%4.0f", pts.Instrumentation.Altimeter.settingHpa.getValue()));
+		} else if (Value.Qnh.inhg == 1) {
+			me["QNH"].setText(sprintf("%2.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
+		}
 		
 		# Slats/Flaps
 		Value.Misc.flaps = pts.Controls.Flight.flapsCmd.getValue();

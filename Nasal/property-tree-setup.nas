@@ -93,7 +93,9 @@ var Instrumentation = {
 	},
 	Altimeter: {
 		indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft"),
+		inhg: props.globals.getNode("/instrumentation/altimeter/inhg"),
 		oldQnh: props.globals.getNode("/instrumentation/altimeter/oldqnh"),
+		settingHpa: props.globals.getNode("/instrumentation/altimeter/setting-hpa"),
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
 		std: props.globals.getNode("/instrumentation/altimeter/std"),
 	},
