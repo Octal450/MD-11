@@ -788,7 +788,7 @@ var canvasBase = {
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
 			me["FMA_AP"].setColor(0.3215,0.8078,1);
-			me["FMA_AP"].setText(sprintf("%s", afs.FMA.ap.getValue()));
+			me["FMA_AP"].setText(sprintf("%s", afs.Fma.ap.getValue()));
 			me["FMA_AP"].show();
 		} else if (Value.Afs.apSound and !Value.Afs.apWarn) {
 			me["FMA_AP"].hide();
@@ -897,10 +897,10 @@ var canvasPfd1 = {
 		Value.Afs.ats = afs.Output.athr.getBoolValue();
 		Value.Afs.fd1 = afs.Output.fd1.getBoolValue();
 		Value.Afs.land = afs.Text.land.getValue();
-		Value.Afs.pitch = afs.FMA.pitch.getValue();
-		Value.Afs.pitchArm = afs.FMA.pitchArm.getValue();
-		Value.Afs.roll = afs.FMA.roll.getValue();
-		Value.Afs.rollArm = afs.FMA.rollArm.getValue();
+		Value.Afs.pitch = afs.Fma.pitch.getValue();
+		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
+		Value.Afs.roll = afs.Fma.roll.getValue();
+		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.throttle = afs.Text.thr.getValue();
 		
 		# FMA
@@ -1010,10 +1010,10 @@ var canvasPfd2 = {
 		Value.Afs.ats = afs.Output.athr.getBoolValue();
 		Value.Afs.fd2 = afs.Output.fd2.getBoolValue();
 		Value.Afs.land = afs.Text.land.getValue();
-		Value.Afs.pitch = afs.FMA.pitch.getValue();
-		Value.Afs.pitchArm = afs.FMA.pitchArm.getValue();
-		Value.Afs.roll = afs.FMA.roll.getValue();
-		Value.Afs.rollArm = afs.FMA.rollArm.getValue();
+		Value.Afs.pitch = afs.Fma.pitch.getValue();
+		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
+		Value.Afs.roll = afs.Fma.roll.getValue();
+		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.throttle = afs.Text.thr.getValue();
 		
 		# FMA

@@ -272,7 +272,7 @@ var ITAF = {
 		Internal.mach.setValue(0.5);
 		me.updateActiveFMS(1);
 		Text.thr.setValue("PITCH");
-		updateFMA.arm();
+		updateFma.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
 		Internal.retardLock = 0;
@@ -507,11 +507,11 @@ var ITAF = {
 		}
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and Output.athr.getBoolValue() and Position.gearAglFtTemp <= 1500) { # Don't engage DUAL LAND below 100ft
+			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) { # Don't engage DUAL LAND below 100ft
 				Internal.landCondition = "DUAL";
 			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) { # Don't engage SINGLE LAND below 100ft
 				Internal.landCondition = "SINGLE";
-			} else {
+			} else if (Output.fd1Temp and Output.fd2Temp) {
 				Internal.landCondition = "APPR";
 			}
 		} else {
@@ -523,7 +523,7 @@ var ITAF = {
 		}
 		
 		# Trip system off
-		if (Output.ap1Temp == 1 or Output.ap2Temp == 1) { 
+		if (Output.ap1Temp or Output.ap2Temp) { 
 			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2) {
 				me.ap1Master(0);
 				me.ap2Master(0);
@@ -1215,27 +1215,27 @@ var ITAF = {
 	},
 	updateActiveFMS: func(n) {
 		Internal.activeFMS.setValue(n);
-		updateFMA.roll();
+		updateFma.roll();
 	},
 	updateLatText: func(t) {
 		Text.lat.setValue(t);
-		updateFMA.roll();
+		updateFma.roll();
 	},
 	updateVertText: func(t) {
 		Text.vert.setValue(t);
-		updateFMA.pitch();
+		updateFma.pitch();
 	},
 	updateLnavArm: func(n) {
 		Output.lnavArm.setBoolValue(n);
-		updateFMA.arm();
+		updateFma.arm();
 	},
 	updateLocArm: func(n) {
 		Output.locArm.setBoolValue(n);
-		updateFMA.arm();
+		updateFma.arm();
 	},
 	updateApprArm: func(n) {
 		Output.apprArm.setBoolValue(n);
-		updateFMA.arm();
+		updateFma.arm();
 	},
 };
 
@@ -1369,7 +1369,7 @@ setlistener("/it-autoflight/input/trk", func() {
 	Input.hdg.setValue(Internal.hdgCalc);
 	Internal.hdg.setValue(Internal.hdgCalc);
 	
-	updateFMA.roll();
+	updateFma.roll();
 	
 	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.

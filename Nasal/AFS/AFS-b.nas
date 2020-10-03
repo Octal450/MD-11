@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 AFS Interface
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
-var FMA = {
+var Fma = {
 	ap: props.globals.initNode("/instrumentation/pfd/fma/ap-mode", "", "STRING"),
 	pitch: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode", "T/O CLAMP", "STRING"),
 	pitchArm: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode-armed", "", "STRING"),
@@ -9,88 +9,87 @@ var FMA = {
 	rollArm: props.globals.initNode("/instrumentation/pfd/fma/roll-mode-armed", "", "STRING"),
 };
 
-var updateFMA = {
+var updateFma = {
 	ap1: 0,
 	ap2: 0,
-	clampFMA: 0,
 	pitchText: "T/O CLB",
 	rollText: "T/O",
 	roll: func() {
 		me.rollText = Text.lat.getValue();
 		if (me.rollText == "HDG") {
 			if (Input.trk.getBoolValue()) {
-				FMA.roll.setValue("TRACK");
+				Fma.roll.setValue("TRACK");
 			} else {
-				FMA.roll.setValue("HEADING");
+				Fma.roll.setValue("HEADING");
 			}
 		} else if (me.rollText == "LNAV") {
-			FMA.roll.setValue("NAV" ~ Internal.activeFMS.getValue());
+			Fma.roll.setValue("NAV" ~ Internal.activeFMS.getValue());
 		} else if (me.rollText == "LOC") {
-			FMA.roll.setValue("LOC");
+			Fma.roll.setValue("LOC");
 		} else if (me.rollText == "ALGN") {
-			FMA.roll.setValue("ALIGN");
+			Fma.roll.setValue("ALIGN");
 		} else if (me.rollText == "T/O") {
-			FMA.roll.setValue("TAKEOFF");
+			Fma.roll.setValue("TAKEOFF");
 		} else if (me.rollText == "RLOU") {
-			FMA.roll.setValue("ROLLOUT");
+			Fma.roll.setValue("ROLLOUT");
 		}
 	},
 	pitch: func() {
 		me.pitchText = Text.vert.getValue();
 		if (me.pitchText == "SPD DES") {
-			FMA.pitch.setValue("IDLE CLAMP");
+			Fma.pitch.setValue("IDLE CLAMP");
 		} else if (me.pitchText == "G/A CLB") {
-			FMA.pitch.setValue("GO AROUND");
+			Fma.pitch.setValue("GO AROUND");
 		} else if (me.pitchText == "ALT HLD") {
-			FMA.pitch.setValue("HOLD");
+			Fma.pitch.setValue("HOLD");
 		} else if (me.pitchText == "ALT CAP") {
-			FMA.pitch.setValue("HOLD");
+			Fma.pitch.setValue("HOLD");
 		} else if (me.pitchText == "V/S") {
-			FMA.pitch.setValue("V/S");
+			Fma.pitch.setValue("V/S");
 		} else if (me.pitchText == "G/S") {
-			FMA.pitch.setValue("G/S");
+			Fma.pitch.setValue("G/S");
 		} else if (me.pitchText == "FPA") {
-			FMA.pitch.setValue("FPA");
+			Fma.pitch.setValue("FPA");
 		} else if (me.pitchText == "FLARE") {
-			FMA.pitch.setValue("FLARE");
+			Fma.pitch.setValue("FLARE");
 		} else if (me.pitchText == "ROLLOUT") {
-			FMA.pitch.setValue("ROLLOUT");
+			Fma.pitch.setValue("ROLLOUT");
 		}
 	},
 	arm: func() {
 		if (Output.locArm.getBoolValue()) {
-			FMA.rollArm.setValue("LAND ARMED");
+			Fma.rollArm.setValue("LAND ARMED");
 		} else if (Output.lnavArm.getBoolValue()) {
-			FMA.rollArm.setValue("NAV ARMED");
+			Fma.rollArm.setValue("NAV ARMED");
 		} else {
-			FMA.rollArm.setValue("");
+			Fma.rollArm.setValue("");
 		}
 		if (Output.apprArm.getBoolValue() and !Output.locArm.getBoolValue()) {
-			FMA.pitchArm.setValue("LAND ARMED");
+			Fma.pitchArm.setValue("LAND ARMED");
 		} else {
-			FMA.pitchArm.setValue("");
+			Fma.pitchArm.setValue("");
 		}
 	},
 	ap: func() {
 		ap1 = Output.ap1.getBoolValue();
 		ap2 = Output.ap2.getBoolValue();
 		if (ap1 and ap2) {
-			FMA.ap.setValue("AP1");
+			Fma.ap.setValue("AP1");
 		} else if (ap1 and !ap2) {
-			FMA.ap.setValue("AP1");
+			Fma.ap.setValue("AP1");
 		} else if (ap2 and !ap1) {
-			FMA.ap.setValue("AP2");
+			Fma.ap.setValue("AP2");
 		} else if (!ap1 and !ap2) {
-			FMA.ap.setValue("");
+			Fma.ap.setValue("");
 		}
 	},
 };
 
 setlistener("/it-autoflight/output/ap1", func() {
-	updateFMA.ap();
+	updateFma.ap();
 }, 0, 0);
 setlistener("/it-autoflight/output/ap2", func() {
-	updateFMA.ap();
+	updateFma.ap();
 }, 0, 0);
 
 var Clamp = {
@@ -153,9 +152,9 @@ var Clamp = {
 		
 		if (me.pitchText == "SPD CLB" or me.pitchText == "T/O CLB") {
 			if (me.fmaOutput) {
-				FMA.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " CLAMP");
+				Fma.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " CLAMP");
 			} else {
-				FMA.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " THRUST");
+				Fma.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " THRUST");
 			}
 		}
 	},
