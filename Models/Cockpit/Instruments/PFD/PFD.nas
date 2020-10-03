@@ -153,7 +153,10 @@ var canvasBase = {
 			pfd1Error.page.hide();
 			pfd2Error.page.hide();
 			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
-				updatePfd1 = 1;
+				if (!updatePfd1) { # Update slow here once so that no flicker if timers don't perfectly align
+					updatePfd1 = 1;
+					pfd1.updateSlow();
+				}
 				pfd1.update();
 				pfd1.page.show();
 			} else {
@@ -161,7 +164,10 @@ var canvasBase = {
 				pfd1.page.hide();
 			}
 			if (systems.ELEC.Bus.ac3.getValue() >= 110) {
-				updatePfd2 = 1;
+				if (!updatePfd2) { # Update slow here once so that no flicker if timers don't perfectly align
+					updatePfd2 = 1;
+					pfd2.updateSlow();
+				}
 				pfd2.update();
 				pfd2.page.show();
 			} else {
