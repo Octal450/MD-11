@@ -686,6 +686,13 @@ var canvasBase = {
 			me["Flaps_num_boxes"].hide();
 			me["Flaps_num2"].hide();
 		}
+		
+		# TCAS Off
+		if (pts.Instrumentation.Transponder.Inputs.knobMode.getValue() == 5) {
+			me["TCAS_OFF"].hide();
+		} else {
+			me["TCAS_OFF"].show();
+		}
 	},
 };
 
@@ -710,6 +717,26 @@ var canvasPfd1 = {
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
+		}
+		
+		if (Value.Iru.aligned[0]) { # Updated in updateBase
+			me["AI_group"].show();
+			me["AI_group2"].show();
+			me["AI_group3"].show();
+			me["HDG_group"].show();
+			me["VSI_group"].show();
+			me["AI_error"].hide();
+			me["HDG_error"].hide();
+			me["VSI_error"].hide();
+		} else {
+			me["AI_error"].show();
+			me["HDG_error"].show();
+			me["VSI_error"].show();
+			me["AI_group"].hide();
+			me["AI_group2"].hide();
+			me["AI_group3"].hide();
+			me["HDG_group"].hide();
+			me["VSI_group"].hide();
 		}
 		
 		me.updateSlowBase();
@@ -737,6 +764,26 @@ var canvasPfd2 = {
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
+		}
+		
+		if (Value.Iru.aligned[1]) { # Updated in updateBase
+			me["AI_group"].show();
+			me["AI_group2"].show();
+			me["AI_group3"].show();
+			me["HDG_group"].show();
+			me["VSI_group"].show();
+			me["AI_error"].hide();
+			me["HDG_error"].hide();
+			me["VSI_error"].hide();
+		} else {
+			me["AI_error"].show();
+			me["HDG_error"].show();
+			me["VSI_error"].show();
+			me["AI_group"].hide();
+			me["AI_group2"].hide();
+			me["AI_group3"].hide();
+			me["HDG_group"].hide();
+			me["VSI_group"].hide();
 		}
 		
 		me.updateSlowBase();
@@ -842,14 +889,14 @@ var init = func() {
 
 var rateApply = func() {
 	pfdUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.05);
-	pfdSlowUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.15);
+	pfdSlowUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.1);
 }
 
 var pfdUpdate = maketimer(0.05, func() {
 	canvasBase.update();
 });
 
-var pfdSlowUpdate = maketimer(0.15, func() {
+var pfdSlowUpdate = maketimer(0.1, func() {
 	canvasBase.updateSlow();
 });
 
