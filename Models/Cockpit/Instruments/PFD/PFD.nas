@@ -55,9 +55,9 @@ var Value = {
 			selectedInteger: [0, 0],
 			selectedDecimal: [0, 0],
 		},
-		gsInRange: [0, 0],
-		inRange: [0, 0],
-		signalQuality: [0, 0],
+		gsInRange: 0,
+		inRange: 0,
+		signalQuality: 0,
 	},
 	Ra: {
 		agl: 0,
@@ -368,40 +368,44 @@ var canvasBase = {
 		me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
 		me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		
-		# ILS - rewrite
-		#LOC = nav0defl.getValue() or 0;
-		#GS = gs0defl.getValue() or 0;
-		#me["LOC_pointer"].setTranslation(LOC * 200, 0);
-		#me["GS_pointer"].setTranslation(0, GS * -204);
-		#
-		#if (nav0range.getValue() == 1) {
-		#	me["LOC_scale"].show();
-		#	if (navloc.getValue() == 1 and nav0signal.getValue() > 0.99) {
-		#		me["LOC_pointer"].show();
-		#		me["LOC_no"].hide();
-		#	} else {
-		#		me["LOC_pointer"].hide();
-		#		me["LOC_no"].show();
-		#	}
-		#} else {
-		#	me["LOC_scale"].hide();
-		#	me["LOC_pointer"].hide();
-		#	me["LOC_no"].hide();
-		#}
-		#if (gs0range.getValue() == 1) {
-		#	me["GS_scale"].show();
-		#	if (hasgs.getValue() == 1 and nav0signal.getValue() > 0.99) {
-		#		me["GS_pointer"].show();
-		#		me["GS_no"].hide();
-		#	} else {
-		#		me["GS_pointer"].hide();
-		#		me["GS_no"].show();
-		#	}
-		#} else {
-		#	me["GS_scale"].hide();
-		#	me["GS_pointer"].hide();
-		#	me["GS_no"].hide();
-		#}
+		# Altitude
+		# todo
+		
+		# ILS
+		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[0].getBoolValue();
+		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[0].getValue();
+		if (Value.Nav.inRange) {
+			me["LOC_scale"].show();
+			if (pts.Instrumentation.Nav.navLoc[0].getBoolValue() and Value.Nav.signalQuality > 0.99) {
+				me["LOC_pointer"].setTranslation(pts.Instrumentation.Nav.headingNeedleDeflectionNorm[0].getValue() * 200, 0);
+				me["LOC_pointer"].show();
+				me["LOC_no"].hide();
+			} else {
+				me["LOC_pointer"].hide();
+				me["LOC_no"].show();
+			}
+		} else {
+			me["LOC_scale"].hide();
+			me["LOC_pointer"].hide();
+			me["LOC_no"].hide();
+		}
+		
+		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[0].getBoolValue();
+		if (Value.Nav.inRange) {
+			me["GS_scale"].show();
+			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[0].getBoolValue() and Value.Nav.signalQuality > 0.99) {
+				me["GS_pointer"].setTranslation(0, pts.Instrumentation.Nav.gsNeedleDeflectionNorm[0].getValue() * -204);
+				me["GS_pointer"].show();
+				me["GS_no"].hide();
+			} else {
+				me["GS_pointer"].hide();
+				me["GS_no"].show();
+			}
+		} else {
+			me["GS_scale"].hide();
+			me["GS_pointer"].hide();
+			me["GS_no"].hide();
+		}
 		
 		# RA and Minimums - Move to slow
 		Value.Ra.agl = pts.Position.gearAglFt.getValue();
