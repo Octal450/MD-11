@@ -41,6 +41,8 @@ var Controls = {
 	},
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
+		apYokeButton1: props.globals.getNode("/controls/switches/ap-yoke-button1"),
+		apYokeButton2: props.globals.getNode("/controls/switches/ap-yoke-button2"),
 		minimums: props.globals.getNode("/controls/switches/minimums"),
 		noSmokingSign: props.globals.getNode("/controls/switches/no-smoking-sign"),
 		seatbeltSign: props.globals.getNode("/controls/switches/seatbelt-sign"),
