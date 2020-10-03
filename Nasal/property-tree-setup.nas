@@ -15,11 +15,13 @@ var Controls = {
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
+		flapsCmd: props.globals.getNode("/controls/flight/flaps-cmd"),
 		flapsTemp: 0,
 		flapsInput: props.globals.getNode("/controls/flight/flaps-input"),
 		speedbrake: props.globals.getNode("/controls/flight/speedbrake"),
 		speedbrakeArm: props.globals.getNode("/controls/flight/speedbrake-arm"),
 		speedbrakeTemp: 0,
+		slatsCmd: props.globals.getNode("/controls/flight/slats-cmd"),
 		wingflexEnable: props.globals.getNode("/controls/flight/wingflex-enable"),
 	},
 	Gear: {
@@ -62,6 +64,11 @@ var Fdm = {
 		},
 		Fadec: {
 			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
+		},
+		Fcc: {
+			Flap: {
+				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
+			},
 		},
 		Position: {
 			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
@@ -127,14 +134,20 @@ var Instrumentation = {
 		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[3]/signal-quality-norm")],
 	},
 	Pfd: {
-		altPreSel: props.globals.initNode("/instrumentation/pfd/alt-presel", 0, "DOUBLE"),
+		altPreSel: props.globals.initNode("/instrumentation/pfd/alt-pre-sel", 0, "DOUBLE"),
 		altSel: props.globals.initNode("/instrumentation/pfd/alt-sel", 0, "DOUBLE"),
 		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
-		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-presel", 0, "DOUBLE"),
+		hdgPreSel: props.globals.initNode("/instrumentation/pfd/heading-pre-sel", 0, "DOUBLE"),
+		hdgSel: props.globals.initNode("/instrumentation/pfd/heading-sel", 0, "DOUBLE"),
+		hdgScale: props.globals.initNode("/instrumentation/pfd/heading-scale", 0, "DOUBLE"),
+		iasPreSel: props.globals.initNode("/instrumentation/pfd/ias-pre-sel", 0, "DOUBLE"),
 		iasSel: props.globals.initNode("/instrumentation/pfd/ias-sel", 0, "DOUBLE"),
 		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
 		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),
-		trackHdgDiff: props.globals.initNode("/instrumentation/pfd/track-hdg-diff", 0.0, "DOUBLE"),
+		trackBug: props.globals.initNode("/instrumentation/pfd/track-bug", 0, "DOUBLE"),
+		vsNeedleDn: props.globals.initNode("/instrumentation/pfd/vs-needle-dn", 0, "DOUBLE"),
+		vsNeedleUp: props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0, "DOUBLE"),
+		vsDigit: props.globals.initNode("/instrumentation/pfd/vs-digit", 0, "DOUBLE"),
 	},
 };
 

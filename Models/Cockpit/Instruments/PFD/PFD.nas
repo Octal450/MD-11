@@ -60,11 +60,24 @@ var Value = {
 			vmoMmo: 0,
 		},
 	},
+	Hdg: {
+		indicated: 0,
+		preSel: 0,
+		sel: 0,
+		showHdg: 0,
+		Tape: {
+			preSel: 0,
+			sel: 0,
+		},
+		text: 0,
+		track: 0,
+	},
 	Iru: {
 		aligned: [0, 0, 0],
 		aligning: [0, 0, 0],
 	},
 	Misc: {
+		flaps: 0,
 		minimums: 0,
 	},
 	Nav: {
@@ -74,6 +87,10 @@ var Value = {
 	},
 	Ra: {
 		agl: 0,
+	},
+	Vs: {
+		digit: 0,
+		indicated: 0,
 	},
 };
 
@@ -323,6 +340,7 @@ var canvasBase = {
 		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
+		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug.getValue();
 		
 		AICenter = me["AI_center"].getCenter();
 		
@@ -342,7 +360,7 @@ var canvasBase = {
 		}
 		
 		if (afs.Output.vsFpa.getBoolValue()) {
-			me.AI_fpv_trans.setTranslation(math.clamp(pts.Instrumentation.Pfd.trackHdgDiff.getValue(), -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
+			me.AI_fpv_trans.setTranslation(math.clamp(Value.Hdg.track, -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
 			me.AI_fpv_rot.setRotation(-Value.Ai.roll * D2R, AICenter);
 			me["AI_fpv"].setRotation(Value.Ai.roll * D2R); # It shouldn't be rotated, only the axis should be
 			me["AI_fpv"].show();
@@ -471,6 +489,36 @@ var canvasBase = {
 		Value.Ra.agl = pts.Position.gearAglFt.getValue();
 		me["ALT_agl"].setTranslation(0, (math.clamp(Value.Ra.agl, -700, 700) / 100) * 50.9016);
 		
+		# VS
+		Value.Vs.digit = pts.Instrumentation.Pfd.vsDigit.getValue();
+		Value.Vs.indicated = afs.Internal.vs.getValue();
+		
+		if (Value.Vs.indicated > -50) {
+			me["VSI_needle_up"].setTranslation(0, pts.Instrumentation.Pfd.vsNeedleUp.getValue());
+			me["VSI_needle_up"].show();
+		} else {
+			me["VSI_needle_up"].hide();
+		}
+		if (Value.Vs.indicated < 50) {
+			me["VSI_needle_dn"].setTranslation(0, pts.Instrumentation.Pfd.vsNeedleDn.getValue());
+			me["VSI_needle_dn"].show();
+		} else {
+			me["VSI_needle_dn"].hide();
+		}
+		
+		if (Value.Vs.indicated > 10 and Value.Vs.digit > 0) {
+			me["VSI_up"].setText(sprintf("%1.1f", Value.Vs.digit));
+			me["VSI_up"].show();
+		} else {
+			me["VSI_up"].hide();
+		}
+		if (Value.Vs.indicated < -10 and Value.Vs.digit > 0) {
+			me["VSI_down"].setText(sprintf("%1.1f", Value.Vs.digit));
+			me["VSI_down"].show();
+		} else {
+			me["VSI_down"].hide();
+		}
+		
 		# ILS
 		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[0].getBoolValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[0].getValue();
@@ -534,9 +582,101 @@ var canvasBase = {
 			me["RA"].hide();
 			me["RA_box"].hide();
 		}
+		
+		# HDG
+		Value.Hdg.indicated = pts.Instrumentation.Pfd.hdgScale.getValue();
+		Value.Hdg.indicatedFixed = Value.Hdg.indicated + 0.5;
+		
+		if (Value.Hdg.indicatedFixed > 359) {
+			Value.Hdg.indicatedFixed = Value.Hdg.indicatedFixed - 360;
+		}
+		if (Value.Hdg.indicatedFixed < 0) {
+			Value.Hdg.indicatedFixed = Value.Hdg.indicatedFixed + 360;
+		}
+		Value.Hdg.text = sprintf("%03d", Value.Hdg.indicatedFixed);
+		
+		if (Value.Hdg.text == "360") {
+			Value.Hdg.text == "000";
+		}
+		me["HDG"].setText(Value.Hdg.text);
+		me["HDG_dial"].setRotation(Value.Hdg.indicated * -D2R);
+		
+		Value.Hdg.preSel = pts.Instrumentation.Pfd.hdgPreSel.getValue();
+		Value.Hdg.sel = pts.Instrumentation.Pfd.hdgSel.getValue();
+		Value.Hdg.showHdg = afs.Output.showHdg.getBoolValue();
+		
+		if (Value.Hdg.preSel <= 35 and Value.Hdg.preSel >= -35) {
+			Value.Hdg.Tape.preSel = Value.Hdg.preSel;
+		} else if (Value.Hdg.preSel > 35) {
+			Value.Hdg.Tape.preSel = 35;
+		} else if (Value.Hdg.preSel < -35) {
+			Value.Hdg.Tape.preSel = -35;
+		}
+		if (Value.Hdg.sel <= 35 and Value.Hdg.sel >= -35) {
+			Value.Hdg.Tape.sel = Value.Hdg.sel;
+		} else if (Value.Hdg.sel > 35) {
+			Value.Hdg.Tape.sel = 35;
+		} else if (Value.Hdg.sel < -35) {
+			Value.Hdg.Tape.sel = -35;
+		}
+		
+		if (Value.Hdg.showHdg) {
+			me["HDG_presel"].setRotation(Value.Hdg.Tape.preSel * D2R);
+			me["HDG_presel"].show();
+		} else {
+			me["HDG_presel"].hide();
+		}
+		if (Value.Hdg.showHdg and afs.Output.lat.getValue() == 0) {
+			me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
+			me["HDG_sel"].show();
+		} else {
+			me["HDG_sel"].hide();
+		}
+		
+		me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
 	},
 	updateSlowBase: func() {
+		# QNH
+		#qnhinhgx = qnhinhg.getValue();
+		#if (qnhstd.getValue() == 1) {
+		#	if (qnhinhgx == 0) {
+		#		me["QNH"].setText("1013");
+		#	} else if (qnhinhgx == 1) {
+		#		me["QNH"].setText("29.92");
+		#	}
+		#} else if (qnhinhgx == 0) {
+		#	me["QNH"].setText(sprintf("%4.0f", althp.getValue()));
+		#} else if (qnhinhgx == 1) {
+		#	me["QNH"].setText(sprintf("%2.2f", altin.getValue()));
+		#}
 		
+		# Slats/Flaps
+		Value.Misc.flaps = pts.Controls.Flight.flapsCmd.getValue();
+		if (pts.Controls.Flight.slatsCmd.getValue() > 0.1 and Value.Misc.flaps <= 0.1) {
+			me["Slats"].show();
+		} else {
+			me["Slats"].hide();
+		}
+		
+		if (Value.Misc.flaps > 0.1) {
+			me["Flaps"].show();
+			me["Flaps_num"].setText(sprintf("%2.0f", Value.Misc.flaps));
+			me["Flaps_num"].show();
+		} else {
+			me["Flaps"].hide();
+			me["Flaps_num"].hide();
+		}
+		
+		if (Value.Misc.flaps > 0.1 and Value.Misc.flaps - 0.1 > pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
+			me["Flaps_num"].setColor(0.9647,0.8196,0.0784);
+			me["Flaps_num_boxes"].show();
+			me["Flaps_num2"].setText(sprintf("%2.0f", Value.Misc.flaps));
+			me["Flaps_num2"].show();
+		} else {
+			me["Flaps_num"].setColor(1,1,1);
+			me["Flaps_num_boxes"].hide();
+			me["Flaps_num2"].hide();
+		}
 	},
 };
 
