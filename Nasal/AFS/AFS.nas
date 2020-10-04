@@ -741,7 +741,7 @@ var ITAF = {
 	},
 	fd1Master: func(s) {
 		if (s == 1) {
-			if (!Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) {
+			if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) {
 				me.setLatMode(3); # HDG HOLD
 					if (abs(Internal.vs.getValue()) > 300) {
 					me.setVertMode(1); # V/S
@@ -760,7 +760,7 @@ var ITAF = {
 	},
 	fd2Master: func(s) {
 		if (s == 1) {
-			if (!Output.fd1.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) {
+			if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) {
 				me.setLatMode(3); # HDG HOLD
 					if (abs(Internal.vs.getValue()) > 300) {
 					me.setVertMode(1); # V/S
