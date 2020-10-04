@@ -262,7 +262,7 @@ var ITAF = {
 		Output.lnavArm.setBoolValue(0);
 		Output.locArm.setBoolValue(0);
 		Output.apprArm.setBoolValue(0);
-		Output.thrMode.setValue(0);
+		Output.thrMode.setValue(2);
 		Output.lat.setValue(5);
 		Output.vert.setValue(7);
 		Internal.minVs.setValue(-500);
