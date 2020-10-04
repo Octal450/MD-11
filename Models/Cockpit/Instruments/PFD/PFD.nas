@@ -716,7 +716,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.pitch == "ROLLOUT") {
-			me["FMA_Pitch_Land"].setTranslation(-20, 0);
+			me["FMA_Pitch_Land"].setTranslation(-10, 0);
 		} else {
 			me["FMA_Pitch_Land"].setTranslation(0, 0);
 		}
