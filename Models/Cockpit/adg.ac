@@ -1,0 +1,25 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.200 0.200 0.200  shi 64 trans 0.000
+OBJECT world
+name "Blender_exporter_v3.3__adg.ac"
+kids 1
+OBJECT poly
+name "ADGHandleLabel"
+data 19
+ADGHandleLabel.mesh
+crease 45.0
+texture "pedestal.png"
+numvert 4
+-26.5817 6.49746 -0.07168
+-26.5817 6.49746 -0.11724
+-26.5911 6.49746 -0.11724
+-26.5911 6.49746 -0.07168
+numsurf 1
+SURF 0X10
+mat 0
+refs 4
+0 0.958008 0.418945
+1 0.958008 0.579102
+2 0.922852 0.579102
+3 0.922852 0.418945
+kids 0
