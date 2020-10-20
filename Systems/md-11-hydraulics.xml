@@ -717,8 +717,9 @@
 		
 		<switch name="/systems/hydraulics/aux-pump-1-psi">
 			<default value="0"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/controls/hydraulics/switches/aux-pump-1 ne 1
+				/systems/failures/hydraulics/aux-pump-1 eq 1
 			</test>
 			<test logic="AND" value="0"> <!-- ADG can't do both ELEC and HYD -->
 				/controls/electrical/switches/adg-elec eq 1
@@ -735,8 +736,9 @@
 		
 		<switch name="/systems/hydraulics/aux-pump-2-psi">
 			<default value="0"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/controls/hydraulics/switches/aux-pump-2 ne 1
+				/systems/failures/hydraulics/aux-pump-2 eq 1
 			</test>
 			<test logic="OR" value="2950"> <!-- I know it is powered by an AC bus, but I don't know which one, so guesses -->
 				/systems/electrical/bus/ac-1 ge 110
