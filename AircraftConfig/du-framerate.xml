@@ -13,7 +13,7 @@
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>DU Quality</label>
+			<label>DU Framerate</label>
 		</text>
 		<button>
 			<halign>right</halign>
@@ -28,7 +28,7 @@
 				canvas_pfd.rateApply();
 				#canvas_nd.rateApply();
 				canvas_ead.rateApply();
-				#canvas_sd.rateApply();
+				canvas_sd.rateApply();
 				</script>
 			</binding>
 			<binding>
@@ -44,7 +44,12 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Here you can adjust the quality of the Display Units. 1 = Best Quality, 5 = Best Performance</label>
+			<label>Here you can adjust the frame rate of the Display Units.</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>It is recommended to keep all displays at the same FPS.</label>
 		</text>
 		
 		<group>
@@ -61,10 +66,10 @@
 				<row>0</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/pfd-rate</property>
-				<min>1</min>
-				<max>5</max>
-				<step>0.5</step>
+				<property>/systems/acconfig/options/pfd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>
@@ -77,7 +82,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/pfd-rate</property>
+				<property>/systems/acconfig/options/pfd-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -95,10 +100,10 @@
 				<row>1</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/nd-rate</property>
-				<min>1</min>
-				<max>5</max>
-				<step>0.5</step>
+				<property>/systems/acconfig/options/nd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>
@@ -111,7 +116,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/nd-rate</property>
+				<property>/systems/acconfig/options/nd-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -126,10 +131,10 @@
 				<row>2</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/ead-rate</property>
-				<min>1</min>
-				<max>5</max>
-				<step>0.5</step>
+				<property>/systems/acconfig/options/ead-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>
@@ -142,7 +147,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/ead-rate</property>
+				<property>/systems/acconfig/options/ead-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -154,16 +159,13 @@
 			</text>
 			
 			<slider>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
 				<row>3</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/sd-rate</property>
-				<min>1</min>
-				<max>5</max>
-				<step>0.5</step>
+				<property>/systems/acconfig/options/sd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>
@@ -176,7 +178,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/sd-rate</property>
+				<property>/systems/acconfig/options/sd-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -200,7 +202,7 @@
 				canvas_pfd.rateApply();
 				#canvas_nd.rateApply();
 				canvas_ead.rateApply();
-				#canvas_sd.rateApply();
+				canvas_sd.rateApply();
 				</script>
 			</binding>
 		</button>
@@ -215,7 +217,7 @@
 				canvas_pfd.rateApply();
 				#canvas_nd.rateApply();
 				canvas_ead.rateApply();
-				#canvas_sd.rateApply();
+				canvas_sd.rateApply();
 				</script>
 			</binding>
 			<binding>

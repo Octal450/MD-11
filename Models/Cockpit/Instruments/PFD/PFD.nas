@@ -1194,21 +1194,21 @@ var init = func() {
 	pfdUpdate.start();
 	pfdSlowUpdate.start();
 	
-	if (pts.Systems.Acconfig.Options.pfdRate.getValue() > 1) {
+	if (pts.Systems.Acconfig.Options.pfdFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	pfdUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.05);
-	pfdSlowUpdate.restart(pts.Systems.Acconfig.Options.pfdRate.getValue() * 0.1);
+	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.pfdFps.getValue());
+	pfdSlowUpdate.restart((1 / pts.Systems.Acconfig.Options.pfdFps.getValue()) * 0.625); # 12.5 / 20 = 0.625
 }
 
-var pfdUpdate = maketimer(0.05, func() {
+var pfdUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 
-var pfdSlowUpdate = maketimer(0.1, func() {
+var pfdSlowUpdate = maketimer(0.08, func() { # 12.5FPS
 	canvasBase.updateSlow();
 });
 

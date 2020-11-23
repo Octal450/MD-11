@@ -35,9 +35,6 @@ setprop("/systems/acconfig/error-code", "0x000");
 setprop("/systems/acconfig/error-reason", "XX");
 setprop("/systems/acconfig/options/autopush/show-route", 1);
 setprop("/systems/acconfig/options/autopush/show-wingtip", 1);
-setprop("/systems/acconfig/options/deflected-aileron-equipped", 1);
-setprop("/systems/acconfig/options/irs-skip", 0);
-setprop("/systems/acconfig/options/keyboard-mode", 0);
 setprop("/systems/acconfig/options/no-rendering-warn", 0);
 setprop("/systems/acconfig/options/revision", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
@@ -53,7 +50,7 @@ var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraf
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/MD-11/AircraftConfig/update.xml");
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/MD-11/AircraftConfig/updated.xml");
 var error = gui.Dialog.new("sim/gui/dialogs/acconfig/error/dialog", "Aircraft/MD-11/AircraftConfig/error.xml");
-var du_quality = gui.Dialog.new("sim/gui/dialogs/acconfig/du-quality/dialog", "Aircraft/MD-11/AircraftConfig/du-quality.xml");
+var du_framerate = gui.Dialog.new("sim/gui/dialogs/acconfig/du-framerate/dialog", "Aircraft/MD-11/AircraftConfig/du-framerate.xml");
 var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/MD-11/AircraftConfig/rendering.xml");
 spinning.start();
 init_dlg.open();
@@ -162,7 +159,6 @@ var readSettings = func() {
 	setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
 	setprop("/controls/hydraulics/deflected-aileron-equipped", getprop("/systems/acconfig/options/deflected-aileron-equipped"));
 	setprop("/systems/iru-common/align-instantly", getprop("/systems/acconfig/options/irs-skip"));
-	setprop("/options/system/keyboard-mode", getprop("/systems/acconfig/options/keyboard-mode"));
 }
 
 var writeSettings = func() {
@@ -170,7 +166,6 @@ var writeSettings = func() {
 	setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
 	setprop("/systems/acconfig/options/deflected-aileron-equipped", getprop("/controls/hydraulics/deflected-aileron-equipped"));
 	setprop("/systems/acconfig/options/irs-skip", getprop("/systems/iru-common/align-instantly"));
-	setprop("/systems/acconfig/options/keyboard-mode", getprop("/options/system/keyboard-mode"));
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-config.xml", "/systems/acconfig/options");
 }
 

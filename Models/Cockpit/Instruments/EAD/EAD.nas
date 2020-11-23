@@ -681,16 +681,16 @@ var init = func() {
 	
 	canvasBase.setup();
 	eadUpdate.start();
-	if (pts.Systems.Acconfig.Options.eadRate.getValue() > 1) {
+	if (pts.Systems.Acconfig.Options.eadFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	eadUpdate.restart(pts.Systems.Acconfig.Options.eadRate.getValue() * 0.05);
+	eadUpdate.restart(1 / pts.Systems.Acconfig.Options.eadFps.getValue());
 }
 
-var eadUpdate = maketimer(0.05, func() {
+var eadUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 

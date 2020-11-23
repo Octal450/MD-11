@@ -80,11 +80,11 @@
 				</button>
 				<button>
 					<halign>center</halign>
-					<legend>DU Quality</legend>
+					<legend>DU Framerate</legend>
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>acconfig.du_quality.open();</script>
+						<script>acconfig.du_framerate.open();</script>
 					</binding>
 				</button>
 				<button>
