@@ -4,6 +4,9 @@
 var display = nil;
 var eng = nil;
 
+# Slow update enable
+var updateSd = 0;
+
 var Value = {
 	
 };
@@ -51,16 +54,29 @@ var canvasBase = {
 	update: func() {
 		if (systems.ELEC.Bus.ac3.getValue() >= 110) {
 			if (pts.Instrumentation.Sd.selectedSynoptic.getValue() == "ENG") {
-				eng.page.show();
+				if (!updateSd) { # Update slow here once so that no flicker if timers don't perfectly align
+					updateSd = 1;
+					eng.updateSlow();
+				}
 				eng.update();
+				eng.page.show();
 			} else {
 				eng.page.hide();
 			}
 		} else {
+			updateSd = 0;
 			eng.page.hide();
 		}
 	},
+	updateSlow: func() { # Turned on of off by the fast update so that syncing is correct
+		if (updateSd) {
+			eng.updateSlow();
+		}
+	},
 	updateBase: func() {
+		
+	},
+	updateSlowBase: func() {
 		
 	},
 };
@@ -85,9 +101,10 @@ var canvasEng = {
 		}
 	},
 	update: func() {
-		
-		
 		me.updateBase();
+	},
+	updateSlow: func() {
+		me.updateSlowBase();
 	},
 };
 
@@ -107,17 +124,24 @@ var init = func() {
 	
 	canvasBase.setup();
 	sdUpdate.start();
+	sdSlowUpdate.start();
+	
 	if (pts.Systems.Acconfig.Options.sdFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	#sdUpdate.restart(1 / pts.Systems.Acconfig.Options.sdFps.getValue()); # 20FPS
+	sdUpdate.restart(1 / pts.Systems.Acconfig.Options.sdFps.getValue()); # 20FPS
+	sdSlowUpdate.restart((1 / pts.Systems.Acconfig.Options.sdFps.getValue()) * 0.625); # 12.5 / 20 = 0.625
 }
 
-var sdUpdate = maketimer(0.05, func() {
+var sdUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
+});
+
+var sdSlowUpdate = maketimer(0.08, func() { # 12.5FPS
+	canvasBase.updateSlow();
 });
 
 var showSd = func() {

@@ -71,13 +71,13 @@ var canvasBase = {
 	update: func() {
 		if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
 			if (pts.Options.eng.getValue() == "GE") {
-				ge.page.show();
 				pw.page.hide();
 				ge.update();
+				ge.page.show();
 			} else {
 				ge.page.hide();
-				pw.page.show();
 				pw.update();
+				pw.page.show();
 			}
 		} else {
 			ge.page.hide();
@@ -681,6 +681,7 @@ var init = func() {
 	
 	canvasBase.setup();
 	eadUpdate.start();
+	
 	if (pts.Systems.Acconfig.Options.eadFps.getValue() != 20) {
 		rateApply();
 	}
