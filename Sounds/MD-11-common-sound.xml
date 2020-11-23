@@ -175,7 +175,7 @@
 		<misc>
 			<name>md11 avionics</name>
 			<mode>looped</mode>
-			<path>FL2070/11_efis.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_efis.wav</path>
 			<condition>
 				<or>
 					<greater-than-equals>
@@ -203,7 +203,7 @@
 		<misc>
 			<name>md11 gear 0</name>
 			<mode>in-transit</mode>
-			<path>FL2070/11_gear.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_gear.wav</path>
 			<property>gear/gear[0]/position-norm</property>
 			
 			<volume>
@@ -216,7 +216,7 @@
 		<misc>
 			<name>md11 gear 1</name>
 			<mode>in-transit</mode>
-			<path>FL2070/11_gear.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_gear.wav</path>
 			<property>gear/gear[1]/position-norm</property>
 			
 			<volume>
@@ -229,7 +229,7 @@
 		<misc>
 			<name>md11 gear 2</name>
 			<mode>in-transit</mode>
-			<path>FL2070/11_gear.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_gear.wav</path>
 			<property>gear/gear[2]/position-norm</property>
 			
 			<volume>
@@ -242,7 +242,7 @@
 		<misc>
 			<name>md11 gear 3</name>
 			<mode>in-transit</mode>
-			<path>FL2070/11_gear.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_gear.wav</path>
 			<property>gear/gear[3]/position-norm</property>
 			
 			<volume>
@@ -255,7 +255,7 @@
 		<misc>
 			<name>md11 roll c 0</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[0]/wow</property>
 			
 			<volume>
@@ -267,7 +267,7 @@
 		<misc>
 			<name>md11 roll l 1</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
@@ -279,7 +279,7 @@
 		<misc>
 			<name>md11 roll r 2</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
@@ -291,7 +291,7 @@
 		<misc>
 			<name>md11 roll c 3</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[3]/wow</property>
 			
 			<volume>
@@ -303,7 +303,7 @@
 		<misc>
 			<name>md11 roll l 1</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
@@ -315,7 +315,7 @@
 		<misc>
 			<name>md11 roll r 2</name>
 			<mode>looped</mode>
-			<path>FL2070/11_roll.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_roll.wav</path>
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
@@ -327,29 +327,52 @@
 		<mdapu>
 			<name>apu</name>
 			<mode>looped</mode>
-			<path>FL2070/11_apu.wav</path>
-			<property>engines/apu/n1</property>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_apu.wav</path>
+			<property>engines/engine[3]/n2-actual</property>
 			<condition>
-			<greater-than>
-				<property>engines/apu/n1</property>
-				<value>1</value>
-			</greater-than>
+				<and>
+					<greater-than>
+						<property>engines/engine[3]/n2-actual</property>
+						<value>1</value>
+					</greater-than>
+					<property>sim/current-view/internal</property>
+				</and>
 			</condition>
 			
 			<volume>
-				<property>sim/current-view/internal</property>
-				<factor>2</factor>
-				<offset>0.1</offset>
-			</volume>
-			
-			<volume>
-				<property>engines/apu/n1</property>
-				<factor>0.01</factor>
+				<property>engines/engine[3]/n2-actual</property>
+				<factor>0.0005</factor>
 			</volume>
 			<pitch>
-				<property>engines/apu/n1</property>
-				<factor>0.01</factor>
-				<offset>0</offset>
+				<property>engines/engine[3]/n2-actual</property>
+				<factor>0.008</factor>
+			</pitch>
+		</mdapu>
+		
+		<mdapu>
+			<name>xapu</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/xapu.wav</path>
+			<property>engines/engine[3]/n2-actual</property>
+			<condition>
+				<and>
+					<greater-than>
+						<property>engines/engine[3]/n2-actual</property>
+						<value>1</value>
+					</greater-than>
+					<not>
+						<property>sim/current-view/internal</property>
+					</not>
+				</and>
+			</condition>
+			
+			<volume>
+				<property>engines/engine[3]/n2-actual</property>
+				<factor>0.005</factor>
+			</volume>
+			<pitch>
+				<property>engines/engine[3]/n2-actual</property>
+				<factor>0.008</factor>
 			</pitch>
 		</mdapu>
 		
@@ -358,7 +381,7 @@
 		<touch>
 			<name>md11 touch n</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_INf.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_INf.wav</path>
 			<property>gear/gear[0]/wow</property>
 			
 			<volume>
@@ -370,7 +393,7 @@
 		<touch>
 			<name>md11 touch l</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_IN.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_IN.wav</path>
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
@@ -382,7 +405,7 @@
 		<touch>
 			<name>md11 touch r</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_IN.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_IN.wav</path>
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
@@ -394,7 +417,7 @@
 		<touch>
 			<name>md11 xtouch n</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_OUTf.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_OUTf.wav</path>
 			<property>gear/gear[0]/wow</property>
 			
 			<volume>
@@ -406,7 +429,7 @@
 		<touch>
 			<name>md11 xtouch l</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_OUT.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_OUT.wav</path>
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
@@ -418,7 +441,7 @@
 		<touch>
 			<name>md11 xtouch r</name>
 			<mode>once</mode>
-			<path>FL2070/11_touch_OUT.wav</path>
+			<path>Aircraft/MD-11/Sounds/FL2070/11_touch_OUT.wav</path>
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
