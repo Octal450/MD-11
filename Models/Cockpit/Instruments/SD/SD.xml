@@ -6,7 +6,7 @@
 	
 	<path>res/SD.ac</path>
 	
-	<!--animation>
+	<animation>
 		<type>pick</type>
 		<object-name>sd.screen</object-name>
 		<action>
@@ -17,7 +17,7 @@
 				<script>canvas_sd.showSd();</script>
 			</binding>
 		</action>
-	</animation-->
+	</animation>
 	
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>

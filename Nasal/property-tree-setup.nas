@@ -153,6 +153,9 @@ var Instrumentation = {
 		vsNeedleUp: props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0, "DOUBLE"),
 		vsDigit: props.globals.initNode("/instrumentation/pfd/vs-digit", 0, "DOUBLE"),
 	},
+	Sd: {
+		selectedSynoptic: props.globals.getNode("/instrumentation/sd/selected-synoptic"),
+	},
 	Transponder: {
 		Inputs: {
 			knobMode: props.globals.getNode("/instrumentation/transponder/inputs/knob-mode"),

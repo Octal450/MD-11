@@ -49,8 +49,8 @@ var canvasBase = {
 		eng.setup();
 	},
 	update: func() {
-		if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
-			if () { # Condition?
+		if (systems.ELEC.Bus.ac3.getValue() >= 110) {
+			if (pts.Instrumentation.Sd.selectedSynoptic.getValue() == "ENG") {
 				eng.page.show();
 				eng.update();
 			} else {
@@ -73,10 +73,16 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return [];
+		return ["GEGroup", "PWGroup", "APU"];
 	},
 	setup: func() {
-		
+		if (pts.Options.eng.getValue() == "GE") {
+			me["GEGroup"].show();
+			me["PWGroup"].hide();
+		} else {
+			me["GEGroup"].hide();
+			me["PWGroup"].show();
+		}
 	},
 	update: func() {
 		
@@ -86,24 +92,24 @@ var canvasEng = {
 };
 
 var init = func() {
-	#display = canvas.new({
-	#	"name": "SD",
-	#	"size": [1024, 1024],
-	#	"view": [1024, 1024],
-	#	"mipmapping": 1
-	#});
-	#
-	#display.addPlacement({"node": "sd.screen"});
-	#
-	#var engGroup = display.createGroup();
-	#
-	#eng = canvasEng.new(engGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/SD/res/ENG.svg");
-	#
-	#canvasBase.setup();
-	#sdUpdate.start();
-	#if (pts.Systems.Acconfig.Options.sdFps.getValue() != 20) {
-	#	rateApply();
-	#}
+	display = canvas.new({
+		"name": "SD",
+		"size": [1024, 1024],
+		"view": [1024, 1024],
+		"mipmapping": 1
+	});
+	
+	display.addPlacement({"node": "sd.screen"});
+	
+	var engGroup = display.createGroup();
+	
+	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/SD/res/ENG.svg");
+	
+	canvasBase.setup();
+	sdUpdate.start();
+	if (pts.Systems.Acconfig.Options.sdFps.getValue() != 20) {
+		rateApply();
+	}
 }
 
 var rateApply = func() {

@@ -15,6 +15,7 @@ var variousReset = func() {
 	pts.Controls.Switches.minimums.setValue(250);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
+	pts.Instrumentation.Sd.selectedSynoptic.setValue("ENG");
 }
 
 var apPanel = {
