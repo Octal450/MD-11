@@ -8,7 +8,17 @@ var eng = nil;
 var updateSd = 0;
 
 var Value = {
-	
+	Apu: {
+		n2: 0,
+	},
+	Fctl: {
+		stab: 0,
+		stabText: 0,
+	},
+	Misc: {
+		fuel: 0,
+		gw: 0,
+	},
 };
 
 var canvasBase = {
@@ -70,7 +80,9 @@ var canvasBase = {
 	},
 	updateSlow: func() { # Turned on of off by the fast update so that syncing is correct
 		if (updateSd) {
-			eng.updateSlow();
+			if (pts.Instrumentation.Sd.selectedSynoptic.getValue() == "ENG") {
+				eng.updateSlow();
+			}
 		}
 	},
 	updateBase: func() {
@@ -89,7 +101,7 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["GEGroup", "PWGroup", "APU"];
+		return ["GEGroup", "PWGroup", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "GE") {
@@ -99,11 +111,48 @@ var canvasEng = {
 			me["GEGroup"].hide();
 			me["PWGroup"].show();
 		}
+		
+		# Unsimulated stuff, fix later
+		me["APU-QTY"].setText("7.5");
+		me["StabBox"].hide();
 	},
 	update: func() {
 		me.updateBase();
 	},
 	updateSlow: func() {
+		# GW and Fuel
+		Value.Misc.gw = math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue(), 100);
+		me["GW-thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
+		me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
+		
+		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
+		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
+		me["Fuel"].setText(right(sprintf("%d", Value.Misc.fuel), 3));
+		
+		# APU
+		Value.Apu.n2 = pts.Engines.Engine.n2Actual[3].getValue();
+		if (Value.Apu.n2 >= 1) {
+			me["APU-EGT"].setText(sprintf("%d", math.round(pts.Engines.Engine.egtActual[3].getValue())));
+			me["APU-N1"].setText(sprintf("%d", math.round(pts.Engines.Engine.n1Actual[3].getValue())));
+			me["APU-N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
+			me["APU"].show();
+		} else {
+			me["APU"].hide();
+		}
+		
+		# Stab
+		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
+		
+		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
+		me["Stab-needle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
+		
+		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
+			me["StabUnit"].setText("AND");
+		} else {
+			me["StabUnit"].setText("ANU");
+		}
+		
 		me.updateSlowBase();
 	},
 };
@@ -133,14 +182,14 @@ var init = func() {
 
 var rateApply = func() {
 	sdUpdate.restart(1 / pts.Systems.Acconfig.Options.sdFps.getValue()); # 20FPS
-	sdSlowUpdate.restart((1 / pts.Systems.Acconfig.Options.sdFps.getValue()) * 0.625); # 12.5 / 20 = 0.625
+	sdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.sdFps.getValue() * 0.5)); # 10 / 20 = 0.5
 }
 
 var sdUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 
-var sdSlowUpdate = maketimer(0.08, func() { # 12.5FPS
+var sdSlowUpdate = maketimer(0.1, func() { # 10FPS
 	canvasBase.updateSlow();
 });
 

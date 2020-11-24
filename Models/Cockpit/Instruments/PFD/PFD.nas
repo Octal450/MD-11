@@ -1201,14 +1201,14 @@ var init = func() {
 
 var rateApply = func() {
 	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.pfdFps.getValue());
-	pfdSlowUpdate.restart((1 / pts.Systems.Acconfig.Options.pfdFps.getValue()) * 0.625); # 12.5 / 20 = 0.625
+	pfdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.pfdFps.getValue() * 0.5)); # 10 / 20 = 0.5
 }
 
 var pfdUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 
-var pfdSlowUpdate = maketimer(0.08, func() { # 12.5FPS
+var pfdSlowUpdate = maketimer(0.1, func() { # 10FPS
 	canvasBase.updateSlow();
 });
 

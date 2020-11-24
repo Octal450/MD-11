@@ -630,7 +630,7 @@
 		
 		<switch name="hydraulics/stabilizer/rate">
 			<default value="0"/>
-			<test logic="OR" value="0.25">
+			<test logic="OR" value="0.3">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>

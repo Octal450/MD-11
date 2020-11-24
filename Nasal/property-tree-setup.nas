@@ -4,6 +4,12 @@
 # Anything that says Temp is set by another file to avoid multiple getValue calls
 # Usage Example: pts.Class.SubClass.node.getValue()
 
+var Consumables = {
+	Fuel: {
+		totalFuelLbs: props.globals.getNode("/consumables/fuel/total-fuel-lbs"),
+	},
+};
+
 var Controls = {
 	Fctl: {
 		flapGearMax: props.globals.getNode("/controls/fctl/flap-gear-max"),
@@ -50,12 +56,12 @@ var Controls = {
 };
 
 var Engines = {
-	Engine: {
-		egtActual: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual")],
+	Engine: { # 3 is APU
+		egtActual: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual"), props.globals.getNode("/engines/engine[3]/egt-actual")],
 		eprActual: [props.globals.getNode("/engines/engine[0]/epr-actual"), props.globals.getNode("/engines/engine[1]/epr-actual"), props.globals.getNode("/engines/engine[2]/epr-actual")],
-		ffActual: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual")],
-		n1Actual: [props.globals.getNode("/engines/engine[0]/n1-actual"), props.globals.getNode("/engines/engine[1]/n1-actual"), props.globals.getNode("/engines/engine[2]/n1-actual")],
-		n2Actual: [props.globals.getNode("/engines/engine[0]/n2-actual"), props.globals.getNode("/engines/engine[1]/n2-actual"), props.globals.getNode("/engines/engine[2]/n2-actual")],
+		ffActual: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual"), props.globals.getNode("/engines/engine[3]/ff-actual")],
+		n1Actual: [props.globals.getNode("/engines/engine[0]/n1-actual"), props.globals.getNode("/engines/engine[1]/n1-actual"), props.globals.getNode("/engines/engine[2]/n1-actual"), props.globals.getNode("/engines/engine[3]/n1-actual")],
+		n2Actual: [props.globals.getNode("/engines/engine[0]/n2-actual"), props.globals.getNode("/engines/engine[1]/n2-actual"), props.globals.getNode("/engines/engine[2]/n2-actual"), props.globals.getNode("/engines/engine[3]/n2-actual")],
 	},
 };
 
@@ -71,6 +77,14 @@ var Fdm = {
 			Flap: {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
 			},
+		},
+		Hydraulics: {
+			Stabilizer: {
+				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/stabilizer/final-deg"),
+			},
+		},
+		Inertia: {
+			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
 		},
 		Position: {
 			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
