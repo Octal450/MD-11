@@ -6,7 +6,7 @@
 	
     <sim>
 		<aero>MD-11F-PW</aero>
-		<description>McDonnell Douglas MD-11F (PW4462)</description>
+		<description>McDonnell Douglas MD-11F (PW4460)</description>
 		<flight-model>jsb</flight-model>
 		<model n="0">
 			<armrest type="bool">1</armrest>
@@ -49,7 +49,7 @@
 	</limits>
 	
 	<MCDUC n="0">
-		<eng type="string">PW4462</eng>
+		<eng type="string">PW4460</eng>
 		<type type="string">MD-11 DEF AIL</type>
 	</MCDUC>
 	

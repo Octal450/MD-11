@@ -15,7 +15,7 @@
 	<ground_reactions file="Systems/md-11-ground-reactions"/>
 	
 	<propulsion>
-		<engine file="pw4462_1">
+		<engine file="pw4460_1">
 			<location unit="M">
 				<x>-5.29297</x>	
 				<y>-8.24094</y>
@@ -41,7 +41,7 @@
 			</thruster>
 		</engine>
 		
-		<engine file="pw4462_2">
+		<engine file="pw4460_2">
 			<location unit="M">
 				<x>25.2146</x>	
 				<y>0</y>
@@ -67,7 +67,7 @@
 			</thruster>
 		</engine>
 		
-		<engine file="pw4462_3">
+		<engine file="pw4460_3">
 			<location unit="M">
 				<x>-5.29297</x>	
 				<y>8.24094</y>

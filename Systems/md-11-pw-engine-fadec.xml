@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 PW4462 Engine/FADEC -->
+<!-- McDonnell Douglas MD-11 PW4460 Engine/FADEC -->
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
 <system name="MD-11: PW Engine/FADEC">
@@ -57,14 +57,14 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>62000</value>
+						<value>60000</value>
 					</product>
 					<product>
 						<difference>
-							<value>62000</value>
+							<value>60000</value>
 							<product>
 								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-								<value>62000</value>
+								<value>60000</value>
 							</product>
 						</difference>
 						<property>fadec/limit/milthrust-unmodified</property>
@@ -78,15 +78,15 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>62000</value>
+						<value>60000</value>
 					</product>
 					<product>
 						<product>
 							<difference>
-								<value>62000</value>
+								<value>60000</value>
 								<product>
 									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-									<value>62000</value>
+									<value>60000</value>
 								</product>
 							</difference>
 							<property>fadec/limit/milthrust-unmodified</property>
@@ -190,7 +190,7 @@
 			<function>
 				<pow>
 					<sum>
-						<table>
+						<table> <!-- Copy of rated-thrust-n1 table above -->
 							<independentVar lookup="row">/position/altitude-ft</independentVar>
 							<independentVar lookup="column">fadec/limit/to-ref-temp</independentVar>
 							<tableData>
@@ -495,6 +495,22 @@
 				fadec/limit/active-mode-int eq 4
 			</test>
 		</switch>
+		
+		<fcs_function name="fadec/limit/max">
+			<function>
+				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
+					<eq>
+						<property>fadec/limit/active-mode-int</property>
+						<value>0</value>
+					</eq>
+					<property>fadec/limit/takeoff</property>
+					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
+						<property>fadec/limit/go-around</property>
+						<property>fadec/limit/mct</property>
+					</max>
+				</ifthen>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -714,6 +730,52 @@
 	
 	<channel name="Engine Control">
 		
+		<fcs_function name="fadec/limit/max-norm-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>fadec/limit/max</property>
+						<property>fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>fadec/epr/c1</property>
+						<value>0.001</value>
+					</max>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<pow>
+					<table>
+						<independentVar lookup="row">fadec/limit/max-norm-ref</independentVar>
+						<tableData>
+							0.00     24743.1
+							0.03     65768.7
+							1.00  14591440.5
+						</tableData>
+					</table>
+					<quotient>
+						<value>1</value>
+						<value>3.5</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/max-norm-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/active-norm-ref"> <!-- Opposite of EPR Calc -->
 			<function>
 				<quotient>
@@ -815,7 +877,7 @@
 		
 		<!-- Engine 1 -->
 		<switch name="fadec/control-1/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-1-altn eq 1
 			</test>
@@ -913,7 +975,7 @@
 		
 		<!-- Engine 2 -->
 		<switch name="fadec/control-2/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-2-altn eq 1
 			</test>
@@ -1011,7 +1073,7 @@
 		
 		<!-- Engine 3 -->
 		<switch name="fadec/control-3/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-3-altn eq 1
 			</test>

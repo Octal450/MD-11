@@ -363,6 +363,22 @@
 				fadec/limit/active-mode-int eq 4
 			</test>
 		</switch>
+		
+		<fcs_function name="fadec/limit/max">
+			<function>
+				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
+					<eq>
+						<property>fadec/limit/active-mode-int</property>
+						<value>0</value>
+					</eq>
+					<property>fadec/limit/takeoff</property>
+					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
+						<property>fadec/limit/go-around</property>
+						<property>fadec/limit/mct</property>
+					</max>
+				</ifthen>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -582,6 +598,18 @@
 	
 	<channel name="Engine Control">
 		
+		<fcs_function name="fadec/limit/max-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/max</independentVar>
+					<tableData>
+						 23.7  0
+						117.5  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/active-norm">
 			<function>
 				<table>
@@ -593,13 +621,6 @@
 				</table>
 			</function>
 		</fcs_function>
-		
-		<switch name="fadec/limit/ats-max">
-			<default value="fadec/limit/active-norm"/>
-			<test value="1"> 
-				fadec/limit/active-mode-int eq 0
-			</test>
-		</switch>
 		
 		<fcs_function name="fadec/limit/idle-norm">
 			<function>
@@ -615,7 +636,7 @@
 		
 		<!-- Engine 1 -->
 		<switch name="fadec/control-1/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-1-altn eq 1
 			</test>
@@ -691,7 +712,7 @@
 		
 		<!-- Engine 2 -->
 		<switch name="fadec/control-2/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-2-altn eq 1
 			</test>
@@ -767,7 +788,7 @@
 		
 		<!-- Engine 3 -->
 		<switch name="fadec/control-3/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-3-altn eq 1
 			</test>

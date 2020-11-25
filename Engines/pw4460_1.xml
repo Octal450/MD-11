@@ -2,9 +2,9 @@
 
 <!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
 
-<turbine_engine name="PW4462">
+<turbine_engine name="PW4460">
 	
-	<milthrust>62000</milthrust>
+	<milthrust>60000</milthrust>
 	<tsfc>0.445</tsfc>
 	<bleed>0.03</bleed>
 	<ignitionn1>0</ignitionn1>
@@ -22,7 +22,7 @@
 	
 	<function name="N1SpoolUp">
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -37,7 +37,7 @@
 	
 	<function name="N1SpoolDown">
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   1.1
 				 28   2.9
@@ -52,7 +52,7 @@
 	
 	<function name="N2SpoolUp"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   0.5
 				 28   1.3
@@ -67,7 +67,7 @@
 	
 	<function name="N2SpoolDown"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
 			<tableData>
 				 24   0.5
 				 28   1.3
@@ -116,7 +116,7 @@
 			</table>
 			<property>fadec/limit/rated-thrust-factor</property>
 			<table> <!-- Thrust loss due to reverser angle -->
-				<independentVar lookup="row">/engines/engine[1]/reverser-pos-norm</independentVar>
+				<independentVar lookup="row">/engines/engine[0]/reverser-pos-norm</independentVar>
 				<tableData>
 					0.01  1.00
 					1.00  0.65
