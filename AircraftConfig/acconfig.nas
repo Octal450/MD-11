@@ -79,6 +79,7 @@ var error_chk = func() {
 		libraries.systemsLoop.stop();
 		print("error: 0x121");
 		welcome_dlg.close();
+		systems.DUController.showError();
 	} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 15000) {
 		setprop("/systems/acconfig/error-code", "0x223");
 		setprop("/systems/acconfig/error-reason", "Preposterous configuration detected for initialization. Check your position or scenery.");
@@ -88,6 +89,7 @@ var error_chk = func() {
 		libraries.systemsLoop.stop();
 		print("error: 0x223");
 		welcome_dlg.close();
+		systems.DUController.showError();
 	} else if (getprop("/systems/acconfig/libraries-loaded") != 1 or getprop("/systems/acconfig/property-tree-setup-loaded") != 1) {
 		setprop("/systems/acconfig/error-code", "0x247");
 		setprop("/systems/acconfig/error-reason", "System files are missing or damaged. Please download a new copy of the aircraft.");
@@ -97,6 +99,7 @@ var error_chk = func() {
 		libraries.systemsLoop.stop();
 		print("error: 0x247");
 		welcome_dlg.close();
+		systems.DUController.showError();
 	}
 }
 

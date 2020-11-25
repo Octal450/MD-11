@@ -250,9 +250,12 @@ var Systems = {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
 		errorCode: props.globals.getNode("/systems/acconfig/error-code"),
 		Options: {
-			eadFps: props.globals.getNode("/systems/acconfig/options/ead-fps"),
-			pfdFps: props.globals.getNode("/systems/acconfig/options/pfd-fps"),
-			sdFps: props.globals.getNode("/systems/acconfig/options/sd-fps"),
+			Du: {
+				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
+				ndFps: props.globals.getNode("/systems/acconfig/options/du/nd-fps"),
+				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
+				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
+			},
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
 		}
 	},

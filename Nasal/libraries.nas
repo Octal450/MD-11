@@ -27,13 +27,13 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
-	lightsLoop.start();
-	systemsLoop.start();
 	libraries.variousReset();
 }
 
 setlistener("sim/signals/fdm-initialized", func() {
 	systemsInit();
+	systemsLoop.start();
+	lightsLoop.start();
 	canvas_pfd.init();
 	canvas_ead.init();
 	canvas_sd.init();
@@ -42,6 +42,7 @@ setlistener("sim/signals/fdm-initialized", func() {
 var systemsLoop = maketimer(0.1, func() {
 	systems.ELEC.loop();
 	systems.FADEC.loop();
+	systems.DUController.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
 		pts.Systems.Shake.effect.setBoolValue(1);

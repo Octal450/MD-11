@@ -160,48 +160,26 @@ var canvasBase = {
 		"ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Flaps",
 		"Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
 	},
+	setup: func() {
+		# Hide the pages by default
+		pfd1.page.hide();
+		pfd1Error.page.hide();
+		pfd2.page.hide();
+		pfd2Error.page.hide();
+	},
 	update: func() {
-		if (pts.Systems.Acconfig.errorCode.getValue() == "0x000") {
-			pfd1Error.page.hide();
-			pfd2Error.page.hide();
-			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
-				if (!updatePfd1) { # Update slow here once so that no flicker if timers don't perfectly align
-					updatePfd1 = 1;
-					pfd1.updateSlow();
-				}
-				pfd1.update();
-				pfd1.page.show();
-			} else {
-				updatePfd1 = 0;
-				pfd1.page.hide();
-			}
-			if (systems.ELEC.Bus.ac3.getValue() >= 110) {
-				if (!updatePfd2) { # Update slow here once so that no flicker if timers don't perfectly align
-					updatePfd2 = 1;
-					pfd2.updateSlow();
-				}
-				pfd2.update();
-				pfd2.page.show();
-			} else {
-				updatePfd2 = 0;
-				pfd2.page.hide();
-			}
-		} else {
-			updatePfd1 = 0;
-			updatePfd2 = 0;
-			pfd1.page.hide();
-			pfd2.page.hide();
-			pfd1Error.update();
-			pfd2Error.update();
-			pfd1Error.page.show();
-			pfd2Error.page.show();
+		if (systems.DUController.updatePfd1) {
+			pfd1.update();
+		}
+		if (systems.DUController.updatePfd2) {
+			pfd2.update();
 		}
 	},
-	updateSlow: func() { # Turned on of off by the fast update so that syncing is correct
-		if (updatePfd1) {
+	updateSlow: func() {
+		if (systems.DUController.updatePfd1) {
 			pfd1.updateSlow();
 		}
-		if (updatePfd2) {
+		if (systems.DUController.updatePfd2) {
 			pfd2.updateSlow();
 		}
 	},
@@ -1191,17 +1169,18 @@ var init = func() {
 	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/PFD.svg");
 	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/Error.svg");
 	
+	canvasBase.setup();
 	pfdUpdate.start();
 	pfdSlowUpdate.start();
 	
-	if (pts.Systems.Acconfig.Options.pfdFps.getValue() != 20) {
+	if (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.pfdFps.getValue());
-	pfdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.pfdFps.getValue() * 0.5)); # 10 / 20 = 0.5
+	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.pfdFps.getValue());
+	pfdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() * 0.5)); # 10 / 20 = 0.5
 }
 
 var pfdUpdate = maketimer(0.05, func() { # 20FPS

@@ -1419,12 +1419,14 @@
 			<options n="0">
 				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
 				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
-				<ead-fps type="double">20</ead-fps>
+				<du n="0">
+					<ead-fps type="double">20</ead-fps>
+					<nd-fps type="double">20</nd-fps>
+					<pfd-fps type="double">20</pfd-fps>
+					<sd-fps type="double">10</sd-fps>
+				</du>
 				<map-less-transparent type="bool">0</map-less-transparent>
 				<irs-skip type="bool">0</irs-skip>
-				<nd-fps type="double">20</nd-fps>
-				<pfd-fps type="double">20</pfd-fps>
-				<sd-fps type="double">20</sd-fps>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>
@@ -1549,6 +1551,7 @@
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/DU-controller.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>
@@ -1558,13 +1561,13 @@
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
-			<file>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_ead>
-			<file>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/EAD.nas</file>
 		</canvas_ead>
 		<canvas_sd>
-			<file>Aircraft/MD-11/Models/Cockpit/Instruments/SD/SD.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/SD.nas</file>
 		</canvas_sd>
 		<autopush>
 			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>

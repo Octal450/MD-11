@@ -62,29 +62,15 @@ var canvasBase = {
 		return [];
 	},
 	setup: func() {
+		# Hide the pages by default
+		eng.page.hide();
+		
 		eng.setup();
 	},
 	update: func() {
-		if (systems.ELEC.Bus.ac3.getValue() >= 110) {
-			if (pts.Instrumentation.Sd.selectedSynoptic.getValue() == "ENG") {
-				if (!updateSd) { # Update slow here once so that no flicker if timers don't perfectly align
-					updateSd = 1;
-					eng.updateSlow();
-				}
+		if (systems.DUController.updateSd) {
+			if (systems.DUController.sdPage == "ENG") {
 				eng.update();
-				eng.page.show();
-			} else {
-				eng.page.hide();
-			}
-		} else {
-			updateSd = 0;
-			eng.page.hide();
-		}
-	},
-	updateSlow: func() { # Turned on of off by the fast update so that syncing is correct
-		if (updateSd) {
-			if (pts.Instrumentation.Sd.selectedSynoptic.getValue() == "ENG") {
-				eng.updateSlow();
 			}
 		}
 	},
@@ -115,9 +101,6 @@ var canvasEng = {
 		me["StabBox"].hide();
 	},
 	update: func() {
-		
-	},
-	updateSlow: func() {
 		# GW and Fuel
 		Value.Misc.gw = math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue(), 100);
 		me["GW-thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
@@ -218,24 +201,18 @@ var init = func() {
 	
 	canvasBase.setup();
 	sdUpdate.start();
-	sdSlowUpdate.start();
 	
-	if (pts.Systems.Acconfig.Options.sdFps.getValue() != 20) {
+	if (pts.Systems.Acconfig.Options.Du.sdFps.getValue() != 10) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	sdUpdate.restart(1 / pts.Systems.Acconfig.Options.sdFps.getValue()); # 20FPS
-	sdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.sdFps.getValue() * 0.5)); # 10 / 20 = 0.5
+	sdUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.sdFps.getValue()); # 10FPS
 }
 
-var sdUpdate = maketimer(0.05, func() { # 20FPS
+var sdUpdate = maketimer(0.1, func() { # 10FPS
 	canvasBase.update();
-});
-
-var sdSlowUpdate = maketimer(0.1, func() { # 10FPS
-	canvasBase.updateSlow();
 });
 
 var showSd = func() {

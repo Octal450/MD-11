@@ -65,23 +65,24 @@ var canvasBase = {
 		return [];
 	},
 	setup: func() {
-		ge.setup();
-		pw.setup();
-	},
-	update: func() {
-		if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
-			if (pts.Options.eng.getValue() == "GE") {
-				pw.page.hide();
-				ge.update();
-				ge.page.show();
-			} else {
-				ge.page.hide();
-				pw.update();
-				pw.page.show();
-			}
+		# Hide the pages by default
+		if (systems.DUController.eadType == "GE") {
+			ge.page.hide();
+			pw.page.hide();
+			ge.setup();
 		} else {
 			ge.page.hide();
 			pw.page.hide();
+			pw.setup();
+		}
+	},
+	update: func() {
+		if (systems.DUController.updateEad) {
+			if (systems.DUController.eadType == "GE") {
+				ge.update();
+			} else {
+				pw.update();
+			}
 		}
 	},
 	updateBase: func() {
@@ -682,13 +683,13 @@ var init = func() {
 	canvasBase.setup();
 	eadUpdate.start();
 	
-	if (pts.Systems.Acconfig.Options.eadFps.getValue() != 20) {
+	if (pts.Systems.Acconfig.Options.Du.eadFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	eadUpdate.restart(1 / pts.Systems.Acconfig.Options.eadFps.getValue());
+	eadUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.eadFps.getValue());
 }
 
 var eadUpdate = maketimer(0.05, func() { # 20FPS

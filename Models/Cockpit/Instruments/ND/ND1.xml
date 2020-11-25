@@ -37,10 +37,10 @@
 		<type>select</type>
 		<object-name>ND.screenL</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/bus/ac-1</property>
-				<value>110</value>
-			</greater-than-equals>
+			<equals>
+				<property>instrumentation/nd/show-nd1</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -48,10 +48,10 @@
 		<type>select</type>
 		<object-name>ND.offL</object-name>
 		<condition>
-			<less-than>
-				<property>systems/electrical/bus/ac-1</property>
-				<value>110</value>
-			</less-than>
+			<not-equals>
+				<property>instrumentation/nd/show-nd1</property>
+				<value>1</value>
+			</not-equals>
 		</condition>
 	</animation>
 

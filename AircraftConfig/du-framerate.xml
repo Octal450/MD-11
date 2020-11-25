@@ -47,11 +47,6 @@
 			<label>Here you can adjust the frame rate of the Display Units.</label>
 		</text>
 		
-		<text>
-			<halign>left</halign>
-			<label>It is recommended to keep all displays at the same FPS.</label>
-		</text>
-		
 		<group>
 			<layout>table</layout>
 			
@@ -66,7 +61,7 @@
 				<row>0</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/pfd-fps</property>
+				<property>/systems/acconfig/options/du/pfd-fps</property>
 				<min>5</min>
 				<max>30</max>
 				<step>5</step>
@@ -82,11 +77,11 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/pfd-fps</property>
+				<property>/systems/acconfig/options/du/pfd-fps</property>
 				<live>1</live>
 			</text>
 			
-			<text>
+			<!--text>
 				<row>1</row>
 				<col>0</col>
 				<halign>left</halign>
@@ -100,7 +95,7 @@
 				<row>1</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/nd-fps</property>
+				<property>/systems/acconfig/options/du/nd-fps</property>
 				<min>5</min>
 				<max>30</max>
 				<step>5</step>
@@ -116,9 +111,9 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/nd-fps</property>
+				<property>/systems/acconfig/options/du/nd-fps</property>
 				<live>1</live>
-			</text>
+			</text-->
 			
 			<text>
 				<row>2</row>
@@ -131,7 +126,7 @@
 				<row>2</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/ead-fps</property>
+				<property>/systems/acconfig/options/du/ead-fps</property>
 				<min>5</min>
 				<max>30</max>
 				<step>5</step>
@@ -147,7 +142,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/ead-fps</property>
+				<property>/systems/acconfig/options/du/ead-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -162,7 +157,7 @@
 				<row>3</row>
 				<col>1</col>
 				<pref-width>250</pref-width>
-				<property>/systems/acconfig/options/sd-fps</property>
+				<property>/systems/acconfig/options/du/sd-fps</property>
 				<min>5</min>
 				<max>30</max>
 				<step>5</step>
@@ -178,7 +173,7 @@
 				<halign>left</halign>
 				<border>1</border>
 				<label>999</label>
-				<property>/systems/acconfig/options/sd-fps</property>
+				<property>/systems/acconfig/options/du/sd-fps</property>
 				<live>1</live>
 			</text>
 			
@@ -194,30 +189,49 @@
 		<button>
 			<halign>center</halign>
 			<legend>Apply/Save</legend>
-			<pref-width>100</pref-width>
+			<pref-width>80</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>
-				acconfig.writeSettings();
-				canvas_pfd.rateApply();
-				#canvas_nd.rateApply();
-				canvas_ead.rateApply();
-				canvas_sd.rateApply();
+					acconfig.writeSettings();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+				</script>
+			</binding>
+		</button>
+		<button>
+			<halign>center</halign>
+			<legend>Default</legend>
+			<pref-width>80</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>
+					pts.Systems.Acconfig.Options.Du.eadFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
+					acconfig.writeSettings();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
 				</script>
 			</binding>
 		</button>
 		<button>
 			<halign>center</halign>
 			<legend>Apply/Save/Go Away</legend>
-			<pref-width>200</pref-width>
+			<pref-width>180</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>
-				acconfig.writeSettings();
-				canvas_pfd.rateApply();
-				#canvas_nd.rateApply();
-				canvas_ead.rateApply();
-				canvas_sd.rateApply();
+					acconfig.writeSettings();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
 				</script>
 			</binding>
 			<binding>
