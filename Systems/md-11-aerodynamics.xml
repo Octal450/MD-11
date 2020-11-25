@@ -187,6 +187,46 @@
 			</product>
 		</function>
 		
+		<function name="aero/coefficient/CLda_lo">
+			<description>Lift due to left outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_li">
+			<description>Lift due to left inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_ri">
+			<description>Lift due to right inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_ro">
+			<description>Lift due to right outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
 		<function name="aero/coefficient/CLdsp_l">
 			<description>Lift due to left spoiler</description>
 			<product>

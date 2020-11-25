@@ -12,6 +12,7 @@ var Value = {
 		n2: 0,
 	},
 	Eng: {
+		oilQty: [0, 0, 0],
 		oilQtyCline: [0, 0, 0],
 	},
 	Fctl: {
@@ -85,8 +86,8 @@ var canvasEng = {
 	},
 	getKeys: func() {
 		return ["GEGroup", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilTemp1", "OilTemp1-needle", "OilTemp2", "OilTemp2-needle", "OilTemp3", "OilTemp3-needle", "OilQty1", "OilQty1-needle", "OilQty1-cline",
-		"OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty3", "OilQty3-needle", "OilQty3-cline", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox",
-		"Stab-needle", "StabUnit"];
+		"OilQty1-box", "OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty2-box", "OilQty3", "OilQty3-needle", "OilQty3-cline", "OilQty3-box", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands",
+		"GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "GE") {
@@ -121,14 +122,48 @@ var canvasEng = {
 		me["OilPsi3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[2].getValue() * D2R);
 		
 		# Oil Qty
-		me["OilQty1"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[0].getValue())));
+		Value.Eng.oilQty[0] = pts.Engines.Engine.oilQty[0].getValue();
+		Value.Eng.oilQty[1] = pts.Engines.Engine.oilQty[1].getValue();
+		Value.Eng.oilQty[2] = pts.Engines.Engine.oilQty[2].getValue();
+		
+		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
 		me["OilQty1-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[0].getValue() * D2R);
 		
-		me["OilQty2"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[1].getValue())));
+		me["OilQty2"].setText(sprintf("%d", math.round(Value.Eng.oilQty[1])));
 		me["OilQty2-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[1].getValue() * D2R);
 		
-		me["OilQty3"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[2].getValue())));
+		me["OilQty3"].setText(sprintf("%d", math.round(Value.Eng.oilQty[2])));
 		me["OilQty3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
+		
+		if (Value.Eng.oilQty[0] <= 4) {
+			me["OilQty1"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty1-box"].show();
+			me["OilQty1-needle"].setColor(0.9647,0.8196,0.07843);
+		} else {
+			me["OilQty1"].setColor(1,1,1);
+			me["OilQty1-box"].hide();
+			me["OilQty1-needle"].setColor(1,1,1);
+		}
+		
+		if (Value.Eng.oilQty[1] <= 4) {
+			me["OilQty2"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty2-box"].show();
+			me["OilQty2-needle"].setColor(0.9647,0.8196,0.07843);
+		} else {
+			me["OilQty2"].setColor(1,1,1);
+			me["OilQty2-box"].hide();
+			me["OilQty2-needle"].setColor(1,1,1);
+		}
+		
+		if (Value.Eng.oilQty[2] <= 4) {
+			me["OilQty3"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty3-box"].show();
+			me["OilQty3-needle"].setColor(0.9647,0.8196,0.07843);
+		} else {
+			me["OilQty3"].setColor(1,1,1);
+			me["OilQty3-box"].hide();
+			me["OilQty3-needle"].setColor(1,1,1);
+		}
 		
 		Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();
 		Value.Eng.oilQtyCline[1] = pts.Instrumentation.Sd.Eng.oilQtyCline[1].getValue();
@@ -218,5 +253,5 @@ var sdUpdate = maketimer(0.1, func() { # 10FPS
 var showSd = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(display);
-	dlg.set("title", "SD");
+	dlg.set("title", "System Display");
 }

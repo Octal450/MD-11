@@ -41,9 +41,9 @@
      inkscape:window-height="1030"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="496.33411"
-     inkscape:cy="671.15451"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="309.45036"
+     inkscape:cy="356.85219"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -485,15 +485,15 @@
   <text
      sodipodi:linespacing="125%"
      id="OilQty1"
-     y="535.70984"
-     x="352.63"
+     y="535.71326"
+     x="352.62805"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4415"
-     transform="scale(0.93268783,1.0721701)"><tspan
+     transform="scale(0.932693,1.0721641)"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41.9709549px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff"
-       y="535.70984"
-       x="352.63"
+       y="535.71326"
+       x="352.62805"
        id="tspan4172"
        sodipodi:role="line">0</tspan></text>
   <text
@@ -1101,7 +1101,7 @@
      height="46.821747"
      x="448.00244"
      y="64.535538"
-     ry="0.2"
+     ry="0"
      rx="0"
      inkscape:label="#rect4490" />
   <text
@@ -1398,4 +1398,34 @@
        inkscape:transform-center-x="46.525885"
        style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
   </g>
+  <rect
+     inkscape:label="#rect4490"
+     rx="0"
+     ry="0"
+     y="535.47101"
+     x="275.25238"
+     height="46.82196"
+     width="61.220909"
+     id="OilQty1-box"
+     style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <rect
+     style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="OilQty2-box"
+     width="61.220909"
+     height="46.82196"
+     x="507.02802"
+     y="535.47101"
+     ry="0"
+     rx="0"
+     inkscape:label="#rect4490" />
+  <rect
+     inkscape:label="#rect4490"
+     rx="0"
+     ry="0"
+     y="535.47101"
+     x="739.77698"
+     height="46.82196"
+     width="61.220909"
+     id="OilQty3-box"
+     style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>
