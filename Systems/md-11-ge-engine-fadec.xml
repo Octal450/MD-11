@@ -896,18 +896,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  430  330
-							 50  425  325
-							 62  320  205
-							113  815  620
+							         0    50000
+							 10.0    0    0
+							 35.0  430  330
+							 50.0  425  325
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 						<tableData breakPoint="1">
 							       0    50000
-							 30    0    0
-							 62  320  205
-							113  815  620
+							 30.0  0    0
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 					</table>
 				</sum>
@@ -929,18 +929,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  430  330
-							 50  425  325
-							 62  320  205
-							113  815  620
+							         0    50000
+							 10.0    0    0
+							 35.0  430  330
+							 50.0  425  325
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 						<tableData breakPoint="1">
 							       0    50000
-							 30    0    0
-							 62  320  205
-							113  815  620
+							 30.0  0    0
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 					</table>
 				</sum>
@@ -962,18 +962,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  430  330
-							 50  425  325
-							 62  320  205
-							113  815  620
+							         0    50000
+							 10.0    0    0
+							 35.0  430  330
+							 50.0  425  325
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 						<tableData breakPoint="1">
 							       0    50000
-							 30    0    0
-							 62  320  205
-							113  815  620
+							 30.0  0    0
+							 62.9  320  205
+							112.5  815  620
 						</tableData>
 					</table>
 				</sum>
@@ -1032,16 +1032,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						      0   50000
-						 20   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 20.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 					<tableData breakPoint="1">
-						      0   50000
-						 30   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 30.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 				</table>
 			</function>
@@ -1059,16 +1059,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						      0   50000
-						 20   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 20.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 					<tableData breakPoint="1">
-						      0   50000
-						 30   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 30.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 				</table>
 			</function>
@@ -1086,16 +1086,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						      0   50000
-						 20   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 20.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 					<tableData breakPoint="1">
-						      0   50000
-						 30   0   0
-						 62  26  32
-						113  81  87
+						        0   50000
+						 30.0   0   0
+						 62.9  26  32
+						112.5  81  87
 					</tableData>
 				</table>
 			</function>
@@ -1113,8 +1113,8 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							62 -4
+							30.0  0
+							62.9 -4
 						</tableData>
 					</table>
 				</sum>
@@ -1128,8 +1128,8 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							62 -4
+							30.0  0
+							62.9 -4
 						</tableData>
 					</table>
 				</sum>
@@ -1143,13 +1143,112 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							62 -4
+							30.0  0
+							62.9 -4
 						</tableData>
 					</table>
 				</sum>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-1">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  106   86
+							 30.0  106   86
+							 35.0   24   11
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[0]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-1</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-2">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  106   86
+							 30.0  106   86
+							 35.0   24   11
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[1]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-2</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-3">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  106   86
+							 30.0  106   86
+							 35.0   24   11
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 62.9   24   11
+							112.5  169  154
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[2]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-3</input>
+			<lag>0.8</lag>
+		</actuator>
 	
 	</channel>
 	

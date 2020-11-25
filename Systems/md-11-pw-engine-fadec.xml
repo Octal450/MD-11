@@ -1290,18 +1290,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  420  320
-							 50  415  315
-							 65  305  190
-							106  545  420
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							       0    50000
-							 30    0    0
-							 65  305  190
-							106  545  420
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 					</table>
 				</sum>
@@ -1323,18 +1323,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  420  320
-							 50  415  315
-							 65  305  190
-							106  545  420
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							       0    50000
-							 30    0    0
-							 65  305  190
-							106  545  420
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 					</table>
 				</sum>
@@ -1356,18 +1356,18 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							       0    50000
-							 10    0    0
-							 35  420  320
-							 50  415  315
-							 65  305  190
-							106  545  420
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							       0    50000
-							 30    0    0
-							 65  305  190
-							106  545  420
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
 						</tableData>
 					</table>
 				</sum>
@@ -1426,16 +1426,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						       0    50000
-						 20    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 					<tableData breakPoint="1">
-						       0    50000
-						 30    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 				</table>
 			</function>
@@ -1443,7 +1443,7 @@
 		
 		<actuator name="/engines/engine[0]/oil-psi">
 			<input>fadec/oil-psi-cmd-1</input>
-			<lag>0.5</lag>
+			<lag>0.65</lag>
 		</actuator>
 		
 		<fcs_function name="fadec/oil-psi-cmd-2">
@@ -1453,16 +1453,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						       0    50000
-						 20    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 					<tableData breakPoint="1">
-						       0    50000
-						 30    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 				</table>
 			</function>
@@ -1470,7 +1470,7 @@
 		
 		<actuator name="/engines/engine[1]/oil-psi">
 			<input>fadec/oil-psi-cmd-2</input>
-			<lag>0.5</lag>
+			<lag>0.65</lag>
 		</actuator>
 		
 		<fcs_function name="fadec/oil-psi-cmd-3">
@@ -1480,16 +1480,16 @@
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
 					<tableData breakPoint="0">
-						       0    50000
-						 20    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 					<tableData breakPoint="1">
-						       0    50000
-						 30    0    0
-						 65  148  154
-						106  343  349
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
 					</tableData>
 				</table>
 			</function>
@@ -1497,7 +1497,7 @@
 		
 		<actuator name="/engines/engine[2]/oil-psi">
 			<input>fadec/oil-psi-cmd-3</input>
-			<lag>0.5</lag>
+			<lag>0.65</lag>
 		</actuator>
 		
 		<fcs_function name="/engines/engine[0]/oil-qty">
@@ -1507,8 +1507,8 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							65 -6
+							30.0  0
+							65.2 -6
 						</tableData>
 					</table>
 				</sum>
@@ -1522,8 +1522,8 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							65 -6
+							30.0  0
+							65.2 -6
 						</tableData>
 					</table>
 				</sum>
@@ -1537,13 +1537,112 @@
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 						<tableData>
-							30  0
-							65 -6
+							30.0  0
+							65.2 -6
 						</tableData>
 					</table>
 				</sum>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-1">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[0]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-1</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-2">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[1]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-2</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-3">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[2]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-3</input>
+			<lag>0.8</lag>
+		</actuator>
 	
 	</channel>
 	

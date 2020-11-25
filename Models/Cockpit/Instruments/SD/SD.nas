@@ -88,12 +88,6 @@ var canvasBase = {
 			}
 		}
 	},
-	updateBase: func() {
-		
-	},
-	updateSlowBase: func() {
-		
-	},
 };
 
 var canvasEng = {
@@ -105,7 +99,8 @@ var canvasEng = {
 	},
 	getKeys: func() {
 		return ["GEGroup", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilTemp1", "OilTemp1-needle", "OilTemp2", "OilTemp2-needle", "OilTemp3", "OilTemp3-needle", "OilQty1", "OilQty1-needle", "OilQty1-cline",
-		"OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty3", "OilQty3-needle", "OilQty3-cline", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
+		"OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty3", "OilQty3-needle", "OilQty3-cline", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox",
+		"Stab-needle", "StabUnit"];
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "GE") {
@@ -120,7 +115,7 @@ var canvasEng = {
 		me["StabBox"].hide();
 	},
 	update: func() {
-		me.updateBase();
+		
 	},
 	updateSlow: func() {
 		# GW and Fuel
@@ -175,6 +170,11 @@ var canvasEng = {
 			me["OilQty3-cline"].hide();
 		}
 		
+		# Nacelle Temp
+		me["NacelleTemp1"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[0].getValue())));
+		me["NacelleTemp2"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[1].getValue())));
+		me["NacelleTemp3"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[2].getValue())));
+		
 		# Stab
 		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
 		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
@@ -199,8 +199,6 @@ var canvasEng = {
 		} else {
 			me["APU"].hide();
 		}
-		
-		me.updateSlowBase();
 	},
 };
 
