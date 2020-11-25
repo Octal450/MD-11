@@ -11,6 +11,9 @@ var Value = {
 	Apu: {
 		n2: 0,
 	},
+	Eng: {
+		oilQtyCline: [0, 0, 0],
+	},
 	Fctl: {
 		stab: 0,
 		stabText: 0,
@@ -101,7 +104,8 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["GEGroup", "PWGroup", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
+		return ["GEGroup", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilTemp1", "OilTemp1-needle", "OilTemp2", "OilTemp2-needle", "OilTemp3", "OilTemp3-needle", "OilQty1", "OilQty1-needle", "OilQty1-cline",
+		"OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty3", "OilQty3-needle", "OilQty3-cline", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands", "GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "GE") {
@@ -113,7 +117,6 @@ var canvasEng = {
 		}
 		
 		# Unsimulated stuff, fix later
-		me["APU-QTY"].setText("7.5");
 		me["StabBox"].hide();
 	},
 	update: func() {
@@ -129,15 +132,47 @@ var canvasEng = {
 		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
 		me["Fuel"].setText(right(sprintf("%d", Value.Misc.fuel), 3));
 		
-		# APU
-		Value.Apu.n2 = pts.Engines.Engine.n2Actual[3].getValue();
-		if (Value.Apu.n2 >= 1) {
-			me["APU-EGT"].setText(sprintf("%d", math.round(pts.Engines.Engine.egtActual[3].getValue())));
-			me["APU-N1"].setText(sprintf("%d", math.round(pts.Engines.Engine.n1Actual[3].getValue())));
-			me["APU-N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
-			me["APU"].show();
+		# Oil Psi
+		me["OilPsi1"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[0].getValue()));
+		me["OilPsi1-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[0].getValue() * D2R);
+		
+		me["OilPsi2"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[1].getValue()));
+		me["OilPsi2-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[1].getValue() * D2R);
+		
+		me["OilPsi3"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[2].getValue()));
+		me["OilPsi3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[2].getValue() * D2R);
+		
+		# Oil Qty
+		me["OilQty1"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[0].getValue())));
+		me["OilQty1-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[0].getValue() * D2R);
+		
+		me["OilQty2"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[1].getValue())));
+		me["OilQty2-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[1].getValue() * D2R);
+		
+		me["OilQty3"].setText(sprintf("%d", math.round(pts.Engines.Engine.oilQty[2].getValue())));
+		me["OilQty3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
+		
+		Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();
+		Value.Eng.oilQtyCline[1] = pts.Instrumentation.Sd.Eng.oilQtyCline[1].getValue();
+		Value.Eng.oilQtyCline[2] = pts.Instrumentation.Sd.Eng.oilQtyCline[2].getValue();
+		
+		if (Value.Eng.oilQtyCline[0] != -1) {
+			me["OilQty1-cline"].setRotation(Value.Eng.oilQtyCline[0] * D2R);
+			me["OilQty1-cline"].show();
 		} else {
-			me["APU"].hide();
+			me["OilQty1-cline"].hide();
+		}
+		if (Value.Eng.oilQtyCline[1] != -1) {
+			me["OilQty2-cline"].setRotation(Value.Eng.oilQtyCline[1] * D2R);
+			me["OilQty2-cline"].show();
+		} else {
+			me["OilQty2-cline"].hide();
+		}
+		if (Value.Eng.oilQtyCline[2] != -1) {
+			me["OilQty3-cline"].setRotation(Value.Eng.oilQtyCline[2] * D2R);
+			me["OilQty3-cline"].show();
+		} else {
+			me["OilQty3-cline"].hide();
 		}
 		
 		# Stab
@@ -151,6 +186,18 @@ var canvasEng = {
 			me["StabUnit"].setText("AND");
 		} else {
 			me["StabUnit"].setText("ANU");
+		}
+		
+		# APU
+		Value.Apu.n2 = systems.APU.n2.getValue();
+		if (Value.Apu.n2 >= 1) {
+			me["APU-EGT"].setText(sprintf("%d", math.round(systems.APU.egt.getValue())));
+			me["APU-N1"].setText(sprintf("%d", math.round(systems.APU.n1.getValue())));
+			me["APU-N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
+			me["APU-QTY"].setText(sprintf("%2.1f", math.round(systems.APU.oilQty.getValue(), 0.5)));
+			me["APU"].show();
+		} else {
+			me["APU"].hide();
 		}
 		
 		me.updateSlowBase();

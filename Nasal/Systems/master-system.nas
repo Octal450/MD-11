@@ -8,6 +8,7 @@ var APU = {
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
 	n2: props.globals.getNode("/engines/engine[3]/n2-actual"),
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
+	oilQtyInput: props.globals.getNode("/engines/engine[3]/oil-qty-input"),
 	state: props.globals.getNode("/engines/engine[3]/state"),
 	Light: {
 		avail: props.globals.getNode("/controls/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
@@ -18,7 +19,7 @@ var APU = {
 		start: props.globals.getNode("/controls/apu/switches/start"),
 	},
 	init: func() {
-		me.oilQty.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
+		me.oilQtyInput.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
 		me.Switch.start.setBoolValue(0);
 		me.Light.avail.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
@@ -63,7 +64,7 @@ var APU = {
 				me.autoConnect = t;
 				me.Switch.start.setBoolValue(1);
 				onLightt.start();
-			} else {
+			} else if (!pts.Systems.Acconfig.autoConfigRunning.getBoolValue()) { # Do nothing if autoconfig is running, cause it'll break it
 				onLightt.stop();
 				me.Switch.start.setBoolValue(0);
 				me.Light.avail.setValue(0);
@@ -281,6 +282,9 @@ var ENGINE = {
 		me.Switch.startSwitch[0].setBoolValue(0);
 		me.Switch.startSwitch[1].setBoolValue(0);
 		me.Switch.startSwitch[2].setBoolValue(0);
+		pts.Engines.Engine.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+		pts.Engines.Engine.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+		pts.Engines.Engine.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 	},
 };
 

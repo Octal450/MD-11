@@ -252,6 +252,21 @@
 			<c1>3</c1>
 			<output>/engines/engine[3]/ff-actual</output>
 		</lag_filter>
+		
+		<fcs_function name="/engines/engine[3]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[3]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[3]/n2-actual</independentVar>
+						<tableData>
+							20  0.0
+							55 -1.5
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
 	
 	</channel>
 

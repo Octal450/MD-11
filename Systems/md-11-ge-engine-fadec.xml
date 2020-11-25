@@ -1024,6 +1024,132 @@
 			<c1>3</c1>
 			<output>/engines/engine[2]/ff-actual</output>
 		</lag_filter>
+		
+		<fcs_function name="fadec/oil-psi-cmd-1">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+					<tableData breakPoint="0">
+							  0   50000
+						 20   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+					<tableData breakPoint="1">
+							  0   50000
+						 30   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[0]/oil-psi">
+			<input>fadec/oil-psi-cmd-1</input>
+			<lag>0.5</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/oil-psi-cmd-2">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+					<tableData breakPoint="0">
+							  0   50000
+						 20   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+					<tableData breakPoint="1">
+							  0   50000
+						 30   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[1]/oil-psi">
+			<input>fadec/oil-psi-cmd-2</input>
+			<lag>0.5</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/oil-psi-cmd-3">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+					<tableData breakPoint="0">
+							  0   50000
+						 20   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+					<tableData breakPoint="1">
+							  0   50000
+						 30   0   0
+						 62  26  32
+						113  81  87
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[2]/oil-psi">
+			<input>fadec/oil-psi-cmd-3</input>
+			<lag>0.5</lag>
+		</actuator>
+		
+		<fcs_function name="/engines/engine[0]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[0]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+						<tableData>
+							30  0
+							62 -4
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[1]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[1]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<tableData>
+							30  0
+							62 -4
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[2]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[2]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<tableData>
+							30  0
+							62 -4
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -1254,6 +1380,123 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[0]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[0]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[0]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[0]">
+				/engines/engine[0]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[0]">
+				/engines/engine[0]/state eq 3
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[1]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[1]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[1]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[1]">
+				/engines/engine[1]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[1]">
+				/engines/engine[1]/state eq 3
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[2]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[2]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[2]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[2]">
+				/engines/engine[2]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[2]">
+				/engines/engine[2]/state eq 3
+			</test>
+		</switch>
 	
 	</channel>
 

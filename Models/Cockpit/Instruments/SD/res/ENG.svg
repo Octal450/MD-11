@@ -42,8 +42,8 @@
      id="namedview371"
      showgrid="false"
      inkscape:zoom="0.70710678"
-     inkscape:cx="765.21337"
-     inkscape:cy="788.80917"
+     inkscape:cx="753.01387"
+     inkscape:cy="712.1667"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -410,7 +410,7 @@
   </g>
   <text
      sodipodi:linespacing="125%"
-     id="PRESS1"
+     id="OilPsi1"
      y="291.51035"
      x="352.63"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -442,7 +442,7 @@
      x="218.935"
      height="0.55203247"
      width="29.350918"
-     id="PRESS1-needle"
+     id="OilPsi1-needle"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
      inkscape:label="#rect4152" />
   <text
@@ -452,7 +452,7 @@
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="352.63"
      y="413.75275"
-     id="TEMP1"
+     id="OilTemp1"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4156"
@@ -475,7 +475,7 @@
        sodipodi:role="line">TEMP</tspan></text>
   <rect
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     id="TEMP1-needle"
+     id="OilTemp1-needle"
      width="29.350918"
      height="0.55203247"
      x="218.935"
@@ -484,7 +484,7 @@
      inkscape:label="#rect4166" />
   <text
      sodipodi:linespacing="125%"
-     id="QTY1"
+     id="OilQty1"
      y="535.70984"
      x="352.63"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -524,7 +524,7 @@
      x="206.43489"
      height="0.39999387"
      width="21.049999"
-     id="QTY1-cline"
+     id="OilQty1-cline"
      style="fill:#ff0000;stroke:#51ccfe;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#rect4164" />
   <rect
@@ -534,7 +534,7 @@
      x="218.935"
      height="0.55203247"
      width="29.350918"
-     id="QTY1-needle"
+     id="OilQty1-needle"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <text
      sodipodi:linespacing="125%"
@@ -557,7 +557,7 @@
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="330.88748"
      y="591.61322"
-     id="NACTEMP1"
+     id="NacTemp1"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4213"
@@ -580,7 +580,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.9411087px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">EMV COMP</tspan></text>
   <text
      sodipodi:linespacing="125%"
-     id="EMVCOMP1"
+     id="EmvComp1"
      y="638.35175"
      x="330.88748"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -595,14 +595,14 @@
   <text
      sodipodi:linespacing="125%"
      id="text4223"
-     y="639.14838"
+     y="639.34821"
      x="110.16673"
      style="font-style:normal;font-weight:normal;font-size:28.03866577px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4415"
      transform="scale(0.87620832,1.1412811)"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.9411087px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff"
-       y="639.14838"
+       y="639.34821"
        x="110.16673"
        id="tspan4225"
        sodipodi:role="line">EMV TURB</tspan></text>
@@ -612,13 +612,13 @@
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="330.88748"
-     y="684.87543"
-     id="EMVTURB1"
+     y="685.08954"
+     id="EmvTurb1"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4229"
        x="330.88748"
-       y="684.87543"
+       y="685.08954"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.22629547px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0.0</tspan></text>
   <text
      transform="scale(0.93268783,1.0721701)"
@@ -627,7 +627,7 @@
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="601.13263"
      y="291.51035"
-     id="PRESS2"
+     id="OilPsi2"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4254"
@@ -637,7 +637,7 @@
   <rect
      inkscape:label="#rect4152"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     id="PRESS2-needle"
+     id="OilPsi2-needle"
      width="29.350918"
      height="0.55203247"
      x="450.71036"
@@ -645,7 +645,7 @@
      inkscape:transform-center-x="46.525885" />
   <text
      sodipodi:linespacing="125%"
-     id="TEMP2"
+     id="OilTemp2"
      y="413.75275"
      x="601.13263"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -664,7 +664,7 @@
      x="450.71036"
      height="0.55203247"
      width="29.350918"
-     id="TEMP2-needle"
+     id="OilTemp2-needle"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <text
      transform="scale(0.93268783,1.0721701)"
@@ -673,7 +673,7 @@
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="601.13263"
      y="535.70984"
-     id="QTY2"
+     id="OilQty2"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4284"
@@ -691,7 +691,7 @@
   <rect
      inkscape:label="#rect4164"
      style="fill:#ff0000;stroke:#51ccfe;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="QTY2-cline"
+     id="OilQty2-cline"
      width="21.049999"
      height="0.39999387"
      x="438.21024"
@@ -699,7 +699,7 @@
      inkscape:transform-center-x="63.179087" />
   <rect
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     id="QTY2-needle"
+     id="OilQty2-needle"
      width="29.350918"
      height="0.55203247"
      x="450.71036"
@@ -708,7 +708,7 @@
      inkscape:label="#rect4166" />
   <text
      sodipodi:linespacing="125%"
-     id="NACTEMP2"
+     id="NacTemp2"
      y="591.61322"
      x="577.74707"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -727,7 +727,7 @@
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="577.74707"
      y="638.35175"
-     id="EMVCOMP2"
+     id="Emv-Comp2"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4298"
@@ -736,21 +736,21 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.22629547px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0.0</tspan></text>
   <text
      sodipodi:linespacing="125%"
-     id="EMVTURB2"
-     y="684.87543"
+     id="EmvTurb2"
+     y="685.08954"
      x="577.74707"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4415"
      transform="scale(0.93889555,1.0650812)"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.22629547px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff"
-       y="684.87543"
+       y="685.08954"
        x="577.74707"
        id="tspan4302"
        sodipodi:role="line">0.0</tspan></text>
   <text
      sodipodi:linespacing="125%"
-     id="PRESS3"
+     id="OilPsi3"
      y="291.51035"
      x="850.67938"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -768,7 +768,7 @@
      x="683.45959"
      height="0.55203247"
      width="29.350918"
-     id="PRESS3-needle"
+     id="OilPsi3-needle"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
      inkscape:label="#rect4152" />
   <text
@@ -778,7 +778,7 @@
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="850.67938"
      y="413.75275"
-     id="TEMP3"
+     id="OilTemp3"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4326"
@@ -787,7 +787,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41.9709549px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0</tspan></text>
   <rect
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     id="TEMP3-needle"
+     id="OilTemp3-needle"
      width="29.350918"
      height="0.55203247"
      x="683.45959"
@@ -796,7 +796,7 @@
      inkscape:label="#rect4166" />
   <text
      sodipodi:linespacing="125%"
-     id="QTY3"
+     id="OilQty3"
      y="535.70984"
      x="850.67938"
      style="font-style:normal;font-weight:normal;font-size:29.84601021px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -822,7 +822,7 @@
      x="670.95947"
      height="0.39999387"
      width="21.049999"
-     id="QTY3-cline"
+     id="OilQty3-cline"
      style="fill:#ff0000;stroke:#51ccfe;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#rect4164" />
   <rect
@@ -832,7 +832,7 @@
      x="683.45959"
      height="0.55203247"
      width="29.350918"
-     id="QTY3-needle"
+     id="OilQty3-needle"
      style="fill:none;stroke:#ffffff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <text
      transform="scale(0.93889555,1.0650812)"
@@ -841,7 +841,7 @@
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="825.64392"
      y="591.61322"
-     id="NACTEMP3"
+     id="NacTemp3"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4350"
@@ -850,7 +850,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.22629547px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0</tspan></text>
   <text
      sodipodi:linespacing="125%"
-     id="EMVCOMP3"
+     id="Emv-Comp3"
      y="638.35175"
      x="825.64392"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -868,13 +868,13 @@
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:30.04465485px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="825.64392"
-     y="684.87543"
-     id="EMVTURB3"
+     y="685.08954"
+     id="EmvTurb3"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4358"
        x="825.64392"
-       y="684.87543"
+       y="685.08954"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.22629547px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0.0</tspan></text>
   <text
      sodipodi:linespacing="125%"
@@ -1084,22 +1084,22 @@
      sodipodi:linespacing="125%"
      id="StabUnit"
      y="90.317993"
-     x="673.26294"
+     x="656.82849"
      style="font-style:normal;font-weight:normal;font-size:28.03866577px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4415"
      transform="scale(0.87620832,1.1412811)"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff"
        y="90.317993"
-       x="673.26294"
+       x="656.82849"
        id="tspan4484"
        sodipodi:role="line">ANU</tspan></text>
   <rect
      style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="StabBox"
-     width="98.470909"
+     width="91.270889"
      height="46.821747"
-     x="455.20242"
+     x="448.00244"
      y="64.535538"
      ry="0.2"
      rx="0"
@@ -1206,14 +1206,14 @@
      sodipodi:linespacing="125%"
      id="text4537"
      y="40.128227"
-     x="558.73352"
+     x="544.00293"
      style="font-style:normal;font-weight:normal;font-size:31.28188133px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4415"
      transform="scale(0.97755877,1.0229564)"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff"
        y="40.128227"
-       x="558.73352"
+       x="544.00293"
        id="tspan4539"
        sodipodi:role="line">0.0</tspan></text>
   <text
@@ -1221,13 +1221,13 @@
      inkscape:label="#text4415"
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:31.28188133px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="558.73352"
+     x="544.00293"
      y="100.63814"
      id="Stab"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4543"
-       x="558.73352"
+       x="544.00293"
        y="100.63814"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:end;text-anchor:end;fill:#ffffff">0.0</tspan></text>
   <rect
@@ -1256,7 +1256,7 @@
      style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 583.3,137.754 28.5,0 5.7,-21.154 -20.92249,0 -13.15251,17.9"
+     d="m 583.3,137.754 18.74193,0 10.93259,-21.154 -16.39701,0 -13.15251,17.9"
      id="path4553"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ccccc" />
