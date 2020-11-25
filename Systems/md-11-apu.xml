@@ -92,6 +92,7 @@
 			<test logic="AND" value="1">
 				/engines/engine[3]/state eq 3
 				/controls/pneumatics/switches/bleed-apu eq 1
+				/systems/acconfig/autoconfig-running ne 1
 			</test>
 		</switch>
 		
