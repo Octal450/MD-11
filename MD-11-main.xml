@@ -5,7 +5,28 @@
 <PropertyList>
 	
 	<sim>
-		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures), J Maverick 16 (Effects)</author>
+		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures)</author>
+		<authors>
+			<author>
+				<name>Josh Davidson</name>
+				<description>Flight Dynamics, Systems, Displays</description>
+				<nick>Octal450</nick>
+			</author>
+			<author>
+				<name>Semir Gebran</name>
+				<description>3D, Textures</description>
+				<nick>CaptB</nick>
+			</author>
+			<author>
+				<name>John Williams</name>
+				<description>3D, Textures</description>
+				<nick>tikibar</nick>
+			</author>
+			<author>
+				<name>Jormapaappa1235</name>
+				<description>3D, Textures</description>
+			</author>
+		</authors>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
