@@ -265,31 +265,27 @@ setlistener("/controls/flight/auto-coordination", func() {
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
 
-var _shakeFlag = 0;
-var hd_t = 360;
+var viewNumberRaw = 0;
+var shakeFlag = 0;
 var resetView = func() {
-	if (!pts.Sim.CurrentView.viewNumber.getBoolValue()) {
+	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
+	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 110)) {
 		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
-			_shakeFlag = 1;
+			shakeFlag = 1;
 			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);
 		} else {
-			_shakeFlag = 0;
+			shakeFlag = 0;
 		}
 		
-		hd_t = 360;
-		if (pts.Sim.CurrentView.headingOffsetDeg.getValue() < 180) {
-			hd_t = hd_t - 360;
-		}
+		pts.Sim.CurrentView.fieldOfView.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/default-field-of-view-deg").getValue());
+		pts.Sim.CurrentView.headingOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/heading-offset-deg").getValue());
+		pts.Sim.CurrentView.pitchOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/pitch-offset-deg").getValue());
+		pts.Sim.CurrentView.rollOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/roll-offset-deg").getValue());
+		pts.Sim.CurrentView.xOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/x-offset-m").getValue());
+		pts.Sim.CurrentView.yOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/y-offset-m").getValue());
+		pts.Sim.CurrentView.zOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/z-offset-m").getValue());
 		
-		interpolate("sim/current-view/field-of-view", 82, 0.33);
-		interpolate("sim/current-view/heading-offset-deg", hd_t, 0.33);
-		interpolate("sim/current-view/pitch-offset-deg", -14.5, 0.33);
-		interpolate("sim/current-view/roll-offset-deg", 0, 0.33);
-		interpolate("sim/current-view/x-offset-m", -0.5225, 0.33); 
-		interpolate("sim/current-view/y-offset-m", 1.3201, 0.33); 
-		interpolate("sim/current-view/z-offset-m", -26.8, 0.33);
-		
-		if (_shakeFlag) {
+		if (shakeFlag) {
 			pts.Sim.Rendering.Headshake.enabled.setBoolValue(1);
 		}
 	} 
