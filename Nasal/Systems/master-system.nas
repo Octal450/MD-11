@@ -64,7 +64,7 @@ var APU = {
 				me.autoConnect = t;
 				me.Switch.start.setBoolValue(1);
 				onLightt.start();
-			} else if (!pts.Systems.Acconfig.autoConfigRunning.getBoolValue()) { # Do nothing if autoconfig is running, cause it'll break it
+			} else if (!acconfig.SYSTEM.autoConfigRunning.getBoolValue() and t != 1) { # Do nothing if autoconfig is running, cause it'll break it, or if ELEC panel switch was used
 				onLightt.stop();
 				me.Switch.start.setBoolValue(0);
 				me.Light.avail.setValue(0);
@@ -273,9 +273,6 @@ var ENGINE = {
 		throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 	},
 	init: func() {
-		me.Switch.cutoffSwitch[0].setBoolValue(1);
-		me.Switch.cutoffSwitch[1].setBoolValue(1);
-		me.Switch.cutoffSwitch[2].setBoolValue(1);
 		me.Switch.reverseLever[0].setBoolValue(0);
 		me.Switch.reverseLever[1].setBoolValue(0);
 		me.Switch.reverseLever[2].setBoolValue(0);
@@ -399,9 +396,7 @@ var IGNITION = {
 	cutoff1: props.globals.getNode("/systems/ignition/cutoff-1"),
 	cutoff2: props.globals.getNode("/systems/ignition/cutoff-2"),
 	cutoff3: props.globals.getNode("/systems/ignition/cutoff-3"),
-	ignA: props.globals.getNode("/systems/ignition/ign-a"),
 	ignAvail: props.globals.getNode("/systems/ignition/ign-avail"),
-	ignB: props.globals.getNode("/systems/ignition/ign-b"),
 	ign1: props.globals.getNode("/systems/ignition/ign-1"),
 	ign2: props.globals.getNode("/systems/ignition/ign-2"),
 	ign3: props.globals.getNode("/systems/ignition/ign-3"),

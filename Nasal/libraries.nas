@@ -58,7 +58,7 @@ var systemsLoop = maketimer(0.1, func() {
 		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
 	}
 	
-	if ((pts.Velocities.groundspeedKt.getValue() >= 2) or !pts.Controls.Gear.brakeParking.getBoolValue()) {
+	if ((pts.Velocities.groundspeedKt.getValue() >= 2 or !pts.Controls.Gear.brakeParking.getBoolValue()) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
 		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
 			systems.ELEC.Source.Ext.cart.setBoolValue(0);
 			systems.ELEC.Switch.extPwr.setBoolValue(0);

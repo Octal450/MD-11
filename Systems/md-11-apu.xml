@@ -96,9 +96,16 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/apu/bleed-timer-rate">
+			<default value="0.011111"/> <!-- 90 seconds -->
+			<test value="10000000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
 		<actuator name="/systems/apu/bleed-timer">
 			<input>/systems/apu/bleed-timer-cmd</input>
-			<rate_limit sense="decr">0.011111</rate_limit> <!-- 90 seconds -->
+			<rate_limit sense="decr">/systems/apu/bleed-timer-rate</rate_limit>
 			<rate_limit sense="incr">10000000</rate_limit> <!-- Instant -->
 		</actuator>
 		

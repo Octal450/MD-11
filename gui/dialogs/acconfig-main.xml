@@ -132,7 +132,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.PANEL.colddark();</script>
+							<script>acconfig.PANEL.coldDark();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -140,7 +140,7 @@
 					</button>
 					<button>
 						<halign>center</halign>
-						<legend>Ready to Start Eng</legend>
+						<legend>Before Eng Start</legend>
 						<pref-width>140</pref-width>
 						<enable>
 							<and>
@@ -152,7 +152,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.PANEL.beforestart();</script>
+							<script>acconfig.PANEL.beforeStart();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -172,7 +172,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.PANEL.taxi();</script>
+							<script>acconfig.PANEL.afterStart(0);</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -192,7 +192,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.PANEL.takeoff();</script>
+							<script>acconfig.PANEL.afterStart(1);</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
