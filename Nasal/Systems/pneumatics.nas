@@ -52,7 +52,7 @@ var PNEU = {
 	},
 	system: props.globals.getNode("/systems/pneumatics/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Switch.aftTemp.setValue(0.5);
 		me.Switch.avionicsFan.setBoolValue(1);
 		me.Switch.bleedApu.setBoolValue(0);
@@ -73,7 +73,7 @@ var PNEU = {
 		manualPneuLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Fail.bleedApu.setBoolValue(0);
 		me.Fail.bleedExt.setBoolValue(0);
 		me.Fail.bleed1.setBoolValue(0);

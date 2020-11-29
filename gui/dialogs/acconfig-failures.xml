@@ -6,7 +6,7 @@
 
 <PropertyList>
 
-	<name>aircraft-config-fail</name>
+	<name>acconfig-failures</name>
 	<layout>vbox</layout>
 
     <group>
@@ -533,7 +533,7 @@
 				<pref-width>120</pref-width>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.failReset();</script>
+					<script>acconfig.SYSTEM.resetFailures();</script>
 				</binding>
 			</button>
 		

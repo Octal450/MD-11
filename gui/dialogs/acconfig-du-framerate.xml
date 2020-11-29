@@ -6,7 +6,7 @@
 
 <PropertyList>
 
-	<name>aircraft-config-du-quality</name>
+	<name>acconfig-du-framerate</name>
 	<layout>vbox</layout>
 	
 	<group>
@@ -24,11 +24,11 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				acconfig.writeSettings();
-				canvas_pfd.rateApply();
-				#canvas_nd.rateApply();
-				canvas_ead.rateApply();
-				canvas_sd.rateApply();
+					acconfig.OPTIONS.writeSettings();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
 				</script>
 			</binding>
 			<binding>
@@ -193,7 +193,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					acconfig.writeSettings();
+					acconfig.OPTIONS.writeSettings();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
@@ -212,7 +212,7 @@
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
-					acconfig.writeSettings();
+					acconfig.OPTIONS.writeSettings();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
@@ -227,7 +227,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					acconfig.writeSettings();
+					acconfig.OPTIONS.writeSettings();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();

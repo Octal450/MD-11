@@ -6,14 +6,14 @@
 
 <PropertyList>
 
-	<name>aircraft-config</name>
+	<name>acconfig-main</name>
 	<layout>vbox</layout>
 	
 	<group>
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>Aircraft Configuration V1.5.1</label>
+			<label>Aircraft Configuration V2.0.0</label>
 		</text>
 		<empty><stretch>1</stretch></empty>
 		<button>
@@ -24,8 +24,8 @@
 			<pref-height>20</pref-height>
 			<legend>?</legend>
 			<binding>
-				<command>nasal</command>
-				<script>acconfig.help_dlg.open();</script>
+				<command>dialog-show</command>
+				<dialog-name>acconfig-help</dialog-name>
 			</binding>
 		</button>
 		<button>
@@ -56,8 +56,8 @@
 					<legend>Welcome</legend>
 					<pref-width>140</pref-width>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.welcome_dlg.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-welcome</dialog-name>
 					</binding>
 				</button>
 				<button>
@@ -74,8 +74,8 @@
 					<legend>Aircraft Help</legend>
 					<pref-width>140</pref-width>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.help_dlg.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-help</dialog-name>
 					</binding>
 				</button>
 				<button>
@@ -83,8 +83,8 @@
 					<legend>DU Framerate</legend>
 					<pref-width>140</pref-width>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.du_framerate.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-du-framerate</dialog-name>
 					</binding>
 				</button>
 				<button>
@@ -92,8 +92,8 @@
 					<legend>About Aircraft</legend>
 					<pref-width>140</pref-width>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.about_dlg.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-about</dialog-name>
 					</binding>
 				</button>
 			</group>
@@ -132,7 +132,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.colddark();</script>
+							<script>acconfig.PANEL.colddark();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -152,7 +152,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.beforestart();</script>
+							<script>acconfig.PANEL.beforestart();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -172,7 +172,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.taxi();</script>
+							<script>acconfig.PANEL.taxi();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -192,7 +192,7 @@
 						</enable>
 						<binding>
 							<command>nasal</command>
-							<script>acconfig.takeoff();</script>
+							<script>acconfig.PANEL.takeoff();</script>
 						</binding>
 						<binding>
 							<command>dialog-close</command>
@@ -353,7 +353,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.writeSettings();</script>
+					<script>acconfig.OPTIONS.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -367,7 +367,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.writeSettings();</script>
+					<script>acconfig.OPTIONS.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -381,7 +381,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.writeSettings();</script>
+					<script>acconfig.OPTIONS.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -395,7 +395,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.writeSettings();</script>
+					<script>acconfig.OPTIONS.writeSettings();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -418,7 +418,7 @@
 					</binding>
 					<binding>
 						<command>nasal</command>
-						<script>acconfig.writeSettings();</script>
+						<script>acconfig.OPTIONS.writeSettings();</script>
 					</binding>
 					<live>true</live>
 				</combo>
@@ -432,8 +432,8 @@
 					<halign>center</halign>
 					<padding>5</padding>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.fctl_dlg.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-fctl</dialog-name>
 					</binding>
 				</button>
 				
@@ -445,8 +445,8 @@
 						<not><property>/options/system/allow-damage</property></not>
 					</enable>
 					<binding>
-						<command>nasal</command>
-						<script>acconfig.fail_dlg.open();</script>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-failures</dialog-name>
 					</binding>
 				</button>
 				

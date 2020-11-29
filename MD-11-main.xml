@@ -57,15 +57,15 @@
 					<item>
 						<label>Aircraft Config</label>
 						<binding>
-							<command>nasal</command>
-							<script>acconfig.main_dlg.open();</script>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-main</dialog-name>
 						</binding>
 					</item>
 					<item>
 						<label>About This Aircraft</label>
 						<binding>
-							<command>nasal</command>
-							<script>acconfig.about_dlg.open();</script>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-about</dialog-name>
 						</binding>
 					</item>
 				</menu>
@@ -136,12 +136,8 @@
 					<item>
 						<label>Failures</label>
 						<binding>
-							<command>nasal</command>
-							<script>
-							if (getprop("/options/system/allow-damage") != 1) {
-								acconfig.fail_dlg.open();
-							}
-							</script>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-failures</dialog-name>
 						</binding>
 					</item>
 					<item>
@@ -1499,6 +1495,10 @@
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<error-code type="string">0x000</error-code>
 			<options n="0">
+				<autopush n="0">
+					<show-route type="bool">1</show-route>
+					<show-wingtip type="bool">1</show-wingtip>
+				</autopush>
 				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
 				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 				<du n="0">
@@ -1507,10 +1507,13 @@
 					<pfd-fps type="double">20</pfd-fps>
 					<sd-fps type="double">10</sd-fps>
 				</du>
-				<map-less-transparent type="bool">0</map-less-transparent>
 				<irs-skip type="bool">0</irs-skip>
+				<map-less-transparent type="bool">0</map-less-transparent>
+				<no-rendering-warn type="bool">0</no-rendering-warn>
+				<saved-revision type="int">0</saved-revision>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
+				<welcome-skip type="bool">0</welcome-skip>
 			</options>
 		</acconfig>
 		<apu n="0">
@@ -1625,7 +1628,7 @@
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
 		<acconfig>
-			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
+			<file>Aircraft/MD-11/Nasal/acconfig.nas</file>
 		</acconfig>
 		<systems>
 			<file>Aircraft/MD-11/Nasal/Systems/electrical.nas</file>

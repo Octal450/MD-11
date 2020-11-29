@@ -6,7 +6,7 @@
 
 <PropertyList>
 
-	<name>aircraft-config-update</name>
+	<name>acconfig-update</name>
 	<layout>vbox</layout>
 	<color>
 		<red>0.5</red>
@@ -158,13 +158,13 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/systems/acconfig/error-code") == "0x000") {
-					if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
-						acconfig.welcome_dlg.open();
+					if (getprop("/systems/acconfig/error-code") == "0x000") {
+						if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
+							fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
+						}
+					} else {
+						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
 					}
-				} else {
-					acconfig.error.open();
-				}
 				</script>
 			</binding>
 			<binding>

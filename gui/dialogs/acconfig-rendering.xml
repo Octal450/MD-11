@@ -6,7 +6,7 @@
 
 <PropertyList>
 
-	<name>aircraft-config-rendering</name>
+	<name>acconfig-rendering</name>
 	<layout>vbox</layout>
 	
 	<group>
@@ -89,9 +89,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>
-				acconfig.writeSettings();
-				</script>
+				<script>acconfig.OPTIONS.writeSettings();</script>
 			</binding>
 			<live>true</live>
 		</checkbox>
@@ -109,9 +107,7 @@
 			<pref-width>180</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>
-				acconfig.renderingSettings.fixAll();
-				</script>
+				<script>acconfig.RENDERING.fixAll();</script>
 			</binding>
 			<binding>
 				<command>dialog-close</command>
@@ -124,9 +120,7 @@
 			<pref-width>180</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>
-				acconfig.renderingSettings.fixCore();
-				</script>
+				<script>acconfig.RENDERING.fixCore();</script>
 			</binding>
 			<binding> <!-- Close the non-ALS shader dialog if it is open for some bizarre reason -->
 				<command>dialog-close</command>

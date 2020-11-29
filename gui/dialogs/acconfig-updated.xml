@@ -6,7 +6,7 @@
 
 <PropertyList>
 
-	<name>aircraft-config-updated</name>
+	<name>acconfig-updated</name>
 	<layout>vbox</layout>
 	
 	<group>
@@ -79,9 +79,9 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
-					acconfig.welcome_dlg.open();
-				}
+					if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
+						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
+					}
 				</script>
 			</binding>
 			<binding>

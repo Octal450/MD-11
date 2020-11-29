@@ -218,7 +218,7 @@ var ELEC = {
 	},
 	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Switch.acTie1.setBoolValue(1);
 		me.Switch.acTie2.setBoolValue(1);
 		me.Switch.acTie3.setBoolValue(1);
@@ -248,7 +248,7 @@ var ELEC = {
 		me.Light.manualFlash.setValue(0);
 		me.Source.Ext.cart.setBoolValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Switch.genDrive1.setBoolValue(1);
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);

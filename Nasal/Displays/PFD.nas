@@ -1107,7 +1107,7 @@ var canvasPfd1Error = {
 		return ["Error_Code"];
 	},
 	update: func() {
-		me["Error_Code"].setText(pts.Systems.Acconfig.errorCode.getValue());
+		me["Error_Code"].setText(acconfig.SYSTEM.Error.code.getValue());
 	},
 };
 
@@ -1138,7 +1138,7 @@ var canvasPfd2Error = {
 		return ["Error_Code"];
 	},
 	update: func() {
-		me["Error_Code"].setText(pts.Systems.Acconfig.errorCode.getValue());
+		me["Error_Code"].setText(acconfig.SYSTEM.Error.code.getValue());
 	},
 };
 

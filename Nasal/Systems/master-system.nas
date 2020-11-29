@@ -322,7 +322,7 @@ var FCTL = {
 		ydLowerB: props.globals.getNode("/controls/fctl/yd-lower-b"),
 	},
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Switch.elevatorFeelKnob.setValue(0);
 		me.Switch.elevatorFeelMan.setBoolValue(0);
 		me.Switch.flapLimit.setValue(0);
@@ -335,7 +335,7 @@ var FCTL = {
 		me.Switch.ydLowerA.setBoolValue(1);
 		me.Switch.ydLowerB.setBoolValue(1);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Fail.elevatorFeel.setBoolValue(0);
 		me.Fail.flapLimit.setBoolValue(0);
 		me.Fail.lsasLeftIn.setBoolValue(0);

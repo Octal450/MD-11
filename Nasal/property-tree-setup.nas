@@ -252,7 +252,6 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
-		errorCode: props.globals.getNode("/systems/acconfig/error-code"),
 		Options: {
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),

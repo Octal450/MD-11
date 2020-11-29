@@ -34,7 +34,7 @@ var FUEL = {
 	},
 	system: props.globals.getNode("/systems/fuel/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Switch.altPump.setBoolValue(0);
 		me.Switch.fill1.setBoolValue(0);
 		me.Switch.fill2.setBoolValue(0);
@@ -55,7 +55,7 @@ var FUEL = {
 		manualFuelLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Fail.pumpsAuxL.setBoolValue(0);
 		me.Fail.pumpsAuxR.setBoolValue(0);
 		me.Fail.pumpsTail.setBoolValue(0);

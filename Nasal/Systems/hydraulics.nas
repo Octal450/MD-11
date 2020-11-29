@@ -62,7 +62,7 @@ var HYD = {
 	},
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
@@ -81,7 +81,7 @@ var HYD = {
 		manualHydLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Fail.auxPump1.setBoolValue(0);
 		me.Fail.auxPump2.setBoolValue(0);
 		me.Fail.catastrophicAft.setBoolValue(0);
