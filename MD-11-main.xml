@@ -1589,9 +1589,6 @@
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
-		<iru-common n="0">
-			<align-instantly type="bool">0</align-instantly>
-		</iru-common>
 		<pneumatics n="0">
 			<system type="bool">1</system>
 		</pneumatics>

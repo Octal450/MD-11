@@ -2,8 +2,8 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var CONFIG = {
-	minFgfsInt: "202011", # Minimum FlightGear version without the decimal points
-	minFgfsString: "2020.1.1", # Minimum FlightGear version
+	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"),".","")),
+	minFgfsString: getprop("/sim/minimum-fg-version"),
 	minOptionsRevision: 980, # Minimum revision of supported options
 	noRevisionCheck: 0, # Disable ACCONFIG revision checks
 };
@@ -12,8 +12,6 @@ var SYSTEM = {
 	autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
 	Error: {
 		code: props.globals.initNode("/systems/acconfig/error-code", "0x000", "STRING"),
-		critical: 0,
-		incompatibleConfig: props.globals.initNode("/systems/acconfig/incompatible-config"),
 		outOfDate: 0,
 		reason: props.globals.initNode("/systems/acconfig/error-reason", "", "STRING"),
 	},
@@ -48,14 +46,14 @@ var SYSTEM = {
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-init"}));
 		spinningT.stop();
 		
-		#me.errorCheck();
+		me.errorCheck();
 		OPTIONS.read();
 		
 		if (!CONFIG.noRevisionCheck) { # Revision Checks Enabled
 			if (me.Error.outOfDate) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-update"}));
 			} else if (me.Error.code.getValue() == "0x000") {
-				if (OPTIONS.savedRevision.getValue() < me.revisionTemp or me.Error.incompatibleConfig.getBoolValue()) {
+				if (OPTIONS.savedRevision.getValue() < me.revisionTemp) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-updated"}));
 				} else if (!OPTIONS.welcomeSkip.getBoolValue()) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
@@ -79,20 +77,34 @@ var SYSTEM = {
 		}
 	},
 	errorCheck: func() {
-		if (num(string.replace(props.globals.getNode("/sim/version/flightgear").getValue(),".","")) < CONFIG.minFgfsInt) {
+		if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < CONFIG.minFgfsInt) {
 			me.Error.code.setValue("0x121");
 			me.Error.reason.setValue("FGFS version is too old! Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
 			print("System: Error 0x121");
+		} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 15000) {
+			me.Error.code.setValue("0x223");
+			me.Error.reason.setValue("Preposterous configuration detected for initialization. Check your position or scenery.");
+			me.showError();
+			print("System: Error 0x223");
+		} else if (getprop("/systems/acconfig/libraries-loaded") != 1 or getprop("/systems/acconfig/property-tree-setup-loaded") != 1) {
+			me.Error.code.setValue("0x247");
+			me.Error.reason.setValue("System files are missing or damaged. Please download a new copy of the aircraft.");
+			me.showError();
+			print("System: Error 0x247");
 		}
 	},
 	showError: func() {
 		libraries.systemsLoop.stop();
 		systems.DUController.showError();
-		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-defaults"}));
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-updated"}));
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-welcome"}));
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
+		# Kill menu items
+		setprop("/sim/menubar/default/menu[101]/enabled", 0);
+		setprop("/sim/menubar/default/menu[102]/enabled", 0);
+		setprop("/sim/menubar/default/menu[103]/enabled", 0);
+		setprop("/sim/menubar/default/menu[104]/enabled", 0);
 	},
 	resetFailures: func() {
 		systems.ELEC.resetFailures();
