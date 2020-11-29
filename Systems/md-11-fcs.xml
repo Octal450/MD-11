@@ -37,7 +37,7 @@
 		
 		<pure_gain name="hydraulics/deflected-aileron-active">
 			<input>/controls/hydraulics/deflected-aileron</input>
-			<gain>/controls/hydraulics/deflected-aileron-equipped</gain>
+			<gain>/systems/acconfig/options/deflected-aileron-equipped</gain>
 		</pure_gain>
 		
 		<switch name="hydraulics/aileron-droop-rate">
@@ -83,7 +83,7 @@
 							34.5  0.20  0.20
 						</tableData>
 					</table>
-					<property>/controls/hydraulics/deflected-aileron-equipped</property> <!-- No deflection whatsoever without Defl Aileron Package -->
+					<property>/systems/acconfig/options/deflected-aileron-equipped</property> <!-- No deflection whatsoever without Defl Aileron Package -->
 				</product>
 			</function>
 		</fcs_function>

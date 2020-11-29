@@ -353,7 +353,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.OPTIONS.writeSettings();</script>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -361,13 +361,13 @@
 			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
-				<property>/systems/iru-common/align-instantly</property>
+				<property>/systems/acconfig/options/irs-align-instantly</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.OPTIONS.writeSettings();</script>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -375,13 +375,13 @@
 			<checkbox>
 				<label>Deflected Ailerons Equipped (PIP)</label>
 				<halign>left</halign>
-				<property>/controls/hydraulics/deflected-aileron-equipped</property>
+				<property>/systems/acconfig/options/deflected-aileron-equipped</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.OPTIONS.writeSettings();</script>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -395,7 +395,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>acconfig.OPTIONS.writeSettings();</script>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
@@ -418,7 +418,7 @@
 					</binding>
 					<binding>
 						<command>nasal</command>
-						<script>acconfig.OPTIONS.writeSettings();</script>
+						<script>acconfig.OPTIONS.write();</script>
 					</binding>
 					<live>true</live>
 				</combo>

@@ -24,7 +24,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					acconfig.OPTIONS.writeSettings();
+					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
@@ -193,7 +193,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					acconfig.OPTIONS.writeSettings();
+					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
@@ -212,7 +212,7 @@
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
-					acconfig.OPTIONS.writeSettings();
+					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
@@ -227,7 +227,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					acconfig.OPTIONS.writeSettings();
+					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();

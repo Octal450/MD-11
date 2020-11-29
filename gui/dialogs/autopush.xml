@@ -309,6 +309,10 @@ Distribute under the terms of GPLv2.
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
 			</checkbox>
 
 			<text>
@@ -351,6 +355,10 @@ Distribute under the terms of GPLv2.
 				<property>/sim/model/autopush/route/show-wingtip</property>
 				<binding>
 					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 			</checkbox>
 

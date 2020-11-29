@@ -2,8 +2,9 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var CONFIG = {
-	minFgfsInt: "202011", # Minimum FlightGear version without the decimal points, 2020.1.1
-	minOptionsRevision: 1, # Minimum revision of saved options file
+	minFgfsInt: "202011", # Minimum FlightGear version without the decimal points
+	minFgfsString: "2020.1.1", # Minimum FlightGear version
+	minOptionsRevision: 980, # Minimum revision of supported options
 	noRevisionCheck: 0, # Disable ACCONFIG revision checks
 };
 
@@ -19,7 +20,6 @@ var SYSTEM = {
 	newRevision: props.globals.initNode("/systems/acconfig/new-revision", 0, "INT"),
 	revision: props.globals.initNode("/systems/acconfig/revision", 0, "INT"),
 	revisionTemp: 0,
-	savedRevision: props.globals.getNode("/systems/acconfig/options/saved-revision"),
 	spinner: "\\",
 	simInit: func() {
 		me.autoConfigRunning.setBoolValue(0);
@@ -45,25 +45,26 @@ var SYSTEM = {
 			print("System: Revision checks have been turned off!");
 		}
 		
-		spinningT.stop();
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-init"}));
+		spinningT.stop();
 		
 		#me.errorCheck();
-		OPTIONS.readSettings();
+		OPTIONS.read();
 		
 		if (!CONFIG.noRevisionCheck) { # Revision Checks Enabled
 			if (me.Error.outOfDate) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-update"}));
 			} else if (me.Error.code.getValue() == "0x000") {
-				if (me.savedRevision.getValue() < me.revisionTemp or me.Error.incompatibleConfig.getBoolValue()) {
+				if (OPTIONS.savedRevision.getValue() < me.revisionTemp or me.Error.incompatibleConfig.getBoolValue()) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-updated"}));
 				} else if (!OPTIONS.welcomeSkip.getBoolValue()) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
 				}
 				
 				# Only do on successful init
-				me.savedRevision.setValue(me.revisionTemp);
+				OPTIONS.savedRevision.setValue(me.revisionTemp);
 				RENDERING.check();
+				OPTIONS.write();
 			}
 		} else { # No Revision Checks
 			if (me.Error.code.getValue() == "0x000") {
@@ -73,8 +74,25 @@ var SYSTEM = {
 				
 				# Only do on successful init
 				RENDERING.check();
+				OPTIONS.write();
 			}
 		}
+	},
+	errorCheck: func() {
+		if (num(string.replace(props.globals.getNode("/sim/version/flightgear").getValue(),".","")) < CONFIG.minFgfsInt) {
+			me.Error.code.setValue("0x121");
+			me.Error.reason.setValue("FGFS version is too old! Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
+			me.showError();
+			print("System: Error 0x121");
+		}
+	},
+	showError: func() {
+		libraries.systemsLoop.stop();
+		systems.DUController.showError();
+		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-defaults"}));
+		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-updated"}));
+		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-welcome"}));
+		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
 	},
 	resetFailures: func() {
 		systems.ELEC.resetFailures();
@@ -118,14 +136,11 @@ var RENDERING = {
 		}
 	},
 	fixAll: func() {
-		me.landmassSet = me.landmass.getValue() >= 4;
-		me.modelSet = me.model.getValue() >= 2;
-		
 		# Don't override higher settings
-		if (!me.landmassSet) {
+		if (me.landmass.getValue() < 4) {
 			me.landmass.setValue(4);
 		}
-		if (!me.modelSet) {
+		if (me.model.getValue() < 2) {
 			me.model.setValue(2);
 		}
 		
@@ -141,13 +156,32 @@ var RENDERING = {
 };
 
 var OPTIONS = {
-	noRenderingWarn: props.globals.getNode("/systems/acconfig/options/no-rendering-warn"),
-	welcomeSkip: props.globals.getNode("/systems/acconfig/options/welcome-skip"),
-	readSettings: func() {
+	noRenderingWarn: props.globals.initNode("/systems/acconfig/options/no-rendering-warn", 0, "BOOL"),
+	savedRevision: props.globals.initNode("/systems/acconfig/options/saved-revision", 0, "INT"),
+	tempRevision: props.globals.initNode("/systems/acconfig/temp/saved-revision", 0, "INT"),
+	welcomeSkip: props.globals.initNode("/systems/acconfig/options/welcome-skip", 0, "BOOL"),
+	read: func() {
+		io.read_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-options.xml", "/systems/acconfig/temp");
 		
+		# Only load if options is new enough
+		if (me.tempRevision.getValue() < CONFIG.minOptionsRevision) {
+			print("System: Options reset!");
+			gui.popupTip("System: Aircraft Options have been reset due to aircraft installation/update!", 10);
+		} else {
+			io.read_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-options.xml", "/systems/acconfig/options");
+			
+			# These aren't stored in acconfig themselves, so we move them there
+			setprop("/sim/model/autopush/route/show", getprop("/systems/acconfig/options/autopush/show-route"));
+			setprop("/sim/model/autopush/route/show-wingtip", getprop("/systems/acconfig/options/autopush/show-wingtip"));
+			print("System: Options loaded successfully!");
+		}
 	},
-	writeSettings: func() {
+	write: func() {
+		# These aren't stored in acconfig themselves, so we move them there
+		setprop("/systems/acconfig/options/autopush/show-route", getprop("/sim/model/autopush/route/show"));
+		setprop("/systems/acconfig/options/autopush/show-wingtip", getprop("/sim/model/autopush/route/show-wingtip"));
 		
+		io.write_properties(getprop("/sim/fg-home") ~ "/Export/MD-11-options.xml", "/systems/acconfig/options");
 	},
 };
 

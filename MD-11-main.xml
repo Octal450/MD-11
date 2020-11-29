@@ -140,18 +140,10 @@
 							<dialog-name>acconfig-failures</dialog-name>
 						</binding>
 					</item>
-					<item>
-						<label>Skip IRS</label>
-						<binding>
-							<command>property-assign</command>
-							<property>/systems/iru-common/align-instantly</property>
-							<value>1</value>
-						</binding>
-					</item>
 				</menu>
 			</default>
 		</menubar>
-		<minimum-fg-version>2019.2.0</minimum-fg-version>
+		<minimum-fg-version>2020.1.1</minimum-fg-version>
 		<model n="0">
 			<autopush>
 				<available type="int">1</available>
@@ -177,6 +169,7 @@
 				<position-norm type="double">0</position-norm>
 				<route>
 					<show type="bool"/>
+					<show-wingtip type="bool"/>
 				</route>
 				<steer-cmd-norm alias="/fdm/jsbsim/hydraulics/tiller/autopush-cmd"/>
 				<stopping-distance-m type="float">5.0</stopping-distance-m>
@@ -586,7 +579,6 @@
 		</gear>
 		<hydraulics n="0">
 			<deflected-aileron type="bool">0</deflected-aileron>
-			<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 			<switches n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
@@ -1493,7 +1485,6 @@
 	<systems n="0">
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
-			<error-code type="string">0x000</error-code>
 			<options n="0">
 				<autopush n="0">
 					<show-route type="bool">1</show-route>
@@ -1507,13 +1498,10 @@
 					<pfd-fps type="double">20</pfd-fps>
 					<sd-fps type="double">10</sd-fps>
 				</du>
-				<irs-skip type="bool">0</irs-skip>
+				<irs-align-instantly type="bool">0</irs-align-instantly>
 				<map-less-transparent type="bool">0</map-less-transparent>
-				<no-rendering-warn type="bool">0</no-rendering-warn>
-				<saved-revision type="int">0</saved-revision>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
-				<welcome-skip type="bool">0</welcome-skip>
 			</options>
 		</acconfig>
 		<apu n="0">

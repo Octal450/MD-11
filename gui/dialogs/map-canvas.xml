@@ -400,7 +400,7 @@
 					<command>nasal</command>
 					<script>
 						setTransparency(1);
-						acconfig.OPTIONS.writeSettings();
+						acconfig.OPTIONS.write();
 					</script>
 				</binding>
 			</checkbox>
