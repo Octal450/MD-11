@@ -159,6 +159,9 @@ var apPanel = {
 				}
 			} else {
 				me.altTemp = me.altTemp + (d * 100);
+				if (me.altTemp >= 10000) {
+					me.altTemp = math.round(me.altTemp, 1000);
+				}
 			}
 			if (me.altTemp < 0) {
 				afs.Input.alt.setValue(0);
