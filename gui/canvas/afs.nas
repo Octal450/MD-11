@@ -4,7 +4,7 @@
 var font_mapper = func(family, weight) {
 	return "LiberationFonts/LiberationSans-Regular.ttf";
 };
-setprop("test", 0);
+
 var afsCanvas = {
 	new: func() {
 		var m = {parents: [afsCanvas]};
