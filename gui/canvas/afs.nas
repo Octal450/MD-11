@@ -1,0 +1,258 @@
+# Aircraft Config Center GUI
+# Copyright (c) 2020 Josh Davidson (Octal450)
+
+var font_mapper = func(family, weight) {
+	return "LiberationFonts/LiberationSans-Regular.ttf";
+};
+setprop("test", 0);
+var afsCanvas = {
+	new: func() {
+		var m = {parents: [afsCanvas]};
+		m._title = "AFS Panel";
+		m._dialog = nil;
+		m._canvas = nil;
+		m._svg = nil;
+		m._root = nil;
+		m._svgKeys = nil;
+		m._key = nil;
+		m._dialogUpdate = maketimer(0.07, m, afsCanvas._update);
+		m._vert = 0;
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "FeetInd", "FeetMeter", "FmsSpd",
+		"FpaInd", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
+	},
+	close: func() {
+		me._dialogUpdateT.stop();
+		me._dialog.del();
+		me._dialog = nil;
+	},
+	open: func() {
+		me._dialog = canvas.Window.new([599, 200], "dialog");
+		me._dialog._onClose = func() {
+			afsCanvas._onClose();
+		}
+		
+		me._dialog.set("title", me._title);
+		me._canvas  = me._dialog.createCanvas();
+		me._root = me._canvas.createGroup();
+		
+		me._svg = me._root.createChild("group");
+		canvas.parsesvg(me._svg, "Aircraft/MD-11/gui/canvas/afs.svg", {"font-mapper": font_mapper});
+		
+		me._svgKeys = me.getKeys();
+		foreach(me._key; me._svgKeys) {
+			me[me._key] = me._svg.getElementById(me._key);
+		}
+		
+		# Set up clickspots
+		# Center Buttons
+		me["Autoflight"].addEventListener("click", func(e) {
+			libraries.apPanel.autoflight();
+			libraries.Sound.btn1();
+		});
+		me["ApprLand"].addEventListener("click", func(e) {
+			libraries.apPanel.appr();
+			libraries.Sound.btn1();
+		});
+		me["AfsDisc"].addEventListener("click", func(e) {
+			libraries.apPanel.apDisc();
+		});
+		me["AtsDisc"].addEventListener("click", func(e) {
+			libraries.apPanel.atDisc();
+		});
+		me["AfsOvrd1Group"].addEventListener("click", func(e) {
+			afs.Input.ovrd1.setBoolValue(!afs.Input.ovrd1.getBoolValue());
+			libraries.Sound.switch1();
+		});
+		me["AfsOvrd2Group"].addEventListener("click", func(e) {
+			afs.Input.ovrd2.setBoolValue(!afs.Input.ovrd2.getBoolValue());
+			libraries.Sound.switch1();
+		});
+		
+		# Speed
+		me["SpdKnob"].addEventListener("click", func(e) {
+			if (e.shiftKey or e.button == 1) {
+				libraries.apPanel.spdPull();
+			} else if (e.button == 0) {
+				libraries.apPanel.spdPush();
+			}
+		});
+		me["SpdKnob"].addEventListener("wheel", func(e) {
+			if (e.shiftKey) {
+				libraries.apPanel.spdAdjust(10 * e.deltaY);
+			} else {
+				libraries.apPanel.spdAdjust(1 * e.deltaY);
+			}
+		});
+		
+		me["IasMach"].addEventListener("click", func(e) {
+			libraries.apPanel.ktsMach();
+			libraries.Sound.btn1();
+		});
+		
+		# Heading
+		me["HdgKnob"].addEventListener("click", func(e) {
+			if (e.shiftKey or e.button == 1) {
+				libraries.apPanel.hdgPull();
+			} else if (e.button == 0) {
+				libraries.apPanel.hdgPush();
+			}
+		});
+		me["HdgKnob"].addEventListener("wheel", func(e) {
+			if (e.shiftKey) {
+				libraries.apPanel.hdgAdjust(10 * e.deltaY);
+			} else {
+				libraries.apPanel.hdgAdjust(1 * e.deltaY);
+			}
+		});
+		
+		me["HdgTrk"].addEventListener("click", func(e) {
+			libraries.apPanel.hdgTrk();
+			libraries.Sound.btn1();
+		});
+		
+		me["Nav"].addEventListener("click", func(e) {
+			libraries.apPanel.nav();
+			libraries.Sound.btn1();
+		});
+		
+		# Bank Limit
+		me["BankAuto"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(0);
+		});
+		me["Bank5"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(1);
+		});
+		me["Bank10"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(2);
+		});
+		me["Bank15"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(3);
+		});
+		me["Bank20"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(4);
+		});
+		me["Bank25"].addEventListener("click", func(e) {
+			afs.Input.bankLimitSw.setValue(5);
+		});
+		
+		# Altitude
+		me["AltKnob"].addEventListener("click", func(e) {
+			if (e.shiftKey or e.button == 1) {
+				libraries.apPanel.altPull();
+			} else if (e.button == 0) {
+				libraries.apPanel.altPush();
+			}
+		});
+		me["AltKnob"].addEventListener("wheel", func(e) {
+			if (e.shiftKey) {
+				libraries.apPanel.altAdjust(10 * e.deltaY);
+			} else {
+				libraries.apPanel.altAdjust(1 * e.deltaY);
+			}
+		});
+		
+		# Vertical Speed
+		me["VsKnob"].addEventListener("wheel", func(e) {
+			if (e.shiftKey) {
+				libraries.apPanel.vsAdjust(-10 * e.deltaY); # Inverted
+			} else {
+				libraries.apPanel.vsAdjust(-1 * e.deltaY); # Inverted
+			}
+		});
+		
+		me["VsFpa"].addEventListener("click", func(e) {
+			libraries.apPanel.vsFpa();
+			libraries.Sound.btn1();
+		});
+		
+		me._update();
+		me._dialogUpdate.start();
+	},
+	_update: func() {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 25) {
+			if (pts.Controls.Switches.annunTest.getBoolValue()) {
+				me["FeetInd"].show();
+				me["FpaInd"].show();
+				me["HdgInd"].show();
+				me["IasInd"].show();
+				me["MachInd"].show();
+				me["MeterInd"].show();
+				me["TrkInd"].show();
+				me["VsInd"].show();
+				me["Alt"].setText("88888");
+				me["Hdg"].setText("888");
+				me["Spd"].setText(".888");
+				me["Vs"].setText("-8888");
+			} else {
+				# Speed
+				if (afs.Input.ktsMach.getBoolValue()) {
+					me["IasInd"].hide();
+					me["MachInd"].show();
+					me["Spd"].setText("." ~ sprintf("%03d", afs.Input.mach.getValue() * 1000));
+				} else {
+					me["IasInd"].show();
+					me["MachInd"].hide();
+					me["Spd"].setText(sprintf("%03d", afs.Input.kts.getValue()));
+				}
+				
+				# Heading
+				if (afs.Input.trk.getBoolValue()) {
+					me["HdgInd"].hide();
+					me["TrkInd"].show();
+				} else {
+					me["HdgInd"].show();
+					me["TrkInd"].hide();
+				}
+				if (afs.Output.showHdg.getBoolValue()) {
+					me["Hdg"].setText(sprintf("%03d", afs.Input.hdg.getValue()));
+				} else {
+					me["Hdg"].setText("---");
+				}
+				
+				# Altitude
+				me["MeterInd"].hide(); # Unused, so we hide it
+				me["Alt"].setText(sprintf("%03d", afs.Input.alt.getValue()));
+				
+				# Vertical Speed
+				me._vert = afs.Output.vert.getValue();
+				if (me._vert == 1 or me._vert == 5) {
+					if (afs.Output.vsFpa.getBoolValue()) {
+						me["FpaInd"].show();
+						me["VsInd"].hide();
+						me["Vs"].setText(sprintf("%2.1f", afs.Input.fpa.getValue()));
+					} else {
+						me["FpaInd"].hide();
+						me["VsInd"].show();
+						me["Vs"].setText(sprintf("%03d", afs.Input.vs.getValue()));
+					}
+				} else {
+					if (afs.Output.vsFpa.getBoolValue()) {
+						me["FpaInd"].show();
+						me["VsInd"].hide();
+					} else {
+						me["FpaInd"].hide();
+						me["VsInd"].show();
+					}
+					me["Vs"].setText("----");
+				}
+			}
+			
+			me["Display"].show();
+		} else {
+			me["Display"].hide();
+		}
+		
+		# Bank Limit
+		me["BankLimit"].setRotation(afs.Input.bankLimitSw.getValue() * 60 * D2R);
+		
+		# AFS OVRD
+		me["AfsOvrd1"].setTranslation(0, afs.Input.ovrd1.getValue() * 20);
+		me["AfsOvrd2"].setTranslation(0, afs.Input.ovrd2.getValue() * 20);
+	},
+};
+
+var afsDialog = afsCanvas.new();

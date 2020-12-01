@@ -416,6 +416,48 @@
 			</and>
 		</condition>
 	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/fcp-power</property>
+				<equals>
+					<property>it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+					<property>it-autoflight/input/vs</property>
+					<value>-0.01</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.ledminus</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<less-than>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</less-than>
+		</condition>
+	</animation>
 
 	<animation>
 		<type>textranslate</type>

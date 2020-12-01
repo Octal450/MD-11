@@ -28,27 +28,27 @@ var Value = {
 };
 
 var canvasBase = {
-	init: func(canvas_group, file) {
+	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
 			return "LiberationFonts/LiberationSans-Regular.ttf";
 		};
 		
-		canvas.parsesvg(canvas_group, file, {"font-mapper": font_mapper});
+		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
 		
-		var svg_keys = me.getKeys();
-		foreach(var key; svg_keys) {
-			me[key] = canvas_group.getElementById(key);
+		var svgKeys = me.getKeys();
+		foreach(var key; svgKeys) {
+			me[key] = canvasGroup.getElementById(key);
 			
-			var clip_el = canvas_group.getElementById(key ~ "_clip");
+			var clip_el = canvasGroup.getElementById(key ~ "_clip");
 			if (clip_el != nil) {
 				clip_el.setVisible(0);
-				var tran_rect = clip_el.getTransformedBounds();
+				var tranRect = clip_el.getTransformedBounds();
 				
 				var clip_rect = sprintf("rect(%d, %d, %d, %d)", 
-					tran_rect[1], # 0 ys
-					tran_rect[2], # 1 xe
-					tran_rect[3], # 2 ye
-					tran_rect[0] # 3 xs
+					tranRect[1], # 0 ys
+					tranRect[2], # 1 xe
+					tranRect[3], # 2 ye
+					tranRect[0] # 3 xs
 				);
 				
 				# Coordinates are top, right, bottom, left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
@@ -57,7 +57,7 @@ var canvasBase = {
 			}
 		}
 		
-		me.page = canvas_group;
+		me.page = canvasGroup;
 		
 		return me;
 	},
@@ -353,9 +353,9 @@ var canvasBase = {
 };
 
 var canvasGe = {
-	new: func(canvas_group, file) {
+	new: func(canvasGroup, file) {
 		var m = {parents: [canvasGe, canvasBase]};
-		m.init(canvas_group, file);
+		m.init(canvasGroup, file);
 		
 		return m;
 	},
@@ -470,9 +470,9 @@ var canvasGe = {
 };
 
 var canvasPw = {
-	new: func(canvas_group, file) {
+	new: func(canvasGroup, file) {
 		var m = {parents: [canvasPw, canvasBase]};
-		m.init(canvas_group, file);
+		m.init(canvasGroup, file);
 		
 		return m;
 	},

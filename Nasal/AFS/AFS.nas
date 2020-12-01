@@ -98,8 +98,8 @@ var Input = {
 	ap2: props.globals.initNode("/it-autoflight/input/ap2", 0, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/input/athr", 0, "BOOL"),
 	altDiff: 0,
-	bankLimitSW: props.globals.initNode("/it-autoflight/input/bank-limit-sw", 0, "INT"),
-	bankLimitSWTemp: 0,
+	bankLimitSw: props.globals.initNode("/it-autoflight/input/bank-limit-sw", 0, "INT"),
+	bankLimitSwTemp: 0,
 	fd1: props.globals.initNode("/it-autoflight/input/fd1", 1, "BOOL"),
 	fd2: props.globals.initNode("/it-autoflight/input/fd2", 1, "BOOL"),
 	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
@@ -225,7 +225,7 @@ var ITAF = {
 	init: func(t = 0) { # Not everything should be reset if the reset is type 1
 		if (t != 1) {
 			Input.alt.setValue(10000);
-			Input.bankLimitSW.setValue(0);
+			Input.bankLimitSw.setValue(0);
 			Input.ktsMach.setBoolValue(0);
 			Input.kts.setValue(250);
 			Input.mach.setValue(0.5);
@@ -562,7 +562,7 @@ var ITAF = {
 		}
 	},
 	slowLoop: func() {
-		Input.bankLimitSWTemp = Input.bankLimitSW.getValue();
+		Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
 		Velocities.trueAirspeedKtTemp = Velocities.trueAirspeedKt.getValue();
 		FPLN.activeTemp = FPLN.active.getValue();
 		FPLN.currentWpTemp = FPLN.currentWp.getValue();
@@ -577,8 +577,8 @@ var ITAF = {
 			Internal.bankLimitAuto = 25;
 		}
 		
-		if (Internal.bankLimitAuto > Internal.bankLimitMax[Input.bankLimitSWTemp]) {
-			Internal.bankLimit.setValue(Internal.bankLimitMax[Input.bankLimitSWTemp]);
+		if (Internal.bankLimitAuto > Internal.bankLimitMax[Input.bankLimitSwTemp]) {
+			Internal.bankLimit.setValue(Internal.bankLimitMax[Input.bankLimitSwTemp]);
 		} else {
 			Internal.bankLimit.setValue(Internal.bankLimitAuto);
 		}

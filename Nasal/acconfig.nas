@@ -213,6 +213,7 @@ var PANEL = {
 		spinningT.start();
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psloaded"}));
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psload"}));
+		systems.doIdleThrust();
 		libraries.systemsInit();
 		pts.Controls.Flight.speedbrake.setValue(0);
 		if (t == 1) {

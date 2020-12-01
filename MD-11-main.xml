@@ -79,6 +79,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>AFS Panel (Canvas)</label>
+						<binding>
+							<command>nasal</command>
+							<script>panel2d.afsDialog.open();</script>
+						</binding>
+					</item>
+					<item>
 						<label>Route Manager</label>
 						<binding>
 							<command>dialog-show</command>
@@ -1651,6 +1658,9 @@
 		<autopush_route>
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
+		<panel2d>
+			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
+		</panel2d>
 	</nasal>
 
 </PropertyList>

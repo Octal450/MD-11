@@ -47,6 +47,7 @@ var Controls = {
 	},
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
+		annunTest: props.globals.getNode("/controls/switches/annun-test"),
 		apYokeButton1: props.globals.getNode("/controls/switches/ap-yoke-button1"),
 		apYokeButton2: props.globals.getNode("/controls/switches/ap-yoke-button2"),
 		minimums: props.globals.getNode("/controls/switches/minimums"),
