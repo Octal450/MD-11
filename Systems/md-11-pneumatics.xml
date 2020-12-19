@@ -98,18 +98,20 @@
 			<input>/systems/pneumatics/esc/ign-packs-timer-cmd</input>
 			<rate_limit sense="incr">0.00833333333333333333333333333333</rate_limit> <!-- 2 minutes -->
 			<rate_limit sense="decr">1000</rate_limit>
+			<output>/systems/pneumatics/esc/ign-packs-timer-out</output>
 		</actuator>
 		
-		<switch name="/systems/pneumatics/esc/ign-packs-off">
+		<switch name="/systems/pneumatics/esc/ign-packs-off"> <!-- Flip flop -->
 			<default value="/systems/pneumatics/esc/ign-packs-off"/>
 			<test logic="OR" value="0">
 				position/wow eq 0
+				/systems/pneumatics/esc/ign-avail ne 1
 				/systems/pneumatics/esc/ign-packs-timer eq 1
 			</test>
 			<test logic="AND" value="0">
-				/engines/engine[0]/state eq 3
-				/engines/engine[1]/state eq 3
-				/engines/engine[2]/state eq 3
+				/systems/pneumatics/eng-1-psi ge 10.5
+				/systems/pneumatics/eng-2-psi ge 10.5
+				/systems/pneumatics/eng-3-psi ge 10.5
 			</test>
 			<test logic="OR" value="1">
 				/engines/engine[0]/state eq 1
@@ -122,7 +124,7 @@
 		</switch>
 		
 		<switch name="/systems/pneumatics/esc/toga-packs-off"> <!-- Doesn't care about throttle Engine 3 -->
-			<default value="/systems/pneumatics/esc/toga-packs-off"/>
+			<default value="/systems/pneumatics/esc/toga-packs-off"/> <!-- Flip flop -->
 			<test logic="OR" value="0">
 				/position/gear-agl-ft ge 4500
 				fadec/limit/active-mode-int ne 0
@@ -273,9 +275,45 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="/systems/pneumatics/eng-1-psi-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+					<tableData>
+						23   0
+						25  31
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/eng-2-psi-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+					<tableData>
+						23   0
+						25  33
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/eng-3-psi-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+					<tableData>
+						23   0
+						25  32
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/pneumatics/eng-1-psi">
 			<default value="0"/>
-			<test logic="AND" value="31">
+			<test logic="AND" value="/systems/pneumatics/eng-1-psi-cmd">
 				/controls/pneumatics/switches/bleed-1 eq 1
 				/engines/engine[0]/state ge 2
 				/systems/failures/pneumatics/bleed-1 ne 1
@@ -284,7 +322,7 @@
 		
 		<switch name="/systems/pneumatics/eng-2-psi">
 			<default value="0"/>
-			<test logic="AND" value="33">
+			<test logic="AND" value="/systems/pneumatics/eng-2-psi-cmd">
 				/controls/pneumatics/switches/bleed-2 eq 1
 				/engines/engine[1]/state ge 2
 				/systems/failures/pneumatics/bleed-2 ne 1
@@ -293,7 +331,7 @@
 		
 		<switch name="/systems/pneumatics/eng-3-psi">
 			<default value="0"/>
-			<test logic="AND" value="32">
+			<test logic="AND" value="/systems/pneumatics/eng-3-psi-cmd">
 				/controls/pneumatics/switches/bleed-3 eq 1
 				/engines/engine[2]/state ge 2
 				/systems/failures/pneumatics/bleed-3 ne 1
@@ -726,7 +764,7 @@
 			<default value="/controls/pneumatics/switches/pack-1"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off ge 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -752,7 +790,7 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off ge 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -768,7 +806,7 @@
 			<default value="/controls/pneumatics/switches/pack-3"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
+				/systems/pneumatics/esc/packs-cmd-off ge 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1

@@ -21,8 +21,8 @@ var afsCanvas = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "FeetInd", "FeetMeter", "FmsSpd",
-		"FpaInd", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd", "FeetMeter",
+		"FmsSpd", "FpaInd", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
 	},
 	close: func() {
 		me._dialogUpdateT.stop();
@@ -57,12 +57,20 @@ var afsCanvas = {
 			libraries.apPanel.appr();
 			libraries.Sound.btn1();
 		});
+		
 		me["AfsDisc"].addEventListener("click", func(e) {
 			libraries.apPanel.apDisc();
 		});
 		me["AtsDisc"].addEventListener("click", func(e) {
 			libraries.apPanel.atDisc();
 		});
+		me["Fd1"].addEventListener("click", func(e) {
+			libraries.apPanel.fd1();
+		});
+		me["Fd2"].addEventListener("click", func(e) {
+			libraries.apPanel.fd2();
+		});
+		
 		me["AfsOvrd1Group"].addEventListener("click", func(e) {
 			afs.Input.ovrd1.setBoolValue(!afs.Input.ovrd1.getBoolValue());
 			libraries.Sound.switch1();

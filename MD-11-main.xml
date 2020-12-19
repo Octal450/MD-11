@@ -70,21 +70,7 @@
 					</item>
 				</menu>
 				<menu n="102">
-					<label>AFS/FMS</label>
-					<item>
-						<label>AFS Panel</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>autopilot</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>AFS Panel (Canvas)</label>
-						<binding>
-							<command>nasal</command>
-							<script>panel2d.afsDialog.open();</script>
-						</binding>
-					</item>
+					<label>FMS</label>
 					<item>
 						<label>Route Manager</label>
 						<binding>
@@ -94,7 +80,11 @@
 					</item>
 				</menu>
 				<menu n="103">
-					<label>DU</label>
+					<label>2D Panels</label>
+					<item>
+						<label>DUs:</label>
+						<enabled type="bool">false</enabled>
+					</item>
 					<item>
 						<label>Captain's PFD</label>
 						<binding>
@@ -110,17 +100,35 @@
 						</binding>
 					</item>
 					<item>
-						<label>EAD</label>
+						<label>Engine and Alert Display</label>
 						<binding>
 							<command>nasal</command>
 							<script>canvas_ead.showEad();</script>
 						</binding>
 					</item>
 					<item>
-						<label>SD</label>
+						<label>System Display</label>
 						<binding>
 							<command>nasal</command>
 							<script>canvas_sd.showSd();</script>
+						</binding>
+					</item>
+					<item>
+						<label>Panels:</label>
+						<enabled type="bool">false</enabled>
+					</item>
+					<item>
+						<label>AFS Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>panel2d.afsDialog.open();</script>
+						</binding>
+					</item>
+					<item>
+						<label>AFS Panel (Legacy)</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>autopilot</dialog-name>
 						</binding>
 					</item>
 				</menu>
@@ -1148,6 +1156,22 @@
 					<script>libraries.resetView();</script>
 				</binding>
 			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Thrust Levers Idle</desc>
+				<binding>
+					<command>nasal</command>
+					<script>systems.doIdleThrust();</script>
+				</binding>
+			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Thrust Lever Full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>systems.doFullThrust();</script>
+				</binding>
+			</key>
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
@@ -1178,22 +1202,6 @@
 				<binding>
 					<command>nasal</command>
 					<script>systems.doRevThrust();</script>
-				</binding>
-			</key>
-			<key n="101">
-				<name>e</name>
-				<desc>Thrust Levers Idle</desc>
-				<binding>
-					<command>nasal</command>
-					<script>systems.doIdleThrust();</script>
-				</binding>
-			</key>
-			<key n="102">
-				<name>f</name>
-				<desc>Thrust Lever Full</desc>
-				<binding>
-					<command>nasal</command>
-					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
 			<key n="362">
