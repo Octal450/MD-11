@@ -764,7 +764,7 @@
 			<default value="/controls/pneumatics/switches/pack-1"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off ge 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -790,7 +790,7 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off ge 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
@@ -806,7 +806,7 @@
 			<default value="/controls/pneumatics/switches/pack-3"/>
 			<test logic="AND" value="0">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off ge 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
