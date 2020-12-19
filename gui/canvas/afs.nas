@@ -1,4 +1,4 @@
-# Aircraft Config Center GUI
+# AFS Dialog
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var font_mapper = func(family, weight) {

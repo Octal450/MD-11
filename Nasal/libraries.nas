@@ -73,7 +73,7 @@ var systemsLoop = maketimer(0.1, func() {
 		pts.Sim.Replay.wasActive.setBoolValue(1);
 	} else if (!pts.Sim.Replay.replayState.getBoolValue() and pts.Sim.Replay.wasActive.getBoolValue()) {
 		pts.Sim.Replay.wasActive.setBoolValue(0);
-		acconfig.colddark();
+		acconfig.PANEL.coldDark();
 		gui.popupTip("Replay Ended: Setting Cold and Dark state...");
 	}
 });
