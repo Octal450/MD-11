@@ -275,29 +275,42 @@
 	</filter>
 	
 	<filter>
-		<name>Knots Input Filter</name>
+		<name>Flch Knots Rate Command</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/kts</input>
-		<output>/it-autoflight/internal/flch-kts</output>
-		<min>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
 			<expression>
-				<difference>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>25</value>
-				</difference>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/mach</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</difference>
+					<value>75</value>
+				</product>
 			</expression>
-		</min>
-		<max>
+		</input>
+		<input>
 			<expression>
-				<sum>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>25</value>
-				</sum>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/kts</property>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					</difference>
+					<value>0.075</value>
+				</product>
 			</expression>
-		</max>
+		</input>
+		<output>/it-autoflight/internal/flch-kts-error</output>
+		<min>-1.5</min>
+		<max>1.5</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -311,10 +324,6 @@
 							<value>7</value>
 						</equals>
 					</or>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>0</value>
-					</equals>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/ap1</property>
@@ -349,80 +358,6 @@
 	</filter>
 	
 	<filter>
-		<name>Mach Input Filter</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/mach</input>
-		<output>/it-autoflight/internal/flch-mach</output>
-		<min>
-			<expression>
-				<difference>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.045</value>
-				</difference>
-			</expression>
-		</min>
-		<max>
-			<expression>
-				<sum>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.045</value>
-				</sum>
-			</expression>
-		</max>
-		<max-rate-of-change>
-			<condition>
-				<and>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>4</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>7</value>
-						</equals>
-					</or>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>1</value>
-					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-			<value>0.04</value>
-		</max-rate-of-change>
-		<max-rate-of-change>1</max-rate-of-change>
-	</filter>
-	
-	<filter>
 		<name>Target Speed Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -437,7 +372,10 @@
 				<product>
 					<div>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<max>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<value>0.001</value> <!-- Prevent divide by 0 -->
+						</max>
 					</div>
 					<property>/it-autoflight/internal/mach</property>
 				</product>
@@ -906,6 +844,23 @@
 		</input>
 		<output>/it-autoflight/internal/retard-flap</output>
 	</logic>
+	
+	<filter>
+		<name>Knots Rate</name>
+		<type>derivative</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/internal/kts-rate-raw</output>
+		<filter-time>1.0</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Knots Rate Lag</name>
+		<debug>false</debug>
+		<type>double-exponential</type>
+		<input>/it-autoflight/internal/kts-rate-raw</input>
+		<output>/it-autoflight/internal/kts-rate</output>
+		<filter-time>0.12</filter-time>
+	</filter>
 	
 	<!-- Flight Director -->
 	<filter>

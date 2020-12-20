@@ -68,48 +68,12 @@
 				<property>/it-autoflight/internal/flch-active</property>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/kts-predicted-15</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/mach-predicted-15</property>
-			<scale>750</scale>
-		</input>
-		<reference>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/flch-kts</property>
-		</reference>
-		<reference>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/flch-mach</property>
-			<scale>750</scale>
-		</reference>
+		<input>/it-autoflight/internal/kts-rate</input>
+		<reference>/it-autoflight/internal/flch-kts-error</reference>
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 		<config>
-			<Kp>-55</Kp>
-			<Ti>2.5</Ti>        
+			<Kp>-400</Kp>
+			<Ti>0.9</Ti>        
 			<Td>0.001</Td>
 			<u_min>
 				<condition>
