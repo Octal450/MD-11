@@ -857,6 +857,15 @@
 		<name>Knots Rate Lag</name>
 		<debug>false</debug>
 		<type>double-exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>60</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/kts-rate</output>
 		<filter-time>0.12</filter-time>

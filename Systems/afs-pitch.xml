@@ -73,7 +73,7 @@
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 		<config>
 			<Kp>-400</Kp>
-			<Ti>0.9</Ti>        
+			<Ti>1.0</Ti>        
 			<Td>0.001</Td>
 			<u_min>
 				<condition>
@@ -88,7 +88,7 @@
 				<expression>
 					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
+						<value>1500</value>
 					</difference>
 				</expression>
 			</u_min>
@@ -126,7 +126,7 @@
 				<expression>
 					<sum>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
+						<value>1500</value>
 					</sum>
 				</expression>
 			</u_max>
