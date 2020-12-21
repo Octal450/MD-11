@@ -59,6 +59,10 @@
 		
 		<switch name="fcc/lsas/left-out-active">
 			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-out eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
@@ -77,6 +81,10 @@
 		
 		<switch name="fcc/lsas/left-in-active">
 			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-left-in eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
@@ -95,6 +103,10 @@
 		
 		<switch name="fcc/lsas/right-in-active">
 			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-in eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
@@ -113,6 +125,10 @@
 		
 		<switch name="fcc/lsas/right-out-active">
 			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/controls/fctl/lsas-right-out eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
