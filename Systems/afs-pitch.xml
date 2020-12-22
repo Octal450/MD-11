@@ -428,7 +428,7 @@
 				</condition>
 				<expression>
 					<table>
-						<property>/fdm/jsbsim/velocities/vc-kts</property>
+						<property>/velocities/airspeed-kt</property>
 						<entry><ind>140</ind><dep>0.0029</dep></entry>
 						<entry><ind>360</ind><dep>0.0009</dep></entry>
 					</table>
@@ -589,7 +589,7 @@
 				<expression>
 					<div>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>-0.14</dep></entry>
 							<entry><ind>360</ind><dep>-0.07</dep></entry>
 						</table>

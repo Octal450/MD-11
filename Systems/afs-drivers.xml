@@ -277,7 +277,7 @@
 	<filter>
 		<name>Knots Rate</name>
 		<type>derivative</type>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
 		<output>/it-autoflight/internal/kts-rate-raw</output>
 		<filter-time>1.0</filter-time>
 	</filter>
@@ -289,7 +289,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<property>/velocities/airspeed-kt</property>
 					<value>60</value>
 				</less-than>
 			</condition>
@@ -335,8 +335,8 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/internal/flch-kts-error</output>
-		<min>-1.5</min>
-		<max>1.5</max>
+		<min>-1.8</min>
+		<max>1.8</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -755,7 +755,7 @@
 					<div>
 						<property>/orientation/roll-deg</property>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>1.8</dep></entry>
 							<entry><ind>360</ind><dep>2.8</dep></entry>
 						</table>
@@ -776,7 +776,7 @@
 					<div>
 						<property>/orientation/roll-deg</property>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>1.8</dep></entry>
 							<entry><ind>360</ind><dep>2.8</dep></entry>
 						</table>
@@ -926,7 +926,7 @@
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 					</difference>
 					<table>
-						<property>/fdm/jsbsim/velocities/vc-kts</property> 
+						<property>/velocities/airspeed-kt</property> 
 						<entry><ind>140</ind><dep>0.001848350</dep></entry>
 						<entry><ind>360</ind><dep>0.000924175</dep></entry>
 					</table>
