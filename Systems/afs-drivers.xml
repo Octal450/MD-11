@@ -275,6 +275,32 @@
 	</filter>
 	
 	<filter>
+		<name>Knots Rate</name>
+		<type>derivative</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/internal/kts-rate-raw</output>
+		<filter-time>1.0</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Knots Rate Lag</name>
+		<debug>false</debug>
+		<type>double-exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					<value>60</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/it-autoflight/internal/kts-rate-raw</input>
+		<output>/it-autoflight/internal/kts-rate</output>
+		<filter-time>0.12</filter-time>
+	</filter>
+	
+	<filter>
 		<name>Flch Knots Rate Command</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
@@ -845,32 +871,6 @@
 		<output>/it-autoflight/internal/retard-flap</output>
 	</logic>
 	
-	<filter>
-		<name>Knots Rate</name>
-		<type>derivative</type>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/kts-rate-raw</output>
-		<filter-time>1.0</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Knots Rate Lag</name>
-		<debug>false</debug>
-		<type>double-exponential</type>
-		<input>
-			<condition>
-				<less-than>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>60</value>
-				</less-than>
-			</condition>
-			<value>0</value>
-		</input>
-		<input>/it-autoflight/internal/kts-rate-raw</input>
-		<output>/it-autoflight/internal/kts-rate</output>
-		<filter-time>0.12</filter-time>
-	</filter>
-	
 	<!-- Flight Director -->
 	<filter>
 		<name>FD Target Roll Filter</name>
@@ -926,9 +926,9 @@
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 					</difference>
 					<table>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property> 
-						<entry><ind>0.20</ind><dep>0.004</dep></entry>
-						<entry><ind>0.95</ind><dep>0.002</dep></entry>
+						<property>/fdm/jsbsim/velocities/vc-kts</property> 
+						<entry><ind>140</ind><dep>0.001848350</dep></entry>
+						<entry><ind>360</ind><dep>0.000924175</dep></entry>
 					</table>
 				</product>
 			</expression>
