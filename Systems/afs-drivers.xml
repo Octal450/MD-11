@@ -297,7 +297,7 @@
 		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/kts-rate</output>
-		<filter-time>0.12</filter-time>
+		<filter-time>0.08</filter-time>
 	</filter>
 	
 	<filter>
@@ -335,8 +335,8 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/internal/flch-kts-error</output>
-		<min>-1.8</min>
-		<max>1.8</max>
+		<min>-1.5</min>
+		<max>1.5</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -378,7 +378,7 @@
 					</equals>
 				</and>
 			</condition>
-			<value>5</value>
+			<value>3</value>
 		</max-rate-of-change>
 		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
