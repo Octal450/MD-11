@@ -18,10 +18,14 @@
 	<property value="0">/gear/abs/spoilers-cmd-deg</property>
 	
 	<!-- Default gains for tuning -->
-	<property value="0">fcc/lsas/pah/p-gain</property>
-	<property value="0">fcc/lsas/pah/i-gain</property>
-	<property value="0">fcc/lsas/pah/d-gain</property>
-	<property value="0">fcc/lsas/prd/p-gain</property>
+	<property value="0">fcc/lsas/pah/p-gain-tune</property>
+	<property value="0">fcc/lsas/pah/i-gain-tune</property>
+	<property value="0">fcc/lsas/pah/d-gain-tune</property>
+	<property value="1.5">fcc/lsas/pah/c1-tune</property>
+	<property value="1">fcc/lsas/pah/c2-tune</property>
+	<property value="0.9">fcc/lsas/pah/c3-tune</property>
+	<property value="1">fcc/lsas/pah/c4-tune</property>
+	<property value="0">fcc/lsas/prd/p-gain-tune</property>
 	<property value="0">fcc/yaw/yd-p-gain</property>
 	<property value="0">fcc/yaw/tc-p-gain</property>
 	<property value="0">fcc/yaw/tc-d-gain</property>
@@ -314,10 +318,19 @@
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
 						     0   1
-						140  21  0
-						360   7  0
+						140  25  0
+						360  12  0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/p-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -327,11 +340,20 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
-						     0    1
-						140  9.0  0.0
-						360  1.7  0.0
+						     0   1
+						140  14  0
+						360   2  0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/i-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -341,11 +363,20 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
-						     0     1
-						140  11.0  0.0
-						360   2.5  0.0
+						     0    1
+						140  5.0  0.0
+						360  1.5  0.0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/d-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -357,10 +388,19 @@
 						<independentVar lookup="column">fcc/lsas/prd/gain-switch</independentVar>
 						<tableData>
 							     0    1
-							140  6.0  0.0
-							360  2.0  0.0
+							140  8.0  0.0
+							360  5.0  0.0
 						</tableData>
 					</table>
+					<!-- For tuning -->
+					<!--ifthen>
+						<eq>
+							<property>fcc/lsas/prd/gain-switch</property>
+							<value>1</value>
+						</eq>
+						<value>0</value>
+						<property>fcc/lsas/prd/p-gain-tune</property>
+					</ifthen-->
 					<table>
 						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 						<tableData>
@@ -426,7 +466,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/lsas/t-r_s-s">
+		<switch name="fcc/lsas/thetadot-switched">
 			<default value="fcc/lsas/thetadot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
@@ -498,8 +538,16 @@
 			</test>
 		</switch>
 		
+		<lead_lag_filter name="fcc/lsas/pah/thetadot-leadlag">
+			<input>fcc/lsas/thetadot-switched</input>
+			<c1>fcc/lsas/pah/c1-tune</c1>
+			<c2>fcc/lsas/pah/c2-tune</c2>
+			<c3>fcc/lsas/pah/c3-tune</c3>
+			<c4>fcc/lsas/pah/c4-tune</c4>
+		</lead_lag_filter>
+		
 		<pid name="fcc/lsas/pah/pid-v">
-			<input>fcc/lsas/t-r_s-s</input>
+			<input>fcc/lsas/pah/thetadot-leadlag</input>
 			<kp>fcc/lsas/pah/p-gain-scheduled</kp>
 			<ki>fcc/lsas/pah/i-gain-scheduled</ki>
 			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
@@ -852,7 +900,7 @@
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="fcc/yaw/r-r_s-s">
+		<switch name="fcc/yaw/r-switched">
 			<default value="fcc/yaw/r-washout"/>
 			<test logic="OR" value="0">
 				fcc/yaw/gain-switch ne 0
@@ -861,7 +909,7 @@
 		</switch>
 		
 		<pure_gain name="fcc/yaw/yd-f">
-			<input>fcc/yaw/r-r_s-s</input>
+			<input>fcc/yaw/r-switched</input>
 			<gain>fcc/yaw/yd-p-gain</gain>
 			<clipto>
 				<min>-0.5</min>
