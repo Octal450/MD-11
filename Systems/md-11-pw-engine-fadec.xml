@@ -10,6 +10,7 @@
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="0">fadec/limit/flex-active</property>
 	<property value="30">fadec/limit/flex-temp</property>
+	<property value="30">fadec/limit/rated-temp</property>
 	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
 	
 	<channel name="Thrust Limits">
@@ -197,6 +198,12 @@
 			</function>
 		</fcs_function>
 		
+		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
+			<input>fadec/limit/rated-temp</input>
+			<input>-fadec/limit/flex-temp</input>
+			<input>propulsion/tat-c</input>
+		</summer>
+		
 		<fcs_function name="fadec/limit/takeoff-flex-input">
 			<function>
 				<min> <!-- FLEX can not increase thrust past T/O -->
@@ -205,7 +212,7 @@
 						<sum>
 							<table> <!-- Copy of rated-thrust-n1 table above -->
 								<independentVar lookup="row">/position/altitude-ft</independentVar>
-								<independentVar lookup="column">fadec/limit/flex-temp</independentVar>
+								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
 								<tableData>
 									      -60   -30     0      30     60
 									    0  90.3   95.9  101.0  106.0  100.8
