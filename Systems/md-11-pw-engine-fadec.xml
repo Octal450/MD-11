@@ -179,27 +179,11 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/to-ref-temp">
-			<default value="propulsion/tat-c"/>
-			<test value="fadec/limit/flex-temp">
-				fadec/limit/flex-active eq 1
-			</test>
-		</switch>
-		
 		<fcs_function name="fadec/limit/takeoff-input">
 			<function>
 				<pow>
 					<sum>
-						<table> <!-- Copy of rated-thrust-n1 table above -->
-							<independentVar lookup="row">/position/altitude-ft</independentVar>
-							<independentVar lookup="column">fadec/limit/to-ref-temp</independentVar>
-							<tableData>
-								      -60   -30     0      30     60
-								    0  90.3   95.9  101.0  106.0  100.8
-								10000  96.4  100.2  105.6  107.1  102.6
-								43000  96.4   96.7  102.1  107.4  105.1
-							</tableData>
-						</table>
+						<property>fadec/limit/rated-thrust-n1</property>
 						<table>
 							<independentVar lookup="row">fadec/limit/packs-off</independentVar>
 							<tableData>
@@ -213,12 +197,49 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fadec/limit/takeoff-flex-input">
+			<function>
+				<min> <!-- FLEX can not increase thrust past T/O -->
+					<property>fadec/limit/takeoff-input</property>
+					<pow>
+						<sum>
+							<table> <!-- Copy of rated-thrust-n1 table above -->
+								<independentVar lookup="row">/position/altitude-ft</independentVar>
+								<independentVar lookup="column">fadec/limit/flex-temp</independentVar>
+								<tableData>
+									      -60   -30     0      30     60
+									    0  90.3   95.9  101.0  106.0  100.8
+									10000  96.4  100.2  105.6  107.1  102.6
+									43000  96.4   96.7  102.1  107.4  105.1
+								</tableData>
+							</table>
+							<table>
+								<independentVar lookup="row">fadec/limit/packs-off</independentVar>
+								<tableData>
+									0 -0.4
+									1  0.0
+								</tableData>
+							</table>
+						</sum>
+						<value>3.5</value>
+					</pow>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<switch name="fadec/limit/takeoff-final-input">
+			<default value="fadec/limit/takeoff-input"/>
+			<test value="fadec/limit/takeoff-flex-input">
+				fadec/limit/flex-active eq 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fadec/limit/takeoff-ref">
 			<function>
 				<sum>
 					<product>
 						<table>
-							<independentVar lookup="row">fadec/limit/takeoff-input</independentVar>
+							<independentVar lookup="row">fadec/limit/takeoff-final-input</independentVar>
 							<tableData>
 								   24743.1  0.00
 								   65768.7  0.03
