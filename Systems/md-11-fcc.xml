@@ -21,10 +21,6 @@
 	<property value="0">fcc/lsas/pah/p-gain-tune</property>
 	<property value="0">fcc/lsas/pah/i-gain-tune</property>
 	<property value="0">fcc/lsas/pah/d-gain-tune</property>
-	<property value="1.5">fcc/lsas/pah/c1-tune</property>
-	<property value="1">fcc/lsas/pah/c2-tune</property>
-	<property value="0.9">fcc/lsas/pah/c3-tune</property>
-	<property value="1">fcc/lsas/pah/c4-tune</property>
 	<property value="0">fcc/lsas/prd/p-gain-tune</property>
 	<property value="0">fcc/yaw/yd-p-gain</property>
 	<property value="0">fcc/yaw/tc-p-gain</property>
@@ -156,6 +152,18 @@
 			<input>fcc/lsas/right-out-active</input>
 		</summer>
 		
+		<switch name="fcc/lsas/in-detent">
+			<default value="fcc/lsas/in-detent"/>
+			<test logic="AND" value="1">
+				/controls/flight/elevator lt 0.02
+				/controls/flight/elevator gt -0.02
+			</test>
+			<test logic="OR" value="0">
+				/controls/flight/elevator gt 0.045
+				/controls/flight/elevator lt -0.045
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/pah/gain-switch">
 			<default value="1"/>
 			<test logic="AND" value="0">
@@ -164,19 +172,10 @@
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				/controls/flight/elevator le 0.02
-				/controls/flight/elevator ge -0.02
+				fcc/lsas/in-detent eq 1
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 				fcc/lsas/channels-active gt 0
-			</test>
-		</switch>
-		
-		<switch name="fcc/lsas/prd/gain-switch-input">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/controls/flight/elevator gt 0.02
-				/controls/flight/elevator lt -0.02
 			</test>
 		</switch>
 		
@@ -188,7 +187,7 @@
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				fcc/lsas/prd/gain-switch-input eq 1
+				fcc/lsas/in-detent eq 0
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 				fcc/lsas/channels-active gt 0
@@ -540,10 +539,10 @@
 		
 		<lead_lag_filter name="fcc/lsas/pah/thetadot-leadlag">
 			<input>fcc/lsas/thetadot-switched</input>
-			<c1>fcc/lsas/pah/c1-tune</c1>
-			<c2>fcc/lsas/pah/c2-tune</c2>
-			<c3>fcc/lsas/pah/c3-tune</c3>
-			<c4>fcc/lsas/pah/c4-tune</c4>
+			<c1>1.5</c1>
+			<c2>1.0</c2>
+			<c3>0.9</c3>
+			<c4>1.0</c4>
 		</lead_lag_filter>
 		
 		<pid name="fcc/lsas/pah/pid-v">
@@ -801,7 +800,7 @@
 						<table>
 							<independentVar lookup="row">fcc/lsas/pah/pid</independentVar>
 							<tableData>
-								0.05  0.00001
+								0.02  0.00001
 								0.25  0.00010
 							</tableData>
 						</table>
@@ -816,7 +815,7 @@
 							<independentVar lookup="row">fcc/lsas/pah/pid</independentVar>
 							<tableData>
 								-0.25 -0.00010
-								-0.05 -0.00001
+								-0.02 -0.00001
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -829,8 +828,8 @@
 						<table>
 							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
 							<tableData>
-								0.17  0.00001
-								0.80  0.00005
+								0.1  0.00001
+								0.8  0.00005
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -843,8 +842,8 @@
 						<table>
 							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
 							<tableData>
-								-0.80 -0.00005
-								-0.17 -0.00001
+								-0.8 -0.00005
+								-0.1 -0.00001
 							</tableData>
 						</table>
 						<value>0.0</value>

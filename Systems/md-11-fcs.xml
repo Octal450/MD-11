@@ -421,8 +421,17 @@
 	
 	<channel name="Elevator General">
 		
+		<pure_gain name="hydraulics/elevator-small">
+			<input>/controls/flight/elevator</input>
+			<gain>0.25</gain>
+		</pure_gain>
+		
 		<switch name="hydraulics/elevator-yoke-switch">
 			<default value="/controls/flight/elevator"/>
+			<test value="hydraulics/elevator-small"> <!-- While in detend and LSAS active, more force needed to break out -->
+			<!--test value="fcc/lsas/pah/pid"--> <!-- View PAH on yoke... for testing/developing -->
+				fcc/lsas/pah/gain-switch eq 0
+			</test>
 			<test value="fcc/afs/pitch-cmd">
 				fcc/afs/enabled eq 1
 			</test>
