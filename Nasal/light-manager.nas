@@ -132,9 +132,9 @@ var light_manager = {
 		me.light5_b = 0.4;
 
 		# spot size
-		me.light1_size = 12;
+		me.light1_size = 16;
 		me.light1_stretch = 6;
-		me.light2_size = 6;
+		me.light2_size = 10;
 		me.light2_stretch = 6;
 		me.light3_size = 4;
 		me.light4_size = 4;
@@ -201,7 +201,6 @@ var light_manager = {
 			
 			if (land == 1 or land2 == 1 and (ac1 or ac2 or ac3)) {
 				me.light1_ypos =  0.0;
-				me.light1_setSize(16);
 				me.light1_on();
 			} else {
 				me.light1_off();
@@ -209,6 +208,11 @@ var light_manager = {
 			
 			if (taxi >= 0.5 and (ac1 or ac2 or ac3)) {
 				me.light2_on();
+				if (taxi > 0.5) {
+					me.light2_setSize(12);
+				} else {
+					me.light2_setSize(10);
+				}
 			} else {
 				me.light2_off();
 			}
