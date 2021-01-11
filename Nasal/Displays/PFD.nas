@@ -63,12 +63,14 @@ var Value = {
 		mach: 0,
 		preSel: 0,
 		sel: 0,
+		stall: 0,
 		vmoMmo: 0,
 		Tape: {
 			flapGearMax: 0,
 			ias: 0,
 			preSel: 0,
 			sel: 0,
+			stall: 0,
 			vmoMmo: 0,
 		},
 	},
@@ -89,8 +91,13 @@ var Value = {
 		aligning: [0, 0, 0],
 	},
 	Misc: {
-		flaps: 0,
+		flapsCmd: 0,
+		flapsOut: 0,
+		flapsPos: 0,
 		minimums: 0,
+		slatsCmd: 0,
+		slatsOut: 0,
+		slatsPos: 0,
 	},
 	Nav: {
 		gsInRange: 0,
@@ -155,10 +162,10 @@ var canvasBase = {
 	getKeys: func() {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
 		"FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel", "ASI_trend_up", "ASI_trend_down",
-		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
-		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T",
-		"ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Flaps",
-		"Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
+		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_stall", "ASI_stall_warn", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", "AI_group3",
+		"AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T",
+		"ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error",
+		"TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -225,7 +232,7 @@ var canvasBase = {
 				Value.Asi.Tape.ias = Value.Asi.ias - 50;
 			}
 			
-			Value.Asi.vmoMmo = pts.Controls.Fctl.vmoMmo.getValue();
+			Value.Asi.vmoMmo = pts.Fdm.JSBsim.Fcc.Speeds.vmoMmo.getValue();
 			if (Value.Asi.vmoMmo <= 50) {
 				Value.Asi.Tape.vmoMmo = 0 - Value.Asi.Tape.ias;
 			} else if (Value.Asi.vmoMmo >= 500) {
@@ -234,7 +241,7 @@ var canvasBase = {
 				Value.Asi.Tape.vmoMmo = Value.Asi.vmoMmo - 50 - Value.Asi.Tape.ias;
 			}
 			
-			Value.Asi.flapGearMax = pts.Controls.Fctl.flapGearMax.getValue();
+			Value.Asi.flapGearMax = pts.Fdm.JSBsim.Fcc.Speeds.flapGearMax.getValue();
 			if (Value.Asi.flapGearMax < 0) {
 				Value.Asi.Tape.flapGearMax = 0;
 				me["ASI_flap_max"].hide();
@@ -257,9 +264,25 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].show();
 			}
 			
+			Value.Asi.stall = pts.Fdm.JSBsim.Fcc.Speeds.stall.getValue();
+			if (Value.Asi.stall < 0) {
+				me["ASI_stall"].hide();
+			} else if (Value.Asi.stall <= 50) {
+				Value.Asi.Tape.stall = 0 - Value.Asi.Tape.ias;
+				me["ASI_stall"].show();
+			} else if (Value.Asi.stall >= 500) {
+				Value.Asi.Tape.stall = 450 - Value.Asi.Tape.ias;
+				me["ASI_stall"].show();
+			} else {
+				Value.Asi.Tape.stall = Value.Asi.stall - 50 - Value.Asi.Tape.ias;
+				me["ASI_stall"].show();
+			}
+			
 			me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 4.48656);
 			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
 			me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
+			me["ASI_stall"].setTranslation(0, Value.Asi.Tape.stall * -4.48656);
+			me["ASI_stall"].setTranslation(0, Value.Asi.Tape.stall * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
 			if (Value.Asi.mach >= 0.5) {
@@ -274,6 +297,12 @@ var canvasBase = {
 			}
 			
 			if (Value.Asi.ias > Value.Asi.vmoMmo + 0.5) {
+				me["ASI"].setColor(1,0,0);
+				me["ASI_bowtie_L"].setColor(1,0,0);
+				me["ASI_bowtie_R"].setColor(1,0,0);
+				me["ASI_mach"].setColor(1,0,0);
+				me["ASI_mach_decimal"].setColor(1,0,0);
+			} else if (Value.Asi.ias < Value.Asi.stall - 0.5) {
 				me["ASI"].setColor(1,0,0);
 				me["ASI_bowtie_L"].setColor(1,0,0);
 				me["ASI_bowtie_R"].setColor(1,0,0);
@@ -822,28 +851,59 @@ var canvasBase = {
 		me["Minimums"].setText(sprintf("%4.0f", Value.Misc.minimums)); # Variable update in updateBase
 		
 		# Slats/Flaps
-		Value.Misc.flaps = pts.Controls.Flight.flapsCmd.getValue();
-		if (pts.Controls.Flight.slatsCmd.getValue() > 0.1 and Value.Misc.flaps <= 0.1) {
+		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
+		Value.Misc.flapsPos = pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue();
+		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
+		Value.Misc.slatsPos = pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue();
+		
+		Value.Misc.flapsOut = Value.Misc.flapsCmd > 0.1 or Value.Misc.flapsPos > 0.1;
+		Value.Misc.slatsOut = Value.Misc.slatsCmd > 0.1 or Value.Misc.slatsPos > 0.1;
+		
+		if (Value.Misc.slatsOut and !(Value.Misc.slatsPos > 30.9 and Value.Misc.flapsOut)) {
 			me["Slats"].show();
+			if (Value.Misc.slatsCmd - Value.Misc.slatsPos > 0.1) {
+				me["Slats_dn"].show();
+				me["Slats_up"].hide();
+			} else if (Value.Misc.slatsCmd - Value.Misc.slatsPos < -0.1) {
+				me["Slats_dn"].hide();
+				me["Slats_up"].show();
+			} else {
+				me["Slats_dn"].hide();
+				me["Slats_up"].hide();
+			}
 		} else {
 			me["Slats"].hide();
+			me["Slats_up"].hide();
+			me["Slats_dn"].hide();
 		}
 		
-		if (Value.Misc.flaps > 0.1) {
+		if (Value.Misc.flapsOut) {
 			me["Flaps"].show();
-			me["Flaps_num"].setText(sprintf("%2.0f", Value.Misc.flaps));
+			me["Flaps_num"].setText(sprintf("%2.0f", Value.Misc.flapsCmd));
 			me["Flaps_num"].show();
 		} else {
 			me["Flaps"].hide();
 			me["Flaps_num"].hide();
 		}
 		
-		if (Value.Misc.flaps > 0.1 and Value.Misc.flaps - 0.1 > pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
+		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 > pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
+			me["Flaps_dn"].hide();
+			me["Flaps_up"].hide();
 			me["Flaps_num"].setColor(0.9647,0.8196,0.0784);
 			me["Flaps_num_boxes"].show();
-			me["Flaps_num2"].setText(sprintf("%2.0f", Value.Misc.flaps));
+			me["Flaps_num2"].setText(sprintf("%2.0f", Value.Misc.flapsCmd));
 			me["Flaps_num2"].show();
 		} else {
+			if (Value.Misc.flapsCmd - Value.Misc.flapsPos > 0.1) {
+				me["Flaps_dn"].show();
+				me["Flaps_up"].hide();
+			} else if (Value.Misc.flapsCmd - Value.Misc.flapsPos < -0.1) {
+				me["Flaps_dn"].hide();
+				me["Flaps_up"].show();
+			} else {
+				me["Flaps_dn"].hide();
+				me["Flaps_up"].hide();
+			}
 			me["Flaps_num"].setColor(1,1,1);
 			me["Flaps_num_boxes"].hide();
 			me["Flaps_num2"].hide();

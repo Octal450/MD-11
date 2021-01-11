@@ -11,10 +11,6 @@ var Consumables = {
 };
 
 var Controls = {
-	Fctl: {
-		flapGearMax: props.globals.getNode("/controls/fctl/flap-gear-max"),
-		vmoMmo: props.globals.getNode("/controls/fctl/vmo-mmo"),
-	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
@@ -84,6 +80,15 @@ var Fdm = {
 			Flap: {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
 			},
+			Speeds: {
+				flapGearMax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/flap-gear-max"),
+				stall: props.globals.getNode("/fdm/jsbsim/fcc/speeds/stall"),
+				vmoMmo: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmo-mmo"),
+			},
+		},
+		Fcs: {
+			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
+			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
 		},
 		Hydraulics: {
 			Stabilizer: {

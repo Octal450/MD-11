@@ -801,7 +801,7 @@
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<test logic="OR" value="1.66666666">
+			<test logic="OR" value="1.6">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
