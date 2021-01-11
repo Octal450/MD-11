@@ -82,8 +82,9 @@ var Fdm = {
 			},
 			Speeds: {
 				flapGearMax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/flap-gear-max"),
-				stall: props.globals.getNode("/fdm/jsbsim/fcc/speeds/stall"),
+				vmin: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmin"),
 				vmoMmo: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmo-mmo"),
+				vss: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss"),
 			},
 		},
 		Fcs: {

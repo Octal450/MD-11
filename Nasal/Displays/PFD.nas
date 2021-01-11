@@ -63,15 +63,17 @@ var Value = {
 		mach: 0,
 		preSel: 0,
 		sel: 0,
-		stall: 0,
+		vmin: 0,
 		vmoMmo: 0,
+		vss: 0,
 		Tape: {
 			flapGearMax: 0,
 			ias: 0,
 			preSel: 0,
 			sel: 0,
-			stall: 0,
+			vmin: 0,
 			vmoMmo: 0,
+			vss: 0,
 		},
 	},
 	Hdg: {
@@ -162,10 +164,11 @@ var canvasBase = {
 	getKeys: func() {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
 		"FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel", "ASI_trend_up", "ASI_trend_down",
-		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_stall", "ASI_stall_warn", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", "AI_group3",
-		"AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T",
-		"ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error",
-		"TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box", "Minimums"];
+		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", 
+		"AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T",
+		"ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group",
+		"HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "RA", "RA_box",
+		"Minimums"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -264,24 +267,29 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].show();
 			}
 			
-			Value.Asi.stall = pts.Fdm.JSBsim.Fcc.Speeds.stall.getValue();
-			if (Value.Asi.stall < 0) {
-				me["ASI_stall"].hide();
-			} else if (Value.Asi.stall <= 50) {
-				Value.Asi.Tape.stall = 0 - Value.Asi.Tape.ias;
-				me["ASI_stall"].show();
-			} else if (Value.Asi.stall >= 500) {
-				Value.Asi.Tape.stall = 450 - Value.Asi.Tape.ias;
-				me["ASI_stall"].show();
+			Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vss.getValue();
+			if (Value.Asi.vss < 0) {
+				me["ASI_vss"].hide();
+			} else if (Value.Asi.vss <= 50) {
+				Value.Asi.Tape.vss = 0 - Value.Asi.Tape.ias;
+				me["ASI_vss"].show();
+			} else if (Value.Asi.vss >= 500) {
+				Value.Asi.Tape.vss = 450 - Value.Asi.Tape.ias;
+				me["ASI_vss"].show();
 			} else {
-				Value.Asi.Tape.stall = Value.Asi.stall - 50 - Value.Asi.Tape.ias;
-				me["ASI_stall"].show();
+				Value.Asi.Tape.vss = Value.Asi.vss - 50 - Value.Asi.Tape.ias;
+				me["ASI_vss"].show();
 			}
+			
+			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vmin.getValue();
+			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
 			
 			me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 4.48656);
 			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
 			me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
-			me["ASI_stall"].setTranslation(0, Value.Asi.Tape.stall * -4.48656);
+			me["ASI_vss"].setTranslation(0, Value.Asi.Tape.vss * -4.48656);
+			me["ASI_vmin"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
+			me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
 			if (Value.Asi.mach >= 0.5) {
@@ -301,13 +309,19 @@ var canvasBase = {
 				me["ASI_bowtie_R"].setColor(1,0,0);
 				me["ASI_mach"].setColor(1,0,0);
 				me["ASI_mach_decimal"].setColor(1,0,0);
-			} else if (Value.Asi.ias < Value.Asi.stall - 0.5) {
+			} else if (Value.Asi.ias < Value.Asi.vss - 0.5) {
 				me["ASI"].setColor(1,0,0);
 				me["ASI_bowtie_L"].setColor(1,0,0);
 				me["ASI_bowtie_R"].setColor(1,0,0);
 				me["ASI_mach"].setColor(1,0,0);
 				me["ASI_mach_decimal"].setColor(1,0,0);
 			} else if (Value.Asi.ias > Value.Asi.flapGearMax + 0.5 and Value.Asi.flapGearMax >= 0) {
+				me["ASI"].setColor(0.9647,0.8196,0.07843);
+				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
+			} else if (Value.Asi.ias < Value.Asi.vmin - 0.5) {
 				me["ASI"].setColor(0.9647,0.8196,0.07843);
 				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
 				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);

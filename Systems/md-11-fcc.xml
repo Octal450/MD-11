@@ -59,65 +59,86 @@
 	
 	<channel name="Speed Tape Calculations" execrate="8">
 		
-		<!-- Clean Stall Knots -->
-		<fcs_function name="fcc/speeds/stall-clean-kts">
+		<fcs_function name="fcc/speeds/vss-clean-kts">
 			<function>
-				<integer>
-					<sum>
-						<table>
-							<independentVar lookup="row">inertia/weight-kg</independentVar>
-							<tableData>
-								140000  154.22
-								160000  163.53
-								180000  172.38
-								200000  180.63
-								220000  188.56
-								240000  195.73
-								260000  203.14
-								280000  209.93
-							</tableData>
-						</table>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<table>
+					<independentVar lookup="row">inertia/weight-kg</independentVar>
+					<tableData>
+						140000  154.22
+						160000  163.53
+						180000  172.38
+						200000  180.63
+						220000  188.56
+						240000  195.73
+						260000  203.14
+						280000  209.93
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 		
-		<!-- Slat/Flap Stall Knots -->
-		<fcs_function name="fcc/speeds/stall-slat-flap-kts">
+		<fcs_function name="fcc/speeds/vss-slat-flap-kts">
 			<function>
-				<integer>
-					<sum>
-						<table>
-							<independentVar lookup="row">inertia/weight-kg</independentVar>
-							<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-							<tableData>
-								        0       10      15      20      25      28      35      50
-								140000  129.19  125.99  123.85  122.33  121.47  120.89  119.48  118.07
-								160000  136.75  133.24  130.95  129.42  128.40  127.69  126.19  123.89
-								180000  143.92  140.11  137.59  136.06  135.02  134.36  132.55  129.68
-								200000  150.64  146.67  144.15  142.47  141.34  140.63  138.56  134.98
-								220000  157.05  152.62  150.41  148.35  147.30  146.55  144.34  140.14
-								240000  163.07  158.65  155.98  153.99  152.82  152.07  149.77  145.00
-								260000  168.87  164.52  161.62  159.56  158.16  157.37  155.03  149.77
-								280000  174.52  169.94  166.74  164.74  163.33  162.58  160.24  154.19
-							</tableData>
-						</table>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<table>
+					<independentVar lookup="row">inertia/weight-kg</independentVar>
+					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+					<tableData>
+						        0       10      15      20      25      28      35      50
+						140000  129.19  125.99  123.85  122.33  121.47  120.89  119.48  118.07
+						160000  136.75  133.24  130.95  129.42  128.40  127.69  126.19  123.89
+						180000  143.92  140.11  137.59  136.06  135.02  134.36  132.55  129.68
+						200000  150.64  146.67  144.15  142.47  141.34  140.63  138.56  134.98
+						220000  157.05  152.62  150.41  148.35  147.30  146.55  144.34  140.14
+						240000  163.07  158.65  155.98  153.99  152.82  152.07  149.77  145.00
+						260000  168.87  164.52  161.62  159.56  158.16  157.37  155.03  149.77
+						280000  174.52  169.94  166.74  164.74  163.33  162.58  160.24  154.19
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/speeds/stall">
-			<default value="fcc/speeds/stall-clean-kts"/>
+		<switch name="fcc/speeds/vss">
+			<default value="fcc/speeds/vss-clean-kts"/>
 			<test logic="AND" value="-1"> <!-- Hide the tape -->
 				position/wow eq 1
 			</test>
-			<test logic="OR" value="fcc/speeds/stall-slat-flap-kts">
+			<test logic="OR" value="fcc/speeds/vss-slat-flap-kts">
 				fcs/slat-pos-deg ge 0.1
 				fcs/flap-pos-deg ge 0.1
 			</test>
+		</switch>
+		
+		<fcs_function name="fcc/speeds/vmin-clean-kts"> <!-- Temporary -->
+			<function>
+				<sum>
+					<property>fcc/speeds/vss-clean-kts</property>
+					<value>15</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/vmin-slat-flap-kts"> <!-- Temporary -->
+			<function>
+				<sum>
+					<property>fcc/speeds/vss-slat-flap-kts</property>
+					<value>5</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/vmin">
+			<default value="fcc/speeds/vmin-clean-kts"/>
+			<test logic="AND" value="-1"> <!-- Hide the tape -->
+				position/wow eq 1
+			</test>
+			<test logic="OR" value="fcc/speeds/vmin-slat-flap-kts">
+				fcs/slat-pos-deg ge 0.1
+				fcs/flap-pos-deg ge 0.1
+			</test>
+			<clipto>
+				<min>fcc/speeds/vss</min>
+				<max>100000</max>
+			</clipto>
 		</switch>
 		
 		<!-- VMO/MMO -->

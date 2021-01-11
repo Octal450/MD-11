@@ -50,7 +50,7 @@
      id="namedview371"
      showgrid="false"
      inkscape:zoom="0.49999998"
-     inkscape:cx="185.34059"
+     inkscape:cx="-155.65942"
      inkscape:cy="136.33631"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
@@ -1192,21 +1192,12 @@
      y="-706.58002"
      inkscape:label="#rect9211" />
   <rect
-     transform="scale(1,-1)"
-     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="ASI_stall_warn_clip"
-     width="42.178398"
-     height="533.88159"
-     x="93.498398"
-     y="-706.58002"
-     inkscape:label="#rect9211" />
-  <rect
      inkscape:label="#rect9211"
      y="-706.58002"
      x="93.498398"
      height="533.88159"
      width="42.178398"
-     id="ASI_stall_clip"
+     id="ASI_vss_clip"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      transform="scale(1,-1)" />
   <g
@@ -2849,13 +2840,13 @@
          inkscape:label="#rect5815" />
     </g>
     <g
-       id="ASI_stall"
+       id="ASI_vss"
        inkscape:label="#g7242"
        transform="matrix(1,0,0,-1.0000002,505.59999,875.18589)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
-         id="ASI_stall_warn"
+         id="ASI_vmin"
          d="m -394.81282,-1194.3307 0,1629.92363"
          style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:8;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          inkscape:label="#path5088" />
@@ -2878,7 +2869,7 @@
          inkscape:label="#path5088"
          style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:8;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -381.52365,435.59293 -26.57834,0"
-         id="ASI_stall_warn_bar"
+         id="ASI_vmin_bar"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <rect
