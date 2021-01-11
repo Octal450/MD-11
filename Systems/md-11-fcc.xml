@@ -262,6 +262,20 @@
 			</test>
 		</switch>
 		
+		<switch name="fcc/speeds/gear-ext-max-kts">
+			<default value="260"/>
+			<test value="fcc/speeds/gear-max-mach-kts">
+				fcc/speeds/gear-max-mach-kts lt 260
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/gear-ret-max-kts">
+			<default value="230"/>
+			<test value="fcc/speeds/gear-max-mach-kts">
+				fcc/speeds/gear-max-mach-kts lt 230
+			</test>
+		</switch>
+		
 		<!-- Slat Max Knots -->
 		<fcs_function name="fcc/speeds/slat-max-mach-kts">
 			<function>
@@ -361,18 +375,27 @@
 			<test value="fcc/speeds/flap-20-25-max-kts">
 				fcs/flap-pos-deg ge 20.1
 			</test>
+			<test logic="AND" value="fcc/speeds/gear-ret-max-kts">
+				/controls/gear/gear-down eq 0
+				/gear/gear[1]/position-norm gt 0.01
+			</test>
 			<test value="fcc/speeds/flap-15-20-max-kts">
 				fcs/flap-pos-deg ge 15.1
 			</test>
 			<test value="fcc/speeds/flap-0-15-max-kts">
 				fcs/flap-pos-deg ge 0.1
 			</test>
+			<test logic="AND" value="fcc/speeds/gear-ext-max-kts">
+				/controls/gear/gear-down eq 1
+				/gear/gear[1]/position-norm lt 0.99
+			</test>
 			<test logic="AND" value="fcc/speeds/slat-max-kts">
 				fcs/slat-pos-deg ge 0.1
 				fcs/flap-pos-deg lt 0.1
 			</test>
 			<test value="fcc/speeds/gear-max-kts">
-				/controls/gear/gear-down ne 0
+				/controls/gear/gear-down eq 1
+				/gear/gear[1]/position-norm ge 0.99
 			</test>
 		</switch>
 	
