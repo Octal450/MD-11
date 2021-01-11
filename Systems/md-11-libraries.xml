@@ -41,6 +41,11 @@
 			<gain>0.3048</gain>
 			<output>/position/gear-agl-m</output> <!-- So flight recorder can override it -->
 		</pure_gain>
+		
+		<pure_gain name="inertia/weight-kg">
+			<input>inertia/weight-lbs</input>
+			<gain>0.45359237</gain>
+		</pure_gain>
 	
 	</channel>
 	

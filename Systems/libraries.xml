@@ -202,9 +202,9 @@
 		<name>Gear Lever</name>
 		<update-interval-secs>0.02</update-interval-secs>
 		<type>noise-spike</type>
-		<input>/controls/gear/gear-down</input>
-		<output>/controls/gear/gearlever/position-norm</output>
-		<max-rate-of-change>1.5</max-rate-of-change>
+		<input>/controls/gear/lever-cockpit</input>
+		<output>/controls/gear/lever-animation</output>
+		<max-rate-of-change>4.5</max-rate-of-change>
 	</filter>
 	
 	<filter>

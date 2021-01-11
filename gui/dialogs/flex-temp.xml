@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+
+<!-- MD-11 Temporary Flex Box -->
+<!-- Copyright (c) 2020 Joshua Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<name>flex-temp</name>
+	<layout>vbox</layout>
+	
+	<group>
+		<layout>hbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>Set Flex Temp Applet</label>
+		</text>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+	<hrule/>
+	
+	<group>
+		<layout>table</layout>
+		
+		<text>
+			<row>0</row>
+			<col>0</col>
+			<label>Flex (C): </label>
+		</text>
+		
+		<button>
+			<row>0</row>
+			<col>1</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;&lt;</legend>
+			<enable>
+				<equals>
+					<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+					<value>1</value>
+				</equals>
+			</enable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					<![CDATA[
+						var f = getprop("/fdm/jsbsim/fadec/limit/flex-temp");
+						var t = math.round(getprop("/fdm/jsbsim/propulsion/tat-c"));
+						f = f - 10;
+						if (f >= t + 10) {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", f);
+						} else {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", t + 10);
+						}
+					]]>
+				</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>2</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;</legend>
+			<enable>
+				<equals>
+					<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+					<value>1</value>
+				</equals>
+			</enable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					<![CDATA[
+						var f = getprop("/fdm/jsbsim/fadec/limit/flex-temp");
+						var t = math.round(getprop("/fdm/jsbsim/propulsion/tat-c"));
+						f = f - 1;
+						if (f >= t + 10) {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", f);
+						} else {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", t + 10);
+						}
+					]]>
+				</script>
+			</binding>
+		</button>
+
+		<input>
+			<row>0</row>
+			<col>3</col>
+			<pref-width>50</pref-width>
+			<property>/fdm/jsbsim/fadec/limit/flex-temp</property>
+			<live>true</live>
+			<enable>
+				<equals>
+					<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+					<value>1</value>
+				</equals>
+			</enable>
+		</input>
+		
+		<button>
+			<row>0</row>
+			<col>4</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;</legend>
+			<enable>
+				<equals>
+					<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+					<value>1</value>
+				</equals>
+			</enable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					<![CDATA[
+						var f = getprop("/fdm/jsbsim/fadec/limit/flex-temp");
+						f = f + 1;
+						if (f <= 70) {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", f);
+						} else {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", 70);
+						}
+					]]>
+				</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>5</col>
+			<halign>left</halign>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;&gt;</legend>
+			<enable>
+				<equals>
+					<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+					<value>1</value>
+				</equals>
+			</enable>
+			<binding>
+				<command>nasal</command>
+				<script>
+					<![CDATA[
+						var f = getprop("/fdm/jsbsim/fadec/limit/flex-temp");
+						f = f + 10;
+						if (f <= 70) {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", f);
+						} else {
+							setprop("/fdm/jsbsim/fadec/limit/flex-temp", 70);
+						}
+					]]>
+				</script>
+			</binding>
+		</button>
+	</group>
+	
+	<button>
+		<legend>Toggle Flex</legend>
+		<binding>
+			<command>nasal</command>
+			<script>
+				if (getprop("/fdm/jsbsim/fadec/limit/flex-active")) {
+					setprop("/fdm/jsbsim/fadec/limit/flex-active", 0);
+					setprop("/fdm/jsbsim/fadec/limit/flex-temp", 30);
+				} else {
+					setprop("/fdm/jsbsim/fadec/limit/flex-active", 1);
+					setprop("/fdm/jsbsim/fadec/limit/flex-temp", math.round(getprop("/fdm/jsbsim/propulsion/tat-c")) + 10);
+				}
+			</script>
+			<property>/fdm/jsbsim/fadec/limit/flex-active</property>
+		</binding>
+	</button>
+
+</PropertyList>

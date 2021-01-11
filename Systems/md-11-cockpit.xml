@@ -229,7 +229,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/switches/seatbelt-sign eq 0.5
-				/controls/gear/gear-down eq 1
+				/controls/gear/lever eq 1
 			</test>
 			<!--test logic="AND" value="1">
 				/cabin/alt/prop gt 10000
@@ -243,7 +243,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/switches/no-smoking-sign eq 0.5
-				/controls/gear/gear-down eq 1
+				/controls/gear/lever eq 1
 			</test>
 		</switch>
 	

@@ -79,10 +79,10 @@ var systemsLoop = maketimer(0.1, func() {
 });
 
 # Prevent gear up accidently while WoW
-setlistener("/controls/gear/gear-down", func() {
-	if (!pts.Controls.Gear.gearDown.getBoolValue()) {
+setlistener("/controls/gear/lever", func() {
+	if (!pts.Controls.Gear.lever.getBoolValue()) {
 		if (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) {
-			pts.Controls.Gear.gearDown.setBoolValue(1);
+			pts.Controls.Gear.lever.setBoolValue(1);
 		}
 	}
 });
@@ -165,6 +165,67 @@ controls.flapsDown = func(step) {
 		} else if (pts.Controls.Flight.flapsTemp > 0) {
 			pts.Controls.Flight.flaps.setValue(0);
 		}
+	}
+}
+
+var leverCockpit = 3;
+controls.gearDown = func(d) { # Requires a mod-up
+	pts.Fdm.JSBsim.Position.wowTemp = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+	leverCockpit = pts.Controls.Gear.leverCockpit.getValue();
+	if (d < 0) {
+		if (pts.Fdm.JSBsim.Position.wowTemp) {
+			if (leverCockpit == 3) {
+				pts.Controls.Gear.leverCockpit.setValue(2);
+			} else if (leverCockpit == 0) {
+				pts.Controls.Gear.leverCockpit.setValue(1);
+			}
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		}
+	} else if (d > 0) {
+		if (pts.Fdm.JSBsim.Position.wowTemp) {
+			if (leverCockpit == 3) {
+				pts.Controls.Gear.leverCockpit.setValue(2);
+			} else if (leverCockpit == 0) {
+				pts.Controls.Gear.leverCockpit.setValue(1);
+			}
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		}
+	} else {
+		if (leverCockpit == 2) {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		} else if (leverCockpit == 1) {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		}
+	}
+}
+
+controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
+	if (d) {
+		if (pts.Controls.Gear.leverCockpit.getValue() >= 2) {
+			controls.gearDown(-1);
+		} else {
+			controls.gearDown(1);
+		}
+	} else {
+		controls.gearDown(0);
+	}
+}
+
+controls.gearToggle = func() {
+	if (!pts.Fdm.JSBsim.Position.wowTemp) {
+		if (pts.Controls.Gear.leverCockpit.getValue() >= 2) {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		}
+	}
+}
+
+controls.gearTogglePosition = func(d) {
+	if (d) {
+		controls.gearToggle();
 	}
 }
 

@@ -11,10 +11,6 @@ var Consumables = {
 };
 
 var Controls = {
-	Fctl: {
-		flapGearMax: props.globals.getNode("/controls/fctl/flap-gear-max"),
-		vmoMmo: props.globals.getNode("/controls/fctl/vmo-mmo"),
-	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
@@ -34,7 +30,8 @@ var Controls = {
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
 		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
 		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
-		gearDown: props.globals.getNode("/controls/gear/gear-down"),
+		lever: props.globals.getNode("/controls/gear/lever"),
+		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	Lighting: {
 		beacon: props.globals.getNode("/controls/lighting/beacon"),
@@ -84,6 +81,16 @@ var Fdm = {
 			Flap: {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
 			},
+			Speeds: {
+				flapGearMax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/flap-gear-max"),
+				vmin: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmin"),
+				vmoMmo: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmo-mmo"),
+				vss: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss"),
+			},
+		},
+		Fcs: {
+			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
+			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
 		},
 		Hydraulics: {
 			Stabilizer: {

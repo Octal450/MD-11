@@ -5,9 +5,11 @@
 
 <system name="MD-11: FCC">
 	
-	<property value="0">fcc/lsas/pah/pid</property>
 	<property value="0">fcc/elevator-feel/manual</property>
 	<property value="0">fcc/elevator-feel/speed</property>
+	<property value="0">fcc/flap/cmd-deg</property>
+	<property value="0">fcc/lsas/pah/pid</property>
+	<property value="0">fcc/slat/cmd-deg</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0">fcs/spoiler-left-feedback</property>
 	<property value="0">fcs/spoiler-right-feedback</property>
@@ -18,10 +20,10 @@
 	<property value="0">/gear/abs/spoilers-cmd-deg</property>
 	
 	<!-- Default gains for tuning -->
-	<property value="0">fcc/lsas/pah/p-gain</property>
-	<property value="0">fcc/lsas/pah/i-gain</property>
-	<property value="0">fcc/lsas/pah/d-gain</property>
-	<property value="0">fcc/lsas/prd/p-gain</property>
+	<property value="0">fcc/lsas/pah/p-gain-tune</property>
+	<property value="0">fcc/lsas/pah/i-gain-tune</property>
+	<property value="0">fcc/lsas/pah/d-gain-tune</property>
+	<property value="0">fcc/lsas/prd/p-gain-tune</property>
 	<property value="0">fcc/yaw/yd-p-gain</property>
 	<property value="0">fcc/yaw/tc-p-gain</property>
 	<property value="0">fcc/yaw/tc-d-gain</property>
@@ -52,6 +54,350 @@
 			<input>aero/alpha-deg-fixed</input>
 			<c1>10</c1>
 		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Speed Tape Calculations" execrate="8">
+		
+		<fcs_function name="fcc/speeds/vss-clean-kts">
+			<function>
+				<table>
+					<independentVar lookup="row">inertia/weight-kg</independentVar>
+					<tableData>
+						140000  149.22
+						160000  158.53
+						180000  167.38
+						200000  175.63
+						220000  183.56
+						240000  190.73
+						260000  198.14
+						280000  204.93
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/vss-slat-flap-kts">
+			<function>
+				<table>
+					<independentVar lookup="row">inertia/weight-kg</independentVar>
+					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+					<tableData>
+						        0       10      15      20      25      28      35      50
+						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
+						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
+						180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
+						200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
+						220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
+						240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
+						260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
+						280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/v2-latch-speed">
+			<function>
+				<sum>
+					<property>/FMS/internal/v2</property>
+					<value>9</value> <!-- V2 + 10kts, 1 kt buffer -->
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/v2-latch">
+			<default value="fcc/speeds/v2-latch"/>
+			<test value="0">
+				position/wow eq 1
+			</test>	
+			<test value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/v2-latch-speed
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/vss-switch">
+			<default value="fcc/speeds/vss-clean-kts"/>
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
+			</test>
+			<test logic="OR" value="fcc/speeds/vss-slat-flap-kts">
+				fcs/slat-pos-deg ge 0.1
+				fcs/flap-pos-deg ge 0.1
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/speeds/vss-roll-factor">
+			<function>
+				<sqrt> <!-- Take the square root to get the factor -->
+					<quotient> <!-- Calculate neutral load factor from bank -->
+						<value>1</value>
+						<cos>
+							<toradians>
+								<property>/orientation/roll-deg</property>
+							</toradians>
+						</cos>
+					</quotient>
+				</sqrt>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fcc/speeds/vss">
+			<input>fcc/speeds/vss-switch</input>
+			<gain>fcc/speeds/vss-roll-factor</gain>
+		</pure_gain>
+		
+		<switch name="fcc/speeds/vmin-latch">
+			<default value="fcc/speeds/vmin-latch"/>
+			<test value="0">
+				position/wow eq 1
+			</test>	
+			<test value="1"> <!-- Should be accel alt -->
+				/position/gear-agl-ft ge 1250
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/vmin-factor">
+			<default value="1.3"/> <!-- 1.3 Vstall -->
+			<test logic="AND" value="1.2"> <!-- 1.2 Vstall -->
+				fcs/flap-pos-deg ge 0.1
+				fcs/slat-pos-deg ge 0.1
+				fcc/speeds/vmin-latch ne 1
+			</test>
+			<test logic="AND" value="1.25"> <!-- 1.25 Vstall -->
+				fcs/flap-pos-deg ge 0.1
+				fcs/slat-pos-deg lt 0.1
+				fcc/speeds/vmin-latch ne 1
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/speeds/vmin-clean-kts"> <!-- Temporary -->
+			<function>
+				<product>
+					<difference>
+						<property>fcc/speeds/vss-clean-kts</property>
+						<value>15</value> <!-- Trust me, has to be this way -->
+					</difference>
+					<property>fcc/speeds/vmin-factor</property>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/vmin-slat-flap-kts"> <!-- Temporary -->
+			<function>
+				<product>
+					<difference>
+						<property>fcc/speeds/vss-slat-flap-kts</property>
+						<value>15</value> <!-- Trust me, has to be this way -->
+					</difference>
+					<property>fcc/speeds/vmin-factor</property>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/vmin">
+			<default value="fcc/speeds/vmin-clean-kts"/>
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass V2 and airbone -->
+				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
+			</test>
+			<test logic="OR" value="fcc/speeds/vmin-slat-flap-kts">
+				fcs/slat-pos-deg ge 0.1
+				fcs/flap-pos-deg ge 0.1
+			</test>
+			<clipto>
+				<min>fcc/speeds/vss</min>
+				<max>100000</max>
+			</clipto>
+		</switch>
+		
+		<!-- VMO/MMO -->
+		<fcs_function name="fcc/speeds/mmo-kts">
+			<function>
+				<integer>
+					<sum>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<value>0.87</value> <!-- Should be scheduled, but don't know what schedules it yet -->
+						</product>
+						<value>0.5</value> <!-- Make it round correctly -->
+					</sum>
+				</integer>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/vmo-mmo"> <!-- 365 should be scheduled, but don't know what schedules it yet -->
+			<default value="365"/>
+			<test value="fcc/speeds/mmo-kts">
+				fcc/speeds/mmo-kts lt 365
+			</test>
+		</switch>
+		
+		<!-- Gear Max Knots -->
+		<fcs_function name="fcc/speeds/gear-max-mach-kts">
+			<function>
+				<integer>
+					<sum>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<value>0.7</value>
+						</product>
+						<value>0.5</value> <!-- Make it round correctly -->
+					</sum>
+				</integer>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/gear-max-kts">
+			<default value="300"/>
+			<test value="fcc/speeds/gear-max-mach-kts">
+				fcc/speeds/gear-max-mach-kts lt 300
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/gear-ext-max-kts">
+			<default value="260"/>
+			<test value="fcc/speeds/gear-max-mach-kts">
+				fcc/speeds/gear-max-mach-kts lt 260
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/gear-ret-max-kts">
+			<default value="230"/>
+			<test value="fcc/speeds/gear-max-mach-kts">
+				fcc/speeds/gear-max-mach-kts lt 230
+			</test>
+		</switch>
+		
+		<!-- Slat Max Knots -->
+		<fcs_function name="fcc/speeds/slat-max-mach-kts">
+			<function>
+				<integer>
+					<sum>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<value>0.55</value>
+						</product>
+						<value>0.5</value> <!-- Make it round correctly -->
+					</sum>
+				</integer>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/slat-max-kts">
+			<default value="280"/>
+			<test value="fcc/speeds/slat-max-mach-kts">
+				fcc/speeds/slat-max-mach-kts lt 280
+			</test>
+		</switch>
+		
+		<!-- Flap Max Knots -->
+		<fcs_function name="fcc/speeds/flap-max-mach-kts">
+			<function>
+				<integer>
+					<sum>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<value>0.51</value>
+						</product>
+						<value>0.5</value> <!-- Make it round correctly -->
+					</sum>
+				</integer>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/flap-0-15-max-kts">
+			<default value="255"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 255
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-15-20-max-kts">
+			<default value="240"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 240
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-20-25-max-kts">
+			<default value="220"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 220
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-28-max-kts">
+			<default value="210"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 210
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-35-max-kts">
+			<default value="190"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 190
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-50-max-kts">
+			<default value="175"/>
+			<test value="fcc/speeds/flap-max-mach-kts">
+				fcc/speeds/flap-max-mach-kts lt 175
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/flap-gear-max">
+			<default value="-1"/> <!-- Hide the tape -->
+			<test value="fcc/speeds/flap-50-max-kts">
+				fcs/flap-pos-deg ge 35.1
+			</test>
+			<test value="fcc/speeds/flap-35-max-kts">
+				fcs/flap-pos-deg ge 28.1
+			</test>
+			<test value="fcc/speeds/flap-28-max-kts">
+				fcs/flap-pos-deg ge 25.1
+			</test>
+			<test value="fcc/speeds/flap-20-25-max-kts">
+				fcs/flap-pos-deg ge 20.1
+			</test>
+			<test logic="AND" value="fcc/speeds/gear-ret-max-kts">
+				/controls/gear/lever eq 0
+				/gear/gear[1]/position-norm gt 0.01
+			</test>
+			<test value="fcc/speeds/flap-15-20-max-kts">
+				fcs/flap-pos-deg ge 15.1
+			</test>
+			<test value="fcc/speeds/flap-0-15-max-kts">
+				fcs/flap-pos-deg ge 0.1
+			</test>
+			<test logic="AND" value="fcc/speeds/gear-ext-max-kts">
+				/controls/gear/lever eq 1
+				/gear/gear[1]/position-norm lt 0.99
+			</test>
+			<test logic="AND" value="fcc/speeds/slat-max-kts">
+				fcs/slat-pos-deg ge 0.1
+				fcs/flap-pos-deg lt 0.1
+			</test>
+			<test value="fcc/speeds/gear-max-kts">
+				/controls/gear/lever eq 1
+				/gear/gear[1]/position-norm ge 0.99
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -152,6 +498,18 @@
 			<input>fcc/lsas/right-out-active</input>
 		</summer>
 		
+		<switch name="fcc/lsas/in-detent">
+			<default value="fcc/lsas/in-detent"/>
+			<test logic="AND" value="1">
+				/controls/flight/elevator lt 0.02
+				/controls/flight/elevator gt -0.02
+			</test>
+			<test logic="OR" value="0">
+				/controls/flight/elevator gt 0.045
+				/controls/flight/elevator lt -0.045
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/pah/gain-switch">
 			<default value="1"/>
 			<test logic="AND" value="0">
@@ -160,19 +518,10 @@
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				/controls/flight/elevator le 0.02
-				/controls/flight/elevator ge -0.02
+				fcc/lsas/in-detent eq 1
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 				fcc/lsas/channels-active gt 0
-			</test>
-		</switch>
-		
-		<switch name="fcc/lsas/prd/gain-switch-input">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/controls/flight/elevator gt 0.02
-				/controls/flight/elevator lt -0.02
 			</test>
 		</switch>
 		
@@ -184,7 +533,7 @@
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				fcc/lsas/prd/gain-switch-input eq 1
+				fcc/lsas/in-detent eq 0
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 				fcc/lsas/channels-active gt 0
@@ -314,10 +663,19 @@
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
 						     0   1
-						140  21  0
-						360   7  0
+						140  25  0
+						360  12  0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/p-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -327,11 +685,20 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
-						     0    1
-						140  9.0  0.0
-						360  1.7  0.0
+						     0   1
+						140  14  0
+						360   2  0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/i-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -341,11 +708,20 @@
 					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<independentVar lookup="column">fcc/lsas/pah/gain-switch</independentVar>
 					<tableData>
-						     0     1
-						140  11.0  0.0
-						360   2.5  0.0
+						     0    1
+						140  5.0  0.0
+						360  1.5  0.0
 					</tableData>
 				</table>
+				<!-- For tuning -->
+				<!--ifthen>
+					<eq>
+						<property>fcc/lsas/pah/gain-switch</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<property>fcc/lsas/pah/d-gain-tune</property>
+				</ifthen-->
 			</function>
 		</fcs_function>
 		
@@ -357,10 +733,19 @@
 						<independentVar lookup="column">fcc/lsas/prd/gain-switch</independentVar>
 						<tableData>
 							     0    1
-							140  6.0  0.0
-							360  2.0  0.0
+							140  8.0  0.0
+							360  5.0  0.0
 						</tableData>
 					</table>
+					<!-- For tuning -->
+					<!--ifthen>
+						<eq>
+							<property>fcc/lsas/prd/gain-switch</property>
+							<value>1</value>
+						</eq>
+						<value>0</value>
+						<property>fcc/lsas/prd/p-gain-tune</property>
+					</ifthen-->
 					<table>
 						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 						<tableData>
@@ -426,7 +811,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/lsas/t-r_s-s">
+		<switch name="fcc/lsas/thetadot-switched">
 			<default value="fcc/lsas/thetadot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
@@ -498,8 +883,16 @@
 			</test>
 		</switch>
 		
+		<lead_lag_filter name="fcc/lsas/pah/thetadot-leadlag">
+			<input>fcc/lsas/thetadot-switched</input>
+			<c1>1.5</c1>
+			<c2>1.0</c2>
+			<c3>0.9</c3>
+			<c4>1.0</c4>
+		</lead_lag_filter>
+		
 		<pid name="fcc/lsas/pah/pid-v">
-			<input>fcc/lsas/t-r_s-s</input>
+			<input>fcc/lsas/pah/thetadot-leadlag</input>
 			<kp>fcc/lsas/pah/p-gain-scheduled</kp>
 			<ki>fcc/lsas/pah/i-gain-scheduled</ki>
 			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
@@ -753,7 +1146,7 @@
 						<table>
 							<independentVar lookup="row">fcc/lsas/pah/pid</independentVar>
 							<tableData>
-								0.05  0.00001
+								0.02  0.00001
 								0.25  0.00010
 							</tableData>
 						</table>
@@ -768,7 +1161,7 @@
 							<independentVar lookup="row">fcc/lsas/pah/pid</independentVar>
 							<tableData>
 								-0.25 -0.00010
-								-0.05 -0.00001
+								-0.02 -0.00001
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -781,8 +1174,8 @@
 						<table>
 							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
 							<tableData>
-								0.17  0.00001
-								0.80  0.00005
+								0.1  0.00001
+								0.8  0.00005
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -795,8 +1188,8 @@
 						<table>
 							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
 							<tableData>
-								-0.80 -0.00005
-								-0.17 -0.00001
+								-0.8 -0.00005
+								-0.1 -0.00001
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -852,7 +1245,7 @@
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="fcc/yaw/r-r_s-s">
+		<switch name="fcc/yaw/r-switched">
 			<default value="fcc/yaw/r-washout"/>
 			<test logic="OR" value="0">
 				fcc/yaw/gain-switch ne 0
@@ -861,7 +1254,7 @@
 		</switch>
 		
 		<pure_gain name="fcc/yaw/yd-f">
-			<input>fcc/yaw/r-r_s-s</input>
+			<input>fcc/yaw/r-switched</input>
 			<gain>fcc/yaw/yd-p-gain</gain>
 			<clipto>
 				<min>-0.5</min>
@@ -1027,22 +1420,22 @@
 		<switch name="fcc/flap/max-deg">
 			<default value="50"/>
 			<test logic="AND" value="22">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-20-25-max-kts
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/flap-20-25-max-kts
 				/controls/fctl/flap-limit-knob eq 0
 				/systems/failures/fctl/flap-limit ne 1
 			</test>
 			<test logic="AND" value="25">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-28-max-kts
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/flap-28-max-kts
 				/controls/fctl/flap-limit-knob eq 0
 				/systems/failures/fctl/flap-limit ne 1
 			</test>
 			<test logic="AND" value="28">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-35-max-kts
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/flap-35-max-kts
 				/controls/fctl/flap-limit-knob eq 0
 				/systems/failures/fctl/flap-limit ne 1
 			</test>
 			<test logic="AND" value="35">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /controls/fctl/flap-50-max-kts
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/flap-50-max-kts
 				/controls/fctl/flap-limit-knob eq 0
 				/systems/failures/fctl/flap-limit ne 1
 			</test>
@@ -1061,154 +1454,6 @@
 			<input>/controls/flight/slats-cmd-limited</input>
 			<gain>1.0</gain>
 		</pure_gain>
-	
-	</channel>
-	
-	<channel name="Overspeed Tape Calculations" execrate="8">
-		
-		<!-- VMO/MMO -->
-		<fcs_function name="/controls/fctl/mmo-kts">
-			<function>
-				<product>
-					<quotient>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</quotient>
-					<value>0.87</value> <!-- Should be scheduled, but don't know what schedules it yet -->
-				</product>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/fctl/vmo-mmo"> <!-- 365 should be scheduled, but don't know what schedules it yet -->
-			<default value="365"/>
-			<test value="/controls/fctl/mmo-kts">
-				/controls/fctl/mmo-kts lt 365
-			</test>
-		</switch>
-		
-		<!-- Gear Max Knots -->
-		<fcs_function name="/controls/fctl/gear-max-mach-kts">
-			<function>
-				<product>
-					<quotient>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</quotient>
-					<value>0.7</value>
-				</product>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/fctl/gear-max-kts">
-			<default value="300"/>
-			<test value="/controls/fctl/gear-max-mach-kts">
-				/controls/fctl/gear-max-mach-kts lt 300
-			</test>
-		</switch>
-		
-		<!-- Slat Max Knots -->
-		<fcs_function name="/controls/fctl/slat-max-mach-kts">
-			<function>
-				<product>
-					<quotient>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</quotient>
-					<value>0.55</value>
-				</product>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/fctl/slat-max-kts">
-			<default value="280"/>
-			<test value="/controls/fctl/slat-max-mach-kts">
-				/controls/fctl/slat-max-mach-kts lt 280
-			</test>
-		</switch>
-		
-		<!-- Flap Max Knots -->
-		<fcs_function name="/controls/fctl/flap-max-mach-kts">
-			<function>
-				<product>
-					<quotient>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</quotient>
-					<value>0.51</value>
-				</product>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/fctl/flap-0-15-max-kts">
-			<default value="255"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 255
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-15-20-max-kts">
-			<default value="240"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 240
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-20-25-max-kts">
-			<default value="220"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 220
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-28-max-kts">
-			<default value="210"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 210
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-35-max-kts">
-			<default value="190"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 190
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-50-max-kts">
-			<default value="175"/>
-			<test value="/controls/fctl/flap-max-mach-kts">
-				/controls/fctl/flap-max-mach-kts lt 175
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/flap-gear-max">
-			<default value="-1"/> <!-- Hide the tape -->
-			<test value="/controls/fctl/flap-50-max-kts">
-				fcc/flap/cmd-deg ge 35.1
-			</test>
-			<test value="/controls/fctl/flap-35-max-kts">
-				fcc/flap/cmd-deg ge 28.1
-			</test>
-			<test value="/controls/fctl/flap-28-max-kts">
-				fcc/flap/cmd-deg ge 25.1
-			</test>
-			<test value="/controls/fctl/flap-20-25-max-kts">
-				fcc/flap/cmd-deg ge 20.1
-			</test>
-			<test value="/controls/fctl/flap-15-20-max-kts">
-				fcc/flap/cmd-deg ge 15.1
-			</test>
-			<test value="/controls/fctl/flap-0-15-max-kts">
-				fcc/flap/cmd-deg ge 0.1
-			</test>
-			<test logic="AND" value="/controls/fctl/slat-max-kts">
-				fcc/slat/cmd-deg ge 0.1
-				fcc/flap/cmd-deg lt 0.1
-			</test>
-			<test value="/controls/fctl/gear-max-kts">
-				/controls/gear/gear-down ne 0
-			</test>
-		</switch>
 	
 	</channel>
 	
