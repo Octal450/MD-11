@@ -252,44 +252,52 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].hide();
 			} else if (Value.Asi.flapGearMax <= 50) {
 				Value.Asi.Tape.flapGearMax = 0 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
 				me["ASI_flap_max"].show();
 				me["ASI_vmo_bar"].hide();
 				me["ASI_vmo_bar2"].show();
 			} else if (Value.Asi.flapGearMax >= 500) {
 				Value.Asi.Tape.flapGearMax = 450 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
 				me["ASI_flap_max"].show();
 				me["ASI_vmo_bar"].hide();
 				me["ASI_vmo_bar2"].show();
 			} else {
 				Value.Asi.Tape.flapGearMax = Value.Asi.flapGearMax - 50 - Value.Asi.Tape.ias;
+				me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
 				me["ASI_flap_max"].show();
 				me["ASI_vmo_bar"].hide();
 				me["ASI_vmo_bar2"].show();
 			}
 			
+			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vmin.getValue();
 			Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vss.getValue();
+			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
+			
 			if (Value.Asi.vss < 0) {
 				me["ASI_vss"].hide();
 			} else if (Value.Asi.vss <= 50) {
+				me["ASI_vmin"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
+				me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 				Value.Asi.Tape.vss = 0 - Value.Asi.Tape.ias;
+				me["ASI_vss"].setTranslation(0, Value.Asi.Tape.vss * -4.48656);
 				me["ASI_vss"].show();
 			} else if (Value.Asi.vss >= 500) {
+				me["ASI_vmin"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
+				me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 				Value.Asi.Tape.vss = 450 - Value.Asi.Tape.ias;
+				me["ASI_vss"].setTranslation(0, Value.Asi.Tape.vss * -4.48656);
 				me["ASI_vss"].show();
 			} else {
+				me["ASI_vmin"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
+				me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 				Value.Asi.Tape.vss = Value.Asi.vss - 50 - Value.Asi.Tape.ias;
+				me["ASI_vss"].setTranslation(0, Value.Asi.Tape.vss * -4.48656);
 				me["ASI_vss"].show();
 			}
 			
-			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vmin.getValue();
-			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
-			
 			me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 4.48656);
 			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
-			me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
-			me["ASI_vss"].setTranslation(0, Value.Asi.Tape.vss * -4.48656);
-			me["ASI_vmin"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
-			me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
 			if (Value.Asi.mach >= 0.5) {

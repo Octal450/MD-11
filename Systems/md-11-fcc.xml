@@ -116,7 +116,7 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/speeds/vss">
+		<switch name="fcc/speeds/vss-switch">
 			<default value="fcc/speeds/vss-clean-kts"/>
 			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
 				position/wow eq 1
@@ -127,6 +127,26 @@
 				fcs/flap-pos-deg ge 0.1
 			</test>
 		</switch>
+		
+		<fcs_function name="fcc/speeds/vss-roll-factor">
+			<function>
+				<sqrt> <!-- Take the square root to get the factor -->
+					<quotient> <!-- Calculate neutral load factor from bank -->
+						<value>1</value>
+						<cos>
+							<toradians>
+								<property>/orientation/roll-deg</property>
+							</toradians>
+						</cos>
+					</quotient>
+				</sqrt>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fcc/speeds/vss">
+			<input>fcc/speeds/vss-switch</input>
+			<gain>fcc/speeds/vss-roll-factor</gain>
+		</pure_gain>
 		
 		<switch name="fcc/speeds/vmin-latch">
 			<default value="fcc/speeds/vmin-latch"/>
