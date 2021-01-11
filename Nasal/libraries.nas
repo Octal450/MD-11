@@ -78,15 +78,6 @@ var systemsLoop = maketimer(0.1, func() {
 	}
 });
 
-# Prevent gear up accidently while WoW
-setlistener("/controls/gear/lever", func() {
-	if (!pts.Controls.Gear.lever.getBoolValue()) {
-		if (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) {
-			pts.Controls.Gear.lever.setBoolValue(1);
-		}
-	}
-});
-
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
 	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {
