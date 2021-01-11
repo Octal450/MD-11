@@ -891,6 +891,17 @@
 			<rate_limit sense="decr">0.1428571</rate_limit> <!-- About 7 sec -->
 			<output>gear/unit[3]/pos-norm</output>
 		</actuator>
+		
+		<fcs_function name="gear/gear-all-norm">
+			<function>
+				<product>
+					<property>gear/unit[0]/pos-norm-actuator</property>
+					<property>gear/unit[1]/pos-norm-actuator</property>
+					<property>gear/unit[2]/pos-norm-actuator</property>
+					<property>gear/unit[3]/pos-norm-actuator</property>
+				</product>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
