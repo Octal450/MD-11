@@ -172,7 +172,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/speeds/vmin-clean-kts"> <!-- Temporary -->
+		<fcs_function name="fcc/speeds/vmin-clean-kts">
 			<function>
 				<product>
 					<difference>
@@ -184,7 +184,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/speeds/vmin-slat-flap-kts"> <!-- Temporary -->
+		<fcs_function name="fcc/speeds/vmin-slat-flap-kts">
 			<function>
 				<product>
 					<difference>
