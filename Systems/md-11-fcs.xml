@@ -864,20 +864,33 @@
 	
 	<channel name="Landing Gear">
 		
-		<kinematic name="rubbish/gear-pos-norm">
+		<actuator name="gear/unit[0]/pos-norm-actuator">
 			<input>gear/gear-cmd-norm</input>
-			<traverse>
-				<setting>
-					<position>0</position>
-					<time>0</time>
-				</setting>
-				<setting>
-					<position>1</position>
-					<time>10</time>
-				</setting>
-			</traverse>
-			<output>gear/gear-pos-norm</output>
-		</kinematic>
+			<rate_limit sense="incr">0.0555556</rate_limit> <!-- About 18 sec -->
+			<rate_limit sense="decr">0.125</rate_limit> <!-- About 8 sec -->
+			<output>gear/unit[0]/pos-norm</output>
+		</actuator>
+		
+		<actuator name="gear/unit[1]/pos-norm-actuator">
+			<input>gear/gear-cmd-norm</input>
+			<rate_limit sense="incr">0.0487805</rate_limit> <!-- About 20.5 sec -->
+			<rate_limit sense="decr">0.1111111</rate_limit> <!-- About 9 sec -->
+			<output>gear/unit[1]/pos-norm</output>
+		</actuator>
+		
+		<actuator name="gear/unit[2]/pos-norm-actuator">
+			<input>gear/gear-cmd-norm</input>
+			<rate_limit sense="incr">0.0476190</rate_limit> <!-- About 21 sec -->
+			<rate_limit sense="decr">0.1176471</rate_limit> <!-- About 8.5 sec -->
+			<output>gear/unit[2]/pos-norm</output>
+		</actuator>
+		
+		<actuator name="gear/unit[3]/pos-norm-actuator">
+			<input>gear/gear-cmd-norm</input>
+			<rate_limit sense="incr">0.0625</rate_limit> <!-- About 16 sec -->
+			<rate_limit sense="decr">0.1428571</rate_limit> <!-- About 7 sec -->
+			<output>gear/unit[3]/pos-norm</output>
+		</actuator>
 	
 	</channel>
 	

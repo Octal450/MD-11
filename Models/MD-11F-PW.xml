@@ -1536,8 +1536,8 @@
 		<property>gear/gear[3]/position-norm</property>
 		<interpolation>
 		<entry><ind>0</ind><dep>50</dep></entry>
-			<entry><ind>0.3</ind><dep>50.0</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>0.1</ind><dep>50.0</dep></entry>
+			<entry><ind>0.7</ind><dep>0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
@@ -1558,7 +1558,7 @@
 		<interpolation>
 		<entry><ind>0</ind><dep>-50</dep></entry>
 			<entry><ind>0.15</ind><dep>-50.0</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>0.7</ind><dep>0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>

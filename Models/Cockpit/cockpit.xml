@@ -434,7 +434,7 @@
 		<object-name>lg.right.green</object-name>
 		<condition>
 		<greater-than>
-		<property>gear/gear[1]/position-norm</property>
+		<property>gear/gear[2]/position-norm</property>
 		<value>0.99</value>
 		</greater-than>
 	   </condition>
@@ -446,11 +446,11 @@
 		<condition>
 		<and>
 		<less-than>
-		<property>gear/gear[1]/position-norm</property>
+		<property>gear/gear[2]/position-norm</property>
 		<value>0.99</value>
 		</less-than>
 	<greater-than>
-		<property>gear/gear[1]/position-norm</property>
+		<property>gear/gear[2]/position-norm</property>
 		<value>0.01</value>
 		</greater-than>
 		</and>
@@ -462,7 +462,7 @@
 		<object-name>lg.ctr.green</object-name>
 		<condition>
 		<greater-than>
-		<property>gear/gear[2]/position-norm</property>
+		<property>gear/gear[3]/position-norm</property>
 		<value>0.99</value>
 		</greater-than>
 	   </condition>
@@ -474,11 +474,11 @@
 		<condition>
 		<and>
 		<less-than>
-		<property>gear/gear[2]/position-norm</property>
+		<property>gear/gear[3]/position-norm</property>
 		<value>0.99</value>
 		</less-than>
 	<greater-than>
-		<property>gear/gear[2]/position-norm</property>
+		<property>gear/gear[3]/position-norm</property>
 		<value>0.01</value>
 		</greater-than>
 		</and>
