@@ -226,7 +226,7 @@ var PANEL = {
 			pts.Controls.Flight.flaps.setValue(0);
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(0);
 		}
-		pts.Controls.Gear.lever.setBoolValue(1);
+		pts.Controls.Gear.leverCockpit.setValue(3);
 	},
 	coldDark: func() {
 		me.panelBase(0);
