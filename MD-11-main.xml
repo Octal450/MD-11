@@ -596,6 +596,7 @@
 				<knob type="int">0</knob>
 			</abs>
 			<brake-parking type="bool">0</brake-parking>
+			<lever-cockpit type="int">3</lever-cockpit>
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
@@ -604,6 +605,7 @@
 			<switches n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
+				<gear-gravity-ext type="bool">0</gear-gravity-ext>
 				<l-pump-1 type="bool">1</l-pump-1>
 				<l-pump-2 type="bool">1</l-pump-2>
 				<l-pump-3 type="bool">1</l-pump-3>

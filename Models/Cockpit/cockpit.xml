@@ -296,10 +296,10 @@
 		<object-name>gearlever</object-name>
 		<object-name>gearlever.glass</object-name>
 		<object-name>gearlever.glass.001</object-name>
-		<property>controls/gear/gearlever/position-norm</property>
+		<property>controls/gear/lever-animation</property>
 		<interpolation>
-			<entry><ind>0.1</ind><dep>-60</dep></entry>
-			<entry><ind>0.9</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-60</dep></entry>
+			<entry><ind>2</ind><dep>  0</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -313,34 +313,33 @@
 		</center>
 	</animation>
 	
-		<animation>
+	<animation>
 		<type>translate</type>
 		<object-name>gearlever</object-name>
 		<object-name>gearlever.glass</object-name>
 		<object-name>gearlever.glass.001</object-name>
-		<property>controls/gear/gearlever/position-norm</property>
+		<property>controls/gear/lever-animation</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.1</ind><dep>0.01</dep></entry>
-			<entry><ind>0.9</ind><dep>0.01</dep></entry>
-			<entry><ind>1.0</ind><dep>0</dep></entry>
+			<entry><ind>0</ind><dep>0.00</dep></entry>
+			<entry><ind>1</ind><dep>0.01</dep></entry>
+			<entry><ind>2</ind><dep>0.01</dep></entry>
+			<entry><ind>3</ind><dep>0.00</dep></entry>
 		</interpolation>
-	<axis>
-		<x1-m>-27.5227</x1-m>
-		<y1-m>-0.0235</y1-m>
-		<z1-m>6.9061</z1-m>
-		<x2-m>-27.4782</x2-m>
-		<y2-m>-0.0235</y2-m>
-		<z2-m>6.8876</z2-m>
-	</axis>
+		<axis>
+			<x1-m>-27.5227</x1-m>
+			<y1-m>-0.0235</y1-m>
+			<z1-m>6.9061</z1-m>
+			<x2-m>-27.4782</x2-m>
+			<y2-m>-0.0235</y2-m>
+			<z2-m>6.8876</z2-m>
+		</axis>
 	</animation>
 	
-			<effect>
+	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/engine</inherits-from>
-	<object-name>gearlever.glass</object-name>
-	<object-name>cockpit_chrome</object-name>
+		<object-name>gearlever.glass</object-name>
+		<object-name>cockpit_chrome</object-name>
 	</effect>
-
 	
 	<animation>
 		<name>Gear lever pick</name>
@@ -349,16 +348,22 @@
 		<object-name>gearlever.glass</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/gear/gear-down</property>
+				<command>nasal</command>
+				<script>controls.gearDownSmart(1)</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>controls.gearDownSmart(0);</script>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
-
-
-			<animation>
+	
+	<!-- Gear indications -->
+	<animation>
 		<type>select</type>
 		<object-name>lg.nose.green</object-name>
 		<object-name>lg.nose.red</object-name>
@@ -369,120 +374,96 @@
 		<object-name>lg.ctr.green</object-name>
 		<object-name>lg.ctr.red</object-name>
 		<condition>
-				<property>systems/electrical/outputs/efis</property>
+			<property>systems/electrical/outputs/efis</property>
 		</condition>
 	</animation>
 	
-			<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.nose.green</object-name>
 		<condition>
-		<greater-than>
-		<property>gear/gear[0]/position-norm</property>
-		<value>0.99</value>
-		</greater-than>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[0]/status</property>
+				<value>2</value>
+			</equals>
+		</condition>
 	</animation>
 	
-			<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.nose.red</object-name>
 		<condition>
-		<and>
-		<less-than>
-		<property>gear/gear[0]/position-norm</property>
-		<value>0.99</value>
-		</less-than>
-	<greater-than>
-		<property>gear/gear[0]/position-norm</property>
-		<value>0.01</value>
-		</greater-than>
-		</and>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[0]/status</property>
+				<value>1</value>
+			</equals>
+		</condition>
 	</animation>
 	
-				<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.left.green</object-name>
 		<condition>
-		<greater-than>
-		  <property>gear/gear[1]/position-norm</property>
-		  <value>0.99</value>
-		  </greater-than>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[1]/status</property>
+				<value>2</value>
+			</equals>
+		</condition>
 	</animation>
 	
-			<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.left.red</object-name>
 		<condition>
-		<and>
-		<less-than>
-		<property>gear/gear[1]/position-norm</property>
-		<value>0.99</value>
-		</less-than>
-	<greater-than>
-		<property>gear/gear[1]/position-norm</property>
-		<value>0.01</value>
-		</greater-than>
-		</and>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[1]/status</property>
+				<value>1</value>
+			</equals>
+		</condition>
 	</animation>
 	
-		  <animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.right.green</object-name>
 		<condition>
-		<greater-than>
-		<property>gear/gear[2]/position-norm</property>
-		<value>0.99</value>
-		</greater-than>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[2]/status</property>
+				<value>2</value>
+			</equals>
+		</condition>
 	</animation>
 	
-			<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.right.red</object-name>
 		<condition>
-		<and>
-		<less-than>
-		<property>gear/gear[2]/position-norm</property>
-		<value>0.99</value>
-		</less-than>
-	<greater-than>
-		<property>gear/gear[2]/position-norm</property>
-		<value>0.01</value>
-		</greater-than>
-		</and>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[2]/status</property>
+				<value>1</value>
+			</equals>
+		</condition>
 	</animation>
 	
-			  <animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.ctr.green</object-name>
 		<condition>
-		<greater-than>
-		<property>gear/gear[3]/position-norm</property>
-		<value>0.99</value>
-		</greater-than>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[3]/status</property>
+				<value>2</value>
+			</equals>
+		</condition>
 	</animation>
 	
-			<animation>
+	<animation>
 		<type>select</type>
 		<object-name>lg.ctr.red</object-name>
 		<condition>
-		<and>
-		<less-than>
-		<property>gear/gear[3]/position-norm</property>
-		<value>0.99</value>
-		</less-than>
-	<greater-than>
-		<property>gear/gear[3]/position-norm</property>
-		<value>0.01</value>
-		</greater-than>
-		</and>
-	   </condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[3]/status</property>
+				<value>1</value>
+			</equals>
+		</condition>
 	</animation>
 	
 <!-- Yokes -->

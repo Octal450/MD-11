@@ -30,7 +30,8 @@ var Controls = {
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
 		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
 		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
-		gearDown: props.globals.getNode("/controls/gear/gear-down"),
+		lever: props.globals.getNode("/controls/gear/lever"),
+		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	Lighting: {
 		beacon: props.globals.getNode("/controls/lighting/beacon"),
