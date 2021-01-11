@@ -282,7 +282,6 @@ var canvasBase = {
 			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
 			me["ASI_flap_max"].setTranslation(0, Value.Asi.Tape.flapGearMax * -4.48656);
 			me["ASI_stall"].setTranslation(0, Value.Asi.Tape.stall * -4.48656);
-			me["ASI_stall"].setTranslation(0, Value.Asi.Tape.stall * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
 			if (Value.Asi.mach >= 0.5) {
