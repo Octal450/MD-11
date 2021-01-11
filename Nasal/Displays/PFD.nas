@@ -869,15 +869,15 @@ var canvasBase = {
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
 		Value.Misc.slatsPos = pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue();
 		
-		Value.Misc.flapsOut = Value.Misc.flapsCmd > 0.1 or Value.Misc.flapsPos > 0.1;
-		Value.Misc.slatsOut = Value.Misc.slatsCmd > 0.1 or Value.Misc.slatsPos > 0.1;
+		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
+		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		
-		if (Value.Misc.slatsOut and !(Value.Misc.slatsPos > 30.9 and Value.Misc.flapsOut)) {
+		if (Value.Misc.slatsOut and !(Value.Misc.slatsPos >= 30.9 and Value.Misc.flapsOut)) {
 			me["Slats"].show();
-			if (Value.Misc.slatsCmd - Value.Misc.slatsPos > 0.1) {
+			if (Value.Misc.slatsCmd - Value.Misc.slatsPos >= 0.1) {
 				me["Slats_dn"].show();
 				me["Slats_up"].hide();
-			} else if (Value.Misc.slatsCmd - Value.Misc.slatsPos < -0.1) {
+			} else if (Value.Misc.slatsCmd - Value.Misc.slatsPos <= -0.1) {
 				me["Slats_dn"].hide();
 				me["Slats_up"].show();
 			} else {
@@ -899,7 +899,7 @@ var canvasBase = {
 			me["Flaps_num"].hide();
 		}
 		
-		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 > pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
+		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
 			me["Flaps_dn"].hide();
 			me["Flaps_up"].hide();
 			me["Flaps_num"].setColor(0.9647,0.8196,0.0784);
@@ -907,10 +907,10 @@ var canvasBase = {
 			me["Flaps_num2"].setText(sprintf("%2.0f", Value.Misc.flapsCmd));
 			me["Flaps_num2"].show();
 		} else {
-			if (Value.Misc.flapsCmd - Value.Misc.flapsPos > 0.1) {
+			if (Value.Misc.flapsCmd - Value.Misc.flapsPos >= 0.1) {
 				me["Flaps_dn"].show();
 				me["Flaps_up"].hide();
-			} else if (Value.Misc.flapsCmd - Value.Misc.flapsPos < -0.1) {
+			} else if (Value.Misc.flapsCmd - Value.Misc.flapsPos <= -0.1) {
 				me["Flaps_dn"].hide();
 				me["Flaps_up"].show();
 			} else {

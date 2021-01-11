@@ -2,12 +2,12 @@
 # Copyright (c) 2020 Josh Davidson (Octal450)
 
 var Internal = {
-	v2: props.globals.initNode("/FMS/internal/v2", 163, "INT"),
+	v2: props.globals.initNode("/FMS/internal/v2", 153, "INT"),
 };
 
 var CORE = {
 	resetFMS: func() {
-		Internal.v2.setValue(163);
+		Internal.v2.setValue(153);
 		afs.ITAF.init(1);
 	},
 };

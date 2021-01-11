@@ -64,14 +64,14 @@
 				<table>
 					<independentVar lookup="row">inertia/weight-kg</independentVar>
 					<tableData>
-						140000  154.22
-						160000  163.53
-						180000  172.38
-						200000  180.63
-						220000  188.56
-						240000  195.73
-						260000  203.14
-						280000  209.93
+						140000  149.22
+						160000  158.53
+						180000  167.38
+						200000  175.63
+						220000  183.56
+						240000  190.73
+						260000  198.14
+						280000  204.93
 					</tableData>
 				</table>
 			</function>
@@ -84,23 +84,43 @@
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 					<tableData>
 						        0       10      15      20      25      28      35      50
-						140000  129.19  125.99  123.85  122.33  121.47  120.89  119.48  118.07
-						160000  136.75  133.24  130.95  129.42  128.40  127.69  126.19  123.89
-						180000  143.92  140.11  137.59  136.06  135.02  134.36  132.55  129.68
-						200000  150.64  146.67  144.15  142.47  141.34  140.63  138.56  134.98
-						220000  157.05  152.62  150.41  148.35  147.30  146.55  144.34  140.14
-						240000  163.07  158.65  155.98  153.99  152.82  152.07  149.77  145.00
-						260000  168.87  164.52  161.62  159.56  158.16  157.37  155.03  149.77
-						280000  174.52  169.94  166.74  164.74  163.33  162.58  160.24  154.19
+						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
+						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
+						180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
+						200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
+						220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
+						240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
+						260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
+						280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fcc/speeds/v2-latch-speed">
+			<function>
+				<sum>
+					<property>/FMS/internal/v2</property>
+					<value>9</value> <!-- V2 + 10kts, 1 kt buffer -->
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/speeds/v2-latch">
+			<default value="fcc/speeds/v2-latch"/>
+			<test value="0">
+				position/wow eq 1
+			</test>	
+			<test value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt fcc/speeds/v2-latch-speed
+			</test>
+		</switch>
+		
 		<switch name="fcc/speeds/vss">
 			<default value="fcc/speeds/vss-clean-kts"/>
-			<test logic="AND" value="-1"> <!-- Hide the tape -->
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
 				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
 			</test>
 			<test logic="OR" value="fcc/speeds/vss-slat-flap-kts">
 				fcs/slat-pos-deg ge 0.1
@@ -108,28 +128,59 @@
 			</test>
 		</switch>
 		
+		<switch name="fcc/speeds/vmin-latch">
+			<default value="fcc/speeds/vmin-latch"/>
+			<test value="0">
+				position/wow eq 1
+			</test>	
+			<test value="1"> <!-- Should be accel alt -->
+				/position/gear-agl-ft ge 1250
+			</test>
+		</switch>
+		
+		<switch name="fcc/speeds/vmin-factor">
+			<default value="1.3"/> <!-- 1.3 Vstall -->
+			<test logic="AND" value="1.2"> <!-- 1.2 Vstall -->
+				fcs/flap-pos-deg ge 0.1
+				fcs/slat-pos-deg ge 0.1
+				fcc/speeds/vmin-latch ne 1
+			</test>
+			<test logic="AND" value="1.25"> <!-- 1.25 Vstall -->
+				fcs/flap-pos-deg ge 0.1
+				fcs/slat-pos-deg lt 0.1
+				fcc/speeds/vmin-latch ne 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fcc/speeds/vmin-clean-kts"> <!-- Temporary -->
 			<function>
-				<sum>
-					<property>fcc/speeds/vss-clean-kts</property>
-					<value>15</value>
-				</sum>
+				<product>
+					<difference>
+						<property>fcc/speeds/vss-clean-kts</property>
+						<value>15</value> <!-- Trust me, has to be this way -->
+					</difference>
+					<property>fcc/speeds/vmin-factor</property>
+				</product>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="fcc/speeds/vmin-slat-flap-kts"> <!-- Temporary -->
 			<function>
-				<sum>
-					<property>fcc/speeds/vss-slat-flap-kts</property>
-					<value>5</value>
-				</sum>
+				<product>
+					<difference>
+						<property>fcc/speeds/vss-slat-flap-kts</property>
+						<value>15</value> <!-- Trust me, has to be this way -->
+					</difference>
+					<property>fcc/speeds/vmin-factor</property>
+				</product>
 			</function>
 		</fcs_function>
 		
 		<switch name="fcc/speeds/vmin">
 			<default value="fcc/speeds/vmin-clean-kts"/>
-			<test logic="AND" value="-1"> <!-- Hide the tape -->
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass V2 and airbone -->
 				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
 			</test>
 			<test logic="OR" value="fcc/speeds/vmin-slat-flap-kts">
 				fcs/slat-pos-deg ge 0.1
