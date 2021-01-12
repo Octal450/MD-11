@@ -931,7 +931,7 @@ var canvasBase = {
 		}
 		
 		# TCAS Off
-		if (pts.Instrumentation.Transponder.Inputs.knobMode.getValue() == 5) {
+		if (instruments.XPDR.tcasMode.getValue() >= 2) {
 			me["TCAS_OFF"].hide();
 		} else {
 			me["TCAS_OFF"].show();

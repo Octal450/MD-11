@@ -1422,7 +1422,7 @@
 				<file-prefix>Aircraft/MD-11/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
-		<nav n="0">
+		<nav n="0"> <!-- ILS -->
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
 				<standby-mhz type="double">110.95</standby-mhz>
@@ -1433,7 +1433,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="1">
+		<nav n="1"> <!-- VOR 1 -->
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
 				<standby-mhz type="double">110.55</standby-mhz>
@@ -1444,7 +1444,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="2">
+		<nav n="2"> <!-- VOR 2 -->
 			<cdi>
 				<serviceable type="bool">true</serviceable>
 			</cdi>
@@ -1458,26 +1458,12 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="3">
-			<cdi>
-				<serviceable type="bool">true</serviceable>
-			</cdi>
-			<frequencies>
-				<selected-mhz type="double">114.8</selected-mhz>
-				<standby-mhz type="double">114.6</standby-mhz>
-			</frequencies>
-			<radials>
-				<selected-deg type="double">360</selected-deg>
-			</radials>
-			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
-		</nav>
 		<sd n="0">
 			<selected-synoptic type="string">ENG</selected-synoptic>
 		</sd>
 		<tcas>
 			<inputs>
-				<mode type="int">3</mode>
+				<mode type="int">0</mode>
 			</inputs>
 			<voice>
 				<file-prefix type="string">Sounds/tcas/female/</file-prefix>
@@ -1489,6 +1475,11 @@
 				<volume>0.8</volume>
 			</speaker>
 		</tcas>
+		<transponder n="0">
+			<inputs n="0">
+				<knob-mode type="int">1</knob-mode>
+			</inputs>
+		</transponder>
 	</instrumentation>
 	
 	<it-autoflight>
@@ -1665,6 +1656,9 @@
 		<canvas_sd>
 			<file>Aircraft/MD-11/Nasal/Displays/SD.nas</file>
 		</canvas_sd>
+		<instruments>
+			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
+		</instruments>
 		<autopush>
 			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>
 		</autopush>

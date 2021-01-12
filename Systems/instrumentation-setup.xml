@@ -57,24 +57,19 @@
 		<number>2</number>
 	</comm-radio>
 	
-	<dme>
+	<dme> <!-- ILS -->
 		<name>dme</name>
 		<number>0</number>
 	</dme>
 	
-	<dme>
+	<dme> <!-- VOR 1 -->
 		<name>dme</name>
 		<number>1</number>
 	</dme>
 	
-	<dme>
+	<dme> <!-- VOR 2 -->
 		<name>dme</name>
 		<number>2</number>
-	</dme>
-	
-	<dme>
-		<name>dme</name>
-		<number>3</number>
 	</dme>
 	
 	<altimeter>
@@ -111,24 +106,19 @@
 		<number>0</number>
 	</mk-viii>
 	
-	<nav-radio>
+	<nav-radio> <!-- ILS -->
 		<name>nav</name>
 		<number>0</number>
 	</nav-radio>
 	
-	<nav-radio>
+	<nav-radio> <!-- VOR 1 -->
 		<name>nav</name>
 		<number>1</number>
 	</nav-radio>
 	
-	<nav-radio>
+	<nav-radio> <!-- VOR 2 -->
 		<name>nav</name>
 		<number>2</number>
-	</nav-radio>
-	
-	<nav-radio>
-		<name>nav</name>
-		<number>3</number>
 	</nav-radio>
 	
 	<slip-skid-ball>

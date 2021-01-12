@@ -29,6 +29,7 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
+	instruments.XPDR.init();
 	libraries.variousReset();
 }
 

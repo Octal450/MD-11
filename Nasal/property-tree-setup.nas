@@ -189,11 +189,6 @@ var Instrumentation = {
 		},
 		selectedSynoptic: props.globals.getNode("/instrumentation/sd/selected-synoptic"),
 	},
-	Transponder: {
-		Inputs: {
-			knobMode: props.globals.getNode("/instrumentation/transponder/inputs/knob-mode"),
-		},
-	},
 };
 
 var Options = {

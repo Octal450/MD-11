@@ -306,12 +306,12 @@ var PANEL = {
 				systems.ELEC.Source.Ext.cart.setBoolValue(0);
 				systems.ELEC.Switch.extPwr.setBoolValue(0);
 				systems.ELEC.Switch.extGPwr.setBoolValue(0);
+				instruments.XPDR.setMode(3); # TA/RA
 				if (t == 1) {
 					pts.Controls.Lighting.strobe.setBoolValue(1);
 					pts.Controls.Lighting.landingLightL.setValue(1);
 					pts.Controls.Lighting.landingLightN.setValue(1);
 					pts.Controls.Lighting.landingLightR.setValue(1);
-					
 				} else {
 					pts.Controls.Lighting.landingLightL.setValue(0.5);
 					pts.Controls.Lighting.landingLightN.setValue(0.5);
