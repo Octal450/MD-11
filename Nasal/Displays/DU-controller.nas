@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 DU Controller
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 # This file manages the DU Canvas hide/showing in an efficient and synchronized way
 
 var DUController = {

@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 PFD
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
 var pfd1Display = nil;
 var pfd2Display = nil;
