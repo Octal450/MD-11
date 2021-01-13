@@ -129,6 +129,9 @@ var Instrumentation = {
 		settingInhg: props.globals.getNode("/instrumentation/altimeter/setting-inhg"),
 		std: props.globals.getNode("/instrumentation/altimeter/std"),
 	},
+	Dme: {
+		indicatedDistanceNm: [props.globals.getNode("/instrumentation/dme[0]/indicated-distance-nm"), props.globals.getNode("/instrumentation/dme[1]/indicated-distance-nm"), props.globals.getNode("/instrumentation/dme[2]/indicated-distance-nm")],
+	},
 	Ead: {
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
 		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
@@ -162,6 +165,7 @@ var Instrumentation = {
 		gsNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/gs-needle-deflection-norm")],
 		hasGs: [props.globals.getNode("/instrumentation/nav[0]/has-gs"), props.globals.getNode("/instrumentation/nav[1]/has-gs"), props.globals.getNode("/instrumentation/nav[2]/has-gs")],
 		inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range"), props.globals.getNode("/instrumentation/nav[1]/in-range"), props.globals.getNode("/instrumentation/nav[2]/in-range")],
+		navId: [props.globals.getNode("/instrumentation/nav[0]/nav-id"), props.globals.getNode("/instrumentation/nav[1]/nav-id"), props.globals.getNode("/instrumentation/nav[2]/nav-id")],
 		navLoc: [props.globals.getNode("/instrumentation/nav[0]/nav-loc"), props.globals.getNode("/instrumentation/nav[1]/nav-loc"), props.globals.getNode("/instrumentation/nav[2]/nav-loc")],
 		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm")],
 	},

@@ -563,38 +563,6 @@
       </binding>
     </input>
 
-    <text>
-      <row>7</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>DME</label>
-    </text>
-
-    <input>
-      <name>dme-selected</name>
-      <row>7</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/dme/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>dme-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>7</row>
-      <col>4</col>
-      <colspan>3</colspan>
-      <legend>ATC Services in range</legend>
-      <binding>
-        <command>ATC-freq-search</command>
-      </binding>
-    </button>
-
 
   </group>
 

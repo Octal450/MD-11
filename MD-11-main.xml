@@ -1343,7 +1343,7 @@
 		</comm>
 		<dme n="0">
 			<frequencies>
-				<selected-mhz type="double">109.55</selected-mhz>
+				<selected-mhz type="double">109.6</selected-mhz>
 				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
@@ -1416,8 +1416,8 @@
 		</mk-viii>
 		<nav n="0"> <!-- VOR 1 -->
 			<frequencies>
-				<selected-mhz type="double">109.55</selected-mhz>
-				<standby-mhz type="double">110.55</standby-mhz>
+				<selected-mhz type="double">109.6</selected-mhz>
+				<standby-mhz type="double">110.8</standby-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>
