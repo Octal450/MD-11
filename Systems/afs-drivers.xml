@@ -275,103 +275,68 @@
 	</filter>
 	
 	<filter>
-		<name>Knots Input Filter</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/kts</input>
-		<output>/it-autoflight/internal/flch-kts</output>
-		<min>
-			<expression>
-				<difference>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>25</value>
-				</difference>
-			</expression>
-		</min>
-		<max>
-			<expression>
-				<sum>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>25</value>
-				</sum>
-			</expression>
-		</max>
-		<max-rate-of-change>
-			<condition>
-				<and>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>4</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/vert</property>
-							<value>7</value>
-						</equals>
-					</or>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>0</value>
-					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-			<value>5</value>
-		</max-rate-of-change>
-		<max-rate-of-change>100</max-rate-of-change>
+		<name>Knots Rate</name>
+		<type>derivative</type>
+		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
+		<output>/it-autoflight/internal/kts-rate-raw</output>
+		<filter-time>1.0</filter-time>
 	</filter>
 	
 	<filter>
-		<name>Mach Input Filter</name>
+		<name>Knots Rate Lag</name>
+		<debug>false</debug>
+		<type>double-exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>60</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/it-autoflight/internal/kts-rate-raw</input>
+		<output>/it-autoflight/internal/kts-rate</output>
+		<filter-time>0.08</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Flch Knots Rate Command</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/mach</input>
-		<output>/it-autoflight/internal/flch-mach</output>
-		<min>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
 			<expression>
-				<difference>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.045</value>
-				</difference>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/mach</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</difference>
+					<value>75</value>
+				</product>
 			</expression>
-		</min>
-		<max>
+		</input>
+		<input>
 			<expression>
-				<sum>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.045</value>
-				</sum>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/kts</property>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+					</difference>
+					<value>0.075</value>
+				</product>
 			</expression>
-		</max>
+		</input>
+		<output>/it-autoflight/internal/flch-kts-error</output>
+		<min>-1.5</min>
+		<max>1.5</max>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -385,10 +350,6 @@
 							<value>7</value>
 						</equals>
 					</or>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>1</value>
-					</equals>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/ap1</property>
@@ -417,9 +378,9 @@
 					</equals>
 				</and>
 			</condition>
-			<value>0.04</value>
+			<value>3</value>
 		</max-rate-of-change>
-		<max-rate-of-change>1</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -437,7 +398,10 @@
 				<product>
 					<div>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<max>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<value>0.001</value> <!-- Prevent divide by 0 -->
+						</max>
 					</div>
 					<property>/it-autoflight/internal/mach</property>
 				</product>
@@ -787,7 +751,7 @@
 					<div>
 						<property>/orientation/roll-deg</property>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>1.8</dep></entry>
 							<entry><ind>360</ind><dep>2.8</dep></entry>
 						</table>
@@ -808,7 +772,7 @@
 					<div>
 						<property>/orientation/roll-deg</property>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>1.8</dep></entry>
 							<entry><ind>360</ind><dep>2.8</dep></entry>
 						</table>
@@ -958,9 +922,9 @@
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
 					</difference>
 					<table>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property> 
-						<entry><ind>0.20</ind><dep>0.004</dep></entry>
-						<entry><ind>0.95</ind><dep>0.002</dep></entry>
+						<property>/velocities/airspeed-kt</property> 
+						<entry><ind>140</ind><dep>0.001848350</dep></entry>
+						<entry><ind>360</ind><dep>0.000924175</dep></entry>
 					</table>
 				</product>
 			</expression>

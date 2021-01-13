@@ -68,48 +68,12 @@
 				<property>/it-autoflight/internal/flch-active</property>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/kts-predicted-15</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/mach-predicted-15</property>
-			<scale>750</scale>
-		</input>
-		<reference>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/flch-kts</property>
-		</reference>
-		<reference>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/flch-mach</property>
-			<scale>750</scale>
-		</reference>
+		<input>/it-autoflight/internal/kts-rate</input>
+		<reference>/it-autoflight/internal/flch-kts-error</reference>
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 		<config>
-			<Kp>-55</Kp>
-			<Ti>2.5</Ti>        
+			<Kp>-400</Kp>
+			<Ti>1.0</Ti>        
 			<Td>0.001</Td>
 			<u_min>
 				<condition>
@@ -124,7 +88,7 @@
 				<expression>
 					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
+						<value>1500</value>
 					</difference>
 				</expression>
 			</u_min>
@@ -162,7 +126,7 @@
 				<expression>
 					<sum>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>2500</value>
+						<value>1500</value>
 					</sum>
 				</expression>
 			</u_max>
@@ -443,7 +407,7 @@
 				</condition>
 				<expression>
 					<table>
-						<property>/fdm/jsbsim/velocities/vc-kts</property>
+						<property>/velocities/airspeed-kt</property>
 						<entry><ind>140</ind><dep>0.0029</dep></entry>
 						<entry><ind>360</ind><dep>0.0009</dep></entry>
 					</table>
@@ -604,7 +568,7 @@
 				<expression>
 					<div>
 						<table>
-							<property>/fdm/jsbsim/velocities/vc-kts</property>
+							<property>/velocities/airspeed-kt</property>
 							<entry><ind>140</ind><dep>-0.14</dep></entry>
 							<entry><ind>360</ind><dep>-0.07</dep></entry>
 						</table>

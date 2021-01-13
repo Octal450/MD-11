@@ -445,7 +445,7 @@ var canvasBase = {
 			me["AI_arrow_up"].hide();
 		}
 		
-		me["FD_pitch"].setTranslation(0, -afs.Fd.pitchBar.getValue() * 3.8);
+		me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
 		me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		
 		# ALT
