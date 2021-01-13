@@ -173,7 +173,8 @@ var Internal = {
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
-	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "DOUBLE"),
+	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "INT"),
+	throttleSaturatedTemp: 0,
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
 };
@@ -672,10 +673,19 @@ var ITAF = {
 		# Speed Protection
 		Velocities.vmax = pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue();
 		Velocities.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
+		Internal.throttleSaturatedTemp = Internal.throttleSaturated.getValue();
+		Output.vertTemp = Output.vert.getValue();
 		
 		if (me.spdProtAllowed()) {
-			if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10) { # High Speed Prot
+			if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1))) { # High Speed Prot
 				Output.spdProt.setValue(2);
+				Output.spdProtOnPitch = 1;
+				me.setVertMode(4);
+				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+					me.athrMaster(1);
+				}
+			} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10 or (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and Internal.throttleSaturatedTemp == 2))) { # Low Speed Prot
+				Output.spdProt.setValue(1);
 				Output.spdProtOnPitch = 1;
 				me.setVertMode(4);
 				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
@@ -686,13 +696,6 @@ var ITAF = {
 				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
 					me.setBasicMode(1); # Pitch mode only
 				}
-				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
-					me.athrMaster(1);
-				}
-			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10) { # Low Speed Prot
-				Output.spdProt.setValue(1);
-				Output.spdProtOnPitch = 1;
-				me.setVertMode(4);
 				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
 					me.athrMaster(1);
 				}
