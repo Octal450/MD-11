@@ -82,10 +82,17 @@ var Fdm = {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
 			},
 			Speeds: {
+				athrMax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/athr-max"),
+				athrMaxMach: props.globals.getNode("/fdm/jsbsim/fcc/speeds/athr-max-mach"),
+				athrMin: props.globals.getNode("/fdm/jsbsim/fcc/speeds/athr-min"),
+				athrMinMach: props.globals.getNode("/fdm/jsbsim/fcc/speeds/athr-min-mach"),
 				flapGearMax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/flap-gear-max"),
+				vmax: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmax"),
 				vmin: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmin"),
+				vminTape: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmin-tape"),
 				vmoMmo: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vmo-mmo"),
 				vss: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss"),
+				vssTape: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss-tape"),
 			},
 		},
 		Fcs: {
@@ -160,6 +167,9 @@ var Instrumentation = {
 		},
 	},
 	Nav: {
+		Frequencies: {
+			selectedMhz: [props.globals.getNode("/instrumentation/nav[0]/frequencies/selected-mhz"), props.globals.getNode("/instrumentation/nav[1]/frequencies/selected-mhz"), props.globals.getNode("/instrumentation/nav[2]/frequencies/selected-mhz")],
+		},
 		headingNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/heading-needle-deflection-norm")],
 		gsInRange: [props.globals.getNode("/instrumentation/nav[0]/gs-in-range"), props.globals.getNode("/instrumentation/nav[1]/gs-in-range"), props.globals.getNode("/instrumentation/nav[2]/gs-in-range")],
 		gsNeedleDeflectionNorm: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm"), props.globals.getNode("/instrumentation/nav[2]/gs-needle-deflection-norm")],

@@ -270,8 +270,8 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].show();
 			}
 			
-			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vmin.getValue();
-			Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vss.getValue();
+			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
+			Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vssTape.getValue();
 			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
 			
 			if (Value.Asi.vss < 0) {
@@ -311,25 +311,25 @@ var canvasBase = {
 				me["ASI_bowtie_mach"].hide();
 			}
 			
-			if (Value.Asi.ias > Value.Asi.vmoMmo + 0.5) {
+			if (Value.Asi.ias > Value.Asi.vmoMmo) {
 				me["ASI"].setColor(1,0,0);
 				me["ASI_bowtie_L"].setColor(1,0,0);
 				me["ASI_bowtie_R"].setColor(1,0,0);
 				me["ASI_mach"].setColor(1,0,0);
 				me["ASI_mach_decimal"].setColor(1,0,0);
-			} else if (Value.Asi.ias < Value.Asi.vss - 0.5) {
+			} else if (Value.Asi.ias < Value.Asi.vss) {
 				me["ASI"].setColor(1,0,0);
 				me["ASI_bowtie_L"].setColor(1,0,0);
 				me["ASI_bowtie_R"].setColor(1,0,0);
 				me["ASI_mach"].setColor(1,0,0);
 				me["ASI_mach_decimal"].setColor(1,0,0);
-			} else if (Value.Asi.ias > Value.Asi.flapGearMax + 0.5 and Value.Asi.flapGearMax >= 0) {
+			} else if (Value.Asi.ias > Value.Asi.flapGearMax and Value.Asi.flapGearMax >= 0) {
 				me["ASI"].setColor(0.9647,0.8196,0.07843);
 				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
 				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
 				me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
 				me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
-			} else if (Value.Asi.ias < Value.Asi.vmin - 0.5) {
+			} else if (Value.Asi.ias < Value.Asi.vmin) {
 				me["ASI"].setColor(0.9647,0.8196,0.07843);
 				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
 				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
@@ -364,6 +364,20 @@ var canvasBase = {
 			
 			me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.48656);
 			me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.48656);
+			
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+				me["ASI_presel"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
+				me["ASI_presel"].setColor(1,0,0);
+			} else if (Value.Asi.preSel < Value.Asi.vss) {
+				me["ASI_presel"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+				me["ASI_presel"].setColor(0.9647,0.8196,0.07843);
+			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
+				me["ASI_presel"].setColor(0.9647,0.8196,0.07843);
+			} else {
+				me["ASI_presel"].setColor(1,1,1);
+			}
 			
 			# Let the whole ASI tape update before showing
 			me["ASI_ias_group"].show();
@@ -604,11 +618,17 @@ var canvasBase = {
 			me["GS_no"].hide();
 		}
 		
-		if (Value.Nav.inRange and Value.Nav.signalQuality > 0.99) {
-			me["ILS_DME"].setText(sprintf("%2.1f", pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue()));
-			me["ILS_DME"].show();
-			me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
-			me["ILS_Info"].show();
+		if (Value.Nav.inRange) { # Should be if ILS tuned later
+			if (Value.Nav.signalQuality > 0.99) {
+				me["ILS_DME"].setText(sprintf("%2.1f", pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue()));
+				me["ILS_DME"].show();
+				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
+				me["ILS_Info"].show();
+			} else {
+				me["ILS_DME"].hide();
+				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
+				me["ILS_Info"].show();
+			}
 		} else {
 			me["ILS_DME"].hide();
 			me["ILS_Info"].hide();

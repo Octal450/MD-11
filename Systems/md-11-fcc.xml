@@ -118,10 +118,6 @@
 		
 		<switch name="fcc/speeds/vss-switch">
 			<default value="fcc/speeds/vss-clean-kts"/>
-			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
-				position/wow eq 1
-				fcc/speeds/v2-latch ne 1
-			</test>
 			<test logic="OR" value="fcc/speeds/vss-slat-flap-kts">
 				fcs/slat-pos-deg ge 0.1
 				fcs/flap-pos-deg ge 0.1
@@ -147,6 +143,14 @@
 			<input>fcc/speeds/vss-switch</input>
 			<gain>fcc/speeds/vss-roll-factor</gain>
 		</pure_gain>
+		
+		<switch name="fcc/speeds/vss-tape">
+			<default value="fcc/speeds/vss"/>
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
+			</test>
+		</switch>
 		
 		<switch name="fcc/speeds/vmin-latch">
 			<default value="fcc/speeds/vmin-latch"/>
@@ -198,10 +202,6 @@
 		
 		<switch name="fcc/speeds/vmin">
 			<default value="fcc/speeds/vmin-clean-kts"/>
-			<test logic="OR" value="-1"> <!-- Hide the tape until we pass V2 and airbone -->
-				position/wow eq 1
-				fcc/speeds/v2-latch ne 1
-			</test>
 			<test logic="OR" value="fcc/speeds/vmin-slat-flap-kts">
 				fcs/slat-pos-deg ge 0.1
 				fcs/flap-pos-deg ge 0.1
@@ -211,6 +211,46 @@
 				<max>100000</max>
 			</clipto>
 		</switch>
+		
+		<switch name="fcc/speeds/vmin-tape">
+			<default value="fcc/speeds/vmin"/>
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+				position/wow eq 1
+				fcc/speeds/v2-latch ne 1
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/speeds/athr-min">
+			<function>
+				<sum>
+					<property>fcc/speeds/vmin-tape</property>
+					<value>5</value>
+				</sum>
+			</function>
+			<clipto>
+				<min>100</min>
+				<max>100000</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/athr-min-mach">
+			<function>
+				<sum>
+					<product>
+						<quotient>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						</quotient>
+						<property>fcc/speeds/vmin-tape</property>
+					</product>
+					<value>0.005</value>
+				</sum>
+			</function>
+			<clipto>
+				<min>0.5</min>
+				<max>100</max>
+			</clipto>
+		</fcs_function>
 		
 		<!-- VMO/MMO -->
 		<fcs_function name="fcc/speeds/mmo-kts">
@@ -378,6 +418,41 @@
 				/gear/gear[1]/position-norm ge 0.99
 			</test>
 		</switch>
+		
+		<switch name="fcc/speeds/vmax">
+			<default value="fcc/speeds/vmo-mmo"/>
+			<test value="fcc/speeds/flap-gear-max">
+				fcc/speeds/flap-gear-max gt -1
+			</test>
+		</switch>
+		
+		<fcs_function name="fcc/speeds/athr-max">
+			<function>
+				<difference>
+					<property>fcc/speeds/vmax</property>
+					<value>5</value>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/speeds/athr-max-mach">
+			<function>
+				<difference>
+					<product>
+						<quotient>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						</quotient>
+						<property>fcc/speeds/vmax</property>
+					</product>
+					<value>0.005</value>
+				</difference>
+			</function>
+			<clipto>
+				<min>0.5</min>
+				<max>0.87</max> <!-- MMO, Should be scheduled, but don't know what schedules it yet -->
+			</clipto>
+		</fcs_function>
 	
 	</channel>
 	
