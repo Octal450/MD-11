@@ -885,6 +885,7 @@ var ITAF = {
 				Internal.altCaptureActive = 0;
 				Output.vert.setValue(4);
 				Internal.flchActive = 1;
+				Internal.alt.setValue(Input.alt.getValue());
 				me.updateThrustMode();
 			} else { # ALT CAP
 				Internal.flchActive = 0;

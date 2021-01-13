@@ -72,9 +72,17 @@
 		<reference>/it-autoflight/internal/flch-kts-error</reference>
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 		<config>
-			<Kp>-400</Kp>
-			<Ti>1.0</Ti>        
-			<Td>0.001</Td>
+			<Kp>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>-375</dep></entry>
+						<entry><ind>360</ind><dep>-425</dep></entry>
+					</table>
+				</expression>
+			</Kp>
+			<Ti>1.4</Ti>        
+			<Td>0.0</Td>
 			<u_min>
 				<condition>
 					<equals>

@@ -275,9 +275,27 @@
 	</filter>
 	
 	<filter>
+		<name>Knots Lag</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>60</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
+		<output>/it-autoflight/internal/kts-rate-input</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
 		<name>Knots Rate</name>
 		<type>derivative</type>
-		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
+		<input>/it-autoflight/internal/kts-rate-input</input>
 		<output>/it-autoflight/internal/kts-rate-raw</output>
 		<filter-time>1.0</filter-time>
 	</filter>
@@ -285,7 +303,7 @@
 	<filter>
 		<name>Knots Rate Lag</name>
 		<debug>false</debug>
-		<type>double-exponential</type>
+		<type>exponential</type>
 		<input>
 			<condition>
 				<less-than>
@@ -297,7 +315,7 @@
 		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/kts-rate</output>
-		<filter-time>0.08</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -378,7 +396,7 @@
 					</equals>
 				</and>
 			</condition>
-			<value>3</value>
+			<value>2</value>
 		</max-rate-of-change>
 		<max-rate-of-change>100</max-rate-of-change>
 	</filter>

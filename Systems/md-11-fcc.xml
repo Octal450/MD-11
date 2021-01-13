@@ -215,18 +215,13 @@
 		<!-- VMO/MMO -->
 		<fcs_function name="fcc/speeds/mmo-kts">
 			<function>
-				<integer>
-					<sum>
-						<product>
-							<quotient>
-								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							</quotient>
-							<value>0.87</value> <!-- Should be scheduled, but don't know what schedules it yet -->
-						</product>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<product>
+					<quotient>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</quotient>
+					<value>0.87</value> <!-- Should be scheduled, but don't know what schedules it yet -->
+				</product>
 			</function>
 		</fcs_function>
 		
@@ -240,18 +235,13 @@
 		<!-- Gear Max Knots -->
 		<fcs_function name="fcc/speeds/gear-max-mach-kts">
 			<function>
-				<integer>
-					<sum>
-						<product>
-							<quotient>
-								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							</quotient>
-							<value>0.7</value>
-						</product>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<product>
+					<quotient>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</quotient>
+					<value>0.7</value>
+				</product>
 			</function>
 		</fcs_function>
 		
@@ -279,18 +269,13 @@
 		<!-- Slat Max Knots -->
 		<fcs_function name="fcc/speeds/slat-max-mach-kts">
 			<function>
-				<integer>
-					<sum>
-						<product>
-							<quotient>
-								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							</quotient>
-							<value>0.55</value>
-						</product>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<product>
+					<quotient>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</quotient>
+					<value>0.55</value>
+				</product>
 			</function>
 		</fcs_function>
 		
@@ -304,18 +289,13 @@
 		<!-- Flap Max Knots -->
 		<fcs_function name="fcc/speeds/flap-max-mach-kts">
 			<function>
-				<integer>
-					<sum>
-						<product>
-							<quotient>
-								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							</quotient>
-							<value>0.51</value>
-						</product>
-						<value>0.5</value> <!-- Make it round correctly -->
-					</sum>
-				</integer>
+				<product>
+					<quotient>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					</quotient>
+					<value>0.51</value>
+				</product>
 			</function>
 		</fcs_function>
 		

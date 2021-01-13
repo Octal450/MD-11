@@ -5,13 +5,12 @@
 <PropertyList>
 	
 	<filter>
-		<name>A/THR Knots Input Filter</name>
+		<name>A/THR Knots Input Gain</name>
 		<debug>false</debug>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>/it-autoflight/internal/kts</input>
-		<output>/it-autoflight/internal/athr-kts</output>
+		<output>/it-autoflight/internal/athr-kts-cmd</output>
 		<min>
 			<expression>
 				<difference>
@@ -28,6 +27,16 @@
 				</sum>
 			</expression>
 		</max>
+	</filter>
+	
+	<filter>
+		<name>A/THR Knots Input Filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/it-autoflight/internal/athr-kts-cmd</input>
+		<output>/it-autoflight/internal/athr-kts</output>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -63,13 +72,12 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Mach Input Filter</name>
+		<name>A/THR Mach Input Gain</name>
 		<debug>false</debug>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>/it-autoflight/internal/mach</input>
-		<output>/it-autoflight/internal/athr-mach</output>
+		<output>/it-autoflight/internal/athr-mach-cmd</output>
 		<min>
 			<expression>
 				<difference>
@@ -86,6 +94,16 @@
 				</sum>
 			</expression>
 		</max>
+	</filter>
+	
+	<filter>
+		<name>A/THR Mach Input Filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/it-autoflight/internal/athr-mach-cmd</input>
+		<output>/it-autoflight/internal/athr-mach</output>
 		<max-rate-of-change>
 			<condition>
 				<and>
