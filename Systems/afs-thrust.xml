@@ -272,17 +272,41 @@
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 	</filter>
 	
-	<logic>
+	<filter>
+		<name>System Command: Throttle Saturated</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
-			<or>
+			<condition>
 				<greater-than-equals>
-					<property>/fdm/jsbsim/fadec/ats-cmd-raw</property>
+					<expression>
+						<sum>
+							<property>/fdm/jsbsim/fadec/ats-cmd-raw</property>
+							<value>0.01</value>
+						</sum>
+					</expression>
 					<property>/fdm/jsbsim/fadec/limit/active-norm</property>
 				</greater-than-equals>
-			</or>
+			</condition>
+			<value>2</value>
 		</input>
+		<input>
+			<condition>
+				<less-than-equals>
+					<expression>
+						<difference>
+							<property>/fdm/jsbsim/fadec/ats-cmd-raw</property>
+							<value>0.01</value>
+						</difference>
+					</expression>
+					<property>/fdm/jsbsim/fadec/limit/idle-norm</property>
+				</less-than-equals>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>0</input>
 		<output>/it-autoflight/internal/throttle-saturated</output>
-	</logic>
+	</filter>
 	
 	<filter>
 		<name>System Command: Throttle</name>

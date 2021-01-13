@@ -173,6 +173,7 @@ var Internal = {
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
+	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "DOUBLE"),
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
 };
