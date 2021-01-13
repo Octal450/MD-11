@@ -32,7 +32,8 @@ var Value = {
 		pitchArm: "",
 		roll: "",
 		rollArm: "",
-		throttle: "",
+		spdProt: 0,
+		thrust: "",
 	},
 	Ai: {
 		bankLimit: 0,
@@ -93,6 +94,8 @@ var Value = {
 		aligning: [0, 0, 0],
 	},
 	Misc: {
+		blink1Hz: 0,
+		blink1Hz2: 0,
 		flapsCmd: 0,
 		flapsOut: 0,
 		flapsPos: 0,
@@ -162,13 +165,13 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["FMA_Speed", "FMA_Thrust", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
-		"FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel", "ASI_trend_up", "ASI_trend_down",
-		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim", "AI_group", "AI_group2", 
-		"AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T",
-		"ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group",
-		"HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME",
-		"RA", "RA_box", "Minimums"];
+		return ["FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box",
+		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
+		"ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_alphalim",
+		"AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five",
+		"ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel",
+		"HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no",
+		"ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -715,6 +718,23 @@ var canvasBase = {
 	},
 	updateSlowBase: func() {
 		# FMA
+		Value.Afs.spdProt = afs.Output.spdProt.getValue();
+		Value.Misc.blink1Hz = pts.Fdm.JSBsim.Libraries.blink1Hz.getBoolValue();
+		Value.Misc.blink1Hz2 = pts.Fdm.JSBsim.Libraries.blink1Hz2.getBoolValue();
+		if (Value.Afs.ats and Value.Afs.spdProt != 0) {
+			if (Value.Misc.blink1Hz) {
+				if (Value.Afs.spdProt == 2) {
+					me["FMA_Thrust_Arm"].setText("HI SPEED");
+				} else {
+					me["FMA_Thrust_Arm"].setText("LO SPEED");
+				}
+			} else {
+				me["FMA_Thrust_Arm"].setText("PROTECTION");
+			}
+		} else {
+			me["FMA_Thrust_Arm"].setText("");
+		}
+		
 		me["FMA_Pitch_Arm"].setText(sprintf("%s", Value.Afs.pitchArm));
 		me["FMA_Roll_Arm"].setText(sprintf("%s", Value.Afs.rollArm));
 		
@@ -779,7 +799,7 @@ var canvasBase = {
 			me["FMA_Pitch_Land"].setTranslation(0, 0);
 		}
 		
-		if (Value.Afs.throttle == "RETARD") {
+		if (Value.Afs.thrust == "RETARD") {
 			me["FMA_Speed"].hide();
 		} else {
 			if (afs.Internal.ktsMach.getBoolValue()) {
@@ -825,18 +845,27 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ats == 1) {
-			me["FMA_ATS_Pitch_Off"].hide();
-			me["FMA_ATS_Thrust_Off"].hide();
+			if (Value.Afs.spdProt != 0 and Value.Afs.thrust == "THRUST") {
+				me["FMA_ATS_Pitch_Off"].hide();
+				if (Value.Misc.blink1Hz2) {
+					me["FMA_ATS_Thrust_Off"].show();
+				} else {
+					me["FMA_ATS_Thrust_Off"].hide();
+				}
+			} else {
+				me["FMA_ATS_Pitch_Off"].hide();
+				me["FMA_ATS_Thrust_Off"].hide();
+			}
 		} else if (Value.Afs.atsFlash and !Value.Afs.atsWarn) {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].hide();
-		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.throttle == "PITCH") {
+		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.thrust == "PITCH") {
 			me["FMA_ATS_Pitch_Off"].show();
 			me["FMA_ATS_Thrust_Off"].hide();
-		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.throttle != "PITCH") {
+		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.thrust != "PITCH") {
 			me["FMA_ATS_Pitch_Off"].hide();
 			me["FMA_ATS_Thrust_Off"].show();
-		} else if (Value.Afs.throttle == "PITCH") {
+		} else if (Value.Afs.thrust == "PITCH") {
 			me["FMA_ATS_Pitch_Off"].show();
 			me["FMA_ATS_Thrust_Off"].hide();
 		} else {
@@ -870,13 +899,13 @@ var canvasBase = {
 		} else if (Value.Afs.apSound and !Value.Afs.apWarn) {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].hide();
-		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.throttle == "PITCH") {
+		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.thrust == "PITCH") {
 			me["FMA_AP_Pitch_Off_Box"].show();
 			me["FMA_AP_Thrust_Off_Box"].hide();
-		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.throttle != "PITCH") {
+		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.thrust != "PITCH") {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].show();
-		} else if (Value.Afs.throttle == "PITCH") {
+		} else if (Value.Afs.thrust == "PITCH") {
 			me["FMA_AP_Pitch_Off_Box"].show();
 			me["FMA_AP_Thrust_Off_Box"].hide();
 		} else {
@@ -990,7 +1019,7 @@ var canvasPfd1 = {
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
-		Value.Afs.throttle = afs.Text.thr.getValue();
+		Value.Afs.thrust = afs.Text.thr.getValue();
 		
 		# FMA
 		if (Value.Afs.fd1) {
@@ -1006,12 +1035,12 @@ var canvasPfd1 = {
 				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 			}
 			me["FMA_Roll"].show();
-			me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+			me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 			me["FMA_Thrust"].show();
 		} else {
-			if (Value.Afs.throttle == "PITCH") {
+			if (Value.Afs.thrust == "PITCH") {
 				if (Value.Afs.ap1 or Value.Afs.ap2) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_Thrust"].show();
 				} else {
 					me["FMA_Thrust"].hide();
@@ -1030,7 +1059,7 @@ var canvasPfd1 = {
 					me["FMA_Pitch"].hide();
 				}
 				if (Value.Afs.ats) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_Thrust"].show();
 				} else {
 					me["FMA_Thrust"].hide();
@@ -1103,7 +1132,7 @@ var canvasPfd2 = {
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
-		Value.Afs.throttle = afs.Text.thr.getValue();
+		Value.Afs.thrust = afs.Text.thr.getValue();
 		
 		# FMA
 		if (Value.Afs.fd2) {
@@ -1115,10 +1144,10 @@ var canvasPfd2 = {
 				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 			}
 			me["FMA_Roll"].show();
-			me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+			me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 			me["FMA_Thrust"].show();
 		} else {
-			if (Value.Afs.throttle == "PITCH") {
+			if (Value.Afs.thrust == "PITCH") {
 				if (Value.Afs.ats) {
 					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
 					me["FMA_Pitch"].show();
@@ -1126,7 +1155,7 @@ var canvasPfd2 = {
 					me["FMA_Pitch"].hide();
 				}
 				if (Value.Afs.ap1 or Value.Afs.ap2) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_Thrust"].show();
 				} else {
 					me["FMA_Thrust"].hide();
@@ -1139,7 +1168,7 @@ var canvasPfd2 = {
 					me["FMA_Pitch"].hide();
 				}
 				if (Value.Afs.ats) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.throttle));
+					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_Thrust"].show();
 				} else {
 					me["FMA_Thrust"].hide();

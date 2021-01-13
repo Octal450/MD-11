@@ -107,6 +107,10 @@ var Fdm = {
 		Inertia: {
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
 		},
+		Libraries: {
+			blink1Hz: props.globals.getNode("/fdm/jsbsim/libraries/blink-1-hz"),
+			blink1Hz2: props.globals.getNode("/fdm/jsbsim/libraries/blink-1-hz2"),
+		},
 		Position: {
 			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
 			wowTemp: 0,

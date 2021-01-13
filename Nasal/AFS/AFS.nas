@@ -689,7 +689,9 @@ var ITAF = {
 				me.athrMaster(1);
 			}
 		} else {
-			Output.spdProt.setValue(0);
+			if (Velocities.indicatedAirspeedKtTemp <= pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue() and Velocities.indicatedAirspeedKtTemp >= pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue()) {
+				Output.spdProt.setValue(0);
+			}
 		}
 		
 	},

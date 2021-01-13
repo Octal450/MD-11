@@ -66,6 +66,37 @@
 				/engines/engine[2]/state ne 3
 			</test>
 		</switch>
+		
+		<fcs_function name="libraries/blink-1-hz">
+			<function>
+				<integer>
+					<mod>
+						<product>
+							<property>sim-time-sec</property>
+							<value>2</value>
+						</product>
+						<value>2</value>
+					</mod>
+				</integer>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="libraries/blink-1-hz2">
+			<function>
+				<integer>
+					<mod>
+						<product>
+							<sum>
+								<property>sim-time-sec</property>
+								<value>0.25</value>
+							</sum>
+							<value>2</value>
+						</product>
+						<value>2</value>
+					</mod>
+				</integer>
+			</function>
+		</fcs_function>
 	
 	</channel>
 
