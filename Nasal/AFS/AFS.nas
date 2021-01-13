@@ -1390,7 +1390,7 @@ var killATSWarn = func() {
 	}
 };
 
-var apKill = maketimer(0.3, func() {
+var apKill = maketimer(0.5, func() {
 	if (!Sound.apOff.getBoolValue()) {
 		apKill.stop();
 		Warning.ap.setBoolValue(0);
@@ -1401,7 +1401,7 @@ var apKill = maketimer(0.3, func() {
 	}
 });
 
-var atsKill = maketimer(0.3, func() {
+var atsKill = maketimer(0.5, func() {
 	if (!Warning.atsFlash.getBoolValue()) {
 		atsKill.stop();
 		Warning.ats.setBoolValue(0);
