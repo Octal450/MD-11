@@ -278,15 +278,6 @@
 		<name>Knots Lag</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>
-			<condition>
-				<less-than>
-					<property>/velocities/airspeed-kt</property>
-					<value>60</value>
-				</less-than>
-			</condition>
-			<value>0</value>
-		</input>
 		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
 		<output>/it-autoflight/internal/kts-rate-input</output>
 		<filter-time>0.04</filter-time>
