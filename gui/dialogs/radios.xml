@@ -239,11 +239,11 @@
       <row>3</row>
       <col>0</col>
       <halign>right</halign>
-      <label>ILS</label>
+      <label>VOR1</label>
     </text>
 
     <input>
-      <name>ils-selected</name>
+      <name>vor1-selected</name>
       <row>3</row>
       <col>1</col>
       <width>75</width>
@@ -253,94 +253,12 @@
       <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
       <binding>
         <command>dialog-apply</command>
-        <object-name>nav1-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>3</row>
-      <col>3</col>
-      <width>35</width>
-      <height>26</height>
-      <border>1</border>
-      <legend>&lt;-&gt;</legend>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>nav1-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>nav1-standby</object-name>
-      </binding>
-      <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>nav1-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>nav1-standby</object-name>
-      </binding>
-    </button>
-
-    <input>
-      <name>ils-standby</name>
-      <row>3</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>nav1-standby</object-name>
-      </binding>
-    </input>
-
-    <input>
-      <name>ils-radial</name>
-      <row>3</row>
-      <col>6</col>
-      <width>75</width>
-      <height>25</height>
-      <label>deg</label>
-      <live>true</live>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>nav1-radial</object-name>
-      </binding>
-    </input>
-
-    <text>
-      <row>4</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>VOR1</label>
-    </text>
-
-    <input>
-      <name>vor1-selected</name>
-      <row>4</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
         <object-name>vor1-selected</object-name>
       </binding>
     </input>
 
     <button>
-      <row>4</row>
+      <row>3</row>
       <col>3</col>
       <width>35</width>
       <height>26</height>
@@ -356,8 +274,8 @@
       </binding>
       <binding>
         <command>property-swap</command>
-        <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+        <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
       </binding>
       <binding>
         <command>dialog-update</command>
@@ -371,13 +289,13 @@
 
     <input>
       <name>vor1-standby</name>
-      <row>4</row>
+      <row>3</row>
       <col>4</col>
       <width>75</width>
       <height>25</height>
       <label>MHz</label>
       <live>true</live>
-      <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+      <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
       <binding>
         <command>dialog-apply</command>
         <object-name>vor1-standby</object-name>
@@ -386,21 +304,21 @@
 
     <input>
       <name>vor1-radial</name>
-      <row>4</row>
+      <row>3</row>
       <col>6</col>
       <width>75</width>
       <height>25</height>
       <label>deg</label>
       <live>true</live>
-      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <property>/instrumentation/nav[0]/radials/selected-deg</property>
       <binding>
         <command>dialog-apply</command>
         <object-name>vor1-radial</object-name>
       </binding>
     </input>
-	
+
     <text>
-      <row>5</row>
+      <row>4</row>
       <col>0</col>
       <halign>right</halign>
       <label>VOR2</label>
@@ -408,13 +326,13 @@
 
     <input>
       <name>vor2-selected</name>
-      <row>5</row>
+      <row>4</row>
       <col>1</col>
       <width>75</width>
       <height>25</height>
       <label>MHz</label>
       <live>true</live>
-      <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
+      <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
       <binding>
         <command>dialog-apply</command>
         <object-name>vor2-selected</object-name>
@@ -422,7 +340,7 @@
     </input>
 
     <button>
-      <row>5</row>
+      <row>4</row>
       <col>3</col>
       <width>35</width>
       <height>26</height>
@@ -438,8 +356,8 @@
       </binding>
       <binding>
         <command>property-swap</command>
-        <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[2]/frequencies/standby-mhz</property>
+        <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
       </binding>
       <binding>
         <command>dialog-update</command>
@@ -453,6 +371,88 @@
 
     <input>
       <name>vor2-standby</name>
+      <row>4</row>
+      <col>4</col>
+      <width>75</width>
+      <height>25</height>
+      <label>MHz</label>
+      <live>true</live>
+      <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>vor2-standby</object-name>
+      </binding>
+    </input>
+
+    <input>
+      <name>vor2-radial</name>
+      <row>4</row>
+      <col>6</col>
+      <width>75</width>
+      <height>25</height>
+      <label>deg</label>
+      <live>true</live>
+      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>vor2-radial</object-name>
+      </binding>
+    </input>
+	
+    <text>
+      <row>5</row>
+      <col>0</col>
+      <halign>right</halign>
+      <label>ILS</label>
+    </text>
+
+    <input>
+      <name>ils-selected</name>
+      <row>5</row>
+      <col>1</col>
+      <width>75</width>
+      <height>25</height>
+      <label>MHz</label>
+      <live>true</live>
+      <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>ils-selected</object-name>
+      </binding>
+    </input>
+
+    <button>
+      <row>5</row>
+      <col>3</col>
+      <width>35</width>
+      <height>26</height>
+      <border>1</border>
+      <legend>&lt;-&gt;</legend>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>ils-selected</object-name>
+      </binding>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>ils-standby</object-name>
+      </binding>
+      <binding>
+        <command>property-swap</command>
+        <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[2]/frequencies/standby-mhz</property>
+      </binding>
+      <binding>
+        <command>dialog-update</command>
+        <object-name>ils-selected</object-name>
+      </binding>
+      <binding>
+        <command>dialog-update</command>
+        <object-name>ils-standby</object-name>
+      </binding>
+    </button>
+
+    <input>
+      <name>ils-standby</name>
       <row>5</row>
       <col>4</col>
       <width>75</width>
@@ -462,12 +462,12 @@
       <property>/instrumentation/nav[2]/frequencies/standby-mhz</property>
       <binding>
         <command>dialog-apply</command>
-        <object-name>vor2-standby</object-name>
+        <object-name>ils-standby</object-name>
       </binding>
     </input>
 
     <input>
-      <name>vor2-radial</name>
+      <name>ils-radial</name>
       <row>5</row>
       <col>6</col>
       <width>75</width>
@@ -477,7 +477,7 @@
       <property>/instrumentation/nav[2]/radials/selected-deg</property>
       <binding>
         <command>dialog-apply</command>
-        <object-name>vor2-radial</object-name>
+        <object-name>ils-radial</object-name>
       </binding>
     </input>
 

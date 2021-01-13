@@ -2260,7 +2260,7 @@
 		</action>
 	</animation>
 	
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>APP.L</object-name>
 		<action>
@@ -2291,7 +2291,7 @@
 				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 	
 	<animation>
 		<type>pick</type>
@@ -2757,7 +2757,7 @@
 		</action>
 	</animation>
 	
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>APP.R</object-name>
 		<action>
@@ -2788,7 +2788,7 @@
 				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 	
 	<animation>
 		<type>pick</type>

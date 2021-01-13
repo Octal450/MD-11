@@ -375,33 +375,12 @@
 		</input>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/input/use-nav2-radio</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>2</value>
+				</equals>
 			</condition>
-			<property>/it-autoflight/internal/nav1-rate-of-climb-fpm</property>
-		</input>
-		<input>
-			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>2</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/input/use-nav2-radio</property>
-						<value>1</value>
-					</equals>
-				</and>
-			</condition>
-			<property>/it-autoflight/internal/nav2-rate-of-climb-fpm</property>
+			<property>/it-autoflight/internal/nav-rate-of-climb-fpm</property>
 		</input>
 		<output>/it-autoflight/internal/target-common-fpm</output>
 	</filter>

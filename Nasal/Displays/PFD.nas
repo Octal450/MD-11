@@ -569,12 +569,12 @@ var canvasBase = {
 		}
 		
 		# ILS
-		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[0].getBoolValue();
-		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[0].getValue();
+		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[2].getBoolValue();
+		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
 		if (Value.Nav.inRange) {
 			me["LOC_scale"].show();
-			if (pts.Instrumentation.Nav.navLoc[0].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["LOC_pointer"].setTranslation(pts.Instrumentation.Nav.headingNeedleDeflectionNorm[0].getValue() * 200, 0);
+			if (pts.Instrumentation.Nav.navLoc[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
+				me["LOC_pointer"].setTranslation(pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue() * 200, 0);
 				me["LOC_pointer"].show();
 				me["LOC_no"].hide();
 			} else {
@@ -587,11 +587,11 @@ var canvasBase = {
 			me["LOC_no"].hide();
 		}
 		
-		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[0].getBoolValue();
+		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
 		if (Value.Nav.inRange) {
 			me["GS_scale"].show();
-			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[0].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["GS_pointer"].setTranslation(0, pts.Instrumentation.Nav.gsNeedleDeflectionNorm[0].getValue() * -204);
+			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
+				me["GS_pointer"].setTranslation(0, pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue() * -204);
 				me["GS_pointer"].show();
 				me["GS_no"].hide();
 			} else {

@@ -64,14 +64,14 @@ var Position = {
 };
 
 var Radio = {
-	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1)],
+	gsDefl: [props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/gs-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[2]/gs-needle-deflection-norm", 1)],
 	gsDeflTemp: 0,
-	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1)],
+	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1), props.globals.getNode("/instrumentation/nav[2]/in-range", 1)],
 	inRangeTemp: 0,
-	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1)],
+	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[2]/heading-needle-deflection-norm", 1)],
 	locDeflTemp: 0,
 	radioSel: 0,
-	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1)],
+	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm", 1)],
 	signalQualityTemp: 0,
 };
 
@@ -119,7 +119,7 @@ var Input = {
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
 	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
-	useNav2Radio: props.globals.initNode("/it-autoflight/input/use-nav2-radio", 0, "BOOL"),
+	radioSel: props.globals.initNode("/it-autoflight/input/radio-sel", 2, "INT"),
 	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
 	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"), # Set by property rule
 	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
@@ -251,7 +251,7 @@ var ITAF = {
 		Input.lat.setValue(5);
 		Input.vert.setValue(7);
 		Input.toga.setBoolValue(0);
-		Input.useNav2Radio.setBoolValue(0);
+		Input.radioSel.setValue(2);
 		Output.ap1.setBoolValue(0);
 		Output.ap2.setBoolValue(0);
 		Output.athr.setBoolValue(0);
@@ -483,7 +483,7 @@ var ITAF = {
 		
 		# Autoland Logic
 		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
-			Radio.radioSel = Input.useNav2Radio.getBoolValue();
+			Radio.radioSel = Input.radioSel.getValue();
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
 			Internal.canAutoland = (abs(Radio.locDeflTemp) <= 0.1 and Radio.locDeflTemp != 0 and Radio.signalQualityTemp >= 0.99) or Gear.wow0.getBoolValue();
@@ -1001,7 +1001,7 @@ var ITAF = {
 		}
 	},
 	checkLoc: func(t) {
-		Radio.radioSel = Input.useNav2Radio.getBoolValue();
+		Radio.radioSel = Input.radioSel.getValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.locDeflTemp = Radio.locDefl[Radio.radioSel].getValue();
 			Radio.signalQualityTemp = Radio.signalQuality[Radio.radioSel].getValue();
@@ -1018,7 +1018,7 @@ var ITAF = {
 		}
 	},
 	checkAppr: func(t) {
-		Radio.radioSel = Input.useNav2Radio.getBoolValue();
+		Radio.radioSel = Input.radioSel.getValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.gsDeflTemp = Radio.gsDefl[Radio.radioSel].getValue();
 			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2) { # Only capture if LOC is active
@@ -1033,7 +1033,7 @@ var ITAF = {
 		}
 	},
 	checkRadioRevision: func(l, v) { # Revert mode if signal lost
-		Radio.radioSel = Input.useNav2Radio.getBoolValue();
+		Radio.radioSel = Input.radioSel.getValue();
 		Radio.inRangeTemp = Radio.inRange[Radio.radioSel].getBoolValue();
 		if (!Radio.inRangeTemp) {
 			if (l == 4 or v == 6) {

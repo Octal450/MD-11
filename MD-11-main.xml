@@ -1343,7 +1343,7 @@
 		</comm>
 		<dme n="0">
 			<frequencies>
-				<selected-mhz type="double">111.15</selected-mhz>
+				<selected-mhz type="double">109.55</selected-mhz>
 				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
@@ -1351,7 +1351,7 @@
 		</dme>
 		<dme n="1">
 			<frequencies>
-				<selected-mhz type="double">109.55</selected-mhz>
+				<selected-mhz type="double">112.8</selected-mhz>
 				<source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
@@ -1359,16 +1359,8 @@
 		</dme>
 		<dme n="2">
 			<frequencies>
-				<selected-mhz type="double">112.8</selected-mhz>
+				<selected-mhz type="double">111.15</selected-mhz>
 				<source type="string">/instrumentation/nav[2]/frequencies/selected-mhz</source>
-			</frequencies>
-			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
-		</dme>
-		<dme n="3">
-			<frequencies>
-				<selected-mhz type="double">114.8</selected-mhz>
-				<source type="string">/instrumentation/nav[3]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
@@ -1422,18 +1414,7 @@
 				<file-prefix>Aircraft/MD-11/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
-		<nav n="0"> <!-- ILS -->
-			<frequencies>
-				<selected-mhz type="double">111.15</selected-mhz>
-				<standby-mhz type="double">110.95</standby-mhz>
-			</frequencies>
-			<radials>
-				<selected-deg type="double">360</selected-deg>
-			</radials>
-			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
-		</nav>
-		<nav n="1"> <!-- VOR 1 -->
+		<nav n="0"> <!-- VOR 1 -->
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
 				<standby-mhz type="double">110.55</standby-mhz>
@@ -1444,13 +1425,24 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="2"> <!-- VOR 2 -->
+		<nav n="1"> <!-- VOR 2 -->
+			<frequencies>
+				<selected-mhz type="double">112.8</selected-mhz>
+				<standby-mhz type="double">112.6</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		<nav n="2"> <!-- ILS -->
 			<cdi>
 				<serviceable type="bool">true</serviceable>
 			</cdi>
 			<frequencies>
-				<selected-mhz type="double">112.8</selected-mhz>
-				<standby-mhz type="double">112.6</standby-mhz>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<standby-mhz type="double">110.95</standby-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>

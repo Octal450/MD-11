@@ -713,7 +713,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/use-nav2-radio</property>
+					<property>/it-autoflight/input/radio-sel</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -726,11 +726,18 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/use-nav2-radio</property>
+					<property>/it-autoflight/input/radio-sel</property>
 					<value>1</value>
 				</equals>
 			</condition>
 			<property>/instrumentation/nav[1]/radials/target-auto-hdg-deg</property>
+			<offset>
+				<property>/orientation/heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input> <!-- Default, ILS -->
+			<property>/instrumentation/nav[2]/radials/target-auto-hdg-deg</property>
 			<offset>
 				<property>/orientation/heading-deg</property>
 				<scale>-1.0</scale>
@@ -753,23 +760,12 @@
 	</filter>
 	
 	<filter>
-		<name>Nav1 G/S FPM Calc</name>
+		<name>Nav G/S FPM Calc</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>/instrumentation/nav[0]/gs-rate-of-climb-fpm</input>
-		<output>/it-autoflight/internal/nav1-rate-of-climb-fpm</output>
-		<min>-1200</min>
-		<max>0</max>
-	</filter>
-	
-	<filter>
-		<name>Nav2 G/S FPM Calc</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/instrumentation/nav[1]/gs-rate-of-climb-fpm</input>
-		<output>/it-autoflight/internal/nav2-rate-of-climb-fpm</output>
+		<input>/instrumentation/nav[2]/gs-rate-of-climb-fpm</input>
+		<output>/it-autoflight/internal/nav-rate-of-climb-fpm</output>
 		<min>-1200</min>
 		<max>0</max>
 	</filter>
