@@ -76,6 +76,10 @@ var Radio = {
 };
 
 var Velocities = {
+	athrMax: 365,
+	athrMaxMach: 0.87,
+	athrMin: 0,
+	athrMinMach: 0.5,
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
 	groundspeedMps: 0,
 	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
@@ -85,10 +89,8 @@ var Velocities = {
 	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/mach-predicted-5", 1),
 	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
 	trueAirspeedKtTemp: 0,
-	vmax: 0,
-	vmaxMach: 0,
+	vmax: 365,
 	vmin: 0,
-	vminMach: 0,
 };
 
 # IT-AUTOFLIGHT
@@ -199,6 +201,8 @@ var Output = {
 	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
 	spdCaptured: 1,
 	spdProt: props.globals.initNode("/it-autoflight/output/spd-prot", 0, "INT"),
+	spdProtOnPitch: 0,
+	spdProtTemp: 0,
 	thrMode: props.globals.initNode("/it-autoflight/output/thr-mode", 2, "INT"),
 	vert: props.globals.initNode("/it-autoflight/output/vert", 7, "INT"),
 	vertTemp: 7,
@@ -274,6 +278,7 @@ var ITAF = {
 		Output.lat.setValue(5);
 		Output.vert.setValue(7);
 		Output.spdProt.setValue(0);
+		Output.spdProtOnPitch = 0;
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
 		Internal.altCaptureActive = 0;
@@ -664,42 +669,56 @@ var ITAF = {
 		}
 		
 		# Speed Protection
-		if (me.spdProtAllowed() and Velocities.indicatedAirspeedKtTemp >= pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue() + 5) { # High Speed Prot
-			Output.spdProt.setValue(2);
-			if (Output.vertTemp != 1 and Output.vertTemp != 5) {
-				if (afs.Output.vsFpa.getBoolValue()) {
-					me.setVertMode(5); # FPA
-				} else {
-					me.setVertMode(1); # V/S
+		Velocities.vmax = pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue();
+		Velocities.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
+		
+		if (me.spdProtAllowed()) {
+			if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10) { # High Speed Prot
+				Output.spdProt.setValue(2);
+				Output.spdProtOnPitch = 1;
+				me.setVertMode(4);
+				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+					me.athrMaster(1);
 				}
-			}
-			if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
-				me.athrMaster(1);
-			}
-		} else if (me.spdProtAllowed() and Velocities.indicatedAirspeedKtTemp <= pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue() - 5) { # Low Speed Prot
-			Output.spdProt.setValue(1);
-			if (Output.vertTemp != 1 and Output.vertTemp != 5) {
-				if (afs.Output.vsFpa.getBoolValue()) {
-					me.setVertMode(5); # FPA
-				} else {
-					me.setVertMode(1); # V/S
+			} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Output.spdProtOnPitch) {
+				Output.spdProt.setValue(2);
+				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
+					me.setBasicMode(1); # Pitch mode only
 				}
-			}
-			if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
-				me.athrMaster(1);
+				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+					me.athrMaster(1);
+				}
+			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10) { # Low Speed Prot
+				Output.spdProt.setValue(1);
+				Output.spdProtOnPitch = 1;
+				me.setVertMode(4);
+				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+					me.athrMaster(1);
+				}
+			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Output.spdProtOnPitch) {
+				Output.spdProt.setValue(1);
+				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
+					me.setBasicMode(1); # Pitch mode only
+				}
+				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+					me.athrMaster(1);
+				}
+			} else {
+				if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmax and Velocities.indicatedAirspeedKtTemp >= Velocities.vmin) {
+					Output.spdProt.setValue(0);
+					Output.spdProtOnPitch = 0;
+				}
 			}
 		} else {
-			if (Velocities.indicatedAirspeedKtTemp <= pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue() and Velocities.indicatedAirspeedKtTemp >= pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue()) {
-				Output.spdProt.setValue(0);
-			}
+			Output.spdProt.setValue(0);
+			Output.spdProtOnPitch = 0;
 		}
-		
 	},
 	ap1Master: func(s) {
 		if (s == 1) {
 			if (me.apEngageAllowed() == 1 and Output.ap1Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-					me.setBasicMode();
+					me.setBasicMode(0);
 				}
 				Controls.rudder.setValue(0);
 				Output.ap1.setBoolValue(1);
@@ -729,7 +748,7 @@ var ITAF = {
 		if (s == 1) {
 			if (me.apEngageAllowed() == 1 and Output.ap2Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-					me.setBasicMode();
+					me.setBasicMode(0);
 				}
 				Controls.rudder.setValue(0);
 				Output.ap2.setBoolValue(1);
@@ -792,7 +811,7 @@ var ITAF = {
 	fd1Master: func(s) {
 		if (s == 1) {
 			if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-				me.setBasicMode();
+				me.setBasicMode(0);
 			}
 			Output.fd1.setBoolValue(1);
 		} else {
@@ -806,7 +825,7 @@ var ITAF = {
 	fd2Master: func(s) {
 		if (s == 1) {
 			if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
-				me.setBasicMode();
+				me.setBasicMode(0);
 			}
 			Output.fd2.setBoolValue(1);
 		} else {
@@ -817,8 +836,10 @@ var ITAF = {
 			Input.fd2.setBoolValue(Output.fd2Temp);
 		}
 	},
-	setBasicMode: func() {
-		me.setLatMode(3); # HDG HOLD
+	setBasicMode: func(t) {
+		if (t != 1) {
+			me.setLatMode(3); # HDG HOLD
+		}
 		if (abs(Internal.vs.getValue()) > 300) {
 			if (afs.Output.vsFpa.getBoolValue()) {
 				me.setVertMode(5); # FPA
@@ -980,6 +1001,7 @@ var ITAF = {
 		}
 	},
 	updateThrustMode: func() {
+		Output.spdProtTemp = Output.spdProt.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
 		if (Output.athr.getBoolValue() and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
@@ -988,17 +1010,31 @@ var ITAF = {
 			Internal.retardLock = 1;
 		} else if (Internal.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
 			if (Output.vertTemp == 4) {
-				if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
+				if (Output.spdProtTemp == 2) {
+					Output.thrMode.setValue(1);
+					Text.thr.setValue("PITCH");
+					if (Internal.flchActive and Text.vert.getValue() != "SPD DES") {
+						me.updateVertText("SPD DES");
+					}
+				} else if (Output.spdProtTemp == 1) {
 					Output.thrMode.setValue(2);
 					Text.thr.setValue("PITCH");
-					if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") { # Set before mode change to prevent it from overwriting by mistake
+					if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") {
 						me.updateVertText("SPD CLB");
 					}
 				} else {
-					Output.thrMode.setValue(1);
-					Text.thr.setValue("PITCH");
-					if (Internal.flchActive and Text.vert.getValue() != "SPD DES") { # Set before mode change to prevent it from overwriting by mistake
-						me.updateVertText("SPD DES");
+					if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
+						Output.thrMode.setValue(2);
+						Text.thr.setValue("PITCH");
+						if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") {
+							me.updateVertText("SPD CLB");
+						}
+					} else {
+						Output.thrMode.setValue(1);
+						Text.thr.setValue("PITCH");
+						if (Internal.flchActive and Text.vert.getValue() != "SPD DES") {
+							me.updateVertText("SPD DES");
+						}
 					}
 				}
 			} else if (Output.vertTemp == 7) {
@@ -1390,7 +1426,7 @@ var killATSWarn = func() {
 	}
 };
 
-var apKill = maketimer(0.5, func() {
+var apKill = maketimer(0.4, func() {
 	if (!Sound.apOff.getBoolValue()) {
 		apKill.stop();
 		Warning.ap.setBoolValue(0);
@@ -1401,7 +1437,7 @@ var apKill = maketimer(0.5, func() {
 	}
 });
 
-var atsKill = maketimer(0.5, func() {
+var atsKill = maketimer(0.4, func() {
 	if (!Warning.atsFlash.getBoolValue()) {
 		atsKill.stop();
 		Warning.ats.setBoolValue(0);

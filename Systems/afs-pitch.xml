@@ -85,10 +85,16 @@
 			<Td>0.0</Td>
 			<u_min>
 				<condition>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>2</value>
-					</equals>
+					<and>
+						<equals>
+							<property>/it-autoflight/output/thr-mode</property>
+							<value>2</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/spd-prot</property>
+							<value>0</value>
+						</equals>
+					</and>
 				</condition>
 				<value>120</value>
 			</u_min>
@@ -123,10 +129,16 @@
 			</u_max>
 			<u_max>
 				<condition>
-					<equals>
-						<property>/it-autoflight/output/thr-mode</property>
-						<value>1</value>
-					</equals>
+					<and>
+						<equals>
+							<property>/it-autoflight/output/thr-mode</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/spd-prot</property>
+							<value>0</value>
+						</equals>
+					</and>
 				</condition>
 				<value>-120</value>
 			</u_max>

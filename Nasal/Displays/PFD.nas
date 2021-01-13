@@ -845,7 +845,14 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ats == 1) {
-			if (Value.Afs.spdProt != 0 and Value.Afs.thrust == "THRUST") {
+			if (Value.Afs.spdProt != 0 and Value.Afs.thrust == "PITCH") {
+				if (Value.Misc.blink1Hz2) {
+					me["FMA_ATS_Pitch_Off"].show();
+				} else {
+					me["FMA_ATS_Pitch_Off"].hide();
+				}
+				me["FMA_ATS_Thrust_Off"].hide();
+			} else if (Value.Afs.spdProt != 0) {
 				me["FMA_ATS_Pitch_Off"].hide();
 				if (Value.Misc.blink1Hz2) {
 					me["FMA_ATS_Thrust_Off"].show();

@@ -312,9 +312,8 @@
 	<filter>
 		<name>Flch Knots Rate Command</name>
 		<debug>false</debug>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -343,9 +342,34 @@
 				</product>
 			</expression>
 		</input>
-		<output>/it-autoflight/internal/flch-kts-error</output>
+		<output>/it-autoflight/internal/flch-kts-error-cmd</output>
+		<min>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/spd-prot</property>
+					<value>0</value>
+				</not-equals>
+			</condition>
+			<value>-2.5</value>
+		</min>
 		<min>-1.5</min>
+		<max>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/spd-prot</property>
+					<value>0</value>
+				</not-equals>
+			</condition>
+			<value>2.5</value>
+		</max>
 		<max>1.5</max>
+	</filter>
+	
+	<filter>
+		<name>Flch Knots Rate Filter</name>
+		<type>noise-spike</type>
+		<input>/it-autoflight/internal/flch-kts-error-cmd</input>
+		<output>/it-autoflight/internal/flch-kts-error</output>
 		<max-rate-of-change>
 			<condition>
 				<and>
