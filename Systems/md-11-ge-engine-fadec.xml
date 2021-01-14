@@ -7,7 +7,6 @@
 	
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
-	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
 	
 	<channel name="Thrust Limits">
 		

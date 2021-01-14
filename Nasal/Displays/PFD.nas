@@ -443,9 +443,9 @@ var canvasBase = {
 		}
 		
 		me["AI_PLI"].setTranslation(0, math.clamp(16 - Value.Ai.alpha, -20, 20) * -10.246);
-		if (Value.Ai.alpha >= 15.5 or Value.Asi.ias < Value.Asi.vss) {
+		if (Value.Ai.alpha >= 15.5) {
 			me["AI_PLI"].setColor(1,0,0);
-		} else if (Value.Asi.ias < Value.Asi.vmin) {
+		} else if (Value.Ai.alpha >= 12.4) { # 80% of 15.5
 			me["AI_PLI"].setColor(0.9647,0.8196,0.0784);
 		} else {
 			me["AI_PLI"].setColor(0.2156,0.5019,0.6627);

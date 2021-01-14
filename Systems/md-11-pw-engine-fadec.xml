@@ -9,7 +9,6 @@
 	<property value="1">fadec/epr/c2</property> <!-- Done in property rule because its easier to tune -->
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
-	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
 	
 	<channel name="Thrust Limits">
 		

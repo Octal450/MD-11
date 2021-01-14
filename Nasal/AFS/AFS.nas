@@ -170,6 +170,7 @@ var Internal = {
 	retardLock: 0,
 	selfCheckStatus: 0,
 	selfCheckTime: 0,
+	spdProtOnPitch: 0,
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
@@ -203,7 +204,6 @@ var Output = {
 	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
 	spdCaptured: 1,
 	spdProt: props.globals.initNode("/it-autoflight/output/spd-prot", 0, "INT"),
-	spdProtOnPitch: 0,
 	spdProtTemp: 0,
 	thrMode: props.globals.initNode("/it-autoflight/output/thr-mode", 2, "INT"),
 	vert: props.globals.initNode("/it-autoflight/output/vert", 7, "INT"),
@@ -280,7 +280,7 @@ var ITAF = {
 		Output.lat.setValue(5);
 		Output.vert.setValue(7);
 		Output.spdProt.setValue(0);
-		Output.spdProtOnPitch = 0;
+		Internal.spdProtOnPitch = 0;
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
 		Internal.altCaptureActive = 0;
@@ -679,19 +679,19 @@ var ITAF = {
 		if (me.spdProtAllowed()) {
 			if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1))) { # High Speed Prot
 				Output.spdProt.setValue(2);
-				Output.spdProtOnPitch = 1;
+				Internal.spdProtOnPitch = 1;
 				me.setVertMode(4);
 				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
 					me.athrMaster(1);
 				}
 			} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10 or (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and Internal.throttleSaturatedTemp == 2))) { # Low Speed Prot
 				Output.spdProt.setValue(1);
-				Output.spdProtOnPitch = 1;
+				Internal.spdProtOnPitch = 1;
 				me.setVertMode(4);
 				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
 					me.athrMaster(1);
 				}
-			} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Output.spdProtOnPitch) {
+			} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Internal.spdProtOnPitch) {
 				Output.spdProt.setValue(2);
 				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
 					me.setBasicMode(1); # Pitch mode only
@@ -699,7 +699,7 @@ var ITAF = {
 				if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
 					me.athrMaster(1);
 				}
-			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Output.spdProtOnPitch) {
+			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Internal.spdProtOnPitch) {
 				Output.spdProt.setValue(1);
 				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
 					me.setBasicMode(1); # Pitch mode only
@@ -710,12 +710,12 @@ var ITAF = {
 			} else {
 				if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmax and Velocities.indicatedAirspeedKtTemp >= Velocities.vmin) {
 					Output.spdProt.setValue(0);
-					Output.spdProtOnPitch = 0;
+					Internal.spdProtOnPitch = 0;
 				}
 			}
 		} else {
 			Output.spdProt.setValue(0);
-			Output.spdProtOnPitch = 0;
+			Internal.spdProtOnPitch = 0;
 		}
 	},
 	ap1Master: func(s) {

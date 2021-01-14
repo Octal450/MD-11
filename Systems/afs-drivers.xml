@@ -280,7 +280,7 @@
 		<type>exponential</type>
 		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
 		<output>/it-autoflight/internal/kts-rate-input</output>
-		<filter-time>0.04</filter-time>
+		<filter-time>0.02</filter-time>
 	</filter>
 	
 	<filter>
@@ -306,7 +306,7 @@
 		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/kts-rate</output>
-		<filter-time>0.04</filter-time>
+		<filter-time>0.08</filter-time>
 	</filter>
 	
 	<filter>

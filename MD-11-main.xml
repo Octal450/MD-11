@@ -768,6 +768,7 @@
 					<flex-active type="bool">0</flex-active>
 					<flex-temp type="int">30</flex-temp>
 				</limit>
+				<throttle-compare-max type="double">0</throttle-compare-max>
 			</fadec>
 			<fcc n="0">
 				<elevator-feel n="0">
@@ -1481,11 +1482,15 @@
 			<ovrd2 type="bool">0</ovrd2>
 			<vs type="int">0</vs>
 		</input>
+		<internal n="0">
+			<throttle-saturated type="int">0</throttle-saturated>
+		</internal>
 		<output n="0">
 			<ap1 type="bool">0</ap1>
 			<ap2 type="bool">0</ap2>
 			<athr type="bool">0</athr>
 			<lat type="int">0</lat>
+			<spd-prot type="int">0</spd-prot>
 			<thr-mode type="int">0</thr-mode>
 			<vert type="int">0</vert>
 		</output>
