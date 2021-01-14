@@ -59,30 +59,24 @@
 	
 	<channel name="Speed Tape Calculations" execrate="8">
 		
-		<fcs_function name="fcc/speeds/vss-clean-kts">
-			<function>
-				<table>
-					<independentVar lookup="row">inertia/weight-kg</independentVar>
-					<tableData>
-						140000  149.22
-						160000  158.53
-						180000  167.38
-						200000  175.63
-						220000  183.56
-						240000  190.73
-						260000  198.14
-						280000  204.93
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fcc/speeds/vss-slat-flap-kts">
+		<fcs_function name="fcc/speeds/vss-kts">
 			<function>
 				<table>
 					<independentVar lookup="row">inertia/weight-kg</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-					<tableData>
+					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
+					<tableData breakPoint="0"> <!-- TODO: Add flap without slat speeds -->
+						        0       1
+						140000  149.22  149.22
+						160000  158.53  158.53
+						180000  167.38  167.38
+						200000  175.63  175.63
+						220000  183.56  183.56
+						240000  190.73  190.73
+						260000  198.14  198.14
+						280000  204.93  204.93
+					</tableData>
+					<tableData breakPoint="31">
 						        0       10      15      20      25      28      35      50
 						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
 						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
@@ -116,14 +110,6 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/speeds/vss-switch">
-			<default value="fcc/speeds/vss-clean-kts"/>
-			<test logic="OR" value="fcc/speeds/vss-slat-flap-kts">
-				fcs/slat-pos-deg ge 0.1
-				fcs/flap-pos-deg ge 0.1
-			</test>
-		</switch>
-		
 		<fcs_function name="fcc/speeds/vss-roll-factor">
 			<function>
 				<sqrt> <!-- Take the square root to get the factor -->
@@ -140,7 +126,7 @@
 		</fcs_function>
 		
 		<pure_gain name="fcc/speeds/vss">
-			<input>fcc/speeds/vss-switch</input>
+			<input>fcc/speeds/vss-kts</input>
 			<gain>fcc/speeds/vss-roll-factor</gain>
 		</pure_gain>
 		
@@ -176,41 +162,21 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/speeds/vmin-clean-kts">
+		<fcs_function name="fcc/speeds/vmin">
 			<function>
 				<product>
 					<difference>
-						<property>fcc/speeds/vss-clean-kts</property>
+						<property>fcc/speeds/vss-kts</property>
 						<value>15</value> <!-- Trust me, has to be this way -->
 					</difference>
 					<property>fcc/speeds/vmin-factor</property>
 				</product>
 			</function>
-		</fcs_function>
-		
-		<fcs_function name="fcc/speeds/vmin-slat-flap-kts">
-			<function>
-				<product>
-					<difference>
-						<property>fcc/speeds/vss-slat-flap-kts</property>
-						<value>15</value> <!-- Trust me, has to be this way -->
-					</difference>
-					<property>fcc/speeds/vmin-factor</property>
-				</product>
-			</function>
-		</fcs_function>
-		
-		<switch name="fcc/speeds/vmin">
-			<default value="fcc/speeds/vmin-clean-kts"/>
-			<test logic="OR" value="fcc/speeds/vmin-slat-flap-kts">
-				fcs/slat-pos-deg ge 0.1
-				fcs/flap-pos-deg ge 0.1
-			</test>
 			<clipto>
 				<min>fcc/speeds/vss</min>
 				<max>100000</max>
 			</clipto>
-		</switch>
+		</fcs_function>
 		
 		<switch name="fcc/speeds/vmin-tape">
 			<default value="fcc/speeds/vmin"/>
