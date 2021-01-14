@@ -206,7 +206,7 @@ controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
 }
 
 controls.gearToggle = func() {
-	if (!pts.Fdm.JSBsim.Position.wowTemp) {
+	if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
 		if (pts.Controls.Gear.leverCockpit.getValue() >= 2) {
 			pts.Controls.Gear.leverCockpit.setValue(0);
 		} else {
