@@ -6,6 +6,23 @@
 <PropertyList>
 	
 	<filter>
+		<name>CRT Contrast</name>
+		<update-interval-secs>0.5</update-interval-secs>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/rendering/scene/diffuse/red</property>
+					<entry><ind>0.8</ind><dep>0.85</dep></entry>
+					<entry><ind>0.0</ind><dep>0.96</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/du/crt-contrast</output>
+	</filter>
+	
+	<filter>
 		<name>Target Alt Pre Sel Diff</name>
 		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
