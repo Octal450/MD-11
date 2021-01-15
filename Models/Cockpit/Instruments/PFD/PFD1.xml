@@ -26,7 +26,7 @@
 			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
 			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
 			<dirt-factor>0</dirt-factor>
-			<contrast><use>instrumentation/du/crt-contrast</use></contrast> <!-- 0.85 -->
+			<contrast><use>instrumentation/du/crt-contrast</use></contrast>
 		</parameters>
 		<object-name>pfd1.screen</object-name>
 		<object-name>pfd1.border</object-name>
