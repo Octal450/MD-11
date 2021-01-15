@@ -307,7 +307,19 @@
 		<object-name>Beacon.Lower</object-name>
 		<object-name>Beacon.Upper</object-name>
 		<condition>
-			<not><property>sim/rendering/shaders/skydome</property></not>
+			<and>
+				<not><property>sim/rendering/shaders/skydome</property></not>
+				<or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/l-emer-ac</property>
+						<value>110</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>systems/electrical/bus/r-emer-ac</property>
+						<value>110</value>
+					</greater-than-equals>
+				</or>
+			</and>
 		</condition>
 	</animation>
 	
@@ -326,7 +338,19 @@
 		<object-name>LandLALS</object-name>
 		<object-name>LandRALS</object-name>
 		<condition>
-			<property>sim/rendering/shaders/skydome</property>
+			<and>
+				<property>sim/rendering/shaders/skydome</property>
+				<or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/l-emer-ac</property>
+						<value>110</value>
+					</greater-than-equals>
+					<greater-than-equals>
+						<property>systems/electrical/bus/r-emer-ac</property>
+						<value>110</value>
+					</greater-than-equals>
+				</or>
+			</and>
 		</condition>
 	</animation>
 

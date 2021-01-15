@@ -1623,7 +1623,6 @@
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
 			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
-			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
@@ -1672,6 +1671,9 @@
 		<panel2d>
 			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
 		</panel2d>
+		<lightmanager>
+			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
+		</lightmanager>
 	</nasal>
 
 </PropertyList>

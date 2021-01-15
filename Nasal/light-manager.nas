@@ -195,18 +195,16 @@ var light_manager = {
 			var sh = math.sin(heading);
 			var ch = math.cos(heading);
 			
-			ac1 = getprop("/systems/electrical/bus/ac-1") != 0;
-			ac2 = getprop("/systems/electrical/bus/ac-2") != 0;
-			ac3 = getprop("/systems/electrical/bus/ac-3") != 0;
+			hasPower = systems.ELEC.Bus.lEmerAc.getValue() >= 110 or systems.ELEC.Bus.rEmerAc.getValue() >= 110;
 			
-			if (land == 1 or land2 == 1 and (ac1 or ac2 or ac3)) {
+			if ((land == 1 or land2 == 1) and hasPower) {
 				me.light1_ypos =  0.0;
 				me.light1_on();
 			} else {
 				me.light1_off();
 			}
 			
-			if (taxi >= 0.5 and (ac1 or ac2 or ac3)) {
+			if (taxi >= 0.5 and hasPower) {
 				me.light2_on();
 				if (taxi > 0.5) {
 					me.light2_setSize(12);
@@ -217,7 +215,7 @@ var light_manager = {
 				me.light2_off();
 			}
 			
-			if (nav == 1 and (ac1 or ac2 or ac3)) {
+			if (nav == 1 and hasPower) {
 				me.light3_on();
 				me.light4_on();
 				me.light5_on();
@@ -227,7 +225,7 @@ var light_manager = {
 				me.light5_off();
 			}
 			
-			if (!ac1 and !ac2 and !ac3) {
+			if (!hasPower) {
 				setprop("/controls/lighting/land-on-l", 0);
 				setprop("/controls/lighting/land-on-n", 0);
 				setprop("/controls/lighting/land-on-r", 0);
