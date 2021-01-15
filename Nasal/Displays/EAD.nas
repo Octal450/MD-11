@@ -493,7 +493,7 @@ var canvasPw = {
 		"N21", "N21-decpnt", "N21-decimal", "N21-needle", "N21-cline", "N21-redline", "FF1", "FFOff1", "EPR2", "EPR2-decpnt", "EPR2-T", "EPR2-H", "EPR2-box", "EPR2-needle", "EPR2-lim", "EPR2-thr", "N12", "N12-decpnt", "N12-decimal", "N12-needle", "N12-redline",
 		"EGT2", "EGT2-needle", "EGT2-redstart", "EGT2-yline", "EGT2-redline", "EGT2-ignition", "N22", "N22-decpnt", "N22-decimal", "N22-needle", "N22-cline", "N22-redline", "FF2", "FFOff2", "EPR3", "EPR3-decpnt", "EPR3-T", "EPR3-H", "EPR3-box", "EPR3-needle",
 		"EPR3-lim", "EPR3-thr", "N13", "N13-decpnt", "N13-decimal", "N13-needle", "N13-redline", "EGT3", "EGT3-needle", "EGT3-redstart", "EGT3-yline", "EGT3-redline", "EGT3-ignition", "N23", "N23-decpnt", "N23-decimal", "N23-needle", "N23-cline", "N23-redline",
-		"FF3", "FFOff3", "EPRLim", "EPRLim-decimal", "EPRLimRating", "EPRLimMode", "EPRLimText", "EPRLimModeGroup", "FlexGroup", "FlexTemp", "REV1", "REV2", "REV3", "TAT", "Config"];
+		"FF3", "FFOff3", "EPRLim", "EPRLim-decimal", "EPRLimMode", "EPRLimText", "EPRLimModeGroup", "FlexGroup", "FlexTemp", "REV1", "REV2", "REV3", "TAT", "Config"];
 	},
 	setup: func() {
 		me["Config"].hide();
@@ -507,23 +507,13 @@ var canvasPw = {
 		# EPR Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
 		Value.Fadec.eprLimitFixed = systems.FADEC.Limit.active.getValue() + 0.006;
-		Value.Fadec.flexActive = systems.FADEC.Limit.flexActive.getBoolValue();
 		
-		if ((Value.Fadec.activeMode != "T/O" and Value.Fadec.activeMode != "G/A") or Value.Fadec.flexActive) {
-			me["EPRLimRating"].hide();
-			me["EPRLimModeGroup"].setTranslation(-90, 0);
-			if (Value.Fadec.activeMode == "T/O" and Value.Fadec.flexActive) {
-				me["EPRLimText"].setText("FLEX");
-				me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
-				me["FlexGroup"].show();
-			} else {
-				me["EPRLimText"].setText("LIM");
-				me["FlexGroup"].hide();
-			}
+		if (Value.Fadec.activeMode == "T/O" and systems.FADEC.Limit.flexActive.getBoolValue()) {
+			me["EPRLimText"].setText("FLEX");
+			me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
+			me["FlexGroup"].show();
 		} else {
-			me["EPRLimModeGroup"].setTranslation(0, 0);
 			me["EPRLimText"].setText("LIM");
-			me["EPRLimRating"].show();
 			me["FlexGroup"].hide();
 		}
 		
