@@ -109,15 +109,22 @@
 		<fcs_function name="fadec/limit/rated-thrust-factor"> <!-- Normalize -->
 			<function>
 				<ifthen>
-					<nq> <!-- Prevent divide by 0 -->
-						<property>fadec/limit/rated-thrust-lbs</property>
-						<value>0</value>
-					</nq>
-					<quotient>
-						<property>fadec/limit/fgturbine-thrust-lbs</property>
-						<property>fadec/limit/rated-thrust-lbs</property>
-					</quotient>
-					<value>1</value>
+					<eq>
+						<property>/systems/acconfig/autoconfig-running</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<ifthen>
+						<nq> <!-- Prevent divide by 0 -->
+							<property>fadec/limit/rated-thrust-lbs</property>
+							<value>0</value>
+						</nq>
+						<quotient>
+							<property>fadec/limit/fgturbine-thrust-lbs</property>
+							<property>fadec/limit/rated-thrust-lbs</property>
+						</quotient>
+						<value>1</value>
+					</ifthen>
 				</ifthen>
 			</function>
 		</fcs_function>
