@@ -623,6 +623,42 @@ var canvasBase = {
 			me["GS_no"].hide();
 		}
 		
+		# ILS DME
+		if (Value.Nav.inRange) { # Should be if ILS tuned later
+			if (Value.Nav.signalQuality > 0.99) {
+				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
+				me["ILS_DME"].show();
+				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
+				me["ILS_Info"].show();
+			} else {
+				me["ILS_DME"].hide();
+				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
+				me["ILS_Info"].show();
+			}
+		} else {
+			me["ILS_DME"].hide();
+			me["ILS_Info"].hide();
+		}
+		
+		# Marker Beacons
+		if (pts.Instrumentation.MarkerBeacon.inner.getBoolValue()) {
+			me["Inner_Marker"].show();
+			me["Middle_Marker"].hide();
+			me["Outer_Marker"].hide();
+		} else if (pts.Instrumentation.MarkerBeacon.middle.getBoolValue()) {
+			me["Inner_Marker"].hide();
+			me["Middle_Marker"].show();
+			me["Outer_Marker"].hide();
+		} else if (pts.Instrumentation.MarkerBeacon.outer.getBoolValue()) {
+			me["Inner_Marker"].hide();
+			me["Middle_Marker"].hide();
+			me["Outer_Marker"].show();
+		} else {
+			me["Inner_Marker"].hide();
+			me["Middle_Marker"].hide();
+			me["Outer_Marker"].hide();
+		}
+		
 		# RA and Minimums
 		Value.Misc.minimums = pts.Controls.Switches.minimums.getValue();
 		
@@ -904,44 +940,6 @@ var canvasBase = {
 		} else {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].show();
-		}
-		
-		# ILS and ILS DME
-		if (pts.Instrumentation.Nav.inRange[2].getBoolValue()) { # Should be if ILS tuned later
-			if (Value.Nav.signalQuality > 0.99) {
-				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
-				me["ILS_DME"].show();
-				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
-				me["ILS_Info"].show();
-			} else {
-				me["ILS_DME"].hide();
-				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
-				me["ILS_Info"].show();
-			}
-			
-			if (pts.Instrumentation.MarkerBeacon.inner.getBoolValue()) {
-				me["Inner_Marker"].show();
-				me["Middle_Marker"].hide();
-				me["Outer_Marker"].hide();
-			} else if (pts.Instrumentation.MarkerBeacon.middle.getBoolValue()) {
-				me["Inner_Marker"].hide();
-				me["Middle_Marker"].show();
-				me["Outer_Marker"].hide();
-			} else if (pts.Instrumentation.MarkerBeacon.outer.getBoolValue()) {
-				me["Inner_Marker"].hide();
-				me["Middle_Marker"].hide();
-				me["Outer_Marker"].show();
-			} else {
-				me["Inner_Marker"].hide();
-				me["Middle_Marker"].hide();
-				me["Outer_Marker"].hide();
-			}
-		} else {
-			me["ILS_DME"].hide();
-			me["ILS_Info"].hide();
-			me["Inner_Marker"].hide();
-			me["Middle_Marker"].hide();
-			me["Outer_Marker"].hide();
 		}
 		
 		# QNH

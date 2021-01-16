@@ -318,7 +318,7 @@
 						<property>/it-autoflight/internal/mach</property>
 						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
 					</difference>
-					<value>75</value>
+					<value>80</value>
 				</product>
 			</expression>
 		</input>
@@ -329,7 +329,7 @@
 						<property>/it-autoflight/internal/kts</property>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					</difference>
-					<value>0.075</value>
+					<value>0.08</value>
 				</product>
 			</expression>
 		</input>
@@ -359,6 +359,8 @@
 	<filter>
 		<name>Flch Knots Rate Filter</name>
 		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
 		<input>/it-autoflight/internal/flch-kts-error-cmd</input>
 		<output>/it-autoflight/internal/flch-kts-error</output>
 		<max-rate-of-change>

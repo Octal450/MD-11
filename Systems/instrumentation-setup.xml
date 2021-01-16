@@ -149,8 +149,7 @@
 		<name>transponder</name>
 		<number>0</number>
 		<mode>2</mode>
-		<airspeed-path>/instrumentation/airspeed-indicator/indicated-airspeed-kt</airspeed-path>
-		<encoder-path>/instrumentation/encoder/mode-c-alt-ft</encoder-path>
+		<encoder-path>/instrumentation/encoder</encoder-path>
 	</transponder>
 	
 	<turn-indicator>

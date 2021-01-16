@@ -96,13 +96,21 @@
 						</equals>
 					</and>
 				</condition>
-				<value>120</value>
+				<expression>
+					<max>
+						<value>120</value>
+						<difference>
+							<property>/it-autoflight/internal/vert-speed-fpm</property>
+							<value>2000</value>
+						</difference>
+					</max>
+				</expression>
 			</u_min>
 			<u_min>
 				<expression>
 					<difference>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>1500</value>
+						<value>2000</value>
 					</difference>
 				</expression>
 			</u_min>
@@ -140,13 +148,21 @@
 						</equals>
 					</and>
 				</condition>
-				<value>-120</value>
+				<expression>
+					<min>
+						<value>-120</value>
+						<sum>
+							<property>/it-autoflight/internal/vert-speed-fpm</property>
+							<value>2000</value>
+						</sum>
+					</min>
+				</expression>
 			</u_max>
 			<u_max>
 				<expression>
 					<sum>
 						<property>/it-autoflight/internal/vert-speed-fpm</property>
-						<value>1500</value>
+						<value>2000</value>
 					</sum>
 				</expression>
 			</u_max>
@@ -234,7 +250,7 @@
 			<expression>
 				<difference>
 					<property>/it-autoflight/internal/vert-speed-fpm</property>
-					<value>2500</value>
+					<value>2000</value>
 				</difference>
 			</expression>
 		</min>
@@ -242,7 +258,7 @@
 			<expression>
 				<sum>
 					<property>/it-autoflight/internal/vert-speed-fpm</property>
-					<value>2500</value>
+					<value>2000</value>
 				</sum>
 			</expression>
 		</max>
