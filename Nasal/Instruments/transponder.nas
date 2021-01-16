@@ -8,11 +8,13 @@ var XPDR = {
 	digit: [props.globals.initNode("/instrumentation/transponder/output/digit[0]", "1", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[1]", "2", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[2]", "0", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[3]", "0", "STRING")],
 	fgKnob: props.globals.getNode("/instrumentation/transponder/inputs/knob-mode", 1),
 	fgMode: props.globals.getNode("/sim/gui/dialogs/radios/transponder-mode", 1), # OFF, STANDBY, TEST, GROUND, ON, ALTITUDE
+	fgModeList: ["OFF", "STANDBY", "TEST", "GROUND", "ON", "ALTITUDE"],
 	fgCode: props.globals.getNode("/instrumentation/transponder/id-code", 1),
 	knob: props.globals.initNode("/instrumentation/transponder/output/knob", "0", "INT"),
 	mode: 1,
 	ident: props.globals.getNode("/instrumentation/transponder/inputs/ident-btn", 1),
 	identTime: 0,
+	onMode: 5,
 	power: props.globals.getNode("/systems/electrical/outputs/transponder", 1),
 	tcasMode: props.globals.getNode("/instrumentation/tcas/inputs/mode"),
 	xpdr: props.globals.initNode("/instrumentation/transponder/input/xpdr", 0, "BOOL"),
@@ -24,9 +26,13 @@ var XPDR = {
 	},
 	getOnMode: func() {
 		if (me.altReport.getBoolValue()) {
-			return "ALTITUDE";
+			if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+				return 5; # Altitude
+			} else {
+				return 3; # Ground
+			}
 		} else {
-			return "ON";
+			return 4; # On
 		}
 	},
 	modeKnob: func(d) {
@@ -34,23 +40,31 @@ var XPDR = {
 	},
 	setMode: func(m) {
 		me.knob.setValue(m);
+		me.onMode = me.getOnMode();
 		if (m == 0) { # STBY
+			me.fgKnob.setValue(1); # Standby
 			me.fgMode.setValue("STANDBY");
 			me.tcasMode.setValue(0); # OFF
 		} else if (m == 1) { # XPDR
-			me.fgMode.setValue(me.getOnMode());
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
 			me.tcasMode.setValue(0); # OFF
 		} else if (m == 2) { # TA
-			me.fgMode.setValue(me.getOnMode());
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
 			me.tcasMode.setValue(2); # TA Only
 		} else if (m == 3) { # TA/RA
-			me.fgMode.setValue(me.getOnMode());
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
 			me.tcasMode.setValue(3); # TA/RA
 		}
 	},
+	airGround: func() {
+		me.setMode(me.knob.getValue());
+	},
 	toggleAltReport: func() {
 		me.altReport.setBoolValue(!me.altReport.getBoolValue());
-		setMode(me.knob.getValue());
+		me.setMode(me.knob.getValue());
 	},
 	input: func(n) {
 		if (me.power.getValue() >= 25) {

@@ -275,18 +275,9 @@
 	</filter>
 	
 	<filter>
-		<name>Knots Lag</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>/velocities/airspeed-kt</input> <!-- Use this to make less noise -->
-		<output>/it-autoflight/internal/kts-rate-input</output>
-		<filter-time>0.02</filter-time>
-	</filter>
-	
-	<filter>
 		<name>Knots Rate</name>
 		<type>derivative</type>
-		<input>/it-autoflight/internal/kts-rate-input</input>
+		<input>/velocities/airspeed-kt</input>
 		<output>/it-autoflight/internal/kts-rate-raw</output>
 		<filter-time>1.0</filter-time>
 	</filter>

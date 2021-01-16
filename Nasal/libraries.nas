@@ -33,13 +33,15 @@ var systemsInit = func() {
 	libraries.variousReset();
 }
 
-setlistener("sim/signals/fdm-initialized", func() {
+var initDone = 0;
+setlistener("/sim/signals/fdm-initialized", func() {
 	systemsInit();
 	systemsLoop.start();
 	lightsLoop.start();
 	canvas_pfd.init();
 	canvas_ead.init();
 	canvas_sd.init();
+	initDone = 1;
 });
 
 var systemsLoop = maketimer(0.1, func() {
@@ -78,6 +80,12 @@ var systemsLoop = maketimer(0.1, func() {
 		gui.popupTip("Replay Ended: Setting Cold and Dark state...");
 	}
 });
+
+setlistener("/fdm/jsbsim/position/wow", func() {
+	if (initDone) {
+		instruments.XPDR.airGround();
+	}
+}, 0, 0);
 
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {

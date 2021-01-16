@@ -17,6 +17,7 @@
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
 			</test>
+			<output>position/wow-out</output>
 		</switch>
 		
 		<switch name="aero/alpha-deg-norm">
