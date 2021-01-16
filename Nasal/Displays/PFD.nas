@@ -625,7 +625,7 @@ var canvasBase = {
 		
 		if (Value.Nav.inRange) { # Should be if ILS tuned later
 			if (Value.Nav.signalQuality > 0.99) {
-				me["ILS_DME"].setText(sprintf("%2.1f", pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue()));
+				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
 				me["ILS_DME"].show();
 				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
 				me["ILS_Info"].show();
