@@ -170,6 +170,11 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 		},
 	},
+	MarkerBeacon: {
+		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
+		middle: props.globals.getNode("/instrumentation/marker-beacon/middle"),
+		outer: props.globals.getNode("/instrumentation/marker-beacon/outer"),
+	},
 	Nav: {
 		Frequencies: {
 			selectedMhz: [props.globals.getNode("/instrumentation/nav[0]/frequencies/selected-mhz"), props.globals.getNode("/instrumentation/nav[1]/frequencies/selected-mhz"), props.globals.getNode("/instrumentation/nav[2]/frequencies/selected-mhz")],

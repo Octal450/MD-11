@@ -171,7 +171,7 @@ var canvasBase = {
 		"AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five",
 		"ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel",
 		"HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no",
-		"ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums"];
+		"ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -623,22 +623,6 @@ var canvasBase = {
 			me["GS_no"].hide();
 		}
 		
-		if (Value.Nav.inRange) { # Should be if ILS tuned later
-			if (Value.Nav.signalQuality > 0.99) {
-				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
-				me["ILS_DME"].show();
-				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
-				me["ILS_Info"].show();
-			} else {
-				me["ILS_DME"].hide();
-				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
-				me["ILS_Info"].show();
-			}
-		} else {
-			me["ILS_DME"].hide();
-			me["ILS_Info"].hide();
-		}
-		
 		# RA and Minimums
 		Value.Misc.minimums = pts.Controls.Switches.minimums.getValue();
 		
@@ -920,6 +904,44 @@ var canvasBase = {
 		} else {
 			me["FMA_AP_Pitch_Off_Box"].hide();
 			me["FMA_AP_Thrust_Off_Box"].show();
+		}
+		
+		# ILS and ILS DME
+		if (pts.Instrumentation.Nav.inRange[2].getBoolValue()) { # Should be if ILS tuned later
+			if (Value.Nav.signalQuality > 0.99) {
+				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
+				me["ILS_DME"].show();
+				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
+				me["ILS_Info"].show();
+			} else {
+				me["ILS_DME"].hide();
+				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
+				me["ILS_Info"].show();
+			}
+			
+			if (pts.Instrumentation.MarkerBeacon.inner.getBoolValue()) {
+				me["Inner_Marker"].show();
+				me["Middle_Marker"].hide();
+				me["Outer_Marker"].hide();
+			} else if (pts.Instrumentation.MarkerBeacon.middle.getBoolValue()) {
+				me["Inner_Marker"].hide();
+				me["Middle_Marker"].show();
+				me["Outer_Marker"].hide();
+			} else if (pts.Instrumentation.MarkerBeacon.outer.getBoolValue()) {
+				me["Inner_Marker"].hide();
+				me["Middle_Marker"].hide();
+				me["Outer_Marker"].show();
+			} else {
+				me["Inner_Marker"].hide();
+				me["Middle_Marker"].hide();
+				me["Outer_Marker"].hide();
+			}
+		} else {
+			me["ILS_DME"].hide();
+			me["ILS_Info"].hide();
+			me["Inner_Marker"].hide();
+			me["Middle_Marker"].hide();
+			me["Outer_Marker"].hide();
 		}
 		
 		# QNH
