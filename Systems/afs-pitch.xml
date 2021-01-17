@@ -85,22 +85,16 @@
 			<Td>0.0</Td>
 			<u_min>
 				<condition>
-					<and>
+					<or>
 						<equals>
-							<property>/it-autoflight/output/thr-mode</property>
-							<value>2</value>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
 						</equals>
-						<or>
-							<equals>
-								<property>/gear/gear[1]/wow</property>
-								<value>1</value>
-							</equals>
-							<equals>
-								<property>/gear/gear[2]/wow</property>
-								<value>1</value>
-							</equals>
-						</or>
-					</and>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
 				</condition>
 				<value>0</value>
 			</u_min>
@@ -137,22 +131,16 @@
 			</u_min>
 			<u_max>
 				<condition>
-					<and>
+					<or>
 						<equals>
-							<property>/it-autoflight/output/thr-mode</property>
-							<value>2</value>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
 						</equals>
-						<or>
-							<equals>
-								<property>/gear/gear[1]/wow</property>
-								<value>1</value>
-							</equals>
-							<equals>
-								<property>/gear/gear[2]/wow</property>
-								<value>1</value>
-							</equals>
-						</or>
-					</and>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
 				</condition>
 				<value>1000</value>
 			</u_max>
