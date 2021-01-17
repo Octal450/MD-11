@@ -90,6 +90,27 @@
 							<property>/it-autoflight/output/thr-mode</property>
 							<value>2</value>
 						</equals>
+						<or>
+							<equals>
+								<property>/gear/gear[1]/wow</property>
+								<value>1</value>
+							</equals>
+							<equals>
+								<property>/gear/gear[2]/wow</property>
+								<value>1</value>
+							</equals>
+						</or>
+					</and>
+				</condition>
+				<value>0</value>
+			</u_min>
+			<u_min>
+				<condition>
+					<and>
+						<equals>
+							<property>/it-autoflight/output/thr-mode</property>
+							<value>2</value>
+						</equals>
 						<equals>
 							<property>/it-autoflight/output/spd-prot</property>
 							<value>0</value>
