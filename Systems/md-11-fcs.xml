@@ -1123,7 +1123,7 @@
 		
 		<actuator name="hydraulics/tiller/handle">
 			<input>hydraulics/tiller/handle-scheduled</input>
-			<rate_limit>0.5</rate_limit>
+			<rate_limit>0.5</rate_limit> <!-- 35/70 -->
 		</actuator>
 		
 		<pure_gain name="hydraulics/tiller/autopush-cmd-deg">
