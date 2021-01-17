@@ -1121,6 +1121,11 @@
 			</table>
 		</scheduled_gain>
 		
+		<actuator name="hydraulics/tiller/handle">
+			<input>hydraulics/tiller/handle-scheduled</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
+		
 		<pure_gain name="hydraulics/tiller/autopush-cmd-deg">
 			<input>hydraulics/tiller/autopush-cmd</input>
 			<gain>70</gain>
@@ -1218,6 +1223,26 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="hydraulics/tiller/min-deg">
+			<default value="-25"/>
+			<test value="-70">
+				/sim/model/autopush/connected eq 1
+			</test>
+			<test value="-70">
+				/systems/hydraulics/sys-1-psi ge 2200
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/tiller/max-deg">
+			<default value="25"/>
+			<test value="70">
+				/sim/model/autopush/connected eq 1
+			</test>
+			<test value="70">
+				/systems/hydraulics/sys-3-psi ge 2200
+			</test>
+		</switch>
+		
 		<switch name="hydraulics/tiller/cmd-deg">
 			<default value="hydraulics/tiller/rudder-cmd-deg"/>
 			<test value="0">
@@ -1245,26 +1270,6 @@
 			</test>
 			<test logic="OR" value="35">
 				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/hydraulics/sys-3-psi ge 2200
-			</test>
-		</switch>
-		
-		<switch name="hydraulics/tiller/min-deg">
-			<default value="-25"/>
-			<test value="-70">
-				/sim/model/autopush/connected eq 1
-			</test>
-			<test value="-70">
-				/systems/hydraulics/sys-1-psi ge 2200
-			</test>
-		</switch>
-		
-		<switch name="hydraulics/tiller/max-deg">
-			<default value="25"/>
-			<test value="70">
-				/sim/model/autopush/connected eq 1
-			</test>
-			<test value="70">
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>

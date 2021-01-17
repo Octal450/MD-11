@@ -76,12 +76,12 @@
 				<expression>
 					<table>
 						<property>/velocities/airspeed-kt</property>
-						<entry><ind>140</ind><dep>-375</dep></entry>
-						<entry><ind>360</ind><dep>-425</dep></entry>
+						<entry><ind>140</ind><dep>-390</dep></entry>
+						<entry><ind>360</ind><dep>-430</dep></entry>
 					</table>
 				</expression>
 			</Kp>
-			<Ti>1.3</Ti>        
+			<Ti>1.3</Ti>
 			<Td>0.0</Td>
 			<u_min>
 				<condition>
