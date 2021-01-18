@@ -170,7 +170,7 @@ var canvasBase = {
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid",
 		"AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale",
-		"ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down",
+		"ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn",
 		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale",
 		"LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
@@ -190,6 +190,11 @@ var canvasBase = {
 		}
 	},
 	updateBase: func() {
+		Value.Afs.kts = afs.Internal.kts.getValue();
+		Value.Afs.ktsSel = afs.Input.kts.getValue();
+		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
+		Value.Afs.mach = afs.Internal.mach.getValue();
+		Value.Afs.machSel = afs.Input.mach.getValue();
 		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
 		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
 		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
@@ -200,9 +205,40 @@ var canvasBase = {
 		# ASI
 		me["ASI_v_speed"].hide(); # Not working yet
 		
+		Value.Asi.flapGearMax = pts.Fdm.JSBsim.Fcc.Speeds.flapGearMax.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
+		Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
+		Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
+		Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
+		Value.Asi.vmoMmo = pts.Fdm.JSBsim.Fcc.Speeds.vmoMmo.getValue();
+		Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vssTape.getValue();
+		
+		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
+		if (Value.Asi.ias <= 50) {
+			Value.Asi.Tape.ias = 0;
+		} else if (Value.Asi.ias >= 500) {
+			Value.Asi.Tape.ias = 450;
+		} else {
+			Value.Asi.Tape.ias = Value.Asi.ias - 50;
+		}
+		
+		if (Value.Asi.preSel <= 50) {
+			Value.Asi.Tape.preSel = 0 - Value.Asi.Tape.ias;
+		} else if (Value.Asi.preSel >= 500) {
+			Value.Asi.Tape.preSel = 450 - Value.Asi.Tape.ias;
+		} else {
+			Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
+		}
+		
+		if (Value.Asi.sel <= 50) {
+			Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
+		} else if (Value.Asi.sel >= 500) {
+			Value.Asi.Tape.sel = 450 - Value.Asi.Tape.ias;
+		} else {
+			Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
+		}
 		
 		if (Value.Asi.ias < 53 and pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
@@ -219,19 +255,11 @@ var canvasBase = {
 				me["ASI_taxi"].setColor(1,1,1);
 			}
 			
+			me["ASI_sel_up"].setColor(1,1,1);
+			me["ASI_sel_dn"].setColor(1,1,1);
 			me["ASI_ias_group"].hide();
 			me["ASI_taxi_group"].show();
 		} else {
-			# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
-			if (Value.Asi.ias <= 50) {
-				Value.Asi.Tape.ias = 0;
-			} else if (Value.Asi.ias >= 500) {
-				Value.Asi.Tape.ias = 450;
-			} else {
-				Value.Asi.Tape.ias = Value.Asi.ias - 50;
-			}
-			
-			Value.Asi.vmoMmo = pts.Fdm.JSBsim.Fcc.Speeds.vmoMmo.getValue();
 			if (Value.Asi.vmoMmo <= 50) {
 				Value.Asi.Tape.vmoMmo = 0 - Value.Asi.Tape.ias;
 			} else if (Value.Asi.vmoMmo >= 500) {
@@ -240,7 +268,6 @@ var canvasBase = {
 				Value.Asi.Tape.vmoMmo = Value.Asi.vmoMmo - 50 - Value.Asi.Tape.ias;
 			}
 			
-			Value.Asi.flapGearMax = pts.Fdm.JSBsim.Fcc.Speeds.flapGearMax.getValue();
 			if (Value.Asi.flapGearMax < 0) {
 				Value.Asi.Tape.flapGearMax = 0;
 				me["ASI_flap_max"].hide();
@@ -266,10 +293,7 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].show();
 			}
 			
-			Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
-			Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vssTape.getValue();
 			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
-			
 			if (Value.Asi.vss < 0) {
 				me["ASI_vss"].hide();
 			} else if (Value.Asi.vss <= 50) {
@@ -339,25 +363,6 @@ var canvasBase = {
 				me["ASI_mach_decimal"].setColor(1,1,1);
 			}
 			
-			Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
-			Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
-			
-			if (Value.Asi.preSel <= 50) {
-				Value.Asi.Tape.preSel = 0 - Value.Asi.Tape.ias;
-			} else if (Value.Asi.preSel >= 500) {
-				Value.Asi.Tape.preSel = 450 - Value.Asi.Tape.ias;
-			} else {
-				Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
-			}
-			
-			if (Value.Asi.sel <= 50) {
-				Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
-			} else if (Value.Asi.sel >= 500) {
-				Value.Asi.Tape.sel = 450 - Value.Asi.Tape.ias;
-			} else {
-				Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
-			}
-			
 			me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.48656);
 			me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.48656);
 			
@@ -394,13 +399,6 @@ var canvasBase = {
 			me["ASI_trend_up"].hide();
 		}
 		
-		# Also keep outside if/else above so it works properly
-		Value.Afs.kts = afs.Internal.kts.getValue();
-		Value.Afs.ktsSel = afs.Input.kts.getValue();
-		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
-		Value.Afs.mach = afs.Internal.mach.getValue();
-		Value.Afs.machSel = afs.Input.mach.getValue();
-		
 		# ASI Bug Parking
 		# Seperate if/else because otherwise the logic won't work right
 		if (Value.Asi.Tape.preSel > 60) {
@@ -420,11 +418,31 @@ var canvasBase = {
 		}
 		
 		if (Value.Asi.Tape.preSel > 60 and Value.Asi.Tape.preSel != Value.Asi.Tape.sel) {
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+				me["ASI_sel_up"].setColor(1,0,0);
+				me["ASI_sel_up_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
+				me["ASI_sel_up"].setColor(1,0,0);
+				me["ASI_sel_up_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel < Value.Asi.vss) {
+				me["ASI_sel_up"].setColor(1,0,0);
+				me["ASI_sel_up_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+				me["ASI_sel_up"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_up_text"].setColor(0.9647,0.8196,0.0784);
+			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
+				me["ASI_sel_up"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_up_text"].setColor(0.9647,0.8196,0.0784);
+			} else {
+				me["ASI_sel_up"].setColor(1,1,1);
+				me["ASI_sel_up_text"].setColor(1,1,1);
+			}
 			me["ASI_sel_up"].setColorFill(0,0,0);
 			me["ASI_sel_up"].show();
 			me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.sel > 60) {
+		} else if (Value.Asi.Tape.sel > 60) { # It will never go outside envelope, so keep it white
+			me["ASI_sel_up"].setColor(1,1,1);
 			me["ASI_sel_up"].setColorFill(1,1,1);
 			me["ASI_sel_up"].show();
 			me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.kts));
@@ -434,11 +452,31 @@ var canvasBase = {
 			me["ASI_sel_up_text"].hide();
 		}
 		if (Value.Asi.Tape.preSel < -60 and Value.Asi.Tape.preSel != Value.Asi.Tape.sel) {
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+				me["ASI_sel_dn"].setColor(1,0,0);
+				me["ASI_sel_dn_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
+				me["ASI_sel_dn"].setColor(1,0,0);
+				me["ASI_sel_dn_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel < Value.Asi.vss) {
+				me["ASI_sel_dn"].setColor(1,0,0);
+				me["ASI_sel_dn_text"].setColor(1,0,0);
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+				me["ASI_sel_dn"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_dn_text"].setColor(0.9647,0.8196,0.0784);
+			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
+				me["ASI_sel_dn"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_dn_text"].setColor(0.9647,0.8196,0.0784);
+			} else {
+				me["ASI_sel_dn"].setColor(1,1,1);
+				me["ASI_sel_dn_text"].setColor(1,1,1);
+			}
 			me["ASI_sel_dn"].setColorFill(0,0,0);
 			me["ASI_sel_dn"].show();
 			me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.sel < -60) {
+		} else if (Value.Asi.Tape.sel < -60) { # It will never go outside envelope, so keep it white
+			me["ASI_sel_dn"].setColor(1,1,1);
 			me["ASI_sel_dn"].setColorFill(1,1,1);
 			me["ASI_sel_dn"].show();
 			me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.kts));
@@ -632,7 +670,7 @@ var canvasBase = {
 			}
 		} else if (Value.Vs.indicated > -50) {
 			me["VSI_needle_dn"].hide();
-			me["VSI_down"].hide();
+			me["VSI_dn"].hide();
 		}
 		
 		# ILS
