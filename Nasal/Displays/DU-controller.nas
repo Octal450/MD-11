@@ -45,7 +45,6 @@ var DUController = {
 				if (!me.updatePfd1) {
 					me.updatePfd1 = 1;
 					canvas_pfd.pfd1.update();
-					canvas_pfd.pfd1.updateSlow();
 					canvas_pfd.pfd1.page.show();
 				}
 				
@@ -88,7 +87,6 @@ var DUController = {
 				if (!me.updatePfd2) {
 					me.updatePfd2 = 1;
 					canvas_pfd.pfd2.update();
-					canvas_pfd.pfd2.updateSlow();
 					canvas_pfd.pfd2.page.show();
 				}
 				

@@ -8,10 +8,6 @@ var pfd1Error = nil;
 var pfd2 = nil;
 var pfd2Error = nil;
 
-# Slow update enable
-var updatePfd1 = 0;
-var updatePfd2 = 0;
-
 var Value = {
 	Afs: {
 		alt: 0,
@@ -27,6 +23,11 @@ var Value = {
 		atsWarn: 0,
 		fd1: 0,
 		fd2: 0,
+		kts: 250,
+		ktsSel: 250,
+		ktsMach: 0,
+		mach: 0.5,
+		machSel: 0.5,
 		land: "",
 		pitch: "",
 		pitchArm: "",
@@ -167,11 +168,11 @@ var canvasBase = {
 	getKeys: func() {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box",
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
-		"ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI",
-		"AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five",
-		"ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel",
-		"HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no",
-		"ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
+		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid",
+		"AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale",
+		"ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_down",
+		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale",
+		"LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -186,14 +187,6 @@ var canvasBase = {
 		}
 		if (systems.DUController.updatePfd2) {
 			pfd2.update();
-		}
-	},
-	updateSlow: func() {
-		if (systems.DUController.updatePfd1) {
-			pfd1.updateSlow();
-		}
-		if (systems.DUController.updatePfd2) {
-			pfd2.updateSlow();
 		}
 	},
 	updateBase: func() {
@@ -211,7 +204,7 @@ var canvasBase = {
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
 		
-		if (Value.Asi.ias < 50) {
+		if (Value.Asi.ias < 53 and pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
 				me["ASI_groundspeed"].setColor(0.9412,0.7255,0);
 				me["ASI_groundspeed"].setText("NO");
@@ -303,14 +296,14 @@ var canvasBase = {
 			me["ASI_vmo"].setTranslation(0, Value.Asi.Tape.vmoMmo * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
-			if (Value.Asi.mach >= 0.5) {
+			if (Value.Asi.mach > 0.47) {
 				if (Value.Asi.mach >= 0.999) {
 					me["ASI_mach"].setText("999");
 				} else {
 					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
 				}
 				me["ASI_bowtie_mach"].show();
-			} else {
+			} else if (Value.Asi.mach < 0.45) {
 				me["ASI_bowtie_mach"].hide();
 			}
 			
@@ -401,6 +394,60 @@ var canvasBase = {
 			me["ASI_trend_up"].hide();
 		}
 		
+		# Also keep outside if/else above so it works properly
+		Value.Afs.kts = afs.Internal.kts.getValue();
+		Value.Afs.ktsSel = afs.Input.kts.getValue();
+		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
+		Value.Afs.mach = afs.Internal.mach.getValue();
+		Value.Afs.machSel = afs.Input.mach.getValue();
+		
+		# ASI Bug Parking
+		# Seperate if/else because otherwise the logic won't work right
+		if (Value.Asi.Tape.preSel > 60) {
+			me["ASI_presel"].hide();
+		} else if (Value.Asi.Tape.preSel < -60) {
+			me["ASI_presel"].hide();
+		} else {
+			me["ASI_presel"].show();
+		}
+		
+		if (Value.Asi.Tape.sel > 60) {
+			me["ASI_sel"].hide();
+		} else if (Value.Asi.Tape.sel < -60) {
+			me["ASI_sel"].hide();
+		} else {
+			me["ASI_sel"].show();
+		}
+		
+		if (Value.Asi.Tape.preSel > 60 and Value.Asi.Tape.preSel != Value.Asi.Tape.sel) {
+			me["ASI_sel_up"].setColorFill(0,0,0);
+			me["ASI_sel_up"].show();
+			me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
+			me["ASI_sel_up_text"].show();
+		} else if (Value.Asi.Tape.sel > 60) {
+			me["ASI_sel_up"].setColorFill(1,1,1);
+			me["ASI_sel_up"].show();
+			me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.kts));
+			me["ASI_sel_up_text"].show();
+		} else {
+			me["ASI_sel_up"].hide();
+			me["ASI_sel_up_text"].hide();
+		}
+		if (Value.Asi.Tape.preSel < -60 and Value.Asi.Tape.preSel != Value.Asi.Tape.sel) {
+			me["ASI_sel_dn"].setColorFill(0,0,0);
+			me["ASI_sel_dn"].show();
+			me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
+			me["ASI_sel_dn_text"].show();
+		} else if (Value.Asi.Tape.sel < -60) {
+			me["ASI_sel_dn"].setColorFill(1,1,1);
+			me["ASI_sel_dn"].show();
+			me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.kts));
+			me["ASI_sel_dn_text"].show();
+		} else {
+			me["ASI_sel_dn"].hide();
+			me["ASI_sel_dn_text"].hide();
+		}
+		
 		# AI
 		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
 		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
@@ -445,7 +492,7 @@ var canvasBase = {
 		me["AI_PLI"].setTranslation(0, math.clamp(16 - Value.Ai.alpha, -20, 20) * -10.246);
 		if (Value.Ai.alpha >= 15.5) {
 			me["AI_PLI"].setColor(1,0,0);
-		} else if (Value.Ai.alpha >= 12.4) { # 80% of 15.5
+		} else if (Value.Ai.alpha >= 12.4 and Value.Misc.slatsPos >= 0.1) { # 80% of 15.5
 			me["AI_PLI"].setColor(0.9647,0.8196,0.0784);
 		} else {
 			me["AI_PLI"].setColor(0.2156,0.5019,0.6627);
@@ -561,29 +608,30 @@ var canvasBase = {
 		Value.Vs.digit = pts.Instrumentation.Pfd.vsDigit.getValue();
 		Value.Vs.indicated = afs.Internal.vs.getValue();
 		
-		if (Value.Vs.indicated > -50) {
+		if (Value.Vs.indicated > 100) {
 			me["VSI_needle_up"].setTranslation(0, pts.Instrumentation.Pfd.vsNeedleUp.getValue());
 			me["VSI_needle_up"].show();
-		} else {
+			if (Value.Vs.digit > 0) {
+				me["VSI_up"].setText(sprintf("%1.1f", Value.Vs.digit));
+				me["VSI_up"].show();
+			} else {
+				me["VSI_up"].hide();
+			}
+		} else if (Value.Vs.indicated < 50) {
 			me["VSI_needle_up"].hide();
-		}
-		if (Value.Vs.indicated < 50) {
-			me["VSI_needle_dn"].setTranslation(0, pts.Instrumentation.Pfd.vsNeedleDn.getValue());
-			me["VSI_needle_dn"].show();
-		} else {
-			me["VSI_needle_dn"].hide();
-		}
-		
-		if (Value.Vs.indicated > 10 and Value.Vs.digit > 0) {
-			me["VSI_up"].setText(sprintf("%1.1f", Value.Vs.digit));
-			me["VSI_up"].show();
-		} else {
 			me["VSI_up"].hide();
 		}
-		if (Value.Vs.indicated < -10 and Value.Vs.digit > 0) {
-			me["VSI_down"].setText(sprintf("%1.1f", Value.Vs.digit));
-			me["VSI_down"].show();
-		} else {
+		if (Value.Vs.indicated < -100) {
+			me["VSI_needle_dn"].setTranslation(0, pts.Instrumentation.Pfd.vsNeedleDn.getValue());
+			me["VSI_needle_dn"].show();
+			if (Value.Vs.digit > 0) {
+				me["VSI_dn"].setText(sprintf("%1.1f", Value.Vs.digit));
+				me["VSI_dn"].show();
+			} else {
+				me["VSI_dn"].hide();
+			}
+		} else if (Value.Vs.indicated > -50) {
+			me["VSI_needle_dn"].hide();
 			me["VSI_down"].hide();
 		}
 		
@@ -737,8 +785,7 @@ var canvasBase = {
 		}
 		
 		me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
-	},
-	updateSlowBase: func() {
+		
 		# FMA
 		Value.Afs.spdProt = afs.Output.spdProt.getValue();
 		Value.Misc.blink1Hz = pts.Fdm.JSBsim.Libraries.blink1Hz.getBoolValue();
@@ -824,10 +871,10 @@ var canvasBase = {
 		if (Value.Afs.thrust == "RETARD") {
 			me["FMA_Speed"].hide();
 		} else {
-			if (afs.Internal.ktsMach.getBoolValue()) {
-				me["FMA_Speed"].setText("." ~ sprintf("%03d", afs.Internal.mach.getValue() * 1000));
+			if (Value.Afs.ktsMach) {
+				me["FMA_Speed"].setText("." ~ sprintf("%03d", Value.Afs.mach * 1000));
 			} else {
-				me["FMA_Speed"].setText(sprintf("%03d", afs.Internal.kts.getValue()));
+				me["FMA_Speed"].setText(sprintf("%03d", Value.Afs.kts));
 			}
 			me["FMA_Speed"].show();
 		}
@@ -1035,9 +1082,6 @@ var canvasPfd1 = {
 		return m;
 	},
 	update: func() {
-		me.updateBase();
-	},
-	updateSlow: func() {
 		# Provide the value to here and the base
 		Value.Afs.ap1 = afs.Output.ap1.getBoolValue();
 		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
@@ -1136,7 +1180,7 @@ var canvasPfd1 = {
 			me["VSI_group"].hide();
 		}
 		
-		me.updateSlowBase();
+		me.updateBase();
 	},
 };
 
@@ -1148,9 +1192,6 @@ var canvasPfd2 = {
 		return m;
 	},
 	update: func() {
-		me.updateBase();
-	},
-	updateSlow: func() {
 		# Provide the value to here and the base
 		Value.Afs.ap1 = afs.Output.ap1.getBoolValue();
 		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
@@ -1245,7 +1286,7 @@ var canvasPfd2 = {
 			me["VSI_group"].hide();
 		}
 		
-		me.updateSlowBase();
+		me.updateBase();
 	},
 };
 
@@ -1340,7 +1381,6 @@ var init = func() {
 	
 	canvasBase.setup();
 	pfdUpdate.start();
-	pfdSlowUpdate.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() != 20) {
 		rateApply();
@@ -1349,15 +1389,10 @@ var init = func() {
 
 var rateApply = func() {
 	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.pfdFps.getValue());
-	pfdSlowUpdate.restart(1 / (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() * 0.5)); # 10 / 20 = 0.5
 }
 
 var pfdUpdate = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
-});
-
-var pfdSlowUpdate = maketimer(0.1, func() { # 10FPS
-	canvasBase.updateSlow();
 });
 
 var showPfd1 = func() {
