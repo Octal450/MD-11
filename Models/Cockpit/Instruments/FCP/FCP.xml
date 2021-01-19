@@ -1857,10 +1857,27 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>1</step>
+				<max>999</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>10</step>
+				<max>999</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1876,10 +1893,27 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-1</step>
+				<min>0</min>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-10</step>
+				<min>0</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1942,10 +1976,27 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>1</step>
+				<max>999</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>10</step>
+				<max>999</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1961,10 +2012,27 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-1</step>
+				<min>0</min>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-10</step>
+				<min>0</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
