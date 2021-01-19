@@ -19,9 +19,9 @@
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  100.8
-						10000  96.4  100.2  105.6  107.1  102.6
-						43000  96.4   96.7  102.1  107.4  105.1
+						    0  90.3   95.9  101.0  106.0  111.0
+						10000  96.4  100.2  105.6  107.1  112.3
+						43000  96.4   96.7  102.1  107.4  112.7
 					</tableData>
 				</table>
 			</function>
@@ -142,7 +142,16 @@
 		<fcs_function name="fadec/limit/go-around-input">
 			<function>
 				<pow>
-					<property>fadec/limit/rated-thrust-n1</property>
+					<table>
+						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<independentVar lookup="column">propulsion/tat-c</independentVar>
+						<tableData>
+							      -60   -30     0      30     60
+							    0  90.3   95.9  101.0  106.0  100.8
+							10000  96.4  100.2  105.6  107.1  102.6
+							43000  96.4   96.7  102.1  107.4  105.1
+						</tableData>
+					</table>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -188,7 +197,16 @@
 			<function>
 				<pow>
 					<sum>
-						<property>fadec/limit/rated-thrust-n1</property>
+						<table>
+							<independentVar lookup="row">/position/altitude-ft</independentVar>
+							<independentVar lookup="column">propulsion/tat-c</independentVar>
+							<tableData>
+								      -60   -30     0      30     60
+								    0  90.3   95.9  101.0  106.0  100.8
+								10000  96.4  100.2  105.6  107.1  102.6
+								43000  96.4   96.7  102.1  107.4  105.1
+							</tableData>
+						</table>
 						<table>
 							<independentVar lookup="row">fadec/limit/packs-off</independentVar>
 							<tableData>
@@ -214,7 +232,7 @@
 					<property>fadec/limit/takeoff-input</property>
 					<pow>
 						<sum>
-							<table> <!-- Copy of rated-thrust-n1 table above -->
+							<table>
 								<independentVar lookup="row">/position/altitude-ft</independentVar>
 								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
 								<tableData>

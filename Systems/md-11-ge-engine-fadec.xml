@@ -17,9 +17,9 @@
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60    -30     0      30     60
-						    0   94.9  100.9  106.4  111.7  106.2
-						10000  101.4  105.5  111.3  112.9  108.1
-						43000  101.4  101.8  107.5  113.2  110.8
+						    0   94.9  100.9  106.4  111.7  117.0
+						10000  101.4  105.5  111.3  112.9  118.5
+						43000  101.4  101.8  107.5  113.2  118.9
 					</tableData>
 				</table>
 			</function>
@@ -129,13 +129,28 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fadec/limit/go-around-ref">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
+					<tableData>
+						      -60    -30     0      30     60
+						    0   94.9  100.9  106.4  111.7  106.2
+						10000  101.4  105.5  111.3  112.9  108.1
+						43000  101.4  101.8  107.5  113.2  110.8
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/go-around">
 			<function>
 				<quotient>
 					<integer>
 						<sum>
 							<product>
-								<property>fadec/limit/rated-thrust-n1</property>
+								<property>fadec/limit/go-around-ref</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->

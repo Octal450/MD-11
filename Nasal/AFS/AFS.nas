@@ -488,7 +488,7 @@ var ITAF = {
 			if (abs(Internal.targetKtsError) <= 2.5) {
 				Output.spdCaptured = 1;
 			}
-		} else {
+		} else if (!Gear.wow1Temp and !Gear.wow1Temp) {
 			if (Internal.ktsMach.getBoolValue()) {
 				if (Internal.machTemp > Velocities.athrMaxMach) {
 					Internal.mach.setValue(Velocities.athrMaxMach);
