@@ -213,10 +213,6 @@
 					<value>0.005</value>
 				</sum>
 			</function>
-			<clipto>
-				<min>0.5</min>
-				<max>100</max>
-			</clipto>
 		</fcs_function>
 		
 		<!-- VMO/MMO -->
@@ -416,7 +412,7 @@
 				</difference>
 			</function>
 			<clipto>
-				<min>0.5</min>
+				<min>0.0</min>
 				<max>0.87</max> <!-- MMO, Should be scheduled, but don't know what schedules it yet -->
 			</clipto>
 		</fcs_function>

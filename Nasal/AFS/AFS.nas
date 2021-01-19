@@ -101,6 +101,7 @@ var Fd = {
 
 var Input = {
 	alt: props.globals.initNode("/it-autoflight/input/alt", 10000, "INT"),
+	altTemp: 1000,
 	ap1: props.globals.initNode("/it-autoflight/input/ap1", 0, "BOOL"),
 	ap2: props.globals.initNode("/it-autoflight/input/ap2", 0, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/input/athr", 0, "BOOL"),
@@ -112,7 +113,9 @@ var Input = {
 	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
 	fpaAbs: props.globals.initNode("/it-autoflight/input/fpa-abs", 0, "DOUBLE"), # Set by property rule
 	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
+	hdgTemp: 0,
 	kts: props.globals.initNode("/it-autoflight/input/kts", 250, "INT"),
+	ktsTemp: 0,
 	ktsMach: props.globals.initNode("/it-autoflight/input/kts-mach", 0, "BOOL"),
 	ktsMachTemp: 0,
 	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
@@ -122,6 +125,7 @@ var Input = {
 	ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
 	ovrd2Temp: 0,
 	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
+	machTemp: 0,
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
@@ -141,7 +145,7 @@ var Internal = {
 	altAlertAural: props.globals.initNode("/it-autoflight/internal/alt-alert-aural", 0, "BOOL"),
 	altCaptureActive: 0,
 	altDiff: 0,
-	altTemp: 0,
+	altTemp: 10000,
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
 	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "INT"),
 	bankLimitAuto: 25,
@@ -171,6 +175,9 @@ var Internal = {
 	selfCheckStatus: 0,
 	selfCheckTime: 0,
 	spdProtOnPitch: 0,
+	syncedAlt: 0,
+	syncedHdg: 0,
+	syncedSpd: 0,
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
@@ -408,8 +415,9 @@ var ITAF = {
 		}
 		
 		# Altitude Capture/Sync Logic
+		Input.altTemp = Input.alt.getValue();
 		if (Output.vertTemp != 0) {
-			Internal.alt.setValue(Input.alt.getValue());
+			Internal.alt.setValue(Input.altTemp);
 		}
 		Internal.altTemp = Internal.alt.getValue();
 		Internal.altDiff = Internal.altTemp - Position.indicatedAltitudeFtTemp;
@@ -457,22 +465,23 @@ var ITAF = {
 		me.updateThrustMode();
 		
 		# Custom Stuff Below
-		
 		# Speed Capture + ATS Speed Limits
 		Velocities.athrMax = pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue();
 		Velocities.athrMaxMach = pts.Fdm.JSBsim.Fcc.Speeds.athrMaxMach.getValue();
 		Velocities.athrMin = pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue();
 		Velocities.athrMinMach = pts.Fdm.JSBsim.Fcc.Speeds.athrMinMach.getValue();
+		Input.ktsMachTemp = Input.ktsMach.getBoolValue();
+		Input.ktsTemp = Input.kts.getValue();
+		Input.machTemp = Input.mach.getValue();
 		Internal.ktsTemp = Internal.kts.getValue();
 		Internal.machTemp = Internal.mach.getValue();
 		
 		if (!Output.spdCaptured) {
-			Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 			if (Input.ktsMachTemp) {
-				Internal.mach.setValue(math.clamp(Input.mach.getValue(), Velocities.athrMinMach, Velocities.athrMaxMach));
+				Internal.mach.setValue(math.clamp(Input.machTemp, Velocities.athrMinMach, Velocities.athrMaxMach));
 				Internal.targetKts = Internal.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
 			} else {
-				Internal.kts.setValue(math.clamp(Input.kts.getValue(), Velocities.athrMin, Velocities.athrMax));
+				Internal.kts.setValue(math.clamp(Input.ktsTemp, Velocities.athrMin, Velocities.athrMax));
 				Internal.targetKts = Internal.kts.getValue();
 			}
 			Internal.targetKtsError = Internal.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
@@ -493,8 +502,7 @@ var ITAF = {
 					Internal.kts.setValue(Velocities.athrMin);
 				}
 			}
-		}
-		# Refresh Internal.ktsTemp and Internal.machTemp if using past this point
+		} # Refresh Internal.ktsTemp and Internal.machTemp if using past this point
 		
 		# Heading Sync
 		if (!Output.showHdg.getBoolValue()) {
@@ -504,9 +512,10 @@ var ITAF = {
 		}
 		
 		# Heading Capture
+		Input.hdgTemp = Input.hdg.getValue();
 		if (Output.latTemp == 0) {
 			if (!Output.hdgCaptured) {
-				Internal.hdg.setValue(Input.hdg.getValue());
+				Internal.hdg.setValue(Input.hdgTemp);
 				Internal.targetHdgError = Internal.hdg.getValue() - Internal.hdgPredicted.getValue();
 				if (abs(Internal.targetHdgError) <= 2.5) {
 					Output.hdgCaptured = 1;
@@ -514,6 +523,35 @@ var ITAF = {
 			}
 		} else if (!Output.hdgCaptured) {
 			Output.hdgCaptured = 1;
+		}
+		
+		# Synced Logic - Make sure Temp is refreshed when you compare here
+		if (Input.altTemp == Internal.altTemp) { # Internal.altTemp is already updated after the syncing logic sets it
+			Internal.syncedAlt = 1;
+		} else {
+			Internal.syncedAlt = 0;
+		}
+		if (Input.hdgTemp == Internal.hdg.getValue()) {
+			Internal.syncedHdg = 1;
+		} else {
+			Internal.syncedHdg = 0;
+		}
+		if (Input.ktsMachTemp == Internal.ktsMach.getBoolValue()) {
+			if (Input.ktsMachTemp) {
+				if (Input.machTemp == Internal.mach.getValue()) {
+					Internal.syncedSpd = 1;
+				} else {
+					Internal.syncedSpd = 0;
+				}
+			} else {
+				if (Input.ktsTemp == Internal.kts.getValue()) {
+					Internal.syncedSpd = 1;
+				} else {
+					Internal.syncedSpd = 0;
+				}
+			}
+		} else {
+			Internal.syncedSpd = 0;
 		}
 		
 		# Autoland Logic
