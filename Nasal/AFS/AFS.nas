@@ -112,7 +112,7 @@ var Input = {
 	fpa: props.globals.initNode("/it-autoflight/input/fpa", 0, "DOUBLE"),
 	fpaAbs: props.globals.initNode("/it-autoflight/input/fpa-abs", 0, "DOUBLE"), # Set by property rule
 	hdg: props.globals.initNode("/it-autoflight/input/hdg", 0, "INT"),
-	kts: props.globals.initNode("/it-autoflight/input/kts", 0, "INT"),
+	kts: props.globals.initNode("/it-autoflight/input/kts", 250, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/input/kts-mach", 0, "BOOL"),
 	ktsMachTemp: 0,
 	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
