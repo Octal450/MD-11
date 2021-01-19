@@ -532,6 +532,19 @@
 			<output>/systems/pneumatics/pack-1-flow-debug</output>
 		</actuator>
 		
+		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-1">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
+					<tableData>
+						 0  0.002
+						10  0.030
+					</tableData>
+				</table>
+			</function>
+			<output>propulsion/engine[0]/bleed-factor</output>
+		</fcs_function>
+		
 		<!-- Pack 2 -->
 		<fcs_function name="/systems/pneumatics/pack-2-delta-psi">
 			<function>
@@ -588,6 +601,19 @@
 			<output>/systems/pneumatics/pack-2-flow-debug</output>
 		</actuator>
 		
+		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-2">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
+					<tableData>
+						 0  0.002
+						10  0.030
+					</tableData>
+				</table>
+			</function>
+			<output>propulsion/engine[1]/bleed-factor</output>
+		</fcs_function>
+		
 		<!-- Pack 3 -->
 		<fcs_function name="/systems/pneumatics/pack-3-delta-psi">
 			<function>
@@ -643,6 +669,19 @@
 			<rate_limit sense="decr">4.3</rate_limit>
 			<output>/systems/pneumatics/pack-3-flow-debug</output>
 		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-3">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
+					<tableData>
+						 0  0.002
+						10  0.030
+					</tableData>
+				</table>
+			</function>
+			<output>propulsion/engine[2]/bleed-factor</output>
+		</fcs_function>
 		
 		<!-- Isolation Valve 1-2 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-2-valve">

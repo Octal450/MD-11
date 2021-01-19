@@ -6,7 +6,7 @@
 	
 	<milthrust>60000</milthrust>
 	<tsfc>0.445</tsfc>
-	<bleed>0.03</bleed>
+	<bleed>0</bleed> <!-- Set by pneumatic system -->
 	<ignitionn1>0</ignitionn1>
 	<ignitionn2>29.7</ignitionn2>
 	<n1spinup>0</n1spinup> <!-- No N1 spin during cranking -->
