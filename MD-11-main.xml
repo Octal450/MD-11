@@ -953,7 +953,7 @@
 				<desc>Captain View/Elevator Trim Up</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -961,7 +961,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(-1);</script>
@@ -972,7 +972,7 @@
 				<desc>First Officer View/Elevator Up</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -980,7 +980,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") - 0.05);</script>
@@ -991,7 +991,7 @@
 				<desc>Overhead View/Throttle Decrease</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -999,7 +999,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -1014,7 +1014,7 @@
 				<desc>Forward Pedestal/Aileron Left</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1022,7 +1022,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") - 0.05);</script>
@@ -1033,7 +1033,7 @@
 				<desc>Aft Pedestal/Center Controls</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1041,7 +1041,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -1056,7 +1056,7 @@
 				<desc>AFS Panel/Aileron Right</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1064,7 +1064,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") + 0.05);</script>
@@ -1075,7 +1075,7 @@
 				<desc>Elevator Trim Down</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1083,7 +1083,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(1);</script>
@@ -1094,7 +1094,7 @@
 				<desc>Elevator Down</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1102,7 +1102,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") + 0.05);</script>
@@ -1113,7 +1113,7 @@
 				<desc>Throttle Increase</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -1121,7 +1121,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -1517,6 +1517,7 @@
 					<sd-fps type="double">10</sd-fps>
 				</du>
 				<irs-align-instantly type="bool">0</irs-align-instantly>
+				<keyboard-mode type="bool">0</keyboard-mode>
 				<map-less-transparent type="bool">0</map-less-transparent>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>

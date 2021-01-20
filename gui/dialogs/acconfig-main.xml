@@ -347,7 +347,7 @@
 			<checkbox>
 				<label>Keyboard Mode (See Aircraft Help)</label>
 				<halign>left</halign>
-				<property>/options/system/keyboard-mode</property>
+				<property>/systems/acconfig/options/keyboard-mode</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
