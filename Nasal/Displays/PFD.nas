@@ -669,16 +669,24 @@ var canvasBase = {
 			me["ALT_sel_up"].setColorFill(0,0,0);
 			me["ALT_sel_up"].show();
 			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
-			me["ALT_sel_up_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
 			me["ALT_sel_up_text"].show();
-			me["ALT_sel_up_text_T"].show();
+			if (Value.Afs.altSel < 1000) {
+				me["ALT_sel_up_text_T"].hide();
+			} else {
+				me["ALT_sel_up_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
+				me["ALT_sel_up_text_T"].show();
+			}
 		} else if (Value.Alt.sel > 525) {
 			me["ALT_sel_up"].setColorFill(1,1,1);
 			me["ALT_sel_up"].show();
 			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
-			me["ALT_sel_up_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
 			me["ALT_sel_up_text"].show();
-			me["ALT_sel_up_text_T"].show();
+			if (Value.Afs.alt < 1000) {
+				me["ALT_sel_up_text_T"].hide();
+			} else {
+				me["ALT_sel_up_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
+				me["ALT_sel_up_text_T"].show();
+			}
 		} else {
 			me["ALT_sel_up"].hide();
 			me["ALT_sel_up_text"].hide();
@@ -689,16 +697,24 @@ var canvasBase = {
 			me["ALT_sel_dn"].setColorFill(0,0,0);
 			me["ALT_sel_dn"].show();
 			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
-			me["ALT_sel_dn_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
 			me["ALT_sel_dn_text"].show();
-			me["ALT_sel_dn_text_T"].show();
+			if (Value.Afs.altSel < 1000) {
+				me["ALT_sel_dn_text_T"].hide();
+			} else {
+				me["ALT_sel_dn_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
+				me["ALT_sel_dn_text_T"].show();
+			}
 		} else if (Value.Alt.sel < -525) {
 			me["ALT_sel_dn"].setColorFill(1,1,1);
 			me["ALT_sel_dn"].show();
 			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
-			me["ALT_sel_dn_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
 			me["ALT_sel_dn_text"].show();
-			me["ALT_sel_dn_text_T"].show();
+			if (Value.Afs.alt < 1000) {
+				me["ALT_sel_dn_text_T"].hide();
+			} else {
+				me["ALT_sel_dn_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
+				me["ALT_sel_dn_text_T"].show();
+			}
 		} else {
 			me["ALT_sel_dn"].hide();
 			me["ALT_sel_dn_text"].hide();
