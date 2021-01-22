@@ -1527,14 +1527,6 @@
 			<state type="int">0</state>
 		</apu>
 		<electrical n="0">
-			<sources n="0">
-				<bat-1 n="0">
-					<percent type="double">100</percent>
-				</bat-1>
-				<bat-2 n="0">
-					<percent type="double">100</percent>
-				</bat-2>
-			</sources>
 			<system type="bool">1</system>
 		</electrical>
 		<failures n="0">

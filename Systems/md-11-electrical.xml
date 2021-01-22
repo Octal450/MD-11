@@ -7,18 +7,23 @@
 	
 	<property value="0">/systems/electrical/bus/ac-tie</property>
 	<property value="0">/systems/electrical/bus/dc-tie</property>
-	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
 	<property value="0">/systems/electrical/bus/ac-gen-1-src</property>
 	<property value="0">/systems/electrical/bus/ac-gen-2-src</property>
 	<property value="0">/systems/electrical/bus/ac-gen-3-src</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-1/contact-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-2/contact-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-3/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-1/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-2/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-3/contact-pos</property>
-	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
-	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
+	<property value="0">/systems/electrical/sources/bat-charger-powered</property>
+	<property value="0">/systems/electrical/sources/bat-1/amp</property>
+	<property value="99.9">/systems/electrical/sources/bat-1/percent</property>
+	<property value="0">/systems/electrical/sources/bat-2/amp</property>
+	<property value="99.9">/systems/electrical/sources/bat-2/percent</property>
+	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
 	
 	<channel name="EPCU Switches/Logic" execrate="16">
 		
@@ -182,6 +187,84 @@
 	<channel name="Main Electrical" execrate="8">
 		
 		<!-- Battery 1 -->
+		<switch name="/systems/electrical/sources/bat-1/charge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-charger-powered eq 1
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-1 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-1/discharge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-1/amp gt 0
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-1 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-1/direction">
+			<default value="0"/>
+			<test logic="AND" value="-1"> <!-- Charge -->
+				/systems/electrical/sources/bat-1/percent le 99.9
+				/systems/electrical/sources/bat-1/charge eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/bat-1/charge eq 1
+			</test>
+			<test logic="AND" value="1"> <!-- Discharge -->
+				/systems/electrical/sources/bat-1/percent gt 5
+				/systems/electrical/sources/bat-1/discharge eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/sources/bat-1/percent-calc">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/systems/electrical/sources/bat-1/direction</property>
+						<value>0</value>
+					</eq>
+					<property>/systems/electrical/sources/bat-1/percent</property>
+					<ifthen>
+						<eq>
+							<property>/systems/electrical/sources/bat-1/direction</property>
+							<value>-1</value>
+						</eq>
+						<sum>
+							<property>/systems/electrical/sources/bat-1/percent</property>
+							<product>
+								<quotient>
+									<value>2.25</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-1/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+						<sum>
+							<property>/systems/electrical/sources/bat-1/percent</property>
+							<product>
+								<quotient>
+									<value>-0.75</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-1/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+					</ifthen>
+				</ifthen>
+            </function>
+            <output>/systems/electrical/sources/bat-1/percent</output>
+		</fcs_function>
+		
 		<fcs_function name="/systems/electrical/sources/bat-1/volt">
 			<function>
 				<table>
@@ -206,6 +289,84 @@
 		</switch>
 		
 		<!-- Battery 2 -->
+		<switch name="/systems/electrical/sources/bat-2/charge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-charger-powered eq 1
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-2 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-2/discharge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-2/amp gt 0
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-2 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-2/direction">
+			<default value="0"/>
+			<test logic="AND" value="-1"> <!-- Charge -->
+				/systems/electrical/sources/bat-2/percent le 99.9
+				/systems/electrical/sources/bat-2/charge eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/bat-2/charge eq 1
+			</test>
+			<test logic="AND" value="1"> <!-- Discharge -->
+				/systems/electrical/sources/bat-2/percent gt 5
+				/systems/electrical/sources/bat-2/discharge eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/sources/bat-2/percent-calc">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/systems/electrical/sources/bat-2/direction</property>
+						<value>0</value>
+					</eq>
+					<property>/systems/electrical/sources/bat-2/percent</property>
+					<ifthen>
+						<eq>
+							<property>/systems/electrical/sources/bat-2/direction</property>
+							<value>-1</value>
+						</eq>
+						<sum>
+							<property>/systems/electrical/sources/bat-2/percent</property>
+							<product>
+								<quotient>
+									<value>2.25</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-2/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+						<sum>
+							<property>/systems/electrical/sources/bat-2/percent</property>
+							<product>
+								<quotient>
+									<value>-0.75</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-2/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+					</ifthen>
+				</ifthen>
+            </function>
+            <output>/systems/electrical/sources/bat-2/percent</output>
+		</fcs_function>
+		
 		<fcs_function name="/systems/electrical/sources/bat-2/volt">
 			<function>
 				<table>
