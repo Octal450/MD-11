@@ -261,8 +261,8 @@
 						</sum>
 					</ifthen>
 				</ifthen>
-            </function>
-            <output>/systems/electrical/sources/bat-1/percent</output>
+			</function>
+			<output>/systems/electrical/sources/bat-1/percent</output>
 		</fcs_function>
 		
 		<fcs_function name="/systems/electrical/sources/bat-1/volt">
@@ -363,8 +363,8 @@
 						</sum>
 					</ifthen>
 				</ifthen>
-            </function>
-            <output>/systems/electrical/sources/bat-2/percent</output>
+			</function>
+			<output>/systems/electrical/sources/bat-2/percent</output>
 		</fcs_function>
 		
 		<fcs_function name="/systems/electrical/sources/bat-2/volt">
