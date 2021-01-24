@@ -1333,12 +1333,11 @@
 			<output>fcs/left-brake-actuator-feedback</output>
 		</actuator>
 		
-		<switch name="rubbish/left-brake-cmd-norm">
+		<switch name="fcs/left-brake-cmd-norm">
 			<default value="fcs/left-brake-actuator"/>
 			<test value="1">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
 		
 		<fcs_function name="fcs/right-brake-input">
@@ -1362,12 +1361,48 @@
 			<output>fcs/right-brake-actuator-feedback</output>
 		</actuator>
 		
-		<switch name="rubbish/right-brake-cmd-norm">
+		<switch name="fcs/right-brake-cmd-norm">
 			<default value="fcs/right-brake-actuator"/>
 			<test value="1">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<output>fcs/right-brake-cmd-norm</output>
+		</switch>
+		
+		<fcs_function name="fcs/center-brake-input">
+			<function>
+				<max>
+					<sum>
+						<product>
+							<property>/controls/gear/brake-left</property>
+							<value>0.5</value>
+						</product>
+						<product>
+							<property>/controls/gear/brake-right</property>
+							<value>0.5</value>
+						</product>
+					</sum>
+					<property>/controls/gear/brake-parking</property>
+					<property>/gear/abs/brake-output</property>
+				</max>
+			</function>
+			<output>fcs/center-brake-input-feedback</output>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<actuator name="fcs/center-brake-actuator">
+			<input>fcs/center-brake-input</input>
+			<rate_limit>fcs/brake-rate</rate_limit>
+			<output>fcs/center-brake-actuator-feedback</output>
+		</actuator>
+		
+		<switch name="fcs/center-brake-cmd-norm">
+			<default value="fcs/center-brake-actuator"/>
+			<test value="1">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
 		</switch>
 	
 	</channel>

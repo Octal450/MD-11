@@ -928,6 +928,17 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/hydraulics/brakes/center-error">
+			<function>
+				<abs>
+					<difference>
+						<property>fcs/center-brake-actuator-feedback</property>
+						<property>fcs/center-brake-input-feedback</property>
+					</difference>
+				</abs>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/hydraulics/brakes/right-error">
 			<function>
 				<abs>
@@ -939,8 +950,27 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/hydraulics/brakes/sys-decr-rate-cmd">
+			<function> <!-- About 10 full depresses and releases from nominal PSI -->
+				<sum> <!-- V = 2x + 0.5x, if V = 145 then x = 58 -->
+					<product>
+						<property>/systems/hydraulics/brakes/left-error</property>
+						<value>58</value> <!-- x -->
+					</product>
+					<product>
+						<property>/systems/hydraulics/brakes/center-error</property>
+						<value>29</value> <!-- 0.5x -->
+					</product>
+					<product>
+						<property>/systems/hydraulics/brakes/right-error</property>
+						<value>58</value> <!-- x -->
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/hydraulics/brakes/sys-decr-rate">
-			<default value="145"/> <!-- About 10 full depress and releases from nominal PSI -->
+			<default value="/systems/hydraulics/brakes/sys-decr-rate-cmd"/>
 			<test logic="AND" value="0">
 				/systems/hydraulics/brakes/left-error le 0.01
 				/systems/hydraulics/brakes/right-error le 0.01
@@ -953,11 +983,15 @@
 					<property>/systems/hydraulics/sys-1-psi</property>
 					<product>
 						<property>fcs/left-brake-actuator-feedback</property>
-						<value>45</value>
+						<value>35</value>
+					</product>
+					<product>
+						<property>fcs/center-brake-actuator-feedback</property>
+						<value>20</value>
 					</product>
 					<product>
 						<property>fcs/right-brake-actuator-feedback</property>
-						<value>50</value>
+						<value>40</value>
 					</product>
 				</difference>
 			</function>
@@ -985,11 +1019,15 @@
 					<property>/systems/hydraulics/sys-3-psi</property> <!-- Not a typo Brake System 2 is powered by Hydraulic System 3 -->
 					<product>
 						<property>fcs/left-brake-actuator-feedback</property>
-						<value>50</value>
+						<value>40</value>
+					</product>
+					<product>
+						<property>fcs/center-brake-actuator-feedback</property>
+						<value>20</value>
 					</product>
 					<product>
 						<property>fcs/right-brake-actuator-feedback</property>
-						<value>55</value>
+						<value>45</value>
 					</product>
 				</difference>
 			</function>
