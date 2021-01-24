@@ -56,8 +56,11 @@
 		<type>rotate</type>
 		<object-name>needle.1</object-name>
 		<object-name>needle.3</object-name>
-		<property>controls/gear/brake-right</property>
-		<factor>180</factor>
+		<property>systems/hydraulics/brakes/sys-1-psi-needle</property>
+		<interpolation>
+			<entry><ind>   0</ind><dep>  0</dep></entry>
+			<entry><ind>4000</ind><dep>240</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>0.00</x-m>
 			<y-m>-0.0694</y-m>
@@ -73,8 +76,11 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>needle.2</object-name>
-		<property>controls/gear/brake-left</property>
-		<factor>180</factor>
+		<property>systems/hydraulics/brakes/sys-2-psi-needle</property>
+		<interpolation>
+			<entry><ind>   0</ind><dep>  0</dep></entry>
+			<entry><ind>4000</ind><dep>240</dep></entry>
+		</interpolation>
 		<center>
 			<x-m>0.00</x-m>
 			<y-m>-0.0694</y-m>

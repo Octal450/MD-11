@@ -5,6 +5,10 @@
 
 <system name="MD-11: Hydraulics">
 	
+	<property value="0">fcs/left-brake-actuator-feedback</property>
+	<property value="0">fcs/left-brake-input-feedback</property>
+	<property value="0">fcs/right-brake-actuator-feedback</property>
+	<property value="0">fcs/right-brake-input-feedback</property>
 	<property value="500">/systems/hydraulics/sys-incr-rate</property> <!-- 2 seconds per 1000 psi -->
 	<property value="0">/systems/hydraulics/l-eng-1-pump-psi</property>
 	<property value="0">/systems/hydraulics/l-eng-2-pump-psi</property>
@@ -911,6 +915,101 @@
 				/systems/hydraulics/sys-3-qty ge 1.0
 			</test>
 		</switch>
+		
+		<!-- Brake System -->
+		<fcs_function name="/systems/hydraulics/brakes/left-error">
+			<function>
+				<abs>
+					<difference>
+						<property>fcs/left-brake-actuator-feedback</property>
+						<property>fcs/left-brake-input-feedback</property>
+					</difference>
+				</abs>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/hydraulics/brakes/right-error">
+			<function>
+				<abs>
+					<difference>
+						<property>fcs/right-brake-actuator-feedback</property>
+						<property>fcs/right-brake-input-feedback</property>
+					</difference>
+				</abs>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/hydraulics/brakes/sys-decr-rate">
+			<default value="145"/> <!-- About 10 full depress and releases from nominal PSI -->
+			<test logic="AND" value="0">
+				/systems/hydraulics/brakes/left-error le 0.01
+				/systems/hydraulics/brakes/right-error le 0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/hydraulics/brakes/sys-1-psi-cmd">
+			<function>
+				<difference>
+					<property>/systems/hydraulics/sys-1-psi</property>
+					<product>
+						<property>fcs/left-brake-actuator-feedback</property>
+						<value>45</value>
+					</product>
+					<product>
+						<property>fcs/right-brake-actuator-feedback</property>
+						<value>50</value>
+					</product>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>4000</max>
+			</clipto>
+		</fcs_function>
+		
+		<actuator name="/systems/hydraulics/brakes/sys-1-psi">
+			<input>/systems/hydraulics/brakes/sys-1-psi-cmd</input>
+			<rate_limit sense="incr">/systems/hydraulics/sys-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/hydraulics/brakes/sys-decr-rate</rate_limit>
+			<output>/systems/hydraulics/brakes/sys-1-psi-debug</output>
+		</actuator>
+		
+		<lag_filter name="/systems/hydraulics/brakes/sys-1-psi-needle">
+			<input>/systems/hydraulics/brakes/sys-1-psi</input>
+			<c1>10</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/hydraulics/brakes/sys-2-psi-cmd">
+			<function>
+				<difference>
+					<property>/systems/hydraulics/sys-3-psi</property> <!-- Not a typo Brake System 2 is powered by Hydraulic System 3 -->
+					<product>
+						<property>fcs/left-brake-actuator-feedback</property>
+						<value>50</value>
+					</product>
+					<product>
+						<property>fcs/right-brake-actuator-feedback</property>
+						<value>55</value>
+					</product>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>4000</max>
+			</clipto>
+		</fcs_function>
+		
+		<actuator name="/systems/hydraulics/brakes/sys-2-psi">
+			<input>/systems/hydraulics/brakes/sys-2-psi-cmd</input>
+			<rate_limit sense="incr">/systems/hydraulics/sys-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/hydraulics/brakes/sys-decr-rate</rate_limit>
+			<output>/systems/hydraulics/brakes/sys-2-psi-debug</output>
+		</actuator>
+		
+		<lag_filter name="/systems/hydraulics/brakes/sys-2-psi-needle">
+			<input>/systems/hydraulics/brakes/sys-2-psi</input>
+			<c1>10</c1>
+		</lag_filter>
 	
 	</channel>
 	

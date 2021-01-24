@@ -450,10 +450,10 @@
 			</volume>
 		</touch>
 		
-		<!-- Custom GPWS -->
+		<!-- Custom CAWS -->
 	    <gpws>
 			<name>2500</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/2500.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/2500.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -487,7 +487,7 @@
 		</gpws>
 	    <gpws>
 			<name>1000</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/1000.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/1000.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -521,7 +521,7 @@
 		</gpws>
 	    <gpws>
 			<name>500</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/500.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/500.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -559,7 +559,7 @@
 		</gpws>
 	    <gpws>
 			<name>400</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/400.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/400.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -597,7 +597,7 @@
 		</gpws>
 	    <gpws>
 			<name>300</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/300.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/300.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -635,7 +635,7 @@
 		</gpws>
 	    <gpws>
 			<name>200</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/200.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/200.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -673,7 +673,7 @@
 		</gpws>
 	    <gpws>
 			<name>100</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/100.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/100.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -707,7 +707,7 @@
 		</gpws>
 	    <gpws>
 			<name>50</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/50.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/50.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -741,7 +741,7 @@
 		</gpws>
 	    <gpws>
 			<name>40</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/40.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/40.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -775,7 +775,7 @@
 		</gpws>
 	    <gpws>
 			<name>30</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/30.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/30.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -809,7 +809,7 @@
 		</gpws>
 	    <gpws>
 			<name>20</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/20.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/20.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -843,7 +843,7 @@
 		</gpws>
 	    <gpws>
 			<name>10</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/10.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/10.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -877,7 +877,7 @@
 		</gpws>
 	    <gpws>
 			<name>Approaching Minimum</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/approaching-minimum.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/approaching-minimum.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -907,7 +907,7 @@
 		</gpws>
 	    <gpws>
 			<name>Minimum</name>
-			<path>Aircraft/MD-11/Sounds/GPWS/minimum.wav</path>
+			<path>Aircraft/MD-11/Sounds/CAWS/minimum.wav</path>
 			<mode>once</mode>
 			<condition>
 				<and>
