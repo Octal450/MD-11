@@ -891,7 +891,7 @@
 			<test value="0.0555556"> <!-- About 18 sec -->
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
-			<test logic="AND" value="0.0166667"> <!-- About 45 sec -->
+			<test logic="AND" value="0.0166667"> <!-- About 60 sec -->
 				/controls/hydraulics/switches/gear-gravity-ext eq 1
 				/accelerations/pilot-g ge 0.5
 			</test>
@@ -1002,7 +1002,7 @@
 			<test value="0.0625"> <!-- About 16 sec -->
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
-			<test logic="AND" value="0.0166667"> <!-- About 45 sec -->
+			<test logic="AND" value="0.0181818"> <!-- About 55 sec -->
 				/controls/hydraulics/switches/gear-gravity-ext eq 1
 				/accelerations/pilot-g ge 0.5
 			</test>
