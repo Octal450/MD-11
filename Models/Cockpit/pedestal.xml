@@ -1478,4 +1478,18 @@
 		</axis>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>GearHornOff</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/warnings/gear-warning-inhibit</property>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
 </PropertyList>

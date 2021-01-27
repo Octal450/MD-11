@@ -689,6 +689,9 @@
 			<seatbelt-sign type="double">0</seatbelt-sign>
 			<seatbelt-sign-status type="bool">0</seatbelt-sign-status>
 		</switches>
+		<warnings n="0">
+			<gear-warning-inhibit type="bool">0</gear-warning-inhibit>
+		</warnings>
 	</controls>
 	
 	<engines n="0">
