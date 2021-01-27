@@ -250,6 +250,7 @@
 	
 	<channel name="Warnings" execrate="8">
 		
+		<!-- Gear Warning -->
 		<switch name="/systems/warnings/gear-warning-idle">
 			<default value="0"/>
 			<test logic="AND" value="1">
