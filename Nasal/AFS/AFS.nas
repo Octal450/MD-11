@@ -1121,10 +1121,14 @@ var ITAF = {
 		}
 	},
 	checkLnav: func(t) {
-		if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue() and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
+		FPLN.activeTemp = FPLN.active.getBoolValue();
+		if (FPLN.num.getValue() > 0 and FPLN.activeTemp and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
 			me.activateLnav();
-		} else if (FPLN.active.getBoolValue() and Output.lat.getValue() != 1 and t != 1) {
+		} else if (FPLN.activeTemp and Output.lat.getValue() != 1 and t != 1) {
 			me.updateLnavArm(1);
+		}
+		if (!FPLN.activeTemp) {
+			me.updateLnavArm(0);
 		}
 	},
 	checkFlch: func(a) {
@@ -1145,8 +1149,9 @@ var ITAF = {
 					me.updateLocArm(1);
 				}
 			}
-		} else { # Prevent bad behavior due to FG not updating it when not in range
-			Radio.signalQuality[Radio.radioSel].setValue(0);
+		} else {
+			Radio.signalQuality[Radio.radioSel].setValue(0); # Prevent bad behavior due to FG not updating it when not in range
+			me.updateLocArm(0);
 		}
 	},
 	checkAppr: func(t) {
@@ -1160,8 +1165,9 @@ var ITAF = {
 					me.updateApprArm(1);
 				}
 			}
-		} else { # Prevent bad behavior due to FG not updating it when not in range
-			Radio.signalQuality[Radio.radioSel].setValue(0);
+		} else {
+			Radio.signalQuality[Radio.radioSel].setValue(0); # Prevent bad behavior due to FG not updating it when not in range
+			me.updateApprArm(0);
 		}
 	},
 	checkRadioRevision: func(l, v) { # Revert mode if signal lost
