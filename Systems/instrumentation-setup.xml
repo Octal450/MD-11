@@ -114,30 +114,30 @@
 		<number>0</number>
 	</mk-viii>
 	
-	<nav-radio> <!-- ILS -->
-		<name>nav</name>
-		<number>0</number>
-	</nav-radio>
-	
 	<nav-radio> <!-- VOR 1 -->
 		<name>nav</name>
-		<number>1</number>
+		<number>0</number>
 	</nav-radio>
 	
 	<nav-radio> <!-- VOR 2 -->
 		<name>nav</name>
-		<number>2</number>
+		<number>1</number>
 	</nav-radio>
 	
-	<slip-skid-ball>
-		<name>slip-skid-ball</name>
-		<number>0</number>
-	</slip-skid-ball>
+	<nav-radio> <!-- ILS -->
+		<name>nav</name>
+		<number>2</number>
+	</nav-radio>
 	
 	<radar>
 		<name>wxradar</name>
 		<number>0</number>
 	</radar>
+	
+	<slip-skid-ball>
+		<name>slip-skid-ball</name>
+		<number>0</number>
+	</slip-skid-ball>
 	
 	<tcas>
 		<name>tcas</name>
