@@ -290,7 +290,7 @@
 			<condition>
 				<less-than>
 					<property>/velocities/airspeed-kt</property>
-					<value>60</value>
+					<value>80</value>
 				</less-than>
 			</condition>
 			<value>0</value>
