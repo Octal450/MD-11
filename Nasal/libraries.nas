@@ -1,9 +1,11 @@
 # McDonnell Douglas MD-11 Main Libraries
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
+print("");
 print("------------------------------------------------");
-print("Copyright (c) 2017-2020 Josh Davidson (Octal450)");
+print("Copyright (c) 2017-2021 Josh Davidson (Octal450)");
 print("------------------------------------------------");
+print("");
 
 setprop("/sim/menubar/default/menu[0]/item[0]/enabled", 0);
 setprop("/sim/menubar/default/menu[2]/item[0]/enabled", 0);
@@ -12,32 +14,39 @@ setprop("/sim/menubar/default/menu[3]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[9]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
+setprop("/sim/multiplay/visibility-range-nm", 130);
 
-var systemsInit = func {
+var systemsInit = func() {
+	systems.APU.init();
 	systems.BRAKES.init();
 	systems.ELEC.init();
+	systems.ENGINE.init();
 	systems.FADEC.init();
 	systems.FCTL.init();
 	systems.FUEL.init();
 	systems.HYD.init();
+	systems.IGNITION.init();
 	systems.IRS.init();
 	systems.PNEU.init();
-	systems.eng_init();
-	afs.ITAF.init(0);
-	lightsLoop.start();
-	systemsLoop.start();
+	afs.ITAF.init();
+	instruments.XPDR.init();
 	libraries.variousReset();
 }
 
-setlistener("sim/signals/fdm-initialized", func {
+var initDone = 0;
+setlistener("/sim/signals/fdm-initialized", func() {
 	systemsInit();
+	systemsLoop.start();
+	lightsLoop.start();
+	canvas_pfd.init();
+	canvas_ead.init();
+	canvas_sd.init();
+	initDone = 1;
 });
 
-var systemsLoop = maketimer(0.1, func {
-	systems.ELEC.loop();
-	systems.IRS.loop();
+var systemsLoop = maketimer(0.1, func() {
 	systems.FADEC.loop();
-	systems.eng_loop();
+	systems.DUController.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
 		pts.Systems.Shake.effect.setBoolValue(1);
@@ -51,7 +60,7 @@ var systemsLoop = maketimer(0.1, func {
 		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
 	}
 	
-	if ((pts.Velocities.groundspeedKt.getValue() >= 2) or !pts.Controls.Gear.brakeParking.getBoolValue()) {
+	if ((pts.Velocities.groundspeedKt.getValue() >= 2 or !pts.Controls.Gear.brakeParking.getBoolValue()) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
 		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
 			systems.ELEC.Source.Ext.cart.setBoolValue(0);
 			systems.ELEC.Switch.extPwr.setBoolValue(0);
@@ -61,34 +70,21 @@ var systemsLoop = maketimer(0.1, func {
 			systems.PNEU.Switch.groundAir.setBoolValue(0);
 		}
 	}
-
-	if ((getprop("/engines/engine[0]/state") == 2 or getprop("/engines/engine[0]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[8]/contents-lbs") < 1) {
-		systems.cutoff_one();
-	}
-	if ((getprop("/engines/engine[1]/state") == 2 or getprop("/engines/engine[1]/state") == 3) and (getprop("/fdm/jsbsim/propulsion/tank[9]/contents-lbs") < 1 or systems.HYD.Fail.catastrophicAft.getBoolValue())) {
-		systems.cutoff_two();
-	}
-	if ((getprop("/engines/engine[2]/state") == 2 or getprop("/engines/engine[2]/state") == 3) and getprop("/fdm/jsbsim/propulsion/tank[10]/contents-lbs") < 1) {
-		systems.cutoff_three();
-	}
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {
 		pts.Sim.Replay.wasActive.setBoolValue(1);
 	} else if (!pts.Sim.Replay.replayState.getBoolValue() and pts.Sim.Replay.wasActive.getBoolValue()) {
 		pts.Sim.Replay.wasActive.setBoolValue(0);
-		acconfig.colddark();
+		acconfig.PANEL.coldDark();
 		gui.popupTip("Replay Ended: Setting Cold and Dark state...");
 	}
 });
 
-# Prevent gear up accidently while WoW
-setlistener("/controls/gear/gear-down", func {
-	if (!pts.Controls.Gear.gearDown.getBoolValue()) {
-		if (pts.Gear.wow[0].getBoolValue() or pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) {
-			pts.Controls.Gear.gearDown.setBoolValue(1);
-		}
+setlistener("/fdm/jsbsim/position/wow", func() {
+	if (initDone) {
+		instruments.XPDR.airGround();
 	}
-});
+}, 0, 0);
 
 canvas.Text._lastText = canvas.Text["_lastText"];
 canvas.Text.setText = func(text) {
@@ -99,14 +95,14 @@ canvas.Text.setText = func(text) {
 	me.set("text", typeof(text) == "scalar" ? text : "");
 };
 canvas.Element._lastVisible = nil;
-canvas.Element.show = func {
+canvas.Element.show = func() {
 	if (1 == me._lastVisible) {
 		return me;
 	}
 	me._lastVisible = 1;
 	me.setBool("visible", 1);
 };
-canvas.Element.hide = func {
+canvas.Element.hide = func() {
 	if (0 == me._lastVisible) {
 		return me;
 	}
@@ -130,7 +126,7 @@ var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1
 var beacon_switch = props.globals.getNode("/controls/lighting/beacon", 2);
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
 
-var lightsLoop = maketimer(0.2, func {
+var lightsLoop = maketimer(0.2, func() {
 	# Logo and navigation lights
 	setting = getprop("/controls/lighting/nav-lights");
 	
@@ -171,6 +167,67 @@ controls.flapsDown = func(step) {
 	}
 }
 
+var leverCockpit = 3;
+controls.gearDown = func(d) { # Requires a mod-up
+	pts.Fdm.JSBsim.Position.wowTemp = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+	leverCockpit = pts.Controls.Gear.leverCockpit.getValue();
+	if (d < 0) {
+		if (pts.Fdm.JSBsim.Position.wowTemp) {
+			if (leverCockpit == 3) {
+				pts.Controls.Gear.leverCockpit.setValue(2);
+			} else if (leverCockpit == 0) {
+				pts.Controls.Gear.leverCockpit.setValue(1);
+			}
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		}
+	} else if (d > 0) {
+		if (pts.Fdm.JSBsim.Position.wowTemp) {
+			if (leverCockpit == 3) {
+				pts.Controls.Gear.leverCockpit.setValue(2);
+			} else if (leverCockpit == 0) {
+				pts.Controls.Gear.leverCockpit.setValue(1);
+			}
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		}
+	} else {
+		if (leverCockpit == 2) {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		} else if (leverCockpit == 1) {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		}
+	}
+}
+
+controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
+	if (d) {
+		if (pts.Controls.Gear.leverCockpit.getValue() >= 2) {
+			controls.gearDown(-1);
+		} else {
+			controls.gearDown(1);
+		}
+	} else {
+		controls.gearDown(0);
+	}
+}
+
+controls.gearToggle = func() {
+	if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+		if (pts.Controls.Gear.leverCockpit.getValue() >= 2) {
+			pts.Controls.Gear.leverCockpit.setValue(0);
+		} else {
+			pts.Controls.Gear.leverCockpit.setValue(3);
+		}
+	}
+}
+
+controls.gearTogglePosition = func(d) {
+	if (d) {
+		controls.gearToggle();
+	}
+}
+
 controls.stepSpoilers = func(step) {
 	pts.Controls.Flight.speedbrakeArm.setBoolValue(0);
 	if (step == 1) {
@@ -180,7 +237,7 @@ controls.stepSpoilers = func(step) {
 	}
 }
 
-var deploySpeedbrake = func {
+var deploySpeedbrake = func() {
 	pts.Controls.Flight.speedbrakeTemp = pts.Controls.Flight.speedbrake.getValue();
 	if (pts.Gear.wow[0].getBoolValue()) {
 		if (pts.Controls.Flight.speedbrakeTemp < 0.2) {
@@ -203,7 +260,7 @@ var deploySpeedbrake = func {
 	}
 }
 
-var retractSpeedbrake = func {
+var retractSpeedbrake = func() {
 	pts.Controls.Flight.speedbrakeTemp = pts.Controls.Flight.speedbrake.getValue();
 	if (pts.Gear.wow[0].getBoolValue()) {
 		if (pts.Controls.Flight.speedbrakeTemp > 0.6) {
@@ -236,12 +293,12 @@ var slewProp = func(prop, delta) {
 }
 
 controls.elevatorTrim = func(d) {
-	if (systems.HYD.Psi.sys1.getValue() >= 1500 or systems.HYD.Psi.sys3.getValue() >= 1500) {
-		slewProp("/controls/flight/elevator-trim", d * 0.0162); # 0.0162 is the rate in JSB normalized (0.25 / 15.5)
+	if (systems.HYD.Psi.sys1.getValue() >= 2200 or systems.HYD.Psi.sys3.getValue() >= 2200) {
+		slewProp("/controls/flight/elevator-trim", d * 0.0193548); # 0.0162 is the rate in JSB normalized (0.3 / 15.5)
 	}
 }
 
-setlistener("/controls/flight/elevator-trim", func {
+setlistener("/controls/flight/elevator-trim", func() {
 	if (pts.Controls.Flight.elevatorTrim.getValue() > 0.064516) {
 		pts.Controls.Flight.elevatorTrim.setValue(0.064516);
 	}
@@ -264,37 +321,33 @@ if (pts.Controls.Flight.autoCoordination.getBoolValue()) {
 	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(0);
 }
 
-setlistener("/controls/flight/auto-coordination", func {
+setlistener("/controls/flight/auto-coordination", func() {
 	pts.Controls.Flight.autoCoordination.setBoolValue(0);
 	print("System: Auto Coordination has been turned off as it is not compatible with the flight control system of this aircraft.");
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
 
-var _shakeFlag = 0;
-var hd_t = 360;
+var viewNumberRaw = 0;
+var shakeFlag = 0;
 var resetView = func() {
-	if (!pts.Sim.CurrentView.viewNumber.getBoolValue()) {
+	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
+	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 110)) {
 		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
-			_shakeFlag = 1;
+			shakeFlag = 1;
 			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);
 		} else {
-			_shakeFlag = 0;
+			shakeFlag = 0;
 		}
 		
-		hd_t = 360;
-		if (pts.Sim.CurrentView.headingOffsetDeg.getValue() < 180) {
-			hd_t = hd_t - 360;
-		}
+		pts.Sim.CurrentView.fieldOfView.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/default-field-of-view-deg").getValue());
+		pts.Sim.CurrentView.headingOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/heading-offset-deg").getValue());
+		pts.Sim.CurrentView.pitchOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/pitch-offset-deg").getValue());
+		pts.Sim.CurrentView.rollOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/roll-offset-deg").getValue());
+		pts.Sim.CurrentView.xOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/x-offset-m").getValue());
+		pts.Sim.CurrentView.yOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/y-offset-m").getValue());
+		pts.Sim.CurrentView.zOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/z-offset-m").getValue());
 		
-		interpolate("sim/current-view/field-of-view", 82, 0.33);
-		interpolate("sim/current-view/heading-offset-deg", hd_t, 0.33);
-		interpolate("sim/current-view/pitch-offset-deg", -14.5, 0.33);
-		interpolate("sim/current-view/roll-offset-deg", 0, 0.33);
-		interpolate("sim/current-view/x-offset-m", -0.5225, 0.33); 
-		interpolate("sim/current-view/y-offset-m", 1.3201, 0.33); 
-		interpolate("sim/current-view/z-offset-m", -26.8, 0.33);
-		
-		if (_shakeFlag) {
+		if (shakeFlag) {
 			pts.Sim.Rendering.Headshake.enabled.setBoolValue(1);
 		}
 	} 
@@ -307,7 +360,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.btn1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.btn1.setBoolValue(0);
 		}, 0.2);
 	},
@@ -316,7 +369,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.btn3.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.btn3.setBoolValue(0);
 		}, 0.2);
 	},
@@ -325,7 +378,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.knb1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.knb1.setBoolValue(0);
 		}, 0.2);
 	},
@@ -334,7 +387,7 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.ohBtn.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.ohBtn.setBoolValue(0);
 		}, 0.2);
 	},
@@ -343,33 +396,43 @@ var Sound = {
 			return;
 		}
 		pts.Sim.Sound.switch1.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.switch1.setBoolValue(0);
 		}, 0.2);
 	},
 };
 
-setlistener("/controls/switches/seatbelt-sign-status", func {
+setlistener("/controls/flight/flaps-input", func() {
+	if (pts.Sim.Sound.flapsClick.getBoolValue()) {
+		return;
+	}
+	pts.Sim.Sound.flapsClick.setBoolValue(1);
+	settimer(func() {
+		pts.Sim.Sound.flapsClick.setBoolValue(0);
+	}, 0.4);
+}, 0, 0);
+
+setlistener("/controls/switches/seatbelt-sign-status", func() {
 	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;
 	}
 	if (systems.ELEC.Generic.efis.getValue() >= 25) {
 		pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(1); # Prevent no smoking sound from playing at same time
 		pts.Sim.Sound.seatbeltSign.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.seatbeltSign.setBoolValue(0);
 			pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(0);
 		}, 2);
 	}
 }, 0, 0);
 
-setlistener("/controls/switches/no-smoking-sign-status", func {
+setlistener("/controls/switches/no-smoking-sign-status", func() {
 	if (pts.Sim.Sound.noSmokingSign.getBoolValue()) {
 		return;
 	}
 	if (systems.ELEC.Generic.efis.getValue() >= 25 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
 		pts.Sim.Sound.noSmokingSign.setBoolValue(1);
-		settimer(func {
+		settimer(func() {
 			pts.Sim.Sound.noSmokingSign.setBoolValue(0);
 		}, 1);
 	}

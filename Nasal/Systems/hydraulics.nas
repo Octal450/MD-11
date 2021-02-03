@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Hydraulic System
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
 var HYD = {
 	Fail: {
@@ -21,7 +21,7 @@ var HYD = {
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/hydraulics/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/hydraulics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
 	Psi: {
@@ -50,6 +50,7 @@ var HYD = {
 	Switch: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/switches/aux-pump-1"),
 		auxPump2: props.globals.getNode("/controls/hydraulics/switches/aux-pump-2"),
+		gearGravityExt: props.globals.getNode("/controls/hydraulics/switches/gear-gravity-ext"),
 		lPump1: props.globals.getNode("/controls/hydraulics/switches/l-pump-1"),
 		lPump2: props.globals.getNode("/controls/hydraulics/switches/l-pump-2"),
 		lPump3: props.globals.getNode("/controls/hydraulics/switches/l-pump-3"),
@@ -62,12 +63,13 @@ var HYD = {
 	},
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Switch.auxPump1.setBoolValue(0);
 		me.Switch.auxPump2.setBoolValue(0);
+		me.Switch.gearGravityExt.setBoolValue(0);
 		me.Switch.lPump1.setBoolValue(1);
 		me.Switch.lPump2.setBoolValue(1);
 		me.Switch.lPump3.setBoolValue(1);
@@ -81,7 +83,7 @@ var HYD = {
 		manualHydLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Fail.auxPump1.setBoolValue(0);
 		me.Fail.auxPump2.setBoolValue(0);
 		me.Fail.catastrophicAft.setBoolValue(0);

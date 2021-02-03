@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -110,9 +110,9 @@
 	
 	<filter>
 		<name>Minimums Minus 50</name>
+		<update-interval-secs>0.1</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.1</update-interval-secs>
 		<input> 
 			<expression>
 				<difference>
@@ -126,9 +126,9 @@
 	
 	<filter>
 		<name>Minimums Plus 50</name>
+		<update-interval-secs>0.1</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.1</update-interval-secs>
 		<input>
 			<expression>
 				<sum>
@@ -142,9 +142,9 @@
 	
 	<filter>
 		<name>Minimums Plus 100</name>
+		<update-interval-secs>0.1</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.1</update-interval-secs>
 		<input>
 			<expression>
 				<sum>
@@ -173,118 +173,38 @@
 	</filter>
 	
 	<filter>
-		<name>V/S PFD</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input>
-			<expression>
-				<div>
-					<floor>
-						<div>
-							<sum>
-								<abs><property>/it-autoflight/internal/vert-speed-fpm</property></abs>
-								<value>50</value>
-							</sum>
-							<value>100</value>
-						</div>
-					</floor>
-					<value>10</value>
-				</div>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/vert-speed-fpm-pfd</output>
-		<min>0</min>
-		<max>9.9</max>
-	</filter>
-	
-	<filter>
-		<name>VS Abs</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>
-			<expression>
-				<abs>
-					<property>/it-autoflight/input/vs</property>
-				</abs>
-			</expression>
-		</input>
-		<output>/it-autoflight/input/vs-abs</output>
-	</filter>
-	
-	<filter>
-		<name>FPA Abs</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>
-			<expression>
-				<abs>
-					<property>/it-autoflight/input/fpa</property>
-				</abs>
-			</expression>
-		</input>
-		<output>/it-autoflight/input/fpa-abs</output>
-	</filter>
-	
-	<filter>
-		<name>FF 1</name>
-		<type>exponential</type>
-		<input>/engines/engine[0]/fuel-flow_pph</input>
-		<output>/engines/engine[0]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>FF 2</name>
-		<type>exponential</type>
-		<input>/engines/engine[1]/fuel-flow_pph</input>
-		<output>/engines/engine[1]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>FF 3</name>
-		<type>exponential</type>
-		<input>/engines/engine[2]/fuel-flow_pph</input>
-		<output>/engines/engine[2]/fuel-flow_actual</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
 		<name>IAS/Mach</name>
+		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/spd-kts</property>
+			<property>/it-autoflight/internal/kts</property>
 		</input>
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
+					<property>/it-autoflight/internal/kts-mach</property>
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/input/spd-mach</property>
+			<property>/it-autoflight/internal/mach</property>
 		</input>
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>
 	
 	<filter>
 		<name>Gear Lever</name>
+		<update-interval-secs>0.02</update-interval-secs>
 		<type>noise-spike</type>
-		<update-interval-secs type="double">0.02</update-interval-secs>
-		<input>/controls/gear/gear-down</input>
-		<output>/controls/gear/gearlever/position-norm</output>
-		<max-rate-of-change>1.5</max-rate-of-change>
+		<input>/controls/gear/lever-cockpit</input>
+		<output>/controls/gear/lever-animation</output>
+		<max-rate-of-change>4.5</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -297,9 +217,9 @@
 	
 	<filter>
 		<name>LBtoKG</name>
+		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<product>
 				<property>fdm/jsbsim/inertia/weight-lbs</property>
@@ -311,9 +231,9 @@
 	
 	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
+		<update-interval-secs>0.075</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.075</update-interval-secs>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -343,6 +263,71 @@
 		<max>300</max>
 	</filter>
 	
+	<!-- Because overwriting from JSBsim doesn't work -->
+	<filter>
+		<name>Engine 1 Cutoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/cutoff-1</input>
+		<output>/controls/engines/engine[0]/cutoff</output>
+	</filter>
+	
+	<filter>
+		<name>Engine 2 Cutoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/cutoff-2</input>
+		<output>/controls/engines/engine[1]/cutoff</output>
+	</filter>
+	
+	<filter>
+		<name>Engine 3 Cutoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/cutoff-3</input>
+		<output>/controls/engines/engine[2]/cutoff</output>
+	</filter>
+	
+	<filter>
+		<name>APU Cutoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/apu/cutoff</input>
+		<output>/controls/engines/engine[3]/cutoff</output>
+	</filter>
+	
+	<filter>
+		<name>Engine 1 Starter</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/starter-jsb-1</input>
+		<output>/controls/engines/engine[0]/starter</output>
+	</filter>
+	
+	<filter>
+		<name>Engine 2 Starter</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/starter-jsb-2</input>
+		<output>/controls/engines/engine[1]/starter</output>
+	</filter>
+	
+	<filter>
+		<name>Engine 3 Starter</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/ignition/starter-jsb-3</input>
+		<output>/controls/engines/engine[2]/starter</output>
+	</filter>
+	
+	<filter>
+		<name>APU Starter</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/systems/apu/starter</input>
+		<output>/controls/engines/engine[3]/starter</output>
+	</filter>
+	
 	<!-- GPWS Controller -->
 	<logic>
 		<!-- Smewhat confusing : this input is not 'are the flaps in landing configration', but rather,
@@ -356,270 +341,5 @@
 		</input>
 		<output>/instrumentation/mk-viii/inputs/discretes/landing-flaps</output>
 	</logic>
-	
-	<!-- TODO: Rewrite this -->
-	<filter>
-		<name>EGT 1</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<and>
-					<equals>
-						<property>/engines/engine[0]/state</property>
-						<value>3</value>
-					</equals>
-					<greater-than>
-						<property>/engines/engine[0]/n1-actual</property>
-						<value>23</value>
-					</greater-than>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind> 23.7</ind><dep>342</dep></entry>
-					<entry><ind>118.0</ind><dep>620</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind> 23.8</ind><dep>323</dep></entry>
-					<entry><ind>118.0</ind><dep>510</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/engines/engine[0]/egt-actual</output>
-	</filter>
-	
-	<filter>
-		<name>EGT 2</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<and>
-					<equals>
-						<property>/engines/engine[1]/state</property>
-						<value>3</value>
-					</equals>
-					<greater-than>
-						<property>/engines/engine[1]/n1-actual</property>
-						<value>23</value>
-					</greater-than>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind> 23.7</ind><dep>342</dep></entry>
-					<entry><ind>118.0</ind><dep>620</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind> 23.8</ind><dep>323</dep></entry>
-					<entry><ind>118.0</ind><dep>510</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/engines/engine[1]/egt-actual</output>
-	</filter>
-	
-	<filter>
-		<name>EGT 3</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<and>
-					<equals>
-						<property>/engines/engine[2]/state</property>
-						<value>3</value>
-					</equals>
-					<greater-than>
-						<property>/engines/engine[2]/n1-actual</property>
-						<value>23</value>
-					</greater-than>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[2]/n1-actual</property>
-					<entry><ind> 23.7</ind><dep>342</dep></entry>
-					<entry><ind>118.0</ind><dep>620</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[2]/n1-actual</property>
-					<entry><ind> 23.8</ind><dep>323</dep></entry>
-					<entry><ind>118.0</ind><dep>510</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/engines/engine[2]/egt-actual</output>
-	</filter>
-	
-	<filter>
-		<name>EGT 1</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[0]/egt-actual</property>
-					<entry><ind>   0</ind><dep>-134</dep></entry>
-					<entry><ind>1000</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[0]/egt-actual</property>
-					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>600</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/DU/EAD/EGT[0]</output>
-	</filter>
-	
-	<filter>
-		<name>EGT 2</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[1]/egt-actual</property>
-					<entry><ind>   0</ind><dep>-134</dep></entry>
-					<entry><ind>1000</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[1]/egt-actual</property>
-					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>600</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/DU/EAD/EGT[1]</output>
-	</filter>
-	
-	<filter>
-		<name>EGT 3</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>GE</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[2]/egt-actual</property>
-					<entry><ind>   0</ind><dep>-134</dep></entry>
-					<entry><ind>1000</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/options/eng</property>
-					<value>PW</value>
-				</equals>
-			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[2]/egt-actual</property>
-					<entry><ind>  0</ind><dep>-134</dep></entry>
-					<entry><ind>600</ind><dep>  40</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/DU/EAD/EGT[2]</output>
-	</filter>
 
 </PropertyList>

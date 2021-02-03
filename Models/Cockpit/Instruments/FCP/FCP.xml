@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -78,7 +78,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>SPD.knob</object-name>
-		<property>it-autoflight/custom/spd-knb</property>
+		<property>instrumentation/fcp/spd-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -95,7 +95,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HDG.knob</object-name>
-		<property>it-autoflight/custom/hdg-knb</property>
+		<property>instrumentation/fcp/hdg-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ALT.knob</object-name>
-		<property>it-autoflight/custom/alt-knb</property>
+		<property>instrumentation/fcp/alt-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -129,7 +129,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>VS.knob</object-name>
-		<property>it-autoflight/custom/vs-knb</property>
+		<property>instrumentation/fcp/vs-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>-25.7354</x-m>
@@ -158,7 +158,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<not>
-					<property>it-autoflight/custom/kts-mach</property>
+					<property>it-autoflight/input/kts-mach</property>
 				</not>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -169,7 +169,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led1</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -182,7 +182,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led2</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -195,7 +195,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>IAS.led3</object-name>
-		<property>it-autoflight/custom/kts-sel</property>
+		<property>it-autoflight/input/kts</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -214,7 +214,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/custom/kts-mach</property>
+				<property>it-autoflight/input/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
 		</condition>
@@ -223,9 +223,9 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led1</object-name>
-		<property>it-autoflight/custom/mach-sel</property>
-		<factor>1</factor>
-		<step>0.1</step>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.001</factor>
+		<step>100</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -236,9 +236,9 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led2</object-name>
-		<property>it-autoflight/custom/mach-sel</property>
-		<factor>10.0</factor>
-		<step>0.01</step>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.01</factor>
+		<step>10</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -249,9 +249,9 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>MACH.led3</object-name>
-		<property>it-autoflight/custom/mach-sel</property>
-		<factor>100.0</factor>
-		<step>0.001</step>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.1</factor>
+		<step>1</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -293,7 +293,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/custom/show-hdg</property>
+				<property>it-autoflight/output/show-hdg</property>
 			</and>
 		</condition>
 	</animation>
@@ -304,7 +304,7 @@
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
-				<not><property>it-autoflight/custom/show-hdg</property></not>
+				<not><property>it-autoflight/output/show-hdg</property></not>
 			</and>
 		</condition>
 	</animation>
@@ -312,7 +312,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led1</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -325,7 +325,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led2</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -338,7 +338,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>HDG.led3</object-name>
-		<property>it-autoflight/custom/hdg-sel</property>
+		<property>it-autoflight/input/hdg</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -357,7 +357,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/custom/vs-fpa</property>
+					<property>it-autoflight/output/vs-fpa</property>
 					<value>0</value>
 				</equals>
 			</and>
@@ -414,6 +414,48 @@
 					<value>-0.01</value>
 				</less-than>
 			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<and>
+				<property>systems/electrical/outputs/fcp-power</property>
+				<equals>
+					<property>it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+					<property>it-autoflight/input/vs</property>
+					<value>-0.01</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.ledminus</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<less-than>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</less-than>
 		</condition>
 	</animation>
 
@@ -476,7 +518,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/custom/vs-fpa</property>
+					<property>it-autoflight/output/vs-fpa</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -542,9 +584,32 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-<!-- Altitude -->
-
+	
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Second Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Altitude -->
 	<animation>
 		<type>select</type>
 		<object-name>alt.ind</object-name>
@@ -622,13 +687,12 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-
-<!-- Knob push and pull -->
+	
+	<!-- Knob push and pull -->
 	<animation>
 		<type>translate</type>
 		<object-name>ALT.knob</object-name>
-		<property>controls/switches/alt-knob</property>
+		<property>instrumentation/fcp/alt-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -640,7 +704,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HDG.knob</object-name>
-		<property>controls/switches/hdg-knob</property>
+		<property>instrumentation/fcp/hdg-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -652,7 +716,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>SPD.knob</object-name>
-		<property>controls/switches/spd-knob</property>
+		<property>instrumentation/fcp/spd-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -664,7 +728,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet.L</object-name>
-		<property>controls/switches/baro-l-knob</property>
+		<property>instrumentation/fcp/baro-l-translate</property>
 		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
@@ -676,7 +740,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet.R</object-name>
-		<property>controls/switches/baro-r-knob</property>
+		<property>instrumentation/fcp/baro-r-translate</property>
 		<factor>-0.003</factor>
 		<axis>
 			<x>1</x>
@@ -688,7 +752,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>MINS.L</object-name>
-		<property>controls/switches/mins-l-knob</property>
+		<property>instrumentation/fcp/mins-l-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -700,7 +764,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>MINS.R</object-name>
-		<property>controls/switches/mins-r-knob</property>
+		<property>instrumentation/fcp/mins-r-translate</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -709,12 +773,7 @@
 		</axis>
 	</animation>
 
-<!--
-
-###########   HOTSPOTS ###########
-
- -->
-
+	<!-- Clickspots -->
 	<animation>
 		<type>pick</type>
 		<object-name>OVRD1</object-name>			
@@ -759,7 +818,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.IASMach();</script>
+				<script>libraries.apPanel.ktsMach();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -776,7 +835,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGTRK();</script>
+				<script>libraries.apPanel.hdgTrk();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -793,7 +852,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSFPA();</script>
+				<script>libraries.apPanel.vsFpa();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -811,7 +870,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.AUTOFLIGHT();</script>
+				<script>libraries.apPanel.autoflight();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -829,9 +888,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/lat</property>
-				<value>1</value>
+				<command>nasal</command>
+				<script>libraries.apPanel.nav();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -847,9 +905,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>it-autoflight/input/vert</property>
-				<value>2</value>
+				<command>nasal</command>
+				<script>libraries.apPanel.appr();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -869,7 +926,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -877,13 +934,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/spd-knob</property>
+					<property>instrumentation/fcp/spd-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -892,14 +949,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPush();</script>
+				<script>libraries.apPanel.spdPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPull();</script>
+				<script>libraries.apPanel.spdPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -907,19 +964,19 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/spd-knob</property>
+				<property>instrumentation/fcp/spd-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/spd-knob</property>
+					<property>instrumentation/fcp/spd-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDPull();</script>
+				<script>libraries.apPanel.spdPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -930,21 +987,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(1);</script>
+				<script>libraries.apPanel.spdAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(10);</script>
+				<script>libraries.apPanel.spdAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/spd-knb</property>
+				<property>instrumentation/fcp/spd-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -956,21 +1013,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(-1);</script>
+				<script>libraries.apPanel.spdAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.SPDAdjust(-10);</script>
+				<script>libraries.apPanel.spdAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/spd-knb</property>
+				<property>instrumentation/fcp/spd-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -987,7 +1044,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -995,13 +1052,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/hdg-knob</property>
+					<property>instrumentation/fcp/hdg-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1010,14 +1067,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPush();</script>
+				<script>libraries.apPanel.hdgPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPull();</script>
+				<script>libraries.apPanel.hdgPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1025,19 +1082,19 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/hdg-knob</property>
+				<property>instrumentation/fcp/hdg-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/hdg-knob</property>
+					<property>instrumentation/fcp/hdg-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGPull();</script>
+				<script>libraries.apPanel.hdgPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1048,21 +1105,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(1);</script>
+				<script>libraries.apPanel.hdgAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(10);</script>
+				<script>libraries.apPanel.hdgAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-knb</property>
+				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1074,21 +1131,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(-1);</script>
+				<script>libraries.apPanel.hdgAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.HDGAdjust(-10);</script>
+				<script>libraries.apPanel.hdgAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/hdg-knb</property>
+				<property>instrumentation/fcp/hdg-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1132,7 +1189,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.PROF();</script>
+				<script>libraries.apPanel.PROF();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -1152,7 +1209,7 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>-1</value>
 			</binding>
 			<binding>
@@ -1160,13 +1217,13 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/alt-knob</property>
+					<property>instrumentation/fcp/alt-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1175,14 +1232,14 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPush();</script>
+				<script>libraries.apPanel.altPush();</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPull();</script>
+				<script>libraries.apPanel.altPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1190,19 +1247,19 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/alt-knob</property>
+				<property>instrumentation/fcp/alt-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/alt-knob</property>
+					<property>instrumentation/fcp/alt-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTPull();</script>
+				<script>libraries.apPanel.altPull();</script>
 			</binding>
 		</action>
 		<action>
@@ -1213,21 +1270,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(1);</script>
+				<script>libraries.apPanel.altAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(10);</script>
+				<script>libraries.apPanel.altAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/alt-knb</property>
+				<property>instrumentation/fcp/alt-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1239,21 +1296,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(-1);</script>
+				<script>libraries.apPanel.altAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.ALTAdjust(-10);</script>
+				<script>libraries.apPanel.altAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/alt-knb</property>
+				<property>instrumentation/fcp/alt-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1270,21 +1327,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(-1);</script>
+				<script>libraries.apPanel.vsAdjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(-10);</script>
+				<script>libraries.apPanel.vsAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/vs-knb</property>
+				<property>instrumentation/fcp/vs-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1296,21 +1353,21 @@
 					<not><property>devices/status/keyboard/shift</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(1);</script>
+				<script>libraries.apPanel.vsAdjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.APPanel.VSAdjust(10);</script>
+				<script>libraries.apPanel.vsAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/custom/vs-knb</property>
+				<property>instrumentation/fcp/vs-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1472,13 +1529,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/baro-l-knob</property>
+				<property>instrumentation/fcp/baro-l-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/baro-l-knob</property>
+					<property>instrumentation/fcp/baro-l-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1536,10 +1593,10 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-l-rotate</property>
+				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1589,10 +1646,10 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-l-rotate</property>
+				<property>instrumentation/fcp/baro-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1601,7 +1658,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.L</object-name>
-		<property>controls/switches/baro-l-rotate</property>
+		<property>instrumentation/fcp/baro-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1624,13 +1681,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/baro-r-knob</property>
+				<property>instrumentation/fcp/baro-r-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/baro-r-knob</property>
+					<property>instrumentation/fcp/baro-r-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1688,10 +1745,10 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-r-rotate</property>
+				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1741,10 +1798,10 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/baro-r-rotate</property>
+				<property>instrumentation/fcp/baro-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1753,7 +1810,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.R</object-name>
-		<property>controls/switches/baro-r-rotate</property>
+		<property>instrumentation/fcp/baro-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1776,13 +1833,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/mins-l-knob</property>
+				<property>instrumentation/fcp/mins-l-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/mins-l-knob</property>
+					<property>instrumentation/fcp/mins-l-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1800,17 +1857,34 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>1</step>
+				<max>999</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>10</step>
+				<max>999</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-l-rotate</property>
+				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1819,17 +1893,34 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-1</step>
+				<min>0</min>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-10</step>
+				<min>0</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-l-rotate</property>
+				<property>instrumentation/fcp/mins-l-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1838,7 +1929,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.L</object-name>
-		<property>controls/switches/mins-l-rotate</property>
+		<property>instrumentation/fcp/mins-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1861,13 +1952,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/mins-r-knob</property>
+				<property>instrumentation/fcp/mins-r-translate</property>
 				<value>-1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/mins-r-knob</property>
+					<property>instrumentation/fcp/mins-r-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1885,17 +1976,34 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") + 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>1</step>
+				<max>999</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>10</step>
+				<max>999</max>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-r-rotate</property>
+				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1904,17 +2012,34 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
-				<command>nasal</command>
-				<script>setprop("/controls/switches/minimums", getprop("/controls/switches/minimums") - 10);</script>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-1</step>
+				<min>0</min>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/outputs/fcp-power</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>controls/switches/minimums</property>
+				<step>-10</step>
+				<min>0</min>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/mins-r-rotate</property>
+				<property>instrumentation/fcp/mins-r-rotate</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>10000</max>
+				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
 		</action>
@@ -1923,7 +2048,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.R</object-name>
-		<property>controls/switches/mins-r-rotate</property>
+		<property>instrumentation/fcp/mins-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -2203,7 +2328,7 @@
 		</action>
 	</animation>
 	
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>APP.L</object-name>
 		<action>
@@ -2234,7 +2359,7 @@
 				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 	
 	<animation>
 		<type>pick</type>
@@ -2700,7 +2825,7 @@
 		</action>
 	</animation>
 	
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>APP.R</object-name>
 		<action>
@@ -2731,7 +2856,7 @@
 				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 	
 	<animation>
 		<type>pick</type>

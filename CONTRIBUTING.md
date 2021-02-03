@@ -25,14 +25,14 @@ Indenting and Line Breaks:
 
 ```
 # Nasal
-var something = func {
+var something = func() {
 	somethingElse();
 }
 ```
 Brackets, Spaces, Commas, Semi-Colons, and Parentheses:
 ```
 var something = 0;
-var someOtherThing = func {
+var someOtherThing = func() {
 	if (something == 1) {
 		something = 0;
 	} else {

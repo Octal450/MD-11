@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -14,7 +14,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_ead.showEAD();</script>
+				<script>canvas_ead.showEad();</script>
 			</binding>
 		</action>
 	</animation>
@@ -22,11 +22,11 @@
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
 		<parameters>
-			<inner-angle type="float">90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">90</outer-angle> <!-- 0-90, but greater than inner -->
-			<black-angle type="float">90</black-angle> <!-- 0-90, but greater than outer -->
-			<dirt-factor>0.07</dirt-factor>
-			<contrast type="float">0.9</contrast>
+			<inner-angle>90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
+			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
+			<dirt-factor>0</dirt-factor>
+			<contrast><use>instrumentation/du/crt-contrast</use></contrast>
 		</parameters>
 		<object-name>ead.screen</object-name>
 		<object-name>ead.border</object-name>

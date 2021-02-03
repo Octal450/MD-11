@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Honeywell TSCP700-4E APU -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<system name="MD-11: APU">
+	
+	<channel name="MSC: APU Logic">
+		
+		<!-- Following 3 will show if the APU is powering the pack, doesn't care if engine is powering too -->
+		<switch name="/systems/apu/bleed/apu-pack-1">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-1-delta-psi lt 0
+				/systems/pneumatics/isol/isol-1-2-active eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/bleed/apu-pack-2">
+			<default value="0"/>
+			<test value="1">
+				/systems/pneumatics/pack-2-delta-psi lt 0
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/bleed/apu-pack-3">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/pack-3-delta-psi lt 0
+				/systems/pneumatics/isol/isol-1-2-active eq 1
+				/systems/pneumatics/isol/isol-1-3-active eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/throttle-cmd-norm">
+			<default value="0"/> <!-- 63% N1 -->
+			<test value="0"> <!-- Force 63% N1 -->
+				/controls/apu/switches/start ne 1
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[0]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[1]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/ignition/ign-avail eq 1
+				/engines/engine[2]/state ne 3
+			</test>
+			<test logic="AND" value="1"> <!-- 100% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="AND" value="0.648649"> <!-- 87% N1 -->
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<test logic="OR" value="0.324324"> <!-- 75% N1 -->
+				/systems/apu/bleed/apu-pack-1 eq 1
+				/systems/apu/bleed/apu-pack-2 eq 1
+				/systems/apu/bleed/apu-pack-3 eq 1
+			</test>
+			<output>fcs/throttle-pos-norm[3]</output>
+		</switch>
+		
+		<pure_gain name="/systems/apu/dc-fuel-pump">
+			<input>/controls/apu/switches/start</input>
+			<gain>1.0</gain>
+		</pure_gain>
+	
+	</channel>
+	
+	<channel name="APU Start/Stop"> <!-- Do NOT execrate! -->
+		
+		<switch name="/systems/apu/bleed-timer-cmd">
+			<default value="/systems/apu/bleed-timer-cmd"/>
+			<test logic="OR" value="0">
+				/engines/engine[3]/state ne 3
+				/controls/pneumatics/switches/bleed-apu eq 0
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[3]/state eq 3
+				/controls/pneumatics/switches/bleed-apu eq 1
+				/systems/acconfig/autoconfig-running ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/bleed-timer-rate">
+			<default value="0.011111"/> <!-- 90 seconds -->
+			<test value="10000000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/apu/bleed-timer">
+			<input>/systems/apu/bleed-timer-cmd</input>
+			<rate_limit sense="decr">/systems/apu/bleed-timer-rate</rate_limit>
+			<rate_limit sense="incr">10000000</rate_limit> <!-- Instant -->
+		</actuator>
+		
+		<switch name="/systems/apu/door-cmd">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/apu/switches/start eq 1
+				/engines/engine[3]/n2-actual ge 2
+			</test>
+		</switch>
+		
+		<actuator name="/systems/apu/door-norm">
+			<input>/systems/apu/door-cmd</input>
+			<rate_limit>0.5</rate_limit> <!-- 2 seconds? Guess -->
+		</actuator>
+		
+		<switch name="/systems/apu/cutoff-cmd">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/controls/apu/switches/start eq 1
+				/engines/engine[3]/n2-actual ge 10
+			</test>
+			<test logic="AND" value="0"> <!-- Timer for shutdown -->
+				/systems/apu/bleed-timer ne 0
+				/engines/engine[3]/n2-actual ge 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/cutoff">
+			<default value="1"/>
+			<test logic="AND" value="0">
+				/controls/apu/switches/start eq 1
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/apu/cutoff-cmd eq 0
+				propulsion/tank[11]/contents-lbs ge 1
+				/systems/apu/door-norm eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/starter">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/apu/switches/start eq 1
+				propulsion/tank[11]/contents-lbs ge 1
+				/systems/apu/door-norm eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/apu/state">
+			<default value="0"/>
+			<test logic="AND" value="3">
+				/controls/apu/switches/start eq 1
+				/systems/apu/cutoff eq 0
+				/engines/engine[3]/n2-actual ge 96
+			</test>
+			<test logic="AND" value="2">
+				/controls/apu/switches/start eq 1
+				/engines/engine[3]/n2-actual ge 16
+				/systems/apu/cutoff eq 0
+				/systems/apu/starter eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/apu/switches/start eq 1
+				/systems/apu/starter eq 1
+			</test>
+			<output>/engines/engine[3]/state</output>
+		</switch>
+		
+		<switch name="/controls/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
+			<default value="0"/>
+			<test value="1">
+				/controls/apu/lights/avail-flash eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/apu/lights/avail-flash eq 0
+				/systems/apu/n2-actual ge 96
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="APU Parameters" execrate="2">
+		
+		<lag_filter name="/systems/apu/n1-actual">
+			<input>/engines/engine[3]/n1</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[3]/n1-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="/systems/apu/egt-fake-n2"> <!-- Blend N1 and N2 -->
+			<function>
+				<sum>
+					<property>/engines/engine[3]/n2</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[3]/n1</independentVar>
+						<tableData>
+							 63   0
+							100  50
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/apu/egt-cmd">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/systems/apu/egt-fake-n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[3]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							       0    50000
+							 16    0    0
+							 40  460  355
+							 50  505  400
+							 55  535  425
+							 65  580  460
+							 75  545  440
+							 90  490  385
+							100  363  272
+							150  457  376
+						</tableData>
+						<tableData breakPoint="1">
+							       0    50000
+							 20    0    0
+							100  363  272
+							150  457  376
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/systems/apu/egt-actual">
+			<input>/systems/apu/egt-cmd</input>
+			<c1>0.35</c1>
+			<output>/engines/engine[3]/egt-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="/systems/apu/n2-actual">
+			<input>/engines/engine[3]/n2</input>
+			<c1>2.25</c1>
+			<output>/engines/engine[3]/n2-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="/systems/apu/ff-actual">
+			<input>/engines/engine[3]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[3]/ff-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="/engines/engine[3]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[3]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[3]/n2-actual</independentVar>
+						<tableData>
+							20  0.0
+							55 -1.5
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+	
+	</channel>
+
+</system>

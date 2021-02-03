@@ -1,8 +1,8 @@
 # McDonnell Douglas MD-11 Buttons and Switches
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
 # Resets buttons to the default values
-var variousReset = func {
+var variousReset = func() {
 	pts.Controls.Flight.dialAFlap.setValue(15); 
 	pts.Controls.Lighting.beacon.setBoolValue(0);
 	pts.Controls.Lighting.landingLightL.setValue(0);
@@ -15,32 +15,33 @@ var variousReset = func {
 	pts.Controls.Switches.minimums.setValue(250);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
+	pts.Instrumentation.Sd.selectedSynoptic.setValue("ENG");
 }
 
-var APPanel = {
+var apPanel = {
 	altTemp: 0,
 	fpaTemp: 0,
 	hdgTemp: 0,
-	iasTemp: 0,
+	ktsTemp: 0,
 	machTemp: 0,
 	vertTemp: 0,
 	vsTemp: 0,
-	AUTOFLIGHT: func() {
+	autoflight: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.ITAF.AUTOFLIGHT();
+			afs.ITAF.autoflight();
 		}
 	},
-	FD1: func() {
+	fd1: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.fd1Master(!afs.Output.fd1.getBoolValue());
 		}
 	},
-	FD2: func() {
+	fd2: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.fd2Master(!afs.Output.fd2.getBoolValue());
 		}
 	},
-	APDisc: func() {
+	apDisc: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.killAPWarn();
 			if (afs.Output.ap1.getBoolValue()) {
@@ -51,7 +52,7 @@ var APPanel = {
 			}
 		}
 	},
-	ATDisc: func() {
+	atDisc: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.killATSWarn();
 			if (afs.Output.athr.getBoolValue()) {
@@ -59,89 +60,89 @@ var APPanel = {
 			}
 		}
 	},
-	IASMach: func() {
+	ktsMach: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Custom.ktsMach.setBoolValue(!afs.Custom.ktsMach.getBoolValue());
+			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
-	SPDPush: func() {
+	spdPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.spdPush();
 		}
 	},
-	SPDPull: func() {
+	spdPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.ITAF.spdPull();
 		}
 	},
-	SPDAdjust: func(d) {
+	spdAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			if (afs.Custom.ktsMach.getBoolValue()) {
-				me.machTemp = math.round(afs.Custom.machSel.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
+			if (afs.Input.ktsMach.getBoolValue()) {
+				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
-					afs.Custom.machSel.setValue(0.50);
+					afs.Input.mach.setValue(0.50);
 				} else if (me.machTemp > 0.87) {
-					afs.Custom.machSel.setValue(0.87);
+					afs.Input.mach.setValue(0.87);
 				} else {
-					afs.Custom.machSel.setValue(me.machTemp);
+					afs.Input.mach.setValue(me.machTemp);
 				}
 			} else {
-				me.iasTemp = afs.Custom.iasSel.getValue() + d;
-				if (me.iasTemp < 100) {
-					afs.Custom.iasSel.setValue(100);
-				} else if (me.iasTemp > 365) {
-					afs.Custom.iasSel.setValue(365);
+				me.ktsTemp = afs.Input.kts.getValue() + d;
+				if (me.ktsTemp < 100) {
+					afs.Input.kts.setValue(100);
+				} else if (me.ktsTemp > 365) {
+					afs.Input.kts.setValue(365);
 				} else {
-					afs.Custom.iasSel.setValue(me.iasTemp);
+					afs.Input.kts.setValue(me.ktsTemp);
 				}
 			}
 		}
 	},
-	HDGPush: func() {
+	hdgPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.lat.setValue(3);
 		}
 	},
-	HDGPull: func() {
+	hdgPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Input.hdg.setValue(afs.Custom.hdgSel.getValue());
+			afs.Internal.hdg.setValue(afs.Input.hdg.getValue());
 			afs.Input.lat.setValue(0);
 		}
 	},
-	HDGAdjust: func(d) {
+	hdgAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
-			afs.Custom.showHdg.setBoolValue(1);
-			me.hdgTemp = afs.Custom.hdgSel.getValue() + d;
+			afs.Output.showHdg.setBoolValue(1);
+			me.hdgTemp = afs.Input.hdg.getValue() + d;
 			if (me.hdgTemp < -0.5) {
-				afs.Custom.hdgSel.setValue(me.hdgTemp + 360);
+				afs.Input.hdg.setValue(me.hdgTemp + 360);
 			} else if (me.hdgTemp >= 359.5) {
-				afs.Custom.hdgSel.setValue(me.hdgTemp - 360);
+				afs.Input.hdg.setValue(me.hdgTemp - 360);
 			} else {
-				afs.Custom.hdgSel.setValue(me.hdgTemp);
+				afs.Input.hdg.setValue(me.hdgTemp);
 			}
 		}
 	},
-	HDGTRK: func() {
+	hdgTrk: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.trk.setValue(!afs.Input.trk.getBoolValue());
 		}
 	},
-	NAVButton: func() {
+	nav: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.lat.setValue(1);
 		}
 	},
-	ALTPush: func() {
+	altPush: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(0);
 		}
 	},
-	ALTPull: func() {
+	altPull: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(4);
 		}
 	},
-	ALTAdjust: func(d) {
+	altAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.altTemp = afs.Input.alt.getValue();
 			if (d == 1) {
@@ -158,6 +159,9 @@ var APPanel = {
 				}
 			} else {
 				me.altTemp = me.altTemp + (d * 100);
+				if (me.altTemp >= 10000) {
+					me.altTemp = math.round(me.altTemp, 1000);
+				}
 			}
 			if (me.altTemp < 0) {
 				afs.Input.alt.setValue(0);
@@ -168,7 +172,7 @@ var APPanel = {
 			}
 		}
 	},
-	VSAdjust: func(d) {
+	vsAdjust: func(d) {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
@@ -195,7 +199,7 @@ var APPanel = {
 					afs.Input.fpa.setValue(me.fpaTemp);
 				}
 			}
-			if (afs.Custom.vsFpa.getBoolValue()) {
+			if (afs.Output.vsFpa.getBoolValue()) {
 				if (me.vertTemp != 5) {
 					afs.Input.vert.setValue(5);
 				}
@@ -206,38 +210,38 @@ var APPanel = {
 			}
 		}
 	},
-	VSFPA: func() {
+	vsFpa: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
-				afs.Custom.vsFpa.setBoolValue(1);
+				afs.Output.vsFpa.setBoolValue(1);
 				afs.Input.vert.setValue(5);
 			} else if (me.vertTemp == 5) {
-				afs.Custom.vsFpa.setBoolValue(0);
+				afs.Output.vsFpa.setBoolValue(0);
 				afs.Input.vert.setValue(1);
 			} else {
-				afs.Custom.vsFpa.setBoolValue(afs.Custom.vsFpa.getBoolValue());
+				afs.Output.vsFpa.setBoolValue(!afs.Output.vsFpa.getBoolValue());
 			}
 		}
 	},
-	APPRButton: func() {
+	appr: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.vert.setValue(2);
 		}
 	},
-	PROFButton: func() {
+	prof: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			# Nothing yet
 		}
 	},
-	GAButton: func() {
+	goAround: func() {
 		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
 			afs.Input.toga.setValue(1);
 		}
 	},
 };
 
-var STD = func {
+var STD = func() {
 	if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
 		pts.Instrumentation.Altimeter.oldQnh.setValue(pts.Instrumentation.Altimeter.settingInhg.getValue());
 		pts.Instrumentation.Altimeter.settingInhg.setValue(29.92);
@@ -245,7 +249,7 @@ var STD = func {
 	}
 }
 
-var unSTD = func {
+var unSTD = func() {
 	if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
 		pts.Instrumentation.Altimeter.settingInhg.setValue(pts.Instrumentation.Altimeter.oldQnh.getValue());
 		pts.Instrumentation.Altimeter.std.setBoolValue(0);

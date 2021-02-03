@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -22,11 +22,11 @@
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
 		<parameters>
-			<inner-angle type="float">90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
-			<outer-angle type="float">90</outer-angle> <!-- 0-90, but greater than inner -->
-			<black-angle type="float">90</black-angle> <!-- 0-90, but greater than outer -->
-			<dirt-factor>0.07</dirt-factor>
-			<contrast type="float">0.9</contrast>
+			<inner-angle>90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
+			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
+			<dirt-factor>0</dirt-factor>
+			<contrast><use>instrumentation/du/crt-contrast</use></contrast>
 		</parameters>
 		<object-name>ND.screenL</object-name>
 		<object-name>ND.offL</object-name>
@@ -37,10 +37,10 @@
 		<type>select</type>
 		<object-name>ND.screenL</object-name>
 		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/bus/ac-1</property>
-				<value>110</value>
-			</greater-than-equals>
+			<equals>
+				<property>instrumentation/nd/show-nd1</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -48,10 +48,10 @@
 		<type>select</type>
 		<object-name>ND.offL</object-name>
 		<condition>
-			<less-than>
-				<property>systems/electrical/bus/ac-1</property>
-				<value>110</value>
-			</less-than>
+			<not-equals>
+				<property>instrumentation/nd/show-nd1</property>
+				<value>1</value>
+			</not-equals>
 		</condition>
 	</animation>
 

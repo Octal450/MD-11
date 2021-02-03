@@ -1,24 +1,29 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 Electrical System -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <system name="MD-11: Electrical">
 	
 	<property value="0">/systems/electrical/bus/ac-tie</property>
 	<property value="0">/systems/electrical/bus/dc-tie</property>
-	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
 	<property value="0">/systems/electrical/bus/ac-gen-1-src</property>
 	<property value="0">/systems/electrical/bus/ac-gen-2-src</property>
 	<property value="0">/systems/electrical/bus/ac-gen-3-src</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
+	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-1/contact-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-2/contact-pos</property>
 	<property value="0">/systems/electrical/relay/apu-ac-gen-3/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-1/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-2/contact-pos</property>
 	<property value="0">/systems/electrical/relay/idg-ac-gen-3/contact-pos</property>
-	<property value="1">/systems/electrical/rcb/dc-tie-dc-2/command-pos</property>
-	<property value="1">/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos</property>
+	<property value="0">/systems/electrical/sources/bat-charger-powered</property>
+	<property value="0">/systems/electrical/sources/bat-1/amp</property>
+	<property value="99.9">/systems/electrical/sources/bat-1/percent</property>
+	<property value="0">/systems/electrical/sources/bat-2/amp</property>
+	<property value="99.9">/systems/electrical/sources/bat-2/percent</property>
+	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
 	
 	<channel name="EPCU Switches/Logic" execrate="16">
 		
@@ -29,6 +34,7 @@
 				/systems/electrical/bus/ac-gen-2-src ne 1
 				/systems/electrical/bus/ac-gen-3-src ne 1
 			</test>
+			<output>/systems/electrical/epcu/allow-apu-out</output>
 		</switch>
 		
 		<switch name="/systems/electrical/epcu/allow-ac-tie-1">
@@ -90,7 +96,8 @@
 		
 		<switch name="/systems/electrical/epcu/apu-pwr">
 			<default value="/controls/electrical/switches/apu-pwr"/>
-			<test value="0">
+			<test logic="OR" value="0">
+				/systems/apu/state ne 3
 				/systems/electrical/epcu/allow-apu eq 0
 			</test>
 			<output>/controls/electrical/switches/apu-pwr</output>
@@ -180,6 +187,84 @@
 	<channel name="Main Electrical" execrate="8">
 		
 		<!-- Battery 1 -->
+		<switch name="/systems/electrical/sources/bat-1/charge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-charger-powered eq 1
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-1 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-1/discharge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-1/amp gt 0
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-1 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-1/direction">
+			<default value="0"/>
+			<test logic="AND" value="-1"> <!-- Charge -->
+				/systems/electrical/sources/bat-1/percent le 99.9
+				/systems/electrical/sources/bat-1/charge eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/bat-1/charge eq 1
+			</test>
+			<test logic="AND" value="1"> <!-- Discharge -->
+				/systems/electrical/sources/bat-1/percent gt 5
+				/systems/electrical/sources/bat-1/discharge eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/sources/bat-1/percent-calc">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/systems/electrical/sources/bat-1/direction</property>
+						<value>0</value>
+					</eq>
+					<property>/systems/electrical/sources/bat-1/percent</property>
+					<ifthen>
+						<eq>
+							<property>/systems/electrical/sources/bat-1/direction</property>
+							<value>-1</value>
+						</eq>
+						<sum>
+							<property>/systems/electrical/sources/bat-1/percent</property>
+							<product>
+								<quotient>
+									<value>2.25</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-1/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+						<sum>
+							<property>/systems/electrical/sources/bat-1/percent</property>
+							<product>
+								<quotient>
+									<value>-0.75</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-1/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+					</ifthen>
+				</ifthen>
+			</function>
+			<output>/systems/electrical/sources/bat-1/percent</output>
+		</fcs_function>
+		
 		<fcs_function name="/systems/electrical/sources/bat-1/volt">
 			<function>
 				<table>
@@ -204,6 +289,84 @@
 		</switch>
 		
 		<!-- Battery 2 -->
+		<switch name="/systems/electrical/sources/bat-2/charge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-charger-powered eq 1
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-2 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-2/discharge">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/sources/bat-2/amp gt 0
+				/controls/electrical/switches/battery eq 1
+				/systems/failures/electrical/bat-2 ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/electrical/sources/bat-2/direction">
+			<default value="0"/>
+			<test logic="AND" value="-1"> <!-- Charge -->
+				/systems/electrical/sources/bat-2/percent le 99.9
+				/systems/electrical/sources/bat-2/charge eq 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/electrical/sources/bat-2/charge eq 1
+			</test>
+			<test logic="AND" value="1"> <!-- Discharge -->
+				/systems/electrical/sources/bat-2/percent gt 5
+				/systems/electrical/sources/bat-2/discharge eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/electrical/sources/bat-2/percent-calc">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/systems/electrical/sources/bat-2/direction</property>
+						<value>0</value>
+					</eq>
+					<property>/systems/electrical/sources/bat-2/percent</property>
+					<ifthen>
+						<eq>
+							<property>/systems/electrical/sources/bat-2/direction</property>
+							<value>-1</value>
+						</eq>
+						<sum>
+							<property>/systems/electrical/sources/bat-2/percent</property>
+							<product>
+								<quotient>
+									<value>2.25</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-2/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+						<sum>
+							<property>/systems/electrical/sources/bat-2/percent</property>
+							<product>
+								<quotient>
+									<value>-0.75</value>
+									<sum>
+										<property>/systems/electrical/sources/bat-2/percent</property>
+										<value>1</value>
+									</sum>
+								</quotient>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+					</ifthen>
+				</ifthen>
+			</function>
+			<output>/systems/electrical/sources/bat-2/percent</output>
+		</fcs_function>
+		
 		<fcs_function name="/systems/electrical/sources/bat-2/volt">
 			<function>
 				<table>
@@ -460,37 +623,52 @@
 		</pure_gain>
 		
 		<!-- APU Gen -->
-		<fcs_function name="/systems/electrical/sources/apu/output-volt">
+		<pure_gain name="/systems/electrical/sources/apu/drive-rpm">
+			<input>/engines/engine[3]/n2-actual</input>
+			<gain>160</gain> <!-- 16000rpm at 100% -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/electrical/sources/apu/pmg-volt">
 			<function>
-				<ifthen>
-					<eq>
-						<property>/systems/failures/electrical/apu</property>
-						<value>1</value>
-					</eq>
-					<value>0</value>
-					<table>
-						<independentVar lookup="row">/systems/apu/n2</independentVar>
-						<tableData>
-							94    0
-							95  115
-						</tableData>
-					</table>
-				</ifthen>
+				<product>
+					<property>/systems/electrical/sources/apu/drive-rpm</property>
+					<quotient>
+						<value>115</value>
+						<value>16000</value>
+					</quotient>
+				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/electrical/sources/apu/output-hertz">
+		<fcs_function name="/systems/electrical/sources/apu/pmg-hertz">
 			<function>
-				<ifthen>
-					<ge>
-						<property>/systems/electrical/sources/apu/output-volt</property>
-						<value>110</value>
-					</ge>
-					<value>400</value>
-					<value>0</value>
-				</ifthen>
+				<quotient>
+					<product>
+						<property>/systems/electrical/sources/apu/drive-rpm</property>
+						<value>3</value> <!-- Number of poles in generator -->
+					</product>
+					<value>120</value>
+				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="/systems/electrical/sources/apu/gcr-relay">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- 96% -->
+				/systems/failures/electrical/apu ne 1
+				/systems/electrical/sources/apu/drive-rpm ge 15360
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/electrical/sources/apu/output-volt">
+			<input>/systems/electrical/sources/apu/pmg-volt</input>
+			<gain>/systems/electrical/sources/apu/gcr-relay</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/electrical/sources/apu/output-hertz">
+			<input>/systems/electrical/sources/apu/pmg-hertz</input>
+			<gain>/systems/electrical/sources/apu/gcr-relay</gain>
+		</pure_gain>
 		
 		<!-- External Power -->
 		<fcs_function name="/systems/electrical/sources/ext/output-volt">
@@ -1809,7 +1987,6 @@
 			<output>/systems/electrical/outputs/nav[0]</output>
 			<output>/systems/electrical/outputs/nav[1]</output>
 			<output>/systems/electrical/outputs/nav[2]</output>
-			<output>/systems/electrical/outputs/nav[3]</output>
 			<output>/systems/electrical/outputs/tacan</output>
 			<output>/systems/electrical/outputs/transponder</output>
 			<output>/systems/electrical/outputs/turn-coordinator</output>
@@ -1865,14 +2042,14 @@
 	
 	<channel name="Overhead Lights" execrate="8">
 		
-		<switch name="/systems/electrical/light/emer-pw-off">
+		<switch name="/controls/electrical/lights/emer-pw-off">
 			<default value="0"/>
 			<test value="1">
 				/controls/electrical/switches/emer-pw-sw eq 0
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/emer-pw-on">
+		<switch name="/controls/electrical/lights/emer-pw-on">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
@@ -1880,98 +2057,98 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/bat-bus">
+		<switch name="/controls/electrical/lights/bat-bus">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-bat lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/l-emer-dc">
+		<switch name="/controls/electrical/lights/l-emer-dc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/l-emer-dc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-1">
+		<switch name="/controls/electrical/lights/dc-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-2">
+		<switch name="/controls/electrical/lights/dc-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-2 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-gnd">
+		<switch name="/controls/electrical/lights/dc-gnd">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-gndsvc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/dc-3">
+		<switch name="/controls/electrical/lights/dc-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-3 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/r-emer-dc">
+		<switch name="/controls/electrical/lights/r-emer-dc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/r-emer-dc lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/l-emer-ac">
+		<switch name="/controls/electrical/lights/l-emer-ac">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/l-emer-ac lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-1">
+		<switch name="/controls/electrical/lights/ac-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-1 lt 25
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-2">
+		<switch name="/controls/electrical/lights/ac-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-2 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-gnd">
+		<switch name="/controls/electrical/lights/ac-gnd">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-gndsvc lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-3">
+		<switch name="/controls/electrical/lights/ac-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-3 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/r-emer-ac">
+		<switch name="/controls/electrical/lights/r-emer-ac">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/r-emer-ac lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-1-arm">
+		<switch name="/controls/electrical/lights/ac-tie-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
@@ -1979,7 +2156,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-2-arm">
+		<switch name="/controls/electrical/lights/ac-tie-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-2 eq 1
@@ -1987,7 +2164,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ac-tie-3-arm">
+		<switch name="/controls/electrical/lights/ac-tie-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-3 eq 1
@@ -1995,21 +2172,21 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/ext-pwr-on">
+		<switch name="/controls/electrical/lights/ext-pwr-on">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/relay/ext-ac-tie/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/extg-pwr-on">
+		<switch name="/controls/electrical/lights/extg-pwr-on">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/relay/extg-pwr/contact-pos eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-1-arm">
+		<switch name="/controls/electrical/lights/gen-1-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
@@ -2017,7 +2194,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-2-arm">
+		<switch name="/controls/electrical/lights/gen-2-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
@@ -2025,7 +2202,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/gen-3-arm">
+		<switch name="/controls/electrical/lights/gen-3-arm">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
@@ -2033,21 +2210,21 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-1">
+		<switch name="/controls/electrical/lights/galley-1">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-1 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-2">
+		<switch name="/controls/electrical/lights/galley-2">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-2 lt 110
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/light/galley-3">
+		<switch name="/controls/electrical/lights/galley-3">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/galley-3 lt 110

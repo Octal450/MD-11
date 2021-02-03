@@ -1,0 +1,390 @@
+﻿<?xml version="1.0"?>
+
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<path>transponder.ac</path>
+	
+	<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>XPDR.text</object-name>
+		<object-name>Display</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>XPDR.text</object-name>
+	</effect>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/outputs/transponder</property>
+				<value>25</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>digit0</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/transponder/output/digit[0]</property>
+				<value>-</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>digit0</object-name>
+		<property>instrumentation/transponder/output/digit[0]</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>digit1</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/transponder/output/digit[1]</property>
+				<value>-</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>digit1</object-name>
+		<property>instrumentation/transponder/output/digit[1]</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>digit2</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/transponder/output/digit[2]</property>
+				<value>-</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>digit2</object-name>
+		<property>instrumentation/transponder/output/digit[2]</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>digit3</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/transponder/output/digit[3]</property>
+				<value>-</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>digit3</object-name>
+		<property>instrumentation/transponder/output/digit[3]</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AltReportSw</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.toggleAltReport();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>AltReportSw</object-name>
+		<property>instrumentation/transponder/input/alt-report</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>60</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.01479</x-m>
+			<y-m>-0.04112</y-m>
+			<z-m>0.00503</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>XPDRSw</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/transponder/input/xpdr</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>XPDRSw</object-name>
+		<property>instrumentation/transponder/input/xpdr</property>
+		<factor>60</factor>
+		<center>
+			<x-m>0.01489</x-m>
+			<y-m>-0.04112</y-m>
+			<z-m>0.00503</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ATC1</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/transponder/input/xpdr</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ATC2</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/transponder/input/xpdr</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ModeKnobCyl</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.modeKnob(1);</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.modeKnob(-1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ModeKnobCyl</object-name>
+		<property>instrumentation/transponder/output/knob</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-34</dep></entry>
+			<entry><ind>3</ind><dep> 34</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.01018</x-m>
+			<y-m>0.02439</y-m>
+			<z-m>0.01868</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IdentBtn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.setIdent();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- Keypad -->
+	<animation>
+		<type>pick</type>
+		<object-name>1Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("1");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>2Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("2");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>3Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("3");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>4Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("4");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>5Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("5");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>6Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("6");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>7Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("7");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>0Btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("0");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ClrBtn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.input("CLR");</script>
+			</binding>
+		</action>
+	</animation>
+
+</PropertyList>
+

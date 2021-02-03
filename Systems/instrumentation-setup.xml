@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+
+<!-- MD-11 Custom Instrumentation -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<adf>
+		<name>adf</name>
+		<number>0</number>
+	</adf>
+	
+	<adf>
+		<name>adf</name>
+		<number>1</number>
+	</adf>
+	
+	<airspeed-indicator>
+		<name>airspeed-indicator</name>
+		<number>0</number>
+		<total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
+		<static-pressure>/systems/static/pressure-inhg</static-pressure>
+	</airspeed-indicator>
+	
+	<altimeter>
+		<name>altimeter</name>
+		<number>0</number>
+		<static-pressure>/systems/static/pressure-inhg</static-pressure>
+		<quantum>1</quantum>
+		<tau>0.1</tau>
+		<encode-mode-c>1</encode-mode-c>
+		<encode-mode-s>1</encode-mode-s>
+	</altimeter>
+	
+	<altimeter>
+		<name>encoder</name>
+		<number>0</number>
+		<static-pressure>/systems/static/pressure-inhg</static-pressure>
+		<quantum>10</quantum>
+		<tau>0.1</tau>
+		<encode-mode-c>1</encode-mode-c>
+		<encode-mode-s>1</encode-mode-s>
+	</altimeter>
+	
+	<attitude-indicator>
+		<name>attitude-indicator</name>
+		<number>0</number>
+		<suction>/systems/vacuum/suction-inhg</suction>
+	</attitude-indicator>
+	
+	<clock>
+		<name>clock</name>
+		<number>0</number>
+	</clock>
+	
+	<comm-radio>
+		<name>comm</name>
+		<number>0</number>
+	</comm-radio>
+	
+	<comm-radio>
+		<name>comm</name>
+		<number>1</number>
+	</comm-radio>
+	
+	<comm-radio>
+		<name>comm</name>
+		<number>2</number>
+	</comm-radio>
+	
+	<dme> <!-- VOR 1 -->
+		<name>dme</name>
+		<number>0</number>
+	</dme>
+	
+	<dme> <!-- VOR 2 -->
+		<name>dme</name>
+		<number>1</number>
+	</dme>
+	
+	<dme> <!-- ILS -->
+		<name>dme</name>
+		<number>2</number>
+	</dme>
+	
+	<gps>
+		<name>gps</name>
+		<number>0</number>
+	</gps>
+	
+	<heading-indicator>
+		<name>heading-indicator</name>
+		<number>0</number>
+		<suction>/systems/vacuum/suction-inhg</suction>
+	</heading-indicator>
+	
+	<KT-70>
+		<name>kt-70</name>
+		<number>0</number>
+	</KT-70>
+	
+	<magnetic-compass>
+		<name>magnetic-compass</name>
+		<number>0</number>
+	</magnetic-compass>
+	
+	<marker-beacon>
+		<name>marker-beacon</name>
+		<number>0</number>
+	</marker-beacon>
+	
+	<mk-viii>
+		<name>mk-viii</name>
+		<number>0</number>
+	</mk-viii>
+	
+	<nav-radio> <!-- VOR 1 -->
+		<name>nav</name>
+		<number>0</number>
+	</nav-radio>
+	
+	<nav-radio> <!-- VOR 2 -->
+		<name>nav</name>
+		<number>1</number>
+	</nav-radio>
+	
+	<nav-radio> <!-- ILS -->
+		<name>nav</name>
+		<number>2</number>
+	</nav-radio>
+	
+	<radar>
+		<name>wxradar</name>
+		<number>0</number>
+	</radar>
+	
+	<slip-skid-ball>
+		<name>slip-skid-ball</name>
+		<number>0</number>
+	</slip-skid-ball>
+	
+	<tcas>
+		<name>tcas</name>
+		<number>0</number>
+	</tcas>
+	
+	<transponder>
+		<name>transponder</name>
+		<number>0</number>
+		<mode>2</mode>
+		<encoder-path>/instrumentation/encoder</encoder-path>
+	</transponder>
+	
+	<turn-indicator>
+		<name>turn-indicator</name>
+		<number>0</number>
+	</turn-indicator>
+	
+	<vertical-speed-indicator>
+		<name>vertical-speed-indicator</name>
+		<number>0</number>
+		<static-pressure>/systems/static/pressure-inhg</static-pressure>
+	</vertical-speed-indicator>
+
+</PropertyList>

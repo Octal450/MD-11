@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 Aerodynamics -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 <!-- Source A: Results of Winglet Development Studies for DC-10 Derivatives -->
 
 <aerodynamics>
@@ -187,6 +187,46 @@
 			</product>
 		</function>
 		
+		<function name="aero/coefficient/CLda_lo">
+			<description>Lift due to left outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_li">
+			<description>Lift due to left inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_ri">
+			<description>Lift due to right inner aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLda_ro">
+			<description>Lift due to right outer aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians>
+				<value>0.018246</value>
+			</product>
+		</function>
+		
 		<function name="aero/coefficient/CLdsp_l">
 			<description>Lift due to left spoiler</description>
 			<product>
@@ -296,7 +336,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>gear/gear-pos-norm</property>
+				<property>gear/gear-all-norm</property>
 				<value>0.0171</value>
 			</product>
 		</function>
@@ -717,7 +757,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-out-l/final-deg</property></toradians>
-				<value>-0.14124396</value>
+				<value>-0.15124396</value>
 			</product>
 		</function>
 		
@@ -728,7 +768,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-in-l/final-deg</property></toradians>
-				<value>-0.14124396</value>
+				<value>-0.15124396</value>
 			</product>
 		</function>
 		
@@ -739,7 +779,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-in-r/final-deg</property></toradians>
-				<value>-0.14124396</value>
+				<value>-0.15124396</value>
 			</product>
 		</function>
 		
@@ -750,7 +790,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>hydraulics/elevator-out-r/final-deg</property></toradians>
-				<value>-0.14124396</value>
+				<value>-0.15124396</value>
 			</product>
 		</function>
 		

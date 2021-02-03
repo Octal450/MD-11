@@ -1,16 +1,14 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 PW4462 Engine/FADEC -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- McDonnell Douglas MD-11 PW4460 Engine/FADEC -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <system name="MD-11: PW Engine/FADEC">
 	
 	<property value="1">fadec/epr/c1</property> <!-- Done in property rule because its easier to tune -->
 	<property value="1">fadec/epr/c2</property> <!-- Done in property rule because its easier to tune -->
 	<property value="1">fadec/limit/packs-off</property>
-	<property value="0">fadec/limit/flex-active</property>
-	<property value="30">fadec/limit/flex-temp</property>
-	<property value="0">fadec/throttle-compare-max</property> <!-- In afs-thrust.xml for a reason -->
+	<property value="30">fadec/limit/rated-temp</property>
 	
 	<channel name="Thrust Limits">
 		
@@ -21,9 +19,9 @@
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  100.8
-						10000  96.4  100.2  105.6  107.1  102.6
-						43000  96.4   96.7  102.1  107.4  105.1
+						    0  90.3   95.9  101.0  106.0  111.0
+						10000  96.4  100.2  105.6  107.1  112.3
+						43000  96.4   96.7  102.1  107.4  112.7
 					</tableData>
 				</table>
 			</function>
@@ -57,14 +55,14 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>62000</value>
+						<value>60000</value>
 					</product>
 					<product>
 						<difference>
-							<value>62000</value>
+							<value>60000</value>
 							<product>
 								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-								<value>62000</value>
+								<value>60000</value>
 							</product>
 						</difference>
 						<property>fadec/limit/milthrust-unmodified</property>
@@ -78,15 +76,15 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>62000</value>
+						<value>60000</value>
 					</product>
 					<product>
 						<product>
 							<difference>
-								<value>62000</value>
+								<value>60000</value>
 								<product>
 									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-									<value>62000</value>
+									<value>60000</value>
 								</product>
 							</difference>
 							<property>fadec/limit/milthrust-unmodified</property>
@@ -113,15 +111,22 @@
 		<fcs_function name="fadec/limit/rated-thrust-factor"> <!-- Normalize -->
 			<function>
 				<ifthen>
-					<nq> <!-- Prevent divide by 0 -->
-						<property>fadec/limit/rated-thrust-lbs</property>
-						<value>0</value>
-					</nq>
-					<quotient>
-						<property>fadec/limit/fgturbine-thrust-lbs</property>
-						<property>fadec/limit/rated-thrust-lbs</property>
-					</quotient>
-					<value>1</value>
+					<eq>
+						<property>/systems/acconfig/autoconfig-running</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<ifthen>
+						<nq> <!-- Prevent divide by 0 -->
+							<property>fadec/limit/rated-thrust-lbs</property>
+							<value>0</value>
+						</nq>
+						<quotient>
+							<property>fadec/limit/fgturbine-thrust-lbs</property>
+							<property>fadec/limit/rated-thrust-lbs</property>
+						</quotient>
+						<value>1</value>
+					</ifthen>
 				</ifthen>
 			</function>
 		</fcs_function>
@@ -137,7 +142,16 @@
 		<fcs_function name="fadec/limit/go-around-input">
 			<function>
 				<pow>
-					<property>fadec/limit/rated-thrust-n1</property>
+					<table>
+						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<independentVar lookup="column">propulsion/tat-c</independentVar>
+						<tableData>
+							      -60   -30     0      30     60
+							    0  90.3   95.9  101.0  106.0  100.8
+							10000  96.4  100.2  105.6  107.1  102.6
+							43000  96.4   96.7  102.1  107.4  105.1
+						</tableData>
+					</table>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -179,20 +193,13 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/to-ref-temp">
-			<default value="propulsion/tat-c"/>
-			<test value="fadec/limit/flex-temp">
-				fadec/limit/flex-active eq 1
-			</test>
-		</switch>
-		
 		<fcs_function name="fadec/limit/takeoff-input">
 			<function>
 				<pow>
 					<sum>
 						<table>
 							<independentVar lookup="row">/position/altitude-ft</independentVar>
-							<independentVar lookup="column">fadec/limit/to-ref-temp</independentVar>
+							<independentVar lookup="column">propulsion/tat-c</independentVar>
 							<tableData>
 								      -60   -30     0      30     60
 								    0  90.3   95.9  101.0  106.0  100.8
@@ -213,12 +220,55 @@
 			</function>
 		</fcs_function>
 		
+		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
+			<input>fadec/limit/rated-temp</input>
+			<input>-fadec/limit/flex-temp</input>
+			<input>propulsion/tat-c</input>
+		</summer>
+		
+		<fcs_function name="fadec/limit/takeoff-flex-input">
+			<function>
+				<min> <!-- FLEX can not increase thrust past T/O -->
+					<property>fadec/limit/takeoff-input</property>
+					<pow>
+						<sum>
+							<table>
+								<independentVar lookup="row">/position/altitude-ft</independentVar>
+								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
+								<tableData>
+									      -60   -30     0      30     60
+									    0  90.3   95.9  101.0  106.0  100.8
+									10000  96.4  100.2  105.6  107.1  102.6
+									43000  96.4   96.7  102.1  107.4  105.1
+								</tableData>
+							</table>
+							<table>
+								<independentVar lookup="row">fadec/limit/packs-off</independentVar>
+								<tableData>
+									0 -0.4
+									1  0.0
+								</tableData>
+							</table>
+						</sum>
+						<value>3.5</value>
+					</pow>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<switch name="fadec/limit/takeoff-final-input">
+			<default value="fadec/limit/takeoff-input"/>
+			<test value="fadec/limit/takeoff-flex-input">
+				fadec/limit/flex-active eq 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fadec/limit/takeoff-ref">
 			<function>
 				<sum>
 					<product>
 						<table>
-							<independentVar lookup="row">fadec/limit/takeoff-input</independentVar>
+							<independentVar lookup="row">fadec/limit/takeoff-final-input</independentVar>
 							<tableData>
 								   24743.1  0.00
 								   65768.7  0.03
@@ -476,6 +526,41 @@
 				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="fadec/limit/active">
+			<default value="1.5"/>
+			<test value="fadec/limit/takeoff">
+				fadec/limit/active-mode-int eq 0
+			</test>
+			<test value="fadec/limit/go-around">
+				fadec/limit/active-mode-int eq 1
+			</test>
+			<test value="fadec/limit/mct">
+				fadec/limit/active-mode-int eq 2
+			</test>
+			<test value="fadec/limit/climb">
+				fadec/limit/active-mode-int eq 3
+			</test>
+			<test value="fadec/limit/cruise">
+				fadec/limit/active-mode-int eq 4
+			</test>
+		</switch>
+		
+		<fcs_function name="fadec/limit/max">
+			<function>
+				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
+					<eq>
+						<property>fadec/limit/active-mode-int</property>
+						<value>0</value>
+					</eq>
+					<property>fadec/limit/takeoff</property>
+					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
+						<property>fadec/limit/go-around</property>
+						<property>fadec/limit/mct</property>
+					</max>
+				</ifthen>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -497,7 +582,7 @@
 		<switch name="fadec/reverse-1/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
@@ -544,6 +629,10 @@
 			<test value="fadec/reverse-1/throttle-rev-cmd">
 				/controls/engines/engine[0]/reverse-lever ge 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 		
 		<!-- Engine 2 -->
@@ -565,7 +654,7 @@
 		<switch name="fadec/reverse-2/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
@@ -612,6 +701,10 @@
 			<test value="fadec/reverse-2/throttle-rev-cmd">
 				/controls/engines/engine[1]/reverse-lever ge 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 		
 		<!-- Engine 3 -->
@@ -630,7 +723,7 @@
 		<switch name="fadec/reverse-3/position-rate">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/hydraulics/sys-3-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 2200
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
@@ -677,11 +770,61 @@
 			<test value="fadec/reverse-3/throttle-rev-cmd">
 				/controls/engines/engine[2]/reverse-lever ge 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 	
 	</channel>
 	
 	<channel name="Engine Control">
+		
+		<fcs_function name="fadec/limit/max-norm-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>fadec/limit/max</property>
+						<property>fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>fadec/epr/c1</property>
+						<value>0.001</value>
+					</max>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<pow>
+					<table>
+						<independentVar lookup="row">fadec/limit/max-norm-ref</independentVar>
+						<tableData>
+							0.00     24743.1
+							0.03     65768.7
+							1.00  14591440.5
+						</tableData>
+					</table>
+					<quotient>
+						<value>1</value>
+						<value>3.5</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/max-norm-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<fcs_function name="fadec/limit/active-norm-ref"> <!-- Opposite of EPR Calc -->
 			<function>
@@ -729,7 +872,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/ats-pitch-max">
+		<switch name="fadec/limit/ats-max">
 			<default value="fadec/limit/active-norm"/>
 			<test value="1"> 
 				fadec/limit/active-mode-int eq 0
@@ -784,7 +927,7 @@
 		
 		<!-- Engine 1 -->
 		<switch name="fadec/control-1/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-1-altn eq 1
 			</test>
@@ -882,7 +1025,7 @@
 		
 		<!-- Engine 2 -->
 		<switch name="fadec/control-2/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-2-altn eq 1
 			</test>
@@ -980,7 +1123,7 @@
 		
 		<!-- Engine 3 -->
 		<switch name="fadec/control-3/max">
-			<default value="fadec/limit/active-norm"/>
+			<default value="fadec/limit/max-norm"/>
 			<test value="1">
 				/controls/fadec/eng-3-altn eq 1
 			</test>
@@ -1188,6 +1331,105 @@
 			<output>/engines/engine[2]/epr-actual</output>
 		</fcs_function>
 		
+		<fcs_function name="fadec/egt-cmd-1">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-1">
+			<input>fadec/egt-cmd-1</input>
+			<c1>0.35</c1>
+			<output>/engines/engine[0]/egt-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/egt-cmd-2">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-2">
+			<input>fadec/egt-cmd-2</input>
+			<c1>0.35</c1>
+			<output>/engines/engine[1]/egt-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/egt-cmd-3">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 10.0    0    0
+							 35.0  420  320
+							 50.0  415  315
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2  305  190
+							105.6  545  420
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="fadec/egt-actual-3">
+			<input>fadec/egt-cmd-3</input>
+			<c1>0.35</c1>
+			<output>/engines/engine[2]/egt-actual</output>
+		</lag_filter>
+		
 		<lag_filter name="fadec/n2-actual-1">
 			<input>/engines/engine[0]/n2</input>
 			<c1>2.25</c1>
@@ -1208,10 +1450,253 @@
 			<output>/engines/engine[2]/n2-actual</output>
 			<output>/engines/engine[6]/n2</output>
 		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-1">
+			<input>/engines/engine[0]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[0]/ff-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-2">
+			<input>/engines/engine[1]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[1]/ff-actual</output>
+		</lag_filter>
+		
+		<lag_filter name="fadec/ff-actual-3">
+			<input>/engines/engine[2]/fuel-flow_pph</input>
+			<c1>3</c1>
+			<output>/engines/engine[2]/ff-actual</output>
+		</lag_filter>
+		
+		<fcs_function name="fadec/oil-psi-cmd-1">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+					<tableData breakPoint="0">
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+					<tableData breakPoint="1">
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[0]/oil-psi">
+			<input>fadec/oil-psi-cmd-1</input>
+			<lag>0.65</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/oil-psi-cmd-2">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+					<tableData breakPoint="0">
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+					<tableData breakPoint="1">
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[1]/oil-psi">
+			<input>fadec/oil-psi-cmd-2</input>
+			<lag>0.65</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/oil-psi-cmd-3">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+					<tableData breakPoint="0">
+						         0    50000
+						 20.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+					<tableData breakPoint="1">
+						         0    50000
+						 30.0    0    0
+						 65.2  148  154
+						105.6  343  349
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[2]/oil-psi">
+			<input>fadec/oil-psi-cmd-3</input>
+			<lag>0.65</lag>
+		</actuator>
+		
+		<fcs_function name="/engines/engine[0]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[0]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+						<tableData>
+							30.0  0
+							65.2 -6
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[1]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[1]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<tableData>
+							30.0  0
+							65.2 -6
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[2]/oil-qty">
+			<function>
+				<sum>
+					<property>/engines/engine[2]/oil-qty-input</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<tableData>
+							30.0  0
+							65.2 -6
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-1">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[0]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-1</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-2">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[1]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-2</input>
+			<lag>0.8</lag>
+		</actuator>
+		
+		<fcs_function name="fadec/nacelle-temp-cmd-3">
+			<function>
+				<sum>
+					<property>propulsion/tat-c</property>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2</independentVar>
+						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
+						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
+						<tableData breakPoint="0">
+							         0    50000
+							 15.0    0    0
+							 25.0  101   81
+							 30.0  101   81
+							 35.0   22    9
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+						<tableData breakPoint="1">
+							         0    50000
+							 30.0    0    0
+							 65.2   22    9
+							105.6  159  144
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/engines/engine[2]/nacelle-temp">
+			<input>fadec/nacelle-temp-cmd-3</input>
+			<lag>0.8</lag>
+		</actuator>
 	
 	</channel>
 	
-	<channel name="EAD" execrate="8">
+	<channel name="EAD Reverser Status" execrate="8">
 		
 		<switch name="fadec/eng-1-powered">
 			<default value="0"/>
@@ -1281,206 +1766,323 @@
 	
 	</channel>
 	
-	<channel name="EAD" execrate="2">
+	<channel name="EAD Needles" execrate="4">
 		
-		<fcs_function name="/DU/EAD/EPR[0]">
+		<fcs_function name="/instrumentation/ead/epr[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/epr-actual</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPR[1]">
+		<fcs_function name="/instrumentation/ead/epr[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/epr-actual</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPR[2]">
+		<fcs_function name="/instrumentation/ead/epr[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/epr-actual</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPRthr[0]">
+		<fcs_function name="/instrumentation/ead/epr-thr[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPRthr[1]">
+		<fcs_function name="/instrumentation/ead/epr-thr[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPRthr[2]">
+		<fcs_function name="/instrumentation/ead/epr-thr[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EPRLimit">
+		<fcs_function name="/instrumentation/ead/epr-limit">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/limit/active</independentVar>
 					<tableData>
-						0 -134
-						1  -53
-						2   28
+						0  -44
+						1   37
+						2  118
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1[0]">
+		<fcs_function name="/instrumentation/ead/n1[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1[1]">
+		<fcs_function name="/instrumentation/ead/n1[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N1[2]">
+		<fcs_function name="/instrumentation/ead/n1[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<!--fcs_function name="/DU/EAD/EGT[0]">
+		<fcs_function name="/instrumentation/ead/egt[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
 					<tableData>
-						  0 -134
-						600   40
+						  0  -44
+						700  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EGT[1]">
+		<fcs_function name="/instrumentation/ead/egt[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/egt-actual</independentVar>
 					<tableData>
-						  0 -134
-						600   40
+						  0  -44
+						700  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/EGT[2]">
+		<fcs_function name="/instrumentation/ead/egt[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/egt-actual</independentVar>
 					<tableData>
-						  0 -134
-						600   40
+						  0  -44
+						700  130
 					</tableData>
 				</table>
 			</function>
-		</fcs_function-->
+		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[0]">
+		<fcs_function name="/instrumentation/ead/n2[0]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[1]">
+		<fcs_function name="/instrumentation/ead/n2[1]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/DU/EAD/N2[2]">
+		<fcs_function name="/instrumentation/ead/n2[2]">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 					<tableData>
-						  0.0 -134
-						117.5   40
+						  0.0  -44
+						117.5  130
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						440  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						440  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-psi[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-psi</independentVar>
+					<tableData>
+						  0  -44
+						440  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-qty</independentVar>
+					<tableData>
+						 0  -44
+						30  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[0]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[0]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[0]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[0]">
+				/engines/engine[0]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[0]">
+				/engines/engine[0]/state eq 3
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[1]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[1]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[1]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[1]">
+				/engines/engine[1]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[1]">
+				/engines/engine[1]/state eq 3
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/sd/eng/oil-qty-cline[2]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline[2]"/>
+			<test logic="AND" value="-1">
+				/engines/engine[2]/state ne 3
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[2]">
+				/engines/engine[2]/state eq 3
+				position/wow eq 0
+			</test>
+			<test value="/instrumentation/sd/eng/oil-qty[2]">
+				/engines/engine[2]/state eq 3
+			</test>
+		</switch>
 	
 	</channel>
 

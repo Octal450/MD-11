@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- McDonnell Douglas MD-11 Cockpit -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <system name="MD-11: Cockpit"> <!-- Everything here is after all systems -->
 	
@@ -38,7 +38,7 @@
 		</lag_filter>
 		
 		<lag_filter name="hydraulics/tiller-handle">
-			<input>hydraulics/tiller/handle-scheduled</input>
+			<input>hydraulics/tiller/handle</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -157,7 +157,7 @@
 		<switch name="/controls/fctl/light/lsas-left-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-left-out eq 1
 			</test>
 		</switch>
@@ -165,7 +165,7 @@
 		<switch name="/controls/fctl/light/lsas-left-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-left-in eq 1
 			</test>
 		</switch>
@@ -173,7 +173,7 @@
 		<switch name="/controls/fctl/light/lsas-right-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-right-in eq 1
 			</test>
 		</switch>
@@ -181,7 +181,7 @@
 		<switch name="/controls/fctl/light/lsas-right-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/lsas-right-out eq 1
 			</test>
 		</switch>
@@ -189,7 +189,7 @@
 		<switch name="/controls/fctl/light/yd-upper-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-upper-a eq 1
 			</test>
 		</switch>
@@ -197,7 +197,7 @@
 		<switch name="/controls/fctl/light/yd-upper-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-upper-b eq 1
 			</test>
 		</switch>
@@ -205,7 +205,7 @@
 		<switch name="/controls/fctl/light/yd-lower-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-lower-a eq 1
 			</test>
 		</switch>
@@ -213,7 +213,7 @@
 		<switch name="/controls/fctl/light/yd-lower-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				libraries/any-irs-aligned ne 1
+				/systems/iru-common/any-aligned-out ne 1
 				/systems/failures/fctl/yd-lower-b eq 1
 			</test>
 		</switch>
@@ -225,11 +225,10 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/switches/seatbelt-sign eq 0.5
-				/controls/flight/flaps-input ne 0
-			</test>
-			<test logic="AND" value="1">
-				/controls/switches/seatbelt-sign eq 0.5
-				/controls/gear/gear-down eq 1
+				<test logic="OR">
+					/controls/flight/flaps-input ne 0
+					/controls/gear/lever eq 1
+				</test>
 			</test>
 			<!--test logic="AND" value="1">
 				/cabin/alt/prop gt 10000
@@ -243,7 +242,49 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/switches/no-smoking-sign eq 0.5
-				/controls/gear/gear-down eq 1
+				/controls/gear/lever eq 1
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Warnings" execrate="8">
+		
+		<!-- Gear Warning -->
+		<switch name="/systems/warnings/gear-warning-idle">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt lt 210
+				/position/gear-agl-ft le 1200
+				<test logic="OR">
+					fadec/control-1/throttle-pos lt 0.01
+					fadec/control-2/throttle-pos lt 0.01
+					fadec/control-3/throttle-pos lt 0.01
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/warnings/gear-warning-inhibit">
+			<default value="0"/>
+			<test value="/controls/warnings/gear-warning-inhibit">
+				/systems/warnings/gear-warning-idle eq 1
+			</test>
+			<output>/controls/warnings/gear-warning-inhibit</output> <!-- So it resets properly -->
+		</switch>
+		
+		<switch name="/systems/warnings/gear-warning">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				gear/unit[0]/status eq 2
+				gear/unit[1]/status eq 2
+				gear/unit[2]/status eq 2
+			</test>
+			<test logic="OR" value="1">
+				<test logic="AND">
+					/systems/warnings/gear-warning-idle eq 1
+					/systems/warnings/gear-warning-inhibit eq 0
+				</test>
+				fcs/flap-pos-deg ge 31.5
 			</test>
 		</switch>
 	

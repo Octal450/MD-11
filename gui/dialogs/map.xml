@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+
+<!-- Modified by Josh Davidson (Octal450) for custom GUI style -->
+
+<!--
+command interface /autopilot/route-manager/input:
+
+  @clear             ... clear route
+  @pop               ... remove first entry
+  @delete3           ... delete 4th entry
+  @insert2:ksfo@900  ... insert "ksfo@900" as 3rd entry
+  ksfo@900           ... append "ksfo@900"
+
+-->
+
+<PropertyList>
+	<name>map</name>
+	<layout>vbox</layout>
+	<resizable>true</resizable>
+	<default-padding>3</default-padding>
+
+	<color>
+		<alpha type="float">0.75</alpha>
+		<blue type="float">0.35</blue>
+		<green type="float">0.35</green>
+		<red type="float">0.35</red>
+	</color>
+
+	<nasal>
+		<open>
+			var mapDialog = cmdarg();
+			var setTransparency = func(updateDialog){
+				var alpha = (getprop("/systems/acconfig/options/map-less-transparent") or 0);
+				mapDialog.getNode("color/alpha").setValue(0.75+alpha*0.2);
+				var n = props.Node.new({ "dialog-name": "map" });
+				if (updateDialog)
+				{
+					fgcommand("dialog-close", n);
+					fgcommand("dialog-show", n);
+				}
+			}
+			setTransparency(0);
+		</open>
+
+		<close>
+
+		</close>
+	</nasal>
+
+	<group>
+		<layout>hbox</layout>
+		<default-padding>1</default-padding>
+		<empty><stretch>1</stretch></empty>
+
+		<text>
+			<label>Map</label>
+		</text>
+
+		<empty><stretch>1</stretch></empty>
+
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+
+	<hrule>
+		<color>
+			<alpha>0.95</alpha>
+			<blue>1.0</blue>
+			<green>1.0</green>
+			<red>1.0</red>
+		</color>
+	</hrule>
+
+	<group>
+		<layout>hbox</layout>
+		<stretch>true</stretch>
+		<halign>fill</halign>
+
+		<!-- sidebar -->
+		<group>
+			<layout>vbox</layout>
+			<text>
+				<label>Display:</label>
+			</text>
+
+			<checkbox>
+				<label>Heliports</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-heliports</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Fixes</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-fixes</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Navaids</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-navaids</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+<!--
+			<button>
+				<legend>Airways</legend>
+				<pref-width>100</pref-width>
+			</button>
+-->
+
+			<checkbox>
+				<label>Traffic</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-traffic</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+<!--
+			<button>
+				<legend>Obstacles</legend>
+				<pref-width>100</pref-width>
+			</button>
+-->
+
+			<checkbox>
+				<label>Data</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-data</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Flight History</label>
+				<halign>left</halign>
+				<property>/gui/map/draw-flight-history</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<empty><stretch>true</stretch></empty>
+
+			<checkbox>
+				<label>Magnetic Hdgs</label>
+				<halign>left</halign>
+<!--
+				<pref-width>100</pref-width>
+-->
+				<property>/gui/map/magnetic-headings</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Center on Acft</label>
+				<halign>left</halign>
+				<property>/gui/map/centre-on-aircraft</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Aircraft Hdg Up</label>
+				<halign>left</halign>
+				<property>/gui/map/aircraft-heading-up</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Less Transparent</label>
+				<halign>left</halign>
+<!--
+				<pref-width>100</pref-width>
+-->
+				<property>/systems/acconfig/options/map-less-transparent</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						setTransparency(1);
+						acconfig.OPTIONS.write();
+					</script>
+				</binding>
+			</checkbox>
+
+			<checkbox>
+				<label>Pan with keys</label>
+				<halign>left</halign>
+				<property>/gui/map/key-pan</property>
+				<live>true</live>
+				<binding>
+				  <command>dialog-apply</command>
+				</binding>
+				<binding>
+				  <command>property-toggle</command>
+				</binding>
+			</checkbox>
+
+			<empty><stretch>true</stretch></empty>
+
+			<button>
+				<name>close</name>
+				<legend>Close</legend>
+				<pref-width>100</pref-width>
+				<default>true</default>
+				<binding>
+				  <command>dialog-close</command>
+				</binding>
+			</button>
+
+		</group>
+
+		<vrule>
+			<color>
+				<alpha>0.95</alpha>
+				<blue>1.0</blue>
+				<green>1.0</green>
+				<red>1.0</red>
+			</color>
+		</vrule>
+
+		<group>
+			<layout>vbox</layout>
+			<stretch>true</stretch>
+
+			<map>
+				<halign>fill</halign>
+				<valign>fill</valign>
+				<stretch>true</stretch>
+				<pref-height>400</pref-height>
+				<pref-width>600</pref-width>
+				<property>/gui/map</property>
+			</map>
+
+			<hrule>
+				<color>
+					<alpha>0.95</alpha>
+					<blue>1.0</blue>
+					<green>1.0</green>
+					<red>1.0</red>
+				</color>
+			</hrule>
+
+			<group>
+				<layout>hbox</layout>
+
+				<button>
+					<name>zoomout</name>
+					<legend>-</legend>
+					<pref-width>22</pref-width>
+					<pref-height>22</pref-height>
+
+					<binding>
+						<command>property-adjust</command>
+						<property>/gui/map/zoom</property>
+						<min>0</min>
+						<step>-1</step>
+					</binding>
+				</button>
+
+				<text>
+					<label>MMM</label>
+					<format>Zoom %d</format>
+					<property>/gui/map/zoom</property>
+					<live>true</live>
+				</text>
+
+				<button>
+					<name>zoomin</name>
+					<legend>+</legend>
+					<pref-width>22</pref-width>
+					<pref-height>22</pref-height>
+
+					<binding>
+						<command>property-adjust</command>
+						<property>/gui/map/zoom</property>
+						<step>1</step>
+						<max>12</max>
+					</binding>
+				</button>
+			</group>
+		</group>
+
+	</group>
+</PropertyList>
+

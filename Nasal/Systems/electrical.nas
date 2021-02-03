@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Electrical System
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
 var ELEC = {
 	Bus: { # Volts
@@ -36,12 +36,13 @@ var ELEC = {
 		rEmerAc: props.globals.getNode("/systems/electrical/bus/r-emer-ac"),
 		rEmerDc: props.globals.getNode("/systems/electrical/bus/r-emer-dc"),
 	},
+	Epcu: {
+		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
+	},
 	Fail: {
 		apu: props.globals.getNode("/systems/failures/electrical/apu"),
 		bat1: props.globals.getNode("/systems/failures/electrical/bat-1"),
-		bat1Temp: 0,
 		bat2: props.globals.getNode("/systems/failures/electrical/bat-2"),
-		bat2Temp: 0,
 		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
 		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
 		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
@@ -66,11 +67,8 @@ var ELEC = {
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
 	Light: {
-		manualFlash: props.globals.initNode("/systems/electrical/light/manual-flash", 0, "INT"),
+		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
-	},
-	Misc: {
-		elapsedSecTemp: 0,
 	},
 	RCB: { # 0 is Open, 1 is Closed
 		dcBat_LEmerDc: props.globals.getNode("/systems/electrical/rcb/dc-bat-l-emer-dc/contact-pos"),
@@ -116,7 +114,6 @@ var ELEC = {
 	},
 	Source: {
 		batChargerPowered: props.globals.getNode("/systems/electrical/sources/bat-charger-powered"),
-		batChargerPoweredTemp: 0,
 		Adg: {
 			hertz: props.globals.getNode("/systems/electrical/sources/adg/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/adg/output-volt"),
@@ -124,20 +121,18 @@ var ELEC = {
 		Apu: {
 			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
+			pmgHertz: props.globals.getNode("/systems/electrical/sources/apu/pmg-hertz"),
+			pmgVolt: props.globals.getNode("/systems/electrical/sources/apu/pmg-volt"),
 		},
 		Bat1: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),
 			percent: props.globals.getNode("/systems/electrical/sources/bat-1/percent"),
-			percentCalc: 100,
-			percentTemp: 100,
 			time: 0,
 			volt: props.globals.getNode("/systems/electrical/sources/bat-1/volt"),
 		},
 		Bat2: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-2/amp"),
 			percent: props.globals.getNode("/systems/electrical/sources/bat-2/percent"),
-			percentCalc: 100,
-			percentTemp: 100,
 			time: 0,
 			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
@@ -193,7 +188,6 @@ var ELEC = {
 		adgElec: props.globals.getNode("/controls/electrical/switches/adg-elec"),
 		apuPwr: props.globals.getNode("/controls/electrical/switches/apu-pwr"),
 		battery: props.globals.getNode("/controls/electrical/switches/battery"),
-		batteryTemp: 0,
 		cabBus: props.globals.getNode("/controls/electrical/switches/cab-bus"),
 		dcTie1: props.globals.getNode("/controls/electrical/switches/dc-tie-1"),
 		dcTie3: props.globals.getNode("/controls/electrical/switches/dc-tie-3"),
@@ -213,7 +207,7 @@ var ELEC = {
 	},
 	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
-		me.resetFail();
+		me.resetFailures();
 		me.Switch.acTie1.setBoolValue(1);
 		me.Switch.acTie2.setBoolValue(1);
 		me.Switch.acTie3.setBoolValue(1);
@@ -236,14 +230,14 @@ var ELEC = {
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
 		me.Switch.smokeElecAir.setValue(0);
-		me.Source.Bat1.percent.setValue(100);
-		me.Source.Bat2.percent.setValue(100);
+		me.Source.Bat1.percent.setValue(99.9);
+		me.Source.Bat2.percent.setValue(99.9);
 		me.system.setBoolValue(1);
 		manualElecLightt.stop();
 		me.Light.manualFlash.setValue(0);
 		me.Source.Ext.cart.setBoolValue(0);
 	},
-	resetFail: func() {
+	resetFailures: func() {
 		me.Switch.genDrive1.setBoolValue(1);
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
@@ -253,65 +247,6 @@ var ELEC = {
 		me.Fail.gen1.setBoolValue(0);
 		me.Fail.gen2.setBoolValue(0);
 		me.Fail.gen3.setBoolValue(0);
-	},
-	loop: func() {
-		me.Fail.bat1Temp = me.Fail.bat1.getBoolValue();
-		me.Fail.bat2Temp = me.Fail.bat2.getBoolValue();
-		me.Misc.elapsedSecTemp = pts.Sim.Time.elapsedSec.getValue();
-		me.Source.batChargerPoweredTemp = me.Source.batChargerPowered.getBoolValue();
-		me.Source.Bat1.percentTemp = me.Source.Bat1.percent.getValue();
-		me.Source.Bat2.percentTemp = me.Source.Bat2.percent.getValue();
-		me.Switch.batteryTemp = me.Switch.battery.getBoolValue();
-		
-		# Battery 1 Charging/Decharging
-		if (me.Source.Bat1.percentTemp < 100 and me.Source.batChargerPoweredTemp and me.Switch.batteryTemp and !me.Fail.bat1Temp) {
-			if (me.Source.Bat1.time + 5 < me.Misc.elapsedSecTemp) {
-				me.Source.Bat1.percentCalc = me.Source.Bat1.percentTemp + 0.75; # Roughly 90 percent every 10 mins
-				if (me.Source.Bat1.percentCalc > 100) {
-					me.Source.Bat1.percentCalc = 100;
-				}
-				me.Source.Bat1.percent.setValue(me.Source.Bat1.percentCalc);
-				me.Source.Bat1.time = me.Misc.elapsedSecTemp;
-			}
-		} else if (me.Source.Bat1.percentTemp == 100 and me.Source.batChargerPoweredTemp and me.Switch.batteryTemp and !me.Fail.bat1Temp) {
-			me.Source.Bat1.time = me.Misc.elapsedSecTemp;
-		} else if (me.Source.Bat1.amp.getValue() > 0 and me.Switch.batteryTemp and !me.Fail.bat1Temp) {
-			if (me.Source.Bat1.time + 5 < me.Misc.elapsedSecTemp) {
-				me.Source.Bat1.percentCalc = me.Source.Bat1.percentTemp - 0.25; # Roughly 90 percent every 30 mins
-				if (me.Source.Bat1.percentCalc < 5) {
-					me.Source.Bat1.percentCalc = 5;
-				}
-				me.Source.Bat1.percent.setValue(me.Source.Bat1.percentCalc);
-				me.Source.Bat1.time = me.Misc.elapsedSecTemp;
-			}
-		} else {
-			me.Source.Bat1.time = me.Misc.elapsedSecTemp;
-		}
-		
-		# Battery 2 Charging/Decharging
-		if (me.Source.Bat2.percentTemp < 100 and me.Source.batChargerPoweredTemp and me.Switch.batteryTemp and !me.Fail.bat2Temp) {
-			if (me.Source.Bat2.time + 5 < me.Misc.elapsedSecTemp) {
-				me.Source.Bat2.percentCalc = me.Source.Bat2.percentTemp + 0.75; # Roughly 90 percent every 10 mins
-				if (me.Source.Bat2.percentCalc > 100) {
-					me.Source.Bat2.percentCalc = 100;
-				}
-				me.Source.Bat2.percent.setValue(me.Source.Bat2.percentCalc);
-				me.Source.Bat2.time = me.Misc.elapsedSecTemp;
-			}
-		} else if (me.Source.Bat2.percentTemp == 100 and me.Source.batChargerPoweredTemp and me.Switch.batteryTemp and !me.Fail.bat2Temp) {
-			me.Source.Bat2.time = me.Misc.elapsedSecTemp;
-		} else if (me.Source.Bat2.amp.getValue() > 0 and me.Switch.batteryTemp and !me.Fail.bat2Temp) {
-			if (me.Source.Bat2.time + 5 < me.Misc.elapsedSecTemp) {
-				me.Source.Bat2.percentCalc = me.Source.Bat2.percentTemp - 0.25; # Roughly 90 percent every 30 mins
-				if (me.Source.Bat2.percentCalc < 5) {
-					me.Source.Bat2.percentCalc = 5;
-				}
-				me.Source.Bat2.percent.setValue(me.Source.Bat2.percentCalc);
-				me.Source.Bat2.time = me.Misc.elapsedSecTemp;
-			}
-		} else {
-			me.Source.Bat2.time = me.Misc.elapsedSecTemp;
-		}
 	},
 	systemMode: func() {
 		if (me.system.getBoolValue()) {

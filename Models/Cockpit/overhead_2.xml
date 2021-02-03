@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -69,27 +69,13 @@
 		    <repeatable>false</repeatable>
 		    <binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-bat</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>25</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>25</value>
-						</greater-than-equals>
-					</or>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
 				</condition>
-				<command>property-toggle</command>
-				<property>controls/apu/start</property>
+				<command>nasal</command>
+				<script>systems.APU.startStop(0);</script> <!-- No auto connect -->
 		    </binding>
 			<binding>
 				<command>nasal</command>
@@ -103,7 +89,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/apu/on-light</property>
+					<property>controls/apu/lights/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -120,13 +106,13 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/apu/start</property>
+						<property>controls/apu/switches/start</property>
 						<value>0</value>
 					</equals>
-					<greater-than>
-						<property>systems/apu/n2</property>
-						<value>5</value>
-					</greater-than>
+					<greater-than-equals>
+						<property>engines/engine[3]/n2-actual</property>
+						<value>2</value>
+					</greater-than-equals>
 				</and>
 				<equals>
 					<property>controls/switches/annun-test</property>

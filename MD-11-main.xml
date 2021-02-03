@@ -1,11 +1,32 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
 	<sim>
-		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures), J Maverick 16 (Effects)</author>
+		<author>Josh Davidson/Octal450 (Flight Dynamics, Systems, Displays), Semir Gebran/CaptB, John Williams/tikibar, and Jormapaappa1235 (3D, Textures)</author>
+		<authors>
+			<author>
+				<name>Josh Davidson</name>
+				<description>Flight Dynamics, Systems, Displays</description>
+				<nick>Octal450</nick>
+			</author>
+			<author>
+				<name>Semir Gebran</name>
+				<description>3D, Textures</description>
+				<nick>CaptB</nick>
+			</author>
+			<author>
+				<name>John Williams</name>
+				<description>3D, Textures</description>
+				<nick>tikibar</nick>
+			</author>
+			<author>
+				<name>Jormapaappa1235</name>
+				<description>3D, Textures</description>
+			</author>
+		</authors>
 		<chase-distance-m type="double">-110</chase-distance-m>
 		<checklists include="MD-11-Checklists.xml"/>
 		<current-view>
@@ -23,7 +44,7 @@
 			<canvas-popup-enable type="bool">true</canvas-popup-enable>
 		</instrument-options>
 		<instrumentation>
-			<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
+			<path>Aircraft/MD-11/Systems/instrumentation-setup.xml</path>
 		</instrumentation>
 		<menubar>
 			<default>
@@ -36,27 +57,20 @@
 					<item>
 						<label>Aircraft Config</label>
 						<binding>
-							<command>nasal</command>
-							<script>acconfig.main_dlg.open();</script>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-main</dialog-name>
 						</binding>
 					</item>
 					<item>
 						<label>About This Aircraft</label>
 						<binding>
-							<command>nasal</command>
-							<script>acconfig.about_dlg.open();</script>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-about</dialog-name>
 						</binding>
 					</item>
 				</menu>
 				<menu n="102">
-					<label>AFS/FMS</label>
-					<item>
-						<label>AFS Panel</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>autopilot</dialog-name>
-						</binding>
-					</item>
+					<label>FMS</label>
 					<item>
 						<label>Route Manager</label>
 						<binding>
@@ -64,28 +78,64 @@
 							<dialog-name>route-manager</dialog-name>
 						</binding>
 					</item>
+					<item> <!-- Temporary -->
+						<label>Flex Temp</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>flex-temp</dialog-name>
+						</binding>
+					</item>
 				</menu>
 				<menu n="103">
-					<label>DU</label>
+					<label>2D Panels</label>
+					<item>
+						<label>DUs:</label>
+						<enabled type="bool">false</enabled>
+					</item>
 					<item>
 						<label>Captain's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_pfd.showPFD1();</script>
+							<script>canvas_pfd.showPfd1();</script>
 						</binding>
 					</item>
 					<item>
 						<label>First Officer's PFD</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_pfd.showPFD2();</script>
+							<script>canvas_pfd.showPfd2();</script>
 						</binding>
 					</item>
 					<item>
-						<label>EAD</label>
+						<label>Engine and Alert Display</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_ead.showEAD();</script>
+							<script>canvas_ead.showEad();</script>
+						</binding>
+					</item>
+					<item>
+						<label>System Display</label>
+						<binding>
+							<command>nasal</command>
+							<script>canvas_sd.showSd();</script>
+						</binding>
+					</item>
+					<item>
+						<label>Panels:</label>
+						<enabled type="bool">false</enabled>
+					</item>
+					<item>
+						<label>AFS Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>panel2d.afsDialog.open();</script>
+						</binding>
+					</item>
+					<item>
+						<label>AFS Panel (Legacy)</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>autopilot</dialog-name>
 						</binding>
 					</item>
 				</menu>
@@ -108,26 +158,14 @@
 					<item>
 						<label>Failures</label>
 						<binding>
-							<command>nasal</command>
-							<script>
-							if (getprop("/options/system/allow-damage") != 1) {
-								acconfig.fail_dlg.open();
-							}
-							</script>
-						</binding>
-					</item>
-					<item>
-						<label>Skip IRS</label>
-						<binding>
-							<command>property-assign</command>
-							<property>/controls/irs/skip</property>
-							<value>1</value>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-failures</dialog-name>
 						</binding>
 					</item>
 				</menu>
 			</default>
 		</menubar>
-		<minimum-fg-version>2019.2.0</minimum-fg-version>
+		<minimum-fg-version>2020.1.1</minimum-fg-version>
 		<model n="0">
 			<autopush>
 				<available type="int">1</available>
@@ -153,6 +191,7 @@
 				<position-norm type="double">0</position-norm>
 				<route>
 					<show type="bool"/>
+					<show-wingtip type="bool"/>
 				</route>
 				<steer-cmd-norm alias="/fdm/jsbsim/hydraulics/tiller/autopush-cmd"/>
 				<stopping-distance-m type="float">5.0</stopping-distance-m>
@@ -191,20 +230,11 @@
 				<int n="7" alias="/sim/model/lights/nav-lights"/>
 				<int n="8" alias="/controls/lighting/wing-lights"/>
 			</generic>
+			<visibility-range-nm type="int">130</visibility-range-nm>
 		</multiplay>
-		<previews>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/splash1.png</path>
-			</preview>
-		</previews>
 		<sound n="0">
 			<suppress-warning type="bool">1</suppress-warning>
 		</sound>
-		<startup>
-			<splash-texture>Aircraft/MD-11/Splash/SplashOld.png</splash-texture>
-		</startup>
 		<status>Pre V1.0</status>
 		<systems n="0">
 			<electrical>
@@ -226,7 +256,7 @@
 				<path>Aircraft/MD-11/Systems/libraries.xml</path>
 			</autopilot>
 			<autopilot n="5">
-				<path>Aircraft/MD-11/Systems/pfd.xml</path>
+				<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
 			</autopilot>
 			<!-- 6 is sound -->
 			<autopilot n="7">
@@ -253,7 +283,9 @@
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.8</z-offset-m>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="100">
@@ -267,7 +299,9 @@
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.8</z-offset-m>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="101"> 
@@ -279,9 +313,11 @@
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0.0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
-				<z-offset-m archive="y">-26.8</z-offset-m>
+				<z-offset-m archive="y">-26.76</z-offset-m>
+				<default-field-of-view-deg type="double">103</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">52.0</pitch-offset-deg>
-				<default-field-of-view-deg type="double">100</default-field-of-view-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="102">
@@ -293,8 +329,10 @@
 				<x-offset-m archive="y">0.0</x-offset-m>
 				<y-offset-m archive="y">1.3701</y-offset-m>
 				<z-offset-m archive="y">-27</z-offset-m>
-				<pitch-offset-deg archive="y">-68</pitch-offset-deg>
 				<default-field-of-view-deg type="double">77</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
+				<pitch-offset-deg archive="y">-68</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="103">
@@ -306,12 +344,14 @@
 				<x-offset-m archive="y">0.0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.84</z-offset-m>
-				<pitch-offset-deg archive="y">-90</pitch-offset-deg>
 				<default-field-of-view-deg type="double">73</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
+				<pitch-offset-deg archive="y">-90</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="104">
-			<name>AFS Panel View</name>
+			<name>FCP Panel View</name>
 			<type>lookfrom</type>
 			<internal archive="y">true</internal>
 			<config>
@@ -319,8 +359,10 @@
 				<x-offset-m archive="y">0.0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.8</z-offset-m>
-				<pitch-offset-deg archive="y">-14.6</pitch-offset-deg>
 				<default-field-of-view-deg type="double">63</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
+				<pitch-offset-deg archive="y">-14.6</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="105">
@@ -336,9 +378,41 @@
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
 				<heading-offset-deg archive="y">129</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 		<view n="106">
+			<name>Right Front View</name>
+			<type>lookfrom</type>
+			<enabled type="bool">true</enabled>
+			<internal type="bool" archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">3.53</x-offset-m>
+				<y-offset-m archive="y">1.0092</y-offset-m>
+				<z-offset-m archive="y">-7.5</z-offset-m>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg archive="y">231</heading-offset-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
+			</config>
+		</view>
+		<view n="107">
+			<name>Left Mid View</name>
+			<type>lookfrom</type>
+			<internal archive="y">false</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">-3.53</x-offset-m>
+				<y-offset-m archive="y">1.0092</y-offset-m>
+				<z-offset-m archive="y">3.9</z-offset-m>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg>103</heading-offset-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
+			</config>
+		</view>
+		<view n="108">
 			<name>Right Mid View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -347,12 +421,13 @@
 				<x-offset-m archive="y">3.53</x-offset-m>
 				<y-offset-m archive="y">1.0092</y-offset-m>
 				<z-offset-m archive="y">3.9</z-offset-m>
-				<heading-offset-deg>257</heading-offset-deg>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg>257</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="107">
+		<view n="109">
 			<name>Left Aft View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -361,9 +436,25 @@
 				<x-offset-m archive="y">-3.53</x-offset-m>
 				<y-offset-m archive="y">1.0092</y-offset-m>
 				<z-offset-m archive="y">9.9</z-offset-m>
-				<heading-offset-deg>75</heading-offset-deg>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg>75</heading-offset-deg>
 				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
+			</config>
+		</view>
+		<view n="110">
+			<name>Right Aft View</name>
+			<type>lookfrom</type>
+			<internal archive="y">false</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">3.53</x-offset-m>
+				<y-offset-m archive="y">1.0092</y-offset-m>
+				<z-offset-m archive="y">9.9</z-offset-m>
+				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<heading-offset-deg>285</heading-offset-deg>
+				<pitch-offset-deg archive="y">-7</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
 	</sim>
@@ -387,12 +478,12 @@
 	
 	<controls n="0">
 		<apu n="0">
-			<bleed type="bool">0</bleed>
-			<fire-btn type="bool">0</fire-btn>
-			<fire-btn-cover type="bool">0</fire-btn-cover>
-			<fire-light type="bool">0</fire-light>
-			<on-light type="bool">0</on-light>
-			<start type="bool">0</start>
+			<lights n="0">
+				<avail-flash type="bool">0</avail-flash>
+			</lights>
+			<switches n="0">
+				<start type="bool">0</start>
+			</switches>
 		</apu>
 		<autobrake n="0">
 			<active type="bool">0</active>
@@ -432,6 +523,7 @@
 				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
+				<start-cmd type="bool">0</start-cmd>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="1">
@@ -440,6 +532,7 @@
 				<reverse-cmd type="bool">0</reverse-cmd>
 				<reverse-lever type="double">0</reverse-lever>
 				<starter type="bool">0</starter>
+				<start-cmd type="bool">0</start-cmd>
 				<start-switch type="bool">0</start-switch>
 			</engine>
 			<engine n="2">
@@ -450,7 +543,10 @@
 				<starter type="bool">0</starter>
 				<start-switch type="bool">0</start-switch>
 			</engine>
-			<packs-off type="bool">0</packs-off>
+			<engine n="3"> <!-- APU -->
+				<cutoff type="bool">1</cutoff>
+				<starter type="bool">0</starter>
+			</engine>
 			<throttle-max type="double">0</throttle-max>
 		</engines>
 		<fadec n="0">
@@ -504,15 +600,16 @@
 				<knob type="int">0</knob>
 			</abs>
 			<brake-parking type="bool">0</brake-parking>
+			<lever-cockpit type="int">3</lever-cockpit>
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
 		<hydraulics n="0">
 			<deflected-aileron type="bool">0</deflected-aileron>
-			<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 			<switches n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>
+				<gear-gravity-ext type="bool">0</gear-gravity-ext>
 				<l-pump-1 type="bool">1</l-pump-1>
 				<l-pump-2 type="bool">1</l-pump-2>
 				<l-pump-3 type="bool">1</l-pump-3>
@@ -524,21 +621,29 @@
 				<rmp-2-3 type="bool">0</rmp-2-3>
 			</switches>
 		</hydraulics>
-		<irs n="0">
-			<ir n="0">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<ir n="1">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<ir n="2">
-				<align type="bool">false</align>
-				<knob type="int">1</knob>
-			</ir>
-			<skip type="bool">0</skip>
-		</irs>
+		<ignition n="0">
+			<ign-a type="bool">0</ign-a>
+			<ign-b type="bool">0</ign-b>
+			<ign-ovrd type="bool">0</ign-ovrd>
+		</ignition>
+		<iru n="0">
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
+		</iru>
+		<iru n="1">
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
+		</iru>
+		<iru n="2">
+			<switches n="0">
+				<knob type="int">0</knob>
+			</switches>
+		</iru>
+		<iru-common n="0">
+			<mcdu-btn type="bool">0</mcdu-btn>
+		</iru-common>
 		<lighting n="0">
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
@@ -588,6 +693,9 @@
 			<seatbelt-sign type="double">0</seatbelt-sign>
 			<seatbelt-sign-status type="bool">0</seatbelt-sign-status>
 		</switches>
+		<warnings n="0">
+			<gear-warning-inhibit type="bool">0</gear-warning-inhibit>
+		</warnings>
 	</controls>
 	
 	<engines n="0">
@@ -595,8 +703,12 @@
 			<egt-actual type="double">0</egt-actual>
 			<epr-actual type="double">1</epr-actual>
 			<ff-actual type="double">0</ff-actual>
+			<fuel-flow_pph type="double">0</fuel-flow_pph>
+			<n1 type="double">0</n1>
 			<n1-actual type="double">0</n1-actual>
+			<n2 type="double">0</n2>
 			<n2-actual type="double">0</n2-actual>
+			<oil-qty-input type="double">20</oil-qty-input> <!-- Randomized later in sim init -->
 			<on-fire type="bool">0</on-fire>
 			<reverser-pos-norm type="double">0</reverser-pos-norm>
 			<running type="bool">0</running>
@@ -606,8 +718,12 @@
 			<egt-actual type="double">0</egt-actual>
 			<epr-actual type="double">1</epr-actual>
 			<ff-actual type="double">0</ff-actual>
+			<fuel-flow_pph type="double">0</fuel-flow_pph>
+			<n1 type="double">0</n1>
 			<n1-actual type="double">0</n1-actual>
+			<n2 type="double">0</n2>
 			<n2-actual type="double">0</n2-actual>
+			<oil-qty-input type="double">20</oil-qty-input> <!-- Randomized later in sim init -->
 			<on-fire type="bool">0</on-fire>
 			<reverser-pos-norm type="double">0</reverser-pos-norm>
 			<running type="bool">0</running>
@@ -617,10 +733,27 @@
 			<egt-actual type="double">0</egt-actual>
 			<epr-actual type="double">1</epr-actual>
 			<ff-actual type="double">0</ff-actual>
+			<fuel-flow_pph type="double">0</fuel-flow_pph>
+			<n1 type="double">0</n1>
 			<n1-actual type="double">0</n1-actual>
+			<n2 type="double">0</n2>
 			<n2-actual type="double">0</n2-actual>
+			<oil-qty-input type="double">20</oil-qty-input> <!-- Randomized later in sim init -->
 			<on-fire type="bool">0</on-fire>
 			<reverser-pos-norm type="double">0</reverser-pos-norm>
+			<running type="bool">0</running>
+			<state type="int">0</state>
+		</engine>
+		<engine n="3"> <!-- APU -->
+			<egt-actual type="double">0</egt-actual>
+			<ff-actual type="double">0</ff-actual>
+			<fuel-flow_pph type="double">0</fuel-flow_pph>
+			<n1 type="double">0</n1>
+			<n1-actual type="double">0</n1-actual>
+			<n2 type="double">0</n2>
+			<n2-actual type="double">0</n2-actual>
+			<oil-qty-input type="double">7</oil-qty-input> <!-- Randomized later in sim init -->
+			<on-fire type="bool">0</on-fire>
 			<running type="bool">0</running>
 			<state type="int">0</state>
 		</engine>
@@ -639,8 +772,10 @@
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
-					<active type="double">100</active>
+					<flex-active type="bool">0</flex-active>
+					<flex-temp type="int">30</flex-temp>
 				</limit>
+				<throttle-compare-max type="double">0</throttle-compare-max>
 			</fadec>
 			<fcc n="0">
 				<elevator-feel n="0">
@@ -756,7 +891,7 @@
 					<script>
 						setprop("/controls/switches/ats-lever1", 1);
 						setprop("/controls/switches/ats-lever3", 1);
-						libraries.APPanel.ATDisc();
+						libraries.apPanel.atDisc();
 					</script>
 				</binding>
 				<mod-up>
@@ -776,7 +911,7 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/switches/ga-button", 1);
-						libraries.APPanel.GAButton();
+						libraries.apPanel.goAround();
 					</script>
 				</binding>
 				<mod-up>
@@ -825,7 +960,7 @@
 				<desc>Captain View/Elevator Trim Up</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -833,7 +968,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(-1);</script>
@@ -844,7 +979,7 @@
 				<desc>First Officer View/Elevator Up</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -852,7 +987,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") - 0.05);</script>
@@ -863,7 +998,7 @@
 				<desc>Overhead View/Throttle Decrease</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -871,7 +1006,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -886,7 +1021,7 @@
 				<desc>Forward Pedestal/Aileron Left</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -894,7 +1029,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") - 0.05);</script>
@@ -905,7 +1040,7 @@
 				<desc>Aft Pedestal/Center Controls</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -913,7 +1048,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -928,7 +1063,7 @@
 				<desc>AFS Panel/Aileron Right</desc>
 				<binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -936,7 +1071,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/aileron", getprop("/controls/flight/aileron") + 0.05);</script>
@@ -947,7 +1082,7 @@
 				<desc>Elevator Trim Down</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -955,7 +1090,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(1);</script>
@@ -966,7 +1101,7 @@
 				<desc>Elevator Down</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -974,7 +1109,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>setprop("/controls/flight/elevator", getprop("/controls/flight/elevator") + 0.05);</script>
@@ -985,7 +1120,7 @@
 				<desc>Throttle Increase</desc>
 				<!--binding>
 					<condition>
-						<not><property>/options/system/keyboard-mode</property></not>
+						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>property-assign</command>
 					<property>/sim/current-view/view-number</property>
@@ -993,7 +1128,7 @@
 				</binding-->
 				<binding>
 					<condition>
-						<property>/options/system/keyboard-mode</property>
+						<property>/systems/acconfig/options/keyboard-mode</property>
 					</condition>
 					<command>nasal</command>
 					<script>
@@ -1011,7 +1146,7 @@
 					<script>
 						setprop("/controls/switches/ap-yoke-button1", 1);
 						setprop("/controls/switches/ap-yoke-button2", 1);
-						libraries.APPanel.APDisc();
+						libraries.apPanel.apDisc();
 					</script>
 				</binding>
 				<mod-up>
@@ -1038,6 +1173,22 @@
 				<binding>
 					<command>nasal</command>
 					<script>libraries.resetView();</script>
+				</binding>
+			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Thrust Levers Idle</desc>
+				<binding>
+					<command>nasal</command>
+					<script>systems.doIdleThrust();</script>
+				</binding>
+			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Thrust Lever Full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
 			<key n="120">
@@ -1070,22 +1221,6 @@
 				<binding>
 					<command>nasal</command>
 					<script>systems.doRevThrust();</script>
-				</binding>
-			</key>
-			<key n="101">
-				<name>e</name>
-				<desc>Thrust Levers Idle</desc>
-				<binding>
-					<command>nasal</command>
-					<script>systems.doIdleThrust();</script>
-				</binding>
-			</key>
-			<key n="102">
-				<name>f</name>
-				<desc>Thrust Lever Full</desc>
-				<binding>
-					<command>nasal</command>
-					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
 			<key n="362">
@@ -1216,7 +1351,7 @@
 		</comm>
 		<dme n="0">
 			<frequencies>
-				<selected-mhz type="double">111.15</selected-mhz>
+				<selected-mhz type="double">109.6</selected-mhz>
 				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
@@ -1224,7 +1359,7 @@
 		</dme>
 		<dme n="1">
 			<frequencies>
-				<selected-mhz type="double">109.55</selected-mhz>
+				<selected-mhz type="double">112.8</selected-mhz>
 				<source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
@@ -1232,34 +1367,28 @@
 		</dme>
 		<dme n="2">
 			<frequencies>
-				<selected-mhz type="double">112.8</selected-mhz>
+				<selected-mhz type="double">111.15</selected-mhz>
 				<source type="string">/instrumentation/nav[2]/frequencies/selected-mhz</source>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		<dme n="3">
-			<frequencies>
-				<selected-mhz type="double">114.8</selected-mhz>
-				<source type="string">/instrumentation/nav[3]/frequencies/selected-mhz</source>
-			</frequencies>
-			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
-		</dme>
+		<encoder n="0">
+			<serviceable type="bool">1</serviceable>
+		</encoder>
+		<fcp n="0">
+			<alt-rotate type="int">50000</alt-rotate>
+			<baro-l-rotate type="int">50000</baro-l-rotate>
+			<baro-r-rotate type="int">50000</baro-r-rotate>
+			<hdg-rotate type="int">50000</hdg-rotate>
+			<mins-l-rotate type="int">50000</mins-l-rotate>
+			<mins-r-rotate type="int">50000</mins-r-rotate>
+			<spd-rotate type="int">50000</spd-rotate>
+			<vs-rotate type="int">50000</vs-rotate>
+		</fcp>
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
-		<irs n="0">
-			<ir n="0">
-				<aligned type="bool">0</aligned>
-			</ir>
-			<ir n="1">
-				<aligned type="bool">0</aligned>
-			</ir>
-			<ir n="2">
-				<aligned type="bool">0</aligned>
-			</ir>
-		</irs>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
 			<configuration-module>
@@ -1296,10 +1425,10 @@
 				<file-prefix>Aircraft/MD-11/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
-		<nav n="0">
+		<nav n="0"> <!-- VOR 1 -->
 			<frequencies>
-				<selected-mhz type="double">111.15</selected-mhz>
-				<standby-mhz type="double">110.95</standby-mhz>
+				<selected-mhz type="double">109.6</selected-mhz>
+				<standby-mhz type="double">110.8</standby-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>
@@ -1307,21 +1436,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="1">
-			<frequencies>
-				<selected-mhz type="double">109.55</selected-mhz>
-				<standby-mhz type="double">110.55</standby-mhz>
-			</frequencies>
-			<radials>
-				<selected-deg type="double">360</selected-deg>
-			</radials>
-			<serviceable type="bool">true</serviceable>
-			<volume type="double">0</volume>
-		</nav>
-		<nav n="2">
-			<cdi>
-				<serviceable type="bool">true</serviceable>
-			</cdi>
+		<nav n="1"> <!-- VOR 2 -->
 			<frequencies>
 				<selected-mhz type="double">112.8</selected-mhz>
 				<standby-mhz type="double">112.6</standby-mhz>
@@ -1332,13 +1447,13 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<nav n="3">
+		<nav n="2"> <!-- ILS -->
 			<cdi>
 				<serviceable type="bool">true</serviceable>
 			</cdi>
 			<frequencies>
-				<selected-mhz type="double">114.8</selected-mhz>
-				<standby-mhz type="double">114.6</standby-mhz>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<standby-mhz type="double">110.95</standby-mhz>
 			</frequencies>
 			<radials>
 				<selected-deg type="double">360</selected-deg>
@@ -1346,9 +1461,12 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
+		<sd n="0">
+			<selected-synoptic type="string">ENG</selected-synoptic>
+		</sd>
 		<tcas>
 			<inputs>
-				<mode type="int">3</mode>
+				<mode type="int">0</mode>
 			</inputs>
 			<voice>
 				<file-prefix type="string">Sounds/tcas/female/</file-prefix>
@@ -1360,56 +1478,62 @@
 				<volume>0.8</volume>
 			</speaker>
 		</tcas>
+		<transponder n="0">
+			<inputs n="0">
+				<knob-mode type="int">1</knob-mode>
+			</inputs>
+		</transponder>
 	</instrumentation>
 	
 	<it-autoflight>
-		<custom n="0">
-			<alt-knb type="int">0</alt-knb>
-			<hdg-sel type="int">0</hdg-sel>
-			<hdg-knb type="int">0</hdg-knb>
-			<spd-knb type="int">0</spd-knb>
-			<vs-knb type="int">0</vs-knb>
-		</custom>
 		<input n="0">
 			<fpa type="double">0</fpa>
 			<ovrd1 type="bool">0</ovrd1>
 			<ovrd2 type="bool">0</ovrd2>
 			<vs type="int">0</vs>
 		</input>
+		<internal n="0">
+			<throttle-saturated type="int">0</throttle-saturated>
+		</internal>
 		<output n="0">
 			<ap1 type="bool">0</ap1>
 			<ap2 type="bool">0</ap2>
+			<athr type="bool">0</athr>
+			<athr-available type="bool">0</athr-available>
 			<lat type="int">0</lat>
+			<spd-prot type="int">0</spd-prot>
 			<thr-mode type="int">0</thr-mode>
 			<vert type="int">0</vert>
 		</output>
 	</it-autoflight>
 	
-	<options n="0">
-		<keyboard-mode type="bool">0</keyboard-mode>
-		<laptop-mode type="bool">0</laptop-mode>
-	</options>
-	
 	<systems n="0">
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<options n="0">
-				<throttle-override type="string">Only In Clamp</throttle-override>
+				<autopush n="0">
+					<show-route type="bool">1</show-route>
+					<show-wingtip type="bool">1</show-wingtip>
+				</autopush>
+				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
+				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
+				<du n="0">
+					<ead-fps type="double">20</ead-fps>
+					<nd-fps type="double">20</nd-fps>
+					<pfd-fps type="double">20</pfd-fps>
+					<sd-fps type="double">10</sd-fps>
+				</du>
+				<irs-align-instantly type="bool">0</irs-align-instantly>
+				<keyboard-mode type="bool">0</keyboard-mode>
+				<map-less-transparent type="bool">0</map-less-transparent>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
+				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>
 		</acconfig>
 		<apu n="0">
-			<n2 type="double">0</n2>
+			<state type="int">0</state>
 		</apu>
 		<electrical n="0">
-			<sources n="0">
-				<bat-1 n="0">
-					<percent type="double">100</percent>
-				</bat-1>
-				<bat-2 n="0">
-					<percent type="double">100</percent>
-				</bat-2>
-			</sources>
 			<system type="bool">1</system>
 		</electrical>
 		<failures n="0">
@@ -1439,6 +1563,7 @@
 			<fuel n="0">
 				<pumps-aux-l type="bool">0</pumps-aux-l>
 				<pumps-aux-r type="bool">0</pumps-aux-r>
+				<pumps-tail type="bool">0</pumps-tail>
 				<pumps-1 type="bool">0</pumps-1>
 				<pumps-2 type="bool">0</pumps-2>
 				<pumps-3 type="bool">0</pumps-3>
@@ -1470,15 +1595,16 @@
 				<pack-1 type="bool">0</pack-1>
 				<pack-2 type="bool">0</pack-2>
 				<pack-3 type="bool">0</pack-3>
+				<packs-off type="bool">0</packs-off>
 			</pneumatics>
 		</failures>
 		<fuel n="0">
 			<system type="bool">1</system>
 		</fuel>
 		<hydraulics n="0">
-			<sys-1-qty-input type="double">8.0</sys-1-qty-input> <!-- Randomized later in sim init -->
-			<sys-2-qty-input type="double">8.0</sys-2-qty-input> <!-- Randomized later in sim init -->
-			<sys-3-qty-input type="double">8.0</sys-3-qty-input> <!-- Randomized later in sim init -->
+			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
+			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->
+			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 			<system type="bool">1</system>
 		</hydraulics>
 		<pneumatics n="0">
@@ -1500,12 +1626,11 @@
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
 			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
-			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
 		<acconfig>
-			<file>Aircraft/MD-11/AircraftConfig/acconfig.nas</file>
+			<file>Aircraft/MD-11/Nasal/acconfig.nas</file>
 		</acconfig>
 		<systems>
 			<file>Aircraft/MD-11/Nasal/Systems/electrical.nas</file>
@@ -1513,8 +1638,7 @@
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/master-system.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/IRS.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/DU-controller.nas</file>
 		</systems>
 		<afs>
 			<file>Aircraft/MD-11/Nasal/AFS/AFS.nas</file>
@@ -1524,11 +1648,17 @@
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
 		<canvas_pfd>
-			<file>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/PFD.nas</file>
 		</canvas_pfd>
 		<canvas_ead>
-			<file>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.nas</file>
+			<file>Aircraft/MD-11/Nasal/Displays/EAD.nas</file>
 		</canvas_ead>
+		<canvas_sd>
+			<file>Aircraft/MD-11/Nasal/Displays/SD.nas</file>
+		</canvas_sd>
+		<instruments>
+			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
+		</instruments>
 		<autopush>
 			<file>Aircraft/MD-11/Nasal/Autopush/autopush.nas</file>
 		</autopush>
@@ -1541,6 +1671,12 @@
 		<autopush_route>
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
+		<panel2d>
+			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
+		</panel2d>
+		<lightmanager>
+			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
+		</lightmanager>
 	</nasal>
 
 </PropertyList>

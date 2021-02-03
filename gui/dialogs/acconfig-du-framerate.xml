@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<!-- MD-11 Aircraft Config Dialog -->
+
+<PropertyList>
+
+	<name>acconfig-du-framerate</name>
+	<layout>vbox</layout>
+	
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>DU Framerate</label>
+		</text>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>nasal</command>
+				<script>
+					acconfig.OPTIONS.write();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+				</script>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+		
+	<hrule/>
+	
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>Here you can adjust the frame rate of the Display Units.</label>
+		</text>
+		
+		<group>
+			<layout>table</layout>
+			
+			<text>
+				<row>0</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>Both PFDs:</label>
+			</text>
+			
+			<slider>
+				<row>0</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/pfd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>0</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/pfd-fps</property>
+				<live>1</live>
+			</text>
+			
+			<!--text>
+				<row>1</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>Both NDs:</label>
+			</text>
+			
+			<slider>
+				<enable>
+					<property>/systems/acconfig/extra-stuff</property>
+				</enable>
+				<row>1</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/nd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>1</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/nd-fps</property>
+				<live>1</live>
+			</text-->
+			
+			<text>
+				<row>2</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>EAD:</label>
+			</text>
+			
+			<slider>
+				<row>2</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/ead-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>2</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/ead-fps</property>
+				<live>1</live>
+			</text>
+			
+			<text>
+				<row>3</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>SD:</label>
+			</text>
+			
+			<slider>
+				<row>3</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/sd-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>3</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/sd-fps</property>
+				<live>1</live>
+			</text>
+			
+		</group>
+	
+	</group>
+	
+	<hrule/>
+
+	<group>
+		<layout>hbox</layout>
+		
+		<button>
+			<halign>center</halign>
+			<legend>Apply/Save</legend>
+			<pref-width>80</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>
+					acconfig.OPTIONS.write();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+				</script>
+			</binding>
+		</button>
+		<button>
+			<halign>center</halign>
+			<legend>Default</legend>
+			<pref-width>80</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>
+					pts.Systems.Acconfig.Options.Du.eadFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
+					acconfig.OPTIONS.write();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+				</script>
+			</binding>
+		</button>
+		<button>
+			<halign>center</halign>
+			<legend>Apply/Save/Go Away</legend>
+			<pref-width>180</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>
+					acconfig.OPTIONS.write();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+				</script>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+</PropertyList>

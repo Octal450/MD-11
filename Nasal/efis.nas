@@ -1,5 +1,5 @@
 # MD-11 EFIS Controller
-# Copyright (c) 2020 Josh Davidson (Octal450)
+# Copyright (c) 2021 Josh Davidson (Octal450)
 
 var rng = 10;
 var lh = 0;

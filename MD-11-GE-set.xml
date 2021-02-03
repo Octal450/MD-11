@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList include="MD-11-main.xml">
 	
@@ -27,11 +27,18 @@
 			</livery>
 			<path>Aircraft/MD-11/Models/MD-11-GE.xml</path>
 		</model>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>gui/splash/md-11-ge.png</path>
+			</preview>
+		</previews>
 		<primary-set>true</primary-set>
 		<rating>
 			<FDM type="int">5</FDM>
-			<systems type="int">4</systems>
-			<cockpit type="int">4</cockpit>
+			<systems type="int">5</systems>
+			<cockpit type="int">5</cockpit>
 			<model type="int">5</model>
 		</rating>
 		<sound n="0">
@@ -107,6 +114,12 @@
 		</weight>
 	</payload>
     
+	<systems n="0">
+		<ignition n="0">
+			<starter-cutoff-n2 type="double">45</starter-cutoff-n2>
+		</ignition>
+	</systems>
+	
     <nasal n="0">
 		<setup>
 			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11/GE");</script>

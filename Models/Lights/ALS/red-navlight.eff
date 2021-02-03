@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 
 <PropertyList>
 	<name>Effects/red-navlight</name>
@@ -16,15 +16,15 @@
     <light_color_center_g type="float">0.65</light_color_center_g>
     <light_color_center_b type="float">0.65</light_color_center_b>
     <intensity_scale type="float"><use>/sim/model/lights/nav-lights</use></intensity_scale>
-    <pointing_x type="float">1.0</pointing_x>
-    <pointing_y type="float">0.97629600712</pointing_y>
+    <pointing_x type="float">1</pointing_x>
+    <pointing_y type="float">0.70710678</pointing_y>
     <pointing_z type="float">0.0</pointing_z>
     <is_directional type="bool">true</is_directional>
     <is_strobe type="bool">false</is_strobe>
-    <inner_angle type="float">0.707106781187</inner_angle>
-    <outer_angle type="float">0.939692620786</outer_angle>
-    <zero_angle type="float">0.017452406437</zero_angle>
-    <outer_gain type="float">0.1</outer_gain>
+    <inner_angle type="float">0.86602540378</inner_angle>
+    <outer_angle type="float">0.93969262078</outer_angle>
+    <zero_angle type="float">0.99619469809</zero_angle>
+    <outer_gain type="float">1.0</outer_gain>
     <visibility><use>/environment/ground-visibility-m</use></visibility>
     <avisibility><use>/environment/visibility-m</use></avisibility>
     <lthickness><use>/environment/ground-haze-thickness-m</use></lthickness>

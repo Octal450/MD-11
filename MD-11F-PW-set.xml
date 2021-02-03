@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList include="MD-11-main.xml">
 	
     <sim>
 		<aero>MD-11F-PW</aero>
-		<description>McDonnell Douglas MD-11F (PW4462)</description>
+		<description>McDonnell Douglas MD-11F (PW4460)</description>
 		<flight-model>jsb</flight-model>
 		<model n="0">
 			<armrest type="bool">1</armrest>
@@ -21,10 +21,17 @@
 			</livery>
 			<path>Aircraft/MD-11/Models/MD-11F-PW.xml</path>
 		</model>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>gui/splash/md-11f-pw.png</path>
+			</preview>
+		</previews>
 		<rating>
 			<FDM type="int">5</FDM>
-			<systems type="int">4</systems>
-			<cockpit type="int">4</cockpit>
+			<systems type="int">5</systems>
+			<cockpit type="int">5</cockpit>
 			<model type="int">5</model>
 		</rating>
 		<sound n="0">
@@ -47,7 +54,7 @@
 	</limits>
 	
 	<MCDUC n="0">
-		<eng type="string">PW4462</eng>
+		<eng type="string">PW4460</eng>
 		<type type="string">MD-11 DEF AIL</type>
 	</MCDUC>
 	
@@ -99,6 +106,12 @@
 			<max-lb type="double">2000</max-lb>
 		</weight>
 	</payload>
+	
+	<systems n="0">
+		<ignition n="0">
+			<starter-cutoff-n2 type="double">47</starter-cutoff-n2>
+		</ignition>
+	</systems>
     
     <nasal n="0">
 		<setup>
