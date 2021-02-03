@@ -4,8 +4,7 @@
 <!-- Copyright (c) 2014 Adam Murphy -->
 <!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
-<!--PropertyList include="MD-11-common-sound.xml"--> <!-- For now -->
-<PropertyList>
+<PropertyList include="MD-11-common-sound.xml">
 	
 	<fx>
 		
@@ -25,9 +24,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>-3.3</x>
+				<y>8.3</y>
+				<z>00</z>
 			</position>
 		</engine>
 		<engine>
@@ -45,9 +44,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -65,9 +64,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
@@ -86,9 +85,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -106,9 +105,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -126,9 +125,70 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Shutdown 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[0]/state</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Shutdown 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[1]/state</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Shutdown 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[2]/state</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
@@ -148,9 +208,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -169,9 +229,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -190,9 +250,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
@@ -212,9 +272,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -233,9 +293,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -254,9 +314,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
@@ -276,9 +336,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -297,9 +357,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -318,9 +378,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
@@ -340,9 +400,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -361,9 +421,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>20</x>
-				<y>0</y>
-				<z>0</z>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
 			</position>
 		</engine>
 		<engine>
@@ -382,9 +442,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0</x>
-				<y>-20</y>
-				<z>0</z>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 	
