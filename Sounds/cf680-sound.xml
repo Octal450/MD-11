@@ -137,13 +137,13 @@
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
 			<condition>
 				<equals>
-					<property>/engines/engine[0]/state</property>
+					<property>/sim/sound/shutdown[0]</property>
 					<value>0</value>
 				</equals>
 			</condition>
 			<volume>
 				<property>/sim/sound/internal-custom</property>
-				<factor>1</factor>
+				<factor>2</factor>
 			</volume>
 			<position>
 				<x>0.0</x>
@@ -157,13 +157,13 @@
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
 			<condition>
 				<equals>
-					<property>/engines/engine[1]/state</property>
+					<property>/sim/sound/shutdown[1]</property>
 					<value>0</value>
 				</equals>
 			</condition>
 			<volume>
 				<property>/sim/sound/internal-custom</property>
-				<factor>1</factor>
+				<factor>2</factor>
 			</volume>
 			<position>
 				<x>25.0</x>
@@ -177,14 +177,142 @@
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
 			<condition>
 				<equals>
-					<property>/engines/engine[2]/state</property>
+					<property>/sim/sound/shutdown[2]</property>
 					<value>0</value>
 				</equals>
 			</condition>
 			<volume>
 				<property>/sim/sound/internal-custom</property>
-				<factor>1</factor>
+				<factor>2</factor>
 			</volume>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Idle 1 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-1-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-1-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle 2 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-2-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-2-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle 3 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-3-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-3-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Idle N2 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-1-n2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-1-n2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle N2 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-2-n2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle N2 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-3-n2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-3-n2-p</property>
+				<offset>0</offset>
+			</pitch>
 			<position>
 				<x>0.0</x>
 				<y>-8.3</y>
@@ -385,6 +513,70 @@
 		</engine>
 		
 		<engine>
+			<name>Cockpit Power 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/power-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/power-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Power 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/power-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/power-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Power 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/power-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/power-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
 			<name>Cockpit Growl 1</name>
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Growl.wav</path>
@@ -439,6 +631,70 @@
 			</volume>
 			<pitch>
 				<property>/sim/sound/cockpit/growl-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Reverse 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/reverse-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/reverse-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Reverse 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/reverse-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/reverse-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Reverse 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/reverse-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/reverse-3-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>

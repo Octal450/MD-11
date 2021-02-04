@@ -455,6 +455,20 @@ var IRS = {
 	},
 };
 
+
+setlistener("/engines/engine[0]/state", func() {
+	setprop("/sim/sound/shutdown[0]", pts.Engines.Engine.state[0].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[1]/state", func() {
+	setprop("/sim/sound/shutdown[1]", pts.Engines.Engine.state[1].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[2]/state", func() {
+	setprop("/sim/sound/shutdown[2]", pts.Engines.Engine.state[2].getValue());
+}, 0, 0);
+
+
 setlistener("/systems/iru-common/any-aligned-out", func() {
 	IRS.anyAlignedUpdate();
 }, 0, 0);

@@ -195,11 +195,10 @@
 			</volume>
 		</misc>
 		
-		<!-- Below Sounds are by Devyn Silverstein used with permission -->
 		<misc>
 			<name>md11 avionics</name>
 			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/Devyn-Common/MD11-avionics.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Avionics.wav</path>
 			<condition>
 				<or>
 					<greater-than-equals>
@@ -216,12 +215,13 @@
 					</greater-than-equals>
 				</or>
 			</condition>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
-				<factor>0.6</factor>
+				<factor>0.9</factor>
 			</volume>
 		</misc>
+		
+		<!-- Below Sounds are by Devyn Silverstein used with permission -->
 		
 		<mdapu>
 			<name>apu</name>
