@@ -1659,7 +1659,7 @@
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
-					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -1677,7 +1677,7 @@
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
-					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -1695,7 +1695,7 @@
 				<table>
 					<property>/engines/engine[2]/n1-actual</property>
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
-					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -1756,5 +1756,341 @@
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-3-p</output>
+	</filter>
+	
+	<!-- Whoosh -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[0]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[0]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/whoosh-3-p</output>
+	</filter>
+	
+	<!-- Rumble-Side -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[0]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>60</ind><dep>0.00</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[0]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-side-3-p</output>
+	</filter>
+	
+	<!-- Rumble -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[0]</property>
+					<entry><ind>2.1</ind> <dep>0.00</dep></entry>
+					<entry><ind>54.0</ind><dep>0.024</dep></entry>
+					<entry><ind>99.8</ind><dep>0.936</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>2.1</ind> <dep>0.00</dep></entry>
+					<entry><ind>54.0</ind><dep>0.024</dep></entry>
+					<entry><ind>99.8</ind><dep>0.936</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>2.1</ind> <dep>0.00</dep></entry>
+					<entry><ind>54.0</ind><dep>0.024</dep></entry>
+					<entry><ind>99.8</ind><dep>0.936</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[1]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/sim/sound/fake-n2[2]</property>
+					<entry><ind>0</ind><dep>0.00</dep></entry>
+					<entry><ind>100</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/rumble-3-p</output>
 	</filter>
 </PropertyList>
