@@ -41,11 +41,11 @@
 			<model type="int">5</model>
 		</rating>
 		<sound n="0">
-			<path>Aircraft/MD-11/Sounds/pw4000-sound.xml</path>
+			<path>Aircraft/MD-11/Sounds/cf680-sound.xml</path> <!-- Temporary -->
 		</sound>
 		<systems n="0">
 			<autopilot n="6">
-				<path>Aircraft/MD-11/Sounds/cf680-sound-control.xml</path>
+				<path>Aircraft/MD-11/Sounds/cf680-sound-control.xml</path> <!-- Temporary -->
 			</autopilot>
 		</systems>
 		<variant-of>MD-11-GE</variant-of>

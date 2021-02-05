@@ -2,7 +2,7 @@
 
 <!-- MD-11 CF6-80C2 SASA Sound Configuration -->
 <!-- Copyright (c) 2014 Adam Murphy -->
-<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450), Jonathan Redpath (legoboyvdlp) -->
 
 <PropertyList include="MD-11-common-sound.xml">
 	
@@ -375,70 +375,6 @@
 			</volume>
 			<pitch>
 				<property>/sim/sound/cockpit/idle-3-low-p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>Cockpit Idle N2 1</name>
-			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
-			<condition>
-				<property>/sim/sound/suppress-warning</property>
-			</condition>
-			<volume>
-				<property>/sim/sound/cockpit/idle-1-n2-v</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>/sim/sound/cockpit/idle-1-n2-p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
-			</position>
-		</engine>
-		<engine>
-			<name>Cockpit Idle N2 2</name>
-			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
-			<condition>
-				<property>/sim/sound/suppress-warning</property>
-			</condition>
-			<volume>
-				<property>/sim/sound/cockpit/idle-2-n2-v</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>/sim/sound/cockpit/idle-2-p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		<engine>
-			<name>Cockpit Idle N2 3</name>
-			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-N2.wav</path>
-			<condition>
-				<property>/sim/sound/suppress-warning</property>
-			</condition>
-			<volume>
-				<property>/sim/sound/cockpit/idle-3-n2-v</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>/sim/sound/cockpit/idle-3-n2-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
