@@ -7,6 +7,7 @@
 	
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
+	<property value="60960">fadec/limit/rated-thrust</property>
 	
 	<channel name="Thrust Limits">
 		
@@ -53,14 +54,14 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>61960</value>
+						<property>fadec/limit/rated-thrust</property>
 					</product>
 					<product>
 						<difference>
-							<value>61960</value>
+							<property>fadec/limit/rated-thrust</property>
 							<product>
 								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-								<value>61960</value>
+								<property>fadec/limit/rated-thrust</property>
 							</product>
 						</difference>
 						<property>fadec/limit/milthrust-unmodified</property>
@@ -74,15 +75,15 @@
 				<sum>
 					<product>
 						<property>propulsion/engine/IdleThrust</property>
-						<value>61960</value>
+						<property>fadec/limit/rated-thrust</property>
 					</product>
 					<product>
 						<product>
 							<difference>
-								<value>61960</value>
+								<property>fadec/limit/rated-thrust</property>
 								<product>
 									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
-									<value>61960</value>
+									<property>fadec/limit/rated-thrust</property>
 								</product>
 							</difference>
 							<property>fadec/limit/milthrust-unmodified</property>
