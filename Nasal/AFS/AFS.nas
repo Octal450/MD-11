@@ -712,43 +712,67 @@ var ITAF = {
 		Velocities.vmax = pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue();
 		Velocities.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
 		Internal.throttleSaturatedTemp = Internal.throttleSaturated.getValue();
+		Output.spdProtTemp = Output.spdProt.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		
-		if (me.spdProtAllowed() and Output.athrAvail.getBoolValue()) {
-			if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1))) { # High Speed Prot
-				Output.spdProt.setValue(2);
-				Internal.spdProtOnPitch = 1;
-				me.setVertMode(4);
-				if (!Output.athr.getBoolValue()) {
-					me.athrMaster(1);
+		if (me.spdProtAllowed()) {
+			if (Output.athrAvail.getBoolValue()) { # A/THR Available
+				if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1 and Output.spdProtTemp == 0))) { # High Speed Prot
+					Output.spdProt.setValue(2);
+					Internal.spdProtOnPitch = 1;
+					me.setVertMode(4);
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10 or (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and Internal.throttleSaturatedTemp == 2 and Output.spdProtTemp == 0))) { # Low Speed Prot
+					Output.spdProt.setValue(1);
+					Internal.spdProtOnPitch = 1;
+					me.setVertMode(4);
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Internal.spdProtOnPitch) {
+					Output.spdProt.setValue(2);
+					if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
+						me.setBasicMode(1); # Pitch mode only, no ALT
+					}
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Internal.spdProtOnPitch) {
+					Output.spdProt.setValue(1);
+					if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
+						me.setBasicMode(1); # Pitch mode only, no ALT
+					}
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else {
+					if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmax and Velocities.indicatedAirspeedKtTemp >= Velocities.vmin) {
+						Output.spdProt.setValue(0);
+						Internal.spdProtOnPitch = 0;
+					}
 				}
-			} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10 or (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and Internal.throttleSaturatedTemp == 2))) { # Low Speed Prot
-				Output.spdProt.setValue(1);
-				Internal.spdProtOnPitch = 1;
-				me.setVertMode(4);
-				if (!Output.athr.getBoolValue()) {
-					me.athrMaster(1);
-				}
-			} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Internal.spdProtOnPitch) {
-				Output.spdProt.setValue(2);
-				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
-					me.setBasicMode(1); # Pitch mode only
-				}
-				if (!Output.athr.getBoolValue()) {
-					me.athrMaster(1);
-				}
-			} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Internal.spdProtOnPitch) {
-				Output.spdProt.setValue(1);
-				if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
-					me.setBasicMode(1); # Pitch mode only
-				}
-				if (!Output.athr.getBoolValue()) {
-					me.athrMaster(1);
-				}
-			} else {
-				if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmax and Velocities.indicatedAirspeedKtTemp >= Velocities.vmin) {
-					Output.spdProt.setValue(0);
-					Internal.spdProtOnPitch = 0;
+			} else { # A/THR not available, go directly into speed on pitch protection (except ALT HLD)
+				if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5)) { # High Speed Prot
+					Output.spdProt.setValue(2);
+					Internal.spdProtOnPitch = 1;
+					me.setVertMode(4);
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5)) { # Low Speed Prot
+					Output.spdProt.setValue(1);
+					Internal.spdProtOnPitch = 1;
+					me.setVertMode(4);
+					if (!Output.athr.getBoolValue()) {
+						me.athrMaster(1);
+					}
+				} else {
+					if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmax and Velocities.indicatedAirspeedKtTemp >= Velocities.vmin) {
+						Output.spdProt.setValue(0);
+						Internal.spdProtOnPitch = 0;
+					}
 				}
 			}
 		} else {
@@ -882,7 +906,7 @@ var ITAF = {
 		if (t != 1) {
 			me.setLatMode(3); # HDG HOLD
 		}
-		if (abs(Internal.vs.getValue()) > 300) {
+		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
 			if (afs.Output.vsFpa.getBoolValue()) {
 				me.setVertMode(5); # FPA
 			} else {
