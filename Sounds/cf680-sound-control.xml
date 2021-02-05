@@ -248,7 +248,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2-actual</property>
+					<property>/sim/sound/fake-n2[0]</property>
 					<entry><ind>02.100</ind><dep>0.0</dep></entry>
 					<entry><ind>54.000</ind><dep>0.754</dep></entry>
 					<entry><ind>99.800</ind><dep>0.0</dep></entry>
@@ -268,7 +268,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2-actual</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind>02.100</ind><dep>0.0</dep></entry>
 					<entry><ind>54.000</ind><dep>0.754</dep></entry>
 					<entry><ind>99.800</ind><dep>0.0</dep></entry>
@@ -287,7 +287,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2-actual</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind>02.100</ind><dep>0.0</dep></entry>
 					<entry><ind>54.000</ind><dep>0.754</dep></entry>
 					<entry><ind>99.800</ind><dep>0.0</dep></entry>
@@ -307,7 +307,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2-actual</property>
+					<property>/sim/sound/fake-n2[0]</property>
 					<entry><ind>000</ind><dep>0.000</dep></entry>
 					<entry><ind>100</ind><dep>1.000</dep></entry>
 				</table>
@@ -325,7 +325,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2-actual</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind>000</ind><dep>0.000</dep></entry>
 					<entry><ind>100</ind><dep>1.000</dep></entry>
 				</table>
@@ -343,7 +343,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2-actual</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind>000</ind><dep>0.000</dep></entry>
 					<entry><ind>100</ind><dep>1.000</dep></entry>
 				</table>
@@ -714,7 +714,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2-actual</property>
+					<property>/sim/sound/fake-n2[0]</property>
 					<entry><ind> 2.100</ind><dep>0.0000</dep></entry>
 					<entry><ind>54.000</ind><dep>0.0400</dep></entry>
 					<entry><ind>99.800</ind><dep>1.0000</dep></entry>
@@ -733,7 +733,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2-actual</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind> 2.100</ind><dep>0.0000</dep></entry>
 					<entry><ind>54.000</ind><dep>0.0400</dep></entry>
 					<entry><ind>99.800</ind><dep>1.0000</dep></entry>
@@ -752,7 +752,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2-actual</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind> 2.100</ind><dep>0.0000</dep></entry>
 					<entry><ind>54.000</ind><dep>0.0400</dep></entry>
 					<entry><ind>99.800</ind><dep>1.0000</dep></entry>
@@ -772,7 +772,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2-actual</property>
+					<property>/sim/sound/fake-n2[0]</property>
 					<entry><ind>50</ind> <dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
@@ -790,7 +790,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2-actual</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind>50</ind> <dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
@@ -808,7 +808,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2-actual</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind>50</ind> <dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
@@ -940,7 +940,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/engines/engine[0]/n2-actual</property>
+						<property>/sim/sound/fake-n2[0]</property>
 						<entry><ind>02.100</ind><dep>0.0</dep></entry>
 						<entry><ind>54.000</ind><dep>0.04</dep></entry>
 						<entry><ind>100.00</ind><dep>1.00</dep></entry>
@@ -962,7 +962,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/engines/engine[1]/n2-actual</property>
+						<property>/sim/sound/fake-n2[1]</property>
 						<entry><ind>02.100</ind><dep>0.0</dep></entry>
 						<entry><ind>54.000</ind><dep>0.04</dep></entry>
 						<entry><ind>100.00</ind><dep>1.00</dep></entry>
@@ -984,7 +984,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/engines/engine[2]/n2-actual</property>
+						<property>/sim/sound/fake-n2[2]</property>
 						<entry><ind>02.100</ind><dep>0.0</dep></entry>
 						<entry><ind>54.000</ind><dep>0.04</dep></entry>
 						<entry><ind>100.00</ind><dep>1.00</dep></entry>
@@ -1006,7 +1006,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[0]/n2-actual</property>
+					<property>/sim/sound/fake-n2[0]</property>
 					<entry><ind>50</ind> <dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
@@ -1024,7 +1024,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[1]/n2-actual</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind>50</ind> <dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
@@ -1042,7 +1042,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/engines/engine[2]/n2-actual</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind>50</ind> <dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
@@ -1052,4 +1052,709 @@
 		<output>/sim/sound/cockpit/reverse-3-p</output>
 	</filter>
 	
+	<!-- External -->
+	<!-- Idle Low -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>27.800</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.1</dep></entry>
+					<entry><ind>80.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-low-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>27.800</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.1</dep></entry>
+					<entry><ind>80.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-low-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>27.800</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.1</dep></entry>
+					<entry><ind>80.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-low-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-low-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-low-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-low-p</output>
+	</filter>
+	
+	<!-- Idle -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.1</dep></entry>
+					<entry><ind>35.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.1</dep></entry>
+					<entry><ind>35.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.1</dep></entry>
+					<entry><ind>35.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>60</ind><dep>1.333</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>60</ind><dep>1.333</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>60</ind><dep>1.333</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-p</output>
+	</filter>
+	
+	<!-- Idle2 -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.10</dep></entry>
+					<entry><ind>80.000</ind><dep>0.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.10</dep></entry>
+					<entry><ind>80.000</ind><dep>0.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>10.000</ind><dep>0.0</dep></entry>
+					<entry><ind>23.000</ind><dep>0.4</dep></entry>
+					<entry><ind>28.200</ind><dep>0.3</dep></entry>
+					<entry><ind>36.600</ind><dep>0.15</dep></entry>
+					<entry><ind>50.000</ind><dep>0.10</dep></entry>
+					<entry><ind>80.000</ind><dep>0.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>26</ind><dep>1.000</dep></entry>
+					<entry><ind>100</ind><dep>4.000</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle2-3-p</output>
+	</filter>
+	
+	<!-- Idle Whistle-->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>23.000</ind><dep>0.0</dep></entry>
+					<entry><ind>28.200</ind><dep>0.75</dep></entry>
+					<entry><ind>50.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-whistle-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>23.000</ind><dep>0.0</dep></entry>
+					<entry><ind>28.200</ind><dep>0.75</dep></entry>
+					<entry><ind>50.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-whistle-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>23.000</ind><dep>0.0</dep></entry>
+					<entry><ind>28.200</ind><dep>0.75</dep></entry>
+					<entry><ind>50.000</ind><dep>0.0</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-whistle-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.950</dep></entry>
+					<entry><ind>50</ind><dep>1.300</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-1-whistle-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.950</dep></entry>
+					<entry><ind>50</ind><dep>1.300</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-2-whistle-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.950</dep></entry>
+					<entry><ind>50</ind><dep>1.300</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/idle-3-whistle-p</output>
+	</filter>
+	
+	<!-- Spool -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>26.000</ind> <dep>0.00</dep></entry>
+					<entry><ind>72.400</ind> <dep>1.00</dep></entry>
+					<entry><ind>88.000</ind> <dep>0.85</dep></entry>
+					<entry><ind>100.000</ind><dep>0.80</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>26.000</ind> <dep>0.00</dep></entry>
+					<entry><ind>72.400</ind> <dep>1.00</dep></entry>
+					<entry><ind>88.000</ind> <dep>0.85</dep></entry>
+					<entry><ind>100.000</ind><dep>0.80</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>26.000</ind> <dep>0.00</dep></entry>
+					<entry><ind>72.400</ind> <dep>1.00</dep></entry>
+					<entry><ind>88.000</ind> <dep>0.85</dep></entry>
+					<entry><ind>100.000</ind><dep>0.80</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.50</dep></entry>
+					<entry><ind>110</ind><dep>2.10</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.50</dep></entry>
+					<entry><ind>110</ind><dep>2.10</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>25</ind><dep>0.50</dep></entry>
+					<entry><ind>110</ind><dep>2.10</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/spool-3-p</output>
+	</filter>
+	
+	<!-- Roar -->
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>88.000</ind><dep>0.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-1-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>88.000</ind><dep>0.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-2-v</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>88.000</ind><dep>0.00</dep></entry>
+					<entry><ind>95.000</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-3-v</output>
+	</filter>
+	
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[0]/n1-actual</property>
+					<entry><ind>88</ind><dep>0.80</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-1-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[1]/n1-actual</property>
+					<entry><ind>88</ind><dep>0.80</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-2-p</output>
+	</filter>
+	<filter>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<condition>
+				<not><property>/sim/current-view/internal</property></not>
+			</condition>
+			<expression>
+				<table>
+					<property>/engines/engine[2]/n1-actual</property>
+					<entry><ind>88</ind><dep>0.80</dep></entry>
+					<entry><ind>110</ind><dep>1.00</dep></entry>
+				</table>
+			</expression> 
+		</input>
+		<input>0</input>
+		<output>/sim/sound/external/roar-3-p</output>
+	</filter>
 </PropertyList>
