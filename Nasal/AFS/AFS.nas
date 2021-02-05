@@ -580,12 +580,14 @@ var ITAF = {
 		}
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) { # Don't engage DUAL LAND below 100ft
+			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "DUAL";
-			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) { # Don't engage SINGLE LAND below 100ft
+			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "SINGLE";
-			} else if (Output.fd1Temp and Output.fd2Temp) {
+			} else if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
 				Internal.landCondition = "APPR";
+			} else {
+				Internal.landCondition = "OFF";
 			}
 		} else {
 			Internal.landCondition = "OFF";
