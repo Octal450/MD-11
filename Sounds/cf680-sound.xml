@@ -1,39 +1,359 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+<!-- MD-11 CF6-80C2 SASA Sound Configuration -->
+<!-- Copyright (c) 2014 Adam Murphy -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450), Jonathan Redpath (legoboyvdlp) -->
 
 <PropertyList include="MD-11-common-sound.xml">
+	
 	<fx>
 		
+		<!-- Cockpit -->
 		<engine>
-			<name>md11_a1s</name>
-			<mode>looped</mode>
-			<path>FL2070/abn1strt.wav</path>
+			<name>Cockpit Cranking 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Cranking.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[0]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
 			<volume>
-				<property>md11/sound/a1strt</property>
-				<offset>0</offset>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
 			</volume>
-			<pitch>
-				<property>md11/sound/a1strtp</property>
-				<offset>0</offset>
-			</pitch>
 			<position>
 				<x>-3.3</x>
 				<y>8.3</y>
 				<z>00</z>
 			</position>
 		</engine>
+		<engine>
+			<name>Cockpit Cranking 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Cranking.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[1]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Cranking 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Cranking.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[2]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
 		
 		<engine>
-			<name>md11_b1s</name>
-			<mode>looped</mode>
-			<path>FL2070/abn1strt.wav</path>
+			<name>Cockpit Starting 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Starting.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[0]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
 			<volume>
-				<property>md11/sound/b1strt</property>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Starting 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Starting.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[1]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Starting 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/Starting.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[2]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>1</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Cranking 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/CrankingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[0]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>-3.3</x>
+				<y>8.3</y>
+				<z>00</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Cranking 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/CrankingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[1]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Cranking 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/CrankingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[2]/state</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Starting 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/StartingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[0]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Starting 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/StartingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[1]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Starting 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Startup/StartingE.wav</path>
+			<condition>
+				<equals>
+					<property>/engines/engine[2]/state</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>1</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Shutdown 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[0]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>2</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Shutdown 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[1]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>2</factor>
+			</volume>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Shutdown 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[2]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/internal-custom</property>
+				<factor>2</factor>
+			</volume>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>Cockpit Idle 1 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-1-low-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/b1strtp</property>
+				<property>/sim/sound/cockpit/idle-1-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle 2 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-2-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-2-low-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
@@ -42,17 +362,19 @@
 				<z>10.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>md11_c1s</name>
+			<name>Cockpit Idle 3 Low</name>
 			<mode>looped</mode>
-			<path>FL2070/abn1strt.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
 			<volume>
-				<property>md11/sound/c1strt</property>
+				<property>/sim/sound/cockpit/idle-3-low-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/c1strtp</property>
+				<property>/sim/sound/cockpit/idle-3-low-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
@@ -62,107 +384,40 @@
 			</position>
 		</engine>
 		
-		
-		
-		
-		
-		
 		<engine>
-			<name>md11_a11</name>
+			<name>Cockpit Idle 1</name>
 			<mode>looped</mode>
-			<path>FL2070/ge11a.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/a11</property>
+				<property>/sim/sound/cockpit/idle-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a11p</property>
+				<property>/sim/sound/cockpit/idle-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>md11_a12</name>
+			<name>Cockpit Idle 2</name>
 			<mode>looped</mode>
-			<path>FL2070/ge12a.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/a12</property>
+				<property>/sim/sound/cockpit/idle-2-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a12p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_a13</name>
-			<mode>looped</mode>
-			<path>FL2070/ge13a.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
-			</condition>
-			<volume>
-				<property>md11/sound/a13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/a13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		
-		<engine>
-			<name>md11_b11</name>
-			<mode>looped</mode>
-			<path>FL2070/ge11b.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
-			</condition>
-			<volume>
-				<property>md11/sound/b11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/b11p</property>
+				<property>/sim/sound/cockpit/idle-2-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
@@ -171,244 +426,190 @@
 				<z>10.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>md11_b12</name>
+			<name>Cockpit Idle 3</name>
 			<mode>looped</mode>
-			<path>FL2070/ge12b.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/b12</property>
+				<property>/sim/sound/cockpit/idle-3-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/b12p</property>
+				<property>/sim/sound/cockpit/idle-3-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_b13</name>
-			<mode>looped</mode>
-			<path>FL2070/ge13b.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
-			</condition>
-			<volume>
-				<property>md11/sound/b13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/b13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_c11</name>
-			<mode>looped</mode>
-			<path>FL2070/ge11c.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
-			</condition>
-			<volume>
-				<property>md11/sound/c11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c11p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>-8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
 		<engine>
-			<name>md11_c12</name>
+			<name>Cockpit Idle Whistle 1</name>
 			<mode>looped</mode>
-			<path>FL2070/ge12c.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Whistle.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/c12</property>
+				<property>/sim/sound/cockpit/idle-whistle-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/c12p</property>
+				<property>/sim/sound/cockpit/idle-whistle-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_c13</name>
-			<mode>looped</mode>
-			<path>FL2070/ge13c.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<less-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-2</value>
-				</less-than>
-			</condition>
-			<volume>
-				<property>md11/sound/c13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<engine>
-			<name>md11_a21</name>
-			<mode>looped</mode>
-			<path>FL2070/axx21.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
-			</condition>
-			<volume>
-				<property>md11/sound/a11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/a11p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle Whistle 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-whistle-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-whistle-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Idle Whistle 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Idle-Whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/idle-whistle-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/idle-whistle-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
 		<engine>
-			<name>md11_a22</name>
+			<name>Cockpit Spool 1</name>
 			<mode>looped</mode>
-			<path>FL2070/axx22.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Spool.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/a12</property>
+				<property>/sim/sound/cockpit/spool-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a12p</property>
+				<property>/sim/sound/cockpit/spool-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Spool 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Spool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/spool-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/spool-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Spool 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Spool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/spool-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/spool-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
 		<engine>
-			<name>md11_a23</name>
+			<name>Cockpit Power 1</name>
 			<mode>looped</mode>
-			<path>FL2070/axx23.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/a13</property>
+				<property>/sim/sound/cockpit/power-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a13p</property>
+				<property>/sim/sound/cockpit/power-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
-		
-		
 		<engine>
-			<name>md11_b21</name>
-			<property>sim/current-view/internal</property>
+			<name>Cockpit Power 2</name>
 			<mode>looped</mode>
-			<path>FL2070/axx21.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/b11</property>
+				<property>/sim/sound/cockpit/power-2-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/b11p</property>
+				<property>/sim/sound/cockpit/power-2-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
@@ -417,223 +618,126 @@
 				<z>10.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>md11_b22</name>
+			<name>Cockpit Power 3</name>
 			<mode>looped</mode>
-			<path>FL2070/axx22.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Power.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/b12</property>
+				<property>/sim/sound/cockpit/power-3-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/b12p</property>
+				<property>/sim/sound/cockpit/power-3-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_b23</name>
-			<mode>looped</mode>
-			<path>FL2070/axx23.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
-			</condition>
-			<volume>
-				<property>md11/sound/b13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/b13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_c21</name>
-			<mode>looped</mode>
-			<path>FL2070/axx21.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
-			</condition>
-			<volume>
-				<property>md11/sound/c11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c11p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>-8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
 		<engine>
-			<name>md11_c22</name>
+			<name>Cockpit Growl 1</name>
 			<mode>looped</mode>
-			<path>FL2070/axx22.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Growl.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
+				<property>/sim/sound/suppress-warning</property>
 			</condition>
 			<volume>
-				<property>md11/sound/c12</property>
+				<property>/sim/sound/cockpit/growl-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/c12p</property>
+				<property>/sim/sound/cockpit/growl-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>md11_c23</name>
-			<mode>looped</mode>
-			<path>FL2070/axx23.wav</path>
-			<condition>
-				<property>sim/current-view/internal</property>
-				<greater-than>
-					<property>sim/current-view/z-offset-m</property>
-					<value>-1.9</value>
-				</greater-than>
-			</condition>
-			<volume>
-				<property>md11/sound/c13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		
-		
-		
-		
-		
-		
-		<engine>
-			<name>xmd11_a11</name>
-			<mode>looped</mode>
-			<path>FL2070/xabn11.wav</path>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<volume>
-				<property>md11/sound/a11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/a11p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Growl 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Growl.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/growl-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/growl-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>Cockpit Growl 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Growl.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/cockpit/growl-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/cockpit/growl-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
 			</position>
 		</engine>
 		
 		<engine>
-			<name>xmd11_a12</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
+			<name>Cockpit Reverse 1</name>
 			<mode>looped</mode>
-			<path>FL2070/xabn12.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
 			<volume>
-				<property>md11/sound/a12</property>
+				<property>/sim/sound/cockpit/reverse-1-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a12p</property>
+				<property>/sim/sound/cockpit/reverse-1-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>xmd11_a13</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
+			<name>Cockpit Reverse 2</name>
 			<mode>looped</mode>
-			<path>FL2070/xabn13.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
 			<volume>
-				<property>md11/sound/a13</property>
+				<property>/sim/sound/cockpit/reverse-2-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/a13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		
-		<engine>
-			<name>xmd11_b11</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<mode>looped</mode>
-			<path>FL2070/xabn11.wav</path>
-			<volume>
-				<property>md11/sound/b11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/b11p</property>
+				<property>/sim/sound/cockpit/reverse-2-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
@@ -642,116 +746,1296 @@
 				<z>10.0</z>
 			</position>
 		</engine>
-		
 		<engine>
-			<name>xmd11_b12</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
+			<name>Cockpit Reverse 3</name>
 			<mode>looped</mode>
-			<path>FL2070/xabn12.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
 			<volume>
-				<property>md11/sound/b12</property>
+				<property>/sim/sound/cockpit/reverse-3-v</property>
 				<offset>0</offset>
 			</volume>
 			<pitch>
-				<property>md11/sound/b12p</property>
+				<property>/sim/sound/cockpit/reverse-3-p</property>
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>xmd11_b13</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<mode>looped</mode>
-			<path>FL2070/xabn13.wav</path>
-			<volume>
-				<property>md11/sound/b13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/b13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>xmd11_c11</name>
-			<mode>looped</mode>
-			<path>FL2070/xabn11.wav</path>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<volume>
-				<property>md11/sound/c11</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c11p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
+				<x>0.0</x>
 				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>xmd11_c12</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<mode>looped</mode>
-			<path>FL2070/xabn12.wav</path>
-			<volume>
-				<property>md11/sound/c12</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c12p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
-			</position>
-		</engine>
-		
-		<engine>
-			<name>xmd11_c13</name>
-			<condition>
-				<not><property>sim/current-view/internal</property></not>
-			</condition>
-			<mode>looped</mode>
-			<path>FL2070/xabn13.wav</path>
-			<volume>
-				<property>md11/sound/c13</property>
-				<offset>0</offset>
-			</volume>
-			<pitch>
-				<property>md11/sound/c13p</property>
-				<offset>0</offset>
-			</pitch>
-			<position>
-				<x>-3.3</x>
-				<y>-8.3</y>
-				<z>00</z>
+				<z>0.0</z>
 			</position>
 		</engine>
 	
+		<!-- External -->
+		<engine>
+			<name>External Idle 1 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-1-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-1-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-2-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-2-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 3 Low</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Low.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-3-low-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-3-low-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Idle 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>225</inner-angle>
+				<outer-angle>135</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>225</inner-angle>
+				<outer-angle>135</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>60.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>225</inner-angle>
+				<outer-angle>135</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Idle 2 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>500.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>500.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>500.0</reference-dist>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>255</inner-angle>
+				<outer-angle>105</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Idle Rear 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Rear.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>90.0</reference-dist>
+			<orientation>
+				<x>1</x>
+				<inner-angle>30</inner-angle>
+				<outer-angle>330</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle Rear 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Rear.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>90.0</reference-dist>
+			<orientation>
+				<x>1</x>
+				<inner-angle>30</inner-angle>
+				<outer-angle>330</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle Rear 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Rear.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle2-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle2-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>90.0</reference-dist>
+			<orientation>
+				<x>1</x>
+				<inner-angle>30</inner-angle>
+				<outer-angle>330</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Idle 1 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-1-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-1-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>100.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-2-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-2-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>100.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 3 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-3-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-3-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>100.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Idle 1 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-1-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-1-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 2 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-2-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-2-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Idle 3 Whistle</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Idle-Whistle2.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/idle-3-whistle-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/idle-3-whistle-p</property>
+				<offset>0</offset>
+			</pitch>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Spool 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Spool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>90.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Spool 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Spool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>90.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Spool 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Spool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>90.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Lowspool 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Lowspool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Lowspool 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Lowspool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Lowspool 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Lowspool.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/spool-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/spool-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+			</orientation>
+			<reference-dist>250.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Roar 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Roar 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Roar 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Roar 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Roar 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Roar 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Roar.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/roar-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/roar-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>-1</x>
+				<inner-angle>260</inner-angle>
+				<outer-angle>100</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Whoosh 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Whoosh.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/whoosh-1-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/whoosh-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<z>-1</z>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Whoosh 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Whoosh.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/whoosh-2-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/whoosh-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<z>-1</z>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Whoosh 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Whoosh.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/whoosh-3-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/whoosh-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<z>-1</z>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Rumble-Side 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Side.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-side-1-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-side-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x> 0.40673664307</x>
+				<y> 0.91354545764</y>
+				<inner-angle>178.5</inner-angle>
+				<outer-angle>313.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble-Side 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Side.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-side-2-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-side-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble-Side 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Side.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-side-3-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-side-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x> 0.40673664307</x>
+				<y>-0.91354545764</y>
+				<inner-angle>46.5</inner-angle>
+				<outer-angle>181.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>200.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Rumble 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-1-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>120.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-2-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>120.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-3-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>120.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Rumble-Dist 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Dist.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-1-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>500.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble-Dist 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Dist.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-2-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>500.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Rumble-Dist 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Rumble-Dist.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/rumble-3-v</property>
+				<offset>0</offset>
+				<factor>0.5</factor>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/rumble-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<orientation>
+				<x>1</x>
+				<inner-angle>112.5</inner-angle>
+				<outer-angle>247.5</outer-angle>
+				<outer-gain>0.0</outer-gain>
+			</orientation>
+			<reference-dist>500.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Shutdown 1</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[0]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>2</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Shutdown 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[1]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>2</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Shutdown 3</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/shutdown.wav</path>
+			<condition>
+				<equals>
+					<property>/sim/sound/shutdown[2]</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<volume>
+				<property>/sim/sound/external-custom</property>
+				<factor>2</factor>
+			</volume>
+			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Reverse 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Reverse 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Reverse 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-3-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
 	</fx>
 </PropertyList>

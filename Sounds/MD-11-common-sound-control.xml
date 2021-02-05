@@ -1,0 +1,71 @@
+﻿<?xml version="1.0"?>
+
+<!-- MD-11 Common Sound Controller -->
+<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<!-- Sound View Logic -->
+	<logic>
+		<input>
+			<equals>
+				<property>/sim/current-view/view-number</property>
+				<value>13</value>
+			</equals>
+		</input>
+		<output>/sim/sound/wingview-fwd</output>
+	</logic>
+
+	<logic>
+		<input>
+			<or>
+				<equals>
+					<property>/sim/current-view/view-number</property>
+					<value>14</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/view-number</property>
+					<value>15</value>
+				</equals>
+			</or>
+		</input>
+		<output>/sim/sound/wingview-aft</output>
+	</logic>
+
+	<logic>
+		<input>
+			<or>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/view-number</property>
+					<value>13</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/view-number</property>
+					<value>14</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/view-number</property>
+					<value>15</value>
+				</equals>
+			</or>
+		</input>
+		<output>/sim/sound/internal-custom</output>
+	</logic>
+
+	<logic>
+		<input>
+			<not>
+				<equals>
+					<property>/sim/sound/internal-custom</property>
+					<value>1</value>
+				</equals>
+			</not>
+		</input>
+		<output>/sim/sound/external-custom</output>
+	</logic>
+	
+</PropertyList>
