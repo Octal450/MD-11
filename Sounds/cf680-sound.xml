@@ -1324,9 +1324,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>90.0</reference-dist>
 			<position>
@@ -1352,9 +1349,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>90.0</reference-dist>
 			<position>
@@ -1380,9 +1374,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>90.0</reference-dist>
 			<position>
@@ -1409,9 +1400,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>250.0</reference-dist>
 			<position>
@@ -1437,9 +1425,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>250.0</reference-dist>
 			<position>
@@ -1465,9 +1450,6 @@
 			</pitch>
 			<orientation>
 				<x>-1</x>
-				<inner-angle>190</inner-angle>
-				<outer-angle>170</outer-angle>
-				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<reference-dist>250.0</reference-dist>
 			<position>
@@ -2049,6 +2031,70 @@
 				<factor>2</factor>
 			</volume>
 			<reference-dist>60.0</reference-dist>
+			<position>
+				<x>0.0</x>
+				<y>-8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		
+		<engine>
+			<name>External Reverse 1</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-1-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-1-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>0.0</x>
+				<y>8.3</y>
+				<z>0.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Reverse 2</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-2-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-2-p</property>
+				<offset>0</offset>
+			</pitch>
+			<position>
+				<x>25.0</x>
+				<y>0.0</y>
+				<z>10.0</z>
+			</position>
+		</engine>
+		<engine>
+			<name>External Reverse 3</name>
+			<mode>looped</mode>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/External/Reverse.wav</path>
+			<condition>
+				<property>/sim/sound/suppress-warning</property>
+			</condition>
+			<volume>
+				<property>/sim/sound/external/reverse-3-v</property>
+				<offset>0</offset>
+			</volume>
+			<pitch>
+				<property>/sim/sound/external/reverse-3-p</property>
+				<offset>0</offset>
+			</pitch>
 			<position>
 				<x>0.0</x>
 				<y>-8.3</y>
