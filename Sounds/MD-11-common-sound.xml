@@ -349,9 +349,13 @@
 			<property>gear/gear[0]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
+				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<misc>
@@ -361,9 +365,13 @@
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
+				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<misc>
@@ -373,9 +381,13 @@
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
+				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<misc>
@@ -385,9 +397,13 @@
 			<property>gear/gear[3]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
+				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<misc>
@@ -397,9 +413,13 @@
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
-				<factor>2</factor>
+				<property>sim/sound/other/roll-v</property>
+				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<misc>
@@ -409,9 +429,13 @@
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/roll</property>
-				<factor>2</factor>
+				<property>sim/sound/other/roll-v</property>
+				<factor>1</factor>
 			</volume>
+			<pitch>
+				<property>sim/sound/other/roll-p</property>
+				<factor>1</factor>
+			</pitch>
 		</misc>
 		
 		<!-- TOUCHDOWN SOUNDS -->
@@ -459,7 +483,7 @@
 			<property>gear/gear[0]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/outside</property>
+				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
@@ -471,7 +495,7 @@
 			<property>gear/gear[1]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/outside</property>
+				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
@@ -483,7 +507,7 @@
 			<property>gear/gear[2]/wow</property>
 			
 			<volume>
-				<property>sim/sound/other/outside</property>
+				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
