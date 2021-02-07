@@ -1961,17 +1961,31 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
+		<!-- Power Instrumentation -->
+		<switch name="/systems/electrical/generic/ac1">
+			<default value="0"/>
+			<test value="28">
+				/systems/electrical/bus/ac-1 ge 110
+			</test>
+			<output>/systems/electrical/outputs/mk-viii</output>
+			<output>/systems/electrical/outputs/ra[0]</output>
+		</switch>
+		
+		<switch name="/systems/electrical/generic/ac3">
+			<default value="0"/>
+			<test value="28">
+				/systems/electrical/bus/ac-3 ge 110
+			</test>
+			<output>/systems/electrical/outputs/ra[1]</output>
+		</switch>
+		
 		<!-- Output to Generics to keep FG things working, temporary, until we know what gets power by what bus -->
-		<switch name="/systems/electrical/generic-pwr">
+		<switch name="/systems/electrical/generic/pwr">
 			<description>This makes the FG stuff work because we killed the generic electrical</description>
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-1">
+			<test logic="OR" value="28">
 				/systems/electrical/bus/dc-1 ge 25
-			</test>
-			<test value="/systems/electrical/bus/dc-2">
 				/systems/electrical/bus/dc-2 ge 25
-			</test>
-			<test value="/systems/electrical/bus/dc-3">
 				/systems/electrical/bus/dc-3 ge 25
 			</test>
 			<output>/systems/electrical/outputs/adf</output>
@@ -1983,7 +1997,6 @@
 			<output>/systems/electrical/outputs/fuel-pump[2]</output>
 			<output>/systems/electrical/outputs/gps</output>
 			<output>/systems/electrical/outputs/idk</output> <!-- Power stuff that I don't know what powers it -->
-			<output>/systems/electrical/outputs/mk-viii</output>
 			<output>/systems/electrical/outputs/nav[0]</output>
 			<output>/systems/electrical/outputs/nav[1]</output>
 			<output>/systems/electrical/outputs/nav[2]</output>
@@ -1996,7 +2009,7 @@
 		<switch name="/controls/lighting/fcp-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/fcp-integ-knb">
-				/systems/electrical/generic-pwr ge 25
+				/systems/electrical/generic/pwr ge 25
 			</test>
 		</switch>
 		
@@ -2015,14 +2028,14 @@
 		<switch name="/controls/lighting/main-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/main-integ-knb">
-				/systems/electrical/generic-pwr ge 25
+				/systems/electrical/generic/pwr ge 25
 			</test>
 		</switch>
 		
 		<switch name="/controls/lighting/overhead-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/overhead-integ-knb">
-				/systems/electrical/generic-pwr ge 25
+				/systems/electrical/generic/pwr ge 25
 			</test>
 		</switch>
 		

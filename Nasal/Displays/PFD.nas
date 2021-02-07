@@ -176,8 +176,8 @@ var canvasBase = {
 		"AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd", "AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale",
 		"ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn",
 		"ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats",
-		"Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker",
-		"Middle_Marker", "Outer_Marker"];
+		"Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums",
+		"Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -537,12 +537,18 @@ var canvasBase = {
 		}
 		
 		me["AI_PLI"].setTranslation(0, math.clamp(16 - Value.Ai.alpha, -20, 20) * -10.246);
-		if (Value.Ai.alpha >= 15.5) {
+		if (Value.Ai.alpha >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
 			me["AI_PLI"].setColor(1,0,0);
-		} else if (Value.Ai.alpha >= 12.4 and Value.Misc.slatsPos >= 0.1) { # 80% of 15.5
+			me["AI_banklimit_L"].setColor(1,0,0);
+			me["AI_banklimit_R"].setColor(1,0,0);
+		} else if (Value.Ai.alpha >= pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue() and Value.Misc.slatsPos >= 0.1) {
 			me["AI_PLI"].setColor(0.9647,0.8196,0.0784);
+			me["AI_banklimit_L"].setColor(1,1,1);
+			me["AI_banklimit_R"].setColor(1,1,1);
 		} else {
 			me["AI_PLI"].setColor(0.2156,0.5019,0.6627);
+			me["AI_banklimit_L"].setColor(1,1,1);
+			me["AI_banklimit_R"].setColor(1,1,1);
 		}
 		
 		if (Value.Ai.pitch > 25) {
@@ -1136,13 +1142,20 @@ var canvasBase = {
 		
 		if (Value.Misc.slatsOut and !(Value.Misc.slatsPos >= 30.9 and Value.Misc.flapsOut)) {
 			me["Slats"].show();
-			if (Value.Misc.slatsCmd - Value.Misc.slatsPos >= 0.1) {
+			if (pts.Controls.Flight.autoSlatTimer.getValue() > 0) {
+				me["Slats_auto"].show();
+				me["Slats_dn"].hide();
+				me["Slats_up"].hide();
+			} else if (Value.Misc.slatsCmd - Value.Misc.slatsPos >= 0.1) {
+				me["Slats_auto"].hide();
 				me["Slats_dn"].show();
 				me["Slats_up"].hide();
 			} else if (Value.Misc.slatsCmd - Value.Misc.slatsPos <= -0.1) {
+				me["Slats_auto"].hide();
 				me["Slats_dn"].hide();
 				me["Slats_up"].show();
 			} else {
+				me["Slats_auto"].hide();
 				me["Slats_dn"].hide();
 				me["Slats_up"].hide();
 			}

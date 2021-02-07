@@ -11,6 +11,7 @@
 	<property value="0">fcc/lsas/pah/output</property>
 	<property value="0">fcc/lsas/spd-prot/output</property>
 	<property value="0">fcc/slat/cmd-deg</property>
+	<property value="15.5">fcc/stall-alpha-deg</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0">fcs/spoiler-left-feedback</property>
 	<property value="0">fcs/spoiler-right-feedback</property>
@@ -58,7 +59,12 @@
 	
 	</channel>
 	
-	<channel name="Speed Tape Calculations" execrate="8">
+	<channel name="Envelope Protection Calculations" execrate="8">
+		
+		<pure_gain name="fcc/stall-warn-alpha-deg">
+			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<gain>0.8</gain> <!-- 80% -->
+		</pure_gain>
 		
 		<fcs_function name="fcc/speeds/vss-kts">
 			<function>
@@ -1577,8 +1583,31 @@
 			</test>
 		</switch>
 		
+		<switch name="/controls/flight/auto-slat-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				aero/alpha-deg-damped ge fcc/stall-alpha-deg
+				position/wow eq 0
+				/controls/flight/flaps-input eq 0
+			</test>
+		</switch>
+		
+		<actuator name="/controls/flight/auto-slat-timer">
+			<input>/controls/flight/auto-slat-cmd</input>
+			<rate_limit sense="incr">1000</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">0.2</rate_limit> <!-- 5 seconds -->
+			<output>/controls/flight/auto-slat-timer-out</output>
+		</actuator>
+		
 		<switch name="/controls/flight/slats-cmd-limited">
 			<default value="/controls/flight/slats-cmd"/>
+			<test logic="AND" value="31"> <!-- Auto Slat Extend -->
+				/systems/electrical/bus/ac-3 ge 110
+				/instrumentation/airspeed-indicator/indicated-mach le 0.55
+				/controls/flight/auto-slat-timer gt 0
+				position/wow eq 0
+				/controls/flight/flaps-input eq 0
+			</test>
 			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
 				/controls/flight/flaps-input eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 280

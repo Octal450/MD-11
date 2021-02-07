@@ -137,6 +137,9 @@
 		<switch name="spoilers/auto-speedbrake">
 			<description>Flip flop for autospeedbrake</description>
 			<default value="spoilers/auto-speedbrake"/>
+			<test value="spoilers/auto-speedbrake"> <!-- No power, don't do anything -->
+				/systems/electrical/bus/ac-1 lt 110
+			</test>
 			<test logic="OR" value="0"> <!-- Reset -->
 				fadec/throttle-lever-feedback[1] ge 0.05
 				spoilers/auto-speedbrake-arm-cmd eq 0

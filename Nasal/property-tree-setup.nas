@@ -14,6 +14,7 @@ var Controls = {
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
+		autoSlatTimer: props.globals.getNode("/controls/flight/auto-slat-timer"),
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
@@ -94,6 +95,8 @@ var Fdm = {
 				vss: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss"),
 				vssTape: props.globals.getNode("/fdm/jsbsim/fcc/speeds/vss-tape"),
 			},
+			stallAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-alpha-deg"),
+			stallWarnAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-warn-alpha-deg"),
 		},
 		Fcs: {
 			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
