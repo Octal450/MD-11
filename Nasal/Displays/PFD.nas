@@ -1161,6 +1161,7 @@ var canvasBase = {
 			}
 		} else {
 			me["Slats"].hide();
+			me["Slats_auto"].hide();
 			me["Slats_up"].hide();
 			me["Slats_dn"].hide();
 		}
