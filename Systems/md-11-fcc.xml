@@ -225,6 +225,18 @@
 		</fcs_function>
 		
 		<!-- VMO/MMO -->
+		<fcs_function name="fcc/speeds/vmo-kts">
+			<function>
+				<table> <!-- From FCOM -->
+					<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
+					<tableData> <!-- I disregarded the data from 25700 and up because its just the MMO limit, which I do more accurately below -->
+						    0  350
+						10200  365
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fcc/speeds/mmo-kts">
 			<function>
 				<product>
@@ -232,15 +244,15 @@
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
 					</quotient>
-					<value>0.87</value> <!-- Should be scheduled, but don't know what schedules it yet -->
+					<value>0.87</value>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/speeds/vmo-mmo"> <!-- 365 should be scheduled, but don't know what schedules it yet -->
-			<default value="365"/>
+		<switch name="fcc/speeds/vmo-mmo">
+			<default value="fcc/speeds/vmo-kts"/>
 			<test value="fcc/speeds/mmo-kts">
-				fcc/speeds/mmo-kts lt 365
+				fcc/speeds/mmo-kts lt fcc/speeds/vmo-kts
 			</test>
 		</switch>
 		
