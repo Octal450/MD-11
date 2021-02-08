@@ -953,6 +953,17 @@
 				<step>0.001</step>
 			</binding>
 			<binding>
+				<command>nasal</command>
+				<script>
+					if (afs.Output.ap1.getBoolValue()) {
+						afs.ITAF.ap1Master(0);
+					}
+					if (afs.Output.ap2.getBoolValue()) {
+						afs.ITAF.ap2Master(0);
+					}
+				</script>
+			</binding>
+			<binding>
 				<command>property-assign</command>
 				<property>controls/flight/elevator-trim-lever</property>
 				<value>1</value>
@@ -972,6 +983,17 @@
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>-0.001</step>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (afs.Output.ap1.getBoolValue()) {
+						afs.ITAF.ap1Master(0);
+					}
+					if (afs.Output.ap2.getBoolValue()) {
+						afs.ITAF.ap2Master(0);
+					}
+				</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -1000,6 +1022,17 @@
 				<step>-0.001</step>
 			</binding>
 			<binding>
+				<command>nasal</command>
+				<script>
+					if (afs.Output.ap1.getBoolValue()) {
+						afs.ITAF.ap1Master(0);
+					}
+					if (afs.Output.ap2.getBoolValue()) {
+						afs.ITAF.ap2Master(0);
+					}
+				</script>
+			</binding>
+			<binding>
 				<command>property-assign</command>
 				<property>controls/flight/elevator-trim-lever</property>
 				<value>-1</value>
@@ -1019,6 +1052,17 @@
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>0.001</step>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (afs.Output.ap1.getBoolValue()) {
+						afs.ITAF.ap1Master(0);
+					}
+					if (afs.Output.ap2.getBoolValue()) {
+						afs.ITAF.ap2Master(0);
+					}
+				</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>

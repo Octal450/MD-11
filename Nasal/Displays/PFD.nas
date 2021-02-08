@@ -800,8 +800,12 @@ var canvasBase = {
 		# ILS DME
 		if (Value.Nav.inRange) { # Should be if ILS tuned later
 			if (Value.Nav.signalQuality > 0.99) {
-				me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
-				me["ILS_DME"].show();
+				if (pts.Instrumentation.Dme.inRange[2].getBoolValue()) {
+					me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
+					me["ILS_DME"].show();
+				} else {
+					me["ILS_DME"].hide();
+				}
 				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
 				me["ILS_Info"].show();
 			} else {
@@ -1339,8 +1343,12 @@ var canvasPfd2 = {
 		
 		# FMA
 		if (Value.Afs.fd2) {
-			me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-			me["FMA_Pitch"].show();
+			if (Value.Afs.land == "OFF") {
+				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
+				me["FMA_Pitch"].show();
+			} else {
+				me["FMA_Pitch"].hide();
+			}
 			if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
 				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", afs.Internal.hdg.getValue())));
 			} else {
@@ -1351,20 +1359,20 @@ var canvasPfd2 = {
 			me["FMA_Thrust"].show();
 		} else {
 			if (Value.Afs.thrust == "PITCH") {
-				if (Value.Afs.ats) {
-					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_Pitch"].show();
-				} else {
-					me["FMA_Pitch"].hide();
-				}
 				if (Value.Afs.ap1 or Value.Afs.ap2) {
 					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_Thrust"].show();
 				} else {
 					me["FMA_Thrust"].hide();
 				}
+				if (Value.Afs.ats and Value.Afs.land == "OFF") {
+					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_Pitch"].show();
+				} else {
+					me["FMA_Pitch"].hide();
+				}
 			} else {
-				if (Value.Afs.ap1 or Value.Afs.ap2) {
+				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF") {
 					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
 					me["FMA_Pitch"].show();
 				} else {
