@@ -66,9 +66,9 @@
 			<gain>0.8</gain> <!-- 80% -->
 		</pure_gain>
 		
-		<fcs_function name="fcc/speeds/vss-kts">
+		<fcs_function name="fcc/speeds/vss-kts"> <!-- From FCOM -->
 			<function>
-				<table> <!-- From FCOM -->
+				<table>
 					<independentVar lookup="row">inertia/weight-kg</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
@@ -225,9 +225,9 @@
 		</fcs_function>
 		
 		<!-- VMO/MMO -->
-		<fcs_function name="fcc/speeds/vmo-kts">
+		<fcs_function name="fcc/speeds/vmo-kts"> <!-- From FCOM -->
 			<function>
-				<table> <!-- From FCOM -->
+				<table>
 					<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 					<tableData> <!-- I disregarded the data from 25700 and up because its just the MMO limit, which I do more accurately below -->
 						    0  350
