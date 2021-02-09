@@ -922,9 +922,6 @@ var ITAF = {
 		Output.vertTemp = Output.vert.getValue();
 		if (n == 0) { # HDG SEL
 			Output.hdgCaptured = 0;
-			me.updateLnavArm(0);
-			me.updateLocArm(0);
-			me.updateApprArm(0);
 			Output.lat.setValue(0);
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
@@ -996,9 +993,6 @@ var ITAF = {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
 				Output.vsFpa.setBoolValue(0);
-				if (Output.latTemp == 2) {
-					me.updateApprArm(0);
-				}
 				Output.vert.setValue(1);
 				me.updateVertText("V/S");
 				me.syncVs();
@@ -1018,9 +1012,6 @@ var ITAF = {
 			me.updateVertText("ALT CAP");
 			me.updateThrustMode();
 		} else if (n == 4) { # FLCH
-			if (Output.latTemp == 2) {
-				me.updateApprArm(0);
-			}
 			if (abs(Input.altDiff) >= 125) { # SPD CLB or SPD DES
 				Internal.retardLock = 0;
 				Internal.altCaptureActive = 0;
@@ -1041,9 +1032,6 @@ var ITAF = {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
 				Output.vsFpa.setBoolValue(1);
-				if (Output.latTemp == 2) {
-					me.updateApprArm(0);
-				}
 				Output.vert.setValue(5);
 				me.updateVertText("FPA");
 				me.syncFpa();
