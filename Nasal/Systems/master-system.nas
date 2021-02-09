@@ -1,6 +1,7 @@
 # McDonnell Douglas MD-11 Master System
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
+# APU
 var APU = {
 	autoConnect: 0,
 	egt: props.globals.getNode("/engines/engine[3]/egt-actual"),
@@ -94,6 +95,7 @@ setlistener("/systems/electrical/epcu/allow-apu-out", func() {
 
 var onLightt = maketimer(0.4, APU, APU.onLight);
 
+# Brakes
 var BRAKES = {
 	Abs: {
 		armed: props.globals.getNode("/gear/abs/armed"),
@@ -396,6 +398,7 @@ var FCTL = {
 	},
 };
 
+# Landing Gear
 var GEAR = {
 	Fail: {
 		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
@@ -422,6 +425,7 @@ var GEAR = {
 	},
 };
 
+# Ignition
 var IGNITION = {
 	cutoff1: props.globals.getNode("/systems/ignition/cutoff-1"),
 	cutoff2: props.globals.getNode("/systems/ignition/cutoff-2"),
@@ -449,6 +453,7 @@ var IGNITION = {
 	},
 };
 
+# IRS
 var IRS = {
 	hdg: 0,
 	setHdg: 1,
