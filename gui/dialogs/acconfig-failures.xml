@@ -15,6 +15,18 @@
             <halign>left</halign>
             <label>System Failures</label>
         </text>
+		<empty><stretch>1</stretch></empty>
+		<button>
+			<legend>Reset All</legend>
+			<halign>right</halign>
+			<padding>5</padding>
+			<pref-width>120</pref-width>
+			<pref-height>20</pref-height>
+			<binding>
+				<command>nasal</command>
+				<script>acconfig.SYSTEM.resetFailures();</script>
+			</binding>
+		</button>
         <button>
             <halign>right</halign>
             <pref-width>20</pref-width>
@@ -47,7 +59,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>ELEC SYS Fail</label>
+					<label>Electrical</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -121,7 +133,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>PNEU SYS Fail</label>
+					<label>Pneumatics</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -222,7 +234,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>HYD SYS Fail</label>
+					<label>Hydraulics</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -336,7 +348,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>FUEL SYS Fail</label>
+					<label>Fuel</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -417,7 +429,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>FCTL SYS Fail</label>
+					<label>Flight Controls</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -524,18 +536,59 @@
 				<live>true</live>
 			</checkbox>
 			
-			<hrule/>
+			<group>
+				<layout>hbox</layout>
+
+				<hrule>
+					<stretch type="bool">true</stretch>
+				</hrule>
+				<text>
+					<label>Landing Gear</label>
+				</text>
+				<hrule>
+					<stretch type="bool">true</stretch>
+				</hrule>
+			</group>
 			
-			<button>
-				<legend>Reset All</legend>
-				<halign>center</halign>
-				<padding>5</padding>
-				<pref-width>120</pref-width>
+			<checkbox>
+				<label>Nose Gear Actuator</label>
+				<halign>left</halign>
+				<property>/systems/failures/gear/nose-actuator</property>
 				<binding>
-					<command>nasal</command>
-					<script>acconfig.SYSTEM.resetFailures();</script>
+					<command>dialog-apply</command>
 				</binding>
-			</button>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Left Gear Actuator</label>
+				<halign>left</halign>
+				<property>/systems/failures/gear/left-actuator</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Center Gear Actuator</label>
+				<halign>left</halign>
+				<property>/systems/failures/gear/center-actuator</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Right Gear Actuator</label>
+				<halign>left</halign>
+				<property>/systems/failures/gear/right-actuator</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
 		
 		</group>
 	

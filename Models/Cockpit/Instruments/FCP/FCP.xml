@@ -460,6 +460,18 @@
 	</animation>
 
 	<animation>
+		<type>select</type>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+
+	<animation>
 		<type>textranslate</type>
 		<object-name>VS.led1</object-name>
 		<property>it-autoflight/input/vs-abs</property>
@@ -782,8 +794,24 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-			   <command>property-toggle</command>
-			   <property>it-autoflight/input/ovrd1</property>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/shift</property></not>
+						<not><property>it-autoflight/input/ovrd1</property></not>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
+					<or>
+						<property>devices/status/keyboard/shift</property>
+						<property>it-autoflight/input/ovrd1</property>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/ovrd1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -800,8 +828,24 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-			   <command>property-toggle</command>
-			   <property>it-autoflight/input/ovrd2</property>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/shift</property></not>
+						<not><property>it-autoflight/input/ovrd2</property></not>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
+					<or>
+						<property>devices/status/keyboard/shift</property>
+						<property>it-autoflight/input/ovrd2</property>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/ovrd2</property>
 			</binding>
 			<binding>
 				<command>nasal</command>

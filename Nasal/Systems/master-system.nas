@@ -285,6 +285,56 @@ var ENGINE = {
 	},
 };
 
+# FADEC
+var FADEC = {
+	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
+	pitchMode: 0,
+	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
+	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
+	Limit: {
+		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
+		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),
+		activeModeInt: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode-int"), # 0 T/O, 1 G/A, 2 MCT, 3 CLB, 4 CRZ
+		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
+		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
+		flexActive: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-active"),
+		flexTemp: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-temp"),
+		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
+		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
+		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
+	},
+	Switch: {
+		eng1Altn: props.globals.getNode("/controls/fadec/eng-1-altn"),
+		eng2Altn: props.globals.getNode("/controls/fadec/eng-2-altn"),
+		eng3Altn: props.globals.getNode("/controls/fadec/eng-3-altn"),
+	},
+	init: func() {
+		me.Switch.eng1Altn.setBoolValue(0);
+		me.Switch.eng2Altn.setBoolValue(0);
+		me.Switch.eng3Altn.setBoolValue(0);
+		me.Limit.activeModeInt.setValue(0);
+		me.Limit.activeMode.setValue("T/O");
+		me.Limit.flexActive.setBoolValue(0);
+		me.Limit.flexTemp.setValue(30);
+	},
+	loop: func() {
+		me.pitchMode = afs.Text.vert.getValue();
+		if (me.pitchMode == "G/A CLB") {
+			me.Limit.activeModeInt.setValue(1);
+			me.Limit.activeMode.setValue("G/A");
+		} else if (me.pitchMode == "T/O CLB") {
+			me.Limit.activeModeInt.setValue(0);
+			me.Limit.activeMode.setValue("T/O");
+		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
+			me.Limit.activeModeInt.setValue(3);
+			me.Limit.activeMode.setValue("CLB");
+		} else {
+			me.Limit.activeModeInt.setValue(4);
+			me.Limit.activeMode.setValue("CRZ");
+		}
+	},
+};
+
 # Flight Controls
 var FCTL = {
 	Fail: {
@@ -346,53 +396,29 @@ var FCTL = {
 	},
 };
 
-# FADEC
-var FADEC = {
-	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
-	pitchMode: 0,
-	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
-	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
-	Limit: {
-		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
-		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),
-		activeModeInt: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode-int"), # 0 T/O, 1 G/A, 2 MCT, 3 CLB, 4 CRZ
-		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
-		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
-		flexActive: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-active"),
-		flexTemp: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-temp"),
-		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
-		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
-		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
+var GEAR = {
+	Fail: {
+		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
+		leftActuator: props.globals.getNode("/systems/failures/gear/left-actuator"),
+		noseActuator: props.globals.getNode("/systems/failures/gear/nose-actuator"),
+		rightActuator: props.globals.getNode("/systems/failures/gear/right-actuator"),
 	},
 	Switch: {
-		eng1Altn: props.globals.getNode("/controls/fadec/eng-1-altn"),
-		eng2Altn: props.globals.getNode("/controls/fadec/eng-2-altn"),
-		eng3Altn: props.globals.getNode("/controls/fadec/eng-3-altn"),
+		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
+		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
+		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
+		centerGearUp: props.globals.getNode("/controls/gear/center-gear-up"),
+		lever: props.globals.getNode("/controls/gear/lever"),
+		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	init: func() {
-		me.Switch.eng1Altn.setBoolValue(0);
-		me.Switch.eng2Altn.setBoolValue(0);
-		me.Switch.eng3Altn.setBoolValue(0);
-		me.Limit.activeModeInt.setValue(0);
-		me.Limit.activeMode.setValue("T/O");
-		me.Limit.flexActive.setBoolValue(0);
-		me.Limit.flexTemp.setValue(30);
+		me.Switch.centerGearUp.setBoolValue(0);
 	},
-	loop: func() {
-		me.pitchMode = afs.Text.vert.getValue();
-		if (me.pitchMode == "G/A CLB") {
-			me.Limit.activeModeInt.setValue(1);
-			me.Limit.activeMode.setValue("G/A");
-		} else if (me.pitchMode == "T/O CLB") {
-			me.Limit.activeModeInt.setValue(0);
-			me.Limit.activeMode.setValue("T/O");
-		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
-			me.Limit.activeModeInt.setValue(3);
-			me.Limit.activeMode.setValue("CLB");
-		} else {
-			me.Limit.activeModeInt.setValue(4);
-			me.Limit.activeMode.setValue("CRZ");
-		}
+	resetFailures: func() {
+		me.Fail.centerActuator.setBoolValue(0);
+		me.Fail.leftActuator.setBoolValue(0);
+		me.Fail.noseActuator.setBoolValue(0);
+		me.Fail.rightActuator.setBoolValue(0);
 	},
 };
 

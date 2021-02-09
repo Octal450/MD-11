@@ -16,6 +16,7 @@ var afsCanvas = {
 		m._svgKeys = nil;
 		m._key = nil;
 		m._dialogUpdate = maketimer(0.07, m, afsCanvas._update);
+		m._ovrd = [0, 0];
 		m._vert = 0;
 		
 		return m;
@@ -72,11 +73,21 @@ var afsCanvas = {
 		});
 		
 		me["AfsOvrd1Group"].addEventListener("click", func(e) {
-			afs.Input.ovrd1.setBoolValue(!afs.Input.ovrd1.getBoolValue());
+			me._ovrd[0] = afs.Input.ovrd1.getBoolValue();
+			if (e.shiftKey or me._ovrd[0]) {
+				afs.Input.ovrd1.setBoolValue(!me._ovrd[0]);
+			} else {
+				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
+			}
 			libraries.Sound.switch1();
 		});
 		me["AfsOvrd2Group"].addEventListener("click", func(e) {
-			afs.Input.ovrd2.setBoolValue(!afs.Input.ovrd2.getBoolValue());
+			me._ovrd[1] = afs.Input.ovrd2.getBoolValue();
+			if (e.shiftKey or me._ovrd[1]) {
+				afs.Input.ovrd2.setBoolValue(!me._ovrd[1]);
+			} else {
+				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
+			}
 			libraries.Sound.switch1();
 		});
 		
@@ -235,7 +246,7 @@ var afsCanvas = {
 					} else {
 						me["FpaInd"].hide();
 						me["VsInd"].show();
-						me["Vs"].setText(sprintf("%03d", afs.Input.vs.getValue()));
+						me["Vs"].setText(sprintf("%d", afs.Input.vs.getValue()));
 					}
 				} else {
 					if (afs.Output.vsFpa.getBoolValue()) {

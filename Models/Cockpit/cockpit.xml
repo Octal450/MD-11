@@ -765,6 +765,7 @@
 	<animation>
 		<type>select</type>
 		<object-name>AbsDisarm.light</object-name>
+		<object-name>CenterGearUp.up</object-name>
 		<object-name>FD1.off</object-name>
 		<object-name>FD2.off</object-name>
 		<object-name>master_warning_light_on</object-name>
@@ -827,6 +828,12 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
+				</condition>
 				<command>property-toggle</command>
 				<property>it-autoflight/input/fd1</property>
 			</binding>
@@ -860,6 +867,12 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>25</value>
+					</greater-than-equals>
+				</condition>
 				<command>property-toggle</command>
 				<property>it-autoflight/input/fd2</property>
 			</binding>
@@ -878,6 +891,56 @@
 					<property>it-autoflight/output/fd2</property>
 					<value>1</value>
 				</not-equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>CenterGearUp.Button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Irreversible Action: Shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>devices/status/keyboard/shift</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>25</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/gear/center-gear-up</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.ohBtn();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>CenterGearUp.up</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/gear/center-gear-up</property>
+					<value>1</value>
+				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
 					<value>1</value>

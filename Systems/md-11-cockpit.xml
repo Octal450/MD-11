@@ -274,10 +274,17 @@
 		
 		<switch name="/systems/warnings/gear-warning">
 			<default value="0"/>
+			<test logic="AND" value="0"> <!-- Ignore center main gear if up is selected for it -->
+				/controls/gear/center-gear-up eq 1
+				gear/unit[0]/status eq 2
+				gear/unit[1]/status eq 2
+				gear/unit[2]/status eq 2
+			</test>
 			<test logic="AND" value="0">
 				gear/unit[0]/status eq 2
 				gear/unit[1]/status eq 2
 				gear/unit[2]/status eq 2
+				gear/unit[3]/status eq 2
 			</test>
 			<test logic="OR" value="1">
 				<test logic="AND">

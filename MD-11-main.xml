@@ -600,6 +600,7 @@
 				<knob type="int">0</knob>
 			</abs>
 			<brake-parking type="bool">0</brake-parking>
+			<center-gear-up type="bool">0</center-gear-up>
 			<lever-cockpit type="int">3</lever-cockpit>
 			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
 			<tiller-enabled type="bool">0</tiller-enabled>
@@ -1568,6 +1569,12 @@
 				<pumps-2 type="bool">0</pumps-2>
 				<pumps-3 type="bool">0</pumps-3>
 			</fuel>
+			<gear n="0">
+				<center-actuator type="bool">0</center-actuator>
+				<left-actuator type="bool">0</left-actuator>
+				<nose-actuator type="bool">0</nose-actuator>
+				<right-actuator type="bool">0</right-actuator>
+			</gear>
 			<hydraulics n="0">
 				<aux-pump-1 type="bool">0</aux-pump-1>
 				<aux-pump-2 type="bool">0</aux-pump-2>

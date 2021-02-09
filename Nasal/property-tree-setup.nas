@@ -27,13 +27,6 @@ var Controls = {
 		slatsCmd: props.globals.getNode("/controls/flight/slats-cmd"),
 		wingflexEnable: props.globals.getNode("/controls/flight/wingflex-enable"),
 	},
-	Gear: {
-		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
-		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
-		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
-		lever: props.globals.getNode("/controls/gear/lever"),
-		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
-	},
 	Lighting: {
 		beacon: props.globals.getNode("/controls/lighting/beacon"),
 		landingLightL: props.globals.getNode("/controls/lighting/landing-light-l"),

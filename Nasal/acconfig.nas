@@ -110,6 +110,7 @@ var SYSTEM = {
 		systems.ELEC.resetFailures();
 		systems.FCTL.resetFailures();
 		systems.FUEL.resetFailures();
+		systems.GEAR.resetFailures();
 		systems.HYD.resetFailures();
 		systems.PNEU.resetFailures();
 	},
@@ -226,7 +227,7 @@ var PANEL = {
 			pts.Controls.Flight.flaps.setValue(0);
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(0);
 		}
-		pts.Controls.Gear.leverCockpit.setValue(3);
+		systems.GEAR.Switch.leverCockpit.setValue(3);
 	},
 	coldDark: func() {
 		me.panelBase(0);

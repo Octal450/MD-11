@@ -2421,8 +2421,15 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Irreversible Action: Shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
 					<and>
-						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<property>devices/status/keyboard/shift</property>
 						<greater-than-equals>
 							<property>systems/electrical/bus/dc-bat</property>
 							<value>25</value>
@@ -2565,8 +2572,15 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Irreversible Action: Shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
 					<and>
-						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<property>devices/status/keyboard/shift</property>
 						<greater-than-equals>
 							<property>systems/electrical/bus/dc-bat</property>
 							<value>25</value>
@@ -2709,8 +2723,15 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Irreversible Action: Shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
 					<and>
-						<property>devices/status/keyboard/shift</property> <!-- This should be hard to do as it is not reversable! -->
+						<property>devices/status/keyboard/shift</property>
 						<greater-than-equals>
 							<property>systems/electrical/bus/dc-bat</property>
 							<value>25</value>
