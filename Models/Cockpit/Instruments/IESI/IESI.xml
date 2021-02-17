@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<path>res/stby.ac</path>
+	<path>res/IESI.ac</path>
 	
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
@@ -15,7 +15,7 @@
 			<dirt-factor>0</dirt-factor>
 			<contrast>1</contrast> <!-- 0.9 -->
 		</parameters>
-		<object-name>stby.screen</object-name>
+		<object-name>iesi.screen</object-name>
 	</effect>
 
 </PropertyList>
