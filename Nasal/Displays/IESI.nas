@@ -10,8 +10,12 @@ var Value = {
 		roll: 0,
 	},
 	Asi: {
+		ias: 0,
 		mach: 0,
 		machLatch: 0,
+		Tape: {
+			ias: 0,
+		},
 	},
 	Qnh: {
 		inhg: 0,
@@ -56,7 +60,7 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_slipskid", "ASI_mach", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_slipskid", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -68,7 +72,7 @@ var canvasBase = {
 		}
 	},
 };
-
+setprop("test", 0);
 var canvasIesi = {
 	new: func(canvasGroup, file) {
 		var m = {parents: [canvasIesi, canvasBase]};
@@ -78,9 +82,17 @@ var canvasIesi = {
 	},
 	update: func() {
 		# ASI
+		Value.Asi.ias = math.clamp(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 40, 500);
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		
-		if (Value.Asi.mach > 0.47) {
+		# Subtract 40, since the scale starts at 40
+		Value.Asi.Tape.ias = Value.Asi.ias - 40;
+		
+		me["ASI"].setText(sprintf("%d", (Value.Asi.ias / 10) + 0.03));
+		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 5.559);
+		me["ASI_tape"].setTranslation(0, math.round((10 * math.mod(Value.Asi.ias / 10, 1)) * 52.58, 0.1));
+		
+		if (Value.Asi.mach > 0.47) { # Match PFD logic
 			machLatch = 1;
 			if (Value.Asi.mach >= 0.999) {
 				me["ASI_mach"].setText("999");
