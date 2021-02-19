@@ -56,7 +56,7 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_center", "AI_horizon", "AI_slipskid", "ASI_mach", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_slipskid", "ASI_mach", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -109,6 +109,7 @@ var canvasIesi = {
 		
 		me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
 		me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
+		me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
 		
 		# QNH
 		Value.Qnh.inhg = pts.Instrumentation.Altimeter.inhg.getBoolValue();
