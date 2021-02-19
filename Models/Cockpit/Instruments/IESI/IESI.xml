@@ -6,6 +6,179 @@
 	
 	<path>res/IESI.ac</path>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>iesi.screen</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>canvas_iesi.showIesi();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>HpIn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/bus/dc-bat</property>
+				</condition>
+				<command>property-toggle</command>
+				<property>instrumentation/altimeter/inhg</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BaroSet</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<property>systems/electrical/bus/dc-bat</property>
+				</condition>
+				<command>nasal</command>
+				<script>
+					if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
+						libraries.unSTD();
+					} else {
+						libraries.STD();
+					}
+				</script>
+			</binding>
+		</action>
+		<action>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/bus/dc-bat</property>
+						<equals>
+							<property>instrumentation/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>instrumentation/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") + 0.01);</script>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/bus/dc-bat</property>
+						<equals>
+							<property>instrumentation/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>instrumentation/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") + 1.0);</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/bus/dc-bat</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/iesi/baro-rotate</property>
+				<step>1</step>
+				<min>0</min>
+				<max>100000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/bus/dc-bat</property>
+						<equals>
+							<property>instrumentation/altimeter/inhg</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>instrumentation/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") - 0.01);</script>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/electrical/bus/dc-bat</property>
+						<equals>
+							<property>instrumentation/altimeter/inhg</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>instrumentation/altimeter/std</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") - 1.0);</script>
+			</binding>
+			<binding>
+				<condition>
+					<property>systems/electrical/bus/dc-bat</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.unSTD();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/iesi/baro-rotate</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>100000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>BaroSet</object-name>
+		<property>instrumentation/iesi/baro-rotate</property>
+		<factor>11.25</factor>
+		<axis>
+			<x1-m>-27.4415</x1-m>
+			<y1-m>0.06021</y1-m>
+			<z1-m>6.72647</z1-m>
+			<x2-m>-27.4541</x2-m>
+			<y2-m>0.06021</y2-m>
+			<z2-m>6.72179</z2-m>
+		</axis>
+	</animation>
+	
 	<effect>
 		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
 		<parameters>
@@ -13,7 +186,7 @@
 			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
 			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
 			<dirt-factor>0</dirt-factor>
-			<contrast>1</contrast> <!-- 0.9 -->
+			<contrast><use>instrumentation/iesi/lcd-contrast</use></contrast>
 		</parameters>
 		<object-name>iesi.screen</object-name>
 	</effect>

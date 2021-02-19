@@ -5,6 +5,7 @@
 var DUController = {
 	eadType: pts.Options.eng.getValue(),
 	errorActive: 0,
+	lcdContrastIesi: props.globals.initNode("/instrumentation/iesi/lcd-contrast", 0.97, "DOUBLE"),
 	sdPage: "ENG",
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
@@ -15,6 +16,7 @@ var DUController = {
 	updateNd2: 0,
 	updateEad: 0,
 	updateSd: 0,
+	updateIesi: 1, # set to 0
 	showError: func() {
 		me.errorActive = 1;
 		
@@ -26,12 +28,15 @@ var DUController = {
 		canvas_ead.ge.page.hide();
 		canvas_ead.pw.page.hide();
 		canvas_sd.eng.page.hide();
+		canvas_iesi.iesi.page.hide();
+		me.lcdContrastIesi.setValue(0.97);
 		me.updatePfd1 = 0;
 		me.updatePfd2 = 0;
 		me.updateNd1 = 0;
 		me.updateNd2 = 0;
 		me.updateEad = 0;
 		me.updateSd = 0;
+		me.updateIesi = 0;
 		
 		# Now show the error
 		canvas_pfd.pfd1Error.page.show();
@@ -118,6 +123,21 @@ var DUController = {
 				if (me.updateSd) {
 					me.updateSd = 0;
 					canvas_sd.eng.page.hide();
+				}
+			}
+			
+			if (systems.ELEC.Bus.dcBat.getValue() >= 25) {
+				if (!me.updateIesi) {
+					me.updateIesi = 1;
+					canvas_iesi.iesi.update();
+					me.lcdContrastIesi.setValue(0.95);
+					canvas_iesi.iesi.page.show();
+				}
+			} else {
+				if (me.updateIesi) {
+					me.updateIesi = 0;
+					canvas_iesi.iesi.page.hide();
+					me.lcdContrastIesi.setValue(0.97);
 				}
 			}
 		}

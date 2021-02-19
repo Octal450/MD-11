@@ -4,7 +4,7 @@
 var CONFIG = {
 	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"),".","")),
 	minFgfsString: getprop("/sim/minimum-fg-version"),
-	minOptionsRevision: 980, # Minimum revision of supported options
+	minOptionsRevision: 1032, # Minimum revision of supported options
 	noRevisionCheck: 0, # Disable ACCONFIG revision checks
 };
 

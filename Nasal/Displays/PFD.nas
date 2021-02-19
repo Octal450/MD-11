@@ -326,6 +326,12 @@ var canvasBase = {
 					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
 				}
 				me["ASI_bowtie_mach"].show();
+			} else if (Value.Asi.mach >= 0.45) {
+				if (Value.Asi.mach >= 0.999) {
+					me["ASI_mach"].setText("999");
+				} else {
+					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
+				}
 			} else if (Value.Asi.mach < 0.45) {
 				me["ASI_bowtie_mach"].hide();
 			}

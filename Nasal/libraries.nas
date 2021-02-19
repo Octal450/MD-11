@@ -42,6 +42,7 @@ setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_pfd.init();
 	canvas_ead.init();
 	canvas_sd.init();
+	canvas_iesi.init();
 	initDone = 1;
 });
 

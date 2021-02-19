@@ -121,6 +121,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>Integrated Electronic Standby</label>
+						<binding>
+							<command>nasal</command>
+							<script>canvas_iesi.showIesi();</script>
+						</binding>
+					</item>
+					<item>
 						<label>Panels:</label>
 						<enabled type="bool">false</enabled>
 					</item>
@@ -1390,6 +1397,9 @@
 		<groundradar>
 			<range type="double">1.0</range>
 		</groundradar>
+		<iesi n="0">
+			<baro-rotate type="int">50000</baro-rotate>
+		</iesi>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
 			<configuration-module>
@@ -1520,6 +1530,7 @@
 				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 				<du n="0">
 					<ead-fps type="double">20</ead-fps>
+					<iesi-fps type="double">10</iesi-fps>
 					<nd-fps type="double">20</nd-fps>
 					<pfd-fps type="double">20</pfd-fps>
 					<sd-fps type="double">10</sd-fps>
@@ -1663,6 +1674,9 @@
 		<canvas_sd>
 			<file>Aircraft/MD-11/Nasal/Displays/SD.nas</file>
 		</canvas_sd>
+		<canvas_iesi>
+			<file>Aircraft/MD-11/Nasal/Displays/IESI.nas</file>
+		</canvas_iesi>
 		<instruments>
 			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
 		</instruments>

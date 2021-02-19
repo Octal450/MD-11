@@ -1,7 +1,7 @@
 AC3Db
 MATERIAL "Material" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 12  trans 0
-MATERIAL "Screen" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "Screen" rgb 0 0 0  amb 0 0 0  emis 1 1 1  spec 0 0 0  shi 0  trans 0
+MATERIAL "Screen" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 OBJECT world
 kids 8
 OBJECT poly
@@ -1074,7 +1074,7 @@ refs 3
 76 0 0
 kids 0
 OBJECT poly
-name "hpInBtn"
+name "HpIn"
 data 9
 Plane.006
 texture "IESI.png"
@@ -1521,7 +1521,7 @@ refs 4
 23 0.271549 0.120369
 kids 0
 OBJECT poly
-name "inHgKnb"
+name "BaroSet"
 data 8
 Cylinder
 texture "IESI.png"
@@ -6085,38 +6085,6 @@ refs 3
 195 0.98946 0.17514
 kids 0
 OBJECT poly
-name "iesi.screen"
-data 8
-Cube.001
-texture "screen.png"
-crease 40.000000
-numvert 10
--27.4634 6.72723 -0.01381
--27.4634 6.72723 -0.06942
--27.4634 6.72723 -0.04996
--27.4813 6.77628 -0.06947
--27.4813 6.77628 -0.01376
--27.4813 6.77628 -0.04996
--27.4639 6.72857 -0.07097
--27.4809 6.77515 -0.07097
--27.4639 6.72856 -0.01231
--27.4809 6.77519 -0.01231
-numsurf 1
-SURF 0x0
-mat 2
-refs 10
-5 0.606767 0.873625
-4 0.140561 0.873625
-9 0.122006 0.858605
-8 0.122006 0.215317
-0 0.141313 0.197031
-2 0.606767 0.197031
-1 0.857348 0.197031
-6 0.877279 0.215459
-7 0.877279 0.858003
-3 0.85798 0.873625
-kids 0
-OBJECT poly
 name "bkgnd"
 loc -6.86645e-05 -4.76837e-06 0
 data 8
@@ -6135,7 +6103,7 @@ numvert 10
 -27.4634 6.72723 -0.01381
 numsurf 1
 SURF 0x0
-mat 1
+mat 2
 refs 10
 4 0.606767 0.873625
 5 0.140561 0.873625
@@ -6149,7 +6117,7 @@ refs 10
 6 0.85798 0.873625
 kids 0
 OBJECT poly
-name "testBtn"
+name "Test"
 data 9
 Plane.000
 texture "IESI.png"
@@ -6594,4 +6562,23 @@ refs 4
 9 0.272508 0.117432
 11 0.271549 0.120369
 23 0.271549 0.120369
+kids 0
+OBJECT poly
+name "iesi.screen"
+loc -27.4725 6.75255 -0.04162
+texture "screen.png"
+crease 45.000000
+numvert 4
+0.00831413 -0.0228438 -0.0283489
+0.00831413 -0.0228438 0.0283489
+-0.00831413 0.0228438 0.0283489
+-0.00831413 0.0228438 -0.0283489
+numsurf 1
+SURF 0x30
+mat 1
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
 kids 0

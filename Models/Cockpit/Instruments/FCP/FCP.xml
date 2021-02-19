@@ -1556,10 +1556,8 @@
 				<condition>
 					<property>systems/electrical/outputs/fcp-power</property>
 				</condition>
-				<command>property-cycle</command>
+				<command>property-toggle</command>
 				<property>instrumentation/altimeter/inhg</property>
-				<value>0</value>
-				<value>1</value>
 			</binding>
 		</action>
 	</animation>

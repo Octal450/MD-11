@@ -29,6 +29,7 @@
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
+					canvas_iesi.rateApply();
 				</script>
 			</binding>
 			<binding>
@@ -177,6 +178,37 @@
 				<live>1</live>
 			</text>
 			
+			<text>
+				<row>4</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>IESI:</label>
+			</text>
+			
+			<slider>
+				<row>4</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/iesi-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>4</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/iesi-fps</property>
+				<live>1</live>
+			</text>
+			
 		</group>
 	
 	</group>
@@ -198,6 +230,7 @@
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
+					canvas_iesi.rateApply();
 				</script>
 			</binding>
 		</button>
@@ -209,6 +242,7 @@
 				<command>nasal</command>
 				<script>
 					pts.Systems.Acconfig.Options.Du.eadFps.setValue(20);
+					pts.Systems.Acconfig.Options.Du.iesiFps.setValue(10);
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
@@ -217,6 +251,7 @@
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
+					canvas_iesi.rateApply();
 				</script>
 			</binding>
 		</button>
@@ -232,6 +267,7 @@
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
+					canvas_iesi.rateApply();
 				</script>
 			</binding>
 			<binding>
