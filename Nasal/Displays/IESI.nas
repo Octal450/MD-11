@@ -56,11 +56,11 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_center", "AI_horizon", "ASI_mach", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_center", "AI_horizon", "AI_slipskid", "ASI_mach", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
-		#iesi.page.hide();
+		iesi.page.hide();
 	},
 	update: func() {
 		if (systems.DUController.updateIesi) {
@@ -107,6 +107,9 @@ var canvasIesi = {
 		me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.668);
 		me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, AICenter);
 		
+		me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
+		me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
+		
 		# QNH
 		Value.Qnh.inhg = pts.Instrumentation.Altimeter.inhg.getBoolValue();
 		if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
@@ -128,7 +131,7 @@ var init = func() {
 	iesiDisplay = canvas.new({
 		"name": "IESI",
 		"size": [512, 439],
-		"view": [512, 439],,
+		"view": [512, 439],
 		"mipmapping": 1
 	});
 	

@@ -47,13 +47,7 @@
 					<property>systems/electrical/bus/dc-bat</property>
 				</condition>
 				<command>nasal</command>
-				<script>
-					if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
-						libraries.unSTD();
-					} else {
-						libraries.STD();
-					}
-				</script>
+				<script>libraries.STD();</script>
 			</binding>
 		</action>
 		<action>
