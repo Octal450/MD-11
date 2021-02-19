@@ -16,7 +16,7 @@ var DUController = {
 	updateNd2: 0,
 	updateEad: 0,
 	updateSd: 0,
-	updateIesi: 1, # set to 0
+	updateIesi: 0,
 	showError: func() {
 		me.errorActive = 1;
 		
