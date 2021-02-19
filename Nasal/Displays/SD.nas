@@ -232,7 +232,7 @@ var init = func() {
 	
 	var engGroup = display.createGroup();
 	
-	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/SD/res/ENG.svg");
+	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/ENG.svg");
 	
 	canvasBase.setup();
 	sdUpdate.start();

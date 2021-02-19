@@ -692,8 +692,8 @@ var init = func() {
 	var geGroup = display.createGroup();
 	var pwGroup = display.createGroup();
 	
-	ge = canvasGe.new(geGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/EAD/res/GE.svg");
-	pw = canvasPw.new(pwGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/EAD/res/PW.svg");
+	ge = canvasGe.new(geGroup, "Aircraft/MD-11/Nasal/Displays/res/GE.svg");
+	pw = canvasPw.new(pwGroup, "Aircraft/MD-11/Nasal/Displays/res/PW.svg");
 	
 	canvasBase.setup();
 	eadUpdate.start();

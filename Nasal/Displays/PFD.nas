@@ -1515,10 +1515,10 @@ var init = func() {
 	var pfd2Group = pfd2Display.createGroup();
 	var pfd2ErrorGroup = pfd2Display.createGroup();
 	
-	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/PFD.svg");
-	pfd1Error = canvasPfd1Error.new(pfd1ErrorGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/Error.svg");
-	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/PFD.svg");
-	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Models/Cockpit/Instruments/PFD/res/Error.svg");
+	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
+	pfd1Error = canvasPfd1Error.new(pfd1ErrorGroup, "Aircraft/MD-11/Nasal/Displays/res/Error.svg");
+	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
+	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Nasal/Displays/res/Error.svg");
 	
 	canvasBase.setup();
 	pfdUpdate.start();
