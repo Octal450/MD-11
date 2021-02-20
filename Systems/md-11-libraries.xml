@@ -7,6 +7,7 @@
 	
 	<property value="0">/systems/iru-common/any-aligned-out</property>
 	<property value="0">/systems/iru-common/all-aligned-out</property>
+	<property value="1">test</property>
 	
 	<channel name="FDM Rate Libraries">
 		
@@ -68,13 +69,13 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="libraries/blink-1-hz">
+		<fcs_function name="libraries/blink-med">
 			<function>
 				<integer>
 					<mod>
 						<product>
 							<property>sim-time-sec</property>
-							<value>2</value>
+							<value>2.5</value>
 						</product>
 						<value>2</value>
 					</mod>
@@ -82,16 +83,16 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="libraries/blink-1-hz2">
+		<fcs_function name="libraries/blink-med-2">
 			<function>
 				<integer>
 					<mod>
 						<product>
 							<sum>
 								<property>sim-time-sec</property>
-								<value>0.25</value>
+								<value>1</value>
 							</sum>
-							<value>2</value>
+							<value>1.25</value>
 						</product>
 						<value>2</value>
 					</mod>

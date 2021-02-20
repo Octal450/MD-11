@@ -99,8 +99,8 @@ var Value = {
 		aligning: [0, 0, 0],
 	},
 	Misc: {
-		blink1Hz: 0,
-		blink1Hz2: 0,
+		blinkMed: 0,
+		blinkMed2: 0,
 		flapsCmd: 0,
 		flapsOut: 0,
 		flapsPos: 0,
@@ -924,10 +924,10 @@ var canvasBase = {
 		
 		# FMA
 		Value.Afs.spdProt = afs.Output.spdProt.getValue();
-		Value.Misc.blink1Hz = pts.Fdm.JSBsim.Libraries.blink1Hz.getBoolValue();
-		Value.Misc.blink1Hz2 = pts.Fdm.JSBsim.Libraries.blink1Hz2.getBoolValue();
+		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
+		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
 		if (Value.Afs.ats and Value.Afs.spdProt != 0) {
-			if (Value.Misc.blink1Hz) {
+			if (Value.Misc.blinkMed) {
 				if (Value.Afs.spdProt == 2) {
 					me["FMA_Thrust_Arm"].setText("HI SPEED");
 				} else {
@@ -1050,7 +1050,7 @@ var canvasBase = {
 		
 		if (Value.Afs.ats == 1) {
 			if (Value.Afs.spdProt != 0 and Value.Afs.thrust == "PITCH") {
-				if (Value.Misc.blink1Hz2) {
+				if (Value.Misc.blinkMed2) {
 					me["FMA_ATS_Pitch_Off"].show();
 				} else {
 					me["FMA_ATS_Pitch_Off"].hide();
@@ -1058,7 +1058,7 @@ var canvasBase = {
 				me["FMA_ATS_Thrust_Off"].hide();
 			} else if (Value.Afs.spdProt != 0) {
 				me["FMA_ATS_Pitch_Off"].hide();
-				if (Value.Misc.blink1Hz2) {
+				if (Value.Misc.blinkMed2) {
 					me["FMA_ATS_Thrust_Off"].show();
 				} else {
 					me["FMA_ATS_Thrust_Off"].hide();
