@@ -933,11 +933,19 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/electrical/bus/ac-gen-1">
+		<fcs_function name="/systems/electrical/bus/ac-gen-1-pre">
 			<function>
 				<max>
 					<property>/systems/electrical/relay/idg-ac-gen-1/output</property>
 					<property>/systems/electrical/relay/apu-ac-gen-1/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/electrical/bus/ac-gen-1">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/ac-gen-1-pre</property>
 					<property>/systems/electrical/relay/ac-tie-ac-gen-1/output</property>
 				</max>
 			</function>
@@ -963,11 +971,19 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/electrical/bus/ac-gen-2">
+		<fcs_function name="/systems/electrical/bus/ac-gen-2-pre">
 			<function>
 				<max>
 					<property>/systems/electrical/relay/idg-ac-gen-2/output</property>
 					<property>/systems/electrical/relay/apu-ac-gen-2/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/electrical/bus/ac-gen-2">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/ac-gen-2-pre</property>
 					<property>/systems/electrical/relay/ac-tie-ac-gen-2/output</property>
 				</max>
 			</function>
@@ -993,11 +1009,19 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/electrical/bus/ac-gen-3">
+		<fcs_function name="/systems/electrical/bus/ac-gen-3-pre">
 			<function>
 				<max>
 					<property>/systems/electrical/relay/idg-ac-gen-3/output</property>
 					<property>/systems/electrical/relay/apu-ac-gen-3/output</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/electrical/bus/ac-gen-3">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/ac-gen-3-pre</property>
 					<property>/systems/electrical/relay/ac-tie-ac-gen-3/output</property>
 				</max>
 			</function>
@@ -1098,21 +1122,21 @@
 		<!-- These outputs are from the AC Gen Bus to the AC Tie Bus -->
 		<switch name="/systems/electrical/relay/ac-tie-ac-gen-1/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-1">
+			<test value="/systems/electrical/bus/ac-gen-1-pre">
 				/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/relay/ac-tie-ac-gen-2/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-2">
+			<test value="/systems/electrical/bus/ac-gen-2-pre">
 				/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/relay/ac-tie-ac-gen-3/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/ac-gen-3">
+			<test value="/systems/electrical/bus/ac-gen-3-pre">
 				/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos eq 1
 			</test>
 		</switch>
@@ -1497,10 +1521,15 @@
 			</test>
 		</switch>
 		
+		<pure_gain name="/systems/electrical/bus/dc-1-pre">
+			<input>/systems/electrical/sources/tr-1/output-volt</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/systems/electrical/bus/dc-1">
 			<function>
 				<max>
-					<property>/systems/electrical/sources/tr-1/output-volt</property>
+					<property>/systems/electrical/bus/dc-1-pre</property>
 					<property>/systems/electrical/rcb/dc-tie-dc-1/output</property>
 				</max>
 			</function>
@@ -1518,10 +1547,15 @@
 			</test>
 		</switch>
 		
+		<pure_gain name="/systems/electrical/bus/dc-2-pre">
+			<input>/systems/electrical/sources/tr-2a/output-volt</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/systems/electrical/bus/dc-2">
 			<function>
 				<max>
-					<property>/systems/electrical/sources/tr-2a/output-volt</property>
+					<property>/systems/electrical/bus/dc-2-pre</property>
 					<property>/systems/electrical/rcb/dc-tie-dc-2/output</property>
 				</max>
 			</function>
@@ -1538,10 +1572,15 @@
 			</test>
 		</switch>
 		
+		<pure_gain name="/systems/electrical/bus/dc-gndsvc-pre">
+			<input>/systems/electrical/sources/tr-2b/output-volt</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/systems/electrical/bus/dc-gndsvc">
 			<function>
 				<max>
-					<property>/systems/electrical/sources/tr-2b/output-volt</property>
+					<property>/systems/electrical/bus/dc-gndsvc-pre</property>
 					<property>/systems/electrical/rcb/dc-tie-dc-gndsvc/output</property>
 				</max>
 			</function>
@@ -1559,10 +1598,15 @@
 			</test>
 		</switch>
 		
+		<pure_gain name="/systems/electrical/bus/dc-3-pre">
+			<input>/systems/electrical/rcb/tr-3-dc-3/output</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/systems/electrical/bus/dc-3">
 			<function>
 				<max>
-					<property>/systems/electrical/rcb/tr-3-dc-3/output</property>
+					<property>/systems/electrical/bus/dc-3-pre</property>
 					<property>/systems/electrical/rcb/dc-tie-dc-3/output</property>
 				</max>
 			</function>
@@ -1572,28 +1616,28 @@
 		<!-- These outputs are from the DC Bus to the DC Tie Bus -->
 		<switch name="/systems/electrical/rcb/dc-tie-dc-1/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-1">
+			<test value="/systems/electrical/bus/dc-1-pre">
 				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/rcb/dc-tie-dc-2/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-2">
+			<test value="/systems/electrical/bus/dc-2-pre">
 				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/rcb/dc-tie-dc-gndsvc/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-gndsvc">
+			<test value="/systems/electrical/bus/dc-gndsvc-pre">
 				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/rcb/dc-tie-dc-3/output-tie">
 			<default value="0"/>
-			<test value="/systems/electrical/bus/dc-3">
+			<test value="/systems/electrical/bus/dc-3-pre">
 				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
 			</test>
 		</switch>
