@@ -563,7 +563,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value> <!-- Normalize graph -->
+				<value>0.44</value> <!-- Correct graph -->
 				<table> <!-- Based off: Source A, Figure 11 -->
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
@@ -816,7 +816,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value> <!-- Normalize graph -->
+				<value>0.44</value> <!-- Correct graph -->
 				<table> <!-- Based off: Source A, Figure 15 -->
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
