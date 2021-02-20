@@ -15,15 +15,15 @@
 					<or>
 						<greater-than-equals>
 							<property>/systems/electrical/bus/dc-1</property>
-							<value>25</value>
+							<value>24</value>
 						</greater-than-equals>
 						<greater-than-equals>
 							<property>/systems/electrical/bus/dc-2</property>
-							<value>25</value>
+							<value>24</value>
 						</greater-than-equals>
 						<greater-than-equals>
 							<property>/systems/electrical/bus/dc-3</property>
-							<value>25</value>
+							<value>24</value>
 						</greater-than-equals>
 					</or>
 				</and>
@@ -41,7 +41,7 @@
 				<and>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/efis</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 					<property>/sim/sound/seatbelt-sign</property>
 				</and>
@@ -59,7 +59,7 @@
 				<and>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/efis</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 					<property>/sim/sound/no-smoking-sign</property>
 				</and>
@@ -176,15 +176,15 @@
 				<or>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-1</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-2</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-3</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 				</or>
 			</condition>
@@ -203,15 +203,15 @@
 				<or>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-1</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-2</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/ac-3</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 				</or>
 			</condition>
@@ -537,7 +537,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -571,7 +571,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -609,7 +609,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -647,7 +647,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -685,7 +685,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -723,7 +723,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -757,7 +757,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -791,7 +791,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -825,7 +825,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -859,7 +859,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -893,7 +893,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -927,7 +927,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -957,7 +957,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -987,7 +987,7 @@
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -1013,7 +1013,7 @@
 					</equals>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>
@@ -1035,7 +1035,7 @@
 					</equals>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</and>
 			</condition>

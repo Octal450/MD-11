@@ -312,11 +312,11 @@
 				<or>
 					<greater-than-equals>
 						<property>systems/electrical/bus/l-emer-ac</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/r-emer-ac</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 				</or>
 			</and>
@@ -343,11 +343,11 @@
 				<or>
 					<greater-than-equals>
 						<property>systems/electrical/bus/l-emer-ac</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 					<greater-than-equals>
 						<property>systems/electrical/bus/r-emer-ac</property>
-						<value>110</value>
+						<value>112</value>
 					</greater-than-equals>
 				</or>
 			</and>

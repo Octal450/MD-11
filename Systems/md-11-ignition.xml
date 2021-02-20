@@ -10,7 +10,7 @@
 		<switch name="/systems/ignition/ign-a">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/bus/l-emer-ac ge 110
+				/systems/electrical/bus/l-emer-ac ge 112
 				/controls/ignition/ign-a eq 1
 			</test>
 		</switch>
@@ -18,7 +18,7 @@
 		<switch name="/systems/ignition/ign-b">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/bus/r-emer-ac ge 110
+				/systems/electrical/bus/r-emer-ac ge 112
 				/controls/ignition/ign-b eq 1
 			</test>
 		</switch>
@@ -49,7 +49,7 @@
 			<default value="/controls/engines/engine[0]/start-cmd"/>
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-1-psi lt 20
-				/systems/electrical/bus/dc-bat lt 25
+				/systems/electrical/bus/dc-bat lt 24
 				/engines/engine[0]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>
@@ -119,7 +119,7 @@
 			<default value="/controls/engines/engine[1]/start-cmd"/>
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-2-psi lt 20
-				/systems/electrical/bus/dc-bat lt 25
+				/systems/electrical/bus/dc-bat lt 24
 				/engines/engine[1]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>
@@ -189,7 +189,7 @@
 			<default value="/controls/engines/engine[2]/start-cmd"/>
 			<test logic="OR" value="0">
 				/systems/pneumatics/bleed-3-psi lt 20
-				/systems/electrical/bus/dc-bat lt 25
+				/systems/electrical/bus/dc-bat lt 24
 				/engines/engine[2]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/ign-avail ne 1
 			</test>

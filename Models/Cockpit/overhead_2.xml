@@ -41,19 +41,19 @@
 			<or>
 				<greater-than-equals>
 					<property>systems/electrical/bus/dc-bat</property>
-					<value>25</value>
+					<value>24</value>
 				</greater-than-equals>
 				<greater-than-equals>
 					<property>systems/electrical/bus/dc-1</property>
-					<value>25</value>
+					<value>24</value>
 				</greater-than-equals>
 				<greater-than-equals>
 					<property>systems/electrical/bus/dc-2</property>
-					<value>25</value>
+					<value>24</value>
 				</greater-than-equals>
 				<greater-than-equals>
 					<property>systems/electrical/bus/dc-3</property>
-					<value>25</value>
+					<value>24</value>
 				</greater-than-equals>
 			</or>
 		</condition>
@@ -71,7 +71,7 @@
 				<condition>
 					<greater-than-equals>
 						<property>systems/electrical/bus/dc-bat</property>
-						<value>25</value>
+						<value>24</value>
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>

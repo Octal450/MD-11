@@ -339,7 +339,7 @@ var ITAF = {
 		Position.indicatedAltitudeFtTemp = Position.indicatedAltitudeFt.getValue();
 		
 		# Kill when power lost
-		if (systems.ELEC.Bus.dc1.getValue() < 25 or systems.ELEC.Bus.dc2.getValue() < 25 or systems.ELEC.Bus.dc3.getValue() < 25) {
+		if (systems.ELEC.Bus.dc1.getValue() < 24 or systems.ELEC.Bus.dc2.getValue() < 24 or systems.ELEC.Bus.dc3.getValue() < 24) {
 			if (Output.ap1Temp or Output.ap2Temp) {
 				me.killAFSSilent();
 			}

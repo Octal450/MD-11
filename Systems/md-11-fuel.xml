@@ -311,7 +311,7 @@
 		<switch name="/systems/fuel/aft-pump-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-1 ge 110
+				/systems/electrical/bus/ac-1 ge 112
 				/controls/fuel/switches/pumps-1 eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
@@ -331,13 +331,13 @@
 		<switch name="/systems/fuel/fwd-pump-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/tank-1-fwd-pump eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/systems/fuel/system ne 1
 				/controls/fuel/switches/pumps-1 eq 1
 				/systems/failures/fuel/pumps-1 ne 1
@@ -358,12 +358,12 @@
 		<switch name="/systems/fuel/aft-pump-2l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/controls/fuel/switches/pumps-2 eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/sources/adg/output-volt ge 110
+				/systems/electrical/sources/adg/output-volt ge 112
 				/controls/fuel/switches/pumps-2 eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
@@ -387,7 +387,7 @@
 				/engines/engine[1]/state eq 0
 			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-1 ge 110
+				/systems/electrical/bus/ac-1 ge 112
 				/controls/fuel/switches/pumps-2 eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
@@ -407,13 +407,13 @@
 		<switch name="/systems/fuel/fwd-pump-2">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/tank-2-fwd-pump eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>	
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/systems/fuel/system ne 1
 				/controls/fuel/switches/pumps-2 eq 1
 				/systems/failures/fuel/pumps-2 ne 1
@@ -434,7 +434,7 @@
 		<switch name="/systems/fuel/apu-start-pump">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/bus/dc-bat ge 25
+				/systems/electrical/bus/dc-bat ge 24
 				/systems/apu/dc-fuel-pump eq 1
 			</test>
 		</switch>
@@ -453,7 +453,7 @@
 		<switch name="/systems/fuel/aft-pump-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/controls/fuel/switches/pumps-3 eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>
@@ -473,13 +473,13 @@
 		<switch name="/systems/fuel/fwd-pump-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/tank-3-fwd-pump eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>	
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/systems/fuel/system ne 1
 				/controls/fuel/switches/pumps-3 eq 1
 				/systems/failures/fuel/pumps-3 ne 1
@@ -517,7 +517,7 @@
 		<switch name="/systems/fuel/trans-pump-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-1 ge 110
+				/systems/electrical/bus/ac-1 ge 112
 				/controls/fuel/switches/trans-1 eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
@@ -537,7 +537,7 @@
 		<switch name="/systems/fuel/trans-pump-2">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/controls/fuel/switches/trans-2 eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
@@ -557,7 +557,7 @@
 		<switch name="/systems/fuel/trans-pump-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/controls/fuel/switches/trans-3 eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>
@@ -577,7 +577,7 @@
 		<switch name="/systems/fuel/trans-aux-upper-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-1 ge 110
+				/systems/electrical/bus/ac-1 ge 112
 				/controls/fuel/switches/trans-aux-l eq 1
 				/systems/failures/fuel/pumps-aux-l ne 1
 			</test>
@@ -597,7 +597,7 @@
 		<switch name="/systems/fuel/trans-aux-upper-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/controls/fuel/switches/trans-aux-r eq 1
 				/systems/failures/fuel/pumps-aux-r ne 1
 			</test>
@@ -617,14 +617,14 @@
 		<switch name="/systems/fuel/trans-aux-lower-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/controls/fuel/switches/trans-aux-l eq 1
 				propulsion/tank[6]/contents-lbs gt 10
 				/systems/fuel/system eq 1
 				/systems/failures/fuel/pumps-aux-l ne 1
 			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 110
+				/systems/electrical/bus/ac-2 ge 112
 				/controls/fuel/switches/trans-aux-l eq 1
 				/systems/fuel/system ne 1
 				/systems/failures/fuel/pumps-aux-l ne 1
@@ -645,14 +645,14 @@
 		<switch name="/systems/fuel/trans-aux-lower-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/controls/fuel/switches/trans-aux-r eq 1
 				propulsion/tank[6]/contents-lbs gt 10
 				/systems/fuel/system eq 1
 				/systems/failures/fuel/pumps-aux-r ne 1
 			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 				/controls/fuel/switches/trans-aux-r eq 1
 				/systems/fuel/system ne 1
 				/systems/failures/fuel/pumps-aux-r ne 1

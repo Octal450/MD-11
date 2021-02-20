@@ -727,14 +727,14 @@
 			</test>
 			<test logic="AND" value="0"> <!-- ADG can't do both ELEC and HYD -->
 				/controls/electrical/switches/adg-elec eq 1
-				/systems/electrical/sources/adg/output-volt ge 110
+				/systems/electrical/sources/adg/output-volt ge 112
 			</test>
 			<test logic="OR" value="2960"> <!-- I know it is powered by an AC bus, but I don't know which one, so these are educated guesses -->
-				/systems/electrical/bus/ac-1 ge 110
-				/systems/electrical/bus/ac-2 ge 110
-				/systems/electrical/bus/ac-3 ge 110
-				/systems/electrical/bus/l-emer-ac ge 110
-				/systems/electrical/bus/r-emer-ac ge 110
+				/systems/electrical/bus/ac-1 ge 112
+				/systems/electrical/bus/ac-2 ge 112
+				/systems/electrical/bus/ac-3 ge 112
+				/systems/electrical/bus/l-emer-ac ge 112
+				/systems/electrical/bus/r-emer-ac ge 112
 			</test>
 		</switch>
 		
@@ -745,9 +745,9 @@
 				/systems/failures/hydraulics/aux-pump-2 eq 1
 			</test>
 			<test logic="OR" value="2950"> <!-- I know it is powered by an AC bus, but I don't know which one, so guesses -->
-				/systems/electrical/bus/ac-1 ge 110
-				/systems/electrical/bus/ac-2 ge 110
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-1 ge 112
+				/systems/electrical/bus/ac-2 ge 112
+				/systems/electrical/bus/ac-3 ge 112
 			</test>
 		</switch>
 		

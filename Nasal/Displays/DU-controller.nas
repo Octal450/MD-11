@@ -46,7 +46,7 @@ var DUController = {
 	},
 	loop: func() {
 		if (!me.errorActive) {
-			if (systems.ELEC.Bus.lEmerAc.getValue() >= 110) {
+			if (systems.ELEC.Bus.lEmerAc.getValue() >= 112) {
 				if (!me.updatePfd1) {
 					me.updatePfd1 = 1;
 					canvas_pfd.pfd1.update();
@@ -76,7 +76,7 @@ var DUController = {
 				}
 			}
 			
-			if (systems.ELEC.Bus.ac1.getValue() >= 110) {
+			if (systems.ELEC.Bus.ac1.getValue() >= 112) {
 				if (!me.updateNd1) {
 					me.updateNd1 = 1;
 					me.showNd1.setBoolValue(1); # Temporary
@@ -88,7 +88,7 @@ var DUController = {
 				}
 			}
 			
-			if (systems.ELEC.Bus.ac3.getValue() >= 110) {
+			if (systems.ELEC.Bus.ac3.getValue() >= 112) {
 				if (!me.updatePfd2) {
 					me.updatePfd2 = 1;
 					canvas_pfd.pfd2.update();
@@ -126,7 +126,7 @@ var DUController = {
 				}
 			}
 			
-			if (systems.ELEC.Bus.dcBat.getValue() >= 25) {
+			if (systems.ELEC.Bus.dcBat.getValue() >= 24) {
 				if (!me.updateIesi) {
 					me.updateIesi = 1;
 					canvas_iesi.iesi.update();

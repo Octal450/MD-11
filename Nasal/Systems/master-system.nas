@@ -60,7 +60,7 @@ var APU = {
 		}
 	},
 	startStop: func(t) {
-		if (ELEC.Bus.dcBat.getValue() >= 25) {
+		if (ELEC.Bus.dcBat.getValue() >= 24) {
 			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
 				me.autoConnect = t;
 				me.Switch.start.setBoolValue(1);

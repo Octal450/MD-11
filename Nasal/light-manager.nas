@@ -195,7 +195,7 @@ var light_manager = {
 			var sh = math.sin(heading);
 			var ch = math.cos(heading);
 			
-			hasPower = systems.ELEC.Bus.lEmerAc.getValue() >= 110 or systems.ELEC.Bus.rEmerAc.getValue() >= 110;
+			hasPower = systems.ELEC.Bus.lEmerAc.getValue() >= 112 or systems.ELEC.Bus.rEmerAc.getValue() >= 112;
 			
 			if ((land == 1 or land2 == 1) and hasPower) {
 				me.light1_ypos =  0.0;

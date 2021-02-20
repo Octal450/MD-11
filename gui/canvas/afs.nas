@@ -192,7 +192,7 @@ var afsCanvas = {
 		me._dialogUpdate.start();
 	},
 	_update: func() {
-		if (systems.ELEC.Generic.fcpPower.getValue() >= 25) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			if (pts.Controls.Switches.annunTest.getBoolValue()) {
 				me["FeetInd"].show();
 				me["FpaInd"].show();

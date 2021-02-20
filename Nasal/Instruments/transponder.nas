@@ -67,7 +67,7 @@ var XPDR = {
 		me.setMode(me.knob.getValue());
 	},
 	input: func(n) {
-		if (me.power.getValue() >= 25) {
+		if (me.power.getValue() >= 24) {
 			if (n == "CLR") {
 				if (size(me.code) == 4) {
 					me.code = "";
@@ -133,7 +133,7 @@ var xpdrClearChk = maketimer(0.5, func {
 });
 
 var identChk = maketimer(0.5, func {
-	if (XPDR.power.getValue() >= 25) {
+	if (XPDR.power.getValue() >= 24) {
 		if (XPDR.identTime + 18 <= pts.Sim.Time.elapsedSec.getValue()) {
 			identChk.stop();
 			XPDR.ident.setBoolValue(0);

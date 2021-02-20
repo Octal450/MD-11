@@ -27,22 +27,22 @@ var apPanel = {
 	vertTemp: 0,
 	vsTemp: 0,
 	autoflight: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.ITAF.autoflight();
 		}
 	},
 	fd1: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.ITAF.fd1Master(!afs.Output.fd1.getBoolValue());
 		}
 	},
 	fd2: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.ITAF.fd2Master(!afs.Output.fd2.getBoolValue());
 		}
 	},
 	apDisc: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.killAPWarn();
 			if (afs.Output.ap1.getBoolValue()) {
 				afs.ITAF.ap1Master(0);
@@ -53,7 +53,7 @@ var apPanel = {
 		}
 	},
 	atDisc: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.killATSWarn();
 			if (afs.Output.athr.getBoolValue()) {
 				afs.ITAF.athrMaster(0);
@@ -61,22 +61,22 @@ var apPanel = {
 		}
 	},
 	ktsMach: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
 	spdPush: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.ITAF.spdPush();
 		}
 	},
 	spdPull: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.ITAF.spdPull();
 		}
 	},
 	spdAdjust: func(d) {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			if (afs.Input.ktsMach.getBoolValue()) {
 				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
@@ -99,18 +99,18 @@ var apPanel = {
 		}
 	},
 	hdgPush: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.lat.setValue(3);
 		}
 	},
 	hdgPull: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Internal.hdg.setValue(afs.Input.hdg.getValue());
 			afs.Input.lat.setValue(0);
 		}
 	},
 	hdgAdjust: func(d) {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Output.showHdg.setBoolValue(1);
 			me.hdgTemp = afs.Input.hdg.getValue() + d;
 			if (me.hdgTemp < -0.5) {
@@ -123,27 +123,27 @@ var apPanel = {
 		}
 	},
 	hdgTrk: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.trk.setValue(!afs.Input.trk.getBoolValue());
 		}
 	},
 	nav: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.lat.setValue(1);
 		}
 	},
 	altPush: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.vert.setValue(0);
 		}
 	},
 	altPull: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.vert.setValue(4);
 		}
 	},
 	altAdjust: func(d) {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			me.altTemp = afs.Input.alt.getValue();
 			if (d == 1) {
 				if (me.altTemp >= 10000) {
@@ -173,7 +173,7 @@ var apPanel = {
 		}
 	},
 	vsAdjust: func(d) {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
 				me.vsTemp = afs.Input.vs.getValue() + (d * 100);
@@ -211,7 +211,7 @@ var apPanel = {
 		}
 	},
 	vsFpa: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
 				afs.Output.vsFpa.setBoolValue(1);
@@ -225,17 +225,17 @@ var apPanel = {
 		}
 	},
 	appr: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.vert.setValue(2);
 		}
 	},
 	prof: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			# Nothing yet
 		}
 	},
 	goAround: func() {
-		if (systems.ELEC.Generic.fcpPower.getBoolValue()) {
+		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
 			afs.Input.toga.setValue(1);
 		}
 	},

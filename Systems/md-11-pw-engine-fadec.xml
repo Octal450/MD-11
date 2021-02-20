@@ -1705,7 +1705,7 @@
 				/engines/engine[0]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 25
+				/systems/electrical/outputs/efis ge 24
 				/engines/engine[0]/n2-actual ge 1
 			</test>
 		</switch>
@@ -1716,7 +1716,7 @@
 				/engines/engine[1]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 25
+				/systems/electrical/outputs/efis ge 24
 				/engines/engine[1]/n2-actual ge 1
 			</test>
 		</switch>
@@ -1727,7 +1727,7 @@
 				/engines/engine[2]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 25
+				/systems/electrical/outputs/efis ge 24
 				/engines/engine[2]/n2-actual ge 1
 			</test>
 		</switch>

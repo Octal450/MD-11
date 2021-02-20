@@ -273,7 +273,7 @@
 					<tableData>
 						      0  1
 						  0   0  0
-						 10  25  4
+						 10  26  4
 						100  32  7
 					</tableData>
 				</table>
@@ -375,7 +375,7 @@
 					<tableData>
 						      0  1
 						  0   0  0
-						 10  25  4
+						 10  26  4
 						100  32  7
 					</tableData>
 				</table>
@@ -690,7 +690,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/electrical/sources/ext/output-volt</property>
-						<value>110</value>
+						<value>112</value>
 					</ge>
 					<value>400</value>
 					<value>0</value>
@@ -741,7 +741,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/electrical/sources/adg/output-volt</property>
-						<value>110</value>
+						<value>112</value>
 					</ge>
 					<value>400</value>
 					<value>0</value>
@@ -761,7 +761,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
-				/systems/electrical/sources/idg-1/output-volt ge 110
+				/systems/electrical/sources/idg-1/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -783,7 +783,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
-				/systems/electrical/sources/idg-2/output-volt ge 110
+				/systems/electrical/sources/idg-2/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -805,7 +805,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
-				/systems/electrical/sources/idg-3/output-volt ge 110
+				/systems/electrical/sources/idg-3/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -821,7 +821,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
-				/systems/electrical/sources/apu/output-volt ge 110
+				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -836,7 +836,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
-				/systems/electrical/sources/apu/output-volt ge 110
+				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -851,7 +851,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
-				/systems/electrical/sources/apu/output-volt ge 110
+				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -1013,7 +1013,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ext-pwr eq 1
-				/systems/electrical/sources/ext/output-volt ge 110
+				/systems/electrical/sources/ext/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -1028,7 +1028,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/extg-pwr eq 1
-				/systems/electrical/sources/ext/output-galley-volt ge 110
+				/systems/electrical/sources/ext/output-galley-volt ge 112
 			</test>
 		</switch>
 		
@@ -1059,7 +1059,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
-				/systems/electrical/sources/apu/output-volt ge 110
+				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -1074,7 +1074,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu ne 1
-				/systems/electrical/relay/ext-pwr/output ge 110
+				/systems/electrical/relay/ext-pwr/output ge 112
 			</test>
 		</switch>
 		
@@ -1141,7 +1141,7 @@
 		<switch name="/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-2 ge 110
+				/systems/electrical/bus/ac-gen-2 ge 112
 			</test>
 		</switch>
 		
@@ -1204,7 +1204,7 @@
 		<switch name="/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-3 ge 110
+				/systems/electrical/bus/ac-gen-3 ge 112
 			</test>
 		</switch>
 		
@@ -1219,7 +1219,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/adg-elec eq 1
-				/systems/electrical/sources/adg/output-volt ge 110
+				/systems/electrical/sources/adg/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -1235,10 +1235,10 @@
 			<description>Tell which source is being used, so that the TR 3 DC 3 RCB can not allow DC 3 bus in ADG ELEC mode</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- AC GEN 3 -->
-				/systems/electrical/relay/ac-gen-3-r-emer-ac/output ge 110
+				/systems/electrical/relay/ac-gen-3-r-emer-ac/output ge 112
 			</test>
 			<test value="2"> <!-- ADG -->
-				/systems/electrical/relay/adg-r-emer-ac/output ge 110
+				/systems/electrical/relay/adg-r-emer-ac/output ge 112
 			</test>
 		</switch>
 		
@@ -1255,7 +1255,7 @@
 		<switch name="/systems/electrical/relay/ac-gen-1-tr-1/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-1 ge 110
+				/systems/electrical/bus/ac-gen-1 ge 112
 			</test>
 		</switch>
 		
@@ -1269,7 +1269,7 @@
 		<switch name="/systems/electrical/relay/ac-gen-2-tr-2a/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-2 ge 110
+				/systems/electrical/bus/ac-gen-2 ge 112
 			</test>
 		</switch>
 		
@@ -1283,7 +1283,7 @@
 		<switch name="/systems/electrical/relay/ac-gndsvc-tr-2b/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gndsvc ge 110
+				/systems/electrical/bus/ac-gndsvc ge 112
 			</test>
 		</switch>
 		
@@ -1297,7 +1297,7 @@
 		<switch name="/systems/electrical/relay/r-emer-ac-tr-3/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/r-emer-ac ge 110
+				/systems/electrical/bus/r-emer-ac ge 112
 			</test>
 		</switch>
 		
@@ -1309,10 +1309,17 @@
 		</switch>
 		
 		<!-- Transformer Rectifiers -->
-		<pure_gain name="/systems/electrical/sources/tr-1/output-volt">
+		<scheduled_gain name="/systems/electrical/sources/tr-1/output-volt">
 			<input>/systems/electrical/relay/ac-gen-1-tr-1/output</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
+			<table> <!-- AC to DC converter -->
+				<independentVar lookup="row">/systems/electrical/relay/ac-gen-1-tr-1/output</independentVar>
+				<tableData>
+					112  0.21428571429
+					115  0.24347826087
+					118  0.24576271186
+				</tableData>
+			</table>
+		</scheduled_gain>
 		
 		<fcs_function name="/systems/electrical/sources/tr-1/output-amp">
 			<function>
@@ -1326,10 +1333,17 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/tr-2a/output-volt">
+		<scheduled_gain name="/systems/electrical/sources/tr-2a/output-volt">
 			<input>/systems/electrical/relay/ac-gen-2-tr-2a/output</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
+			<table> <!-- AC to DC converter -->
+				<independentVar lookup="row">/systems/electrical/relay/ac-gen-2-tr-2a/output</independentVar>
+				<tableData>
+					112  0.21428571429
+					115  0.24347826087
+					118  0.24576271186
+				</tableData>
+			</table>
+		</scheduled_gain>
 		
 		<fcs_function name="/systems/electrical/sources/tr-2a/output-amp">
 			<function>
@@ -1343,10 +1357,17 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/tr-2b/output-volt">
+		<scheduled_gain name="/systems/electrical/sources/tr-2b/output-volt">
 			<input>/systems/electrical/relay/ac-gndsvc-tr-2b/output</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
+			<table> <!-- AC to DC converter -->
+				<independentVar lookup="row">/systems/electrical/relay/ac-gndsvc-tr-2b/output</independentVar>
+				<tableData>
+					112  0.21428571429
+					115  0.24347826087
+					118  0.24576271186
+				</tableData>
+			</table>
+		</scheduled_gain>
 		
 		<fcs_function name="/systems/electrical/sources/tr-2b/output-amp">
 			<function>
@@ -1360,10 +1381,17 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/electrical/sources/tr-3/output-volt">
+		<scheduled_gain name="/systems/electrical/sources/tr-3/output-volt">
 			<input>/systems/electrical/relay/r-emer-ac-tr-3/output</input>
-			<gain>0.24347826086956523</gain> <!-- AC to DC converter -->
-		</pure_gain>
+			<table> <!-- AC to DC converter -->
+				<independentVar lookup="row">/systems/electrical/relay/r-emer-ac-tr-3/output</independentVar>
+				<tableData>
+					112  0.21428571429
+					115  0.24347826087
+					118  0.24576271186
+				</tableData>
+			</table>
+		</scheduled_gain>
 		
 		<fcs_function name="/systems/electrical/sources/tr-3/output-amp">
 			<function>
@@ -1445,7 +1473,7 @@
 		<switch name="/systems/electrical/rcb/tr-3-dc-3/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/sources/tr-3/output-volt ge 25
+				/systems/electrical/sources/tr-3/output-volt ge 24
 				/systems/electrical/bus/r-emer-ac-src eq 1
 			</test>
 		</switch>
@@ -1462,7 +1490,7 @@
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 1 -->
-				/systems/electrical/sources/tr-1/output-volt ge 25
+				/systems/electrical/sources/tr-1/output-volt ge 24
 			</test>
 			<test value="2"> <!-- DC TIE -->
 				/systems/electrical/rcb/dc-tie-dc-1/contact-pos eq 1
@@ -1483,7 +1511,7 @@
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 2A -->
-				/systems/electrical/sources/tr-2a/output-volt ge 25
+				/systems/electrical/sources/tr-2a/output-volt ge 24
 			</test>
 			<test value="2"> <!-- DC TIE -->
 				/systems/electrical/rcb/dc-tie-dc-2/contact-pos eq 1
@@ -1503,7 +1531,7 @@
 		<switch name="/systems/electrical/bus/dc-gndsvc-src">
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 2B -->
-				/systems/electrical/sources/tr-2b/output-volt ge 25
+				/systems/electrical/sources/tr-2b/output-volt ge 24
 			</test>
 			<test value="2"> <!-- DC TIE -->
 				/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos eq 1
@@ -1524,7 +1552,7 @@
 			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 3 -->
-				/systems/electrical/rcb/tr-3-dc-3/output ge 25
+				/systems/electrical/rcb/tr-3-dc-3/output ge 24
 			</test>
 			<test value="2"> <!-- DC TIE -->
 				/systems/electrical/rcb/dc-tie-dc-3/contact-pos eq 1
@@ -1653,7 +1681,7 @@
 			</test>
 			<test logic="AND" value="1"> <!-- ARM -->
 				/controls/electrical/switches/emer-pw-sw eq 1
-				/systems/electrical/bus/dc-1 lt 25
+				/systems/electrical/bus/dc-1 lt 24
 			</test>
 		</switch>
 		
@@ -1661,7 +1689,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
-				/systems/electrical/bus/dc-bat ge 25
+				/systems/electrical/bus/dc-bat ge 24
 			</test>
 		</switch>
 		
@@ -1702,8 +1730,9 @@
 					<independentVar lookup="row">/systems/electrical/bus/l-emer-dc</independentVar>
 					<tableData>
 						 0    0
-						25  110
+						24  112
 						28  115
+						29  118
 					</tableData>
 				</table>
 			</function>
@@ -1713,7 +1742,7 @@
 		<switch name="/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-1 ge 110
+				/systems/electrical/bus/ac-gen-1 ge 112
 			</test>
 		</switch>
 		
@@ -1731,7 +1760,7 @@
 			</test>
 			<test logic="AND" value="1"> <!-- ARM -->
 				/controls/electrical/switches/emer-pw-sw eq 1
-				/systems/electrical/bus/ac-1 lt 110
+				/systems/electrical/bus/ac-1 lt 112
 			</test>
 		</switch>
 		
@@ -1739,7 +1768,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
-				/systems/electrical/sources/si-1/output-volt ge 110
+				/systems/electrical/sources/si-1/output-volt ge 112
 			</test>
 		</switch>
 		
@@ -1765,8 +1794,8 @@
 		<switch name="/systems/electrical/sources/bat-charger-powered">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/electrical/bus/ac-gndsvc ge 110
-				/systems/electrical/bus/r-emer-ac ge 110
+				/systems/electrical/bus/ac-gndsvc ge 112
+				/systems/electrical/bus/r-emer-ac ge 112
 			</test>
 		</switch>
 		
@@ -1778,7 +1807,7 @@
 				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-1 ge 110
+				/systems/electrical/bus/ac-gen-1 ge 112
 			</test>
 		</switch>
 		
@@ -1820,7 +1849,7 @@
 				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-2 ge 110
+				/systems/electrical/bus/ac-gen-2 ge 112
 			</test>
 		</switch>
 		
@@ -1862,7 +1891,7 @@
 				/systems/electrical/relay/ext-pwr/contact-pos eq 1
 			</test>
 			<test value="1">
-				/systems/electrical/bus/ac-gen-3 ge 110
+				/systems/electrical/bus/ac-gen-3 ge 112
 			</test>
 		</switch>
 		
@@ -1965,7 +1994,7 @@
 		<switch name="/systems/electrical/generic/ac1">
 			<default value="0"/>
 			<test value="28">
-				/systems/electrical/bus/ac-1 ge 110
+				/systems/electrical/bus/ac-1 ge 112
 			</test>
 			<output>/systems/electrical/outputs/mk-viii</output>
 			<output>/systems/electrical/outputs/ra[0]</output>
@@ -1974,7 +2003,7 @@
 		<switch name="/systems/electrical/generic/ac3">
 			<default value="0"/>
 			<test value="28">
-				/systems/electrical/bus/ac-3 ge 110
+				/systems/electrical/bus/ac-3 ge 112
 			</test>
 			<output>/systems/electrical/outputs/ra[1]</output>
 		</switch>
@@ -1984,9 +2013,9 @@
 			<description>This makes the FG stuff work because we killed the generic electrical</description>
 			<default value="0"/>
 			<test logic="OR" value="28">
-				/systems/electrical/bus/dc-1 ge 25
-				/systems/electrical/bus/dc-2 ge 25
-				/systems/electrical/bus/dc-3 ge 25
+				/systems/electrical/bus/dc-1 ge 24
+				/systems/electrical/bus/dc-2 ge 24
+				/systems/electrical/bus/dc-3 ge 24
 			</test>
 			<output>/systems/electrical/outputs/adf</output>
 			<output>/systems/electrical/outputs/dme</output>
@@ -2009,7 +2038,7 @@
 		<switch name="/controls/lighting/fcp-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/fcp-integ-knb">
-				/systems/electrical/generic/pwr ge 25
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
@@ -2028,14 +2057,14 @@
 		<switch name="/controls/lighting/main-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/main-integ-knb">
-				/systems/electrical/generic/pwr ge 25
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/lighting/overhead-integ-norm">
 			<default value="0"/>
 			<test value="/controls/lighting/overhead-integ-knb">
-				/systems/electrical/generic/pwr ge 25
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
@@ -2073,91 +2102,91 @@
 		<switch name="/controls/electrical/lights/bat-bus">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/dc-bat lt 25
+				/systems/electrical/bus/dc-bat lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/l-emer-dc">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/l-emer-dc lt 25
+				/systems/electrical/bus/l-emer-dc lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/dc-1">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/dc-1 lt 25
+				/systems/electrical/bus/dc-1 lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/dc-2">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/dc-2 lt 25
+				/systems/electrical/bus/dc-2 lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/dc-gnd">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/dc-gndsvc lt 25
+				/systems/electrical/bus/dc-gndsvc lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/dc-3">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/dc-3 lt 25
+				/systems/electrical/bus/dc-3 lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/r-emer-dc">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/r-emer-dc lt 25
+				/systems/electrical/bus/r-emer-dc lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/l-emer-ac">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/l-emer-ac lt 110
+				/systems/electrical/bus/l-emer-ac lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/ac-1">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-1 lt 25
+				/systems/electrical/bus/ac-1 lt 24
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/ac-2">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-2 lt 110
+				/systems/electrical/bus/ac-2 lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/ac-gnd">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-gndsvc lt 110
+				/systems/electrical/bus/ac-gndsvc lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/ac-3">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/ac-3 lt 110
+				/systems/electrical/bus/ac-3 lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/r-emer-ac">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/r-emer-ac lt 110
+				/systems/electrical/bus/r-emer-ac lt 112
 			</test>
 		</switch>
 		
@@ -2226,21 +2255,21 @@
 		<switch name="/controls/electrical/lights/galley-1">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/galley-1 lt 110
+				/systems/electrical/bus/galley-1 lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/galley-2">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/galley-2 lt 110
+				/systems/electrical/bus/galley-2 lt 112
 			</test>
 		</switch>
 		
 		<switch name="/controls/electrical/lights/galley-3">
 			<default value="0"/>
 			<test value="1">
-				/systems/electrical/bus/galley-3 lt 110
+				/systems/electrical/bus/galley-3 lt 112
 			</test>
 		</switch>
 	
