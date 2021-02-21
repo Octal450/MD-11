@@ -2,7 +2,9 @@
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
 var Internal = {
-	v2: props.globals.initNode("/FMS/internal/v2", 153, "INT"),
+	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
+	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2", 0, "DOUBLE"),
+	v2: props.globals.initNode("/fms/internal/v2", 153, "INT"),
 };
 
 var CORE = {

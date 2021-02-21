@@ -8,7 +8,7 @@
 	<!-- Fake N2 because numbers pulled from SASA with permission - make sure it matches engine values -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<less-than>
@@ -45,7 +45,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<less-than>
@@ -82,7 +82,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<less-than>
@@ -121,7 +121,7 @@
 	<!-- Idle Low -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -142,7 +142,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -163,7 +163,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -185,7 +185,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -203,7 +203,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -221,7 +221,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -241,7 +241,7 @@
 	<!-- Idle -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -261,7 +261,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -281,7 +281,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -302,7 +302,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -320,7 +320,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -338,7 +338,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -358,7 +358,7 @@
 	<!-- Idle Whistle -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -377,7 +377,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -396,7 +396,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -416,7 +416,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -434,7 +434,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -452,7 +452,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -472,7 +472,7 @@
 	<!-- Spool -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -493,7 +493,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -514,7 +514,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -536,7 +536,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -554,7 +554,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -572,7 +572,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -592,7 +592,7 @@
 	<!-- Power -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -611,7 +611,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -630,7 +630,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -650,7 +650,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -668,7 +668,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -686,7 +686,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -706,7 +706,7 @@
 	<!-- Growl -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -725,7 +725,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -744,7 +744,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -764,7 +764,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -784,7 +784,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -804,7 +804,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -826,7 +826,7 @@
 	<!-- Reverse -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -848,7 +848,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -870,7 +870,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -893,7 +893,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -911,7 +911,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -929,7 +929,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/current-view/internal</property>
@@ -950,7 +950,7 @@
 	<!-- Idle Low -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -972,7 +972,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -994,7 +994,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1017,7 +1017,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1035,7 +1035,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1053,7 +1053,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1073,7 +1073,7 @@
 	<!-- Idle -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1093,7 +1093,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1113,7 +1113,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1134,7 +1134,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1152,7 +1152,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1170,7 +1170,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1190,7 +1190,7 @@
 	<!-- Idle2 -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1212,7 +1212,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1234,7 +1234,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1257,7 +1257,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1275,7 +1275,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1293,7 +1293,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1313,7 +1313,7 @@
 	<!-- Idle Whistle-->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1332,7 +1332,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1351,7 +1351,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1371,7 +1371,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1389,7 +1389,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1407,7 +1407,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1427,7 +1427,7 @@
 	<!-- Spool -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1447,7 +1447,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1467,7 +1467,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1488,7 +1488,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1506,7 +1506,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1524,7 +1524,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1544,7 +1544,7 @@
 	<!-- Roar -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1562,7 +1562,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1580,7 +1580,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1599,7 +1599,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1617,7 +1617,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1635,7 +1635,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1655,7 +1655,7 @@
 	<!-- Whoosh -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1673,7 +1673,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1691,7 +1691,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1710,7 +1710,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1728,7 +1728,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1746,7 +1746,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1766,7 +1766,7 @@
 	<!-- Rumble-Side -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1784,7 +1784,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1802,7 +1802,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1821,7 +1821,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1839,7 +1839,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1857,7 +1857,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1877,7 +1877,7 @@
 	<!-- Rumble -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1896,7 +1896,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1915,7 +1915,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1935,7 +1935,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1953,7 +1953,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1971,7 +1971,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -1991,7 +1991,7 @@
 	<!-- Reverse -->
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -2013,7 +2013,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -2035,7 +2035,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -2058,7 +2058,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -2076,7 +2076,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>
@@ -2094,7 +2094,7 @@
 	</filter>
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not><property>/sim/current-view/internal</property></not>

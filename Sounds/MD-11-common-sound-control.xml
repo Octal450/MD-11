@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 
 <!-- MD-11 Common Sound Controller -->
-<!-- Copyright (c) 2020 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -70,7 +70,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/sound/internal-custom</property>
@@ -78,9 +78,9 @@
 			<expression>
 				<table>
 					<property>/velocities/groundspeed-kt</property>
-					<entry><ind> 10</ind><dep>0.0</dep></entry>
+					<entry><ind> 10</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>0.25</dep></entry>
-					<entry><ind>150</ind><dep>0.5</dep></entry>
+					<entry><ind>150</ind><dep>0.50</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -90,7 +90,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/sound/internal-custom</property>
@@ -98,8 +98,8 @@
 			<expression>
 				<table>
 					<property>/velocities/groundspeed-kt</property>
-					<entry><ind> 10</ind><dep>0.5</dep></entry>
-					<entry><ind>150</ind><dep>1.0</dep></entry>
+					<entry><ind> 10</ind><dep>0.4</dep></entry>
+					<entry><ind>200</ind><dep>0.8</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -109,7 +109,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/sound/internal-custom</property>
@@ -117,9 +117,9 @@
 			<expression>
 				<table>
 					<property>/velocities/airspeed-kt</property>
-					<entry><ind>100</ind> <dep>0.00</dep></entry>
-					<entry><ind>198</ind> <dep>0.10</dep></entry>
-					<entry><ind>250</ind><dep>0.50</dep></entry>
+					<entry><ind>100</ind><dep>0.0</dep></entry>
+					<entry><ind>198</ind><dep>0.1</dep></entry>
+					<entry><ind>250</ind><dep>0.5</dep></entry>
 				</table>
 			</expression> 
 		</input>
@@ -129,7 +129,7 @@
 	
 	<filter>
 		<type>gain</type>
-		<gain>1</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<property>/sim/sound/internal-custom</property>
@@ -137,8 +137,8 @@
 			<expression>
 				<table>
 					<property>/velocities/airspeed-kt</property>
-					<entry><ind>150</ind><dep>0.50</dep></entry>
-					<entry><ind>250</ind><dep>1.00</dep></entry>
+					<entry><ind>150</ind><dep>0.5</dep></entry>
+					<entry><ind>250</ind><dep>1.0</dep></entry>
 				</table>
 			</expression> 
 		</input>

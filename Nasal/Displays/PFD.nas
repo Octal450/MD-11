@@ -437,9 +437,9 @@ var canvasBase = {
 			me["ASI_sel_up"].setColorFill(0,0,0);
 			me["ASI_sel_up"].show();
 			if (Value.Afs.ktsMachSel) {
-				me["ASI_sel_up_text"].setText("." ~ sprintf("%03d", Value.Afs.machSel * 1000));
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
 			} else {
-				me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
 			}
 			me["ASI_sel_up_text"].show();
 		} else if (Value.Asi.Tape.sel > 60) { # It will never go outside envelope, so keep it white
@@ -448,9 +448,9 @@ var canvasBase = {
 			me["ASI_sel_up_text"].setColor(1,1,1);
 			me["ASI_sel_up"].show();
 			if (Value.Afs.ktsMach) {
-				me["ASI_sel_up_text"].setText("." ~ sprintf("%03d", Value.Afs.mach * 1000));
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 			} else {
-				me["ASI_sel_up_text"].setText(sprintf("%03d", Value.Afs.kts));
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["ASI_sel_up_text"].show();
 		} else {
@@ -480,9 +480,9 @@ var canvasBase = {
 			me["ASI_sel_dn"].setColorFill(0,0,0);
 			me["ASI_sel_dn"].show();
 			if (Value.Afs.ktsMachSel) {
-				me["ASI_sel_dn_text"].setText("." ~ sprintf("%03d", Value.Afs.machSel * 1000));
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
 			} else {
-				me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.ktsSel));
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
 			}
 			me["ASI_sel_dn_text"].show();
 		} else if (Value.Asi.Tape.sel < -60) { # It will never go outside envelope, so keep it white
@@ -491,9 +491,9 @@ var canvasBase = {
 			me["ASI_sel_dn_text"].setColor(1,1,1);
 			me["ASI_sel_dn"].show();
 			if (Value.Afs.ktsMach) {
-				me["ASI_sel_dn_text"].setText("." ~ sprintf("%03d", Value.Afs.mach * 1000));
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 			} else {
-				me["ASI_sel_dn_text"].setText(sprintf("%03d", Value.Afs.kts));
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["ASI_sel_dn_text"].show();
 		} else {
@@ -1007,9 +1007,9 @@ var canvasBase = {
 			me["FMA_Speed"].hide();
 		} else {
 			if (Value.Afs.ktsMach) {
-				me["FMA_Speed"].setText("." ~ sprintf("%03d", Value.Afs.mach * 1000));
+				me["FMA_Speed"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 			} else {
-				me["FMA_Speed"].setText(sprintf("%03d", Value.Afs.kts));
+				me["FMA_Speed"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["FMA_Speed"].show();
 		}

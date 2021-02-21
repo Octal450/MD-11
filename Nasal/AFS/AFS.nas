@@ -51,6 +51,7 @@ var Misc = {
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
 	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
 	pfdHeadingScaleTemp: 0,
+	rollDeg: props.globals.getNode("/orientation/roll-deg", 1),
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
 	state2: props.globals.getNode("/engines/engine[1]/state", 1),
 	state3: props.globals.getNode("/engines/engine[2]/state", 1),
@@ -87,8 +88,6 @@ var Velocities = {
 	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/kts-predicted-5", 1),
 	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
 	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/mach-predicted-5", 1),
-	trueAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/true-speed-kt", 1),
-	trueAirspeedKtTemp: 0,
 	vmax: 365,
 	vmin: 0,
 };
@@ -147,8 +146,9 @@ var Internal = {
 	altDiff: 0,
 	altTemp: 10000,
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
-	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "INT"),
-	bankLimitAuto: 25,
+	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "DOUBLE"),
+	bankLimitAuto: 0,
+	bankLimitCalc: 25,
 	bankLimitMax: [25, 5, 10, 15, 20, 25],
 	canAutoland: 0,
 	captVs: 0,
@@ -171,6 +171,7 @@ var Internal = {
 	machTemp: 0.5,
 	minVs: props.globals.initNode("/it-autoflight/internal/min-vs", -500, "INT"),
 	maxVs: props.globals.initNode("/it-autoflight/internal/max-vs", 500, "INT"),
+	navCourseTrackErrorDeg: props.globals.initNode("/it-autoflight/internal/nav-course-track-error-deg", 0, "DOUBLE"),
 	retardLock: 0,
 	selfCheckStatus: 0,
 	selfCheckTime: 0,
@@ -464,6 +465,9 @@ var ITAF = {
 		# Thrust Mode Selector
 		me.updateThrustMode();
 		
+		# Bank Limits
+		me.bankLimit();
+		
 		# Custom Stuff Below
 		# Speed Capture + ATS Speed Limits
 		Velocities.athrMax = pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue();
@@ -637,26 +641,9 @@ var ITAF = {
 		}
 	},
 	slowLoop: func() {
-		Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
-		Velocities.trueAirspeedKtTemp = Velocities.trueAirspeedKt.getValue();
 		FPLN.activeTemp = FPLN.active.getValue();
 		FPLN.currentWpTemp = FPLN.currentWp.getValue();
 		FPLN.numTemp = FPLN.num.getValue();
-		
-		# Bank Limit
-		if (Velocities.trueAirspeedKtTemp >= 420) {
-			Internal.bankLimitAuto = 15;
-		} else if (Velocities.trueAirspeedKtTemp >= 340) {
-			Internal.bankLimitAuto = 20;
-		} else {
-			Internal.bankLimitAuto = 25;
-		}
-		
-		if (Internal.bankLimitAuto > Internal.bankLimitMax[Input.bankLimitSwTemp]) {
-			Internal.bankLimit.setValue(Internal.bankLimitMax[Input.bankLimitSwTemp]);
-		} else {
-			Internal.bankLimit.setValue(Internal.bankLimitAuto);
-		}
 		
 		# If in LNAV mode and route is not longer active, or IRUs unaligned, switch to HDG HLD
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
@@ -923,6 +910,7 @@ var ITAF = {
 		if (n == 0) { # HDG SEL
 			Output.hdgCaptured = 0;
 			Output.lat.setValue(0);
+			me.bankLimit();
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
@@ -943,6 +931,7 @@ var ITAF = {
 			me.updateApprArm(0);
 			me.syncHdg();
 			Output.lat.setValue(0);
+			me.bankLimit();
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
@@ -953,6 +942,7 @@ var ITAF = {
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(4);
+			me.bankLimit();
 			Output.showHdg.setBoolValue(0);
 			me.updateLatText("ALGN");
 		} else if (n == 5) { # T/O
@@ -960,6 +950,7 @@ var ITAF = {
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(5);
+			me.bankLimit();
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("T/O");
 		}
@@ -1102,12 +1093,46 @@ var ITAF = {
 			}
 		}
 	},
+	bankLimit: func() {
+		Output.latTemp = Output.lat.getValue();
+		if (Text.vert.getValue() == "G/A CLB") {
+			Internal.bankLimitCalc = 10;
+		} else if (Output.latTemp == 2 or Output.latTemp == 4) {
+			Radio.locDeflTemp = abs(Radio.locDefl[Input.radioSel.getValue()].getValue());
+			if (Radio.locDeflTemp >= 0.105) {
+				Internal.bankLimitCalc = 30;
+			} else if (Radio.locDeflTemp < 0.1 and abs(Internal.navCourseTrackErrorDeg.getValue()) < 5 and abs(Misc.rollDeg.getValue()) < 5) {
+				if (Position.gearAglFt.getValue() <= 200) {
+					Internal.bankLimitCalc = 5;
+				} else if (Internal.bankLimitCalc != 5) { # It does not go from 5 to 10, ever
+					Internal.bankLimitCalc = 10;
+				}
+			}
+		} else if (Output.latTemp == 1) {
+			#if (FMS using curved-patch transitions or holding patterns or procedure turns) {
+				#Internal.bankLimitAuto = fms.Internal.bankAngle2.getValue();
+			#} else {
+				Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+			#}
+			Internal.bankLimitCalc = Internal.bankLimitAuto;
+		} else {
+			Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
+			Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+			if (Input.bankLimitSwTemp == 0) {
+				Internal.bankLimitCalc = Internal.bankLimitAuto;
+			} else {
+				Internal.bankLimitCalc = math.clamp(Internal.bankLimitMax[Input.bankLimitSwTemp], Internal.bankLimitAuto * -1, Internal.bankLimitAuto);
+			}
+		}
+		Internal.bankLimit.setValue(Internal.bankLimitCalc);
+	},
 	activateLnav: func() {
 		if (Output.lat.getValue() != 1) {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
 			me.updateApprArm(0);
 			Output.lat.setValue(1);
+			me.bankLimit();
 			me.updateLatText("LNAV");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
@@ -1120,6 +1145,7 @@ var ITAF = {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
 			Output.lat.setValue(2);
+			me.bankLimit();
 			me.updateLatText("LOC");
 		}
 		Output.showHdg.setBoolValue(0);
@@ -1172,7 +1198,7 @@ var ITAF = {
 		Radio.radioSel = Input.radioSel.getValue();
 		if (Radio.inRange[Radio.radioSel].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			Radio.gsDeflTemp = Radio.gsDefl[Radio.radioSel].getValue();
-			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2) { # Only capture if LOC is active
+			if (abs(Radio.gsDeflTemp) <= 0.2 and Radio.gsDeflTemp != 0 and Output.lat.getValue()  == 2 and abs(Internal.navCourseTrackErrorDeg.getValue()) <= 80) { # Only capture if LOC is active and course error less or equals 80
 				me.activateGs();
 			} else if (t != 1) { # Do not do this if loop calls it
 				if (Output.vert.getValue() != 2) {
