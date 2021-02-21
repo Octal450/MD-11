@@ -1095,7 +1095,7 @@ var ITAF = {
 	},
 	bankLimit: func() {
 		Output.latTemp = Output.lat.getValue();
-		if (Text.vert.getValue() == "G/A CLB") {
+		if (Text.vert.getValue() == "G/A CLB" or Output.latTemp == 5) {
 			Internal.bankLimitCalc = 10;
 		} else if (Output.latTemp == 2 or Output.latTemp == 4) {
 			Radio.locDeflTemp = abs(Radio.locDefl[Input.radioSel.getValue()].getValue());

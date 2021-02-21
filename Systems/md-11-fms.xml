@@ -8,34 +8,57 @@
 	<channel name="Libraries">
 		
 		<!-- Bank Limit -->
-		<fcs_function name="/fms/internal/bank-limit-1"> <!-- From FCOM -->
+		<summer name="/fms/internal/vss-error">
+			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+			<input>-fcc/speeds/vss</input>
+		</summer>
+		
+		<fcs_function name="/fms/internal/bank-limit-vss">
 			<function>
 				<table>
-					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
+					<independentVar lookup="row">/fms/internal/vss-error</independentVar>
 					<tableData>
-						0.55  25
-						0.80  20
-						0.87  10
-						0.93   0
+						 0.0   5
+						12.5  30
 					</tableData>
 				</table>
+			</function>
+		</fcs_function>	
+		
+		<fcs_function name="/fms/internal/bank-limit-1"> <!-- From FCOM -->
+			<function>
+				<min>
+					<table>
+						<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
+						<tableData>
+							0.55  25
+							0.80  20
+							0.87  10
+							0.93   0
+						</tableData>
+					</table>
+					<property>/fms/internal/bank-limit-vss</property>
+				</min>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/fms/internal/bank-limit-2"> <!-- From FCOM -->
 			<function>
-				<table>
-					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
-					<tableData>
-						0.01  15
-						0.17  25
-						0.25  30
-						0.55  30
-						0.80  20
-						0.87  10
-						0.93   0
-					</tableData>
-				</table>
+				<min>
+					<table>
+						<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
+						<tableData>
+							0.01  15
+							0.17  25
+							0.25  30
+							0.55  30
+							0.80  20
+							0.87  10
+							0.93   0
+						</tableData>
+					</table>
+					<property>/fms/internal/bank-limit-vss</property>
+				</min>
 			</function>
 		</fcs_function>
 	
