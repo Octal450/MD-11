@@ -124,7 +124,10 @@
 						<value>1</value>
 						<cos>
 							<toradians>
-								<property>/orientation/roll-deg</property>
+								<min>
+									<abs><property>/orientation/roll-deg</property></abs>
+									<value>45</value> <!-- Otherwise problems happen -->
+								</min>
 							</toradians>
 						</cos>
 					</quotient>
