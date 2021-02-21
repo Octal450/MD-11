@@ -5,21 +5,6 @@
 <PropertyList>
 	<fx>
 		
-		<apoff>
-			<name>apoff</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
-			<condition>
-				<greater-than>
-					<property>/systems/caws/apoff/out</property>
-					<value>0</value>
-				</greater-than>
-			</condition>
-			<volume>
-				<factor>10.0</factor>
-			</volume>
-		</apoff>
-		
 		<sb>
 			<mode>once</mode>
 			<name>sb</name>
@@ -1013,18 +998,28 @@
 	    <caws>
 			<name>Landing Gear Warning</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/landing-gear.wav</path>
-			<mode>looped</mode>
+			<mode>once</mode>
 			<condition>
-				<and>
-					<equals>
-						<property>/systems/warnings/gear-warning</property>
-						<value>1</value>
-					</equals>
-					<greater-than-equals>
-						<property>/systems/electrical/outputs/mk-viii</property>
-						<value>24</value>
-					</greater-than-equals>
-				</and>
+				<greater-than>
+					<property>/systems/caws/landing-gear/out</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+			<volume>
+				<factor>8</factor>
+			</volume>
+			<reference-dist>20.0</reference-dist>
+			<max-dist>100.0</max-dist>
+		</caws>
+		<caws>
+			<name>AP Off Warning</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
+			<condition>
+				<greater-than>
+					<property>/systems/caws/apoff/out</property>
+					<value>0</value>
+				</greater-than>
 			</condition>
 			<volume>
 				<factor>8</factor>
