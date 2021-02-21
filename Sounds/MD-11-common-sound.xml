@@ -7,26 +7,13 @@
 		
 		<apoff>
 			<name>apoff</name>
-			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/Cockpit/apoff.wav</path>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
 			<condition>
-				<and>
-					<property>/it-autoflight/sound/apoffsound</property>
-					<or>
-						<greater-than-equals>
-							<property>/systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>/systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>/systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
-				</and>
+				<greater-than>
+					<property>/systems/caws/apoff/out</property>
+					<value>0</value>
+				</greater-than>
 			</condition>
 			<volume>
 				<factor>10.0</factor>

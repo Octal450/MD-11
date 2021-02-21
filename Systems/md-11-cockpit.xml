@@ -296,5 +296,28 @@
 		</switch>
 	
 	</channel>
+	
+	<channel name="CAWS Sound Controller" execrate="16">
+		
+		<switch name="/systems/caws/apoff/trigger">
+			<default value="/systems/caws/apoff/trigger"/>
+			<test logic="OR" value="0">
+				/systems/electrical/outputs/mk-viii lt 24
+				/systems/caws/apoff/out eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/caws/apoff/out eq 0
+				/it-autoflight/sound/apoff eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/caws/apoff/actuator">
+			<input>/systems/caws/apoff/trigger</input>
+			<rate_limit sense="incr">0.4</rate_limit>
+			<rate_limit sense="decr">100</rate_limit>
+			<output>/systems/caws/apoff/out</output>
+		</actuator>
+	
+	</channel>
 
 </system>

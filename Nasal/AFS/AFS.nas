@@ -224,7 +224,7 @@ var Settings = {
 };
 
 var Sound = {
-	apOff: props.globals.initNode("/it-autoflight/sound/apoffsound", 0, "BOOL"),
+	apOff: props.globals.getNode("/it-autoflight/sound/apoff"),
 	enableApOff: 0,
 };
 

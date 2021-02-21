@@ -1516,6 +1516,9 @@
 			<thr-mode type="int">0</thr-mode>
 			<vert type="int">0</vert>
 		</output>
+		<sound n="0">
+			<apoff type="bool">0</apoff>
+		</sound>
 	</it-autoflight>
 	
 	<systems n="0">
@@ -1545,6 +1548,11 @@
 		<apu n="0">
 			<state type="int">0</state>
 		</apu>
+		<caws n="0">
+			<apoff n="0">
+				<out type="double">0</out>
+			</apoff>
+		</caws>
 		<electrical n="0">
 			<system type="bool">1</system>
 		</electrical>
