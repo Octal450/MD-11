@@ -5,7 +5,7 @@ var CONFIG = {
 	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"),".","")),
 	minFgfsString: getprop("/sim/minimum-fg-version"),
 	minOptionsRevision: 1032, # Minimum revision of supported options
-	noRevisionCheck: 0, # Disable ACCONFIG revision checks
+	noUpdateCheck: 0, # Disable ACCONFIG update checks
 };
 
 var SYSTEM = {
@@ -23,15 +23,16 @@ var SYSTEM = {
 		me.autoConfigRunning.setBoolValue(0);
 		spinningT.start();
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-init"}));
-		if (!CONFIG.noRevisionCheck) {
+		if (!CONFIG.noUpdateCheck) {
 			http.load("https://raw.githubusercontent.com/Octal450/MD-11/master/revision.txt").done(func(r) me.newRevision.setValue(r.response));
-			me.revision.setValue(io.readfile(getprop("/sim/aircraft-dir") ~ "/revision.txt"));
-			print("System: MD-11 Revision " ~ me.revision.getValue());
 		}
+		me.revision.setValue(io.readfile(getprop("/sim/aircraft-dir") ~ "/revision.txt"));
+		print("System: MD-11 Revision " ~ me.revision.getValue());
 	},
 	fdmInit: func() {
-		if (!CONFIG.noRevisionCheck) {
-			me.revisionTemp = me.revision.getValue();
+		me.revisionTemp = me.revision.getValue();
+		
+		if (!CONFIG.noUpdateCheck) {
 			if (me.newRevision.getValue() > me.revisionTemp) {
 				me.Error.outOfDate = 1;
 				print("System: Aircraft update available!");
@@ -40,7 +41,7 @@ var SYSTEM = {
 				print("System: No aircraft update available!");
 			}
 		} else {
-			print("System: Revision checks have been turned off!");
+			print("System: Update checks have been turned off!");
 		}
 		
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-init"}));
@@ -49,7 +50,7 @@ var SYSTEM = {
 		me.errorCheck();
 		OPTIONS.read();
 		
-		if (!CONFIG.noRevisionCheck) { # Revision Checks Enabled
+		if (!CONFIG.noUpdateCheck) { # Update Checks Enabled
 			if (me.Error.outOfDate) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-update"}));
 			} else if (me.Error.code.getValue() == "0x000") {
@@ -64,7 +65,7 @@ var SYSTEM = {
 				RENDERING.check();
 				OPTIONS.write();
 			}
-		} else { # No Revision Checks
+		} else { # No Update Checks
 			if (me.Error.code.getValue() == "0x000") {
 				if (!OPTIONS.welcomeSkip.getBoolValue()) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
@@ -72,6 +73,7 @@ var SYSTEM = {
 				
 				# Only do on successful init
 				RENDERING.check();
+				OPTIONS.savedRevision.setValue(me.revisionTemp);
 				OPTIONS.write();
 			}
 		}
