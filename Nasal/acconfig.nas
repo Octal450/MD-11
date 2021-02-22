@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
 var CONFIG = {
-	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"),".","")),
+	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"), ".", "")),
 	minFgfsString: getprop("/sim/minimum-fg-version"),
 	minOptionsRevision: 1032, # Minimum revision of supported options
 	noUpdateCheck: 0, # Disable ACCONFIG update checks
@@ -79,7 +79,7 @@ var SYSTEM = {
 		}
 	},
 	errorCheck: func() {
-		if (num(string.replace(getprop("/sim/version/flightgear"),".","")) < CONFIG.minFgfsInt) {
+		if (num(string.replace(getprop("/sim/version/flightgear"), ".", "")) < CONFIG.minFgfsInt) {
 			me.Error.code.setValue("0x121");
 			me.Error.reason.setValue("FGFS version is too old! Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
