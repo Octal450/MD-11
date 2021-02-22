@@ -919,7 +919,7 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/switches/ga-button", 1);
-						libraries.apPanel.goAround();
+						libraries.apPanel.toga();
 					</script>
 				</binding>
 				<mod-up>

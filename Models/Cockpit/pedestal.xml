@@ -434,7 +434,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.apPanel.goAround();</script>
+				<script>libraries.apPanel.toga();</script>
 			</binding>
 		</action>
 	</animation>

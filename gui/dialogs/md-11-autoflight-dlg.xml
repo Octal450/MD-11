@@ -1092,7 +1092,7 @@
 		<legend>GO AROUND BUTTON</legend>
 		<binding>
 			<command>nasal</command>
-			<script>libraries.apPanel.goAround();</script>
+			<script>libraries.apPanel.toga();</script>
 		</binding>
 	</button>
 

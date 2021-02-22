@@ -48,6 +48,13 @@
 			<input>inertia/weight-lbs</input>
 			<gain>0.45359237</gain>
 		</pure_gain>
+		
+		<actuator name="/gear/gear[0]/wow-timer">
+			<input>/gear/gear[0]/wow</input>
+			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
+			<rate_limit sense="decr">1000</rate_limit>
+			<output>/gear/gear[0]/wow-timer-out</output>
+		</actuator>
 	
 	</channel>
 	

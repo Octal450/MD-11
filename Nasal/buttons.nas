@@ -234,8 +234,9 @@ var apPanel = {
 			# Nothing yet
 		}
 	},
-	goAround: func() {
+	toga: func() {
 		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
+			systems.FADEC.Limit.flexActive.setBoolValue(0); # Cancels FLEX if active
 			afs.Input.toga.setValue(1);
 		}
 	},

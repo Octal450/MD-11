@@ -40,6 +40,7 @@ var FPLN = {
 
 var Gear = {
 	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
+	wow0Timer: props.globals.getNode("/gear/gear[0]/wow-timer", 1),
 	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
 	wow1Temp: 1,
 	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
@@ -1101,7 +1102,7 @@ var ITAF = {
 			Radio.locDeflTemp = abs(Radio.locDefl[Input.radioSel.getValue()].getValue());
 			if (Radio.locDeflTemp >= 0.105) {
 				Internal.bankLimitCalc = 30;
-			} else if (Radio.locDeflTemp < 0.1 and abs(Internal.navCourseTrackErrorDeg.getValue()) < 5 and abs(Misc.rollDeg.getValue()) < 5) {
+			} else if (Radio.locDeflTemp < 0.1 and abs(Internal.navCourseTrackErrorDeg.getValue()) < 5 and abs(Misc.rollDeg.getValue()) < 10) {
 				if (Position.gearAglFt.getValue() <= 200) {
 					Internal.bankLimitCalc = 5;
 				} else if (Internal.bankLimitCalc != 5) { # It does not go from 5 to 10, ever
@@ -1240,7 +1241,16 @@ var ITAF = {
 	},
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
-		if (Output.vertTemp == 2 or Output.vertTemp == 6 and Velocities.indicatedAirspeedKt.getValue() >= 80) {
+		if (Gear.wow0Timer.getValue() < 1 and Output.vertTemp != 7 and Position.gearAglFt.getValue() < 2500) {
+			if (!Output.fd1.getBoolValue()) {
+				me.fd1Master(1);
+			}
+			if (!Output.fd2.getBoolValue()) {
+				me.fd2Master(1);
+			}
+			if (!Output.athr.getBoolValue()) {
+				me.athrMaster(1);
+			}
 			me.setLatMode(3);
 			me.setVertMode(7);
 			me.updateVertText("G/A CLB");
