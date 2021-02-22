@@ -226,7 +226,7 @@
 				</enable>
 				<binding>
 					<command>nasal</command>
-					<script>gui.popupTip("The Aircraft was De-iced!");</script>
+					<script>gui.popupTip("The aircraft was de-iced!");</script>
 				</binding>
 			</button>
 			
@@ -291,6 +291,18 @@
 			<checkbox>
 				<label>Enable External Power Box</label>
 				<halign>left</halign>
+				<enable>
+					<and>
+						<equals>
+							<property>/controls/gear/brake-parking</property>
+							<value>1</value>
+						</equals>
+						<less-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>2</value>
+						</less-than>
+					</and>
+				</enable>
 				<property>/controls/switches/cart</property>
 				<binding>
 					<command>property-assign</command>
@@ -302,18 +314,6 @@
 					<property>/controls/electrical/switches/extg-pwr</property>
 					<value>0</value>
 				</binding>
-				<enable>
-					<and>
-					<equals>
-						<property>/controls/gear/brake-parking</property>
-						<value>1</value>
-					</equals>
-					<less-than>
-						<property>/velocities/groundspeed-kt</property>
-						<value>2</value>
-					</less-than>
-					</and>
-				</enable>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -323,19 +323,19 @@
 			<checkbox>
 				<label>Enable External Air</label>
 				<halign>left</halign>
-				<property>/controls/pneumatics/switches/ground-air</property>
 				<enable>
 					<and>
-					<equals>
-						<property>/controls/gear/brake-parking</property>
-						<value>1</value>
-					</equals>
-					<less-than>
-						<property>/velocities/groundspeed-kt</property>
-						<value>2</value>
-					</less-than>
+						<equals>
+							<property>/controls/gear/brake-parking</property>
+							<value>1</value>
+						</equals>
+						<less-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>2</value>
+						</less-than>
 					</and>
 				</enable>
+				<property>/controls/pneumatics/switches/ground-air</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
