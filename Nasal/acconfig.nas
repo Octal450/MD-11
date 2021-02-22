@@ -61,8 +61,8 @@ var SYSTEM = {
 				}
 				
 				# Only do on successful init
-				OPTIONS.savedRevision.setValue(me.revisionTemp);
 				RENDERING.check();
+				OPTIONS.savedRevision.setValue(me.revisionTemp);
 				OPTIONS.write();
 			}
 		} else { # No Update Checks
