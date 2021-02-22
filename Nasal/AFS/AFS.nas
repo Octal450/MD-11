@@ -1268,7 +1268,7 @@ var ITAF = {
 	syncKts: func() {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
 	},
-	syncKtsGa: func() { # Same as syncKts, except doesn't go below V2
+	syncKtsGa: func() {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), math.max(pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), fms.Internal.v2.getValue()), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
 	},
 	syncKtsSel: func() {
