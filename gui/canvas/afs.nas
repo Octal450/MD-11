@@ -23,7 +23,7 @@ var afsCanvas = {
 	},
 	getKeys: func() {
 		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd", "FeetMeter",
-		"FmsSpd", "FpaInd", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
+		"FmsSpd", "FpaInd", "Ga", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
 	},
 	close: func() {
 		me._dialogUpdateT.stop();
@@ -67,6 +67,9 @@ var afsCanvas = {
 		});
 		me["Fd1"].addEventListener("click", func(e) {
 			libraries.apPanel.fd1();
+		});
+		me["Ga"].addEventListener("click", func(e) {
+			libraries.apPanel.toga();
 		});
 		me["Fd2"].addEventListener("click", func(e) {
 			libraries.apPanel.fd2();
