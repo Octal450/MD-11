@@ -211,15 +211,15 @@ var canvasBase = {
 		Value.Afs.ktsMachSel = afs.Input.ktsMach.getBoolValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
 		Value.Afs.machSel = afs.Input.mach.getValue();
-		Value.Asi.flapGearMax = pts.Fdm.JSBsim.Fcc.Speeds.flapGearMax.getValue();
+		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
 		Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
-		Value.Asi.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
-		Value.Asi.vmoMmo = pts.Fdm.JSBsim.Fcc.Speeds.vmoMmo.getValue();
-		Value.Asi.vss = pts.Fdm.JSBsim.Fcc.Speeds.vssTape.getValue();
+		Value.Asi.vmin = fms.Speeds.vminTape.getValue();
+		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
+		Value.Asi.vss = fms.Speeds.vssTape.getValue();
 		
 		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
 		if (Value.Asi.ias <= 50) {

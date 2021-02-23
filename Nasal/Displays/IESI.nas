@@ -72,7 +72,7 @@ var canvasBase = {
 		}
 	},
 };
-setprop("test", 0);
+
 var canvasIesi = {
 	new: func(canvasGroup, file) {
 		var m = {parents: [canvasIesi, canvasBase]};

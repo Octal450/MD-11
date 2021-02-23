@@ -444,8 +444,8 @@ var ITAF = {
 		}
 		
 		# Altitude Alert
-		Text.vertTemp = Text.vert.getValue(); # We want it updated so that the sound doesn't play as wrong time
-		if (Output.vertTemp != 2 and Output.vertTemp != 6 and Misc.flapDeg.getValue() < 31.5) {
+		Text.vertTemp = Text.vert.getValue();
+		if (Output.vertTemp != 2 and Output.vertTemp != 6 and Misc.flapDeg.getValue() < 31.5 and ((Output.vertTemp == 7 and Position.indicatedAltitudeFtTemp >= 400) or (Output.vertTemp != 7 and Position.indicatedAltitudeFtTemp >= 100))) {
 			if (abs(Internal.altDiff) >= 150 and Text.vertTemp == "ALT HLD") {
 				Internal.altAlert.setBoolValue(1);
 			} else if (abs(Internal.altDiff) >= 150 and abs(Internal.altDiff) <= 1000 and Text.vertTemp != "ALT HLD") {
@@ -469,12 +469,11 @@ var ITAF = {
 		# Bank Limits
 		me.bankLimit();
 		
-		# Custom Stuff Below
 		# Speed Capture + ATS Speed Limits
-		Velocities.athrMax = pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue();
-		Velocities.athrMaxMach = pts.Fdm.JSBsim.Fcc.Speeds.athrMaxMach.getValue();
-		Velocities.athrMin = pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue();
-		Velocities.athrMinMach = pts.Fdm.JSBsim.Fcc.Speeds.athrMinMach.getValue();
+		Velocities.athrMax = fms.Speeds.athrMax.getValue();
+		Velocities.athrMaxMach = fms.Speeds.athrMaxMach.getValue();
+		Velocities.athrMin = fms.Speeds.athrMin.getValue();
+		Velocities.athrMinMach = fms.Speeds.athrMinMach.getValue();
 		Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 		Input.ktsTemp = Input.kts.getValue();
 		Input.machTemp = Input.mach.getValue();
@@ -699,8 +698,8 @@ var ITAF = {
 		}
 		
 		# Speed Protection
-		Velocities.vmax = pts.Fdm.JSBsim.Fcc.Speeds.vmax.getValue();
-		Velocities.vmin = pts.Fdm.JSBsim.Fcc.Speeds.vminTape.getValue();
+		Velocities.vmax = fms.Speeds.vmax.getValue();
+		Velocities.vmin = fms.Speeds.vminTape.getValue();
 		Internal.throttleSaturatedTemp = Internal.throttleSaturated.getValue();
 		Output.spdProtTemp = Output.spdProt.getValue();
 		Output.vertTemp = Output.vert.getValue();
@@ -1255,7 +1254,7 @@ var ITAF = {
 			me.setVertMode(7);
 			me.updateVertText("G/A CLB");
 			Internal.ktsMach.setBoolValue(0);
-			me.syncKtsGa();
+			me.syncKts();
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
 				if (systems.BRAKES.Abs.armed.getBoolValue()) {
 					systems.BRAKES.absSetOff(1); # Disarm autobrake
@@ -1266,16 +1265,13 @@ var ITAF = {
 		}
 	},
 	syncKts: func() {
-		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
-	},
-	syncKtsGa: func() {
-		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), math.max(pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), fms.Internal.v2.getValue()), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
+		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 	},
 	syncKtsSel: func() {
 		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
 	},
 	syncMach: func() {
-		Internal.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), pts.Fdm.JSBsim.Fcc.Speeds.athrMinMach.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMaxMach.getValue()));
+		Internal.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), fms.Speeds.athrMinMach.getValue(), fms.Speeds.athrMaxMach.getValue()));
 	},
 	syncMachSel: func() {
 		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
@@ -1295,7 +1291,6 @@ var ITAF = {
 	syncFpa: func() {
 		Input.fpa.setValue(math.clamp(math.round(Internal.fpa.getValue(), 0.1), -9.9, 9.9));
 	},
-	# Custom Stuff Below
 	spdPush: func() {
 		Internal.retardLock = 0;
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
@@ -1303,11 +1298,11 @@ var ITAF = {
 			if (Input.ktsMach.getBoolValue()) {
 				Internal.ktsMach.setBoolValue(1);
 				Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), 0.5, 0.87));
-				Internal.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), pts.Fdm.JSBsim.Fcc.Speeds.athrMinMach.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMaxMach.getValue()));
+				Internal.mach.setValue(math.clamp(math.round(Velocities.indicatedMach5Sec.getValue(), 0.001), fms.Speeds.athrMinMach.getValue(), fms.Speeds.athrMaxMach.getValue()));
 			} else {
 				Internal.ktsMach.setBoolValue(0);
 				Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), 100, 365));
-				Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
+				Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt5Sec.getValue()), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 			}
 		} else {
 			if (Input.ktsMach.getBoolValue()) {
@@ -1325,9 +1320,9 @@ var ITAF = {
 				Internal.ktsMach.setBoolValue(Input.ktsMachTemp);
 			}
 			if (Input.ktsMachTemp) {
-				Internal.mach.setValue(math.clamp(Input.mach.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMinMach.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMaxMach.getValue()));
+				Internal.mach.setValue(math.clamp(Input.mach.getValue(), fms.Speeds.athrMinMach.getValue(), fms.Speeds.athrMaxMach.getValue()));
 			} else {
-				Internal.kts.setValue(math.clamp(Input.kts.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMin.getValue(), pts.Fdm.JSBsim.Fcc.Speeds.athrMax.getValue()));
+				Internal.kts.setValue(math.clamp(Input.kts.getValue(), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 			}
 			Output.spdCaptured = 0;
 		}

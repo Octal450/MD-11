@@ -7,6 +7,20 @@ var Internal = {
 	v2: props.globals.initNode("/fms/internal/v2", 153, "INT"),
 };
 
+var Speeds = {
+	athrMax: props.globals.getNode("/fms/speeds/athr-max"),
+	athrMaxMach: props.globals.getNode("/fms/speeds/athr-max-mach"),
+	athrMin: props.globals.getNode("/fms/speeds/athr-min"),
+	athrMinMach: props.globals.getNode("/fms/speeds/athr-min-mach"),
+	flapGearMax: props.globals.getNode("/fms/speeds/flap-gear-max"),
+	vmax: props.globals.getNode("/fms/speeds/vmax"),
+	vmin: props.globals.getNode("/fms/speeds/vmin"),
+	vminTape: props.globals.getNode("/fms/speeds/vmin-tape"),
+	vmoMmo: props.globals.getNode("/fms/speeds/vmo-mmo"),
+	vss: props.globals.getNode("/fms/speeds/vss"),
+	vssTape: props.globals.getNode("/fms/speeds/vss-tape"),
+};
+
 var CORE = {
 	resetFMS: func() {
 		Internal.v2.setValue(153);

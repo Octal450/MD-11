@@ -23,7 +23,7 @@ var updateFma = {
 				Fma.roll.setValue("HEADING");
 			}
 		} else if (me.rollText == "LNAV") {
-			Fma.roll.setValue("NAV" ~ Internal.activeFMS.getValue());
+			Fma.roll.setValue("NAV" ~ Internal.activeFms.getValue());
 		} else if (me.rollText == "LOC") {
 			Fma.roll.setValue("LOC");
 		} else if (me.rollText == "ALGN") {
