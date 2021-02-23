@@ -82,6 +82,9 @@ var Fdm = {
 			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
 			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
 		},
+		Gear: {
+			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),
+		},
 		Hydraulics: {
 			Stabilizer: {
 				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/stabilizer/final-deg"),
