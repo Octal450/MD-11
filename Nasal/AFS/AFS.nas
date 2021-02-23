@@ -185,6 +185,8 @@ var Internal = {
 	targetKtsError: 0,
 	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "INT"),
 	throttleSaturatedTemp: 0,
+	v2Speed: 0,
+	v2Toggle: 0,
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
 };
@@ -413,6 +415,17 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
+			if (Velocities.indicatedAirspeedKt.getValue() >= 30) { # Temporary until MCDU handles it
+				if (!Gear.wow1Temp and !Gear.wow2Temp and Internal.v2Toggle != 1) {
+					Internal.v2Toggle = 1;
+					Internal.kts.setValue(Internal.v2Speed + 10);
+				}
+			} else {
+				Internal.v2Toggle = 0;
+				Internal.v2Speed = math.round(fms.Speeds.v2.getValue());
+				Internal.kts.setValue(Internal.v2Speed);
+			}
+			
 			me.checkFlch(Settings.reducAglFt.getValue());
 		}
 		
@@ -492,7 +505,7 @@ var ITAF = {
 			if (abs(Internal.targetKtsError) <= 2.5) {
 				Output.spdCaptured = 1;
 			}
-		} else if (!Gear.wow1Temp and !Gear.wow1Temp) {
+		} else if (!Gear.wow1Temp and !Gear.wow2Temp) {
 			if (Internal.ktsMach.getBoolValue()) {
 				if (Internal.machTemp > Velocities.athrMaxMach) {
 					Internal.mach.setValue(Velocities.athrMaxMach);
