@@ -341,6 +341,7 @@ var ITAF = {
 		Position.gearAglFtTemp = Position.gearAglFt.getValue();
 		Internal.vsTemp = Internal.vs.getValue();
 		Position.indicatedAltitudeFtTemp = Position.indicatedAltitudeFt.getValue();
+		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
 		
 		# Kill when power lost
 		if (systems.ELEC.Bus.dc1.getValue() < 24 or systems.ELEC.Bus.dc2.getValue() < 24 or systems.ELEC.Bus.dc3.getValue() < 24) {
@@ -415,10 +416,14 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
-			if (Velocities.indicatedAirspeedKt.getValue() >= 30) { # Temporary until MCDU handles it
+			if (Velocities.indicatedAirspeedKtTemp >= 30) { # Temporary until MCDU handles it
 				if (!Gear.wow1Temp and !Gear.wow2Temp and Internal.v2Toggle != 1) {
 					Internal.v2Toggle = 1;
-					Internal.kts.setValue(Internal.v2Speed + 10);
+					if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
+						Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKtTemp), Internal.v2Speed, Internal.v2Speed + 10));
+					} else {
+						Internal.kts.setValue(Internal.v2Speed + 10);
+					}
 				}
 			} else {
 				Internal.v2Toggle = 0;

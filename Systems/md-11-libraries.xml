@@ -60,6 +60,15 @@
 	
 	<channel name="Execrate 8 Libraries" execrate="8">
 		
+		<switch name="libraries/any-engine-out">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/engines/engine[0]/state ne 3
+				/engines/engine[1]/state ne 3
+				/engines/engine[2]/state ne 3
+			</test>
+		</switch>
+		
 		<switch name="libraries/multi-engine-out">
 			<default value="0"/>
 			<test logic="AND" value="1">
