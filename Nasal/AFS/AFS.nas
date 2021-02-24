@@ -138,8 +138,8 @@ var Input = {
 };
 
 var Internal = {
-	activeFMS: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
-	activeFMSTemp: 1,
+	activeFms: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
+	activeFmsTemp: 1,
 	alt: props.globals.initNode("/it-autoflight/internal/alt", 10000, "INT"),
 	altAlert: props.globals.initNode("/it-autoflight/internal/alt-alert", 0, "BOOL"),
 	altAlertAural: props.globals.initNode("/it-autoflight/internal/alt-alert-aural", 0, "BOOL"),
@@ -297,7 +297,7 @@ var ITAF = {
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(fms.Speeds.v2.getValue());
 		Internal.mach.setValue(0.5);
-		me.updateActiveFMS(1);
+		me.updateactiveFms(1);
 		Text.thr.setValue("PITCH");
 		updateFma.arm();
 		me.updateLatText("T/O");
@@ -795,7 +795,7 @@ var ITAF = {
 				}
 				Controls.rudder.setValue(0);
 				Output.ap1.setBoolValue(1);
-				me.updateActiveFMS(1);
+				me.updateactiveFms(1);
 				apKill.stop();
 				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
@@ -808,7 +808,7 @@ var ITAF = {
 		} else {
 			Output.ap1.setBoolValue(0);
 			if (Output.ap2Avail.getBoolValue()) {
-				me.updateActiveFMS(2);
+				me.updateactiveFms(2);
 			}
 			me.apOffFunction();
 		}
@@ -825,7 +825,7 @@ var ITAF = {
 				}
 				Controls.rudder.setValue(0);
 				Output.ap2.setBoolValue(1);
-				me.updateActiveFMS(2);
+				me.updateactiveFms(2);
 				apKill.stop();
 				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
@@ -838,7 +838,7 @@ var ITAF = {
 		} else {
 			Output.ap2.setBoolValue(0);
 			if (Output.ap1Avail.getBoolValue()) {
-				me.updateActiveFMS(1);
+				me.updateactiveFms(1);
 			}
 			me.apOffFunction();
 		}
@@ -1348,31 +1348,31 @@ var ITAF = {
 	autoflight: func() {
 		Input.ovrd1Temp = Input.ovrd1.getBoolValue();
 		Input.ovrd2Temp = Input.ovrd2.getBoolValue();
-		Internal.activeFMSTemp = Internal.activeFMS.getValue();
+		Internal.activeFmsTemp = Internal.activeFms.getValue();
 		
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
-				if (Internal.activeFMSTemp == 1 and Output.ap2Avail.getBoolValue()) {
-					me.updateActiveFMS(2);
-				} else if (Internal.activeFMSTemp == 2 and Output.ap1Avail.getBoolValue()) {
-					me.updateActiveFMS(1);
+				if (Internal.activeFmsTemp == 1 and Output.ap2Avail.getBoolValue()) {
+					me.updateactiveFms(2);
+				} else if (Internal.activeFmsTemp == 2 and Output.ap1Avail.getBoolValue()) {
+					me.updateactiveFms(1);
 				}
 			}
-			Internal.activeFMSTemp = Internal.activeFMS.getValue(); # Update it after we just set it
-			if (Internal.activeFMSTemp == 1) {
+			Internal.activeFmsTemp = Internal.activeFms.getValue(); # Update it after we just set it
+			if (Internal.activeFmsTemp == 1) {
 				if (Output.ap1Avail.getBoolValue()) { # AP1 on
 					me.ap1Master(1);
 					me.ap2Master(0);
 				} else if (Output.ap2Avail.getBoolValue()) { # AP2 on because AP1 is not available
-					me.ap2Master(1); # Will set activeFMS to 2
+					me.ap2Master(1); # Will set activeFms to 2
 					me.ap1Master(0);
 				}
-			} else if (Internal.activeFMSTemp == 2) {
+			} else if (Internal.activeFmsTemp == 2) {
 				if (Output.ap2Avail.getBoolValue()) { # AP2 on
 					me.ap2Master(1);
 					me.ap1Master(0);
 				} else if (Output.ap1Avail.getBoolValue()) { # AP1 on because AP2 is not available
-					me.ap1Master(1); # Will set activeFMS to 1
+					me.ap1Master(1); # Will set activeFms to 1
 					me.ap2Master(0);
 				}
 			}
@@ -1421,8 +1421,8 @@ var ITAF = {
 		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
 		Input.athr.setBoolValue(0);
 	},
-	updateActiveFMS: func(n) {
-		Internal.activeFMS.setValue(n);
+	updateactiveFms: func(n) {
+		Internal.activeFms.setValue(n);
 		updateFma.roll();
 	},
 	updateLatText: func(t) {
