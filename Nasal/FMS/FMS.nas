@@ -36,7 +36,6 @@ var Speeds = {
 
 var CORE = {
 	resetFMS: func() {
-		Internal.v2.setValue(153);
 		afs.ITAF.init(1);
 	},
 };
