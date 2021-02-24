@@ -60,7 +60,7 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_slipskid", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -111,17 +111,28 @@ var canvasIesi = {
 		}
 		
 		# AI
-		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
-		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
-		
-		AICenter = me["AI_center"].getCenter();
-		
-		me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.668);
-		me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, AICenter);
-		
-		me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
-		me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
-		me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
+		if (systems.DUController.counterIesi.secs <= 0) {
+			Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
+			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
+			
+			AICenter = me["AI_center"].getCenter();
+			
+			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.668);
+			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, AICenter);
+			
+			me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
+			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
+			me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
+			
+			me["AI_bank_mask"].show();
+			me["AI_horizon"].show();
+			me["AI_init"].hide();
+		} else {
+			me["AI_bank_mask"].hide();
+			me["AI_horizon"].hide();
+			me["AI_init"].show();
+			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.counterIesi.secs) ~ " SECS");
+		}
 		
 		# QNH
 		Value.Qnh.inhg = pts.Instrumentation.Altimeter.inhg.getBoolValue();

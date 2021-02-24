@@ -3,7 +3,12 @@
 # This file manages the DU Canvas hide/showing in an efficient and synchronized way
 
 var DUController = {
+	counterIesi: {
+		secs: 180,
+		time: 0,
+	},
 	eadType: pts.Options.eng.getValue(),
+	elapsedSec: 0,
 	errorActive: 0,
 	lcdContrastIesi: props.globals.initNode("/instrumentation/iesi/lcd-contrast", 0.97, "DOUBLE"),
 	sdPage: "ENG",
@@ -127,6 +132,16 @@ var DUController = {
 			}
 			
 			if (systems.ELEC.Bus.dcBat.getValue() >= 24) {
+				me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
+				if (me.counterIesi.time == 0) {
+					me.counterIesi.time = me.elapsedSec;
+				}
+				if (me.counterIesi.secs > 0) {
+					me.counterIesi.secs = math.round(me.counterIesi.time + 180 - me.elapsedSec);
+				} else {
+					me.counterIesi.secs = 0;
+				}
+				
 				if (!me.updateIesi) {
 					me.updateIesi = 1;
 					canvas_iesi.iesi.update();
@@ -134,6 +149,9 @@ var DUController = {
 					canvas_iesi.iesi.page.show();
 				}
 			} else {
+				me.counterIesi.secs = 180;
+				me.counterIesi.time = 0;
+				
 				if (me.updateIesi) {
 					me.updateIesi = 0;
 					canvas_iesi.iesi.page.hide();
