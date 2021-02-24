@@ -297,7 +297,7 @@ var ITAF = {
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(fms.Speeds.v2.getValue());
 		Internal.mach.setValue(0.5);
-		me.updateactiveFms(1);
+		me.updateActiveFms(1);
 		Text.thr.setValue("PITCH");
 		updateFma.arm();
 		me.updateLatText("T/O");
@@ -795,7 +795,7 @@ var ITAF = {
 				}
 				Controls.rudder.setValue(0);
 				Output.ap1.setBoolValue(1);
-				me.updateactiveFms(1);
+				me.updateActiveFms(1);
 				apKill.stop();
 				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
@@ -808,7 +808,7 @@ var ITAF = {
 		} else {
 			Output.ap1.setBoolValue(0);
 			if (Output.ap2Avail.getBoolValue()) {
-				me.updateactiveFms(2);
+				me.updateActiveFms(2);
 			}
 			me.apOffFunction();
 		}
@@ -825,7 +825,7 @@ var ITAF = {
 				}
 				Controls.rudder.setValue(0);
 				Output.ap2.setBoolValue(1);
-				me.updateactiveFms(2);
+				me.updateActiveFms(2);
 				apKill.stop();
 				Warning.ap.setBoolValue(0);
 				Sound.apOff.setBoolValue(0);
@@ -838,7 +838,7 @@ var ITAF = {
 		} else {
 			Output.ap2.setBoolValue(0);
 			if (Output.ap1Avail.getBoolValue()) {
-				me.updateactiveFms(1);
+				me.updateActiveFms(1);
 			}
 			me.apOffFunction();
 		}
@@ -1353,9 +1353,9 @@ var ITAF = {
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
 				if (Internal.activeFmsTemp == 1 and Output.ap2Avail.getBoolValue()) {
-					me.updateactiveFms(2);
+					me.updateActiveFms(2);
 				} else if (Internal.activeFmsTemp == 2 and Output.ap1Avail.getBoolValue()) {
-					me.updateactiveFms(1);
+					me.updateActiveFms(1);
 				}
 			}
 			Internal.activeFmsTemp = Internal.activeFms.getValue(); # Update it after we just set it
@@ -1421,7 +1421,7 @@ var ITAF = {
 		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
 		Input.athr.setBoolValue(0);
 	},
-	updateactiveFms: func(n) {
+	updateActiveFms: func(n) {
 		Internal.activeFms.setValue(n);
 		updateFma.roll();
 	},
