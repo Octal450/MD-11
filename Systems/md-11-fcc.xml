@@ -59,15 +59,6 @@
 	
 	</channel>
 	
-	<channel name="Envelope Protection Calculations" execrate="8">
-		
-		<pure_gain name="fcc/stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
-			<gain>0.8</gain> <!-- 80% -->
-		</pure_gain>
-	
-	</channel>
-	
 	<channel name="LSAS Logic">
 		
 		<switch name="fcc/lsas/left-out-active">
@@ -210,6 +201,33 @@
 			</test>
 		</switch>
 		
+		<pure_gain name="fcc/stall-warn-alpha-deg">
+			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<gain>0.8</gain> <!-- 80% -->
+		</pure_gain>
+		
+		<pure_gain name="fcc/no-stall-warn-alpha-deg">
+			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<gain>0.75</gain> <!-- 75% -->
+		</pure_gain>
+		
+		<switch name="fcc/lsas/alpha-prot/active">
+			<default value="fcc/lsas/alpha-prot/active"/>
+			<test logic="OR" value="0">
+				fcc/lsas/channels-active eq 0
+				fcc/afs/enabled eq 1
+				position/wow eq 1
+				attitude/pitch-rad gt 0.558505
+				attitude/pitch-rad lt -0.20944
+				attitude/roll-rad gt 0.558505
+				attitude/roll-rad lt -0.558505
+				aero/alpha-deg-damped le fcc/no-stall-warn-alpha-deg
+			</test>
+			<test value="1">
+				aero/alpha-deg-damped ge fcc/stall-warn-alpha-deg
+			</test>
+		</switch>
+		
 		<switch name="fcc/lsas/in-detent">
 			<default value="fcc/lsas/in-detent"/>
 			<test logic="AND" value="1">
@@ -228,6 +246,7 @@
 				fcc/lsas/channels-active gt 0
 				fcc/afs/enabled eq 0
 				fcc/lsas/spd-prot/active ne 1
+				fcc/lsas/alpha-prot/active ne 1
 				attitude/pitch-rad le 0.558505
 				attitude/pitch-rad ge -0.20944
 				attitude/roll-rad le 0.558505
@@ -750,12 +769,33 @@
 			</function>
 		</fcs_function>
 		
+		<summer name="fcc/lsas/alpha-prot/error">
+			<input>aero/alpha-deg-damped</input>
+			<input>-fcc/stall-warn-alpha-deg</input>
+		</summer>
+		
+		<fcs_function name="fcc/lsas/alpha-prot/output">
+			<function>
+				<product>
+					<property>fcc/lsas/alpha-prot/active</property>
+					<table>
+						<independentVar lookup="row">fcc/lsas/alpha-prot/error</independentVar>
+						<tableData>
+							0  0
+							2  0.249
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
+		
 		<summer name="fcc/lsas/output-sum">
 			<input>fcc/lsas/pah/output</input> <!-- Pitch Attitude Hold -->
 			<input>fcc/lsas/prd/output</input> <!-- Pitch Rate Damping -->
 			<input>fcc/lsas/pap/output</input> <!-- Pitch Attitude Protection -->
 			<input>fcc/lsas/pnl/output</input> <!-- Positive Nose Lowering -->
 			<input>fcc/lsas/spd-prot/output</input> <!-- Overspeed Protection -->
+			<input>fcc/lsas/alpha-prot/output</input> <!-- Stall Protection -->
 			<clipto> <!-- +/- 5 degrees -->
 				<min>-0.249</min>
 				<max>0.249</max>

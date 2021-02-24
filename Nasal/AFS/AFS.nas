@@ -1398,7 +1398,7 @@ var ITAF = {
 		}
 	},
 	spdProtAllowed: func() {
-		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and Position.gearAglFt.getValue() > 50) {
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and Position.gearAglFt.getValue() > 50 and (!Input.ovrd1.getBoolValue() or !Input.ovrd2.getBoolValue())) {
 			return 1;
 		} else {
 			return 0;
