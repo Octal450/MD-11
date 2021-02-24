@@ -43,7 +43,7 @@
 		<fcs_function name="/fms/speeds/v2-latch-speed">
 			<function>
 				<sum>
-					<property>/fms/internal/v2</property>
+					<property>/fms/speeds/v2</property>
 					<value>8</value> <!-- V2 + 10kts, 2 kt buffer -->
 				</sum>
 			</function>

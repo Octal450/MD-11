@@ -295,7 +295,7 @@ var ITAF = {
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
 		Internal.altCaptureActive = 0;
-		Internal.kts.setValue(fms.Internal.v2.getValue() + 10); # V2 + 10
+		Internal.kts.setValue(fms.Speeds.v2.getValue());
 		Internal.mach.setValue(0.5);
 		me.updateActiveFMS(1);
 		Text.thr.setValue("PITCH");
