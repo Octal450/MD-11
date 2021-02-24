@@ -134,7 +134,11 @@ var DUController = {
 			if (systems.ELEC.Bus.dcBat.getValue() >= 24) {
 				me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 				if (me.counterIesi.time == 0) {
-					me.counterIesi.time = me.elapsedSec;
+					if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
+						me.counterIesi.time = me.elapsedSec - 178;
+					} else {
+						me.counterIesi.time = me.elapsedSec;
+					}
 				}
 				if (me.counterIesi.secs > 0) {
 					me.counterIesi.secs = math.round(me.counterIesi.time + 180 - me.elapsedSec);
