@@ -202,7 +202,7 @@ var Output = {
 	athr: props.globals.initNode("/it-autoflight/output/athr", 0, "BOOL"),
 	athrTemp: 0,
 	athrAvail: props.globals.initNode("/it-autoflight/output/athr-available", 0, "BOOL"),
-	clamp: props.globals.initNode("/it-autoflight/output/clamp", 0, "BOOL"),
+	clamp: props.globals.getNode("/it-autoflight/output/clamp"),
 	fd1: props.globals.initNode("/it-autoflight/output/fd1", 1, "BOOL"),
 	fd1Temp: 0,
 	fd2: props.globals.initNode("/it-autoflight/output/fd2", 1, "BOOL"),
