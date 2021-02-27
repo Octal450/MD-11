@@ -165,11 +165,11 @@
 		
 		<switch name="/systems/fuel/fsc/trans-tail">
 			<default value="/controls/fuel/switches/trans-tail"/>
-			<!--test logic="AND" value="1">
+			<test logic="AND" value="1"> <!-- TODO: FSC tank management, for now use aux tank logic -->
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tail-pumps-cmd eq 1
+				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				propulsion/tank[7]/contents-lbs gt 10
-			</test-->
+			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
@@ -178,10 +178,6 @@
 		
 		<switch name="/systems/fuel/fsc/alt-pump">
 			<default value="/controls/fuel/switches/alt-pump"/>
-			<!--test logic="AND" value="1">
-				/systems/fuel/system eq 1
-				propulsion/tank[7]/contents-lbs gt 10
-			</test-->
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
@@ -670,6 +666,54 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/trans-tail">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
+				/systems/electrical/bus/r-emer-ac ge 112
+				/controls/fuel/switches/trans-tail eq 1
+				propulsion/tank[7]/contents-lbs gt 10
+				/systems/fuel/system eq 1
+				/systems/failures/fuel/pumps-tail ne 1
+			</test>
+			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
+				/systems/electrical/bus/r-emer-ac ge 112
+				/controls/fuel/switches/trans-tail eq 1
+				/systems/fuel/system ne 1
+				/systems/failures/fuel/pumps-tail ne 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/fuel/trans-tail-psi-cmd">
+			<input>/systems/fuel/trans-tail</input>
+			<gain>20</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/fuel/trans-tail-psi">
+			<input>/systems/fuel/trans-tail-psi-cmd</input>
+			<rate_limit sense="incr">5</rate_limit>
+			<rate_limit sense="decr">10</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fuel/tail-aux">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
+				/systems/electrical/bus/r-emer-ac ge 112
+				/controls/fuel/switches/alt-pump eq 1
+				/systems/failures/fuel/pumps-tail ne 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/fuel/tail-aux-psi-cmd">
+			<input>/systems/fuel/tail-aux</input>
+			<gain>20</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/fuel/tail-aux-psi">
+			<input>/systems/fuel/tail-aux-psi-cmd</input>
+			<rate_limit sense="incr">5</rate_limit>
+			<rate_limit sense="decr">10</rate_limit>
+		</actuator>
+		
 		<!-- Tank Feed Demand -->
 		<switch name="/systems/fuel/feed-1-inner">
 			<default value="0"/>
@@ -712,6 +756,13 @@
 				/systems/fuel/aft-pump-2l eq 1
 				/systems/fuel/aft-pump-2r eq 1
 				/systems/fuel/fwd-pump-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/feed-2-aux">
+			<default value="0"/>
+			<test value="1">
+				/systems/fuel/tail-aux eq 1
 			</test>
 		</switch>
 	
@@ -794,6 +845,15 @@
 				/systems/fuel/x-feed-2-valve eq 1
 				/systems/fuel/trans-pump-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
+				propulsion/tank[9]/contents-lbs lt 9
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tail-tank-eng-2">
+			<default value="0"/>
+			<test logic="AND" value="9">
+				/systems/fuel/tail-aux eq 1
+				propulsion/tank[7]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
 		</switch>
@@ -886,6 +946,16 @@
 			<test logic="AND" value="27">
 				/systems/fuel/trans-aux-lower-r eq 1
 				propulsion/tank[6]/contents-lbs gt 10
+				propulsion/tank[5]/contents-lbs lt 87095
+			</test>
+		</switch>
+		
+		<!-- Tail Tank to Upper Aux Tank -->
+		<switch name="/systems/fuel/internal/tail-tank-aux-upper">
+			<default value="0"/>
+			<test logic="AND" value="27">
+				/systems/fuel/trans-tail eq 1
+				propulsion/tank[7]/contents-lbs gt 10
 				propulsion/tank[5]/contents-lbs lt 87095
 			</test>
 		</switch>
@@ -1125,12 +1195,19 @@
 			<input>-/systems/fuel/internal/aux-tank-upper-tank-2</input>
 			<input>-/systems/fuel/internal/aux-tank-upper-tank-3-inner</input>
 			<input>/systems/fuel/internal/aux-tank-lower-upper</input>
+			<input>/systems/fuel/internal/tail-tank-aux-upper</input>
 			<output>propulsion/tank[5]/external-flow-rate-pps</output>
 		</summer>
 		
 		<summer name="/systems/fuel/internal/aux-tank-lower-flow-rate">
 			<input>-/systems/fuel/internal/aux-tank-lower-upper</input>
 			<output>propulsion/tank[6]/external-flow-rate-pps</output>
+		</summer>
+		
+		<summer name="/systems/fuel/internal/tail-tank-flow-rate">
+			<input>-/systems/fuel/internal/tail-tank-aux-upper</input>
+			<input>-/systems/fuel/internal/tail-tank-eng-2</input>
+			<output>propulsion/tank[7]/external-flow-rate-pps</output>
 		</summer>
 		
 		<!-- Pipe Final Flow Rates -->
@@ -1145,6 +1222,7 @@
 			<input>/systems/fuel/internal/tank-1-inner-eng-2</input>
 			<input>/systems/fuel/internal/tank-2-eng-2</input>
 			<input>/systems/fuel/internal/tank-3-inner-eng-2</input>
+			<input>/systems/fuel/internal/tail-tank-eng-2</input>
 			<output>propulsion/tank[9]/external-flow-rate-pps</output>
 		</summer>
 		
