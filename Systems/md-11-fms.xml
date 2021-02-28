@@ -108,7 +108,10 @@
 				<product>
 					<quotient>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<max> <!-- Prevent divide by 0 -->
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<value>0.0000001</value>
+						</max>
 					</quotient>
 					<value>0.87</value>
 				</product>
