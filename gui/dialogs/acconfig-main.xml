@@ -206,7 +206,7 @@
 		
 		<group>
 			<layout>vbox</layout>
-
+			
 			<checkbox>
 				<label>Enable De-icing Truck</label>
 				<halign>left</halign>
@@ -216,7 +216,7 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-
+			
 			<button>
 				<legend>De-ice Aircraft</legend>
 				<halign>center</halign>
@@ -282,6 +282,28 @@
 					<property>/systems/acconfig/extra-stuff</property>
 				</enable>
 				<property>/services/baggage/enable</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Enable Wheel Chokes</label>
+				<halign>left</halign>
+				<enable>
+					<and>
+						<equals>
+							<property>/fdm/jsbsim/position/wow</property>
+							<value>1</value>
+						</equals>
+						<less-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>2</value>
+						</less-than>
+					</and>
+				</enable>
+				<property>/services/chokes/enable</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

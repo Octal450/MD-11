@@ -176,7 +176,7 @@
 		<model n="0">
 			<autopush>
 				<available type="int">1</available>
-				<chocks alias="/services/chokes/nose"/>
+				<chocks alias="/services/chokes/enable"/>
 				<connected type="bool">0</connected>
 				<debug type="bool">0</debug>
 				<driver>
@@ -212,6 +212,7 @@
 		</model>
 		<multiplay n="0">
 			<generic n="0">
+				<bool n="0" alias="/services/chokes/enable"/>
 				<float n="0" alias="/gear/gear[0]/compression-norm"/>
 				<float n="1" alias="/gear/gear[1]/compression-norm"/>
 				<float n="2" alias="/gear/gear[2]/compression-norm"/>
@@ -1521,6 +1522,12 @@
 			<apoff type="bool">0</apoff>
 		</sound>
 	</it-autoflight>
+	
+	<services n="0">
+		<chokes n="0">
+			<enable type="bool">1</enable>
+		</chokes>
+	</services>
 	
 	<systems n="0">
 		<acconfig n="0">

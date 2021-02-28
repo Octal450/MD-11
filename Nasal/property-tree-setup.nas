@@ -218,6 +218,12 @@ var Position = {
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 };
 
+var Services = {
+	Chokes: {
+		enable: props.globals.getNode("/services/chokes/enable"),
+	},
+};
+
 var Sim = {
 	CurrentView: {
 		fieldOfView: props.globals.getNode("/sim/current-view/field-of-view", 1),
@@ -286,6 +292,7 @@ var Systems = {
 
 var Velocities = {
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt"),
+	groundspeedKtTemp: 0,
 };
 
 setprop("/systems/acconfig/property-tree-setup-loaded", 1);

@@ -234,6 +234,7 @@ var PANEL = {
 	coldDark: func() {
 		me.panelBase(0);
 		
+		pts.Services.Chokes.enable.setBoolValue(1);
 		systems.ENGINE.Switch.cutoffSwitch[0].setBoolValue(1);
 		systems.ENGINE.Switch.cutoffSwitch[1].setBoolValue(1);
 		systems.ENGINE.Switch.cutoffSwitch[2].setBoolValue(1);
@@ -248,6 +249,7 @@ var PANEL = {
 	beforeStart: func() {
 		me.panelBase(0);
 		
+		pts.Services.Chokes.enable.setBoolValue(1);
 		systems.ELEC.Switch.battery.setBoolValue(1);
 		systems.ELEC.Switch.emerPwSw.setValue(1);
 		systems.APU.fastStart();
@@ -278,6 +280,7 @@ var PANEL = {
 	afterStart: func(t) {
 		me.panelBase(t);
 		
+		pts.Services.Chokes.enable.setBoolValue(0);
 		systems.ELEC.Switch.battery.setBoolValue(1);
 		systems.ELEC.Switch.emerPwSw.setValue(1);
 		systems.ELEC.Source.Ext.cart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
