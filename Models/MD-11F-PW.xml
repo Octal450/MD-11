@@ -963,7 +963,7 @@
   <object-name>tyres</object-name>
   <object-name>nose.scissor.down</object-name>
   <object-name>NoseChoke</object-name>
-  <property>sim/multiplay/generic/float[0]</property>
+  <property>gear/gear[0]/compression-norm</property>
   <factor>-0.3</factor>
 		<axis>
 			<x1-m>-20.4239</x1-m>
@@ -1016,7 +1016,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>nose.scissor.down</object-name>
-		<property>sim/multiplay/generic/float[0]</property>
+		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>2</ind><dep>-80</dep></entry>
@@ -1036,7 +1036,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>nose.scissor.up</object-name>
-		<property>sim/multiplay/generic/float[0]</property>
+		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>2</ind><dep>80</dep></entry>
@@ -1112,7 +1112,7 @@
 <object-name>tyres.right.back</object-name>
  <object-name>right.scissor.down</object-name>
  <object-name>RightChoke</object-name>
-  <property>sim/multiplay/generic/float[2]</property>
+  <property>gear/gear[2]/compression-norm</property>
   <factor>-0.25</factor>
 		<axis>
 			<x>0</x>
@@ -1124,7 +1124,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>right.scissor.down</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>-60</dep></entry>
@@ -1144,7 +1144,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>right.scissor.up</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>60</dep></entry>
@@ -1332,7 +1332,7 @@
 <object-name>left.strut.low2</object-name>
  <object-name>left.scissor.down</object-name>
  <object-name>LeftChoke</object-name>
-  <property>sim/multiplay/generic/float[1]</property>
+  <property>gear/gear[1]/compression-norm</property>
   <factor>-0.25</factor>
 		<axis>
 			<x>0</x>
@@ -1344,7 +1344,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>left.scissor.down</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>-60</dep></entry>
@@ -1364,7 +1364,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>left.scissor.up</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>60</dep></entry>
@@ -1500,7 +1500,7 @@
  <object-name>central.strut.low</object-name>
   <object-name>tyres.central</object-name>
  <object-name>center.scissor.down</object-name>
-  <property>sim/multiplay/generic/float[3]</property>
+  <property>gear/gear[3]/compression-norm</property>
   <factor>-0.2</factor>
 		<axis>
 			<x>0</x>
@@ -1512,7 +1512,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>central.scissor.down</object-name>
-		<property>sim/multiplay/generic/float[3]</property>
+		<property>gear/gear[3]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>-60</dep></entry>
@@ -1532,7 +1532,7 @@
 							<animation>
 		<type>rotate</type>
 		<object-name>central.scissor.up</object-name>
-		<property>sim/multiplay/generic/float[3]</property>
+		<property>gear/gear[3]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>60</dep></entry>
