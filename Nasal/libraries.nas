@@ -63,8 +63,8 @@ var systemsLoop = maketimer(0.1, func() {
 	}
 	
 	pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) and pts.Services.Chokes.enable.getBoolValue()) {
-		pts.Services.Chokes.enable.setBoolValue(0);
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) and pts.Services.Chocks.enable.getBoolValue()) {
+		pts.Services.Chocks.enable.setBoolValue(0);
 	}
 	
 	if ((pts.Velocities.groundspeedKtTemp >= 2 or !systems.GEAR.Switch.brakeParking.getBoolValue()) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {

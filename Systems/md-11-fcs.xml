@@ -1384,7 +1384,7 @@
 			<default value="fcs/left-brake-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
-				/services/chokes/enable eq 1
+				/services/chocks/enable eq 1
 			</test>
 		</switch>
 		
@@ -1413,7 +1413,7 @@
 			<default value="fcs/right-brake-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
-				/services/chokes/enable eq 1
+				/services/chocks/enable eq 1
 			</test>
 		</switch>
 		
@@ -1451,7 +1451,7 @@
 			<default value="fcs/center-brake-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
-				/services/chokes/enable eq 1
+				/services/chocks/enable eq 1
 			</test>
 		</switch>
 	

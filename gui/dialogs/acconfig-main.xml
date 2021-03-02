@@ -289,7 +289,7 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Enable Wheel Chokes</label>
+				<label>Enable Wheel Chocks</label>
 				<halign>left</halign>
 				<enable>
 					<and>
@@ -303,7 +303,7 @@
 						</less-than>
 					</and>
 				</enable>
-				<property>/services/chokes/enable</property>
+				<property>/services/chocks/enable</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

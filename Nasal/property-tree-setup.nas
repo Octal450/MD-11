@@ -219,8 +219,8 @@ var Position = {
 };
 
 var Services = {
-	Chokes: {
-		enable: props.globals.getNode("/services/chokes/enable"),
+	Chocks: {
+		enable: props.globals.getNode("/services/chocks/enable"),
 	},
 };
 
