@@ -55,7 +55,7 @@
 			<function>
 				<sum>
 					<product>
-						<property>propulsion/engine/IdleThrust</property>
+						<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
 						<property>fadec/limit/rated-thrust</property>
 					</product>
 					<product>
