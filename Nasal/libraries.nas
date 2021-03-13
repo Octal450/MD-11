@@ -62,12 +62,13 @@ var systemsLoop = maketimer(0.1, func() {
 		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
 	}
 	
+	pts.Services.Chocks.enableTemp = pts.Services.Chocks.enable.getBoolValue();
 	pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) and pts.Services.Chocks.enable.getBoolValue()) {
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) and pts.Services.Chocks.enableTemp) {
 		pts.Services.Chocks.enable.setBoolValue(0);
 	}
 	
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or !systems.GEAR.Switch.brakeParking.getBoolValue()) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Switch.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
 		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
 			systems.ELEC.Source.Ext.cart.setBoolValue(0);
 			systems.ELEC.Switch.extPwr.setBoolValue(0);

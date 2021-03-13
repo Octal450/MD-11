@@ -315,10 +315,16 @@
 				<halign>left</halign>
 				<enable>
 					<and>
-						<equals>
-							<property>/controls/gear/brake-parking</property>
-							<value>1</value>
-						</equals>
+						<or>
+							<equals>
+								<property>/controls/gear/brake-parking</property>
+								<value>1</value>
+							</equals>
+							<equals>
+								<property>/services/chocks/enable</property>
+								<value>1</value>
+							</equals>
+						</or>
 						<less-than>
 							<property>/velocities/groundspeed-kt</property>
 							<value>2</value>
@@ -347,10 +353,16 @@
 				<halign>left</halign>
 				<enable>
 					<and>
-						<equals>
-							<property>/controls/gear/brake-parking</property>
-							<value>1</value>
-						</equals>
+						<or>
+							<equals>
+								<property>/controls/gear/brake-parking</property>
+								<value>1</value>
+							</equals>
+							<equals>
+								<property>/services/chocks/enable</property>
+								<value>1</value>
+							</equals>
+						</or>
 						<less-than>
 							<property>/velocities/groundspeed-kt</property>
 							<value>2</value>
