@@ -120,8 +120,9 @@
 		
 		<switch name="/fms/speeds/vmo-mmo">
 			<default value="/fms/speeds/vmo-kts"/>
-			<test value="/fms/speeds/mmo-kts">
+			<test logic="AND" value="/fms/speeds/mmo-kts">
 				/fms/speeds/mmo-kts lt /fms/speeds/vmo-kts
+				position/wow eq 0
 			</test>
 		</switch>
 		
@@ -143,22 +144,25 @@
 		
 		<switch name="/fms/speeds/gear-max-kts">
 			<default value="300"/>
-			<test value="/fms/speeds/gear-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 300
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/gear-ext-max-kts">
 			<default value="260"/>
-			<test value="/fms/speeds/gear-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 260
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/gear-ret-max-kts">
 			<default value="230"/>
-			<test value="/fms/speeds/gear-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 230
+				position/wow eq 0
 			</test>
 		</switch>
 		
@@ -180,8 +184,9 @@
 		
 		<switch name="/fms/speeds/slat-max-kts">
 			<default value="280"/>
-			<test value="/fms/speeds/slat-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/slat-max-mach-kts">
 				/fms/speeds/slat-max-mach-kts lt 280
+				position/wow eq 0
 			</test>
 		</switch>
 		
@@ -203,43 +208,49 @@
 		
 		<switch name="/fms/speeds/flap-0-15-max-kts">
 			<default value="255"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 255
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/flap-15-20-max-kts">
 			<default value="240"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 240
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/flap-20-25-max-kts">
 			<default value="220"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 220
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/flap-28-max-kts">
 			<default value="210"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 210
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/flap-35-max-kts">
 			<default value="190"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 190
+				position/wow eq 0
 			</test>
 		</switch>
 		
 		<switch name="/fms/speeds/flap-50-max-kts">
 			<default value="175"/>
-			<test value="/fms/speeds/flap-max-mach-kts">
+			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 175
+				position/wow eq 0
 			</test>
 		</switch>
 		
