@@ -389,5 +389,41 @@
 		</input>
 		<output>/instrumentation/pfd/vs-needle-up</output>
 	</filter>
+	
+	<filter>
+		<name>Vertical Speed Bug Down</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/input/vs</property>
+					<entry><ind>-4000</ind><dep>257</dep></entry>
+					<entry><ind>-2000</ind><dep>189</dep></entry>
+					<entry><ind>-1000</ind><dep>121</dep></entry>
+					<entry><ind> -100</ind><dep>  0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/vs-bug-dn</output>
+	</filter>
+	
+	<filter>
+		<name>Vertical Speed Bug Up</name>
+		<type>gain</type>
+		<gain>1</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/input/vs</property>
+					<entry><ind> 100</ind><dep>   0</dep></entry>
+					<entry><ind>1000</ind><dep>-121</dep></entry>
+					<entry><ind>2000</ind><dep>-189</dep></entry>
+					<entry><ind>4000</ind><dep>-257</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/pfd/vs-bug-up</output>
+	</filter>
 
 </PropertyList>

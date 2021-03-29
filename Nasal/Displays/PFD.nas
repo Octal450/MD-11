@@ -24,10 +24,13 @@ var Value = {
 		atsWarn: 0,
 		fd1: 0,
 		fd2: 0,
+		hdg: 0,
+		hdgSel: 0,
 		kts: 0,
 		ktsSel: 0,
 		ktsMach: 0,
 		ktsMachSel: 0,
+		lat: 0,
 		mach: 0,
 		machSel: 0,
 		land: "",
@@ -38,6 +41,7 @@ var Value = {
 		spdProt: 0,
 		thrust: "",
 		vert: 0,
+		vs: 0,
 	},
 	Ai: {
 		bankLimit: 0,
@@ -97,6 +101,7 @@ var Value = {
 		},
 	},
 	Hdg: {
+		hideHdgSel: 0,
 		indicated: 0,
 		preSel: 0,
 		sel: 0,
@@ -190,9 +195,9 @@ var canvasBase = {
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
 		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
 		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T",
-		"ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_group", "VSI_error", "HDG",
-		"HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer",
-		"LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
+		"ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn", "VSI_group",
+		"VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num",
+		"Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -217,15 +222,15 @@ var canvasBase = {
 		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
 		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
 		
-		# ASI
-		me["ASI_v_speed"].hide(); # Not working yet
-		
+		Value.Afs.hdgSel = afs.Input.hdg.getValue();
 		Value.Afs.kts = afs.Internal.kts.getValue();
 		Value.Afs.ktsSel = afs.Input.kts.getValue();
 		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
 		Value.Afs.ktsMachSel = afs.Input.ktsMach.getBoolValue();
+		Value.Afs.lat = afs.Output.lat.getValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
 		Value.Afs.machSel = afs.Input.mach.getValue();
+		Value.Afs.vert = afs.Output.vert.getValue();
 		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
@@ -243,6 +248,9 @@ var canvasBase = {
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		Value.Misc.gearOut = pts.Fdm.JSBsim.Gear.gearAllNorm.getValue() > 0;
+		
+		# ASI
+		me["ASI_v_speed"].hide(); # Not working yet
 		
 		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
 		if (Value.Asi.ias <= 50) {
@@ -689,7 +697,7 @@ var canvasBase = {
 			me["AI_fpv"].hide();
 		}
 		
-		if (afs.Output.vert.getValue() == 5) {
+		if (Value.Afs.vert == 5) {
 			me.AI_fpd_trans.setTranslation(0, (Value.Ai.pitch - afs.Input.fpa.getValue()) * 10.246);
 			me.AI_fpd_rot.setRotation(-Value.Ai.roll * D2R, AICenter);
 			me["AI_fpd"].show();
@@ -922,6 +930,25 @@ var canvasBase = {
 			me["VSI_dn"].hide();
 		}
 		
+		Value.Afs.vs = afs.Input.vs.getValue();
+		if (Value.Afs.vert == 1) {
+			if (Value.Afs.vs >= 50) {
+				me["VSI_bug_dn"].hide();
+				me["VSI_bug_up"].setTranslation(0, pts.Instrumentation.Pfd.vsBugUp.getValue());
+				me["VSI_bug_up"].show();
+			} else if (Value.Afs.vs <= -50) {
+				me["VSI_bug_dn"].setTranslation(0, pts.Instrumentation.Pfd.vsBugDn.getValue());
+				me["VSI_bug_dn"].show();
+				me["VSI_bug_up"].hide();
+			} else {
+				me["VSI_bug_up"].hide();
+				me["VSI_bug_dn"].hide();
+			}
+		} else {
+			me["VSI_bug_up"].hide();
+			me["VSI_bug_dn"].hide();
+		}
+		
 		# ILS
 		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[2].getBoolValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
@@ -1063,16 +1090,56 @@ var canvasBase = {
 		}
 		
 		if (Value.Hdg.showHdg) {
-			me["HDG_presel"].setRotation(Value.Hdg.Tape.preSel * D2R);
-			me["HDG_presel"].show();
+			if (Value.Afs.lat == 0 and afs.Internal.syncedHdg) {
+				me["HDG_presel"].hide();
+			} else {
+				me["HDG_presel"].setRotation(Value.Hdg.Tape.preSel * D2R);
+				me["HDG_presel"].show();
+			}
+			
+			if (Value.Hdg.preSel < -35 and !afs.Internal.syncedHdg) {
+				me["HDG_sel_left_text"].setText(right(sprintf("%03d", Value.Afs.hdgSel), 3));
+				me["HDG_sel_left_text"].show();
+			} else if (Value.Hdg.sel < -35 and Value.Afs.lat == 0) {
+				me["HDG_sel_left_text"].setText(right(sprintf("%03d", Value.Afs.hdg), 3));
+				me["HDG_sel_left_text"].show();
+			} else {
+				me["HDG_sel_left_text"].hide();
+			}
+		
+			if (Value.Hdg.preSel > 35 and !afs.Internal.syncedHdg) {
+				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdgSel), 3));
+				me["HDG_sel_right_text"].show();
+			} else if (Value.Hdg.sel > 35 and Value.Afs.lat == 0) {
+				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdg), 3));
+				me["HDG_sel_right_text"].show();
+			} else {
+				me["HDG_sel_right_text"].hide();
+			}
+			
+			if (!afs.Internal.syncedHdg) {
+				if (Value.Hdg.preSel < -35 and Value.Hdg.sel < -35) {
+					Value.Hdg.hideHdgSel = 1;
+				} else if (Value.Hdg.preSel > 35 and Value.Hdg.sel > 35) {
+					Value.Hdg.hideHdgSel = 1;
+				} else {
+					Value.Hdg.hideHdgSel = 0;
+				}
+			} else {
+				Value.Hdg.hideHdgSel = 0;
+			}
+			
+			if (Value.Afs.lat == 0 and !Value.Hdg.hideHdgSel) {
+				me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
+				me["HDG_sel"].show();
+			} else {
+				me["HDG_sel"].hide();
+			}
 		} else {
 			me["HDG_presel"].hide();
-		}
-		if (Value.Hdg.showHdg and afs.Output.lat.getValue() == 0) {
-			me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
-			me["HDG_sel"].show();
-		} else {
 			me["HDG_sel"].hide();
+			me["HDG_sel_left_text"].hide();
+			me["HDG_sel_right_text"].hide();
 		}
 		
 		me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
@@ -1377,6 +1444,7 @@ var canvasPfd1 = {
 		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
 		Value.Afs.ats = afs.Output.athr.getBoolValue();
 		Value.Afs.fd1 = afs.Output.fd1.getBoolValue();
+		Value.Afs.hdg = afs.Internal.hdg.getValue();
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.pitch = afs.Fma.pitch.getValue();
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
@@ -1393,7 +1461,7 @@ var canvasPfd1 = {
 				me["FMA_Pitch"].hide();
 			}
 			if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", afs.Internal.hdg.getValue())));
+				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 			} else {
 				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 			}
@@ -1431,7 +1499,7 @@ var canvasPfd1 = {
 			
 			if (Value.Afs.ap1 or Value.Afs.ap2) {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", afs.Internal.hdg.getValue())));
+					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
 					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 				}
@@ -1487,6 +1555,7 @@ var canvasPfd2 = {
 		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
 		Value.Afs.ats = afs.Output.athr.getBoolValue();
 		Value.Afs.fd2 = afs.Output.fd2.getBoolValue();
+		Value.Afs.hdg = afs.Internal.hdg.getValue();
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.pitch = afs.Fma.pitch.getValue();
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
@@ -1503,7 +1572,7 @@ var canvasPfd2 = {
 				me["FMA_Pitch"].hide();
 			}
 			if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", afs.Internal.hdg.getValue())));
+				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 			} else {
 				me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 			}
@@ -1541,7 +1610,7 @@ var canvasPfd2 = {
 			
 			if (Value.Afs.ap1 or Value.Afs.ap2) {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", afs.Internal.hdg.getValue())));
+					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
 					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
 				}

@@ -553,7 +553,7 @@ var ITAF = {
 		} else {
 			Internal.syncedAlt = 0;
 		}
-		if (Input.hdgTemp == Internal.hdg.getValue()) {
+		if (Input.hdgTemp == Internal.hdg.getValue() and Output.latTemp == 0) {
 			Internal.syncedHdg = 1;
 		} else {
 			Internal.syncedHdg = 0;
