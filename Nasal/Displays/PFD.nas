@@ -57,8 +57,8 @@ var Value = {
 			fiveT: "000",
 			four: 0,
 			fourT: "000",
-			middleAltOffset: 0,
-			middleAltText: 0,
+			middleOffset: 0,
+			middleText: 0,
 			offset: 0,
 			one: 0,
 			oneT: "000",
@@ -739,22 +739,22 @@ var canvasBase = {
 		# ALT
 		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.Alt.Tape.offset = Value.Alt.indicated / 500 - int(Value.Alt.indicated / 500);
-		Value.Alt.Tape.middleAltText = roundAboutAlt(Value.Alt.indicated / 100) * 100;
-		Value.Alt.Tape.middleAltOffset = nil;
+		Value.Alt.Tape.middleText = roundAboutAlt(Value.Alt.indicated / 100) * 100;
+		Value.Alt.Tape.middleOffset = nil;
 		
 		if (Value.Alt.Tape.offset > 0.5) {
-			Value.Alt.Tape.middleAltOffset = -(Value.Alt.Tape.offset - 1) * 254.508;
+			Value.Alt.Tape.middleOffset = -(Value.Alt.Tape.offset - 1) * 254.508;
 		} else {
-			Value.Alt.Tape.middleAltOffset = -Value.Alt.Tape.offset * 254.508;
+			Value.Alt.Tape.middleOffset = -Value.Alt.Tape.offset * 254.508;
 		}
 		
-		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleAltOffset);
-		me["ALT_scale_num"].setTranslation(0, -Value.Alt.Tape.middleAltOffset);
+		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
+		me["ALT_scale_num"].setTranslation(0, -Value.Alt.Tape.middleOffset);
 		me["ALT_scale"].update();
 		me["ALT_scale_num"].update();
 		
-		Value.Alt.Tape.five = int((Value.Alt.Tape.middleAltText + 1000) * 0.001);
-		me["ALT_five"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText + 1000) * 0.001) - Value.Alt.Tape.five))));
+		Value.Alt.Tape.five = int((Value.Alt.Tape.middleText + 1000) * 0.001);
+		me["ALT_five"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText + 1000) * 0.001) - Value.Alt.Tape.five))));
 		Value.Alt.Tape.fiveT = sprintf("%01d", abs(Value.Alt.Tape.five));
 		
 		if (Value.Alt.Tape.fiveT == 0) {
@@ -763,8 +763,8 @@ var canvasBase = {
 			me["ALT_five_T"].setText(Value.Alt.Tape.fiveT);
 		}
 		
-		Value.Alt.Tape.four = int((Value.Alt.Tape.middleAltText + 500) * 0.001);
-		me["ALT_four"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText + 500) * 0.001) - Value.Alt.Tape.four))));
+		Value.Alt.Tape.four = int((Value.Alt.Tape.middleText + 500) * 0.001);
+		me["ALT_four"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText + 500) * 0.001) - Value.Alt.Tape.four))));
 		Value.Alt.Tape.fourT = sprintf("%01d", abs(Value.Alt.Tape.four));
 		
 		if (Value.Alt.Tape.fourT == 0) {
@@ -773,8 +773,8 @@ var canvasBase = {
 			me["ALT_four_T"].setText(Value.Alt.Tape.fourT);
 		}
 		
-		Value.Alt.Tape.three = int(Value.Alt.Tape.middleAltText * 0.001);
-		me["ALT_three"].setText(sprintf("%03d", abs(1000 * ((Value.Alt.Tape.middleAltText  * 0.001) - Value.Alt.Tape.three))));
+		Value.Alt.Tape.three = int(Value.Alt.Tape.middleText * 0.001);
+		me["ALT_three"].setText(sprintf("%03d", abs(1000 * ((Value.Alt.Tape.middleText  * 0.001) - Value.Alt.Tape.three))));
 		Value.Alt.Tape.threeT = sprintf("%01d", abs(Value.Alt.Tape.three));
 		
 		if (Value.Alt.Tape.threeT == 0) {
@@ -783,8 +783,8 @@ var canvasBase = {
 			me["ALT_three_T"].setText(Value.Alt.Tape.threeT);
 		}
 		
-		Value.Alt.Tape.two = int((Value.Alt.Tape.middleAltText - 500) * 0.001);
-		me["ALT_two"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText - 500) * 0.001) - Value.Alt.Tape.two))));
+		Value.Alt.Tape.two = int((Value.Alt.Tape.middleText - 500) * 0.001);
+		me["ALT_two"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText - 500) * 0.001) - Value.Alt.Tape.two))));
 		Value.Alt.Tape.twoT = sprintf("%01d", abs(Value.Alt.Tape.two));
 		
 		if (Value.Alt.Tape.twoT == 0) {
@@ -793,8 +793,8 @@ var canvasBase = {
 			me["ALT_two_T"].setText(Value.Alt.Tape.twoT);
 		}
 		
-		Value.Alt.Tape.one = int((Value.Alt.Tape.middleAltText - 1000) * 0.001);
-		me["ALT_one"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleAltText - 1000) * 0.001) - Value.Alt.Tape.one))));
+		Value.Alt.Tape.one = int((Value.Alt.Tape.middleText - 1000) * 0.001);
+		me["ALT_one"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText - 1000) * 0.001) - Value.Alt.Tape.one))));
 		Value.Alt.Tape.oneT = sprintf("%01d", abs(Value.Alt.Tape.one));
 		
 		if (Value.Alt.Tape.oneT == 0) {

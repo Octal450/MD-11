@@ -9,12 +9,31 @@ var Value = {
 		pitch: 0,
 		roll: 0,
 	},
+	Alt: {
+		indicated: 0,
+	},
 	Asi: {
 		ias: 0,
 		mach: 0,
 		machLatch: 0,
 		Tape: {
 			ias: 0,
+		},
+	},
+	Hdg: {
+		indicated: 0,
+		Tape: {
+			leftText1: "0",
+			leftText2: "0",
+			leftText3: "0",
+			leftText4: "0",
+			middleOffset: 0,
+			middleText: 0,
+			offset: 0,
+			rightText1: "0",
+			rightText2: "0",
+			rightText3: "0",
+			rightText4: "0",
 		},
 	},
 	Qnh: {
@@ -60,7 +79,8 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_meters", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven",
+		"HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -134,6 +154,10 @@ var canvasIesi = {
 			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.counterIesi.secs) ~ " SECS");
 		}
 		
+		# ALT
+		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
+		me["ALT_meters"].setText(sprintf("%d", math.round(Value.Alt.indicated * FT2M)) ~ "M");
+		
 		# QNH
 		Value.Qnh.inhg = pts.Instrumentation.Altimeter.inhg.getBoolValue();
 		if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
@@ -147,6 +171,52 @@ var canvasIesi = {
 			me["QNH"].setText(sprintf("%2.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
 			me["QNH"].show();
 			me["QNH_type"].setText("IN");
+		}
+		
+		# HDG
+		if (systems.IRS.Iru.aligned[2].getBoolValue()) {
+			Value.Hdg.indicated = pts.Orientation.headingMagneticDeg.getValue();
+			Value.Hdg.offset = Value.Hdg.indicated / 10 - int(Value.Hdg.indicated / 10);
+			Value.Hdg.middleText = roundAbout(Value.Hdg.indicated / 10);
+			Value.Hdg.middleOffset = nil;
+			
+			if (Value.Hdg.middleText == 36) {
+				Value.Hdg.middleText = 0;
+			}
+			
+			Value.Hdg.leftText1 = Value.Hdg.middleText == 0?35:Value.Hdg.middleText - 1;
+			Value.Hdg.rightText1 = Value.Hdg.middleText == 35?0:Value.Hdg.middleText + 1;
+			Value.Hdg.leftText2 = Value.Hdg.leftText1 == 0?35:Value.Hdg.leftText1 - 1;
+			Value.Hdg.rightText2 = Value.Hdg.rightText1 == 35?0:Value.Hdg.rightText1 + 1;
+			Value.Hdg.leftText3 = Value.Hdg.leftText2 == 0?35:Value.Hdg.leftText2 - 1;
+			Value.Hdg.rightText3 = Value.Hdg.rightText2 == 35?0:Value.Hdg.rightText2 + 1;
+			Value.Hdg.leftText4 = Value.Hdg.leftText3 == 0?35:Value.Hdg.leftText3 - 1;
+			Value.Hdg.rightText4 = Value.Hdg.rightText3 == 35?0:Value.Hdg.rightText3 + 1;
+			
+			if (Value.Hdg.offset > 0.5) {
+				Value.Hdg.middleOffset = -(Value.Hdg.offset - 1) * 60.5;
+			} else {
+				Value.Hdg.middleOffset = -Value.Hdg.offset * 60.5;
+			}
+			
+			me["HDG_scale"].setTranslation(Value.Hdg.middleOffset, 0);
+			me["HDG_scale"].update();
+			
+			me["HDG_five"].setText(hdgText(Value.Hdg.middleText));
+			me["HDG_six"].setText(hdgText(Value.Hdg.rightText1));
+			me["HDG_four"].setText(hdgText(Value.Hdg.leftText1));
+			me["HDG_seven"].setText(hdgText(Value.Hdg.rightText2));
+			me["HDG_three"].setText(hdgText(Value.Hdg.leftText2));
+			me["HDG_eight"].setText(hdgText(Value.Hdg.rightText3));
+			me["HDG_two"].setText(hdgText(Value.Hdg.leftText3));
+			me["HDG_nine"].setText(hdgText(Value.Hdg.rightText4));
+			me["HDG_one"].setText(hdgText(Value.Hdg.leftText4));
+			
+			me["HDG_error"].hide();
+			me["HDG_scale"].show();
+		} else {
+			me["HDG_error"].show();
+			me["HDG_scale"].hide();
 		}
 	},
 };
@@ -186,3 +256,24 @@ var showIesi = func() {
 	dlg.setCanvas(iesiDisplay);
 	dlg.set("title", "Integrated Electronic Standby");
 }
+
+var roundAbout = func(x) {
+	var y = x - int(x);
+	return y < 0.5 ? int(x) : 1 + int(x);
+};
+
+var hdgOutput = "";
+var hdgText = func(x) {
+	if (x == 0) {
+		return "N";
+	} else if (x == 9) {
+		return "E";
+	} else if (x == 18) {
+		return "S";
+	} else if (x == 27) {
+		return "W";
+	} else {
+		hdgOutput = sprintf("%d", x);
+		return hdgOutput;
+	}
+};
