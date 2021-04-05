@@ -1366,14 +1366,25 @@
 				/gear/abs/mode ne 0
 				/gear/abs/spoilers-cmd-deg gt 0
 				position/wow eq 1
-				/velocities/groundspeed-kt ge 60
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
+			</test>
+		</switch>
+		
+		<switch name="/gear/abs/rto-input-kts"> <!-- Latching Switch -->
+			<default value="/instrumentation/airspeed-indicator/indicated-speed-kt"/>
+			<test logic="AND" value="/gear/abs/rto-input-kts">
+				/gear/abs/active eq 1
+				/gear/abs/mode eq -1
 			</test>
 		</switch>
 		
 		<switch name="/gear/abs/disarm-brake">
 			<default value="0.4"/>
 			<test logic="OR" value="0.9">
-				/gear/abs/mode eq -2
+				/gear/abs/mode eq -1
+				/gear/abs/rto-input-kts gt 100
+			</test>
+			<test value="0.9">
 				/gear/abs/mode eq 3
 			</test>
 		</switch>
@@ -1454,14 +1465,6 @@
 			<default value="0"/>
 			<test logic="OR" value="/gear/abs/active-slow">
 				/gear/abs/spoilers-cmd-deg gt 0
-			</test>
-		</switch>
-		
-		<switch name="/gear/abs/rto-input-kts"> <!-- Latching Switch -->
-			<default value="/instrumentation/airspeed-indicator/indicated-speed-kt"/>
-			<test logic="AND" value="/gear/abs/rto-input-kts">
-				/gear/abs/active eq 1
-				/gear/abs/mode eq -1
 			</test>
 		</switch>
 		
