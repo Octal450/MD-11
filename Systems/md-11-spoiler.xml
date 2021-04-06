@@ -143,7 +143,6 @@
 			<test logic="OR" value="0"> <!-- Reset -->
 				fadec/throttle-lever-feedback[1] ge 0.05
 				spoilers/auto-speedbrake-arm-cmd eq 0
-				/systems/electrical/outputs/idk lt 24
 			</test>
 			<test logic="AND" value="4"> <!-- Set --> <!-- Landing -->
 				fadec/throttle-lever-feedback[1] lt 0.05
@@ -151,21 +150,18 @@
 				spoilers/main-gear-or eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
 				fcs/flap-pos-deg ge 31
-				/systems/electrical/outputs/idk ge 24
 			</test>
 			<test logic="AND" value="4"> <!-- Set --> <!-- RTO 1 -->
 				spoilers/multi-reverse eq 1
 				spoilers/auto-speedbrake-arm-cmd eq 2
 				spoilers/main-gear-or eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
-				/systems/electrical/outputs/idk ge 24
 			</test>
 			<test logic="AND" value="4"> <!-- Set --> <!-- RTO 2 -->
 				spoilers/multi-idle eq 1
 				spoilers/auto-speedbrake-arm-cmd eq 3
 				spoilers/main-gear-or eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
-				/systems/electrical/outputs/idk ge 24
 			</test>
 			<output>spoilers/auto-speedbrake-feedback</output>
 			<clipto>
