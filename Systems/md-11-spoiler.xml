@@ -167,11 +167,11 @@
 				/velocities/groundspeed-kt ge 60
 				/systems/electrical/outputs/idk ge 24
 			</test>
+			<output>spoilers/auto-speedbrake-feedback</output>
 			<clipto>
 				<min>0</min>
 				<max>spoilers/auto-speedbrake-max</max>
 			</clipto>
-			<output>spoilers/auto-speedbrake-feedback</output>
 		</switch>
 		
 		<switch name="spoilers/lever-cmd">
