@@ -149,7 +149,7 @@
 				fadec/throttle-lever-feedback[1] lt 0.05
 				spoilers/auto-speedbrake-arm-cmd eq 1
 				spoilers/main-gear-or eq 1
-				/velocities/groundspeed-kt ge 60
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
 				fcs/flap-pos-deg ge 31
 				/systems/electrical/outputs/idk ge 24
 			</test>
@@ -157,14 +157,14 @@
 				spoilers/multi-reverse eq 1
 				spoilers/auto-speedbrake-arm-cmd eq 2
 				spoilers/main-gear-or eq 1
-				/velocities/groundspeed-kt ge 60
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
 				/systems/electrical/outputs/idk ge 24
 			</test>
 			<test logic="AND" value="4"> <!-- Set --> <!-- RTO 2 -->
 				spoilers/multi-idle eq 1
 				spoilers/auto-speedbrake-arm-cmd eq 3
 				spoilers/main-gear-or eq 1
-				/velocities/groundspeed-kt ge 60
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
 				/systems/electrical/outputs/idk ge 24
 			</test>
 			<output>spoilers/auto-speedbrake-feedback</output>
