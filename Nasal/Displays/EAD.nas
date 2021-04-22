@@ -280,7 +280,7 @@ var canvasBase = {
 		me["FF2"].setText(sprintf("%d", math.round(pts.Engines.Engine.ffActual[1].getValue(), 10)));
 		me["FF3"].setText(sprintf("%d", math.round(pts.Engines.Engine.ffActual[2].getValue(), 10)));
 		
-		if (systems.ENGINE.Switch.cutoffSwitch[0].getBoolValue()) {
+		if (systems.ENGINE.cutoffSwitch[0].getBoolValue()) {
 			me["FF1"].hide();
 			me["FFOff1"].show();
 		} else {
@@ -288,7 +288,7 @@ var canvasBase = {
 			me["FF1"].show();
 		}
 		
-		if (systems.ENGINE.Switch.cutoffSwitch[1].getBoolValue()) {
+		if (systems.ENGINE.cutoffSwitch[1].getBoolValue()) {
 			me["FF2"].hide();
 			me["FFOff2"].show();
 		} else {
@@ -296,7 +296,7 @@ var canvasBase = {
 			me["FF2"].show();
 		}
 		
-		if (systems.ENGINE.Switch.cutoffSwitch[2].getBoolValue()) {
+		if (systems.ENGINE.cutoffSwitch[2].getBoolValue()) {
 			me["FF3"].hide();
 			me["FFOff3"].show();
 		} else {

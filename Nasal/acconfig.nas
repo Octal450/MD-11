@@ -235,9 +235,9 @@ var PANEL = {
 		me.panelBase(0);
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
-		systems.ENGINE.Switch.cutoffSwitch[0].setBoolValue(1);
-		systems.ENGINE.Switch.cutoffSwitch[1].setBoolValue(1);
-		systems.ENGINE.Switch.cutoffSwitch[2].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[0].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[1].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[2].setBoolValue(1);
 		
 		settimer(func() { # Give things a moment to settle
 			fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
@@ -261,9 +261,9 @@ var PANEL = {
 		pts.Controls.Lighting.navLights.setBoolValue(1);
 		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
 		
-		systems.ENGINE.Switch.cutoffSwitch[0].setBoolValue(1);
-		systems.ENGINE.Switch.cutoffSwitch[1].setBoolValue(1);
-		systems.ENGINE.Switch.cutoffSwitch[2].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[0].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[1].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[2].setBoolValue(1);
 		
 		l1 = setlistener("/engines/engine[3]/state", func() {
 			if (systems.APU.state.getValue() == 3) {

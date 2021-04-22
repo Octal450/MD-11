@@ -173,114 +173,112 @@ setlistener("/gear/abs/disarm", func() {
 # Intentionally not using + or -, floating point error would be BAD
 # We just based it off Engine 2
 var doRevThrust = func() {
-	systems.ENGINE.Switch.reverseLeverTemp[1] = systems.ENGINE.Switch.reverseLever[1].getValue();
+	systems.ENGINE.reverseLeverTemp[1] = systems.ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.Switch.reverseLeverTemp[1] < 0.25) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.25);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.25);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.25);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] < 0.5) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.5);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.5);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.5);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] < 0.75) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.75);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.75);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.75);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] < 1.0) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(1.0);
-			systems.ENGINE.Switch.reverseLever[1].setValue(1.0);
-			systems.ENGINE.Switch.reverseLever[2].setValue(1.0);
+		if (systems.ENGINE.reverseLeverTemp[1] < 0.25) {
+			systems.ENGINE.reverseLever[0].setValue(0.25);
+			systems.ENGINE.reverseLever[1].setValue(0.25);
+			systems.ENGINE.reverseLever[2].setValue(0.25);
+		} else if (systems.ENGINE.reverseLeverTemp[1] < 0.5) {
+			systems.ENGINE.reverseLever[0].setValue(0.5);
+			systems.ENGINE.reverseLever[1].setValue(0.5);
+			systems.ENGINE.reverseLever[2].setValue(0.5);
+		} else if (systems.ENGINE.reverseLeverTemp[1] < 0.75) {
+			systems.ENGINE.reverseLever[0].setValue(0.75);
+			systems.ENGINE.reverseLever[1].setValue(0.75);
+			systems.ENGINE.reverseLever[2].setValue(0.75);
+		} else if (systems.ENGINE.reverseLeverTemp[1] < 1.0) {
+			systems.ENGINE.reverseLever[0].setValue(1.0);
+			systems.ENGINE.reverseLever[1].setValue(1.0);
+			systems.ENGINE.reverseLever[2].setValue(1.0);
 		}
-		systems.ENGINE.Switch.throttle[0].setValue(0);
-		systems.ENGINE.Switch.throttle[1].setValue(0);
-		systems.ENGINE.Switch.throttle[2].setValue(0);
+		systems.ENGINE.throttle[0].setValue(0);
+		systems.ENGINE.throttle[1].setValue(0);
+		systems.ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.Switch.reverseLever[0].setValue(0);
-		systems.ENGINE.Switch.reverseLever[1].setValue(0);
-		systems.ENGINE.Switch.reverseLever[2].setValue(0);
+		systems.ENGINE.reverseLever[0].setValue(0);
+		systems.ENGINE.reverseLever[1].setValue(0);
+		systems.ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var unRevThrust = func() {
-	systems.ENGINE.Switch.reverseLeverTemp[1] = systems.ENGINE.Switch.reverseLever[1].getValue();
+	systems.ENGINE.reverseLeverTemp[1] = systems.ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.Switch.reverseLeverTemp[1] > 0.75) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.75);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.75);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.75);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] > 0.5) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.5);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.5);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.5);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] > 0.25) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0.25);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0.25);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0.25);
-		} else if (systems.ENGINE.Switch.reverseLeverTemp[1] > 0) {
-			systems.ENGINE.Switch.reverseLever[0].setValue(0);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0);
+		if (systems.ENGINE.reverseLeverTemp[1] > 0.75) {
+			systems.ENGINE.reverseLever[0].setValue(0.75);
+			systems.ENGINE.reverseLever[1].setValue(0.75);
+			systems.ENGINE.reverseLever[2].setValue(0.75);
+		} else if (systems.ENGINE.reverseLeverTemp[1] > 0.5) {
+			systems.ENGINE.reverseLever[0].setValue(0.5);
+			systems.ENGINE.reverseLever[1].setValue(0.5);
+			systems.ENGINE.reverseLever[2].setValue(0.5);
+		} else if (systems.ENGINE.reverseLeverTemp[1] > 0.25) {
+			systems.ENGINE.reverseLever[0].setValue(0.25);
+			systems.ENGINE.reverseLever[1].setValue(0.25);
+			systems.ENGINE.reverseLever[2].setValue(0.25);
+		} else if (systems.ENGINE.reverseLeverTemp[1] > 0) {
+			systems.ENGINE.reverseLever[0].setValue(0);
+			systems.ENGINE.reverseLever[1].setValue(0);
+			systems.ENGINE.reverseLever[2].setValue(0);
 		}
-		systems.ENGINE.Switch.throttle[0].setValue(0);
-		systems.ENGINE.Switch.throttle[1].setValue(0);
-		systems.ENGINE.Switch.throttle[2].setValue(0);
+		systems.ENGINE.throttle[0].setValue(0);
+		systems.ENGINE.throttle[1].setValue(0);
+		systems.ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.Switch.reverseLever[0].setValue(0);
-		systems.ENGINE.Switch.reverseLever[1].setValue(0);
-		systems.ENGINE.Switch.reverseLever[2].setValue(0);
+		systems.ENGINE.reverseLever[0].setValue(0);
+		systems.ENGINE.reverseLever[1].setValue(0);
+		systems.ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var toggleFastRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.Switch.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
-			systems.ENGINE.Switch.reverseLever[0].setValue(0);
-			systems.ENGINE.Switch.reverseLever[1].setValue(0);
-			systems.ENGINE.Switch.reverseLever[2].setValue(0);
+		if (systems.ENGINE.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
+			systems.ENGINE.reverseLever[0].setValue(0);
+			systems.ENGINE.reverseLever[1].setValue(0);
+			systems.ENGINE.reverseLever[2].setValue(0);
 		} else {
-			systems.ENGINE.Switch.reverseLever[0].setValue(1);
-			systems.ENGINE.Switch.reverseLever[1].setValue(1);
-			systems.ENGINE.Switch.reverseLever[2].setValue(1);
+			systems.ENGINE.reverseLever[0].setValue(1);
+			systems.ENGINE.reverseLever[1].setValue(1);
+			systems.ENGINE.reverseLever[2].setValue(1);
 		}
-		systems.ENGINE.Switch.throttle[0].setValue(0);
-		systems.ENGINE.Switch.throttle[1].setValue(0);
-		systems.ENGINE.Switch.throttle[2].setValue(0);
+		systems.ENGINE.throttle[0].setValue(0);
+		systems.ENGINE.throttle[1].setValue(0);
+		systems.ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.Switch.reverseLever[0].setValue(0);
-		systems.ENGINE.Switch.reverseLever[1].setValue(0);
-		systems.ENGINE.Switch.reverseLever[2].setValue(0);
+		systems.ENGINE.reverseLever[0].setValue(0);
+		systems.ENGINE.reverseLever[1].setValue(0);
+		systems.ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var doIdleThrust = func() {
-	systems.ENGINE.Switch.throttle[0].setValue(0);
-	systems.ENGINE.Switch.throttle[1].setValue(0);
-	systems.ENGINE.Switch.throttle[2].setValue(0);
+	systems.ENGINE.throttle[0].setValue(0);
+	systems.ENGINE.throttle[1].setValue(0);
+	systems.ENGINE.throttle[2].setValue(0);
 }
 
 var doFullThrust = func() {
-	systems.ENGINE.Switch.throttle[0].setValue(1);
-	systems.ENGINE.Switch.throttle[1].setValue(1);
-	systems.ENGINE.Switch.throttle[2].setValue(1);
+	systems.ENGINE.throttle[0].setValue(1);
+	systems.ENGINE.throttle[1].setValue(1);
+	systems.ENGINE.throttle[2].setValue(1);
 }
 
 # Engines Misc
 var ENGINE = {
-	Switch: {
-		cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
-		reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
-		reverseLeverTemp: [0, 0, 0],
-		startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
-		throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
-	},
+	cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
+	reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
+	reverseLeverTemp: [0, 0, 0],
+	startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
+	throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 	init: func() {
-		me.Switch.reverseLever[0].setBoolValue(0);
-		me.Switch.reverseLever[1].setBoolValue(0);
-		me.Switch.reverseLever[2].setBoolValue(0);
-		me.Switch.startSwitch[0].setBoolValue(0);
-		me.Switch.startSwitch[1].setBoolValue(0);
-		me.Switch.startSwitch[2].setBoolValue(0);
+		me.reverseLever[0].setBoolValue(0);
+		me.reverseLever[1].setBoolValue(0);
+		me.reverseLever[2].setBoolValue(0);
+		me.startSwitch[0].setBoolValue(0);
+		me.startSwitch[1].setBoolValue(0);
+		me.startSwitch[2].setBoolValue(0);
 		pts.Engines.Engine.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		pts.Engines.Engine.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		pts.Engines.Engine.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
@@ -448,7 +446,7 @@ var IGNITION = {
 		me.Switch.ignOvrd.setBoolValue(0);
 	},
 	fastStart: func(n) {
-		systems.ENGINE.Switch.cutoffSwitch[n].setBoolValue(0);
+		systems.ENGINE.cutoffSwitch[n].setBoolValue(0);
 		pts.Fdm.JSBsim.Propulsion.setRunning.setValue(n);
 	},
 };
