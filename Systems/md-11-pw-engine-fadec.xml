@@ -10,6 +10,9 @@
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
 	<property value="60000">fadec/limit/rated-thrust</property>
+	<property value="0">fadec/ats-cmd-1</property>
+	<property value="0">fadec/ats-cmd-2</property>
+	<property value="0">fadec/ats-cmd-3</property>
 	
 	<channel name="Thrust Limits">
 		
