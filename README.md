@@ -1,7 +1,7 @@
 # MD-11
 A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear by Josh Davidson (Octal450).
 
-- Flight Dyanmics: Josh Davidson (Octal450)
+- Flight Dynamics: Josh Davidson (Octal450)
 - Systems: Josh Davidson (Octal450)
 - Displays: Josh Davidson (Octal450)
 - 3D/Textures: Semir Gebran/CaptB, John Williams (tikibar), and Jormapaappa1235
