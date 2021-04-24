@@ -623,6 +623,10 @@
 			<test value="0.28">
 				/controls/engines/engine[0]/reverse-lever eq 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 		
 		<switch name="fadec/reverse-1/throttle-rev">
@@ -695,6 +699,10 @@
 			<test value="0.28">
 				/controls/engines/engine[1]/reverse-lever eq 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 		
 		<switch name="fadec/reverse-2/throttle-rev">
@@ -764,6 +772,10 @@
 			<test value="0.28">
 				/controls/engines/engine[2]/reverse-lever eq 0.5
 			</test>
+			<clipto>
+				<min>0.08</min>
+				<max>1.0</max>
+			</clipto>
 		</switch>
 		
 		<switch name="fadec/reverse-3/throttle-rev">
@@ -958,7 +970,7 @@
 		<switch name="fadec/control-1/throttle-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
 			<test value="fadec/reverse-1/throttle-rev-cmd">
-				/controls/engines/engine[0]/reverse-lever gt 0
+				fadec/reverse-1/position-norm ne 0
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
@@ -1056,7 +1068,7 @@
 		<switch name="fadec/control-2/throttle-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
 			<test value="fadec/reverse-2/throttle-rev-cmd">
-				/controls/engines/engine[1]/reverse-lever gt 0
+				fadec/reverse-2/position-norm ne 0
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
@@ -1154,7 +1166,7 @@
 		<switch name="fadec/control-3/throttle-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
 			<test value="fadec/reverse-3/throttle-rev-cmd">
-				/controls/engines/engine[2]/reverse-lever gt 0
+				fadec/reverse-3/position-norm ne 0
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
