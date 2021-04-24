@@ -173,96 +173,96 @@ setlistener("/gear/abs/disarm", func() {
 # Intentionally not using + or -, floating point error would be BAD
 # We just based it off Engine 2
 var doRevThrust = func() {
-	systems.ENGINE.reverseLeverTemp[1] = systems.ENGINE.reverseLever[1].getValue();
+	ENGINE.reverseLeverTemp[1] = ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.reverseLeverTemp[1] < 0.25) {
-			systems.ENGINE.reverseLever[0].setValue(0.25);
-			systems.ENGINE.reverseLever[1].setValue(0.25);
-			systems.ENGINE.reverseLever[2].setValue(0.25);
-		} else if (systems.ENGINE.reverseLeverTemp[1] < 0.5) {
-			systems.ENGINE.reverseLever[0].setValue(0.5);
-			systems.ENGINE.reverseLever[1].setValue(0.5);
-			systems.ENGINE.reverseLever[2].setValue(0.5);
-		} else if (systems.ENGINE.reverseLeverTemp[1] < 0.75) {
-			systems.ENGINE.reverseLever[0].setValue(0.75);
-			systems.ENGINE.reverseLever[1].setValue(0.75);
-			systems.ENGINE.reverseLever[2].setValue(0.75);
-		} else if (systems.ENGINE.reverseLeverTemp[1] < 1.0) {
-			systems.ENGINE.reverseLever[0].setValue(1.0);
-			systems.ENGINE.reverseLever[1].setValue(1.0);
-			systems.ENGINE.reverseLever[2].setValue(1.0);
+		if (ENGINE.reverseLeverTemp[1] < 0.25) {
+			ENGINE.reverseLever[0].setValue(0.25);
+			ENGINE.reverseLever[1].setValue(0.25);
+			ENGINE.reverseLever[2].setValue(0.25);
+		} else if (ENGINE.reverseLeverTemp[1] < 0.5) {
+			ENGINE.reverseLever[0].setValue(0.5);
+			ENGINE.reverseLever[1].setValue(0.5);
+			ENGINE.reverseLever[2].setValue(0.5);
+		} else if (ENGINE.reverseLeverTemp[1] < 0.75) {
+			ENGINE.reverseLever[0].setValue(0.75);
+			ENGINE.reverseLever[1].setValue(0.75);
+			ENGINE.reverseLever[2].setValue(0.75);
+		} else if (ENGINE.reverseLeverTemp[1] < 1.0) {
+			ENGINE.reverseLever[0].setValue(1.0);
+			ENGINE.reverseLever[1].setValue(1.0);
+			ENGINE.reverseLever[2].setValue(1.0);
 		}
-		systems.ENGINE.throttle[0].setValue(0);
-		systems.ENGINE.throttle[1].setValue(0);
-		systems.ENGINE.throttle[2].setValue(0);
+		ENGINE.throttle[0].setValue(0);
+		ENGINE.throttle[1].setValue(0);
+		ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.reverseLever[0].setValue(0);
-		systems.ENGINE.reverseLever[1].setValue(0);
-		systems.ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseLever[0].setValue(0);
+		ENGINE.reverseLever[1].setValue(0);
+		ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var unRevThrust = func() {
-	systems.ENGINE.reverseLeverTemp[1] = systems.ENGINE.reverseLever[1].getValue();
+	ENGINE.reverseLeverTemp[1] = ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.reverseLeverTemp[1] > 0.75) {
-			systems.ENGINE.reverseLever[0].setValue(0.75);
-			systems.ENGINE.reverseLever[1].setValue(0.75);
-			systems.ENGINE.reverseLever[2].setValue(0.75);
-		} else if (systems.ENGINE.reverseLeverTemp[1] > 0.5) {
-			systems.ENGINE.reverseLever[0].setValue(0.5);
-			systems.ENGINE.reverseLever[1].setValue(0.5);
-			systems.ENGINE.reverseLever[2].setValue(0.5);
-		} else if (systems.ENGINE.reverseLeverTemp[1] > 0.25) {
-			systems.ENGINE.reverseLever[0].setValue(0.25);
-			systems.ENGINE.reverseLever[1].setValue(0.25);
-			systems.ENGINE.reverseLever[2].setValue(0.25);
-		} else if (systems.ENGINE.reverseLeverTemp[1] > 0) {
-			systems.ENGINE.reverseLever[0].setValue(0);
-			systems.ENGINE.reverseLever[1].setValue(0);
-			systems.ENGINE.reverseLever[2].setValue(0);
+		if (ENGINE.reverseLeverTemp[1] > 0.75) {
+			ENGINE.reverseLever[0].setValue(0.75);
+			ENGINE.reverseLever[1].setValue(0.75);
+			ENGINE.reverseLever[2].setValue(0.75);
+		} else if (ENGINE.reverseLeverTemp[1] > 0.5) {
+			ENGINE.reverseLever[0].setValue(0.5);
+			ENGINE.reverseLever[1].setValue(0.5);
+			ENGINE.reverseLever[2].setValue(0.5);
+		} else if (ENGINE.reverseLeverTemp[1] > 0.25) {
+			ENGINE.reverseLever[0].setValue(0.25);
+			ENGINE.reverseLever[1].setValue(0.25);
+			ENGINE.reverseLever[2].setValue(0.25);
+		} else if (ENGINE.reverseLeverTemp[1] > 0) {
+			ENGINE.reverseLever[0].setValue(0);
+			ENGINE.reverseLever[1].setValue(0);
+			ENGINE.reverseLever[2].setValue(0);
 		}
-		systems.ENGINE.throttle[0].setValue(0);
-		systems.ENGINE.throttle[1].setValue(0);
-		systems.ENGINE.throttle[2].setValue(0);
+		ENGINE.throttle[0].setValue(0);
+		ENGINE.throttle[1].setValue(0);
+		ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.reverseLever[0].setValue(0);
-		systems.ENGINE.reverseLever[1].setValue(0);
-		systems.ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseLever[0].setValue(0);
+		ENGINE.reverseLever[1].setValue(0);
+		ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var toggleFastRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (systems.ENGINE.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
-			systems.ENGINE.reverseLever[0].setValue(0);
-			systems.ENGINE.reverseLever[1].setValue(0);
-			systems.ENGINE.reverseLever[2].setValue(0);
+		if (ENGINE.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
+			ENGINE.reverseLever[0].setValue(0);
+			ENGINE.reverseLever[1].setValue(0);
+			ENGINE.reverseLever[2].setValue(0);
 		} else {
-			systems.ENGINE.reverseLever[0].setValue(1);
-			systems.ENGINE.reverseLever[1].setValue(1);
-			systems.ENGINE.reverseLever[2].setValue(1);
+			ENGINE.reverseLever[0].setValue(1);
+			ENGINE.reverseLever[1].setValue(1);
+			ENGINE.reverseLever[2].setValue(1);
 		}
-		systems.ENGINE.throttle[0].setValue(0);
-		systems.ENGINE.throttle[1].setValue(0);
-		systems.ENGINE.throttle[2].setValue(0);
+		ENGINE.throttle[0].setValue(0);
+		ENGINE.throttle[1].setValue(0);
+		ENGINE.throttle[2].setValue(0);
 	} else {
-		systems.ENGINE.reverseLever[0].setValue(0);
-		systems.ENGINE.reverseLever[1].setValue(0);
-		systems.ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseLever[0].setValue(0);
+		ENGINE.reverseLever[1].setValue(0);
+		ENGINE.reverseLever[2].setValue(0);
 	}
 }
 
 var doIdleThrust = func() {
-	systems.ENGINE.throttle[0].setValue(0);
-	systems.ENGINE.throttle[1].setValue(0);
-	systems.ENGINE.throttle[2].setValue(0);
+	ENGINE.throttle[0].setValue(0);
+	ENGINE.throttle[1].setValue(0);
+	ENGINE.throttle[2].setValue(0);
 }
 
 var doFullThrust = func() {
-	systems.ENGINE.throttle[0].setValue(1);
-	systems.ENGINE.throttle[1].setValue(1);
-	systems.ENGINE.throttle[2].setValue(1);
+	ENGINE.throttle[0].setValue(1);
+	ENGINE.throttle[1].setValue(1);
+	ENGINE.throttle[2].setValue(1);
 }
 
 # Engines Misc
@@ -446,7 +446,7 @@ var IGNITION = {
 		me.Switch.ignOvrd.setBoolValue(0);
 	},
 	fastStart: func(n) {
-		systems.ENGINE.cutoffSwitch[n].setBoolValue(0);
+		ENGINE.cutoffSwitch[n].setBoolValue(0);
 		pts.Fdm.JSBsim.Propulsion.setRunning.setValue(n);
 	},
 };
