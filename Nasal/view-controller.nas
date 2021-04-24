@@ -1,14 +1,51 @@
-# Octal's Distance Zooming
+# Octal's View Controller
 # Copyright (c) 2021 Josh Davidson (Octal450)
-# Based on PropertyRule file by onox
+# FovZoom based on work by onox
 
+var fgfsVersion = num(string.replace(getprop("/sim/version/flightgear"), ".", ""));
 var distance = 0;
 var min_dist = 0;
 var max_dist = 0;
 var canChangeZOffset = 0;
 var decStep = -5;
 var incStep = 5;
+var shakeFlag = 0;
 var viewName = "XX";
+var viewNumberRaw = 0;
+var views = [0, 9, 10, 11, 12, 13];
+var viewsOld = [0, 8, 9, 10, 11, 12];
+
+var resetView = func() {
+	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
+	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 110)) {
+		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
+			shakeFlag = 1;
+			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);
+		} else {
+			shakeFlag = 0;
+		}
+		
+		pts.Sim.CurrentView.fieldOfView.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/default-field-of-view-deg").getValue());
+		pts.Sim.CurrentView.headingOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/heading-offset-deg").getValue());
+		pts.Sim.CurrentView.pitchOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/pitch-offset-deg").getValue());
+		pts.Sim.CurrentView.rollOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/roll-offset-deg").getValue());
+		pts.Sim.CurrentView.xOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/x-offset-m").getValue());
+		pts.Sim.CurrentView.yOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/y-offset-m").getValue());
+		pts.Sim.CurrentView.zOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/z-offset-m").getValue());
+		
+		if (shakeFlag) {
+			pts.Sim.Rendering.Headshake.enabled.setBoolValue(1);
+		}
+	} 
+}
+
+var setView = func(n) {
+	if (fgfsVersion >= 202040) {
+		pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
+	} else {
+		pts.Sim.CurrentView.viewNumber.setValue(viewsOld[n - 1]);
+	}
+}
 
 var fovZoom = func(d) {
 	viewName = pts.Sim.CurrentView.name.getValue();

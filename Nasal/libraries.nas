@@ -341,32 +341,6 @@ setlistener("/controls/flight/auto-coordination", func() {
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
 
-var viewNumberRaw = 0;
-var shakeFlag = 0;
-var resetView = func() {
-	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
-	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 110)) {
-		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
-			shakeFlag = 1;
-			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);
-		} else {
-			shakeFlag = 0;
-		}
-		
-		pts.Sim.CurrentView.fieldOfView.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/default-field-of-view-deg").getValue());
-		pts.Sim.CurrentView.headingOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/heading-offset-deg").getValue());
-		pts.Sim.CurrentView.pitchOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/pitch-offset-deg").getValue());
-		pts.Sim.CurrentView.rollOffsetDeg.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/roll-offset-deg").getValue());
-		pts.Sim.CurrentView.xOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/x-offset-m").getValue());
-		pts.Sim.CurrentView.yOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/y-offset-m").getValue());
-		pts.Sim.CurrentView.zOffsetM.setValue(props.globals.getNode("/sim/view[" ~ viewNumberRaw ~ "]/config/z-offset-m").getValue());
-		
-		if (shakeFlag) {
-			pts.Sim.Rendering.Headshake.enabled.setBoolValue(1);
-		}
-	} 
-}
-
 # Custom Sounds
 var Sound = {
 	btn1: func() {

@@ -970,9 +970,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>0</value>
+					<command>nasal</command>
+					<script>libraries.setView(1);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -989,9 +988,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>8</value>
+					<command>nasal</command>
+					<script>libraries.setView(2);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1008,9 +1006,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
+					<command>nasal</command>
+					<script>libraries.setView(3);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1031,9 +1028,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>10</value>
+					<command>nasal</command>
+					<script>libraries.setView(4);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1050,9 +1046,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>11</value>
+					<command>nasal</command>
+					<script>libraries.setView(5);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1073,9 +1068,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value>12</value>
+					<command>nasal</command>
+					<script>libraries.setView(6);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1662,7 +1656,7 @@
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
 			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
-			<file>Aircraft/MD-11/Nasal/zoom-views.nas</file>
+			<file>Aircraft/MD-11/Nasal/view-controller.nas</file>
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 		</libraries>
 		<acconfig>
