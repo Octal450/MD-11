@@ -7,9 +7,16 @@
 	
 	<filter>
 		<name>CRT Contrast</name>
-		<update-interval-secs>0.5</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
+		<input>
+			<condition>
+				<not>
+					<property>/systems/acconfig/options/du/enable-shaders</property>
+				</not>
+			</condition>
+			<value>1</value>
+		</input>
 		<input>
 			<expression>
 				<table>
@@ -20,6 +27,44 @@
 			</expression>
 		</input>
 		<output>/instrumentation/du/crt-contrast</output>
+	</filter>
+	
+	<filter>
+		<name>LCD Contrast</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<not>
+					<property>/systems/acconfig/options/du/enable-shaders</property>
+				</not>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<not>
+					<property>/instrumentation/iesi/lcd-on</property>
+				</not>
+			</condition>
+			<expression>
+				<table>
+					<property>/rendering/scene/diffuse/red</property>
+					<entry><ind>0.8</ind><dep>0.97</dep></entry>
+					<entry><ind>0.0</ind><dep>0.98</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<table>
+					<property>/rendering/scene/diffuse/red</property>
+					<entry><ind>0.8</ind><dep>0.95</dep></entry>
+					<entry><ind>0.0</ind><dep>0.90</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/instrumentation/iesi/lcd-contrast</output>
 	</filter>
 	
 	<filter>

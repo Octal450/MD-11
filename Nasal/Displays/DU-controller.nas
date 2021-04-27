@@ -10,7 +10,7 @@ var DUController = {
 	eadType: pts.Options.eng.getValue(),
 	elapsedSec: 0,
 	errorActive: 0,
-	lcdContrastIesi: props.globals.initNode("/instrumentation/iesi/lcd-contrast", 0.97, "DOUBLE"),
+	iesiLcdOn: props.globals.initNode("/instrumentation/iesi/lcd-on", 0, "BOOL"),
 	sdPage: "ENG",
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
@@ -34,7 +34,7 @@ var DUController = {
 		canvas_ead.pw.page.hide();
 		canvas_sd.eng.page.hide();
 		canvas_iesi.iesi.page.hide();
-		me.lcdContrastIesi.setValue(0.97);
+		me.iesiLcdOn.setBoolValue(0);
 		me.updatePfd1 = 0;
 		me.updatePfd2 = 0;
 		me.updateNd1 = 0;
@@ -149,7 +149,7 @@ var DUController = {
 				if (!me.updateIesi) {
 					me.updateIesi = 1;
 					canvas_iesi.iesi.update();
-					me.lcdContrastIesi.setValue(0.95);
+					me.iesiLcdOn.setBoolValue(1);
 					canvas_iesi.iesi.page.show();
 				}
 			} else {
@@ -159,7 +159,7 @@ var DUController = {
 				if (me.updateIesi) {
 					me.updateIesi = 0;
 					canvas_iesi.iesi.page.hide();
-					me.lcdContrastIesi.setValue(0.97);
+					me.iesiLcdOn.setBoolValue(0);
 				}
 			}
 		}
