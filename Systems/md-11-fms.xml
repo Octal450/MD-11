@@ -7,89 +7,6 @@
 	
 	<channel name="Envelope Protection" execrate="8">
 		
-		<!-- Vstall -->
-		<fcs_function name="/fms/speeds/vss-kts">
-			<function>
-				<table> <!-- +15 FAA Stall -->
-					<independentVar lookup="row">inertia/weight-kg</independentVar>
-					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
-					<tableData breakPoint="0"> <!-- TODO: Add flap without slat speeds -->
-						        0       1
-						140000  149.22  149.22
-						160000  158.53  158.53
-						180000  167.38  167.38
-						200000  175.63  175.63
-						220000  183.56  183.56
-						240000  190.73  190.73
-						260000  198.14  198.14
-						280000  204.93  204.93
-					</tableData>
-					<tableData breakPoint="31">
-						        0       10      15      20      25      28      35      50
-						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
-						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
-						180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
-						200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
-						220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
-						240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
-						260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
-						280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/fms/speeds/v2-latch-speed">
-			<function>
-				<sum>
-					<property>/fms/speeds/v2</property>
-					<value>8</value> <!-- V2 + 10kts, 2 kt buffer -->
-				</sum>
-			</function>
-		</fcs_function>
-		
-		<switch name="/fms/speeds/v2-latch">
-			<default value="/fms/speeds/v2-latch"/>
-			<test value="0">
-				position/wow eq 1
-			</test>	
-			<test value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/v2-latch-speed
-			</test>
-		</switch>
-		
-		<fcs_function name="/fms/speeds/vss-roll-factor">
-			<function>
-				<sqrt> <!-- Take the square root to get the factor -->
-					<quotient> <!-- Calculate neutral load factor from bank -->
-						<value>1</value>
-						<cos>
-							<toradians>
-								<min>
-									<abs><property>/orientation/roll-deg</property></abs>
-									<value>45</value> <!-- Otherwise problems happen -->
-								</min>
-							</toradians>
-						</cos>
-					</quotient>
-				</sqrt>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/fms/speeds/vss">
-			<input>/fms/speeds/vss-kts</input>
-			<gain>/fms/speeds/vss-roll-factor</gain>
-		</pure_gain>
-		
-		<switch name="/fms/speeds/vss-tape">
-			<default value="/fms/speeds/vss"/>
-			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
-				position/wow eq 1
-				/fms/speeds/v2-latch ne 1
-			</test>
-		</switch>
-		
 		<!-- Vmo/Mmo -->
 		<fcs_function name="/fms/speeds/vmo-kts"> <!-- From FCOM -->
 			<function>
@@ -293,6 +210,135 @@
 			</test>
 		</switch>
 		
+		<!-- Vmax -->
+		<switch name="/fms/speeds/vmax">
+			<default value="/fms/speeds/vmo-mmo"/>
+			<test value="/fms/speeds/flap-gear-max">
+				/fms/speeds/flap-gear-max gt -1
+			</test>
+		</switch>
+		
+		<fcs_function name="/fms/speeds/athr-max">
+			<function>
+				<difference>
+					<property>/fms/speeds/vmax</property>
+					<value>5</value>
+				</difference>
+			</function>
+			<clipto>
+				<min>100</min>
+				<max>100000</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/fms/speeds/athr-max-mach">
+			<function>
+				<difference>
+					<product>
+						<quotient>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							<max> <!-- Prevent divide by 0 -->
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<value>0.0001</value>
+							</max>
+						</quotient>
+						<property>/fms/speeds/vmax</property>
+					</product>
+					<value>0.005</value>
+				</difference>
+			</function>
+			<clipto>
+				<min>0.0</min>
+				<max>0.87</max>
+			</clipto>
+		</fcs_function>
+		
+		<!-- Vstall -->
+		<fcs_function name="/fms/speeds/vss-kts">
+			<function>
+				<table> <!-- +15 FAA Stall -->
+					<independentVar lookup="row">inertia/weight-kg</independentVar>
+					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
+					<tableData breakPoint="0"> <!-- 50 column is a guess, no data for flap without slat -->
+						        0       50
+						140000  149.22  138.10
+						160000  158.53  145.67
+						180000  167.38  153.14
+						200000  175.63  159.97
+						220000  183.56  166.65
+						240000  190.73  172.66
+						260000  198.14  179.04
+						280000  204.93  184.60
+					</tableData>
+					<tableData breakPoint="31">
+						        0       10      15      20      25      28      35      50
+						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
+						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
+						180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
+						200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
+						220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
+						240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
+						260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
+						280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/fms/speeds/v2-latch-speed">
+			<function>
+				<sum>
+					<property>/fms/speeds/v2</property>
+					<value>8</value> <!-- V2 + 10kts, 2 kt buffer -->
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<switch name="/fms/speeds/v2-latch">
+			<default value="/fms/speeds/v2-latch"/>
+			<test value="0">
+				position/wow eq 1
+			</test>	
+			<test value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/v2-latch-speed
+			</test>
+		</switch>
+		
+		<fcs_function name="/fms/speeds/vss-roll-factor">
+			<function>
+				<sqrt> <!-- Take the square root to get the factor -->
+					<quotient> <!-- Calculate neutral load factor from bank -->
+						<value>1</value>
+						<cos>
+							<toradians>
+								<abs>
+									<property>/orientation/roll-deg</property>
+								</abs>
+							</toradians>
+						</cos>
+					</quotient>
+				</sqrt>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="/fms/speeds/vss">
+			<input>/fms/speeds/vss-kts</input>
+			<gain>/fms/speeds/vss-roll-factor</gain>
+			<clipto>
+				<min>0</min>
+				<max>/fms/speeds/vmax</max>
+			</clipto>
+		</pure_gain>
+		
+		<switch name="/fms/speeds/vss-tape">
+			<default value="/fms/speeds/vss"/>
+			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+				position/wow eq 1
+				/fms/speeds/v2-latch ne 1
+			</test>
+		</switch>
+		
 		<!-- Vmin -->
 		<switch name="/fms/speeds/vmin-latch">
 			<default value="/fms/speeds/vmin-latch"/>
@@ -371,49 +417,6 @@
 					<value>0.005</value>
 				</sum>
 			</function>
-		</fcs_function>
-		
-		<!-- Vmax -->
-		<switch name="/fms/speeds/vmax">
-			<default value="/fms/speeds/vmo-mmo"/>
-			<test value="/fms/speeds/flap-gear-max">
-				/fms/speeds/flap-gear-max gt -1
-			</test>
-		</switch>
-		
-		<fcs_function name="/fms/speeds/athr-max">
-			<function>
-				<difference>
-					<property>/fms/speeds/vmax</property>
-					<value>5</value>
-				</difference>
-			</function>
-			<clipto>
-				<min>100</min>
-				<max>100000</max>
-			</clipto>
-		</fcs_function>
-		
-		<fcs_function name="/fms/speeds/athr-max-mach">
-			<function>
-				<difference>
-					<product>
-						<quotient>
-							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							<max> <!-- Prevent divide by 0 -->
-								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-								<value>0.0001</value>
-							</max>
-						</quotient>
-						<property>/fms/speeds/vmax</property>
-					</product>
-					<value>0.005</value>
-				</difference>
-			</function>
-			<clipto>
-				<min>0.0</min>
-				<max>0.87</max> <!-- MMO, Should be scheduled, but don't know what schedules it yet -->
-			</clipto>
 		</fcs_function>
 		
 		<!-- Vmcg -->

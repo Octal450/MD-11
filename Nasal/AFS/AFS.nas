@@ -512,16 +512,24 @@ var ITAF = {
 			}
 		} else if (!Gear.wow1Temp and !Gear.wow2Temp) {
 			if (Internal.ktsMach.getBoolValue()) {
-				if (Internal.machTemp > Velocities.athrMaxMach) {
+				if (Velocities.athrMinMach > Velocities.athrMaxMach) { # For extreme bank, max takes priority
 					Internal.mach.setValue(Velocities.athrMaxMach);
-				} else if (Internal.machTemp < Velocities.athrMinMach) {
-					Internal.mach.setValue(Velocities.athrMinMach);
+				} else {
+					if (Internal.machTemp > Velocities.athrMaxMach) {
+						Internal.mach.setValue(Velocities.athrMaxMach);
+					} else if (Internal.machTemp < Velocities.athrMinMach) {
+						Internal.mach.setValue(Velocities.athrMinMach);
+					}
 				}
 			} else {
-				if (Internal.ktsTemp > Velocities.athrMax) {
+				if (Velocities.athrMin > Velocities.athrMax) { # For extreme bank, max takes priority
 					Internal.kts.setValue(Velocities.athrMax);
-				} else if (Internal.ktsTemp < Velocities.athrMin) {
-					Internal.kts.setValue(Velocities.athrMin);
+				} else {
+					if (Internal.ktsTemp > Velocities.athrMax) {
+						Internal.kts.setValue(Velocities.athrMax);
+					} else if (Internal.ktsTemp < Velocities.athrMin) {
+						Internal.kts.setValue(Velocities.athrMin);
+					}
 				}
 			}
 		} # Refresh Internal.ktsTemp and Internal.machTemp if using past this point
