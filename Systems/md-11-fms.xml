@@ -312,9 +312,12 @@
 						<value>1</value>
 						<cos>
 							<toradians>
-								<abs>
-									<property>/orientation/roll-deg</property>
-								</abs>
+								<min>
+									<abs>
+										<property>/orientation/roll-deg</property>
+									</abs>
+									<value>89</value> <!-- Above math breaks -->
+								</min>
 							</toradians>
 						</cos>
 					</quotient>
