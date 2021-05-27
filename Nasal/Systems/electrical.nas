@@ -61,8 +61,6 @@ var ELEC = {
 		nav0: props.globals.initNode("/systems/electrical/outputs/nav[0]", 0, "DOUBLE"),
 		nav1: props.globals.initNode("/systems/electrical/outputs/nav[1]", 0, "DOUBLE"),
 		nav2: props.globals.initNode("/systems/electrical/outputs/nav[2]", 0, "DOUBLE"),
-		nav3: props.globals.initNode("/systems/electrical/outputs/nav[3]", 0, "DOUBLE"),
-		tacan: props.globals.initNode("/systems/electrical/outputs/tacan", 0, "DOUBLE"),
 		transponder: props.globals.initNode("/systems/electrical/outputs/transponder", 0, "DOUBLE"),
 		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
