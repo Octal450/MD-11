@@ -8,7 +8,15 @@
 	<filter>
 		<name>EPR C1</name>
 		<type>gain</type>
-		<gain>1.0</gain>
+		<gain>
+			<expression>
+				<table>
+					<property>/fdm/jsbsim/velocities/mach</property>
+					<entry><ind>0.09</ind><dep>0.95</dep></entry>
+					<entry><ind>0.15</ind><dep>1.00</dep></entry>
+				</table>
+			</expression>
+		</gain>
 		<input>
 			<expression>
 				<table>
@@ -29,7 +37,14 @@
 			<expression>
 				<difference>
 					<table>
-						<property>/position/altitude-ft</property>
+						<product>
+							<property>/position/altitude-ft</property>
+							<table>
+								<property>/fdm/jsbsim/velocities/mach</property>
+								<entry><ind>0.09</ind><dep>0.1</dep></entry>
+								<entry><ind>0.15</ind><dep>1.0</dep></entry>
+							</table>
+						</product>
 						<entry><ind>    0</ind><dep>0.986</dep></entry>
 						<entry><ind>43000</ind><dep>0.844</dep></entry>
 					</table>
