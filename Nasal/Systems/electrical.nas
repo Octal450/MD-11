@@ -125,13 +125,11 @@ var ELEC = {
 		Bat1: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),
 			percent: props.globals.getNode("/systems/electrical/sources/bat-1/percent"),
-			time: 0,
 			volt: props.globals.getNode("/systems/electrical/sources/bat-1/volt"),
 		},
 		Bat2: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-2/amp"),
 			percent: props.globals.getNode("/systems/electrical/sources/bat-2/percent"),
-			time: 0,
 			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
 		Ext: {
