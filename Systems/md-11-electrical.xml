@@ -1721,10 +1721,10 @@
 		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos">
 			<default value="0"/>
 			<test value="1"> <!-- ON -->
-				/controls/electrical/switches/emer-pw-sw eq 2
+				/controls/electrical/switches/emer-pw eq 2
 			</test>
 			<test logic="AND" value="1"> <!-- ARM -->
-				/controls/electrical/switches/emer-pw-sw eq 1
+				/controls/electrical/switches/emer-pw eq 1
 				/systems/electrical/bus/dc-1 lt 24
 			</test>
 		</switch>
@@ -1800,10 +1800,10 @@
 		<switch name="/systems/electrical/relay/si-1-l-emer-ac/command-pos">
 			<default value="0"/>
 			<test value="1"> <!-- ON -->
-				/controls/electrical/switches/emer-pw-sw eq 2
+				/controls/electrical/switches/emer-pw eq 2
 			</test>
 			<test logic="AND" value="1"> <!-- ARM -->
-				/controls/electrical/switches/emer-pw-sw eq 1
+				/controls/electrical/switches/emer-pw eq 1
 				/systems/electrical/bus/ac-1 lt 112
 			</test>
 		</switch>
@@ -2130,7 +2130,7 @@
 		<switch name="/controls/electrical/lights/emer-pw-off">
 			<default value="0"/>
 			<test value="1">
-				/controls/electrical/switches/emer-pw-sw eq 0
+				/controls/electrical/switches/emer-pw eq 0
 			</test>
 		</switch>
 		

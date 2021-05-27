@@ -2794,7 +2794,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pw-sw</property>
+				<property>controls/electrical/switches/emer-pw</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -2810,7 +2810,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pw-sw</property>
+				<property>controls/electrical/switches/emer-pw</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
@@ -2825,7 +2825,7 @@
 		<type>rotate</type>
 		<object-name>EmerPwrKnb</object-name>
 		<object-name>EmerPwrKnb.light</object-name>
-		<property>controls/electrical/switches/emer-pw-sw</property>
+		<property>controls/electrical/switches/emer-pw</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-45.0</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
