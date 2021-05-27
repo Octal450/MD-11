@@ -12728,7 +12728,7 @@ refs 4
 3 0.063136 0.061869
 kids 0
 OBJECT poly
-name "EmerPwrOff"
+name "emerPwrrOff"
 loc -21.8028 -17.7721 0.127075
 data 12
 NAV.btn.mesh
@@ -12813,7 +12813,7 @@ refs 4
 3 0.063136 0.061869
 kids 0
 OBJECT poly
-name "EmerPwrOn"
+name "emerPwrrOn"
 loc -21.8028 -17.7721 0.108929
 data 12
 NAV.btn.mesh
@@ -124481,7 +124481,7 @@ refs 4
 12 0.004973 0.563654
 kids 0
 OBJECT poly
-name "EmerPwrKnb.light"
+name "emerPwrrKnb.light"
 loc -21.7996 -17.8164 0.120449
 data 17
 emgpwr.light.mesh
@@ -124529,7 +124529,7 @@ refs 4
 8 0.459944 0.995397
 kids 0
 OBJECT poly
-name "EmerPwrKnb"
+name "emerPwrrKnb"
 loc -21.7996 -17.8164 0.120449
 data 15
 emgpwrknob.mesh
@@ -153276,7 +153276,7 @@ refs 4
 3 0.121734 0
 kids 0
 OBJECT poly
-name "EmerPwrOff.off"
+name "emerPwrrOff.off"
 loc 0.000946045 0.052597 0.105186
 texture "lights.png"
 crease 45.000000
@@ -154112,7 +154112,7 @@ refs 4
 1 0.251379 0.0292568
 kids 0
 OBJECT poly
-name "EmerPwrOn.on"
+name "emerPwrrOn.on"
 loc 0.000946045 0.0524979 0.188292
 texture "lights.png"
 crease 45.000000

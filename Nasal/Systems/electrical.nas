@@ -189,7 +189,7 @@ var ELEC = {
 		cabBus: props.globals.getNode("/controls/electrical/switches/cab-bus"),
 		dcTie1: props.globals.getNode("/controls/electrical/switches/dc-tie-1"),
 		dcTie3: props.globals.getNode("/controls/electrical/switches/dc-tie-3"),
-		emerPw: props.globals.getNode("/controls/electrical/switches/emer-pw"),
+		emerPwr: props.globals.getNode("/controls/electrical/switches/emer-pwr"),
 		extPwr: props.globals.getNode("/controls/electrical/switches/ext-pwr"),
 		extGPwr: props.globals.getNode("/controls/electrical/switches/extg-pwr"),
 		galley1: props.globals.getNode("/controls/electrical/switches/galley-1"),
@@ -215,7 +215,7 @@ var ELEC = {
 		me.Switch.cabBus.setBoolValue(1);
 		me.Switch.dcTie1.setBoolValue(1);
 		me.Switch.dcTie3.setBoolValue(1);
-		me.Switch.emerPw.setValue(0);
+		me.Switch.emerPwr.setValue(0);
 		me.Switch.extPwr.setBoolValue(0);
 		me.Switch.extGPwr.setBoolValue(0);
 		me.Switch.galley1.setBoolValue(1);

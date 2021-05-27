@@ -21,7 +21,7 @@
 		<object-name>CargoAftTemp.light</object-name>
 		<object-name>FlapLimit.light</object-name>
 		<object-name>ElevFeel.light</object-name>
-		<object-name>EmerPwrKnb.light</object-name>
+		<object-name>emerPwrrKnb.light</object-name>
 		<object-name>SmokeElecAirNorm.light</object-name>
 		<object-name>CockpitTemp.light</object-name>
 		<object-name>FwdTemp.light</object-name>
@@ -217,8 +217,8 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
-		<object-name>EmerPwrOff.off</object-name>
-		<object-name>EmerPwrOn.on</object-name>
+		<object-name>emerPwrrOff.off</object-name>
+		<object-name>emerPwrrOn.on</object-name>
 		<object-name>ExtGlyPwr.avail</object-name>
 		<object-name>ExtGlyPwr.on</object-name>
 		<object-name>ExtPwr.avail</object-name>
@@ -2786,15 +2786,15 @@
 	<!-- Emergency Power -->
 	<animation>
 		<type>pick</type>
-		<object-name>EmerPwrKnb</object-name>
-		<object-name>EmerPwrKnb.light</object-name>
+		<object-name>emerPwrrKnb</object-name>
+		<object-name>emerPwrrKnb.light</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pw</property>
+				<property>controls/electrical/switches/emer-pwr</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -2810,7 +2810,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pw</property>
+				<property>controls/electrical/switches/emer-pwr</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
@@ -2823,9 +2823,9 @@
 	</animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>EmerPwrKnb</object-name>
-		<object-name>EmerPwrKnb.light</object-name>
-		<property>controls/electrical/switches/emer-pw</property>
+		<object-name>emerPwrrKnb</object-name>
+		<object-name>emerPwrrKnb.light</object-name>
+		<property>controls/electrical/switches/emer-pwr</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-45.0</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -2845,11 +2845,11 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>EmerPwrOff.off</object-name>
+		<object-name>emerPwrrOff.off</object-name>
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/emer-pw-off</property>
+					<property>controls/electrical/lights/emer-pwr-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2862,11 +2862,11 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>EmerPwrOn.on</object-name>
+		<object-name>emerPwrrOn.on</object-name>
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/emer-pw-on</property>
+					<property>controls/electrical/lights/emer-pwr-on</property>
 					<value>1</value>
 				</equals>
 				<equals>
