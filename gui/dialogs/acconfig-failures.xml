@@ -11,11 +11,14 @@
 
     <group>
         <layout>hbox</layout>
+		
         <text>
             <halign>left</halign>
             <label>System Failures</label>
         </text>
+		
 		<empty><stretch>1</stretch></empty>
+		
 		<button>
 			<legend>Reset All</legend>
 			<halign>right</halign>

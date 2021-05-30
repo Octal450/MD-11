@@ -21,6 +21,7 @@ var SYSTEM = {
 	revisionTemp: 0,
 	spinner: "\\",
 	simInit: func() {
+		PANEL.stop = 1;
 		me.autoConfigRunning.setBoolValue(0);
 		spinningT.start();
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-init"}));
@@ -221,18 +222,41 @@ var OPTIONS = {
 	},
 };
 
-var spinningT = maketimer(0.05, SYSTEM, SYSTEM.spinning);
-SYSTEM.simInit();
-
-setlistener("/sim/signals/fdm-initialized", func() {
-	SYSTEM.fdmInit();
-});
-
 # Panel States specifically designed to work with IntegratedSystems design
 var PANEL = {
-	l1: nil,
 	engTimer: 10,
-	panelBase: func(t) {
+	l1: nil,
+	stop: 1,
+	cancel: func() {
+		me.stop = 1; # Kill timers
+		
+		# Kill listeners
+		if (me.l1 != nil) {
+			removelistener(me.l1);
+			me.l1 = nil; # Important
+		}
+		
+		me.panelBase(0, 1); # Don't disable stop
+		
+		pts.Services.Chocks.enable.setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[0].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[1].setBoolValue(1);
+		systems.ENGINE.cutoffSwitch[2].setBoolValue(1);
+		
+		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
+		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-init"}));
+		
+		settimer(func() { # Give things a moment to settle
+			fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-init"}));
+			spinningT.stop();
+			SYSTEM.autoConfigRunning.setBoolValue(0);
+		}, 2);
+	},
+	panelBase: func(t, s = 0) {
+		if (s != 1) {
+			me.stop = 0;
+		}
+		
 		SYSTEM.autoConfigRunning.setBoolValue(1);
 		spinningT.start();
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psloaded"}));
@@ -265,6 +289,7 @@ var PANEL = {
 			spinningT.stop();
 			fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
 			SYSTEM.autoConfigRunning.setBoolValue(0);
+			me.stop = 1;
 		}, 1);
 	},
 	beforeStart: func() {
@@ -286,15 +311,17 @@ var PANEL = {
 		systems.ENGINE.cutoffSwitch[1].setBoolValue(1);
 		systems.ENGINE.cutoffSwitch[2].setBoolValue(1);
 		
-		l1 = setlistener("/engines/engine[3]/state", func() {
+		me.l1 = setlistener("/engines/engine[3]/state", func() {
 			if (systems.APU.state.getValue() == 3) {
-				removelistener(l1);
+				removelistener(me.l1);
+				me.l1 = nil; # Important
 				systems.ELEC.Switch.apuPwr.setBoolValue(1);
 				systems.PNEU.Switch.bleedApu.setBoolValue(1);
 				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 				spinningT.stop();
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
 				SYSTEM.autoConfigRunning.setBoolValue(0);
+				me.stop = 1;
 			}
 		});
 	},
@@ -319,21 +346,25 @@ var PANEL = {
 		if (pts.Engines.Engine.state[0].getValue() != 3 or pts.Engines.Engine.state[1].getValue() != 3 or pts.Engines.Engine.state[2].getValue() != 3) {
 			engTimer = 10;
 			settimer(func() {
-				systems.IGNITION.fastStart(0);
-				systems.IGNITION.fastStart(1);
-				systems.IGNITION.fastStart(2);
+				if (!me.stop) {
+					systems.IGNITION.fastStart(0);
+					systems.IGNITION.fastStart(1);
+					systems.IGNITION.fastStart(2);
+				}
 			}, 0.5);
 		} else {
 			engTimer = 1;
 		}
 		
-		l1 = setlistener("/engines/engine[1]/state", func() {
+		me.l1 = setlistener("/engines/engine[1]/state", func() {
 			if (pts.Engines.Engine.state[1].getValue() == 3) {
-				removelistener(l1);
+				removelistener(me.l1);
+				me.l1 = nil; # Important
 				systems.ELEC.Source.Ext.cart.setBoolValue(0);
 				systems.ELEC.Switch.extPwr.setBoolValue(0);
 				systems.ELEC.Switch.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
+				
 				if (t == 1) {
 					pts.Controls.Lighting.strobe.setBoolValue(1);
 					pts.Controls.Lighting.landingLightL.setValue(1);
@@ -344,13 +375,24 @@ var PANEL = {
 					pts.Controls.Lighting.landingLightN.setValue(0.5);
 					pts.Controls.Lighting.landingLightR.setValue(0.5);
 				}
+				
 				settimer(func() { # Give things a moment to settle
-					fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
-					spinningT.stop();
-					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
-					SYSTEM.autoConfigRunning.setBoolValue(0);
+					if (!me.stop) {
+						fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
+						spinningT.stop();
+						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
+						SYSTEM.autoConfigRunning.setBoolValue(0);
+						me.stop = 1;
+					}
 				}, engTimer);
 			}
 		});
 	},
 };
+
+var spinningT = maketimer(0.05, SYSTEM, SYSTEM.spinning);
+SYSTEM.simInit();
+
+setlistener("/sim/signals/fdm-initialized", func() {
+	SYSTEM.fdmInit();
+});

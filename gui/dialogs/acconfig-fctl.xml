@@ -11,10 +11,12 @@
 
     <group>
         <layout>hbox</layout>
+		
         <text>
             <halign>left</halign>
             <label>Flight Controls</label>
         </text>
+		
         <button>
             <halign>right</halign>
             <pref-width>20</pref-width>

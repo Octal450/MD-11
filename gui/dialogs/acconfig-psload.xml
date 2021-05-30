@@ -11,10 +11,22 @@
 
     <group>
         <layout>hbox</layout>
+		
         <text>
             <halign>left</halign>
             <label>Please wait...</label>
         </text>
+		
+		<button>
+			<halign>right</halign>
+			<pref-width>60</pref-width>
+			<pref-height>20</pref-height>
+			<legend>Cancel</legend>
+			<binding>
+				<command>nasal</command>
+				<script>acconfig.PANEL.cancel();</script>
+			</binding>
+		</button>
     </group>
 	
     <hrule/>
