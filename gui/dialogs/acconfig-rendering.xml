@@ -44,17 +44,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>ALS, and custom shader settings must be on.</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>Landmass shader must be at least 4 for lightspots to work.</label>
-		</text>
-		
-		<text>
-			<halign>left</halign>
-			<label>Model shader must be at least 2 for lightmaps to work.</label>
+			<label>Atmospheric Light Scattering (ALS) must be on, and some shader settings turned up.</label>
 		</text>
 		
 		<hrule/>
