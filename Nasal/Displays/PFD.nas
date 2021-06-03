@@ -216,7 +216,7 @@ var canvasBase = {
 			pfd2.update();
 		}
 	},
-	updateBase: func() {
+	updateBase: func(n) {
 		Value.Afs.hdgSel = afs.Input.hdg.getValue();
 		Value.Afs.kts = afs.Internal.kts.getValue();
 		Value.Afs.ktsSel = afs.Input.kts.getValue();
@@ -277,7 +277,7 @@ var canvasBase = {
 				me["ASI_groundspeed"].setColor(0.9412,0.7255,0);
 				me["ASI_groundspeed"].setText("NO");
 				me["ASI_taxi"].setColor(0.9412,0.7255,0);
-			} else if (!Value.Iru.aligned[0] and !Value.Iru.aligned[1] and !Value.Iru.aligned[2]) {
+			} else if (!Value.Iru.aligned[Value.Iru.source[n]]) {
 				me["ASI_groundspeed"].setColor(1,1,1);
 				me["ASI_groundspeed"].setText("--");
 				me["ASI_taxi"].setColor(1,1,1);
@@ -1590,7 +1590,7 @@ var canvasPfd1 = {
 			me["VSI_group"].hide();
 		}
 		
-		me.updateBase();
+		me.updateBase(0);
 	},
 };
 
@@ -1752,7 +1752,7 @@ var canvasPfd2 = {
 			me["VSI_group"].hide();
 		}
 		
-		me.updateBase();
+		me.updateBase(1);
 	},
 };
 
