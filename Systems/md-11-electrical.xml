@@ -390,7 +390,6 @@
 			</test>
 		</switch>
 		
-		<!-- IDG at 100% N2 9970RPM - unknown how accurate this is, CSD target is 8000RPM -->
 		<!-- IDG Engine 1 -->
 		<pure_gain name="/systems/electrical/sources/idg-1/drive-rpm-input">
 			<input>/engines/engine[0]/n2-actual</input>
