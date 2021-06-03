@@ -116,6 +116,7 @@ var Value = {
 	Iru: {
 		aligned: [0, 0, 0],
 		aligning: [0, 0, 0],
+		mainAvail: [0, 0, 0],
 	},
 	Misc: {
 		blinkMed: 0,
@@ -193,11 +194,11 @@ var canvasBase = {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box",
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
-		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
-		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T",
-		"ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn", "VSI_group",
-		"VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "TRK_pointer", "TCAS_OFF", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num",
-		"Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
+		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_scale", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
+		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "FD_group", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T",
+		"ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn",
+		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up",
+		"Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -215,13 +216,6 @@ var canvasBase = {
 		}
 	},
 	updateBase: func() {
-		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
-		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
-		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
-		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
-		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
-		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
-		
 		Value.Afs.hdgSel = afs.Input.hdg.getValue();
 		Value.Afs.kts = afs.Internal.kts.getValue();
 		Value.Afs.ktsSel = afs.Input.kts.getValue();
@@ -1422,11 +1416,17 @@ var canvasBase = {
 			me["Flaps_num2"].hide();
 		}
 		
-		# TCAS Off
-		if (instruments.XPDR.tcasMode.getValue() >= 2) {
-			me["TCAS_OFF"].hide();
+		# Warnings
+		if (Value.Iru.mainAvail[0] or Value.Iru.mainAvail[1] or Value.Iru.mainAvail[2]) {
+			me["TCAS_fail"].hide();
+			if (instruments.XPDR.tcasMode.getValue() >= 2) {
+				me["TCAS_off"].hide();
+			} else {
+				me["TCAS_off"].show();
+			}
 		} else {
-			me["TCAS_OFF"].show();
+			me["TCAS_fail"].show();
+			me["TCAS_off"].hide();
 		}
 	},
 };
@@ -1451,6 +1451,15 @@ var canvasPfd1 = {
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.thrust = afs.Text.thr.getValue();
+		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
+		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
+		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
+		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
+		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
+		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
+		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
+		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
+		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
 		
 		# FMA
 		if (Value.Afs.fd1) {
@@ -1518,23 +1527,59 @@ var canvasPfd1 = {
 			me["FD_roll"].hide();
 		}
 		
-		if (Value.Iru.aligned[0]) { # Variable update in updateBase
+		# IRU
+		if (Value.Iru.aligned[0]) {
+			me["AI_error"].hide();
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
+			me["AI_scale"].show();
+			me["FD_group"].show();
+			me["HDG_error"].hide();
 			me["HDG_group"].show();
+			me["VSI_error"].hide();
 			me["VSI_group"].show();
+		} else if (Value.Iru.aligning[0]) {
 			me["AI_error"].hide();
+			
+			if (systems.IRS.Iru.attAvail[0].getBoolValue()) {
+				me["AI_group"].show();
+				me["AI_group2"].show();
+				me["AI_group3"].show();
+				if (systems.IRS.Iru.alignTimer[0].getValue() >= 31) {
+					me["AI_scale"].show();
+				} else {
+					me["AI_scale"].hide();
+				}
+			} else {
+				me["AI_group"].hide();
+				me["AI_group2"].hide();
+				me["AI_group3"].hide();
+				me["AI_scale"].hide();
+			}
+			
 			me["HDG_error"].hide();
 			me["VSI_error"].hide();
+			
+			if (Value.Iru.mainAvail[0]) {
+				me["FD_group"].show();
+				me["HDG_group"].show();
+				me["VSI_group"].show();
+			} else {
+				me["FD_group"].hide();
+				me["HDG_group"].hide();
+				me["VSI_group"].hide();
+			}
 		} else {
 			me["AI_error"].show();
-			me["HDG_error"].show();
-			me["VSI_error"].show();
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
 			me["AI_group3"].hide();
+			me["AI_scale"].hide();
+			me["FD_group"].hide();
+			me["HDG_error"].show();
 			me["HDG_group"].hide();
+			me["VSI_error"].show();
 			me["VSI_group"].hide();
 		}
 		
@@ -1562,6 +1607,15 @@ var canvasPfd2 = {
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.thrust = afs.Text.thr.getValue();
+		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
+		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
+		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
+		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
+		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
+		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
+		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
+		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
+		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
 		
 		# FMA
 		if (Value.Afs.fd2) {
@@ -1629,10 +1683,11 @@ var canvasPfd2 = {
 			me["FD_roll"].hide();
 		}
 		
-		if (Value.Iru.aligned[1]) { # Variable update in updateBase
+		if (Value.Iru.aligned[1]) {
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
+			me["FD_group"].show();
 			me["HDG_group"].show();
 			me["VSI_group"].show();
 			me["AI_error"].hide();
@@ -1645,6 +1700,7 @@ var canvasPfd2 = {
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
 			me["AI_group3"].hide();
+			me["FD_group"].hide();
 			me["HDG_group"].hide();
 			me["VSI_group"].hide();
 		}

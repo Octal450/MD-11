@@ -12,8 +12,8 @@
 	<channel name="Logic" execrate="8">
 		
 		<switch name="/systems/iru-common/align-time">
-			<default value="0.00166667"/> <!-- 600 seconds -->
-			<test logic="OR" value="0.5"> <!-- 2 seconds -->
+			<default value="1"/> <!-- 600 seconds -->
+			<test logic="OR" value="300"> <!-- 2 seconds -->
 				/systems/acconfig/options/irs-align-instantly eq 1
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
@@ -87,8 +87,13 @@
 			</test>
 		</switch>
 		
-		<actuator name="/systems/iru[0]/align-timer">
+		<pure_gain name="/systems/iru[0]/align-timer-input">
 			<input>/systems/iru[0]/align-cmd</input>
+			<gain>600</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/iru[0]/align-timer">
+			<input>/systems/iru[0]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
 			<output>/systems/iru[0]/align-timer-debug</output>
@@ -97,7 +102,7 @@
 		<switch name="/systems/iru[0]/aligned">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/iru[0]/align-timer eq 1
+				/systems/iru[0]/align-timer eq 600
 				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
@@ -107,6 +112,28 @@
 			<test logic="AND" value="1">
 				/systems/iru[0]/align-cmd eq 1
 				/systems/iru[0]/aligned ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[0]/att-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[0]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[0]/align-timer ge 30
+				/systems/iru[0]/aligning eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[0]/main-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[0]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[0]/align-timer ge 300
+				/systems/iru[0]/aligning eq 1
 			</test>
 		</switch>
 	
@@ -143,8 +170,13 @@
 			</test>
 		</switch>
 		
-		<actuator name="/systems/iru[1]/align-timer">
+		<pure_gain name="/systems/iru[1]/align-timer-input">
 			<input>/systems/iru[1]/align-cmd</input>
+			<gain>600</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/iru[1]/align-timer">
+			<input>/systems/iru[1]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
 			<output>/systems/iru[1]/align-timer-debug</output>
@@ -153,7 +185,7 @@
 		<switch name="/systems/iru[1]/aligned">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/iru[1]/align-timer eq 1
+				/systems/iru[1]/align-timer eq 600
 				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
@@ -163,6 +195,28 @@
 			<test logic="AND" value="1">
 				/systems/iru[1]/align-cmd eq 1
 				/systems/iru[1]/aligned ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[1]/att-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[1]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[1]/align-timer ge 30
+				/systems/iru[1]/aligning eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[1]/main-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[1]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[1]/align-timer ge 300
+				/systems/iru[1]/aligning eq 1
 			</test>
 		</switch>
 	
@@ -199,8 +253,13 @@
 			</test>
 		</switch>
 		
-		<actuator name="/systems/iru[2]/align-timer">
+		<pure_gain name="/systems/iru[2]/align-timer-input">
 			<input>/systems/iru[2]/align-cmd</input>
+			<gain>600</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/iru[2]/align-timer">
+			<input>/systems/iru[2]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
 			<output>/systems/iru[2]/align-timer-debug</output>
@@ -209,7 +268,7 @@
 		<switch name="/systems/iru[2]/aligned">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/iru[2]/align-timer eq 1
+				/systems/iru[2]/align-timer eq 600
 				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
@@ -219,6 +278,28 @@
 			<test logic="AND" value="1">
 				/systems/iru[2]/align-cmd eq 1
 				/systems/iru[2]/aligned ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[2]/att-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[2]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[2]/align-timer ge 30
+				/systems/iru[2]/aligning eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/iru[2]/main-avail">
+			<default value="0"/>
+			<test value="1">
+				/systems/iru[2]/aligned eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/iru[2]/align-timer ge 300
+				/systems/iru[2]/aligning eq 1
 			</test>
 		</switch>
 	

@@ -9,17 +9,17 @@
 		<input>
 			<and>
 				<not><property>/it-autoflight/input/ovrd1</property></not>
-				<or>
+				<or> <!-- Basic modes except NAV work with only partial alignment -->
 					<equals>
-						<property>/systems/iru[0]/aligned</property>
+						<property>/systems/iru[0]/main-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/iru[1]/aligned</property>
+						<property>/systems/iru[1]/main-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/iru[2]/aligned</property>
+						<property>/systems/iru[2]/main-avail</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -50,17 +50,17 @@
 		<input>
 			<and>
 				<not><property>/it-autoflight/input/ovrd2</property></not>
-				<or>
+				<or> <!-- Basic modes except NAV work with only partial alignment -->
 					<equals>
-						<property>/systems/iru[0]/aligned</property>
+						<property>/systems/iru[0]/main-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/iru[1]/aligned</property>
+						<property>/systems/iru[1]/main-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/iru[2]/aligned</property>
+						<property>/systems/iru[2]/main-avail</property>
 						<value>1</value>
 					</equals>
 				</or>
