@@ -114,14 +114,6 @@
 				<command>nasal</command>
 				<script>acconfig.RENDERING.fixCore();</script>
 			</binding>
-			<binding> <!-- Close the non-ALS shader dialog if it is open for some bizarre reason -->
-				<command>dialog-close</command>
-				<dialog-name>shaders</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>shaders-lightfield</dialog-name>
-			</binding>
 			<binding>
 				<command>dialog-close</command>
 			</binding>
