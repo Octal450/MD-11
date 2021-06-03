@@ -192,7 +192,7 @@
 			<test logic="AND" value="1">
 				/systems/electrical/sources/bat-charger-powered eq 1
 				/controls/electrical/switches/battery eq 1
-				/systems/failures/electrical/bat-1 ne 1
+				/systems/failures/electrical/battery ne 1
 			</test>
 		</switch>
 		
@@ -201,7 +201,7 @@
 			<test logic="AND" value="1">
 				/systems/electrical/sources/bat-1/amp gt 0
 				/controls/electrical/switches/battery eq 1
-				/systems/failures/electrical/bat-1 ne 1
+				/systems/failures/electrical/battery ne 1
 			</test>
 		</switch>
 		
@@ -269,7 +269,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/electrical/sources/bat-1/percent</independentVar>
-					<independentVar lookup="column">/systems/failures/electrical/bat-1</independentVar>
+					<independentVar lookup="column">/systems/failures/electrical/battery</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0
@@ -294,7 +294,7 @@
 			<test logic="AND" value="1">
 				/systems/electrical/sources/bat-charger-powered eq 1
 				/controls/electrical/switches/battery eq 1
-				/systems/failures/electrical/bat-2 ne 1
+				/systems/failures/electrical/battery ne 1
 			</test>
 		</switch>
 		
@@ -303,7 +303,7 @@
 			<test logic="AND" value="1">
 				/systems/electrical/sources/bat-2/amp gt 0
 				/controls/electrical/switches/battery eq 1
-				/systems/failures/electrical/bat-2 ne 1
+				/systems/failures/electrical/battery ne 1
 			</test>
 		</switch>
 		
@@ -371,7 +371,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/electrical/sources/bat-2/percent</independentVar>
-					<independentVar lookup="column">/systems/failures/electrical/bat-2</independentVar>
+					<independentVar lookup="column">/systems/failures/electrical/battery</independentVar>
 					<tableData>
 						      0  1
 						  0   0  0

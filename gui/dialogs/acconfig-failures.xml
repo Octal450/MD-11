@@ -80,19 +80,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Battery 1</label>
+				<label>Battery</label>
 				<halign>left</halign>
-				<property>/systems/failures/electrical/bat-1</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Battery 2</label>
-				<halign>left</halign>
-				<property>/systems/failures/electrical/bat-2</property>
+				<property>/systems/failures/electrical/battery</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -451,7 +441,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>Fuel</label>
+					<label>Landing Gear</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -459,9 +449,9 @@
 			</group>
 			
 			<checkbox>
-				<label>Tank 1 Pumps</label>
+				<label>Nose Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-1</property>
+				<property>/systems/failures/gear/nose-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -469,9 +459,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 2 Pumps</label>
+				<label>Left Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-2</property>
+				<property>/systems/failures/gear/left-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -479,9 +469,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 3 Pumps</label>
+				<label>Center Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-3</property>
+				<property>/systems/failures/gear/center-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -489,29 +479,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Aux Tank L Trans</label>
+				<label>Right Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-l</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Aux Tank R Trans</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-r</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Tail Trans and Alt Pumps</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-tail</property>
+				<property>/systems/failures/gear/right-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -646,7 +616,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>Landing Gear</label>
+					<label>Fuel</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -654,9 +624,9 @@
 			</group>
 			
 			<checkbox>
-				<label>Nose Gear Actuator</label>
+				<label>Tank 1 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/nose-actuator</property>
+				<property>/systems/failures/fuel/pumps-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -664,9 +634,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Left Gear Actuator</label>
+				<label>Tank 2 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/left-actuator</property>
+				<property>/systems/failures/fuel/pumps-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -674,9 +644,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Center Gear Actuator</label>
+				<label>Tank 3 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/center-actuator</property>
+				<property>/systems/failures/fuel/pumps-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -684,9 +654,29 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Right Gear Actuator</label>
+				<label>Aux Tank L Trans</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/right-actuator</property>
+				<property>/systems/failures/fuel/pumps-aux-l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Aux Tank R Trans</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-aux-r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tail Trans and Alt Pumps</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-tail</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

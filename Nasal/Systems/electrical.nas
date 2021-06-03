@@ -44,8 +44,7 @@ var ELEC = {
 		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
 		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
 		apu: props.globals.getNode("/systems/failures/electrical/apu"),
-		bat1: props.globals.getNode("/systems/failures/electrical/bat-1"),
-		bat2: props.globals.getNode("/systems/failures/electrical/bat-2"),
+		battery: props.globals.getNode("/systems/failures/electrical/battery"),
 		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
 		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
 		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
@@ -246,8 +245,7 @@ var ELEC = {
 		me.Fail.acTie2.setBoolValue(0);
 		me.Fail.acTie3.setBoolValue(0);
 		me.Fail.apu.setBoolValue(0);
-		me.Fail.bat1.setBoolValue(0);
-		me.Fail.bat2.setBoolValue(0);
+		me.Fail.battery.setBoolValue(0);
 		me.Fail.dcTie1.setBoolValue(0);
 		me.Fail.dcTie3.setBoolValue(0);
 		me.Fail.gen1.setBoolValue(0);
