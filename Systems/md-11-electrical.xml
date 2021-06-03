@@ -273,8 +273,8 @@
 					<tableData>
 						      0  1
 						  0   0  0
-						 10  26  4
-						100  32  7
+						 10  13  2
+						100  16  4
 					</tableData>
 				</table>
 			</function>
@@ -375,8 +375,8 @@
 					<tableData>
 						      0  1
 						  0   0  0
-						 10  26  4
-						100  32  7
+						 10  13  2
+						100  16  3
 					</tableData>
 				</table>
 			</function>
@@ -1674,10 +1674,10 @@
 		<!-- Battery Bus/Battery Direct Bus -->
 		<fcs_function name="/systems/electrical/bus/dc-bat-direct">
 			<function>
-				<max>
+				<sum>
 					<property>/systems/electrical/sources/bat-1/volt</property>
 					<property>/systems/electrical/sources/bat-2/volt</property>
-				</max>
+				</sum>
 			</function>
 		</fcs_function>
 		
