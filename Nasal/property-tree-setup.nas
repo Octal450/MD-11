@@ -132,6 +132,10 @@ var Instrumentation = {
 		indicatedDistanceNm: [props.globals.getNode("/instrumentation/dme[0]/indicated-distance-nm"), props.globals.getNode("/instrumentation/dme[1]/indicated-distance-nm"), props.globals.getNode("/instrumentation/dme[2]/indicated-distance-nm")],
 		inRange: [props.globals.getNode("/instrumentation/dme[0]/in-range"), props.globals.getNode("/instrumentation/dme[1]/in-range"), props.globals.getNode("/instrumentation/dme[2]/in-range")],
 	},
+	Du: {
+		irsCapt: props.globals.getNode("/instrumentation/du/irs-capt"),
+		irsFo: props.globals.getNode("/instrumentation/du/irs-fo"),
+	},
 	Ead: {
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
 		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
@@ -255,12 +259,12 @@ var Sim = {
 	},
 	Sound: {
 		btn1: props.globals.initNode("/sim/sound/btn1", 0, "BOOL"),
+		btn2: props.globals.initNode("/sim/sound/btn2", 0, "BOOL"),
 		btn3: props.globals.initNode("/sim/sound/btn3", 0, "BOOL"),
 		flapsClick: props.globals.initNode("/sim/sound/flaps-click", 0, "BOOL"),
 		knb1: props.globals.initNode("/sim/sound/knb1", 0, "BOOL"),
 		noSmokingSign: props.globals.initNode("/sim/sound/no-smoking-sign", 0, "BOOL"),
 		noSmokingSignInhibit: props.globals.initNode("/sim/sound/no-smoking-sign-inhibit", 0, "BOOL"),
-		ohBtn: props.globals.initNode("/sim/sound/oh-btn", 0, "BOOL"),
 		seatbeltSign: props.globals.initNode("/sim/sound/seatbelt-sign", 0, "BOOL"),
 		switch1: props.globals.initNode("/sim/sound/switch1", 0, "BOOL"),
 	},

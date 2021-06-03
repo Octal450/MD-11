@@ -222,7 +222,7 @@
 	
 	</channel>
 	
-	<channel name="IRU 3 Alignment" execrate="8">
+	<channel name="IRU AUX Alignment" execrate="8">
 		
 		<switch name="/systems/iru[2]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[2]/can-align"/>

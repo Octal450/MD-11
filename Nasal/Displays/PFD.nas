@@ -117,6 +117,7 @@ var Value = {
 		aligned: [0, 0, 0],
 		aligning: [0, 0, 0],
 		mainAvail: [0, 0, 0],
+		source: [0, 1],
 	},
 	Misc: {
 		blinkMed: 0,
@@ -1528,7 +1529,13 @@ var canvasPfd1 = {
 		}
 		
 		# IRU
-		if (Value.Iru.aligned[0]) {
+		if (pts.Instrumentation.Du.irsCapt.getBoolValue()) {
+			Value.Iru.source[0] = 2; # AUX
+		} else {
+			Value.Iru.source[0] = 0;
+		}
+		
+		if (Value.Iru.aligned[Value.Iru.source[0]]) {
 			me["AI_error"].hide();
 			me["AI_group"].show();
 			me["AI_group2"].show();
@@ -1539,14 +1546,14 @@ var canvasPfd1 = {
 			me["HDG_group"].show();
 			me["VSI_error"].hide();
 			me["VSI_group"].show();
-		} else if (Value.Iru.aligning[0]) {
+		} else if (Value.Iru.aligning[Value.Iru.source[0]]) {
 			me["AI_error"].hide();
 			
-			if (systems.IRS.Iru.attAvail[0].getBoolValue()) {
+			if (systems.IRS.Iru.attAvail[Value.Iru.source[0]].getBoolValue()) {
 				me["AI_group"].show();
 				me["AI_group2"].show();
 				me["AI_group3"].show();
-				if (systems.IRS.Iru.alignTimer[0].getValue() >= 31) {
+				if (systems.IRS.Iru.alignTimer[Value.Iru.source[0]].getValue() >= 31) {
 					me["AI_scale"].show();
 				} else {
 					me["AI_scale"].hide();
@@ -1561,7 +1568,7 @@ var canvasPfd1 = {
 			me["HDG_error"].hide();
 			me["VSI_error"].hide();
 			
-			if (Value.Iru.mainAvail[0]) {
+			if (Value.Iru.mainAvail[Value.Iru.source[0]]) {
 				me["FD_group"].show();
 				me["HDG_group"].show();
 				me["VSI_group"].show();
@@ -1683,25 +1690,65 @@ var canvasPfd2 = {
 			me["FD_roll"].hide();
 		}
 		
-		if (Value.Iru.aligned[1]) {
+		# IRU
+		if (pts.Instrumentation.Du.irsFo.getBoolValue()) {
+			Value.Iru.source[1] = 2; # AUX
+		} else {
+			Value.Iru.source[1] = 1;
+		}
+		
+		if (Value.Iru.aligned[Value.Iru.source[1]]) {
+			me["AI_error"].hide();
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
+			me["AI_scale"].show();
 			me["FD_group"].show();
+			me["HDG_error"].hide();
 			me["HDG_group"].show();
+			me["VSI_error"].hide();
 			me["VSI_group"].show();
+		} else if (Value.Iru.aligning[Value.Iru.source[1]]) {
 			me["AI_error"].hide();
+			
+			if (systems.IRS.Iru.attAvail[Value.Iru.source[1]].getBoolValue()) {
+				me["AI_group"].show();
+				me["AI_group2"].show();
+				me["AI_group3"].show();
+				if (systems.IRS.Iru.alignTimer[Value.Iru.source[1]].getValue() >= 31) {
+					me["AI_scale"].show();
+				} else {
+					me["AI_scale"].hide();
+				}
+			} else {
+				me["AI_group"].hide();
+				me["AI_group2"].hide();
+				me["AI_group3"].hide();
+				me["AI_scale"].hide();
+			}
+			
 			me["HDG_error"].hide();
 			me["VSI_error"].hide();
+			
+			if (Value.Iru.mainAvail[Value.Iru.source[1]]) {
+				me["FD_group"].show();
+				me["HDG_group"].show();
+				me["VSI_group"].show();
+			} else {
+				me["FD_group"].hide();
+				me["HDG_group"].hide();
+				me["VSI_group"].hide();
+			}
 		} else {
 			me["AI_error"].show();
-			me["HDG_error"].show();
-			me["VSI_error"].show();
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
 			me["AI_group3"].hide();
+			me["AI_scale"].hide();
 			me["FD_group"].hide();
+			me["HDG_error"].show();
 			me["HDG_group"].hide();
+			me["VSI_error"].show();
 			me["VSI_group"].hide();
 		}
 		

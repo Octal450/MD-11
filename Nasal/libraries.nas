@@ -352,6 +352,15 @@ var Sound = {
 			pts.Sim.Sound.btn1.setBoolValue(0);
 		}, 0.2);
 	},
+	btn2: func() {
+		if (pts.Sim.Sound.btn2.getBoolValue()) {
+			return;
+		}
+		pts.Sim.Sound.btn2.setBoolValue(1);
+		settimer(func() {
+			pts.Sim.Sound.btn2.setBoolValue(0);
+		}, 0.2);
+	},
 	btn3: func() {
 		if (pts.Sim.Sound.btn3.getBoolValue()) {
 			return;
@@ -368,15 +377,6 @@ var Sound = {
 		pts.Sim.Sound.knb1.setBoolValue(1);
 		settimer(func() {
 			pts.Sim.Sound.knb1.setBoolValue(0);
-		}, 0.2);
-	},
-	ohBtn: func() {
-		if (pts.Sim.Sound.ohBtn.getBoolValue()) {
-			return;
-		}
-		pts.Sim.Sound.ohBtn.setBoolValue(1);
-		settimer(func() {
-			pts.Sim.Sound.ohBtn.setBoolValue(0);
 		}, 0.2);
 	},
 	switch1: func() {

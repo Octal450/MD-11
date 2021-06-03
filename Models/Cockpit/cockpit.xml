@@ -362,110 +362,6 @@
 		</action>
 	</animation>
 	
-	<!-- Gear indications -->
-	<animation>
-		<type>select</type>
-		<object-name>lg.nose.green</object-name>
-		<object-name>lg.nose.red</object-name>
-		<object-name>lg.left.green</object-name>
-		<object-name>lg.left.red</object-name>
-		<object-name>lg.right.green</object-name>
-		<object-name>lg.right.red</object-name>
-		<object-name>lg.ctr.green</object-name>
-		<object-name>lg.ctr.red</object-name>
-		<condition>
-			<property>systems/electrical/outputs/efis</property>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.nose.green</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[0]/status</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.nose.red</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[0]/status</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.left.green</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[1]/status</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.left.red</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[1]/status</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.right.green</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[2]/status</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.right.red</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[2]/status</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.ctr.green</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[3]/status</property>
-				<value>2</value>
-			</equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>lg.ctr.red</object-name>
-		<condition>
-			<equals>
-				<property>fdm/jsbsim/gear/unit[3]/status</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-	
 <!-- Yokes -->
 
 <animation>
@@ -768,6 +664,18 @@
 		<object-name>CenterGearUp.up</object-name>
 		<object-name>FD1.off</object-name>
 		<object-name>FD2.off</object-name>
+		<object-name>IRS.captaux</object-name>
+		<object-name>IRS.captaux2</object-name>
+		<object-name>IRS.foaux</object-name>
+		<object-name>IRS.foaux2</object-name>
+		<object-name>lg.nose.green</object-name>
+		<object-name>lg.nose.red</object-name>
+		<object-name>lg.left.green</object-name>
+		<object-name>lg.left.red</object-name>
+		<object-name>lg.right.green</object-name>
+		<object-name>lg.right.red</object-name>
+		<object-name>lg.ctr.green</object-name>
+		<object-name>lg.ctr.red</object-name>
 		<object-name>master_warning_light_on</object-name>
 		<object-name>master_caution_light_on</object-name>
 		<condition>
@@ -804,6 +712,137 @@
 		</condition>
 	</animation>
 	
+	<!-- Gear indications -->
+	<animation>
+		<type>select</type>
+		<object-name>lg.nose.green</object-name>
+		<condition>
+			<equals>
+				<property>fdm/jsbsim/gear/unit[0]/status</property>
+				<value>2</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.nose.red</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[0]/status</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.left.green</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[1]/status</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.left.red</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[1]/status</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.right.green</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[2]/status</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.right.red</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[2]/status</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.ctr.green</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[3]/status</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>lg.ctr.red</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>fdm/jsbsim/gear/unit[3]/status</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>select</type>
 		<object-name>AbsDisarm.light</object-name>
@@ -823,7 +862,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>FD1.Button</object-name>
+		<object-name>FD1</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -839,7 +878,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.ohBtn();</script>
+				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -862,7 +901,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>FD2.Button</object-name>
+		<object-name>FD2</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -878,7 +917,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.ohBtn();</script>
+				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -901,7 +940,87 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>CenterGearUp.Button</object-name>
+		<object-name>IRS.capt</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
+				<command>property-toggle</command>
+				<property>instrumentation/du/irs-capt</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IRS.captaux</object-name>
+		<object-name>IRS.captaux2</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>instrumentation/du/irs-capt</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>IRS.fo</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
+				<command>property-toggle</command>
+				<property>instrumentation/du/irs-fo</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>IRS.foaux</object-name>
+		<object-name>IRS.foaux2</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>instrumentation/du/irs-fo</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>CenterGearUp</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -928,7 +1047,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.ohBtn();</script>
+				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
