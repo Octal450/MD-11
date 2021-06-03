@@ -154,16 +154,6 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed Ext</label>
-				<halign>left</halign>
-				<property>/systems/failures/bleed-ext</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
 				<label>Bleed Eng 1</label>
 				<halign>left</halign>
 				<property>/systems/failures/bleed-1</property>
@@ -222,7 +212,7 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-			
+		
 		</group>
 		
 		<vrule/>

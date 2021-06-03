@@ -4,7 +4,6 @@
 var PNEU = {
 	Fail: {
 		bleedApu: props.globals.getNode("/systems/failures/pneumatics/bleed-apu"),
-		bleedExt: props.globals.getNode("/systems/failures/pneumatics/bleed-ext"),
 		bleed1: props.globals.getNode("/systems/failures/pneumatics/bleed-1"),
 		bleed2: props.globals.getNode("/systems/failures/pneumatics/bleed-2"),
 		bleed3: props.globals.getNode("/systems/failures/pneumatics/bleed-3"),
@@ -75,7 +74,6 @@ var PNEU = {
 	},
 	resetFailures: func() {
 		me.Fail.bleedApu.setBoolValue(0);
-		me.Fail.bleedExt.setBoolValue(0);
 		me.Fail.bleed1.setBoolValue(0);
 		me.Fail.bleed2.setBoolValue(0);
 		me.Fail.bleed3.setBoolValue(0);
