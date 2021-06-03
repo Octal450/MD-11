@@ -869,8 +869,9 @@
 				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 0
 				/systems/electrical/relay/apu-ac-gen-1/contact-pos eq 1
 			</test>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
+				/systems/failures/electrical/ac-tie-1 ne 1
 			</test>
 		</switch>
 		
@@ -887,8 +888,9 @@
 				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 0
 				/systems/electrical/relay/apu-ac-gen-2/contact-pos eq 1
 			</test>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-2 eq 1
+				/systems/failures/electrical/ac-tie-2 ne 1
 			</test>
 		</switch>
 		
@@ -905,8 +907,9 @@
 				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 0
 				/systems/electrical/relay/apu-ac-gen-3/contact-pos eq 1
 			</test>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-3 eq 1
+				/systems/failures/electrical/ac-tie-3 ne 1
 			</test>
 		</switch>
 		
@@ -1438,8 +1441,9 @@
 		<!-- These outputs are from the DC Tie Bus to the DC Gen Bus -->
 		<switch name="/systems/electrical/rcb/dc-tie-dc-1/contact-pos">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/dc-tie-1 eq 1
+				/systems/failures/electrical/dc-tie-1 ne 1
 			</test>
 		</switch>
 		
@@ -1482,6 +1486,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/dc-tie-3 eq 1
+				/systems/failures/electrical/dc-tie-3 ne 1
 			</test>
 		</switch>
 		

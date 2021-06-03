@@ -129,6 +129,56 @@
 				<live>true</live>
 			</checkbox>
 			
+			<checkbox>
+				<label>AC Bus Tie 1</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/ac-tie-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>AC Bus Tie 2</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/ac-tie-2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>AC Bus Tie 3</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/ac-tie-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>DC Bus Tie 1</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/dc-tie-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>DC Bus Tie 3</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/dc-tie-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
 			<group>
 				<layout>hbox</layout>
 
@@ -328,6 +378,66 @@
 				<label>SYS 3 R Pump</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/r-pump-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Aux Pump 1</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/aux-pump-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Aux Pump 2</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/aux-pump-2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>RMP 1-3</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/rmp-1-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>RMP 2-3</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/rmp-2-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>NRMP 2-1</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/nrmp-2-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>NRMP 3-2</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/nrmp-3-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

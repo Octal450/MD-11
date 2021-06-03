@@ -40,9 +40,14 @@ var ELEC = {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
 	},
 	Fail: {
+		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
+		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
+		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
 		apu: props.globals.getNode("/systems/failures/electrical/apu"),
 		bat1: props.globals.getNode("/systems/failures/electrical/bat-1"),
 		bat2: props.globals.getNode("/systems/failures/electrical/bat-2"),
+		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
+		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
 		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
 		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
 		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
@@ -237,9 +242,14 @@ var ELEC = {
 		me.Switch.genDrive1.setBoolValue(1);
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
+		me.Fail.acTie1.setBoolValue(0);
+		me.Fail.acTie2.setBoolValue(0);
+		me.Fail.acTie3.setBoolValue(0);
 		me.Fail.apu.setBoolValue(0);
 		me.Fail.bat1.setBoolValue(0);
 		me.Fail.bat2.setBoolValue(0);
+		me.Fail.dcTie1.setBoolValue(0);
+		me.Fail.dcTie3.setBoolValue(0);
 		me.Fail.gen1.setBoolValue(0);
 		me.Fail.gen2.setBoolValue(0);
 		me.Fail.gen3.setBoolValue(0);
