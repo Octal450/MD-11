@@ -924,7 +924,7 @@
 		<switch name="/systems/electrical/bus/ac-gen-1-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- IDG1 -->
+			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 1
 			</test>
 			<test value="2"> <!-- APU -->
@@ -962,7 +962,7 @@
 		<switch name="/systems/electrical/bus/ac-gen-2-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- IDG1 -->
+			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 1
 			</test>
 			<test value="2"> <!-- APU -->
@@ -1000,7 +1000,7 @@
 		<switch name="/systems/electrical/bus/ac-gen-3-src">
 			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
-			<test value="1"> <!-- IDG1 -->
+			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 1
 			</test>
 			<test value="2"> <!-- APU -->
