@@ -922,7 +922,6 @@
 		
 		<!-- AC 1 Bus/AC Gen 1 Bus -->
 		<switch name="/systems/electrical/bus/ac-gen-1-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-1/contact-pos eq 1
@@ -960,7 +959,6 @@
 		
 		<!-- AC 2 Bus/AC Gen 2 Bus -->
 		<switch name="/systems/electrical/bus/ac-gen-2-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-2/contact-pos eq 1
@@ -998,7 +996,6 @@
 		
 		<!-- AC 3 Bus/AC Gen 3 Bus -->
 		<switch name="/systems/electrical/bus/ac-gen-3-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using AC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- IDG -->
 				/systems/electrical/relay/idg-ac-gen-3/contact-pos eq 1
@@ -1258,7 +1255,6 @@
 		
 		<!-- Right Emergency AC Bus -->
 		<switch name="/systems/electrical/bus/r-emer-ac-src">
-			<description>Tell which source is being used, so that the TR 3 DC 3 RCB can not allow DC 3 bus in ADG ELEC mode</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- AC GEN 3 -->
 				/systems/electrical/relay/ac-gen-3-r-emer-ac/output ge 112
@@ -1515,7 +1511,6 @@
 		
 		<!-- DC 1 Bus -->
 		<switch name="/systems/electrical/bus/dc-1-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 1 -->
 				/systems/electrical/sources/tr-1/output-volt ge 24
@@ -1541,7 +1536,6 @@
 		
 		<!-- DC 2 Bus -->
 		<switch name="/systems/electrical/bus/dc-2-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 2A -->
 				/systems/electrical/sources/tr-2a/output-volt ge 24
@@ -1592,7 +1586,6 @@
 		
 		<!-- DC 3 Bus -->
 		<switch name="/systems/electrical/bus/dc-3-src">
-			<description>Tell which source is being used, so that the system cannot magically power itself using DC tie</description>
 			<default value="0"/> <!-- OFF -->
 			<test value="1"> <!-- TR 3 -->
 				/systems/electrical/rcb/tr-3-dc-3/output ge 24
