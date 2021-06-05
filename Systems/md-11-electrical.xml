@@ -1765,7 +1765,6 @@
 		
 		<!-- Static Inverter -->
 		<fcs_function name="/systems/electrical/sources/si-1/output-volt">
-			<description>Static Inverter 1</description>
 			<function>
 				<table> <!-- DC to AC converter -->
 					<independentVar lookup="row">/systems/electrical/bus/l-emer-dc</independentVar>
