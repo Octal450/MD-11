@@ -140,7 +140,14 @@
 	
 	</channel>
 	
-	<channel name="HSC Switches/Logic" execrate="16">
+	<channel name="HSC Switches/Logic" execrate="8">
+		
+		<switch name="/systems/hydraulics/system">
+			<default value="/controls/hydraulics/switches/system"/>
+			<test value="0">
+				/systems/failures/hydraulics/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/hydraulics/hsc/parked-config-active">
 			<default value="0"/>
@@ -1052,6 +1059,14 @@
 	</channel>
 	
 	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/controls/hydraulics/lights/select-manual">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/hydraulics/switches/system eq 1
+				/systems/failures/hydraulics/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/controls/hydraulics/lights/l-pump-1-fault">
 			<default value="0"/>

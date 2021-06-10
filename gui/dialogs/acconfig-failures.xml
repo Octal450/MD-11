@@ -70,6 +70,16 @@
 			</group>
 			
 			<checkbox>
+				<label>System (EPCU)</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>APU Generator</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/apu</property>
@@ -184,9 +194,19 @@
 			</group>
 			
 			<checkbox>
+				<label>System (ESC)</label>
+				<halign>left</halign>
+				<property>/systems/failures/pneumatics/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>Bleed APU</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-apu</property>
+				<property>/systems/failures/pneumatics/bleed-apu</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -196,7 +216,7 @@
 			<checkbox>
 				<label>Bleed Eng 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-1</property>
+				<property>/systems/failures/pneumatics/bleed-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -206,7 +226,7 @@
 			<checkbox>
 				<label>Bleed Eng 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/bleed-2</property>
+				<property>/systems/failures/pneumatics/bleed-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -273,6 +293,16 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 			</group>
+			
+			<checkbox>
+				<label>System (HSC)</label>
+				<halign>left</halign>
+				<property>/systems/failures/hydraulics/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
 			
 			<checkbox>
 				<label>Catastrophic Aft Leak</label>
@@ -622,6 +652,16 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 			</group>
+			
+			<checkbox>
+				<label>System (FSC)</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
 			
 			<checkbox>
 				<label>Tank 1 Pumps</label>

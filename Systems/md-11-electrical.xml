@@ -25,7 +25,14 @@
 	<property value="99.9">/systems/electrical/sources/bat-2/percent</property>
 	<property value="0">/systems/electrical/sources/ext/output-galley-volt</property>
 	
-	<channel name="EPCU Switches/Logic" execrate="16">
+	<channel name="EPCU Switches/Logic" execrate="8">
+		
+		<switch name="/systems/electrical/system">
+			<default value="/controls/electrical/switches/system"/>
+			<test value="0">
+				/systems/failures/electrical/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/electrical/epcu/allow-apu">
 			<default value="0"/>
@@ -2122,6 +2129,14 @@
 	</channel>
 	
 	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/controls/electrical/lights/select-manual">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/electrical/switches/system eq 1
+				/systems/failures/electrical/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/controls/electrical/lights/emer-pwr-off">
 			<default value="0"/>

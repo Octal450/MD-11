@@ -50,6 +50,7 @@ var ELEC = {
 		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
 		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
 		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
+		system: props.globals.getNode("/systems/failures/electrical/system"),
 	},
 	Generic: {
 		adf: props.globals.initNode("/systems/electrical/outputs/adf", 0, "DOUBLE"),
@@ -204,6 +205,7 @@ var ELEC = {
 		genDrive2: props.globals.getNode("/controls/electrical/switches/gen-drive-2"),
 		genDrive3: props.globals.getNode("/controls/electrical/switches/gen-drive-3"),
 		smokeElecAir: props.globals.getNode("/controls/electrical/switches/smoke-elec-air"),
+		system: props.globals.getNode("/controls/electrical/switches/system"),
 	},
 	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
@@ -230,9 +232,9 @@ var ELEC = {
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
 		me.Switch.smokeElecAir.setValue(0);
+		me.Switch.system.setBoolValue(1);
 		me.Source.Bat1.percent.setValue(99.9);
 		me.Source.Bat2.percent.setValue(99.9);
-		me.system.setBoolValue(1);
 		manualElecLightt.stop();
 		me.Light.manualFlash.setValue(0);
 		me.Source.Ext.cart.setBoolValue(0);
@@ -251,21 +253,22 @@ var ELEC = {
 		me.Fail.gen1.setBoolValue(0);
 		me.Fail.gen2.setBoolValue(0);
 		me.Fail.gen3.setBoolValue(0);
+		me.Fail.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.system.getBoolValue()) {
-			me.system.setBoolValue(0);
+		if (me.Switch.system.getBoolValue()) {
+			me.Switch.system.setBoolValue(0);
 			manualElecLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {
-			me.system.setBoolValue(1);
+			me.Switch.system.setBoolValue(1);
 			manualElecLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
 		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
+		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
 			manualElecLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {

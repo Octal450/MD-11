@@ -10,6 +10,7 @@ var PNEU = {
 		pack1: props.globals.getNode("/systems/failures/pneumatics/pack-1"),
 		pack2: props.globals.getNode("/systems/failures/pneumatics/pack-2"),
 		pack3: props.globals.getNode("/systems/failures/pneumatics/pack-3"),
+		system: props.globals.getNode("/systems/failures/pneumatics/system"),
 	},
 	Flow: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-flow"),
@@ -47,6 +48,7 @@ var PNEU = {
 		pack1: props.globals.getNode("/controls/pneumatics/switches/pack-1"),
 		pack2: props.globals.getNode("/controls/pneumatics/switches/pack-2"),
 		pack3: props.globals.getNode("/controls/pneumatics/switches/pack-3"),
+		system: props.globals.getNode("/controls/pneumatics/switches/system"),
 		trimAir: props.globals.getNode("/controls/pneumatics/switches/trim-air"),
 	},
 	system: props.globals.getNode("/systems/pneumatics/system"),
@@ -67,8 +69,8 @@ var PNEU = {
 		me.Switch.pack1.setBoolValue(1);
 		me.Switch.pack2.setBoolValue(1);
 		me.Switch.pack3.setBoolValue(1);
+		me.Switch.system.setBoolValue(1);
 		me.Switch.trimAir.setBoolValue(1);
-		me.system.setBoolValue(1);
 		manualPneuLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
@@ -80,21 +82,22 @@ var PNEU = {
 		me.Fail.pack1.setBoolValue(0);
 		me.Fail.pack2.setBoolValue(0);
 		me.Fail.pack3.setBoolValue(0);
+		me.Fail.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.system.getBoolValue()) {
-			me.system.setBoolValue(0);
+		if (me.Switch.system.getBoolValue()) {
+			me.Switch.system.setBoolValue(0);
 			manualPneuLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {
-			me.system.setBoolValue(1);
+			me.Switch.system.setBoolValue(1);
 			manualPneuLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
 		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
+		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
 			manualPneuLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {

@@ -163,7 +163,7 @@
 						</binding>
 					</item>
 					<item>
-						<label>Failures</label>
+						<label>System Failures</label>
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>acconfig-failures</dialog-name>
@@ -522,6 +522,7 @@
 				<gen-drive-2 type="bool">1</gen-drive-2>
 				<gen-drive-3 type="bool">1</gen-drive-3>
 				<smoke-elec-air type="int">0</smoke-elec-air>
+				<system type="bool">1</system>
 			</switches>
 		</electrical>
 		<engines n="0">
@@ -594,6 +595,7 @@
 				<pumps-1 type="bool">0</pumps-1>
 				<pumps-2 type="bool">0</pumps-2>
 				<pumps-3 type="bool">0</pumps-3>
+				<system type="bool">1</system>
 				<trans-aux-l type="bool">0</trans-aux-l>
 				<trans-aux-r type="bool">0</trans-aux-r>
 				<trans-tail type="bool">0</trans-tail>
@@ -630,6 +632,7 @@
 				<r-pump-3 type="bool">1</r-pump-3>
 				<rmp-1-3 type="bool">0</rmp-1-3>
 				<rmp-2-3 type="bool">0</rmp-2-3>
+				<system type="bool">1</system>
 			</switches>
 		</hydraulics>
 		<ignition n="0">
@@ -689,6 +692,7 @@
 				<pack-1 type="bool">1</pack-1>
 				<pack-2 type="bool">1</pack-2>
 				<pack-3 type="bool">1</pack-3>
+				<system type="bool">1</system>
 				<trim-air type="bool">1</trim-air>
 			</switches>
 		</pneumatics>
@@ -1564,9 +1568,6 @@
 				<out type="double">0</out>
 			</landing-gear>
 		</caws>
-		<electrical n="0">
-			<system type="bool">1</system>
-		</electrical>
 		<failures n="0">
 			<brakes n="0">
 				<abs type="bool">0</abs>
@@ -1582,6 +1583,7 @@
 				<gen-1 type="bool">0</gen-1>
 				<gen-2 type="bool">0</gen-2>
 				<gen-3 type="bool">0</gen-3>
+				<system type="bool">0</system>
 			</electrical>
 			<fctl n="0">
 				<elevator-feel type="bool">0</elevator-feel>
@@ -1602,6 +1604,7 @@
 				<pumps-1 type="bool">0</pumps-1>
 				<pumps-2 type="bool">0</pumps-2>
 				<pumps-3 type="bool">0</pumps-3>
+				<system type="bool">0</system>
 			</fuel>
 			<gear n="0">
 				<center-actuator type="bool">0</center-actuator>
@@ -1626,6 +1629,7 @@
 				<sys-1-leak type="bool">0</sys-1-leak>
 				<sys-2-leak type="bool">0</sys-2-leak>
 				<sys-3-leak type="bool">0</sys-3-leak>
+				<system type="bool">0</system>
 			</hydraulics>
 			<pneumatics n="0">
 				<bleed-apu type="bool">0</bleed-apu>
@@ -1636,20 +1640,14 @@
 				<pack-2 type="bool">0</pack-2>
 				<pack-3 type="bool">0</pack-3>
 				<packs-off type="bool">0</packs-off>
+				<system type="bool">0</system>
 			</pneumatics>
 		</failures>
-		<fuel n="0">
-			<system type="bool">1</system>
-		</fuel>
 		<hydraulics n="0">
 			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
 			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
-			<system type="bool">1</system>
 		</hydraulics>
-		<pneumatics n="0">
-			<system type="bool">1</system>
-		</pneumatics>
 		<shake n="0">
 			<effect type="bool">0</effect>
 			<shaking type="double">0</shaking>

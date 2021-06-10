@@ -24,7 +24,14 @@
 	<property value="0">/systems/pneumatics/pack-2-delta-psi</property>
 	<property value="0">/systems/pneumatics/pack-3-delta-psi</property>
 	
-	<channel name="ESC Switches/Logic" execrate="16">
+	<channel name="ESC Switches/Logic" execrate="8">
+		
+		<switch name="/systems/pneumatics/system">
+			<default value="/controls/pneumatics/switches/system"/>
+			<test value="0">
+				/systems/failures/pneumatics/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/pneumatics/esc/bleed-1">
 			<default value="/controls/pneumatics/switches/bleed-1"/>
@@ -797,7 +804,7 @@
 	
 	</channel>
 	
-	<channel name="ESC Switches/Logic 2" execrate="16"> <!-- Needs to be after Main Pneumatics to avoid flashing off lights in certain situations -->
+	<channel name="ESC Switches/Logic 2" execrate="8"> <!-- Needs to be after Main Pneumatics to avoid flashing off lights in certain situations -->
 		
 		<switch name="/systems/pneumatics/esc/pack-1">
 			<default value="/controls/pneumatics/switches/pack-1"/>
@@ -860,6 +867,14 @@
 	</channel>
 	
 	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/controls/pneumatics/lights/select-manual">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/pneumatics/switches/system eq 1
+				/systems/failures/pneumatics/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/controls/pneumatics/lights/bleed-1-press">
 			<default value="0"/>

@@ -7,7 +7,14 @@
 	
 	<property value="10">/systems/fuel/internal/tank-2-balence-deadzone</property> <!-- Don't touch unless you know what you are doing! -->
 	
-	<channel name="FSC Switches/Logic" execrate="16">
+	<channel name="FSC Switches/Logic" execrate="8">
+		
+		<switch name="/systems/fuel/system">
+			<default value="/controls/fuel/switches/system"/>
+			<test value="0">
+				/systems/failures/fuel/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/fuel/fsc/pumps-1">
 			<default value="/controls/fuel/switches/pumps-1"/>
@@ -1236,6 +1243,14 @@
 	</channel>
 	
 	<channel name="Overhead Lights" execrate="8">
+		
+		<switch name="/controls/fuel/lights/select-manual">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fuel/switches/system eq 1
+				/systems/failures/fuel/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/controls/fuel/lights/fill-arm-1">
 			<default value="1"/> <!-- ARM -->

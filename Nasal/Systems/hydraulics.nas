@@ -19,6 +19,7 @@ var HYD = {
 		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
 		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
+		system: props.globals.getNode("/systems/failures/hydraulics/system"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/controls/hydraulics/lights/manual-flash", 0, "INT"),
@@ -60,6 +61,7 @@ var HYD = {
 		rPump3: props.globals.getNode("/controls/hydraulics/switches/r-pump-3"),
 		rmp13: props.globals.getNode("/controls/hydraulics/switches/rmp-1-3"),
 		rmp23: props.globals.getNode("/controls/hydraulics/switches/rmp-2-3"),
+		system: props.globals.getNode("/controls/hydraulics/switches/system"),
 	},
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	init: func() {
@@ -79,7 +81,7 @@ var HYD = {
 		me.Switch.rPump3.setBoolValue(1);
 		me.Switch.rmp13.setBoolValue(0);
 		me.Switch.rmp23.setBoolValue(0);
-		me.system.setBoolValue(1);
+		me.Switch.system.setBoolValue(1);
 		manualHydLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
@@ -100,17 +102,18 @@ var HYD = {
 		me.Fail.sys1Leak.setBoolValue(0);
 		me.Fail.sys2Leak.setBoolValue(0);
 		me.Fail.sys3Leak.setBoolValue(0);
+		me.Fail.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.system.getBoolValue()) {
-			me.system.setBoolValue(0);
+		if (me.Switch.system.getBoolValue()) {
+			me.Switch.system.setBoolValue(0);
 			manualHydLightt.stop();
 			me.Light.manualFlash.setValue(0);
 			# Apparently this happens when turning to MANUAL
 			me.Switch.rmp13.setBoolValue(1);
 			me.Switch.rmp23.setBoolValue(1);
 		} else {
-			me.system.setBoolValue(1);
+			me.Switch.system.setBoolValue(1);
 			manualHydLightt.stop();
 			me.Light.manualFlash.setValue(0);
 			# Apparently this happens when turning to AUTO
@@ -120,7 +123,7 @@ var HYD = {
 	},
 	manualLight: func() {
 		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
+		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
 			manualHydLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {

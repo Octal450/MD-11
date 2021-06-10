@@ -9,6 +9,7 @@ var FUEL = {
 		pumps1: props.globals.getNode("/systems/failures/fuel/pumps-1"),
 		pumps2: props.globals.getNode("/systems/failures/fuel/pumps-2"),
 		pumps3: props.globals.getNode("/systems/failures/fuel/pumps-3"),
+		system: props.globals.getNode("/systems/failures/fuel/system"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/controls/fuel/lights/manual-flash", 0, "INT"),
@@ -22,6 +23,7 @@ var FUEL = {
 		pumps1: props.globals.getNode("/controls/fuel/switches/pumps-1"),
 		pumps2: props.globals.getNode("/controls/fuel/switches/pumps-2"),
 		pumps3: props.globals.getNode("/controls/fuel/switches/pumps-3"),
+		system: props.globals.getNode("/controls/fuel/switches/system"),
 		transAuxL: props.globals.getNode("/controls/fuel/switches/trans-aux-l"),
 		transAuxR: props.globals.getNode("/controls/fuel/switches/trans-aux-r"),
 		transTail: props.globals.getNode("/controls/fuel/switches/trans-tail"),
@@ -42,6 +44,7 @@ var FUEL = {
 		me.Switch.pumps1.setBoolValue(0);
 		me.Switch.pumps2.setBoolValue(0);
 		me.Switch.pumps3.setBoolValue(0);
+		me.Switch.system.setBoolValue(1);
 		me.Switch.transAuxL.setBoolValue(0);
 		me.Switch.transAuxR.setBoolValue(0);
 		me.Switch.transTail.setBoolValue(0);
@@ -51,7 +54,6 @@ var FUEL = {
 		me.Switch.xFeed1.setBoolValue(0);
 		me.Switch.xFeed2.setBoolValue(0);
 		me.Switch.xFeed3.setBoolValue(0);
-		me.system.setBoolValue(1);
 		manualFuelLightt.stop();
 		me.Light.manualFlash.setValue(0);
 	},
@@ -62,10 +64,11 @@ var FUEL = {
 		me.Fail.pumps1.setBoolValue(0);
 		me.Fail.pumps2.setBoolValue(0);
 		me.Fail.pumps3.setBoolValue(0);
+		me.Fail.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.system.getBoolValue()) {
-			me.system.setBoolValue(0);
+		if (me.Switch.system.getBoolValue()) {
+			me.Switch.system.setBoolValue(0);
 			manualFuelLightt.stop();
 			me.Light.manualFlash.setValue(0);
 			# Sets this config when put in manual
@@ -82,14 +85,14 @@ var FUEL = {
 			me.Switch.xFeed2.setBoolValue(0);
 			me.Switch.xFeed3.setBoolValue(0);
 		} else {
-			me.system.setBoolValue(1);
+			me.Switch.system.setBoolValue(1);
 			manualFuelLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
 		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.system.getBoolValue()) {
+		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
 			manualFuelLightt.stop();
 			me.Light.manualFlash.setValue(0);
 		} else {
