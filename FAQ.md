@@ -80,7 +80,7 @@ Besides describing it with words, you may do two things, which helps us reproduc
 
 First of all, did you ensure that the bug is reported on our [issues page](https://github.com/Octal450/MD-11/issues/new)? If not, please do so (see also questions above on how to report them)!
 
-We suggest **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `MD-11-config.xml` file. You may find it in `$FGHOME/Export`.
+We suggest **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `MD-11-options.xml` file. You may find it in `$FGHOME/Export`.
 
 ### Q. I like increasing the simulation speed on long flights. However, I encounter issues with it once in a while. What's up?
 
