@@ -32,6 +32,7 @@
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
 					canvas_iesi.rateApply();
+					canvas_mcdu.rateApply();
 				</script>
 			</binding>
 			<binding>
@@ -211,8 +212,37 @@
 				<live>1</live>
 			</text>
 			
+			<text>
+				<row>5</row>
+				<col>0</col>
+				<halign>left</halign>
+				<label>MCDU:</label>
+			</text>
+			
+			<slider>
+				<row>5</row>
+				<col>1</col>
+				<pref-width>250</pref-width>
+				<property>/systems/acconfig/options/du/mcdu-fps</property>
+				<min>5</min>
+				<max>30</max>
+				<step>5</step>
+				<live>true</live>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</slider>
+			
+			<text>
+				<row>5</row>
+				<col>2</col>
+				<halign>left</halign>
+				<border>1</border>
+				<label>999</label>
+				<property>/systems/acconfig/options/du/mcdu-fps</property>
+				<live>1</live>
+			</text>
 		</group>
-	
 	</group>
 	
 	<hrule/>
@@ -249,6 +279,7 @@
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
 					canvas_iesi.rateApply();
+					canvas_mcdu.rateApply();
 				</script>
 			</binding>
 		</button>
@@ -264,12 +295,14 @@
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
+					pts.Systems.Acconfig.Options.Du.mcduFps.setValue(10);
 					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
 					#canvas_nd.rateApply();
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
 					canvas_iesi.rateApply();
+					canvas_mcdu.rateApply();
 				</script>
 			</binding>
 		</button>
@@ -286,6 +319,7 @@
 					canvas_ead.rateApply();
 					canvas_sd.rateApply();
 					canvas_iesi.rateApply();
+					canvas_mcdu.rateApply();
 				</script>
 			</binding>
 			<binding>

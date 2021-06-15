@@ -1,11 +1,11 @@
 # McDonnell Douglas MD-11 PFD
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
-var pfd1Display = nil;
-var pfd2Display = nil;
 var pfd1 = nil;
+var pfd1Display = nil;
 var pfd1Error = nil;
 var pfd2 = nil;
+var pfd2Display = nil;
 var pfd2Error = nil;
 
 var Value = {
@@ -1846,7 +1846,7 @@ var init = func() {
 	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Nasal/Displays/res/Error.svg");
 	
 	canvasBase.setup();
-	pfdUpdate.start();
+	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() != 20) {
 		rateApply();
@@ -1854,10 +1854,10 @@ var init = func() {
 }
 
 var rateApply = func() {
-	pfdUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.pfdFps.getValue());
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.pfdFps.getValue());
 }
 
-var pfdUpdate = maketimer(0.05, func() { # 20FPS
+var update = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 

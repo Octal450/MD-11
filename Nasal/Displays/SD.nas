@@ -235,7 +235,7 @@ var init = func() {
 	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/ENG.svg");
 	
 	canvasBase.setup();
-	sdUpdate.start();
+	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.sdFps.getValue() != 10) {
 		rateApply();
@@ -243,10 +243,10 @@ var init = func() {
 }
 
 var rateApply = func() {
-	sdUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.sdFps.getValue()); # 10FPS
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.sdFps.getValue()); # 10FPS
 }
 
-var sdUpdate = maketimer(0.1, func() { # 10FPS
+var update = maketimer(0.1, func() { # 10FPS
 	canvasBase.update();
 });
 

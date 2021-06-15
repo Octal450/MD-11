@@ -285,6 +285,7 @@ var Systems = {
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
 				iesiFps: props.globals.getNode("/systems/acconfig/options/du/iesi-fps"),
+				mcduFps: props.globals.getNode("/systems/acconfig/options/du/mcdu-fps"),
 				ndFps: props.globals.getNode("/systems/acconfig/options/du/nd-fps"),
 				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),

@@ -15,6 +15,9 @@ var DUController = {
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
+	updateMcdu1: 0,
+	updateMcdu2: 0,
+	updateMcdu3: 0,
 	updatePfd1: 0,
 	updatePfd2: 0,
 	updateNd1: 0,
@@ -26,6 +29,16 @@ var DUController = {
 		me.errorActive = 1;
 		
 		# Hide the pages
+		me.updateMcdu1 = 0;
+		me.updateMcdu2 = 0;
+		me.updateMcdu3 = 0;
+		me.updatePfd1 = 0;
+		me.updatePfd2 = 0;
+		me.updateNd1 = 0;
+		me.updateNd2 = 0;
+		me.updateEad = 0;
+		me.updateSd = 0;
+		me.updateIesi = 0;
 		canvas_pfd.pfd1.page.hide();
 		canvas_pfd.pfd2.page.hide();
 		me.showNd1.setBoolValue(0); # Temporary
@@ -34,14 +47,10 @@ var DUController = {
 		canvas_ead.pw.page.hide();
 		canvas_sd.eng.page.hide();
 		canvas_iesi.iesi.page.hide();
+		canvas_mcdu.mcdu1.page.hide();
+		canvas_mcdu.mcdu2.page.hide();
+		canvas_mcdu.mcdu3.page.hide();
 		me.iesiLcdOn.setBoolValue(0);
-		me.updatePfd1 = 0;
-		me.updatePfd2 = 0;
-		me.updateNd1 = 0;
-		me.updateNd2 = 0;
-		me.updateEad = 0;
-		me.updateSd = 0;
-		me.updateIesi = 0;
 		
 		# Now show the error
 		canvas_pfd.pfd1Error.page.show();
@@ -68,6 +77,12 @@ var DUController = {
 						canvas_ead.pw.page.show();
 					}
 				}
+				
+				if (!me.updateMcdu1) {
+					me.updateMcdu1 = 1;
+					#canvas_mcdu.mcdu1.update();
+					#canvas_mcdu.mcdu1.page.show();
+				}
 			} else {
 				if (me.updatePfd1) {
 					me.updatePfd1 = 0;
@@ -79,6 +94,11 @@ var DUController = {
 					canvas_ead.ge.page.hide();
 					canvas_ead.pw.page.hide();
 				}
+				
+				if (me.updateMcdu1) {
+					me.updateMcdu1 = 0;
+					canvas_mcdu.mcdu1.page.hide();
+				}
 			}
 			
 			if (systems.ELEC.Bus.ac1.getValue() >= 112) {
@@ -86,10 +106,21 @@ var DUController = {
 					me.updateNd1 = 1;
 					me.showNd1.setBoolValue(1); # Temporary
 				}
+				
+				if (!me.updateMcdu3) {
+					me.updateMcdu3 = 1;
+					#canvas_mcdu.mcdu3.update();
+					#canvas_mcdu.mcdu3.page.show();
+				}
 			} else {
 				if (me.updateNd1) {
 					me.updateNd1 = 0;
 					me.showNd1.setBoolValue(0); # Temporary
+				}
+				
+				if (me.updateMcdu3) {
+					me.updateMcdu3 = 0;
+					canvas_mcdu.mcdu3.page.hide();
 				}
 			}
 			
@@ -114,6 +145,12 @@ var DUController = {
 					me.sdPageActive = me.sdPage;
 					me.updateSdPage(me.sdPage);
 				}
+				
+				if (!me.updateMcdu2) {
+					me.updateMcdu2 = 1;
+					#canvas_mcdu.mcdu2.update();
+					#canvas_mcdu.mcdu2.page.show();
+				}
 			} else {
 				if (me.updatePfd2) {
 					me.updatePfd2 = 0;
@@ -128,6 +165,11 @@ var DUController = {
 				if (me.updateSd) {
 					me.updateSd = 0;
 					canvas_sd.eng.page.hide();
+				}
+				
+				if (me.updateMcdu2) {
+					me.updateMcdu2 = 0;
+					canvas_mcdu.mcdu2.page.hide();
 				}
 			}
 			

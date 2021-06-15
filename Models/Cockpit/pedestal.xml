@@ -132,7 +132,7 @@
 	
 	<model>
 		<name>CDU1</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU1.xml</path>
 		<offsets>
 			<x-m>-27.044</x-m>
 			<y-m>0.001664</y-m>
@@ -143,8 +143,8 @@
 	</model>
 	
 	<model>
-		<name>CDU1</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU.xml</path>
+		<name>CDU2</name>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU2.xml</path>
 		<offsets>
 			<x-m>-27.044</x-m>
 			<y-m>0.333051</y-m>
@@ -156,14 +156,14 @@
 	
 	<model>
 		<name>CDU3</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/MCDU/MCDU3.xml</path>
 		<offsets>
-			<x-m>-26.5056</x-m>
+			<x-m>-26.5067</x-m>
 			<y-m>0.166557</y-m>
 			<z-m>6.82741</z-m>
 		</offsets>
 	</model>
-
+	
 	<!-- Throttle quadrant -->
 	<animation>
 		<name>Engine 1 throttle lever pick</name>

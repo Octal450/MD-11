@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 IESI
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
-var iesiDisplay = nil;
+var display = nil;
 var iesi = nil;
 
 var Value = {
@@ -222,21 +222,21 @@ var canvasIesi = {
 };
 
 var init = func() {
-	iesiDisplay = canvas.new({
+	display = canvas.new({
 		"name": "IESI",
 		"size": [512, 439],
 		"view": [512, 439],
 		"mipmapping": 1
 	});
 	
-	iesiDisplay.addPlacement({"node": "iesi.screen"});
+	display.addPlacement({"node": "iesi.screen"});
 	
-	var iesiGroup = iesiDisplay.createGroup();
+	var iesiGroup = display.createGroup();
 	
 	iesi = canvasIesi.new(iesiGroup, "Aircraft/MD-11/Nasal/Displays/res/IESI.svg");
 	
 	canvasBase.setup();
-	iesiUpdate.start();
+	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.iesiFps.getValue() != 10) {
 		rateApply();
@@ -244,16 +244,16 @@ var init = func() {
 }
 
 var rateApply = func() {
-	iesiUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.iesiFps.getValue());
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.iesiFps.getValue());
 }
 
-var iesiUpdate = maketimer(0.1, func() { # 10FPS
+var update = maketimer(0.1, func() { # 10FPS
 	canvasBase.update();
 });
 
 var showIesi = func() {
 	var dlg = canvas.Window.new([256, 220], "dialog").set("resize", 1);
-	dlg.setCanvas(iesiDisplay);
+	dlg.setCanvas(display);
 	dlg.set("title", "Integrated Electronic Standby");
 }
 

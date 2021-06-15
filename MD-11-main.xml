@@ -1546,6 +1546,7 @@
 					<ead-fps type="double">20</ead-fps>
 					<enable-shaders type="bool">true</enable-shaders>
 					<iesi-fps type="double">10</iesi-fps>
+					<mcdu-fps type="double">10</mcdu-fps>
 					<nd-fps type="double">20</nd-fps>
 					<pfd-fps type="double">20</pfd-fps>
 					<sd-fps type="double">10</sd-fps>
@@ -1685,6 +1686,9 @@
 		<fms>
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 		</fms>
+		<mcdu>
+			<file>Aircraft/MD-11/Nasal/MCDU/base.nas</file>
+		</mcdu>
 		<canvas_pfd>
 			<file>Aircraft/MD-11/Nasal/Displays/PFD.nas</file>
 		</canvas_pfd>
@@ -1697,6 +1701,9 @@
 		<canvas_iesi>
 			<file>Aircraft/MD-11/Nasal/Displays/IESI.nas</file>
 		</canvas_iesi>
+		<canvas_mcdu>
+			<file>Aircraft/MD-11/Nasal/Displays/MCDU.nas</file>
+		</canvas_mcdu>
 		<instruments>
 			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
 		</instruments>

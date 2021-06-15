@@ -30,12 +30,14 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
+	mcdu.BASE.setup();
 	instruments.XPDR.init();
 	libraries.variousReset();
 }
 
 var initDone = 0;
 setlistener("/sim/signals/fdm-initialized", func() {
+	mcdu.BASE.init();
 	systemsInit();
 	systemsLoop.start();
 	lightsLoop.start();
@@ -43,6 +45,7 @@ setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_ead.init();
 	canvas_sd.init();
 	canvas_iesi.init();
+	canvas_mcdu.init();
 	initDone = 1;
 });
 

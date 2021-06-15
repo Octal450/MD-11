@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<PropertyList>
+
+	<path>res/MCDU2.ac</path>
+	
+	<effect>
+		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
+		<parameters>
+			<inner-angle>90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
+			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
+			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
+			<dirt-factor>0</dirt-factor>
+			<contrast><use>instrumentation/du/crt-contrast</use></contrast>
+		</parameters>
+		<object-name>mcdu2.screen</object-name>
+	</effect>
+
+</PropertyList>

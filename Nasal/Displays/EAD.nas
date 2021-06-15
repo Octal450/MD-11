@@ -696,7 +696,7 @@ var init = func() {
 	pw = canvasPw.new(pwGroup, "Aircraft/MD-11/Nasal/Displays/res/PW.svg");
 	
 	canvasBase.setup();
-	eadUpdate.start();
+	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.eadFps.getValue() != 20) {
 		rateApply();
@@ -704,10 +704,10 @@ var init = func() {
 }
 
 var rateApply = func() {
-	eadUpdate.restart(1 / pts.Systems.Acconfig.Options.Du.eadFps.getValue());
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.eadFps.getValue());
 }
 
-var eadUpdate = maketimer(0.05, func() { # 20FPS
+var update = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 
