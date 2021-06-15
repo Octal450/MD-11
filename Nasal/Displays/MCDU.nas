@@ -124,7 +124,7 @@ var canvasBase = {
 			
 			me["Simple_PageNum"].setText("");
 			
-			me["Simple_R1"].setText("NAV/RADf");
+			me["Simple_R1"].setText("NAV/RAD*");
 			me["Simple_R1S"].setText("STANDBY");
 			me["Simple_R2"].setText("");
 			me["Simple_R2S"].setText("");
