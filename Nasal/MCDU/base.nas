@@ -1,34 +1,40 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
-var mcdu1 = nil;
-var mcdu2 = nil;
-var mcdu3 = nil;
+var unit = [nil, nil, nil];
 
 var MCDU = {
-	new: func() {
+	new: func(n) {
 		var m = {parents: [MCDU]};
 		
-		m.page = nil;
-		m.req = nil;
+		m.id = n;
+		m.page = "Menu";
+		m.request = 1;
+		m.scratchpad = "";
+		m.type = 0;
 		
 		return m;
 	},
 	setup: func() {
-		me.page = "MENU";
-		me.req = 1;
+		me.page = "Menu";
+		me.scratchpad = "";
+		me.request = 1;
+	},
+	pageKey: func(p) {
+		me.page = p;
+		canvas_mcdu.updatePage(me.id);
 	},
 };
 
 var BASE = {
 	init: func() {
-		mcdu1 = MCDU.new();
-		mcdu2 = MCDU.new();
-		mcdu3 = MCDU.new();
+		for (var i = 0; i < 3; i = i + 1) {
+			unit[i] = MCDU.new(i);
+		}
 	},
 	setup: func() {
-		mcdu1.setup();
-		mcdu2.setup();
-		mcdu3.setup();
+		for (var i = 0; i < 3; i = i + 1) {
+			unit[i].setup();
+		}
 	},
 };

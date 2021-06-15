@@ -9,12 +9,11 @@ var mcdu3 = nil;
 var mcdu3Display = nil;
 
 var Font = {
-	default: "BoeingCDU-Large.ttf",
+	default: "MCDULarge.ttf",
 	symbol: "LiberationMonoCustom.ttf",
 };
 
 var Value = {
-	
 };
 
 var canvasBase = {
@@ -52,7 +51,9 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return [];
+		return ["Arrow", "Scratchpad", "Simple", "Simple_C1", "Simple_C1S", "Simple_C2", "Simple_C2S", "Simple_C3", "Simple_C3S", "Simple_C4", "Simple_C4S", "Simple_C5", "Simple_C5S", "Simple_C6", "Simple_C6S", "Simple_L1", "Simple_L1A", "Simple_L1S", "Simple_L2",
+		"Simple_L2A", "Simple_L2S", "Simple_L3", "Simple_L3A", "Simple_L3S", "Simple_L4", "Simple_L4A", "Simple_L4S", "Simple_L5", "Simple_L5A", "Simple_L5S", "Simple_L6", "Simple_L6A", "Simple_L6S", "Simple_PageNum", "Simple_R1", "Simple_R1A", "Simple_R1S",
+		"Simple_R2", "Simple_R2A", "Simple_R2S", "Simple_R3", "Simple_R3A", "Simple_R3S", "Simple_R4", "Simple_R4A", "Simple_R4S", "Simple_R5", "Simple_R5A", "Simple_R5S", "Simple_R6", "Simple_R6A", "Simple_R6S", "Simple_Title"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -72,7 +73,117 @@ var canvasBase = {
 		}
 	},
 	updateBase: func(n) {
+		me["Scratchpad"].setText(mcdu.unit[n].scratchpad);
 		
+		if (mcdu.unit[n].page == "Menu") {
+			if (mcdu.unit[n].type) {
+				me["Simple_C1"].setText("");
+			} else if (mcdu.unit[n].request) {
+				me["Simple_C1"].setText("<REQ>  ");
+			} else {
+				me["Simple_C1"].setText("<ACT>  ");
+			}
+		}
+	},
+	updateBasePage: func(n) { # Only set static elements, rest will be set by update() call immediately after
+		if (mcdu.unit[n].page == "Menu") {
+			me["Arrow"].hide();
+			me["Simple"].show();
+			
+			me["Simple_C1S"].setText("");
+			me["Simple_C2"].setText("");
+			me["Simple_C2S"].setText("");
+			me["Simple_C3"].setText("");
+			me["Simple_C3S"].setText("");
+			me["Simple_C4"].setText("");
+			me["Simple_C4S"].setText("");
+			me["Simple_C5"].setText("");
+			me["Simple_C5S"].setText("");
+			me["Simple_C6"].setText("");
+			me["Simple_C6S"].setText("");
+			
+			if (n == 0 and !mcdu.unit[n].type) {
+				me["Simple_L1"].setText("<FMC-1");
+			} else if (n == 1 and !mcdu.unit[n].type) {
+				me["Simple_L1"].setText("<FMC-2");
+			} else {
+				me["Simple_L1"].setText("");
+			}
+			
+			me["Simple_L1S"].setText("");
+			me["Simple_L2"].setText("");
+			me["Simple_L2S"].setText("");
+			me["Simple_L3"].setText("");
+			me["Simple_L3S"].setText("");
+			me["Simple_L4"].setText("<CDFS");
+			me["Simple_L4S"].setText("");
+			me["Simple_L5"].setText("");
+			me["Simple_L5S"].setText("");
+			me["Simple_L6"].setText("");
+			me["Simple_L6S"].setText("");
+			
+			me["Simple_PageNum"].setText("");
+			
+			me["Simple_R1"].setText("NAV/RADf");
+			me["Simple_R1S"].setText("STANDBY");
+			me["Simple_R2"].setText("");
+			me["Simple_R2S"].setText("");
+			me["Simple_R3"].setText("");
+			me["Simple_R3S"].setText("");
+			me["Simple_R4"].setText("");
+			me["Simple_R4S"].setText("");
+			me["Simple_R5"].setText("MAINT>");
+			me["Simple_R5S"].setText("");
+			me["Simple_R6"].setText("");
+			me["Simple_R6S"].setText("");
+			
+			me["Simple_Title"].setText("MENU");
+		} else {
+			me["Arrow"].hide();
+			me["Simple"].show();
+			
+			me["Simple_C1S"].setText("");
+			me["Simple_C2"].setText("");
+			me["Simple_C2S"].setText("");
+			me["Simple_C3"].setText("");
+			me["Simple_C3S"].setText("");
+			me["Simple_C4"].setText("");
+			me["Simple_C4S"].setText("");
+			me["Simple_C5"].setText("");
+			me["Simple_C5S"].setText("");
+			me["Simple_C6"].setText("");
+			me["Simple_C6S"].setText("");
+			
+			me["Simple_L1"].setText("");
+			me["Simple_L1S"].setText("");
+			me["Simple_L2"].setText("");
+			me["Simple_L2S"].setText("");
+			me["Simple_L3"].setText("");
+			me["Simple_L3S"].setText("");
+			me["Simple_L4"].setText("");
+			me["Simple_L4S"].setText("");
+			me["Simple_L5"].setText("");
+			me["Simple_L5S"].setText("");
+			me["Simple_L6"].setText("");
+			me["Simple_L6S"].setText("");
+			
+			me["Simple_PageNum"].setText("");
+			
+			me["Simple_R1"].setText("");
+			me["Simple_R1S"].setText("");
+			me["Simple_R2"].setText("");
+			me["Simple_R2S"].setText("");
+			me["Simple_R3"].setText("");
+			me["Simple_R3S"].setText("");
+			me["Simple_R4"].setText("");
+			me["Simple_R4S"].setText("");
+			me["Simple_R5"].setText("");
+			me["Simple_R5S"].setText("");
+			me["Simple_R6"].setText("");
+			me["Simple_R6S"].setText("");
+			
+			me["Simple_Title"].setText("PAGE NOT AVAIL");
+		}
 	},
 };
 
@@ -86,6 +197,10 @@ var canvasMcdu1 = {
 	update: func() {
 		me.updateBase(0);
 	},
+	updatePage: func() {
+		me.updateBasePage(0);
+		me.update();
+	},
 };
 
 var canvasMcdu2 = {
@@ -98,6 +213,10 @@ var canvasMcdu2 = {
 	update: func() {
 		me.updateBase(1);
 	},
+	updatePage: func() {
+		me.updateBasePage(1);
+		me.update();
+	},
 };
 
 var canvasMcdu3 = {
@@ -109,6 +228,10 @@ var canvasMcdu3 = {
 	},
 	update: func() {
 		me.updateBase(2);
+	},
+	updatePage: func() {
+		me.updateBasePage(2);
+		me.update();
 	},
 };
 
@@ -145,10 +268,25 @@ var init = func() {
 	mcdu3 = canvasMcdu3.new(mcdu3Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
 	
 	canvasBase.setup();
+	
+	mcdu1.updatePage();
+	mcdu2.updatePage();
+	mcdu3.updatePage();
+	
 	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.mcduFps.getValue() != 10) {
 		rateApply();
+	}
+}
+
+var updatePage = func(n) {
+	if (n == 0) {
+		mcdu1.updatePage();
+	} else if (n == 1) {
+		mcdu2.updatePage();
+	} else if (n == 2) {
+		mcdu3.updatePage();
 	}
 }
 

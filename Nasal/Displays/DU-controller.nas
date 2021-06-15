@@ -80,8 +80,8 @@ var DUController = {
 				
 				if (!me.updateMcdu1) {
 					me.updateMcdu1 = 1;
-					#canvas_mcdu.mcdu1.update();
-					#canvas_mcdu.mcdu1.page.show();
+					canvas_mcdu.mcdu1.update();
+					canvas_mcdu.mcdu1.page.show();
 				}
 			} else {
 				if (me.updatePfd1) {
@@ -109,8 +109,8 @@ var DUController = {
 				
 				if (!me.updateMcdu3) {
 					me.updateMcdu3 = 1;
-					#canvas_mcdu.mcdu3.update();
-					#canvas_mcdu.mcdu3.page.show();
+					canvas_mcdu.mcdu3.update();
+					canvas_mcdu.mcdu3.page.show();
 				}
 			} else {
 				if (me.updateNd1) {
@@ -148,8 +148,8 @@ var DUController = {
 				
 				if (!me.updateMcdu2) {
 					me.updateMcdu2 = 1;
-					#canvas_mcdu.mcdu2.update();
-					#canvas_mcdu.mcdu2.page.show();
+					canvas_mcdu.mcdu2.update();
+					canvas_mcdu.mcdu2.page.show();
 				}
 			} else {
 				if (me.updatePfd2) {
