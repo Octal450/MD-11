@@ -51,9 +51,9 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["Arrow", "Scratchpad", "Simple", "Simple_C1", "Simple_C1S", "Simple_C2", "Simple_C2S", "Simple_C3", "Simple_C3S", "Simple_C4", "Simple_C4S", "Simple_C5", "Simple_C5S", "Simple_C6", "Simple_C6S", "Simple_L1", "Simple_L1A", "Simple_L1S", "Simple_L2",
-		"Simple_L2A", "Simple_L2S", "Simple_L3", "Simple_L3A", "Simple_L3S", "Simple_L4", "Simple_L4A", "Simple_L4S", "Simple_L5", "Simple_L5A", "Simple_L5S", "Simple_L6", "Simple_L6A", "Simple_L6S", "Simple_PageNum", "Simple_R1", "Simple_R1A", "Simple_R1S",
-		"Simple_R2", "Simple_R2A", "Simple_R2S", "Simple_R3", "Simple_R3A", "Simple_R3S", "Simple_R4", "Simple_R4A", "Simple_R4S", "Simple_R5", "Simple_R5A", "Simple_R5S", "Simple_R6", "Simple_R6A", "Simple_R6S", "Simple_Title"];
+		return ["Arrow", "Clr", "Scratchpad", "Simple", "Simple_C1", "Simple_C1S", "Simple_C2", "Simple_C2S", "Simple_C3", "Simple_C3S", "Simple_C4", "Simple_C4S", "Simple_C5", "Simple_C5S", "Simple_C6", "Simple_C6S", "Simple_L1", "Simple_L1A", "Simple_L1S",
+		"Simple_L2", "Simple_L2A", "Simple_L2S", "Simple_L3", "Simple_L3A", "Simple_L3S", "Simple_L4", "Simple_L4A", "Simple_L4S", "Simple_L5", "Simple_L5A", "Simple_L5S", "Simple_L6", "Simple_L6A", "Simple_L6S", "Simple_PageNum", "Simple_R1", "Simple_R1A",
+		"Simple_R1S", "Simple_R2", "Simple_R2A", "Simple_R2S", "Simple_R3", "Simple_R3A", "Simple_R3S", "Simple_R4", "Simple_R4A", "Simple_R4S", "Simple_R5", "Simple_R5A", "Simple_R5S", "Simple_R6", "Simple_R6A", "Simple_R6S", "Simple_Title"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -73,6 +73,11 @@ var canvasBase = {
 		}
 	},
 	updateBase: func(n) {
+		if (mcdu.unit[n].clear) {
+			me["Clr"].show();
+		} else {
+			me["Clr"].hide();
+		}
 		me["Scratchpad"].setText(mcdu.unit[n].scratchpad);
 		
 		if (mcdu.unit[n].page == "menu") {

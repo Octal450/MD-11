@@ -11,6 +11,7 @@ var MCDU = {
 			active: 0,
 			time: -10,
 		};
+		m.clear = 0;
 		m.id = n;
 		m.lastFmcPage = "acstatus";
 		m.message = std.Vector.new();
@@ -22,9 +23,28 @@ var MCDU = {
 		
 		return m;
 	},
+	pageList: {
+		acstatus: {
+			nextPage: "acstatus2",
+			type: "fms",
+		},
+		acstatus2: {
+			nextPage: "acstatus",
+			type: "fms",
+		},
+		menu: {
+			nextPage: "none",
+			type: "base",
+		},
+		radnav: {
+			nextPage: "none",
+			type: "fms",
+		},
+	},
 	setup: func() {
 		me.blink.active = 0;
 		me.blink.time = -10;
+		me.clear = 0;
 		me.lastFmcPage = "acstatus";
 		me.message.clear();
 		me.page = "menu";
@@ -39,16 +59,35 @@ var MCDU = {
 			}
 		}
 	},
+	arrowKey: func(d) {
+		if (!me.blink.active) {
+			# Do cool up/down stuff here
+		}
+	},
 	blinkScreen: func() {
 		me.blink.active = 1;
 		systems.DUController.hideMcdu(me.id);
 		me.blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.5;
 	},
-	isFmcPage: func(p) {
-		if (p == "acstatus" or p == "radnav") { # Put all FMC pages here
-			return 1;
-		} else {
-			return 0;
+	clearMessage: func() {
+		me.clear = 0;
+		if (me.message.size() > 1) {
+			me.message.pop(0);
+			me.scratchpad = me.message.vector[0];
+		} else if (me.message.size() > 0) {
+			me.message.pop(0);
+			me.scratchpad = "";
+		}
+	},
+	nextPage: func() {
+		if (!me.blink.active) {
+			me.blinkScreen();
+			
+			if (me.pageList[me.page].nextPage != "none") {
+				me.setPage(me.pageList[me.page].nextPage);
+			} else {
+				me.setMessage("NOT ALLOWED");
+			}
 		}
 	},
 	pageKey: func(p) {
@@ -59,6 +98,7 @@ var MCDU = {
 		}
 	},
 	setMessage: func(m) {
+		me.clear = 0;
 		if (me.message.size() > 0) {
 			if (me.message.vector[0] != m) {
 				me.message.insert(0, m);
@@ -71,9 +111,10 @@ var MCDU = {
 		}
 	},
 	setPage: func(p) {
-		if (p == "menu" and me.isFmcPage(me.page)) {
+		if (p == "menu" and me.pageList[me.page].type == "fms") {
 			me.lastFmcPage = me.page;
 		}
+		
 		me.blinkScreen();
 		me.page = p;
 		canvas_mcdu.updatePage(me.id);
@@ -81,12 +122,17 @@ var MCDU = {
 	softKey: func(k) {
 		if (!me.blink.active) {
 			me.blinkScreen();
+			
 			if (me.page == "menu") {
 				if (k == "l1") {
-					if (me.request) {
-						me.request = 0;
+					if (!me.clear and size(me.scratchpad) == 0) {
+						if (me.request) {
+							me.request = 0;
+						} else {
+							me.setPage(me.lastFmcPage);
+						}
 					} else {
-						me.setPage(me.lastFmcPage);
+						me.setMessage("NOT ALLOWED");
 					}
 				} else {
 					me.setMessage("NOT ALLOWED");
@@ -94,6 +140,28 @@ var MCDU = {
 			} else {
 				me.setMessage("NOT ALLOWED");
 			}
+		}
+	},
+	alphaNumKey: func(k) {
+		if (k == "clr") {
+			if (me.message.size() > 0) {
+				me.clear = 0;
+				me.clearMessage();
+			} else if (size(me.scratchpad) > 0) {
+				me.clear = 0;
+				me.scratchpad = left(me.scratchpad, size(me.scratchpad) - 1);
+			} else if (me.clear) {
+				me.clear = 0;
+			} else {
+				me.clear = 1;
+			}
+		} else if (me.message.size() == 0) {
+			me.clear = 0;
+			if (size(me.scratchpad) < 22) {
+				me.scratchpad = me.scratchpad ~ k;
+			}
+		} else {
+			me.clear = 0;
 		}
 	},
 };
