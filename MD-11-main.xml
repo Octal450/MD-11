@@ -145,6 +145,27 @@
 							<dialog-name>autopilot</dialog-name>
 						</binding>
 					</item>
+					<item>
+						<label>Captain's MCDU</label>
+						<binding>
+							<command>nasal</command>
+							<script>canvas_mcdu.showMcdu1();</script>
+						</binding>
+					</item>
+					<item>
+						<label>First Officer's MCDU</label>
+						<binding>
+							<command>nasal</command>
+							<script>canvas_mcdu.showMcdu2();</script>
+						</binding>
+					</item>
+					<item>
+						<label>Auxiliary MCDU</label>
+						<binding>
+							<command>nasal</command>
+							<script>canvas_mcdu.showMcdu3();</script>
+						</binding>
+					</item>
 				</menu>
 				<menu n="104">
 					<label>Utilities</label>

@@ -282,6 +282,7 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		Options: {
+			deflectedAileronEquipped: props.globals.getNode("/systems/acconfig/options/deflected-aileron-equipped"),
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
 				iesiFps: props.globals.getNode("/systems/acconfig/options/du/iesi-fps"),

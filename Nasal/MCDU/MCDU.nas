@@ -143,7 +143,7 @@ var MCDU = {
 		}
 	},
 	alphaNumKey: func(k) {
-		if (k == "clr") {
+		if (k == "CLR") {
 			if (me.message.size() > 0) {
 				me.clear = 0;
 				me.clearMessage();
@@ -167,12 +167,23 @@ var MCDU = {
 };
 
 var BASE = {
+	acStatus: {
+		database: "01JAN-28JAN",
+		database2: "29JAN-26FEB",
+		databaseCode: "MD20170101",
+		databaseCode2: "MD20170102",
+		databaseSelected: 1,
+		eng: props.globals.getNode("/MCDUC/eng").getValue(),
+		perfFactor: 0,
+		program: "PS4070541-921", # -921 software load
+	},
 	init: func() {
 		unit[0] = MCDU.new(0, 0);
 		unit[1] = MCDU.new(1, 0);
 		unit[2] = MCDU.new(2, 1);
 	},
 	setup: func() {
+		me.acStatus.databaseSelected = 1;
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].setup();
 		}

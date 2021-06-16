@@ -10,6 +10,8 @@ var mcdu3Display = nil;
 
 var Font = {
 	default: "MCDULarge.ttf",
+	normal: 65,
+	small: 54,
 	symbol: "LiberationMonoCustom.ttf",
 };
 
@@ -88,9 +90,32 @@ var canvasBase = {
 			} else {
 				me["Simple_C1"].setText("<ACT>  ");
 			}
+		} else if (mcdu.unit[n].page == "acstatus") {
+			if (pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue()) {
+				me["Simple_L1"].setText("MD-11 DEF AIL");
+			} else {
+				me["Simple_L1"].setText("MD-11");
+			}
+			
+			if (mcdu.BASE.acStatus.databaseSelected) {
+				me["Simple_L3"].setText(mcdu.BASE.acStatus.database2);
+				me["Simple_L4"].setText(mcdu.BASE.acStatus.database);
+				me["Simple_R3"].setText(mcdu.BASE.acStatus.databaseCode2);
+			} else {
+				me["Simple_L3"].setText(mcdu.BASE.acStatus.database);
+				me["Simple_L4"].setText(mcdu.BASE.acStatus.database2);
+				me["Simple_R3"].setText(mcdu.BASE.acStatus.databaseCode);
+			}
+			
+			if (mcdu.BASE.acStatus.perfFactor >= 0) {
+				me["Simple_L6"].setText("+" ~ sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor));
+			} else {
+				me["Simple_L6"].setText(sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor));
+			}
 		}
 	},
 	updateBasePage: func(n) { # Only set static elements, rest will be set by update() call immediately after
+		me.resetFontSize();
 		if (mcdu.unit[n].page == "menu") {
 			me["Arrow"].hide();
 			me["Simple"].show();
@@ -143,6 +168,49 @@ var canvasBase = {
 			me["Simple_R6S"].setText("");
 			
 			me["Simple_Title"].setText("MENU");
+		} else if (mcdu.unit[n].page == "acstatus") {
+			me["Arrow"].show();
+			me["Simple"].show();
+			
+			me["Simple_C1"].setText("");
+			me["Simple_C1S"].setText("");
+			me["Simple_C2"].setText("");
+			me["Simple_C2S"].setText("");
+			me["Simple_C3"].setText("");
+			me["Simple_C3S"].setText("");
+			me["Simple_C4"].setText("");
+			me["Simple_C4S"].setText("");
+			me["Simple_C5"].setText("");
+			me["Simple_C5S"].setText("");
+			me["Simple_C6"].setText("");
+			me["Simple_C6S"].setText("");
+			
+			me["Simple_L1S"].setText(" MODEL");
+			me["Simple_L2"].setText(mcdu.BASE.acStatus.program);
+			me["Simple_L2S"].setText(" OP PROGRAM");
+			me["Simple_L3S"].setText(" ACTIVE DATA BASE");
+			me["Simple_L4"].setFontSize(Font.small);
+			me["Simple_L4S"].setText(" SECOND DATA BASE");
+			me["Simple_L5"].setText("");
+			me["Simple_L5S"].setText("");
+			me["Simple_L6S"].setText(" PERF FACTOR");
+			
+			me["Simple_PageNum"].setText("1/2");
+			
+			me["Simple_R1"].setText(mcdu.BASE.acStatus.eng);
+			me["Simple_R1S"].setText("ENGINE ");
+			me["Simple_R2"].setText("");
+			me["Simple_R2S"].setText("");
+			me["Simple_R3"].setText("N/A");
+			me["Simple_R3S"].setText("");
+			me["Simple_R4"].setText("");
+			me["Simple_R4S"].setText("");
+			me["Simple_R5"].setText("");
+			me["Simple_R5S"].setText("");
+			me["Simple_R6"].setText("F-PLN INIT>");
+			me["Simple_R6S"].setText("");
+			
+			me["Simple_Title"].setText("A/C STATUS");
 		} else {
 			me["Arrow"].hide();
 			me["Simple"].show();
@@ -190,6 +258,26 @@ var canvasBase = {
 			
 			me["Simple_Title"].setText("PAGE NOT AVAIL");
 		}
+	},
+	resetFontSize: func() {
+		me["Simple_C1"].setFontSize(Font.normal);
+		me["Simple_C2"].setFontSize(Font.normal);
+		me["Simple_C3"].setFontSize(Font.normal);
+		me["Simple_C4"].setFontSize(Font.normal);
+		me["Simple_C5"].setFontSize(Font.normal);
+		me["Simple_C6"].setFontSize(Font.normal);
+		me["Simple_L1"].setFontSize(Font.normal);
+		me["Simple_L2"].setFontSize(Font.normal);
+		me["Simple_L3"].setFontSize(Font.normal);
+		me["Simple_L4"].setFontSize(Font.normal);
+		me["Simple_L5"].setFontSize(Font.normal);
+		me["Simple_L6"].setFontSize(Font.normal);
+		me["Simple_R1"].setFontSize(Font.normal);
+		me["Simple_R2"].setFontSize(Font.normal);
+		me["Simple_R3"].setFontSize(Font.normal);
+		me["Simple_R4"].setFontSize(Font.normal);
+		me["Simple_R5"].setFontSize(Font.normal);
+		me["Simple_R6"].setFontSize(Font.normal);
 	},
 };
 
@@ -303,3 +391,15 @@ var rateApply = func() {
 var update = maketimer(0.1, func() { # 10FPS
 	canvasBase.update();
 });
+
+var showMcdu1 = func {
+	gui.showDialog("mcdu1");
+}
+
+var showMcdu2 = func {
+	gui.showDialog("mcdu2");
+}
+
+var showMcdu3 = func {
+	gui.showDialog("mcdu3");
+}
