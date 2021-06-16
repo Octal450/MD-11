@@ -8,21 +8,71 @@ var MCDU = {
 		var m = {parents: [MCDU]};
 		
 		m.id = n;
-		m.page = "Menu";
+		m.lastFmcPage = "acstatus";
+		m.message = std.Vector.new();
+		m.page = "menu";
 		m.request = 1;
 		m.scratchpad = "";
+		m.scratchpadOld = "";
 		m.type = t;
 		
 		return m;
 	},
 	setup: func() {
-		me.page = "Menu";
+		me.lastFmcPage = "acstatus";
+		me.message.clear();
+		me.page = "menu";
 		me.scratchpad = "";
+		me.scratchpadOld = "";
 		me.request = 1;
 	},
+	isFmcPage: func(p) {
+		if (p == "acstatus" or p == "radnav") { # Put all FMC pages here
+			return 1;
+		} else {
+			return 0;
+		}
+	},
 	pageKey: func(p) {
+		if (p == "menu" or !me.request) {
+			me.setPage(p);
+		}
+	},
+	setMessage: func(m) {
+		if (me.message.size() > 0) {
+			if (me.message.vector[0] != m) {
+				me.message.insert(0, m);
+				me.scratchpad = m;
+			}
+		} else {
+			me.message.insert(0, m);
+			me.scratchpadOld = me.scratchpad;
+			me.scratchpad = m;
+		}
+	},
+	setPage: func(p) {
+		if (p == "menu" and me.isFmcPage(me.page)) {
+			me.lastFmcPage = me.page;
+		}
+		# Flash screen
 		me.page = p;
 		canvas_mcdu.updatePage(me.id);
+	},
+	softKey: func(k) {
+		# Flash screen
+		if (me.page == "menu") {
+			if (k == "l1") {
+				if (me.request) {
+					me.request = 0;
+				} else {
+					me.setPage(me.lastFmcPage);
+				}
+			} else {
+				me.setMessage("NOT ALLOWED");
+			}
+		} else {
+			me.setMessage("NOT ALLOWED");
+		}
 	},
 };
 

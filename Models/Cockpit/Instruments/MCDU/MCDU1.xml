@@ -17,5 +17,319 @@
 		</parameters>
 		<object-name>mcdu1.screen</object-name>
 	</effect>
+	
+	<!-- Soft Keys -->
+	<animation>
+		<type>pick</type>
+		<object-name>L1</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l1");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L2</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l2");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L3</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l3");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L4</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l4");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L5</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l5");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>L6</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("l6");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R1</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r1");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R2</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r2");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R3</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r3");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R4</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r4");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R5</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r5");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>R6</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].softKey("r6");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- Page Keys -->
+	<animation>
+		<type>pick</type>
+		<object-name>dir</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("dir");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>radnav</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("radnav");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>perf</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("perf");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>init</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("init");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>toappr</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("toappr");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>fpln</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("fpln");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>prog</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("prog");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>fix</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("fix");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>secfpln</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("secfpln");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ref</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("ref");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>engout</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("engout");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>mcdu.unit[0].pageKey("menu");</script>
+			</binding>
+		</action>
+	</animation>
 
 </PropertyList>

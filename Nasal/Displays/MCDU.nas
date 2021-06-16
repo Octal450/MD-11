@@ -75,7 +75,7 @@ var canvasBase = {
 	updateBase: func(n) {
 		me["Scratchpad"].setText(mcdu.unit[n].scratchpad);
 		
-		if (mcdu.unit[n].page == "Menu") {
+		if (mcdu.unit[n].page == "menu") {
 			if (mcdu.unit[n].type) {
 				me["Simple_C1"].setText("");
 			} else if (mcdu.unit[n].request) {
@@ -86,7 +86,7 @@ var canvasBase = {
 		}
 	},
 	updateBasePage: func(n) { # Only set static elements, rest will be set by update() call immediately after
-		if (mcdu.unit[n].page == "Menu") {
+		if (mcdu.unit[n].page == "menu") {
 			me["Arrow"].hide();
 			me["Simple"].show();
 			
@@ -142,6 +142,7 @@ var canvasBase = {
 			me["Arrow"].hide();
 			me["Simple"].show();
 			
+			me["Simple_C1"].setText("");
 			me["Simple_C1S"].setText("");
 			me["Simple_C2"].setText("");
 			me["Simple_C2S"].setText("");
