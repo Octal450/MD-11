@@ -52,8 +52,10 @@ var MCDU = {
 		}
 	},
 	pageKey: func(p) {
-		if (p == "menu" or !me.request) {
-			me.setPage(p);
+		if (!me.blink.active) {
+			if (p == "menu" or !me.request) {
+				me.setPage(p);
+			}
 		}
 	},
 	setMessage: func(m) {
@@ -77,19 +79,21 @@ var MCDU = {
 		canvas_mcdu.updatePage(me.id);
 	},
 	softKey: func(k) {
-		me.blinkScreen();
-		if (me.page == "menu") {
-			if (k == "l1") {
-				if (me.request) {
-					me.request = 0;
+		if (!me.blink.active) {
+			me.blinkScreen();
+			if (me.page == "menu") {
+				if (k == "l1") {
+					if (me.request) {
+						me.request = 0;
+					} else {
+						me.setPage(me.lastFmcPage);
+					}
 				} else {
-					me.setPage(me.lastFmcPage);
+					me.setMessage("NOT ALLOWED");
 				}
 			} else {
 				me.setMessage("NOT ALLOWED");
 			}
-		} else {
-			me.setMessage("NOT ALLOWED");
 		}
 	},
 };
