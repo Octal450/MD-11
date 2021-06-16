@@ -78,10 +78,12 @@ var DUController = {
 					}
 				}
 				
-				if (!me.updateMcdu1) {
-					me.updateMcdu1 = 1;
-					canvas_mcdu.mcdu1.update();
-					canvas_mcdu.mcdu1.page.show();
+				if (!mcdu.unit[0].blink.active) {
+					if (!me.updateMcdu1) {
+						me.updateMcdu1 = 1;
+						canvas_mcdu.mcdu1.update();
+						canvas_mcdu.mcdu1.page.show();
+					}
 				}
 			} else {
 				if (me.updatePfd1) {
@@ -107,10 +109,12 @@ var DUController = {
 					me.showNd1.setBoolValue(1); # Temporary
 				}
 				
-				if (!me.updateMcdu3) {
-					me.updateMcdu3 = 1;
-					canvas_mcdu.mcdu3.update();
-					canvas_mcdu.mcdu3.page.show();
+				if (!mcdu.unit[2].blink.active) {
+					if (!me.updateMcdu3) {
+						me.updateMcdu3 = 1;
+						canvas_mcdu.mcdu3.update();
+						canvas_mcdu.mcdu3.page.show();
+					}
 				}
 			} else {
 				if (me.updateNd1) {
@@ -146,10 +150,12 @@ var DUController = {
 					me.updateSdPage(me.sdPage);
 				}
 				
-				if (!me.updateMcdu2) {
-					me.updateMcdu2 = 1;
-					canvas_mcdu.mcdu2.update();
-					canvas_mcdu.mcdu2.page.show();
+				if (!mcdu.unit[1].blink.active) {
+					if (!me.updateMcdu2) {
+						me.updateMcdu2 = 1;
+						canvas_mcdu.mcdu2.update();
+						canvas_mcdu.mcdu2.page.show();
+					}
 				}
 			} else {
 				if (me.updatePfd2) {
@@ -204,6 +210,20 @@ var DUController = {
 					me.iesiLcdOn.setBoolValue(0);
 				}
 			}
+		}
+	},
+	hideMcdu: func(n) {
+		if (n == 0) {
+			me.updateMcdu1 = 0;
+			canvas_mcdu.mcdu1.page.hide();
+		}
+		if (n == 1) {
+			me.updateMcdu2 = 0;
+			canvas_mcdu.mcdu2.page.hide();
+		}
+		if (n == 2) {
+			me.updateMcdu3 = 0;
+			canvas_mcdu.mcdu3.page.hide();
 		}
 	},
 	updateSdPage: func(p) {

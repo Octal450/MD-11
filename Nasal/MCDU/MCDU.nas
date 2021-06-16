@@ -7,6 +7,10 @@ var MCDU = {
 	new: func(n, t) {
 		var m = {parents: [MCDU]};
 		
+		m.blink = {
+			active: 0,
+			time: -10,
+		};
 		m.id = n;
 		m.lastFmcPage = "acstatus";
 		m.message = std.Vector.new();
@@ -19,12 +23,26 @@ var MCDU = {
 		return m;
 	},
 	setup: func() {
+		me.blink.active = 0;
+		me.blink.time = -10;
 		me.lastFmcPage = "acstatus";
 		me.message.clear();
 		me.page = "menu";
 		me.scratchpad = "";
 		me.scratchpadOld = "";
 		me.request = 1;
+	},
+	loop: func() {
+		if (me.blink.active) {
+			if (me.blink.time < pts.Sim.Time.elapsedSec.getValue()) {
+				me.blink.active = 0;
+			}
+		}
+	},
+	blinkScreen: func() {
+		me.blink.active = 1;
+		systems.DUController.hideMcdu(me.id);
+		me.blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.5;
 	},
 	isFmcPage: func(p) {
 		if (p == "acstatus" or p == "radnav") { # Put all FMC pages here
@@ -54,12 +72,12 @@ var MCDU = {
 		if (p == "menu" and me.isFmcPage(me.page)) {
 			me.lastFmcPage = me.page;
 		}
-		# Flash screen
+		me.blinkScreen();
 		me.page = p;
 		canvas_mcdu.updatePage(me.id);
 	},
 	softKey: func(k) {
-		# Flash screen
+		me.blinkScreen();
 		if (me.page == "menu") {
 			if (k == "l1") {
 				if (me.request) {
@@ -86,5 +104,10 @@ var BASE = {
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].setup();
 		}
+	},
+	loop: func() {
+		unit[0].loop();
+		unit[1].loop();
+		unit[2].loop();
 	},
 };

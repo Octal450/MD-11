@@ -50,6 +50,7 @@ setlistener("/sim/signals/fdm-initialized", func() {
 });
 
 var systemsLoop = maketimer(0.1, func() {
+	mcdu.BASE.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
 	
