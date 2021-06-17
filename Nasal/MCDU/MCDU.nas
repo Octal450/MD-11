@@ -64,14 +64,18 @@ var MCDU = {
 		systems.DUController.hideMcdu(me.id);
 		me.Blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
 	},
-	clearMessage: func() {
+	clearMessage: func(a) {
 		me.clear = 0;
-		if (me.message.size() > 1) {
-			me.message.pop(0);
-			me.scratchpad = me.message.vector[0];
-		} else if (me.message.size() > 0) {
-			me.message.pop(0);
-			me.scratchpad = "";
+		if (a) {
+			me.message.clear();
+		} else {
+			if (me.message.size() > 1) {
+				me.message.pop(0);
+				me.scratchpad = me.message.vector[0];
+			} else if (me.message.size() > 0) {
+				me.message.pop(0);
+				me.scratchpad = "";
+			}
 		}
 	},
 	nextPage: func() {
@@ -100,7 +104,7 @@ var MCDU = {
 	scratchpadState: func() {
 		if (me.clear) {
 			return 0;
-		} else if (size(mcdu.unit[me.id].scratchpad) > 0) {
+		} else if (size(mcdu.unit[me.id].scratchpad) > 0 and me.message.size() == 0) {
 			return 2;
 		} else {
 			return 1;
@@ -149,7 +153,7 @@ var MCDU = {
 		if (k == "CLR") {
 			if (me.message.size() > 0) {
 				me.clear = 0;
-				me.clearMessage();
+				me.clearMessage(0);
 			} else if (size(me.scratchpad) > 0) {
 				me.clear = 0;
 				me.scratchpad = left(me.scratchpad, size(me.scratchpad) - 1);
@@ -160,6 +164,9 @@ var MCDU = {
 			}
 		} else if (me.message.size() == 0) {
 			me.clear = 0;
+			if (me.message.size() > 0) {
+				me.clearMessage(1);
+			}
 			if (size(me.scratchpad) < 22) {
 				me.scratchpad = me.scratchpad ~ k;
 			}
