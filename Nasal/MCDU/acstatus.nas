@@ -59,6 +59,7 @@ var AcStatus = {
 		};
 		
 		m.group = "fmc";
+		m.name = "acStatus";
 		m.nextPage = "acStatus2";
 		m.scratchpad = "";
 		
@@ -199,6 +200,7 @@ var AcStatus2 = {
 		};
 		
 		m.group = "fmc";
+		m.name = "acStatus2";
 		m.nextPage = "acStatus";
 		
 		return m;

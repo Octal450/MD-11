@@ -64,7 +64,8 @@ var Menu = {
 			m.Display.L1 = "<FMC-" ~ sprintf("%s", n + 1);
 		}
 		
-		m.group = "fmc";
+		m.group = "base";
+		m.name = "menu";
 		m.nextPage = "none";
 		m.type = t;
 		

@@ -129,7 +129,7 @@ var MCDU = {
 	},
 	setPage: func(p) {
 		if (p == "menu" and me.page.group == "fmc") {
-			me.lastFmcPage = me.page;
+			me.lastFmcPage = me.page.name;
 		}
 		
 		me.blinkScreen();
