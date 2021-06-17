@@ -65,7 +65,7 @@ var Fallback = {
 		
 		return m;
 	},
-	tempReset: func() {
+	setup: func() {
 		# Placeholder
 	},
 	loop: func() {

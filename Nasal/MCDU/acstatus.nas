@@ -70,9 +70,9 @@ var AcStatus = {
 		return m;
 	},
 	reset: func() {
-		me.tempReset();
+		me.setup();
 	},
-	tempReset: func() {
+	setup: func() {
 		me.Value.databaseConfirm = 0;
 		me.Display.R4 = "";
 	},
@@ -201,7 +201,7 @@ var AcStatus2 = {
 		
 		return m;
 	},
-	tempReset: func() {
+	setup: func() {
 		# Placeholder
 	},
 	loop: func() {

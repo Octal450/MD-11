@@ -76,10 +76,10 @@ var Menu = {
 		return m;
 	},
 	reset: func() {
-		me.tempReset();
+		me.setup();
 		me.Value.request = 1;
 	},
-	tempReset: func() {
+	setup: func() {
 		# Placeholder
 	},
 	loop: func() {
@@ -171,7 +171,7 @@ var Ref = {
 		
 		return m;
 	},
-	tempReset: func() {
+	setup: func() {
 		# Placeholder
 	},
 	loop: func() {

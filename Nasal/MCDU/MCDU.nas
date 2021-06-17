@@ -148,8 +148,8 @@ var MCDU = {
 			me.page = me.PageList.fallback;
 		}
 		
-		# Clear temporary things
-		me.page.tempReset(); 
+		# Setup page
+		me.page.setup(); 
 		
 		# Update everything now to make sure it all transitions at once
 		me.page.loop(); 

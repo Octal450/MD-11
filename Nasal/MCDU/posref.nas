@@ -26,13 +26,13 @@ var PosRef = {
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			L1: "N4038.5/W07346.0",
-			L1S: "FMC LAT/LONG (G/I)",
+			L1S: "",
 			L2: "N4038.5/W07346.0",
-			L2S: "IRS (MIX)",
+			L2S: " IRS (MIX)",
 			L3: "",
 			L3S: "",
 			L4: "2.00/0.05NM",
-			L4S: "RNP ACTUAL",
+			L4S: " RNP ACTUAL",
 			L5: "",
 			L5S: "",
 			L6: "",
@@ -50,18 +50,19 @@ var PosRef = {
 			R4: "",
 			R4S: "",
 			R5: "INHIBIT*",
-			R5S: "GPS NAV",
-			R6: "F-PLN INIT>",
-			R6S: "RETURN TO",
+			R5S: "GPS NAV ",
+			R6: "",
+			R6S: "RETURN TO ",
 			
 			simple: 1,
-			title: "IRS/GNS POS   ",
+			title: "POS REF   ",
 		};
 		
 		m.Value = {
 			frozen: 0,
 		};
 		
+		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "posRef";
 		m.nextPage = "irsGnsPos";
@@ -70,17 +71,23 @@ var PosRef = {
 		return m;
 	},
 	reset: func() {
-		me.tempReset();
+		me.setup();
 		# Placeholder
 	},
-	tempReset: func() {
-		# Placeholder
+	setup: func() {
+		if (mcdu.unit[me.id].lastFmcPage == "init") {
+			me.fromPage = "init";
+			me.Display.R6 = "F-PLN INIT>";
+		} else {
+			me.fromPage = "ref";
+			me.Display.R6 = "REF INDEX>";
+		}
 	},
 	loop: func() {
 		if (!me.Value.frozen) {
-			me.Display.L1S = "FMC LAT/LONG (G/I)";
+			me.Display.L1S = " FMC LAT/LONG (G/I)";
 		} else {
-			me.Display.L1S = "POS FROZEN (G/I)";
+			me.Display.L1S = " POS FROZEN (G/I)";
 		}
 		
 		# todo: GPS ENABLE / INHIBIT
@@ -94,8 +101,12 @@ var PosRef = {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
 			if (k == "l1") {
 				me.Value.frozen = !me.Value.frozen;
-			} elsif (k == "r6") {
-				mcdu.unit[me.id].setPage("refindex");
+			} else if (k == "r6") {
+				if (me.fromPage == "init") {
+					mcdu.unit[me.id].setPage("init");
+				} else {
+					mcdu.unit[me.id].setPage("ref");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -116,11 +127,11 @@ var IrsGnsPos = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			C1: "-",
-			C1S: "NAV",
+			C1S: "",
 			C2: "-",
-			C2S: "NAV",
+			C2S: "",
 			C3: "-",
-			C3S: "NAV",
+			C3S: "",
 			C4: "",
 			C4S: "NAV",
 			C5: "",
@@ -129,39 +140,40 @@ var IrsGnsPos = {
 			C6S: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "N4038.5/W07346.0",
-			L1S: "IRU 1",
-			L2: "N4038.5/W07346.0",
-			L2S: "IRU 2",
-			L3: "N4038.5/W07346.0",
-			L3S: "IRU 3",
+			L1: "",
+			L1S: " IRU 1",
+			L2: "",
+			L2S: " IRU 2",
+			L3: "",
+			L3S: " IRU 3",
 			L4: "N4038.5/W07346.0",
-			L4S: "GNS 1",
+			L4S: " GNS 1",
 			L5: "N4038.5/W07346.0",
-			L5S: "GNS 2",
+			L5S: " GNS 2",
 			L6: "",
 			L6S: "",
 			
 			pageNum: "2/3",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "000g/00",
+			R1: "",
 			R1S: "",
-			R2: "000g/00",
+			R2: "",
 			R2S: "",
-			R3: "000g/00",
-			R3S: "2 MIN  ",
+			R3: "",
+			R3S: "",
 			R4: "000g/00",
 			R4S: "6SV ",
 			R5: "000g/00",
 			R5S: "5SV ",
-			R6: "REF INDEX>",
-			R6S: "RETURN TO",
+			R6: "",
+			R6S: "RETURN TO ",
 			
 			simple: 1,
 			title: "IRS/GNS POS   ",
 		};
 		
+		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "irsGnsPos";
 		m.nextPage = "irsStatus";
@@ -170,11 +182,16 @@ var IrsGnsPos = {
 		return m;
 	},
 	reset: func() {
-		me.tempReset();
+		me.setup();
 		# Placeholder
 	},
-	tempReset: func() {
-		# Placeholder
+	setup: func() {
+		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
+		if (me.fromPage == "init") {
+			me.Display.R6 = "F-PLN INIT>";
+		} else {
+			me.Display.R6 = "REF INDEX>";
+		}
 	},
 	loop: func() {
 		if (systems.IRS.Iru.aligned[0].getValue()) {
@@ -186,7 +203,7 @@ var IrsGnsPos = {
 			me.Display.L1 = "  -----/-----";
 			me.Display.C1S = "ALIGN";
 			me.Display.R1 = "";
-			me.Display.R1S = sprintf("%2.0f MIN",systems.IRS.Iru.alignTimeRemainingMinutes[0].getValue());
+			me.Display.R1S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[0].getValue());
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
@@ -198,7 +215,7 @@ var IrsGnsPos = {
 			me.Display.L2 = "  -----/-----";
 			me.Display.C2S = "ALIGN";
 			me.Display.R2 = "";
-			me.Display.R2S = sprintf("%2.0f MIN",systems.IRS.Iru.alignTimeRemainingMinutes[1].getValue());
+			me.Display.R2S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[1].getValue());
 		}
 		
 		if (systems.IRS.Iru.aligned[2].getValue()) {
@@ -210,13 +227,17 @@ var IrsGnsPos = {
 			me.Display.L3 = "  -----/-----";
 			me.Display.C3S = "ALIGN";
 			me.Display.R3 = "";
-			me.Display.R3S = sprintf("%2.0f MIN",systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
+			me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
 		}
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
 			if (k == "r6") {
-				mcdu.unit[me.id].setPage("refindex");
+				if (me.fromPage == "init") {
+					mcdu.unit[me.id].setPage("init");
+				} else {
+					mcdu.unit[me.id].setPage("ref");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -236,11 +257,11 @@ var IrsStatus = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			C1: "-",
-			C1S: "DRIFT RATE   ",
-			C2: "-",
+			C1: "",
+			C1S: "DRIFT RATE    ",
+			C2: "",
 			C2S: "",
-			C3: "-",
+			C3: "",
 			C3S: "",
 			C4: "",
 			C4S: "",
@@ -266,23 +287,24 @@ var IrsStatus = {
 			pageNum: "3/3",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "-",
+			R1: "",
 			R1S: "GS",
-			R2: "-",
+			R2: "",
 			R2S: "",
-			R3: "-",
+			R3: "",
 			R3S: "",
 			R4: "",
 			R4S: "",
 			R5: "",
 			R5S: "",
-			R6: "F-PLN INIT>",
-			R6S: "RETURN TO",
+			R6: "",
+			R6S: "RETURN TO ",
 			
 			simple: 1,
 			title: "IRS STATUS   ",
 		};
 		
+		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "irsStatus";
 		m.nextPage = "posRef";
@@ -291,42 +313,51 @@ var IrsStatus = {
 		return m;
 	},
 	reset: func() {
-		me.tempReset();
+		me.setup();
 		# Placeholder
 	},
-	tempReset: func() {
-		# Placeholder
+	setup: func() {
+		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
+		if (me.fromPage == "init") {
+			me.Display.R6 = "F-PLN INIT>";
+		} else {
+			me.Display.R6 = "REF INDEX>";
+		}
 	},
 	loop: func() {
 		pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
 		if (systems.IRS.Iru.aligned[0].getValue()) {
-			me.Display.C1 = "0";
+			me.Display.C1 = "   0";
 			me.Display.R1 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C1 = "-";
+			me.Display.C1 = "   -";
 			me.Display.R1 = "-";
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
-			me.Display.C2 = "0";
+			me.Display.C2 = "   0";
 			me.Display.R2 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C2 = "-";
+			me.Display.C2 = "   -";
 			me.Display.R2 = "-";
 		}
 	
 		if (systems.IRS.Iru.aligned[2].getValue()) {
-			me.Display.C3 = "0";
+			me.Display.C3 = "   0";
 			me.Display.R3 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C3 = "-";
+			me.Display.C3 = "   -";
 			me.Display.R3 = "-";
 		}
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
 			if (k == "r6") {
-				mcdu.unit[me.id].setPage("init");
+				if (me.fromPage == "init") {
+					mcdu.unit[me.id].setPage("init");
+				} else {
+					mcdu.unit[me.id].setPage("ref");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
