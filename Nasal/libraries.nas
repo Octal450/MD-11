@@ -16,6 +16,7 @@ setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
 setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
 setprop("/sim/multiplay/visibility-range-nm", 130);
 
+var initDone = 0;
 var systemsInit = func() {
 	systems.APU.init();
 	systems.BRAKES.init();
@@ -30,14 +31,16 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
-	mcdu.BASE.setup();
+	if (initDone) {
+		mcdu.BASE.reset(); # Anytime after sim init
+	} else {
+		mcdu.BASE.init(); # Sim init
+	}
 	instruments.XPDR.init();
 	libraries.variousReset();
 }
 
-var initDone = 0;
 setlistener("/sim/signals/fdm-initialized", func() {
-	mcdu.BASE.init();
 	systemsInit();
 	systemsLoop.start();
 	lightsLoop.start();

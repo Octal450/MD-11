@@ -8,20 +8,13 @@ var mcdu2Display = nil;
 var mcdu3 = nil;
 var mcdu3Display = nil;
 
-var Font = {
-	default: "MCDULarge.ttf",
-	normal: 65,
-	small: 54,
-	symbol: "LiberationMonoCustom.ttf",
-};
-
 var Value = {
 };
 
 var canvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
-			return Font.default;
+			return mcdu.FONT.default;
 		};
 		
 		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
@@ -82,248 +75,104 @@ var canvasBase = {
 		}
 		me["Scratchpad"].setText(mcdu.unit[n].scratchpad);
 		
-		if (mcdu.unit[n].page == "menu") {
-			if (mcdu.unit[n].type) {
-				me["Simple_C1"].setText("");
-			} else if (mcdu.unit[n].request) {
-				me["Simple_C1"].setText("<REQ>  ");
+		if (mcdu.unit[n].page.Display.simple) {
+			if (mcdu.unit[n].page.Display.arrow) {
+				me["Arrow"].show();
 			} else {
-				me["Simple_C1"].setText("<ACT>  ");
-			}
-		} else if (mcdu.unit[n].page == "acstatus") {
-			if (pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue()) {
-				me["Simple_L1"].setText("MD-11 DEF AIL");
-			} else {
-				me["Simple_L1"].setText("MD-11");
+				me["Arrow"].hide();
 			}
 			
-			if (mcdu.BASE.acStatus.databaseSelected) {
-				me["Simple_L3"].setText(mcdu.BASE.acStatus.database2);
-				me["Simple_L4"].setText(mcdu.BASE.acStatus.database);
-				me["Simple_R3"].setText(mcdu.BASE.acStatus.databaseCode2);
-			} else {
-				me["Simple_L3"].setText(mcdu.BASE.acStatus.database);
-				me["Simple_L4"].setText(mcdu.BASE.acStatus.database2);
-				me["Simple_R3"].setText(mcdu.BASE.acStatus.databaseCode);
-			}
+			me["Simple"].show();
 			
-			if (mcdu.BASE.acStatus.perfFactor >= 0) {
-				me["Simple_L6"].setText("+" ~ sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor));
-			} else {
-				me["Simple_L6"].setText(sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor));
-			}
+			me["Simple_C1"].setText(mcdu.unit[n].page.Display.C1);
+			me["Simple_C1S"].setText(mcdu.unit[n].page.Display.C1S);
+			me["Simple_C2"].setText(mcdu.unit[n].page.Display.C2);
+			me["Simple_C2S"].setText(mcdu.unit[n].page.Display.C2S);
+			me["Simple_C3"].setText(mcdu.unit[n].page.Display.C3);
+			me["Simple_C3S"].setText(mcdu.unit[n].page.Display.C3S);
+			me["Simple_C4"].setText(mcdu.unit[n].page.Display.C4);
+			me["Simple_C4S"].setText(mcdu.unit[n].page.Display.C4S);
+			me["Simple_C5"].setText(mcdu.unit[n].page.Display.C5);
+			me["Simple_C5S"].setText(mcdu.unit[n].page.Display.C5S);
+			me["Simple_C6"].setText(mcdu.unit[n].page.Display.C6);
+			me["Simple_C6S"].setText(mcdu.unit[n].page.Display.C6S);
+			
+			me["Simple_L1"].setText(mcdu.unit[n].page.Display.L1);
+			me["Simple_L1S"].setText(mcdu.unit[n].page.Display.L1S);
+			me["Simple_L2"].setText(mcdu.unit[n].page.Display.L2);
+			me["Simple_L2S"].setText(mcdu.unit[n].page.Display.L2S);
+			me["Simple_L3"].setText(mcdu.unit[n].page.Display.L3);
+			me["Simple_L3S"].setText(mcdu.unit[n].page.Display.L3S);
+			me["Simple_L4"].setText(mcdu.unit[n].page.Display.L4);
+			me["Simple_L4S"].setText(mcdu.unit[n].page.Display.L4S);
+			me["Simple_L5"].setText(mcdu.unit[n].page.Display.L5);
+			me["Simple_L5S"].setText(mcdu.unit[n].page.Display.L5S);
+			me["Simple_L6"].setText(mcdu.unit[n].page.Display.L6);
+			me["Simple_L6S"].setText(mcdu.unit[n].page.Display.L6S);
+			
+			me["Simple_PageNum"].setText(mcdu.unit[n].page.Display.pageNum);
+			
+			me["Simple_R1"].setText(mcdu.unit[n].page.Display.R1);
+			me["Simple_R1S"].setText(mcdu.unit[n].page.Display.R1S);
+			me["Simple_R2"].setText(mcdu.unit[n].page.Display.R2);
+			me["Simple_R2S"].setText(mcdu.unit[n].page.Display.R2S);
+			me["Simple_R3"].setText(mcdu.unit[n].page.Display.R3);
+			me["Simple_R3S"].setText(mcdu.unit[n].page.Display.R3S);
+			me["Simple_R4"].setText(mcdu.unit[n].page.Display.R4);
+			me["Simple_R4S"].setText(mcdu.unit[n].page.Display.R4S);
+			me["Simple_R5"].setText(mcdu.unit[n].page.Display.R5);
+			me["Simple_R5S"].setText(mcdu.unit[n].page.Display.R5S);
+			me["Simple_R6"].setText(mcdu.unit[n].page.Display.R6);
+			me["Simple_R6S"].setText(mcdu.unit[n].page.Display.R6S);
+			
+			me["Simple_Title"].setText(mcdu.unit[n].page.Display.title);
+			
+			me.updateFontSize(n);
+		} else {
+			me["Simple"].hide();
 		}
 	},
-	updateBasePage: func(n) { # Only set static elements, rest will be set by update() call immediately after
-		me.resetFontSize();
-		if (mcdu.unit[n].page == "menu") {
-			me["Arrow"].hide();
-			me["Simple"].show();
-			
-			me["Simple_C1S"].setText("");
-			me["Simple_C2"].setText("");
-			me["Simple_C2S"].setText("");
-			me["Simple_C3"].setText("");
-			me["Simple_C3S"].setText("");
-			me["Simple_C4"].setText("");
-			me["Simple_C4S"].setText("");
-			me["Simple_C5"].setText("");
-			me["Simple_C5S"].setText("");
-			me["Simple_C6"].setText("");
-			me["Simple_C6S"].setText("");
-			
-			if (n == 0 and !mcdu.unit[n].type) {
-				me["Simple_L1"].setText("<FMC-1");
-			} else if (n == 1 and !mcdu.unit[n].type) {
-				me["Simple_L1"].setText("<FMC-2");
-			} else {
-				me["Simple_L1"].setText("");
-			}
-			
-			me["Simple_L1S"].setText("");
-			me["Simple_L2"].setText("");
-			me["Simple_L2S"].setText("");
-			me["Simple_L3"].setText("");
-			me["Simple_L3S"].setText("");
-			me["Simple_L4"].setText("<CDFS");
-			me["Simple_L4S"].setText("");
-			me["Simple_L5"].setText("");
-			me["Simple_L5S"].setText("");
-			me["Simple_L6"].setText("");
-			me["Simple_L6S"].setText("");
-			
-			me["Simple_PageNum"].setText("");
-			
-			me["Simple_R1"].setText("NAV/RAD*");
-			me["Simple_R1S"].setText("STANDBY");
-			me["Simple_R2"].setText("");
-			me["Simple_R2S"].setText("");
-			me["Simple_R3"].setText("");
-			me["Simple_R3S"].setText("");
-			me["Simple_R4"].setText("");
-			me["Simple_R4S"].setText("");
-			me["Simple_R5"].setText("MAINT>");
-			me["Simple_R5S"].setText("");
-			me["Simple_R6"].setText("");
-			me["Simple_R6S"].setText("");
-			
-			me["Simple_Title"].setText("MENU");
-		} else if (mcdu.unit[n].page == "acstatus") {
-			me["Arrow"].show();
-			me["Simple"].show();
-			
-			me["Simple_C1"].setText("");
-			me["Simple_C1S"].setText("");
-			me["Simple_C2"].setText("");
-			me["Simple_C2S"].setText("");
-			me["Simple_C3"].setText("");
-			me["Simple_C3S"].setText("");
-			me["Simple_C4"].setText("");
-			me["Simple_C4S"].setText("");
-			me["Simple_C5"].setText("");
-			me["Simple_C5S"].setText("");
-			me["Simple_C6"].setText("");
-			me["Simple_C6S"].setText("");
-			
-			me["Simple_L1S"].setText(" MODEL");
-			me["Simple_L2"].setText(mcdu.BASE.acStatus.program);
-			me["Simple_L2S"].setText(" OP PROGRAM");
-			me["Simple_L3S"].setText(" ACTIVE DATA BASE");
-			me["Simple_L4"].setFontSize(Font.small);
-			me["Simple_L4S"].setText(" SECOND DATA BASE");
-			me["Simple_L5"].setText("");
-			me["Simple_L5S"].setText("");
-			me["Simple_L6S"].setText(" PERF FACTOR");
-			
-			me["Simple_PageNum"].setText("1/2");
-			
-			me["Simple_R1"].setText(mcdu.BASE.acStatus.eng);
-			me["Simple_R1S"].setText("ENGINE ");
-			me["Simple_R2"].setText("");
-			me["Simple_R2S"].setText("");
-			me["Simple_R3"].setText("N/A");
-			me["Simple_R3S"].setText("");
-			me["Simple_R4"].setText("");
-			me["Simple_R4S"].setText("");
-			me["Simple_R5"].setText("");
-			me["Simple_R5S"].setText("");
-			me["Simple_R6"].setText("F-PLN INIT>");
-			me["Simple_R6S"].setText("");
-			
-			me["Simple_Title"].setText("A/C STATUS");
-		} else if (mcdu.unit[n].page == "acstatus2") {
-			me["Arrow"].show();
-			me["Simple"].show();
-			
-			me["Simple_C1"].setText("");
-			me["Simple_C1S"].setText("");
-			me["Simple_C2"].setText("");
-			me["Simple_C2S"].setText("");
-			me["Simple_C3"].setText("");
-			me["Simple_C3S"].setText("");
-			me["Simple_C4"].setText("");
-			me["Simple_C4S"].setText("");
-			me["Simple_C5"].setText("");
-			me["Simple_C5S"].setText("");
-			me["Simple_C6"].setText("");
-			me["Simple_C6S"].setText("");
-			
-			me["Simple_L1"].setText(mcdu.BASE.acstatus2.perfDbPN);
-			me["Simple_L1S"].setText(" PERF DATABASE");
-			me["Simple_L2"].setText(mcdu.BASE.acstatus2.opcPN);
-			me["Simple_L2S"].setText(" OPC P/N");
-			me["Simple_L3"].setText(mcdu.BASE.acstatus2.amiPN);
-			me["Simple_L3S"].setText(" AMI P/N");
-			me["Simple_L4"].setText(mcdu.BASE.acstatus2.fidoPN);
-			me["Simple_L4S"].setText(" FIDO P/N");
-			me["Simple_L5"].setText(mcdu.BASE.acstatus2.datalink);
-			me["Simple_L5S"].setText(" DATA LINK");
-			me["Simple_L6"].setText("");
-			me["Simple_L6S"].setText("");
-			
-			me["Simple_PageNum"].setText("2/2");
-			
-			me["Simple_R1"].setText("");
-			me["Simple_R1S"].setText("");
-			me["Simple_R2"].setText("");
-			me["Simple_R2S"].setText("");
-			me["Simple_R3"].setText("");
-			me["Simple_R3S"].setText("");
-			me["Simple_R4"].setText("");
-			me["Simple_R4S"].setText("");
-			me["Simple_R5"].setText("");
-			me["Simple_R5S"].setText("");
-			me["Simple_R6"].setText("F-PLN INIT>");
-			me["Simple_R6S"].setText("");
-			
-			me["Simple_Title"].setText("A/C STATUS");
-		} else {
-			me["Arrow"].hide();
-			me["Simple"].show();
-			
-			me["Simple_C1"].setText("");
-			me["Simple_C1S"].setText("");
-			me["Simple_C2"].setText("");
-			me["Simple_C2S"].setText("");
-			me["Simple_C3"].setText("");
-			me["Simple_C3S"].setText("");
-			me["Simple_C4"].setText("");
-			me["Simple_C4S"].setText("");
-			me["Simple_C5"].setText("");
-			me["Simple_C5S"].setText("");
-			me["Simple_C6"].setText("");
-			me["Simple_C6S"].setText("");
-			
-			me["Simple_L1"].setText("");
-			me["Simple_L1S"].setText("");
-			me["Simple_L2"].setText("");
-			me["Simple_L2S"].setText("");
-			me["Simple_L3"].setText("");
-			me["Simple_L3S"].setText("");
-			me["Simple_L4"].setText("");
-			me["Simple_L4S"].setText("");
-			me["Simple_L5"].setText("");
-			me["Simple_L5S"].setText("");
-			me["Simple_L6"].setText("");
-			me["Simple_L6S"].setText("");
-			
-			me["Simple_PageNum"].setText("");
-			
-			me["Simple_R1"].setText("");
-			me["Simple_R1S"].setText("");
-			me["Simple_R2"].setText("");
-			me["Simple_R2S"].setText("");
-			me["Simple_R3"].setText("");
-			me["Simple_R3S"].setText("");
-			me["Simple_R4"].setText("");
-			me["Simple_R4S"].setText("");
-			me["Simple_R5"].setText("");
-			me["Simple_R5S"].setText("");
-			me["Simple_R6"].setText("");
-			me["Simple_R6S"].setText("");
-			
-			me["Simple_Title"].setText("PAGE NOT AVAIL");
-		}
+	updateFontSize: func(n) {
+		if (me["Simple_C1"].get("character-size") != mcdu.unit[n].page.Display.CFont[0]) me["Simple_C1"].setFontSize(mcdu.unit[n].page.Display.CFont[0]);
+		if (me["Simple_C2"].get("character-size") != mcdu.unit[n].page.Display.CFont[1]) me["Simple_C2"].setFontSize(mcdu.unit[n].page.Display.CFont[1]);
+		if (me["Simple_C3"].get("character-size") != mcdu.unit[n].page.Display.CFont[2]) me["Simple_C3"].setFontSize(mcdu.unit[n].page.Display.CFont[2]);
+		if (me["Simple_C4"].get("character-size") != mcdu.unit[n].page.Display.CFont[3]) me["Simple_C4"].setFontSize(mcdu.unit[n].page.Display.CFont[3]);
+		if (me["Simple_C5"].get("character-size") != mcdu.unit[n].page.Display.CFont[4]) me["Simple_C5"].setFontSize(mcdu.unit[n].page.Display.CFont[4]);
+		if (me["Simple_C6"].get("character-size") != mcdu.unit[n].page.Display.CFont[5]) me["Simple_C6"].setFontSize(mcdu.unit[n].page.Display.CFont[5]);
+		
+		if (me["Simple_L1"].get("character-size") != mcdu.unit[n].page.Display.LFont[0]) me["Simple_L1"].setFontSize(mcdu.unit[n].page.Display.LFont[0]);
+		if (me["Simple_L2"].get("character-size") != mcdu.unit[n].page.Display.LFont[1]) me["Simple_L2"].setFontSize(mcdu.unit[n].page.Display.LFont[1]);
+		if (me["Simple_L3"].get("character-size") != mcdu.unit[n].page.Display.LFont[2]) me["Simple_L3"].setFontSize(mcdu.unit[n].page.Display.LFont[2]);
+		if (me["Simple_L4"].get("character-size") != mcdu.unit[n].page.Display.LFont[3]) me["Simple_L4"].setFontSize(mcdu.unit[n].page.Display.LFont[3]);
+		if (me["Simple_L5"].get("character-size") != mcdu.unit[n].page.Display.LFont[4]) me["Simple_L5"].setFontSize(mcdu.unit[n].page.Display.LFont[4]);
+		if (me["Simple_L6"].get("character-size") != mcdu.unit[n].page.Display.LFont[5]) me["Simple_L6"].setFontSize(mcdu.unit[n].page.Display.LFont[5]);
+		
+		if (me["Simple_R1"].get("character-size") != mcdu.unit[n].page.Display.RFont[0]) me["Simple_R1"].setFontSize(mcdu.unit[n].page.Display.RFont[0]);
+		if (me["Simple_R2"].get("character-size") != mcdu.unit[n].page.Display.RFont[1]) me["Simple_R2"].setFontSize(mcdu.unit[n].page.Display.RFont[1]);
+		if (me["Simple_R3"].get("character-size") != mcdu.unit[n].page.Display.RFont[2]) me["Simple_R3"].setFontSize(mcdu.unit[n].page.Display.RFont[2]);
+		if (me["Simple_R4"].get("character-size") != mcdu.unit[n].page.Display.RFont[3]) me["Simple_R4"].setFontSize(mcdu.unit[n].page.Display.RFont[3]);
+		if (me["Simple_R5"].get("character-size") != mcdu.unit[n].page.Display.RFont[4]) me["Simple_R5"].setFontSize(mcdu.unit[n].page.Display.RFont[4]);
+		if (me["Simple_R6"].get("character-size") != mcdu.unit[n].page.Display.RFont[5]) me["Simple_R6"].setFontSize(mcdu.unit[n].page.Display.RFont[5]);
 	},
 	resetFontSize: func() {
-		me["Simple_C1"].setFontSize(Font.normal);
-		me["Simple_C2"].setFontSize(Font.normal);
-		me["Simple_C3"].setFontSize(Font.normal);
-		me["Simple_C4"].setFontSize(Font.normal);
-		me["Simple_C5"].setFontSize(Font.normal);
-		me["Simple_C6"].setFontSize(Font.normal);
-		me["Simple_L1"].setFontSize(Font.normal);
-		me["Simple_L2"].setFontSize(Font.normal);
-		me["Simple_L3"].setFontSize(Font.normal);
-		me["Simple_L4"].setFontSize(Font.normal);
-		me["Simple_L5"].setFontSize(Font.normal);
-		me["Simple_L6"].setFontSize(Font.normal);
-		me["Simple_R1"].setFontSize(Font.normal);
-		me["Simple_R2"].setFontSize(Font.normal);
-		me["Simple_R3"].setFontSize(Font.normal);
-		me["Simple_R4"].setFontSize(Font.normal);
-		me["Simple_R5"].setFontSize(Font.normal);
-		me["Simple_R6"].setFontSize(Font.normal);
+		#me["Simple_C1"].setFontSize(Font.normal);
+		#me["Simple_C2"].setFontSize(Font.normal);
+		#me["Simple_C3"].setFontSize(Font.normal);
+		#me["Simple_C4"].setFontSize(Font.normal);
+		#me["Simple_C5"].setFontSize(Font.normal);
+		#me["Simple_C6"].setFontSize(Font.normal);
+		#me["Simple_L1"].setFontSize(Font.normal);
+		#me["Simple_L2"].setFontSize(Font.normal);
+		#me["Simple_L3"].setFontSize(Font.normal);
+		#me["Simple_L4"].setFontSize(Font.normal);
+		#me["Simple_L5"].setFontSize(Font.normal);
+		#me["Simple_L6"].setFontSize(Font.normal);
+		#me["Simple_R1"].setFontSize(Font.normal);
+		#me["Simple_R2"].setFontSize(Font.normal);
+		#me["Simple_R3"].setFontSize(Font.normal);
+		#me["Simple_R4"].setFontSize(Font.normal);
+		#me["Simple_R5"].setFontSize(Font.normal);
+		#me["Simple_R6"].setFontSize(Font.normal);
 	},
 };
 
@@ -337,10 +186,6 @@ var canvasMcdu1 = {
 	update: func() {
 		me.updateBase(0);
 	},
-	updatePage: func() {
-		me.updateBasePage(0);
-		me.update();
-	},
 };
 
 var canvasMcdu2 = {
@@ -353,10 +198,6 @@ var canvasMcdu2 = {
 	update: func() {
 		me.updateBase(1);
 	},
-	updatePage: func() {
-		me.updateBasePage(1);
-		me.update();
-	},
 };
 
 var canvasMcdu3 = {
@@ -368,10 +209,6 @@ var canvasMcdu3 = {
 	},
 	update: func() {
 		me.updateBase(2);
-	},
-	updatePage: func() {
-		me.updateBasePage(2);
-		me.update();
 	},
 };
 
@@ -409,9 +246,9 @@ var init = func() {
 	
 	canvasBase.setup();
 	
-	mcdu1.updatePage();
-	mcdu2.updatePage();
-	mcdu3.updatePage();
+	mcdu1.update();
+	mcdu2.update();
+	mcdu3.update();
 	
 	update.start();
 	
@@ -420,13 +257,13 @@ var init = func() {
 	}
 }
 
-var updatePage = func(n) {
+var updateMcdu = func(n) {
 	if (n == 0) {
-		mcdu1.updatePage();
+		mcdu1.update();
 	} else if (n == 1) {
-		mcdu2.updatePage();
+		mcdu2.update();
 	} else if (n == 2) {
-		mcdu3.updatePage();
+		mcdu3.update();
 	}
 }
 

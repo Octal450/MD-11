@@ -78,7 +78,7 @@ var DUController = {
 					}
 				}
 				
-				if (!mcdu.unit[0].blink.active) {
+				if (!mcdu.unit[0].Blink.active) {
 					if (!me.updateMcdu1) {
 						me.updateMcdu1 = 1;
 						canvas_mcdu.mcdu1.update();
@@ -109,7 +109,7 @@ var DUController = {
 					me.showNd1.setBoolValue(1); # Temporary
 				}
 				
-				if (!mcdu.unit[2].blink.active) {
+				if (!mcdu.unit[2].Blink.active) {
 					if (!me.updateMcdu3) {
 						me.updateMcdu3 = 1;
 						canvas_mcdu.mcdu3.update();
@@ -150,7 +150,7 @@ var DUController = {
 					me.updateSdPage(me.sdPage);
 				}
 				
-				if (!mcdu.unit[1].blink.active) {
+				if (!mcdu.unit[1].Blink.active) {
 					if (!me.updateMcdu2) {
 						me.updateMcdu2 = 1;
 						canvas_mcdu.mcdu2.update();

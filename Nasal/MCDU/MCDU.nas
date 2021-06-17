@@ -1,5 +1,6 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2021 Josh Davidson (Octal450)
+# Thanks to legoboyvdlp!
 
 var unit = [nil, nil, nil];
 
@@ -7,67 +8,61 @@ var MCDU = {
 	new: func(n, t) {
 		var m = {parents: [MCDU]};
 		
-		m.blink = {
+		m.Blink = {
 			active: 0,
 			time: -10,
 		};
+		
 		m.clear = 0;
 		m.id = n;
-		m.lastFmcPage = "acstatus";
+		m.lastFmcPage = "acStatus";
 		m.message = std.Vector.new();
-		m.page = "menu";
-		m.request = 1;
+		
+		m.PageList = {
+			acStatus: AcStatus.new(n),
+			acStatus2: AcStatus2.new(n),
+			fallback: Fallback.new(n),
+			menu: Menu.new(n, t),
+		};
+		
+		m.page = m.PageList.menu;
+		
 		m.scratchpad = "";
 		m.scratchpadOld = "";
 		m.type = t;
 		
 		return m;
 	},
-	pageList: {
-		acstatus: {
-			nextPage: "acstatus2",
-			type: "fms",
-		},
-		acstatus2: {
-			nextPage: "acstatus",
-			type: "fms",
-		},
-		menu: {
-			nextPage: "none",
-			type: "base",
-		},
-		radnav: {
-			nextPage: "none",
-			type: "fms",
-		},
-	},
-	setup: func() {
-		me.blink.active = 0;
-		me.blink.time = -10;
+	reset: func() {
+		me.Blink.active = 0;
+		me.Blink.time = -10;
 		me.clear = 0;
-		me.lastFmcPage = "acstatus";
+		me.lastFmcPage = "acStatus";
 		me.message.clear();
-		me.page = "menu";
+		me.page = me.PageList.menu;
+		
+		me.PageList.menu.reset();
+		
 		me.scratchpad = "";
 		me.scratchpadOld = "";
-		me.request = 1;
 	},
 	loop: func() {
-		if (me.blink.active) {
-			if (me.blink.time < pts.Sim.Time.elapsedSec.getValue()) {
-				me.blink.active = 0;
+		if (me.Blink.active) {
+			if (me.Blink.time < pts.Sim.Time.elapsedSec.getValue()) {
+				me.Blink.active = 0;
 			}
 		}
+		me.page.loop();
 	},
 	arrowKey: func(d) {
-		if (!me.blink.active) {
+		if (!me.Blink.active) {
 			# Do cool up/down stuff here
 		}
 	},
 	blinkScreen: func() {
-		me.blink.active = 1;
+		me.Blink.active = 1;
 		systems.DUController.hideMcdu(me.id);
-		me.blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.5;
+		me.Blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
 	},
 	clearMessage: func() {
 		me.clear = 0;
@@ -80,21 +75,35 @@ var MCDU = {
 		}
 	},
 	nextPage: func() {
-		if (!me.blink.active) {
+		if (!me.Blink.active) {
 			me.blinkScreen();
 			
-			if (me.pageList[me.page].nextPage != "none") {
-				me.setPage(me.pageList[me.page].nextPage);
+			if (me.page.nextPage != "none") {
+				me.setPage(me.page.nextPage);
 			} else {
 				me.setMessage("NOT ALLOWED");
 			}
 		}
 	},
 	pageKey: func(p) {
-		if (!me.blink.active) {
-			if (p == "menu" or !me.request) {
+		if (!me.Blink.active) {
+			if (p == "menu" or !me.PageList.menu.Value.request) {
 				me.setPage(p);
 			}
+		}
+	},
+	scratchpadClear: func() {
+		me.clear = 0;
+		me.scratchpadOld = "";
+		me.scratchpad = "";
+	},
+	scratchpadState: func() {
+		if (me.clear) {
+			return 0;
+		} else if (size(mcdu.unit[me.id].scratchpad) > 0) {
+			return 2;
+		} else {
+			return 1;
 		}
 	},
 	setMessage: func(m) {
@@ -111,35 +120,29 @@ var MCDU = {
 		}
 	},
 	setPage: func(p) {
-		if (p == "menu" and me.pageList[me.page].type == "fms") {
+		if (p == "menu" and me.page.group == "fmc") {
 			me.lastFmcPage = me.page;
 		}
 		
 		me.blinkScreen();
-		me.page = p;
-		canvas_mcdu.updatePage(me.id);
+		
+		if (contains(me.PageList, p)) {
+			me.page = me.PageList[p];
+		} else {
+			me.page = me.PageList.fallback;
+		}
+		
+		# Clear temporary things
+		me.page.tempReset(); 
+		
+		# Update everything now to make sure it all transitions at once
+		me.page.loop(); 
+		canvas_mcdu.updateMcdu(me.id);
 	},
 	softKey: func(k) {
-		if (!me.blink.active) {
+		if (!me.Blink.active) {
 			me.blinkScreen();
-			
-			if (me.page == "menu") {
-				if (k == "l1") {
-					if (!me.clear and size(me.scratchpad) == 0) {
-						if (me.request) {
-							me.request = 0;
-						} else {
-							me.setPage(me.lastFmcPage);
-						}
-					} else {
-						me.setMessage("NOT ALLOWED");
-					}
-				} else {
-					me.setMessage("NOT ALLOWED");
-				}
-			} else {
-				me.setMessage("NOT ALLOWED");
-			}
+			me.page.softKey(k);
 		}
 	},
 	alphaNumKey: func(k) {
@@ -177,22 +180,22 @@ var BASE = {
 		perfFactor: 0,
 		program: "PS4070541-921", # -921 software load
 	},
-	acstatus2: {
-		perfDbPN: "ABC1234567867789",
-		opcPN: "1234DAC567891234",
-		amiPN: "1234DAC123456789",
-		fidoPN: "ABC1234DAC456789",
-		datalink: "003FFC00",
+	acStatus2: {
+		amiPn: "1234DAC123456789",
+		dataLink: "003FFC00",
+		fidoPn: "ABC1234DAC456789",
+		opcPn: "1234DAC567891234",
+		perfDbPn: "ABC1234567867789",
 	},
 	init: func() {
 		unit[0] = MCDU.new(0, 0);
 		unit[1] = MCDU.new(1, 0);
 		unit[2] = MCDU.new(2, 1);
 	},
-	setup: func() {
+	reset: func() {
 		me.acStatus.databaseSelected = 1;
 		for (var i = 0; i < 3; i = i + 1) {
-			unit[i].setup();
+			unit[i].reset();
 		}
 	},
 	loop: func() {
@@ -200,4 +203,11 @@ var BASE = {
 		unit[1].loop();
 		unit[2].loop();
 	},
+};
+
+var FONT = {
+	default: "MCDULarge.ttf",
+	normal: 65,
+	small: 54,
+	symbol: "LiberationMonoCustom.ttf",
 };
