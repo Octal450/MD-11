@@ -21,6 +21,9 @@ var MCDU = {
 		m.PageList = {
 			acStatus: AcStatus.new(n),
 			acStatus2: AcStatus2.new(n),
+			posRef: PosRef.new(n),
+			irsGnsPos: IrsGnsPos.new(n),
+			irsStatus: IrsStatus.new(n),
 			fallback: Fallback.new(n),
 			menu: Menu.new(n, t),
 		};

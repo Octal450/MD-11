@@ -99,6 +99,18 @@
 			<output>/systems/iru[0]/align-timer-debug</output>
 		</actuator>
 		
+		<fcs_function name="/systems/iru[0]/align-time-remaining-minutes">
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/iru[0]/align-timer-input</property>
+						<property>/systems/iru[0]/align-timer</property>
+					</difference>
+					<value>60</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/iru[0]/aligned">
 			<default value="0"/>
 			<test logic="AND" value="1">
@@ -182,6 +194,18 @@
 			<output>/systems/iru[1]/align-timer-debug</output>
 		</actuator>
 		
+		<fcs_function name="/systems/iru[1]/align-time-remaining-minutes">
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/iru[1]/align-timer-input</property>
+						<property>/systems/iru[1]/align-timer</property>
+					</difference>
+					<value>60</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/iru[1]/aligned">
 			<default value="0"/>
 			<test logic="AND" value="1">
@@ -264,6 +288,18 @@
 			<rate_limit sense="decr">100000</rate_limit>
 			<output>/systems/iru[2]/align-timer-debug</output>
 		</actuator>
+		
+		<fcs_function name="/systems/iru[2]/align-time-remaining-minutes">
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/iru[2]/align-timer-input</property>
+						<property>/systems/iru[2]/align-timer</property>
+					</difference>
+					<value>60</value>
+				</quotient>
+			</function>
+		</fcs_function>
 		
 		<switch name="/systems/iru[2]/aligned">
 			<default value="0"/>
