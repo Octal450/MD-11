@@ -184,8 +184,8 @@ var BASE = {
 	acStatus: {
 		database: "01JAN-28JAN",
 		database2: "29JAN-26FEB",
-		databaseCode: "MD20170101",
-		databaseCode2: "MD20170102",
+		databaseCode: "MD11605001",
+		databaseCode2: "MD11605002",
 		databaseSelected: 1,
 		eng: props.globals.getNode("/MCDUC/eng").getValue(),
 		perfFactor: 0,
