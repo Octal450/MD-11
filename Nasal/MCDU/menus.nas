@@ -107,3 +107,87 @@ var Menu = {
 		}
 	},
 };
+
+var Ref = {
+	new: func(n) {
+		var m = {parents: [Ref]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			C1: "",
+			C1S: "",
+			C2: "",
+			C2S: "",
+			C3: "",
+			C3S: "",
+			C4: "",
+			C4S: "",
+			C5: "",
+			C5S: "",
+			C6: "",
+			C6S: "",
+			
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1: "<WAYPOINT",
+			L1S: " DEFINED",
+			L2: "<WAYPOINT",
+			L2S: "",
+			L3: "<AIRPORTS",
+			L3S: " CLOSEST",
+			L4: "<POS REF",
+			L4S: "",
+			L5: "<A/C STATUS",
+			L5S: "",
+			L6: "<SENSOR STATUS",
+			L6S: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1: "",
+			R1S: "",
+			R2: "NAVAID>",
+			R2S: "",
+			R3: "ACARS>",
+			R3S: "",
+			R4: "DOC DATA>",
+			R4S: "",
+			R5: "MAINT>",
+			R5S: "",
+			R6: "READOUT>",
+			R6S: "MEMORY ",
+			
+			simple: 1,
+			title: "REF INDEX",
+		};
+		
+		m.group = "fmc";
+		m.name = "ref";
+		m.nextPage = "none";
+		
+		return m;
+	},
+	tempReset: func() {
+		# Placeholder
+	},
+	loop: func() {
+		# Placeholder
+	},
+	softKey: func(k) {
+		if (mcdu.unit[me.id].scratchpadState() == 1) {
+			if (k == "l4") {
+				mcdu.unit[me.id].setPage("posRef");
+			} else if (k == "l5") {
+				mcdu.unit[me.id].setPage("acStatus");
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+};

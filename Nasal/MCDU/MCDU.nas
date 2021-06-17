@@ -21,11 +21,12 @@ var MCDU = {
 		m.PageList = {
 			acStatus: AcStatus.new(n),
 			acStatus2: AcStatus2.new(n),
-			posRef: PosRef.new(n),
-			irsGnsPos: IrsGnsPos.new(n),
-			irsStatus: IrsStatus.new(n),
 			fallback: Fallback.new(n),
 			menu: Menu.new(n, t),
+			irsGnsPos: IrsGnsPos.new(n),
+			irsStatus: IrsStatus.new(n),
+			posRef: PosRef.new(n),
+			ref: Ref.new(n),
 		};
 		
 		m.page = m.PageList.menu;
@@ -46,6 +47,9 @@ var MCDU = {
 		
 		me.PageList.acStatus.reset();
 		me.PageList.menu.reset();
+		me.PageList.irsGnsPos.reset();
+		me.PageList.irsStatus.reset();
+		me.PageList.posRef.reset();
 		
 		me.scratchpad = "";
 		me.scratchpadOld = "";
@@ -224,5 +228,4 @@ var FONT = {
 	default: "MCDULarge.ttf",
 	normal: 65,
 	small: 54,
-	symbol: "LiberationMonoCustom.ttf",
 };

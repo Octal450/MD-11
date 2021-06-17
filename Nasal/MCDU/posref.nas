@@ -70,6 +70,7 @@ var PosRef = {
 		return m;
 	},
 	reset: func() {
+		me.tempReset();
 		# Placeholder
 	},
 	tempReset: func() {
@@ -169,6 +170,7 @@ var IrsGnsPos = {
 		return m;
 	},
 	reset: func() {
+		me.tempReset();
 		# Placeholder
 	},
 	tempReset: func() {
@@ -289,6 +291,7 @@ var IrsStatus = {
 		return m;
 	},
 	reset: func() {
+		me.tempReset();
 		# Placeholder
 	},
 	tempReset: func() {
