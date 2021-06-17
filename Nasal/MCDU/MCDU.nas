@@ -74,7 +74,11 @@ var MCDU = {
 				me.scratchpad = me.message.vector[0];
 			} else if (me.message.size() > 0) {
 				me.message.pop(0);
-				me.scratchpad = "";
+				if (size(me.scratchpadOld) > 0) {
+					me.scratchpad = me.scratchpadOld;
+				} else {
+					me.scratchpad = "";
+				}
 			}
 		}
 	},
