@@ -41,6 +41,7 @@ var MCDU = {
 		me.message.clear();
 		me.page = me.PageList.menu;
 		
+		me.PageList.acStatus.reset();
 		me.PageList.menu.reset();
 		
 		me.scratchpad = "";
