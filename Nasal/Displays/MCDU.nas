@@ -211,6 +211,52 @@ var canvasBase = {
 			me["Simple_R6S"].setText("");
 			
 			me["Simple_Title"].setText("A/C STATUS");
+		} else if (mcdu.unit[n].page == "acstatus2") {
+			me["Arrow"].show();
+			me["Simple"].show();
+			
+			me["Simple_C1"].setText("");
+			me["Simple_C1S"].setText("");
+			me["Simple_C2"].setText("");
+			me["Simple_C2S"].setText("");
+			me["Simple_C3"].setText("");
+			me["Simple_C3S"].setText("");
+			me["Simple_C4"].setText("");
+			me["Simple_C4S"].setText("");
+			me["Simple_C5"].setText("");
+			me["Simple_C5S"].setText("");
+			me["Simple_C6"].setText("");
+			me["Simple_C6S"].setText("");
+			
+			me["Simple_L1"].setText(mcdu.BASE.acstatus2.perfDbPN);
+			me["Simple_L1S"].setText(" PERF DATABASE");
+			me["Simple_L2"].setText(mcdu.BASE.acstatus2.opcPN);
+			me["Simple_L2S"].setText(" OPC P/N");
+			me["Simple_L3"].setText(mcdu.BASE.acstatus2.amiPN);
+			me["Simple_L3S"].setText(" AMI P/N");
+			me["Simple_L4"].setText(mcdu.BASE.acstatus2.fidoPN);
+			me["Simple_L4S"].setText(" FIDO P/N");
+			me["Simple_L5"].setText(mcdu.BASE.acstatus2.datalink);
+			me["Simple_L5S"].setText(" DATA LINK");
+			me["Simple_L6"].setText("");
+			me["Simple_L6S"].setText("");
+			
+			me["Simple_PageNum"].setText("2/2");
+			
+			me["Simple_R1"].setText("");
+			me["Simple_R1S"].setText("");
+			me["Simple_R2"].setText("");
+			me["Simple_R2S"].setText("");
+			me["Simple_R3"].setText("");
+			me["Simple_R3S"].setText("");
+			me["Simple_R4"].setText("");
+			me["Simple_R4S"].setText("");
+			me["Simple_R5"].setText("");
+			me["Simple_R5S"].setText("");
+			me["Simple_R6"].setText("F-PLN INIT>");
+			me["Simple_R6S"].setText("");
+			
+			me["Simple_Title"].setText("A/C STATUS");
 		} else {
 			me["Arrow"].hide();
 			me["Simple"].show();

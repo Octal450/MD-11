@@ -177,6 +177,13 @@ var BASE = {
 		perfFactor: 0,
 		program: "PS4070541-921", # -921 software load
 	},
+	acstatus2: {
+		perfDbPN: "ABC1234567867789",
+		opcPN: "1234DAC567891234",
+		amiPN: "1234DAC123456789",
+		fidoPN: "ABC1234DAC456789",
+		datalink: "003FFC00",
+	},
 	init: func() {
 		unit[0] = MCDU.new(0, 0);
 		unit[1] = MCDU.new(1, 0);
