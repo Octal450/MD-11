@@ -93,11 +93,7 @@ var AcStatus = {
 			me.Display.R3 = mcdu.BASE.acStatus.databaseCode;
 		}
 		
-		if (mcdu.BASE.acStatus.perfFactor >= 0) {
-			me.Display.L6 = "+" ~ sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor);
-		} else {
-			me.Display.L6 = sprintf("%2.1f", mcdu.BASE.acStatus.perfFactor);
-		}
+		me.Display.L6 = sprintf("%+2.1f", mcdu.BASE.acStatus.perfFactor);
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
