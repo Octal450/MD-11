@@ -25,7 +25,9 @@ var MCDU = {
 			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
+			sensorStatus: SensorStatus.new(n),
 			posRef: PosRef.new(n),
+			closestAirport: ClosestAirport.new(n),
 			ref: Ref.new(n),
 		};
 		
@@ -50,6 +52,7 @@ var MCDU = {
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
 		me.PageList.posRef.reset();
+		me.PageList.closestAirport.reset();
 		
 		me.scratchpad = "";
 		me.scratchpadOld = "";

@@ -219,3 +219,120 @@ var AcStatus2 = {
 		}
 	},
 };
+
+var SensorStatus = {
+	new: func(n) {
+		var m = {parents: [SensorStatus]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			C1: "",
+			C1S: "      3",
+			C2: "",
+			C2S: "",
+			C3: "",
+			C3S: "",
+			C4: "",
+			C4S: "",
+			C5: "",
+			C5S: "",
+			C6: "",
+			C6S: "",
+			
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1: "",
+			L1S: "           1",
+			L2: "",
+			L2S: "",
+			L3: "",
+			L3S: "",
+			L4: "",
+			L4S: "",
+			L5: "",
+			L5S: "",
+			L6: "",
+			L6S: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1: "",
+			R1S: "2    ",
+			R2: "",
+			R2S: "",
+			R3: "",
+			R3S: "",
+			R4: "",
+			R4S: "",
+			R5: "",
+			R5S: "",
+			R6: "",
+			R6S: "",
+			
+			simple: 1,
+			title: "SENSOR STATUS",
+		};
+		
+		m.Value = {
+			IruFailure: [0, 0, 0],
+		};
+		
+		m.group = "fmc";
+		m.name = "sensorStatus";
+		
+		return m;
+	},
+	setup: func() {
+		# Placeholder
+	},
+	loop: func() {
+		if (systems.IRS.Iru.aligned[0].getValue()) {
+			me.Value.IruFailure[0] = 0;
+		} else {
+			me.Value.IruFailure[0] = 1;
+		}
+		
+		if (systems.IRS.Iru.aligned[1].getValue()) {
+			me.Value.IruFailure[1] = 0;
+		} else {
+			me.Value.IruFailure[1] = 1;
+		}
+		
+		if (systems.IRS.Iru.aligned[2].getValue()) {
+			me.Value.IruFailure[2] = 0;
+		} else {
+			me.Value.IruFailure[2] = 1;
+		}
+		
+		if (me.Value.IruFailure[0] or me.Value.IruFailure[1] or me.Value.IruFailure[2]) {
+			if (me.Value.IruFailure[0]) {
+				me.Display.L1 = "IRU    FAIL";
+			} else {
+				me.Display.L1 = "IRU";
+			}
+			
+			if (me.Value.IruFailure[1]) {
+				me.Display.C1 = "     FAIL";
+			} else {
+				me.Display.C1 = "";
+			}
+			
+			if (me.Value.IruFailure[2]) {
+				me.Display.R1 = "FAIL  ";
+			} else {
+				me.Display.R1 = "";
+			}
+		} else {
+			me.Display.L1 = "";
+			me.Display.C1 = "";
+			me.Display.R1 = "";	
+		}
+	},
+	softKey: func(k) {
+		mcdu.unit[me.id].setMessage("NOT ALLOWED");
+	},
+};

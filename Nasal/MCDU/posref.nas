@@ -75,7 +75,7 @@ var PosRef = {
 	},
 	reset: func() {
 		me.setup();
-		# Placeholder
+		me.Value.gpsEnable = 1;
 	},
 	setup: func() {
 		if (mcdu.unit[me.id].lastFmcPage == "init") {
@@ -85,6 +85,7 @@ var PosRef = {
 			me.fromPage = "ref";
 			me.Display.R6 = "REF INDEX>";
 		}
+		me.Value.frozen = 0;
 	},
 	loop: func() {
 		if (me.Value.positionMode != "(NO NAV)") {
@@ -210,7 +211,6 @@ var IrsGnsPos = {
 	},
 	reset: func() {
 		me.setup();
-		# Placeholder
 	},
 	setup: func() {
 		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
@@ -360,7 +360,6 @@ var IrsStatus = {
 	},
 	reset: func() {
 		me.setup();
-		# Placeholder
 	},
 	setup: func() {
 		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
