@@ -1,8 +1,6 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
-var positionNode = props.globals.getNode("/position");
-
 var PosRef = {
 	new: func(n) {
 		var m = {parents: [PosRef]};
@@ -93,7 +91,7 @@ var PosRef = {
 			me.Display.L1S = " POS FROZEN (G/I)";
 		}
 		
-		me.Value.positionString = positionFormat(positionNode);
+		me.Value.positionString = positionFormat(pts.Position.node);
 		me.Display.L1 = me.Value.positionString;
 		me.Display.L2 = me.Value.positionString;
 		
@@ -205,7 +203,7 @@ var IrsGnsPos = {
 		}
 	},
 	loop: func() {
-		me.Value.positionString = positionFormat(positionNode);
+		me.Value.positionString = positionFormat(pts.Position.node);
 		if (systems.IRS.Iru.aligned[0].getValue()) {
 			me.Display.L1 = me.Value.positionString;
 			me.Display.C1S = "NAV";
@@ -241,9 +239,9 @@ var IrsGnsPos = {
 			me.Display.R3 = "";
 			me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
 		}
+		
 		me.Display.L4 = me.Value.positionString;
 		me.Display.L5 = me.Value.positionString;
-	
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {

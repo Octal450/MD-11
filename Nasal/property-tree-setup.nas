@@ -222,6 +222,7 @@ var Orientation = {
 
 var Position = {
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
+	node: props.globals.getNode("/position"),
 };
 
 var Services = {
