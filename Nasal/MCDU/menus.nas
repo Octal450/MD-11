@@ -41,7 +41,7 @@ var Menu = {
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "NAV/RAD*",
+			R1: "",
 			R1S: "STANDBY",
 			R2: "",
 			R2S: "",
@@ -60,8 +60,10 @@ var Menu = {
 		
 		if (t) {
 			m.Display.L1 = "";
+			m.Display.R1 = "F-PLN*";
 		} else {
 			m.Display.L1 = "<FMC-" ~ sprintf("%s", n + 1);
+			m.Display.R1 = "NAV/RAD*";
 		}
 		
 		m.group = "base";
