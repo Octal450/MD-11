@@ -231,9 +231,9 @@ var FONT = {
 };
 
 var dms = nil;
-var degrees = [nil,nil];
-var minutes = [nil,nil];
-var sign = [nil,nil];
+var degrees = [nil, nil];
+var minutes = [nil, nil];
+var sign = [nil, nil];
 
 var positionFormat = func(node) {
 	dms = node.getChild("latitude-deg").getValue();
