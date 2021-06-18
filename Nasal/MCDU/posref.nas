@@ -49,7 +49,7 @@ var PosRef = {
 			R3S: "",
 			R4: "",
 			R4S: "",
-			R5: "INHIBIT*",
+			R5: "",
 			R5S: "GPS NAV ",
 			R6: "",
 			R6S: "RETURN TO ",
@@ -59,10 +59,10 @@ var PosRef = {
 		};
 		
 		m.Value = {
-			positionString: "",
-			positionMode: "",
 			frozen: 0,
 			gpsEnable: 1,
+			positionMode: "",
+			positionString: "",
 		};
 		
 		m.fromPage = "";
@@ -96,6 +96,12 @@ var PosRef = {
 			me.Display.L2 = "-----.-/------.-";
 		}
 		
+		if (!me.Value.frozen) {
+			me.Display.L1S = " FMC LAT/LONG " ~ me.Value.positionMode;
+		} else {
+			me.Display.L1S = " POS FROZEN " ~ me.Value.positionMode
+		}
+		
 		if (me.Value.gpsEnable) {
 			me.Display.R5 = "INHIBIT*";
 			if (systems.IRS.Iru.anyAligned.getValue()) {
@@ -111,13 +117,6 @@ var PosRef = {
 				me.Value.positionMode = "(NO NAV)";
 			}
 		}
-		
-		if (!me.Value.frozen) {
-			me.Display.L1S = " FMC LAT/LONG " ~ me.Value.positionMode;
-		} else {
-			me.Display.L1S = " POS FROZEN " ~ me.Value.positionMode
-		}
-		
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
