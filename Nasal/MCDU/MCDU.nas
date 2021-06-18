@@ -21,14 +21,14 @@ var MCDU = {
 		m.PageList = {
 			acStatus: AcStatus.new(n),
 			acStatus2: AcStatus2.new(n),
+			closestAirports: ClosestAirports.new(n),
 			fallback: Fallback.new(n),
 			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
-			sensorStatus: SensorStatus.new(n),
 			posRef: PosRef.new(n),
-			closestAirport: ClosestAirport.new(n),
 			ref: Ref.new(n),
+			sensorStatus: SensorStatus.new(n),
 		};
 		
 		m.page = m.PageList.menu;
@@ -48,11 +48,11 @@ var MCDU = {
 		me.page = me.PageList.menu;
 		
 		me.PageList.acStatus.reset();
+		me.PageList.closestAirports.reset();
 		me.PageList.menu.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
 		me.PageList.posRef.reset();
-		me.PageList.closestAirport.reset();
 		
 		me.scratchpad = "";
 		me.scratchpadOld = "";

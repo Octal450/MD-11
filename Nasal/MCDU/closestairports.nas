@@ -1,6 +1,9 @@
-var ClosestAirport = {
+# McDonnell Douglas MD-11 MCDU
+# Copyright (c) 2021 Josh Davidson (Octal450) and Jonathan Redpath (legoboyvdlp)
+
+var ClosestAirports = {
 	new: func(n) {
-		var m = {parents: [ClosestAirport]};
+		var m = {parents: [ClosestAirports]};
 		
 		m.id = n;
 		
@@ -100,28 +103,29 @@ var ClosestAirport = {
 		} else {
 			me.Display.C3 = "";
 			me.Value.magVar = magvar();
+			
 			if (size(me.Value.airports) >= 1) {
 				me.Display.L1 = me.Value.airports[0].id;
 				me.Value.cdVector[0] = courseAndDistance(me.Value.airports[0]);
-				me.Display.R1 = sprintf("%03.0fg/%-4d    ",math.round(me.Value.cdVector[0][0] - me.Value.magVar),math.round(me.Value.cdVector[0][1]));
+				me.Display.R1 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[0][0] - me.Value.magVar), math.round(me.Value.cdVector[0][1]));
 			}
 			
 			if (size(me.Value.airports) >= 2) {
 				me.Display.L2 = me.Value.airports[1].id;
 				me.Value.cdVector[1] = courseAndDistance(me.Value.airports[1]);
-				me.Display.R2 = sprintf("%03.0fg/%-4d    ",math.round(me.Value.cdVector[1][0] - me.Value.magVar),math.round(me.Value.cdVector[1][1]));
+				me.Display.R2 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[1][0] - me.Value.magVar), math.round(me.Value.cdVector[1][1]));
 			}
 			
 			if (size(me.Value.airports) >= 3) {
 				me.Display.L3 = me.Value.airports[2].id;
 				me.Value.cdVector[2] = courseAndDistance(me.Value.airports[2]);
-				me.Display.R3 = sprintf("%03.0fg/%-4d    ",math.round(me.Value.cdVector[2][0] - me.Value.magVar),math.round(me.Value.cdVector[2][1]));
+				me.Display.R3 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[2][0] - me.Value.magVar), math.round(me.Value.cdVector[2][1]));
 			}
 			
 			if (size(me.Value.airports) >= 4) {
 				me.Display.L4 = me.Value.airports[3].id;
 				me.Value.cdVector[3] = courseAndDistance(me.Value.airports[3]);
-				me.Display.R4 = sprintf("%-03.0fg/%-4d    ",math.round(me.Value.cdVector[3][0] - me.Value.magVar),math.round(me.Value.cdVector[3][1]));
+				me.Display.R4 = sprintf("%-03.0fg/%-4d    ", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
 			}
 		
 		}
@@ -132,7 +136,7 @@ var ClosestAirport = {
 		} else {
 			me.Value.cdVector[4] = courseAndDistance(me.Value.customAirport);
 			me.Display.L5 = me.Value.customAirport.id;
-			me.Display.R5 = sprintf("%03.0fg/%-4d    ",math.round(me.Value.cdVector[4][0] - me.Value.magVar),math.round(me.Value.cdVector[4][1]));
+			me.Display.R5 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
 		}
 	},
 	softKey: func(k) {
@@ -153,10 +157,14 @@ var ClosestAirport = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
-		} elsif (mcdu.unit[me.id].scratchpadState() == 0) {
+		} else if (mcdu.unit[me.id].scratchpadState() == 0) {
 			if (k == "l5") {
-				me.Value.customAirport = nil;
-				mcdu.unit[me.id].scratchpadClear();
+				if (me.Value.customAirport != nil) {
+					me.Value.customAirport = nil;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

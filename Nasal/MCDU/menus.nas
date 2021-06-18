@@ -182,7 +182,7 @@ var Ref = {
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
 			if (k == "l3") {
-				mcdu.unit[me.id].setPage("closestAirport");
+				mcdu.unit[me.id].setPage("closestAirports");
 			} else if (k == "l4") {
 				mcdu.unit[me.id].setPage("posRef");
 			} else if (k == "l5") {
