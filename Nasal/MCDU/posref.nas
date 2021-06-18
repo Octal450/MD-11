@@ -60,7 +60,9 @@ var PosRef = {
 		
 		m.Value = {
 			positionString: "",
+			positionMode: "",
 			frozen: 0,
+			gpsEnable: 1,
 		};
 		
 		m.fromPage = "";
@@ -85,27 +87,44 @@ var PosRef = {
 		}
 	},
 	loop: func() {
-		if (!me.Value.frozen) {
-			me.Display.L1S = " FMC LAT/LONG (G/I)";
+		if (me.Value.positionMode != "(NO NAV)") {
+			me.Value.positionString = positionFormat(pts.Position.node);
+			me.Display.L1 = me.Value.positionString;
+			me.Display.L2 = me.Value.positionString;
 		} else {
-			me.Display.L1S = " POS FROZEN (G/I)";
+			me.Display.L1 = "-----.-/------.-";
+			me.Display.L2 = "-----.-/------.-";
 		}
 		
-		me.Value.positionString = positionFormat(pts.Position.node);
-		me.Display.L1 = me.Value.positionString;
-		me.Display.L2 = me.Value.positionString;
+		if (me.Value.gpsEnable) {
+			me.Display.R5 = "INHIBIT*";
+			if (systems.IRS.Iru.anyAligned.getValue()) {
+				me.Value.positionMode = "(G/I)";
+			} else {
+				me.Value.positionMode = "(G)";
+			}
+		} else {
+			me.Display.R5 = "ENABLE*";
+			if (systems.IRS.Iru.anyAligned.getValue()) {
+				me.Value.positionMode = "(I)";
+			} else {
+				me.Value.positionMode = "(NO NAV)";
+			}
+		}
 		
-		# todo: GPS ENABLE / INHIBIT
-		# G/I MODE: 
-		# G WHEN GPS ENABLE + NO IRS
-		# I WHEN GPS INHIBIT + IRS
-		# NO NAV WHEN NEITHER GPS NOR IRS
-		# and this doesn't consider the radio beacons
+		if (!me.Value.frozen) {
+			me.Display.L1S = " FMC LAT/LONG " ~ me.Value.positionMode;
+		} else {
+			me.Display.L1S = " POS FROZEN " ~ me.Value.positionMode
+		}
+		
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
 			if (k == "l1") {
 				me.Value.frozen = !me.Value.frozen;
+			} else if (k == "r5") {
+				me.Value.gpsEnable = !me.Value.gpsEnable;
 			} else if (k == "r6") {
 				if (me.fromPage == "init") {
 					mcdu.unit[me.id].setPage("init");
@@ -210,10 +229,15 @@ var IrsGnsPos = {
 			me.Display.R1 = "000g/00";
 			me.Display.R1S = "";
 		} else {
-			me.Display.L1 = "  -----/-----";
-			me.Display.C1S = "ALIGN";
+			me.Display.L1 = "-----.-/------.-";
 			me.Display.R1 = "";
-			me.Display.R1S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[0].getValue());
+			if (systems.IRS.Iru.aligning[0].getValue()) {
+				me.Display.C1S = "ALIGN";
+				me.Display.R1S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[0].getValue());
+			} else {
+				me.Display.C1S = "";
+				me.Display.R1S = "";
+			}
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
@@ -222,10 +246,15 @@ var IrsGnsPos = {
 			me.Display.R2 = "000g/00";
 			me.Display.R2S = "";
 		} else {
-			me.Display.L2 = "  -----/-----";
-			me.Display.C2S = "ALIGN";
+			me.Display.L2 = "-----.-/------.-";
 			me.Display.R2 = "";
-			me.Display.R2S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[1].getValue());
+			if (systems.IRS.Iru.aligning[1].getValue()) {
+				me.Display.C2S = "ALIGN";
+				me.Display.R2S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[1].getValue());
+			} else {
+				me.Display.C2S = "";
+				me.Display.R2S = "";
+			}
 		}
 		
 		if (systems.IRS.Iru.aligned[2].getValue()) {
@@ -234,10 +263,15 @@ var IrsGnsPos = {
 			me.Display.R3 = "000g/00";
 			me.Display.R3S = "";
 		} else {
-			me.Display.L3 = "  -----/-----";
-			me.Display.C3S = "ALIGN";
+			me.Display.L3 = "-----.-/------.-";
 			me.Display.R3 = "";
-			me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
+			if (systems.IRS.Iru.aligning[2].getValue()) {
+				me.Display.C3S = "ALIGN";
+				me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
+			} else {
+				me.Display.C3S = "";
+				me.Display.R3S = "";
+			}
 		}
 		
 		me.Display.L4 = me.Value.positionString;
@@ -340,26 +374,26 @@ var IrsStatus = {
 	loop: func() {
 		pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
 		if (systems.IRS.Iru.aligned[0].getValue()) {
-			me.Display.C1 = "   0";
+			me.Display.C1 = " 0";
 			me.Display.R1 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C1 = "   -";
+			me.Display.C1 = " -";
 			me.Display.R1 = "-";
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
-			me.Display.C2 = "   0";
+			me.Display.C2 = " 0";
 			me.Display.R2 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C2 = "   -";
+			me.Display.C2 = " -";
 			me.Display.R2 = "-";
 		}
 	
 		if (systems.IRS.Iru.aligned[2].getValue()) {
-			me.Display.C3 = "   0";
+			me.Display.C3 = " 0";
 			me.Display.R3 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
 		} else {
-			me.Display.C3 = "   -";
+			me.Display.C3 = " -";
 			me.Display.R3 = "-";
 		}
 	},
