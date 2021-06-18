@@ -229,3 +229,20 @@ var FONT = {
 	normal: 65,
 	small: 54,
 };
+
+var dms = nil;
+var degrees = [nil,nil];
+var minutes = [nil,nil];
+var sign = [nil,nil];
+
+var positionFormat = func(node) {
+	dms = node.getChild("latitude-deg").getValue();
+	degrees[0] = int(dms);
+	minutes[0] = sprintf("%.1f",abs((dms - degrees[0]) * 60));
+	sign[0] = degrees[0] >= 0 ? "N" : "S";
+	dms = node.getChild("longitude-deg").getValue();
+	degrees[1] = int(dms);
+	minutes[1] = sprintf("%.1f",abs((dms - degrees[1]) * 60));
+	sign[1] = degrees[1] >= 0 ? "E" : "W";
+	return sprintf("%s%02s%.1f/%s%03s%.1f",sign[0],abs(degrees[0]),minutes[0],sign[1],abs(degrees[1]),minutes[1]);
+};

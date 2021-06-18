@@ -1,6 +1,8 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
+var positionNode = props.globals.getNode("/position");
+
 var PosRef = {
 	new: func(n) {
 		var m = {parents: [PosRef]};
@@ -25,9 +27,9 @@ var PosRef = {
 			C6S: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "N4038.5/W07346.0",
+			L1: "",
 			L1S: "",
-			L2: "N4038.5/W07346.0",
+			L2: "",
 			L2S: " IRS (MIX)",
 			L3: "",
 			L3S: "",
@@ -59,6 +61,7 @@ var PosRef = {
 		};
 		
 		m.Value = {
+			positionString: "",
 			frozen: 0,
 		};
 		
@@ -89,6 +92,10 @@ var PosRef = {
 		} else {
 			me.Display.L1S = " POS FROZEN (G/I)";
 		}
+		
+		me.Value.positionString = positionFormat(positionNode);
+		me.Display.L1 = me.Value.positionString;
+		me.Display.L2 = me.Value.positionString;
 		
 		# todo: GPS ENABLE / INHIBIT
 		# G/I MODE: 
@@ -146,9 +153,9 @@ var IrsGnsPos = {
 			L2S: " IRU 2",
 			L3: "",
 			L3S: " IRU 3",
-			L4: "N4038.5/W07346.0",
+			L4: "",
 			L4S: " GNS 1",
-			L5: "N4038.5/W07346.0",
+			L5: "",
 			L5S: " GNS 2",
 			L6: "",
 			L6S: "",
@@ -173,6 +180,10 @@ var IrsGnsPos = {
 			title: "IRS/GNS POS   ",
 		};
 		
+		m.Value = {
+			positionString: "",
+		};
+		
 		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "irsGnsPos";
@@ -194,8 +205,9 @@ var IrsGnsPos = {
 		}
 	},
 	loop: func() {
+		me.Value.positionString = positionFormat(positionNode);
 		if (systems.IRS.Iru.aligned[0].getValue()) {
-			me.Display.L1 = "N4038.5/W07346.0";
+			me.Display.L1 = me.Value.positionString;
 			me.Display.C1S = "NAV";
 			me.Display.R1 = "000g/00";
 			me.Display.R1S = "";
@@ -207,7 +219,7 @@ var IrsGnsPos = {
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
-			me.Display.L2 = "N4038.5/W07346.0";
+			me.Display.L2 = me.Value.positionString;
 			me.Display.C2S = "NAV";
 			me.Display.R2 = "000g/00";
 			me.Display.R2S = "";
@@ -219,7 +231,7 @@ var IrsGnsPos = {
 		}
 		
 		if (systems.IRS.Iru.aligned[2].getValue()) {
-			me.Display.L3 = "N4038.5/W07346.0";
+			me.Display.L3 = me.Value.positionString;
 			me.Display.C3S = "NAV";
 			me.Display.R3 = "000g/00";
 			me.Display.R3S = "";
@@ -229,6 +241,9 @@ var IrsGnsPos = {
 			me.Display.R3 = "";
 			me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
 		}
+		me.Display.L4 = me.Value.positionString;
+		me.Display.L5 = me.Value.positionString;
+	
 	},
 	softKey: func(k) {
 		if (mcdu.unit[me.id].scratchpadState() == 1) {
