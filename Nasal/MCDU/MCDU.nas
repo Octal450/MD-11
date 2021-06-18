@@ -79,6 +79,7 @@ var MCDU = {
 		me.clear = 0;
 		if (a) {
 			me.message.clear();
+			me.scratchpad = "";
 		} else {
 			if (me.message.size() > 1) {
 				me.message.pop(0);
@@ -177,7 +178,7 @@ var MCDU = {
 			} else {
 				me.clear = 1;
 			}
-		} else if (me.message.size() == 0) {
+		} else {
 			me.clear = 0;
 			if (me.message.size() > 0) {
 				me.clearMessage(1);
@@ -185,8 +186,6 @@ var MCDU = {
 			if (size(me.scratchpad) < 22) {
 				me.scratchpad = me.scratchpad ~ k;
 			}
-		} else {
-			me.clear = 0;
 		}
 	},
 };
@@ -247,5 +246,5 @@ var positionFormat = func(node) {
 	degrees[1] = int(dms);
 	minutes[1] = sprintf("%.1f",abs((dms - degrees[1]) * 60));
 	sign[1] = degrees[1] >= 0 ? "E" : "W";
-	return sprintf("%s%02s%.1f/%s%03s%.1f",sign[0],abs(degrees[0]),minutes[0],sign[1],abs(degrees[1]),minutes[1]);
+	return sprintf("%s%02s%.1f/%s%03s%.1f", sign[0], abs(degrees[0]), minutes[0], sign[1], abs(degrees[1]), minutes[1]);
 };
