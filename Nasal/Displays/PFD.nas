@@ -1137,7 +1137,12 @@ var canvasBase = {
 			me["HDG_sel_right_text"].hide();
 		}
 		
-		me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
+		if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+			me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
+			me["TRK_pointer"].show();
+		} else {
+			me["TRK_pointer"].hide();
+		}
 		
 		# FMA
 		Value.Afs.spdProt = afs.Output.spdProt.getValue();
