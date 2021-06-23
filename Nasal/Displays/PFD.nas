@@ -130,6 +130,7 @@ var Value = {
 		slatsCmd: 0,
 		slatsOut: 0,
 		slatsPos: 0,
+		wow: 0,
 	},
 	Nav: {
 		gsInRange: 0,
@@ -243,6 +244,7 @@ var canvasBase = {
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		Value.Misc.gearOut = pts.Fdm.JSBsim.Gear.gearAllNorm.getValue() > 0;
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		
 		# ASI
 		me["ASI_v_speed"].hide(); # Not working yet
@@ -272,7 +274,7 @@ var canvasBase = {
 			Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
 		}
 		
-		if (Value.Asi.ias < 53 and pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+		if (Value.Asi.ias < 53 and Value.Misc.wow) {
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
 				me["ASI_groundspeed"].setColor(0.9412,0.7255,0);
 				me["ASI_groundspeed"].setText("NO");
@@ -1137,7 +1139,7 @@ var canvasBase = {
 			me["HDG_sel_right_text"].hide();
 		}
 		
-		if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+		if (!Value.Misc.wow) {
 			me["TRK_pointer"].setRotation(Value.Hdg.track * D2R);
 			me["TRK_pointer"].show();
 		} else {
