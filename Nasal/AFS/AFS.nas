@@ -720,7 +720,7 @@ var ITAF = {
 		
 		# Reset system once flight complete
 		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Gear.wow0.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Output.vert.getValue() != 7) { # Not in T/O or G/A
-			fms.CORE.resetFMS();
+			fms.CORE.resetFms();
 		}
 		
 		# Speed Protection
@@ -863,7 +863,7 @@ var ITAF = {
 				apKill.start();	
 			}
 			if (Text.vert.getValue() == "ROLLOUT") {
-				fms.CORE.resetFMS();
+				fms.CORE.resetFms();
 			}
 		}
 	},

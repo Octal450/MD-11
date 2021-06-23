@@ -100,10 +100,8 @@ var AcStatus = {
 		
 		if (mcdu.unit[me.id].scratchpadState() == 2) {
 			if (k == "l6") {
-				if (int(me.scratchpad) != nil) {
-					if (size(sprintf("%s", abs(me.scratchpad))) > 3) {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
-					} else if (abs(me.scratchpad) > 9.9) {
+				if (mcdu.unit[me.id].scratchpadIsNumber() and mcdu.unit[me.id].scratchpadLengthInRange(1, 3)) {
+					if (abs(me.scratchpad) > 9.9) {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else {
 						mcdu.BASE.acStatus.perfFactor = me.scratchpad;

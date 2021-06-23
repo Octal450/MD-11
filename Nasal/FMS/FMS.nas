@@ -35,7 +35,8 @@ var Speeds = {
 };
 
 var CORE = {
-	resetFMS: func() {
+	resetFms: func() {
 		afs.ITAF.init(1);
+		mcdu.BASE.reset();
 	},
 };

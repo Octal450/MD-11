@@ -144,15 +144,15 @@ var ClosestAirports = {
 		
 		if (mcdu.unit[me.id].scratchpadState() == 2) {
 			if (k == "l5") {
-				if (size(me.scratchpad) < 3 or size(me.scratchpad) > 4) {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
-				} else {
+				if (mcdu.unit[me.id].scratchpadLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) > 0) {
 						me.Value.customAirport = findAirportsByICAO(me.scratchpad)[0];
+						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
 					}
-					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");

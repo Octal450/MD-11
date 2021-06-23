@@ -56,6 +56,7 @@ var MCDU = {
 		
 		me.scratchpad = "";
 		me.scratchpadOld = "";
+		me.scratchpadSize = 0;
 	},
 	loop: func() {
 		if (me.Blink.active) {
@@ -64,6 +65,29 @@ var MCDU = {
 			}
 		}
 		me.page.loop();
+	},
+	alphaNumKey: func(k) {
+		if (k == "CLR") {
+			if (me.message.size() > 0) {
+				me.clear = 0;
+				me.clearMessage(0);
+			} else if (size(me.scratchpad) > 0) {
+				me.clear = 0;
+				me.scratchpad = left(me.scratchpad, size(me.scratchpad) - 1);
+			} else if (me.clear) {
+				me.clear = 0;
+			} else {
+				me.clear = 1;
+			}
+		} else {
+			me.clear = 0;
+			if (me.message.size() > 0) {
+				me.clearMessage(1);
+			}
+			if (size(me.scratchpad) < 22) {
+				me.scratchpad = me.scratchpad ~ k;
+			}
+		}
 	},
 	arrowKey: func(d) {
 		if (!me.Blink.active) {
@@ -77,6 +101,7 @@ var MCDU = {
 	},
 	clearMessage: func(a) {
 		me.clear = 0;
+		
 		if (a) {
 			me.message.clear();
 			me.scratchpad = "";
@@ -114,8 +139,24 @@ var MCDU = {
 	},
 	scratchpadClear: func() {
 		me.clear = 0;
-		me.scratchpadOld = "";
 		me.scratchpad = "";
+		me.scratchpadOld = "";
+	},
+	scratchpadIsNumber: func() {
+		if (int(me.scratchpad) != nil) {
+			return 1;
+		} else {
+			return 0;
+		}
+	},
+	scratchpadLengthInRange: func(min, max) {
+		me.scratchpadSize = size(sprintf("%s", string.replace(me.scratchpad, "-", ""))); # Always string, and negatives don't affect
+		
+		if (me.scratchpadSize >= min and me.scratchpadSize <= max) {
+			return 1;
+		} else {
+			return 0;
+		}
 	},
 	scratchpadState: func() {
 		if (me.clear) {
@@ -128,6 +169,7 @@ var MCDU = {
 	},
 	setMessage: func(m) {
 		me.clear = 0;
+		
 		if (me.message.size() > 0) {
 			if (me.message.vector[0] != m) {
 				me.message.insert(0, m);
@@ -163,29 +205,6 @@ var MCDU = {
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			me.page.softKey(k);
-		}
-	},
-	alphaNumKey: func(k) {
-		if (k == "CLR") {
-			if (me.message.size() > 0) {
-				me.clear = 0;
-				me.clearMessage(0);
-			} else if (size(me.scratchpad) > 0) {
-				me.clear = 0;
-				me.scratchpad = left(me.scratchpad, size(me.scratchpad) - 1);
-			} else if (me.clear) {
-				me.clear = 0;
-			} else {
-				me.clear = 1;
-			}
-		} else {
-			me.clear = 0;
-			if (me.message.size() > 0) {
-				me.clearMessage(1);
-			}
-			if (size(me.scratchpad) < 22) {
-				me.scratchpad = me.scratchpad ~ k;
-			}
 		}
 	},
 };
