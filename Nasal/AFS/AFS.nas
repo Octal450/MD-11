@@ -629,7 +629,7 @@ var ITAF = {
 		
 		# Trip system off
 		if (Output.ap1Temp or Output.ap2Temp) { 
-			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2) {
+			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}

@@ -11,7 +11,6 @@
 	<property value="0">fcc/lsas/pah/output</property>
 	<property value="0">fcc/lsas/spd-prot/output</property>
 	<property value="0">fcc/slat/cmd-deg</property>
-	<property value="15.5">fcc/stall-alpha-deg</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0">fcs/spoiler-left-feedback</property>
 	<property value="0">fcs/spoiler-right-feedback</property>
@@ -56,6 +55,28 @@
 			<input>aero/alpha-deg-fixed</input>
 			<c1>10</c1>
 		</lag_filter>
+		
+		<fcs_function name="fcc/stall-alpha-deg">
+			<function>
+				<table>
+					<independentVar lookup="row">atmosphere/density-altitude</independentVar>
+					<tableData>
+						    0  15.5
+						43000   8.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fcc/stall-warn-alpha-deg">
+			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<gain>0.8</gain> <!-- 80% -->
+		</pure_gain>
+		
+		<pure_gain name="fcc/no-stall-warn-alpha-deg">
+			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<gain>0.75</gain> <!-- 75% -->
+		</pure_gain>
 	
 	</channel>
 	
@@ -200,16 +221,6 @@
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge fcc/lsas/spd-prot/max
 			</test>
 		</switch>
-		
-		<pure_gain name="fcc/stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
-			<gain>0.8</gain> <!-- 80% -->
-		</pure_gain>
-		
-		<pure_gain name="fcc/no-stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
-			<gain>0.75</gain> <!-- 75% -->
-		</pure_gain>
 		
 		<switch name="fcc/lsas/alpha-prot/active">
 			<default value="fcc/lsas/alpha-prot/active"/>

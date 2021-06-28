@@ -47,6 +47,7 @@ var Value = {
 		bankLimit: 0,
 		pitch: 0,
 		roll: 0,
+		stallAlphaDeg: 0,
 	},
 	Alt: {
 		indicated: 0,
@@ -324,7 +325,7 @@ var canvasBase = {
 				me["ASI_vmo_bar2"].show();
 			}
 			
-			Value.Asi.Tape.vmin = Value.Asi.vss - Value.Asi.vmin;
+			Value.Asi.Tape.vmin = Value.Asi.vss - math.clamp(Value.Asi.vmin, 0, fms.Speeds.vmax.getValue());
 			
 			if (Value.Asi.vss < 0) {
 				me["ASI_vss"].hide();
@@ -666,6 +667,7 @@ var canvasBase = {
 		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
+		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
 		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug.getValue();
 		
 		AICenter = me["AI_center"].getCenter();
@@ -702,8 +704,8 @@ var canvasBase = {
 			me["AI_fpd"].hide();
 		}
 		
-		me["AI_PLI"].setTranslation(0, math.clamp(16 - Value.Ai.alpha, -20, 20) * -10.246);
-		if (Value.Ai.alpha >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
+		me["AI_PLI"].setTranslation(0, math.clamp(Value.Ai.stallAlphaDeg - Value.Ai.alpha, -20, 20) * -10.246);
+		if (Value.Ai.alpha >= Value.Ai.stallAlphaDeg) {
 			me["AI_PLI"].setColor(1,0,0);
 			me["AI_banklimit_L"].setColor(1,0,0);
 			me["AI_banklimit_R"].setColor(1,0,0);

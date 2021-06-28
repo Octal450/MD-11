@@ -374,7 +374,16 @@
 						<property>/fms/speeds/vss-kts</property>
 						<value>15</value> <!-- FAA Stall -->
 					</difference>
-					<property>/fms/speeds/vmin-factor</property>
+					<sum>
+						<property>/fms/speeds/vmin-factor</property>
+						<table>
+							<independentVar lookup="row">atmosphere/density-altitude</independentVar>
+							<tableData>
+									0  0.00
+								43000  0.22
+							</tableData>
+						</table>
+					</sum>
 				</product>
 			</function>
 			<clipto>
