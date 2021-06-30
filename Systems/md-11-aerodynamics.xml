@@ -7,7 +7,6 @@
 <aerodynamics>
 	
 	<property value="0">ice/wing</property>
-	<property value="0">tune</property>
 	
 	<function name="aero/function/kCLge">
 		<description>Lift factor due to ground effect</description>
@@ -258,7 +257,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>0.02</value>
+				<value>0.0215</value>
 			</product>
 		</function>
 		
@@ -293,7 +292,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
 				<property>aero/cl-squared</property>
-				<value>0.044</value>
+				<value>0.0468</value>
 			</product>
 		</function>
 		
