@@ -81,6 +81,7 @@
 	</function>
 	
 	<function name="IdleThrust">
+		
 		<table>
 			<independentVar lookup="row">velocities/mach</independentVar>
 			<independentVar lookup="column">atmosphere/density-altitude</independentVar>
