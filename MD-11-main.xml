@@ -395,6 +395,21 @@
 			</config>
 		</view>
 		<view n="105">
+			<name>MCDU View</name>
+			<type>lookfrom</type>
+			<internal archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">0.0</x-offset-m>
+				<y-offset-m archive="y">1.1701</y-offset-m>
+				<z-offset-m archive="y">-27.25</z-offset-m>
+				<default-field-of-view-deg type="double">77</default-field-of-view-deg>
+				<heading-offset-deg archive="y">0</heading-offset-deg>
+				<pitch-offset-deg archive="y">-68</pitch-offset-deg>
+				<roll-offset-deg archive="y">0</roll-offset-deg>
+			</config>
+		</view>
+		<view n="106">
 			<name>Left Front View</name>
 			<type>lookfrom</type>
 			<enabled type="bool">true</enabled>
@@ -410,7 +425,7 @@
 				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="106">
+		<view n="107">
 			<name>Right Front View</name>
 			<type>lookfrom</type>
 			<enabled type="bool">true</enabled>
@@ -426,7 +441,7 @@
 				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="107">
+		<view n="108">
 			<name>Left Mid View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -441,7 +456,7 @@
 				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="108">
+		<view n="109">
 			<name>Right Mid View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -456,7 +471,7 @@
 				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="109">
+		<view n="110">
 			<name>Left Aft View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -471,7 +486,7 @@
 				<roll-offset-deg archive="y">0</roll-offset-deg>
 			</config>
 		</view>
-		<view n="110">
+		<view n="111">
 			<name>Right Aft View</name>
 			<type>lookfrom</type>
 			<internal archive="y">false</internal>
@@ -1109,14 +1124,13 @@
 			<key n="55">
 				<name>7</name>
 				<desc>Elevator Trim Down</desc>
-				<!--binding>
+				<binding>
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value></value>
-				</binding-->
+					<command>nasal</command>
+					<script>libraries.setView(7);</script>
+				</binding>
 				<binding>
 					<condition>
 						<property>/systems/acconfig/options/keyboard-mode</property>
@@ -1132,9 +1146,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value></value>
+					<command>nasal</command>
+					<script>libraries.setView(8);</script>
 				</binding-->
 				<binding>
 					<condition>
@@ -1151,9 +1164,8 @@
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
-					<command>property-assign</command>
-					<property>/sim/current-view/view-number</property>
-					<value></value>
+					<command>nasal</command>
+					<script>libraries.setView(9);</script>
 				</binding-->
 				<binding>
 					<condition>
@@ -1712,6 +1724,7 @@
 			<file>Aircraft/MD-11/Nasal/MCDU/closestairports.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/fallback.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/menus.nas</file>
+			<file>Aircraft/MD-11/Nasal/MCDU/navradio.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/posref.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/status.nas</file>
 		</mcdu>

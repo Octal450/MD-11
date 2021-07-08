@@ -26,6 +26,7 @@ var MCDU = {
 			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
+			navRadio: NavRadio.new(n),
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
@@ -52,6 +53,7 @@ var MCDU = {
 		me.PageList.menu.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
+		me.PageList.navRadio.reset();
 		me.PageList.posRef.reset();
 		
 		me.scratchpad = "";
@@ -134,6 +136,9 @@ var MCDU = {
 		if (!me.Blink.active) {
 			if (p == "menu" or !me.PageList.menu.Value.request) {
 				me.setPage(p);
+			} else {
+				me.blinkScreen();
+				me.setMessage("NOT ALLOWED");
 			}
 		}
 	},

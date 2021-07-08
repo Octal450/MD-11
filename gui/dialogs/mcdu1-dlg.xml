@@ -308,7 +308,7 @@
 		</button>
 		
 		<button>
-			<legend>RAD</legend>
+			<legend>NAV</legend>
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
@@ -319,7 +319,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("radnav");</script>
+				<script>mcdu.unit[0].pageKey("navRadio");</script>
 			</binding>
 		</button>
 		
@@ -367,7 +367,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("toappr");</script>
+				<script>mcdu.unit[0].pageKey("toAppr");</script>
 			</binding>
 		</button>
 		
@@ -443,7 +443,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("secfpln");</script>
+				<script>mcdu.unit[0].pageKey("secFpln");</script>
 			</binding>
 		</button>
 		
@@ -475,7 +475,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("engout");</script>
+				<script>mcdu.unit[0].pageKey("engOut");</script>
 			</binding>
 		</button>
 	</group>

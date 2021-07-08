@@ -12,12 +12,12 @@ var incStep = 5;
 var shakeFlag = 0;
 var viewName = "XX";
 var viewNumberRaw = 0;
-var views = [0, 9, 10, 11, 12, 13];
-var viewsOld = [0, 8, 9, 10, 11, 12];
+var views = [0, 9, 10, 11, 12, 13, 14];
+var viewsOld = [0, 8, 9, 10, 11, 12, 13];
 
 var resetView = func() {
 	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
-	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 110)) {
+	if (viewNumberRaw == 0 or (viewNumberRaw >= 100 and viewNumberRaw <= 111)) {
 		if (pts.Sim.Rendering.Headshake.enabled.getBoolValue()) {
 			shakeFlag = 1;
 			pts.Sim.Rendering.Headshake.enabled.setBoolValue(0);

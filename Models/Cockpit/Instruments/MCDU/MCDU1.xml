@@ -282,7 +282,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>radnav</object-name>
+		<object-name>navrad</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -294,7 +294,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("radnav");</script>
+				<script>mcdu.unit[0].pageKey("navRadio");</script>
 			</binding>
 		</action>
 	</animation>
@@ -351,7 +351,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("toappr");</script>
+				<script>mcdu.unit[0].pageKey("toAppr");</script>
 			</binding>
 		</action>
 	</animation>
@@ -427,7 +427,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("secfpln");</script>
+				<script>mcdu.unit[0].pageKey("secFpln");</script>
 			</binding>
 		</action>
 	</animation>
@@ -465,7 +465,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("engout");</script>
+				<script>mcdu.unit[0].pageKey("engOut");</script>
 			</binding>
 		</action>
 	</animation>
