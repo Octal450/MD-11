@@ -17,6 +17,8 @@ var variousReset = func() {
 	pts.Controls.Switches.seatbeltSign.setValue(0);
 	pts.Instrumentation.Du.irsCapt.setBoolValue(0);
 	pts.Instrumentation.Du.irsFo.setBoolValue(0);
+	pts.Instrumentation.Efis.Mfd.trueNorth[0].setBoolValue(0);
+	pts.Instrumentation.Efis.Mfd.trueNorth[1].setBoolValue(0);
 	pts.Instrumentation.Sd.selectedSynoptic.setValue("ENG");
 }
 

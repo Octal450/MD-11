@@ -200,8 +200,9 @@ var canvasBase = {
 		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_scale", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
 		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "FD_group", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T",
 		"ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn",
-		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up",
-		"Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
+		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_up", "Slats_dn",
+		"Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker",
+		"Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -232,8 +233,8 @@ var canvasBase = {
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
-		Value.Asi.preSel = pts.Instrumentation.Pfd.iasPreSel.getValue();
-		Value.Asi.sel = pts.Instrumentation.Pfd.iasSel.getValue();
+		Value.Asi.preSel = pts.Instrumentation.Pfd.spdPreSel.getValue();
+		Value.Asi.sel = pts.Instrumentation.Pfd.spdSel.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
 		Value.Asi.vmin = fms.Speeds.vminTape.getValue();
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
@@ -1052,7 +1053,15 @@ var canvasBase = {
 		}
 		
 		# HDG
-		Value.Hdg.indicated = pts.Instrumentation.Pfd.hdgScale.getValue();
+		if (pts.Instrumentation.Efis.Mfd.trueNorth[n].getBoolValue()) {
+			me["HDG_magtru"].setColor(0.3412,0.7882,0.9922);
+			me["HDG_magtru"].setText("TRU");
+		} else {
+			me["HDG_magtru"].setColor(1,1,1);
+			me["HDG_magtru"].setText("MAG");
+		}
+		
+		Value.Hdg.indicated = pts.Instrumentation.Pfd.hdgDeg[n].getValue();
 		Value.Hdg.indicatedFixed = Value.Hdg.indicated + 0.5;
 		
 		if (Value.Hdg.indicatedFixed > 359) {

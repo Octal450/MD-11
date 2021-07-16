@@ -451,15 +451,8 @@
 		<name>Heading Deg</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<property>/it-autoflight/input/true-course</property>
-			</condition>
-			<property>/orientation/heading-deg</property>
-		</input>
 		<input>/orientation/heading-magnetic-deg</input>
 		<output>/it-autoflight/internal/heading-deg</output>
-		<output>/instrumentation/pfd/heading-deg</output>
 	</filter>
 	
 	<filter>
@@ -468,32 +461,16 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<and>
-					<property>/it-autoflight/input/true-course</property>
-					<greater-than>
-						<property>/velocities/groundspeed-kt</property>
-						<value>1</value>
-					</greater-than>
-				</and>
-			</condition>
-			<property>/orientation/track-deg</property>
-		</input>
-		<input>
-			<condition>
-				<and>
-					<not><property>/it-autoflight/input/true-course</property></not>
-					<greater-than>
-						<property>/velocities/groundspeed-kt</property>
-						<value>1</value>
-					</greater-than>
-				</and>
+				<greater-than-equals>
+					<property>/velocities/groundspeed-kt</property>
+					<value>1</value>
+				</greater-than-equals>
 			</condition>
 			<property>/orientation/track-magnetic-deg</property>
 		</input>
 		<input>/it-autoflight/internal/heading-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/track-deg</output>
-		<output>/instrumentation/pfd/track-deg</output>
 	</filter>
 	
 	<filter>
@@ -502,10 +479,10 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<less-than-equals>
+				<less-than>
 					<property>/velocities/groundspeed-kt</property>
 					<value>1</value>
-				</less-than-equals>
+				</less-than>
 			</condition>
 			<property>/orientation/heading-magnetic-deg</property>
 		</input>

@@ -50,8 +50,8 @@ var Gear = {
 var Misc = {
 	elapsedSec: props.globals.getNode("/sim/time/elapsed-sec", 1),
 	flapDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg", 1),
-	pfdHeadingScale: props.globals.getNode("/instrumentation/pfd/heading-scale", 1),
-	pfdHeadingScaleTemp: 0,
+	pfdHeadingTrackDeg: props.globals.getNode("/instrumentation/pfd/heading-track-mag-deg", 1),
+	pfdHeadingTrackDegTemp: 0,
 	rollDeg: props.globals.getNode("/orientation/roll-deg", 1),
 	state1: props.globals.getNode("/engines/engine[0]/state", 1),
 	state2: props.globals.getNode("/engines/engine[1]/state", 1),
@@ -129,7 +129,6 @@ var Input = {
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
-	trueCourse: props.globals.initNode("/it-autoflight/input/true-course", 0, "BOOL"),
 	radioSel: props.globals.initNode("/it-autoflight/input/radio-sel", 2, "INT"),
 	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
 	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"), # Set by property rule
@@ -256,7 +255,6 @@ var ITAF = {
 			Input.mach.setValue(0.5);
 			Input.hdg.setValue(0);
 			Input.trk.setBoolValue(0);
-			Input.trueCourse.setBoolValue(0);
 			Internal.alt.setValue(10000);
 			Internal.hdg.setValue(0);
 			Input.ovrd1.setBoolValue(0);
@@ -536,9 +534,9 @@ var ITAF = {
 		
 		# Heading Sync
 		if (!Output.showHdg.getBoolValue()) {
-			Misc.pfdHeadingScaleTemp = Misc.pfdHeadingScale.getValue();
-			Internal.hdg.setValue(Misc.pfdHeadingScaleTemp);
-			Input.hdg.setValue(Misc.pfdHeadingScaleTemp);
+			Misc.pfdHeadingTrackDegTemp = math.round(Misc.pfdHeadingTrackDeg.getValue());
+			Internal.hdg.setValue(Misc.pfdHeadingTrackDegTemp);
+			Input.hdg.setValue(Misc.pfdHeadingTrackDegTemp);
 		}
 		
 		# Heading Capture

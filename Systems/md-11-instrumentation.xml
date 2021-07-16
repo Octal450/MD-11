@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Instrumentation -->
+<!-- Copyright (c) 2021 Josh Davidson (Octal450) -->
+
+<system name="MD-11: Instrumentation">
+	
+	<channel name="Primary Flight Displays" execrate="2"> <!-- No more than 2 -->
+		
+		<!-- Speed Bugs -->
+		<fcs_function name="/instrumentation/pfd/spd-pre-sel">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/it-autoflight/input/kts-mach</property>
+						<value>1</value>
+					</eq>
+					<product>
+						<quotient>
+							<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						</quotient>
+						<property>/it-autoflight/input/mach</property>
+					</product>
+					<property>/it-autoflight/input/kts</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/spd-sel">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/it-autoflight/internal/kts-mach</property>
+						<value>1</value>
+					</eq>
+					<product>
+						<quotient>
+							<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						</quotient>
+						<property>/it-autoflight/internal/mach</property>
+					</product>
+					<property>/it-autoflight/internal/kts</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<!-- Bank Limit -->
+		<fcs_function name="/instrumentation/pfd/bank-limit-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/it-autoflight/internal/bank-limit</independentVar>
+					<tableData>
+						 0 -25
+						25   0
+						30   5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/instrumentation/pfd/bank-limit">
+			<input>/instrumentation/pfd/bank-limit-cmd</input>
+			<c1>10</c1>
+		</lag_filter>
+		
+		<!-- Altitude Bugs -->
+		<summer name="/instrumentation/pfd/alt-pre-sel">
+			<input>/it-autoflight/input/alt</input>
+			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
+		</summer>
+		
+		<summer name="/instrumentation/pfd/alt-sel">
+			<input>/it-autoflight/internal/alt</input>
+			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
+		</summer>
+		
+		<!-- Slip Skid -->
+		<pure_gain name="/instrumentation/pfd/slip-skid-Ny">
+			<input>accelerations/Ny</input>
+			<gain>-25</gain>
+		</pure_gain>
+		
+		<switch name="/instrumentation/pfd/slip-skid-cmd">
+			<default value="/fdm/jsbsim/aero/beta-deg"/>
+			<test value="/instrumentation/pfd/slip-skid-Ny">
+				position/wow eq 1
+			</test>
+		</switch>
+		
+		<lag_filter name="/instrumentation/pfd/slip-skid">
+			<input>/instrumentation/pfd/slip-skid-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<!-- Vertical Speed -->
+		<fcs_function name="/instrumentation/pfd/vs-digit">
+			<function>
+				<quotient>
+					<floor>
+						<quotient>
+							<sum>
+								<abs><property>/it-autoflight/internal/vert-speed-fpm</property></abs>
+								<value>50</value>
+							</sum>
+							<value>100</value>
+						</quotient>
+					</floor>
+					<value>10</value>
+				</quotient>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/vs-needle-dn">
+			<function>
+				<table>
+					<independentVar lookup="row">/it-autoflight/internal/vert-speed-fpm</independentVar>
+					<tableData>
+						-4000  257
+						-2000  189
+						-1000  121
+						 -100    0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/vs-needle-up">
+			<function>
+				<table>
+					<independentVar lookup="row">/it-autoflight/internal/vert-speed-fpm</independentVar>
+					<tableData>
+						 100    0
+						1000 -121
+						2000 -189
+						4000 -257
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/vs-bug-dn">
+			<function>
+				<table>
+					<independentVar lookup="row">/it-autoflight/input/vs</independentVar>
+					<tableData>
+						-4000  257
+						-2000  189
+						-1000  121
+						 -100    0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/vs-bug-up">
+			<function>
+				<table>
+					<independentVar lookup="row">/it-autoflight/input/vs</independentVar>
+					<tableData>
+						 100    0
+						1000 -121
+						2000 -189
+						4000 -257
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!-- Heading -->
+		<switch name="/instrumentation/pfd/heading-track-mag-deg">
+			<default value="/orientation/heading-magnetic-deg"/>
+			<test value="/orientation/track-magnetic-deg">
+				/it-autoflight/input/trk eq 1
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/pfd/heading-deg[0]">
+			<default value="/orientation/heading-magnetic-deg"/>
+			<test value="/orientation/heading-deg">
+				/instrumentation/efis[0]/mfd/true-north eq 1
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/pfd/track-deg[0]">
+			<default value="/orientation/track-magnetic-deg"/>
+			<test value="/instrumentation/pfd/heading-deg[0]">
+				/velocities/groundspeed-kt lt 1
+			</test>
+			<test value="/orientation/track-deg">
+				/instrumentation/efis[0]/mfd/true-north eq 1
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/pfd/heading-deg[1]">
+			<default value="/orientation/heading-magnetic-deg"/>
+			<test value="/orientation/heading-deg">
+				/instrumentation/efis[1]/mfd/true-north eq 1
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/pfd/track-deg[1]">
+			<default value="/orientation/track-magnetic-deg"/>
+			<test value="/instrumentation/pfd/heading-deg[1]">
+				/velocities/groundspeed-kt lt 1
+			</test>
+			<test value="/orientation/track-deg">
+				/instrumentation/efis[1]/mfd/true-north eq 1
+			</test>
+		</switch>
+	
+	</channel>
+
+</system>

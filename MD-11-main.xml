@@ -1418,6 +1418,16 @@
 			<irs-capt type="bool">0</irs-capt>
 			<irs-fo type="bool">0</irs-fo>
 		</du>
+		<efis n="0">
+			<mfd n="0">
+				<true-north type="bool">0</true-north>
+			</mfd>
+		</efis>
+		<efis n="1">
+			<mfd n="0">
+				<true-north type="bool">0</true-north>
+			</mfd>
+		</efis>
 		<encoder n="0">
 			<serviceable type="bool">1</serviceable>
 		</encoder>
@@ -1535,13 +1545,24 @@
 	
 	<it-autoflight>
 		<input n="0">
+			<alt type="int">0</alt>
 			<fpa type="double">0</fpa>
+			<kts type="int">250</kts>
+			<kts-mach type="bool">0</kts-mach>
+			<mach type="double">0.5</mach>
 			<ovrd1 type="bool">0</ovrd1>
 			<ovrd2 type="bool">0</ovrd2>
+			<true-course type="bool">0</true-course>
 			<vs type="int">0</vs>
 		</input>
 		<internal n="0">
+			<alt type="int">0</alt>
+			<bank-limit type="double">25</bank-limit>
+			<kts type="int">250</kts>
+			<kts-mach type="bool">0</kts-mach>
+			<mach type="double">0.5</mach>
 			<throttle-saturated type="int">0</throttle-saturated>
+			<vert-speed-fpm type="double">0.5</vert-speed-fpm>
 		</internal>
 		<output n="0">
 			<ap1 type="bool">0</ap1>

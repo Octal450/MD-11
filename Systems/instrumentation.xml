@@ -68,76 +68,10 @@
 	</filter>
 	
 	<filter>
-		<name>Target Alt Pre Sel Diff</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/it-autoflight/input/alt</input>
-		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
-		<output>/instrumentation/pfd/alt-pre-sel</output>
-	</filter>
-	
-	<filter>
-		<name>Target Alt Sel Diff</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/it-autoflight/internal/alt</input>
-		<reference>/instrumentation/altimeter/indicated-altitude-ft</reference>
-		<output>/instrumentation/pfd/alt-sel</output>
-	</filter>
-	
-	<filter>
-		<name>Track Heading Diff</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/orientation/track-deg</input>
-		<reference>/instrumentation/pfd/heading-deg</reference>
-		<output>/instrumentation/pfd/track-diff</output>
-	</filter>
-	
-	<filter>
-		<name>Heading Scale</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<!--input>
-			<condition>
-				<property>/it-autoflight/custom/trk-fpa</property>
-			</condition>
-			<property>/instrumentation/pfd/track-deg</property>
-		</input-->
-		<input>/instrumentation/pfd/heading-deg</input>
-		<output>/instrumentation/pfd/heading-scale</output>
-	</filter>
-	
-	<filter>
 		<name>Heading Bug Pre Sel</name>
 		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/trk</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<sum>
-					<property>/it-autoflight/input/hdg</property>
-					<product>
-						<property>/it-autoflight/internal/drift-angle-deg</property>
-						<value>-1</value>
-					</product>
-				</sum>
-			</expression>
-			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
-			</period>
-		</input>
 		<input>
 			<property>/it-autoflight/input/hdg</property>
 			<period>
@@ -146,7 +80,7 @@
 			</period>
 		</input>
 		<reference>
-			<property>/instrumentation/pfd/heading-scale</property>
+			<property>/instrumentation/pfd/heading-track-mag-deg</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>
@@ -165,27 +99,6 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/trk</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<sum>
-					<property>/it-autoflight/internal/hdg</property>
-					<product>
-						<property>/it-autoflight/internal/drift-angle-deg</property>
-						<value>-1</value>
-					</product>
-				</sum>
-			</expression>
-			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
-			</period>
-		</input>
-		<input>
 			<property>/it-autoflight/internal/hdg</property>
 			<period>
 				<min>-180.0</min>
@@ -193,7 +106,7 @@
 			</period>
 		</input>
 		<reference>
-			<property>/instrumentation/pfd/heading-scale</property>
+			<property>/instrumentation/pfd/heading-track-mag-deg</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>
@@ -207,25 +120,51 @@
 	</filter>
 	
 	<filter>
-		<name>Track Bug</name>
+		<name>Track Bug 1</name>
 		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<property>/instrumentation/pfd/track-deg</property>
+			<property>/instrumentation/pfd/track-deg[0]</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>
 			</period>
 		</input>
 		<reference>
-			<property>/instrumentation/pfd/heading-scale</property>
+			<property>/instrumentation/pfd/heading-deg[0]</property>
 			<period>
 				<min>-180.0</min>
 				<max>180.0</max>
 			</period>
 		</reference>
-		<output>/instrumentation/pfd/track-bug</output>
+		<output>/instrumentation/pfd/track-bug[0]</output>
+		<period>
+			<min>-180.0</min>
+			<max>180.0</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>Track Bug 2</name>
+		<update-interval-secs>0.05</update-interval-secs>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/pfd/track-deg[1]</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</input>
+		<reference>
+			<property>/instrumentation/pfd/heading-deg[1]</property>
+			<period>
+				<min>-180.0</min>
+				<max>180.0</max>
+			</period>
+		</reference>
+		<output>/instrumentation/pfd/track-bug[1]</output>
 		<period>
 			<min>-180.0</min>
 			<max>180.0</max>
@@ -280,195 +219,6 @@
 			</expression>
 		</input>
 		<output>/instrumentation/pfd/speed-trend</output>
-	</filter>
-	
-	<filter>
-		<name>Bank Limit</name>
-		<type>exponential</type>
-		<input>
-			<expression>
-				<table>
-					<property>/it-autoflight/internal/bank-limit</property>
-					<entry><ind> 0</ind><dep>-25</dep></entry>
-					<entry><ind>25</ind><dep>  0</dep></entry>
-					<entry><ind>30</ind><dep>  5</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/bank-limit</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Slip/Skid Indicator</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>
-			<condition>
-				<property>/fdm/jsbsim/position/wow</property>
-			</condition>
-			<expression>
-				<product>
-					<property>/fdm/jsbsim/accelerations/Ny</property>
-					<value>-25</value>
-				</product>
-			</expression>
-		</input>
-		<input>/fdm/jsbsim/aero/beta-deg</input>
-		<output>/instrumentation/pfd/slip-skid</output>
-		<filter-time>0.16</filter-time>
-		<min>-15</min>
-		<max>15</max>
-	</filter>
-	
-	<filter>
-		<name>Knots Pre Sel</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<product>
-					<div>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/input/mach</property>
-				</product>
-			</expression>
-		</input>
-		<input>/it-autoflight/input/kts</input>
-		<output>/instrumentation/pfd/ias-pre-sel</output>
-	</filter>
-	
-	<filter>
-		<name>Knots Sel</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<expression>
-				<product>
-					<div>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					</div>
-					<property>/it-autoflight/internal/mach</property>
-				</product>
-			</expression>
-		</input>
-		<input>/it-autoflight/internal/kts</input>
-		<output>/instrumentation/pfd/ias-sel</output>
-	</filter>
-	
-	<filter>
-		<name>Vertical Speed Digits</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<div>
-					<floor>
-						<div>
-							<sum>
-								<abs><property>/it-autoflight/internal/vert-speed-fpm</property></abs>
-								<value>50</value>
-							</sum>
-							<value>100</value>
-						</div>
-					</floor>
-					<value>10</value>
-				</div>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/vs-digit</output>
-		<min>0</min>
-		<max>9.9</max>
-	</filter>
-	
-	<filter>
-		<name>Vertical Speed Needle Down</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/it-autoflight/internal/vert-speed-fpm</property>
-					<entry><ind>-4000</ind><dep>257</dep></entry>
-					<entry><ind>-2000</ind><dep>189</dep></entry>
-					<entry><ind>-1000</ind><dep>121</dep></entry>
-					<entry><ind> -100</ind><dep>  0</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/vs-needle-dn</output>
-	</filter>
-	
-	<filter>
-		<name>Vertical Speed Needle Up</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/it-autoflight/internal/vert-speed-fpm</property>
-					<entry><ind> 100</ind><dep>   0</dep></entry>
-					<entry><ind>1000</ind><dep>-121</dep></entry>
-					<entry><ind>2000</ind><dep>-189</dep></entry>
-					<entry><ind>4000</ind><dep>-257</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/vs-needle-up</output>
-	</filter>
-	
-	<filter>
-		<name>Vertical Speed Bug Down</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/it-autoflight/input/vs</property>
-					<entry><ind>-4000</ind><dep>257</dep></entry>
-					<entry><ind>-2000</ind><dep>189</dep></entry>
-					<entry><ind>-1000</ind><dep>121</dep></entry>
-					<entry><ind> -100</ind><dep>  0</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/vs-bug-dn</output>
-	</filter>
-	
-	<filter>
-		<name>Vertical Speed Bug Up</name>
-		<type>gain</type>
-		<gain>1</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/it-autoflight/input/vs</property>
-					<entry><ind> 100</ind><dep>   0</dep></entry>
-					<entry><ind>1000</ind><dep>-121</dep></entry>
-					<entry><ind>2000</ind><dep>-189</dep></entry>
-					<entry><ind>4000</ind><dep>-257</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/instrumentation/pfd/vs-bug-up</output>
 	</filter>
 
 </PropertyList>
