@@ -276,7 +276,7 @@ var PANEL = {
 		}
 		systems.GEAR.Switch.leverCockpit.setValue(3);
 	},
-	coldDark: func() {
+	coldDark: func(s = 0) {
 		me.panelBase(0);
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
@@ -287,7 +287,9 @@ var PANEL = {
 		settimer(func() { # Give things a moment to settle
 			fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 			spinningT.stop();
-			fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
+			if (!s) {
+				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
+			}
 			SYSTEM.autoConfigRunning.setBoolValue(0);
 			me.stop = 1;
 		}, 1);
@@ -395,4 +397,10 @@ SYSTEM.simInit();
 
 setlistener("/sim/signals/fdm-initialized", func() {
 	SYSTEM.fdmInit();
+});
+
+setlistener("/sim/signals/reinit", func(s) {
+	if (!s.getBoolValue() and libraries.initDone) {
+		PANEL.coldDark(1);
+	}
 });

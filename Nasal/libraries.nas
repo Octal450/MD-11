@@ -40,7 +40,7 @@ var systemsInit = func() {
 	libraries.variousReset();
 }
 
-setlistener("/sim/signals/fdm-initialized", func() {
+var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	systemsInit();
 	systemsLoop.start();
 	lightsLoop.start();
@@ -49,6 +49,7 @@ setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_sd.init();
 	canvas_iesi.init();
 	canvas_mcdu.init();
+	removelistener(fdmInit);
 	initDone = 1;
 });
 
