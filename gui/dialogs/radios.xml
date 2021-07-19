@@ -480,91 +480,17 @@
         <object-name>ils-radial</object-name>
       </binding>
     </input>
-
-    <text>
-      <row>6</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>ADF</label>
-    </text>
-
-    <input>
-      <name>adf-selected</name>
-      <row>6</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>kHz</label>
-      <live>true</live>
-      <property>/instrumentation/adf/frequencies/selected-khz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>adf-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>6</row>
-      <col>3</col>
-      <width>35</width>
-      <height>26</height>
-      <border>1</border>
-      <legend>&lt;-&gt;</legend>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>adf-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>adf-standby</object-name>
-      </binding>
-      <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/adf/frequencies/selected-khz</property>
-        <property>/instrumentation/adf/frequencies/standby-khz</property>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>adf-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>adf-standby</object-name>
-      </binding>
-    </button>
-
-    <input>
-      <name>adf-standby</name>
-      <row>6</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>kHz</label>
-      <live>true</live>
-      <property>/instrumentation/adf/frequencies/standby-khz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>adf-standby</object-name>
-      </binding>
-    </input>
-
-    <input>
-      <name>adf-radial</name>
-      <row>6</row>
-      <col>6</col>
-      <width>75</width>
-      <height>25</height>
-      <label>deg</label>
-      <live>true</live>
-      <property>/instrumentation/adf/rotation-deg</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>adf-radial</object-name>
-      </binding>
-    </input>
-
-
+	
   </group>
+
+  <hrule/>
+
+  <text>
+    <row>6</row>
+    <col>0</col>
+    <halign>center</halign>
+    <label>ADF: Use MCDUs to change frequency</label>
+  </text>
 
   <!-- transponder controls -->
 

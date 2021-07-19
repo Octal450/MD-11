@@ -1342,6 +1342,20 @@
 	</input>
 	
 	<instrumentation n="0">
+		<adf n="0">
+			<frequencies n="0">
+				<selected-khz type="double">0</selected-khz>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume-norm type="double">0</volume-norm>
+		</adf>
+		<adf n="1">
+			<frequencies n="0">
+				<selected-khz type="double">0</selected-khz>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume-norm type="double">0</volume-norm>
+		</adf>
 		<airspeed-indicator n="0">
 			<indicated-mach type="double">0</indicated-mach>
 			<indicated-speed-kt type="double">0</indicated-speed-kt>

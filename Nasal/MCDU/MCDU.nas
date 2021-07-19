@@ -35,7 +35,9 @@ var MCDU = {
 		m.page = m.PageList.menu;
 		
 		m.scratchpad = "";
+		m.scratchpadDecimal = nil;
 		m.scratchpadOld = "";
+		m.scratchpadSize = 0;
 		m.type = t;
 		
 		return m;
@@ -57,6 +59,7 @@ var MCDU = {
 		me.PageList.posRef.reset();
 		
 		me.scratchpad = "";
+		me.scratchpadDecimal = nil;
 		me.scratchpadOld = "";
 		me.scratchpadSize = 0;
 	},
@@ -147,9 +150,40 @@ var MCDU = {
 		me.scratchpad = "";
 		me.scratchpadOld = "";
 	},
+	scratchpadDecimalLengthInRange: func(min, max) { # Assumes you already checked if its a number
+		if (find(".", me.scratchpad) != -1) {
+			if (max == 0) {
+				return 0;
+			} else {
+				me.scratchpadDecimal = split(".", me.scratchpad);
+				if (size(me.scratchpadDecimal[1]) >= min and size(me.scratchpadDecimal[1]) <= max) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		} else {
+			if (min == 0) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+	},
 	scratchpadIsNumber: func() {
 		if (int(me.scratchpad) != nil) {
 			return 1;
+		} else {
+			return 0;
+		}
+	},
+	scratchpadIsIntegerNumber: func() {
+		if (me.scratchpadIsNumber()) {
+			if (isint(me.scratchpad)) {
+				return 1;
+			} else {
+				return 0;
+			}
 		} else {
 			return 0;
 		}
