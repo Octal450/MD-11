@@ -144,7 +144,7 @@ var ClosestAirports = {
 		
 		if (mcdu.unit[me.id].scratchpadState() == 2) {
 			if (k == "l5") {
-				if (mcdu.unit[me.id].scratchpadLengthInRange(3, 4)) {
+				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) > 0) {
 						me.Value.customAirport = findAirportsByICAO(me.scratchpad)[0];
 						mcdu.unit[me.id].scratchpadClear();

@@ -100,7 +100,7 @@ var AcStatus = {
 		
 		if (mcdu.unit[me.id].scratchpadState() == 2) {
 			if (k == "l6") {
-				if (mcdu.unit[me.id].scratchpadIsNumber() and mcdu.unit[me.id].scratchpadLengthInRange(1, 3)) {
+				if (mcdu.unit[me.id].stringIsNumber() and mcdu.unit[me.id].stringLengthInRange(1, 3)) {
 					if (abs(me.scratchpad) > 9.9) {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else {

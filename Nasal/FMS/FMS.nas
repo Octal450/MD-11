@@ -39,4 +39,14 @@ var CORE = {
 		afs.ITAF.init(1);
 		mcdu.BASE.reset();
 	},
+	resetRadio: func() {
+		pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
+		pts.Instrumentation.Adf.Frequencies.selectedKhz[1].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[0].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[1].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[2].setValue(0);
+		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(0);
+		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(0);
+		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(0);
+	},
 };

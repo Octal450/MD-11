@@ -1499,22 +1499,20 @@
 		</mk-viii>
 		<nav n="0"> <!-- VOR 1 -->
 			<frequencies>
-				<selected-mhz type="double">109.6</selected-mhz>
-				<standby-mhz type="double">110.8</standby-mhz>
+				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
 			<radials>
-				<selected-deg type="double">360</selected-deg>
+				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
 		<nav n="1"> <!-- VOR 2 -->
 			<frequencies>
-				<selected-mhz type="double">112.8</selected-mhz>
-				<standby-mhz type="double">112.6</standby-mhz>
+				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
 			<radials>
-				<selected-deg type="double">360</selected-deg>
+				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
@@ -1524,11 +1522,10 @@
 				<serviceable type="bool">true</serviceable>
 			</cdi>
 			<frequencies>
-				<selected-mhz type="double">111.15</selected-mhz>
-				<standby-mhz type="double">110.95</standby-mhz>
+				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
 			<radials>
-				<selected-deg type="double">360</selected-deg>
+				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>

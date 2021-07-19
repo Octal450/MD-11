@@ -59,11 +59,10 @@
     </empty>
 
     <button>
-      <pref-width>16</pref-width>
-      <pref-height>16</pref-height>
-      <legend></legend>
-      <keynum>27</keynum>
-      <border>2</border>
+      <pref-width>20</pref-width>
+      <pref-height>20</pref-height>
+      <legend>X</legend>
+      <key>Esc</key>
       <binding>
         <command>dialog-close</command>
       </binding>
@@ -234,263 +233,30 @@
         <object-name>com2-standby</object-name>
       </binding>
     </input>
-
-    <text>
-      <row>3</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>VOR1</label>
-    </text>
-
-    <input>
-      <name>vor1-selected</name>
-      <row>3</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor1-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>3</row>
-      <col>3</col>
-      <width>35</width>
-      <height>26</height>
-      <border>1</border>
-      <legend>&lt;-&gt;</legend>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor1-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor1-standby</object-name>
-      </binding>
-      <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>vor1-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>vor1-standby</object-name>
-      </binding>
-    </button>
-
-    <input>
-      <name>vor1-standby</name>
-      <row>3</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor1-standby</object-name>
-      </binding>
-    </input>
-
-    <input>
-      <name>vor1-radial</name>
-      <row>3</row>
-      <col>6</col>
-      <width>75</width>
-      <height>25</height>
-      <label>deg</label>
-      <live>true</live>
-      <property>/instrumentation/nav[0]/radials/selected-deg</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor1-radial</object-name>
-      </binding>
-    </input>
-
-    <text>
-      <row>4</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>VOR2</label>
-    </text>
-
-    <input>
-      <name>vor2-selected</name>
-      <row>4</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor2-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>4</row>
-      <col>3</col>
-      <width>35</width>
-      <height>26</height>
-      <border>1</border>
-      <legend>&lt;-&gt;</legend>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor2-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor2-standby</object-name>
-      </binding>
-      <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>vor2-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>vor2-standby</object-name>
-      </binding>
-    </button>
-
-    <input>
-      <name>vor2-standby</name>
-      <row>4</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor2-standby</object-name>
-      </binding>
-    </input>
-
-    <input>
-      <name>vor2-radial</name>
-      <row>4</row>
-      <col>6</col>
-      <width>75</width>
-      <height>25</height>
-      <label>deg</label>
-      <live>true</live>
-      <property>/instrumentation/nav[1]/radials/selected-deg</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>vor2-radial</object-name>
-      </binding>
-    </input>
-	
-    <text>
-      <row>5</row>
-      <col>0</col>
-      <halign>right</halign>
-      <label>ILS</label>
-    </text>
-
-    <input>
-      <name>ils-selected</name>
-      <row>5</row>
-      <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>ils-selected</object-name>
-      </binding>
-    </input>
-
-    <button>
-      <row>5</row>
-      <col>3</col>
-      <width>35</width>
-      <height>26</height>
-      <border>1</border>
-      <legend>&lt;-&gt;</legend>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>ils-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>ils-standby</object-name>
-      </binding>
-      <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/nav[2]/frequencies/selected-mhz</property>
-        <property>/instrumentation/nav[2]/frequencies/standby-mhz</property>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>ils-selected</object-name>
-      </binding>
-      <binding>
-        <command>dialog-update</command>
-        <object-name>ils-standby</object-name>
-      </binding>
-    </button>
-
-    <input>
-      <name>ils-standby</name>
-      <row>5</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/nav[2]/frequencies/standby-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>ils-standby</object-name>
-      </binding>
-    </input>
-
-    <input>
-      <name>ils-radial</name>
-      <row>5</row>
-      <col>6</col>
-      <width>75</width>
-      <height>25</height>
-      <label>deg</label>
-      <live>true</live>
-      <property>/instrumentation/nav[2]/radials/selected-deg</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>ils-radial</object-name>
-      </binding>
-    </input>
 	
   </group>
 
   <hrule/>
 
-  <text>
-    <row>6</row>
-    <col>0</col>
-    <halign>center</halign>
-    <label>ADF: Use MCDUs to change frequency</label>
-  </text>
+  <group>
+    <layout>hbox</layout>
+    
+    <text>
+      <halign>center</halign>
+      <label>VOR, ILS, ADF: Use MCDUs to change frequency and course</label>
+    </text>
+    
+    <button>
+      <legend>Open MCDU</legend>
+      <binding>
+        <command>nasal</command>
+        <script>canvas_mcdu.showMcdu1();</script>
+      </binding>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+  </group>
 
   <!-- transponder controls -->
 
@@ -622,10 +388,10 @@
 
     <button>
       <legend>IDENT</legend>
-		<binding>
-			<command>nasal</command>
-			<script>instruments.XPDR.setIdent();</script>
-		</binding>
+      <binding>
+        <command>nasal</command>
+        <script>instruments.XPDR.setIdent();</script>
+      </binding>
     </button>
 
     <text>

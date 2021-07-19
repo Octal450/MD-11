@@ -150,53 +150,6 @@ var MCDU = {
 		me.scratchpad = "";
 		me.scratchpadOld = "";
 	},
-	scratchpadDecimalLengthInRange: func(min, max) { # Assumes you already checked if its a number
-		if (find(".", me.scratchpad) != -1) {
-			if (max == 0) {
-				return 0;
-			} else {
-				me.scratchpadDecimal = split(".", me.scratchpad);
-				if (size(me.scratchpadDecimal[1]) >= min and size(me.scratchpadDecimal[1]) <= max) {
-					return 1;
-				} else {
-					return 0;
-				}
-			}
-		} else {
-			if (min == 0) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-	},
-	scratchpadIsNumber: func() {
-		if (int(me.scratchpad) != nil) {
-			return 1;
-		} else {
-			return 0;
-		}
-	},
-	scratchpadIsIntegerNumber: func() {
-		if (me.scratchpadIsNumber()) {
-			if (isint(me.scratchpad)) {
-				return 1;
-			} else {
-				return 0;
-			}
-		} else {
-			return 0;
-		}
-	},
-	scratchpadLengthInRange: func(min, max) {
-		me.scratchpadSize = size(sprintf("%s", string.replace(me.scratchpad, "-", ""))); # Always string, and negatives don't affect
-		
-		if (me.scratchpadSize >= min and me.scratchpadSize <= max) {
-			return 1;
-		} else {
-			return 0;
-		}
-	},
 	scratchpadState: func() {
 		if (me.clear) {
 			return 0;
@@ -246,6 +199,70 @@ var MCDU = {
 			me.page.softKey(k);
 		}
 	},
+	# String checking functions - if no test string is provided, they will check the scratchpad
+	stringContains: func(c, test = nil) {
+		if (test == nil) {
+			test = me.scratchpad;
+		}
+		
+		if (find(c, test) != -1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	},
+	stringDecimalLengthInRange: func(min, max, test = nil) {
+		if (test == nil) {
+			test = me.scratchpad;
+		}
+		
+		if (int(test) != nil) {
+			if (find(".", test) != -1) {
+				if (max == 0) {
+					return 0;
+				} else {
+					me.scratchpadDecimal = split(".", test);
+					if (size(me.scratchpadDecimal[1]) >= min and size(me.scratchpadDecimal[1]) <= max) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			} else {
+				if (min == 0) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		} else {
+			return 0;
+		}
+	},
+	stringIsNumber: func(test = nil) {
+		if (test == nil) {
+			test = me.scratchpad;
+		}
+		
+		if (int(test) != nil) {
+			return 1;
+		} else {
+			return 0;
+		}
+	},
+	stringLengthInRange: func(min, max, test = nil) {
+		if (test == nil) {
+			test = me.scratchpad;
+		}
+		
+		me.scratchpadSize = size(sprintf("%s", string.replace(test, "-", ""))); # Always string, and negatives don't affect
+		
+		if (me.scratchpadSize >= min and me.scratchpadSize <= max) {
+			return 1;
+		} else {
+			return 0;
+		}
+	},
 };
 
 var BASE = {
@@ -273,6 +290,7 @@ var BASE = {
 	},
 	reset: func() {
 		me.acStatus.databaseSelected = 1;
+		fms.CORE.resetRadio();
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].reset();
 		}

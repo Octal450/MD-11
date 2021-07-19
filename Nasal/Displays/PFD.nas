@@ -135,7 +135,7 @@ var Value = {
 	},
 	Nav: {
 		gsInRange: 0,
-		inRange: 0,
+		selectedMhz: 0,
 		signalQuality: 0,
 	},
 	Qnh: {
@@ -950,9 +950,9 @@ var canvasBase = {
 		}
 		
 		# ILS
-		Value.Nav.inRange = pts.Instrumentation.Nav.inRange[2].getBoolValue();
+		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
-		if (Value.Nav.inRange) {
+		if (Value.Nav.selectedMhz != 0) {
 			me["LOC_scale"].show();
 			if (pts.Instrumentation.Nav.navLoc[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
 				me["LOC_pointer"].setTranslation(pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue() * 200, 0);
@@ -969,7 +969,7 @@ var canvasBase = {
 		}
 		
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
-		if (Value.Nav.inRange) {
+		if (Value.Nav.selectedMhz != 0) {
 			me["GS_scale"].show();
 			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
 				me["GS_pointer"].setTranslation(0, pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue() * -204);
@@ -986,7 +986,7 @@ var canvasBase = {
 		}
 		
 		# ILS DME
-		if (Value.Nav.inRange) { # Should be if ILS tuned later
+		if (Value.Nav.selectedMhz != 0) {
 			if (Value.Nav.signalQuality > 0.99) {
 				if (pts.Instrumentation.Dme.inRange[2].getBoolValue()) {
 					me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
