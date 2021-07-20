@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 
-<!-- Modified by Josh Davidson (Octal450) for custom GUI style -->
-
 <PropertyList>
 	<name>map-canvas</name>
 	<layout>vbox</layout>
@@ -9,7 +7,7 @@
 	<default-padding>3</default-padding>
 
 	<color>
-		<alpha type="float">0.75</alpha>
+		<alpha type="float">0.8</alpha>
 		<blue type="float">0.35</blue>
 		<green type="float">0.35</green>
 		<red type="float">0.35</red>
@@ -20,8 +18,8 @@
 			var self = cmdarg();
 			var listeners = [];
 			var setTransparency = func(updateDialog){
-				var alpha = (getprop("/systems/acconfig/options/canvas-map-less-transparent") or 0);
-				self.getNode("color/alpha").setValue(0.75+alpha*0.2);
+				var alpha = (getprop("/sim/gui/dialogs/map-canvas/transparent") or 0);
+				self.getNode("color/alpha").setValue(0.8-alpha*0.3);
 				var n = props.Node.new({ "dialog-name": "map-canvas" });
 				if (updateDialog)
 				{
@@ -30,7 +28,6 @@
 				}
 			}
 			setTransparency(0);
-
 		]]></open>
 
 		<close><![CDATA[
@@ -53,25 +50,19 @@
 		<empty><stretch>1</stretch></empty>
 
 		<button>
-			<halign>right</halign>
-			<pref-width>20</pref-width>
-			<pref-height>20</pref-height>
-			<legend>X</legend>
-			<key>Esc</key>
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend></legend>
+			<keynum>27</keynum>
+			<border>2</border>
+
 			<binding>
 				<command>dialog-close</command>
 			</binding>
 		</button>
 	</group>
 
-	<hrule>
-		<color>
-			<alpha>0.95</alpha>
-			<blue>1.0</blue>
-			<green>1.0</green>
-			<red>1.0</red>
-		</color>
-	</hrule>
+	<hrule/>
 
 	<group>
 		<layout>hbox</layout>
@@ -386,9 +377,9 @@
 			</checkbox>
 
 			<checkbox>
-				<label>Less Transparent</label>
+				<label>Transparent</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/canvas-map-less-transparent</property>
+				<property>/sim/gui/dialogs/map-canvas/transparent</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -398,10 +389,7 @@
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-						setTransparency(1);
-						acconfig.OPTIONS.write();
-					</script>
+					<script>setTransparency(1);</script>
 				</binding>
 			</checkbox>
 
@@ -418,14 +406,7 @@
 
 		</group>
 
-		<vrule>
-			<color>
-				<alpha>0.95</alpha>
-				<blue>1.0</blue>
-				<green>1.0</green>
-				<red>1.0</red>
-			</color>
-		</vrule>
+		<vrule/>
 
 		<group>
 			<layout>vbox</layout>
@@ -607,14 +588,7 @@
 				<valign>fill</valign>
 			</group>
 
-			<hrule>
-				<color>
-					<alpha>0.95</alpha>
-					<blue>1.0</blue>
-					<green>1.0</green>
-					<red>1.0</red>
-				</color>
-			</hrule>
+			<hrule/>
 
 			<group>
 				<layout>hbox</layout>

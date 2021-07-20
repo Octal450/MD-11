@@ -1605,7 +1605,6 @@
 					<show-route type="bool">1</show-route>
 					<show-wingtip type="bool">1</show-wingtip>
 				</autopush>
-				<canvas-map-less-transparent type="bool">0</canvas-map-less-transparent>
 				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 				<du n="0">
 					<ead-fps type="double">20</ead-fps>
@@ -1618,7 +1617,6 @@
 				</du>
 				<irs-align-instantly type="bool">0</irs-align-instantly>
 				<keyboard-mode type="bool">0</keyboard-mode>
-				<map-less-transparent type="bool">0</map-less-transparent>
 				<seperate-tiller-axis type="bool">0</seperate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>

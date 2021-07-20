@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 
-<!-- Modified by Josh Davidson (Octal450) for custom GUI style -->
-
 <!--
 command interface /autopilot/route-manager/input:
 
@@ -20,7 +18,7 @@ command interface /autopilot/route-manager/input:
 	<default-padding>3</default-padding>
 
 	<color>
-		<alpha type="float">0.75</alpha>
+		<alpha type="float">0.8</alpha>
 		<blue type="float">0.35</blue>
 		<green type="float">0.35</green>
 		<red type="float">0.35</red>
@@ -30,8 +28,8 @@ command interface /autopilot/route-manager/input:
 		<open>
 			var mapDialog = cmdarg();
 			var setTransparency = func(updateDialog){
-				var alpha = (getprop("/systems/acconfig/options/map-less-transparent") or 0);
-				mapDialog.getNode("color/alpha").setValue(0.75+alpha*0.2);
+				var alpha = (getprop("/sim/gui/map/transparent") or 0);
+				mapDialog.getNode("color/alpha").setValue(0.8-alpha*0.3);
 				var n = props.Node.new({ "dialog-name": "map" });
 				if (updateDialog)
 				{
@@ -59,25 +57,19 @@ command interface /autopilot/route-manager/input:
 		<empty><stretch>1</stretch></empty>
 
 		<button>
-			<halign>right</halign>
-			<pref-width>20</pref-width>
-			<pref-height>20</pref-height>
-			<legend>X</legend>
-			<key>Esc</key>
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend></legend>
+			<keynum>27</keynum>
+			<border>2</border>
+
 			<binding>
 				<command>dialog-close</command>
 			</binding>
 		</button>
 	</group>
 
-	<hrule>
-		<color>
-			<alpha>0.95</alpha>
-			<blue>1.0</blue>
-			<green>1.0</green>
-			<red>1.0</red>
-		</color>
-	</hrule>
+	<hrule/>
 
 	<group>
 		<layout>hbox</layout>
@@ -94,7 +86,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Heliports</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-heliports</property>
+				<property>/sim/gui/map/draw-heliports</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -107,7 +99,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Fixes</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-fixes</property>
+				<property>/sim/gui/map/draw-fixes</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -120,7 +112,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Navaids</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-navaids</property>
+				<property>/sim/gui/map/draw-navaids</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -139,7 +131,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Traffic</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-traffic</property>
+				<property>/sim/gui/map/draw-traffic</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -159,7 +151,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Data</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-data</property>
+				<property>/sim/gui/map/draw-data</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -172,7 +164,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Flight History</label>
 				<halign>left</halign>
-				<property>/gui/map/draw-flight-history</property>
+				<property>/sim/gui/map/draw-flight-history</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -190,7 +182,7 @@ command interface /autopilot/route-manager/input:
 <!--
 				<pref-width>100</pref-width>
 -->
-				<property>/gui/map/magnetic-headings</property>
+				<property>/sim/gui/map/magnetic-headings</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -203,7 +195,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Center on Acft</label>
 				<halign>left</halign>
-				<property>/gui/map/centre-on-aircraft</property>
+				<property>/sim/gui/map/centre-on-aircraft</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -216,7 +208,7 @@ command interface /autopilot/route-manager/input:
 			<checkbox>
 				<label>Aircraft Hdg Up</label>
 				<halign>left</halign>
-				<property>/gui/map/aircraft-heading-up</property>
+				<property>/sim/gui/map/aircraft-heading-up</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -227,12 +219,12 @@ command interface /autopilot/route-manager/input:
 			</checkbox>
 
 			<checkbox>
-				<label>Less Transparent</label>
+				<label>Transparent</label>
 				<halign>left</halign>
 <!--
 				<pref-width>100</pref-width>
 -->
-				<property>/systems/acconfig/options/map-less-transparent</property>
+				<property>/sim/gui/map/transparent</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -242,17 +234,14 @@ command interface /autopilot/route-manager/input:
 				</binding>
 				<binding>
 					<command>nasal</command>
-					<script>
-						setTransparency(1);
-						acconfig.OPTIONS.write();
-					</script>
+					<script>setTransparency(1);</script>
 				</binding>
 			</checkbox>
 
 			<checkbox>
 				<label>Pan with keys</label>
 				<halign>left</halign>
-				<property>/gui/map/key-pan</property>
+				<property>/sim/gui/map/key-pan</property>
 				<live>true</live>
 				<binding>
 				  <command>dialog-apply</command>
@@ -276,14 +265,7 @@ command interface /autopilot/route-manager/input:
 
 		</group>
 
-		<vrule>
-			<color>
-				<alpha>0.95</alpha>
-				<blue>1.0</blue>
-				<green>1.0</green>
-				<red>1.0</red>
-			</color>
-		</vrule>
+		<vrule/>
 
 		<group>
 			<layout>vbox</layout>
@@ -295,17 +277,10 @@ command interface /autopilot/route-manager/input:
 				<stretch>true</stretch>
 				<pref-height>400</pref-height>
 				<pref-width>600</pref-width>
-				<property>/gui/map</property>
+				<property>/sim/gui/map</property>
 			</map>
 
-			<hrule>
-				<color>
-					<alpha>0.95</alpha>
-					<blue>1.0</blue>
-					<green>1.0</green>
-					<red>1.0</red>
-				</color>
-			</hrule>
+			<hrule/>
 
 			<group>
 				<layout>hbox</layout>
@@ -318,7 +293,7 @@ command interface /autopilot/route-manager/input:
 
 					<binding>
 						<command>property-adjust</command>
-						<property>/gui/map/zoom</property>
+						<property>/sim/gui/map/zoom</property>
 						<min>0</min>
 						<step>-1</step>
 					</binding>
@@ -327,7 +302,7 @@ command interface /autopilot/route-manager/input:
 				<text>
 					<label>MMM</label>
 					<format>Zoom %d</format>
-					<property>/gui/map/zoom</property>
+					<property>/sim/gui/map/zoom</property>
 					<live>true</live>
 				</text>
 
@@ -339,7 +314,7 @@ command interface /autopilot/route-manager/input:
 
 					<binding>
 						<command>property-adjust</command>
-						<property>/gui/map/zoom</property>
+						<property>/sim/gui/map/zoom</property>
 						<step>1</step>
 						<max>12</max>
 					</binding>
