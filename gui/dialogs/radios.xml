@@ -233,7 +233,7 @@
         <object-name>com2-standby</object-name>
       </binding>
     </input>
-	
+
   </group>
 
   <hrule/>
@@ -256,6 +256,124 @@
         <command>dialog-close</command>
       </binding>
     </button>
+  </group>
+
+  <hrule/>
+
+  <button>
+    <legend>ATC Services in range</legend>
+    <binding>
+      <command>ATC-freq-search</command>
+    </binding>
+  </button>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    
+    <text>
+      <label>ATIS speech</label>
+    </text>
+    
+    <empty><stretch>1</stretch></empty>
+    
+    <checkbox>
+      <label>Enabled</label>
+      <live>true</live>
+      <property>/sim/atis/enabled</property>
+        <binding>
+          <command>property-toggle</command>
+          <property>/sim/atis/enabled</property>
+        </binding>
+    </checkbox>
+    
+    <empty><stretch>1</stretch></empty>
+    
+    <group>
+      <layout>vbox</layout>
+      <default-padding>0</default-padding>
+      <button>
+        <pref-width>20</pref-width>
+        <pref-height>20</pref-height>
+        <legend>+</legend>
+        <binding>
+          <command>property-adjust</command>
+          <property>/sim/atis/speed</property>
+          <step>+0.1</step>
+          <max>10</max>
+        </binding>
+        <binding>
+          <command>dialog-update</command>
+        </binding>
+      </button>
+      <button>
+        <pref-width>20</pref-width>
+        <pref-height>20</pref-height>
+        <legend>-</legend>
+        <binding>
+          <command>property-adjust</command>
+          <property>/sim/atis/speed</property>
+          <step>-0.1</step>
+          <min>0</min>
+        </binding>
+        <binding>
+          <command>dialog-update</command>
+        </binding>
+      </button>
+    </group>
+    
+    <empty><stretch>0</stretch></empty>
+    <input>
+      <label>Speed</label>
+      <pref-width>50</pref-width>
+      <property>/sim/atis/speed</property>
+    </input>
+
+    <empty><stretch>1</stretch></empty>
+    
+    <group>
+      <layout>vbox</layout>
+      <default-padding>0</default-padding>
+      <button>
+        <pref-width>20</pref-width>
+        <pref-height>20</pref-height>
+        <legend>+</legend>
+        <binding>
+          <command>property-adjust</command>
+          <property>/sim/atis/pitch</property>
+          <step>+0.1</step>
+          <max>10</max>
+        </binding>
+        <binding>
+          <command>dialog-update</command>
+        </binding>
+      </button>
+      <button>
+        <pref-width>20</pref-width>
+        <pref-height>20</pref-height>
+        <legend>-</legend>
+        <binding>
+          <command>property-adjust</command>
+          <property>/sim/atis/pitch</property>
+          <step>-0.1</step>
+          <min>0</min>
+        </binding>
+        <binding>
+          <command>dialog-update</command>
+        </binding>
+      </button>
+    </group>
+    
+    <empty><stretch>0</stretch></empty>
+    <input>
+      <label>Pitch</label>
+      <pref-width>50</pref-width>
+      <property>/sim/atis/pitch</property>
+    </input>
+    
+    <empty><stretch>1</stretch></empty>
+    
   </group>
 
   <!-- transponder controls -->
@@ -388,9 +506,9 @@
 
     <button>
       <legend>IDENT</legend>
+      <property>/instrumentation/transponder/inputs/ident-btn</property>
       <binding>
-        <command>nasal</command>
-        <script>instruments.XPDR.setIdent();</script>
+        <command>dialog-apply</command>
       </binding>
     </button>
 
