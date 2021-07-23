@@ -135,6 +135,8 @@ var Value = {
 	},
 	Nav: {
 		gsInRange: 0,
+		gsNeedleDeflectionNorm: 0,
+		headingNeedleDeflectionNorm: 0,
 		selectedMhz: 0,
 		signalQuality: 0,
 	},
@@ -239,6 +241,8 @@ var canvasBase = {
 		Value.Asi.vmin = fms.Speeds.vminTape.getValue();
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
+		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
+		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
 		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
 		Value.Misc.flapsPos = pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue();
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
@@ -950,39 +954,68 @@ var canvasBase = {
 		}
 		
 		# ILS
+		Value.Nav.headingNeedleDeflectionNorm = pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue();
 		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
 		if (Value.Nav.selectedMhz != 0) {
-			me["LOC_scale"].show();
 			if (pts.Instrumentation.Nav.navLoc[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["LOC_pointer"].setTranslation(pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue() * 200, 0);
-				me["LOC_pointer"].show();
 				me["LOC_no"].hide();
+				
+				if (Value.Ra.agl <= 300 and !Value.Misc.wow and (Value.Afs.roll == "LOC" or Value.Afs.roll == "ALIGN") and abs(Value.Nav.headingNeedleDeflectionNorm) > 0.105) {
+					me["LOC_pointer"].setColor(0.9647,0.8196,0.0784);
+					
+					if (Value.Misc.blinkMed) {
+						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
+						me["LOC_pointer"].show();
+					} else {
+						me["LOC_pointer"].hide();
+					}
+				} else {
+					me["LOC_pointer"].setColor(0.9607,0,0.7764);
+					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
+					me["LOC_pointer"].show();
+				}
 			} else {
-				me["LOC_pointer"].hide();
 				me["LOC_no"].show();
+				me["LOC_pointer"].hide();
 			}
+			
+			me["LOC_scale"].show();
 		} else {
-			me["LOC_scale"].hide();
-			me["LOC_pointer"].hide();
 			me["LOC_no"].hide();
+			me["LOC_pointer"].hide();
+			me["LOC_scale"].hide();
 		}
 		
+		Value.Nav.gsNeedleDeflectionNorm = pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue();
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
 		if (Value.Nav.selectedMhz != 0) {
-			me["GS_scale"].show();
 			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["GS_pointer"].setTranslation(0, pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue() * -204);
-				me["GS_pointer"].show();
 				me["GS_no"].hide();
+				
+				if (Value.Ra.agl >= 100 and Value.Ra.agl <= 500 and Value.Afs.pitch == "G/S" and abs(Value.Nav.gsNeedleDeflectionNorm) > 0.41) {
+					me["GS_pointer"].setColor(0.9647,0.8196,0.0784);
+					
+					if (Value.Misc.blinkMed) {
+						me["GS_pointer"].setTranslation(0, Value.Nav.gsNeedleDeflectionNorm * -204);
+						me["GS_pointer"].show();
+					} else {
+						me["GS_pointer"].hide();
+					}
+				} else {
+					me["GS_pointer"].setColor(0.9607,0,0.7764);
+					me["GS_pointer"].setTranslation(0, Value.Nav.gsNeedleDeflectionNorm * -204);
+					me["GS_pointer"].show();
+				}
 			} else {
-				me["GS_pointer"].hide();
 				me["GS_no"].show();
+				me["GS_pointer"].hide();
 			}
+			me["GS_scale"].show();
 		} else {
-			me["GS_scale"].hide();
-			me["GS_pointer"].hide();
 			me["GS_no"].hide();
+			me["GS_pointer"].hide();
+			me["GS_scale"].hide();
 		}
 		
 		# ILS DME
@@ -1159,8 +1192,6 @@ var canvasBase = {
 		
 		# FMA
 		Value.Afs.spdProt = afs.Output.spdProt.getValue();
-		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
-		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
 		if (Value.Afs.ats and Value.Afs.spdProt != 0) {
 			if (Value.Misc.blinkMed) {
 				if (Value.Afs.spdProt == 2) {
