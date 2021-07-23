@@ -50,9 +50,9 @@
      inkscape:window-height="1017"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="790.00066"
-     inkscape:cy="494.83088"
+     inkscape:zoom="0.5"
+     inkscape:cx="771.75264"
+     inkscape:cy="563.87323"
      inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -113,6 +113,15 @@
      x="201.19461"
      height="554.00452"
      width="487.72598"
+     id="AI_rising_runway_clip"
+     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     transform="scale(1,-1)" />
+  <rect
+     inkscape:label="#rect9211"
+     y="-717.40955"
+     x="201.19461"
+     height="554.00452"
+     width="487.72598"
      id="AI_fpd_clip"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      transform="scale(1,-1)" />
@@ -135,10 +144,9 @@
      inkscape:label="#rect9211" />
   <g
      id="AI_group2"
-     inkscape:label="#g4222"
-     transform="translate(-0.84852818,0)">
+     inkscape:label="#g5290">
     <g
-       transform="translate(-1510.5093,0)"
+       transform="translate(-1511.3578,0)"
        inkscape:label="#g5321"
        id="AI_horizon">
       <g
@@ -1111,6 +1119,7 @@
       </g>
     </g>
     <g
+       transform="translate(-0.84852818,0)"
        id="AI_arrow_up"
        inkscape:label="#g4873"
        inkscape:transform-center-y="-217.01186">
@@ -1131,7 +1140,7 @@
        inkscape:transform-center-y="217.01186"
        inkscape:label="#g4873"
        id="AI_arrow_dn"
-       transform="matrix(1,0,0,-1,0,881.87604)">
+       transform="matrix(1,0,0,-1,-0.84852818,881.87604)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -1146,6 +1155,7 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
+       transform="translate(-0.84852818,0)"
        inkscape:transform-center-y="-246.60995"
        inkscape:transform-center-x="1.5472693"
        inkscape:label="#g4834"
@@ -1166,7 +1176,7 @@
     <g
        inkscape:transform-center-y="-246.60815"
        inkscape:transform-center-x="-1.5503835"
-       transform="matrix(-1,0,0,1,890.11465,0)"
+       transform="matrix(-1,0,0,1,889.26612,0)"
        id="AI_banklimit_R"
        inkscape:label="#g4834">
       <path
@@ -1181,6 +1191,30 @@
          id="path4842"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       transform="matrix(0.99999854,0,0,1.0000013,23.502393,42.995543)"
+       style="stroke:#f500c6;stroke-opacity:1"
+       inkscape:label="#g5119"
+       id="AI_rising_runway">
+      <path
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#f500c6;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 416.417,437.9499 -9.55,16.6871 -108.167,0 9.55,-16.687 z"
+         id="path5111"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path5115"
+         d="m 426.69444,437.9499 9.55,16.6871 108.167,0 -9.55,-16.687 z"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#f500c6;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path5117"
+         d="m 430.13408,458.42259 0,222.12718 -17.15705,0 0,-222.12718 8.57852,-14.99394 z"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#f500c6;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
   <rect
@@ -1247,7 +1281,7 @@
        sodipodi:nodetypes="cccccccccccc"
        inkscape:connector-curvature="0"
        id="rect4760-1"
-       d="m 328.71795,432.68091 20.67975,-1.3e-4 0,15.43882 0,0 1.8e-4,27.57637 -15.4389,0 -0.14628,-27.57637 0,0 -101.56067,-5e-5 0,-15.43891 96.46592,2.1e-4 z"
+       d="m 327.50701,432.68091 20.67976,-1.3e-4 0,15.43882 0,0 1.8e-4,27.57637 -15.43891,0 -0.14628,-27.57637 0,0 -101.56073,-5e-5 0,-15.43891 96.46598,2.1e-4 z"
        style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:4.50006485;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:4.50006485;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

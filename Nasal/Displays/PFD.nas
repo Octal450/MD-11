@@ -200,11 +200,11 @@ var canvasBase = {
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
 		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_scale", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
-		"AI_arrow_up", "AI_arrow_dn", "FD_roll", "FD_pitch", "FD_group", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T",
-		"ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn",
-		"VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_up", "Slats_dn",
-		"Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker",
-		"Outer_Marker"];
+		"AI_arrow_up", "AI_arrow_dn", "AI_rising_runway", "FD_roll", "FD_pitch", "FD_group", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T",
+		"ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn",
+		"VSI_bug_up", "VSI_bug_dn", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto",
+		"Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker",
+		"Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -961,27 +961,34 @@ var canvasBase = {
 			if (pts.Instrumentation.Nav.navLoc[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
 				me["LOC_no"].hide();
 				
-				if (Value.Ra.agl <= 300 and !Value.Misc.wow and (Value.Afs.roll == "LOC" or Value.Afs.roll == "ALIGN") and abs(Value.Nav.headingNeedleDeflectionNorm) > 0.105) {
+				if (Value.Ra.agl <= 300 and !Value.Misc.wow and (Value.Afs.roll == "LOC" or Value.Afs.roll == "ALIGN") and abs(Value.Nav.headingNeedleDeflectionNorm) > 0.105) { # 1/4 Dot
 					me["LOC_pointer"].setColor(0.9647,0.8196,0.0784);
 					
 					if (Value.Misc.blinkMed) {
+						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
+						me["AI_rising_runway"].show();
 						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 						me["LOC_pointer"].show();
 					} else {
+						me["AI_rising_runway"].hide();
 						me["LOC_pointer"].hide();
 					}
 				} else {
+					me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
+					me["AI_rising_runway"].show();
 					me["LOC_pointer"].setColor(0.9607,0,0.7764);
 					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 					me["LOC_pointer"].show();
 				}
 			} else {
+				me["AI_rising_runway"].hide();
 				me["LOC_no"].show();
 				me["LOC_pointer"].hide();
 			}
 			
 			me["LOC_scale"].show();
 		} else {
+			me["AI_rising_runway"].hide();
 			me["LOC_no"].hide();
 			me["LOC_pointer"].hide();
 			me["LOC_scale"].hide();
@@ -993,7 +1000,7 @@ var canvasBase = {
 			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
 				me["GS_no"].hide();
 				
-				if (Value.Ra.agl >= 100 and Value.Ra.agl <= 500 and Value.Afs.pitch == "G/S" and abs(Value.Nav.gsNeedleDeflectionNorm) > 0.41) {
+				if (Value.Ra.agl >= 100 and Value.Ra.agl <= 500 and Value.Afs.pitch == "G/S" and abs(Value.Nav.gsNeedleDeflectionNorm) > 0.41) { # One Dot
 					me["GS_pointer"].setColor(0.9647,0.8196,0.0784);
 					
 					if (Value.Misc.blinkMed) {
