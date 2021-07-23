@@ -965,7 +965,7 @@ var canvasBase = {
 					me["LOC_pointer"].setColor(0.9647,0.8196,0.0784);
 					
 					if (Value.Misc.blinkMed) {
-						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
+						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
 						me["AI_rising_runway"].show();
 						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 						me["LOC_pointer"].show();
