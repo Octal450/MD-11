@@ -63,6 +63,7 @@ var NavRadio = {
 		m.nextPage = "none";
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
+		m.scratchpadState = 0;
 		
 		m.Value = {
 			adfSet: [0, 0],
@@ -200,23 +201,12 @@ var NavRadio = {
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (mcdu.unit[me.id].scratchpadState() == 2) {
-			if (k == "l1") {
+		if (k == "l1") {
+			if (me.scratchpadState == 2) {
 				me.insertNav(0);
-			} else if (k == "l3") {
-				me.insertAdf(0);
-			} else if (k == "l4") {
-				me.insertNav(2);
-			} else if (k == "r1") {
-				me.insertNav(1);
-			} else if (k == "r3") {
-				me.insertAdf(1);
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
-		} else if (mcdu.unit[me.id].scratchpadState() == 0) {
-			if (k == "l1") {
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.navSet[0]) {
 					me.Value.navSet[0] = 0;
 					me.Value.navCrsSet[0] = 0;
@@ -226,7 +216,13 @@ var NavRadio = {
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
-			} else if (k == "l3") {
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
+			if (me.scratchpadState == 2) {
+				me.insertAdf(0);
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.adfSet[0]) {
 					me.Value.adfSet[0] = 0;
 					pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
@@ -234,7 +230,13 @@ var NavRadio = {
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
-			} else if (k == "l4") {
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l4") {
+			if (me.scratchpadState == 2) {
+				me.insertNav(2);
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.navSet[2]) {
 					me.Value.navSet[2] = 0;
 					me.Value.navCrsSet[2] = 0;
@@ -244,7 +246,13 @@ var NavRadio = {
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
-			} else if (k == "r1") {
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r1") {
+			if (me.scratchpadState == 2) {
+				me.insertNav(1);
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.navSet[1]) {
 					me.Value.navSet[1] = 0;
 					me.Value.navCrsSet[1] = 0;
@@ -254,7 +262,13 @@ var NavRadio = {
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
-			} else if (k == "r3") {
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r3") {
+			if (me.scratchpadState == 2) {
+				me.insertAdf(1);
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.adfSet[1]) {
 					me.Value.adfSet[1] = 0;
 					pts.Instrumentation.Adf.Frequencies.selectedKhz[1].setValue(0);

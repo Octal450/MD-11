@@ -62,6 +62,7 @@ var AcStatus = {
 		m.name = "acStatus";
 		m.nextPage = "acStatus2";
 		m.scratchpad = "";
+		m.scratchpadState = 0;
 		
 		m.Value = {
 			databaseConfirm: 0,
@@ -97,9 +98,17 @@ var AcStatus = {
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (mcdu.unit[me.id].scratchpadState() == 2) {
-			if (k == "l6") {
+		if (k == "l4") {
+			if (me.scratchpadState == 1) {
+				me.Value.databaseConfirm = 1;
+				me.Display.R4 = "CONFIRM*";
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l6") {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringIsNumber() and mcdu.unit[me.id].stringLengthInRange(1, 3)) {
 					if (abs(me.scratchpad) > 9.9) {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -113,23 +122,16 @@ var AcStatus = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
-		} else if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "l4") {
-				me.Value.databaseConfirm = 1;
-				me.Display.R4 = "CONFIRM*";
-			} else if (k == "r4") {
-				if (me.Value.databaseConfirm) {
-					mcdu.BASE.acStatus.databaseSelected = !mcdu.BASE.acStatus.databaseSelected;
-					me.Value.databaseConfirm = 0;
-					me.Display.R4 = "";
-				} else {
-					mcdu.unit[me.id].setMessage("NOT ALLOWED");
-				}
-			} else if (k == "r6") {
-				mcdu.unit[me.id].setPage("init");
+		} else if (k == "r4") {
+			if (me.Value.databaseConfirm) {
+				mcdu.BASE.acStatus.databaseSelected = !mcdu.BASE.acStatus.databaseSelected;
+				me.Value.databaseConfirm = 0;
+				me.Display.R4 = "";
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else if (k == "r6") {
+			mcdu.unit[me.id].setPage("init");
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}
@@ -206,12 +208,8 @@ var AcStatus2 = {
 		# Placeholder
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "r6") {
-				mcdu.unit[me.id].setPage("init");
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
+		if (k == "r6") {
+			mcdu.unit[me.id].setPage("init");
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}

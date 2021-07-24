@@ -69,7 +69,7 @@ var PosRef = {
 		m.group = "fmc";
 		m.name = "posRef";
 		m.nextPage = "irsGnsPos";
-		m.scratchpad = "";
+		m.scratchpadState = 0;
 		
 		return m;
 	},
@@ -120,19 +120,21 @@ var PosRef = {
 		}
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "l1") {
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		
+		if (k == "l1") {
+			if (me.scratchpadState == 1) {
 				me.Value.frozen = !me.Value.frozen;
-			} else if (k == "r5") {
-				me.Value.gpsEnable = !me.Value.gpsEnable;
-			} else if (k == "r6") {
-				if (me.fromPage == "init") {
-					mcdu.unit[me.id].setPage("init");
-				} else {
-					mcdu.unit[me.id].setPage("ref");
-				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r5") {
+			me.Value.gpsEnable = !me.Value.gpsEnable;
+		} else if (k == "r6") {
+			if (me.fromPage == "init") {
+				mcdu.unit[me.id].setPage("init");
+			} else {
+				mcdu.unit[me.id].setPage("ref");
 			}
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -205,7 +207,6 @@ var IrsGnsPos = {
 		m.group = "fmc";
 		m.name = "irsGnsPos";
 		m.nextPage = "irsStatus";
-		m.scratchpad = "";
 		
 		return m;
 	},
@@ -277,15 +278,11 @@ var IrsGnsPos = {
 		me.Display.L5 = me.Value.positionString;
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "r6") {
-				if (me.fromPage == "init") {
-					mcdu.unit[me.id].setPage("init");
-				} else {
-					mcdu.unit[me.id].setPage("ref");
-				}
+		if (k == "r6") {
+			if (me.fromPage == "init") {
+				mcdu.unit[me.id].setPage("init");
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				mcdu.unit[me.id].setPage("ref");
 			}
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -354,7 +351,6 @@ var IrsStatus = {
 		m.group = "fmc";
 		m.name = "irsStatus";
 		m.nextPage = "posRef";
-		m.scratchpad = "";
 		
 		return m;
 	},
@@ -396,15 +392,11 @@ var IrsStatus = {
 		}
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "r6") {
-				if (me.fromPage == "init") {
-					mcdu.unit[me.id].setPage("init");
-				} else {
-					mcdu.unit[me.id].setPage("ref");
-				}
+		if (k == "r6") {
+			if (me.fromPage == "init") {
+				mcdu.unit[me.id].setPage("init");
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				mcdu.unit[me.id].setPage("ref");
 			}
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");

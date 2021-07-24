@@ -94,7 +94,9 @@ var Menu = {
 		}
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		
+		if (me.scratchpadState == 1 or me.scratchpadState == 3) {
 			if (k == "l1" and !me.type) {
 				if (me.Value.request) {
 					me.Value.request = 0;
@@ -170,6 +172,7 @@ var Ref = {
 		m.group = "fmc";
 		m.name = "ref";
 		m.nextPage = "none";
+		m.scratchpadState = 0;
 		
 		return m;
 	},
@@ -180,18 +183,14 @@ var Ref = {
 		# Placeholder
 	},
 	softKey: func(k) {
-		if (mcdu.unit[me.id].scratchpadState() == 1) {
-			if (k == "l3") {
-				mcdu.unit[me.id].setPage("closestAirports");
-			} else if (k == "l4") {
-				mcdu.unit[me.id].setPage("posRef");
-			} else if (k == "l5") {
-				mcdu.unit[me.id].setPage("acStatus");
-			} else if (k == "l6") {
-				mcdu.unit[me.id].setPage("sensorStatus");
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
+		if (k == "l3") {
+			mcdu.unit[me.id].setPage("closestAirports");
+		} else if (k == "l4") {
+			mcdu.unit[me.id].setPage("posRef");
+		} else if (k == "l5") {
+			mcdu.unit[me.id].setPage("acStatus");
+		} else if (k == "l6") {
+			mcdu.unit[me.id].setPage("sensorStatus");
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}

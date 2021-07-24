@@ -61,6 +61,7 @@ var ClosestAirports = {
 		m.group = "fmc";
 		m.name = "closestAirport";
 		m.scratchpad = "";
+		m.scratchpadState = 0;
 		
 		m.Value = {
 			airports: nil,
@@ -141,9 +142,10 @@ var ClosestAirports = {
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (mcdu.unit[me.id].scratchpadState() == 2) {
-			if (k == "l5") {
+		if (k == "l5") {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) > 0) {
 						me.Value.customAirport = findAirportsByICAO(me.scratchpad)[0];
@@ -154,11 +156,7 @@ var ClosestAirports = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
-		} else if (mcdu.unit[me.id].scratchpadState() == 0) {
-			if (k == "l5") {
+			} else if (me.scratchpadState == 0) {
 				if (me.Value.customAirport != nil) {
 					me.Value.customAirport = nil;
 					mcdu.unit[me.id].scratchpadClear();

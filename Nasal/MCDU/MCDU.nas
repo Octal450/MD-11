@@ -107,7 +107,14 @@ var MCDU = {
 	clearMessage: func(a) {
 		me.clear = 0;
 		
-		if (a) {
+		if (a == 2) {
+			me.message.clear();
+			if (size(me.scratchpadOld) > 0) {
+				me.scratchpad = me.scratchpadOld;
+			} else {
+				me.scratchpad = "";
+			}
+		} else if (a == 1) {
 			me.message.clear();
 			me.scratchpad = "";
 		} else {
@@ -151,11 +158,11 @@ var MCDU = {
 		me.scratchpadOld = "";
 	},
 	scratchpadState: func() {
-		if (me.clear) {
+		if (me.clear) { # CLR
 			return 0;
-		} else if (size(mcdu.unit[me.id].scratchpad) > 0 and me.message.size() == 0) {
+		} else if (size(me.scratchpad) > 0 and me.message.size() == 0) { # Scratchpad Entry
 			return 2;
-		} else {
+		} else { # Empty or Message
 			return 1;
 		}
 	},
@@ -180,6 +187,10 @@ var MCDU = {
 		
 		me.blinkScreen();
 		
+		if (me.message.size() > 0) {
+			me.clearMessage(2);
+		}
+		
 		if (contains(me.PageList, p)) {
 			me.page = me.PageList[p];
 		} else {
@@ -192,6 +203,11 @@ var MCDU = {
 		# Update everything now to make sure it all transitions at once
 		me.page.loop(); 
 		canvas_mcdu.updateMcdu(me.id);
+	},
+	setScratchpad: func(s) {
+		if (me.scratchpadState() == 1) {
+			me.scratchpad = s;
+		}
 	},
 	softKey: func(k) {
 		if (!me.Blink.active) {
