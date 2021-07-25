@@ -392,7 +392,7 @@ var ITAF = {
 			}
 		}
 		if (Output.vertTemp == 2) {
-			if (Position.gearAglFtTemp <= 100 and Position.gearAglFtTemp >= 5) {
+			if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5) {
 				if (Output.ap1Temp or Output.ap2Temp) {
 					me.setVertMode(6);
 				}
@@ -402,9 +402,6 @@ var ITAF = {
 				me.activateLoc();
 				me.activateGs();
 			} else {
-				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5 and Text.vert.getValue() != "FLARE") {
-					me.updateVertText("FLARE");
-				}
 				if (Gear.wow1Temp and Gear.wow2Temp and Text.vert.getValue() != "ROLLOUT") {
 					me.updateLatText("RLOU");
 					me.updateVertText("ROLLOUT");
@@ -1058,7 +1055,7 @@ var ITAF = {
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
 			Output.vert.setValue(6);
-			me.updateVertText("G/S");
+			me.updateVertText("FLARE");
 			me.updateThrustMode();
 		} else if (n == 7) { # T/O CLB or G/A CLB, text is set by TOGA selector
 			Internal.retardLock = 0;
@@ -1271,14 +1268,14 @@ var ITAF = {
 			if (!Output.fd2.getBoolValue()) {
 				me.fd2Master(1);
 			}
-			if (!Output.athr.getBoolValue()) {
-				me.athrMaster(1);
-			}
 			me.setLatMode(3);
 			me.setVertMode(7);
 			me.updateVertText("G/A CLB");
+			if (!Output.athr.getBoolValue()) {
+				me.athrMaster(1);
+			}
 			Internal.ktsMach.setBoolValue(0);
-			me.syncKts();
+			me.syncKtsGa();
 			if (Gear.wow1.getBoolValue() or Gear.wow2.getBoolValue()) {
 				if (systems.BRAKES.Abs.armed.getBoolValue()) {
 					systems.BRAKES.absSetOff(1); # Disarm autobrake
@@ -1290,6 +1287,9 @@ var ITAF = {
 	},
 	syncKts: func() {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
+	},
+	syncKtsGa: func() {
+		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.v2.getValue(), fms.Speeds.athrMax.getValue()));
 	},
 	syncKtsSel: func() {
 		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));
