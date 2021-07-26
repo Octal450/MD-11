@@ -1239,8 +1239,7 @@ var ITAF = {
 		}
 	},
 	checkRadioRevision: func(l, v) { # Revert mode if signal lost
-		Input.radioSelTemp = Input.radioSel.getValue();
-		if (!Radio.inRange[Input.radioSelTemp].getBoolValue()) {
+		if (!Radio.inRange[Input.radioSel.getValue()].getBoolValue()) {
 			if (l == 4 or v == 6) {
 				me.ap1Master(0);
 				me.ap2Master(0);
