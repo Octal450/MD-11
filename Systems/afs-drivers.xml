@@ -752,7 +752,7 @@
 			</condition>
 			<property>/it-autoflight/internal/nav2-heading-error-deg</property>
 		</input>
-		<input>/it-autoflight/internal/nav3-heading-error-deg</input><!-- Default, ILS -->
+		<input>/it-autoflight/internal/nav3-heading-error-deg</input>
 		<output>/it-autoflight/internal/nav-heading-error-deg</output>
 	</filter>
 	
