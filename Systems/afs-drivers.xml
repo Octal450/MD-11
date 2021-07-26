@@ -673,6 +673,63 @@
 	</filter>
 	
 	<filter>
+		<name>Nav1 Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
+			<offset>
+				<property>/orientation/heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/nav1-heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>Nav2 Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/nav[1]/radials/target-auto-hdg-deg</property>
+			<offset>
+				<property>/orientation/heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/nav2-heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>Nav3 Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/nav[2]/radials/target-auto-hdg-deg</property>
+			<offset>
+				<property>/orientation/heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/nav3-heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
 		<name>Nav Error Deg</name>
 		<debug>false</debug>
 		<type>gain</type>
@@ -684,11 +741,7 @@
 					<value>0</value>
 				</equals>
 			</condition>
-			<property>/instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
-			<offset>
-				<property>/orientation/heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
+			<property>/it-autoflight/internal/nav1-heading-error-deg</property>
 		</input>
 		<input>
 			<condition>
@@ -697,20 +750,25 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/instrumentation/nav[1]/radials/target-auto-hdg-deg</property>
-			<offset>
-				<property>/orientation/heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
+			<property>/it-autoflight/internal/nav2-heading-error-deg</property>
 		</input>
-		<input> <!-- Default, ILS -->
-			<property>/instrumentation/nav[2]/radials/target-auto-hdg-deg</property>
-			<offset>
-				<property>/orientation/heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
-		</input>
+		<input>/it-autoflight/internal/nav3-heading-error-deg</input><!-- Default, ILS -->
 		<output>/it-autoflight/internal/nav-heading-error-deg</output>
+	</filter>
+	
+	<filter>
+		<name>Nav1 Course Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<property>/instrumentation/nav[0]/radials/selected-deg</property>
+			<offset>
+				<property>/orientation/track-magnetic-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<output>/it-autoflight/internal/nav1-course-track-error-deg</output>
 		<period>
 			<min>-180</min>
 			<max>180</max>
@@ -718,44 +776,37 @@
 	</filter>
 	
 	<filter>
-		<name>Nav Course Error Deg</name>
+		<name>Nav2 Course Error Deg</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/radio-sel</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/instrumentation/nav[0]/radials/selected-deg</property>
-			<offset>
-				<property>/orientation/track-magnetic-deg</property>
-				<scale>-1.0</scale>
-			</offset>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/input/radio-sel</property>
-					<value>1</value>
-				</equals>
-			</condition>
 			<property>/instrumentation/nav[1]/radials/selected-deg</property>
 			<offset>
 				<property>/orientation/track-magnetic-deg</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
-		<input> <!-- Default, ILS -->
+		<output>/it-autoflight/internal/nav2-course-track-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>Nav3 Course Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
 			<property>/instrumentation/nav[2]/radials/selected-deg</property>
 			<offset>
 				<property>/orientation/track-magnetic-deg</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
-		<output>/it-autoflight/internal/nav-course-track-error-deg</output>
+		<output>/it-autoflight/internal/nav3-course-track-error-deg</output>
 		<period>
 			<min>-180</min>
 			<max>180</max>
