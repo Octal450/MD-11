@@ -878,6 +878,22 @@ var ITAF = {
 			Input.athr.setBoolValue(Output.athrTemp);
 		}
 	},
+	killApSilent: func() {
+		Output.ap1.setBoolValue(0);
+		Output.ap2.setBoolValue(0);
+		Sound.apOff.setBoolValue(0);
+		Sound.enableApOff = 0;
+		# Now that APs are off, we can safely update the input to 0 without the AP Master running
+		Input.ap1.setBoolValue(0);
+		Input.ap2.setBoolValue(0);
+	},
+	killAthrSilent: func() {
+		Output.athr.setBoolValue(0);
+		Warning.atsFlash.setBoolValue(0);
+		Internal.enableAthrOff = 0;
+		# Now that A/THR is off, we can safely update the input to 0 without the A/THR Master running
+		Input.athr.setBoolValue(0);
+	},
 	fd1Master: func(s) {
 		if (s == 1) {
 			if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
@@ -1421,23 +1437,6 @@ var ITAF = {
 		} else {
 			return 0;
 		}
-	},
-	# Silently kill AFS and ATS
-	killApSilent: func() {
-		Output.ap1.setBoolValue(0);
-		Output.ap2.setBoolValue(0);
-		Sound.apOff.setBoolValue(0);
-		Sound.enableApOff = 0;
-		# Now that AFS is off, we can safely update the input to 0 without the AP Master running
-		Input.ap1.setBoolValue(0);
-		Input.ap2.setBoolValue(0);
-	},
-	killAthrSilent: func() {
-		Output.athr.setBoolValue(0);
-		Warning.atsFlash.setBoolValue(0);
-		Internal.enableAthrOff = 0;
-		# Now that ATS is off, we can safely update the input to 0 without the ATHR Master running
-		Input.athr.setBoolValue(0);
 	},
 	updateActiveFms: func(n) {
 		Internal.activeFms.setValue(n);
