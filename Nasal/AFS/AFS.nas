@@ -341,8 +341,6 @@ var ITAF = {
 		
 		Gear.wow1Temp = Gear.wow1.getBoolValue();
 		Gear.wow2Temp = Gear.wow2.getBoolValue();
-		Output.ap1Temp = Output.ap1.getBoolValue();
-		Output.ap2Temp = Output.ap2.getBoolValue();
 		Output.athrTemp = Output.athr.getBoolValue();
 		Output.latTemp = Output.lat.getValue();
 		Output.vertTemp = Output.vert.getValue();
@@ -630,6 +628,9 @@ var ITAF = {
 				}
 			}
 		}
+		
+		Output.ap1Temp = Output.ap1.getBoolValue();
+		Output.ap2Temp = Output.ap2.getBoolValue();
 		
 		# Trip system off
 		if (Output.ap1Temp or Output.ap2Temp) { 
