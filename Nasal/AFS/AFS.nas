@@ -324,6 +324,36 @@ var ITAF = {
 		Output.latTemp = Output.lat.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		
+		# Trip system off
+		if (Output.ap1Temp or Output.ap2Temp) { 
+			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+			}
+		}
+		if (!Input.ap1Avail.getBoolValue() and Output.ap1Temp) {
+			me.ap1Master(0);
+		}
+		if (!Input.ap2Avail.getBoolValue() and Output.ap2Temp) {
+			me.ap2Master(0);
+		}
+		if (!Input.athrAvail.getBoolValue() and Output.athrTemp) {
+			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Silently kill ATS only if a reverser is deployed
+				me.killAthrSilent();
+			} else {
+				me.athrMaster(0);
+			}
+		}
+		
+		# VOR/ILS Revision
+		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
+			me.checkRadioRevision(Output.latTemp, Output.vertTemp);
+		}
+		
+		Output.ap1Temp = Output.ap1.getBoolValue();
+		Output.ap2Temp = Output.ap2.getBoolValue();
+		Output.athrTemp = Output.athr.getBoolValue();
+		
 		# Kill Autoland if AP is turned off
 		if (!Output.ap1Temp and !Output.ap2Temp) {
 			if (Output.latTemp == 4) {
@@ -334,16 +364,8 @@ var ITAF = {
 			}
 		}
 		
-		# VOR/ILS Revision
-		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
-			me.checkRadioRevision(Output.latTemp, Output.vertTemp);
-		}
-		
 		Gear.wow1Temp = Gear.wow1.getBoolValue();
 		Gear.wow2Temp = Gear.wow2.getBoolValue();
-		Output.ap1Temp = Output.ap1.getBoolValue();
-		Output.ap2Temp = Output.ap2.getBoolValue();
-		Output.athrTemp = Output.athr.getBoolValue();
 		Output.latTemp = Output.lat.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		Text.vertTemp = Text.vert.getValue();
@@ -628,30 +650,6 @@ var ITAF = {
 				if (Output.ap2Temp) {
 					me.ap2Master(0);
 				}
-			}
-		}
-		
-		Output.ap1Temp = Output.ap1.getBoolValue();
-		Output.ap2Temp = Output.ap2.getBoolValue();
-		
-		# Trip system off
-		if (Output.ap1Temp or Output.ap2Temp) { 
-			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
-				me.ap1Master(0);
-				me.ap2Master(0);
-			}
-		}
-		if (!Input.ap1Avail.getBoolValue() and Output.ap1Temp) {
-			me.ap1Master(0);
-		}
-		if (!Input.ap2Avail.getBoolValue() and Output.ap2Temp) {
-			me.ap2Master(0);
-		}
-		if (!Input.athrAvail.getBoolValue() and Output.athrTemp) {
-			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Silently kill ATS only if a reverser is deployed
-				me.killAthrSilent();
-			} else {
-				me.athrMaster(0);
 			}
 		}
 	},
