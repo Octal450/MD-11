@@ -1548,6 +1548,30 @@ setlistener("/it-autoflight/input/vs-fpa", func() {
 	}
 });
 
+setlistener("/it-autoflight/input/trk", func() {
+	Input.trkTemp = Input.trk.getBoolValue();
+	
+	if (Input.trkTemp) {
+		Internal.hdgCalc = Internal.hdg.getValue() + math.round(Internal.driftAngle.getValue());
+	} else {
+		Internal.hdgCalc = Internal.hdg.getValue() - math.round(Internal.driftAngle.getValue());
+	}
+	
+	if (Internal.hdgCalc > 359) { # It's rounded, so this is ok. Otherwise do >= 359.5
+		Internal.hdgCalc = Internal.hdgCalc - 360;
+	} else if (Internal.hdgCalc < 0) { # It's rounded, so this is ok. Otherwise do < -0.5
+		Internal.hdgCalc = Internal.hdgCalc + 360;
+	}
+	
+	Input.hdg.setValue(Internal.hdgCalc);
+	Internal.hdg.setValue(Internal.hdgCalc);
+	
+	updateFma.roll();
+	
+	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
+	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
+}, 0, 0);
+
 # Flashing Logic
 var killAPWarn = func() {
 	if (Sound.apOff.getBoolValue()) { # Second press only
@@ -1586,30 +1610,6 @@ var atsKill = maketimer(0.4, func() {
 		Warning.ats.setBoolValue(0);
 	}
 });
-
-setlistener("/it-autoflight/input/trk", func() {
-	Input.trkTemp = Input.trk.getBoolValue();
-	
-	if (Input.trkTemp) {
-		Internal.hdgCalc = Internal.hdg.getValue() + math.round(Internal.driftAngle.getValue());
-	} else {
-		Internal.hdgCalc = Internal.hdg.getValue() - math.round(Internal.driftAngle.getValue());
-	}
-	
-	if (Internal.hdgCalc > 359) { # It's rounded, so this is ok. Otherwise do >= 359.5
-		Internal.hdgCalc = Internal.hdgCalc - 360;
-	} else if (Internal.hdgCalc < 0) { # It's rounded, so this is ok. Otherwise do < -0.5
-		Internal.hdgCalc = Internal.hdgCalc + 360;
-	}
-	
-	Input.hdg.setValue(Internal.hdgCalc);
-	Internal.hdg.setValue(Internal.hdgCalc);
-	
-	updateFma.roll();
-	
-	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
-	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
-}, 0, 0);
 
 # For Canvas Nav Display.
 setlistener("/it-autoflight/input/hdg", func() {
