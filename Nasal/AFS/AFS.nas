@@ -101,8 +101,11 @@ var Input = {
 	alt: props.globals.initNode("/it-autoflight/input/alt", 10000, "INT"),
 	altTemp: 1000,
 	ap1: props.globals.initNode("/it-autoflight/input/ap1", 0, "BOOL"),
+	ap1Avail: props.globals.initNode("/it-autoflight/input/ap1-avail", 1, "BOOL"),
 	ap2: props.globals.initNode("/it-autoflight/input/ap2", 0, "BOOL"),
+	ap2Avail: props.globals.initNode("/it-autoflight/input/ap2-avail", 1, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/input/athr", 0, "BOOL"),
+	athrAvail: props.globals.initNode("/it-autoflight/input/athr-avail", 1, "BOOL"),
 	altDiff: 0,
 	bankLimitSw: props.globals.initNode("/it-autoflight/input/bank-limit-sw", 0, "INT"),
 	bankLimitSwTemp: 0,
@@ -194,15 +197,12 @@ var Internal = {
 
 var Output = {
 	ap1: props.globals.initNode("/it-autoflight/output/ap1", 0, "BOOL"),
-	ap1Avail: props.globals.initNode("/it-autoflight/output/ap1-available", 0, "BOOL"),
 	ap1Temp: 0,
 	ap2: props.globals.initNode("/it-autoflight/output/ap2", 0, "BOOL"),
-	ap2Avail: props.globals.initNode("/it-autoflight/output/ap2-available", 0, "BOOL"),
 	ap2Temp: 0,
 	apprArm: props.globals.initNode("/it-autoflight/output/appr-armed", 0, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/output/athr", 0, "BOOL"),
 	athrTemp: 0,
-	athrAvail: props.globals.initNode("/it-autoflight/output/athr-available", 0, "BOOL"),
 	clamp: props.globals.getNode("/it-autoflight/output/clamp"),
 	fd1: props.globals.initNode("/it-autoflight/output/fd1", 1, "BOOL"),
 	fd1Temp: 0,
@@ -324,6 +324,16 @@ var ITAF = {
 		Output.latTemp = Output.lat.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		
+		# Kill Autoland if AP is turned off
+		if (!Output.ap1Temp and !Output.ap2Temp) {
+			if (Output.latTemp == 4) {
+				me.activateLoc();
+			}
+			if (Output.vertTemp == 6) {
+				me.activateGs();
+			}
+		}
+		
 		# VOR/ILS Revision
 		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
 			me.checkRadioRevision(Output.latTemp, Output.vertTemp);
@@ -341,26 +351,6 @@ var ITAF = {
 		Internal.vsTemp = Internal.vs.getValue();
 		Position.indicatedAltitudeFtTemp = Position.indicatedAltitudeFt.getValue();
 		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
-		
-		# Kill when power lost
-		if (systems.ELEC.Bus.dc1.getValue() < 24 or systems.ELEC.Bus.dc2.getValue() < 24 or systems.ELEC.Bus.dc3.getValue() < 24) {
-			if (Output.ap1Temp or Output.ap2Temp) {
-				me.killAFSSilent();
-			}
-			if (Output.athrTemp) {
-				me.killATSSilent();
-			}
-		}
-		
-		# Kill Autoland if AP is turned off
-		if (!Output.ap1Temp and !Output.ap2Temp) {
-			if (Output.latTemp == 4) {
-				me.activateLoc();
-			}
-			if (Output.vertTemp == 6) {
-				me.activateGs();
-			}
-		}
 		
 		# Update LNAV engage altitude
 		if (Output.ap1Temp or Output.ap2Temp) {
@@ -606,7 +596,7 @@ var ITAF = {
 		}
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Output.ap1Avail.getBoolValue() and Output.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "DUAL";
 			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "SINGLE";
@@ -621,27 +611,6 @@ var ITAF = {
 		
 		if (Internal.landCondition != Text.land.getValue()) {
 			Text.land.setValue(Internal.landCondition);
-		}
-		
-		# Trip system off
-		if (Output.ap1Temp or Output.ap2Temp) { 
-			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
-				me.ap1Master(0);
-				me.ap2Master(0);
-			}
-		}
-		if (!Output.ap1Avail.getBoolValue() and Output.ap1Temp) {
-			me.ap1Master(0);
-		}
-		if (!Output.ap2Avail.getBoolValue() and Output.ap2Temp) {
-			me.ap2Master(0);
-		}
-		if (!Output.athrAvail.getBoolValue() and Output.athrTemp) {
-			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Silently kill ATS only if a reverser is deployed
-				me.killATSSilent();
-			} else {
-				me.athrMaster(0);
-			}
 		}
 		
 		if (Internal.landCondition != "DUAL" and Internal.landCondition != "SINGLE" and Text.vert.getValue() != "G/A CLB") {
@@ -659,6 +628,27 @@ var ITAF = {
 				if (Output.ap2Temp) {
 					me.ap2Master(0);
 				}
+			}
+		}
+		
+		# Trip system off
+		if (Output.ap1Temp or Output.ap2Temp) { 
+			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
+				me.ap1Master(0);
+				me.ap2Master(0);
+			}
+		}
+		if (!Input.ap1Avail.getBoolValue() and Output.ap1Temp) {
+			me.ap1Master(0);
+		}
+		if (!Input.ap2Avail.getBoolValue() and Output.ap2Temp) {
+			me.ap2Master(0);
+		}
+		if (!Input.athrAvail.getBoolValue() and Output.athrTemp) {
+			if (Engines.reverserNorm[0].getValue() >= 0.01 or Engines.reverserNorm[1].getValue() >= 0.01 or Engines.reverserNorm[2].getValue() >= 0.01) { # Silently kill ATS only if a reverser is deployed
+				me.killAthrSilent();
+			} else {
+				me.athrMaster(0);
 			}
 		}
 	},
@@ -727,7 +717,7 @@ var ITAF = {
 		Output.vertTemp = Output.vert.getValue();
 		
 		if (me.spdProtAllowed()) {
-			if (Output.athrAvail.getBoolValue()) { # A/THR Available
+			if (Input.athrAvail.getBoolValue()) { # A/THR Available
 				if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1 and Output.spdProtTemp == 0))) { # High Speed Prot
 					Output.spdProt.setValue(2);
 					Internal.spdProtOnPitch = 1;
@@ -793,7 +783,7 @@ var ITAF = {
 	},
 	ap1Master: func(s) {
 		if (s == 1) {
-			if (me.apEngageAllowed() == 1 and Output.ap1Avail.getBoolValue()) {
+			if (me.apEngageAllowed() == 1 and Input.ap1Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 					me.setBasicMode(0);
 				}
@@ -805,13 +795,15 @@ var ITAF = {
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
-				Sound.apOff.setBoolValue(1);
-				Sound.enableApOff = 0;
-				apKill.start();	
+				if (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue()) {
+					Sound.apOff.setBoolValue(1);
+					Sound.enableApOff = 0;
+					apKill.start();
+				}
 			}
 		} else {
 			Output.ap1.setBoolValue(0);
-			if (Output.ap2Avail.getBoolValue()) {
+			if (Input.ap2Avail.getBoolValue()) {
 				me.updateActiveFms(2);
 			}
 			me.apOffFunction();
@@ -823,7 +815,7 @@ var ITAF = {
 	},
 	ap2Master: func(s) {
 		if (s == 1) {
-			if (me.apEngageAllowed() == 1 and Output.ap2Avail.getBoolValue()) {
+			if (me.apEngageAllowed() == 1 and Input.ap2Avail.getBoolValue()) {
 				if (!Output.fd1.getBoolValue() and !Output.fd2.getBoolValue() and !Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and !Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 					me.setBasicMode(0);
 				}
@@ -835,13 +827,15 @@ var ITAF = {
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
-				Sound.apOff.setBoolValue(1);
-				Sound.enableApOff = 0;
-				apKill.start();	
+				if (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue()) {
+					Sound.apOff.setBoolValue(1);
+					Sound.enableApOff = 0;
+					apKill.start();
+				}
 			}
 		} else {
 			Output.ap2.setBoolValue(0);
-			if (Output.ap1Avail.getBoolValue()) {
+			if (Input.ap1Avail.getBoolValue()) {
 				me.updateActiveFms(1);
 			}
 			me.apOffFunction();
@@ -853,7 +847,7 @@ var ITAF = {
 	},
 	apOffFunction: func() {
 		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) { # Only do if both APs are off
-			if (Sound.enableApOff) {
+			if (Sound.enableApOff and (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue())) {
 				Sound.apOff.setBoolValue(1);
 				Sound.enableApOff = 0;
 				apKill.start();	
@@ -865,7 +859,7 @@ var ITAF = {
 	},
 	athrMaster: func(s) {
 		if (s == 1) {
-			if (Output.athrAvail.getBoolValue()) {
+			if (Input.athrAvail.getBoolValue()) {
 				Output.athr.setBoolValue(1);
 				atsKill.stop();
 				Warning.ats.setBoolValue(0);
@@ -1377,32 +1371,32 @@ var ITAF = {
 		
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if ((Output.ap1.getBoolValue() or Output.ap2.getBoolValue()) and Output.athr.getBoolValue()) { # Switch active FMS if there is nothing to engage
-				if (Internal.activeFmsTemp == 1 and Output.ap2Avail.getBoolValue()) {
+				if (Internal.activeFmsTemp == 1 and Input.ap2Avail.getBoolValue()) {
 					me.updateActiveFms(2);
-				} else if (Internal.activeFmsTemp == 2 and Output.ap1Avail.getBoolValue()) {
+				} else if (Internal.activeFmsTemp == 2 and Input.ap1Avail.getBoolValue()) {
 					me.updateActiveFms(1);
 				}
 			}
 			Internal.activeFmsTemp = Internal.activeFms.getValue(); # Update it after we just set it
 			if (Internal.activeFmsTemp == 1) {
-				if (Output.ap1Avail.getBoolValue()) { # AP1 on
+				if (Input.ap1Avail.getBoolValue()) { # AP1 on
 					me.ap1Master(1);
 					me.ap2Master(0);
-				} else if (Output.ap2Avail.getBoolValue()) { # AP2 on because AP1 is not available
+				} else if (Input.ap2Avail.getBoolValue()) { # AP2 on because AP1 is not available
 					me.ap2Master(1); # Will set activeFms to 2
 					me.ap1Master(0);
 				}
 			} else if (Internal.activeFmsTemp == 2) {
-				if (Output.ap2Avail.getBoolValue()) { # AP2 on
+				if (Input.ap2Avail.getBoolValue()) { # AP2 on
 					me.ap2Master(1);
 					me.ap1Master(0);
-				} else if (Output.ap1Avail.getBoolValue()) { # AP1 on because AP2 is not available
+				} else if (Input.ap1Avail.getBoolValue()) { # AP1 on because AP2 is not available
 					me.ap1Master(1); # Will set activeFms to 1
 					me.ap2Master(0);
 				}
 			}
 		}
-		if (!Output.athr.getBoolValue() and Output.athrAvail.getBoolValue()) {
+		if (!Output.athr.getBoolValue() and Input.athrAvail.getBoolValue()) {
 			me.athrMaster(1);
 		}
 	},
@@ -1430,7 +1424,7 @@ var ITAF = {
 		}
 	},
 	# Silently kill AFS and ATS
-	killAFSSilent: func() {
+	killApSilent: func() {
 		Output.ap1.setBoolValue(0);
 		Output.ap2.setBoolValue(0);
 		Sound.apOff.setBoolValue(0);
@@ -1439,7 +1433,7 @@ var ITAF = {
 		Input.ap1.setBoolValue(0);
 		Input.ap2.setBoolValue(0);
 	},
-	killATSSilent: func() {
+	killAthrSilent: func() {
 		Output.athr.setBoolValue(0);
 		Warning.atsFlash.setBoolValue(0);
 		Internal.enableAthrOff = 0;

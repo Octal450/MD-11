@@ -138,83 +138,83 @@
 	
 	<channel name="Lights" execrate="8">
 		
-		<switch name="/controls/fctl/lights/elevator-feel-manual">
+		<switch name="/controls/fcc/lights/elevator-feel-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fcc/elevator-feel/auto ne 1
-				/systems/failures/fctl/elevator-feel eq 1
+				/systems/failures/fcc/elevator-feel eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/flap-limit-manual">
+		<switch name="/controls/fcc/lights/flap-limit-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/fctl/switches/flap-limit-knob gt 0
-				/systems/failures/fctl/flap-limit eq 1
+				/controls/fcc/switches/flap-limit-knob gt 0
+				/systems/failures/fcc/flap-limit eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/lsas-left-out-fail">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/lsas-left-out eq 1
-			</test>
-		</switch>
-		
-		<switch name="/controls/fctl/lights/lsas-left-in-fail">
+		<switch name="/controls/fcc/lights/lsas-left-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/lsas-left-in eq 1
+				/systems/failures/fcc/lsas-left-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/lsas-right-in-fail">
+		<switch name="/controls/fcc/lights/lsas-left-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/lsas-right-in eq 1
+				/systems/failures/fcc/lsas-left-in eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/lsas-right-out-fail">
+		<switch name="/controls/fcc/lights/lsas-right-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/lsas-right-out eq 1
+				/systems/failures/fcc/lsas-right-in eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/yd-upper-a-fail">
+		<switch name="/controls/fcc/lights/lsas-right-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/yd-upper-a eq 1
+				/systems/failures/fcc/lsas-right-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/yd-upper-b-fail">
+		<switch name="/controls/fcc/lights/yd-upper-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/yd-upper-b eq 1
+				/systems/failures/fcc/yd-upper-a eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/yd-lower-a-fail">
+		<switch name="/controls/fcc/lights/yd-upper-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/yd-lower-a eq 1
+				/systems/failures/fcc/yd-upper-b eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fctl/lights/yd-lower-b-fail">
+		<switch name="/controls/fcc/lights/yd-lower-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
-				/systems/failures/fctl/yd-lower-b eq 1
+				/systems/failures/fcc/yd-lower-a eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/fcc/lights/yd-lower-b-fail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/iru-common/any-aligned-out ne 1
+				/systems/failures/fcc/yd-lower-b eq 1
 			</test>
 		</switch>
 		

@@ -211,6 +211,7 @@
 		<object-name>MACH.led1</object-name>
 		<object-name>MACH.led2</object-name>
 		<object-name>MACH.led3</object-name>
+		<object-name>MACH.ledd</object-name>
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
@@ -541,6 +542,7 @@
 		<type>select</type>
 		<object-name>FPA.led1</object-name>
 		<object-name>FPA.led2</object-name>
+		<object-name>FPA.ledd</object-name>
 		<condition>
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>

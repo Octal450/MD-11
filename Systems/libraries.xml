@@ -267,7 +267,7 @@
 			<expression>
 				<sum>
 					<property>/fdm/jsbsim/fcc/elevator-feel/speed</property>
-					<property>/controls/fctl/switches/elevator-feel-knob</property>
+					<property>/controls/fcc/switches/elevator-feel-knob</property>
 				</sum>
 			</expression>
 		</input>

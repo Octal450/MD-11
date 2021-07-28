@@ -36,6 +36,22 @@
 	
 	<channel name="Libraries">
 		
+		<switch name="fcc/fcc1-power">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/dc-1 ge 24
+				/systems/electrical/bus/l-emer-dc ge 24
+			</test>
+		</switch>
+		
+		<switch name="fcc/fcc2-power">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/dc-3 ge 24
+				/systems/electrical/bus/r-emer-dc ge 24
+			</test>
+		</switch>
+		
 		<switch name="fcc/afs/enabled">
 			<default value="0"/>
 			<test logic="OR" value="1">
@@ -89,17 +105,17 @@
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-left-out eq 1
+				/controls/fcc/switches/lsas-left-out eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/lsas-left-out ne 1
+				fcc/fcc2-power eq 1
+				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-left-out eq 1
+				/controls/fcc/switches/lsas-left-out eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
-				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/lsas-left-out ne 1
+				fcc/fcc2-power eq 1
+				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -111,17 +127,17 @@
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-left-in eq 1
+				/controls/fcc/switches/lsas-left-in eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
-				/systems/electrical/bus/l-emer-dc ge 24
-				/systems/failures/fctl/lsas-left-in ne 1
+				fcc/fcc1-power eq 1
+				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-left-in eq 1
+				/controls/fcc/switches/lsas-left-in eq 1
 				/systems/hydraulics/sys-3-psi ge 2200
-				/systems/electrical/bus/l-emer-dc ge 24
-				/systems/failures/fctl/lsas-left-in ne 1
+				fcc/fcc1-power eq 1
+				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -133,17 +149,17 @@
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-right-in eq 1
+				/controls/fcc/switches/lsas-right-in eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/electrical/bus/r-emer-dc ge 24
-				/systems/failures/fctl/lsas-right-in ne 1
+				fcc/fcc2-power eq 1
+				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-right-in eq 1
+				/controls/fcc/switches/lsas-right-in eq 1
 				/systems/hydraulics/sys-3-psi ge 2200
-				/systems/electrical/bus/r-emer-dc ge 24
-				/systems/failures/fctl/lsas-right-in ne 1
+				fcc/fcc2-power eq 1
+				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -155,17 +171,17 @@
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-right-out eq 1
+				/controls/fcc/switches/lsas-right-out eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/lsas-right-out ne 1
+				fcc/fcc1-power eq 1
+				/systems/failures/fcc/lsas-right-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/lsas-right-out eq 1
+				/controls/fcc/switches/lsas-right-out eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
-				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/lsas-right-out ne 1
+				fcc/fcc1-power eq 1
+				/systems/failures/fcc/lsas-right-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -194,7 +210,7 @@
 								</eq>
 							</and>
 							<nq>
-								<property>/it-autoflight/output/athr-available</property>
+								<property>/it-autoflight/input/athr-avail</property>
 								<value>1</value>
 							</nq>
 						</or>
@@ -318,17 +334,17 @@
 		<switch name="fcc/yaw/avail-upper-a">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-upper-a eq 1
+				/controls/fcc/switches/yd-upper-a eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/yd-upper-a ne 1
+				/systems/failures/fcc/yd-upper-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-upper-a eq 1
+				/controls/fcc/switches/yd-upper-a eq 1
 				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/yd-upper-a ne 1
+				/systems/failures/fcc/yd-upper-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -336,17 +352,17 @@
 		<switch name="fcc/yaw/avail-upper-b">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-upper-b eq 1
+				/controls/fcc/switches/yd-upper-b eq 1
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/yd-upper-b ne 1
+				/systems/failures/fcc/yd-upper-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-upper-b eq 1
+				/controls/fcc/switches/yd-upper-b eq 1
 				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fctl/yd-upper-b ne 1
+				/systems/failures/fcc/yd-upper-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -354,17 +370,17 @@
 		<switch name="fcc/yaw/avail-lower-a">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-lower-a eq 1
+				/controls/fcc/switches/yd-lower-a eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/yd-lower-a ne 1
+				/systems/failures/fcc/yd-lower-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-lower-a eq 1
+				/controls/fcc/switches/yd-lower-a eq 1
 				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/yd-lower-a ne 1
+				/systems/failures/fcc/yd-lower-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -372,17 +388,17 @@
 		<switch name="fcc/yaw/avail-lower-b">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-lower-b eq 1
+				/controls/fcc/switches/yd-lower-b eq 1
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/yd-lower-b ne 1
+				/systems/failures/fcc/yd-lower-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/yd-lower-b eq 1
+				/controls/fcc/switches/yd-lower-b eq 1
 				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fctl/yd-lower-b ne 1
+				/systems/failures/fcc/yd-lower-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
@@ -827,9 +843,9 @@
 		<switch name="fcc/elevator-feel/auto">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fctl/switches/elevator-feel-man ne 1
+				/controls/fcc/switches/elevator-feel-man ne 1
 				fcc/elevator-feel/power eq 1
-				/systems/failures/fctl/elevator-feel ne 1
+				/systems/failures/fcc/elevator-feel ne 1
 			</test>
 		</switch>
 		
@@ -1305,23 +1321,23 @@
 			<default value="50"/>
 			<test logic="AND" value="22">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-20-25-max-kts
-				/controls/fctl/switches/flap-limit-knob eq 0
-				/systems/failures/fctl/flap-limit ne 1
+				/controls/fcc/switches/flap-limit-knob eq 0
+				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="25">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-28-max-kts
-				/controls/fctl/switches/flap-limit-knob eq 0
-				/systems/failures/fctl/flap-limit ne 1
+				/controls/fcc/switches/flap-limit-knob eq 0
+				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="28">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-35-max-kts
-				/controls/fctl/switches/flap-limit-knob eq 0
-				/systems/failures/fctl/flap-limit ne 1
+				/controls/fcc/switches/flap-limit-knob eq 0
+				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="35">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-50-max-kts
-				/controls/fctl/switches/flap-limit-knob eq 0
-				/systems/failures/fctl/flap-limit ne 1
+				/controls/fcc/switches/flap-limit-knob eq 0
+				/systems/failures/fcc/flap-limit ne 1
 			</test>
 		</switch>
 		

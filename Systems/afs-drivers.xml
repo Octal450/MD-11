@@ -8,6 +8,10 @@
 	<logic>
 		<input>
 			<and>
+				<equals>
+					<property>/fdm/jsbsim/fcc/fcc1-power</property>
+					<value>1</value>
+				</equals>
 				<not><property>/it-autoflight/input/ovrd1</property></not>
 				<or> <!-- Basic modes except NAV work with only partial alignment -->
 					<equals>
@@ -33,22 +37,26 @@
 				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/left-out-active</property>
+						<property>/fdm/jsbsim/fcc/lsas/left-in-active</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/right-in-active</property>
+						<property>/fdm/jsbsim/fcc/lsas/right-out-active</property>
 						<value>1</value>
 					</equals>
 				</or>
 			</and>
 		</input>
-		<output>/it-autoflight/output/ap1-available</output>
+		<output>/it-autoflight/input/ap1-avail</output>
 	</logic>
 	
 	<logic>
 		<input>
 			<and>
+				<equals>
+					<property>/fdm/jsbsim/fcc/fcc2-power</property>
+					<value>1</value>
+				</equals>
 				<not><property>/it-autoflight/input/ovrd2</property></not>
 				<or> <!-- Basic modes except NAV work with only partial alignment -->
 					<equals>
@@ -70,22 +78,32 @@
 				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/left-in-active</property>
+						<property>/fdm/jsbsim/fcc/lsas/left-out-active</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/right-out-active</property>
+						<property>/fdm/jsbsim/fcc/lsas/right-in-active</property>
 						<value>1</value>
 					</equals>
 				</or>
 			</and>
 		</input>
-		<output>/it-autoflight/output/ap2-available</output>
+		<output>/it-autoflight/input/ap2-avail</output>
 	</logic>
 	
 	<logic>
 		<input>
 			<and>
+				<or>
+					<equals>
+						<property>/fdm/jsbsim/fcc/fcc1-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/fdm/jsbsim/fcc/fcc2-power</property>
+						<value>1</value>
+					</equals>
+				</or>
 				<or>
 					<not><property>/it-autoflight/input/ovrd1</property></not>
 					<not><property>/it-autoflight/input/ovrd2</property></not>
@@ -121,7 +139,7 @@
 				<not><property>/controls/fadec/eng-3-altn</property></not>
 			</and>
 		</input>
-		<output>/it-autoflight/output/athr-available</output>
+		<output>/it-autoflight/input/athr-avail</output>
 	</logic>
 	
 	<!-- Predictors -->

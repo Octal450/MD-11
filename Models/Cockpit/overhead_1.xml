@@ -6267,7 +6267,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lights/flap-limit-manual</property>
+					<property>controls/fcc/lights/flap-limit-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6287,7 +6287,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/fctl/switches/flap-limit-knob</property>
+				<property>controls/fcc/switches/flap-limit-knob</property>
 				<value>2</value>
 				<value>1</value>
 				<value>0</value>
@@ -6299,7 +6299,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
-				<property>controls/fctl/switches/flap-limit-knob</property>
+				<property>controls/fcc/switches/flap-limit-knob</property>
 				<value>0</value>
 				<value>1</value>
 				<value>2</value>
@@ -6310,7 +6310,7 @@
 		<type>rotate</type>
 		<object-name>FlapLimit.knob</object-name>
 		<object-name>FlapLimit.light</object-name>
-		<property>controls/fctl/switches/flap-limit-knob</property>
+		<property>controls/fcc/switches/flap-limit-knob</property>
 		<factor>45</factor>
 		<axis>
 			<x>1</x>
@@ -6330,7 +6330,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/lights/elevator-feel-manual</property>
+					<property>controls/fcc/lights/elevator-feel-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6351,12 +6351,12 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fctl/switches/elevator-feel-knob</property>
+				<property>controls/fcc/switches/elevator-feel-knob</property>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/elevator-feel-man</property>
+				<property>controls/fcc/switches/elevator-feel-man</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6374,8 +6374,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fctl/switches/elevator-feel-knob", -2);
+				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+					setprop("/controls/fcc/switches/elevator-feel-knob", -2);
 					libraries.Sound.knb1();
 				}
 				</script>
@@ -6384,7 +6384,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/switches/elevator-feel-knob", 0);
+					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
 					libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -6401,8 +6401,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fctl/switches/elevator-feel-knob", -1);
+				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+					setprop("/controls/fcc/switches/elevator-feel-knob", -1);
 					libraries.Sound.knb1();
 				}
 				</script>
@@ -6411,7 +6411,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/switches/elevator-feel-knob", 0);
+					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
 					libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -6428,8 +6428,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fctl/switches/elevator-feel-knob", 1);
+				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+					setprop("/controls/fcc/switches/elevator-feel-knob", 1);
 					libraries.Sound.knb1();
 				}
 				</script>
@@ -6438,7 +6438,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/switches/elevator-feel-knob", 0);
+					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
 					libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -6455,8 +6455,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fctl/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fctl/switches/elevator-feel-knob", 2);
+				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+					setprop("/controls/fcc/switches/elevator-feel-knob", 2);
 					libraries.Sound.knb1();
 				}
 				</script>
@@ -6465,7 +6465,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fctl/switches/elevator-feel-knob", 0);
+					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
 					libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -6477,7 +6477,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/switches/elevator-feel-man</property>
+		<property>controls/fcc/switches/elevator-feel-man</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -6490,7 +6490,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fctl/switches/elevator-feel-knob</property>
+		<property>controls/fcc/switches/elevator-feel-knob</property>
 		<interpolation>
 			<entry><ind>-2</ind><dep> 65</dep></entry>
 			<entry><ind>-1</ind><dep> 32</dep></entry>
@@ -6526,7 +6526,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/lsas-left-out</property>
+				<property>controls/fcc/switches/lsas-left-out</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6541,11 +6541,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/lsas-left-out</property>
+						<property>controls/fcc/switches/lsas-left-out</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/lsas-left-out-fail</property>
+						<property>controls/fcc/lights/lsas-left-out-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6562,7 +6562,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/lsas-left-out</property>
+					<property>controls/fcc/switches/lsas-left-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6589,7 +6589,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/lsas-left-in</property>
+				<property>controls/fcc/switches/lsas-left-in</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6604,11 +6604,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/lsas-left-in</property>
+						<property>controls/fcc/switches/lsas-left-in</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/lsas-left-in-fail</property>
+						<property>controls/fcc/lights/lsas-left-in-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6625,7 +6625,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/lsas-left-in</property>
+					<property>controls/fcc/switches/lsas-left-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6652,7 +6652,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/lsas-right-in</property>
+				<property>controls/fcc/switches/lsas-right-in</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6667,11 +6667,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/lsas-right-in</property>
+						<property>controls/fcc/switches/lsas-right-in</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/lsas-right-in-fail</property>
+						<property>controls/fcc/lights/lsas-right-in-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6688,7 +6688,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/lsas-right-in</property>
+					<property>controls/fcc/switches/lsas-right-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6715,7 +6715,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/lsas-right-out</property>
+				<property>controls/fcc/switches/lsas-right-out</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6730,11 +6730,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/lsas-right-out</property>
+						<property>controls/fcc/switches/lsas-right-out</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/lsas-right-out-fail</property>
+						<property>controls/fcc/lights/lsas-right-out-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6751,7 +6751,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/lsas-right-out</property>
+					<property>controls/fcc/switches/lsas-right-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6778,7 +6778,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/yd-upper-a</property>
+				<property>controls/fcc/switches/yd-upper-a</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6793,11 +6793,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/yd-upper-a</property>
+						<property>controls/fcc/switches/yd-upper-a</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/yd-upper-a-fail</property>
+						<property>controls/fcc/lights/yd-upper-a-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6814,7 +6814,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/yd-upper-a</property>
+					<property>controls/fcc/switches/yd-upper-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6841,7 +6841,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/yd-upper-b</property>
+				<property>controls/fcc/switches/yd-upper-b</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6856,11 +6856,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/yd-upper-b</property>
+						<property>controls/fcc/switches/yd-upper-b</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/yd-upper-b-fail</property>
+						<property>controls/fcc/lights/yd-upper-b-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6877,7 +6877,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/yd-upper-b</property>
+					<property>controls/fcc/switches/yd-upper-b</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6904,7 +6904,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/yd-lower-a</property>
+				<property>controls/fcc/switches/yd-lower-a</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6919,11 +6919,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/yd-lower-a</property>
+						<property>controls/fcc/switches/yd-lower-a</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/yd-lower-a-fail</property>
+						<property>controls/fcc/lights/yd-lower-a-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6940,7 +6940,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/yd-lower-a</property>
+					<property>controls/fcc/switches/yd-lower-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6967,7 +6967,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fctl/switches/yd-lower-b</property>
+				<property>controls/fcc/switches/yd-lower-b</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6982,11 +6982,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fctl/switches/yd-lower-b</property>
+						<property>controls/fcc/switches/yd-lower-b</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fctl/lights/yd-lower-b-fail</property>
+						<property>controls/fcc/lights/yd-lower-b-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -7003,7 +7003,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fctl/switches/yd-lower-b</property>
+					<property>controls/fcc/switches/yd-lower-b</property>
 					<value>0</value>
 				</equals>
 				<equals>

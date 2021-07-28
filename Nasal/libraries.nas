@@ -23,7 +23,7 @@ var systemsInit = func() {
 	systems.ELEC.init();
 	systems.ENGINE.init();
 	systems.FADEC.init();
-	systems.FCTL.init();
+	systems.FCC.init();
 	systems.GEAR.init();
 	systems.FUEL.init();
 	systems.HYD.init();

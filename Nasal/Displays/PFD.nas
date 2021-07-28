@@ -1287,8 +1287,8 @@ var canvasBase = {
 			me["FMA_Speed"].show();
 		}
 		
-		Value.Afs.ap1Avail = afs.Output.ap1Avail.getBoolValue();
-		Value.Afs.ap2Avail = afs.Output.ap2Avail.getBoolValue();
+		Value.Afs.ap1Avail = afs.Input.ap1Avail.getBoolValue();
+		Value.Afs.ap2Avail = afs.Input.ap2Avail.getBoolValue();
 		Value.Afs.apSound = afs.Sound.apOff.getBoolValue();
 		Value.Afs.apWarn = afs.Warning.ap.getBoolValue();
 		Value.Afs.apYokeButton1 = pts.Controls.Switches.apYokeButton1.getBoolValue();
@@ -1299,7 +1299,7 @@ var canvasBase = {
 		if (Value.Afs.atsFlash) {
 			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
 			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
-		} else if (!afs.Output.athrAvail.getBoolValue()) {
+		} else if (!afs.Input.athrAvail.getBoolValue()) {
 			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
 			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
 		} else {

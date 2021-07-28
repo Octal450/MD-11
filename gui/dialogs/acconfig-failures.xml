@@ -532,7 +532,7 @@
 					<stretch type="bool">true</stretch>
 				</hrule>
 				<text>
-					<label>Flight Controls</label>
+					<label>Flight Controls/FCCs</label>
 				</text>
 				<hrule>
 					<stretch type="bool">true</stretch>
@@ -542,7 +542,7 @@
 			<checkbox>
 				<label>LSAS L Outboard</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/lsas-left-out</property>
+				<property>/systems/failures/fcc/lsas-left-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -552,7 +552,7 @@
 			<checkbox>
 				<label>LSAS L Inboard</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/lsas-left-in</property>
+				<property>/systems/failures/fcc/lsas-left-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -562,7 +562,7 @@
 			<checkbox>
 				<label>LSAS R Inboard</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/lsas-right-in</property>
+				<property>/systems/failures/fcc/lsas-right-in</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -572,7 +572,7 @@
 			<checkbox>
 				<label>LSAS R Outboard</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/lsas-right-out</property>
+				<property>/systems/failures/fcc/lsas-right-out</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -582,7 +582,7 @@
 			<checkbox>
 				<label>Yaw Damper Upper A</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/yd-upper-a</property>
+				<property>/systems/failures/fcc/yd-upper-a</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -592,7 +592,7 @@
 			<checkbox>
 				<label>Yaw Damper Upper B</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/yd-upper-b</property>
+				<property>/systems/failures/fcc/yd-upper-b</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -602,7 +602,7 @@
 			<checkbox>
 				<label>Yaw Damper Lower A</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/yd-lower-a</property>
+				<property>/systems/failures/fcc/yd-lower-a</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -612,7 +612,7 @@
 			<checkbox>
 				<label>Yaw Damper Lower B</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/yd-lower-b</property>
+				<property>/systems/failures/fcc/yd-lower-b</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -622,7 +622,7 @@
 			<checkbox>
 				<label>Elevator Feel</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/elevator-feel</property>
+				<property>/systems/failures/fcc/elevator-feel</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -632,7 +632,7 @@
 			<checkbox>
 				<label>Flap Limit</label>
 				<halign>left</halign>
-				<property>/systems/failures/fctl/flap-limit</property>
+				<property>/systems/failures/fcc/flap-limit</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
