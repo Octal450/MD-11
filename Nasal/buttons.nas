@@ -202,15 +202,8 @@ var apPanel = {
 				} else {
 					afs.Input.fpa.setValue(me.fpaTemp);
 				}
-			}
-			if (afs.Input.vsFpa.getBoolValue()) {
-				if (me.vertTemp != 5) {
-					afs.Input.vert.setValue(5);
-				}
 			} else {
-				if (me.vertTemp != 1) {
-					afs.Input.vert.setValue(1);
-				}
+				afs.Input.vert.setValue(1);
 			}
 		}
 	},

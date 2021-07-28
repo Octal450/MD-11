@@ -918,11 +918,7 @@ var ITAF = {
 			me.setLatMode(3); # HDG HOLD
 		}
 		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
-			if (afs.Input.vsFpa.getBoolValue()) {
-				me.setVertMode(5); # FPA
-			} else {
-				me.setVertMode(1); # V/S
-			}
+			me.setVertMode(1); # V/S or FPA
 		} else {
 			me.setVertMode(0); # HOLD
 		}
@@ -1001,16 +997,29 @@ var ITAF = {
 			me.updateVertText("ALT HLD");
 			me.syncAlt();
 			me.updateThrustMode();
-		} else if (n == 1) { # V/S
-			if (abs(Input.altDiff) >= 25) {
-				Internal.flchActive = 0;
-				Internal.altCaptureActive = 0;
-				Output.vert.setValue(1);
-				me.updateVertText("V/S");
-				me.syncVs();
-				me.updateThrustMode();
-			} else {
-				me.updateApprArm(0);
+		} else if (n == 1) { # V/S or FPA
+			if (Input.vsFpa.getBoolValue()) { # FPA if vsFpa is set
+				if (abs(Input.altDiff) >= 25) {
+					Internal.flchActive = 0;
+					Internal.altCaptureActive = 0;
+					Output.vert.setValue(5);
+					me.updateVertText("FPA");
+					me.syncFpa();
+					me.updateThrustMode();
+				} else {
+					me.updateApprArm(0);
+				}
+			} else { # V/S
+				if (abs(Input.altDiff) >= 25) {
+					Internal.flchActive = 0;
+					Internal.altCaptureActive = 0;
+					Output.vert.setValue(1);
+					me.updateVertText("V/S");
+					me.syncVs();
+					me.updateThrustMode();
+				} else {
+					me.updateApprArm(0);
+				}
 			}
 		} else if (n == 2) { # G/S
 			me.updateLnavArm(0);
