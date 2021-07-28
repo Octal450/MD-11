@@ -798,11 +798,9 @@ var ITAF = {
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
-				if (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue()) {
-					Sound.apOff.setBoolValue(1);
-					Sound.enableApOff = 0;
-					apKill.start();
-				}
+				Sound.apOff.setBoolValue(1);
+				Sound.enableApOff = 0;
+				apKill.start();
 			}
 		} else {
 			Output.ap1.setBoolValue(0);
@@ -830,11 +828,9 @@ var ITAF = {
 				Sound.apOff.setBoolValue(0);
 				Sound.enableApOff = 1;
 			} else if (me.apEngageAllowed() == 2) {
-				if (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue()) {
-					Sound.apOff.setBoolValue(1);
-					Sound.enableApOff = 0;
-					apKill.start();
-				}
+				Sound.apOff.setBoolValue(1);
+				Sound.enableApOff = 0;
+				apKill.start();
 			}
 		} else {
 			Output.ap2.setBoolValue(0);
@@ -850,10 +846,10 @@ var ITAF = {
 	},
 	apOffFunction: func() {
 		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue()) { # Only do if both APs are off
-			if (Sound.enableApOff and (systems.FCC.fcc1Power.getBoolValue() or systems.FCC.fcc2Power.getBoolValue())) {
+			if (Sound.enableApOff) {
 				Sound.apOff.setBoolValue(1);
 				Sound.enableApOff = 0;
-				apKill.start();	
+				apKill.start();
 			}
 			if (Text.vert.getValue() == "ROLLOUT") {
 				fms.CORE.resetFms();
