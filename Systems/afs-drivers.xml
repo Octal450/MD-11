@@ -568,6 +568,15 @@
 	</filter>
 	
 	<filter>
+		<name>Internal Vertical Speed</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/instrumentation/gps/indicated-vertical-speed</input>
+		<output>/it-autoflight/internal/vert-speed-fpm</output>
+	</filter>
+	
+	<filter>
 		<name>Vertical Speed Sync</name>
 		<debug>false</debug>
 		<type>gain</type>
@@ -599,7 +608,36 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/input/vs</input>
+		<input>
+			<condition>
+				<and>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/ap1</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/ap2</property>
+							<value>1</value>
+						</equals>
+					</or>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/it-autoflight/input/vs</property>
+		</input>
+		<input>/it-autoflight/internal/vert-speed-fpm</input>
 		<output>/it-autoflight/internal/vs</output>
 		<max-rate-of-change>
 			<condition>
@@ -811,15 +849,6 @@
 			<min>-180</min>
 			<max>180</max>
 		</period>
-	</filter>
-	
-	<filter>
-		<name>Internal Vertical Speed</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/instrumentation/gps/indicated-vertical-speed</input>
-		<output>/it-autoflight/internal/vert-speed-fpm</output>
 	</filter>
 	
 	<filter>

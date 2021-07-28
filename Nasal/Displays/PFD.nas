@@ -692,7 +692,7 @@ var canvasBase = {
 			me["AI_overbank_index"].hide();
 		}
 		
-		if (afs.Output.vsFpa.getBoolValue()) {
+		if (afs.Input.vsFpa.getBoolValue()) {
 			me.AI_fpv_trans.setTranslation(math.clamp(Value.Hdg.track, -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
 			me.AI_fpv_rot.setRotation(-Value.Ai.roll * D2R, AICenter);
 			me["AI_fpv"].setRotation(Value.Ai.roll * D2R); # It shouldn't be rotated, only the axis should be

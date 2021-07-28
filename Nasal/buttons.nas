@@ -203,7 +203,7 @@ var apPanel = {
 					afs.Input.fpa.setValue(me.fpaTemp);
 				}
 			}
-			if (afs.Output.vsFpa.getBoolValue()) {
+			if (afs.Input.vsFpa.getBoolValue()) {
 				if (me.vertTemp != 5) {
 					afs.Input.vert.setValue(5);
 				}
@@ -216,16 +216,7 @@ var apPanel = {
 	},
 	vsFpa: func() {
 		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
-			me.vertTemp = afs.Output.vert.getValue();
-			if (me.vertTemp == 1) {
-				afs.Output.vsFpa.setBoolValue(1);
-				afs.Input.vert.setValue(5);
-			} else if (me.vertTemp == 5) {
-				afs.Output.vsFpa.setBoolValue(0);
-				afs.Input.vert.setValue(1);
-			} else {
-				afs.Output.vsFpa.setBoolValue(!afs.Output.vsFpa.getBoolValue());
-			}
+			afs.Input.vsFpa.setBoolValue(!afs.Input.vsFpa.getBoolValue());
 		}
 	},
 	appr: func() {

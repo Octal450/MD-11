@@ -242,7 +242,7 @@ var afsCanvas = {
 				# Vertical Speed
 				me._vert = afs.Output.vert.getValue();
 				if (me._vert == 1 or me._vert == 5) {
-					if (afs.Output.vsFpa.getBoolValue()) {
+					if (afs.Input.vsFpa.getBoolValue()) {
 						me["FpaInd"].show();
 						me["VsInd"].hide();
 						me["Vs"].setText(sprintf("%2.1f", afs.Input.fpa.getValue()));
@@ -252,7 +252,7 @@ var afsCanvas = {
 						me["Vs"].setText(sprintf("%d", afs.Input.vs.getValue()));
 					}
 				} else {
-					if (afs.Output.vsFpa.getBoolValue()) {
+					if (afs.Input.vsFpa.getBoolValue()) {
 						me["FpaInd"].show();
 						me["VsInd"].hide();
 					} else {

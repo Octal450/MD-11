@@ -124,15 +124,16 @@ var Input = {
 	ovrd2Temp: 0,
 	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
 	machTemp: 0,
+	radioSel: props.globals.initNode("/it-autoflight/input/radio-sel", 2, "INT"),
+	radioSelTemp: 0,
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
 	trk: props.globals.initNode("/it-autoflight/input/trk", 0, "BOOL"),
 	trkTemp: 0,
-	radioSel: props.globals.initNode("/it-autoflight/input/radio-sel", 2, "INT"),
-	radioSelTemp: 0,
-	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
-	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"), # Set by property rule
 	vert: props.globals.initNode("/it-autoflight/input/vert", 7, "INT"),
 	vertTemp: 7,
+	vs: props.globals.initNode("/it-autoflight/input/vs", 0, "INT"),
+	vsAbs: props.globals.initNode("/it-autoflight/input/vs-abs", 0, "INT"), # Set by property rule
+	vsFpa: props.globals.initNode("/it-autoflight/input/vs-fpa", 0, "BOOL"),
 };
 
 var Internal = {
@@ -219,7 +220,6 @@ var Output = {
 	thrMode: props.globals.initNode("/it-autoflight/output/thr-mode", 2, "INT"),
 	vert: props.globals.initNode("/it-autoflight/output/vert", 7, "INT"),
 	vertTemp: 7,
-	vsFpa: props.globals.initNode("/it-autoflight/output/vs-fpa", 0, "BOOL"),
 };
 
 var Settings = {
@@ -260,7 +260,7 @@ var ITAF = {
 			Internal.hdg.setValue(0);
 			Input.ovrd1.setBoolValue(0);
 			Input.ovrd2.setBoolValue(0);
-			Output.vsFpa.setBoolValue(0);
+			Input.vsFpa.setBoolValue(0);
 		}
 		Internal.ktsMach.setBoolValue(0);
 		Input.ap1.setBoolValue(0);
@@ -918,7 +918,7 @@ var ITAF = {
 			me.setLatMode(3); # HDG HOLD
 		}
 		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
-			if (afs.Output.vsFpa.getBoolValue()) {
+			if (afs.Input.vsFpa.getBoolValue()) {
 				me.setVertMode(5); # FPA
 			} else {
 				me.setVertMode(1); # V/S
@@ -1005,7 +1005,6 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
-				Output.vsFpa.setBoolValue(0);
 				Output.vert.setValue(1);
 				me.updateVertText("V/S");
 				me.syncVs();
@@ -1044,7 +1043,6 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
-				Output.vsFpa.setBoolValue(1);
 				Output.vert.setValue(5);
 				me.updateVertText("FPA");
 				me.syncFpa();
@@ -1535,6 +1533,18 @@ setlistener("/it-autoflight/input/lat", func() {
 setlistener("/it-autoflight/input/vert", func() {
 	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
 		ITAF.setVertMode(Input.vert.getValue());
+	}
+});
+
+setlistener("/it-autoflight/input/vs-fpa", func() {
+	if (Input.vsFpa.getBoolValue()) {
+		if (Output.vert.getValue() == 1) {
+			afs.Input.vert.setValue(5);
+		}
+	} else {
+		if (Output.vert.getValue() == 5) {
+			afs.Input.vert.setValue(1);
+		}
 	}
 });
 

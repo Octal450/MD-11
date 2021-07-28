@@ -357,7 +357,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/output/vs-fpa</property>
+					<property>it-autoflight/input/vs-fpa</property>
 					<value>0</value>
 				</equals>
 			</and>
@@ -530,7 +530,7 @@
 			<and>
 				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
-					<property>it-autoflight/output/vs-fpa</property>
+					<property>it-autoflight/input/vs-fpa</property>
 					<value>1</value>
 				</equals>
 			</and>
