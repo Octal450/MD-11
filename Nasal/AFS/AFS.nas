@@ -424,6 +424,66 @@ var ITAF = {
 			}
 		}
 		
+		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
+			Input.radioSelTemp = Input.radioSel.getValue();
+			Radio.locDeflTemp[Input.radioSelTemp] = Radio.locDefl[Input.radioSelTemp].getValue();
+			Radio.signalQualityTemp[Input.radioSelTemp] = Radio.signalQuality[Input.radioSelTemp].getValue();
+			Internal.canAutoland = (abs(Radio.locDeflTemp[Input.radioSelTemp]) <= 0.1 and Radio.locDeflTemp[Input.radioSelTemp] != 0 and Radio.signalQualityTemp[Input.radioSelTemp] >= 0.99) or Gear.wow0.getBoolValue();
+		} else {
+			Internal.canAutoland = 0;
+		}
+		Internal.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
+		
+		if (Position.gearAglFtTemp <= 1500 and Internal.landModeActive) {
+			Internal.selfCheckStatus = 1;
+		} else if (!Internal.landModeActive) {
+			Internal.selfCheckStatus = 0;
+		}
+		
+		if (Internal.selfCheckStatus == 1) {
+			if (Internal.selfCheckStatus != 2 and Internal.selfCheckTime + 10 < Misc.elapsedSec.getValue()) {
+				Internal.selfCheckStatus = 2;
+			}
+		} else {
+			Internal.selfCheckTime = Misc.elapsedSec.getValue();
+		}
+		
+		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
+				Internal.landCondition = "DUAL";
+			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
+				Internal.landCondition = "SINGLE";
+			} else if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
+				Internal.landCondition = "APPR";
+			} else {
+				Internal.landCondition = "OFF";
+			}
+		} else {
+			Internal.landCondition = "OFF";
+		}
+		
+		if (Internal.landCondition != Text.land.getValue()) {
+			Text.land.setValue(Internal.landCondition);
+		}
+		
+		if (Internal.landCondition != "DUAL" and Internal.landCondition != "SINGLE" and Text.vert.getValue() != "G/A CLB") {
+			if (Position.gearAglFtTemp < 400 and Output.latTemp == 1) { # NAV trips at 400ft
+				if (Output.ap1Temp) {
+					me.ap1Master(0);
+				}
+				if (Output.ap2Temp) {
+					me.ap2Master(0);
+				}
+			} else if (Position.gearAglFtTemp < 100 and Output.latTemp != 1) {
+				if (Output.ap1Temp) {
+					me.ap1Master(0);
+				}
+				if (Output.ap2Temp) {
+					me.ap2Master(0);
+				}
+			}
+		}
+		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
 			if (Velocities.indicatedAirspeedKtTemp >= 30) { # Temporary until MCDU handles it
@@ -592,67 +652,6 @@ var ITAF = {
 			}
 		} else {
 			Internal.syncedSpd = 0;
-		}
-		
-		# Autoland Logic
-		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
-			Input.radioSelTemp = Input.radioSel.getValue();
-			Radio.locDeflTemp[Input.radioSelTemp] = Radio.locDefl[Input.radioSelTemp].getValue();
-			Radio.signalQualityTemp[Input.radioSelTemp] = Radio.signalQuality[Input.radioSelTemp].getValue();
-			Internal.canAutoland = (abs(Radio.locDeflTemp[Input.radioSelTemp]) <= 0.1 and Radio.locDeflTemp[Input.radioSelTemp] != 0 and Radio.signalQualityTemp[Input.radioSelTemp] >= 0.99) or Gear.wow0.getBoolValue();
-		} else {
-			Internal.canAutoland = 0;
-		}
-		Internal.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
-		
-		if (Position.gearAglFtTemp <= 1500 and Internal.landModeActive) {
-			Internal.selfCheckStatus = 1;
-		} else if (!Internal.landModeActive) {
-			Internal.selfCheckStatus = 0;
-		}
-		
-		if (Internal.selfCheckStatus == 1) {
-			if (Internal.selfCheckStatus != 2 and Internal.selfCheckTime + 10 < Misc.elapsedSec.getValue()) {
-				Internal.selfCheckStatus = 2;
-			}
-		} else {
-			Internal.selfCheckTime = Misc.elapsedSec.getValue();
-		}
-		
-		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
-				Internal.landCondition = "DUAL";
-			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
-				Internal.landCondition = "SINGLE";
-			} else if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
-				Internal.landCondition = "APPR";
-			} else {
-				Internal.landCondition = "OFF";
-			}
-		} else {
-			Internal.landCondition = "OFF";
-		}
-		
-		if (Internal.landCondition != Text.land.getValue()) {
-			Text.land.setValue(Internal.landCondition);
-		}
-		
-		if (Internal.landCondition != "DUAL" and Internal.landCondition != "SINGLE" and Text.vert.getValue() != "G/A CLB") {
-			if (Position.gearAglFtTemp < 400 and Output.latTemp == 1) { # NAV trips at 400ft
-				if (Output.ap1Temp) {
-					me.ap1Master(0);
-				}
-				if (Output.ap2Temp) {
-					me.ap2Master(0);
-				}
-			} else if (Position.gearAglFtTemp < 100 and Output.latTemp != 1) {
-				if (Output.ap1Temp) {
-					me.ap1Master(0);
-				}
-				if (Output.ap2Temp) {
-					me.ap2Master(0);
-				}
-			}
 		}
 	},
 	slowLoop: func() {
