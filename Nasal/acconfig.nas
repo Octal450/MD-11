@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Josh Davidson (Octal450)
 
 var CONFIG = {
-	minFgfsInt: num(string.replace(getprop("/sim/minimum-fg-version"), ".", "")),
+	minFgfs: split(".", getprop("/sim/minimum-fg-version")),
 	minFgfsString: getprop("/sim/minimum-fg-version"),
 	minOptionsRevision: 1032, # Minimum revision of supported options
 	noUpdateCheck: 0, # Disable ACCONFIG update checks
@@ -15,7 +15,7 @@ var SYSTEM = {
 		outOfDate: 0,
 		reason: props.globals.initNode("/systems/acconfig/error-reason", "", "STRING"),
 	},
-	fgfs: num(string.replace(getprop("/sim/version/flightgear"), ".", "")),
+	fgfs: split(".", getprop("/sim/version/flightgear")),
 	newRevision: props.globals.initNode("/systems/acconfig/new-revision", 0, "INT"),
 	revision: props.globals.initNode("/systems/acconfig/revision", 0, "INT"),
 	revisionTemp: 0,
@@ -81,7 +81,7 @@ var SYSTEM = {
 		}
 	},
 	errorCheck: func() {
-		if (SYSTEM.fgfs < CONFIG.minFgfsInt) {
+		if (!me.versionCheck()) {
 			me.Error.code.setValue("0x121");
 			me.Error.reason.setValue("FGFS version is too old! Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
@@ -98,6 +98,14 @@ var SYSTEM = {
 			print("System: Error 0x247");
 		}
 	},
+	resetFailures: func() {
+		systems.ELEC.resetFailures();
+		systems.FCC.resetFailures();
+		systems.FUEL.resetFailures();
+		systems.GEAR.resetFailures();
+		systems.HYD.resetFailures();
+		systems.PNEU.resetFailures();
+	},
 	showError: func() {
 		libraries.systemsLoop.stop();
 		systems.DUController.showError();
@@ -110,14 +118,6 @@ var SYSTEM = {
 		setprop("/sim/menubar/default/menu[103]/enabled", 0);
 		setprop("/sim/menubar/default/menu[104]/enabled", 0);
 	},
-	resetFailures: func() {
-		systems.ELEC.resetFailures();
-		systems.FCC.resetFailures();
-		systems.FUEL.resetFailures();
-		systems.GEAR.resetFailures();
-		systems.HYD.resetFailures();
-		systems.PNEU.resetFailures();
-	},
 	spinning: func() {
 		if (me.spinner == "\\") {
 			me.spinner = "|";
@@ -129,6 +129,19 @@ var SYSTEM = {
 			me.spinner = "\\";
 		}
 		props.globals.getNode("/systems/acconfig/spinner-prop").setValue(me.spinner);
+	},
+	versionCheck: func() {
+		if (SYSTEM.fgfs[0] < CONFIG.minFgfs[0] or SYSTEM.fgfs[1] < CONFIG.minFgfs[1]) {
+			return 0;
+		} else if (SYSTEM.fgfs[1] == CONFIG.minFgfs[1]) {
+			if (SYSTEM.fgfs[2] < CONFIG.minFgfs[2]) {
+				return 0;
+			} else {
+				return 1;
+			}
+		} else {
+			return 1;
+		}
 	},
 };
 
@@ -151,7 +164,7 @@ var RENDERING = {
 		me.landmassSet = me.landmass.getValue() >= 4;
 		me.modelSet = me.model.getValue() >= 3;
 		
-		if (SYSTEM.fgfs >= 202040) {
+		if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
 			if (!me.rembrandt.getBoolValue() and (!me.als.getBoolValue() or !me.landmassSet or !me.modelSet)) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-rendering"}));
 			}
@@ -165,13 +178,13 @@ var RENDERING = {
 		# Don't override higher settings
 		if (me.landmass.getValue() < 4) {
 			me.landmass.setValue(4);
-			if (SYSTEM.fgfs >= 202040) {
+			if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
 				me.modelEffects.setValue("Medium");
 			}
 		}
 		if (me.model.getValue() < 3) {
 			me.model.setValue(3);
-			if (SYSTEM.fgfs >= 202040) {
+			if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
 				me.modelEffects.setValue("Enabled");
 			}
 		}
@@ -180,7 +193,7 @@ var RENDERING = {
 	},
 	fixCore: func() {
 		me.als.setBoolValue(1); # ALS on
-		if (SYSTEM.fgfs >= 202040) {
+		if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
 			me.alsMode.setBoolValue(1);
 			me.lowSpecMode.setBoolValue(0);
 		} else {

@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Josh Davidson (Octal450)
 # FovZoom based on work by onox
 
-var fgfsVersion = num(string.replace(getprop("/sim/version/flightgear"), ".", ""));
+var fgfsVersion: split(".", getprop("/sim/version/flightgear")),
 var distance = 0;
 var min_dist = 0;
 var max_dist = 0;
@@ -40,7 +40,7 @@ var resetView = func() {
 }
 
 var setView = func(n) {
-	if (fgfsVersion >= 202040) {
+	if (fgfsVersion[0] >= 2020 and fgfsVersion[1] >= 4) {
 		pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
 	} else {
 		pts.Sim.CurrentView.viewNumber.setValue(viewsOld[n - 1]);
