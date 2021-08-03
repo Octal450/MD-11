@@ -261,7 +261,7 @@
 	<channel name="Main Pneumatics" execrate="8">
 		
 		<!-- Bleed Inputs -->
-		<actuator name="/systems/pneumatics/apu-valve-valve">
+		<actuator name="/systems/pneumatics/apu-valve">
 			<input>/controls/pneumatics/switches/bleed-apu</input>
 			<rate_limit>0.2</rate_limit> <!-- 5 seconds -->
 		</actuator>
@@ -269,7 +269,7 @@
 		<switch name="/systems/pneumatics/apu-active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/apu-valve-valve eq 1
+				/systems/pneumatics/apu-valve eq 1
 				/engines/engine[3]/n2-actual ge 96
 				/systems/failures/pneumatics/bleed-apu ne 1
 			</test>
