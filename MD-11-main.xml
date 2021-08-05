@@ -698,16 +698,16 @@
 			<beacon type="bool">0</beacon>
 			<fcp-integ-knb type="double">0</fcp-integ-knb>
 			<landing-light-l type="double">0</landing-light-l>
-			<landing-light-r type="double">0</landing-light-r>
 			<landing-light-n type="double">0</landing-light-n>
-			<land-on-l type="double">0</land-on-l>
-			<land-on-r type="double">0</land-on-r>
+			<landing-light-r type="double">0</landing-light-r>
 			<land-ext-l type="double">0</land-ext-l>
 			<land-ext-r type="double">0</land-ext-r>
+			<land-on-l type="double">0</land-on-l>
+			<land-on-r type="double">0</land-on-r>
 			<logo-lights type="bool">0</logo-lights>
 			<main-integ-knb type="double">0</main-integ-knb>
-			<overhead-integ-knb type="double">0</overhead-integ-knb>
 			<nav-lights type="bool">0</nav-lights>
+			<overhead-integ-knb type="double">0</overhead-integ-knb>
 			<strobe type="bool">0</strobe>
 		</lighting>
 		<pneumatics n="0">
