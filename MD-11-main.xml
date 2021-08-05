@@ -1366,20 +1366,6 @@
 			<oldqnh type="double">29.92</oldqnh>
 			<std type="bool">0</std>
 		</altimeter>
-		<chrono n="0">
-			<started type="bool">0</started>
-			<paused type="bool">0</paused>
-			<text type="string">0' 00'</text>
-			<started-at type="int">0</started-at>
-			<elapsed-time type="int">0</elapsed-time>
-		</chrono>
-		<chrono n="1">
-			<started type="bool">0</started>
-			<paused type="bool">0</paused>
-			<text type="string">0' 00'</text>
-			<started-at type="int">0</started-at>
-			<elapsed-time type="int">0</elapsed-time>
-		</chrono>
 		<comm n="0">
 			<frequencies>
 				<selected-mhz type="double">118.7</selected-mhz>
@@ -1442,9 +1428,6 @@
 				<true-north type="bool">0</true-north>
 			</mfd>
 		</efis>
-		<encoder n="0">
-			<serviceable type="bool">1</serviceable>
-		</encoder>
 		<fcp n="0">
 			<alt-rotate type="int">50000</alt-rotate>
 			<baro-l-rotate type="int">50000</baro-l-rotate>
@@ -1455,9 +1438,6 @@
 			<spd-rotate type="int">50000</spd-rotate>
 			<vs-rotate type="int">50000</vs-rotate>
 		</fcp>
-		<groundradar>
-			<range type="double">1.0</range>
-		</groundradar>
 		<iesi n="0">
 			<baro-rotate type="int">50016</baro-rotate>
 		</iesi>
