@@ -1367,7 +1367,7 @@
 			<std type="bool">0</std>
 		</altimeter>
 		<comm n="0">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">118.7</selected-mhz>
 				<standby-mhz type="double">121.4</standby-mhz>
 			</frequencies>
@@ -1375,7 +1375,7 @@
 			<volume type="double">0.6</volume>
 		</comm>
 		<comm n="1">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">119.4</selected-mhz>
 				<standby-mhz type="double">122.6</standby-mhz>
 			</frequencies>
@@ -1383,7 +1383,7 @@
 			<volume type="double">0.6</volume>
 		</comm>
 		<comm n="2">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">0</selected-mhz>
 				<standby-mhz type="double">123.2</standby-mhz>
 			</frequencies>
@@ -1391,7 +1391,7 @@
 			<volume type="double">0.6</volume>
 		</comm>
 		<dme n="0">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">109.6</selected-mhz>
 				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
 			</frequencies>
@@ -1399,7 +1399,7 @@
 			<volume type="double">0</volume>
 		</dme>
 		<dme n="1">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">112.8</selected-mhz>
 				<source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
 			</frequencies>
@@ -1407,7 +1407,7 @@
 			<volume type="double">0</volume>
 		</dme>
 		<dme n="2">
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">111.15</selected-mhz>
 				<source type="string">/instrumentation/nav[2]/frequencies/selected-mhz</source>
 			</frequencies>
@@ -1443,7 +1443,7 @@
 		</iesi>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
-			<configuration-module>
+			<configuration-module n="0">
 				<category-1 type="int">255</category-1>
 				<category-3 type="int">2</category-3>
 				<category-4 type="int">13</category-4>
@@ -1456,55 +1456,55 @@
 				<category-13 type="int">7</category-13>
 				<category-14 type="int">0</category-14>
 			</configuration-module>
-			<input-feeders>
-				<discretes>
+			<input-feeders n="0">
+				<discretes n="0">
 					<!-- Disable the built-in input feeder -->
 					<landing-flaps type="bool">false</landing-flaps>
 				</discretes>
 			</input-feeders>
-			<inputs>
-				<arinc429>
+			<inputs n="0">
+				<arinc429 n="0">
 					<decision-height-ncd type="bool">0</decision-height-ncd>
 					<decision-height type="double">250</decision-height>
 				</arinc429>
 			</inputs>
-			<speaker>
+			<speaker n="0">
 				<max-dist type="double">100</max-dist>
 				<reference-dist type="double">20</reference-dist>
 				<volume type="double">2</volume>
 			</speaker>
-			<voice>
+			<voice n="0">
 				<file-prefix>Aircraft/MD-11/Sounds/GPWS/</file-prefix>
 			</voice>
 		</mk-viii>
 		<nav n="0"> <!-- VOR 1 -->
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
-			<radials>
+			<radials n="0">
 				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
 		<nav n="1"> <!-- VOR 2 -->
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
-			<radials>
+			<radials n="0">
 				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
 		<nav n="2"> <!-- ILS -->
-			<cdi>
+			<cdi n="0">
 				<serviceable type="bool">true</serviceable>
 			</cdi>
-			<frequencies>
+			<frequencies n="0">
 				<selected-mhz type="double">0</selected-mhz>
 			</frequencies>
-			<radials>
+			<radials n="0">
 				<selected-deg type="double">0</selected-deg>
 			</radials>
 			<serviceable type="bool">true</serviceable>
@@ -1513,15 +1513,15 @@
 		<sd n="0">
 			<selected-synoptic type="string">ENG</selected-synoptic>
 		</sd>
-		<tcas>
-			<inputs>
+		<tcas n="0">
+			<inputs n="0">
 				<mode type="int">0</mode>
 			</inputs>
-			<voice>
+			<voice n="0">
 				<file-prefix type="string">Sounds/tcas/female/</file-prefix>
 			</voice>
 			<serviceable type="bool">true</serviceable>
-			<speaker>
+			<speaker n="0">
 				<max-dist>2</max-dist>
 				<reference-dist>1</reference-dist>
 				<volume>0.8</volume>
