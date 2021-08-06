@@ -187,7 +187,6 @@
 	
 	<filter>
 		<name>IAS/Mach</name>
-		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -213,7 +212,6 @@
 	
 	<filter>
 		<name>Gear Lever</name>
-		<update-interval-secs>0.02</update-interval-secs>
 		<type>noise-spike</type>
 		<input>/controls/gear/lever-cockpit</input>
 		<output>/controls/gear/lever-animation</output>
@@ -229,8 +227,7 @@
 	</filter>
 	
 	<filter>
-		<name>LBtoKG</name>
-		<update-interval-secs>0.05</update-interval-secs>
+		<name>Weight KG</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -343,13 +340,11 @@
 	
 	<!-- GPWS Controller -->
 	<logic>
-		<!-- Smewhat confusing : this input is not 'are the flaps in landing configration', but rather,
-		are the flaps NOT in a landing configuration'. There is a configuration bit to flip
-		the sense of this, if required. -->
+		<!-- True when flaps are NOT in landing config -->
 		<input>
 			<less-than>
-				<property>/controls/flight/flaps</property>
-				<value>0.68</value>
+				<property>/controls/flight/flaps-input</property>
+				<value>4</value>
 			</less-than>
 		</input>
 		<output>/instrumentation/mk-viii/inputs/discretes/landing-flaps</output>
