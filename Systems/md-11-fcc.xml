@@ -78,12 +78,12 @@
 		</fcs_function>
 		
 		<pure_gain name="fcc/stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<input>fcc/stall-alpha-deg</input>
 			<gain>0.8</gain> <!-- 80% -->
 		</pure_gain>
 		
 		<pure_gain name="fcc/no-stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input> <!-- Will be dynamic later I think -->
+			<input>fcc/stall-alpha-deg</input>
 			<gain>0.75</gain> <!-- 75% -->
 		</pure_gain>
 	
