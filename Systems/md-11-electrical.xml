@@ -709,7 +709,7 @@
 		<scheduled_gain name="/systems/electrical/sources/adg/input-vc-raw">
 			<input>velocities/vc-kts</input>
 			<table>
-				<independentVar lookup="row">aero/alpha-deg-norm</independentVar>
+				<independentVar lookup="row">aero/alpha-deg-fixed</independentVar>
 				<tableData>
 					-60  0
 					  0  1

@@ -21,7 +21,7 @@
 			<output>position/wow-out</output>
 		</switch>
 		
-		<switch name="aero/alpha-deg-norm">
+		<switch name="aero/alpha-deg-fixed">
 			<default value="0"/>
 			<test value="aero/alpha-deg">
 				gear/unit[0]/WOW eq 0
