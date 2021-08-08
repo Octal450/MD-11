@@ -7,7 +7,7 @@
 	
 	<channel name="Spoiler Lever and Logic">
 		
-		<switch name="spoilers/auto-speedbrake-arm">
+		<switch name="spoilers/auto-speedbrake-arm"> <!-- Important for spoiler axis -->
 			<default value="/controls/flight/speedbrake-arm"/>
 			<test value="0">
 				/controls/flight/speedbrake gt 0

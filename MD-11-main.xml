@@ -887,50 +887,8 @@
 				<name>Ctrl-b</name>
 				<desc>Cycle speedbrake setting</desc>
 				<binding>
-					<condition>
-						<and>
-							<not-equals>
-								<property>/controls/flight/speedbrake-arm</property>
-								<value>1</value>
-							</not-equals>
-							<equals>
-								<property>gear/gear[0]/wow</property>
-								<value>1</value>
-							</equals>
-						</and>
-					</condition>
-					<command>property-cycle</command>
-					<property>controls/flight/speedbrake</property>
-					<value>0.0</value>
-					<value>0.2</value>
-					<value>0.4</value>
-					<value>0.6</value>
-					<value>0.8</value>
-				</binding>
-				<binding>
-					<condition>
-						<and>
-							<not-equals>
-								<property>/controls/flight/speedbrake-arm</property>
-								<value>1</value>
-							</not-equals>
-							<not-equals>
-								<property>gear/gear[0]/wow</property>
-								<value>1</value>
-							</not-equals>
-						</and>
-					</condition>
-					<command>property-cycle</command>
-					<property>controls/flight/speedbrake</property>
-					<value>0.0</value>
-					<value>0.2</value>
-					<value>0.4</value>
-					<value>0.8</value> <!-- Not 0.6! -->
-				</binding>
-				<binding>
-					<command>property-assign</command>
-					<property>/controls/flight/speedbrake-arm</property>
-					<value>0</value>
+					<command>nasal</command>
+					<script>libraries.speedbrakeKey();</script>
 				</binding>
 			</key>
 			<key n="4">
