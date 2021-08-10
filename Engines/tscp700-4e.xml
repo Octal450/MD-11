@@ -4,7 +4,7 @@
 
 <turbine_engine name="TSCP700-4E APU">
 	
-	<milthrust>7250</milthrust> <!-- For fuel flow -->
+	<milthrust>3000</milthrust> <!-- For fuel flow -->
 	<bypassratio>1</bypassratio>
 	<tsfc>0.5</tsfc>
 	<bleed>0.96</bleed>
@@ -24,7 +24,7 @@
 	
 	<function name="IdleThrust">
 		<product>
-			<value>0.0003</value>
+			<value>0.0009</value>
 			<table>
 				<independentVar lookup="row">velocities/mach</independentVar>
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
@@ -43,7 +43,7 @@
 	
 	<function name="MilThrust">
 		<product>
-			<value>0.00041</value>
+			<value>0.001</value>
 			<table>
 				<independentVar lookup="row">velocities/mach</independentVar>
 				<independentVar lookup="column">atmosphere/density-altitude</independentVar>
