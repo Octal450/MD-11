@@ -146,6 +146,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>Engine Start Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>panel2d.engineStartDialog.open();</script>
+						</binding>
+					</item>
+					<item>
 						<label>Captain's MCDU</label>
 						<binding>
 							<command>nasal</command>
@@ -1717,7 +1724,9 @@
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
 		<panel2d>
+			<file>Aircraft/MD-11/gui/canvas/common.nas</file>
 			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
+			<file>Aircraft/MD-11/gui/canvas/engine-start.nas</file>
 		</panel2d>
 		<lightmanager>
 			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>

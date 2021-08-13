@@ -83,9 +83,9 @@
 		</switch>
 		
 		<switch name="/systems/ignition/starter-jsb-1">
-			<default value="0"/>
-			<test logic="OR" value="1"> <!-- Because JSBsim will kill the engine if we cut out at 45% -->
-				/systems/ignition/start-valve-1 eq 1
+			<default value="/systems/ignition/start-valve-1"/>
+			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+				/engines/engine[0]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-1 eq 0
 			</test>
 		</switch>
@@ -153,9 +153,9 @@
 		</switch>
 		
 		<switch name="/systems/ignition/starter-jsb-2">
-			<default value="0"/>
-			<test logic="OR" value="1"> <!-- Because JSBsim will kill the engine if we cut out at 45% -->
-				/systems/ignition/start-valve-2 eq 1
+			<default value="/systems/ignition/start-valve-2"/>
+			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+				/engines/engine[1]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-2 eq 0
 			</test>
 		</switch>
@@ -223,9 +223,9 @@
 		</switch>
 		
 		<switch name="/systems/ignition/starter-jsb-3">
-			<default value="0"/>
-			<test logic="OR" value="1"> <!-- Because JSBsim will kill the engine if we cut out at 45% -->
-				/systems/ignition/start-valve-3 eq 1
+			<default value="/systems/ignition/start-valve-3"/>
+			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+				/engines/engine[2]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-3 eq 0
 			</test>
 		</switch>

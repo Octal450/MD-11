@@ -270,12 +270,16 @@ var ENGINE = {
 	cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
 	reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
 	reverseLeverTemp: [0, 0, 0],
+	startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
 	startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
 	throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 	init: func() {
 		me.reverseLever[0].setBoolValue(0);
 		me.reverseLever[1].setBoolValue(0);
 		me.reverseLever[2].setBoolValue(0);
+		me.startCmd[0].setBoolValue(0);
+		me.startCmd[1].setBoolValue(0);
+		me.startCmd[2].setBoolValue(0);
 		me.startSwitch[0].setBoolValue(0);
 		me.startSwitch[1].setBoolValue(0);
 		me.startSwitch[2].setBoolValue(0);

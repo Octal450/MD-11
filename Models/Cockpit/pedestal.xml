@@ -629,8 +629,8 @@
 		<object-name>Eng1Cutoff</object-name>
 		<property>fdm/jsbsim/fadec/engine-cutoff[0]</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>-30</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>0</ind><dep>-20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -638,9 +638,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-27.0191</x-m>
+			<x-m>-27.0178</x-m>
 			<y-m>0</y-m>
-			<z-m>6.7176</z-m>
+			<z-m>6.71747</z-m>
 		</center>
 	</animation>
 
@@ -663,8 +663,8 @@
 		<object-name>Eng2Cutoff</object-name>
 		<property>fdm/jsbsim/fadec/engine-cutoff[1]</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>-30</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>0</ind><dep>-20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -672,9 +672,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-27.0191</x-m>
+			<x-m>-27.0178</x-m>
 			<y-m>0</y-m>
-			<z-m>6.7176</z-m>
+			<z-m>6.71747</z-m>
 		</center>
 	</animation>
 	
@@ -697,8 +697,8 @@
 		<object-name>Eng3Cutoff</object-name>
 		<property>fdm/jsbsim/fadec/engine-cutoff[2]</property>
 		<interpolation>
-			<entry><ind>0</ind><dep>-30</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>0</ind><dep>-20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -706,9 +706,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-27.0191</x-m>
+			<x-m>-27.0178</x-m>
 			<y-m>0</y-m>
-			<z-m>6.7176</z-m>
+			<z-m>6.71747</z-m>
 		</center>
 	</animation>
 	

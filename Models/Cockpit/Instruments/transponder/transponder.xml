@@ -274,7 +274,7 @@
 		<object-name>1Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("1");</script>
@@ -287,7 +287,7 @@
 		<object-name>2Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("2");</script>
@@ -300,7 +300,7 @@
 		<object-name>3Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("3");</script>
@@ -313,7 +313,7 @@
 		<object-name>4Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("4");</script>
@@ -326,7 +326,7 @@
 		<object-name>5Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("5");</script>
@@ -339,7 +339,7 @@
 		<object-name>6Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("6");</script>
@@ -352,7 +352,7 @@
 		<object-name>7Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("7");</script>
@@ -365,7 +365,7 @@
 		<object-name>0Btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("0");</script>
@@ -378,7 +378,7 @@
 		<object-name>ClrBtn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.input("CLR");</script>

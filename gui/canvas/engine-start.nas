@@ -1,0 +1,100 @@
+# AFS Dialog
+# Copyright (c) 2021 Josh Davidson (Octal450)
+
+var engineStartCanvas = {
+	new: func() {
+		var m = {parents: [engineStartCanvas]};
+		m._title = "Engine Start Panel";
+		m._dialog = nil;
+		m._canvas = nil;
+		m._svg = nil;
+		m._root = nil;
+		m._svgKeys = nil;
+		m._key = nil;
+		m._dialogUpdate = maketimer(0.1, m, engineStartCanvas._update);
+		m._startCmd = [0, 0, 0];
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["cutoff1", "cutoff2", "cutoff3", "start1", "start2", "start3"];
+	},
+	close: func() {
+		me._dialogUpdateT.stop();
+		me._dialog.del();
+		me._dialog = nil;
+	},
+	open: func() {
+		me._dialog = canvas.Window.new([307, 200], "dialog");
+		me._dialog._onClose = func() {
+			engineStartCanvas._onClose();
+		}
+		
+		me._dialog.set("title", me._title);
+		me._canvas  = me._dialog.createCanvas();
+		me._root = me._canvas.createGroup();
+		
+		me._svg = me._root.createChild("group");
+		canvas.parsesvg(me._svg, "Aircraft/MD-11/gui/canvas/engine-start.svg", {"font-mapper": font_mapper});
+		
+		me._svgKeys = me.getKeys();
+		foreach(me._key; me._svgKeys) {
+			me[me._key] = me._svg.getElementById(me._key);
+		}
+		
+		# Set up clickspots
+		me["start1"].addEventListener("click", func(e) {
+			systems.ENGINE.startCmd[0].setBoolValue(!systems.ENGINE.startCmd[0].getBoolValue());
+		});
+		me["start2"].addEventListener("click", func(e) {
+			systems.ENGINE.startCmd[1].setBoolValue(!systems.ENGINE.startCmd[1].getBoolValue());
+		});
+		me["start3"].addEventListener("click", func(e) {
+			systems.ENGINE.startCmd[2].setBoolValue(!systems.ENGINE.startCmd[2].getBoolValue());
+		});
+		
+		me["cutoff1"].addEventListener("click", func(e) {
+			systems.ENGINE.cutoffSwitch[0].setBoolValue(!systems.ENGINE.cutoffSwitch[0].getBoolValue());
+		});
+		me["cutoff2"].addEventListener("click", func(e) {
+			systems.ENGINE.cutoffSwitch[1].setBoolValue(!systems.ENGINE.cutoffSwitch[1].getBoolValue());
+		});
+		me["cutoff3"].addEventListener("click", func(e) {
+			systems.ENGINE.cutoffSwitch[2].setBoolValue(!systems.ENGINE.cutoffSwitch[2].getBoolValue());
+		});
+		
+		me._update();
+		me._dialogUpdate.start();
+	},
+	_update: func() {
+		me._startCmd[0] = systems.ENGINE.startCmd[0].getValue();
+		me._startCmd[1] = systems.ENGINE.startCmd[1].getValue();
+		me._startCmd[2] = systems.ENGINE.startCmd[2].getValue();
+		
+		me["start1"].setTranslation(0, me._startCmd[0] * -8);
+		me["start2"].setTranslation(0, me._startCmd[1] * -8);
+		me["start3"].setTranslation(0, me._startCmd[2] * -8);
+		
+		if (me._startCmd[0]) {
+			me["start1"].setColorFill(1,0,0);
+		} else {
+			me["start1"].setColorFill(0.3333,0,0);
+		}
+		if (me._startCmd[1]) {
+			me["start2"].setColorFill(1,0,0);
+		} else {
+			me["start2"].setColorFill(0.3333,0,0);
+		}
+		if (me._startCmd[2]) {
+			me["start3"].setColorFill(1,0,0);
+		} else {
+			me["start3"].setColorFill(0.3333,0,0);
+		}
+		
+		me["cutoff1"].setRotation((systems.ENGINE.cutoffSwitch[0].getValue() - 1) * 180 * D2R);
+		me["cutoff2"].setRotation((systems.ENGINE.cutoffSwitch[1].getValue() - 1) * 180 * D2R);
+		me["cutoff3"].setRotation((systems.ENGINE.cutoffSwitch[2].getValue() - 1) * 180 * D2R);
+	},
+};
+
+var engineStartDialog = engineStartCanvas.new();
