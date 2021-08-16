@@ -94,6 +94,7 @@ var NavRadio = {
 			}
 		} else {
 			me.Display.L1 = "[  ]/[ ]g";
+			me.Display.L2 = "";
 		}
 		
 		if (me.commonValue.navSet[1]) {
@@ -126,6 +127,36 @@ var NavRadio = {
 			me.Display.R3 = sprintf("%4.1f", math.round(pts.Instrumentation.Adf.Frequencies.selectedKhz[1].getValue(), 0.1));
 		} else {
 			me.Display.R3 = "[  ]";
+		}
+		
+		if (me.commonValue.navSet[0] and me.commonValue.navCrsSet[0]) {
+			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 0) {
+				me.Display.LFont[1] = FONT.normal;
+				me.Display.L2 = "VOR TRACK";
+			} else if (afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 0) {
+				me.Display.LFont[1] = FONT.normal;
+				me.Display.L2 = "VOR ARMED";
+			} else {
+				me.Display.LFont[1] = FONT.small;
+				me.Display.L2 = "*VOR ARM";
+			}
+		} else {
+			me.Display.L2 = "";
+		}
+		
+		if (me.commonValue.navSet[1] and me.commonValue.navCrsSet[1]) {
+			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 1) {
+				me.Display.RFont[1] = FONT.normal;
+				me.Display.R2 = "VOR TRACK";
+			} else if (afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 1) {
+				me.Display.RFont[1] = FONT.normal;
+				me.Display.R2 = "VOR ARMED";
+			} else {
+				me.Display.RFont[1] = FONT.small;
+				me.Display.R2 = "VOR ARM*";
+			}
+		} else {
+			me.Display.R2 = "";
 		}
 	},
 	insertAdf: func(n) {
@@ -223,6 +254,24 @@ var NavRadio = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else if (k == "l2") {
+			if (me.scratchpadState == 0) {
+				if (me.Display.L2 == "VOR ARMED") {
+					afs.ITAF.updateLocArm(0);
+				} else if (me.Display.L2 == "*VOR ARM") {
+					afs.Input.radioSel.setValue(0);
+					afs.Input.lat.setValue(2);
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			} else {
+				if (me.Display.L2 == "*VOR ARM") {
+					afs.Input.radioSel.setValue(0);
+					afs.Input.lat.setValue(2);
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			}
 		} else if (k == "l3") {
 			if (me.scratchpadState == 2) {
 				me.insertAdf(0);
@@ -268,6 +317,24 @@ var NavRadio = {
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r2") {
+			if (me.scratchpadState == 0) {
+				if (me.Display.R2 == "VOR ARMED") {
+					afs.ITAF.updateLocArm(0);
+				} else if (me.Display.R2 == "VOR ARM*") {
+					afs.Input.radioSel.setValue(1);
+					afs.Input.lat.setValue(2);
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			} else {
+				if (me.Display.R2 == "VOR ARM*") {
+					afs.Input.radioSel.setValue(1);
+					afs.Input.lat.setValue(2);
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
 			}
 		} else if (k == "r3") {
 			if (me.scratchpadState == 2) {

@@ -12,6 +12,7 @@ var Fma = {
 var updateFma = {
 	ap1: 0,
 	ap2: 0,
+	InternalRadioSel: 2,
 	pitchText: "T/O CLB",
 	rollText: "T/O",
 	roll: func() {
@@ -25,7 +26,14 @@ var updateFma = {
 		} else if (me.rollText == "LNAV") {
 			Fma.roll.setValue("NAV" ~ Internal.activeFms.getValue());
 		} else if (me.rollText == "LOC") {
-			Fma.roll.setValue("LOC");
+			me.InternalRadioSel = Internal.radioSel.getValue();
+			if (me.InternalRadioSel == 0) {
+				Fma.roll.setValue("VOR1");
+			} else if (me.InternalRadioSel == 1) {
+				Fma.roll.setValue("VOR2");
+			} else {
+				Fma.roll.setValue("LOC");
+			}
 		} else if (me.rollText == "ALGN") {
 			Fma.roll.setValue("ALIGN");
 		} else if (me.rollText == "T/O") {
@@ -58,7 +66,11 @@ var updateFma = {
 	},
 	arm: func() {
 		if (Output.locArm.getBoolValue()) {
-			Fma.rollArm.setValue("LAND ARMED");
+			if (Input.radioSel.getValue() != 2) {
+				Fma.rollArm.setValue("VOR ARMED");
+			} else {
+				Fma.rollArm.setValue("LAND ARMED");
+			}
 		} else if (Output.lnavArm.getBoolValue()) {
 			Fma.rollArm.setValue("NAV ARMED");
 		} else {

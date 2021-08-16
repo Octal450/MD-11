@@ -214,6 +214,7 @@ var apPanel = {
 	},
 	appr: func() {
 		if (systems.ELEC.Generic.fcpPower.getValue() >= 24) {
+			afs.Input.radioSel.setValue(2);
 			afs.Input.vert.setValue(2);
 		}
 	},

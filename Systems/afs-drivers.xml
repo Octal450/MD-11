@@ -793,7 +793,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/radio-sel</property>
+					<property>/it-autoflight/internal/radio-sel</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -802,7 +802,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/input/radio-sel</property>
+					<property>/it-autoflight/internal/radio-sel</property>
 					<value>1</value>
 				</equals>
 			</condition>
