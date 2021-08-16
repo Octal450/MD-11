@@ -608,7 +608,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-l/final-deg</property></toradians>
-				<value>0.0131354</value>
+				<value>0.0174965</value>
 			</product>
 		</function>
 		
@@ -619,7 +619,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-in-l/final-deg</property></toradians>
-				<value>0.0195624</value>
+				<value>0.0314954</value>
 			</product>
 		</function>
 		
@@ -630,7 +630,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-in-r/final-deg</property></toradians>
-				<value>-0.0195624</value>
+				<value>-0.0314954</value>
 			</product>
 		</function>
 		
@@ -641,7 +641,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>hydraulics/aileron-out-r/final-deg</property></toradians>
-				<value>-0.0131354</value>
+				<value>-0.0174965</value>
 			</product>
 		</function>
 		
@@ -652,7 +652,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/spoiler-left-deg</property></toradians>
-				<value>-0.0162</value>
+				<value>-0.0155</value>
 			</product>
 		</function>
 		
@@ -663,7 +663,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/spoiler-right-deg</property></toradians>
-				<value>0.0162</value>
+				<value>0.0155</value>
 			</product>
 		</function>
 		

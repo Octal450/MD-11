@@ -206,6 +206,25 @@
 			</range>
 		</aerosurface_scale>
 		
+		<fcs_function name="spoilers/aileron">
+			<function>
+				<product>
+					<pow>
+						<abs><property>hydraulics/aileron/output-surfaces</property></abs>
+						<value>1.75</value>
+					</pow>
+					<ifthen>
+						<lt>
+							<property>hydraulics/aileron/output-surfaces</property>
+							<value>0</value>
+						</lt>
+						<value>-1</value>
+						<value>1</value>
+					</ifthen>
+				</product>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="spoilers/trim-aileron">
 			<function>
 				<table>
@@ -237,7 +256,7 @@
 	<channel name="Spoiler L1">
 		
 		<summer name="hydraulics/spoiler-l1/sum">
-			<input>-hydraulics/aileron/output-surfaces</input>
+			<input>-spoilers/aileron</input>
 			<input>-spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -280,7 +299,7 @@
 	<channel name="Spoiler L2">
 		
 		<summer name="hydraulics/spoiler-l2/sum">
-			<input>-hydraulics/aileron/output-surfaces</input>
+			<input>-spoilers/aileron</input>
 			<input>-spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -323,7 +342,7 @@
 	<channel name="Spoiler L3">
 		
 		<summer name="hydraulics/spoiler-l3/sum">
-			<input>-hydraulics/aileron/output-surfaces</input>
+			<input>-spoilers/aileron</input>
 			<input>-spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -366,7 +385,7 @@
 	<channel name="Spoiler L4">
 		
 		<summer name="hydraulics/spoiler-l4/sum">
-			<input>-hydraulics/aileron/output-surfaces</input>
+			<input>-spoilers/aileron</input>
 			<input>-spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -409,7 +428,7 @@
 	<channel name="Spoiler L5">
 		
 		<summer name="hydraulics/spoiler-l5/sum">
-			<input>-hydraulics/aileron/output-surfaces</input>
+			<input>-spoilers/aileron</input>
 			<input>-spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -452,7 +471,7 @@
 	<channel name="Spoiler R1">
 		
 		<summer name="hydraulics/spoiler-r1/sum">
-			<input>hydraulics/aileron/output-surfaces</input>
+			<input>spoilers/aileron</input>
 			<input>spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -495,7 +514,7 @@
 	<channel name="Spoiler R2">
 		
 		<summer name="hydraulics/spoiler-r2/sum">
-			<input>hydraulics/aileron/output-surfaces</input>
+			<input>spoilers/aileron</input>
 			<input>spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -538,7 +557,7 @@
 	<channel name="Spoiler R3">
 		
 		<summer name="hydraulics/spoiler-r3/sum">
-			<input>hydraulics/aileron/output-surfaces</input>
+			<input>spoilers/aileron</input>
 			<input>spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -581,7 +600,7 @@
 	<channel name="Spoiler R4">
 		
 		<summer name="hydraulics/spoiler-r4/sum">
-			<input>hydraulics/aileron/output-surfaces</input>
+			<input>spoilers/aileron</input>
 			<input>spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
@@ -624,7 +643,7 @@
 	<channel name="Spoiler R5">
 		
 		<summer name="hydraulics/spoiler-r5/sum">
-			<input>hydraulics/aileron/output-surfaces</input>
+			<input>spoilers/aileron</input>
 			<input>spoilers/trim-aileron</input>
 			<input>spoilers/main-cmd</input>
 			<clipto>
