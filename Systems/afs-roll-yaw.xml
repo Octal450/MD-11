@@ -267,13 +267,13 @@
 					<product>
 						<table>
 							<property>/velocities/airspeed-kt</property>
-							<entry><ind>140</ind><dep>0.16</dep></entry>
-							<entry><ind>360</ind><dep>0.04</dep></entry>
+							<entry><ind>140</ind><dep>0.17</dep></entry>
+							<entry><ind>360</ind><dep>0.07</dep></entry>
 						</table>
 						<table> <!-- Reduce deflection if outer ailerons are not locked -->
 							<property>/fdm/jsbsim/hydraulics/aileron-out-enable</property>
 							<entry><ind>0</ind><dep>1.00</dep></entry>
-							<entry><ind>1</ind><dep>0.74</dep></entry> <!-- Calculated based on Cl moment -->
+							<entry><ind>1</ind><dep>0.72</dep></entry> <!-- Calculated based on Cl moment -->
 						</table>
 					</product>
 				</expression>
