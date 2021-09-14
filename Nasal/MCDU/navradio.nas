@@ -205,7 +205,7 @@ var NavRadio = {
 		
 		if (size(me.scratchpadSplit[1]) > 0) { # Course
 			if (mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[1]) and mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1]) and !mcdu.unit[me.id].stringContains(".", me.scratchpadSplit[1])) {
-				if (me.scratchpadSplit[1] == 0) { # Evalulate as integer so all forms of 0 work
+				if (me.scratchpadSplit[1] == 0) { # Evaluate as integer so all forms of 0 work
 					me.scratchpadSplit[1] = "360"; # Must be string
 				}
 				
