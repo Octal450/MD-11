@@ -558,16 +558,8 @@
 	
 	<channel name="FCC: Pitch Axis and LSAS">
 		
-		<fcs_function name="fcc/lsas/thetadot-rad_sec">
-			<function>
-				<toradians>
-					<property>/orientation/pitch-rate-degps</property>
-				</toradians>
-			</function>
-		</fcs_function>
-		
 		<switch name="fcc/lsas/thetadot-switched">
-			<default value="fcc/lsas/thetadot-rad_sec"/>
+			<default value="velocities/thetadot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
@@ -648,7 +640,7 @@
 		</pid>
 		
 		<washout_filter name="fcc/lsas/thetadot-washout">
-			<input>fcc/lsas/thetadot-rad_sec</input>
+			<input>velocities/thetadot-rad_sec</input>
 			<c1>0.5</c1>
 		</washout_filter>
 		
