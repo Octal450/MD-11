@@ -633,41 +633,9 @@
 </animation>
 	
 	<!-- No button lights without power! -->
-	<!--animation>
-		<type>select</type>
-		<object-name></object-name>
-		<condition>
-			<or>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-bat</property>
-					<value>24</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-1</property>
-					<value>24</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-2</property>
-					<value>24</value>
-				</greater-than-equals>
-				<greater-than-equals>
-					<property>systems/electrical/bus/dc-3</property>
-					<value>24</value>
-				</greater-than-equals>
-			</or>
-		</condition>
-	</animation-->
-	
 	<animation>
 		<type>select</type>
-		<object-name>AbsDisarm.light</object-name>
 		<object-name>CenterGearUp.up</object-name>
-		<object-name>FD1.off</object-name>
-		<object-name>FD2.off</object-name>
-		<object-name>IRS.captaux</object-name>
-		<object-name>IRS.captaux2</object-name>
-		<object-name>IRS.foaux</object-name>
-		<object-name>IRS.foaux2</object-name>
 		<object-name>lg.nose.green</object-name>
 		<object-name>lg.nose.red</object-name>
 		<object-name>lg.left.green</object-name>
@@ -678,6 +646,23 @@
 		<object-name>lg.ctr.red</object-name>
 		<object-name>master_warning_light_on</object-name>
 		<object-name>master_caution_light_on</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/bus/dc-bat</property>
+				<value>24</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>AbsDisarm.light</object-name>
+		<object-name>FD1.off</object-name>
+		<object-name>FD2.off</object-name>
+		<object-name>IRS.captaux</object-name>
+		<object-name>IRS.captaux2</object-name>
+		<object-name>IRS.foaux</object-name>
+		<object-name>IRS.foaux2</object-name>
 		<condition>
 			<or>
 				<greater-than-equals>
