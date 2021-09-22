@@ -388,6 +388,10 @@
 					</min>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>1000</max>
+			</clipto>
 		</fcs_function>
 		
 		<actuator name="/systems/pneumatics/bleed-1-psi">
@@ -436,6 +440,10 @@
 					</min>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>1000</max>
+			</clipto>
 		</fcs_function>
 		
 		<actuator name="/systems/pneumatics/bleed-2-psi">
@@ -474,6 +482,10 @@
 					</min>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>1000</max>
+			</clipto>
 		</fcs_function>
 		
 		<actuator name="/systems/pneumatics/bleed-3-psi">
