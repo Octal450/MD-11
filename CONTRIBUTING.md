@@ -5,7 +5,7 @@ These examples will show the guidelines for contributing. Please try to follow t
 ## Basic Guidelines:
 - Use Tabs to indent code, DO NOT USE SPACE.
 - Use lowerCamelCase or underscores for naming Nasal variables/functions (someFunction, some_function).
-- Use comments when nessesary, but no need to comment simple things.
+- Use comments when necessary, but no need to comment simple things.
 - Do not add a comment to every line, only to functions/groups of code.
 - Remove .bak or .blend files, unless absolutely needed.
 - Leave one extra line at the bottom of each file.
@@ -45,4 +45,4 @@ var someOtherThing = func() {
 ```
 
 ## Forks, Branches, and Merging
-Please fork the repository, and commit your changes there. Branches are optional. When you are ready for us to look over your work, submit a pull request, following our pull request template, and we will look over it. If there is an issue that needs to be resolved before merging, then we will leave a comment on the pull request.
+Please fork the repository and commit your changes there. Branches are optional. When you are ready for us to look over your work, submit a pull request following our pull request template, and we will look over it. If there is an issue that needs to be resolved before merging, then we will leave a comment on the pull request.

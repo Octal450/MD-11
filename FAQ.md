@@ -6,7 +6,7 @@
 
 Try to download the aircraft again. The download may have failed for some reason.
 
-### Q. I found other distributors offering downloads of the this aircraft. Can I use them?
+### Q. I found other distributors offering downloads of this aircraft. Can I use them?
 
 Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from [Octal450's repo](https://github.com/Octal450/MD-11.git).
 
@@ -14,7 +14,8 @@ Yes, but they may have changes that result in difficulties or issues. You should
 
 ### Q. Error Code: 0x121 appears. Why?
 
-This error occurs if you are attempting to use this aircraft on a version of FlightGear that is too old. See [INSTALL.md](https://github.com/Octal450/MD-11/blob/master/INSTALL.md) for more information.
+This error occurs if you are trying to use this aircraft on a version of FlightGear that is too old.
+See [INSTALL.md](https://github.com/Octal450/MD-11/blob/master/INSTALL.md) for more information.
 
 ### Q. Error Code: 0x223 appears. Why?
 
@@ -24,7 +25,7 @@ Starting in air is not possible with this aircraft.
 
 The simulation is so complex that there is no support for starting it in mid-air. Therefore, please make sure that you start it on the ground, powering it up appropriately.
 
-In case that you want to practice landing, it might be better to fly to your destination and by doing it by landing, and performing a missed approach (like real pilots do).
+In case that you want to practice landing, it might be better to fly to your destination, landing, and performing a missed approach (like real pilots do).
 
 ### Q. Error Code: 0x247 appears. Why?
 
@@ -36,9 +37,10 @@ This error can also appear if you are starting FlightGear for the very first tim
 
 ### Q. I can't control the rudder with my aileron axis after turning on the FlightGear auto coordination system. Why?
 
-This aircraft has a complex and realistic flight control system, which contains a yaw damper and turn coordinator. Therefore, auto coordination is not nessesary and the rudder is only used in the air when de-crabbing during crosswind landings.
+This aircraft has a complex and realistic flight control system, which contains a yaw damper and turn coordinator. Therefore, auto coordination is not necessary, and the rudder is only used in the air when de-crabbing during crosswind landings.
 
 When the aircraft detects that auto coordination has been turned on, it enables the aileron drives tiller system. This way, you will be able to control the nose wheel with the aileron axis to steer on the ground. Please use keyboard for rudder functionality.
+
 
 ### Q. Some menu items are greyed out when using this aircraft. Why?
 
@@ -62,7 +64,7 @@ Yes, please do so! If we do not know about the bugs, there is no-one to fix them
 
 ### Q. I have a flight recording which shows the problem. Could you please have a look?
 
-It does not make sense sending in flight recordings, as they do not contain enough information. That is why they are more or less useless for us. We do not plan on recording full information in the recorder. See the "Why does the cold and dark state load after exiting replay mode?" section for more information.
+It does not make sense sending in flight recordings, as they do not hold enough information. That is why they are useless for us. We do not plan on recording full information in the recorder. See the "Why does the cold and dark state load after exiting replay mode?" section for more information.
 
 Instead, for documenting issues, please perform the steps mentioned in the next question:
 
@@ -80,10 +82,10 @@ Besides describing it with words, you may do two things, which helps us reproduc
 
 First of all, did you ensure that the bug is reported on our [issues page](https://github.com/Octal450/MD-11/issues/new)? If not, please do so (see also questions above on how to report them)!
 
-We suggest **never** downgrading your aircraft for the best expirience. If you must do so, **you must** delete your `MD-11-options.xml` file. You may find it in `$FGHOME/Export`.
+We suggest **never** downgrading your aircraft for the best experience. If you must do so, **you must** delete your `MD-11-options.xml` file. You may find it in `$FGHOME/Export`.
 
-### Q. I like increasing the simulation speed on long flights. However, I encounter issues with it once in a while. What's up?
+### Q. I like increasing the simulation speed on long flights. However, I encounter issues with it occasionally. What's up?
 
-Increasing the simulation speed is quite tricky for the simulator. Depending on hardware capabilities it can be very stressful and the algorithms behind the scenes can be challenged quite heavily. If the simulation is running faster than the corresponding algorithms can be computed, many funny (or even ugly things) may happen. **we suggest not setting simulation speed above 4x or below 1/2x at any time**.
+Increasing the simulation speed is quite tricky for the simulator. Depending on hardware capabilities it can be incredibly stressful and the algorithms behind the scenes can be challenged quite heavily. If the simulation is running faster than the corresponding algorithms can be computed, many funny (or even ugly things) may happen. **we suggest not setting simulation speed above 4x or below 1/2x at any time**.
 
 Check your frame rate ("View" menu, option "View Options", toggle "Show frame rate") when increasing the simulation speed. As a rule of thumb, if the frame rate stays constantly above 10fps, you are fine. Keep in mind that already one little phase (and not just the average) where the frame rate drops below 10 frames per second, you are in danger facing issues.
