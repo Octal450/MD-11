@@ -294,6 +294,15 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/pneumatics/eng-1-psi">
+			<default value="0"/>
+			<test logic="AND" value="/systems/pneumatics/eng-1-psi-cmd">
+				/controls/pneumatics/switches/bleed-1 eq 1
+				/engines/engine[0]/state ge 2
+				/systems/failures/pneumatics/bleed-1 ne 1
+			</test>
+		</switch>
+		
 		<fcs_function name="/systems/pneumatics/eng-2-psi-cmd">
 			<function>
 				<table>
@@ -306,6 +315,15 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/pneumatics/eng-2-psi">
+			<default value="0"/>
+			<test logic="AND" value="/systems/pneumatics/eng-2-psi-cmd">
+				/controls/pneumatics/switches/bleed-2 eq 1
+				/engines/engine[1]/state ge 2
+				/systems/failures/pneumatics/bleed-2 ne 1
+			</test>
+		</switch>
+		
 		<fcs_function name="/systems/pneumatics/eng-3-psi-cmd">
 			<function>
 				<table>
@@ -317,24 +335,6 @@
 				</table>
 			</function>
 		</fcs_function>
-		
-		<switch name="/systems/pneumatics/eng-1-psi">
-			<default value="0"/>
-			<test logic="AND" value="/systems/pneumatics/eng-1-psi-cmd">
-				/controls/pneumatics/switches/bleed-1 eq 1
-				/engines/engine[0]/state ge 2
-				/systems/failures/pneumatics/bleed-1 ne 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/pneumatics/eng-2-psi">
-			<default value="0"/>
-			<test logic="AND" value="/systems/pneumatics/eng-2-psi-cmd">
-				/controls/pneumatics/switches/bleed-2 eq 1
-				/engines/engine[1]/state ge 2
-				/systems/failures/pneumatics/bleed-2 ne 1
-			</test>
-		</switch>
 		
 		<switch name="/systems/pneumatics/eng-3-psi">
 			<default value="0"/>
