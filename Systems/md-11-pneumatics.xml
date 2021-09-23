@@ -398,7 +398,6 @@
 			<input>/systems/pneumatics/bleed-1-psi-cmd</input>
 			<rate_limit sense="incr">4.0</rate_limit>
 			<rate_limit sense="decr">1.4</rate_limit>
-			<output>/systems/pneumatics/bleed-1-psi-debug</output>
 		</actuator>
 		
 		<!-- Bleed 2 -->
@@ -450,7 +449,6 @@
 			<input>/systems/pneumatics/bleed-2-psi-cmd</input>
 			<rate_limit sense="incr">4.0</rate_limit>
 			<rate_limit sense="decr">1.4</rate_limit>
-			<output>/systems/pneumatics/bleed-2-psi-debug</output>
 		</actuator>
 		
 		<!-- Bleed 3 -->
@@ -492,7 +490,6 @@
 			<input>/systems/pneumatics/bleed-3-psi-cmd</input>
 			<rate_limit sense="incr">4.0</rate_limit>
 			<rate_limit sense="decr">1.4</rate_limit>
-			<output>/systems/pneumatics/bleed-3-psi-debug</output>
 		</actuator>
 		
 		<!-- Pack 1 -->
@@ -548,7 +545,6 @@
 			<input>/systems/pneumatics/pack-1-flow-cmd</input>
 			<rate_limit sense="incr">4.1</rate_limit>
 			<rate_limit sense="decr">4.3</rate_limit>
-			<output>/systems/pneumatics/pack-1-flow-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-1">
@@ -617,7 +613,6 @@
 			<input>/systems/pneumatics/pack-2-flow-cmd</input>
 			<rate_limit sense="incr">4.1</rate_limit>
 			<rate_limit sense="decr">4.3</rate_limit>
-			<output>/systems/pneumatics/pack-2-flow-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-2">
@@ -686,7 +681,6 @@
 			<input>/systems/pneumatics/pack-3-flow-cmd</input>
 			<rate_limit sense="incr">4.1</rate_limit>
 			<rate_limit sense="decr">4.3</rate_limit>
-			<output>/systems/pneumatics/pack-3-flow-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-3">
