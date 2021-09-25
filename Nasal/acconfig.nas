@@ -278,7 +278,7 @@ var PANEL = {
 		libraries.systemsInit();
 		pts.Controls.Flight.speedbrake.setValue(0);
 		if (t == 1) {
-			pts.Controls.Flight.elevatorTrim.setValue(-0.3096774); # About 4.8ANU -->
+			pts.Controls.Flight.elevatorTrim.setValue(-0.3096774); # About 4.8ANU
 			pts.Controls.Flight.flaps.setValue(0.36); # 10-25/EXT
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(1);
 			systems.BRAKES.Switch.abs.setValue(-1); # T/O
