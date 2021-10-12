@@ -515,7 +515,7 @@
 		</fcs_function>
 		
 		<fcs_function name="fadec/limit/idle">
-			<function> <!-- Round more finely then the thrust limit since EPR at low thrust is more fine -->
+			<function>
 				<quotient>
 					<integer>
 						<sum>
