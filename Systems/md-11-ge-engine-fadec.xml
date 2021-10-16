@@ -1346,7 +1346,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/outputs/efis ge 24
-				/engines/engine[0]/n2-actual ge 1
+				/engines/engine[0]/n2-actual ge 1.5
 			</test>
 		</switch>
 		
@@ -1357,7 +1357,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/outputs/efis ge 24
-				/engines/engine[1]/n2-actual ge 1
+				/engines/engine[1]/n2-actual ge 1.5
 			</test>
 		</switch>
 		
@@ -1368,7 +1368,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/outputs/efis ge 24
-				/engines/engine[2]/n2-actual ge 1
+				/engines/engine[2]/n2-actual ge 1.5
 			</test>
 		</switch>
 		

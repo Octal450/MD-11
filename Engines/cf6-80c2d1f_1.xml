@@ -7,12 +7,12 @@
 	<milthrust>60960</milthrust>
 	<tsfc>0.544</tsfc>
 	<bleed>0</bleed> <!-- Set by pneumatic system -->
-	<ignitionn1>0</ignitionn1>
+	<ignitionn1>2.8</ignitionn1>
 	<ignitionn2>29.4</ignitionn2>
-	<n1spinup>0</n1spinup> <!-- No N1 spin during cranking -->
-	<n2spinup>0.958</n2spinup> <!-- ~11.5 seconds -->
-	<n1startrate>0.578</n1startrate> <!-- ~41 seconds -->
-	<n2startrate>1.193</n2startrate> <!-- ~41 seconds -->
+	<n1spinup>0.091</n1spinup>
+	<n2spinup>0.958</n2spinup>
+	<n1startrate>0.578</n1startrate>
+	<n2startrate>1.193</n2startrate>
 	<idlen1>23.7</idlen1>
 	<idlen2>62.9</idlen2>
 	<maxn1>117.5</maxn1>
