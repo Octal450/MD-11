@@ -25,7 +25,7 @@ var Value = {
 	Ignition: {
 		starter: [0, 0, 0],
 	},
-	needleRest: -44,
+	needleRest: -44 * D2R,
 	Tat: 0,
 };
 
@@ -203,7 +203,7 @@ var canvasBase = {
 			
 			if (Value.Fadec.n2[0] < 1.5) {
 				Value.Fadec.n2[0] = 0;
-				me["N21-needle"].setRotation(Value.needleRest * D2R);
+				me["N21-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N21-needle"].setRotation(pts.Instrumentation.Ead.n2[0].getValue() * D2R);
 			}
@@ -236,7 +236,7 @@ var canvasBase = {
 			
 			if (Value.Fadec.n2[1] < 1.5) {
 				Value.Fadec.n2[1] = 0;
-				me["N22-needle"].setRotation(Value.needleRest * D2R);
+				me["N22-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N22-needle"].setRotation(pts.Instrumentation.Ead.n2[1].getValue() * D2R);
 			}
@@ -269,7 +269,7 @@ var canvasBase = {
 			
 			if (Value.Fadec.n2[2] < 1.5) {
 				Value.Fadec.n2[2] = 0;
-				me["N23-needle"].setRotation(Value.needleRest * D2R);
+				me["N23-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N23-needle"].setRotation(pts.Instrumentation.Ead.n2[2].getValue() * D2R);
 			}
@@ -422,7 +422,7 @@ var canvasGe = {
 			
 			if (Value.Fadec.n1[0] < 1.5) {
 				Value.Fadec.n1[0] = 0;
-				me["N11-needle"].setRotation(Value.needleRest * D2R);
+				me["N11-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N11-needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 			}
@@ -454,7 +454,7 @@ var canvasGe = {
 			
 			if (Value.Fadec.n1[1] < 1.5) {
 				Value.Fadec.n1[1] = 0;
-				me["N12-needle"].setRotation(Value.needleRest * D2R);
+				me["N12-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N12-needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 			}
@@ -463,7 +463,6 @@ var canvasGe = {
 			me["N12-decimal"].setTranslation(0, math.round((10 * math.mod(Value.Fadec.n1[1], 1)) * 33.65, 0.1));
 			
 			me["N12-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
-			
 		} else {
 			me["N12"].hide();
 			me["N12-box"].hide();
@@ -487,7 +486,7 @@ var canvasGe = {
 			
 			if (Value.Fadec.n1[2] < 1.5) {
 				Value.Fadec.n1[2] = 0;
-				me["N13-needle"].setRotation(Value.needleRest * D2R);
+				me["N13-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N13-needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
 			}
@@ -657,15 +656,13 @@ var canvasPw = {
 			
 			if (Value.Fadec.n1[0] < 1.5) {
 				Value.Fadec.n1[0] = 0;
-				me["N11-needle"].setRotation(Value.needleRest * D2R);
+				me["N11-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N11-needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 			}
 			
 			me["N11"].setText(sprintf("%d", Value.Fadec.n1[0] + 0.05));
 			me["N11-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[0] + 0.05, 1))));
-			
-			me["N11-needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 		} else {
 			me["N11"].hide();
 			me["N11-decimal"].hide();
@@ -685,15 +682,13 @@ var canvasPw = {
 			
 			if (Value.Fadec.n1[1] < 1.5) {
 				Value.Fadec.n1[1] = 0;
-				me["N12-needle"].setRotation(Value.needleRest * D2R);
+				me["N12-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N12-needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 			}
 			
 			me["N12"].setText(sprintf("%d", Value.Fadec.n1[1] + 0.05));
 			me["N12-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[1] + 0.05, 1))));
-			
-			me["N12-needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 		} else {
 			me["N12"].hide();
 			me["N12-decimal"].hide();
@@ -713,7 +708,7 @@ var canvasPw = {
 			
 			if (Value.Fadec.n1[2] < 1.5) {
 				Value.Fadec.n1[2] = 0;
-				me["N13-needle"].setRotation(Value.needleRest * D2R);
+				me["N13-needle"].setRotation(Value.needleRest);
 			} else {
 				me["N13-needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
 			}
