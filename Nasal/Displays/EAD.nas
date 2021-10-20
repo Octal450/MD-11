@@ -201,7 +201,7 @@ var canvasBase = {
 			
 			Value.Fadec.n2[0] = pts.Engines.Engine.n2Actual[0].getValue();
 			
-			if (Value.Fadec.n2[0] < 1.5) {
+			if (Value.Fadec.n2[0] < 1.8) {
 				Value.Fadec.n2[0] = 0;
 				me["N21-needle"].setRotation(Value.needleRest);
 			} else {
@@ -234,7 +234,7 @@ var canvasBase = {
 			
 			Value.Fadec.n2[1] = pts.Engines.Engine.n2Actual[1].getValue();
 			
-			if (Value.Fadec.n2[1] < 1.5) {
+			if (Value.Fadec.n2[1] < 1.8) {
 				Value.Fadec.n2[1] = 0;
 				me["N22-needle"].setRotation(Value.needleRest);
 			} else {
@@ -267,7 +267,7 @@ var canvasBase = {
 			
 			Value.Fadec.n2[2] = pts.Engines.Engine.n2Actual[2].getValue();
 			
-			if (Value.Fadec.n2[2] < 1.5) {
+			if (Value.Fadec.n2[2] < 1.8) {
 				Value.Fadec.n2[2] = 0;
 				me["N23-needle"].setRotation(Value.needleRest);
 			} else {
@@ -420,7 +420,7 @@ var canvasGe = {
 			
 			Value.Fadec.n1[0] = pts.Engines.Engine.n1Actual[0].getValue();
 			
-			if (Value.Fadec.n1[0] < 1.5) {
+			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
 				me["N11-needle"].setRotation(Value.needleRest);
 			} else {
@@ -452,7 +452,7 @@ var canvasGe = {
 			
 			Value.Fadec.n1[1] = pts.Engines.Engine.n1Actual[1].getValue();
 			
-			if (Value.Fadec.n1[1] < 1.5) {
+			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
 				me["N12-needle"].setRotation(Value.needleRest);
 			} else {
@@ -484,7 +484,7 @@ var canvasGe = {
 			
 			Value.Fadec.n1[2] = pts.Engines.Engine.n1Actual[2].getValue();
 			
-			if (Value.Fadec.n1[2] < 1.5) {
+			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
 				me["N13-needle"].setRotation(Value.needleRest);
 			} else {
@@ -654,7 +654,7 @@ var canvasPw = {
 			
 			Value.Fadec.n1[0] = pts.Engines.Engine.n1Actual[0].getValue();
 			
-			if (Value.Fadec.n1[0] < 1.5) {
+			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
 				me["N11-needle"].setRotation(Value.needleRest);
 			} else {
@@ -680,7 +680,7 @@ var canvasPw = {
 			
 			Value.Fadec.n1[1] = pts.Engines.Engine.n1Actual[1].getValue();
 			
-			if (Value.Fadec.n1[1] < 1.5) {
+			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
 				me["N12-needle"].setRotation(Value.needleRest);
 			} else {
@@ -706,7 +706,7 @@ var canvasPw = {
 			
 			Value.Fadec.n1[2] = pts.Engines.Engine.n1Actual[2].getValue();
 			
-			if (Value.Fadec.n1[2] < 1.5) {
+			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
 				me["N13-needle"].setRotation(Value.needleRest);
 			} else {
