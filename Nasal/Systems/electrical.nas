@@ -135,7 +135,6 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
 		Ext: {
-			cart: props.globals.getNode("/controls/switches/cart"),
 			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
 			hertzGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/ext/output-volt"),
@@ -201,6 +200,7 @@ var ELEC = {
 		genDrive1: props.globals.getNode("/controls/electrical/switches/gen-drive-1"),
 		genDrive2: props.globals.getNode("/controls/electrical/switches/gen-drive-2"),
 		genDrive3: props.globals.getNode("/controls/electrical/switches/gen-drive-3"),
+		groundCart: props.globals.getNode("/controls/electrical/switches/ground-cart"),
 		smokeElecAir: props.globals.getNode("/controls/electrical/switches/smoke-elec-air"),
 		system: props.globals.getNode("/controls/electrical/switches/system"),
 	},
@@ -228,13 +228,13 @@ var ELEC = {
 		me.Switch.genDrive1.setBoolValue(1);
 		me.Switch.genDrive2.setBoolValue(1);
 		me.Switch.genDrive3.setBoolValue(1);
+		me.Switch.groundCart.setBoolValue(0);
 		me.Switch.smokeElecAir.setValue(0);
 		me.Switch.system.setBoolValue(1);
 		me.Source.Bat1.percent.setValue(99.9);
 		me.Source.Bat2.percent.setValue(99.9);
 		manualElecLightt.stop();
 		me.Light.manualFlash.setValue(0);
-		me.Source.Ext.cart.setBoolValue(0);
 	},
 	resetFailures: func() {
 		me.Switch.genDrive1.setBoolValue(1);

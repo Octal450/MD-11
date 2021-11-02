@@ -681,7 +681,7 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/controls/switches/cart</property>
+						<property>/controls/electrical/switches/ground-cart</property>
 						<value>1</value>
 					</eq>
 					<value>115</value>

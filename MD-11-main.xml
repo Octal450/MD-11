@@ -564,6 +564,7 @@
 				<gen-drive-1 type="bool">1</gen-drive-1>
 				<gen-drive-2 type="bool">1</gen-drive-2>
 				<gen-drive-3 type="bool">1</gen-drive-3>
+				<ground-cart type="bool">0</ground-cart>
 				<smoke-elec-air type="int">0</smoke-elec-air>
 				<system type="bool">1</system>
 			</switches>
@@ -744,7 +745,6 @@
 			<annun-test type="bool">0</annun-test>
 			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
 			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
-			<cart type="bool">0</cart>
 			<minimums type="int">200</minimums>
 			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>

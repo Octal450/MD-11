@@ -346,7 +346,7 @@ var PANEL = {
 		pts.Services.Chocks.enable.setBoolValue(0);
 		systems.ELEC.Switch.battery.setBoolValue(1);
 		systems.ELEC.Switch.emerPwr.setValue(1);
-		systems.ELEC.Source.Ext.cart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
+		systems.ELEC.Switch.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
 		systems.ELEC.Switch.extPwr.setBoolValue(1);
 		systems.ELEC.Switch.extGPwr.setBoolValue(1);
 		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
@@ -375,7 +375,7 @@ var PANEL = {
 			if (pts.Engines.Engine.state[1].getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
-				systems.ELEC.Source.Ext.cart.setBoolValue(0);
+				systems.ELEC.Switch.groundCart.setBoolValue(0);
 				systems.ELEC.Switch.extPwr.setBoolValue(0);
 				systems.ELEC.Switch.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA

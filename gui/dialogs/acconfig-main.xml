@@ -332,7 +332,7 @@
 						</less-than>
 					</and>
 				</enable>
-				<property>/controls/switches/cart</property>
+				<property>/controls/electrical/switches/ground-cart</property>
 				<binding>
 					<command>property-assign</command>
 					<property>/controls/electrical/switches/ext-pwr</property>

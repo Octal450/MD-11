@@ -77,8 +77,8 @@ var systemsLoop = maketimer(0.1, func() {
 	}
 	
 	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Switch.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-		if (systems.ELEC.Source.Ext.cart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
-			systems.ELEC.Source.Ext.cart.setBoolValue(0);
+		if (systems.ELEC.Switch.groundCart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
+			systems.ELEC.Switch.groundCart.setBoolValue(0);
 			systems.ELEC.Switch.extPwr.setBoolValue(0);
 			systems.ELEC.Switch.extGPwr.setBoolValue(0);
 		}

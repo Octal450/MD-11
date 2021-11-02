@@ -1895,7 +1895,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/switches/cart</property>
+					<property>controls/electrical/switches/ground-cart</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1952,7 +1952,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/switches/cart</property>
+					<property>controls/electrical/switches/ground-cart</property>
 					<value>1</value>
 				</equals>
 				<equals>
