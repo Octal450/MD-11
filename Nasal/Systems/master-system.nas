@@ -419,6 +419,8 @@ var GEAR = {
 		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	init: func() {
+		me.resetFailures();
+		me.Switch.brakeParking.setBoolValue(0);
 		me.Switch.centerGearUp.setBoolValue(0);
 	},
 	resetFailures: func() {
