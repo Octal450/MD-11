@@ -632,11 +632,11 @@
 			<ki>fcc/lsas/pah/i-gain-scheduled</ki>
 			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
 			<trigger>fcc/lsas/pah/trigger</trigger>
+			<output>fcc/lsas/pah/output</output>
 			<clipto>
 				<min>-0.249</min>
 				<max>0.249</max>
 			</clipto>
-			<output>fcc/lsas/pah/output</output>
 		</pid>
 		
 		<washout_filter name="fcc/lsas/thetadot-washout">
@@ -1138,11 +1138,11 @@
 			<kp>fcc/yaw/tc-p-gain-scheduled</kp>
 			<ki>0.0</ki>
 			<kd>fcc/yaw/tc-d-gain-scheduled</kd>
+			<output>fcc/yaw/tc-pd</output>
 			<clipto>
 				<min>-0.2</min>
 				<max>0.2</max>
 			</clipto>
-			<output>fcc/yaw/tc-pd</output>
 		</pid>
 		
 		<switch name="fcc/yaw/tc-pd-s">
@@ -1542,11 +1542,11 @@
 			<ki>0.25</ki>
 			<kd>0.0</kd>
 			<trigger>/gear/abs/brake-cmd-trigger</trigger>
+			<output>/gear/abs/brake-cmd</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
-			<output>/gear/abs/brake-cmd</output>
 		</pid>
 		
 		<switch name="/gear/abs/brake-output">
