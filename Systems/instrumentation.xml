@@ -10,14 +10,6 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<not>
-					<property>/systems/acconfig/options/du/enable-shaders</property>
-				</not>
-			</condition>
-			<value>1</value>
-		</input>
-		<input>
 			<expression>
 				<table>
 					<property>/rendering/scene/diffuse/red</property>
@@ -33,14 +25,6 @@
 		<name>IESI LCD Contrast</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<not>
-					<property>/systems/acconfig/options/du/enable-shaders</property>
-				</not>
-			</condition>
-			<value>1</value>
-		</input>
 		<input>
 			<condition>
 				<not>

@@ -245,24 +245,6 @@
 		</group>
 	</group>
 	
-	<hrule/>
-	
-	<checkbox>
-		<label>Enable Display Shaders</label>
-		<halign>center</halign>
-		<property>/systems/acconfig/options/du/enable-shaders</property>
-		<binding>
-			<command>dialog-apply</command>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>acconfig.OPTIONS.write();</script>
-		</binding>
-		<live>true</live>
-	</checkbox>
-	
-	<hrule/>
-	
 	<group>
 		<layout>hbox</layout>
 		
