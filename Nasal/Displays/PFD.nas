@@ -50,6 +50,7 @@ var Value = {
 		stallAlphaDeg: 0,
 	},
 	Alt: {
+		indicatedAbs: 0,
 		indicated: 0,
 		preSel: 0,
 		sel: 0,
@@ -58,13 +59,20 @@ var Value = {
 			fiveT: "000",
 			four: 0,
 			fourT: "000",
+			hundreds: 0,
+			hundredsGeneva: 0,
 			middleOffset: 0,
 			middleText: 0,
 			offset: 0,
 			one: 0,
 			oneT: "000",
+			tenThousands: 0,
+			tenThousandsGeneva: 0,
+			thousands: 0,
+			thousandsGeneva: 0,
 			three: 0,
 			threeT: "000",
+			tens: 0,
 			two: 0,
 			twoT: "000",
 		},
@@ -200,11 +208,11 @@ var canvasBase = {
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
 		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_scale", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
-		"AI_arrow_up", "AI_arrow_dn", "AI_rising_runway", "FD_roll", "FD_pitch", "FD_group", "ALT_thousands", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three", "ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T",
-		"ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie", "VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn",
-		"VSI_bug_up", "VSI_bug_dn", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru", "TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto",
-		"Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker",
-		"Middle_Marker", "Outer_Marker"];
+		"AI_arrow_up", "AI_arrow_dn", "AI_rising_runway", "FD_roll", "FD_pitch", "FD_group","ALT_minus",  "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three",
+		"ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie",
+		"VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru",
+		"TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer", "GS_no",
+		"ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -808,15 +816,38 @@ var canvasBase = {
 		}
 		
 		if (Value.Alt.indicated < 0) {
-			altPolarity = "-";
+			if (Value.Alt.indicated >= -980) {
+				me["ALT_minus"].setTranslation(22.172, 0);
+			} else {
+				me["ALT_minus"].setTranslation(0, 0);
+			}
+			me["ALT_minus"].show();
 		} else {
-			altPolarity = "";
+			me["ALT_minus"].hide();
 		}
 		
-		me["ALT_thousands"].setText(sprintf("%s%d", altPolarity, math.abs(int(Value.Alt.indicated / 1000))));
-		me["ALT_hundreds"].setText(sprintf("%d", math.floor(num(right(sprintf("%03d", abs(Value.Alt.indicated)), 3)) / 100)));
-		altTens = num(right(sprintf("%02d", Value.Alt.indicated), 2));
-		me["ALT_tens"].setTranslation(0, altTens * 2.1325);
+		Value.Alt.indicatedAbs = abs(Value.Alt.indicated);
+		
+		if (Value.Alt.indicatedAbs < 9900) { # Prepare to show the zero at 10000
+			me["ALT_thousands_zero"].hide();
+		} else {
+			me["ALT_thousands_zero"].show();
+		}
+		
+		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
+		Value.Alt.Tape.tenThousandsGeneva = genevaAltTenThousands(Value.Alt.Tape.tenThousands);
+		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 42.65);
+		
+		Value.Alt.Tape.thousands = num(right(sprintf("%04d", Value.Alt.indicatedAbs), 4)) / 100;
+		Value.Alt.Tape.thousandsGeneva = genevaAltThousands(Value.Alt.Tape.thousands);
+		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 42.65);
+		
+		Value.Alt.Tape.hundreds = num(right(sprintf("%03d", Value.Alt.indicatedAbs), 3)) / 100;
+		Value.Alt.Tape.hundredsGeneva = genevaAltHundreds(Value.Alt.Tape.hundreds);
+		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 42.65);
+		
+		Value.Alt.Tape.tens = num(right(sprintf("%02d", Value.Alt.indicatedAbs), 2));
+		me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.1325);
 		
 		if (afs.Internal.altAlert.getBoolValue()) {
 			me["ALT_bowtie"].setColor(0.9412,0.7255,0);
@@ -1920,21 +1951,41 @@ var update = maketimer(0.05, func() { # 20FPS
 var showPfd1 = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(pfd1Display);
-	dlg.set("title", "Captain's PFD");
+	dlg.set("title", "Captains PFD");
 }
 
 var showPfd2 = func() {
 	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
 	dlg.setCanvas(pfd2Display);
-	dlg.set("title", "First Officers's PFD");
+	dlg.set("title", "First Officers PFD");
 }
 
 var roundAbout = func(x) { # Unused but left here for reference
 	var y = x - int(x);
 	return y < 0.5 ? int(x) : 1 + int(x);
-};
+}
 
 var roundAboutAlt = func(x) { # For altitude tape numbers
 	var y = x * 0.2 - int(x * 0.2);
 	return y < 0.5 ? 5 * int(x * 0.2) : 5 + 5 * int(x * 0.2);
-};
+}
+
+var genevaAltTenThousands = func(input) {
+	var m = math.floor(input / 100);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	if (math.mod(input / 10, 1) < 0.9 or math.mod(input / 100, 1) < 0.9) s = 0;
+	return m + s;
+}
+
+var genevaAltThousands = func(input) {
+	var m = math.floor(input / 10);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	if (math.mod(input / 10, 1) < 0.9) s = 0;
+	return m + s;
+}
+
+var genevaAltHundreds = func(input) {
+	var m = math.floor(input);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	return m + s;
+}

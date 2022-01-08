@@ -93,14 +93,14 @@
 						<enabled type="bool">false</enabled>
 					</item>
 					<item>
-						<label>Captain's PFD</label>
+						<label>Captains PFD</label>
 						<binding>
 							<command>nasal</command>
 							<script>canvas_pfd.showPfd1();</script>
 						</binding>
 					</item>
 					<item>
-						<label>First Officer's PFD</label>
+						<label>First Officers PFD</label>
 						<binding>
 							<command>nasal</command>
 							<script>canvas_pfd.showPfd2();</script>

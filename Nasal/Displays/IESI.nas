@@ -260,7 +260,7 @@ var showIesi = func() {
 var roundAbout = func(x) {
 	var y = x - int(x);
 	return y < 0.5 ? int(x) : 1 + int(x);
-};
+}
 
 var hdgOutput = "";
 var hdgText = func(x) {
@@ -276,4 +276,4 @@ var hdgText = func(x) {
 		hdgOutput = sprintf("%d", x);
 		return hdgOutput;
 	}
-};
+}
