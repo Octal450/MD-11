@@ -1,5 +1,5 @@
 # Aircraft Config Center V2.0.0
-# Copyright (c) 2021 Josh Davidson (Octal450)
+# Copyright (c) 2022 Josh Davidson (Octal450)
 
 var CONFIG = {
 	minFgfs: split(".", getprop("/sim/minimum-fg-version")),

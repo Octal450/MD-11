@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 MCDU
-# Copyright (c) 2021 Josh Davidson (Octal450) and Jonathan Redpath (legoboyvdlp)
+# Copyright (c) 2022 Josh Davidson (Octal450) and Jonathan Redpath (legoboyvdlp)
 
 var ClosestAirports = {
 	new: func(n) {
