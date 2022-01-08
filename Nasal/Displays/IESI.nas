@@ -18,6 +18,8 @@ var Value = {
 		machLatch: 0,
 		Tape: {
 			ias: 0,
+			tens: 0,
+			tensGeneva: 0,
 		},
 	},
 	Hdg: {
@@ -79,8 +81,8 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_meters", "ASI", "ASI_mach", "ASI_scale", "ASI_tape", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven",
-		"HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_meters", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones", "ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five",
+		"HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -105,19 +107,25 @@ var canvasIesi = {
 		Value.Asi.ias = math.clamp(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 40, 500);
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		
-		# Subtract 40, since the scale starts at 40
-		Value.Asi.Tape.ias = Value.Asi.ias - 40;
-		
-		me["ASI"].setText(sprintf("%d", (Value.Asi.ias / 10) + 0.03));
+		Value.Asi.Tape.ias = Value.Asi.ias - 40; # Subtract 40, since the scale starts at 40
 		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 5.559);
-		me["ASI_tape"].setTranslation(0, math.round((10 * math.mod(Value.Asi.ias / 10, 1)) * 52.58, 0.1));
+		
+		Value.Asi.Tape.hundreds = num(right(sprintf("%05.1f", Value.Asi.ias), 5)) / 10; # Unlikely it would be above 999 but lets account for it anyways
+		Value.Asi.Tape.hundredsGeneva = genevaAsiHundreds(Value.Asi.Tape.hundreds);
+		me["ASI_hundreds"].setTranslation(0, Value.Asi.Tape.hundredsGeneva * 57.47);
+		
+		Value.Asi.Tape.tens = num(right(sprintf("%04.1f", Value.Asi.ias), 4)) / 10;
+		Value.Asi.Tape.tensGeneva = genevaAsiTens(Value.Asi.Tape.tens);
+		me["ASI_tens"].setTranslation(0, Value.Asi.Tape.tensGeneva * 57.47);
+		
+		me["ASI_ones"].setTranslation(0, (10 * math.mod(Value.Asi.ias / 10, 1)) * 57.47);
 		
 		if (Value.Asi.mach > 0.47) { # Match PFD logic
 			machLatch = 1;
 			if (Value.Asi.mach >= 0.999) {
 				me["ASI_mach"].setText("999");
 			} else {
-				me["ASI_mach"].setText("M . " ~ sprintf("%3.0f", Value.Asi.mach * 1000));
+				me["ASI_mach"].setText("M . " ~ sprintf("%03d", Value.Asi.mach * 1000));
 			}
 		} else if (Value.Asi.mach < 0.45) {
 			machLatch = 0;
@@ -126,7 +134,7 @@ var canvasIesi = {
 			if (Value.Asi.mach >= 0.999) {
 				me["ASI_mach"].setText("999");
 			} else {
-				me["ASI_mach"].setText("M . " ~ sprintf("%3.0f", Value.Asi.mach * 1000));
+				me["ASI_mach"].setText("M . " ~ sprintf("%03d", Value.Asi.mach * 1000));
 			}
 		}
 		
@@ -164,7 +172,7 @@ var canvasIesi = {
 			me["QNH"].hide();
 			me["QNH_type"].setText("STD");
 		} else if (Value.Qnh.inhg == 0) {
-			me["QNH"].setText(sprintf("%4.0f", pts.Instrumentation.Altimeter.settingHpa.getValue()));
+			me["QNH"].setText(sprintf("%d", pts.Instrumentation.Altimeter.settingHpa.getValue()));
 			me["QNH"].show();
 			me["QNH_type"].setText("HP");
 		} else if (Value.Qnh.inhg == 1) {
@@ -276,4 +284,17 @@ var hdgText = func(x) {
 		hdgOutput = sprintf("%d", x);
 		return hdgOutput;
 	}
+}
+
+var genevaAsiHundreds = func(input) {
+	var m = math.floor(input / 10);
+	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	if (math.mod(input / 10, 1) < 0.9) s = 0;
+	return m + s;
+}
+
+var genevaAsiTens = func(input) {
+	var m = math.floor(input);
+	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	return m + s;
 }

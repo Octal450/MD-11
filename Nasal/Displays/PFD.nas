@@ -299,7 +299,7 @@ var canvasBase = {
 				me["ASI_taxi"].setColor(1,1,1);
 			} else {
 				me["ASI_groundspeed"].setColor(1,1,1);
-				me["ASI_groundspeed"].setText(sprintf("%3.0f", pts.Velocities.groundspeedKt.getValue()));
+				me["ASI_groundspeed"].setText(sprintf("%d", math.round(pts.Velocities.groundspeedKt.getValue())));
 				me["ASI_taxi"].setColor(1,1,1);
 			}
 			
@@ -1437,7 +1437,7 @@ var canvasBase = {
 				me["QNH"].setText("29.92");
 			}
 		} else if (Value.Qnh.inhg == 0) {
-			me["QNH"].setText(sprintf("%4.0f", pts.Instrumentation.Altimeter.settingHpa.getValue()));
+			me["QNH"].setText(sprintf("%d", pts.Instrumentation.Altimeter.settingHpa.getValue()));
 		} else if (Value.Qnh.inhg == 1) {
 			me["QNH"].setText(sprintf("%2.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
 		}
