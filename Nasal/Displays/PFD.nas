@@ -733,13 +733,13 @@ var canvasBase = {
 		}
 		
 		if (Value.Ai.pitch > 25) {
-			me["AI_arrow_up"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
-			me["AI_arrow_dn"].hide();
-			me["AI_arrow_up"].show();
-		} else if (Value.Ai.pitch < -15) {
 			me["AI_arrow_dn"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
 			me["AI_arrow_dn"].show();
 			me["AI_arrow_up"].hide();
+		} else if (Value.Ai.pitch < -15) {
+			me["AI_arrow_up"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
+			me["AI_arrow_dn"].hide();
+			me["AI_arrow_up"].show();
 		} else {
 			me["AI_arrow_dn"].hide();
 			me["AI_arrow_up"].hide();
