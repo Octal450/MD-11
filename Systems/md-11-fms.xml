@@ -27,7 +27,7 @@
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<max> <!-- Prevent divide by 0 -->
 							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							<value>0.0000001</value>
+							<value>0.0001</value>
 						</max>
 					</quotient>
 					<value>0.87</value>
@@ -51,7 +51,7 @@
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<max> <!-- Prevent divide by 0 -->
 							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							<value>0.0000001</value>
+							<value>0.0001</value>
 						</max>
 					</quotient>
 					<value>0.7</value>
@@ -91,7 +91,7 @@
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<max> <!-- Prevent divide by 0 -->
 							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							<value>0.0000001</value>
+							<value>0.0001</value>
 						</max>
 					</quotient>
 					<value>0.55</value>
@@ -115,7 +115,7 @@
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<max> <!-- Prevent divide by 0 -->
 							<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-							<value>0.0000001</value>
+							<value>0.0001</value>
 						</max>
 					</quotient>
 					<value>0.51</value>
