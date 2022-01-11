@@ -120,7 +120,7 @@
 		</engine>
 		
 		<!-- Fuel Tank Capacities from FCOM -->
-		<tank type="FUEL">    <!-- Tank 1 Outboard -->
+		<tank type="FUEL"> <!-- Tank 1 Outboard -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>-17.0253</y>
@@ -133,7 +133,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tank 1 Inboard -->
+		<tank type="FUEL"> <!-- Tank 1 Inboard -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>-11.3314</y>
@@ -146,7 +146,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tank 2 -->
+		<tank type="FUEL"> <!-- Tank 2 -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -159,7 +159,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tank 3 Inboard -->
+		<tank type="FUEL"> <!-- Tank 3 Inboard -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>11.3314</y>
@@ -172,7 +172,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tank 3 Outboard -->
+		<tank type="FUEL"> <!-- Tank 3 Outboard -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>17.0253</y>
@@ -185,7 +185,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Upper Aux Tank -->
+		<tank type="FUEL"> <!-- Upper Aux Tank -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -198,7 +198,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Lower Aux Tank -->
+		<tank type="FUEL"> <!-- Lower Aux Tank -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -211,7 +211,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Tail Tank -->
+		<tank type="FUEL"> <!-- Tail Tank -->
 			<location unit="M">
 				<x>15.0705</x>
 				<y>0</y>
@@ -224,7 +224,7 @@
 			<type>JET-A1</type>
 			<temperature>50</temperature>
 		</tank>
-		<tank type="FUEL">    <!-- Engine 1 Pipe -->
+		<tank type="FUEL"> <!-- Engine 1 Pipe -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -235,7 +235,7 @@
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		<tank type="FUEL">    <!-- Engine 2 Pipe -->
+		<tank type="FUEL"> <!-- Engine 2 Pipe -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -246,7 +246,7 @@
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		<tank type="FUEL">    <!-- Engine 3 Pipe -->
+		<tank type="FUEL"> <!-- Engine 3 Pipe -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
@@ -257,7 +257,7 @@
 			<priority>1</priority>
 			<type>JET-A1</type>
 		</tank>
-		<tank type="FUEL">    <!-- APU Pipe -->
+		<tank type="FUEL"> <!-- APU Pipe -->
 			<location unit="M">
 				<x>2.7152</x>
 				<y>0</y>
