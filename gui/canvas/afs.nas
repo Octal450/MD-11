@@ -1,4 +1,4 @@
-# AFS Dialog
+# McDonnell Douglas MD-11 AFS Dialog
 # Copyright (c) 2022 Josh Davidson (Octal450)
 
 var afsCanvas = {
