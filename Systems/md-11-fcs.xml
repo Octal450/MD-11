@@ -797,7 +797,7 @@
 	<channel name="Flaps">
 		
 		<switch name="fcs/flap-pos-rate">
-			<default value="0.0"/>
+			<default value="0"/>
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
@@ -831,7 +831,7 @@
 	<channel name="Slats">
 		
 		<switch name="fcs/slat-pos-rate">
-			<default value="0.0"/>
+			<default value="0"/>
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>

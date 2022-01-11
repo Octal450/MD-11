@@ -624,9 +624,9 @@
 		</fcc>
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
+			<dial-a-flap type="double">15</dial-a-flap> <!-- Rounded in md-11-fcc.xml -->
 			<elevator-trim type="double">-0.194</elevator-trim> <!-- About 3.0ANU -->
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
-			<dial-a-flap type="double">15</dial-a-flap> <!-- Rounded in md-11-fcc.xml -->
 			<speedbrake-arm type="bool">0</speedbrake-arm>
 			<wingflex type="double">0</wingflex>
 		</flight>

@@ -226,19 +226,6 @@
 		<output>/velocities/TAS</output>
 	</filter>
 	
-	<filter>
-		<name>Weight KG</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<product>
-				<property>fdm/jsbsim/inertia/weight-lbs</property>
-				<value>0.45359237</value>
-			</product>
-		</input>
-		<output>fdm/jsbsim/inertia/weight-kg</output>
-	</filter>
-	
 	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>
