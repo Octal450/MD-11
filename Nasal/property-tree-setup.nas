@@ -94,9 +94,9 @@ var Fdm = {
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
 		},
 		Libraries: {
+			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
 			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),
 			blinkMed2: props.globals.getNode("/fdm/jsbsim/libraries/blink-med-2"),
-			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
 			multiEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/multi-engine-out"),
 		},
 		Position: {
