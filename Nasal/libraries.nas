@@ -3,7 +3,7 @@
 
 print("");
 print("------------------------------------------------");
-print("Copyright (c) 2017-2021 Josh Davidson (Octal450)");
+print("Copyright (c) 2017-2022 Josh Davidson (Octal450)");
 print("------------------------------------------------");
 print("");
 
