@@ -18,8 +18,8 @@ var afsCanvas = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd", "FeetMeter",
-		"FmsSpd", "FpaInd", "Ga", "Hdg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd", "SpdKnob", "TrkInd", "Vs", "VsFpa", "VsInd", "VsKnob"];
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt_7seg", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
+		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "Hdg_7seg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd_7seg", "SpdKnob", "TrkInd", "Vs_7seg", "VsFpa", "VsInd", "VsKnob"];
 	},
 	close: func() {
 		me._dialogUpdateT.stop();
@@ -42,6 +42,7 @@ var afsCanvas = {
 		me._svgKeys = me.getKeys();
 		foreach(me._key; me._svgKeys) {
 			me[me._key] = me._svg.getElementById(me._key);
+			if (find("_7seg", me._key) != -1) me[me._key].setFont("Std7SegCustom.ttf");
 		}
 		
 		# Set up clickspots
@@ -201,20 +202,20 @@ var afsCanvas = {
 				me["MeterInd"].show();
 				me["TrkInd"].show();
 				me["VsInd"].show();
-				me["Alt"].setText("88888");
-				me["Hdg"].setText("888");
-				me["Spd"].setText(".888");
-				me["Vs"].setText("-8888");
+				me["Alt_7seg"].setText("88888");
+				me["Hdg_7seg"].setText("888");
+				me["Spd_7seg"].setText(".888");
+				me["Vs_7seg"].setText("-8888");
 			} else {
 				# Speed
 				if (afs.Input.ktsMach.getBoolValue()) {
 					me["IasInd"].hide();
 					me["MachInd"].show();
-					me["Spd"].setText("." ~ sprintf("%03d", afs.Input.mach.getValue() * 1000));
+					me["Spd_7seg"].setText("." ~ sprintf("%03d", afs.Input.mach.getValue() * 1000));
 				} else {
 					me["IasInd"].show();
 					me["MachInd"].hide();
-					me["Spd"].setText(sprintf("%03d", afs.Input.kts.getValue()));
+					me["Spd_7seg"].setText(sprintf("%03d", afs.Input.kts.getValue()));
 				}
 				
 				# Heading
@@ -226,14 +227,14 @@ var afsCanvas = {
 					me["TrkInd"].hide();
 				}
 				if (afs.Output.showHdg.getBoolValue()) {
-					me["Hdg"].setText(sprintf("%03d", afs.Input.hdg.getValue()));
+					me["Hdg_7seg"].setText(sprintf("%03d", afs.Input.hdg.getValue()));
 				} else {
-					me["Hdg"].setText("---");
+					me["Hdg_7seg"].setText("---");
 				}
 				
 				# Altitude
 				me["MeterInd"].hide(); # Unused, so we hide it
-				me["Alt"].setText(sprintf("%03d", afs.Input.alt.getValue()));
+				me["Alt_7seg"].setText(sprintf("%03d", afs.Input.alt.getValue()));
 				
 				# Vertical Speed
 				me._vert = afs.Output.vert.getValue();
@@ -241,11 +242,11 @@ var afsCanvas = {
 					if (afs.Input.vsFpa.getBoolValue()) {
 						me["FpaInd"].show();
 						me["VsInd"].hide();
-						me["Vs"].setText(sprintf("%2.1f", afs.Input.fpa.getValue()));
+						me["Vs_7seg"].setText(sprintf("%2.1f", afs.Input.fpa.getValue()));
 					} else {
 						me["FpaInd"].hide();
 						me["VsInd"].show();
-						me["Vs"].setText(sprintf("%d", afs.Input.vs.getValue()));
+						me["Vs_7seg"].setText(sprintf("%d", afs.Input.vs.getValue()));
 					}
 				} else {
 					if (afs.Input.vsFpa.getBoolValue()) {
@@ -255,7 +256,7 @@ var afsCanvas = {
 						me["FpaInd"].hide();
 						me["VsInd"].show();
 					}
-					me["Vs"].setText("----");
+					me["Vs_7seg"].setText("----");
 				}
 			}
 			
