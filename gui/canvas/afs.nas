@@ -49,11 +49,9 @@ var afsCanvas = {
 		# Center Buttons
 		me["Autoflight"].addEventListener("click", func(e) {
 			libraries.apPanel.autoflight();
-			libraries.Sound.btn1();
 		});
 		me["ApprLand"].addEventListener("click", func(e) {
 			libraries.apPanel.appr();
-			libraries.Sound.btn1();
 		});
 		
 		me["AfsDisc"].addEventListener("click", func(e) {
@@ -79,7 +77,6 @@ var afsCanvas = {
 			} else {
 				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
 			}
-			libraries.Sound.switch1();
 		});
 		me["AfsOvrd2Group"].addEventListener("click", func(e) {
 			me._ovrd[1] = afs.Input.ovrd2.getBoolValue();
@@ -88,7 +85,6 @@ var afsCanvas = {
 			} else {
 				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
 			}
-			libraries.Sound.switch1();
 		});
 		
 		# Speed
@@ -109,7 +105,6 @@ var afsCanvas = {
 		
 		me["IasMach"].addEventListener("click", func(e) {
 			libraries.apPanel.ktsMach();
-			libraries.Sound.btn1();
 		});
 		
 		# Heading
@@ -130,12 +125,10 @@ var afsCanvas = {
 		
 		me["HdgTrk"].addEventListener("click", func(e) {
 			libraries.apPanel.hdgTrk();
-			libraries.Sound.btn1();
 		});
 		
 		me["Nav"].addEventListener("click", func(e) {
 			libraries.apPanel.nav();
-			libraries.Sound.btn1();
 		});
 		
 		# Bank Limit
@@ -185,7 +178,6 @@ var afsCanvas = {
 		
 		me["VsFpa"].addEventListener("click", func(e) {
 			libraries.apPanel.vsFpa();
-			libraries.Sound.btn1();
 		});
 		
 		me._update();
