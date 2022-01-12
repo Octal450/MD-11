@@ -18,8 +18,8 @@ var afsCanvas = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "Alt_7seg", "AltKnob", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
-		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "Hdg_7seg", "HdgInd", "HdgKnob", "HdgTrk", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "Spd_7seg", "SpdKnob", "TrkInd", "Vs_7seg", "VsFpa", "VsInd", "VsKnob"];
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "AltKnob", "Alt_7seg", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
+		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "HdgInd", "HdgKnob", "HdgTrk", "Hdg_7seg", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "SpdKnob", "Spd_7seg", "TrkInd", "VsFpa", "VsInd", "VsKnob", "Vs_7seg"];
 	},
 	close: func() {
 		me._dialogUpdateT.stop();
