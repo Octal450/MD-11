@@ -1205,9 +1205,23 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>it-autoflight/input/bank-limit-sw</property>
 				<step>1</step>
+				<min>0</min>
+				<max>6</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>it-autoflight/input/bank-limit-sw</property>
+				<step>-1</step>
 				<min>0</min>
 				<max>6</max>
 				<wrap>true</wrap>
