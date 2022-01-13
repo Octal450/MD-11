@@ -4,6 +4,7 @@ MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20
 MATERIAL "Buttons.001" rgb 0.0081 0.0081 0.0081  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 1 1 1  emis 0.235294 0.235294 0.235294  spec 1 1 1  shi 0  trans 0
+MATERIAL "DefaultWhite.004" rgb 1 1 1  amb 0.8 0.8 0.8  emis 0.235 0.235 0.235  spec 1 1 1  shi 64  trans 0
 OBJECT world
 kids 85
 OBJECT poly
@@ -5495,7 +5496,7 @@ kids 0
 OBJECT group
 name "LCD"
 loc -25.725 11.7922 -0.010773
-kids 33
+kids 35
 OBJECT poly
 name "ALT.led1"
 loc 1.33514e-05 -1.23978e-05 -0.0328095
@@ -5593,7 +5594,7 @@ refs 4
 kids 0
 OBJECT poly
 name "fpa.ind"
-loc -8.58307e-05 -0.0017128 -0.0709336
+loc -8.58307e-05 -0.0017128 -0.070415
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4
@@ -5609,6 +5610,27 @@ refs 4
 2 0.010987 0.183378
 3 0.010987 0.14713
 1 0.088888 0.14713
+kids 0
+OBJECT poly
+name "ft.ind"
+loc 25.725 -11.7922 0.0110285
+data 11
+ft.ind.mesh
+texture "APpanel_BTN.png"
+crease 45.000000
+numvert 4
+-25.7199 11.7956 -0.039436
+-25.7199 11.7924 -0.039436
+-25.7199 11.7924 -0.03508
+-25.7199 11.7956 -0.03508
+numsurf 1
+SURF 0x10
+mat 5
+refs 4
+0 0.0667776 0.089585
+3 0.01774 0.089585
+2 0.01774 0.053337
+1 0.0667776 0.053337
 kids 0
 OBJECT poly
 name "FPA.led1"
@@ -5688,7 +5710,7 @@ refs 4
 kids 0
 OBJECT poly
 name "hdg.ind"
-loc -8.58307e-05 0.00178719 0.0689567
+loc -8.58307e-05 0.00178719 0.0694753
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4
@@ -5805,7 +5827,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ias.ind"
-loc -8.58307e-05 0.00178719 0.113559
+loc -8.58307e-05 0.00178719 0.113818
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4
@@ -5880,8 +5902,29 @@ refs 4
 1 0.987318 0.006062
 kids 0
 OBJECT poly
+name "m.ind"
+loc 25.725 -11.7922 0.0110285
+data 10
+m.ind.mesh
+texture "APpanel_BTN.png"
+crease 45.000000
+numvert 4
+-25.7199 11.7921 -0.039436
+-25.7199 11.7889 -0.039436
+-25.7199 11.7889 -0.03508
+-25.7199 11.7921 -0.03508
+numsurf 1
+SURF 0x10
+mat 5
+refs 4
+0 0.0667176 0.047781
+3 0.01768 0.047781
+2 0.01768 0.011532
+1 0.0667176 0.011532
+kids 0
+OBJECT poly
 name "mach.ind"
-loc -8.58307e-05 -0.0017128 0.112781
+loc -8.58307e-05 -0.0017128 0.11304
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4
@@ -5976,7 +6019,7 @@ refs 4
 kids 0
 OBJECT poly
 name "trk.ind"
-loc -8.58307e-05 -0.0017128 0.0689567
+loc -8.58307e-05 -0.0017128 0.0694753
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4
@@ -6047,7 +6090,7 @@ refs 4
 kids 0
 OBJECT poly
 name "vs.ind"
-loc -8.58307e-05 0.00178719 -0.0709336
+loc -8.58307e-05 0.00178719 -0.070415
 texture "APpanel_BTN.png"
 crease 45.000000
 numvert 4

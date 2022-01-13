@@ -8,6 +8,22 @@
 	
 	<animation>
 		<type>select</type>
+		<object-name>LCD</object-name>
+		<condition>
+			<property>systems/electrical/outputs/fcp-power</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>m.ind</object-name>
+		<condition>
+			<property>instrumentation/fcp/unused</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
 		<object-name>OVRD1</object-name>		
 		<condition>
 			<equals>
@@ -156,7 +172,6 @@
 		<object-name>IAS.led3</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
 				<not>
 					<property>it-autoflight/input/kts-mach</property>
 				</not>
@@ -214,7 +229,6 @@
 		<object-name>MACH.ledd</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
 				<property>it-autoflight/input/kts-mach</property>
 				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
 			</and>
@@ -259,19 +273,15 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
-
-<!-- HDG/TRK -->
+	
+	<!-- HDG/TRK -->
 	<animation>
 		<type>select</type>
 		<object-name>hdg.ind</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<not>
-					<property>it-autoflight/input/trk</property>
-				</not>
-			</and>
+			<not>
+				<property>it-autoflight/input/trk</property>
+			</not>
 		</condition>
 	</animation>
 	
@@ -279,10 +289,7 @@
 		<type>select</type>
 		<object-name>trk.ind</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/input/trk</property>
-			</and>
+			<property>it-autoflight/input/trk</property>
 		</condition>
 	</animation>
 	
@@ -292,10 +299,7 @@
 		<object-name>HDG.led2</object-name>
 		<object-name>HDG.led3</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<property>it-autoflight/output/show-hdg</property>
-			</and>
+			<property>it-autoflight/output/show-hdg</property>
 		</condition>
 	</animation>
 	
@@ -303,10 +307,7 @@
 		<type>select</type>
 		<object-name>HDG_dash</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<not><property>it-autoflight/output/show-hdg</property></not>
-			</and>
+			<not><property>it-autoflight/output/show-hdg</property></not>
 		</condition>
 	</animation>
 
@@ -355,13 +356,10 @@
 		<type>select</type>
 		<object-name>vs.ind</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<equals>
-					<property>it-autoflight/input/vs-fpa</property>
-					<value>0</value>
-				</equals>
-			</and>
+			<equals>
+				<property>it-autoflight/input/vs-fpa</property>
+				<value>0</value>
+			</equals>
 		</condition>
 	</animation>
 
@@ -372,13 +370,10 @@
 		<object-name>VS.led3</object-name>
 		<object-name>VS.led4</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<equals>
-					<property>it-autoflight/output/vert</property>
-					<value>1</value>
-				</equals>
-			</and>
+			<equals>
+				<property>it-autoflight/output/vert</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -387,7 +382,6 @@
 		<object-name>VS_dash</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
 				<not-equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -405,7 +399,6 @@
 		<object-name>VS.ledminus</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -423,7 +416,6 @@
 		<object-name>VS.ledminus2</object-name>
 		<condition>
 			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
 				<equals>
 					<property>it-autoflight/output/vert</property>
 					<value>1</value>
@@ -528,13 +520,10 @@
 		<type>select</type>
 		<object-name>fpa.ind</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<equals>
-					<property>it-autoflight/input/vs-fpa</property>
-					<value>1</value>
-				</equals>
-			</and>
+			<equals>
+				<property>it-autoflight/input/vs-fpa</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 
@@ -544,13 +533,10 @@
 		<object-name>FPA.led2</object-name>
 		<object-name>FPA.ledd</object-name>
 		<condition>
-			<and>
-				<property>systems/electrical/outputs/fcp-power</property>
-				<equals>
-					<property>it-autoflight/output/vert</property>
-					<value>5</value>
-				</equals>
-			</and>
+			<equals>
+				<property>it-autoflight/output/vert</property>
+				<value>5</value>
+			</equals>
 		</condition>
 	</animation>
 
@@ -624,19 +610,6 @@
 	</animation>
 	
 	<!-- Altitude -->
-	<animation>
-		<type>select</type>
-		<object-name>alt.ind</object-name>
-		<object-name>ALT.led1</object-name>
-		<object-name>ALT.led2</object-name>
-		<object-name>ALT.led3</object-name>
-		<object-name>ALT.led4</object-name>
-		<object-name>ALT.led5</object-name>
-		<condition>
-			<property>systems/electrical/outputs/fcp-power</property>
-		</condition>
-	</animation>
-
 	<animation>
 		<type>textranslate</type>
 		<object-name>ALT.led1</object-name>
