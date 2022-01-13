@@ -956,15 +956,15 @@
 		</axis>
 	</animation>	
 	
-		
-				   <animation>
-  <type>translate</type>
-  <object-name>front.strut.low</object-name>
-  <object-name>tyres</object-name>
-  <object-name>nose.scissor.down</object-name>
-  <object-name>NoseChock</object-name>
-  <property>gear/gear[0]/compression-norm</property>
-  <factor>-0.3</factor>
+	<animation>
+		<type>translate</type>
+		<object-name>front.strut.low</object-name>
+		<object-name>tyres</object-name>
+		<object-name>nose.scissor.down</object-name>
+		<object-name>NoseChock</object-name>
+		<property>gear/gear[0]/compression-norm</property>
+		<factor>-0.3</factor>
+		<offset-m>0.07</offset-m>
 		<axis>
 			<x1-m>-20.4239</x1-m>
 			<y1-m>0</y1-m>
@@ -973,9 +973,9 @@
 			<y2-m>0</y2-m>
 			<z2-m>1.9781</z2-m>
 		</axis>
- </animation>
- 
-			<animation>
+	</animation>
+	
+	<animation>
 		<type>spin</type>
 		<object-name>tyres</object-name>
 		<property>sim/multiplay/generic/float[11]</property>
@@ -1053,8 +1053,7 @@
 		</axis>
 	</animation>
 	
-		<!-- Right main gear -->
-		
+	<!-- Right main gear -->
 	 <animation>
 		<type>rotate</type>
 		<object-name>tyres.right.back</object-name>
@@ -1103,25 +1102,26 @@
 			<z>0</z>
 		</axis>
 	</animation>
-		
-				   <animation>
-  <type>translate</type>
- <object-name>right.strut.low</object-name>
- <object-name>right.strut.low2</object-name>
-  <object-name>tyres.right.front</object-name>
-<object-name>tyres.right.back</object-name>
- <object-name>right.scissor.down</object-name>
- <object-name>RightChock</object-name>
-  <property>gear/gear[2]/compression-norm</property>
-  <factor>-0.25</factor>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>right.strut.low</object-name>
+		<object-name>right.strut.low2</object-name>
+		<object-name>tyres.right.front</object-name>
+		<object-name>tyres.right.back</object-name>
+		<object-name>right.scissor.down</object-name>
+		<object-name>RightChock</object-name>
+		<property>gear/gear[2]/compression-norm</property>
+		<factor>-0.3</factor>
+		<offset-m>0.1</offset-m>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>-1</z>
 		</axis>
- </animation>
- 
-							<animation>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>right.scissor.down</object-name>
 		<property>gear/gear[2]/compression-norm</property>
@@ -1273,8 +1273,7 @@
 		</axis>
 	</animation>
 	
-			<!-- Left main gear -->
-			
+	<!-- Left main gear -->
 	 <animation>
 		<type>rotate</type>
 		<object-name>tyres.left.back</object-name>
@@ -1323,25 +1322,26 @@
 			<z>0</z>
 		</axis>
 	</animation>
-		
-				   <animation>
-  <type>translate</type>
- <object-name>left.strut.low</object-name>
-  <object-name>tyres.left.front</object-name>
-<object-name>tyres.left.back</object-name>
-<object-name>left.strut.low2</object-name>
- <object-name>left.scissor.down</object-name>
- <object-name>LeftChock</object-name>
-  <property>gear/gear[1]/compression-norm</property>
-  <factor>-0.25</factor>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>left.strut.low</object-name>
+		<object-name>tyres.left.front</object-name>
+		<object-name>tyres.left.back</object-name>
+		<object-name>left.strut.low2</object-name>
+		<object-name>left.scissor.down</object-name>
+		<object-name>LeftChock</object-name>
+		<property>gear/gear[1]/compression-norm</property>
+		<factor>-0.3</factor>
+		<offset-m>0.1</offset-m>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>-1</z>
 		</axis>
- </animation>
- 
-							<animation>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>left.scissor.down</object-name>
 		<property>gear/gear[1]/compression-norm</property>
@@ -1493,23 +1493,23 @@
 		</axis>
 	</animation>
 	
-				<!-- Central main gear -->
-				
-				   <animation>
-  <type>translate</type>
- <object-name>central.strut.low</object-name>
-  <object-name>tyres.central</object-name>
- <object-name>center.scissor.down</object-name>
-  <property>gear/gear[3]/compression-norm</property>
-  <factor>-0.2</factor>
+	<!-- Central main gear -->
+	<animation>
+		<type>translate</type>
+		<object-name>central.strut.low</object-name>
+		<object-name>tyres.central</object-name>
+		<object-name>center.scissor.down</object-name>
+		<property>gear/gear[3]/compression-norm</property>
+		<factor>-0.3</factor>
+		<offset-m>0.17</offset-m>
 		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>-1</z>
-		</axis>1
- </animation>
- 
-							<animation>
+			<x>-0.32787</x>
+			<y> 0.00000</y>
+			<z>-1.29466</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>central.scissor.down</object-name>
 		<property>gear/gear[3]/compression-norm</property>
@@ -1674,10 +1674,8 @@
 			<y-m>0</y-m>
 			<z-m>1.4330</z-m>
 		</center>
-		</animation>
-		
-
-		
+	</animation>
+	
 		<model>
  <name>tyre-smoke-0</name>
  <path>Aircraft/MD-11/Models/Effects/tyre-smoke-0.xml</path>
