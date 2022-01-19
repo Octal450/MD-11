@@ -561,7 +561,7 @@
 		<name>System Command: Pitch Rate Target</name>
 		<debug>false</debug>
 		<type>gain</type>
-		<gain>-0.75</gain>
+		<gain>-0.6</gain>
 		<input>/orientation/pitch-deg</input>
 		<reference>/it-autoflight/internal/target-pitch-deg</reference>
 		<output>/it-autoflight/internal/pitch-rate</output>
@@ -623,7 +623,7 @@
 					</div>
 				</expression>
 			</Kp>
-			<Ti>0.35</Ti>
+			<Ti>0.5</Ti>
 			<Td>0.001</Td>
 			<u_min>-1.0</u_min>
 			<u_max>1.0</u_max>
