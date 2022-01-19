@@ -145,7 +145,6 @@
 	<!-- Predictors -->
 	<predict-simple>
 		<name>Knots 5 Second Predictor</name>
-		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 		<output>/it-autoflight/internal/kts-predicted-5</output>
 		<seconds>5</seconds>
@@ -154,7 +153,6 @@
 	
 	<predict-simple>
 		<name>Mach 5 Second Predictor</name>
-		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
 		<output>/it-autoflight/internal/mach-predicted-5</output>
 		<seconds>5</seconds>
@@ -163,7 +161,6 @@
 	
 	<predict-simple>
 		<name>Knots 15 Second Predictor</name>
-		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 		<output>/it-autoflight/internal/kts-predicted-15</output>
 		<seconds>15</seconds>
@@ -172,7 +169,6 @@
 	
 	<predict-simple>
 		<name>Mach 15 Second Predictor</name>
-		<debug>false</debug>
 		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
 		<output>/it-autoflight/internal/mach-predicted-15</output>
 		<seconds>15</seconds>
@@ -302,7 +298,6 @@
 	
 	<filter>
 		<name>Knots Rate Lag</name>
-		<debug>false</debug>
 		<type>exponential</type>
 		<input>
 			<condition>
@@ -320,7 +315,6 @@
 	
 	<filter>
 		<name>Flch Knots Rate Command</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -515,7 +509,6 @@
 	
 	<filter>
 		<name>Heading Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -587,7 +580,6 @@
 	
 	<filter>
 		<name>Internal Vertical Speed</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>/instrumentation/gps/indicated-vertical-speed</input>
@@ -596,7 +588,6 @@
 	
 	<filter>
 		<name>Vertical Speed Sync</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
@@ -622,7 +613,6 @@
 	
 	<filter>
 		<name>Vertical Speed Filter</name>
-		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
@@ -730,7 +720,6 @@
 	
 	<filter>
 		<name>Nav1 Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -749,7 +738,6 @@
 	
 	<filter>
 		<name>Nav2 Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -768,7 +756,6 @@
 	
 	<filter>
 		<name>Nav3 Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -787,7 +774,6 @@
 	
 	<filter>
 		<name>Nav Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -814,7 +800,6 @@
 	
 	<filter>
 		<name>Nav1 Course Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -833,7 +818,6 @@
 	
 	<filter>
 		<name>Nav2 Course Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -852,7 +836,6 @@
 	
 	<filter>
 		<name>Nav3 Course Error Deg</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -871,7 +854,6 @@
 	
 	<filter>
 		<name>Nav G/S FPM Calc</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input> <!-- Under 110ft glideslope data starts to become unusable -->
@@ -908,7 +890,6 @@
 	
 	<filter>
 		<name>Heading Predictor Stage 1</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -958,7 +939,6 @@
 	
 	<filter>
 		<name>Heading Predictor Stage 2</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -995,7 +975,6 @@
 	
 	<filter>
 		<name>Altitude Predictor</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -1014,7 +993,6 @@
 	
 	<filter>
 		<name>Internal FPA Computer</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -1042,7 +1020,6 @@
 	<!-- Flight Director -->
 	<filter>
 		<name>FD Target Roll Filter</name>
-		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>/it-autoflight/internal/target-roll-deg</input>
 		<output>/it-autoflight/internal/target-roll-fd</output>
@@ -1066,7 +1043,6 @@
 	
 	<filter>
 		<name>FD Roll</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -1084,7 +1060,6 @@
 	
 	<filter>
 		<name>FD Pitch Takeoff</name>
-		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -1121,7 +1096,6 @@
 	
 	<filter>
 		<name>FD Pitch</name>
-		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
 			<expression>
