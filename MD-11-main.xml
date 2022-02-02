@@ -1380,8 +1380,17 @@
 			<volume type="double">0</volume>
 		</dme>
 		<du n="0">
+			<du1-dimmer type="double">1</du1-dimmer>
+			<du2-dimmer type="double">1</du2-dimmer>
+			<du3-dimmer type="double">1</du3-dimmer>
+			<du4-dimmer type="double">1</du4-dimmer>
+			<du5-dimmer type="double">1</du5-dimmer>
+			<du6-dimmer type="double">1</du6-dimmer>
 			<irs-capt type="bool">0</irs-capt>
 			<irs-fo type="bool">0</irs-fo>
+			<mcdu1-dimmer type="double">1</mcdu1-dimmer>
+			<mcdu2-dimmer type="double">1</mcdu2-dimmer>
+			<mcdu3-dimmer type="double">1</mcdu3-dimmer>
 		</du>
 		<fcp n="0">
 			<alt-rotate type="int">50000</alt-rotate>

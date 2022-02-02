@@ -31,6 +31,24 @@
 		<object-name>mcdu1.screen</object-name>
 	</effect>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/du/mcdu1-dimmer</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
 	<!-- Soft Keys -->
 	<animation>
 		<type>pick</type>

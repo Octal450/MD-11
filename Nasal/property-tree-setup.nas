@@ -138,8 +138,10 @@ var Instrumentation = {
 		inRange: [props.globals.getNode("/instrumentation/dme[0]/in-range"), props.globals.getNode("/instrumentation/dme[1]/in-range"), props.globals.getNode("/instrumentation/dme[2]/in-range")],
 	},
 	Du: {
+		duDimmer: [props.globals.getNode("/instrumentation/du/du1-dimmer"), props.globals.getNode("/instrumentation/du/du2-dimmer"), props.globals.getNode("/instrumentation/du/du3-dimmer"), props.globals.getNode("/instrumentation/du/du4-dimmer"), props.globals.getNode("/instrumentation/du/du5-dimmer"), props.globals.getNode("/instrumentation/du/du6-dimmer")],
 		irsCapt: props.globals.getNode("/instrumentation/du/irs-capt"),
 		irsFo: props.globals.getNode("/instrumentation/du/irs-fo"),
+		mcduDimmer: [props.globals.getNode("/instrumentation/du/mcdu1-dimmer"), props.globals.getNode("/instrumentation/du/mcdu2-dimmer"), props.globals.getNode("/instrumentation/du/mcdu3-dimmer")],
 	},
 	Ead: {
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],

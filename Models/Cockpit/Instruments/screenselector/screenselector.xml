@@ -3,16 +3,17 @@
 <!-- Copyright (c) 2022 Josh Davidson (Octal450) -->
 
 <PropertyList>
- <path>screenselector.ac</path>
- 
-         <animation>
+	
+	<path>screenselector.ac</path>
+	
+	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>screenselector.text</object-name>
 		<object-name>config.text</object-name>
 		<object-name>status.text</object-name>
 		<object-name>misc.text</object-name>
-        <object-name>conseq.text</object-name>
+		<object-name>conseq.text</object-name>
 		<object-name>nd.text</object-name>
 		<emission>
 			<red>1.0</red>
@@ -22,75 +23,125 @@
 		</emission>
 	</animation>
 	
-				    <effect>
-    <inherits-from>Effects/model-transparent</inherits-from>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>screenselector.text</object-name>
-    </effect>
+	</effect>
     
-    					    	<animation>
-		<name>first screen brighteness</name>
+	<!-- Right now, only 0 and 1 are supported due to the display shaders -->
+    <animation>
 		<type>pick</type>
 		<object-name>scrn.1.knob</object-name>
 		<action>
 			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-1-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
 			<button>1</button>
+			<button>3</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-1-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du1-dimmer</property>
+				<value>0</value>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>
 	
     <animation>
-		<name>second screen brighteness</name>
 		<type>pick</type>
 		<object-name>scrn.2.knob</object-name>
 		<action>
 			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-2-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
 			<button>1</button>
+			<button>3</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-2-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du2-dimmer</property>
+				<value>0</value>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>
 	
-							<animation>
+    <animation>
+		<type>pick</type>
+		<object-name>scrn.3.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du3-dimmer</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
+    <animation>
+		<type>pick</type>
+		<object-name>scrn.4.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du4-dimmer</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
+    <animation>
+		<type>pick</type>
+		<object-name>scrn.5.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du5-dimmer</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
+    <animation>
+		<type>pick</type>
+		<object-name>scrn.6.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>instrumentation/du/du6-dimmer</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.1.knob</object-name>
-				<property>controls/lighting/screen-1-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du1-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -103,14 +154,11 @@
 		</center>
 	</animation>
 	
-								<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.2.knob</object-name>
-				<property>controls/lighting/screen-2-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du2-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -123,42 +171,11 @@
 		</center>
 	</animation>
 	
-		    					    	<animation>
-		<name>third screen brighteness</name>
-		<type>pick</type>
-		<object-name>scrn.3.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-3-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-3-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
-			</binding>
-		</action>
-	</animation>
-	
-							<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.3.knob</object-name>
-				<property>controls/lighting/screen-3-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du3-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -171,42 +188,11 @@
 		</center>
 	</animation>
 	
-			    					    	<animation>
-		<name>fourth screen brighteness</name>
-		<type>pick</type>
-		<object-name>scrn.4.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-4-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-4-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
-			</binding>
-		</action>
-	</animation>
-	
-							<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.4.knob</object-name>
-				<property>controls/lighting/screen-4-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du4-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -219,42 +205,11 @@
 		</center>
 	</animation>
 	
-				    					    	<animation>
-		<name>fifth screen brighteness</name>
-		<type>pick</type>
-		<object-name>scrn.5.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-5-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-5-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
-			</binding>
-		</action>
-	</animation>
-	
-							<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.5.knob</object-name>
-				<property>controls/lighting/screen-5-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du5-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -267,42 +222,11 @@
 		</center>
 	</animation>
 	
-	    					    	<animation>
-		<name>sixth screen brighteness</name>
-		<type>pick</type>
-		<object-name>scrn.6.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-6-norm</property>
-				<step>0.025</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/screen-6-norm</property>
-				<step>-0.025</step>
-				<min>0.050</min>
-			</binding>
-		</action>
-	</animation>
-	
-							<animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>scrn.6.knob</object-name>
-				<property>controls/lighting/screen-6-norm</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-275</dep></entry>
-		</interpolation>
+		<property>instrumentation/du/du6-dimmer</property>
+		<factor>-275</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -314,5 +238,5 @@
 			<z-m>0.0053</z-m>
 		</center>
 	</animation>
- 
+
 </PropertyList>
