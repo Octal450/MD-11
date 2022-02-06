@@ -1355,7 +1355,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		<dme n="0">
+		<dme n="0"> <!-- VOR 1 -->
 			<frequencies n="0">
 				<selected-mhz type="double">109.6</selected-mhz>
 				<source type="string">/instrumentation/nav[0]/frequencies/selected-mhz</source>
@@ -1363,7 +1363,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		<dme n="1">
+		<dme n="1"> <!-- VOR 2 -->
 			<frequencies n="0">
 				<selected-mhz type="double">112.8</selected-mhz>
 				<source type="string">/instrumentation/nav[1]/frequencies/selected-mhz</source>
@@ -1371,7 +1371,7 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</dme>
-		<dme n="2">
+		<dme n="2"> <!-- ILS -->
 			<frequencies n="0">
 				<selected-mhz type="double">111.15</selected-mhz>
 				<source type="string">/instrumentation/nav[2]/frequencies/selected-mhz</source>
