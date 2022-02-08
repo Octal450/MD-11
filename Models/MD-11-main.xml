@@ -2368,11 +2368,10 @@
 	
 	<!-- Doors -->
 	<!--animation>
-		<name>Forward cargo door rotate</name>
 		<type>rotate</type>
 		<object-name>fuselage.cone</object-name>
 		<object-name>fuselage.cone_2</object-name>
-		<property>sim/model/door-positions/nose_cone/position-norm</property>
+		<property>sim/model/door-positions/nose-cone/position-norm</property>
 		<factor>90</factor>
 		<axis>
 			<x>0</x>
@@ -2387,7 +2386,6 @@
 	</animation>
 	
 	<animation>
-		<name>Forward cargo door rotate</name>
 		<type>rotate</type>
 		<object-name>cargo1</object-name>
 		<property>sim/model/door-positions/cargo-fwd/position-norm</property>
@@ -2405,10 +2403,9 @@
 	</animation>
 	
 	<animation>
-		<name>Rear cargo door rotate</name>
 		<type>rotate</type>
 		<object-name>cargo2</object-name>
-		<property>sim/model/door-positions/cargo-main/position-norm</property>
+		<property>sim/model/door-positions/cargo-mid/position-norm</property>
 		<factor>158</factor>
 		<axis>
 			<x1-m>13.1371</x1-m>
@@ -2438,7 +2435,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>rdoor.1</object-name>
-		<property>sim/model/door-positions/rightDoor1/position-norm</property>
+		<property>sim/model/door-positions/right-door-1/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2453,7 +2450,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rdoor.1</object-name>
-		<property>sim/model/door-positions/rightDoor1/position-norm</property>
+		<property>sim/model/door-positions/right-door-1/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep> 0</dep></entry>
 			<entry><ind>1.0</ind><dep>46</dep></entry>
@@ -2473,7 +2470,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>rdoor.2</object-name>
-		<property>sim/model/door-positions/rightDoor2/position-norm</property>
+		<property>sim/model/door-positions/right-door-2/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2488,7 +2485,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rdoor.2</object-name>
-		<property>sim/model/door-positions/rightDoor2/position-norm</property>
+		<property>sim/model/door-positions/right-door-2/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep> 0</dep></entry>
 			<entry><ind>1.0</ind><dep>46</dep></entry>
@@ -2508,7 +2505,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>rdoor.3</object-name>
-		<property>sim/model/door-positions/rightDoor3/position-norm</property>
+		<property>sim/model/door-positions/right-door-3/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2523,7 +2520,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rdoor.3</object-name>
-		<property>sim/model/door-positions/rightDoor3/position-norm</property>
+		<property>sim/model/door-positions/right-door-3/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep> 0</dep></entry>
 			<entry><ind>1.0</ind><dep>46</dep></entry>
@@ -2543,7 +2540,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>rdoor.4</object-name>
-		<property>sim/model/door-positions/rightDoor4/position-norm</property>
+		<property>sim/model/door-positions/right-door-4/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2558,7 +2555,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rdoor.4</object-name>
-		<property>sim/model/door-positions/rightDoor4/position-norm</property>
+		<property>sim/model/door-positions/right-door-4/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep> 0</dep></entry>
 			<entry><ind>1.0</ind><dep>46</dep></entry>
@@ -2578,7 +2575,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ldoor.1</object-name>
-		<property>sim/model/door-positions/leftDoor1/position-norm</property>
+		<property>sim/model/door-positions/left-door-1/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2593,7 +2590,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ldoor.1</object-name>
-		<property>sim/model/door-positions/leftDoor1/position-norm</property>
+		<property>sim/model/door-positions/left-door-1/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep>-46</dep></entry>
@@ -2613,7 +2610,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ldoor.2</object-name>
-		<property>sim/model/door-positions/leftDoor2/position-norm</property>
+		<property>sim/model/door-positions/left-door-2/position-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2628,7 +2625,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ldoor.2</object-name>
-		<property>sim/model/door-positions/leftDoor2/position-norm</property>
+		<property>sim/model/door-positions/left-door-2/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep>-46</dep></entry>
@@ -2648,7 +2645,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ldoor.3</object-name>
-		<property>sim/model/door-positions/leftDoor3/position-norm</property>
+		<property>sim/model/door-positions/left-door-3/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2663,7 +2660,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ldoor.3</object-name>
-		<property>sim/model/door-positions/leftDoor3/position-norm</property>
+		<property>sim/model/door-positions/left-door-3/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep>-46</dep></entry>
@@ -2683,7 +2680,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ldoor.4</object-name>
-		<property>sim/model/door-positions/leftDoor4/position-norm</property>
+		<property>sim/model/door-positions/left-door-4/position-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0.00</dep></entry>
 			<entry><ind>0.15</ind><dep>0.15</dep></entry>
@@ -2698,7 +2695,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ldoor.4</object-name>
-		<property>sim/model/door-positions/leftDoor4/position-norm</property>
+		<property>sim/model/door-positions/left-door-4/position-norm</property>
 		<interpolation>
 			<entry><ind>0.1</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep>-46</dep></entry>
@@ -2752,7 +2749,8 @@
 		</center>
 	</animation>
 	
-	<animation>
+	<!-- Wipers -->
+	<!--animation>
 		<type>rotate</type>
 		<object-name>wiper.left</object-name>
 		<property>controls/electric/wiperl/position-norm</property>
@@ -2780,6 +2778,6 @@
 			<y2-m>0.2905</y2-m>
 			<z2-m>6.938</z2-m>
 		</axis>
-	</animation>
+	</animation-->
 
 </PropertyList>

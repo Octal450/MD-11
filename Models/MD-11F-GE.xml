@@ -70,5 +70,39 @@
 		<name>Cabin</name>
 		<path>Aircraft/MD-11/Models/Cabin/cargo.xml</path>
 	</model>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>cargo.door</object-name>
+		<object-name>cargo.door.inside</object-name>
+		<property>/sim/model/door-positions/cargo-upper/position-norm</property>
+		<factor>-110</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-1.7428</y-m>
+			<z-m>8.7132</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cargo.door</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>/sim/current-view/internal</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Doors.toggle(libraries.Doors.cargoUpper, "cargo-upper", "Upper Cargo");</script>
+			</binding>
+		</action>
+	</animation>
 
 </PropertyList>

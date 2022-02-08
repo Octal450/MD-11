@@ -382,6 +382,26 @@ setlistener("/controls/flight/auto-coordination", func() {
 	screen.log.write("Auto Coordination has been disabled as it is not compatible with the flight control system of this aircraft", 1, 0, 0);
 });
 
+# Doors
+var Doors = {
+	cargoUpper: aircraft.door.new("/sim/model/door-positions/cargo-upper", 8),
+	toggle: func(door, doorName, doorDesc) {
+		if (props.globals.getNode("/sim/model/door-positions/" ~ doorName ~ "/position-norm").getValue() > 0) {
+			gui.popupTip("Closing: " ~ doorDesc ~ " Door");
+			door.toggle();
+		} else {
+			if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+				gui.popupTip("Doors can not open while the aircraft is airborne");
+			} else if (pts.Velocities.groundspeedKt.getValue() >= 2) {
+				gui.popupTip("Doors can not open while the aircraft is moving");
+			} else {
+				gui.popupTip("Opening: " ~ doorDesc ~ " Door");
+				door.toggle();
+			}
+		}
+	},
+};
+
 # Custom Sounds
 var Sound = {
 	btn1: func() {
