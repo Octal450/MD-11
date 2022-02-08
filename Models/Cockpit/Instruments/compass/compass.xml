@@ -7,6 +7,59 @@
 	<path>compass.ac</path>
 	
 	<animation>
+		<type>pick</type>
+		<object-name>Main</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/compass</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Main</object-name>
+		<property>controls/switches/compass-rotate</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>90</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>7.50627</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Tube</object-name>
+		<property>controls/switches/compass-rotate</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>21.6</dep></entry>
+			<entry><ind>1</ind><dep> 0.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0773</y-m>
+			<z-m>7.54941</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>rotate</type>
 		<object-name>Ring</object-name>
 		<property>instrumentation/magnetic-compass[0]/indicated-heading-deg</property>

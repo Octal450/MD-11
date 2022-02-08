@@ -133,6 +133,11 @@
 			<input>/sim/model/armrest-translate-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<lag_filter name="/controls/switches/compass-rotate">
+			<input>/controls/switches/compass</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	

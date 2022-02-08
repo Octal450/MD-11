@@ -456,6 +456,3 @@ setlistener("/controls/lighting/landing-light-n", func() {
 		setprop("/controls/lighting/land-on-n", 0);
 	}
 }, 0, 0);
-
-
-

@@ -259,10 +259,10 @@
 				<float n="16" alias="/controls/flight/wingflex"/>
 				<int n="0" alias="/sim/model/lights/strobe/state"/>
 				<int n="1" alias="/sim/model/lights/beacon/state"/>
-				<int n="2" alias="/controls/lighting/landing-lights-n"/>
+				<int n="2" alias="/controls/lighting/landing-light-n"/>
 				<int n="3" alias="/sim/model/lights/logo-lights"/>
-				<int n="5" alias="/controls/lighting/landing-lights-l"/>
-				<int n="6" alias="/controls/lighting/landing-lights-r"/>
+				<int n="5" alias="/controls/lighting/landing-light-l"/>
+				<int n="6" alias="/controls/lighting/landing-light-r"/>
 				<int n="7" alias="/sim/model/lights/nav-lights"/>
 				<int n="8" alias="/controls/lighting/wing-lights"/>
 			</generic>
@@ -745,6 +745,7 @@
 			<annun-test type="bool">0</annun-test>
 			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
 			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
+			<compass type="bool">0</compass>
 			<minimums type="int">200</minimums>
 			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>
