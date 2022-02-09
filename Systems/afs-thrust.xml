@@ -38,14 +38,7 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
@@ -103,14 +96,7 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
@@ -139,14 +125,7 @@
 		<enable>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/internal/kts-mach</property>
 						<value>0</value>
@@ -175,14 +154,7 @@
 		<enable>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/internal/kts-mach</property>
 						<value>1</value>
@@ -219,14 +191,7 @@
 		<enable>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>1</value>
@@ -245,14 +210,7 @@
 		<enable>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
+					<property>/it-autoflight/output/athr-on</property>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>2</value>
@@ -307,16 +265,7 @@
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/ats-cmd-raw</input>
@@ -399,16 +348,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<or>
-					<not-equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</not-equals>
-				</or>
+				<not><property>/it-autoflight/output/athr-on</property></not>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/throttle-compare-max</input>
@@ -422,16 +362,7 @@
 		<initialize-to>output</initialize-to>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
@@ -439,16 +370,7 @@
 		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<value>0.3</value>
 		</max-rate-of-change>
@@ -461,16 +383,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/ats-cmd-1</input>
@@ -484,16 +397,7 @@
 		<initialize-to>output</initialize-to>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
@@ -501,16 +405,7 @@
 		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<value>0.3</value>
 		</max-rate-of-change>
@@ -523,16 +418,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/ats-cmd-2</input>
@@ -546,16 +432,7 @@
 		<initialize-to>output</initialize-to>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
@@ -563,16 +440,7 @@
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 			<value>0.3</value>
 		</max-rate-of-change>
@@ -585,16 +453,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/athr</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/clamp</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/fadec/ats-cmd-3</input>

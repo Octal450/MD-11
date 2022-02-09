@@ -26,6 +26,7 @@
 	<logic>
 		<input>
 			<and>
+				<property>/it-autoflight/output/apfd-on</property>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/vert</property>
@@ -34,24 +35,6 @@
 					<equals>
 						<property>/it-autoflight/output/vert</property>
 						<value>7</value>
-					</equals>
-				</or>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/fd1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/fd2</property>
-						<value>1</value>
 					</equals>
 				</or>
 			</and>
@@ -192,28 +175,11 @@
 	<logic>
 		<input>
 			<and>
+				<property>/it-autoflight/output/apfd-on</property>
 				<equals>
 					<property>/it-autoflight/output/vert</property>
 					<value>5</value>
 				</equals>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/fd1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/fd2</property>
-						<value>1</value>
-					</equals>
-				</or>
 			</and>
 		</input>
 		<output>/it-autoflight/internal/fpa-active</output>
@@ -223,12 +189,6 @@
 		<name>IT-CONTROLLER: FPA</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>
-			<condition>
-				<not><property>/it-autoflight/internal/fpa-active</property></not>
-			</condition>
-			<property>/it-autoflight/internal/vert-speed-fpm</property>
-		</input>
 		<input>
 			<expression>
 				<sum>
@@ -273,15 +233,27 @@
 	<filter>
 		<name>FPA FPM Filter</name>
 		<type>noise-spike</type>
-		<input>/it-autoflight/internal/target-fpm-fpa-raw</input>
+		<input>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<property>/it-autoflight/internal/fpa-active</property>
+				</and>
+			</condition>
+			<property>/it-autoflight/internal/target-fpm-fpa-raw</property>
+		</input>
+		<input>/it-autoflight/internal/vert-speed-fpm</input>
 		<output>/it-autoflight/internal/target-fpm-fpa</output>
 		<max-rate-of-change>
 			<condition>
-				<not><property>/it-autoflight/internal/fpa-active</property></not>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<property>/it-autoflight/internal/fpa-active</property>
+				</and>
 			</condition>
-			<value>10000</value>
+			<value>300</value>
 		</max-rate-of-change>
-		<max-rate-of-change>300</max-rate-of-change>
+		<max-rate-of-change>10000</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -397,6 +369,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/gear/gear[1]/wow</property>
 						<value>0</value>
@@ -405,16 +378,6 @@
 						<property>/gear/gear[2]/wow</property>
 						<value>0</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
 				</and>
 			</condition>
 		</enable>
@@ -523,6 +486,7 @@
 			<condition>
 				<not>
 					<and>
+						<property>/it-autoflight/output/ap-on</property>
 						<equals>
 							<property>/gear/gear[1]/wow</property>
 							<value>0</value>
@@ -531,16 +495,6 @@
 							<property>/gear/gear[2]/wow</property>
 							<value>0</value>
 						</equals>
-						<or>
-							<equals>
-								<property>/it-autoflight/output/ap1</property>
-								<value>1</value>
-							</equals>
-							<equals>
-								<property>/it-autoflight/output/ap2</property>
-								<value>1</value>
-							</equals>
-						</or>
 					</and>
 				</not>
 			</condition>
@@ -567,20 +521,11 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/gear/gear[0]/wow</property>
 						<value>0</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
 				</and>
 			</condition>
 		</enable>
@@ -628,16 +573,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</not-equals>
-				</and>
+				<not><property>/it-autoflight/output/ap-on</property></not>
 			</condition>
 		</enable>
 		<input>/controls/flight/elevator</input>
@@ -651,16 +587,7 @@
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<property>/it-autoflight/output/ap-on</property>
 			</condition>
 		</enable>
 		<input>
@@ -685,6 +612,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/gear/gear[1]/wow</property>
 						<value>0</value>
@@ -693,16 +621,6 @@
 						<property>/gear/gear[2]/wow</property>
 						<value>0</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
 					<or>
 						<greater-than>
 							<property>/it-autoflight/internal/elevator-cmd</property>

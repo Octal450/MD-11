@@ -20,6 +20,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/apfd-on</property>
 					<or>
 						<equals>
 							<property>/it-autoflight/output/lat</property>
@@ -27,24 +28,6 @@
 						</equals>
 						<equals>
 							<property>/it-autoflight/output/lat</property>
-							<value>1</value>
-						</equals>
-					</or>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
 							<value>1</value>
 						</equals>
 					</or>
@@ -76,28 +59,11 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/apfd-on</property>
 					<equals>
 						<property>/it-autoflight/output/lat</property>
 						<value>2</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/fd2</property>
-							<value>1</value>
-						</equals>
-					</or>
 				</and>
 			</condition>
 		</enable>
@@ -139,24 +105,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/fd1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/fd2</property>
-						<value>1</value>
-					</not-equals>
-				</and>
+				<not><property>/it-autoflight/output/apfd-on</property></not>
 			</condition>
 		</enable>
 		<input>/orientation/roll-deg</input>
@@ -175,39 +124,13 @@
 		<output>/it-autoflight/internal/target-roll</output>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/fd1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/fd2</property>
-						<value>1</value>
-					</not-equals>
-				</and>
+				<not><property>/it-autoflight/output/apfd-on</property></not>
 			</condition>
 			<value>1000</value>
 		</max-rate-of-change>
 		<max-rate-of-change>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</not-equals>
-				</and>
+				<not><property>/it-autoflight/output/ap-on</property></not>
 			</condition>
 			<value>15</value>
 		</max-rate-of-change>
@@ -230,6 +153,7 @@
 		<enable>
 			<condition>
 				<and>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/gear/gear[1]/wow</property>
 						<value>0</value>
@@ -238,16 +162,6 @@
 						<property>/gear/gear[2]/wow</property>
 						<value>0</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
 				</and>
 			</condition>
 		</enable>
@@ -284,16 +198,7 @@
 		<gain>-0.1</gain>
 		<enable>
 			<condition>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<property>/it-autoflight/output/ap-on</property>
 			</condition>
 		</enable>
 		<input>/orientation/roll-deg</input>
@@ -307,16 +212,7 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<and>
-					<not-equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</not-equals>
-					<not-equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</not-equals>
-				</and>
+				<not><property>/it-autoflight/output/ap-on</property></not>
 			</condition>
 		</enable>
 		<input>/controls/flight/aileron</input>
@@ -330,16 +226,7 @@
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
-				<or>
-					<equals>
-						<property>/it-autoflight/output/ap1</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/output/ap2</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<property>/it-autoflight/output/ap-on</property>
 			</condition>
 		</enable>
 		<input>
@@ -368,16 +255,7 @@
 		<enable>
 			<condition>
 				<and>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/it-autoflight/output/lat</property>
 						<value>4</value>
@@ -417,16 +295,7 @@
 		<input>
 			<condition>
 				<and>
-					<or>
-						<equals>
-							<property>/it-autoflight/output/ap1</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/output/ap2</property>
-							<value>1</value>
-						</equals>
-					</or>
+					<property>/it-autoflight/output/ap-on</property>
 					<equals>
 						<property>/it-autoflight/output/lat</property>
 						<value>4</value>
