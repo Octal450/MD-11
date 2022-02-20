@@ -168,7 +168,7 @@
 			<test logic="AND" value="3">
 				/controls/apu/switches/start eq 1
 				/systems/apu/cutoff eq 0
-				/engines/engine[3]/n2-actual ge 96
+				/engines/engine[3]/n2-actual ge 95
 			</test>
 			<test logic="AND" value="2">
 				/controls/apu/switches/start eq 1
@@ -190,7 +190,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/apu/lights/avail-flash eq 0
-				/systems/apu/n2-actual ge 96
+				/systems/apu/n2-actual ge 95
 			</test>
 		</switch>
 	
