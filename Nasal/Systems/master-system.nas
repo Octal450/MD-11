@@ -41,7 +41,7 @@ var APU = {
 			onLightt.stop();
 			me.Light.avail.setValue(0);
 			me.Light.on.setValue(0);
-		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 96) {
+		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 95) {
 			onLightt.stop();
 			me.Light.avail.setValue(1);
 			me.Light.on.setValue(1);

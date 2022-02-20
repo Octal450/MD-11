@@ -71,7 +71,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/overhead-integ-knb</property>
@@ -89,7 +89,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/main-integ-knb</property>
@@ -100,7 +100,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">true</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/main-integ-knb</property>
@@ -7457,7 +7457,7 @@
 		<object-name>AnnunTest</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/switches/annun-test</property>
