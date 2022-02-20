@@ -97,7 +97,6 @@
 			<input>/systems/iru[0]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
-			<output>/systems/iru[0]/align-timer-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/iru[0]/align-time-remaining-minutes">
@@ -193,7 +192,6 @@
 			<input>/systems/iru[1]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
-			<output>/systems/iru[1]/align-timer-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/iru[1]/align-time-remaining-minutes">
@@ -289,7 +287,6 @@
 			<input>/systems/iru[2]/align-timer-input</input>
 			<rate_limit sense="incr">/systems/iru-common/align-time</rate_limit>
 			<rate_limit sense="decr">100000</rate_limit>
-			<output>/systems/iru[2]/align-timer-debug</output>
 		</actuator>
 		
 		<fcs_function name="/systems/iru[2]/align-time-remaining-minutes">
