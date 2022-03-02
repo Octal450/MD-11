@@ -4,6 +4,7 @@
 # Resets buttons to the default values
 var variousReset = func() {
 	pts.Controls.Flight.dialAFlap.setValue(15); 
+	pts.Controls.Flight.slatStow.setBoolValue(0); 
 	pts.Controls.Lighting.beacon.setBoolValue(0);
 	pts.Controls.Lighting.landingLightL.setValue(0);
 	pts.Controls.Lighting.landingLightN.setValue(0);

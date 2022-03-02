@@ -35,6 +35,28 @@
 		</emission>
 	</animation>
 	
+	<!-- No button lights without power! -->
+	<animation>
+		<type>select</type>
+		<object-name>SlatStow.on</object-name>
+		<condition>
+			<or>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-1</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-2</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-3</property>
+					<value>24</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<model>
 		<name>IESI</name>
 		<path>Aircraft/MD-11/Models/Cockpit/Instruments/IESI/IESI.xml</path>
@@ -1498,6 +1520,46 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>SlatStow</object-name>
+		<object-name>SlatStow.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/flight/slat-stow</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>SlatStow.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/flight/slat-stow</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 	
 </PropertyList>

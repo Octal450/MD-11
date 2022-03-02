@@ -627,6 +627,7 @@
 			<dial-a-flap type="double">15</dial-a-flap> <!-- Rounded in md-11-fcc.xml -->
 			<elevator-trim type="double">-0.194</elevator-trim> <!-- About 3.0ANU -->
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
+			<slat-stow type="bool">0</slat-stow>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
 			<wingflex type="double">0</wingflex>
 		</flight>

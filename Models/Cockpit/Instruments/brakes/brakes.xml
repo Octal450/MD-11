@@ -127,5 +127,69 @@
 			</binding>
 		</action>
 	</animation>
+	
+	<!-- No button lights without power! -->
+	<animation>
+		<type>select</type>
+		<object-name>AuxPump1.on</object-name>
+		<condition>
+			<or>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-1</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-2</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-3</property>
+					<value>24</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AuxPump1</object-name>
+		<object-name>AuxPump1.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/bus/dc-bat</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/hydraulics/switches/aux-pump-1</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AuxPump1.on</object-name>
+		<condition>
+			<and>
+				<or>
+					<equals>
+						<property>controls/hydraulics/switches/aux-pump-1</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>controls/switches/annun-test</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</and>
+		</condition>
+	</animation>
 
 </PropertyList>

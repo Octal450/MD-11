@@ -1258,8 +1258,9 @@
 		
 		<switch name="/controls/flight/slats-cmd">
 			<default value="0"/>
-			<test value="31">
+			<test logic="AND" value="31">
 				/controls/flight/flaps-input ge 1
+				/controls/flight/slat-stow eq 0
 			</test>
 		</switch>
 		
