@@ -1481,7 +1481,7 @@ var canvasBase = {
 			me["Flaps_num"].hide();
 		}
 		
-		if (!Value.Misc.slatsOut and ((pts.Controls.Flight.slatStow.getBoolValue() and pts.Controls.Flight.flapsInput.getValue() == 1) or Value.Misc.flapsCmd >= 0.1)) {
+		if (!Value.Misc.slatsOut and pts.Controls.Flight.slatStow.getBoolValue() and pts.Controls.Flight.flapsInput.getValue() >= 1) {
 			me["Slats_no"].show();
 		} else {
 			me["Slats_no"].hide();
