@@ -260,16 +260,16 @@
 					<independentVar lookup="row">inertia/weight-kg</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
-					<tableData breakPoint="0"> <!-- 50 column is a guess, no data for flap without slat -->
-						        0       50
-						140000  149.22  138.10
-						160000  158.53  145.67
-						180000  167.38  153.14
-						200000  175.63  159.97
-						220000  183.56  166.65
-						240000  190.73  172.66
-						260000  198.14  179.04
-						280000  204.93  184.60
+					<tableData breakPoint="0"> <!-- Values clipped and rounded down so Vmin (FAA Stall * 1.3) won't exceed flap max (as per manual) -->
+						        0       15      25      28      35      50
+						140000  149.22  141.92  137.31  136.54  134.88  133.22
+						160000  158.53  150.38  146.54  145.77  143.99  141.26
+						180000  167.38  158.85  154.23  153.46  151.31  147.91
+						200000  175.63  166.54  161.92  160.38  157.93  149.61
+						220000  183.56  174.23  168.85  168.08  161.15  149.61
+						240000  190.73  181.15  175.77  175.01  161.15  149.61
+						260000  198.14  188.08  182.69  176.53  161.15  149.61
+						280000  204.93  195.01  184.23  176.53  161.15  149.61
 					</tableData>
 					<tableData breakPoint="31">
 						        0       10      15      20      25      28      35      50
