@@ -285,10 +285,6 @@
 			<test logic="AND" value="1">
 				fcc/lsas/channels-active gt 0
 				fcc/afs/enabled eq 0
-				attitude/pitch-rad le 0.558505
-				attitude/pitch-rad ge -0.20944
-				attitude/roll-rad le 0.558505
-				attitude/roll-rad ge -0.558505
 				fcc/lsas/in-detent eq 0
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
@@ -639,13 +635,13 @@
 			</clipto>
 		</pid>
 		
-		<washout_filter name="fcc/lsas/thetadot-washout">
-			<input>velocities/thetadot-rad_sec</input>
+		<washout_filter name="fcc/lsas/q-washout">
+			<input>velocities/q-rad_sec</input>
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="fcc/lsas/thetadot-washout-s">
-			<default value="fcc/lsas/thetadot-washout"/>
+		<switch name="fcc/lsas/q-washout-s">
+			<default value="fcc/lsas/q-washout"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
@@ -666,7 +662,7 @@
 		</scheduled_gain>
 		
 		<pure_gain name="fcc/lsas/prd/output">
-			<input>fcc/lsas/thetadot-washout-s</input>
+			<input>fcc/lsas/q-washout-s</input>
 			<gain>fcc/lsas/prd/p-gain-scheduled</gain>
 			<clipto>
 				<min>-0.249</min>
