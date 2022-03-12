@@ -516,6 +516,27 @@
 		<max>1.5</max>
 	</filter>
 	
+	<filter>
+		<name>System Command: Elevator Air Inactive Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not>
+					<and>
+						<property>/it-autoflight/output/ap-on</property>
+						<equals>
+							<property>/gear/gear[0]/wow</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</not>
+			</condition>
+		</enable>
+		<input>/controls/flight/elevator</input>
+		<output>/it-autoflight/internal/elevator-cmd</output>
+	</filter>
+	
 	<pid-controller>
 		<name>System Command: Elevator</name>
 		<enable>
@@ -583,7 +604,6 @@
 	<filter>
 		<name>System Command: Elevator Filter</name>
 		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
@@ -607,7 +627,6 @@
 	<filter>
 		<name>System Command: Elevator Trim</name>
 		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
