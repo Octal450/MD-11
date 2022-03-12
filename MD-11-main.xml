@@ -34,7 +34,7 @@
 			<z-offset-min-m type="float">30</z-offset-min-m>
 			<z-offset-max-m type="float">300</z-offset-max-m>
 		</current-view>
-		<expected-aircraft-dir-name>MD-11</expected-aircraft-dir-name>
+		<expected-aircraft-dir-name type="string">MD-11</expected-aircraft-dir-name>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
 		<hud n="0">
