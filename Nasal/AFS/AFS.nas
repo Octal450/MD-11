@@ -224,7 +224,7 @@ var Output = {
 };
 
 var Settings = {
-	reducAglFt: props.globals.initNode("/it-autoflight/settings/reduc-agl-ft", 1000, "INT"), # Will be changable from FMS
+	accelFt: props.globals.initNode("/it-autoflight/settings/accel-ft", 1000, "INT"), # Will be changable from FMS
 };
 
 var Sound = {
@@ -503,7 +503,7 @@ var ITAF = {
 				Internal.kts.setValue(Internal.v2Speed);
 			}
 			
-			me.checkFlch(Settings.reducAglFt.getValue());
+			me.checkFlch(Settings.accelFt.getValue());
 		}
 		
 		# Altitude Capture/Sync Logic
