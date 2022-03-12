@@ -4,6 +4,7 @@
 var Internal = {
 	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
 	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2", 0, "DOUBLE"),
+	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss", 0, "DOUBLE"),
 };
 
 var Speeds = {

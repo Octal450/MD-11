@@ -153,6 +153,7 @@ var Internal = {
 	bankLimitAuto: 0,
 	bankLimitCalc: 25,
 	bankLimitMax: [25, 5, 10, 15, 20, 25],
+	bankAngleVss: 5,
 	canAutoland: 0,
 	captVs: 0,
 	driftAngle: props.globals.initNode("/it-autoflight/internal/drift-angle-deg", 0, "DOUBLE"),
@@ -1137,34 +1138,43 @@ var ITAF = {
 		Internal.radioSelTemp = Internal.radioSel.getValue();
 		if (Text.vert.getValue() == "G/A CLB" or Output.latTemp == 5) {
 			Internal.bankLimitCalc = 10;
-		} else if (Output.latTemp == 2 or Output.latTemp == 4) {
-			Radio.locDeflTemp[Internal.radioSelTemp] = abs(Radio.locDefl[Internal.radioSelTemp].getValue());
-			if (Radio.locDeflTemp[Internal.radioSelTemp] >= 0.105) {
-				Internal.bankLimitCalc = 30;
-			} else if (Radio.locDeflTemp[Internal.radioSelTemp] < 0.1 and abs(Internal.navCourseTrackErrorDeg[Internal.radioSelTemp].getValue()) < 5 and abs(Misc.rollDeg.getValue()) < 10) {
-				if (Position.gearAglFt.getValue() <= 200) {
-					Internal.bankLimitCalc = 5;
-				} else if (Internal.bankLimitCalc != 5) { # It does not go from 5 to 10, ever
-					Internal.bankLimitCalc = 10;
-				}
-			}
-		} else if (Output.latTemp == 1) {
-			#if (FMS using curved-patch transitions or holding patterns or procedure turns) {
-				#Internal.bankLimitAuto = fms.Internal.bankAngle2.getValue();
-			#} else {
-				Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
-			#}
-			Internal.bankLimitCalc = Internal.bankLimitAuto;
+			Internal.bankLimit.setValue(Internal.bankLimitCalc);
 		} else {
-			Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
-			Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
-			if (Input.bankLimitSwTemp == 0) {
+			if (Output.latTemp == 2 or Output.latTemp == 4) {
+				Radio.locDeflTemp[Internal.radioSelTemp] = abs(Radio.locDefl[Internal.radioSelTemp].getValue());
+				if (Radio.locDeflTemp[Internal.radioSelTemp] >= 0.105) {
+					Internal.bankLimitCalc = 30;
+				} else if (Radio.locDeflTemp[Internal.radioSelTemp] < 0.1 and abs(Internal.navCourseTrackErrorDeg[Internal.radioSelTemp].getValue()) < 5 and abs(Misc.rollDeg.getValue()) < 10) {
+					if (Position.gearAglFt.getValue() <= 200) {
+						Internal.bankLimitCalc = 5;
+					} else if (Internal.bankLimitCalc != 5) { # It does not go from 5 to 10, ever
+						Internal.bankLimitCalc = 10;
+					}
+				}
+			} else if (Output.latTemp == 1) {
+				#if (FMS using curved-patch transitions or holding patterns or procedure turns) {
+					#Internal.bankLimitAuto = fms.Internal.bankAngle2.getValue();
+				#} else {
+					Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+				#}
 				Internal.bankLimitCalc = Internal.bankLimitAuto;
 			} else {
-				Internal.bankLimitCalc = math.clamp(Internal.bankLimitMax[Input.bankLimitSwTemp], Internal.bankLimitAuto * -1, Internal.bankLimitAuto);
+				Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
+				Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+				if (Input.bankLimitSwTemp == 0) {
+					Internal.bankLimitCalc = Internal.bankLimitAuto;
+				} else {
+					Internal.bankLimitCalc = Internal.bankLimitMax[Input.bankLimitSwTemp];
+				}
+			}
+			
+			Internal.bankAngleVss = fms.Internal.bankAngleVss.getValue();
+			if (Internal.bankAngleVss < Internal.bankLimitCalc) {
+				Internal.bankLimit.setValue(Internal.bankAngleVss);
+			} else {
+				Internal.bankLimit.setValue(Internal.bankLimitCalc);
 			}
 		}
-		Internal.bankLimit.setValue(Internal.bankLimitCalc);
 	},
 	activateLnav: func() {
 		if (Output.lat.getValue() != 1) {
