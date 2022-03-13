@@ -651,56 +651,6 @@
 	</filter>
 	
 	<filter>
-		<name>Vertical Speed Filter</name>
-		<type>noise-spike</type>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<input>
-			<condition>
-				<and>
-					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-			<property>/it-autoflight/input/vs</property>
-		</input>
-		<input>/it-autoflight/internal/vert-speed-fpm</input>
-		<output>/it-autoflight/internal/vs</output>
-		<max-rate-of-change>
-			<condition>
-				<and>
-					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>0</value>
-					</equals>
-				</and>
-			</condition>
-			<value>300</value>
-		</max-rate-of-change>
-		<max-rate-of-change>10000</max-rate-of-change>
-	</filter>
-	
-	<filter>
 		<name>VS Abs</name>
 		<type>gain</type>
 		<gain>1.0</gain>

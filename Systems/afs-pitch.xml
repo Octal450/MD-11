@@ -23,6 +23,54 @@
 		<max>/it-autoflight/internal/max-vs</max>
 	</filter>
 	
+	<filter>
+		<name>Vertical Speed FPM Filter</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/it-autoflight/input/vs</property>
+		</input>
+		<input>/it-autoflight/internal/vert-speed-fpm</input>
+		<output>/it-autoflight/internal/target-fpm-vs</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>300</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10000</max-rate-of-change>
+	</filter>
+	
 	<logic>
 		<input>
 			<and>
@@ -172,19 +220,6 @@
 		<output>/it-autoflight/internal/target-fpm-flch</output>
 	</filter>
 	
-	<logic>
-		<input>
-			<and>
-				<property>/it-autoflight/output/apfd-on</property>
-				<equals>
-					<property>/it-autoflight/output/vert</property>
-					<value>5</value>
-				</equals>
-			</and>
-		</input>
-		<output>/it-autoflight/internal/fpa-active</output>
-	</logic>
-	
 	<filter>
 		<name>IT-CONTROLLER: FPA</name>
 		<type>gain</type>
@@ -237,7 +272,18 @@
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<property>/it-autoflight/internal/fpa-active</property>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>5</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
 				</and>
 			</condition>
 			<property>/it-autoflight/internal/target-fpm-fpa-raw</property>
@@ -248,7 +294,18 @@
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<property>/it-autoflight/internal/fpa-active</property>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>5</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
 				</and>
 			</condition>
 			<value>300</value>
@@ -389,7 +446,7 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/internal/vs</property>
+			<property>/it-autoflight/internal/target-fpm-vs</property>
 		</reference>
 		<reference>
 			<condition>
