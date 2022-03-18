@@ -242,22 +242,18 @@
 		<multiplay n="0">
 			<generic n="0">
 				<bool n="0" alias="/services/chocks/enable"/>
-				<float n="0" alias="/gear/gear[0]/compression-norm"/>
-				<float n="1" alias="/gear/gear[1]/compression-norm"/>
-				<float n="2" alias="/gear/gear[2]/compression-norm"/>
-				<float n="3" alias="/gear/gear[3]/compression-norm"/>
+				<float n="0" alias="/gear/gear[0]/rollspeed-ms"/>
+				<float n="1" alias="/gear/gear[1]/rollspeed-ms"/>
+				<float n="2" alias="/gear/gear[2]/rollspeed-ms"/>
+				<float n="3" alias="/gear/gear[3]/rollspeed-ms"/>
 				<float n="4" alias="/gear/gear[1]/angle-deg"/>
 				<float n="5" alias="/gear/gear[2]/angle-deg"/>
 				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
 				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
 				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
 				<float n="10" alias="/gear/gear[0]/steering-norm"/>
-				<float n="11" alias="/gear/gear[0]/rollspeed-ms"/>
-				<float n="12" alias="/gear/gear[1]/rollspeed-ms"/>
-				<float n="13" alias="/gear/gear[2]/rollspeed-ms"/>
-				<float n="14" alias="/gear/gear[3]/rollspeed-ms"/>
-				<float n="15" alias="/fdm/jsbsim/fcs/slat-pos-norm"/>
-				<float n="16" alias="/controls/flight/wingflex"/>
+				<float n="11" alias="/fdm/jsbsim/fcs/slat-pos-norm"/>
+				<float n="12" alias="/controls/flight/wingflex"/>
 				<int n="0" alias="/sim/model/lights/strobe/state"/>
 				<int n="1" alias="/sim/model/lights/beacon/state"/>
 				<int n="2" alias="/controls/lighting/landing-light-n"/>

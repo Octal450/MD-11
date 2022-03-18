@@ -409,7 +409,7 @@
 		<object-name>Rearnav.1</object-name>
 		<object-name>Rearnav.1ALS</object-name>
 		<object-name>fueldump.l</object-name>
-		<property>sim/multiplay/generic/float[16]</property>
+		<property>sim/multiplay/generic/float[12]</property>
 		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -442,7 +442,7 @@
 		<object-name>Rearnav.1</object-name>
 		<object-name>Rearnav.1ALS</object-name>
 		<object-name>fueldump.l</object-name>
-		<property>sim/multiplay/generic/float[16]</property>
+		<property>sim/multiplay/generic/float[12]</property>
 		<factor>-0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -488,7 +488,7 @@
 		<object-name>Rearnav.2</object-name>
 		<object-name>Rearnav.2ALS</object-name>
 		<object-name>fueldump.r</object-name>
-		<property>sim/multiplay/generic/float[16]</property>
+		<property>sim/multiplay/generic/float[12]</property>
 		<factor>0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -520,7 +520,7 @@
 		<object-name>Rearnav.2</object-name>
 		<object-name>Rearnav.2ALS</object-name>
 		<object-name>fueldump.r</object-name>
-		<property>sim/multiplay/generic/float[16]</property>
+		<property>sim/multiplay/generic/float[12]</property>
 		<factor>0.000005</factor>
 		<axis>
 			<x>1</x>
@@ -1107,7 +1107,7 @@
 		<object-name>slat.1.part3</object-name>
 		<object-name>slat.1.part2</object-name>
 		<object-name>slat.1.part1</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-0.8</factor>
 		<axis>
 			<x>1</x>
@@ -1122,7 +1122,7 @@
 		<object-name>slat.1.part3</object-name>
 		<object-name>slat.1.part2</object-name>
 		<object-name>slat.1.part1</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>31</factor>
 		<axis>
 			<x1-m>0.9383</x1-m>
@@ -1139,7 +1139,7 @@
 		<type>translate</type>
 		<object-name>slat.2</object-name>
 		<object-name>slat.2.2</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-0.8</factor>
 		<axis>
 			<x>1</x>
@@ -1153,7 +1153,7 @@
 		<type>rotate</type>
 		<object-name>slat.2</object-name>
 		<object-name>slat.2.2</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>31</factor>
 		<axis>
 			<x1-m>-3.1602</x1-m>
@@ -1170,7 +1170,7 @@
 		<type>translate</type>
 		<object-name>slat.3</object-name>
 		<object-name>slat.3.2</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-0.8</factor>
 		<axis>
 			<x>1</x>
@@ -1184,7 +1184,7 @@
 		<type>rotate</type>
 		<object-name>slat.3</object-name>
 		<object-name>slat.3.2</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-31</factor>
 		<axis>
 			<x1-m>-3.1749</x1-m>
@@ -1202,7 +1202,7 @@
 		<object-name>slat.4.part3</object-name>
 		<object-name>slat.4.part2</object-name>
 		<object-name>slat.4.part1</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-0.8</factor>
 		<axis>
 			<x>1</x>
@@ -1217,7 +1217,7 @@
 		<object-name>slat.4.part3</object-name>
 		<object-name>slat.4.part2</object-name>
 		<object-name>slat.4.part1</object-name>
-		<property>sim/multiplay/generic/float[15]</property>
+		<property>sim/multiplay/generic/float[11]</property>
 		<factor>-31</factor>
 		<axis>
 			<x1-m>0.9383</x1-m>
@@ -1666,7 +1666,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres</object-name>
-		<property>sim/multiplay/generic/float[11]</property>
+		<property>sim/multiplay/generic/float[0]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -1852,7 +1852,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.left.front</object-name>
-		<property>sim/multiplay/generic/float[12]</property>
+		<property>sim/multiplay/generic/float[1]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -1869,7 +1869,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.left.back</object-name>
-		<property>sim/multiplay/generic/float[12]</property>
+		<property>sim/multiplay/generic/float[1]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -2073,7 +2073,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.right.front</object-name>
-		<property>sim/multiplay/generic/float[13]</property>
+		<property>sim/multiplay/generic/float[2]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -2090,7 +2090,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.right.back</object-name>
-		<property>sim/multiplay/generic/float[13]</property>
+		<property>sim/multiplay/generic/float[2]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -2352,7 +2352,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.central</object-name>
-		<property>sim/multiplay/generic/float[14]</property>
+		<property>sim/multiplay/generic/float[3]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
