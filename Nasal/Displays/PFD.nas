@@ -45,6 +45,7 @@ var Value = {
 	},
 	Ai: {
 		bankLimit: 0,
+		center: nil,
 		pitch: 0,
 		roll: 0,
 		stallAlphaDeg: 0,
@@ -190,6 +191,7 @@ var canvasBase = {
 			}
 		}
 		
+		Value.Ai.center = me["AI_center"].getCenter();
 		me.aiHorizonTrans = me["AI_horizon"].createTransform();
 		me.aiHorizonRot = me["AI_horizon"].createTransform();
 		
@@ -683,10 +685,8 @@ var canvasBase = {
 		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
 		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug.getValue();
 		
-		AICenter = me["AI_center"].getCenter();
-		
 		me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 10.246);
-		me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, AICenter);
+		me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 		
 		me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 7, 0);
 		me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
@@ -702,7 +702,7 @@ var canvasBase = {
 		
 		if (afs.Input.vsFpa.getBoolValue()) {
 			me.AI_fpv_trans.setTranslation(math.clamp(Value.Hdg.track, -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
-			me.AI_fpv_rot.setRotation(-Value.Ai.roll * D2R, AICenter);
+			me.AI_fpv_rot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			me["AI_fpv"].setRotation(Value.Ai.roll * D2R); # It shouldn't be rotated, only the axis should be
 			me["AI_fpv"].show();
 		} else {
@@ -711,7 +711,7 @@ var canvasBase = {
 		
 		if (Value.Afs.vert == 5) {
 			me.AI_fpd_trans.setTranslation(0, (Value.Ai.pitch - afs.Input.fpa.getValue()) * 10.246);
-			me.AI_fpd_rot.setRotation(-Value.Ai.roll * D2R, AICenter);
+			me.AI_fpd_rot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			me["AI_fpd"].show();
 		} else {
 			me["AI_fpd"].hide();

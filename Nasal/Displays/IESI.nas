@@ -6,6 +6,7 @@ var iesi = nil;
 
 var Value = {
 	Ai: {
+		center: nil,
 		pitch: 0,
 		roll: 0,
 	},
@@ -73,6 +74,7 @@ var canvasBase = {
 			}
 		}
 		
+		Value.Ai.center = me["AI_center"].getCenter();
 		me.aiHorizonTrans = me["AI_horizon"].createTransform();
 		me.aiHorizonRot = me["AI_horizon"].createTransform();
 		
@@ -143,10 +145,8 @@ var canvasIesi = {
 			Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 			
-			AICenter = me["AI_center"].getCenter();
-			
 			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.668);
-			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, AICenter);
+			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			
 			me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
 			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
