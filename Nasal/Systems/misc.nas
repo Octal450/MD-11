@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 Master System
+# McDonnell Douglas MD-11 Misc Systems
 # Copyright (c) 2022 Josh Davidson (Octal450)
 
 # APU
