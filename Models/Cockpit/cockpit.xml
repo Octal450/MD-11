@@ -373,7 +373,7 @@
 		<object-name>yoke.nosedown</object-name>
 		<object-name>yoke.autodsg</object-name>
 		<property>fdm/jsbsim/hydraulics/aileron-yoke</property>
-		<factor>-90</factor>
+		<factor>90</factor>
 		<center>
 			<x-m>-27.2846</x-m>
 			<y-m>-0.524</y-m>
@@ -474,7 +474,7 @@
 			<z-m>6.9244</z-m>
 		</center>
 		<axis>
-			<x>-1</x>
+			<x>1</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>
