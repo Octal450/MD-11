@@ -351,7 +351,6 @@
 		<object-name>yoke.noseup</object-name>
 		<object-name>yoke.nosedown</object-name>
 		<object-name>yoke.autodsg</object-name>
-		<object-name>yoke.piece</object-name>
 		<property>fdm/jsbsim/hydraulics/elevator-yoke</property>
 		<factor>-15</factor>
 		<center>
@@ -372,7 +371,6 @@
 		<object-name>yoke.noseup</object-name>
 		<object-name>yoke.nosedown</object-name>
 		<object-name>yoke.autodsg</object-name>
-		<object-name>autopilot_disengage</object-name>
 		<property>fdm/jsbsim/hydraulics/aileron-yoke</property>
 		<factor>-90</factor>
 		<center>
@@ -468,7 +466,7 @@
 		<object-name>yoke.nosedown.right</object-name>
 		<object-name>yoke.autodsg.right</object-name>
 		<property>fdm/jsbsim/hydraulics/aileron-yoke</property>
-		<factor>90</factor>
+		<factor>-90</factor>
 		<center>
 			<x-m>-27.2846</x-m>
 			<y-m>0.524</y-m>
