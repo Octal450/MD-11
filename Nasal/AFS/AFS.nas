@@ -149,11 +149,11 @@ var Internal = {
 	altDiff: 0,
 	altTemp: 10000,
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
-	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 25, "DOUBLE"),
+	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 0, "DOUBLE"),
 	bankLimitAuto: 0,
-	bankLimitCalc: 25,
-	bankLimitMax: [25, 5, 10, 15, 20, 25],
-	bankAngleVss: 5,
+	bankLimitCalc: 0,
+	bankLimitMax: [5, 10, 15, 20, 25],
+	bankAngleVss: 0,
 	canAutoland: 0,
 	captVs: 0,
 	driftAngle: props.globals.initNode("/it-autoflight/internal/drift-angle-deg", 0, "DOUBLE"),
@@ -1091,6 +1091,7 @@ var ITAF = {
 		Output.spdProtTemp = Output.spdProt.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
+		
 		if (Output.athr.getBoolValue() and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
 			Output.thrMode.setValue(1);
 			Text.thr.setValue("RETARD");
@@ -1136,6 +1137,7 @@ var ITAF = {
 	bankLimit: func() {
 		Output.latTemp = Output.lat.getValue();
 		Internal.radioSelTemp = Internal.radioSel.getValue();
+		
 		if (Text.vert.getValue() == "G/A CLB" or Output.latTemp == 5) {
 			Internal.bankLimitCalc = 10;
 			Internal.bankLimit.setValue(Internal.bankLimitCalc);
@@ -1161,10 +1163,11 @@ var ITAF = {
 			} else {
 				Input.bankLimitSwTemp = Input.bankLimitSw.getValue();
 				Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+				
 				if (Input.bankLimitSwTemp == 0) {
 					Internal.bankLimitCalc = Internal.bankLimitAuto;
 				} else {
-					Internal.bankLimitCalc = Internal.bankLimitMax[Input.bankLimitSwTemp];
+					Internal.bankLimitCalc = Internal.bankLimitMax[Input.bankLimitSwTemp - 1];
 				}
 			}
 			
