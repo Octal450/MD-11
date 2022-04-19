@@ -76,6 +76,10 @@ var Fdm = {
 			Flap: {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
 			},
+			Lsas: {
+				autotrimInhibit: props.globals.getNode("/fdm/jsbsim/fcc/lsas/autotrim-inhibit"),
+			},
+			pitchTrimSpeed: props.globals.getNode("/fdm/jsbsim/fcc/pitch-trim-speed"),
 			stallAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-alpha-deg"),
 			stallWarnAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-warn-alpha-deg"),
 		},

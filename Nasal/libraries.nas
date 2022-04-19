@@ -349,7 +349,8 @@ controls.elevatorTrim = func(d) {
 		afs.ITAF.ap2Master(0);
 	}
 	if (systems.HYD.Psi.sys1.getValue() >= 2200 or systems.HYD.Psi.sys3.getValue() >= 2200) {
-		slewProp("/controls/flight/elevator-trim", d * 0.0193548); # 0.0162 is the rate in JSB normalized (0.3 / 15.5)
+		slewProp("/controls/flight/elevator-trim", d * (pts.Fdm.JSBsim.Fcc.pitchTrimSpeed.getValue() / 15.5)); # Rate normalized by max degrees (rate / 15.5)
+		pts.Fdm.JSBsim.Fcc.Lsas.autotrimInhibit.setValue(1); # Inhibit autotrim for a few seconds
 	}
 }
 

@@ -8,6 +8,7 @@
 	<property value="0">fcc/elevator-feel/manual</property>
 	<property value="0">fcc/elevator-feel/speed</property>
 	<property value="0">fcc/flap/cmd-deg</property>
+	<property value="0">fcc/lsas/autotrim-inhibit</property>
 	<property value="0">fcc/lsas/pah/output</property>
 	<property value="0">fcc/lsas/spd-prot/output</property>
 	<property value="0">fcc/slat/cmd-deg</property>
@@ -86,6 +87,14 @@
 			<input>fcc/stall-alpha-deg</input>
 			<gain>0.75</gain> <!-- 75% -->
 		</pure_gain>
+		
+		<switch name="fcc/pitch-trim-speed">
+			<default value="0.325"/>
+			<test logic="OR" value="0.175">
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 249.5
+				/instrumentation/altimeter/indicated-altitude-ft ge 32950
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -927,9 +936,34 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="fcc/lsas/autotrim-inhibit-tie"> <!-- Resettable timer -->
+			<function>
+				<ifthen>
+					<gt>
+						<property>fcc/lsas/autotrim-inhibit</property>
+						<value>0</value>
+					</gt>
+					<difference>
+						<property>fcc/lsas/autotrim-inhibit</property>
+						<product>
+							<property>simulation/channel-dt</property>
+							<value>0.75</value>
+						</product>
+					</difference>
+					<property>fcc/lsas/autotrim-inhibit</property>
+				</ifthen>
+			</function>
+			<output>fcc/lsas/autotrim-inhibit</output>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
 		<switch name="fcc/lsas/autotrim-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
+				fcc/lsas/autotrim-inhibit eq 0
 				fcc/lsas/pah/active eq 1
 				fcc/lsas/pah/output ge 0.02
 				/controls/flight/elevator-trim le 0.064516
@@ -937,22 +971,9 @@
 				attitude/roll-rad le 0.0890118
 			</test>
 			<test logic="AND" value="2">
+				fcc/lsas/autotrim-inhibit eq 0
 				fcc/lsas/pah/active eq 1
 				fcc/lsas/pah/output le -0.02
-				/controls/flight/elevator-trim ge -1.0
-				attitude/roll-rad ge -0.0890118
-				attitude/roll-rad le 0.0890118
-			</test>
-			<test logic="AND" value="3">
-				fcc/lsas/prd/active eq 1
-				fcc/elevator-feel/output ge 0.15
-				/controls/flight/elevator-trim le 0.064516
-				attitude/roll-rad ge -0.0890118
-				attitude/roll-rad le 0.0890118
-			</test>
-			<test logic="AND" value="4">
-				fcc/lsas/prd/active eq 1
-				fcc/elevator-feel/output le -0.15
 				/controls/flight/elevator-trim ge -1.0
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
@@ -990,34 +1011,6 @@
 						</table>
 						<value>0.0</value>
 					</ifthen>
-					<ifthen>
-						<eq>
-							<property>fcc/lsas/autotrim-switch</property>
-							<value>3</value>
-						</eq>
-						<table>
-							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
-							<tableData>
-								0.1  0.00001
-								0.8  0.00005
-							</tableData>
-						</table>
-						<value>0.0</value>
-					</ifthen>
-					<ifthen>
-						<eq>
-							<property>fcc/lsas/autotrim-switch</property>
-							<value>4</value>
-						</eq>
-						<table>
-							<independentVar lookup="row">fcc/elevator-feel/output</independentVar>
-							<tableData>
-								-0.8 -0.00005
-								-0.1 -0.00001
-							</tableData>
-						</table>
-						<value>0.0</value>
-					</ifthen>
 				</sum>
 			</function>
 		</fcs_function>
@@ -1029,11 +1022,11 @@
 					<property>fcc/lsas/autotrim-offset</property>
 				</sum>
 			</function>
+			<output>/controls/flight/elevator-trim</output>
 			<clipto>
 				<min>-1.00</min>
 				<max>0.064516</max>
 			</clipto>
-			<output>/controls/flight/elevator-trim</output>
 		</fcs_function>
 	
 	</channel>
