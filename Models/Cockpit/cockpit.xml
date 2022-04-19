@@ -531,10 +531,24 @@
 		</axis>
 	</animation>
 	
+	<!-- Light Shades -->
+	<animation>
+		<type>pick</type>
+		<object-name>lightshade.left.handle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/cockpit/shade-left</property>
+			</binding>
+		</action>
+	</animation>
+	
 	<animation>
 		<type>textranslate</type>
-		<object-name>lightprotect.left</object-name>
-		<property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+		<object-name>lightshade.left</object-name>
+		<property>controls/cockpit/shade-left-pos</property>
 		<factor>0.068</factor>
 		<axis>
 			<x>-1</x>
@@ -542,11 +556,10 @@
 		</axis>
 	</animation>
 	
-	<!-- Light Protect -->
-	<!--animation>
+	<animation>
 		<type>translate</type>
-		<object-name>lightprotect.left.2</object-name>
-		<property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+		<object-name>lightshade.left.handle</object-name>
+		<property>controls/cockpit/shade-left-pos</property>
 		<factor>0.68</factor>
 		<axis>
 			<x1-m>-26.6086</x1-m>
@@ -560,9 +573,9 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>lightprotect.left.2</object-name>
-		<property>/sim/model/door-positions/leftlightprotect/position-norm</property>
-		<factor>-7</factor>
+		<object-name>lightshade.left.handle</object-name>
+		<property>controls/cockpit/shade-left-pos</property>
+		<factor>-6.2</factor>
 		<center>
 			<x-m>-26.6276</x-m>
 			<y-m>-1.1918</y-m>
@@ -577,8 +590,25 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>lightprotect.left.2</object-name>
-		<property>/sim/model/door-positions/leftlightprotect/position-norm</property>
+		<object-name>lightshade.left.handle</object-name>
+		<property>controls/cockpit/shade-left-pos</property>
+		<factor>3</factor>
+		<center>
+			<x-m>-26.6276</x-m>
+			<y-m>-1.1918</y-m>
+			<z-m>7.2539</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>lightshade.left.handle</object-name>
+		<property>controls/cockpit/shade-left-pos</property>
 		<factor>-17</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -590,7 +620,97 @@
 			<y>0</y>
 			<z>1</z>
 		</axis>
-	</animation-->
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>lightshade.right.handle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/cockpit/shade-right</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>lightshade.right</object-name>
+		<property>controls/cockpit/shade-right-pos</property>
+		<factor>0.068</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>lightshade.right.handle</object-name>
+		<property>controls/cockpit/shade-right-pos</property>
+		<factor>0.68</factor>
+		<axis>
+			<x1-m>-26.6086</x1-m>
+			<y1-m>1.2088</y1-m>
+			<z1-m>7.2554</z1-m>
+			<x2-m>-27.2278</x2-m>
+			<y2-m>0.84</y2-m>
+			<z2-m>7.2642</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>lightshade.right.handle</object-name>
+		<property>controls/cockpit/shade-right-pos</property>
+		<factor>6.2</factor>
+		<center>
+			<x-m>-26.6276</x-m>
+			<y-m>1.1918</y-m>
+			<z-m>7.2539</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>lightshade.right.handle</object-name>
+		<property>controls/cockpit/shade-right-pos</property>
+		<factor>3</factor>
+		<center>
+			<x-m>-26.6276</x-m>
+			<y-m>1.1918</y-m>
+			<z-m>7.2539</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>lightshade.right.handle</object-name>
+		<property>controls/cockpit/shade-right-pos</property>
+		<factor>17</factor>
+		<center>
+			<x-m>-26.6276</x-m>
+			<y-m>1.1918</y-m>
+			<z-m>7.2539</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
 	
 	<!-- No button lights without power! -->
 	<animation>

@@ -16,7 +16,7 @@
 		<type>rotate</type>
 		<object-name>armrest.left</object-name>
 		<object-name>armrest.right</object-name>
-		<property>sim/model/armrest-rotate</property>
+		<property>controls/cockpit/armrest-rotate</property>
 		<interpolation>
 			<entry><ind>1.0</ind><dep> 0</dep></entry>
 			<entry><ind>0.2</ind><dep>96</dep></entry>
@@ -36,7 +36,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>armrest.left</object-name>
-		<property>sim/model/armrest-translate</property>
+		<property>controls/cockpit/armrest-translate</property>
 		<interpolation>
 			<entry><ind>0.2</ind><dep>0.000</dep></entry>
 			<entry><ind>0.0</ind><dep>0.016</dep></entry>
@@ -51,7 +51,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>armrest.right</object-name>
-		<property>sim/model/armrest-translate</property>
+		<property>controls/cockpit/armrest-translate</property>
 		<interpolation>
 			<entry><ind>0.2</ind><dep>0.000</dep></entry>
 			<entry><ind>0.0</ind><dep>0.016</dep></entry>
@@ -71,7 +71,7 @@
 			<button>0</button>
 			<binding>
 				<command>property-toggle</command>
-				<property>sim/model/armrest</property>
+				<property>controls/cockpit/armrest</property>
 			</binding>
 		</action>
 	</animation>

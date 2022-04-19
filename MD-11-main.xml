@@ -538,6 +538,12 @@
 			<brake-left type="double">0</brake-left>
 			<brake-right type="double">0</brake-right>
 		</autobrake>
+		<cockpit n="0">
+			<armrest type="bool">1</armrest>
+			<compass type="bool">0</compass>
+			<shade-left type="bool">0</shade-left>
+			<shade-right type="bool">0</shade-right>
+		</cockpit>
 		<electrical n="0">
 			<switches n="0">
 				<ac-tie-1 type="bool">1</ac-tie-1>
@@ -743,7 +749,6 @@
 			<annun-test type="bool">0</annun-test>
 			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
 			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
-			<compass type="bool">0</compass>
 			<minimums type="int">200</minimums>
 			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>

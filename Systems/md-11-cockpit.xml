@@ -110,8 +110,8 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<pure_gain name="/sim/model/armrest-rotate-cmd">
-			<input>/sim/model/armrest</input>
+		<pure_gain name="/controls/cockpit/armrest-rotate-cmd">
+			<input>/controls/cockpit/armrest</input>
 			<gain>1.0</gain>
 			<clipto>
 				<min>0.2</min>
@@ -119,24 +119,34 @@
 			</clipto>
 		</pure_gain>
 		
-		<pure_gain name="/sim/model/armrest-translate-cmd">
-			<input>/sim/model/armrest</input>
+		<pure_gain name="/controls/cockpit/armrest-translate-cmd">
+			<input>/controls/cockpit/armrest</input>
 			<gain>0.2</gain>
 		</pure_gain>
 		
-		<lag_filter name="/sim/model/armrest-rotate">
-			<input>/sim/model/armrest-rotate-cmd</input>
-			<c1>20</c1>
+		<lag_filter name="/controls/cockpit/armrest-rotate">
+			<input>/controls/cockpit/armrest-rotate-cmd</input>
+			<c1>10</c1>
 		</lag_filter>
 		
-		<lag_filter name="/sim/model/armrest-translate">
-			<input>/sim/model/armrest-translate-cmd</input>
-			<c1>20</c1>
+		<lag_filter name="/controls/cockpit/armrest-translate">
+			<input>/controls/cockpit/armrest-translate-cmd</input>
+			<c1>10</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/switches/compass-rotate">
-			<input>/controls/switches/compass</input>
-			<c1>20</c1>
+		<lag_filter name="/controls/cockpit/compass-rotate">
+			<input>/controls/cockpit/compass</input>
+			<c1>10</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/shade-left-pos">
+			<input>/controls/cockpit/shade-left</input>
+			<c1>10</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/shade-right-pos">
+			<input>/controls/cockpit/shade-right</input>
+			<c1>10</c1>
 		</lag_filter>
 	
 	</channel>
