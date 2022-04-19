@@ -87,7 +87,7 @@ var canvasEng = {
 	getKeys: func() {
 		return ["GEGroup", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilTemp1", "OilTemp1-needle", "OilTemp2", "OilTemp2-needle", "OilTemp3", "OilTemp3-needle", "OilQty1", "OilQty1-needle", "OilQty1-cline",
 		"OilQty1-box", "OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty2-box", "OilQty3", "OilQty3-needle", "OilQty3-cline", "OilQty3-box", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands",
-		"GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit"];
+		"GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit", "CabinRateDn", "CabinRateUp"];
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "GE") {
@@ -99,6 +99,8 @@ var canvasEng = {
 		}
 		
 		# Unsimulated stuff, fix later
+		me["CabinRateDn"].hide();
+		me["CabinRateUp"].hide();
 		me["StabBox"].hide();
 	},
 	update: func() {

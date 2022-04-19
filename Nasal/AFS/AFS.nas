@@ -173,6 +173,7 @@ var Internal = {
 	lnavEngageFt: 100,
 	mach: props.globals.initNode("/it-autoflight/internal/mach", 0.5, "DOUBLE"),
 	machTemp: 0.5,
+	machSwitchover: 0,
 	minVs: props.globals.initNode("/it-autoflight/internal/min-vs", -500, "INT"),
 	maxVs: props.globals.initNode("/it-autoflight/internal/max-vs", 500, "INT"),
 	navCourseTrackErrorDeg: [props.globals.initNode("/it-autoflight/internal/nav1-course-track-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav2-course-track-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav3-course-track-error-deg", 0, "DOUBLE")],
@@ -785,6 +786,23 @@ var ITAF = {
 			Output.spdProt.setValue(0);
 			Internal.spdProtOnPitch = 0;
 		}
+		
+		# Mach Switchover
+		#if (notFMSSpeed) {
+			if (Internal.machSwitchover) {
+				if (Position.indicatedAltitudeFt.getValue() < 26590) {
+					Internal.machSwitchover = 0;
+					if (Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(0); # Only if IAS not already preselected
+					me.spdPull();
+				}
+			} else {
+				if (Position.indicatedAltitudeFt.getValue() >= 26590) {
+					Internal.machSwitchover = 1;
+					if (!Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(1); # Only if mach not already preselected
+					me.spdPull();
+				}
+			}
+		#}
 	},
 	ap1Master: func(s) {
 		if (s == 1) {

@@ -92,7 +92,7 @@
 			<default value="0.325"/>
 			<test logic="OR" value="0.175">
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 249.5
-				/instrumentation/altimeter/indicated-altitude-ft ge 32950
+				/instrumentation/altimeter/indicated-altitude-ft ge 32990
 			</test>
 		</switch>
 	
