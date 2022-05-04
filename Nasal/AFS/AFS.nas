@@ -790,13 +790,13 @@ var ITAF = {
 		# Mach Switchover
 		#if (notFMSSpeed) {
 			if (Internal.machSwitchover) {
-				if (Position.indicatedAltitudeFt.getValue() < 26590) {
+				if (Position.indicatedAltitudeFt.getValue() < 25990) {
 					Internal.machSwitchover = 0;
 					if (Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(0); # Only if IAS not already preselected
 					me.spdPull();
 				}
 			} else {
-				if (Position.indicatedAltitudeFt.getValue() >= 26590) {
+				if (Position.indicatedAltitudeFt.getValue() >= 25990) {
 					Internal.machSwitchover = 1;
 					if (!Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(1); # Only if mach not already preselected
 					me.spdPull();
