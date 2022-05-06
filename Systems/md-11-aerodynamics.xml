@@ -7,7 +7,6 @@
 <aerodynamics>
 	
 	<property value="0">ice/wing</property>
-	<property value="0">test</property>
 	
 	<function name="aero/function/kCLge">
 		<description>Lift factor due to ground effect</description>
