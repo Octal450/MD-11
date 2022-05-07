@@ -62,13 +62,6 @@
 							<dialog-name>acconfig-main</dialog-name>
 						</binding>
 					</item>
-					<item>
-						<label>About This Aircraft</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>acconfig-about</dialog-name>
-						</binding>
-					</item>
 				</menu>
 				<menu n="102">
 					<label>FMS</label>
@@ -1146,6 +1139,14 @@
 						setprop("/controls/engines/engine[1]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01);
 						setprop("/controls/engines/engine[2]/throttle", getprop("/controls/engines/engine[1]/throttle") + 0.01); # Not a typo, always use engine[1] as a reference
 					</script>
+				</binding>
+			</key>
+			<key n="67">
+				<name>C</name>
+				<desc>Open checklist dialog</desc>
+				<binding>
+					<command>dialog-show</command>
+					<dialog-name>checklist</dialog-name>
 				</binding>
 			</key>
 			<key n="68">

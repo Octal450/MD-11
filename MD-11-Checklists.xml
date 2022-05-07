@@ -1,39 +1,47 @@
 <?xml version="1.0"?>
 
 <!-- Copyright (c) 2022 Josh Davidson (Octal450) -->
+<!-- Source: FedEx MD-11 Checklists -->
 
 <PropertyList>
 	
     <checklist>
-		<title>COCKPIT PREPARATION</title>
+		<title>BEFORE START</title>
 		<page>
 			<item>
-				<name>SD STATUS PAGE</name>
+				<name>AIRCRAFT LOG</name>
+				<value>REVIEWED</value>
+			</item>
+			<item>
+				<name>FUEL QUANTITY</name>
 				<value>CHECKED</value>
 			</item>
 			<item>
-				<name>HYDRAULICS PANEL</name>
-				<value>AUTO/MAN CHECKED</value>
-			</item>
-			<item>
-				<name>FUEL PANEL</name>
-				<value>AUTO/MAN CHECKED</value>
-			</item>
-			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>NAV/LOGO LIGHT ON, SET</value>
-			</item>
-			<item>
-				<name>EVAC COMMAND</name>
-				<value>ARMED</value>
-			</item>
-			<item>
-				<name>OXYGEN SYS AND MASKS</name>
-				<value>CHECKED, 100%</value>
-			</item>
-			<item>
-				<name>T/O WARNING</name>
+				<name>OXYGEN PRESSURE</name>
 				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>IRS</name>
+				<value>ALIGNED</value>
+			</item>
+			<item>
+				<name>ALTIMETERS</name>
+				<value>SET</value>
+			</item>
+			<item>
+				<name>STATUS PAGE</name>
+				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>TAKEOFF WARNING</name>
+				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>RADAR</name>
+				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>------------------------------------------------------------</name>
 			</item>
 			<item>
 				<name>CONTINUED ON NEXT PAGE...</name>
@@ -42,46 +50,32 @@
 		</page>
 		<page>
 			<item>
-				<name>FUEL SWITCHES</name>
-				<value>OFF</value>
+				<name>CUSTOMS FORMS (IF REQUIRED)</name>
+				<value>ON BOARD</value>
 			</item>
 			<item>
-				<name>TRIM</name>
-				<value>SET, CHECKED</value>
+				<name>SEATBELT &amp; NO SMOKING SIGNS</name>
+				<value>ON</value>
 			</item>
 			<item>
-				<name>FMS</name>
-				<value>SET, CHECKED</value>
+				<name>HYD AUX PUMP 1</name>
+				<value>ON</value>
 			</item>
 			<item>
-				<name>FLAPS T/O SEL</name>
-				<value>SET</value>
+				<name>TAKEOFF DATA</name>
+				<value>BRIEFED</value>
 			</item>
 			<item>
-				<name>FCP</name>
-				<value>SET</value>
+				<name>PARKING BRAKE</name>
+				<value>SET/RELEASED</value>
 			</item>
 			<item>
-				<name>IRS</name>
-				<value>TAXI</value>
+				<name>WINDOWS</name>
+				<value>CLOSED &amp; LOCKED</value>
 			</item>
 			<item>
-				<name>AUTOBRAKE</name>
-				<value>TO SET</value>
-			</item>
-		</page>
-    </checklist>
-	
-	<checklist>
-		<title>BEFORE START</title>
-		<page>
-			<item>
-				<name>DOORS / WINDOWS</name>
-				<value>CLOSED AND LOCKED</value>
-			</item>
-			<item>
-				<name>PARK BRAKE</name>
-				<value>AS REQ: SET OR OFF</value>
+				<name>DOORS</name>
+				<value>CLOSED</value>
 			</item>
 			<item>
 				<name>BEACON</name>
@@ -89,289 +83,428 @@
 			</item>
 			<item>
 				<name>IGNITION</name>
-				<value>A OR B, SET</value>
+				<value>A/B</value>
 			</item>
 			<item>
-				<name>FUEL PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>AIR MANUAL:</name>
+				<value> </value>
 			</item>
 			<item>
-				<name>AIR PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>     ISOL VALVES</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>     PACKS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>     BLEEDS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>FUEL MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     TANKS 1, 2, &amp; 3 PUMPS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>     L/R AUX TANK PUMPS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>     TAIL TANK TRANS PUMP</name>
+				<value>OFF</value>
 			</item>
 		</page>
     </checklist>
 	
-	<checklist>
+    <checklist>
 		<title>AFTER START</title>
 		<page>
 			<item>
-				<name>ANTI ICE</name>
-				<value>AS REQ</value>
-			</item>
-			<item>
-				<name>AIR PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>ANTI-ICE</name>
+				<value>OFF/ON</value>
 			</item>
 			<item>
 				<name>APU</name>
 				<value>OFF</value>
 			</item>
 			<item>
-				<name>HYD PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>ELEC PANEL</name>
+				<value>CHECKED</value>
 			</item>
 			<item>
-				<name>GROUND EQUIP / GEAR PINS</name>
-				<value>CLEAR, REMOVED</value>
+				<name>HYD MANUAL:</name>
+				<value> </value>
 			</item>
 			<item>
-				<name>CABIN</name>
-				<value>READY</value>
+				<name>     AUX PUMPS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>     TANKS 1, 2, &amp; 3 L PUMPS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>     TANKS 1, 2, &amp; 3 R PUMPS</name>
+				<value>CHECK ON</value>
+			</item>
+			<item>
+				<name>     TANKS 1, 2, &amp; 3 L PUMPS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>AIR MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     ISOL VALVES</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>     BLEEDS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>     PACKS</name>
+				<value>ON</value>
 			</item>
 		</page>
-    </checklist>
+	</checklist>
 	
-	<checklist>
-		<title>TAXI</title>
+    <checklist>
+		<title>BEFORE TAKEOFF</title>
 		<page>
 			<item>
 				<name>FLAPS</name>
-				<value>FLAPS SET ___</value>
+				<value>SET</value>
 			</item>
 			<item>
 				<name>SPOILERS</name>
 				<value>ARMED</value>
 			</item>
 			<item>
+				<name>AUTOBRAKES</name>
+				<value>T.O.</value>
+			</item>
+			<item>
 				<name>FLIGHT CONTROLS</name>
+				<value>FREE AND CORRECT</value>
+			</item>
+			<item>
+				<name>TRIM</name>
+				<value>ZERO, ZERO, SET</value>
+			</item>
+			<item>
+				<name>BRIEFING</name>
+				<value>COMPLETE</value>
+			</item>
+			<item>
+				<name>SEATBELT &amp; HARNESS</name>
+				<value>FASTENED</value>
+			</item>
+			<item>
+				<name>------------------------------------------------------------</name>
+			</item>
+			<item>
+				<name>HYD MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     1-3, 2-3 RMPS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>AIR MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     PACKS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>V SPEEDS</name>
 				<value>CHECKED</value>
 			</item>
 			<item>
-				<name>STAB TRIM</name>
-				<value>SET</value>
-			</item>
-			<item>
-				<name>T/O DATA</name>
-				<value>CONFIRM V1 __</value>
-				<value>CONFIRM VR __</value>
-				<value>CONFIRM V2 __</value>
-				<value>CONFIRMED, SET</value>
-			</item>
-		</page>
-    </checklist>
-	
-	<checklist>
-		<title>BEFORE TAKEOFF</title>
-		<page>
-			<item>
 				<name>EAD</name>
+				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>RADAR</name>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>FCP</name>
 				<value>SET</value>
 			</item>
 			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>LANDING, TURNOFF, HI-INT ON</value>
-			</item>
-			<item>
-				<name>AIR PANEL</name>
-				<value>AUTO / MAN SET</value>
-			</item>
-			<item>
-				<name>WX RADAR / TRANSPONDER</name>
-				<value>SET, SET</value>
+				<name>LIGHTS</name>
+				<value>AS REQUIRED</value>
 			</item>
 		</page>
-    </checklist>
+	</checklist>
 	
-	<checklist>
+    <checklist>
 		<title>AFTER TAKEOFF</title>
 		<page>
 			<item>
-				<name>GEAR AND GEAR LIGHTS</name>
-				<value>UP, OFF</value>
+				<name>LANDING GEAR</name>
+				<value>UP &amp; LIGHTS OUT</value>
 			</item>
 			<item>
-				<name>AIR PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>FLAPS &amp; SLATS</name>
+				<value>UP &amp; RETRACT</value>
 			</item>
 			<item>
 				<name>SPOILERS</name>
 				<value>DISARMED</value>
 			</item>
 			<item>
-				<name>AUTOBRAKE</name>
+				<name>AUTOBRAKES</name>
 				<value>OFF</value>
 			</item>
 			<item>
-				<name>FLAPS / SLATS</name>
-				<value>RETRACED</value>
-			</item>
-			<item>
-				<name>HYD PANEL</name>
-				<value>AUTO / MAN SET</value>
-			</item>
-			<item>
-				<name>FUEL PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>FLAP TAKEOFF SELECTOR</name>
+				<value>15</value>
 			</item>
 			<item>
 				<name>EAD</name>
 				<value>CHECKED</value>
 			</item>
 			<item>
-				<name>SEATBELTS</name>
-				<value>CHECKED, SET</value>
+				<name>HYD MANUAL:</name>
+				<value> </value>
 			</item>
 			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>LANDING LIGHTS ON, HI-INT ON, CHECKED</value>
+				<name>     1-3, 2-3 RMPS</name>
+				<value>OFF</value>
 			</item>
 			<item>
-				<name>ALTIMETER</name>
-				<value>____ SET / CROSSCHECKED</value>
+				<name>AIR MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     PACKS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>FUEL MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     L/R AUX FUEL PUMPS</name>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>     TAIL TANK TRANS PUMP</name>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>     FILL VALVES</name>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>     TANK 2 TRANS PUMP</name>
+				<value>OFF/ON</value>
 			</item>
 		</page>
-    </checklist>
+	</checklist>
 	
-	<checklist>
-		<title>APPROACH / DESCENT</title>
+    <checklist>
+		<title>IN RANGE</title>
 		<page>
 			<item>
-				<name>LANDING DATA</name>
-				<value>CONFIRM VREF ___</value>
-				<value>CHECKED, SET</value>
+				<name>ALTIMETERS</name>
+				<value>SET</value>
 			</item>
 			<item>
-				<name>ANTI-ICE</name>
-				<value>AS REQ</value>
+				<name>WINDSHIELD ANTI-ICE</name>
+				<value>ON</value>
 			</item>
 			<item>
-				<name>DH / MDA</name>
-				<value>____, SET</value>
+				<name>SEATBELT SIGN</name>
+				<value>ON</value>
 			</item>
 			<item>
-				<name>SEATBELTS</name>
-				<value>CHECKED, SET</value>
+				<name>SEATBELT &amp; HARNESS</name>
+				<value>FASTENED</value>
 			</item>
 			<item>
-				<name>ALTIMETER</name>
-				<value>____ SET / CROSSCHECKED</value>
+				<name>LIGHTS</name>
+				<value>AS REQUIRED</value>
 			</item>
 			<item>
-				<name>HYD PANEL</name>
-				<value>AUTO / MAN SET</value>
+				<name>STATUS PAGE</name>
+				<value>CHECKED</value>
 			</item>
 			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>LANDING LIGHTS ON, HI-INT ON, CHECKED</value>
+				<name>HYD MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     1-3, 2-3 RMPS</name>
+				<value>ON</value>
+			</item>
+			<item>
+				<name>FUEL MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     L/R AUX TANK PUMPS</name>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>     TAIL TANK TRANS PUMP</name>
+				<value>OFF/ON</value>
 			</item>
 		</page>
-    </checklist>
+	</checklist>
 	
-	<checklist>
+    <checklist>
+		<title>APPROACH</title>
+		<page>
+			<item>
+				<name>BRIEFING</name>
+				<value>COMPLETE</value>
+			</item>
+			<item>
+				<name>ALTIMETERS</name>
+				<value>SET</value>
+			</item>
+			<item>
+				<name>MINIMUMS/DH</name>
+				<value>SET</value>
+			</item>
+			<item>
+				<name>RADIOS</name>
+				<value>TUNED &amp; IDENTIFIED</value>
+			</item>
+		</page>
+	</checklist>
+	
+    <checklist>
+		<title>BEFORE LANDING</title>
+		<page>
+			<item>
+				<name>LIGHTS</name>
+				<value>AS REQUIRED</value>
+			</item>
+			<item>
+				<name>SPOILERS</name>
+				<value>ARMED</value>
+			</item>
+			<item>
+				<name>AUTOBRAKES</name>
+				<value>OFF/MIN/MED/MAX</value>
+			</item>
+			<item>
+				<name>LANDING GEAR</name>
+				<value>DOWN &amp; 4 GREEN</value>
+			</item>
+			<item>
+				<name>FLAPS</name>
+				<value>SET</value>
+			</item>
+		</page>
+	</checklist>
+	
+    <checklist>
 		<title>AFTER LANDING</title>
 		<page>
 			<item>
-				<name>SPOILERS</name>
-				<value>RETRACTED</value>
-			</item>
-			<item>
-				<name>FLAPS / SLATS</name>
-				<value>UP, RETRACTED</value>
-			</item>
-			<item>
-				<name>WX RADAR / TRANSPONDER</name>
-				<value>OFF, AS REQ</value>
-			</item>
-			<item>
-				<name>AUTOBRAKE</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>STAB TRIM</name>
-				<value>3 ANU</value>
-			</item>
-			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>LANDING LIGHTS OFF, HI-INT OFF, TAXI LIGHTS ON, SET</value>
-			</item>
-			<item>
-				<name>ANTI-ICE</name>
-				<value>OFF</value>
-			</item>
-			<item>
 				<name>APU</name>
-				<value>ON</value>
+				<value>OFF/ON</value>
+			</item>
+			<item>
+				<name>LIGHTS</name>
+				<value>AS REQUIRED</value>
+			</item>
+			<item>
+				<name>STABILIZER TRIM</name>
+				<value>3 DEG ANU</value>
+			</item>
+			<item>
+				<name>FLAPS &amp; SLATS</name>
+				<value>UP &amp; RETRACTED</value>
+			</item>
+			<item>
+				<name>AUTOBRAKES</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>SPOILERS</name>
+				<value>RETRACTED &amp; DISARMED</value>
+			</item>
+			<item>
+				<name>RADAR</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>OXYGEN PRESSURE</name>
+				<value>CHECKED</value>
+			</item>
+			<item>
+				<name>HYD MANUAL:</name>
+				<value> </value>
+			</item>
+			<item>
+				<name>     1-3, 2-3 RMPS</name>
+				<value>OFF</value>
 			</item>
 		</page>
-    </checklist>
+	</checklist>
 	
-	<checklist>
-		<title>PARKING</title>
+    <checklist>
+		<title>SHUT DOWN</title>
 		<page>
-			<item>
-				<name>ANTI-ICE</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>HYD PANEL</name>
-				<value>AUTO / MAN SET</value>
-			</item>
-			<item>
-				<name>FUEL SWITCHES</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>SEATBELTS</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>FUEL PANEL</name>
-				<value>AUTO / MAN SET</value>
-			</item>
-			<item>
-				<name>EMER PWR</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>EXTERIOR LIGHTS</name>
-				<value>BEACON OFF</value>
-			</item>
-			<item>
-				<name>PARK BRK, CHOCKS</name>
-				<value>OFF, SET</value>
-			</item>
 			<item>
 				<name>IRS</name>
 				<value>OFF</value>
 			</item>
 			<item>
-				<name>SD STATUS</name>
-				<value>REVIEWED</value>
+				<name>EMERGENCY POWER</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>ANTI-ICE</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>WINDSHIELD ANTI-ICE</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>DEFOG</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>IGNITION OVERRIDE</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>EMERGENCY LIGHTS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>SEATBELT &amp; NO SMOKING SIGNS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>BEACON</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>START LEVERS</name>
+				<value>OFF</value>
+			</item>
+			<item>
+				<name>STATUS PAGE</name>
+				<value>CHECKED</value>
 			</item>
 		</page>
-    </checklist>
-	
-	<checklist>
-		<title>LEAVING A/C</title>
-		<page>
-			<item>
-				<name>EMER LIGHT</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>EVAC CMD</name>
-				<value>AUTO / MAN SET</value>
-			</item>
-			<item>
-				<name>APU</name>
-				<value>OFF</value>
-			</item>
-			<item>
-				<name>BAT</name>
-				<value>OFF</value>
-			</item>
-		</page>
-    </checklist>
+	</checklist>
 
 </PropertyList>
