@@ -816,7 +816,9 @@ var canvasBase = {
 		}
 		
 		if (Value.Alt.indicated < 0) {
-			if (Value.Alt.indicated >= -980) {
+			if (Value.Alt.indicated < -9980) {
+				me["ALT_minus"].setTranslation(-22.172, 0);
+			} else if (Value.Alt.indicated >= -980) {
 				me["ALT_minus"].setTranslation(22.172, 0);
 			} else {
 				me["ALT_minus"].setTranslation(0, 0);
