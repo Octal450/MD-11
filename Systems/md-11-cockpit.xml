@@ -8,7 +8,7 @@
 	<channel name="Animations">
 		
 		<lag_filter name="hydraulics/aileron-yoke">
-			<input>hydraulics/aileron/output</input>
+			<input>hydraulics/aileron-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		

@@ -97,20 +97,37 @@
 	
 	<channel name="Aileron General">
 		
-		<switch name="hydraulics/aileron/output-notrim">
-			<default value="/controls/flight/aileron"/>
-			<test value="fcc/afs/roll-cmd">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
+		<pure_gain name="hydraulics/aileron-small">
+			<input>/controls/flight/aileron</input>
+			<gain>0.25</gain>
+		</pure_gain>
 		
 		<pure_gain name="hydraulics/aileron/trim-overall">
 			<input>/controls/flight/aileron-trim</input>
 			<gain>0.25</gain>
 		</pure_gain>
 		
+		<switch name="hydraulics/aileron-yoke-switch">
+			<default value="/controls/flight/aileron"/>
+			<test value="hydraulics/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
+				fcc/rcws/active eq 1
+			</test>
+			<test value="fcc/afs/roll-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<summer name="hydraulics/aileron-yoke-sum">
+			<input>hydraulics/aileron-yoke-switch</input>
+			<input>hydraulics/aileron/trim-overall</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
 		<summer name="hydraulics/aileron/output">
-			<input>hydraulics/aileron/output-notrim</input>
+			<input>fcc/roll-output</input>
 			<input>hydraulics/aileron/trim-overall</input>
 			<clipto>
 				<min>-1.0</min>
@@ -428,8 +445,7 @@
 		
 		<switch name="hydraulics/elevator-yoke-switch">
 			<default value="/controls/flight/elevator"/>
-			<test value="hydraulics/elevator-small"> <!-- While in detend and LSAS active, more force needed to break out -->
-			<!--test value="fcc/lsas/pah/pid"--> <!-- View PAH on yoke... for testing/developing -->
+			<test value="hydraulics/elevator-small"> <!-- While in detent and LSAS active, more force needed to break out -->
 				fcc/lsas/pah/active eq 1
 			</test>
 			<test value="fcc/afs/pitch-cmd">

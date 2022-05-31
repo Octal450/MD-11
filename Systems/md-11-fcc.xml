@@ -11,6 +11,7 @@
 	<property value="0">fcc/lsas/autotrim-inhibit</property>
 	<property value="0">fcc/lsas/pah/output</property>
 	<property value="0">fcc/lsas/spd-prot/output</property>
+	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/slat/cmd-deg</property>
 	<property value="0">fcc/yaw/tc-pd</property>
 	<property value="0">fcs/spoiler-left-feedback</property>
@@ -22,6 +23,9 @@
 	<property value="0">/gear/abs/spoilers-cmd-deg</property>
 	
 	<!-- Properties for tuning -->
+	<property value="0">fcc/rcws/p-gain-tune</property>
+	<property value="0">fcc/rcws/i-gain-tune</property>
+	<property value="0">fcc/rcws/d-gain-tune</property>
 	<property value="0">fcc/lsas/pah/p-gain-tune</property>
 	<property value="0">fcc/lsas/pah/i-gain-tune</property>
 	<property value="0">fcc/lsas/pah/d-gain-tune</property>
@@ -95,6 +99,22 @@
 				/instrumentation/altimeter/indicated-altitude-ft ge 32990
 			</test>
 		</switch>
+		
+		<fcs_function name="fcc/rcws/p-rad_sec">
+			<function>
+				<toradians>
+					<property>/orientation/roll-rate-degps</property>
+				</toradians>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/lsas/thetadot-rad_sec">
+			<function>
+				<toradians>
+					<property>/orientation/pitch-rate-degps</property>
+				</toradians>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -102,20 +122,16 @@
 		
 		<switch name="fcc/lsas/left-out-active">
 			<default value="0"/>
-			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/switches/ap-yoke-button1 eq 1
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-left-out eq 1
-				/systems/hydraulics/sys-1-psi ge 2200
-				fcc/fcc2-power eq 1
-				/systems/failures/fcc/lsas-left-out ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-left-out eq 1
-				/systems/hydraulics/sys-2-psi ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-2-psi ge 2200
+				</test>
 				fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -124,20 +140,16 @@
 		
 		<switch name="fcc/lsas/left-in-active">
 			<default value="0"/>
-			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/switches/ap-yoke-button1 eq 1
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-left-in eq 1
-				/systems/hydraulics/sys-2-psi ge 2200
-				fcc/fcc1-power eq 1
-				/systems/failures/fcc/lsas-left-in ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-left-in eq 1
-				/systems/hydraulics/sys-3-psi ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-2-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
 				fcc/fcc1-power eq 1
 				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -146,20 +158,16 @@
 		
 		<switch name="fcc/lsas/right-in-active">
 			<default value="0"/>
-			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/switches/ap-yoke-button1 eq 1
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-right-in eq 1
-				/systems/hydraulics/sys-1-psi ge 2200
-				fcc/fcc2-power eq 1
-				/systems/failures/fcc/lsas-right-in ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-right-in eq 1
-				/systems/hydraulics/sys-3-psi ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
 				fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -168,20 +176,16 @@
 		
 		<switch name="fcc/lsas/right-out-active">
 			<default value="0"/>
-			<test logic="OR" value="0"> <!-- AP Disc button kills LSAS -->
+			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/switches/ap-yoke-button1 eq 1
 				/controls/switches/ap-yoke-button2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-right-out eq 1
-				/systems/hydraulics/sys-1-psi ge 2200
-				fcc/fcc1-power eq 1
-				/systems/failures/fcc/lsas-right-out ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-right-out eq 1
-				/systems/hydraulics/sys-2-psi ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-2-psi ge 2200
+				</test>
 				fcc/fcc1-power eq 1
 				/systems/failures/fcc/lsas-right-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -294,7 +298,11 @@
 			<test logic="AND" value="1">
 				fcc/lsas/channels-active gt 0
 				fcc/afs/enabled eq 0
-				fcc/lsas/in-detent eq 0
+				<test logic="OR">
+					fcc/lsas/in-detent eq 0
+					attitude/roll-rad gt 0.558505
+					attitude/roll-rad lt -0.558505
+				</test>
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 			</test>
@@ -333,14 +341,10 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/yd-upper-a eq 1
-				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fcc/yd-upper-a ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-upper-a eq 1
-				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
+				</test>
 				/systems/electrical/bus/dc-3 ge 24
 				/systems/failures/fcc/yd-upper-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -351,14 +355,10 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/yd-upper-b eq 1
-				/systems/hydraulics/sys-1-psi ge 2200
-				/systems/electrical/bus/dc-3 ge 24
-				/systems/failures/fcc/yd-upper-b ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-upper-b eq 1
-				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
+				</test>
 				/systems/electrical/bus/dc-3 ge 24
 				/systems/failures/fcc/yd-upper-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -369,14 +369,10 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/yd-lower-a eq 1
-				/systems/hydraulics/sys-2-psi ge 2200
-				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fcc/yd-lower-a ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-lower-a eq 1
-				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-2-psi ge 2200
+					/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
+				</test>
 				/systems/electrical/bus/dc-1 ge 24
 				/systems/failures/fcc/yd-lower-a ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -387,14 +383,10 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/yd-lower-b eq 1
-				/systems/hydraulics/sys-2-psi ge 2200
-				/systems/electrical/bus/dc-1 ge 24
-				/systems/failures/fcc/yd-lower-b ne 1
-				/systems/iru-common/any-aligned-out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-lower-b eq 1
-				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
+				<test logic="OR">
+					/systems/hydraulics/sys-2-psi ge 2200
+					/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
+				</test>
 				/systems/electrical/bus/dc-1 ge 24
 				/systems/failures/fcc/yd-lower-b ne 1
 				/systems/iru-common/any-aligned-out eq 1
@@ -438,7 +430,125 @@
 	
 	</channel>
 	
+	<channel name="RCWS Logic">
+		
+		<switch name="fcc/rcws/sys-1-active">
+			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
+			<test logic="AND" value="1">
+				/it-autoflight/input/ovrd1 eq 0
+				<test logic="OR">
+					/systems/hydraulics/sys-2-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
+				fcc/fcc1-power eq 1
+				/systems/iru-common/any-aligned-out eq 1
+				fcc/yaw/channels-active gt 0
+				/systems/acconfig/options/rcws-equipped eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/rcws/sys-2-active">
+			<default value="0"/>
+			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
+				/controls/switches/ap-yoke-button1 eq 1
+				/controls/switches/ap-yoke-button2 eq 1
+			</test>
+			<test logic="AND" value="1">
+				/it-autoflight/input/ovrd2 eq 0
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
+				fcc/fcc2-power eq 1
+				/systems/iru-common/any-aligned-out eq 1
+				fcc/yaw/channels-active gt 0
+				/systems/acconfig/options/rcws-equipped eq 1
+			</test>
+		</switch>
+		
+		<summer name="fcc/rcws/channels-active">
+			<input>fcc/rcws/sys-1-active</input>
+			<input>fcc/rcws/sys-2-active</input>
+		</summer>
+		
+		<switch name="fcc/rcws/in-detent">
+			<default value="fcc/rcws/in-detent"/>
+			<test logic="AND" value="1">
+				/controls/flight/aileron lt 0.02
+				/controls/flight/aileron gt -0.02
+			</test>
+			<test logic="OR" value="0">
+				/controls/flight/aileron gt 0.045
+				/controls/flight/aileron lt -0.045
+			</test>
+		</switch>
+		
+		<switch name="fcc/rcws/active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fcc/rcws/channels-active gt 0
+				fcc/afs/enabled eq 0
+				fcc/rcws/in-detent eq 1
+				position/wow eq 0
+				/position/gear-agl-ft ge 100
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="Gains">
+		
+		<fcs_function name="fcc/rcws/p-gain">
+			<function>
+				<product>
+					<table>
+						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<tableData>
+							140  0
+							360  0
+						</tableData>
+					</table>
+					<!--property>fcc/rcws/p-gain-tune</property--> <!-- For tuning -->
+					<property>fcc/rcws/active</property>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/rcws/i-gain">
+			<function>
+				<product>
+					<table>
+						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<tableData>
+							140  0
+							360  0
+						</tableData>
+					</table>
+					<!--property>fcc/rcws/i-gain-tune</property--> <!-- For tuning -->
+					<property>fcc/rcws/active</property>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fcc/rcws/d-gain">
+			<function>
+				<product>
+					<table>
+						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<tableData>
+							140  0
+							360  0
+						</tableData>
+					</table>
+					<!--property>fcc/rcws/d-gain-tune</property--> <!-- For tuning -->
+					<property>fcc/rcws/active</property>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<fcs_function name="fcc/lsas/pah/p-gain">
 			<function>
@@ -561,10 +671,31 @@
 	
 	</channel>
 	
+	<channel name="FCC: Roll Axis and RCWS">
+		
+		<switch name="fcc/rcws/p-switched">
+			<default value="fcc/rcws/p-rad_sec"/>
+			<test value="0">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<switch name="fcc/roll-output">
+			<default value="/controls/flight/aileron"/>
+			<test value="fcc/rcws/pid">
+				fcc/rcws/active eq 1
+			</test>
+			<test value="fcc/afs/roll-cmd">
+				fcc/afs/enabled eq 1
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="FCC: Pitch Axis and LSAS">
 		
 		<switch name="fcc/lsas/thetadot-switched">
-			<default value="velocities/thetadot-rad_sec"/>
+			<default value="fcc/lsas/thetadot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
