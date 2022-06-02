@@ -41,57 +41,44 @@
 			<gain>/systems/acconfig/options/deflected-aileron-equipped</gain>
 		</pure_gain>
 		
-		<switch name="hydraulics/aileron-droop-rate">
-			<default value="0.2"/> <!-- Just a little bit faster than flaps -->
+		<switch name="hydraulics/aileron-inner-droop-rate">
+			<default value="0.575"/> <!-- About 1 second -->
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
-		<fcs_function name="hydraulics/deflected-aileron-inner-cmd"> <!-- 11.5 deg -->
-			<function>
-				<product>
-					<table>
-						<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-						<tableData>
-							 0.5  0.000
-							 9.5  0.575
-							28.5  0.575
-							34.5  0.000
-						</tableData>
-					</table>
-					<property>hydraulics/deflected-aileron-active</property>
-				</product>
-			</function>
-		</fcs_function>
+		<pure_gain name="hydraulics/deflected-aileron-inner-cmd"> <!-- 11.5 degrees -->
+			<input>hydraulics/deflected-aileron-active</input>
+			<gain>0.575</gain> <!-- 11.5 degrees -->
+		</pure_gain>
 		
 		<actuator name="hydraulics/deflected-aileron-inner">
 			<input>hydraulics/deflected-aileron-inner-cmd</input>
-			<rate_limit>hydraulics/aileron-droop-rate</rate_limit> <!-- Actuator speed limit -->
+			<rate_limit>hydraulics/aileron-inner-droop-rate</rate_limit>
 		</actuator>
 		
-		<fcs_function name="hydraulics/deflected-aileron-outer-cmd"> <!-- 15 deg dropped, 4 deg normal -->
-			<function>
-				<product>
-					<table>
-						<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
-						<independentVar lookup="column">hydraulics/deflected-aileron-active</independentVar>
-						<tableData>
-								  0     1
-							 0.5  0.20  0.20
-							 9.5  0.20  0.75
-							28.5  0.20  0.75
-							34.5  0.20  0.20
-						</tableData>
-					</table>
-					<property>/systems/acconfig/options/deflected-aileron-equipped</property> <!-- No deflection whatsoever without Defl Aileron Package -->
-				</product>
-			</function>
-		</fcs_function>
+		<switch name="hydraulics/aileron-outer-droop-rate">
+			<default value="0.55"/> <!-- About 1 second -->
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/deflected-aileron-outer-cmd">
+			<default value="0"/>
+			<test logic="AND" value="0.75"> <!-- 15 degrees drooped -->
+				/systems/acconfig/options/deflected-aileron-equipped eq 1
+				hydraulics/deflected-aileron-active eq 1
+			</test>
+			<test value="0.2"> <!-- 4 degrees normal -->
+				/systems/acconfig/options/deflected-aileron-equipped eq 1
+			</test>
+		</switch>
 		
 		<actuator name="hydraulics/deflected-aileron-outer">
 			<input>hydraulics/deflected-aileron-outer-cmd</input>
-			<rate_limit>hydraulics/aileron-droop-rate</rate_limit> <!-- Actuator speed limit -->
+			<rate_limit>hydraulics/aileron-outer-droop-rate</rate_limit>
 		</actuator>
 	
 	</channel>
