@@ -411,9 +411,6 @@
 				<label>RCWS Equipped</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/rcws-equipped</property>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

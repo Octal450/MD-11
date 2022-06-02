@@ -5,6 +5,7 @@
 
 <system name="MD-11: FCC">
 	
+	<property value="0">fcc/aileron-out-enable</property>
 	<property value="0">fcc/elevator-feel/manual</property>
 	<property value="0">fcc/elevator-feel/speed</property>
 	<property value="0">fcc/flap/cmd-deg</property>
@@ -492,9 +493,19 @@
 			<test logic="AND" value="1">
 				fcc/rcws/channels-active gt 0
 				fcc/afs/enabled eq 0
-				fcc/rcws/in-detent eq 1
 				position/wow eq 0
-				/position/gear-agl-ft ge 100
+			</test>
+		</switch>
+		
+		<switch name="fcc/rcws/active-channel">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fcc/rcws/active eq 1
+				/it-autoflight/internal/active-fms eq 1
+			</test>
+			<test logic="AND" value="2">
+				fcc/rcws/active eq 1
+				/it-autoflight/internal/active-fms eq 2
 			</test>
 		</switch>
 	
@@ -508,8 +519,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140  0
-							360  0
+							140 -21
+							360 -11
 						</tableData>
 					</table>
 					<!--property>fcc/rcws/p-gain-tune</property--> <!-- For tuning -->
@@ -524,8 +535,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140  0
-							360  0
+							140 -28
+							360 -14
 						</tableData>
 					</table>
 					<!--property>fcc/rcws/i-gain-tune</property--> <!-- For tuning -->
@@ -540,8 +551,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140  0
-							360  0
+							140 -2.8
+							360 -0.7
 						</tableData>
 					</table>
 					<!--property>fcc/rcws/d-gain-tune</property--> <!-- For tuning -->
@@ -572,8 +583,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140  14
-							360   2
+							140  15
+							360   3
 						</tableData>
 					</table>
 					<!--property>fcc/lsas/pah/i-gain-tune</property--> <!-- For tuning -->
@@ -679,6 +690,117 @@
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
+		
+		<lead_lag_filter name="fcc/rcws/p-leadlag">
+			<input>fcc/rcws/p-switched</input>
+			<c1>1.03</c1>
+			<c2>1.0</c2>
+			<c3>0.97</c3>
+			<c4>1.0</c4>
+		</lead_lag_filter>
+		
+		<switch name="fcc/rcws/input-switch">
+			<default value="/controls/flight/aileron"/>
+			<test value="0">
+				fcc/rcws/in-detent eq 1
+			</test>
+		</switch>
+		
+		<lag_filter name="fcc/rcws/input">
+			<input>fcc/rcws/input-switch</input>
+			<c1>5</c1>
+		</lag_filter>
+		
+		<fcs_function name="fcc/rcws/input-demand">
+			<function>
+				<table>
+					<independentVar lookup="row">attitude/roll-rad</independentVar>
+					<independentVar lookup="column">fcc/rcws/input</independentVar>
+					<independentVar lookup="table">velocities/vc-kts</independentVar>
+					<tableData breakPoint="140">
+						          -1     0     1
+						-1.047200 -0.15  0.75  0.75
+						-0.523599 -0.75  0.00  0.75
+						 0.523599 -0.75  0.00  0.75
+						 1.047200 -0.75 -0.75  0.15
+					</tableData>
+					<tableData breakPoint="360">
+						          -1    0    1
+						-1.047200 -0.2  1.0  1.0
+						-0.523599 -1.0  0.0  1.0
+						 0.523599 -1.0  0.0  1.0
+						 1.047200 -1.0 -1.0  0.2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="fcc/rcws/rate-demand">
+			<input>fcc/rcws/input-demand</input>
+			<gain>0.349066</gain>
+		</pure_gain>
+		
+		<summer name="fcc/rcws/rate-error">
+			<input>fcc/rcws/p-leadlag</input>
+			<input>-fcc/rcws/rate-demand</input>
+		</summer>
+		
+		<scheduled_gain name="fcc/rcws/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>fcc/rcws/p-gain</input>
+			<table>
+				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<tableData>
+					0  1.00
+					1  0.72
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<scheduled_gain name="fcc/rcws/i-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>fcc/rcws/i-gain</input>
+			<table>
+				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<tableData>
+					0  1.00
+					1  0.72
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<scheduled_gain name="fcc/rcws/d-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>fcc/rcws/d-gain</input>
+			<table>
+				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<tableData>
+					0  1.00
+					1  0.72
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<switch name="fcc/rcws/trigger">
+			<default value="0"/>
+			<test value="-1">
+				fcc/rcws/active ne 1
+			</test>
+			<test logic="OR" value="1">
+				fcc/rcws/output le -0.999
+				fcc/rcws/output ge 0.999
+			</test>
+		</switch>
+		
+		<pid name="fcc/rcws/pid">
+			<input>fcc/rcws/rate-error</input>
+			<kp>fcc/rcws/p-gain-scheduled</kp>
+			<ki>fcc/rcws/i-gain-scheduled</ki>
+			<kd>fcc/rcws/d-gain-scheduled</kd>
+			<trigger>fcc/rcws/trigger</trigger>
+			<output>fcc/rcws/output</output>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</pid>
 		
 		<switch name="fcc/roll-output">
 			<default value="/controls/flight/aileron"/>

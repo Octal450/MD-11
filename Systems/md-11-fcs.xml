@@ -13,6 +13,7 @@
 				fcs/slat-pos-deg ge 2
 				position/wow eq 1
 			</test>
+			<output>fcc/aileron-out-enable</output>
 		</switch>
 		
 		<!-- Deflected Aileron System -->
@@ -109,8 +110,9 @@
 		
 		<switch name="hydraulics/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
-			<test value="hydraulics/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
+			<test logic="AND" value="hydraulics/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
 				fcc/rcws/active eq 1
+				fcc/rcws/in-detent eq 1
 			</test>
 			<test value="fcc/afs/roll-cmd">
 				fcc/afs/enabled eq 1
