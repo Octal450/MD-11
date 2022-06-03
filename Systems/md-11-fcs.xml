@@ -133,7 +133,7 @@
 		</switch>
 		
 		<!-- RCWS + Aileron Droop Wheel Backdrive -->
-		<!-- Caused by FCC being slower than ADA on the RCWS controlled aileron --> <!-- TODO: Make it do it with AP too -->
+		<!-- Caused by FCC being slower than ADA on the RCWS controlled aileron -->
 		<switch name="hydraulics/aileron/backdrive/direction-1">
 			<default value="-1"/>
 			<test value="1">
