@@ -41,7 +41,7 @@
 			<gain>/systems/acconfig/options/deflected-aileron-equipped</gain>
 		</pure_gain>
 		
-		<switch name="hydraulics/aileron-inner-droop-rate">
+		<switch name="hydraulics/deflected-aileron-inner-rate">
 			<default value="0.575"/> <!-- About 1 second -->
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
@@ -55,10 +55,10 @@
 		
 		<actuator name="hydraulics/deflected-aileron-inner">
 			<input>hydraulics/deflected-aileron-inner-cmd</input>
-			<rate_limit>hydraulics/aileron-inner-droop-rate</rate_limit>
+			<rate_limit>hydraulics/deflected-aileron-inner-rate</rate_limit>
 		</actuator>
 		
-		<switch name="hydraulics/aileron-outer-droop-rate">
+		<switch name="hydraulics/deflected-aileron-outer-rate">
 			<default value="0.55"/> <!-- About 1 second -->
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
@@ -78,7 +78,7 @@
 		
 		<actuator name="hydraulics/deflected-aileron-outer">
 			<input>hydraulics/deflected-aileron-outer-cmd</input>
-			<rate_limit>hydraulics/aileron-outer-droop-rate</rate_limit>
+			<rate_limit>hydraulics/deflected-aileron-outer-rate</rate_limit>
 		</actuator>
 	
 	</channel>
