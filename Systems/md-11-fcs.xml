@@ -17,7 +17,7 @@
 		</switch>
 		
 		<!-- Deflected Aileron System -->
-		<switch name="/controls/hydraulics/deflected-aileron-flaps-active">
+		<switch name="hydraulics/deflected-aileron/flaps">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/controls/flight/flaps-input eq 2
@@ -25,60 +25,86 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/hydraulics/deflected-aileron"> <!-- Flip flop controller -->
-			<default value="/controls/hydraulics/deflected-aileron"/>
+		<switch name="hydraulics/deflected-aileron/cmd"> <!-- Flip flop controller -->
+			<default value="hydraulics/deflected-aileron/cmd"/>
 			<test value="0">
-				/controls/hydraulics/deflected-aileron-flaps-active ne 1
+				hydraulics/deflected-aileron/flaps ne 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/hydraulics/deflected-aileron-flaps-active eq 1
+				hydraulics/deflected-aileron/flaps eq 1
 				/gear/gear[0]/wow eq 1
 			</test>
 		</switch>
 		
-		<pure_gain name="hydraulics/deflected-aileron-active">
-			<input>/controls/hydraulics/deflected-aileron</input>
+		<pure_gain name="hydraulics/deflected-aileron/active">
+			<input>hydraulics/deflected-aileron/cmd</input>
 			<gain>/systems/acconfig/options/deflected-aileron-equipped</gain>
 		</pure_gain>
 		
-		<switch name="hydraulics/deflected-aileron-inner-rate">
+		<switch name="hydraulics/deflected-aileron/in-l-rate">
 			<default value="0.575"/> <!-- About 1 second -->
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
+			<test logic="AND" value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
+				/it-autoflight/internal/active-fms eq 1
+				<test logic="OR">
+					fcc/rcws/active-no-wow eq 1
+					fcc/afs/enabled eq 1
+				</test>
+			</test>
 		</switch>
 		
-		<pure_gain name="hydraulics/deflected-aileron-inner-cmd"> <!-- 11.5 degrees -->
-			<input>hydraulics/deflected-aileron-active</input>
+		<switch name="hydraulics/deflected-aileron/in-r-rate">
+			<default value="0.575"/> <!-- About 1 second -->
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+			<test value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
+				/it-autoflight/internal/active-fms eq 2
+				<test logic="OR">
+					fcc/rcws/active-no-wow eq 1
+					fcc/afs/enabled eq 1
+				</test>
+			</test>
+		</switch>
+		
+		<pure_gain name="hydraulics/deflected-aileron/in-cmd"> <!-- 11.5 degrees -->
+			<input>hydraulics/deflected-aileron/active</input>
 			<gain>0.575</gain> <!-- 11.5 degrees -->
 		</pure_gain>
 		
-		<actuator name="hydraulics/deflected-aileron-inner">
-			<input>hydraulics/deflected-aileron-inner-cmd</input>
-			<rate_limit>hydraulics/deflected-aileron-inner-rate</rate_limit>
+		<actuator name="hydraulics/deflected-aileron/in-l">
+			<input>hydraulics/deflected-aileron/in-cmd</input> 
+			<rate_limit>hydraulics/deflected-aileron/in-l-rate</rate_limit>
 		</actuator>
 		
-		<switch name="hydraulics/deflected-aileron-outer-rate">
+		<actuator name="hydraulics/deflected-aileron/in-r">
+			<input>hydraulics/deflected-aileron/in-cmd</input>
+			<rate_limit>hydraulics/deflected-aileron/in-r-rate</rate_limit>
+		</actuator>
+		
+		<switch name="hydraulics/deflected-aileron/out-rate">
 			<default value="0.55"/> <!-- About 1 second -->
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
-		<switch name="hydraulics/deflected-aileron-outer-cmd">
+		<switch name="hydraulics/deflected-aileron/out-cmd">
 			<default value="0"/>
 			<test logic="AND" value="0.75"> <!-- 15 degrees drooped -->
 				/systems/acconfig/options/deflected-aileron-equipped eq 1
-				hydraulics/deflected-aileron-active eq 1
+				hydraulics/deflected-aileron/active eq 1
 			</test>
 			<test value="0.2"> <!-- 4 degrees normal -->
 				/systems/acconfig/options/deflected-aileron-equipped eq 1
 			</test>
 		</switch>
 		
-		<actuator name="hydraulics/deflected-aileron-outer">
-			<input>hydraulics/deflected-aileron-outer-cmd</input>
-			<rate_limit>hydraulics/deflected-aileron-outer-rate</rate_limit>
+		<actuator name="hydraulics/deflected-aileron/out">
+			<input>hydraulics/deflected-aileron/out-cmd</input>
+			<rate_limit>hydraulics/deflected-aileron/out-rate</rate_limit>
 		</actuator>
 	
 	</channel>
@@ -106,9 +132,58 @@
 			</test>
 		</switch>
 		
+		<!-- RCWS + Aileron Droop Wheel Backdrive -->
+		<!-- Caused by FCC being slower than ADA on the RCWS controlled aileron --> <!-- TODO: Make it do it with AP too -->
+		<switch name="hydraulics/aileron/backdrive/direction-1">
+			<default value="-1"/>
+			<test value="1">
+				/it-autoflight/internal/active-fms eq 2
+			</test>
+		</switch>
+		
+		<switch name="hydraulics/aileron/backdrive/direction-2">
+			<default value="-1"/>
+			<test value="1">
+				hydraulics/deflected-aileron/active eq 1
+			</test>
+		</switch>
+		
+		<summer name="hydraulics/aileron/backdrive/error">
+			<input>hydraulics/deflected-aileron/in-l</input>
+			<input>-hydraulics/deflected-aileron/in-r</input>
+		</summer>
+		
+		<switch name="hydraulics/aileron/backdrive/active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				hydraulics/aileron/backdrive/error le -0.01
+				hydraulics/aileron/backdrive/error ge 0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="hydraulics/aileron/backdrive/cmd">
+			<function>
+				<product>
+					<property>/systems/acconfig/options/deflected-aileron-equipped</property>
+					<property>/systems/acconfig/options/rcws-equipped</property>
+					<property>hydraulics/aileron/backdrive/active</property>
+					<property>hydraulics/aileron/backdrive/direction-1</property>
+					<property>hydraulics/aileron/backdrive/direction-2</property>
+					<value>0.13</value> <!-- 12 degrees -->
+				</product>
+			</function>
+		</fcs_function>
+		
+		<actuator name="hydraulics/aileron/backdrive/output">
+			<input>hydraulics/aileron/backdrive/cmd</input>
+			<rate_limit>0.75</rate_limit>
+		</actuator>
+		<!-- End RCWS + Aileron Droop Wheel Backdrive -->
+		
 		<summer name="hydraulics/aileron-yoke-sum">
 			<input>hydraulics/aileron-yoke-switch</input>
 			<input>hydraulics/aileron/trim-overall</input>
+			<input>hydraulics/aileron/backdrive/output</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
@@ -222,7 +297,7 @@
 						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
-					<property>hydraulics/deflected-aileron-outer</property>
+					<property>hydraulics/deflected-aileron/out</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -275,7 +350,7 @@
 						</tableData>
 					</table>
 					<property>hydraulics/aileron/trim-left</property> <!-- Slew neutral point -->
-					<property>hydraulics/deflected-aileron-inner</property>
+					<property>hydraulics/deflected-aileron/in-l</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -328,7 +403,7 @@
 						</tableData>
 					</table>
 					<property>hydraulics/aileron/trim-right</property> <!-- Slew neutral point -->
-					<property>hydraulics/deflected-aileron-inner</property>
+					<property>hydraulics/deflected-aileron/in-r</property>
 				</sum>
 			</function>
 		</fcs_function>
@@ -386,7 +461,7 @@
 						</sum>
 						<property>hydraulics/aileron-out-enable</property>
 					</product>
-					<property>hydraulics/deflected-aileron-outer</property>
+					<property>hydraulics/deflected-aileron/out</property>
 				</sum>
 			</function>
 		</fcs_function>

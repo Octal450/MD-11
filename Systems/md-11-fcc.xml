@@ -488,24 +488,19 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/active">
+		<switch name="fcc/rcws/active-no-wow">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				fcc/rcws/channels-active gt 0
 				fcc/afs/enabled eq 0
-				position/wow eq 0
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/active-channel">
+		<switch name="fcc/rcws/active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/rcws/active eq 1
-				/it-autoflight/internal/active-fms eq 1
-			</test>
-			<test logic="AND" value="2">
-				fcc/rcws/active eq 1
-				/it-autoflight/internal/active-fms eq 2
+				fcc/rcws/active-no-wow eq 1
+				position/wow eq 0
 			</test>
 		</switch>
 	
