@@ -60,7 +60,7 @@
 			<test value="100">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<test value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
+			<test logic="AND" value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
 				/it-autoflight/internal/active-fms eq 2
 				<test logic="OR">
 					fcc/rcws/active-no-wow eq 1
