@@ -1026,7 +1026,7 @@
 		<output>/it-autoflight/fd/roll-bar</output>
 		<min>-30</min>
 		<max>30</max>
-		<max-rate-of-change>30</max-rate-of-change>
+		<max-rate-of-change>20</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -1095,7 +1095,7 @@
 		<output>/it-autoflight/fd/pitch-bar</output>
 		<min>-15</min>
 		<max>15</max>
-		<max-rate-of-change>15</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
 
 </PropertyList>

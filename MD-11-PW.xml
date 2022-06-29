@@ -16,16 +16,6 @@
 	
 	<propulsion>
 		<engine file="pw4460_1">
-			<location unit="M">
-				<x>-5.29297</x>	
-				<y>-4.14094</y>
-				<z>3.47943</z>
-			</location>
-			<orient unit="DEG">
-				<roll>0</roll>
-				<pitch>2.2</pitch>
-				<yaw>2</yaw>
-			</orient>
 			<feed>8</feed>
 			<thruster file="direct">
 				<location unit="M">
@@ -42,16 +32,6 @@
 		</engine>
 		
 		<engine file="pw4460_2">
-			<location unit="M">
-				<x>25.2146</x>	
-				<y>0</y>
-				<z>10.698</z>
-			</location>
-			<orient unit="DEG">
-				<roll>0</roll>
-				<pitch>0</pitch>
-				<yaw>0</yaw>
-			</orient>
 			<feed>9</feed>
 			<thruster file="direct">
 				<location unit="M">
@@ -68,16 +48,6 @@
 		</engine>
 		
 		<engine file="pw4460_3">
-			<location unit="M">
-				<x>-5.29297</x>	
-				<y>4.14094</y>
-				<z>3.47943</z>
-			</location>
-			<orient unit="DEG">
-				<roll>0</roll>
-				<pitch>2.2</pitch>
-				<yaw>-2</yaw>
-			</orient>
 			<feed>10</feed>
 			<thruster file="direct">
 				<location unit="M">
@@ -94,16 +64,6 @@
 		</engine>
 		
 		<engine file="tscp700-4e">
-			<location unit="M">
-				<x>24.5364</x>	
-				<y>0</y>
-				<z>7.95507</z>
-			</location>
-			<orient unit="DEG">
-				<roll>0</roll>
-				<pitch>0</pitch>
-				<yaw>0</yaw>
-			</orient>
 			<feed>11</feed>
 			<thruster file="direct">
 				<location unit="M">
