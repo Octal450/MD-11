@@ -481,10 +481,14 @@
 			<test logic="AND" value="1">
 				/controls/flight/aileron lt 0.02
 				/controls/flight/aileron gt -0.02
+				fcc/rcws/input lt 0.02
+				fcc/rcws/input gt -0.02
 			</test>
 			<test logic="OR" value="0">
 				/controls/flight/aileron gt 0.045
 				/controls/flight/aileron lt -0.045
+				fcc/rcws/input gt 0.045
+				fcc/rcws/input lt -0.045
 			</test>
 		</switch>
 		
@@ -694,32 +698,12 @@
 			<c4>1.0</c4>
 		</lead_lag_filter>
 		
-		<switch name="fcc/rcws/input-switch">
-			<default value="/controls/flight/aileron"/>
-			<test value="0">
-				fcc/rcws/in-detent eq 1
-			</test>
-		</switch>
-		
-		<lag_filter name="fcc/rcws/input">
-			<input>fcc/rcws/input-switch</input>
-			<c1>5</c1>
-		</lag_filter>
-		
-		<fcs_function name="fcc/rcws/input-demand">
+		<fcs_function name="fcc/rcws/input">
 			<function>
 				<table>
 					<independentVar lookup="row">attitude/roll-rad</independentVar>
-					<independentVar lookup="column">fcc/rcws/input</independentVar>
-					<independentVar lookup="table">velocities/vc-kts</independentVar>
-					<tableData breakPoint="140">
-						          -1     0     1
-						-1.047200 -0.15  0.75  0.75
-						-0.523599 -0.75  0.00  0.75
-						 0.523599 -0.75  0.00  0.75
-						 1.047200 -0.75 -0.75  0.15
-					</tableData>
-					<tableData breakPoint="360">
+					<independentVar lookup="column">/controls/flight/aileron</independentVar>
+					<tableData>
 						          -1    0    1
 						-1.047200 -0.2  1.0  1.0
 						-0.523599 -1.0  0.0  1.0
@@ -729,6 +713,29 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<switch name="fcc/rcws/input-switch">
+			<default value="fcc/rcws/input"/>
+			<test value="0">
+				fcc/rcws/in-detent eq 1
+			</test>
+		</switch>
+		
+		<scheduled_gain name="fcc/rcws/input-gain">
+			<input>fcc/rcws/input-switch</input>
+			<table>
+				<independentVar lookup="row">velocities/vc-kts</independentVar>
+				<tableData>
+					140  0.75
+					360  1.00
+				</tableData>
+			</table>
+		</scheduled_gain>
+		
+		<lag_filter name="fcc/rcws/input-demand">
+			<input>fcc/rcws/input-gain</input>
+			<c1>5</c1>
+		</lag_filter>
 		
 		<pure_gain name="fcc/rcws/rate-demand">
 			<input>fcc/rcws/input-demand</input>
