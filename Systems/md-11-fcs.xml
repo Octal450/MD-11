@@ -127,10 +127,6 @@
 				fcc/rcws/active eq 1
 				fcc/rcws/in-detent eq 1
 			</test>
-			<test logic="AND" value="fcc/rcws/input"> <!-- Includes force fighting control wheel -->
-				fcc/rcws/active eq 1
-				fcc/rcws/in-detent eq 0
-			</test>
 			<test value="fcc/afs/roll-cmd">
 				fcc/afs/enabled eq 1
 			</test>
