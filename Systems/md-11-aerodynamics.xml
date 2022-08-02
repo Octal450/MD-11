@@ -6,8 +6,6 @@
 
 <aerodynamics>
 	
-	<property value="0">ice/wing</property>
-	
 	<function name="aero/function/kCLge">
 		<description>Lift factor due to ground effect</description>
 		<table>
@@ -357,23 +355,6 @@
 				<property>metrics/Sw-sqft</property>
 				<property>fcs/slat-pos-deg</property>
 				<value>0.00128</value>
-			</product>
-		</function>
-		
-		<function name="aero/coefficient/CDice">
-			<description>Drag due to ice on wing</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<table>
-					<independentVar lookup="row">ice/wing</independentVar>
-					<tableData>
-						0.0  0.000
-						0.5  0.004
-						1.0  0.010
-						2.0  0.100
-					</tableData>
-				</table>
 			</product>
 		</function>
 		
