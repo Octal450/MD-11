@@ -1565,6 +1565,93 @@
 			<lag>0.65</lag>
 		</actuator>
 		
+		<fcs_function name="fadec/oil-temp-cmd-1">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[0]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+						<tableData>
+							 62.9  103
+							112.5   95
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-1">
+			<input>fadec/oil-temp-cmd-1</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[0]/oil-temp">
+			<input>fadec/oil-temp-rate-1</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
+		<fcs_function name="fadec/oil-temp-cmd-2">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[1]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<tableData>
+							 62.9  103
+							112.5   95
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-2">
+			<input>fadec/oil-temp-cmd-2</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[1]/oil-temp">
+			<input>fadec/oil-temp-rate-2</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
+		<fcs_function name="fadec/oil-temp-cmd-3">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[2]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<tableData>
+							 62.9  103
+							112.5   95
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-3">
+			<input>fadec/oil-temp-cmd-3</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[2]/oil-temp">
+			<input>fadec/oil-temp-rate-3</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
 		<fcs_function name="/engines/engine[0]/oil-qty">
 			<function>
 				<sum>
@@ -2013,6 +2100,42 @@
 					<tableData>
 						  0  -44
 						440  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						180  130
 					</tableData>
 				</table>
 			</function>

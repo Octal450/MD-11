@@ -1190,6 +1190,93 @@
 			<lag>0.5</lag>
 		</actuator>
 		
+		<fcs_function name="fadec/oil-temp-cmd-1">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[0]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+						<tableData>
+							 62.9  102
+							112.5   96
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-1">
+			<input>fadec/oil-temp-cmd-1</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[0]/oil-temp">
+			<input>fadec/oil-temp-rate-1</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
+		<fcs_function name="fadec/oil-temp-cmd-2">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[1]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<tableData>
+							 62.9  102
+							112.5   96
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-2">
+			<input>fadec/oil-temp-cmd-2</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[1]/oil-temp">
+			<input>fadec/oil-temp-rate-2</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
+		<fcs_function name="fadec/oil-temp-cmd-3">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/engines/engine[2]/state</property>
+						<value>2</value>
+					</ge>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<tableData>
+							 62.9  102
+							112.5   96
+						</tableData>
+					</table>
+					<property>propulsion/tat-c</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<actuator name="fadec/oil-temp-rate-3">
+			<input>fadec/oil-temp-cmd-3</input>
+			<rate_limit>0.8</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/engines/engine[2]/oil-temp">
+			<input>fadec/oil-temp-rate-3</input>
+			<c1>0.5</c1>
+		</lag_filter>
+		
 		<fcs_function name="/engines/engine[0]/oil-qty">
 			<function>
 				<sum>
@@ -1263,10 +1350,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[0]/nacelle-temp">
+		<lag_filter name="/engines/engine[0]/nacelle-temp">
 			<input>fadec/nacelle-temp-cmd-1</input>
-			<lag>0.8</lag>
-		</actuator>
+			<c1>0.8</c1>
+		</lag_filter>
 		
 		<fcs_function name="fadec/nacelle-temp-cmd-2">
 			<function>
@@ -1296,10 +1383,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[1]/nacelle-temp">
+		<lag_filter name="/engines/engine[1]/nacelle-temp">
 			<input>fadec/nacelle-temp-cmd-2</input>
-			<lag>0.8</lag>
-		</actuator>
+			<c1>0.8</c1>
+		</lag_filter>
 		
 		<fcs_function name="fadec/nacelle-temp-cmd-3">
 			<function>
@@ -1329,10 +1416,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[2]/nacelle-temp">
+		<lag_filter name="/engines/engine[2]/nacelle-temp">
 			<input>fadec/nacelle-temp-cmd-3</input>
-			<lag>0.8</lag>
-		</actuator>
+			<c1>0.8</c1>
+		</lag_filter>
 	
 	</channel>
 	
@@ -1595,6 +1682,42 @@
 					<tableData>
 						  0  -44
 						180  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[0]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						200  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[1]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						200  130
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-temp[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/engines/engine[2]/oil-temp</independentVar>
+					<tableData>
+						  0  -44
+						200  130
 					</tableData>
 				</table>
 			</function>

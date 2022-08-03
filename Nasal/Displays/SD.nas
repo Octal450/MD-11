@@ -14,6 +14,8 @@ var Value = {
 	Eng: {
 		oilQty: [0, 0, 0],
 		oilQtyCline: [0, 0, 0],
+		oilTemp: [0, 0, 0],
+		type: "GE",
 	},
 	Fctl: {
 		stab: 0,
@@ -85,12 +87,14 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["GEGroup", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilTemp1", "OilTemp1-needle", "OilTemp2", "OilTemp2-needle", "OilTemp3", "OilTemp3-needle", "OilQty1", "OilQty1-needle", "OilQty1-cline",
-		"OilQty1-box", "OilQty2", "OilQty2-needle", "OilQty2-cline", "OilQty2-box", "OilQty3", "OilQty3-needle", "OilQty3-cline", "OilQty3-box", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "APU", "APU-N1", "APU-EGT", "APU-N2", "APU-QTY", "GW-thousands",
-		"GW", "Fuel-thousands", "Fuel", "Stab", "StabBox", "Stab-needle", "StabUnit", "CabinRateDn", "CabinRateUp"];
+		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2",
+		"OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
+		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "Stab-needle", "StabBox", "StabUnit"];
 	},
 	setup: func() {
-		if (pts.Options.eng.getValue() == "GE") {
+		Value.Eng.type = pts.Options.eng.getValue();
+		
+		if (Value.Eng.type == "GE") {
 			me["GEGroup"].show();
 			me["PWGroup"].hide();
 		} else {
@@ -123,18 +127,64 @@ var canvasEng = {
 		me["OilPsi3"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[2].getValue()));
 		me["OilPsi3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[2].getValue() * D2R);
 		
-		# Oil Qty
-		Value.Eng.oilQty[0] = pts.Engines.Engine.oilQty[0].getValue();
-		Value.Eng.oilQty[1] = pts.Engines.Engine.oilQty[1].getValue();
-		Value.Eng.oilQty[2] = pts.Engines.Engine.oilQty[2].getValue();
+		# Oil Temp
+		Value.Eng.oilTemp[0] = math.round(pts.Engines.Engine.oilTemp[0].getValue());
+		Value.Eng.oilTemp[1] = math.round(pts.Engines.Engine.oilTemp[1].getValue());
+		Value.Eng.oilTemp[2] = math.round(pts.Engines.Engine.oilTemp[2].getValue());
 		
-		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
+		me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
+		me["OilTemp1-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilTemp[0].getValue() * D2R);
+		
+		me["OilTemp2"].setText(sprintf("%d", Value.Eng.oilTemp[1]));
+		me["OilTemp2-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilTemp[1].getValue() * D2R);
+		
+		me["OilTemp3"].setText(sprintf("%d", Value.Eng.oilTemp[2]));
+		me["OilTemp3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilTemp[2].getValue() * D2R);
+		
+		if (Value.Eng.type == "PW") {
+			if (Value.Eng.oilTemp[0] <= 50) {
+				me["OilTemp1"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp1-box"].show();
+				me["OilTemp1-needle"].setColor(0.9647,0.8196,0.07843);
+			} else {
+				me["OilTemp1"].setColor(1,1,1);
+				me["OilTemp1-box"].hide();
+				me["OilTemp1-needle"].setColor(1,1,1);
+			}
+			
+			if (Value.Eng.oilTemp[1] <= 50) {
+				me["OilTemp2"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp2-box"].show();
+				me["OilTemp2-needle"].setColor(0.9647,0.8196,0.07843);
+			} else {
+				me["OilTemp2"].setColor(1,1,1);
+				me["OilTemp2-box"].hide();
+				me["OilTemp2-needle"].setColor(1,1,1);
+			}
+			
+			if (Value.Eng.oilTemp[2] <= 50) {
+				me["OilTemp3"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp3-box"].show();
+				me["OilTemp3-needle"].setColor(0.9647,0.8196,0.07843);
+			} else {
+				me["OilTemp3"].setColor(1,1,1);
+				me["OilTemp3-box"].hide();
+				me["OilTemp3-needle"].setColor(1,1,1);
+			}
+		}
+		
+		# Oil Qty
+		Value.Eng.oilQty[0] = math.round(pts.Engines.Engine.oilQty[0].getValue());
+		Value.Eng.oilQty[1] = math.round(pts.Engines.Engine.oilQty[1].getValue());
+		Value.Eng.oilQty[2] = math.round(pts.Engines.Engine.oilQty[2].getValue());
+		
+		me["OilQty1"].setText(sprintf("%d", Value.Eng.oilQty[0]));
 		me["OilQty1-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[0].getValue() * D2R);
 		
-		me["OilQty2"].setText(sprintf("%d", math.round(Value.Eng.oilQty[1])));
+		me["OilQty2"].setText(sprintf("%d", Value.Eng.oilQty[1]));
 		me["OilQty2-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[1].getValue() * D2R);
 		
-		me["OilQty3"].setText(sprintf("%d", math.round(Value.Eng.oilQty[2])));
+		me["OilQty3"].setText(sprintf("%d", Value.Eng.oilQty[2]));
 		me["OilQty3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
