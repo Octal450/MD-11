@@ -1190,6 +1190,13 @@
 			<lag>0.5</lag>
 		</actuator>
 		
+		<switch name="fadec/oil-temp-rate"> <!-- Sync with panel states -->
+			<default value="0.75"/>
+			<test value="100">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fadec/oil-temp-cmd-1">
 			<function>
 				<ifthen>
@@ -1197,13 +1204,19 @@
 						<property>/engines/engine[0]/state</property>
 						<value>2</value>
 					</ge>
-					<table>
-						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
-						<tableData>
-							 62.9  102
-							112.5   96
-						</tableData>
-					</table>
+					<sum>
+						<table>
+							<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+							<tableData>
+								 62.9  97
+								112.5  74
+							</tableData>
+						</table>
+						<quotient>
+							<property>propulsion/tat-c</property>
+							<value>4</value>
+						</quotient>
+					</sum>
 					<property>propulsion/tat-c</property>
 				</ifthen>
 			</function>
@@ -1211,7 +1224,7 @@
 		
 		<actuator name="fadec/oil-temp-rate-1">
 			<input>fadec/oil-temp-cmd-1</input>
-			<rate_limit>0.8</rate_limit>
+			<rate_limit>fadec/oil-temp-rate</rate_limit>
 		</actuator>
 		
 		<lag_filter name="/engines/engine[0]/oil-temp">
@@ -1226,13 +1239,19 @@
 						<property>/engines/engine[1]/state</property>
 						<value>2</value>
 					</ge>
-					<table>
-						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
-						<tableData>
-							 62.9  102
-							112.5   96
-						</tableData>
-					</table>
+					<sum>
+						<table>
+							<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+							<tableData>
+								 62.9  97
+								112.5  74
+							</tableData>
+						</table>
+						<quotient>
+							<property>propulsion/tat-c</property>
+							<value>4</value>
+						</quotient>
+					</sum>
 					<property>propulsion/tat-c</property>
 				</ifthen>
 			</function>
@@ -1240,7 +1259,7 @@
 		
 		<actuator name="fadec/oil-temp-rate-2">
 			<input>fadec/oil-temp-cmd-2</input>
-			<rate_limit>0.8</rate_limit>
+			<rate_limit>fadec/oil-temp-rate</rate_limit>
 		</actuator>
 		
 		<lag_filter name="/engines/engine[1]/oil-temp">
@@ -1255,13 +1274,19 @@
 						<property>/engines/engine[2]/state</property>
 						<value>2</value>
 					</ge>
-					<table>
-						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
-						<tableData>
-							 62.9  102
-							112.5   96
-						</tableData>
-					</table>
+					<sum>
+						<table>
+							<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+							<tableData>
+								 62.9  97
+								112.5  74
+							</tableData>
+						</table>
+						<quotient>
+							<property>propulsion/tat-c</property>
+							<value>4</value>
+						</quotient>
+					</sum>
 					<property>propulsion/tat-c</property>
 				</ifthen>
 			</function>
@@ -1269,7 +1294,7 @@
 		
 		<actuator name="fadec/oil-temp-rate-3">
 			<input>fadec/oil-temp-cmd-3</input>
-			<rate_limit>0.8</rate_limit>
+			<rate_limit>fadec/oil-temp-rate</rate_limit>
 		</actuator>
 		
 		<lag_filter name="/engines/engine[2]/oil-temp">
