@@ -419,7 +419,7 @@
 						<property>/it-autoflight/internal/mach</property>
 						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
 					</difference>
-					<value>90</value>
+					<value>100</value>
 				</product>
 			</expression>
 		</input>
@@ -430,7 +430,7 @@
 						<property>/it-autoflight/internal/kts</property>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					</difference>
-					<value>0.09</value>
+					<value>0.1</value>
 				</product>
 			</expression>
 		</input>
