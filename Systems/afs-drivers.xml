@@ -412,7 +412,7 @@
 	<filter>
 		<name>Mach Rate Gain</name>
 		<type>gain</type>
-		<gain>700</gain>
+		<gain>650</gain>
 		<input>/it-autoflight/internal/mach-rate-raw</input>
 		<output>/it-autoflight/internal/mach-rate-gain</output>
 	</filter>
