@@ -349,7 +349,7 @@
 		<type>exponential</type>
 		<input>/velocities/airspeed-kt</input>
 		<output>/it-autoflight/internal/kts-input-lag</output>
-		<filter-time>0.32</filter-time>
+		<filter-time>0.16</filter-time>
 	</filter>
 	
 	<filter>
@@ -390,7 +390,7 @@
 		<type>exponential</type>
 		<input>/velocities/mach</input>
 		<output>/it-autoflight/internal/mach-input-lag</output>
-		<filter-time>0.32</filter-time>
+		<filter-time>0.16</filter-time>
 	</filter>
 	
 	<filter>
@@ -1106,7 +1106,35 @@
 						<value>T/O CLB</value>
 					</equals>
 					<greater-than-equals>
-						<property>/velocities/airspeed-kt</property>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>/fms/speeds/vr</property>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<table>
+						<property>/orientation/pitch-deg</property>
+						<entry><ind> 1</ind><dep>4.0</dep></entry>
+						<entry><ind>10</ind><dep>0.0</dep></entry>
+					</table>
+					<table>
+						<property>/position/gear-agl-ft</property>
+						<entry><ind> 5</ind><dep>1</dep></entry>
+						<entry><ind>30</ind><dep>0</dep></entry>
+					</table>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/mode/vert</property>
+						<value>T/O CLB</value>
+					</equals>
+					<greater-than-equals>
+						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<value>80</value>
 					</greater-than-equals>
 				</and>
@@ -1115,7 +1143,7 @@
 				<product>
 					<table>
 						<property>/orientation/pitch-deg</property>
-						<entry><ind> 1</ind><dep>3.2</dep></entry>
+						<entry><ind> 1</ind><dep>0.5</dep></entry>
 						<entry><ind>10</ind><dep>0.0</dep></entry>
 					</table>
 					<table>
