@@ -44,6 +44,7 @@ var Value = {
 		vs: 0,
 	},
 	Ai: {
+		alpha: 0,
 		bankLimit: 0,
 		center: nil,
 		pitch: 0,
