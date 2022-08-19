@@ -126,7 +126,7 @@
 		<update-interval-secs>0.1</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input> 
+		<input>
 			<expression>
 				<difference>
 					<property>/controls/switches/minimums</property>
