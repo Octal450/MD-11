@@ -974,6 +974,7 @@
 			<default value="/systems/hydraulics/brakes/sys-decr-rate-cmd"/>
 			<test logic="AND" value="0">
 				/systems/hydraulics/brakes/left-error le 0.01
+				/systems/hydraulics/brakes/center-error le 0.01
 				/systems/hydraulics/brakes/right-error le 0.01
 			</test>
 		</switch>
