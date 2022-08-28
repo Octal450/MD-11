@@ -349,7 +349,7 @@
 		<type>exponential</type>
 		<input>/velocities/airspeed-kt</input>
 		<output>/it-autoflight/internal/kts-input-lag</output>
-		<filter-time>0.16</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -374,7 +374,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/velocities/airspeed-kt</property>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					<value>80</value>
 				</less-than>
 			</condition>
@@ -382,7 +382,7 @@
 		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/kts-rate</output>
-		<filter-time>0.16</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -390,7 +390,7 @@
 		<type>exponential</type>
 		<input>/velocities/mach</input>
 		<output>/it-autoflight/internal/mach-input-lag</output>
-		<filter-time>0.16</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -423,7 +423,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/velocities/airspeed-kt</property>
+					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					<value>80</value>
 				</less-than>
 			</condition>
@@ -431,7 +431,7 @@
 		</input>
 		<input>/it-autoflight/internal/mach-rate-gain</input>
 		<output>/it-autoflight/internal/mach-rate</output>
-		<filter-time>0.16</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -1096,8 +1096,7 @@
 	
 	<filter>
 		<name>FD Pitch Takeoff</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<and>
@@ -1156,6 +1155,7 @@
 		</input>
 		<input>0</input>
 		<output>/it-autoflight/fd/pitch-bar-takeoff</output>
+		<max-rate-of-change>7.5</max-rate-of-change>
 	</filter>
 	
 	<filter>
