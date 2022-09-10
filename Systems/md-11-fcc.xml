@@ -1347,7 +1347,7 @@
 		
 		<switch name="fcc/yaw/slip-skid">
 			<default value="aero/beta-rad"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				position/wow eq 1
 			</test>
 		</switch>
