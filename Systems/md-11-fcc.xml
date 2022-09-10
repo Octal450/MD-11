@@ -1319,9 +1319,8 @@
 		
 		<switch name="fcc/yaw/r-switched">
 			<default value="fcc/yaw/r-washout"/>
-			<test logic="OR" value="0">
+			<test value="0">
 				fcc/yaw/active ne 1
-				fcc/yaw/autoland-switch eq 1
 			</test>
 		</switch>
 		
