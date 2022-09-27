@@ -1618,11 +1618,11 @@ setlistener("/it-autoflight/input/trk", func() {
 	Internal.driftAngleTemp = math.round(Internal.driftAngle.getValue());
 	
 	if (Input.trkTemp) {
-		Internal.hdgCalc = Internal.hdg.getValue() + math.round(Internal.driftAngleTemp);
-		Internal.takeoffHdgCalc = Internal.takeoffHdg.getValue() + math.round(Internal.driftAngle.getValue());
+		Internal.hdgCalc = Internal.hdg.getValue() + Internal.driftAngleTemp;
+		Internal.takeoffHdgCalc = Internal.takeoffHdg.getValue() +Internal.driftAngleTemp;
 	} else {
-		Internal.hdgCalc = Internal.hdg.getValue() - math.round(Internal.driftAngleTemp);
-		Internal.takeoffHdgCalc = Internal.takeoffHdg.getValue() - math.round(Internal.driftAngle.getValue());
+		Internal.hdgCalc = Internal.hdg.getValue() - Internal.driftAngleTemp;
+		Internal.takeoffHdgCalc = Internal.takeoffHdg.getValue() - Internal.driftAngleTemp;
 	}
 	
 	if (Internal.hdgCalc > 359) { # It's rounded, so this is ok. Otherwise do >= 359.5
