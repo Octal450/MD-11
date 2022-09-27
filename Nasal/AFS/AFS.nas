@@ -274,6 +274,8 @@ var ITAF = {
 			Input.vsFpa.setBoolValue(0);
 		}
 		Internal.ktsMach.setBoolValue(0);
+		Internal.takeoffHdg.setValue(0);
+		Internal.takeoffLvl.setBoolValue(1);
 		Input.ap1.setBoolValue(0);
 		Input.ap2.setBoolValue(0);
 		Input.athr.setBoolValue(0);
@@ -287,8 +289,6 @@ var ITAF = {
 		Input.vert.setValue(7);
 		Input.toga.setBoolValue(0);
 		Input.radioSel.setValue(2);
-		Internal.takeoffHdg.setValue(0);
-		Internal.takeoffLvl.setBoolValue(1);
 		Internal.radioSel.setValue(2);
 		Output.ap1.setBoolValue(0);
 		Output.ap2.setBoolValue(0);
