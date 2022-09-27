@@ -30,6 +30,16 @@
 							<property>/it-autoflight/output/lat</property>
 							<value>1</value>
 						</equals>
+						<and>
+							<equals>
+								<property>/it-autoflight/output/lat</property>
+								<value>5</value>
+							</equals>
+							<equals>
+								<property>/it-autoflight/internal/takeoff-lvl</property>
+								<value>0</value>
+							</equals>
+						</and>
 					</or>
 				</and>
 			</condition>
@@ -88,10 +98,16 @@
 						<property>/it-autoflight/output/lat</property>
 						<value>4</value>
 					</equals>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>5</value>
-					</equals>
+					<and>
+						<equals>
+							<property>/it-autoflight/output/lat</property>
+							<value>5</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/internal/takeoff-lvl</property>
+							<value>1</value>
+						</equals>
+					</and>
 				</or>
 			</condition>
 		</enable>

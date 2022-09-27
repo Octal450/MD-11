@@ -584,9 +584,26 @@
 			</condition>
 			<property>/orientation/track-magnetic-deg</property>
 		</input>
-		<input>/it-autoflight/internal/heading-deg</input>
+		<input>/it-autoflight/internal/heading-magnetic-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/track-deg</output>
+	</filter>
+	
+	<filter>
+		<name>Heading/Track Deg</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/input/trk</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/track-deg</property>
+		</input>
+		<input>/it-autoflight/internal/heading-deg</input>
+		<output>/it-autoflight/internal/heading</output>
 	</filter>
 	
 	<filter>
@@ -600,10 +617,10 @@
 					<value>1</value>
 				</less-than>
 			</condition>
-			<property>/orientation/heading-magnetic-deg</property>
+			<property>/orientation/heading-deg</property>
 		</input>
-		<input>/orientation/track-magnetic-deg</input>
-		<reference>/orientation/heading-magnetic-deg</reference>
+		<input>/orientation/track-deg</input>
+		<reference>/orientation/heading-deg</reference>
 		<output>/it-autoflight/internal/drift-angle-deg</output>
 		<period>
 			<min>-180</min>
@@ -617,39 +634,14 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/input/trk</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/output/lat</property>
+					<value>0</value>
+				</equals>
 			</condition>
 			<property>/it-autoflight/internal/hdg</property>
 			<offset>
-				<property>/it-autoflight/internal/heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
-		</input>
-		<input>
-			<condition>
-				<and>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>0</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/input/trk</property>
-						<value>1</value>
-					</equals>
-				</and>
-			</condition>
-			<property>/it-autoflight/internal/hdg</property>
-			<offset>
-				<property>/it-autoflight/internal/track-deg</property>
+				<property>/it-autoflight/internal/heading</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
@@ -673,6 +665,19 @@
 					</product>
 				</sum>
 			</expression>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/lat</property>
+					<value>5</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/takeoff-hdg</property>
+			<offset>
+				<property>/it-autoflight/internal/heading</property>
+				<scale>-1.0</scale>
+			</offset>
 		</input>
 		<input>0</input>
 		<output>/it-autoflight/internal/heading-error-deg</output>
