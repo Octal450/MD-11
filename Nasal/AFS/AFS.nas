@@ -274,7 +274,6 @@ var ITAF = {
 			Input.vsFpa.setBoolValue(0);
 		}
 		Internal.ktsMach.setBoolValue(0);
-		Internal.takeoffHdg.setValue(0);
 		Internal.takeoffLvl.setBoolValue(1);
 		Input.ap1.setBoolValue(0);
 		Input.ap2.setBoolValue(0);
