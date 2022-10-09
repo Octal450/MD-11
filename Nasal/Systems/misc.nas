@@ -168,88 +168,120 @@ setlistener("/gear/abs/disarm", func() {
 	BRAKES.absSetOff(1);
 }, 0, 0);
 
-# Engine Sim Control Stuff
-# Don't want to change the bindings yet
-# Intentionally not using + or -, floating point error would be BAD
-# We just based it off Engine 2
+# Engine Control
+var ENGINE = {
+	cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
+	reverseEngage: [props.globals.getNode("/controls/engines/engine[0]/reverse-engage"), props.globals.getNode("/controls/engines/engine[1]/reverse-engage"), props.globals.getNode("/controls/engines/engine[2]/reverse-engage")],
+	startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
+	startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
+	throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
+	throttleTemp: [0, 0, 0],
+	init: func() {
+		me.reverseEngage[0].setBoolValue(0);
+		me.reverseEngage[1].setBoolValue(0);
+		me.reverseEngage[2].setBoolValue(0);
+		me.startCmd[0].setBoolValue(0);
+		me.startCmd[1].setBoolValue(0);
+		me.startCmd[2].setBoolValue(0);
+		me.startSwitch[0].setBoolValue(0);
+		me.startSwitch[1].setBoolValue(0);
+		me.startSwitch[2].setBoolValue(0);
+		pts.Engines.Engine.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+		pts.Engines.Engine.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+		pts.Engines.Engine.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+	},
+};
+
+# Base off Engine 2
 var doRevThrust = func() {
-	ENGINE.reverseLeverTemp[1] = ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.reverseLeverTemp[1] < 0.25) {
-			ENGINE.reverseLever[0].setValue(0.25);
-			ENGINE.reverseLever[1].setValue(0.25);
-			ENGINE.reverseLever[2].setValue(0.25);
-		} else if (ENGINE.reverseLeverTemp[1] < 0.5) {
-			ENGINE.reverseLever[0].setValue(0.5);
-			ENGINE.reverseLever[1].setValue(0.5);
-			ENGINE.reverseLever[2].setValue(0.5);
-		} else if (ENGINE.reverseLeverTemp[1] < 0.75) {
-			ENGINE.reverseLever[0].setValue(0.75);
-			ENGINE.reverseLever[1].setValue(0.75);
-			ENGINE.reverseLever[2].setValue(0.75);
-		} else if (ENGINE.reverseLeverTemp[1] < 1.0) {
-			ENGINE.reverseLever[0].setValue(1.0);
-			ENGINE.reverseLever[1].setValue(1.0);
-			ENGINE.reverseLever[2].setValue(1.0);
+		ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
+		if (!ENGINE.reverseEngage[0].getBoolValue() or !ENGINE.reverseEngage[1].getBoolValue() or !ENGINE.reverseEngage[2].getBoolValue()) {
+			ENGINE.reverseEngage[0].setBoolValue(1);
+			ENGINE.reverseEngage[1].setBoolValue(1);
+			ENGINE.reverseEngage[2].setBoolValue(1);
+			ENGINE.throttle[0].setValue(0);
+			ENGINE.throttle[1].setValue(0);
+			ENGINE.throttle[2].setValue(0);
+		} else if (ENGINE.throttleTemp[1] < 0.4) {
+			ENGINE.throttle[0].setValue(0.4);
+			ENGINE.throttle[1].setValue(0.4);
+			ENGINE.throttle[2].setValue(0.4);
+		} else if (ENGINE.throttleTemp[1] < 0.7) {
+			ENGINE.throttle[0].setValue(0.7);
+			ENGINE.throttle[1].setValue(0.7);
+			ENGINE.throttle[2].setValue(0.7);
+		} else if (ENGINE.throttleTemp[1] < 1) {
+			ENGINE.throttle[0].setValue(1);
+			ENGINE.throttle[1].setValue(1);
+			ENGINE.throttle[2].setValue(1);
 		}
+	} else {
 		ENGINE.throttle[0].setValue(0);
 		ENGINE.throttle[1].setValue(0);
 		ENGINE.throttle[2].setValue(0);
-	} else {
-		ENGINE.reverseLever[0].setValue(0);
-		ENGINE.reverseLever[1].setValue(0);
-		ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseEngage[0].setBoolValue(0);
+		ENGINE.reverseEngage[1].setBoolValue(0);
+		ENGINE.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var unRevThrust = func() {
-	ENGINE.reverseLeverTemp[1] = ENGINE.reverseLever[1].getValue();
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.reverseLeverTemp[1] > 0.75) {
-			ENGINE.reverseLever[0].setValue(0.75);
-			ENGINE.reverseLever[1].setValue(0.75);
-			ENGINE.reverseLever[2].setValue(0.75);
-		} else if (ENGINE.reverseLeverTemp[1] > 0.5) {
-			ENGINE.reverseLever[0].setValue(0.5);
-			ENGINE.reverseLever[1].setValue(0.5);
-			ENGINE.reverseLever[2].setValue(0.5);
-		} else if (ENGINE.reverseLeverTemp[1] > 0.25) {
-			ENGINE.reverseLever[0].setValue(0.25);
-			ENGINE.reverseLever[1].setValue(0.25);
-			ENGINE.reverseLever[2].setValue(0.25);
-		} else if (ENGINE.reverseLeverTemp[1] > 0) {
-			ENGINE.reverseLever[0].setValue(0);
-			ENGINE.reverseLever[1].setValue(0);
-			ENGINE.reverseLever[2].setValue(0);
+		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
+			ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
+			if (ENGINE.throttleTemp[1] > 0.7) {
+				ENGINE.throttle[0].setValue(0.7);
+				ENGINE.throttle[1].setValue(0.7);
+				ENGINE.throttle[2].setValue(0.7);
+			} else if (ENGINE.throttleTemp[1] > 0.4) {
+				ENGINE.throttle[0].setValue(0.4);
+				ENGINE.throttle[1].setValue(0.4);
+				ENGINE.throttle[2].setValue(0.4);
+			} else if (ENGINE.throttleTemp[1] > 0.05) {
+				ENGINE.throttle[0].setValue(0);
+				ENGINE.throttle[1].setValue(0);
+				ENGINE.throttle[2].setValue(0);
+			} else {
+				ENGINE.throttle[0].setValue(0);
+				ENGINE.throttle[1].setValue(0);
+				ENGINE.throttle[2].setValue(0);
+				ENGINE.reverseEngage[0].setBoolValue(0);
+				ENGINE.reverseEngage[1].setBoolValue(0);
+				ENGINE.reverseEngage[2].setBoolValue(0);
+			}
 		}
+	} else {
 		ENGINE.throttle[0].setValue(0);
 		ENGINE.throttle[1].setValue(0);
 		ENGINE.throttle[2].setValue(0);
-	} else {
-		ENGINE.reverseLever[0].setValue(0);
-		ENGINE.reverseLever[1].setValue(0);
-		ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseEngage[0].setBoolValue(0);
+		ENGINE.reverseEngage[1].setBoolValue(0);
+		ENGINE.reverseEngage[2].setBoolValue(0);
 	}
 }
 
-var toggleFastRevThrust = func() {
+var toggleRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.reverseLever[1].getValue() != 0) { # NOT a bool, this way it always closes even if partially open
-			ENGINE.reverseLever[0].setValue(0);
-			ENGINE.reverseLever[1].setValue(0);
-			ENGINE.reverseLever[2].setValue(0);
+		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
+			ENGINE.throttle[0].setValue(0);
+			ENGINE.throttle[1].setValue(0);
+			ENGINE.throttle[2].setValue(0);
+			ENGINE.reverseEngage[0].setBoolValue(0);
+			ENGINE.reverseEngage[1].setBoolValue(0);
+			ENGINE.reverseEngage[2].setBoolValue(0);
 		} else {
-			ENGINE.reverseLever[0].setValue(1);
-			ENGINE.reverseLever[1].setValue(1);
-			ENGINE.reverseLever[2].setValue(1);
+			ENGINE.reverseEngage[0].setBoolValue(1);
+			ENGINE.reverseEngage[1].setBoolValue(1);
+			ENGINE.reverseEngage[2].setBoolValue(1);
 		}
+	} else {
 		ENGINE.throttle[0].setValue(0);
 		ENGINE.throttle[1].setValue(0);
 		ENGINE.throttle[2].setValue(0);
-	} else {
-		ENGINE.reverseLever[0].setValue(0);
-		ENGINE.reverseLever[1].setValue(0);
-		ENGINE.reverseLever[2].setValue(0);
+		ENGINE.reverseEngage[0].setBoolValue(0);
+		ENGINE.reverseEngage[1].setBoolValue(0);
+		ENGINE.reverseEngage[2].setBoolValue(0);
 	}
 }
 
@@ -264,30 +296,6 @@ var doFullThrust = func() {
 	ENGINE.throttle[1].setValue(1);
 	ENGINE.throttle[2].setValue(1);
 }
-
-# Engines Misc
-var ENGINE = {
-	cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
-	reverseLever: [props.globals.getNode("/controls/engines/engine[0]/reverse-lever"), props.globals.getNode("/controls/engines/engine[1]/reverse-lever"), props.globals.getNode("/controls/engines/engine[2]/reverse-lever")],
-	reverseLeverTemp: [0, 0, 0],
-	startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
-	startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
-	throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
-	init: func() {
-		me.reverseLever[0].setBoolValue(0);
-		me.reverseLever[1].setBoolValue(0);
-		me.reverseLever[2].setBoolValue(0);
-		me.startCmd[0].setBoolValue(0);
-		me.startCmd[1].setBoolValue(0);
-		me.startCmd[2].setBoolValue(0);
-		me.startSwitch[0].setBoolValue(0);
-		me.startSwitch[1].setBoolValue(0);
-		me.startSwitch[2].setBoolValue(0);
-		pts.Engines.Engine.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
-		pts.Engines.Engine.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
-		pts.Engines.Engine.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
-	},
-};
 
 # FADEC
 var FADEC = {

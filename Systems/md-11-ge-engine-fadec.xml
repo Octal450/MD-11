@@ -460,7 +460,7 @@
 		<switch name="fadec/reverse-1/position-cmd">
 			<default value="0"/>
 			<test value="1">
-				/controls/engines/engine[0]/reverse-lever ge 0.25
+				/controls/engines/engine[0]/reverse-engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[0]/n1-actual ge 40
@@ -498,22 +498,39 @@
 			</test>
 		</switch>
 		
-		<switch name="fadec/reverse-1/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
-			<default value="0"/>
-			<test value="0.84">
-				/controls/engines/engine[0]/reverse-lever eq 1
-			</test>
-			<test value="0.56">
-				/controls/engines/engine[0]/reverse-lever eq 0.75
-			</test>
-			<test value="0.28">
-				/controls/engines/engine[0]/reverse-lever eq 0.5
-			</test>
-			<clipto>
-				<min>0.08</min>
-				<max>1.0</max>
-			</clipto>
-		</switch>
+		<fcs_function name="fadec/reverse-1/throttle-rev-cmd">
+			<function>
+				<ifthen>
+					<eq>
+						<property>fadec/reverse-1/position-norm</property>
+						<value>1</value>
+					</eq>
+					<table>
+						<independentVar lookup="row">/controls/engines/engine[0]/throttle</independentVar>
+						<tableData>
+							0.05  0.05
+							1.00  0.84
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/engines/engine[0]/reverse-lever">
+			<function>
+				<product>
+					<property>/controls/engines/engine[0]/reverse-engage</property>
+					<table>
+						<independentVar lookup="row">fadec/reverse-1/throttle-rev-cmd</independentVar>
+						<tableData>
+							0.05  0.25
+							0.84  1.00
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<switch name="fadec/reverse-1/throttle-rev">
 			<default value="0"/>
@@ -521,10 +538,10 @@
 				fadec/reverse-1/interlock eq 1
 			</test>
 			<test value="fadec/reverse-1/throttle-rev-cmd">
-				/controls/engines/engine[0]/reverse-lever ge 0.5
+				/controls/engines/engine[0]/reverse-engage eq 1
 			</test>
 			<clipto>
-				<min>0.08</min>
+				<min>0.05</min>
 				<max>1.0</max>
 			</clipto>
 		</switch>
@@ -532,11 +549,12 @@
 		<!-- Engine 2 -->
 		<switch name="fadec/reverse-2/position-cmd">
 			<default value="0"/>
-			<test value="0">
+			<test logic="AND" value="0">
 				/gear/gear[0]/wow ne 1
+				fadec/reverse-2/position-cmd eq 0
 			</test>
 			<test value="1">
-				/controls/engines/engine[1]/reverse-lever ge 0.25
+				/controls/engines/engine[1]/reverse-engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[1]/n1-actual ge 40
@@ -574,22 +592,39 @@
 			</test>
 		</switch>
 		
-		<switch name="fadec/reverse-2/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
-			<default value="0"/>
-			<test value="0.84">
-				/controls/engines/engine[1]/reverse-lever eq 1
-			</test>
-			<test value="0.56">
-				/controls/engines/engine[1]/reverse-lever eq 0.75
-			</test>
-			<test value="0.28">
-				/controls/engines/engine[1]/reverse-lever eq 0.5
-			</test>
-			<clipto>
-				<min>0.08</min>
-				<max>1.0</max>
-			</clipto>
-		</switch>
+		<fcs_function name="fadec/reverse-2/throttle-rev-cmd">
+			<function>
+				<ifthen>
+					<eq>
+						<property>fadec/reverse-2/position-norm</property>
+						<value>1</value>
+					</eq>
+					<table>
+						<independentVar lookup="row">/controls/engines/engine[1]/throttle</independentVar>
+						<tableData>
+							0.05  0.05
+							1.00  0.84
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/engines/engine[1]/reverse-lever">
+			<function>
+				<product>
+					<property>/controls/engines/engine[1]/reverse-engage</property>
+					<table>
+						<independentVar lookup="row">fadec/reverse-2/throttle-rev-cmd</independentVar>
+						<tableData>
+							0.05  0.25
+							0.84  1.00
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<switch name="fadec/reverse-2/throttle-rev">
 			<default value="0"/>
@@ -597,10 +632,10 @@
 				fadec/reverse-2/interlock eq 1
 			</test>
 			<test value="fadec/reverse-2/throttle-rev-cmd">
-				/controls/engines/engine[1]/reverse-lever ge 0.5
+				/controls/engines/engine[1]/reverse-engage eq 1
 			</test>
 			<clipto>
-				<min>0.08</min>
+				<min>0.05</min>
 				<max>1.0</max>
 			</clipto>
 		</switch>
@@ -609,7 +644,7 @@
 		<switch name="fadec/reverse-3/position-cmd">
 			<default value="0"/>
 			<test value="1">
-				/controls/engines/engine[2]/reverse-lever ge 0.25
+				/controls/engines/engine[2]/reverse-engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[2]/n1-actual ge 40
@@ -647,22 +682,39 @@
 			</test>
 		</switch>
 		
-		<switch name="fadec/reverse-3/throttle-rev-cmd"> <!-- Seperate from the below switch on purpose -->
-			<default value="0"/>
-			<test value="0.84">
-				/controls/engines/engine[2]/reverse-lever eq 1
-			</test>
-			<test value="0.56">
-				/controls/engines/engine[2]/reverse-lever eq 0.75
-			</test>
-			<test value="0.28">
-				/controls/engines/engine[2]/reverse-lever eq 0.5
-			</test>
-			<clipto>
-				<min>0.08</min>
-				<max>1.0</max>
-			</clipto>
-		</switch>
+		<fcs_function name="fadec/reverse-3/throttle-rev-cmd">
+			<function>
+				<ifthen>
+					<eq>
+						<property>fadec/reverse-3/position-norm</property>
+						<value>1</value>
+					</eq>
+					<table>
+						<independentVar lookup="row">/controls/engines/engine[2]/throttle</independentVar>
+						<tableData>
+							0.05  0.05
+							1.00  0.84
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/engines/engine[2]/reverse-lever">
+			<function>
+				<product>
+					<property>/controls/engines/engine[2]/reverse-engage</property>
+					<table>
+						<independentVar lookup="row">fadec/reverse-3/throttle-rev-cmd</independentVar>
+						<tableData>
+							0.05  0.25
+							0.84  1.00
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<switch name="fadec/reverse-3/throttle-rev">
 			<default value="0"/>
@@ -670,10 +722,10 @@
 				fadec/reverse-3/interlock eq 1
 			</test>
 			<test value="fadec/reverse-3/throttle-rev-cmd">
-				/controls/engines/engine[2]/reverse-lever ge 0.5
+				/controls/engines/engine[2]/reverse-engage eq 1
 			</test>
 			<clipto>
-				<min>0.08</min>
+				<min>0.05</min>
 				<max>1.0</max>
 			</clipto>
 		</switch>
@@ -746,7 +798,7 @@
 		
 		<switch name="fadec/control-1/throttle-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
-			<test value="fadec/reverse-1/throttle-rev-cmd">
+			<test value="fadec/reverse-1/throttle-rev">
 				fadec/reverse-1/position-norm ne 0
 			</test>
 			<clipto>
@@ -822,7 +874,7 @@
 		
 		<switch name="fadec/control-2/throttle-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
-			<test value="fadec/reverse-2/throttle-rev-cmd">
+			<test value="fadec/reverse-2/throttle-rev">
 				fadec/reverse-2/position-norm ne 0
 			</test>
 			<clipto>
@@ -898,7 +950,7 @@
 		
 		<switch name="fadec/control-3/throttle-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
-			<test value="fadec/reverse-3/throttle-rev-cmd">
+			<test value="fadec/reverse-3/throttle-rev">
 				fadec/reverse-3/position-norm ne 0
 			</test>
 			<clipto>
@@ -1489,7 +1541,7 @@
 				fadec/reverse-1/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[0]/reverse-lever gt 0
+				/controls/engines/engine[0]/reverse-engage eq 1
 				fadec/reverse-1/position-norm gt 0
 			</test>
 		</switch>
@@ -1500,7 +1552,7 @@
 				fadec/reverse-2/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[1]/reverse-lever gt 0
+				/controls/engines/engine[1]/reverse-engage eq 1
 				fadec/reverse-2/position-norm gt 0
 			</test>
 		</switch>
@@ -1511,7 +1563,7 @@
 				fadec/reverse-3/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[2]/reverse-lever gt 0
+				/controls/engines/engine[2]/reverse-engage eq 1
 				fadec/reverse-3/position-norm gt 0
 			</test>
 		</switch>
