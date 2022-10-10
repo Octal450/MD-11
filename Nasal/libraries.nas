@@ -41,6 +41,7 @@ var systemsInit = func() {
 }
 
 var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
+	acconfig.SYSTEM.fdmInit();
 	systemsInit();
 	systemsLoop.start();
 	lightsLoop.start();

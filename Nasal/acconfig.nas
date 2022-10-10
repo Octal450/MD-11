@@ -408,10 +408,6 @@ var PANEL = {
 var spinningT = maketimer(0.05, SYSTEM, SYSTEM.spinning);
 SYSTEM.simInit();
 
-setlistener("/sim/signals/fdm-initialized", func() {
-	SYSTEM.fdmInit();
-});
-
 setlistener("/sim/signals/reinit", func(s) {
 	if (!s.getBoolValue() and libraries.initDone) {
 		PANEL.coldDark(1);
