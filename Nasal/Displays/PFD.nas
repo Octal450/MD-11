@@ -52,8 +52,8 @@ var Value = {
 		stallAlphaDeg: 0,
 	},
 	Alt: {
-		indicatedAbs: 0,
 		indicated: 0,
+		indicatedAbs: 0,
 		preSel: 0,
 		sel: 0,
 		Tape: {

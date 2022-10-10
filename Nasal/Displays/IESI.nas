@@ -12,6 +12,15 @@ var Value = {
 	},
 	Alt: {
 		indicated: 0,
+		indicatedAbs: 0,
+		Tape: {
+			hundreds: 0,
+			hundredsGeneva: 0,
+			tenThousands: 0,
+			tenThousandsGeneva: 0,
+			thousands: 0,
+			thousandsGeneva: 0,
+		},
 	},
 	Asi: {
 		ias: 0,
@@ -83,8 +92,8 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_meters", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones", "ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five",
-		"HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_tens", "ALT_tenthousands", "ALT_thousands", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones",
+		"ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -163,7 +172,41 @@ var canvasIesi = {
 		}
 		
 		# ALT
+		if (Value.Alt.indicated < 0) {
+			if (Value.Alt.indicated >= -998) {
+				me["ALT_minus"].setTranslation(29.072, 0);
+				me["ALT_thousands"].hide();
+			} else {
+				me["ALT_minus"].setTranslation(0, 0);
+				me["ALT_thousands"].show();
+			}
+			
+			me["ALT_minus"].show();
+			me["ALT_tenthousands"].hide();
+		} else {
+			me["ALT_minus"].hide();
+			me["ALT_thousands"].show();
+			me["ALT_tenthousands"].show();
+		}
+		
 		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
+		Value.Alt.indicatedAbs = abs(Value.Alt.indicated);
+		
+		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
+		Value.Alt.Tape.tenThousandsGeneva = genevaAltTenThousands(Value.Alt.Tape.tenThousands);
+		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 57.47);
+		
+		Value.Alt.Tape.thousands = num(right(sprintf("%04d", Value.Alt.indicatedAbs), 4)) / 100;
+		Value.Alt.Tape.thousandsGeneva = genevaAltThousands(Value.Alt.Tape.thousands);
+		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 57.47);
+		
+		Value.Alt.Tape.hundreds = num(right(sprintf("%03d", Value.Alt.indicatedAbs), 3)) / 100;
+		Value.Alt.Tape.hundredsGeneva = genevaAltHundreds(Value.Alt.Tape.hundreds);
+		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 57.47);
+		
+		Value.Alt.Tape.tens = num(right(sprintf("%02d", Value.Alt.indicatedAbs), 2));
+		me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.392);
+		
 		me["ALT_meters"].setText(sprintf("%d", math.round(Value.Alt.indicated * FT2M)) ~ "M");
 		
 		# QNH
@@ -296,5 +339,25 @@ var genevaAsiHundreds = func(input) {
 var genevaAsiTens = func(input) {
 	var m = math.floor(input);
 	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	return m + s;
+}
+
+var genevaAltTenThousands = func(input) {
+	var m = math.floor(input / 100);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	if (math.mod(input / 10, 1) < 0.9 or math.mod(input / 100, 1) < 0.9) s = 0;
+	return m + s;
+}
+
+var genevaAltThousands = func(input) {
+	var m = math.floor(input / 10);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	if (math.mod(input / 10, 1) < 0.9) s = 0;
+	return m + s;
+}
+
+var genevaAltHundreds = func(input) {
+	var m = math.floor(input);
+	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	return m + s;
 }
