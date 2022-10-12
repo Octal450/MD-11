@@ -12,6 +12,16 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/brake-pedal-left">
+			<input>/controls/gear/brake-left</input>
+			<c1>5</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/brake-pedal-right">
+			<input>/controls/gear/brake-right</input>
+			<c1>5</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/elevator-yoke">
 			<input>hydraulics/elevator-yoke-switch</input>
 			<c1>20</c1>
@@ -25,16 +35,6 @@
 		<lag_filter name="/controls/cockpit/tiller-handle">
 			<input>hydraulics/tiller/handle</input>
 			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/brake-pedal-left">
-			<input>/controls/gear/brake-left</input>
-			<c1>5</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/brake-pedal-right">
-			<input>/controls/gear/brake-right</input>
-			<c1>5</c1>
 		</lag_filter>
 		
 		<!-- General -->		
