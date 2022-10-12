@@ -70,16 +70,16 @@
 		<type>knob</type>
 		<object-name>BLimit.knob</object-name>
 		<object-name>BLimit.knob.indicator</object-name>
-		<property>it-autoflight/input/bank-limit-sw</property>
 		<drag-scale-px>15</drag-scale-px>
-		<interpolation>
-			<entry><ind>1</ind><dep>300</dep></entry>
-			<entry><ind>2</ind><dep>240</dep></entry>
-			<entry><ind>3</ind><dep>180</dep></entry>
-			<entry><ind>4</ind><dep>120</dep></entry>
-			<entry><ind>5</ind><dep>60</dep></entry>
-			<entry><ind>0</ind><dep>0</dep></entry>
-		</interpolation>
+		<expression>
+			<difference>
+				<value>360</value>
+				<product>
+					<property>controls/cockpit/bank-limit</property>
+					<value>60</value>
+				</product>
+			</difference>
+		</expression>
 		<center>
 			<x-m>-25.7153</x-m>
 			<y-m>-0.0486</y-m>

@@ -579,6 +579,18 @@
 				<wrap>false</wrap>
 			</binding>
 		</action>
+		<release>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (pts.Controls.Cockpit.shadeLeftCmd.getValue() >= 0.5) {
+						pts.Controls.Cockpit.shadeLeftCmd.setValue(1);
+					} else {
+						pts.Controls.Cockpit.shadeLeftCmd.setValue(0);
+					}
+				</script>
+			</binding>
+		</release>
 	</animation>
 	
 	<animation>
@@ -671,6 +683,18 @@
 				<wrap>false</wrap>
 			</binding>
 		</action>
+		<release>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if (pts.Controls.Cockpit.shadeRightCmd.getValue() >= 0.5) {
+						pts.Controls.Cockpit.shadeRightCmd.setValue(1);
+					} else {
+						pts.Controls.Cockpit.shadeRightCmd.setValue(0);
+					}
+				</script>
+			</binding>
+		</release>
 	</animation>
 	
 	<animation>

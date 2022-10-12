@@ -62,6 +62,16 @@
 			<c1>10</c1>
 		</lag_filter>
 		
+		<linear_actuator name="/controls/cockpit/bank-limit-linear">
+			<input>/it-autoflight/input/bank-limit-sw</input>
+			<module>6</module>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/bank-limit">
+			<input>/controls/cockpit/bank-limit-linear</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/compass">
 			<input>/controls/cockpit/compass-cmd</input>
 			<c1>10</c1>

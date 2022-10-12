@@ -11,6 +11,10 @@ var Consumables = {
 };
 
 var Controls = {
+	Cockpit: {
+		shadeLeftCmd: props.globals.getNode("/controls/cockpit/shade-left-cmd"),
+		shadeRightCmd: props.globals.getNode("/controls/cockpit/shade-right-cmd"),
+	},
 	Flight: {
 		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
