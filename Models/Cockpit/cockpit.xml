@@ -665,7 +665,7 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/cockpit/shade-right-cmd</property>
-				<factor>0.05</factor>
+				<factor>-0.05</factor>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>
