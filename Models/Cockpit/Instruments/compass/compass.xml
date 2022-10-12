@@ -14,7 +14,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/cockpit/compass</property>
+				<property>controls/cockpit/compass-cmd</property>
 			</binding>
 		</action>
 	</animation>
@@ -22,7 +22,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Main</object-name>
-		<property>controls/cockpit/compass-rotate</property>
+		<property>controls/cockpit/compass</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>90</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -42,7 +42,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Tube</object-name>
-		<property>controls/cockpit/compass-rotate</property>
+		<property>controls/cockpit/compass</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>21.6</dep></entry>
 			<entry><ind>1</ind><dep> 0.0</dep></entry>

@@ -32,19 +32,16 @@
 	</effect>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>knob</object-name>
 		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-cycle</command>
+				<command>property-adjust</command>
 				<property>instrumentation/du/mcdu1-dimmer</property>
-				<value>0</value>
-				<value>1</value>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>

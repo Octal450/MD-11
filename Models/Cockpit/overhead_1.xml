@@ -53,69 +53,69 @@
 	</animation>
 
 	<animation>
-		<name>OVHD Integ light knob</name>
-		<type>pick</type>
+		<name>Overhead Integ light knob</name>
+		<type>knob</type>
 		<object-name>ovhdinteg.knob</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
+		<property>controls/cockpit/overhead/overhead-integ-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-21.7975</x-m>
+			<y-m>-0.1138</y-m>
+			<z-m>-18.0476</z-m>
+		</center>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/overhead-integ-knb</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/overhead-integ-knb</property>
-				<step>-0.05</step>
+				<factor>0.05</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
 
 	<animation>
 		<name>Main Integ light knob</name>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>maininteg.knob</object-name>
 		<object-name>maininteg.indicator</object-name>
+		<property>controls/cockpit/overhead/main-integ-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-21.7975</x-m>
+			<y-m>-0.1138</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/main-integ-knb</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/main-integ-knb</property>
-				<step>-0.05</step>
+				<factor>0.05</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
 
 	<!--animation>
-		<name>OVHD panel light rotate</name>
-		<type>rotate</type>
+		<name>Overhead panel light</name>
+		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
 		<object-name>ovhdflood.indicator</object-name>
-		<property>controls/lighting/oh-flood-norm</property>
+		<property>controls/lighting/overhead-flood-norm</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -127,14 +127,16 @@
 			<y-m>-0.1138</y-m>
 			<z-m>-18.0476</z-m>
 		</center>
+		<action>
+		</action>
 	</animation-->
 	
 	<!--animation>
-		<name>Dashboard light rotate</name>
-		<type>rotate</type>
+		<name>Main light</name>
+		<type>knob</type>
 		<object-name>mainflood.knob</object-name>
 		<object-name>mainflood.indicator</object-name>
-		<property>controls/lighting/dashboard-panel-norm</property>
+		<property>controls/lighting/main-flood-norm</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -146,45 +148,9 @@
 			<y-m>-0.1138</y-m>
 			<z-m>-18.0824</z-m>
 		</center>
+		<action>
+		</action>
 	</animation-->
-
-	<animation>
-		<name>Main Integ light rotate</name>
-		<type>rotate</type>
-		<object-name>maininteg.knob</object-name>
-		<object-name>maininteg.indicator</object-name>
-		<property>controls/lighting/main-integ-knb</property>
-		<factor>-329</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-21.7975</x-m>
-			<y-m>-0.1138</y-m>
-			<z-m>-18.0824</z-m>
-		</center>
-	</animation>
-
-	<animation>
-		<name>OVHD Integ light rotate</name>
-		<type>rotate</type>
-		<object-name>ovhdinteg.knob</object-name>
-		<object-name>ovhdinteg.indicator</object-name>
-		<property>controls/lighting/overhead-integ-knb</property>
-		<factor>-329</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-21.7975</x-m>
-			<y-m>-0.1138</y-m>
-			<z-m>-18.0476</z-m>
-		</center>
-	</animation>
 	
 	<!-- No button lights without power! -->
 	<animation>
@@ -444,30 +410,11 @@
 	
 	<!-- IRS -->
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>IR1Knb</object-name>
 		<object-name>IR1Knb.light</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/iru[0]/switches/knob</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>IR1Knb</object-name>
-		<object-name>IR1Knb.light</object-name>
-		<property>controls/iru[0]/switches/knob</property>
+		<property>controls/cockpit/overhead/iru-knob[0]</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>45</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -482,6 +429,20 @@
 			<y-m>-0.26272</y-m>
 			<z-m>-17.6817</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/iru[0]/switches/knob</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -501,30 +462,11 @@
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>IRAuxKnb</object-name>
 		<object-name>IRAuxKnb.light</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/iru[2]/switches/knob</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>IRAuxKnb</object-name>
-		<object-name>IRAuxKnb.light</object-name>
-		<property>controls/iru[2]/switches/knob</property>
+		<property>controls/cockpit/overhead/iru-knob[2]</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>45</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -539,6 +481,20 @@
 			<y-m>-0.22417</y-m>
 			<z-m>-17.6817</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/iru[2]/switches/knob</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -558,30 +514,11 @@
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>IR2Knb</object-name>
 		<object-name>IR2Knb.light</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/iru[1]/switches/knob</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>IR2Knb</object-name>
-		<object-name>IR2Knb.light</object-name>
-		<property>controls/iru[1]/switches/knob</property>
+		<property>controls/cockpit/overhead/iru-knob[1]</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>45</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -596,6 +533,20 @@
 			<y-m>-0.18619</y-m>
 			<z-m>-17.6817</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/iru[1]/switches/knob</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -614,7 +565,7 @@
 		</condition>
 	</animation>
 	
-	<!-- Galley Bus Button -->
+	<!-- Galley Bus Buttons -->
 	<animation>
 		<type>pick</type>
 		<object-name>Galley1</object-name>
@@ -781,6 +732,70 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<!-- Cargo Temp Knobs -->
+	<animation>
+		<type>knob</type>
+		<object-name>CargoFwdTemp</object-name>
+		<object-name>CargoFwdTemp.light</object-name>
+		<property>controls/cockpit/overhead/cargo-fwd-temp</property>
+		<drag-scale-px>15</drag-scale-px>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>180</dep></entry>
+			<entry><ind>0.5</ind><dep> 66</dep></entry>
+			<entry><ind>1.0</ind><dep>-66</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.25763</y-m>
+			<z-m>-17.8353</z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/cargo-fwd-temp</property>
+				<factor>0.5</factor>
+				<min>0</min>
+				<max>1</max>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>CargoAftTemp</object-name>
+		<object-name>CargoAftTemp.light</object-name>
+		<property>controls/cockpit/overhead/cargo-aft-temp</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep> 180</dep></entry>
+			<entry><ind>0.05</ind><dep> 113</dep></entry>
+			<entry><ind>0.75</ind><dep>-113</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.1905</y-m>
+			<z-m>-17.8353</z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/cargo-aft-temp</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>0.85</max>
+			</binding>
+		</action>
 	</animation>
 	
 	<!-- HYDRAULICS -->
@@ -2785,51 +2800,15 @@
 	
 	<!-- Emergency Power -->
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>emerPwrrKnb</object-name>
 		<object-name>emerPwrrKnb.light</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pwr</property>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/electrical/switches/emer-pwr</property>
-				<value>2</value>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>emerPwrrKnb</object-name>
-		<object-name>emerPwrrKnb.light</object-name>
-		<property>controls/electrical/switches/emer-pwr</property>
+		<property>controls/cockpit/overhead/emer-pwr</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
-			<entry><ind>0</ind><dep>-45.0</dep></entry>
-			<entry><ind>1</ind><dep>0</dep></entry>
-			<entry><ind>2</ind><dep>45.0</dep></entry>		
+			<entry><ind>0</ind><dep>-45</dep></entry>
+			<entry><ind>1</ind><dep>  0</dep></entry>
+			<entry><ind>2</ind><dep> 45</dep></entry>		
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
@@ -2841,6 +2820,20 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/electrical/switches/emer-pwr</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>2</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
@@ -3238,44 +3231,14 @@
 	
 	<!-- Temp Controls -->
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>CockpitTemp</object-name>
 		<object-name>CockpitTemp.light</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/cockpit-temp</property>
-				<step>0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/cockpit-temp</property>
-				<step>-0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>CockpitTemp</object-name>
-		<object-name>CockpitTemp.light</object-name>
-		<property>controls/pneumatics/switches/cockpit-temp</property>
+		<property>controls/cockpit/overhead/cockpit-temp</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep> 180</dep></entry>
-			<entry><ind>0.1</ind><dep> 113</dep></entry>
-			<entry><ind>0.5</ind><dep>   0</dep></entry>
-			<entry><ind>0.9</ind><dep>-113</dep></entry>
+			<entry><ind>0.00</ind><dep> 180</dep></entry>
+			<entry><ind>0.05</ind><dep> 113</dep></entry>
+			<entry><ind>0.85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -3287,47 +3250,26 @@
 			<y-m>-0.11312</y-m>
 			<z-m>-17.8657</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/cockpit-temp</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>0.85</max>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>FwdTemp</object-name>
 		<object-name>FwdTemp.light</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/fwd-temp</property>
-				<step>0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/fwd-temp</property>
-				<step>-0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>FwdTemp</object-name>
-		<object-name>FwdTemp.light</object-name>
-		<property>controls/pneumatics/switches/fwd-temp</property>
+		<property>controls/cockpit/overhead/fwd-temp</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep> 180</dep></entry>
-			<entry><ind>0.1</ind><dep> 113</dep></entry>
-			<entry><ind>0.5</ind><dep>   0</dep></entry>
-			<entry><ind>0.9</ind><dep>-113</dep></entry>
+			<entry><ind>0.00</ind><dep> 180</dep></entry>
+			<entry><ind>0.05</ind><dep> 113</dep></entry>
+			<entry><ind>0.85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -3339,47 +3281,26 @@
 			<y-m>-0.04075</y-m>
 			<z-m>-17.8657</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/fwd-temp</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>0.85</max>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>MidTemp</object-name>
 		<object-name>MidTemp.light</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/mid-temp</property>
-				<step>0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/mid-temp</property>
-				<step>-0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>MidTemp</object-name>
-		<object-name>MidTemp.light</object-name>
-		<property>controls/pneumatics/switches/mid-temp</property>
+		<property>controls/cockpit/overhead/mid-temp</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep> 180</dep></entry>
-			<entry><ind>0.1</ind><dep> 113</dep></entry>
-			<entry><ind>0.5</ind><dep>   0</dep></entry>
-			<entry><ind>0.9</ind><dep>-113</dep></entry>
+			<entry><ind>0.00</ind><dep> 180</dep></entry>
+			<entry><ind>0.05</ind><dep> 113</dep></entry>
+			<entry><ind>0.85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -3391,47 +3312,26 @@
 			<y-m>0.03162</y-m>
 			<z-m>-17.8657</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/mid-temp</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>0.85</max>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>AftTemp</object-name>
 		<object-name>AftTemp.light</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/aft-temp</property>
-				<step>0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/aft-temp</property>
-				<step>-0.1</step>
-				<min>0.0</min>
-				<max>0.9</max>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>AftTemp</object-name>
-		<object-name>AftTemp.light</object-name>
-		<property>controls/pneumatics/switches/aft-temp</property>
+		<property>controls/cockpit/overhead/aft-temp</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep> 180</dep></entry>
-			<entry><ind>0.1</ind><dep> 113</dep></entry>
-			<entry><ind>0.5</ind><dep>   0</dep></entry>
-			<entry><ind>0.9</ind><dep>-113</dep></entry>
+			<entry><ind>0.00</ind><dep> 180</dep></entry>
+			<entry><ind>0.05</ind><dep> 113</dep></entry>
+			<entry><ind>0.85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -3443,6 +3343,15 @@
 			<y-m>0.10399</y-m>
 			<z-m>-17.8657</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/switches/aft-temp</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>0.85</max>
+			</binding>
+		</action>
 	</animation>
 	
 	<!-- Packs -->
@@ -6278,39 +6187,11 @@
 		</condition>
 	</animation>
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>FlapLimit.knob</object-name>
 		<object-name>FlapLimit.light</object-name>
-		<action>
-			<button>1</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/fcc/switches/flap-limit-knob</property>
-				<value>2</value>
-				<value>1</value>
-				<value>0</value>
-			</binding>
-		</action>
-		<action>
-			<button>0</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/fcc/switches/flap-limit-knob</property>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>FlapLimit.knob</object-name>
-		<object-name>FlapLimit.light</object-name>
-		<property>controls/fcc/switches/flap-limit-knob</property>
+		<property>controls/cockpit/overhead/flap-limit</property>
+		<drag-scale-px>15</drag-scale-px>
 		<factor>45</factor>
 		<axis>
 			<x>1</x>
@@ -6322,6 +6203,16 @@
 			<y-m>0.18304</y-m>
 			<z-m>-17.6813</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/fcc/switches/flap-limit</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>2</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
@@ -6351,7 +6242,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fcc/switches/elevator-feel-knob</property>
+				<property>controls/fcc/switches/elevator-feel</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -6374,18 +6265,18 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fcc/switches/elevator-feel-knob", -2);
-					libraries.Sound.knb1();
-				}
+					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/switches/elevator-feel", -2);
+						libraries.Sound.knb1();
+					}
 				</script>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
-					libraries.Sound.knb1();
+						setprop("/controls/fcc/switches/elevator-feel", 0);
+						libraries.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -6401,18 +6292,18 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fcc/switches/elevator-feel-knob", -1);
-					libraries.Sound.knb1();
-				}
+					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/switches/elevator-feel", -1);
+						libraries.Sound.knb1();
+					}
 				</script>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
-					libraries.Sound.knb1();
+						setprop("/controls/fcc/switches/elevator-feel", 0);
+						libraries.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -6428,18 +6319,18 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fcc/switches/elevator-feel-knob", 1);
-					libraries.Sound.knb1();
-				}
+					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/switches/elevator-feel", 1);
+						libraries.Sound.knb1();
+					}
 				</script>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
-					libraries.Sound.knb1();
+						setprop("/controls/fcc/switches/elevator-feel", 0);
+						libraries.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -6455,18 +6346,18 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-				if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-					setprop("/controls/fcc/switches/elevator-feel-knob", 2);
-					libraries.Sound.knb1();
-				}
+					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/switches/elevator-feel", 2);
+						libraries.Sound.knb1();
+					}
 				</script>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>nasal</command>
 					<script>
-					setprop("/controls/fcc/switches/elevator-feel-knob", 0);
-					libraries.Sound.knb1();
+						setprop("/controls/fcc/switches/elevator-feel", 0);
+						libraries.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -6477,7 +6368,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fcc/switches/elevator-feel-man</property>
+		<property>controls/cockpit/overhead/elevator-feel-man</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -6490,7 +6381,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fcc/switches/elevator-feel-knob</property>
+		<property>controls/cockpit/overhead/elevator-feel</property>
 		<interpolation>
 			<entry><ind>-2</ind><dep> 65</dep></entry>
 			<entry><ind>-1</ind><dep> 32</dep></entry>
@@ -7016,9 +6907,10 @@
 	
 	<!-- Other -->
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>nosmoking.lever</object-name>
-		<property>controls/switches/no-smoking-sign</property>
+		<property>controls/cockpit/overhead/no-smoking-sign</property>
+		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7034,12 +6926,27 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/no-smoking-sign</property>
+				<factor>-0.5</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>seatbelts.lever</object-name>
-		<property>controls/switches/seatbelt-sign</property>
+		<property>controls/cockpit/overhead/seatbelt-sign</property>
+		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7055,74 +6962,14 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>nosmoking.lever</object-name>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-cycle</command>
-				<property>controls/switches/no-smoking-sign</property>
-				<value>0.0</value>
-				<value>0.5</value>
-				<value>1.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/switches/no-smoking-sign</property>
-				<value>1.0</value>
-				<value>0.5</value>
-				<value>0.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>seatbelts.lever</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
+				<command>property-adjust</command>
 				<property>controls/switches/seatbelt-sign</property>
-				<value>0.0</value>
-				<value>0.5</value>
-				<value>1.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/switches/seatbelt-sign</property>
-				<value>1.0</value>
-				<value>0.5</value>
-				<value>0.0</value>
+				<factor>-0.5</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7283,34 +7130,35 @@
 			</or>
 		</condition>
 	</animation>
-	
+		
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>L-Lnd.toggle</object-name>
+		<property>controls/cockpit/overhead/landing-light-l</property>
+		<drag-direction>vertical</drag-direction>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-30</dep></entry>
+			<entry><ind>0.5</ind><dep>  0</dep></entry>
+			<entry><ind>1.0</ind><dep> 30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0824</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-cycle</command>
+				<command>property-adjust</command>
 				<property>controls/lighting/landing-light-l</property>
-				<value>0.0</value>
-				<value>0.5</value>
-				<value>1.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/lighting/landing-light-l</property>
-				<value>1.0</value>
-				<value>0.5</value>
-				<value>0.0</value>
+				<factor>-0.5</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7320,65 +7168,10 @@
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
-		<object-name>L-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light-l</property>
-		<interpolation>
-			<entry><ind>0.0</ind><dep>-30</dep></entry>
-			<entry><ind>0.5</ind><dep>  0</dep></entry>
-			<entry><ind>1.0</ind><dep> 30</dep></entry>
-		</interpolation>
-		<center>
-			<x-m>-21.7985</x-m>
-			<y-m>0</y-m>
-			<z-m>-18.0824</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>R-Lnd.toggle</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/lighting/landing-light-r</property>
-				<value>0.0</value>
-				<value>0.5</value>
-				<value>1.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/lighting/landing-light-r</property>
-				<value>1.0</value>
-				<value>0.5</value>
-				<value>0.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>R-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light-r</property>
+		<property>controls/cockpit/overhead/landing-light-r</property>
+		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7394,35 +7187,14 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>C-Lnd.toggle</object-name>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-cycle</command>
-				<property>controls/lighting/landing-light-n</property>
-				<value>0.0</value>
-				<value>0.5</value>
-				<value>1.0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>controls/lighting/landing-light-n</property>
-				<value>1.0</value>
-				<value>0.5</value>
-				<value>0.0</value>
+				<command>property-adjust</command>
+				<property>controls/lighting/landing-light-r</property>
+				<factor>-0.5</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7432,9 +7204,10 @@
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>C-Lnd.toggle</object-name>
-		<property>controls/lighting/landing-light-n</property>
+		<property>controls/cockpit/overhead/landing-light-n</property>
+		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7450,6 +7223,20 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/landing-light-n</property>
+				<factor>-0.5</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>

@@ -29,118 +29,10 @@
 	</effect>
     
 	<!-- Right now, only 0 and 1 are supported due to the display shaders -->
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.1.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du1-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.2.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du2-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.3.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du3-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.4.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du4-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.5.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du5-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
-    <animation>
-		<type>pick</type>
-		<object-name>scrn.6.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>1</button>
-			<button>3</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-cycle</command>
-				<property>instrumentation/du/du6-dimmer</property>
-				<value>0</value>
-				<value>1</value>
-			</binding>
-		</action>
-	</animation>
-	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.1.knob</object-name>
-		<property>instrumentation/du/du1-dimmer</property>
+		<property>controls/cockpit/du1-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -152,12 +44,22 @@
 			<y-m>-0.0336</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du1-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.2.knob</object-name>
-		<property>instrumentation/du/du2-dimmer</property>
+		<property>controls/cockpit/du2-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -169,12 +71,22 @@
 			<y-m>-0.0199</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du2-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.3.knob</object-name>
-		<property>instrumentation/du/du3-dimmer</property>
+		<property>controls/cockpit/du3-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -186,12 +98,22 @@
 			<y-m>-0.0058</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du3-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.4.knob</object-name>
-		<property>instrumentation/du/du4-dimmer</property>
+		<property>controls/cockpit/du4-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -203,12 +125,22 @@
 			<y-m>0.0077</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du4-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.5.knob</object-name>
-		<property>instrumentation/du/du5-dimmer</property>
+		<property>controls/cockpit/du5-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -220,12 +152,22 @@
 			<y-m>0.0221</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du5-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>scrn.6.knob</object-name>
-		<property>instrumentation/du/du6-dimmer</property>
+		<property>controls/cockpit/du6-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -237,6 +179,16 @@
 			<y-m>0.037</y-m>
 			<z-m>0.0053</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/du/du6-dimmer</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 
 </PropertyList>

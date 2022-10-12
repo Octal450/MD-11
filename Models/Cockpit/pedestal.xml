@@ -188,29 +188,17 @@
 	
 	<!-- Throttle quadrant -->
 	<animation>
-		<name>Engine 1 throttle lever pick</name>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>throttle.1</object-name>
+		<drag-direction>vertical</drag-direction>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
-				<step>0.02</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/engines/engine[0]/throttle</property>
-				<step>-0.02</step>
+				<factor>0.02</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
@@ -220,7 +208,7 @@
 		<object-name>throttle.1</object-name>
 		<object-name>reverse.1</object-name>
 		<object-name>throttle.1.circle</object-name>
-		<property>fdm/jsbsim/fadec/throttle-lever[0]</property>
+		<property>controls/cockpit/throttle-lever[0]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -240,7 +228,7 @@
 		<name>Engine 1 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.1</object-name>
-		<property>fdm/jsbsim/fadec/reverse-lever[0]</property>
+		<property>controls/cockpit/reverse-lever[0]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -258,29 +246,17 @@
 	</animation>
 	
 	<animation>
-		<name>Engine 2 throttle lever pick</name>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>throttle.2</object-name>
+		<drag-direction>vertical</drag-direction>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[1]/throttle</property>
-				<step>0.02</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/engines/engine[1]/throttle</property>
-				<step>-0.02</step>
+				<factor>0.02</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
@@ -290,7 +266,7 @@
 		<object-name>throttle.2</object-name>
 		<object-name>reverse.2</object-name>
 		<object-name>throttle.2.circle</object-name>
-		<property>fdm/jsbsim/fadec/throttle-lever[1]</property>
+		<property>controls/cockpit/throttle-lever[1]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -310,7 +286,7 @@
 		<name>Engine 2 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.2</object-name>
-		<property>fdm/jsbsim/fadec/reverse-lever[1]</property>
+		<property>controls/cockpit/reverse-lever[1]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -328,29 +304,17 @@
 	</animation>
 	
 	<animation>
-		<name>Engine 3 throttle lever pick</name>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>throttle.3</object-name>
+		<drag-direction>vertical</drag-direction>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[2]/throttle</property>
-				<step>0.02</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/engines/engine[2]/throttle</property>
-				<step>-0.02</step>
+				<factor>0.02</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
@@ -360,7 +324,7 @@
 		<object-name>throttle.3</object-name>
 		<object-name>throttle.3.circle</object-name>
 		<object-name>reverse.3</object-name>
-		<property>fdm/jsbsim/fadec/throttle-lever[2]</property>
+		<property>controls/cockpit/throttle-lever[2]</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -380,7 +344,7 @@
 		<name>Engine 3 reverser lever</name>
 		<type>rotate</type>
 		<object-name>reverse.3</object-name>
-		<property>fdm/jsbsim/fadec/reverse-lever[2]</property>
+		<property>controls/cockpit/reverse-lever[2]</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>85</dep></entry>
 			<entry><ind>0</ind><dep> 0</dep></entry>
@@ -515,11 +479,11 @@
 	</animation>
 	
 	<animation>
-		<name>Aileron</name>
-		<type>rotate</type>
+		<name>Aileron Trim</name>
+		<type>knob</type>
 		<object-name>aileron.trim</object-name>
 		<object-name>aileron.light</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-trim-wheel</property>
+		<property>controls/cockpit/aileron-trim</property>
 		<factor>40</factor>
 		<axis>
 			<x>-1</x>
@@ -531,44 +495,23 @@
 			<y-m>-0.00019</y-m>
 			<z-m>6.67552</z-m>
 		</center>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>aileron.trim</object-name>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/flight/aileron-trim</property>
-				<step>0.02</step>
-				<min>-1.0</min>
-				<max>1.0</max>
-				<wrap>0</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/flight/aileron-trim</property>
-				<step>-0.02</step>
-				<min>-1.0</min>
-				<max>1.0</max>
-				<wrap>0</wrap>
+				<factor>0.02</factor>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
 	
 	<animation>
-		<name>Rudder</name>
-		<type>rotate</type>
+		<name>Rudder Trim</name>
+		<type>knob</type>
 		<object-name>rudder.trim</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-trim-knob</property>
+		<property>controls/cockpit/rudder-trim</property>
 		<factor>90</factor>
 		<axis>
 			<x>0</x>
@@ -580,13 +523,23 @@
 			<y-m>0</y-m>
 			<z-m>6.725</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/rudder-trim</property>
+				<factor>0.02</factor>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder.light</object-name>
 		<object-name>rudder.trim2</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-trim-knob</property>
+		<property>controls/cockpit/rudder-trim</property>
 		<factor>85.8</factor> <!-- +/- 13 deg -->
 		<axis>
 			<x>0</x>
@@ -600,56 +553,14 @@
 		</center>
 	</animation>
 	
-	<animation>
-		<type>pick</type>
-		<object-name>rudder.trim</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/flight/rudder-trim</property>
-				<step>0.02</step>
-				<min>-1.0</min>
-				<max>1.0</max>
-				<wrap>0</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/flight/rudder-trim</property>
-				<step>-0.02</step>
-				<min>-1.0</min>
-				<max>1.0</max>
-				<wrap>0</wrap>
-			</binding>
-		</action>
-	</animation>
-	
 	<!-- Cutoff switches -->
 	<animation>
-		<name>Engine 1 cutoff switch pick</name>
-		<type>pick</type>
-		<object-name>Eng1Cutoff</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[0]/cutoff-switch</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
 		<name>Engine 1 cutoff switch</name>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>Eng1Cutoff</object-name>
-		<property>fdm/jsbsim/fadec/engine-cutoff[0]</property>
+		<property>controls/cockpit/engine-cutoff[0]</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>20</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -664,60 +575,25 @@
 			<y-m>0</y-m>
 			<z-m>6.71747</z-m>
 		</center>
-	</animation>
-
-	<animation>
-		<name>Engine 2 cutoff switch pick</name>
-		<type>pick</type>
-		<object-name>Eng2Cutoff</object-name>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[1]/cutoff-switch</property>
+				<command>property-adjust</command>
+				<property>controls/engines/engine[0]/cutoff-switch</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
-	</animation>
-	<animation>
-		<name>Engine 2 cutoff switch</name>
-		<type>rotate</type>
-		<object-name>Eng2Cutoff</object-name>
-		<property>fdm/jsbsim/fadec/engine-cutoff[1]</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>-20</dep></entry>
-			<entry><ind>1</ind><dep> 20</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-27.0178</x-m>
-			<y-m>0</y-m>
-			<z-m>6.71747</z-m>
-		</center>
 	</animation>
 	
 	<animation>
-		<name>Engine 3 cutoff switch pick</name>
-		<type>pick</type>
-		<object-name>Eng3Cutoff</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/engines/engine[2]/cutoff-switch</property>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<name>Engine 3 cutoff switch</name>
-		<type>rotate</type>
-		<object-name>Eng3Cutoff</object-name>
-		<property>fdm/jsbsim/fadec/engine-cutoff[2]</property>
+		<name>Engine 2 cutoff switch</name>
+		<type>knob</type>
+		<object-name>Eng2Cutoff</object-name>
+		<property>controls/cockpit/engine-cutoff[1]</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>20</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>-20</dep></entry>
 			<entry><ind>1</ind><dep> 20</dep></entry>
@@ -732,6 +608,49 @@
 			<y-m>0</y-m>
 			<z-m>6.71747</z-m>
 		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/engines/engine[1]/cutoff-switch</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<name>Engine 3 cutoff switch</name>
+		<type>knob</type>
+		<object-name>Eng3Cutoff</object-name>
+		<property>controls/cockpit/engine-cutoff[2]</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>20</drag-scale-px>
+		<interpolation>
+			<entry><ind>0</ind><dep>-20</dep></entry>
+			<entry><ind>1</ind><dep> 20</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-27.0178</x-m>
+			<y-m>0</y-m>
+			<z-m>6.71747</z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/engines/engine[2]/cutoff-switch</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
@@ -739,32 +658,14 @@
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<object-name>flaplever.3</object-name>
-		<property>fdm/jsbsim/fcc/flap-lever</property>
+		<property>/controls/cockpit/flaps-lever-rotate</property>
 		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-26</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>-13</dep>
-			</entry>
-			<entry>
-				<ind>2</ind>
-				<dep>13</dep>
-			</entry>
-			<entry>
-				<ind>3</ind>
-				<dep>24</dep>
-			</entry>
-			<entry>
-				<ind>4</ind>
-				<dep>35</dep>
-			</entry>
-			<entry>
-				<ind>5</ind>
-				<dep>51</dep>
-			</entry>
+			<entry><ind>0</ind><dep>-26</dep></entry>
+			<entry><ind>1</ind><dep>-13</dep></entry>
+			<entry><ind>2</ind><dep> 13</dep></entry>
+			<entry><ind>3</ind><dep> 24</dep></entry>
+			<entry><ind>4</ind><dep> 35</dep></entry>
+			<entry><ind>5</ind><dep> 51</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-27.125</x-m>
@@ -777,12 +678,66 @@
 			<z>0</z>
 		</axis>
 	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>flaplever</object-name>
+		<object-name>flaplever.2</object-name>
+		<object-name>flaplever.3</object-name>
+		<property>/controls/cockpit/flaps-lever-translate</property>
+		<factor>0.01</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
+		<object-name>flaplever</object-name>
+		<object-name>flaplever.2</object-name>
+		<object-name>flaplever.3</object-name>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>30</drag-scale-px>
+		<increase>
+			<binding>
+				<command>nasal</command>
+				<script>controls.flapsDown(-1);</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<value>1</value>
+			</binding>
+		</increase>
+		<decrease>
+			<binding>
+				<command>nasal</command>
+				<script>controls.flapsDown(1);</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<value>1</value>
+			</binding>
+		</decrease>
+		<release>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<value>0</value>
+			</binding>
+		</release>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
 		<object-name>BrkLever</object-name>
 		<object-name>BrkLever2</object-name>
-		<property>fdm/jsbsim/fcs/brake-lever</property>
+		<property>/controls/cockpit/brake-lever</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>30</drag-scale-px>
 		<factor>71</factor>
 		<center>
 			<x-m>-27.1248</x-m>
@@ -794,62 +749,23 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>BrkLever</object-name>
-		<object-name>BrkLever2</object-name>
 		<action>
-			<button>0</button>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-adjust</command>
 				<property>controls/gear/brake-parking</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>flaplever</object-name>
-		<object-name>flaplever.2</object-name>
-		<action>
-			<button>0</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>controls.flapsDown(1);</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>3</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>controls.flapsDown(-1);</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>translate</type>
-		<object-name>spdbrklever</object-name>
-		<property>fdm/jsbsim/spoilers/lever-arm</property>
-		<factor>0.01624</factor>
-		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>1</z>
-		</axis>
 	</animation>
 	
 	<animation>
 		<type>rotate</type>
 		<object-name>spdbrklever</object-name>
 		<object-name>spdbrklever.circle</object-name>
-		<property>fdm/jsbsim/spoilers/main-lever</property>
+		<property>controls/cockpit/spoilers-lever-rotate</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-10</dep></entry>
 			<entry><ind>1</ind><dep> 10</dep></entry>
@@ -859,13 +775,25 @@
 		</interpolation>
 		<center>
 			<x-m>-27.1287</x-m>
-			<y-m>0.1535</y-m>
+			<y-m>0</y-m>
 			<z-m>6.6702</z-m>
 		</center>
 		<axis>
 			<x>0</x>
 			<y>1</y>
 			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>spdbrklever</object-name>
+		<property>controls/cockpit/spoilers-lever-translate</property>
+		<factor>0.01624</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
 		</axis>
 	</animation>
 	
@@ -1045,16 +973,10 @@
 		<type>rotate</type>
 		<object-name>PitchTrim</object-name>
 		<object-name>PitchTrim.circle</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-trim-lever</property>
+		<property>controls/cockpit/elevator-trim-lever</property>
 		<interpolation>
-			<entry>
-				<ind>-1.0</ind>
-				<dep>-28</dep>
-			</entry>
-			<entry>
-				<ind>1.0</ind>
-				<dep>14</dep>
-			</entry>
+			<entry><ind>-1</ind><dep>-28</dep></entry>
+			<entry><ind> 1</ind><dep> 14</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-27.1287</x-m>
@@ -1414,38 +1336,12 @@
 			</binding>
 		</action>
 	</animation>
-	
+		
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>DialAFlapWheel</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/flight/dial-a-flap</property>
-				<step>0.25</step>
-				<max>25</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/flight/dial-a-flap</property>
-				<step>-0.25</step>
-				<min>10</min>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>DialAFlapWheel</object-name>
-		<property>controls/flight/dial-a-flap</property>
+		<property>controls/cockpit/dial-a-flap</property>
+		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>10</ind><dep>   0</dep></entry>
 			<entry><ind>25</ind><dep>-285</dep></entry>
@@ -1460,13 +1356,23 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/flight/dial-a-flap</property>
+				<factor>0.25</factor>
+				<min>10</min>
+				<max>25</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
 		<type>rotate</type>
 		<object-name>DialAFlap</object-name>
 		<object-name>DialAFlapLabel</object-name>
-		<property>controls/flight/dial-a-flap</property>
+		<property>controls/cockpit/dial-a-flap</property>
 		<interpolation>
 			<entry><ind>10</ind><dep>190</dep></entry>
 			<entry><ind>20</ind><dep>  0</dep></entry>

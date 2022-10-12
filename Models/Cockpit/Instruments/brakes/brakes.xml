@@ -29,10 +29,11 @@
 	</effect>
 	
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>AutoBrake.knob</object-name>
 		<object-name>Abrake.001</object-name>
-		<property>controls/gear/abs/knob</property>
+		<property>controls/cockpit/abs-knob</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-45</dep></entry>
 			<entry><ind> 0</ind><dep>  0</dep></entry>
@@ -41,15 +42,29 @@
 			<entry><ind> 3</ind><dep>135</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>0.0066</x-m>
-			<y-m>0.0216</y-m>
-			<z-m>0.0052</z-m>
+			<x-m>0.00657</x-m>
+			<y-m>0.02222</y-m>
+			<z-m>0</z-m>
 		</center>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>-1</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/gear/abs/knob</property>
+				<factor>1</factor>
+				<min>-1</min>
+				<max>3</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>
@@ -120,10 +135,6 @@
 				<step>-1</step>
 				<min>-1</min>
 				<max>3</max>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.knb1();</script>
 			</binding>
 		</action>
 	</animation>

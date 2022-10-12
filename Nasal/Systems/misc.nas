@@ -370,9 +370,9 @@ var FCC = {
 		RightOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-out-active"),
 	},
 	Switch: {
-		elevatorFeelKnob: props.globals.getNode("/controls/fcc/switches/elevator-feel-knob"),
+		elevatorFeelKnob: props.globals.getNode("/controls/fcc/switches/elevator-feel"),
 		elevatorFeelMan: props.globals.getNode("/controls/fcc/switches/elevator-feel-man"),
-		flapLimit: props.globals.getNode("/controls/fcc/switches/flap-limit-knob"),
+		flapLimit: props.globals.getNode("/controls/fcc/switches/flap-limit"),
 		lsasLeftIn: props.globals.getNode("/controls/fcc/switches/lsas-left-in"),
 		lsasLeftOut: props.globals.getNode("/controls/fcc/switches/lsas-left-out"),
 		lsasRightIn: props.globals.getNode("/controls/fcc/switches/lsas-right-in"),

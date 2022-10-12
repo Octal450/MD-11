@@ -1550,22 +1550,22 @@
 			<default value="50"/>
 			<test logic="AND" value="22">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-20-25-max-kts
-				/controls/fcc/switches/flap-limit-knob eq 0
+				/controls/fcc/switches/flap-limit eq 0
 				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="25">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-28-max-kts
-				/controls/fcc/switches/flap-limit-knob eq 0
+				/controls/fcc/switches/flap-limit eq 0
 				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="28">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-35-max-kts
-				/controls/fcc/switches/flap-limit-knob eq 0
+				/controls/fcc/switches/flap-limit eq 0
 				/systems/failures/fcc/flap-limit ne 1
 			</test>
 			<test logic="AND" value="35">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-50-max-kts
-				/controls/fcc/switches/flap-limit-knob eq 0
+				/controls/fcc/switches/flap-limit eq 0
 				/systems/failures/fcc/flap-limit ne 1
 			</test>
 		</switch>

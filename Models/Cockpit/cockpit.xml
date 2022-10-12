@@ -214,7 +214,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>pedals.left</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-pedal</property>
+		<property>controls/cockpit/rudder-pedal</property>
 		<factor>0.08</factor>
 		<axis>
 			<x>1</x>
@@ -222,11 +222,28 @@
 			<z>0</z>
 		</axis>
 	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>pedals.left</object-name>
+		<property>controls/cockpit/brake-pedal-left</property>
+		<factor>-40</factor>
+		<center>
+			<x-m>-27.6379</x-m>
+			<y-m>0</y-m>
+			<z-m>6.45998</z-m>
+		</center>
+		<axis>
+			<x>0</x> 
+			<y>1</y> 
+			<z>0</z> 
+		</axis>
+	</animation>
 
 	<animation>
 		<type>translate</type>
 		<object-name>pedals.right</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-pedal</property>
+		<property>controls/cockpit/rudder-pedal</property>
 		<factor>-0.08</factor>
 		<axis>
 			<x>1</x>
@@ -237,8 +254,25 @@
 	
 	<animation>
 		<type>rotate</type>
+		<object-name>pedals.right</object-name>
+		<property>controls/cockpit/brake-pedal-right</property>
+		<factor>-40</factor>
+		<center>
+			<x-m>-27.6379</x-m>
+			<y-m>0</y-m>
+			<z-m>6.45998</z-m>
+		</center>
+		<axis>
+			<x>0</x> 
+			<y>1</y> 
+			<z>0</z> 
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
 		<object-name>Tiller</object-name>
-		<property>fdm/jsbsim/hydraulics/tiller-handle</property>
+		<property>controls/cockpit/tiller-handle</property>
 		<factor>-70</factor>
 		<center>
 			<x-m>-27.2143</x-m>
@@ -255,7 +289,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Tiller.2</object-name>
-		<property>fdm/jsbsim/hydraulics/tiller-handle</property>
+		<property>controls/cockpit/tiller-handle</property>
 		<factor>-70</factor>
 		<center>
 			<x-m>-27.2143</x-m>
@@ -351,7 +385,7 @@
 		<object-name>yoke.noseup</object-name>
 		<object-name>yoke.nosedown</object-name>
 		<object-name>yoke.autodsg</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-yoke</property>
+		<property>controls/cockpit/elevator-yoke</property>
 		<factor>-15</factor>
 		<center>
 			<x-m>-27.3315</x-m>
@@ -371,7 +405,7 @@
 		<object-name>yoke.noseup</object-name>
 		<object-name>yoke.nosedown</object-name>
 		<object-name>yoke.autodsg</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-yoke</property>
+		<property>controls/cockpit/aileron-yoke</property>
 		<factor>-90</factor>
 		<center>
 			<x-m>-27.2846</x-m>
@@ -388,7 +422,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>yoke.left.column.2</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-yoke</property>
+		<property>controls/cockpit/elevator-yoke</property>
 		<factor>-0.01</factor>
 		<axis>
 			<x>1</x>
@@ -445,7 +479,7 @@
 		<object-name>yoke.noseup.right</object-name>
 		<object-name>yoke.nosedown.right</object-name>
 		<object-name>yoke.autodsg.right</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-yoke</property>
+		<property>controls/cockpit/elevator-yoke</property>
 		<factor>-15</factor>
 		<center>
 			<x-m>-27.3315</x-m>
@@ -465,7 +499,7 @@
 		<object-name>yoke.noseup.right</object-name>
 		<object-name>yoke.nosedown.right</object-name>
 		<object-name>yoke.autodsg.right</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-yoke</property>
+		<property>controls/cockpit/aileron-yoke</property>
 		<factor>-90</factor>
 		<center>
 			<x-m>-27.2846</x-m>
@@ -482,7 +516,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>yoke.right.column.2</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-yoke</property>
+		<property>controls/cockpit/elevator-yoke</property>
 		<factor>-0.01</factor>
 		<axis>
 			<x>1</x>
@@ -531,16 +565,18 @@
 		</axis>
 	</animation>
 	
-	<!-- Light Shades -->
+	<!-- Light Shades -->	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>lightshade.left.handle</object-name>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/cockpit/shade-left</property>
+				<command>property-adjust</command>
+				<property>controls/cockpit/shade-left-cmd</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
@@ -548,7 +584,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>lightshade.left</object-name>
-		<property>controls/cockpit/shade-left-pos</property>
+		<property>controls/cockpit/shade-left</property>
 		<factor>0.068</factor>
 		<axis>
 			<x>-1</x>
@@ -559,7 +595,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>lightshade.left.handle</object-name>
-		<property>controls/cockpit/shade-left-pos</property>
+		<property>controls/cockpit/shade-left</property>
 		<factor>0.68</factor>
 		<axis>
 			<x1-m>-26.6086</x1-m>
@@ -574,7 +610,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.left.handle</object-name>
-		<property>controls/cockpit/shade-left-pos</property>
+		<property>controls/cockpit/shade-left</property>
 		<factor>-6.2</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -591,7 +627,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.left.handle</object-name>
-		<property>controls/cockpit/shade-left-pos</property>
+		<property>controls/cockpit/shade-left</property>
 		<factor>3</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -608,7 +644,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.left.handle</object-name>
-		<property>controls/cockpit/shade-left-pos</property>
+		<property>controls/cockpit/shade-left</property>
 		<factor>-17</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -623,14 +659,16 @@
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>lightshade.right.handle</object-name>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/cockpit/shade-right</property>
+				<command>property-adjust</command>
+				<property>controls/cockpit/shade-right-cmd</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
@@ -638,7 +676,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>lightshade.right</object-name>
-		<property>controls/cockpit/shade-right-pos</property>
+		<property>controls/cockpit/shade-right</property>
 		<factor>0.068</factor>
 		<axis>
 			<x>-1</x>
@@ -649,7 +687,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>lightshade.right.handle</object-name>
-		<property>controls/cockpit/shade-right-pos</property>
+		<property>controls/cockpit/shade-right</property>
 		<factor>0.68</factor>
 		<axis>
 			<x1-m>-26.6086</x1-m>
@@ -664,7 +702,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.right.handle</object-name>
-		<property>controls/cockpit/shade-right-pos</property>
+		<property>controls/cockpit/shade-right</property>
 		<factor>6.2</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -681,7 +719,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.right.handle</object-name>
-		<property>controls/cockpit/shade-right-pos</property>
+		<property>controls/cockpit/shade-right</property>
 		<factor>3</factor>
 		<center>
 			<x-m>-26.6276</x-m>
@@ -698,7 +736,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>lightshade.right.handle</object-name>
-		<property>controls/cockpit/shade-right-pos</property>
+		<property>controls/cockpit/shade-right</property>
 		<factor>17</factor>
 		<center>
 			<x-m>-26.6276</x-m>

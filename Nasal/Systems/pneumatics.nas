@@ -38,6 +38,8 @@ var PNEU = {
 		bleed1: props.globals.getNode("/controls/pneumatics/switches/bleed-1"),
 		bleed2: props.globals.getNode("/controls/pneumatics/switches/bleed-2"),
 		bleed3: props.globals.getNode("/controls/pneumatics/switches/bleed-3"),
+		cargoAftTemp: props.globals.getNode("/controls/pneumatics/switches/cargo-aft-temp"),
+		cargoFwdTemp: props.globals.getNode("/controls/pneumatics/switches/cargo-fwd-temp"),
 		cockpitTemp: props.globals.getNode("/controls/pneumatics/switches/cockpit-temp"),
 		econ: props.globals.getNode("/controls/pneumatics/switches/econ"),
 		fwdTemp: props.globals.getNode("/controls/pneumatics/switches/fwd-temp"),
@@ -54,18 +56,21 @@ var PNEU = {
 	system: props.globals.getNode("/systems/pneumatics/system"),
 	init: func() {
 		me.resetFailures();
-		me.Switch.aftTemp.setValue(0.5);
+		me.Switch.aftTemp.setValue(0.45);
 		me.Switch.avionicsFan.setBoolValue(1);
 		me.Switch.bleedApu.setBoolValue(0);
 		me.Switch.bleed1.setBoolValue(1);
 		me.Switch.bleed2.setBoolValue(1);
 		me.Switch.bleed3.setBoolValue(1);
+		me.Switch.cargoFwdTemp.setValue(0.5);
+		me.Switch.cargoAftTemp.setValue(0.4);
+		me.Switch.cockpitTemp.setValue(0.45);
 		me.Switch.econ.setBoolValue(1);
-		me.Switch.fwdTemp.setValue(0.5);
+		me.Switch.fwdTemp.setValue(0.45);
 		me.Switch.groundAir.setBoolValue(0);
 		me.Switch.isol12.setBoolValue(0);
 		me.Switch.isol13.setBoolValue(0);
-		me.Switch.midTemp.setValue(0.5);
+		me.Switch.midTemp.setValue(0.45);
 		me.Switch.pack1.setBoolValue(1);
 		me.Switch.pack2.setBoolValue(1);
 		me.Switch.pack3.setBoolValue(1);

@@ -307,7 +307,7 @@
 			<config>
 				<x-offset-m archive="y">-0.5225</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
-				<z-offset-m archive="y">-26.8</z-offset-m>
+				<z-offset-m archive="y">-26.79</z-offset-m>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
 				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
@@ -323,7 +323,7 @@
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0.5225</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
-				<z-offset-m archive="y">-26.8</z-offset-m>
+				<z-offset-m archive="y">-26.79</z-offset-m>
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
 				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">-14.5</pitch-offset-deg>
@@ -384,7 +384,7 @@
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0.0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
-				<z-offset-m archive="y">-26.8</z-offset-m>
+				<z-offset-m archive="y">-26.79</z-offset-m>
 				<default-field-of-view-deg type="double">63</default-field-of-view-deg>
 				<heading-offset-deg archive="y">0</heading-offset-deg>
 				<pitch-offset-deg archive="y">-14.6</pitch-offset-deg>
@@ -533,9 +533,10 @@
 		</autobrake>
 		<cockpit n="0">
 			<armrest type="bool">1</armrest>
-			<compass type="bool">0</compass>
-			<shade-left type="bool">0</shade-left>
-			<shade-right type="bool">0</shade-right>
+			<compass-cmd type="bool">0</compass-cmd>
+			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
+			<shade-left-cmd type="double">0</shade-left-cmd>
+			<shade-right-cmd type="double">0</shade-right-cmd>
 		</cockpit>
 		<electrical n="0">
 			<switches n="0">
@@ -605,8 +606,8 @@
 		</fadec>
 		<fcc n="0">
 			<switches n="0">
-				<flap-limit-knob type="int">0</flap-limit-knob>
-				<elevator-feel-knob type="int">0</elevator-feel-knob>
+				<flap-limit type="int">0</flap-limit>
+				<elevator-feel type="int">0</elevator-feel>
 				<elevator-feel-man type="bool">0</elevator-feel-man>
 				<lsas-left-in type="bool">1</lsas-left-in>
 				<lsas-left-out type="bool">1</lsas-left-out>
@@ -717,19 +718,21 @@
 		</lighting>
 		<pneumatics n="0">
 			<switches n="0">
-				<aft-temp type="double">0.5</aft-temp>
+				<aft-temp type="double">0.45</aft-temp>
 				<avionics-fan type="bool">1</avionics-fan>
 				<bleed-apu type="bool">0</bleed-apu>
 				<bleed-1 type="bool">1</bleed-1>
 				<bleed-2 type="bool">1</bleed-2>
 				<bleed-3 type="bool">1</bleed-3>
-				<cockpit-temp type="double">0.5</cockpit-temp>
+				<cargo-aft-temp type="double">0.4</cargo-aft-temp>
+				<cargo-fwd-temp type="double">0.5</cargo-fwd-temp>
+				<cockpit-temp type="double">0.45</cockpit-temp>
 				<econ type="bool">1</econ>
 				<fwd-temp type="double">0.5</fwd-temp>
 				<ground-air type="bool">0</ground-air>
 				<isol-1-2 type="bool">0</isol-1-2>
 				<isol-1-3 type="bool">0</isol-1-3>
-				<mid-temp type="double">0.5</mid-temp>
+				<mid-temp type="double">0.45</mid-temp>
 				<pack-1 type="bool">1</pack-1>
 				<pack-2 type="bool">1</pack-2>
 				<pack-3 type="bool">1</pack-3>

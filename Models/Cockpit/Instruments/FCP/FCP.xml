@@ -67,10 +67,11 @@
 	</animation>
   
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>BLimit.knob</object-name>
 		<object-name>BLimit.knob.indicator</object-name>
 		<property>it-autoflight/input/bank-limit-sw</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>1</ind><dep>300</dep></entry>
 			<entry><ind>2</ind><dep>240</dep></entry>
@@ -89,6 +90,16 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>it-autoflight/input/bank-limit-sw</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>6</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
 	</animation>
 
 	<animation>
@@ -1170,50 +1181,6 @@
 		</action>
 	</animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>BLimit.knob</object-name>
-		<object-name>BLimit.knob.indicator</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/bank-limit-sw</property>
-				<step>1</step>
-				<min>0</min>
-				<max>6</max>
-				<wrap>true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/bank-limit-sw</property>
-				<step>-1</step>
-				<min>0</min>
-				<max>6</max>
-				<wrap>true</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/bank-limit-sw</property>
-				<step>-1</step>
-				<min>0</min>
-				<max>6</max>
-				<wrap>true</wrap>
-			</binding>
-		</action>
-	</animation>
-
 	<!--animation>
 		<type>pick</type>
 		<object-name>prof</object-name>
@@ -1437,100 +1404,54 @@
 	</animation>
 	
 	<animation>
-		<name>Integ light knob</name>
-		<type>pick</type>
+		<name>Integ panel light rotate</name>
+		<type>knob</type>
 		<object-name>integlight.knob</object-name>
 		<object-name>integlight.indicator</object-name>
+		<property>controls/cockpit/fcp-integ-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/fcp-integ-knb</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/fcp-integ-knb</property>
-				<step>-0.05</step>
+				<factor>0.05</factor>
 				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
 	
 	<!--animation>
-		<name>MCP light knob</name>
-		<type>pick</type>
+		<name>Panel light rotate</name>
+		<type>knob</type>
 		<object-name>floodlight.knob</object-name>
 		<object-name>floodlight.indicator</object-name>
+		<property>controls/cockpit/mcp-panel-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
 		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/mcp-panel-norm</property>
-				<step>0.05</step>
-				<max>1</max>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/mcp-panel-norm</property>
-				<step>-0.05</step>
-				<min>0</min>
-			</binding>
 		</action>
 	</animation-->
-	
-	<animation>
-		<name>Integ panel light rotate</name>
-		<type>rotate</type>
-		<object-name>integlight.knob</object-name>
-		<object-name>integlight.indicator</object-name>
-		<property>controls/lighting/fcp-integ-knb</property>
-		<factor>-329</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-25.7153</x-m>
-			<y-m>-0.2741</y-m>
-			<z-m>11.7855</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<name>panel light rotate</name>
-		<type>rotate</type>
-		<object-name>floodlight.knob</object-name>
-		<object-name>floodlight.indicator</object-name>
-		<property>controls/lighting/mcp-panel-knb</property>
-		<factor>-329</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-25.7153</x-m>
-			<y-m>-0.2741</y-m>
-			<z-m>11.7855</z-m>
-		</center>
-	</animation>
 	
 	<!-- Baro/Minimums settings -->
 	<animation>
