@@ -7,37 +7,12 @@
 	
 	<channel name="Animations">
 		
+		<!-- General -->
 		<lag_filter name="/controls/cockpit/aileron-yoke">
 			<input>hydraulics/aileron-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/brake-pedal-left">
-			<input>/controls/gear/brake-left</input>
-			<c1>5</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/brake-pedal-right">
-			<input>/controls/gear/brake-right</input>
-			<c1>5</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/elevator-yoke">
-			<input>hydraulics/elevator-yoke-switch</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/rudder-pedal">
-			<input>hydraulics/rudder/pedal-sum</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/tiller-handle">
-			<input>hydraulics/tiller/handle</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<!-- General -->		
 		<pure_gain name="/controls/cockpit/armrest-rotate-cmd">
 			<input>/controls/cockpit/armrest</input>
 			<gain>1.0</gain>
@@ -72,9 +47,29 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/brake-pedal-left">
+			<input>/controls/gear/brake-left</input>
+			<c1>5</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/brake-pedal-right">
+			<input>/controls/gear/brake-right</input>
+			<c1>5</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/compass">
 			<input>/controls/cockpit/compass-cmd</input>
 			<c1>10</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/elevator-yoke">
+			<input>hydraulics/elevator-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/rudder-pedal">
+			<input>hydraulics/rudder/pedal-sum</input>
+			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/shade-left">
@@ -85,6 +80,11 @@
 		<lag_filter name="/controls/cockpit/shade-right">
 			<input>/controls/cockpit/shade-right-cmd</input>
 			<c1>10</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/tiller-handle">
+			<input>hydraulics/tiller/handle</input>
+			<c1>20</c1>
 		</lag_filter>
 		
 		<!-- Pedestal -->
