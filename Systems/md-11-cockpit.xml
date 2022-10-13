@@ -13,6 +13,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/alt-rotate">
+			<input>/instrumentation/fcp/alt-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<pure_gain name="/controls/cockpit/armrest-rotate-cmd">
 			<input>/controls/cockpit/armrest</input>
 			<gain>1.0</gain>
@@ -47,6 +52,16 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/baro-l-rotate">
+			<input>/instrumentation/fcp/baro-l-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/baro-r-rotate">
+			<input>/instrumentation/fcp/baro-r-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/brake-pedal-left">
 			<input>/controls/gear/brake-left</input>
 			<c1>5</c1>
@@ -67,6 +82,26 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/fcp-integ-knb">
+			<input>/controls/lighting/fcp-integ-knb</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/hdg-rotate">
+			<input>/instrumentation/fcp/hdg-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/mins-l-rotate">
+			<input>/instrumentation/fcp/mins-l-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/mins-r-rotate">
+			<input>/instrumentation/fcp/mins-r-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/rudder-pedal">
 			<input>hydraulics/rudder/pedal-sum</input>
 			<c1>20</c1>
@@ -82,8 +117,18 @@
 			<c1>10</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/spd-rotate">
+			<input>/instrumentation/fcp/spd-rotate</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/tiller-handle">
 			<input>hydraulics/tiller/handle</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/vs-rotate">
+			<input>/instrumentation/fcp/vs-rotate</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -155,11 +200,6 @@
 		
 		<lag_filter name="/controls/cockpit/engine-cutoff[2]">
 			<input>/controls/engines/engine[2]/cutoff-switch</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/fcp-integ-knb">
-			<input>/controls/lighting/fcp-integ-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -245,11 +285,6 @@
 		<lag_filter name="/controls/cockpit/overhead/elevator-feel">
 			<input>/controls/fcc/switches/elevator-feel</input>
 			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/overhead/elevator-feel-man">
-			<input>/controls/fcc/switches/elevator-feel-man</input>
-			<c1>30</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/emer-pwr">
