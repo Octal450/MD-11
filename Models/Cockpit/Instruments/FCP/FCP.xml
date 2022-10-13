@@ -105,7 +105,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>SPD.knob</object-name>
-		<property>controls/cockpit/spd-rotate</property>
+		<property>instrumentation/fcp/spd-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -122,7 +122,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HDG.knob</object-name>
-		<property>controls/cockpit/hdg-rotate</property>
+		<property>instrumentation/fcp/hdg-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -139,7 +139,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ALT.knob</object-name>
-		<property>controls/cockpit/alt-rotate</property>
+		<property>instrumentation/fcp/alt-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -156,7 +156,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>VS.knob</object-name>
-		<property>controls/cockpit/vs-rotate</property>
+		<property>instrumentation/fcp/vs-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>-25.7354</x-m>
@@ -1408,7 +1408,7 @@
 		<type>knob</type>
 		<object-name>integlight.knob</object-name>
 		<object-name>integlight.indicator</object-name>
-		<property>controls/cockpit/fcp-integ-knb</property>
+		<property>controls/lighting/fcp-integ-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -1610,7 +1610,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.L</object-name>
-		<property>controls/cockpit/baro-l-rotate</property>
+		<property>instrumentation/fcp/baro-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1762,7 +1762,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.R</object-name>
-		<property>controls/cockpit/baro-r-rotate</property>
+		<property>instrumentation/fcp/baro-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -1881,7 +1881,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.L</object-name>
-		<property>controls/cockpit/mins-l-rotate</property>
+		<property>instrumentation/fcp/mins-l-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
@@ -2000,7 +2000,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.R</object-name>
-		<property>controls/cockpit/mins-r-rotate</property>
+		<property>instrumentation/fcp/mins-r-rotate</property>
 		<factor>11.25</factor>
 		<center>
 			<x-m>0</x-m>
