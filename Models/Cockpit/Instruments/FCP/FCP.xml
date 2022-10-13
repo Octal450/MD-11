@@ -102,79 +102,8 @@
 		</action>
 	</animation>
 
-	<animation>
-		<type>rotate</type>
-		<object-name>SPD.knob</object-name>
-		<property>instrumentation/fcp/spd-rotate</property>
-		<factor>11.25</factor>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.0924</y-m>
-			<z-m>11.767</z-m>
-		</center>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>rotate</type>
-		<object-name>HDG.knob</object-name>
-		<property>instrumentation/fcp/hdg-rotate</property>
-		<factor>11.25</factor>
-		<center>
-			<x-m>0</x-m>
-			<y-m>-0.0486</y-m>
-			<z-m>11.7668</z-m>
-		</center>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-	<animation>
-		<type>rotate</type>
-		<object-name>ALT.knob</object-name>
-		<property>instrumentation/fcp/alt-rotate</property>
-		<factor>11.25</factor>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.0486</y-m>
-			<z-m>11.767</z-m>
-		</center>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>VS.knob</object-name>
-		<property>instrumentation/fcp/vs-rotate</property>
-		<factor>11.25</factor>
-		<center>
-			<x-m>-25.7354</x-m>
-			<y-m>0</y-m>
-			<z-m>11.7669</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-
-
-<!-- LED displays-->
-
-<!-- IAS/MACH -->
+	<!-- LED displays-->
+	<!-- IAS/MACH -->
 	<animation>
 		<type>select</type>
 		<object-name>ias.ind</object-name>
@@ -190,7 +119,6 @@
 			</and>
 		</condition>
 	</animation>
-
 
 	<animation>
 		<type>textranslate</type>
@@ -1064,6 +992,23 @@
 	</animation>
 
 	<animation>
+		<type>rotate</type>
+		<object-name>SPD.knob</object-name>
+		<property>instrumentation/fcp/spd-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0924</y-m>
+			<z-m>11.767</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
 		<type>pick</type>
 		<object-name>HDG.knob</object-name>
 		<action>
@@ -1179,6 +1124,23 @@
 				<wrap>true</wrap>
 			</binding>
 		</action>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>HDG.knob</object-name>
+		<property>instrumentation/fcp/hdg-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0486</y-m>
+			<z-m>11.7668</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 
 	<!--animation>
@@ -1315,26 +1277,44 @@
 			</binding>
 		</action>
 	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>ALT.knob</object-name>
+		<property>instrumentation/fcp/alt-rotate</property>
+		<factor>11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.0486</y-m>
+			<z-m>11.767</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>VS.knob</object-name>
-		<action>
-			<button>3</button>
-			<repeatable>true</repeatable>
+		<property>instrumentation/fcp/vs-rotate</property>
+		<drag-direction>vertical</drag-direction>
+		<factor>11.25</factor>
+		<center>
+			<x-m>-25.7354</x-m>
+			<y-m>0</y-m>
+			<z-m>11.7669</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<increase>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>libraries.apPanel.vsAdjust(-1);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>libraries.apPanel.vsAdjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1344,23 +1324,11 @@
 				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
-		</action>
-		<action>
-			<button>4</button>
-			<repeatable>true</repeatable>
+		</increase>
+		<decrease>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>libraries.apPanel.vsAdjust(1);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>libraries.apPanel.vsAdjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -1370,11 +1338,10 @@
 				<max>100000</max>
 				<wrap>true</wrap>
 			</binding>
-		</action>
+		</decrease>
 	</animation>
 
 	<!-- Lighting -->
-	
 	<animation>
 		<name>Integ Panel lighting</name>
 		<type>material</type>
