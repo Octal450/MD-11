@@ -333,9 +333,9 @@
 		<input>
 			<expression>
 				<max>
-					<property>/fdm/jsbsim/fadec/throttle-lever[0]</property>
-					<property>/fdm/jsbsim/fadec/throttle-lever[1]</property>
-					<property>/fdm/jsbsim/fadec/throttle-lever[2]</property>
+					<property>/controls/cockpit/throttle-lever[0]</property>
+					<property>/controls/cockpit/throttle-lever[1]</property>
+					<property>/controls/cockpit/throttle-lever[2]</property>
 				</max>
 			</expression>
 		</input>
@@ -366,7 +366,7 @@
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
-		<input>/fdm/jsbsim/fadec/throttle-lever[0]</input>
+		<input>/controls/cockpit/throttle-lever[0]</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
 		<max-rate-of-change>
 			<condition>
@@ -401,7 +401,7 @@
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
-		<input>/fdm/jsbsim/fadec/throttle-lever[1]</input>
+		<input>/controls/cockpit/throttle-lever[1]</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
 		<max-rate-of-change>
 			<condition>
@@ -436,7 +436,7 @@
 			</condition>
 			<property>/fdm/jsbsim/fadec/ats-cmd</property>
 		</input>
-		<input>/fdm/jsbsim/fadec/throttle-lever[2]</input>
+		<input>/controls/cockpit/throttle-lever[2]</input>
 		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
 		<max-rate-of-change>
 			<condition>
