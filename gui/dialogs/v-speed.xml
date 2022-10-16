@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<!-- MD-11 Temporary V Speed Applet -->
+<!-- Copyright (c) 2022 Joshua Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<name>v-speed</name>
+	<layout>vbox</layout>
+	
+	<nasal>
+		<open>
+			setprop("/fms/speeds/v1-round", math.round(getprop("/fms/speeds/v1")));
+			setprop("/fms/speeds/vr-round", math.round(getprop("/fms/speeds/vr")));
+			setprop("/fms/speeds/v2-round", math.round(getprop("/fms/speeds/v2")));
+			
+			var loop = maketimer(1, func() {
+				setprop("/fms/speeds/v1-round", math.round(getprop("/fms/speeds/v1")));
+				setprop("/fms/speeds/vr-round", math.round(getprop("/fms/speeds/vr")));
+				setprop("/fms/speeds/v2-round", math.round(getprop("/fms/speeds/v2")));
+			});
+			loop.start();
+		</open>
+		<close>
+			loop.stop();
+		</close>
+	</nasal>
+	
+	<group>
+		<layout>hbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>V Speed Applet</label>
+		</text>
+		
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+	
+	<hrule/>
+	
+	<text>
+		<label>Note: Calculated from current flap position</label>
+	</text>
+	
+	<hrule/>
+	
+	<group>
+		<layout>table</layout>
+		
+		<text>
+			<row>0</row>
+			<col>0</col>
+			<label>V1: </label>
+		</text>
+		<text>
+			<row>0</row>
+			<col>1</col>
+			<label>999</label>
+			<live>true</live>
+			<property>/fms/speeds/v1-round</property>
+		</text>
+		
+		<text>
+			<row>1</row>
+			<col>0</col>
+			<label>VR: </label>
+		</text>
+		<text>
+			<row>1</row>
+			<col>1</col>
+			<label>999</label>
+			<live>true</live>
+			<property>/fms/speeds/vr-round</property>
+		</text>
+		
+		<text>
+			<row>2</row>
+			<col>0</col>
+			<label>V2: </label>
+		</text>
+		<text>
+			<row>2</row>
+			<col>1</col>
+			<label>999</label>
+			<live>true</live>
+			<property>/fms/speeds/v2-round</property>
+		</text>
+	</group>
+
+</PropertyList>

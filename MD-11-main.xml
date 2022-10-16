@@ -73,7 +73,14 @@
 						</binding>
 					</item>
 					<item> <!-- Temporary -->
-						<label>Flex Temp</label>
+						<label>V Speed Applet</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>v-speed</dialog-name>
+						</binding>
+					</item>
+					<item> <!-- Temporary -->
+						<label>Flex Temp Applet</label>
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>flex-temp</dialog-name>
