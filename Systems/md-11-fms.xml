@@ -536,7 +536,7 @@
 					<property>/fms/speeds/vmcg</property>
 				</max>
 			</function>
-		</fcs_function>	
+		</fcs_function>
 		
 		<!-- Vr -->
 		<fcs_function name="/fms/speeds/vr-table"> <!-- From FCOM -->
@@ -616,7 +616,7 @@
 					<property>/fms/speeds/vmcg</property>
 				</max>
 			</function>
-		</fcs_function>	
+		</fcs_function>
 		
 		<!-- V2 -->
 		<fcs_function name="/fms/speeds/v2-table"> <!-- From FCOM -->
@@ -703,7 +703,7 @@
 					<property>/fms/speeds/v2-table</property>
 				</ifthen>
 			</function>
-		</fcs_function>	
+		</fcs_function>
 		
 		<fcs_function name="/fms/speeds/v2-plus-10">
 			<function>
@@ -814,7 +814,7 @@
 					</tableData>
 				</table>
 			</function>
-		</fcs_function>	
+		</fcs_function>
 		
 		<fcs_function name="/fms/internal/bank-limit-1"> <!-- From FCOM -->
 			<function>
