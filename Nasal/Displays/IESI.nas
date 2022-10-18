@@ -225,7 +225,7 @@ var canvasIesi = {
 		}
 		
 		# HDG
-		if (systems.IRS.Iru.aligned[2].getBoolValue()) {
+		if (systems.IRS.Iru.mainAvail[2].getBoolValue()) {
 			Value.Hdg.indicated = pts.Orientation.headingMagneticDeg.getValue();
 			Value.Hdg.offset = Value.Hdg.indicated / 10 - int(Value.Hdg.indicated / 10);
 			Value.Hdg.middleText = roundAbout(Value.Hdg.indicated / 10);
