@@ -194,7 +194,7 @@ var Internal = {
 	syncedSpd: 0,
 	takeoffHdg: props.globals.initNode("/it-autoflight/internal/takeoff-hdg", 0, "INT"),
 	takeoffHdgCalc: 0,
-	takeoffLvl: props.globals.initNode("/it-autoflight/internal/takeoff-lvl", 0, "BOOL"),
+	takeoffLvl: props.globals.initNode("/it-autoflight/internal/takeoff-lvl", 1, "BOOL"),
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
@@ -390,7 +390,7 @@ var ITAF = {
 		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
 		
 		# Takeoff mode logic
-		if (Output.latTemp == 5 and Internal.takeoffLvl.getBoolValue()) {
+		if (Output.latTemp == 5 and (Internal.takeoffLvl.getBoolValue() or Gear.wow1Temp or Gear.wow2Temp)) {
 			me.takeoffLogic();
 		}
 		
