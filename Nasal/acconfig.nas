@@ -11,7 +11,7 @@ var CONFIG = {
 var SYSTEM = {
 	autoConfigRunning: props.globals.getNode("/systems/acconfig/autoconfig-running"),
 	Error: {
-		code: props.globals.initNode("/systems/acconfig/error-code", "0x000", "STRING"),
+		active: props.globals.initNode("/systems/acconfig/error-active", 0, "BOOL"),
 		outOfDate: 0,
 		reason: props.globals.initNode("/systems/acconfig/error-reason", "", "STRING"),
 	},
@@ -48,14 +48,15 @@ var SYSTEM = {
 		
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-init"}));
 		spinningT.stop();
-		
-		me.errorCheck();
 		OPTIONS.read();
+	},
+	finalInit: func() {
+		me.errorCheck();
 		
 		if (!CONFIG.noUpdateCheck) { # Update Checks Enabled
 			if (me.Error.outOfDate) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-update"}));
-			} else if (me.Error.code.getValue() == "0x000") {
+			} else if (!me.Error.active.getBoolValue()) {
 				if (OPTIONS.savedRevision.getValue() < me.revisionTemp) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-updated"}));
 				} else if (!OPTIONS.welcomeSkip.getBoolValue()) {
@@ -68,7 +69,7 @@ var SYSTEM = {
 				OPTIONS.write();
 			}
 		} else { # No Update Checks
-			if (me.Error.code.getValue() == "0x000") {
+			if (!me.Error.active.getBoolValue()) {
 				if (!OPTIONS.welcomeSkip.getBoolValue()) {
 					fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
 				}
@@ -82,20 +83,20 @@ var SYSTEM = {
 	},
 	errorCheck: func() {
 		if (!me.versionCheck()) {
-			me.Error.code.setValue("0x121");
-			me.Error.reason.setValue("FGFS version is too old! Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
+			me.Error.active.setBoolValue(1);
+			me.Error.reason.setValue("FGFS version is too old. Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
-			print("System: Error 0x121");
+			print("System: FGVer Error");
 		} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 15000) {
-			me.Error.code.setValue("0x223");
+			me.Error.active.setBoolValue(1);
 			me.Error.reason.setValue("Preposterous configuration detected for initialization. Check your position or scenery.");
 			me.showError();
-			print("System: Error 0x223");
+			print("System: Init Error");
 		} else if (getprop("/systems/acconfig/libraries-loaded") != 1 or getprop("/systems/acconfig/property-tree-setup-loaded") != 1) {
-			me.Error.code.setValue("0x247");
+			me.Error.active.setBoolValue(1);
 			me.Error.reason.setValue("System files are missing or damaged. Please download a new copy of the aircraft.");
 			me.showError();
-			print("System: Error 0x247");
+			print("System: Files Error");
 		}
 	},
 	resetFailures: func() {

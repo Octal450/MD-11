@@ -91,12 +91,10 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
 
 
 var showNd = func(pilot='cpt') {
-    if(getprop("sim/instrument-options/canvas-popup-enable"))
-    {
-        # The optional second arguments enables creating a window decoration
-        var dlg = canvas.Window.new([400, 400], "dialog");
-        dlg.setCanvas( nd_display[pilot] );
-    }
+	var dlg = canvas.Window.new([512, 512], "dialog");
+	dlg.setCanvas(nd_display[pilot]);
+	if (pilot == "fo") dlg.set("title", "First Officer's ND");
+	else dlg.set("title", "Captain's ND");
 }
 
 

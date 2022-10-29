@@ -50,6 +50,7 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_sd.init();
 	canvas_iesi.init();
 	canvas_mcdu.init();
+	acconfig.SYSTEM.finalInit();
 	removelistener(fdmInit);
 	initDone = 1;
 });

@@ -38,7 +38,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Attention: Your MD-11 is out of date! This means you are missing out on bugfixes, and new features!</label>
+			<label>Attention: Your MD-11 is out of date! This means you are missing out on bugfixes and new features!</label>
 		</text>
 		
 		<group>
@@ -159,7 +159,7 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/systems/acconfig/error-code") == "0x000") {
+					if (getprop("/systems/acconfig/error-active") == 0) {
 						if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
 							fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
 						}

@@ -12,12 +12,12 @@ Yes, but they may have changes that result in difficulties or issues. You should
 
 ## Startup
 
-### Q. Error Code: 0x121 appears. Why?
+### Q. "FGFS version is too old" appears on startup. Why?
 
 This error occurs if you are trying to use this aircraft on a version of FlightGear that is too old.
 See [INSTALL.md](https://github.com/Octal450/MD-11/blob/master/INSTALL.md) for more information.
 
-### Q. Error Code: 0x223 appears. Why?
+### Q. "Preposterous configuration detected for initialization" appears on startup. Why?
 
 This error occurs when there is an issue with the scenery that prevents initialization, or if you are starting in air.
 
@@ -27,7 +27,7 @@ The simulation is so complex that there is no support for starting it in mid-air
 
 In case that you want to practice landing, it might be better to fly to your destination, landing, and performing a missed approach (like real pilots do).
 
-### Q. Error Code: 0x247 appears. Why?
+### Q. "System files are missing or damaged" appears on startup. Why?
 
 This error most commonly occurs if your download is corrupted, or a serious problem with the aircraft's systems occurs.
 
