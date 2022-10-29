@@ -1869,8 +1869,6 @@ var canvasPfd1Error = {
 		
 		return m;
 	},
-	update: func() {
-	},
 };
 
 var canvasPfd2Error = {
@@ -1889,8 +1887,6 @@ var canvasPfd2Error = {
 		m.init(canvasGroup, file);
 		
 		return m;
-	},
-	update: func() {
 	},
 };
 
