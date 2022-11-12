@@ -175,7 +175,7 @@
 		<!-- Heading -->
 		<switch name="/instrumentation/pfd/heading-track-mag-deg">
 			<default value="/orientation/heading-magnetic-deg"/>
-			<test value="/orientation/track-magnetic-deg">
+			<test logic="AND" value="/orientation/track-magnetic-deg-switched">
 				/it-autoflight/input/trk eq 1
 			</test>
 		</switch>
@@ -188,11 +188,8 @@
 		</switch>
 		
 		<switch name="/instrumentation/pfd/track-deg[0]">
-			<default value="/orientation/track-magnetic-deg"/>
-			<test value="/instrumentation/pfd/heading-deg[0]">
-				/velocities/groundspeed-kt lt 1
-			</test>
-			<test value="/orientation/track-deg">
+			<default value="/orientation/track-magnetic-deg-switched"/>
+			<test value="/orientation/track-deg-switched">
 				/instrumentation/efis[0]/mfd/true-north eq 1
 			</test>
 		</switch>
@@ -205,11 +202,8 @@
 		</switch>
 		
 		<switch name="/instrumentation/pfd/track-deg[1]">
-			<default value="/orientation/track-magnetic-deg"/>
-			<test value="/instrumentation/pfd/heading-deg[1]">
-				/velocities/groundspeed-kt lt 1
-			</test>
-			<test value="/orientation/track-deg">
+			<default value="/orientation/track-magnetic-deg-switched"/>
+			<test value="/orientation/track-deg-switched">
 				/instrumentation/efis[1]/mfd/true-north eq 1
 			</test>
 		</switch>

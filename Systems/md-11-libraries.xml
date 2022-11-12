@@ -54,6 +54,20 @@
 			<rate_limit sense="decr">1000</rate_limit>
 			<output>/gear/gear[0]/wow-timer-out</output>
 		</actuator>
+		
+		<switch name="/orientation/track-magnetic-deg-switched">
+			<default value="/orientation/heading-magnetic-deg"/>
+			<test logic="AND" value="/orientation/track-magnetic-deg">
+				/velocities/groundspeed-kt ge 1
+			</test>
+		</switch>
+		
+		<switch name="/orientation/track-deg-switched">
+			<default value="/orientation/heading-deg"/>
+			<test logic="AND" value="/orientation/track-deg">
+				/velocities/groundspeed-kt ge 1
+			</test>
+		</switch>
 	
 	</channel>
 	
