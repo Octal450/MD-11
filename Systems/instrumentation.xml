@@ -105,7 +105,8 @@
 	
 	<filter>
 		<name>Track Bug 1</name>
-		<type>exponential</type>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
 			<property>/instrumentation/pfd/track-deg[0]</property>
 			<period>
@@ -120,8 +121,7 @@
 				<max>180.0</max>
 			</period>
 		</reference>
-		<output>/instrumentation/pfd/track-bug[0]</output>
-		<filter-time>0.16</filter-time>
+		<output>/instrumentation/pfd/track-bug-cmd[0]</output>
 		<period>
 			<min>-180.0</min>
 			<max>180.0</max>
@@ -129,8 +129,17 @@
 	</filter>
 	
 	<filter>
-		<name>Track Bug 2</name>
+		<name>Track Bug 1 Exponential</name>
 		<type>exponential</type>
+		<input>/instrumentation/pfd/track-bug-cmd[0]</input>
+		<output>/instrumentation/pfd/track-bug[0]</output>
+		<filter-time>0.16</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Track Bug 2</name>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
 			<property>/instrumentation/pfd/track-deg[1]</property>
 			<period>
@@ -145,12 +154,19 @@
 				<max>180.0</max>
 			</period>
 		</reference>
-		<output>/instrumentation/pfd/track-bug[1]</output>
-		<filter-time>0.16</filter-time>
+		<output>/instrumentation/pfd/track-bug-cmd[1]</output>
 		<period>
 			<min>-180.0</min>
 			<max>180.0</max>
 		</period>
+	</filter>
+	
+	<filter>
+		<name>Track Bug 2 Exponential</name>
+		<type>exponential</type>
+		<input>/instrumentation/pfd/track-bug-cmd[1]</input>
+		<output>/instrumentation/pfd/track-bug[1]</output>
+		<filter-time>0.16</filter-time>
 	</filter>
 	
 	<filter>
