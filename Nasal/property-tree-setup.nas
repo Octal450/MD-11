@@ -212,7 +212,7 @@ var Instrumentation = {
 		spdPreSel: props.globals.initNode("/instrumentation/pfd/spd-pre-sel", 0, "DOUBLE"),
 		spdSel: props.globals.initNode("/instrumentation/pfd/spd-sel", 0, "DOUBLE"),
 		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),
-		trackBug: props.globals.initNode("/instrumentation/pfd/track-bug", 0, "DOUBLE"),
+		trackBug: [props.globals.initNode("/instrumentation/pfd/track-bug[0]", 0, "DOUBLE"), props.globals.initNode("/instrumentation/pfd/track-bug[1]", 0, "DOUBLE")],
 		vsBugDn: props.globals.initNode("/instrumentation/pfd/vs-bug-dn", 0, "DOUBLE"),
 		vsBugUp: props.globals.initNode("/instrumentation/pfd/vs-bug-up", 0, "DOUBLE"),
 		vsNeedleDn: props.globals.initNode("/instrumentation/pfd/vs-needle-dn", 0, "DOUBLE"),

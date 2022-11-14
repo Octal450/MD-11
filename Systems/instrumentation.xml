@@ -105,9 +105,7 @@
 	
 	<filter>
 		<name>Track Bug 1</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>exponential</type>
 		<input>
 			<property>/instrumentation/pfd/track-deg[0]</property>
 			<period>
@@ -123,6 +121,7 @@
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/track-bug[0]</output>
+		<filter-time>0.16</filter-time>
 		<period>
 			<min>-180.0</min>
 			<max>180.0</max>
@@ -131,9 +130,7 @@
 	
 	<filter>
 		<name>Track Bug 2</name>
-		<update-interval-secs>0.05</update-interval-secs>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>exponential</type>
 		<input>
 			<property>/instrumentation/pfd/track-deg[1]</property>
 			<period>
@@ -149,6 +146,7 @@
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/track-bug[1]</output>
+		<filter-time>0.16</filter-time>
 		<period>
 			<min>-180.0</min>
 			<max>180.0</max>

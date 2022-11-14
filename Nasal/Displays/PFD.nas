@@ -684,7 +684,7 @@ var canvasBase = {
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
-		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug.getValue();
+		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug[0].getValue();
 		
 		me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 10.246);
 		me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);

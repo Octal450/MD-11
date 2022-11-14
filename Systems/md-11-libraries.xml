@@ -27,6 +27,11 @@
 			</test>
 		</switch>
 		
+		<lag_filter name="aero/alpha-deg-damped">
+			<input>aero/alpha-deg-fixed</input>
+			<c1>10</c1>
+		</lag_filter>
+		
 		<fcs_function name="position/gear-agl-ft">
 			<function>
 				<difference>
