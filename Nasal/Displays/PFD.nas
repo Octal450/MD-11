@@ -12,7 +12,7 @@ var Value = {
 	Afs: {
 		alt: 0,
 		altSel: 0,
-		afsDisc: [0, 0],
+		apDisc: [0, 0],
 		ap1: 0,
 		ap1Avail: 0,
 		ap2: 0,
@@ -1320,8 +1320,8 @@ var canvasBase = {
 			me["FMA_Speed"].show();
 		}
 		
-		Value.Afs.afsDisc[0] = pts.Controls.Cockpit.afsDisc[0].getBoolValue();
-		Value.Afs.afsDisc[1] = pts.Controls.Cockpit.afsDisc[1].getBoolValue();
+		Value.Afs.apDisc[0] = pts.Controls.Cockpit.apDisc[0].getBoolValue();
+		Value.Afs.apDisc[1] = pts.Controls.Cockpit.apDisc[1].getBoolValue();
 		Value.Afs.ap1Avail = afs.Input.ap1Avail.getBoolValue();
 		Value.Afs.ap2Avail = afs.Input.ap2Avail.getBoolValue();
 		Value.Afs.apSound = afs.Sound.apOff.getBoolValue();
@@ -1346,7 +1346,7 @@ var canvasBase = {
 		} else if (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
-		} else if ((Value.Afs.afsDisc[0] or Value.Afs.afsDisc[1]) and !Value.Afs.ap1 and !Value.Afs.ap2) {
+		} else if ((Value.Afs.apDisc[0] or Value.Afs.apDisc[1]) and !Value.Afs.ap1 and !Value.Afs.ap2) {
 			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
 			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
 		} else {
@@ -1400,7 +1400,7 @@ var canvasBase = {
 			me["FMA_AP"].setColor(1,0,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
-		} else if (Value.Afs.afsDisc[0] or Value.Afs.afsDisc[1] or (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail)) {
+		} else if (Value.Afs.apDisc[0] or Value.Afs.apDisc[1] or (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail)) {
 			me["FMA_AP"].setColor(0.9412,0.7255,0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();

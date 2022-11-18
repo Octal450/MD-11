@@ -439,13 +439,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/afs-disc-1</property>
+				<property>controls/cockpit/ap-disc-1</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/afs-disc-1</property>
+					<property>controls/cockpit/ap-disc-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -459,7 +459,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>yoke.autodsg</object-name>
-		<property>controls/cockpit/afs-disc-1</property>
+		<property>controls/cockpit/ap-disc-1</property>
 		<factor>0.002</factor>
 		<axis>
 			<x1-m>-27.2002</x1-m>
@@ -533,13 +533,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/afs-disc-2</property>
+				<property>controls/cockpit/ap-disc-2</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/afs-disc-2</property>
+					<property>controls/cockpit/ap-disc-2</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -553,7 +553,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>yoke.autodsg.right</object-name>
-		<property>controls/cockpit/afs-disc-2</property>
+		<property>controls/cockpit/ap-disc-2</property>
 		<factor>0.002</factor>
 		<axis>
 			<x1-m>-27.2002</x1-m>

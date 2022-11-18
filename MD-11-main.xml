@@ -539,8 +539,8 @@
 			<brake-right type="double">0</brake-right>
 		</autobrake>
 		<cockpit n="0">
-			<afs-disc-1 type="bool">0</afs-disc-1>
-			<afs-disc-2 type="bool">0</afs-disc-2>
+			<ap-disc-1 type="bool">0</ap-disc-1>
+			<ap-disc-2 type="bool">0</ap-disc-2>
 			<armrest type="bool">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>

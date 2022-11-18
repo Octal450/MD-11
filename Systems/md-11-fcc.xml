@@ -119,8 +119,8 @@
 		<switch name="fcc/lsas/left-out-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-left-out eq 1
@@ -137,8 +137,8 @@
 		<switch name="fcc/lsas/left-in-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-left-in eq 1
@@ -155,8 +155,8 @@
 		<switch name="fcc/lsas/right-in-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-right-in eq 1
@@ -173,8 +173,8 @@
 		<switch name="fcc/lsas/right-out-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/switches/lsas-right-out eq 1
@@ -431,8 +431,8 @@
 		<switch name="fcc/rcws/sys-1-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/it-autoflight/input/ovrd1 eq 0
@@ -450,8 +450,8 @@
 		<switch name="fcc/rcws/sys-2-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
-				/controls/cockpit/afs-disc-1 eq 1
-				/controls/cockpit/afs-disc-2 eq 1
+				/controls/cockpit/ap-disc-1 eq 1
+				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/it-autoflight/input/ovrd2 eq 0

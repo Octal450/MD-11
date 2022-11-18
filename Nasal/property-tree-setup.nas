@@ -12,7 +12,7 @@ var Consumables = {
 
 var Controls = {
 	Cockpit: {
-		afsDisc: [props.globals.getNode("/controls/cockpit/afs-disc-1"), props.globals.getNode("/controls/cockpit/afs-disc-2")],
+		apDisc: [props.globals.getNode("/controls/cockpit/ap-disc-1"), props.globals.getNode("/controls/cockpit/ap-disc-2")],
 		shadeLeftCmd: props.globals.getNode("/controls/cockpit/shade-left-cmd"),
 		shadeRightCmd: props.globals.getNode("/controls/cockpit/shade-right-cmd"),
 	},

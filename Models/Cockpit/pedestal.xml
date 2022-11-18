@@ -370,13 +370,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/ats-disc-1</property>
+				<property>controls/cockpit/at-disc-1</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/ats-disc-1</property>
+					<property>controls/cockpit/at-disc-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -390,7 +390,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.1.ats</object-name>
-		<property>controls/cockpit/ats-disc-1</property>
+		<property>controls/cockpit/at-disc-1</property>
 		<factor>0.002</factor>
 		<axis>
 			<x>0</x>
@@ -449,13 +449,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/ats-disc-3</property>
+				<property>controls/cockpit/at-disc-3</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/ats-disc-3</property>
+					<property>controls/cockpit/at-disc-3</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -469,7 +469,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.3.ats</object-name>
-		<property>controls/cockpit/ats-disc-3</property>
+		<property>controls/cockpit/at-disc-3</property>
 		<factor>-0.002</factor>
 		<axis>
 			<x>0</x>
