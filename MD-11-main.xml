@@ -539,6 +539,8 @@
 			<brake-right type="double">0</brake-right>
 		</autobrake>
 		<cockpit n="0">
+			<afs-disc-1 type="bool">0</afs-disc-1>
+			<afs-disc-2 type="bool">0</afs-disc-2>
 			<armrest type="bool">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
@@ -750,8 +752,6 @@
 		<switches n="0">
 			<adg-handle type="double">0</adg-handle>
 			<annun-test type="bool">0</annun-test>
-			<ap-yoke-button1 type="bool">0</ap-yoke-button1>
-			<ap-yoke-button2 type="bool">0</ap-yoke-button2>
 			<minimums type="int">200</minimums>
 			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>

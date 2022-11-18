@@ -370,13 +370,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/ats-lever1</property>
+				<property>controls/cockpit/ats-disc-1</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/ats-lever1</property>
+					<property>controls/cockpit/ats-disc-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -390,7 +390,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.1.ats</object-name>
-		<property>controls/switches/ats-lever1</property>
+		<property>controls/cockpit/ats-disc-1</property>
 		<factor>0.002</factor>
 		<axis>
 			<x>0</x>
@@ -408,13 +408,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/ga-button</property>
+				<property>controls/cockpit/go-around</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/ga-button</property>
+					<property>controls/cockpit/go-around</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -428,7 +428,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.2.ga</object-name>
-		<property>controls/switches/ga-button</property>
+		<property>controls/cockpit/go-around</property>
 		<factor>0.002</factor>
 		<axis>
 			<x1-m>-27.1205</x1-m>
@@ -449,13 +449,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/ats-lever3</property>
+				<property>controls/cockpit/ats-disc-3</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/ats-lever3</property>
+					<property>controls/cockpit/ats-disc-3</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -469,7 +469,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.3.ats</object-name>
-		<property>controls/switches/ats-lever3</property>
+		<property>controls/cockpit/ats-disc-3</property>
 		<factor>-0.002</factor>
 		<axis>
 			<x>0</x>
