@@ -1116,11 +1116,11 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="fadec/egt-actual-3">
+		<lag_filter name="fadec/egt-actual-3">
 			<input>fadec/egt-cmd-3</input>
 			<lag>0.35</lag>
 			<output>/engines/engine[2]/egt-actual</output>
-		</actuator>
+		</lag_filter>
 		
 		<lag_filter name="fadec/n2-actual-1">
 			<input>/engines/engine[0]/n2</input>
