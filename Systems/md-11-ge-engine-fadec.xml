@@ -1118,7 +1118,7 @@
 		
 		<lag_filter name="fadec/egt-actual-3">
 			<input>fadec/egt-cmd-3</input>
-			<lag>0.35</lag>
+			<c1>0.35</c1>
 			<output>/engines/engine[2]/egt-actual</output>
 		</lag_filter>
 		
