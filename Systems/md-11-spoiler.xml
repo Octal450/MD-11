@@ -177,6 +177,57 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="spoilers/aileron">
+			<function>
+				<product>
+					<pow>
+						<abs><property>hydraulics/aileron/output-surfaces</property></abs>
+						<value>1.75</value>
+					</pow>
+					<ifthen>
+						<lt>
+							<property>hydraulics/aileron/output-surfaces</property>
+							<value>0</value>
+						</lt>
+						<value>-1</value>
+						<value>1</value>
+					</ifthen>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<pure_gain name="spoilers/aileron-left">
+			<input>spoilers/aileron</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>-1.0</min>
+				<max>0.0</max>
+			</clipto>
+		</pure_gain>
+		
+		<pure_gain name="spoilers/aileron-right">
+			<input>spoilers/aileron</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>0.0</min>
+				<max>1.0</max>
+			</clipto>
+		</pure_gain>
+		
+		<fcs_function name="spoilers/trim-aileron">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron/trim-left</independentVar> <!-- Left cause polarity is same -->
+					<tableData> <!-- After 5 (0.25) degrees of aileron, spoilers deflect up to 6 deg -->
+						-0.35 -0.1
+						-0.25  0.0
+						 0.25  0.0
+						 0.35  0.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<switch name="spoilers/main-cmd-deg">
 			<default value="0.0"/>
 			<test value="10">
@@ -206,36 +257,27 @@
 			</range>
 		</aerosurface_scale>
 		
-		<fcs_function name="spoilers/aileron">
+		<fcs_function name="spoilers/main-left-cmd"> <!-- So it retracts but only when needed -->
 			<function>
-				<product>
-					<pow>
-						<abs><property>hydraulics/aileron/output-surfaces</property></abs>
-						<value>1.75</value>
-					</pow>
-					<ifthen>
-						<lt>
-							<property>hydraulics/aileron/output-surfaces</property>
-							<value>0</value>
-						</lt>
-						<value>-1</value>
+				<min>
+					<property>spoilers/main-cmd</property>
+					<difference>
 						<value>1</value>
-					</ifthen>
-				</product>
+						<property>spoilers/aileron-right</property>
+					</difference>
+				</min>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="spoilers/trim-aileron">
+		<fcs_function name="spoilers/main-right-cmd"> <!-- So it retracts but only when needed -->
 			<function>
-				<table>
-					<independentVar lookup="row">hydraulics/aileron/trim-left</independentVar> <!-- Left cause polarity is same -->
-					<tableData> <!-- After 5 (0.25) degrees of aileron, spoilers deflect up to 6 deg -->
-						-0.35 -0.1
-						-0.25  0.0
-						 0.25  0.0
-						 0.35  0.1
-					</tableData>
-				</table>
+				<min>
+					<property>spoilers/main-cmd</property>
+					<sum>
+						<value>1</value>
+						<property>spoilers/aileron-left</property>
+					</sum>
+				</min>
 			</function>
 		</fcs_function>
 		
@@ -256,11 +298,11 @@
 	<channel name="Spoiler L1">
 		
 		<summer name="hydraulics/spoiler-l1/sum">
-			<input>-spoilers/aileron</input>
+			<input>-spoilers/aileron-left</input>
 			<input>-spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-left-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -299,11 +341,11 @@
 	<channel name="Spoiler L2">
 		
 		<summer name="hydraulics/spoiler-l2/sum">
-			<input>-spoilers/aileron</input>
+			<input>-spoilers/aileron-left</input>
 			<input>-spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-left-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -342,11 +384,11 @@
 	<channel name="Spoiler L3">
 		
 		<summer name="hydraulics/spoiler-l3/sum">
-			<input>-spoilers/aileron</input>
+			<input>-spoilers/aileron-left</input>
 			<input>-spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-left-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -385,11 +427,11 @@
 	<channel name="Spoiler L4">
 		
 		<summer name="hydraulics/spoiler-l4/sum">
-			<input>-spoilers/aileron</input>
+			<input>-spoilers/aileron-left</input>
 			<input>-spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-left-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -428,11 +470,11 @@
 	<channel name="Spoiler L5">
 		
 		<summer name="hydraulics/spoiler-l5/sum">
-			<input>-spoilers/aileron</input>
+			<input>-spoilers/aileron-left</input>
 			<input>-spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-left-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -471,11 +513,11 @@
 	<channel name="Spoiler R1">
 		
 		<summer name="hydraulics/spoiler-r1/sum">
-			<input>spoilers/aileron</input>
+			<input>spoilers/aileron-right</input>
 			<input>spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-right-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -514,11 +556,11 @@
 	<channel name="Spoiler R2">
 		
 		<summer name="hydraulics/spoiler-r2/sum">
-			<input>spoilers/aileron</input>
+			<input>spoilers/aileron-right</input>
 			<input>spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-right-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -557,11 +599,11 @@
 	<channel name="Spoiler R3">
 		
 		<summer name="hydraulics/spoiler-r3/sum">
-			<input>spoilers/aileron</input>
+			<input>spoilers/aileron-right</input>
 			<input>spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-right-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -600,11 +642,11 @@
 	<channel name="Spoiler R4">
 		
 		<summer name="hydraulics/spoiler-r4/sum">
-			<input>spoilers/aileron</input>
+			<input>spoilers/aileron-right</input>
 			<input>spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-right-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
@@ -643,11 +685,11 @@
 	<channel name="Spoiler R5">
 		
 		<summer name="hydraulics/spoiler-r5/sum">
-			<input>spoilers/aileron</input>
+			<input>spoilers/aileron-right</input>
 			<input>spoilers/trim-aileron</input>
-			<input>spoilers/main-cmd</input>
+			<input>spoilers/main-right-cmd</input>
 			<clipto>
-				<min>spoilers/main-cmd</min>
+				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
