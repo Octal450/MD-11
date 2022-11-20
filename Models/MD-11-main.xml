@@ -2267,35 +2267,17 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>central.back.left</object-name>
+		<object-name>central.front.left</object-name>
 		<property>gear/gear[3]/position-norm</property>
 		<interpolation>
-			<entry><ind>0.1</ind><dep>50</dep></entry>
-			<entry><ind>0.7</ind><dep> 0</dep></entry>
+			<entry><ind>0.00</ind><dep>  0</dep></entry>
+			<entry><ind>0.15</ind><dep>-75</dep></entry>
+			<entry><ind>0.70</ind><dep>-75</dep></entry>
+			<entry><ind>1.00</ind><dep>  0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
 			<y-m>-0.8540</y-m>
-			<z-m>3.4678</z-m>
-		</center>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>central.back.right</object-name>
-		<property>gear/gear[3]/position-norm</property>
-		<interpolation>
-			<entry><ind>0.15</ind><dep>-50</dep></entry>
-			<entry><ind>0.70</ind><dep>  0</dep></entry>
-		</interpolation>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.8540</y-m>
 			<z-m>3.4678</z-m>
 		</center>
 		<axis>
@@ -2329,17 +2311,35 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>central.front.left</object-name>
+		<object-name>central.back.left</object-name>
 		<property>gear/gear[3]/position-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>  0</dep></entry>
-			<entry><ind>0.15</ind><dep>-75</dep></entry>
-			<entry><ind>0.70</ind><dep>-75</dep></entry>
-			<entry><ind>1.00</ind><dep>  0</dep></entry>
+			<entry><ind>0.1</ind><dep>50</dep></entry>
+			<entry><ind>0.7</ind><dep> 0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
 			<y-m>-0.8540</y-m>
+			<z-m>3.4678</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>central.back.right</object-name>
+		<property>gear/gear[3]/position-norm</property>
+		<interpolation>
+			<entry><ind>0.15</ind><dep>-50</dep></entry>
+			<entry><ind>0.70</ind><dep>  0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.8540</y-m>
 			<z-m>3.4678</z-m>
 		</center>
 		<axis>
