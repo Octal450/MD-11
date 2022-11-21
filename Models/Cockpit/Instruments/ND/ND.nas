@@ -88,7 +88,7 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
 }); # fdm-initialized listener callback
 
 var showNd = func(pilot='cpt') {
-	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0);
+	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(nd_display[pilot]);
 	if (pilot == "fo") dlg.set("title", "First Officer's ND");
 	else dlg.set("title", "Captain's ND");
