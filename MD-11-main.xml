@@ -1239,7 +1239,7 @@
 			</key>
 			<key n="267">
 				<name>F11</name>
-				<desc>Autopilot 2D Panel</desc>
+				<desc>2D AFS Panel</desc>
 				<binding>
 					<command>nasal</command>
 					<script>panel2d.afsDialog.open();</script>
