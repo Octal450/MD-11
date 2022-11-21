@@ -303,7 +303,7 @@ var update = maketimer(0.1, func() { # 10FPS
 });
 
 var showIesi = func() {
-	var dlg = canvas.Window.new([256, 220], "dialog").set("resize", 1);
+	var dlg = canvas.Window.new([256, 220], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(display);
 	dlg.set("title", "Integrated Electronic Standby");
 }

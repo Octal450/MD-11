@@ -140,13 +140,6 @@
 						</binding>
 					</item>
 					<item>
-						<label>AFS Panel (Legacy)</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>autopilot</dialog-name>
-						</binding>
-					</item>
-					<item>
 						<label>Engine Start Panel</label>
 						<binding>
 							<command>nasal</command>
@@ -201,7 +194,7 @@
 				</menu>
 			</default>
 		</menubar>
-		<minimum-fg-version>2020.3.13</minimum-fg-version>
+		<minimum-fg-version>2020.3.14</minimum-fg-version>
 		<model n="0">
 			<autopush>
 				<available type="int">1</available>
@@ -1242,6 +1235,14 @@
 				<binding>
 					<command>nasal</command>
 					<script>systems.doRevThrust();</script>
+				</binding>
+			</key>
+			<key n="267">
+				<name>F11</name>
+				<desc>Autopilot 2D Panel</desc>
+				<binding>
+					<command>nasal</command>
+					<script>panel2d.afsDialog.open();</script>
 				</binding>
 			</key>
 			<key n="362">

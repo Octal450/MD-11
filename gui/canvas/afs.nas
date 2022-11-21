@@ -27,7 +27,7 @@ var afsCanvas = {
 		me._dialog = nil;
 	},
 	open: func() {
-		me._dialog = canvas.Window.new([599, 200], "dialog");
+		me._dialog = canvas.Window.new([599, 200], "dialog", nil, 0);
 		me._dialog._onClose = func() {
 			afsCanvas._onClose();
 		}

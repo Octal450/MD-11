@@ -1933,13 +1933,13 @@ var update = maketimer(0.05, func() { # 20FPS
 });
 
 var showPfd1 = func() {
-	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
+	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(pfd1Display);
 	dlg.set("title", "Captain's PFD");
 }
 
 var showPfd2 = func() {
-	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
+	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(pfd2Display);
 	dlg.set("title", "First Officer's PFD");
 }

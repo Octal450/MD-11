@@ -25,7 +25,7 @@ var engineStartCanvas = {
 		me._dialog = nil;
 	},
 	open: func() {
-		me._dialog = canvas.Window.new([307, 200], "dialog");
+		me._dialog = canvas.Window.new([307, 200], "dialog", nil, 0);
 		me._dialog._onClose = func() {
 			engineStartCanvas._onClose();
 		}

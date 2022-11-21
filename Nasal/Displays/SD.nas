@@ -303,7 +303,7 @@ var update = maketimer(0.1, func() { # 10FPS
 });
 
 var showSd = func() {
-	var dlg = canvas.Window.new([512, 512], "dialog").set("resize", 1);
+	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(display);
 	dlg.set("title", "System Display");
 }
