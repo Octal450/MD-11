@@ -218,14 +218,6 @@
 		<max-rate-of-change>4.5</max-rate-of-change>
 	</filter>
 	
-	<filter>
-		<name>TAS</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/instrumentation/airspeed-indicator/true-speed-kt</input>
-		<output>/velocities/TAS</output>
-	</filter>
-	
 	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>
