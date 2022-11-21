@@ -45,8 +45,6 @@ var nd_display = {};
 # entry point, this will set up all ND instances
 
 var _list = setlistener("sim/signals/fdm-initialized", func() {
-
-
     # get a handle to the NavDisplay in canvas namespace (for now), see $FG_ROOT/Nasal/canvas/map/navdisplay.mfd
     var ND = canvas.NavDisplay;
 
@@ -89,12 +87,9 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
     removelistener(_list); # run ONCE
 }); # fdm-initialized listener callback
 
-
 var showNd = func(pilot='cpt') {
-	var dlg = canvas.Window.new([512, 512], "dialog");
+	var dlg = canvas.Window.new([512, 512], "dialog", nil, 0);
 	dlg.setCanvas(nd_display[pilot]);
 	if (pilot == "fo") dlg.set("title", "First Officer's ND");
 	else dlg.set("title", "Captain's ND");
 }
-
-
