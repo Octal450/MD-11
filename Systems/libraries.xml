@@ -210,14 +210,6 @@
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>
 	
-	<filter>
-		<name>Gear Lever</name>
-		<type>noise-spike</type>
-		<input>/controls/gear/lever-cockpit</input>
-		<output>/controls/gear/lever-animation</output>
-		<max-rate-of-change>4.5</max-rate-of-change>
-	</filter>
-	
 	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>

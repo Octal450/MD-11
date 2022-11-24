@@ -310,7 +310,7 @@
 		<object-name>gearlever</object-name>
 		<object-name>gearlever.glass</object-name>
 		<object-name>gearlever.glass.001</object-name>
-		<property>controls/gear/lever-animation</property>
+		<property>controls/cockpit/gear-lever</property>
 		<interpolation>
 			<entry><ind>1</ind><dep>-60</dep></entry>
 			<entry><ind>2</ind><dep>  0</dep></entry>
@@ -332,7 +332,7 @@
 		<object-name>gearlever</object-name>
 		<object-name>gearlever.glass</object-name>
 		<object-name>gearlever.glass.001</object-name>
-		<property>controls/gear/lever-animation</property>
+		<property>controls/cockpit/gear-lever</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0.00</dep></entry>
 			<entry><ind>1</ind><dep>0.01</dep></entry>
