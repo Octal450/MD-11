@@ -5,8 +5,6 @@
 
 <system name="MD-11: PW Engine/FADEC">
 	
-	<property value="1">fadec/epr/c1</property> <!-- Done in property rule because its easier to tune -->
-	<property value="1">fadec/epr/c2</property> <!-- Done in property rule because its easier to tune -->
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
 	<property value="60000">fadec/limit/rated-thrust</property>

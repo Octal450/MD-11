@@ -830,6 +830,10 @@
 				<ats-cmd-1 type="double">0</ats-cmd-1>
 				<ats-cmd-2 type="double">0</ats-cmd-2>
 				<ats-cmd-3 type="double">0</ats-cmd-3>
+				<epr n="0">
+					<c1 type="double">1</c1>
+					<c2 type="double">1</c2>
+				</epr>
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
