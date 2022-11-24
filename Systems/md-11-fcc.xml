@@ -9,8 +9,6 @@
 	<property value="0">fadec/throttle-lever-feedback[1]</property>
 	<property value="0">fadec/throttle-lever-feedback[2]</property>
 	<property value="0">fcc/aileron-out-enable</property>
-	<property value="0">fcc/elevator-feel/manual</property>
-	<property value="0">fcc/elevator-feel/speed</property>
 	<property value="0">fcc/flap/cmd-deg</property>
 	<property value="0">fcc/lsas/autotrim-inhibit</property>
 	<property value="0">fcc/lsas/pah/output</property>
@@ -37,11 +35,6 @@
 	<property value="0">fcc/yaw/yd-p-gain-tune</property>
 	<property value="0">fcc/yaw/tc-p-gain-tune</property>
 	<property value="0">fcc/yaw/tc-d-gain-tune</property>
-	
-	<!-- AFS stuff -->
-	<property value="0">fcc/afs/roll-cmd</property>
-	<property value="0">fcc/afs/pitch-cmd</property>
-	<property value="0">fcc/afs/yaw-cmd</property>
 	
 	<channel name="Libraries">
 		
