@@ -1,7 +1,7 @@
 # INSTALL
 ## Prerequisites
 Have at least following versions installed:
-* FlightGear 2020.3.13 or newer
+* FlightGear 2020.3.14 or newer
 
 ## Install using ZIP Snapshot
 [Download](https://github.com/Octal450/MD-11/archive/master.zip) the zip file.  
