@@ -654,6 +654,14 @@
 			</clipto>
 		</switch>
 		
+		<switch name="fadec/reverse-1/active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fadec/reverse-1/position-cmd eq 1
+				fadec/reverse-1/position-norm ne 0
+			</test>
+		</switch>
+		
 		<!-- Engine 2 -->
 		<switch name="fadec/reverse-2/position-cmd">
 			<default value="0"/>
@@ -748,6 +756,14 @@
 			</clipto>
 		</switch>
 		
+		<switch name="fadec/reverse-2/active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fadec/reverse-2/position-cmd eq 1
+				fadec/reverse-2/position-norm ne 0
+			</test>
+		</switch>
+		
 		<!-- Engine 3 -->
 		<switch name="fadec/reverse-3/position-cmd">
 			<default value="0"/>
@@ -836,6 +852,14 @@
 				<min>0.05</min>
 				<max>1.0</max>
 			</clipto>
+		</switch>
+		
+		<switch name="fadec/reverse-3/active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fadec/reverse-3/position-cmd eq 1
+				fadec/reverse-3/position-norm ne 0
+			</test>
 		</switch>
 	
 	</channel>
@@ -1005,7 +1029,7 @@
 		<switch name="fadec/control-1/throttle-pos">
 			<default value="/controls/engines/engine[0]/throttle"/>
 			<test value="0">
-				fadec/reverse-1/position-norm ne 0
+				fadec/reverse-1/active eq 1
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-1">
 				/it-autoflight/output/athr eq 1
@@ -1016,7 +1040,7 @@
 		<switch name="fadec/control-1/throttle-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
 			<test value="fadec/reverse-1/throttle-rev">
-				fadec/reverse-1/position-norm ne 0
+				fadec/reverse-1/active eq 1
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
@@ -1075,7 +1099,7 @@
 		<switch name="fadec/control-1/throttle-output">
 			<default value="fadec/control-1/throttle-pos-clamped"/>
 			<test value="fadec/reverse-1/throttle-rev">
-				fadec/reverse-1/position-norm ne 0
+				fadec/reverse-1/active eq 1
 			</test>
 		</switch>
 		
@@ -1103,7 +1127,7 @@
 		<switch name="fadec/control-2/throttle-pos">
 			<default value="/controls/engines/engine[1]/throttle"/>
 			<test value="0">
-				fadec/reverse-2/position-norm ne 0
+				fadec/reverse-2/active eq 1
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-2">
 				/it-autoflight/output/athr eq 1
@@ -1114,7 +1138,7 @@
 		<switch name="fadec/control-2/throttle-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
 			<test value="fadec/reverse-2/throttle-rev">
-				fadec/reverse-2/position-norm ne 0
+				fadec/reverse-2/active eq 1
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
@@ -1173,7 +1197,7 @@
 		<switch name="fadec/control-2/throttle-output">
 			<default value="fadec/control-2/throttle-pos-clamped"/>
 			<test value="fadec/reverse-2/throttle-rev">
-				fadec/reverse-2/position-norm ne 0
+				fadec/reverse-2/active eq 1
 			</test>
 		</switch>
 		
@@ -1201,7 +1225,7 @@
 		<switch name="fadec/control-3/throttle-pos">
 			<default value="/controls/engines/engine[2]/throttle"/>
 			<test value="0">
-				fadec/reverse-3/position-norm ne 0
+				fadec/reverse-3/active eq 1
 			</test>
 			<test logic="AND" value="fadec/ats-cmd-3">
 				/it-autoflight/output/athr eq 1
@@ -1212,7 +1236,7 @@
 		<switch name="fadec/control-3/throttle-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
 			<test value="fadec/reverse-3/throttle-rev">
-				fadec/reverse-3/position-norm ne 0
+				fadec/reverse-3/active eq 1
 			</test>
 			<clipto>
 				<min>0</min> <!-- Intentional -->
@@ -1271,7 +1295,7 @@
 		<switch name="fadec/control-3/throttle-output">
 			<default value="fadec/control-3/throttle-pos-clamped"/>
 			<test value="fadec/reverse-3/throttle-rev">
-				fadec/reverse-3/position-norm ne 0
+				fadec/reverse-3/active eq 1
 			</test>
 		</switch>
 		
