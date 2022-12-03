@@ -519,3 +519,9 @@ setlistener("/engines/engine[2]/state", func() {
 setlistener("/systems/iru-common/any-aligned-out", func() {
 	IRS.anyAlignedUpdate();
 }, 0, 0);
+
+# Warnings
+var WARNINGS = {
+	altitudeAlert: props.globals.getNode("/systems/warnings/altitude-alert"),
+	altitudeAlertCaptured: props.globals.getNode("/systems/warnings/altitude-alert-captured"),
+};

@@ -424,6 +424,59 @@
 	
 	<channel name="Warnings" execrate="8">
 		
+		<!-- Altitude Alert -->
+		<switch name="/systems/warnings/altitude-alert-captured">
+			<default value="/systems/warnings/altitude-alert-captured"/>
+			<test value="0">
+				/it-autoflight/internal/alt-diff-abs ge 1050
+			</test>
+			<test value="1">
+				/it-autoflight/internal/alt-diff-abs le 150
+			</test>
+		</switch>
+		
+		<switch name="/systems/warnings/altitude-alert">
+			<default value="/systems/warnings/altitude-alert"/>
+			<test logic="OR" value="0"> <!-- Reset -->
+				/it-autoflight/internal/alt-diff-abs le 150
+				fcs/flap-pos-deg ge 31.5
+				/it-autoflight/output/vert eq 2
+				/it-autoflight/output/vert eq 6
+				<test logic="AND"> <!-- Approaching only -->
+					/systems/warnings/altitude-alert eq 1
+					/it-autoflight/internal/alt-diff-abs ge 1050
+				</test>
+				<test logic="AND">
+					/it-autoflight/output/vert eq 7
+					/position/gear-agl-ft lt 400
+				</test>
+				<test logic="AND">
+					/it-autoflight/output/vert ne 7
+					/position/gear-agl-ft lt 100
+				</test>
+			</test>
+			<test logic="AND" value="1"> <!-- Approaching -->
+				/systems/warnings/altitude-alert-captured eq 0
+				/it-autoflight/internal/alt-diff-abs gt 150
+				/it-autoflight/internal/alt-diff-abs le 1000
+			</test>
+			<test logic="AND" value="2"> <!-- Deviating -->
+				/systems/warnings/altitude-alert-captured eq 1
+				/it-autoflight/internal/alt-diff-abs gt 150
+			</test>
+		</switch>
+		
+		<switch name="/systems/warnings/altitude-alert-aural-1"> <!-- Prevent aural from playing if newly set altitude is inside the alert zone -->
+			<default value="/systems/warnings/altitude-alert-aural-1"/>
+			<test logic="AND" value="0">
+				/systems/warnings/altitude-alert eq 0
+				/it-autoflight/internal/alt-diff-abs le 950
+			</test>
+			<test value="1">
+				/it-autoflight/internal/alt-diff-abs ge 1050
+			</test>
+		</switch>
+		
 		<!-- Gear Warning -->
 		<switch name="/systems/warnings/gear-warning-idle">
 			<default value="0"/>

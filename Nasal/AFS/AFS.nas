@@ -146,12 +146,10 @@ var Internal = {
 	activeFms: props.globals.initNode("/it-autoflight/internal/active-fms", 1, "INT"),
 	activeFmsTemp: 1,
 	alt: props.globals.initNode("/it-autoflight/internal/alt", 10000, "INT"),
-	altAlert: props.globals.initNode("/it-autoflight/internal/alt-alert", 0, "BOOL"),
-	altAlertAural: props.globals.initNode("/it-autoflight/internal/alt-alert-aural", 0, "BOOL"),
 	altCaptureActive: 0,
 	altDiff: 0,
-	altTemp: 10000,
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
+	altTemp: 10000,
 	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 0, "DOUBLE"),
 	bankLimitAuto: 0,
 	bankLimitCalc: 0,
@@ -329,6 +327,7 @@ var ITAF = {
 			apKill.stop();
 			atsKill.stop();
 		}
+		systems.WARNINGS.altitudeAlert.setValue(0); # Cancel altitude alert
 		loopTimer.start();
 		slowLoopTimer.start();
 		clampLoop.start();
@@ -547,26 +546,6 @@ var ITAF = {
 				me.resetClimbRateLim();
 				me.updateVertText("ALT HLD");
 			}
-		}
-		
-		# Altitude Alert
-		Text.vertTemp = Text.vert.getValue();
-		if (Output.vertTemp != 2 and Output.vertTemp != 6 and Misc.flapDeg.getValue() < 31.5 and ((Output.vertTemp == 7 and Position.indicatedAltitudeFtTemp >= 400) or (Output.vertTemp != 7 and Position.indicatedAltitudeFtTemp >= 100))) {
-			if (abs(Internal.altDiff) >= 150 and Text.vertTemp == "ALT HLD") {
-				Internal.altAlert.setBoolValue(1);
-			} else if (abs(Internal.altDiff) >= 150 and abs(Internal.altDiff) <= 1000 and Text.vertTemp != "ALT HLD") {
-				Internal.altAlert.setBoolValue(1);
-			} else {
-				Internal.altAlert.setBoolValue(0);
-			}
-		} else {
-			Internal.altAlert.setBoolValue(0);
-		}
-		
-		if (abs(Internal.altDiff) > 1050) {
-			Internal.altAlertAural.setBoolValue(1);
-		} else if (abs(Internal.altDiff) < 950 and !Internal.altAlert.getBoolValue()) {
-			Internal.altAlertAural.setBoolValue(0);
 		}
 		
 		# Thrust Mode Selector
@@ -1693,6 +1672,8 @@ setlistener("/it-autoflight/input/hdg", func() {
 
 setlistener("/it-autoflight/internal/alt", func() {
 	setprop("/autopilot/settings/target-altitude-ft", getprop("/it-autoflight/input/alt"));
+	systems.WARNINGS.altitudeAlertCaptured.setValue(0); # Reset out of captured state
+	if (systems.WARNINGS.altitudeAlert.getValue() == 2) systems.WARNINGS.altitudeAlert.setValue(0); # Cancel altitude alert deviation alarm
 }, 0, 0);
 
 var loopTimer = maketimer(0.1, ITAF, ITAF.loop);

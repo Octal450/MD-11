@@ -51,6 +51,7 @@ var Value = {
 		stallAlphaDeg: 0,
 	},
 	Alt: {
+		alert: 0,
 		indicated: 0,
 		indicatedAbs: 0,
 		preSel: 0,
@@ -851,7 +852,8 @@ var canvasBase = {
 		Value.Alt.Tape.tens = num(right(sprintf("%02d", Value.Alt.indicatedAbs), 2));
 		me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.1325);
 		
-		if (afs.Internal.altAlert.getBoolValue()) {
+		Value.Alt.alert = systems.WARNINGS.altitudeAlert.getValue();
+		if (Value.Alt.alert == 1 or (Value.Alt.alert == 2 and Value.Misc.blinkMed)) {
 			me["ALT_bowtie"].setColor(0.9412,0.7255,0);
 		} else {
 			me["ALT_bowtie"].setColor(1,1,1);

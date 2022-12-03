@@ -107,6 +107,19 @@
 				</toradians>
 			</function>
 		</fcs_function>
+		
+		<summer name="/it-autoflight/internal/alt-diff">
+			<input>/instrumentation/altimeter/indicated-altitude-ft</input>
+			<input>-/it-autoflight/internal/alt</input>
+		</summer>
+		
+		<fcs_function name="/it-autoflight/internal/alt-diff-abs">
+			<function>
+				<abs>
+					<property>/it-autoflight/internal/alt-diff</property>
+				</abs>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

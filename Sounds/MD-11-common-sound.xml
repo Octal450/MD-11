@@ -975,14 +975,19 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-autoflight/internal/alt-alert</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/internal/alt-alert-aural</property>
-						<value>1</value>
-					</equals>
+					<or>
+						<and>
+							<equals>
+								<property>/systems/warnings/altitude-alert</property>
+								<value>1</value>
+							</equals>
+							<property>/systems/warnings/altitude-alert-aural-1</property>
+						</and>
+						<equals>
+							<property>/systems/warnings/altitude-alert</property>
+							<value>2</value>
+						</equals>
+					</or>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
 						<value>24</value>
