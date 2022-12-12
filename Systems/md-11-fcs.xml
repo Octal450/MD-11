@@ -1051,7 +1051,7 @@
 			<test value="0">
 				/systems/failures/gear/left-actuator eq 1
 			</test>
-			<test value="0.1111111"> <!-- About 9 sec -->
+			<test value="0.1176471"> <!-- About 8.5 sec -->
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
@@ -1076,7 +1076,7 @@
 			<test value="0">
 				/systems/failures/gear/right-actuator eq 1
 			</test>
-			<test value="0.0476190"> <!-- About 21 sec -->
+			<test value="0.0487805"> <!-- About 20.5 sec -->
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 			<test logic="AND" value="0.0222222"> <!-- About 45 sec -->
