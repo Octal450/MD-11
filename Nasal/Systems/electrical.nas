@@ -54,7 +54,7 @@ var ELEC = {
 	},
 	Generic: {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
-		fcpPower: props.globals.initNode("/systems/electrical/outputs/fcp-power", 0, "DOUBLE"),
+		fcp: props.globals.initNode("/systems/electrical/outputs/fcp", 0, "DOUBLE"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),

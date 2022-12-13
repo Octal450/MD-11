@@ -10,7 +10,7 @@
 		<type>select</type>
 		<object-name>LCD</object-name>
 		<condition>
-			<property>systems/electrical/outputs/fcp-power</property>
+			<property>systems/electrical/outputs/fcp</property>
 		</condition>
 	</animation>
 	
@@ -1431,7 +1431,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/altimeter/inhg</property>
@@ -1460,7 +1460,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.STD();</script>
@@ -1472,7 +1472,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
@@ -1489,7 +1489,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
@@ -1505,7 +1505,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.unSTD();</script>
@@ -1525,7 +1525,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
@@ -1542,7 +1542,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
@@ -1558,7 +1558,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.unSTD();</script>
@@ -1612,7 +1612,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.STD();</script>
@@ -1624,7 +1624,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
@@ -1641,7 +1641,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
@@ -1657,7 +1657,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.unSTD();</script>
@@ -1677,7 +1677,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>1</value>
@@ -1694,7 +1694,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<equals>
 							<property>instrumentation/altimeter/inhg</property>
 							<value>0</value>
@@ -1710,7 +1710,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>libraries.unSTD();</script>
@@ -1764,7 +1764,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/switches/minimums</property>
@@ -1777,7 +1777,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
@@ -1789,7 +1789,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
@@ -1813,7 +1813,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
@@ -1825,7 +1825,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
@@ -1883,7 +1883,7 @@
 			</mod-up>
 			<binding>
 				<condition>
-					<property>systems/electrical/outputs/fcp-power</property>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/switches/minimums</property>
@@ -1896,7 +1896,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
@@ -1908,7 +1908,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
@@ -1932,7 +1932,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
@@ -1944,7 +1944,7 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/outputs/fcp-power</property>
+						<property>systems/electrical/outputs/fcp</property>
 						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
