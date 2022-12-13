@@ -53,18 +53,8 @@ var ELEC = {
 		system: props.globals.getNode("/systems/failures/electrical/system"),
 	},
 	Generic: {
-		adf: props.globals.initNode("/systems/electrical/outputs/adf", 0, "DOUBLE"),
-		dme: props.globals.initNode("/systems/electrical/outputs/dme", 0, "DOUBLE"),
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
 		fcpPower: props.globals.initNode("/systems/electrical/outputs/fcp-power", 0, "DOUBLE"),
-		gps: props.globals.initNode("/systems/electrical/outputs/gps", 0, "DOUBLE"),
-		idk: props.globals.initNode("/systems/electrical/outputs/idk", 0, "DOUBLE"),
-		mkViii: props.globals.initNode("/systems/electrical/outputs/mk-viii", 0, "DOUBLE"),
-		nav0: props.globals.initNode("/systems/electrical/outputs/nav[0]", 0, "DOUBLE"),
-		nav1: props.globals.initNode("/systems/electrical/outputs/nav[1]", 0, "DOUBLE"),
-		nav2: props.globals.initNode("/systems/electrical/outputs/nav[2]", 0, "DOUBLE"),
-		transponder: props.globals.initNode("/systems/electrical/outputs/transponder", 0, "DOUBLE"),
-		turnCoordinator: props.globals.initNode("/systems/electrical/outputs/turn-coordinator", 0, "DOUBLE"),
 	},
 	Light: {
 		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),
