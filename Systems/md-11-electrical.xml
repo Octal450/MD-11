@@ -2044,7 +2044,7 @@
 		</pure_gain>
 		
 		<!-- Power Instrumentation -->
-		<switch name="/systems/electrical/generic/ac1">
+		<switch name="/systems/electrical/generic/ac-1">
 			<default value="0"/>
 			<test value="28">
 				/systems/electrical/bus/ac-1 ge 112
@@ -2053,7 +2053,7 @@
 			<output>/systems/electrical/outputs/ra[0]</output>
 		</switch>
 		
-		<switch name="/systems/electrical/generic/ac3">
+		<switch name="/systems/electrical/generic/ac-3">
 			<default value="0"/>
 			<test value="28">
 				/systems/electrical/bus/ac-3 ge 112
