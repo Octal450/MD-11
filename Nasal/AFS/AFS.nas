@@ -1626,7 +1626,7 @@ setlistener("/it-autoflight/input/trk", func() {
 	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 }, 0, 0);
 
-# Sound Logic
+# Warning Logic
 var killApWarn = func() {
 	if (Sound.apOff.getBoolValue()) { # Second press only
 		apKill.stop();
