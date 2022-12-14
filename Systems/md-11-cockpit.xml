@@ -548,8 +548,16 @@
 			<kd>1.0</kd>
 		</pid>
 		
+		<fcs_function name="/systems/caws/logic/stabilizer-rate-abs">
+			<function>
+				<abs>
+					<property>/systems/caws/logic/stabilizer-rate-raw</property>
+				</abs>
+			</function>
+		</fcs_function>
+		
 		<lag_filter name="/systems/caws/logic/stabilizer-rate">
-			<input>/systems/caws/logic/stabilizer-rate-raw</input>
+			<input>/systems/caws/logic/stabilizer-rate-abs</input>
 			<c1>10</c1>
 		</lag_filter>
 		
@@ -557,10 +565,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				position/wow eq 0
-				<test logic="OR">
-					/systems/caws/logic/stabilizer-rate lt -0.01
-					/systems/caws/logic/stabilizer-rate gt 0.01
-				</test>
+				/systems/caws/logic/stabilizer-rate gt 0.01
 			</test>
 		</switch>
 		
@@ -685,8 +690,8 @@
 		</switch>
 		
 		<pure_gain name="/systems/caws/stabilizer-motion/rate"> <!-- So that it goes off roughly every 2 degrees -->
-			<input>fcc/pitch-trim-speed</input>
-			<gain>0.523</gain>
+			<input>/systems/caws/logic/stabilizer-rate</input>
+			<gain>0.5</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/caws/stabilizer-motion/actuator">
