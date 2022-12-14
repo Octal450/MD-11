@@ -48,9 +48,6 @@
 			<condition>
 				<property>/it-autoflight/output/clamp</property>
 			</condition>
-			<volume>
-				<factor>0.95</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -60,9 +57,6 @@
 			<condition>
 				<not><property>/it-autoflight/output/clamp</property></not>
 			</condition>
-			<volume>
-				<factor>0.95</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -72,9 +66,6 @@
 			<condition>
 				<property>/sim/sound/btn1</property>
 			</condition>
-			<volume>
-				<factor>0.75</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -84,9 +75,6 @@
 			<condition>
 				<property>/sim/sound/btn2</property>
 			</condition>
-			<volume>
-				<factor>0.75</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -96,9 +84,6 @@
 			<condition>
 				<property>/sim/sound/btn3</property>
 			</condition>
-			<volume>
-				<factor>0.75</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -108,9 +93,6 @@
 			<condition>
 				<property>/sim/sound/knb1</property>
 			</condition>
-			<volume>
-				<factor>0.60</factor>
-			</volume>
 		</switch>
 		
 		<switch>
@@ -120,9 +102,6 @@
 			<condition>
 				<property>/sim/sound/switch1</property>
 			</condition>
-			<volume>
-				<factor>0.75</factor>
-			</volume>
 		</switch>
 		
 		<cvrtone>
@@ -135,9 +114,6 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<volume>
-				<factor>0.60</factor>
-			</volume>
 		</cvrtone>
 		
 		<misc>
@@ -160,7 +136,6 @@
 					</greater-than-equals>
 				</or>
 			</condition>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>0.6</factor>
@@ -209,7 +184,6 @@
 					<property>sim/current-view/internal</property>
 				</and>
 			</condition>
-			
 			<volume>
 				<property>engines/engine[3]/n2-actual</property>
 				<factor>0.005</factor>
@@ -236,7 +210,6 @@
 					</not>
 				</and>
 			</condition>
-			
 			<volume>
 				<property>engines/engine[3]/n2-actual</property>
 				<factor>0.005</factor>
@@ -267,7 +240,6 @@
 			<mode>in-transit</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[0]/position-norm</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>2</factor>
@@ -280,7 +252,6 @@
 			<mode>in-transit</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[1]/position-norm</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>2</factor>
@@ -293,7 +264,6 @@
 			<mode>in-transit</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[2]/position-norm</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>2</factor>
@@ -306,7 +276,6 @@
 			<mode>in-transit</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[3]/position-norm</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>2</factor>
@@ -319,7 +288,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[0]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -335,7 +303,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[1]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -351,7 +318,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[2]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -367,7 +333,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[3]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -383,7 +348,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[1]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -399,7 +363,6 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[2]/wow</property>
-			
 			<volume>
 				<property>sim/sound/other/roll-v</property>
 				<factor>1</factor>
@@ -417,7 +380,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[0]/wow</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>50</factor>
@@ -429,7 +391,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[1]/wow</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>50</factor>
@@ -441,7 +402,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[2]/wow</property>
-			
 			<volume>
 				<property>sim/current-view/internal</property>
 				<factor>50</factor>
@@ -453,7 +413,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
 			<property>gear/gear[0]/wow</property>
-			
 			<volume>
 				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
@@ -465,7 +424,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
 			<property>gear/gear[1]/wow</property>
-			
 			<volume>
 				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
@@ -477,7 +435,6 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
 			<property>gear/gear[2]/wow</property>
-			
 			<volume>
 				<property>/sim/sound/external-custom</property>
 				<factor>50</factor>
@@ -513,11 +470,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>1000</name>
@@ -547,11 +499,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>500</name>
@@ -585,11 +532,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>400</name>
@@ -623,11 +565,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>300</name>
@@ -661,11 +598,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>200</name>
@@ -699,11 +631,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>100</name>
@@ -733,11 +660,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>50</name>
@@ -767,11 +689,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>40</name>
@@ -801,11 +718,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>30</name>
@@ -835,11 +747,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>20</name>
@@ -869,11 +776,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>10</name>
@@ -903,11 +805,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>Approaching Minimum</name>
@@ -933,11 +830,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>Minimum</name>
@@ -963,11 +855,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>Altitude Alert</name>
@@ -994,11 +881,6 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 	    <caws>
 			<name>Landing Gear Warning</name>
@@ -1010,11 +892,6 @@
 					<value>0</value>
 				</greater-than>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 		<caws>
 			<name>AP Off Warning</name>
@@ -1026,11 +903,6 @@
 					<value>0</value>
 				</greater-than>
 			</condition>
-			<volume>
-				<factor>8</factor>
-			</volume>
-			<reference-dist>20</reference-dist>
-			<max-dist>100</max-dist>
 		</caws>
 		
 		<!-- Effects -->
@@ -1050,9 +922,6 @@
 					<value>3</value>
 				</less-than>
 			</condition>
-			<volume>
-				<factor>0.265</factor>
-			</volume>
 		</ambience>
 		
 		<rain>
