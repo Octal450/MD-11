@@ -477,7 +477,7 @@
 			</test>
 		</switch>
 		
-		<!-- Gear Warning -->
+		<!-- Landing Gear -->
 		<switch name="/systems/caws/logic/landing-gear-idle">
 			<default value="0"/>
 			<test logic="AND" value="1">
