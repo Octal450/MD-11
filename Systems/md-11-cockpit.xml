@@ -550,7 +550,7 @@
 		
 		<lag_filter name="/systems/caws/logic/stabilizer-rate">
 			<input>/systems/caws/logic/stabilizer-rate-raw</input>
-			<c1>5.0</c1>
+			<c1>10</c1>
 		</lag_filter>
 		
 		<switch name="/systems/caws/logic/stabilizer-moving">
@@ -558,8 +558,8 @@
 			<test logic="AND" value="1">
 				position/wow eq 0
 				<test logic="OR">
-					/systems/caws/logic/stabilizer-rate lt -0.005
-					/systems/caws/logic/stabilizer-rate gt 0.005
+					/systems/caws/logic/stabilizer-rate lt -0.01
+					/systems/caws/logic/stabilizer-rate gt 0.01
 				</test>
 			</test>
 		</switch>
@@ -676,19 +676,22 @@
 			<default value="/systems/caws/stabilizer-motion/trigger"/>
 			<test logic="OR" value="0">
 				/systems/electrical/outputs/mk-viii lt 24
-				<test logic="AND"> <!-- Only play once -->
-					/systems/caws/stabilizer-motion/out eq 1
-					/systems/caws/logic/stabilizer-motion eq 0
-				</test>
+				/systems/caws/stabilizer-motion/out eq 1
 			</test>
-			<test value="1">
+			<test logic="AND" value="1">
+				/systems/caws/stabilizer-motion/out eq 0
 				/systems/caws/logic/stabilizer-motion eq 1
 			</test>
 		</switch>
 		
+		<pure_gain name="/systems/caws/stabilizer-motion/rate"> <!-- So that it goes off roughly every 2 degrees -->
+			<input>fcc/pitch-trim-speed</input>
+			<gain>0.523</gain>
+		</pure_gain>
+		
 		<actuator name="/systems/caws/stabilizer-motion/actuator">
 			<input>/systems/caws/stabilizer-motion/trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
+			<rate_limit sense="incr">/systems/caws/stabilizer-motion/rate</rate_limit>
 			<rate_limit sense="decr">100</rate_limit>
 			<output>/systems/caws/stabilizer-motion/out</output>
 		</actuator>
