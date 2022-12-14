@@ -56,22 +56,18 @@ var apPanel = {
 		}
 	},
 	apDisc: func() {
-		if (systems.ELEC.Generic.fcp.getValue() >= 24) {
-			afs.killAPWarn();
-			if (afs.Output.ap1.getBoolValue()) {
-				afs.ITAF.ap1Master(0);
-			}
-			if (afs.Output.ap2.getBoolValue()) {
-				afs.ITAF.ap2Master(0);
-			}
+		afs.killAPWarn();
+		if (afs.Output.ap1.getBoolValue()) {
+			afs.ITAF.ap1Master(0);
+		}
+		if (afs.Output.ap2.getBoolValue()) {
+			afs.ITAF.ap2Master(0);
 		}
 	},
 	atDisc: func() {
-		if (systems.ELEC.Generic.fcp.getValue() >= 24) {
-			afs.killATSWarn();
-			if (afs.Output.athr.getBoolValue()) {
-				afs.ITAF.athrMaster(0);
-			}
+		afs.killATSWarn();
+		if (afs.Output.athr.getBoolValue()) {
+			afs.ITAF.athrMaster(0);
 		}
 	},
 	ktsMach: func() {
