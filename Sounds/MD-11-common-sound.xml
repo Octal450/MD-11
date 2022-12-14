@@ -865,13 +865,13 @@
 					<or>
 						<and>
 							<equals>
-								<property>/systems/warnings/altitude-alert</property>
+								<property>/systems/caws/logic/altitude-alert</property>
 								<value>1</value>
 							</equals>
-							<property>/systems/warnings/altitude-alert-aural-1</property>
+							<property>/systems/caws/logic/altitude-alert-aural-1</property>
 						</and>
 						<equals>
-							<property>/systems/warnings/altitude-alert</property>
+							<property>/systems/caws/logic/altitude-alert</property>
 							<value>2</value>
 						</equals>
 					</or>
@@ -883,7 +883,7 @@
 			</condition>
 		</caws>
 	    <caws>
-			<name>Landing Gear Warning</name>
+			<name>Landing Gear</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/landing-gear.wav</path>
 			<mode>once</mode>
 			<condition>
@@ -894,12 +894,45 @@
 			</condition>
 		</caws>
 		<caws>
-			<name>AP Off Warning</name>
+			<name>AP Off</name>
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
 			<condition>
 				<greater-than>
 					<property>/systems/caws/apoff/out</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+		</caws>
+	    <caws>
+			<name>Overspeed</name>
+			<path>Aircraft/MD-11/Sounds/CAWS/overspeed.wav</path>
+			<mode>once</mode>
+			<condition>
+				<greater-than>
+					<property>/systems/caws/overspeed/out</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+		</caws>
+	    <caws>
+			<name>Slat Overspeed</name>
+			<path>Aircraft/MD-11/Sounds/CAWS/slat-overspeed.wav</path>
+			<mode>once</mode>
+			<condition>
+				<greater-than>
+					<property>/systems/caws/slat-overspeed/out</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+		</caws>
+	    <caws>
+			<name>Stabilizer Motion</name>
+			<path>Aircraft/MD-11/Sounds/CAWS/stabilizer-motion.wav</path>
+			<mode>once</mode>
+			<condition>
+				<greater-than>
+					<property>/systems/caws/stabilizer-motion/out</property>
 					<value>0</value>
 				</greater-than>
 			</condition>

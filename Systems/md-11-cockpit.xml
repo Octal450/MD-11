@@ -422,11 +422,11 @@
 	
 	</channel>
 	
-	<channel name="Warnings" execrate="8">
+	<channel name="CAWS Logic" execrate="8">
 		
 		<!-- Altitude Alert -->
-		<switch name="/systems/warnings/altitude-alert-captured">
-			<default value="/systems/warnings/altitude-alert-captured"/>
+		<switch name="/systems/caws/logic/altitude-alert-captured">
+			<default value="/systems/caws/logic/altitude-alert-captured"/>
 			<test value="0">
 				/it-autoflight/internal/alt-diff-abs ge 1050
 			</test>
@@ -435,15 +435,15 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/warnings/altitude-alert">
-			<default value="/systems/warnings/altitude-alert"/>
+		<switch name="/systems/caws/logic/altitude-alert">
+			<default value="/systems/caws/logic/altitude-alert"/>
 			<test logic="OR" value="0"> <!-- Reset -->
 				/it-autoflight/internal/alt-diff-abs le 150
 				fcs/flap-pos-deg ge 31.5
 				/it-autoflight/output/vert eq 2
 				/it-autoflight/output/vert eq 6
 				<test logic="AND"> <!-- Approaching only -->
-					/systems/warnings/altitude-alert eq 1
+					/systems/caws/logic/altitude-alert eq 1
 					/it-autoflight/internal/alt-diff-abs ge 1050
 				</test>
 				<test logic="AND">
@@ -456,20 +456,20 @@
 				</test>
 			</test>
 			<test logic="AND" value="1"> <!-- Approaching -->
-				/systems/warnings/altitude-alert-captured eq 0
+				/systems/caws/logic/altitude-alert-captured eq 0
 				/it-autoflight/internal/alt-diff-abs gt 150
 				/it-autoflight/internal/alt-diff-abs le 1000
 			</test>
 			<test logic="AND" value="2"> <!-- Deviating -->
-				/systems/warnings/altitude-alert-captured eq 1
+				/systems/caws/logic/altitude-alert-captured eq 1
 				/it-autoflight/internal/alt-diff-abs gt 150
 			</test>
 		</switch>
 		
-		<switch name="/systems/warnings/altitude-alert-aural-1"> <!-- Prevent aural from playing if newly set altitude is inside the alert zone -->
-			<default value="/systems/warnings/altitude-alert-aural-1"/>
+		<switch name="/systems/caws/logic/altitude-alert-aural-1"> <!-- Prevent aural from playing if newly set altitude is inside the alert zone -->
+			<default value="/systems/caws/logic/altitude-alert-aural-1"/>
 			<test logic="AND" value="0">
-				/systems/warnings/altitude-alert eq 0
+				/systems/caws/logic/altitude-alert eq 0
 				/it-autoflight/internal/alt-diff-abs le 950
 			</test>
 			<test value="1">
@@ -478,7 +478,7 @@
 		</switch>
 		
 		<!-- Gear Warning -->
-		<switch name="/systems/warnings/gear-warning-idle">
+		<switch name="/systems/caws/logic/landing-gear-idle">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 210
@@ -491,15 +491,15 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/warnings/gear-warning-inhibit">
+		<switch name="/systems/caws/logic/landing-gear-inhibit">
 			<default value="0"/>
 			<test value="/controls/warnings/gear-warning-inhibit">
-				/systems/warnings/gear-warning-idle eq 1
+				/systems/caws/logic/landing-gear-idle eq 1
 			</test>
 			<output>/controls/warnings/gear-warning-inhibit</output> <!-- So it resets properly -->
 		</switch>
 		
-		<switch name="/systems/warnings/gear-warning">
+		<switch name="/systems/caws/logic/landing-gear">
 			<default value="0"/>
 			<test logic="AND" value="0"> <!-- Ignore center main gear if up is selected for it -->
 				/controls/gear/center-gear-up eq 1
@@ -515,10 +515,75 @@
 			</test>
 			<test logic="OR" value="1">
 				<test logic="AND">
-					/systems/warnings/gear-warning-idle eq 1
-					/systems/warnings/gear-warning-inhibit eq 0
+					/systems/caws/logic/landing-gear-idle eq 1
+					/systems/caws/logic/landing-gear-inhibit eq 0
 				</test>
 				fcs/flap-pos-deg ge 31.5
+			</test>
+		</switch>
+		
+		<!-- Overspeed -->
+		<switch name="/systems/caws/logic/overspeed">
+			<default value="0"/>
+			<test value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/vmo-mmo
+			</test>
+		</switch>
+		
+		<!-- Slat Overspeed -->
+		<switch name="/systems/caws/logic/slat-overspeed">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/caws/logic/overspeed eq 0
+				fcs/slat-pos-deg ge 0.1
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/slat-max-kts
+			</test>
+		</switch>
+		
+		<!-- Stabilizer Motion -->
+		<pid name="/systems/caws/logic/stabilizer-rate-raw">
+			<input>hydraulics/stabilizer/final-deg</input>
+			<kp>0.0</kp>
+			<ki>0.0</ki>
+			<kd>1.0</kd>
+		</pid>
+		
+		<lag_filter name="/systems/caws/logic/stabilizer-rate">
+			<input>/systems/caws/logic/stabilizer-rate-raw</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<switch name="/systems/caws/logic/stabilizer-moving">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				position/wow eq 0
+				<test logic="OR">
+					/systems/caws/logic/stabilizer-rate lt -0.005
+					/systems/caws/logic/stabilizer-rate gt 0.005
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/caws/logic/stabilizer-stored">
+			<default value="/systems/caws/logic/stabilizer-stored"/>
+			<test value="hydraulics/stabilizer/final-deg">
+				/systems/caws/logic/stabilizer-moving eq 0
+			</test>
+		</switch>
+		
+		<summer name="/systems/caws/logic/stabilizer-stored-error">
+			<input>hydraulics/stabilizer/final-deg</input>
+			<input>-/systems/caws/logic/stabilizer-stored</input>
+		</summer>
+		
+		<switch name="/systems/caws/logic/stabilizer-motion">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/caws/logic/stabilizer-moving eq 1
+				<test logic="OR">
+					/systems/caws/logic/stabilizer-stored-error lt -2
+					/systems/caws/logic/stabilizer-stored-error gt 2
+				</test>
 			</test>
 		</switch>
 	
@@ -555,7 +620,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/caws/landing-gear/out eq 0
-				/systems/warnings/gear-warning eq 1
+				/systems/caws/logic/landing-gear eq 1
 			</test>
 		</switch>
 		
@@ -564,6 +629,68 @@
 			<rate_limit sense="incr">0.35</rate_limit>
 			<rate_limit sense="decr">100</rate_limit>
 			<output>/systems/caws/landing-gear/out</output>
+		</actuator>
+		
+		<!-- Overspeed Horn -->
+		<switch name="/systems/caws/overspeed/trigger">
+			<default value="/systems/caws/overspeed/trigger"/>
+			<test logic="OR" value="0">
+				/systems/electrical/outputs/mk-viii lt 24
+				/systems/caws/overspeed/out eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/caws/overspeed/out eq 0
+				/systems/caws/logic/overspeed eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/caws/overspeed/actuator">
+			<input>/systems/caws/overspeed/trigger</input>
+			<rate_limit sense="incr">0.35</rate_limit>
+			<rate_limit sense="decr">100</rate_limit>
+			<output>/systems/caws/overspeed/out</output>
+		</actuator>
+		
+		<!-- Slat Overspeed Horn -->
+		<switch name="/systems/caws/slat-overspeed/trigger">
+			<default value="/systems/caws/slat-overspeed/trigger"/>
+			<test logic="OR" value="0">
+				/systems/electrical/outputs/mk-viii lt 24
+				/systems/caws/slat-overspeed/out eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/caws/slat-overspeed/out eq 0
+				/systems/caws/logic/slat-overspeed eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/caws/slat-overspeed/actuator">
+			<input>/systems/caws/slat-overspeed/trigger</input>
+			<rate_limit sense="incr">0.35</rate_limit>
+			<rate_limit sense="decr">100</rate_limit>
+			<output>/systems/caws/slat-overspeed/out</output>
+		</actuator>
+		
+		<!-- Stabilizer Motion Horn -->
+		<switch name="/systems/caws/stabilizer-motion/trigger">
+			<default value="/systems/caws/stabilizer-motion/trigger"/>
+			<test logic="OR" value="0">
+				/systems/electrical/outputs/mk-viii lt 24
+				<test logic="AND"> <!-- Only play once -->
+					/systems/caws/stabilizer-motion/out eq 1
+					/systems/caws/logic/stabilizer-motion eq 0
+				</test>
+			</test>
+			<test value="1">
+				/systems/caws/logic/stabilizer-motion eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/caws/stabilizer-motion/actuator">
+			<input>/systems/caws/stabilizer-motion/trigger</input>
+			<rate_limit sense="incr">0.35</rate_limit>
+			<rate_limit sense="decr">100</rate_limit>
+			<output>/systems/caws/stabilizer-motion/out</output>
 		</actuator>
 	
 	</channel>

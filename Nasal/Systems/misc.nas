@@ -522,6 +522,6 @@ setlistener("/systems/iru-common/any-aligned-out", func() {
 
 # Warnings
 var WARNINGS = {
-	altitudeAlert: props.globals.getNode("/systems/warnings/altitude-alert"),
-	altitudeAlertCaptured: props.globals.getNode("/systems/warnings/altitude-alert-captured"),
+	altitudeAlert: props.globals.getNode("/systems/caws/logic/altitude-alert"),
+	altitudeAlertCaptured: props.globals.getNode("/systems/caws/logic/altitude-alert-captured"),
 };
