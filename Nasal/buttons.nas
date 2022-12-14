@@ -56,7 +56,7 @@ var apPanel = {
 		}
 	},
 	apDisc: func() {
-		afs.killAPWarn();
+		afs.killApWarn();
 		if (afs.Output.ap1.getBoolValue()) {
 			afs.ITAF.ap1Master(0);
 		}
@@ -65,7 +65,7 @@ var apPanel = {
 		}
 	},
 	atDisc: func() {
-		afs.killATSWarn();
+		afs.killAtsWarn();
 		if (afs.Output.athr.getBoolValue()) {
 			afs.ITAF.athrMaster(0);
 		}

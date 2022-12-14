@@ -1627,7 +1627,7 @@ setlistener("/it-autoflight/input/trk", func() {
 }, 0, 0);
 
 # Flashing Logic
-var killAPWarn = func() {
+var killApWarn = func() {
 	if (Sound.apOff.getBoolValue()) { # Second press only
 		apKill.stop();
 		Warning.ap.setBoolValue(0);
@@ -1635,7 +1635,7 @@ var killAPWarn = func() {
 	}
 }
 
-var killATSWarn = func() {
+var killAtsWarn = func() {
 	if (Warning.atsFlash.getBoolValue()) { # Second press only
 		atsKill.stop();
 		Warning.ats.setBoolValue(0);
