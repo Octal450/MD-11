@@ -28,7 +28,7 @@
 			</author>
 		</authors>
 		<chase-distance-m type="double">-110</chase-distance-m>
-		<checklists include="MD-11-Checklists.xml"/>
+		<checklists include="gui/checklists.xml"/>
 		<current-view>
 			<z-offset-default type="float">110</z-offset-default>
 			<z-offset-min-m type="float">30</z-offset-min-m>
