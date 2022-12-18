@@ -525,8 +525,9 @@
 		<!-- Overspeed -->
 		<switch name="/systems/caws/logic/overspeed">
 			<default value="0"/>
-			<test value="1">
+			<test logic="OR" value="1">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/vmo-mmo
+				/controls/switches/annun-test eq 1
 			</test>
 		</switch>
 		
