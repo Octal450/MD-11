@@ -445,6 +445,7 @@
 	    <caws>
 			<name>2500</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/2500.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -474,6 +475,7 @@
 	    <caws>
 			<name>1000</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/1000.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -503,6 +505,7 @@
 	    <caws>
 			<name>500</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/500.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -536,6 +539,7 @@
 	    <caws>
 			<name>400</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/400.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -569,6 +573,7 @@
 	    <caws>
 			<name>300</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/300.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -602,6 +607,7 @@
 	    <caws>
 			<name>200</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/200.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -635,6 +641,7 @@
 	    <caws>
 			<name>100</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/100.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -664,6 +671,7 @@
 	    <caws>
 			<name>50</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/50.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -693,6 +701,7 @@
 	    <caws>
 			<name>40</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/40.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -722,6 +731,7 @@
 	    <caws>
 			<name>30</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/30.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -751,6 +761,7 @@
 	    <caws>
 			<name>20</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/20.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -780,6 +791,7 @@
 	    <caws>
 			<name>10</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/10.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -809,6 +821,7 @@
 	    <caws>
 			<name>Approaching Minimum</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/approaching-minimum.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -834,6 +847,7 @@
 	    <caws>
 			<name>Minimum</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/minimum.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -859,6 +873,7 @@
 	    <caws>
 			<name>Altitude Alert</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/altitude-alert.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<and>
@@ -885,6 +900,7 @@
 	    <caws>
 			<name>Landing Gear</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/landing-gear.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<greater-than>
@@ -897,6 +913,7 @@
 			<name>AP Off</name>
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
+			<type>avionics</type>
 			<condition>
 				<greater-than>
 					<property>/systems/caws/apoff/out</property>
@@ -907,6 +924,7 @@
 	    <caws>
 			<name>Overspeed</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/overspeed.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<greater-than>
@@ -918,6 +936,7 @@
 	    <caws>
 			<name>Slat Overspeed</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/slat-overspeed.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<greater-than>
@@ -929,6 +948,7 @@
 	    <caws>
 			<name>Stabilizer Motion</name>
 			<path>Aircraft/MD-11/Sounds/CAWS/stabilizer-motion.wav</path>
+			<type>avionics</type>
 			<mode>once</mode>
 			<condition>
 				<greater-than>
