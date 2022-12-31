@@ -1062,6 +1062,22 @@
 			<rate_limit sense="decr">gear/unit[1]/rate-decr</rate_limit>
 			<output>gear/unit[1]/pos-norm</output>
 		</actuator>
+		
+		<switch name="/gear/gear[1]/angle-deg-cmd">
+			<default value="0"/>
+			<test logic="AND" value="/orientation/pitch-deg">
+				gear/unit[1]/WOW eq 1
+			</test>
+			<clipto>
+				<min>-20</min>
+				<max>20</max>
+			</clipto>
+		</switch>
+		
+		<lag_filter name="/gear/gear[1]/angle-deg">
+			<input>/gear/gear[1]/angle-deg-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
@@ -1105,6 +1121,22 @@
 			<rate_limit sense="decr">gear/unit[2]/rate-decr</rate_limit>
 			<output>gear/unit[2]/pos-norm</output>
 		</actuator>
+		
+		<switch name="/gear/gear[2]/angle-deg-cmd">
+			<default value="0"/>
+			<test logic="AND" value="/orientation/pitch-deg">
+				gear/unit[2]/WOW eq 1
+			</test>
+			<clipto>
+				<min>-20</min>
+				<max>20</max>
+			</clipto>
+		</switch>
+		
+		<lag_filter name="/gear/gear[2]/angle-deg">
+			<input>/gear/gear[2]/angle-deg-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	

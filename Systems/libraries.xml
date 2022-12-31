@@ -84,44 +84,6 @@
 	</predict-simple>
 	
 	<filter>
-		<name>Gear 1 Tilt</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/gear/gear[1]/wow</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/orientation/pitch-deg</property>
-		</input>
-		<input>0</input>
-		<output>/gear/gear[1]/angle-deg</output>
-		<min>-20</min>
-		<max>20</max>
-	</filter>
-	
-	<filter>
-		<name>Gear 2 Tilt</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/gear/gear[2]/wow</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/orientation/pitch-deg</property>
-		</input>
-		<input>0</input>
-		<output>/gear/gear[2]/angle-deg</output>
-		<min>-20</min>
-		<max>20</max>
-	</filter>
-	
-	<filter>
 		<name>Minimums Minus 50</name>
 		<update-interval-secs>0.1</update-interval-secs>
 		<type>gain</type>
