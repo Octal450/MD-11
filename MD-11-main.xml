@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 
-<!-- Copyright (c) 2022 Josh Davidson (Octal450) -->
+<!-- Copyright (c) 2023 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -337,7 +337,7 @@
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">0.0</x-offset-m>
+				<x-offset-m archive="y">0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.76</z-offset-m>
 				<default-field-of-view-deg type="double">103</default-field-of-view-deg>
@@ -352,7 +352,7 @@
 			<internal archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">0.0</x-offset-m>
+				<x-offset-m archive="y">0</x-offset-m>
 				<y-offset-m archive="y">1.3701</y-offset-m>
 				<z-offset-m archive="y">-27</z-offset-m>
 				<default-field-of-view-deg type="double">77</default-field-of-view-deg>
@@ -367,7 +367,7 @@
 			<internal archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">0.0</x-offset-m>
+				<x-offset-m archive="y">0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.84</z-offset-m>
 				<default-field-of-view-deg type="double">73</default-field-of-view-deg>
@@ -382,7 +382,7 @@
 			<internal archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">0.0</x-offset-m>
+				<x-offset-m archive="y">0</x-offset-m>
 				<y-offset-m archive="y">1.3201</y-offset-m>
 				<z-offset-m archive="y">-26.79</z-offset-m>
 				<default-field-of-view-deg type="double">63</default-field-of-view-deg>
@@ -397,7 +397,7 @@
 			<internal archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
-				<x-offset-m archive="y">0.0</x-offset-m>
+				<x-offset-m archive="y">0</x-offset-m>
 				<y-offset-m archive="y">1.1701</y-offset-m>
 				<z-offset-m archive="y">-27.25</z-offset-m>
 				<default-field-of-view-deg type="double">77</default-field-of-view-deg>

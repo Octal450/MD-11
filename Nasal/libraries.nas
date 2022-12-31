@@ -1,9 +1,9 @@
 # McDonnell Douglas MD-11 Main Libraries
-# Copyright (c) 2022 Josh Davidson (Octal450)
+# Copyright (c) 2023 Josh Davidson (Octal450)
 
 print("");
 print("------------------------------------------------");
-print("Copyright (c) 2017-2022 Josh Davidson (Octal450)");
+print("Copyright (c) 2017-2023 Josh Davidson (Octal450)");
 print("------------------------------------------------");
 print("");
 
