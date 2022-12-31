@@ -658,8 +658,6 @@
 			<brake-parking type="bool">0</brake-parking>
 			<center-gear-up type="bool">0</center-gear-up>
 			<lever-cockpit type="int">3</lever-cockpit>
-			<tiller-cmd-norm type="double">0</tiller-cmd-norm>
-			<tiller-enabled type="bool">0</tiller-enabled>
 		</gear>
 		<hydraulics n="0">
 			<deflected-aileron type="bool">0</deflected-aileron>
