@@ -1470,6 +1470,7 @@
 			<test value="5"> <!-- 50/EXT -->
 				/controls/flight/flaps ge 0.84
 			</test>
+			<output>/fms/speeds/flaps-input-feedback</output>
 		</switch>
 		
 		<fcs_function name="/controls/flight/dial-a-flap-int">

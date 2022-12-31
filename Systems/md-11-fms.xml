@@ -5,6 +5,8 @@
 
 <system name="MD-11: FMS">
 	
+	<property value="0">/fms/speeds/flaps-input-feedback</property>
+	
 	<channel name="Envelope Protection" execrate="8">
 		
 		<!-- Vmo/Mmo -->
@@ -348,8 +350,9 @@
 			<test value="0">
 				position/wow eq 1
 			</test>	
-			<test value="1"> <!-- Should be accel alt -->
+			<test logic="OR" value="1"> <!-- Should be accel alt -->
 				/position/gear-agl-ft ge 1250
+				/fms/speeds/flaps-input-feedback ge 4
 			</test>
 		</switch>
 		
