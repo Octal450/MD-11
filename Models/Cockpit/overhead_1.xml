@@ -6932,12 +6932,11 @@
 			<button>0</button>
 			<button>4</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/switches/no-smoking-sign</property>
-				<step>0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6948,12 +6947,11 @@
 			<button>1</button>
 			<button>3</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/switches/no-smoking-sign</property>
-				<step>-0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -6988,12 +6986,11 @@
 			<button>0</button>
 			<button>4</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/switches/seatbelt-sign</property>
-				<step>0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7004,12 +7001,11 @@
 			<button>1</button>
 			<button>3</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/switches/seatbelt-sign</property>
-				<step>-0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7198,12 +7194,11 @@
 			<button>0</button>
 			<button>4</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-l</property>
-				<step>0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7214,12 +7209,11 @@
 			<button>1</button>
 			<button>3</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-l</property>
-				<step>-0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7255,12 +7249,11 @@
 			<button>0</button>
 			<button>4</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-r</property>
-				<step>0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7271,12 +7264,11 @@
 			<button>1</button>
 			<button>3</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-r</property>
-				<step>-0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7312,12 +7304,11 @@
 			<button>0</button>
 			<button>4</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-n</property>
-				<step>0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7328,12 +7319,11 @@
 			<button>1</button>
 			<button>3</button>
 			<binding>
-				<command>property-adjust</command>
+				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-n</property>
-				<step>-0.5</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
