@@ -6931,6 +6931,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/switches/no-smoking-sign</property>
@@ -6946,6 +6947,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/switches/no-smoking-sign</property>
@@ -6985,6 +6987,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/switches/seatbelt-sign</property>
@@ -7000,6 +7003,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/switches/seatbelt-sign</property>
@@ -7193,6 +7197,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-l</property>
@@ -7208,6 +7213,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-l</property>
@@ -7248,6 +7254,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-r</property>
@@ -7263,6 +7270,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-r</property>
@@ -7303,6 +7311,7 @@
 		<action>
 			<button>0</button>
 			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-n</property>
@@ -7318,6 +7327,7 @@
 		<action>
 			<button>1</button>
 			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-cycle</command>
 				<property>controls/lighting/landing-light-n</property>
