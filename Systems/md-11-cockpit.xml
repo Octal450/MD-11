@@ -32,7 +32,7 @@
 			<gain>0.2</gain>
 		</pure_gain>
 		
-		<lag_filter name="/controls/cockpit/armrest-translate-cmd">
+		<lag_filter name="/controls/cockpit/armrest-translate">
 			<input>/controls/cockpit/armrest-translate-cmd</input>
 			<c1>10</c1>
 		</lag_filter>

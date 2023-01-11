@@ -6907,13 +6907,11 @@
 	
 	<!-- Other -->
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>nosmoking.lever</object-name>
 		<property>controls/cockpit/overhead/no-smoking-sign</property>
-		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
-			<entry><ind>0.5</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep> 30</dep></entry>
 		</interpolation>
 		<center>
@@ -6926,11 +6924,34 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>nosmoking.lever</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/no-smoking-sign</property>
-				<factor>-0.5</factor>
+				<step>0.5</step>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/no-smoking-sign</property>
+				<step>-0.5</step>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>
@@ -6943,13 +6964,11 @@
 	</animation>
 	
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>seatbelts.lever</object-name>
 		<property>controls/cockpit/overhead/seatbelt-sign</property>
-		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
-			<entry><ind>0.5</ind><dep>  0</dep></entry>
 			<entry><ind>1.0</ind><dep> 30</dep></entry>
 		</interpolation>
 		<center>
@@ -6962,11 +6981,34 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>seatbelts.lever</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/seatbelt-sign</property>
-				<factor>-0.5</factor>
+				<step>0.5</step>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/seatbelt-sign</property>
+				<step>-0.5</step>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>
@@ -7132,10 +7174,9 @@
 	</animation>
 		
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>L-Lnd.toggle</object-name>
 		<property>controls/cockpit/overhead/landing-light-l</property>
-		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7151,11 +7192,33 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>L-Lnd.toggle</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/landing-light-l</property>
-				<factor>-0.5</factor>
+				<step>0.5</step>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/landing-light-l</property>
+				<step>-0.5</step>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>
@@ -7168,10 +7231,9 @@
 	</animation>
 	
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>R-Lnd.toggle</object-name>
 		<property>controls/cockpit/overhead/landing-light-r</property>
-		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7187,11 +7249,33 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>R-Lnd.toggle</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/landing-light-r</property>
-				<factor>-0.5</factor>
+				<step>0.5</step>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/landing-light-r</property>
+				<step>-0.5</step>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>
@@ -7204,10 +7288,9 @@
 	</animation>
 	
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>C-Lnd.toggle</object-name>
 		<property>controls/cockpit/overhead/landing-light-n</property>
-		<drag-direction>vertical</drag-direction>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-30</dep></entry>
 			<entry><ind>0.5</ind><dep>  0</dep></entry>
@@ -7223,11 +7306,33 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>C-Lnd.toggle</object-name>
 		<action>
+			<button>0</button>
+			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/lighting/landing-light-n</property>
-				<factor>-0.5</factor>
+				<step>0.5</step>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/landing-light-n</property>
+				<step>-0.5</step>
 				<min>0</min>
 				<max>1</max>
 				<wrap>false</wrap>

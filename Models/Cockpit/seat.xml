@@ -44,7 +44,7 @@
 		<axis>
 			<x>0</x>
 			<y>1</y>
-			<z>0.0</z>
+			<z>0</z>
 		</axis>
 	</animation>
 
@@ -59,19 +59,23 @@
 		<axis>
 			<x>0</x>
 			<y>-1</y>
-			<z>0.0</z>
+			<z>0</z>
 		</axis>
 	</animation>
 
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>armrest.left</object-name>
 		<object-name>armrest.right</object-name>
+		<drag-direction>vertical</drag-direction>
 		<action>
-			<button>0</button>
 			<binding>
-				<command>property-toggle</command>
+				<command>property-adjust</command>
 				<property>controls/cockpit/armrest</property>
+				<factor>-0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>

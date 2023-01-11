@@ -534,7 +534,7 @@
 		<cockpit n="0">
 			<ap-disc-1 type="bool">0</ap-disc-1>
 			<ap-disc-2 type="bool">0</ap-disc-2>
-			<armrest type="bool">1</armrest>
+			<armrest type="double">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
 			<shade-left-cmd type="double">0</shade-left-cmd>
