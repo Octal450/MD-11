@@ -1589,14 +1589,6 @@
 		<apu n="0">
 			<state type="int">0</state>
 		</apu>
-		<caws n="0">
-			<apoff n="0">
-				<out type="double">0</out>
-			</apoff>
-			<landing-gear n="0">
-				<out type="double">0</out>
-			</landing-gear>
-		</caws>
 		<failures n="0">
 			<brakes n="0">
 				<abs type="bool">0</abs>
