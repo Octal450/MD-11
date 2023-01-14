@@ -428,6 +428,9 @@
 				/controls/switches/no-smoking-sign eq 0.5
 				/controls/gear/lever eq 1
 			</test>
+			<!--test logic="AND" value="1">
+				/cabin/alt/prop gt 10000
+			</test-->
 		</switch>
 	
 	</channel>
