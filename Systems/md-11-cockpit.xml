@@ -397,6 +397,10 @@
 				/systems/failures/fcc/yd-lower-b eq 1
 			</test>
 		</switch>
+	
+	</channel>
+	
+	<channel name="Misc">
 		
 		<switch name="/controls/switches/seatbelt-sign-status">
 			<default value="0"/>
