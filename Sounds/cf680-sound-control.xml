@@ -480,9 +480,9 @@
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind>35.000</ind> <dep>0.0000</dep></entry>
-					<entry><ind>74.238</ind> <dep>0.3247</dep></entry>
-					<entry><ind>88.000</ind> <dep>0.1339</dep></entry>
+					<entry><ind> 35.000</ind><dep>0.0000</dep></entry>
+					<entry><ind> 74.238</ind><dep>0.3247</dep></entry>
+					<entry><ind> 88.000</ind><dep>0.1339</dep></entry>
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
@@ -501,9 +501,9 @@
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind>35.000</ind> <dep>0.0000</dep></entry>
-					<entry><ind>74.238</ind> <dep>0.3247</dep></entry>
-					<entry><ind>88.000</ind> <dep>0.1339</dep></entry>
+					<entry><ind> 35.000</ind><dep>0.0000</dep></entry>
+					<entry><ind> 74.238</ind><dep>0.3247</dep></entry>
+					<entry><ind> 88.000</ind><dep>0.1339</dep></entry>
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
@@ -522,9 +522,9 @@
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n1-actual</property>
-					<entry><ind>35.000</ind> <dep>0.0000</dep></entry>
-					<entry><ind>74.238</ind> <dep>0.3247</dep></entry>
-					<entry><ind>88.000</ind> <dep>0.1367</dep></entry>
+					<entry><ind> 35.000</ind><dep>0.0000</dep></entry>
+					<entry><ind> 74.238</ind><dep>0.3247</dep></entry>
+					<entry><ind> 88.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
@@ -658,7 +658,7 @@
 			<expression>
 				<table>
 					<property>/sim/sound/fake-n2[0]</property>
-					<entry><ind>50</ind> <dep>0.5</dep></entry>
+					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
 			</expression> 
@@ -676,7 +676,7 @@
 			<expression>
 				<table>
 					<property>/sim/sound/fake-n2[1]</property>
-					<entry><ind>50</ind> <dep>0.5</dep></entry>
+					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
 			</expression> 
@@ -694,7 +694,7 @@
 			<expression>
 				<table>
 					<property>/sim/sound/fake-n2[2]</property>
-					<entry><ind>50</ind> <dep>0.5</dep></entry>
+					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
 			</expression> 
