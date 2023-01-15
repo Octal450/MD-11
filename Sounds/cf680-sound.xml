@@ -5,7 +5,6 @@
 <!-- Copyright (c) 2023 Josh Davidson (Octal450), Jonathan Redpath (legoboyvdlp) -->
 
 <PropertyList include="MD-11-common-sound.xml">
-	
 	<fx>
 		
 		<!-- Cockpit -->
@@ -24,9 +23,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>-3.3</x>
-				<y>8.3</y>
-				<z>00</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -44,9 +43,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -64,9 +63,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -85,9 +84,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -105,9 +104,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -125,9 +124,9 @@
 				<factor>1</factor>
 			</volume>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -145,11 +144,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>-3.3</x>
-				<y>8.3</y>
-				<z>00</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -166,11 +165,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -187,11 +186,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -209,11 +208,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -230,11 +229,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -251,11 +250,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>1</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -274,9 +273,9 @@
 				<factor>2</factor>
 			</volume>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -294,9 +293,9 @@
 				<factor>2</factor>
 			</volume>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -314,9 +313,9 @@
 				<factor>2</factor>
 			</volume>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -336,9 +335,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -357,9 +356,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -378,9 +377,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -400,9 +399,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -421,9 +420,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -442,9 +441,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -464,9 +463,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -485,9 +484,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -506,9 +505,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -528,9 +527,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -549,9 +548,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -570,9 +569,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -592,9 +591,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -613,9 +612,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -634,9 +633,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -656,9 +655,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -677,9 +676,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -698,9 +697,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -720,9 +719,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -741,9 +740,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -762,9 +761,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 	
@@ -784,7 +783,7 @@
 				<property>/sim/sound/external/idle-1-low-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -792,9 +791,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -812,7 +811,7 @@
 				<property>/sim/sound/external/idle-2-low-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -820,9 +819,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -840,7 +839,7 @@
 				<property>/sim/sound/external/idle-3-low-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -848,9 +847,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -869,7 +868,7 @@
 				<property>/sim/sound/external/idle-1-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>225</inner-angle>
@@ -877,9 +876,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -897,7 +896,7 @@
 				<property>/sim/sound/external/idle-2-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>225</inner-angle>
@@ -905,9 +904,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -925,7 +924,7 @@
 				<property>/sim/sound/external/idle-3-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>225</inner-angle>
@@ -933,9 +932,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -954,7 +953,7 @@
 				<property>/sim/sound/external/idle2-1-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -962,9 +961,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -982,7 +981,7 @@
 				<property>/sim/sound/external/idle2-2-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -990,9 +989,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1010,7 +1009,7 @@
 				<property>/sim/sound/external/idle2-3-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<orientation>
 				<x>-1</x>
 				<inner-angle>255</inner-angle>
@@ -1018,9 +1017,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1039,7 +1038,7 @@
 				<property>/sim/sound/external/idle2-1-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<orientation>
 				<x>1</x>
 				<inner-angle>30</inner-angle>
@@ -1047,9 +1046,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1067,7 +1066,7 @@
 				<property>/sim/sound/external/idle2-2-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<orientation>
 				<x>1</x>
 				<inner-angle>30</inner-angle>
@@ -1075,9 +1074,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1095,7 +1094,7 @@
 				<property>/sim/sound/external/idle2-3-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<orientation>
 				<x>1</x>
 				<inner-angle>30</inner-angle>
@@ -1103,9 +1102,9 @@
 				<outer-gain>0.0</outer-gain>
 			</orientation>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1124,11 +1123,11 @@
 				<property>/sim/sound/external/idle-1-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>100.0</reference-dist>
+			<reference-dist>100</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1146,11 +1145,11 @@
 				<property>/sim/sound/external/idle-2-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>100.0</reference-dist>
+			<reference-dist>100</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1168,11 +1167,11 @@
 				<property>/sim/sound/external/idle-3-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>100.0</reference-dist>
+			<reference-dist>100</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1191,11 +1190,11 @@
 				<property>/sim/sound/external/idle-1-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1213,11 +1212,11 @@
 				<property>/sim/sound/external/idle-2-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1235,11 +1234,11 @@
 				<property>/sim/sound/external/idle-3-whistle-p</property>
 				<offset>0</offset>
 			</pitch>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1261,11 +1260,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1286,11 +1285,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1311,11 +1310,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>90.0</reference-dist>
+			<reference-dist>90</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1337,11 +1336,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1362,11 +1361,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1387,11 +1386,11 @@
 			<orientation>
 				<x>-1</x>
 			</orientation>
-			<reference-dist>250.0</reference-dist>
+			<reference-dist>250</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1416,11 +1415,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1444,11 +1443,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1472,11 +1471,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1501,11 +1500,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1529,11 +1528,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1557,11 +1556,11 @@
 				<outer-angle>100</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1584,11 +1583,11 @@
 			<orientation>
 				<z>-1</z>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1610,11 +1609,11 @@
 			<orientation>
 				<z>-1</z>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1636,11 +1635,11 @@
 			<orientation>
 				<z>-1</z>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1667,11 +1666,11 @@
 				<outer-angle>313.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1696,11 +1695,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1726,11 +1725,11 @@
 				<outer-angle>181.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>200.0</reference-dist>
+			<reference-dist>200</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1756,11 +1755,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>120.0</reference-dist>
+			<reference-dist>120</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1785,11 +1784,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>120.0</reference-dist>
+			<reference-dist>120</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1814,11 +1813,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>120.0</reference-dist>
+			<reference-dist>120</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1844,11 +1843,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1873,11 +1872,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1902,11 +1901,11 @@
 				<outer-angle>247.5</outer-angle>
 				<outer-gain>0.0</outer-gain>
 			</orientation>
-			<reference-dist>500.0</reference-dist>
+			<reference-dist>500</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1924,11 +1923,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>2</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -1945,11 +1944,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>2</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -1966,11 +1965,11 @@
 				<property>/sim/sound/external-custom</property>
 				<factor>2</factor>
 			</volume>
-			<reference-dist>60.0</reference-dist>
+			<reference-dist>60</reference-dist>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		
@@ -1990,9 +1989,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
 		<engine>
@@ -2011,9 +2010,9 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>25.0</x>
-				<y>0.0</y>
-				<z>10.0</z>
+				<x>26.48</x>
+				<y>0</y>
+				<z>10.54</z>
 			</position>
 		</engine>
 		<engine>
@@ -2032,10 +2031,11 @@
 				<offset>0</offset>
 			</pitch>
 			<position>
-				<x>0.0</x>
-				<y>-8.3</y>
-				<z>0.0</z>
+				<x>-3.71</x>
+				<y>-8.26</y>
+				<z>3.48</z>
 			</position>
 		</engine>
+	
 	</fx>
 </PropertyList>
