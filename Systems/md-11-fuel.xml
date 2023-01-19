@@ -1354,95 +1354,130 @@
 		
 		<fcs_function name="/systems/fuel/tank-1-lbs">
 			<function>
-				<product>
-					<integer>
-						<sum>
-							<quotient>
-								<sum>
-									<property>propulsion/tank[0]/contents-lbs</property>
-									<property>propulsion/tank[1]/contents-lbs</property>
-								</sum>
-								<value>50</value>
-							</quotient>
-							<value>0.5</value>
-						</sum>
-					</integer>
-					<value>50</value>
-				</product>
+				<ifthen>
+					<eq>
+						<property>/controls/switches/annun-test</property>
+						<value>1</value>
+					</eq>
+					<value>88888</value>
+					<product>
+						<integer>
+							<sum>
+								<quotient>
+									<sum>
+										<property>propulsion/tank[0]/contents-lbs</property>
+										<property>propulsion/tank[1]/contents-lbs</property>
+									</sum>
+									<value>50</value>
+								</quotient>
+								<value>0.5</value>
+							</sum>
+						</integer>
+						<value>50</value>
+					</product>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/systems/fuel/tank-2-lbs">
 			<function>
-				<product>
-					<integer>
-						<sum>
-							<quotient>
-								<property>propulsion/tank[2]/contents-lbs</property>
-								<value>50</value>
-							</quotient>
-							<value>0.5</value>
-						</sum>
-					</integer>
-					<value>50</value>
-				</product>
+				<ifthen>
+					<eq>
+						<property>/controls/switches/annun-test</property>
+						<value>1</value>
+					</eq>
+					<value>88888</value>
+					<product>
+						<integer>
+							<sum>
+								<quotient>
+									<property>propulsion/tank[2]/contents-lbs</property>
+									<value>50</value>
+								</quotient>
+								<value>0.5</value>
+							</sum>
+						</integer>
+						<value>50</value>
+					</product>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/systems/fuel/tank-3-lbs">
 			<function>
-				<product>
-					<integer>
-						<sum>
-							<quotient>
-								<sum>
-									<property>propulsion/tank[3]/contents-lbs</property>
-									<property>propulsion/tank[4]/contents-lbs</property>
-								</sum>
-								<value>50</value>
-							</quotient>
-							<value>0.5</value>
-						</sum>
-					</integer>
-					<value>50</value>
-				</product>
+				<ifthen>
+					<eq>
+						<property>/controls/switches/annun-test</property>
+						<value>1</value>
+					</eq>
+					<value>88888</value>
+					<product>
+						<integer>
+							<sum>
+								<quotient>
+									<sum>
+										<property>propulsion/tank[3]/contents-lbs</property>
+										<property>propulsion/tank[4]/contents-lbs</property>
+									</sum>
+									<value>50</value>
+								</quotient>
+								<value>0.5</value>
+							</sum>
+						</integer>
+						<value>50</value>
+					</product>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/systems/fuel/aux-tanks-lbs">
 			<function>
-				<product>
-					<integer>
-						<sum>
-							<quotient>
-								<sum>
-									<property>propulsion/tank[5]/contents-lbs</property>
-									<property>propulsion/tank[6]/contents-lbs</property>
-								</sum>
-								<value>50</value>
-							</quotient>
-							<value>0.5</value>
-						</sum>
-					</integer>
-					<value>50</value>
-				</product>
+				<ifthen>
+					<eq>
+						<property>/controls/switches/annun-test</property>
+						<value>1</value>
+					</eq>
+					<value>88888</value>
+					<product>
+						<integer>
+							<sum>
+								<quotient>
+									<sum>
+										<property>propulsion/tank[5]/contents-lbs</property>
+										<property>propulsion/tank[6]/contents-lbs</property>
+									</sum>
+									<value>50</value>
+								</quotient>
+								<value>0.5</value>
+							</sum>
+						</integer>
+						<value>50</value>
+					</product>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/systems/fuel/tail-tank-lbs">
 			<function>
-				<product>
-					<integer>
-						<sum>
-							<quotient>
-								<property>propulsion/tank[7]/contents-lbs</property>
-								<value>50</value>
-							</quotient>
-							<value>0.5</value>
-						</sum>
-					</integer>
-					<value>50</value>
-				</product>
+				<ifthen>
+					<eq>
+						<property>/controls/switches/annun-test</property>
+						<value>1</value>
+					</eq>
+					<value>88888</value>
+					<product>
+						<integer>
+							<sum>
+								<quotient>
+									<property>propulsion/tank[7]/contents-lbs</property>
+									<value>50</value>
+								</quotient>
+								<value>0.5</value>
+							</sum>
+						</integer>
+						<value>50</value>
+					</product>
+				</ifthen>
 			</function>
 		</fcs_function>
 	

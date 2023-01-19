@@ -5509,6 +5509,19 @@
 	</animation>
 	
 	<animation>
+		<type>textranslate</type>
+		<object-name>ltank.5</object-name>
+		<property>systems/fuel/tank-1-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>ltank.1</object-name>
 		<condition>
@@ -5586,6 +5599,19 @@
 		<property>systems/fuel/tank-2-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>ctank.5</object-name>
+		<property>systems/fuel/tank-2-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -5679,6 +5705,19 @@
 	</animation>
 	
 	<animation>
+		<type>textranslate</type>
+		<object-name>rtank.5</object-name>
+		<property>systems/fuel/tank-3-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>rtank.1</object-name>
 		<condition>
@@ -5764,6 +5803,19 @@
 	</animation>
 	
 	<animation>
+		<type>textranslate</type>
+		<object-name>atank.5</object-name>
+		<property>systems/fuel/aux-tanks-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>atank.1</object-name>
 		<condition>
@@ -5841,6 +5893,19 @@
 		<property>systems/fuel/tail-tank-lbs</property>
 		<factor>0.01</factor>
 		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>ttank.5</object-name>
+		<property>systems/fuel/tail-tank-lbs</property>
+		<factor>0.1</factor>
+		<step>1</step>
 		<axis>
 			<x>0</x>
 			<y>1</y>

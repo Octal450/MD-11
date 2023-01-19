@@ -48,6 +48,11 @@
 			<output>/position/gear-agl-m</output> <!-- So flight recorder can override it -->
 		</pure_gain>
 		
+		<summer name="inertia/zfw-lbs">
+			<input>inertia/weight-lbs</input>
+			<input>-propulsion/total-fuel-lbs</input>
+		</summer>
+		
 		<pure_gain name="inertia/weight-kg">
 			<input>inertia/weight-lbs</input>
 			<gain>0.45359237</gain>
