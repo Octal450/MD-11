@@ -330,6 +330,8 @@
 		<object-name>Tank2XFeed.on</object-name>
 		<object-name>Tank3XFeed.disag</object-name>
 		<object-name>Tank3XFeed.on</object-name>
+		<object-name>TailTrans.low</object-name>
+		<object-name>TailTrans.on</object-name>
 		<object-name>TrimAir.off</object-name>
 		<object-name>YD_upra.fail</object-name>
 		<object-name>YD_upra.off</object-name>
@@ -7418,11 +7420,19 @@
 				<property>controls/switches/annun-test</property>
 				<value>1</value>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
 					<property>controls/switches/annun-test</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>libraries.Sound.btn1();</script>
 				</binding>
 			</mod-up>
 		</action>
