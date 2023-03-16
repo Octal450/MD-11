@@ -570,7 +570,7 @@
 		</switch>
 		
 		<!-- Stabilizer Motion -->
-		<pid name="/systems/caws/logic/stabilizer-rate-raw">
+		<pid name="/systems/caws/logic/stabilizer-rate">
 			<input>hydraulics/stabilizer/final-deg</input>
 			<kp>0.0</kp>
 			<ki>0.0</ki>
@@ -580,28 +580,41 @@
 		<fcs_function name="/systems/caws/logic/stabilizer-rate-abs">
 			<function>
 				<abs>
-					<property>/systems/caws/logic/stabilizer-rate-raw</property>
+					<property>/systems/caws/logic/stabilizer-rate</property>
 				</abs>
 			</function>
 		</fcs_function>
 		
-		<lag_filter name="/systems/caws/logic/stabilizer-rate">
-			<input>/systems/caws/logic/stabilizer-rate-abs</input>
-			<c1>10</c1>
-		</lag_filter>
-		
 		<switch name="/systems/caws/logic/stabilizer-moving">
 			<default value="0"/>
-			<test logic="AND" value="1">
+			<test logic="AND" value="-1"> <!-- Up -->
+				position/wow eq 0
+				/systems/caws/logic/stabilizer-rate lt -0.01
+			</test>
+			<test logic="AND" value="1"> <!-- Down -->
 				position/wow eq 0
 				/systems/caws/logic/stabilizer-rate gt 0.01
 			</test>
 		</switch>
 		
+		<switch name="/systems/caws/logic/stabilizer-stored-up">
+			<default value="hydraulics/stabilizer/final-deg"/>
+			<test value="/systems/caws/logic/stabilizer-stored-up">
+				/systems/caws/logic/stabilizer-moving eq -1
+			</test>
+		</switch>
+		
+		<switch name="/systems/caws/logic/stabilizer-stored-dn">
+			<default value="hydraulics/stabilizer/final-deg"/>
+			<test value="/systems/caws/logic/stabilizer-stored-dn">
+				/systems/caws/logic/stabilizer-moving eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/caws/logic/stabilizer-stored">
-			<default value="/systems/caws/logic/stabilizer-stored"/>
-			<test value="hydraulics/stabilizer/final-deg">
-				/systems/caws/logic/stabilizer-moving eq 0
+			<default value="/systems/caws/logic/stabilizer-stored-up"/>
+			<test value="/systems/caws/logic/stabilizer-stored-dn">
+				/systems/caws/logic/stabilizer-moving eq 1
 			</test>
 		</switch>
 		
@@ -612,10 +625,13 @@
 		
 		<switch name="/systems/caws/logic/stabilizer-motion">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/caws/logic/stabilizer-moving eq 1
-				<test logic="OR">
+			<test logic="OR" value="1">
+				<test logic="AND">
+					/systems/caws/logic/stabilizer-moving eq -1
 					/systems/caws/logic/stabilizer-stored-error lt -2
+				</test>
+				<test logic="AND">
+					/systems/caws/logic/stabilizer-moving eq 1
 					/systems/caws/logic/stabilizer-stored-error gt 2
 				</test>
 			</test>
@@ -719,7 +735,7 @@
 		</switch>
 		
 		<pure_gain name="/systems/caws/stabilizer-motion/rate"> <!-- So that it goes off roughly every 2 degrees -->
-			<input>/systems/caws/logic/stabilizer-rate</input>
+			<input>/systems/caws/logic/stabilizer-rate-abs</input>
 			<gain>0.5</gain>
 		</pure_gain>
 		
