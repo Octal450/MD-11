@@ -835,9 +835,21 @@
 		<type>pick</type>
 		<object-name>PitchTrim.dn</object-name>
 		<action>
-			<repeatable>true</repeatable>
 			<button>0</button>
+			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-1-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-3-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+					</or>
+				</condition>
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>0.001</step>
@@ -867,9 +879,21 @@
 			</mod-up>
 		</action>
 		<action>
-			<repeatable>true</repeatable>
 			<button>1</button>
+			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-1-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-3-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+					</or>
+				</condition>
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>-0.001</step>
@@ -904,9 +928,21 @@
 		<type>pick</type>
 		<object-name>PitchTrim.up</object-name>
 		<action>
-			<repeatable>true</repeatable>
 			<button>0</button>
+			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-1-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-3-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+					</or>
+				</condition>
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>-0.001</step>
@@ -936,9 +972,21 @@
 			</mod-up>
 		</action>
 		<action>
-			<repeatable>true</repeatable>
 			<button>1</button>
+			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<or>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-1-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+						<greater-than-equals>
+							<property>systems/hydraulics/sys-3-psi</property>
+							<value>2200</value>
+						</greater-than-equals>
+					</or>
+				</condition>
 				<command>property-adjust</command>
 				<property>controls/flight/elevator-trim</property>
 				<step>0.001</step>
