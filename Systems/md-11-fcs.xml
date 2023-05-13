@@ -1258,7 +1258,7 @@
 				/gear/gear[0]/wow ne 1
 			</test>
 			<test value="/controls/gear/steering">
-				/systems/acconfig/options/seperate-tiller-axis eq 1
+				/systems/acconfig/options/separate-tiller-axis eq 1
 			</test>
 			<test value="/controls/flight/aileron">
 				/controls/flight/aileron-drives-tiller eq 1
@@ -1269,7 +1269,7 @@
 			<input>/controls/gear/steering-switched</input>
 			<table>
 				<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
-				<independentVar lookup="column">/systems/acconfig/options/seperate-tiller-axis</independentVar>
+				<independentVar lookup="column">/systems/acconfig/options/separate-tiller-axis</independentVar>
 				<tableData> <!-- 0.142857 is 10/70 -->
 					      0         1
 					 0.5  0.000000  0.000000
@@ -1414,7 +1414,7 @@
 				fcc/afs/enabled eq 1
 			</test>
 			<test value="hydraulics/tiller/tiller-cmd-deg">
-				/systems/acconfig/options/seperate-tiller-axis eq 1
+				/systems/acconfig/options/separate-tiller-axis eq 1
 			</test>
 			<clipto>
 				<min>hydraulics/tiller/min-deg</min>
