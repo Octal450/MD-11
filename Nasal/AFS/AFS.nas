@@ -651,55 +651,11 @@ var ITAF = {
 			Internal.syncedSpd = 0;
 		}
 	},
-	slowLoop: func() {
-		FPLN.activeTemp = FPLN.active.getValue();
-		FPLN.currentWpTemp = FPLN.currentWp.getValue();
-		FPLN.numTemp = FPLN.num.getValue();
-		
+	slowLoop: func() {		
 		# If in LNAV mode and route is not longer active, or IRUs unaligned, switch to HDG HLD
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
 			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
 				me.setLatMode(3);
-			}
-		}
-		
-		# Waypoint Advance Logic
-		if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
-			if ((FPLN.currentWpTemp + 1) < FPLN.numTemp) {
-				Velocities.groundspeedMps = Velocities.groundspeedKt.getValue() * 0.5144444444444;
-				FPLN.wpFlyFrom = FPLN.currentWpTemp;
-				if (FPLN.wpFlyFrom < 0) {
-					FPLN.wpFlyFrom = 0;
-				}
-				FPLN.currentCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyFrom ~ "]/leg-bearing-true-deg"); # Best left at getprop
-				FPLN.wpFlyTo = FPLN.currentWpTemp + 1;
-				if (FPLN.wpFlyTo < 0) {
-					FPLN.wpFlyTo = 0;
-				}
-				FPLN.nextCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyTo ~ "]/leg-bearing-true-deg"); # Best left at getprop
-				FPLN.maxBankLimit = Internal.bankLimit.getValue();
-
-				FPLN.deltaAngle = math.abs(geo.normdeg180(FPLN.currentCourse - FPLN.nextCourse));
-				FPLN.maxBank = FPLN.deltaAngle * 1.5;
-				if (FPLN.maxBank > FPLN.maxBankLimit) {
-					FPLN.maxBank = FPLN.maxBankLimit;
-				}
-				FPLN.radius = (Velocities.groundspeedMps * Velocities.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
-				FPLN.deltaAngleRad = (180 - FPLN.deltaAngle) / 114.5915590262;
-				FPLN.R = FPLN.radius / math.sin(FPLN.deltaAngleRad);
-				FPLN.distCoeff = FPLN.deltaAngle * -0.011111 + 2;
-				if (FPLN.distCoeff < 1) {
-					FPLN.distCoeff = 1;
-				}
-				FPLN.turnDist = math.cos(FPLN.deltaAngleRad) * FPLN.R * FPLN.distCoeff / 1852;
-				if (Gear.wow0.getBoolValue() and FPLN.turnDist < 1) {
-					FPLN.turnDist = 1;
-				}
-				Internal.lnavAdvanceNm.setValue(FPLN.turnDist);
-				
-				if (FPLN.wp0Dist.getValue() <= FPLN.turnDist and flightplan().getWP(FPLN.currentWp.getValue()).fly_type == "flyBy") { # Don't care unless we are flyBy-ing
-					FPLN.currentWp.setValue(FPLN.currentWpTemp + 1);
-				}
 			}
 		}
 		
@@ -796,6 +752,50 @@ var ITAF = {
 				}
 			}
 		#}
+		
+		# Waypoint Advance Logic
+		FPLN.activeTemp = FPLN.active.getValue();
+		FPLN.currentWpTemp = FPLN.currentWp.getValue();
+		FPLN.numTemp = FPLN.num.getValue();
+		
+		if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
+			if ((FPLN.currentWpTemp + 1) < FPLN.numTemp) {
+				Velocities.groundspeedMps = Velocities.groundspeedKt.getValue() * 0.5144444444444;
+				FPLN.wpFlyFrom = FPLN.currentWpTemp;
+				if (FPLN.wpFlyFrom < 0) {
+					FPLN.wpFlyFrom = 0;
+				}
+				FPLN.currentCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyFrom ~ "]/leg-bearing-true-deg"); # Best left at getprop
+				FPLN.wpFlyTo = FPLN.currentWpTemp + 1;
+				if (FPLN.wpFlyTo < 0) {
+					FPLN.wpFlyTo = 0;
+				}
+				FPLN.nextCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyTo ~ "]/leg-bearing-true-deg"); # Best left at getprop
+				FPLN.maxBankLimit = Internal.bankLimit.getValue();
+
+				FPLN.deltaAngle = math.abs(geo.normdeg180(FPLN.currentCourse - FPLN.nextCourse));
+				FPLN.maxBank = FPLN.deltaAngle * 1.5;
+				if (FPLN.maxBank > FPLN.maxBankLimit) {
+					FPLN.maxBank = FPLN.maxBankLimit;
+				}
+				FPLN.radius = (Velocities.groundspeedMps * Velocities.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
+				FPLN.deltaAngleRad = (180 - FPLN.deltaAngle) / 114.5915590262;
+				FPLN.R = FPLN.radius / math.sin(FPLN.deltaAngleRad);
+				FPLN.distCoeff = FPLN.deltaAngle * -0.011111 + 2;
+				if (FPLN.distCoeff < 1) {
+					FPLN.distCoeff = 1;
+				}
+				FPLN.turnDist = math.cos(FPLN.deltaAngleRad) * FPLN.R * FPLN.distCoeff / 1852;
+				if (Gear.wow0.getBoolValue() and FPLN.turnDist < 1) {
+					FPLN.turnDist = 1;
+				}
+				Internal.lnavAdvanceNm.setValue(FPLN.turnDist);
+				
+				if (FPLN.wp0Dist.getValue() <= FPLN.turnDist and flightplan().getWP(FPLN.currentWp.getValue()).fly_type == "flyBy") { # Don't care unless we are flyBy-ing
+					FPLN.currentWp.setValue(FPLN.currentWpTemp + 1);
+				}
+			}
+		}
 	},
 	ap1Master: func(s) {
 		if (s == 1) {
