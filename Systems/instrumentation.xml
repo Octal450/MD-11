@@ -59,21 +59,21 @@
 		<input>
 			<property>/it-autoflight/input/hdg</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</input>
 		<reference>
 			<property>/instrumentation/pfd/heading-track-mag-deg</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/heading-pre-sel</output>
 		<period>
-			<min>-180.0</min>
-			<max>180.0</max>
+			<min>-180</min>
+			<max>180</max>
 		</period>
 	</filter>
 	
@@ -85,21 +85,21 @@
 		<input>
 			<property>/it-autoflight/internal/hdg</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</input>
 		<reference>
 			<property>/instrumentation/pfd/heading-track-mag-deg</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/heading-sel</output>
 		<period>
-			<min>-180.0</min>
-			<max>180.0</max>
+			<min>-180</min>
+			<max>180</max>
 		</period>
 	</filter>
 	
@@ -110,21 +110,21 @@
 		<input>
 			<property>/instrumentation/pfd/track-deg[0]</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</input>
 		<reference>
 			<property>/instrumentation/pfd/heading-deg[0]</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/track-bug-cmd[0]</output>
 		<period>
-			<min>-180.0</min>
-			<max>180.0</max>
+			<min>-180</min>
+			<max>180</max>
 		</period>
 	</filter>
 	
@@ -143,21 +143,21 @@
 		<input>
 			<property>/instrumentation/pfd/track-deg[1]</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</input>
 		<reference>
 			<property>/instrumentation/pfd/heading-deg[1]</property>
 			<period>
-				<min>-180.0</min>
-				<max>180.0</max>
+				<min>-180</min>
+				<max>180</max>
 			</period>
 		</reference>
 		<output>/instrumentation/pfd/track-bug-cmd[1]</output>
 		<period>
-			<min>-180.0</min>
-			<max>180.0</max>
+			<min>-180</min>
+			<max>180</max>
 		</period>
 	</filter>
 	
@@ -191,7 +191,7 @@
 		<debug>false</debug>
 		<input>/instrumentation/pfd/speed-minus-50</input>
 		<output>/instrumentation/pfd/speed-lookahead-cmd</output>
-		<seconds>10.0</seconds>
+		<seconds>10</seconds>
 		<filter-gain>0.01</filter-gain>
 	</predict-simple>
 	
