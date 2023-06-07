@@ -366,20 +366,20 @@ var canvasBase = {
 			me["ASI_vmin_bar"].setTranslation(0, Value.Asi.Tape.vmin * -4.48656);
 			me["ASI"].setText(sprintf("%3.0f", math.round(Value.Asi.ias)));
 			
-			if (Value.Asi.mach > 0.47) {
+			if (Value.Asi.mach > 0.465) {
 				if (Value.Asi.mach >= 0.999) {
 					me["ASI_mach"].setText("999");
 				} else {
 					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
 				}
 				me["ASI_bowtie_mach"].show();
-			} else if (Value.Asi.mach >= 0.45) {
+			} else if (Value.Asi.mach >= 0.445) {
 				if (Value.Asi.mach >= 0.999) {
 					me["ASI_mach"].setText("999");
 				} else {
 					me["ASI_mach"].setText(sprintf("%3.0f", Value.Asi.mach * 1000));
 				}
-			} else if (Value.Asi.mach < 0.45) {
+			} else if (Value.Asi.mach < 0.445) {
 				me["ASI_bowtie_mach"].hide();
 			}
 			
