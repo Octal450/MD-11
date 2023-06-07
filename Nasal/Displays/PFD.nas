@@ -40,6 +40,7 @@ var Value = {
 		spdProt: 0,
 		thrust: "",
 		vert: 0,
+		vertText: "",
 		vs: 0,
 	},
 	Ai: {
