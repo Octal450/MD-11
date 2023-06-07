@@ -210,7 +210,7 @@ var canvasBase = {
 	getKeys: func() {
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box",
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
-		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_down", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
+		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_dn", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
 		"ASI_fr", "ASI_f15", "ASI_f28", "ASI_f35", "ASI_f50", "AI_center", "AI_horizon", "AI_scale", "AI_bank", "AI_slipskid", "AI_overbank_index", "AI_banklimit_L", "AI_banklimit_R", "AI_PLI", "AI_group", "AI_group2", "AI_group3", "AI_error", "AI_fpv", "AI_fpd",
 		"AI_arrow_up", "AI_arrow_dn", "AI_rising_runway", "FD_roll", "FD_pitch", "FD_group","ALT_minus",  "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_hundreds", "ALT_tens", "ALT_scale", "ALT_scale_num", "ALT_one", "ALT_two", "ALT_three",
 		"ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie",
@@ -552,15 +552,15 @@ var canvasBase = {
 		}
 		
 		if (Value.Asi.trend >= 2) {
-			me["ASI_trend_down"].hide();
+			me["ASI_trend_dn"].hide();
 			me["ASI_trend_up"].setTranslation(0, math.clamp(Value.Asi.trend, 0, 60) * -4.48656);
 			me["ASI_trend_up"].show();
 		} else if (Value.Asi.trend <= -2) {
-			me["ASI_trend_down"].setTranslation(0, math.clamp(Value.Asi.trend, -60, 0) * -4.48656);
-			me["ASI_trend_down"].show();
+			me["ASI_trend_dn"].setTranslation(0, math.clamp(Value.Asi.trend, -60, 0) * -4.48656);
+			me["ASI_trend_dn"].show();
 			me["ASI_trend_up"].hide();
 		} else {
-			me["ASI_trend_down"].hide();
+			me["ASI_trend_dn"].hide();
 			me["ASI_trend_up"].hide();
 		}
 		
