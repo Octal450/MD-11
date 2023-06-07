@@ -89,6 +89,7 @@ var Value = {
 		mach: 0,
 		preSel: 0,
 		sel: 0,
+		trend: 0,
 		vmin: 0,
 		vmoMmo: 0,
 		vss: 0,
