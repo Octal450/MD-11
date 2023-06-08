@@ -1345,8 +1345,8 @@
 			<indicated-speed-kt type="double">0</indicated-speed-kt>
 		</airspeed-indicator>
 		<altimeter n="0">
-			<inhg type="bool">1</inhg>
 			<indicated-altitude-ft type="double">0</indicated-altitude-ft>
+			<inhg type="bool">1</inhg>
 			<oldqnh type="double">29.92</oldqnh>
 			<std type="bool">0</std>
 		</altimeter>

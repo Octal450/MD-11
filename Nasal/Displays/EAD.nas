@@ -26,7 +26,7 @@ var Value = {
 		starter: [0, 0, 0],
 	},
 	needleRest: -44 * D2R,
-	Tat: 0,
+	tat: 0,
 };
 
 var canvasBase = {
@@ -89,11 +89,11 @@ var canvasBase = {
 	},
 	updateBase: func() {
 		# TAT Indication
-		Value.Tat = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
-		if (Value.Tat < 0) {
-			me["TAT"].setText(sprintf("%2.0f", Value.Tat));
+		Value.tat = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
+		if (Value.tat < 0) {
+			me["TAT"].setText(sprintf("%2.0f", Value.tat));
 		} else {
-			me["TAT"].setText("+" ~ sprintf("%2.0f", Value.Tat));
+			me["TAT"].setText("+" ~ sprintf("%2.0f", Value.tat));
 		}
 		
 		Value.Ignition.starter[0] = systems.IGNITION.starter1.getBoolValue();
