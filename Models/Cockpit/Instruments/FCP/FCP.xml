@@ -346,6 +346,10 @@
 					<property>it-autoflight/input/vs</property>
 					<value>-0.01</value>
 				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/vs-abs</property>
+					<value>0.01</value>
+				</greater-than>
 			</and>
 		</condition>
 	</animation>
@@ -363,6 +367,10 @@
 					<property>it-autoflight/input/vs</property>
 					<value>-0.01</value>
 				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/vs-abs</property>
+					<value>0.01</value>
+				</greater-than>
 			</and>
 		</condition>
 	</animation>
@@ -492,6 +500,10 @@
 					<property>it-autoflight/input/fpa</property>
 					<value>-0.01</value>
 				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/fpa-abs</property>
+					<value>0.01</value>
+				</greater-than>
 			</and>
 		</condition>
 	</animation>
