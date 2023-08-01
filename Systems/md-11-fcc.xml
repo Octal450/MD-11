@@ -11,7 +11,7 @@
 	<property value="0">fcc/aileron-out-enable</property>
 	<property value="0">fcc/flap/cmd-deg</property>
 	<property value="0">fcc/lsas/autotrim-inhibit</property>
-	<property value="0">fcc/lsas/pah/output</property>
+	<property value="0">fcc/lsas/pah/pid</property>
 	<property value="0">fcc/lsas/spd-prot/output</property>
 	<property value="0">fcc/rcws/pid</property>
 	<property value="0">fcc/slat/cmd-deg</property>
@@ -20,7 +20,6 @@
 	<property value="0">fcs/spoiler-right-feedback</property>
 	<property value="0">spoilers/auto-speedbrake-feedback</property>
 	<property value="0">/gear/abs/brake-cmd</property>
-	<property value="0">/gear/abs/brake-cmd-v</property>
 	<property value="0">/gear/abs/disarm</property>
 	<property value="0">/gear/abs/spoilers-cmd-deg</property>
 	
@@ -522,8 +521,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140 -21
-							360 -11
+							140 -20
+							360  -7
 						</tableData>
 					</table>
 					<!--property>fcc/rcws/p-gain-tune</property--> <!-- For tuning -->
@@ -554,7 +553,7 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140 -2.8
+							140 -2.9
 							360 -0.7
 						</tableData>
 					</table>
@@ -696,7 +695,7 @@
 		
 		<lead_lag_filter name="fcc/rcws/p-leadlag">
 			<input>fcc/rcws/p-switched</input>
-			<c1>1.03</c1>
+			<c1>1.1</c1>
 			<c2>1.0</c2>
 			<c3>0.97</c3>
 			<c4>1.0</c4>
@@ -790,8 +789,8 @@
 				fcc/rcws/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				fcc/rcws/output le -0.999
-				fcc/rcws/output ge 0.999
+				fcc/rcws/pid le -0.999
+				fcc/rcws/pid ge 0.999
 			</test>
 		</switch>
 		
@@ -808,9 +807,14 @@
 			</clipto>
 		</pid>
 		
+		<lag_filter name="fcc/rcws/output">
+			<input>fcc/rcws/pid</input>
+			<c1>10</c1>
+		</lag_filter>
+		
 		<switch name="fcc/roll-output">
 			<default value="/controls/flight/aileron"/>
-			<test value="fcc/rcws/pid">
+			<test value="fcc/rcws/output">
 				fcc/rcws/active eq 1
 			</test>
 			<test value="fcc/afs/roll-cmd">
@@ -885,8 +889,8 @@
 				fcc/lsas/pah/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				fcc/lsas/pah/output le -0.248
-				fcc/lsas/pah/output ge 0.248
+				fcc/lsas/pah/pid le -0.248
+				fcc/lsas/pah/pid ge 0.248
 			</test>
 		</switch>
 		
@@ -902,6 +906,11 @@
 				<max>0.249</max>
 			</clipto>
 		</pid>
+		
+		<lag_filter name="fcc/lsas/pah/output">
+			<input>fcc/lsas/pah/pid</input>
+			<c1>10</c1>
+		</lag_filter>
 		
 		<washout_filter name="fcc/lsas/q-washout">
 			<input>velocities/q-rad_sec</input>
@@ -1349,12 +1358,17 @@
 			</clipto>
 		</pure_gain>
 		
-		<switch name="fcc/yaw/slip-skid">
+		<switch name="fcc/yaw/slip-skid-raw">
 			<default value="aero/beta-rad"/>
 			<test value="0">
 				position/wow eq 1
 			</test>
 		</switch>
+		
+		<lag_filter name="fcc/yaw/slip-skid">
+			<input>fcc/yaw/slip-skid-raw</input>
+			<c1>2.5</c1>
+		</lag_filter>
 		
 		<scheduled_gain name="fcc/yaw/tc-p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
 			<input>fcc/yaw/tc-p-gain</input>
@@ -1785,13 +1799,12 @@
 			</test>
 		</switch>
 		
-		<pid name="/gear/abs/brake-cmd-v">
+		<pid name="/gear/abs/brake-cmd">
 			<input>/gear/abs/decel-error</input>
 			<kp>0.45</kp>
 			<ki>0.25</ki>
 			<kd>0.0</kd>
 			<trigger>/gear/abs/brake-cmd-trigger</trigger>
-			<output>/gear/abs/brake-cmd</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
