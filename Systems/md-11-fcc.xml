@@ -800,7 +800,6 @@
 			<ki>fcc/rcws/i-gain-scheduled</ki>
 			<kd>fcc/rcws/d-gain-scheduled</kd>
 			<trigger>fcc/rcws/trigger</trigger>
-			<output>fcc/rcws/output</output>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
@@ -900,7 +899,6 @@
 			<ki>fcc/lsas/pah/i-gain-scheduled</ki>
 			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
 			<trigger>fcc/lsas/pah/trigger</trigger>
-			<output>fcc/lsas/pah/output</output>
 			<clipto>
 				<min>-0.249</min>
 				<max>0.249</max>
@@ -1394,12 +1392,11 @@
 			</table>
 		</scheduled_gain>
 		
-		<pid name="fcc/yaw/tc-pd-v">
+		<pid name="fcc/yaw/tc-pd">
 			<input>fcc/yaw/slip-skid</input>
 			<kp>fcc/yaw/tc-p-gain-scheduled</kp>
 			<ki>0.0</ki>
 			<kd>fcc/yaw/tc-d-gain-scheduled</kd>
-			<output>fcc/yaw/tc-pd</output>
 			<clipto>
 				<min>-0.2</min>
 				<max>0.2</max>
