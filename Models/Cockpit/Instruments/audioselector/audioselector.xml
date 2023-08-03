@@ -3,17 +3,17 @@
 <!-- Copyright (c) 2023 Josh Davidson (Octal450) -->
 
 <PropertyList>
-
+	
     <path>audioselector.ac</path>
     
-         		  <animation>
-<type>shader</type>
-<shader>chrome</shader>
-<texture>chrome_cockpit.png</texture>
-<object-name>audioselector.buttons</object-name>
-</animation>
-
-    <animation>
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>chrome_cockpit.png</texture>
+		<object-name>audioselector.buttons</object-name>
+	</animation>
+	
+	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>audioselector.text</object-name>
@@ -25,10 +25,20 @@
 		</emission>
 	</animation>
 	
-    <effect>
-    <inherits-from>Effects/model-transparent</inherits-from>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>audioselector.text</object-name>
-    </effect>
-
+	</effect>
+	
+    <animation>
+        <type>select</type>
+        <object-name>mic</object-name>
+        <condition>
+            <greater-than>
+                <property>systems/electrical/unused</property>
+                <value>5</value>
+            </greater-than>
+        </condition>
+    </animation>
 
 </PropertyList>

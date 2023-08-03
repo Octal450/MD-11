@@ -9,12 +9,7 @@
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
-		<object-name>screenselector.text</object-name>
-		<object-name>config.text</object-name>
-		<object-name>status.text</object-name>
-		<object-name>misc.text</object-name>
-		<object-name>conseq.text</object-name>
-		<object-name>nd.text</object-name>
+		<object-name>Labels</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -25,7 +20,7 @@
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>screenselector.text</object-name>
+		<object-name>Labels</object-name>
 	</effect>
     
 	<!-- Right now, only 0 and 1 are supported due to the display shaders -->
