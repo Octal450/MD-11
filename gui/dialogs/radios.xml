@@ -87,16 +87,10 @@
       <label>Standby</label>
     </text>
 
-    <text>
-      <row>0</row>
-      <col>6</col>
-      <label>Radial</label>
-    </text>
-
     <!-- Dummy label to stretch table, as layout manager doesn't handle labels well -->
     <text>
       <row>0</row>
-      <col>7</col>
+      <col>5</col>
       <label></label>
     </text>
 

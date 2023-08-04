@@ -2061,6 +2061,45 @@
 			<output>/systems/electrical/outputs/ra[1]</output>
 		</switch>
 		
+		<switch name="/systems/electrical/generic/dc-2">
+			<default value="0"/>
+			<test value="28">
+				/systems/electrical/bus/dc-2 ge 24
+			</test>
+			<output>/systems/electrical/outputs/comm[2]</output> <!-- Check -->
+			<output>/systems/electrical/outputs/crp[2]</output> <!-- Check -->
+		</switch>
+		
+		<switch name="/systems/electrical/generic/l-r-emer-dc">
+			<default value="0"/>
+			<test logic="OR" value="28">
+				/systems/electrical/bus/l-emer-dc ge 24
+				/systems/electrical/bus/r-emer-dc ge 24
+			</test>
+			<output>/systems/electrical/outputs/nav[2]</output> <!-- ILS2 is R Emer, Check ILS1 -->
+		</switch>
+		
+		<switch name="/systems/electrical/generic/l-emer-dc">
+			<default value="0"/>
+			<test value="28">
+				/systems/electrical/bus/l-emer-dc ge 24
+			</test>
+			<output>/systems/electrical/outputs/comm[0]</output>
+			<output>/systems/electrical/outputs/crp[0]</output>
+			<output>/systems/electrical/outputs/nav[0]</output>
+			<output>/systems/electrical/outputs/transponder</output> <!-- Check -->
+		</switch>
+		
+		<switch name="/systems/electrical/generic/r-emer-dc">
+			<default value="0"/>
+			<test value="28">
+				/systems/electrical/bus/r-emer-dc ge 24
+			</test>
+			<output>/systems/electrical/outputs/comm[1]</output>
+			<output>/systems/electrical/outputs/crp[1]</output>
+			<output>/systems/electrical/outputs/nav[1]</output>
+		</switch>
+		
 		<!-- Output to Generics to keep FG things working, temporary, until we know what gets power by what bus -->
 		<switch name="/systems/electrical/generic/pwr">
 			<description>This makes the FG stuff work because we killed the generic electrical</description>
@@ -2079,10 +2118,6 @@
 			<output>/systems/electrical/outputs/fcp</output>
 			<output>/systems/electrical/outputs/gps</output>
 			<output>/systems/electrical/outputs/idk</output> <!-- Power stuff that I don't know what powers it -->
-			<output>/systems/electrical/outputs/nav[0]</output>
-			<output>/systems/electrical/outputs/nav[1]</output>
-			<output>/systems/electrical/outputs/nav[2]</output>
-			<output>/systems/electrical/outputs/transponder</output>
 			<output>/systems/electrical/outputs/turn-coordinator</output>
 		</switch>
 		

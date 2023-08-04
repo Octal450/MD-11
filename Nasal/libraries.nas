@@ -31,10 +31,12 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
-	if (initDone) {
-		mcdu.BASE.reset(); # Anytime after sim init
-	} else {
-		mcdu.BASE.init(); # Sim init
+	if (initDone) { # Anytime after sim init
+		instruments.RADIOS.reset();
+		mcdu.BASE.reset();
+	} else { # Sim init
+		instruments.RADIOS.init();
+		mcdu.BASE.init();
 	}
 	instruments.XPDR.init();
 	libraries.variousReset();

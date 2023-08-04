@@ -1353,7 +1353,9 @@
 		<comm n="0">
 			<frequencies n="0">
 				<selected-mhz type="double">121.4</selected-mhz>
+				<selected-mhz-fmt type="string">121.40</selected-mhz-fmt>
 				<standby-mhz type="double">118.1</standby-mhz>
+				<standby-mhz-fmt type="string">118.10</standby-mhz-fmt>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
@@ -1361,19 +1363,38 @@
 		<comm n="1">
 			<frequencies n="0">
 				<selected-mhz type="double">119.4</selected-mhz>
+				<selected-mhz-fmt type="string">119.40</selected-mhz-fmt>
 				<standby-mhz type="double">122.6</standby-mhz>
+				<standby-mhz-fmt type="string">122.60</standby-mhz-fmt>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</comm>
 		<comm n="2">
 			<frequencies n="0">
-				<selected-mhz type="double">0</selected-mhz>
+				<selected-mhz type="double">124.6</selected-mhz>
+				<selected-mhz-fmt type="string">124.60</selected-mhz-fmt>
 				<standby-mhz type="double">123.2</standby-mhz>
+				<standby-mhz-fmt type="string">123.20</standby-mhz-fmt>
 			</frequencies>
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</comm>
+		<crp n="0">
+			<major-rotate type="int">50000</major-rotate>
+			<mode type="int">0</mode>
+			<minor-rotate type="int">50000</minor-rotate>
+		</crp>
+		<crp n="1">
+			<major-rotate type="int">50000</major-rotate>
+			<mode type="int">0</mode>
+			<minor-rotate type="int">50000</minor-rotate>
+		</crp>
+		<crp n="2">
+			<major-rotate type="int">50000</major-rotate>
+			<mode type="int">2</mode>
+			<minor-rotate type="int">50000</minor-rotate>
+		</crp>
 		<dme n="0"> <!-- VOR 1 -->
 			<frequencies n="0">
 				<selected-mhz type="double">109.6</selected-mhz>
@@ -1730,6 +1751,7 @@
 			<file>Aircraft/MD-11/Nasal/Displays/MCDU.nas</file>
 		</canvas_mcdu>
 		<instruments>
+			<file>Aircraft/MD-11/Nasal/Instruments/radios.nas</file>
 			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
 		</instruments>
 		<autopush>

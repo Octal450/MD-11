@@ -209,5 +209,270 @@
 		</switch>
 	
 	</channel>
+	
+	<channel name="Radios" execrate="4">
+		
+		<!-- CRP 1 -->
+		<switch name="/instrumentation/crp[0]/active">
+			<default value="/instrumentation/comm[0]/frequencies/selected-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[0]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[0]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[0]/active-x100">
+			<input>/instrumentation/crp[0]/active</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[0]/active-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[0]/active-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[0]/active-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[0]/active-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[0]/active-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/instrumentation/crp[0]/stby">
+			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[0]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[0]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[0]/stby-x100">
+			<input>/instrumentation/crp[0]/stby</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[0]/stby-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[0]/stby-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[0]/stby-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[0]/stby-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[0]/stby-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<!-- CRP 2 -->
+		<switch name="/instrumentation/crp[1]/active">
+			<default value="/instrumentation/comm[0]/frequencies/selected-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[1]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[1]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[1]/active-x100">
+			<input>/instrumentation/crp[1]/active</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[1]/active-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[1]/active-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[1]/active-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[1]/active-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[1]/active-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/instrumentation/crp[1]/stby">
+			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[1]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[1]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[1]/stby-x100">
+			<input>/instrumentation/crp[1]/stby</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[1]/stby-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[1]/stby-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[1]/stby-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[1]/stby-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[1]/stby-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<!-- CRP 3 -->
+		<switch name="/instrumentation/crp[2]/active">
+			<default value="/instrumentation/comm[0]/frequencies/selected-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[2]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/selected-mhz-fmt">
+				/instrumentation/crp[2]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[2]/active-x100">
+			<input>/instrumentation/crp[2]/active</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[2]/active-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[2]/active-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[2]/active-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[2]/active-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[2]/active-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<switch name="/instrumentation/crp[2]/stby">
+			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
+			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[2]/mode eq 1
+			</test>
+			<test value="/instrumentation/comm[2]/frequencies/standby-mhz-fmt">
+				/instrumentation/crp[2]/mode eq 2
+			</test>
+		</switch>
+		
+		<pure_gain name="/instrumentation/crp[2]/stby-x100">
+			<input>/instrumentation/crp[2]/stby</input>
+			<gain>100</gain>
+		</pure_gain>
+		
+		<fcs_function name="/instrumentation/crp[2]/stby-mod">
+			<function>
+				<mod>
+					<property>/instrumentation/crp[2]/stby-x100</property>
+					<value>10</value>
+				</mod>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/crp[2]/stby-5">
+			<function>
+				<ifthen>
+					<or>
+						<eq>
+							<property>/instrumentation/crp[2]/stby-mod</property>
+							<value>2</value>
+						</eq>
+						<eq>
+							<property>/instrumentation/crp[2]/stby-mod</property>
+							<value>7</value>
+						</eq>
+					</or>
+					<value>5</value>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+	
+	</channel>
 
 </system>
