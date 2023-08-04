@@ -259,7 +259,7 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[0]/stby-x1000"> <!-- Eliminate floating point error -->
+		<pure_gain name="/instrumentation/crp[0]/stby-x1000">
 			<input>/instrumentation/crp[0]/stby</input>
 			<gain>1000</gain>
 		</pure_gain>
@@ -332,7 +332,7 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[1]/stby-x1000"> <!-- Eliminate floating point error -->
+		<pure_gain name="/instrumentation/crp[1]/stby-x1000">
 			<input>/instrumentation/crp[1]/stby</input>
 			<gain>1000</gain>
 		</pure_gain>
@@ -405,7 +405,7 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[2]/stby-x1000"> <!-- Eliminate floating point error -->
+		<pure_gain name="/instrumentation/crp[2]/stby-x1000">
 			<input>/instrumentation/crp[2]/stby</input>
 			<gain>1000</gain>
 		</pure_gain>
