@@ -64,6 +64,18 @@
 				<script>instruments.crp[2].adjustDec(-1);</script>
 			</binding>
 		</decrease>
+		<shift-increase>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[2].adjustDec(1, 1);</script>
+			</binding>
+		</shift-increase>
+		<shift-decrease>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[2].adjustDec(-1, 1);</script>
+			</binding>
+		</shift-decrease>
 		<action>
 			<binding>
 				<command>property-adjust</command>

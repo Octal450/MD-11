@@ -157,7 +157,7 @@
 			<legend>&lt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 0);</script>
+				<script>instruments.crp[0].adjustDec(-1, 0, 0);</script>
 			</binding>
 		</button>
 		
@@ -182,7 +182,7 @@
 			<legend>&gt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 0);</script>
+				<script>instruments.crp[0].adjustDec(1, 0, 0);</script>
 			</binding>
 		</button>
 		<button>
@@ -268,7 +268,7 @@
 			<legend>&lt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 1);</script>
+				<script>instruments.crp[0].adjustDec(-1, 0, 1);</script>
 			</binding>
 		</button>
 		
@@ -293,7 +293,7 @@
 			<legend>&gt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 1);</script>
+				<script>instruments.crp[0].adjustDec(1, 0, 1);</script>
 			</binding>
 		</button>
 		<button>
@@ -379,7 +379,7 @@
 			<legend>&lt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 2);</script>
+				<script>instruments.crp[0].adjustDec(-1, 0, 2);</script>
 			</binding>
 		</button>
 		
@@ -404,7 +404,7 @@
 			<legend>&gt;</legend>
 			<binding>
 				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 2);</script>
+				<script>instruments.crp[0].adjustDec(1, 0, 2);</script>
 			</binding>
 		</button>
 		<button>

@@ -208,28 +208,33 @@
 		<group>
 			<layout>vbox</layout>
 			
-			<checkbox>
-				<label>Enable De-icing Truck</label>
-				<halign>left</halign>
-				<property>/services/deicing_truck/enable</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<button>
-				<legend>De-ice Aircraft</legend>
-				<halign>center</halign>
-				<padding>5</padding>
-				<enable>
+			<group>
+				<layout>hbox</layout>
+				
+				<checkbox>
+					<label>Enable De-icing Truck</label>
+					<halign>left</halign>
 					<property>/services/deicing_truck/enable</property>
-				</enable>
-				<binding>
-					<command>nasal</command>
-					<script>gui.popupTip("The aircraft was de-iced!");</script>
-				</binding>
-			</button>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<live>true</live>
+				</checkbox>
+				
+				<button>
+					<legend>De-ice</legend>
+					<halign>center</halign>
+					<pref-height>25</pref-height>
+					<padding>5</padding>
+					<enable>
+						<property>/services/deicing_truck/enable</property>
+					</enable>
+					<binding>
+						<command>nasal</command>
+						<script>gui.popupTip("The aircraft was de-iced!");</script>
+					</binding>
+				</button>
+			</group>
 			
 			<checkbox>
 				<label>Enable Fuel Truck</label>
@@ -403,6 +408,23 @@
 				<binding>
 					<command>nasal</command>
 					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>8.33KHz Radio Equipped</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/eight-three-three-radios</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						acconfig.OPTIONS.write();
+						instruments.RADIOS.toggle833();
+					</script>
 				</binding>
 				<live>true</live>
 			</checkbox>

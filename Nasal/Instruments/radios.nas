@@ -2,6 +2,7 @@
 # Copyright (c) 2023 Josh Davidson (Octal450)
 
 var crp = [nil, nil, nil];
+var ettr = props.globals.getNode("/systems/acconfig/options/eight-three-three-radios");
 
 var CRP = { # HF is not simulated in FGFS, so we will not use it
 	new: func(n, t) {
@@ -28,7 +29,7 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 	reset: func() {
 		me.mode.setValue(me.defMode);
 	},
-	adjustDec: func(d, o = -1) {
+	adjustDec: func(d, s = 0, o = -1) {
 		if (me.power.getValue() >= 24) {
 			if (o > -1) {
 				me.selTemp = o;
@@ -37,20 +38,32 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 			}
 			
 			me.stbySplit = split(".", sprintf("%3.3f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
-			me.stbyVal = sprintf("%03d", me.stbySplit[1] + (5 * d));
-			me.stbyRight = right(me.stbyVal, 2);
 			
-			if (d > 0) {
-				if (me.stbyVal > 990) { # 995 is skipped
-					me.stbyVal = 0;
-				} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) { # This thing adds 8.33KHz/25KHz mixed support
-					me.stbyVal = me.stbyVal + 5;
+			if (ettr.getBoolValue() and !s) { # 8.33KHz/25KHz mixed
+				me.stbyVal = sprintf("%03d", me.stbySplit[1] + (5 * d));
+				me.stbyRight = right(me.stbyVal, 2);
+				
+				if (d > 0) {
+					if (me.stbyVal > 990) { # 995 is skipped
+						me.stbyVal = 0;
+					} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) {
+						me.stbyVal = me.stbyVal + 5;
+					}
+				} else if (d < 0) {
+					if (me.stbyVal < 0) {
+						me.stbyVal = 990; # 995 is skipped
+					} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) {
+						me.stbyVal = me.stbyVal - 5;
+					}
 				}
-			} else if (d < 0) {
-				if (me.stbyVal < 0) {
-					me.stbyVal = 990; # 995 is skipped
-				} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) { # This thing adds 8.33KHz/25KHz mixed support
-					me.stbyVal = me.stbyVal - 5;
+			} else { # 25KHz
+				me.stbyVal = sprintf("%03d", math.round(me.stbySplit[1] + (25 * d), 25)); # Must manually enforce 25KHz with rounding
+				me.stbyRight = right(me.stbyVal, 2);
+				
+				if (d > 0) {
+					if (me.stbyVal > 975) me.stbyVal = 0;
+				} else if (d < 0) {
+					if (me.stbyVal < 0) me.stbyVal = 975;
 				}
 			}
 			
@@ -104,6 +117,14 @@ var RADIOS = {
 	reset: func() {
 		for (var i = 0; i < 3; i = i + 1) {
 			crp[i].reset();
+		}
+	},
+	toggle833: func() {
+		if (!ettr.getBoolValue()) { # If 8.33KHz is off, make sure all frequencies are 25KHz
+			for (var i = 0; i < 3; i = i + 1) {
+				pts.Instrumentation.Comm.Frequencies.selectedMhz[i].setValue(math.round(pts.Instrumentation.Comm.Frequencies.selectedMhzFmt[i].getValue() * 1000, 25) / 1000);
+				pts.Instrumentation.Comm.Frequencies.standbyMhz[i].setValue(math.round(pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[i].getValue() * 1000, 25) / 1000);
+			}
 		}
 	},
 };
