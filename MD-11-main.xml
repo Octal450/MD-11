@@ -1535,6 +1535,9 @@
 			<inputs n="0">
 				<knob-mode type="int">1</knob-mode>
 			</inputs>
+			<output n="0">
+				<knob type="int">0</knob>
+			</output>
 		</transponder>
 	</instrumentation>
 	

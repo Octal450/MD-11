@@ -215,30 +215,10 @@
 	</animation>
 	
 	<animation>
-		<type>pick</type>
+		<type>knob</type>
 		<object-name>ModeKnobCyl</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<binding>
-				<command>nasal</command>
-				<script>instruments.XPDR.modeKnob(1);</script>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<binding>
-				<command>nasal</command>
-				<script>instruments.XPDR.modeKnob(-1);</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>ModeKnobCyl</object-name>
-		<property>instrumentation/transponder/output/knob</property>
+		<property>controls/cockpit/xpdr-knob</property>
+		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>-34</dep></entry>
 			<entry><ind>3</ind><dep> 34</dep></entry>
@@ -253,6 +233,24 @@
 			<y>0</y>
 			<z>-1</z>
 		</axis>
+		<increase>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.modeKnob(1);</script>
+			</binding>
+		</increase>
+		<decrease>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.modeKnob(-1);</script>
+			</binding>
+		</decrease>
+		<action>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>

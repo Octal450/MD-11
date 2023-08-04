@@ -1,20 +1,16 @@
 <?xml version="1.0"?>
 
+<!-- Modified by Josh Davidson (Octal450 for MD-11 -->
+
 <PropertyList>
 
   <name>radios</name>
-<!--
-  <width>550</width>
--->
+
   <modal>false</modal>
 
   <nasal>
     <open>
       <![CDATA[
-        var modes = ['OFF', 'STANDBY', 'TEST', 'GROUND', 'ON', 'ALTITUDE'];
-        var v = getprop('/instrumentation/transponder/inputs/knob-mode') or 0;
-        setprop("/sim/gui/dialogs/radios/transponder-mode", modes[v]);
-
         var poweroften = [1, 10, 100, 1000];
         var idcode = getprop('/instrumentation/transponder/id-code');
 
@@ -37,7 +33,6 @@
           setprop('/instrumentation/transponder/goodcode', goodcode);
           setprop('/instrumentation/transponder/id-code', code);
         }
-
       ]]>
     </open>
   </nasal>
@@ -78,13 +73,13 @@
     <text>
       <row>0</row>
       <col>1</col>
-      <label>Selected</label>
+      <label>Selected MHz</label>
     </text>
 
     <text>
       <row>0</row>
       <col>4</col>
-      <label>Standby</label>
+      <label>Standby MHz</label>
     </text>
 
     <!-- Dummy label to stretch table, as layout manager doesn't handle labels well -->
@@ -98,27 +93,20 @@
       <row>1</row>
       <col>0</col>
       <halign>right</halign>
-      <label>COM1</label>
+      <label>VHF1</label>
     </text>
 
-    <input>
+    <text>
       <name>com1-selected</name>
       <row>1</row>
       <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
       <live>true</live>
       <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>com1-selected</object-name>
-      </binding>
-    </input>
+    </text>
 
     <button>
       <row>1</row>
-      <col>3</col>
+      <col>2</col>
       <width>35</width>
       <height>26</height>
       <border>1</border>
@@ -132,9 +120,8 @@
         <object-name>com1-standby</object-name>
       </binding>
       <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
-        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <command>nasal</command>
+        <script>instruments.crp[0].swap(0);</script>
       </binding>
       <binding>
         <command>dialog-update</command>
@@ -146,46 +133,91 @@
       </binding>
     </button>
 
-    <input>
-      <name>com1-standby</name>
-      <row>1</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
-      <live>true</live>
-      <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>com1-standby</object-name>
-      </binding>
-    </input>
+	<group>
+		<row>1</row>
+		<col>4</col>
+		<layout>table</layout>
+		
+		<button>
+			<row>0</row>
+			<col>0</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(-1, 0);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>1</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(-1, 0);</script>
+			</binding>
+		</button>
+		
+		<input>
+			<name>com1-standby</name>
+			<row>0</row>
+			<col>2</col>
+			<pref-width>75</pref-width>
+			<live>true</live>
+			<property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>com2-standby</object-name>
+			</binding>
+		</input>
+		
+		<button>
+			<row>0</row>
+			<col>3</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(1, 0);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>4</col>
+			<halign>left</halign>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(1, 0);</script>
+			</binding>
+		</button>
+	
+	</group>
 
     <text>
       <row>2</row>
       <col>0</col>
       <halign>right</halign>
-      <label>COM2</label>
+      <label>VHF2</label>
     </text>
 
-    <input>
+    <text>
       <name>com2-selected</name>
       <row>2</row>
       <col>1</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
       <live>true</live>
       <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
-      <binding>
-        <command>dialog-apply</command>
-        <object-name>com2-selected</object-name>
-      </binding>
-    </input>
+    </text>
 
     <button>
       <row>2</row>
-      <col>3</col>
+      <col>2</col>
       <width>35</width>
       <height>26</height>
       <border>1</border>
@@ -199,9 +231,8 @@
         <object-name>com2-standby</object-name>
       </binding>
       <binding>
-        <command>property-swap</command>
-        <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
-        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+        <command>nasal</command>
+        <script>instruments.crp[0].swap(1);</script>
       </binding>
       <binding>
         <command>dialog-update</command>
@@ -213,20 +244,183 @@
       </binding>
     </button>
 
-    <input>
-      <name>com2-standby</name>
-      <row>2</row>
-      <col>4</col>
-      <width>75</width>
-      <height>25</height>
-      <label>MHz</label>
+	<group>
+		<row>2</row>
+		<col>4</col>
+		<layout>table</layout>
+		
+		<button>
+			<row>0</row>
+			<col>0</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(-1, 1);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>1</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(-1, 1);</script>
+			</binding>
+		</button>
+		
+		<input>
+			<name>com2-standby</name>
+			<row>0</row>
+			<col>2</col>
+			<pref-width>75</pref-width>
+			<live>true</live>
+			<property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>com2-standby</object-name>
+			</binding>
+		</input>
+		
+		<button>
+			<row>0</row>
+			<col>3</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(1, 1);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>4</col>
+			<halign>left</halign>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(1, 1);</script>
+			</binding>
+		</button>
+	
+	</group>
+	
+    <text>
+      <row>3</row>
+      <col>0</col>
+      <halign>right</halign>
+      <label>VHF3</label>
+    </text>
+
+    <text>
+      <name>com3-selected</name>
+      <row>3</row>
+      <col>1</col>
       <live>true</live>
-      <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+      <property>/instrumentation/comm[2]/frequencies/selected-mhz</property>
+    </text>
+
+    <button>
+      <row>3</row>
+      <col>2</col>
+      <width>35</width>
+      <height>26</height>
+      <border>1</border>
+      <legend>&lt;-&gt;</legend>
+      <binding>
+        <command>dialog-apply</command>
+        <object-name>com2-selected</object-name>
+      </binding>
       <binding>
         <command>dialog-apply</command>
         <object-name>com2-standby</object-name>
       </binding>
-    </input>
+      <binding>
+        <command>nasal</command>
+        <script>instruments.crp[0].swap(2);</script>
+      </binding>
+      <binding>
+        <command>dialog-update</command>
+        <object-name>com2-selected</object-name>
+      </binding>
+      <binding>
+        <command>dialog-update</command>
+        <object-name>com2-standby</object-name>
+      </binding>
+    </button>
+
+	<group>
+		<row>3</row>
+		<col>4</col>
+		<layout>table</layout>
+		
+		<button>
+			<row>0</row>
+			<col>0</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(-1, 2);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>1</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(-1, 2);</script>
+			</binding>
+		</button>
+		
+		<input>
+			<name>com3-standby</name>
+			<row>0</row>
+			<col>2</col>
+			<pref-width>75</pref-width>
+			<live>true</live>
+			<property>/instrumentation/comm[2]/frequencies/standby-mhz</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>com3-standby</object-name>
+			</binding>
+		</input>
+		
+		<button>
+			<row>0</row>
+			<col>3</col>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustDec(1, 2);</script>
+			</binding>
+		</button>
+		<button>
+			<row>0</row>
+			<col>4</col>
+			<halign>left</halign>
+			<pref-width>25</pref-width>
+			<pref-height>25</pref-height>
+			<legend>&gt;&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.crp[0].adjustInt(1, 2);</script>
+			</binding>
+		</button>
+	
+	</group>
 
   </group>
 

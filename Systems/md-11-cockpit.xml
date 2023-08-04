@@ -233,6 +233,11 @@
 			<output>fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/xpdr-knob">
+			<input>/instrumentation/transponder/output/knob</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<!-- Overhead -->
 		<lag_filter name="/controls/cockpit/overhead/aft-temp">
 			<input>/controls/pneumatics/switches/aft-temp</input>

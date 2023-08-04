@@ -10,7 +10,7 @@ var XPDR = {
 	fgMode: props.globals.getNode("/sim/gui/dialogs/radios/transponder-mode", 1), # OFF, STANDBY, TEST, GROUND, ON, ALTITUDE
 	fgModeList: ["OFF", "STANDBY", "TEST", "GROUND", "ON", "ALTITUDE"],
 	fgCode: props.globals.getNode("/instrumentation/transponder/id-code", 1),
-	knob: props.globals.initNode("/instrumentation/transponder/output/knob", "0", "INT"),
+	knob: props.globals.getNode("/instrumentation/transponder/output/knob"),
 	mode: 1,
 	ident: props.globals.getNode("/instrumentation/transponder/inputs/ident-btn", 1),
 	identTime: 0,

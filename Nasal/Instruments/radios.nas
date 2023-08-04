@@ -15,8 +15,8 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 		
 		m.activeSel = 0;
 		m.mode = props.globals.getNode(m.root ~ "mode"); # 0: VHF1, 1: VHF2, 2: VHF3, 3: HF1, 4: HF2
-		m.modeTemp = 0;
 		m.power = props.globals.getNode("/systems/electrical/outputs/crp[" ~ n ~ "]", 1);
+		m.selTemp = 0;
 		m.stby = props.globals.getNode(m.root ~ "stby", 1);
 		m.stbyRight = 0;
 		m.stbySel = 0;
@@ -28,11 +28,15 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 	reset: func() {
 		me.mode.setValue(me.defMode);
 	},
-	adjustDec: func(d) {
+	adjustDec: func(d, o = -1) {
 		if (me.power.getValue() >= 24) {
-			me.modeTemp = me.mode.getValue();
+			if (o > -1) {
+				me.selTemp = o;
+			} else {
+				me.selTemp = me.mode.getValue();
+			}
 			
-			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.modeTemp].getValue()));
+			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
 			me.stbyRight = right(me.stbySplit[1], 1);
 			
 			# This thing adds .X25 and .X75 support so that the knob works properly
@@ -51,14 +55,18 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 			}
 			
 			me.stbyVal = sprintf("%02d", me.stbyVal);
-			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.modeTemp].setValue(me.stbySplit[0] ~ "." ~ me.stbyVal);
+			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.selTemp].setValue(me.stbySplit[0] ~ "." ~ me.stbyVal);
 		}
 	},
-	adjustInt: func(d) {
+	adjustInt: func(d, o = -1) {
 		if (me.power.getValue() >= 24) {
-			me.modeTemp = me.mode.getValue();
+			if (o > -1) {
+				me.selTemp = o;
+			} else {
+				me.selTemp = me.mode.getValue();
+			}
 			
-			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.modeTemp].getValue()));
+			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
 			me.stbyVal = me.stbySplit[0] + d;
 			
 			if (d > 0) {
@@ -67,17 +75,22 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 				if (me.stbyVal < 118) me.stbyVal = 135;
 			}
 			
-			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.modeTemp].setValue(me.stbyVal ~ "." ~ me.stbySplit[1]);
+			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.selTemp].setValue(me.stbyVal ~ "." ~ me.stbySplit[1]);
 		}
 	},
-	swap: func() {
+	swap: func(o = -1) {
 		if (me.power.getValue() >= 24) {
-			me.modeTemp = me.mode.getValue();
-			me.activeSel = pts.Instrumentation.Comm.Frequencies.selectedMhzFmt[me.modeTemp].getValue();
-			me.stbySel = pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.modeTemp].getValue();
+			if (o > -1) {
+				me.selTemp = o;
+			} else {
+				me.selTemp = me.mode.getValue();
+			}
 			
-			pts.Instrumentation.Comm.Frequencies.selectedMhz[me.modeTemp].setValue(me.stbySel);
-			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.modeTemp].setValue(me.activeSel);
+			me.activeSel = pts.Instrumentation.Comm.Frequencies.selectedMhzFmt[me.selTemp].getValue();
+			me.stbySel = pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue();
+			
+			pts.Instrumentation.Comm.Frequencies.selectedMhz[me.selTemp].setValue(me.stbySel);
+			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.selTemp].setValue(me.activeSel);
 		}
 	},
 };
