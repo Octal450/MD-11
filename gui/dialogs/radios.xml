@@ -748,9 +748,94 @@
       <stretch>true</stretch>
     </empty>
 
-	<text>
-		<label>Use pedestal to change mode</label>
-	</text>
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<visible>
+				<equals>
+					<property>/instrumentation/transponder/output/knob</property>
+					<value>0</value>
+				</equals>
+			</visible>
+			<label>&gt;</label>
+		</text>
+		<text>
+			<visible>
+				<equals>
+					<property>/instrumentation/transponder/output/knob</property>
+					<value>2</value>
+				</equals>
+			</visible>
+			<label>&gt;</label>
+		</text>
+	</group>
+	<group>
+		<layout>vbox</layout>
+		
+		<button>
+			<legend>STBY</legend>
+			<pref-height>20</pref-height>
+			<pref-width>50</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.setMode(0);</script>
+			</binding>
+		</button>
+		<button>
+			<legend>TA</legend>
+			<pref-height>20</pref-height>
+			<pref-width>50</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.setMode(2);</script>
+			</binding>
+		</button>
+	</group>
+	<group>
+		<layout>vbox</layout>
+		
+		<button>
+			<legend>XPDR</legend>
+			<pref-height>20</pref-height>
+			<pref-width>50</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.setMode(1);</script>
+			</binding>
+		</button>
+		<button>
+			<legend>TA/RA</legend>
+			<pref-height>20</pref-height>
+			<pref-width>50</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>instruments.XPDR.setMode(3);</script>
+			</binding>
+		</button>
+	</group>
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<visible>
+				<equals>
+					<property>/instrumentation/transponder/output/knob</property>
+					<value>1</value>
+				</equals>
+			</visible>
+			<label>&lt;</label>
+		</text>
+		<text>
+			<visible>
+				<equals>
+					<property>/instrumentation/transponder/output/knob</property>
+					<value>3</value>
+				</equals>
+			</visible>
+			<label>&lt;</label>
+		</text>
+	</group>
 
     <button>
       <legend>IDENT</legend>
