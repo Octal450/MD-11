@@ -4,11 +4,11 @@
 
 <PropertyList>
 	
-    <path>radio.ac</path>
+	<path>radio.ac</path>
 	
 	<animation>
 		<type>material</type>
-        <object-name>Display</object-name>
+		<object-name>Display</object-name>
 		<object-name>Labels</object-name>
 		<object-name>lcd</object-name>
 		<emission>
@@ -24,17 +24,17 @@
 		<object-name>Labels</object-name>
 	</effect>
 	
-    <animation>
-        <type>select</type>
-        <object-name>Display</object-name>
-        <object-name>Lights</object-name>
-        <condition>
-            <greater-than-equals>
-                <property>systems/electrical/outputs/crp[0]</property>
-                <value>24</value>
-            </greater-than-equals>
-        </condition>
-    </animation>
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+		<object-name>Lights</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/outputs/crp[0]</property>
+				<value>24</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
 	
 	<!-- Knobs -->
 	<animation>
@@ -165,10 +165,10 @@
 		</action>
 	</animation>
 	
-    <animation>
-        <type>select</type>
-        <object-name>vhf1.btn.light</object-name>
-        <condition>
+	<animation>
+		<type>select</type>
+		<object-name>vhf1.btn.light</object-name>
+		<condition>
 			<or>
 				<property>controls/switches/annun-test</property>
 				<equals>
@@ -176,12 +176,12 @@
 					<value>0</value>
 				</equals>
 			</or>
-        </condition>
-    </animation>
-    <animation>
-        <type>select</type>
-        <object-name>vhf2.btn.light</object-name>
-        <condition>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>vhf2.btn.light</object-name>
+		<condition>
 			<or>
 				<property>controls/switches/annun-test</property>
 				<equals>
@@ -189,12 +189,12 @@
 					<value>1</value>
 				</equals>
 			</or>
-        </condition>
-    </animation>
-    <animation>
-        <type>select</type>
-        <object-name>vhf3.btn.light</object-name>
-        <condition>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>vhf3.btn.light</object-name>
+		<condition>
 			<or>
 				<property>controls/switches/annun-test</property>
 				<equals>
@@ -202,12 +202,12 @@
 					<value>2</value>
 				</equals>
 			</or>
-        </condition>
-    </animation>
-    <animation>
-        <type>select</type>
-        <object-name>hf1.btn.light</object-name>
-        <condition>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>hf1.btn.light</object-name>
+		<condition>
 			<or>
 				<property>controls/switches/annun-test</property>
 				<equals>
@@ -215,12 +215,12 @@
 					<value>3</value>
 				</equals>
 			</or>
-        </condition>
-    </animation>
-    <animation>
-        <type>select</type>
-        <object-name>hf2.btn.light</object-name>
-        <condition>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>hf2.btn.light</object-name>
+		<condition>
 			<or>
 				<property>controls/switches/annun-test</property>
 				<equals>
@@ -228,20 +228,20 @@
 					<value>4</value>
 				</equals>
 			</or>
-        </condition>
-    </animation>
+		</condition>
+	</animation>
 	
-    <animation>
-        <type>textranslate</type>
-        <object-name>selected</object-name>
-        <property>instrumentation/crp[0]/mode</property>
-        <factor>0.03320</factor>
-        <axis>
-            <x>0</x>
-            <y>-1</y>
-            <z>0</z>
-        </axis>
-    </animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>selected</object-name>
+		<property>instrumentation/crp[0]/mode</property>
+		<factor>0.03320</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
 	
 	<!-- Active -->
 	<animation>

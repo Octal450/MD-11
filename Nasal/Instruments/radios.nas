@@ -8,14 +8,12 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 		var m = {parents: [CRP]};
 		m.root = "/instrumentation/crp[" ~ n ~ "]/";
 		
-		m.active = props.globals.getNode(m.root ~ "active", 1);
-		m.activeSel = 0;
-		
 		m.defMode = 0;
 		if (t) {
 			m.defMode = 2;
 		}
 		
+		m.activeSel = 0;
 		m.mode = props.globals.getNode(m.root ~ "mode"); # 0: VHF1, 1: VHF2, 2: VHF3, 3: HF1, 4: HF2
 		m.modeTemp = 0;
 		m.power = props.globals.getNode("/systems/electrical/outputs/crp[" ~ n ~ "]", 1);
@@ -72,7 +70,7 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.modeTemp].setValue(me.stbyVal ~ "." ~ me.stbySplit[1]);
 		}
 	},
-	swap: func() { # We always want to insert FG's value
+	swap: func() {
 		if (me.power.getValue() >= 24) {
 			me.modeTemp = me.mode.getValue();
 			me.activeSel = pts.Instrumentation.Comm.Frequencies.selectedMhzFmt[me.modeTemp].getValue();
@@ -94,8 +92,5 @@ var RADIOS = {
 		for (var i = 0; i < 3; i = i + 1) {
 			crp[i].reset();
 		}
-	},
-	loop: func() { # Do we need this? If yes, add to systemsLoop
-		
 	},
 };
