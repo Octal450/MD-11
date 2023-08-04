@@ -210,7 +210,7 @@
 	
 	</channel>
 	
-	<channel name="Radios" execrate="4">
+	<channel name="Radios" execrate="4"> <!-- We work with x1000 so that floating point error does not break the formatting -->
 		
 		<!-- CRP 1 -->
 		<switch name="/instrumentation/crp[0]/active">
@@ -223,38 +223,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[0]/active-x100">
+		<pure_gain name="/instrumentation/crp[0]/active-x1000">
 			<input>/instrumentation/crp[0]/active</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[0]/active-mod">
+		<fcs_function name="/instrumentation/crp[0]/active-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[0]/active-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[0]/active-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[0]/active-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[0]/active-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[0]/active-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[0]/active-int-x1000">
+			<input>/instrumentation/crp[0]/active-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[0]/active-dec">
+			<input>/instrumentation/crp[0]/active-x1000</input>
+			<input>-/instrumentation/crp[0]/active-int-x1000</input>
+		</summer>
 		
 		<switch name="/instrumentation/crp[0]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
@@ -266,38 +259,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[0]/stby-x100">
+		<pure_gain name="/instrumentation/crp[0]/stby-x1000"> <!-- Eliminate floating point error -->
 			<input>/instrumentation/crp[0]/stby</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[0]/stby-mod">
+		<fcs_function name="/instrumentation/crp[0]/stby-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[0]/stby-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[0]/stby-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[0]/stby-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[0]/stby-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[0]/stby-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[0]/stby-int-x1000">
+			<input>/instrumentation/crp[0]/stby-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[0]/stby-dec">
+			<input>/instrumentation/crp[0]/stby-x1000</input>
+			<input>-/instrumentation/crp[0]/stby-int-x1000</input>
+		</summer>
 		
 		<!-- CRP 2 -->
 		<switch name="/instrumentation/crp[1]/active">
@@ -310,38 +296,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[1]/active-x100">
+		<pure_gain name="/instrumentation/crp[1]/active-x1000">
 			<input>/instrumentation/crp[1]/active</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[1]/active-mod">
+		<fcs_function name="/instrumentation/crp[1]/active-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[1]/active-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[1]/active-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[1]/active-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[1]/active-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[1]/active-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[1]/active-int-x1000">
+			<input>/instrumentation/crp[1]/active-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[1]/active-dec">
+			<input>/instrumentation/crp[1]/active-x1000</input>
+			<input>-/instrumentation/crp[1]/active-int-x1000</input>
+		</summer>
 		
 		<switch name="/instrumentation/crp[1]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
@@ -353,38 +332,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[1]/stby-x100">
+		<pure_gain name="/instrumentation/crp[1]/stby-x1000"> <!-- Eliminate floating point error -->
 			<input>/instrumentation/crp[1]/stby</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[1]/stby-mod">
+		<fcs_function name="/instrumentation/crp[1]/stby-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[1]/stby-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[1]/stby-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[1]/stby-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[1]/stby-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[1]/stby-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[1]/stby-int-x1000">
+			<input>/instrumentation/crp[1]/stby-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[1]/stby-dec">
+			<input>/instrumentation/crp[1]/stby-x1000</input>
+			<input>-/instrumentation/crp[1]/stby-int-x1000</input>
+		</summer>
 		
 		<!-- CRP 3 -->
 		<switch name="/instrumentation/crp[2]/active">
@@ -397,38 +369,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[2]/active-x100">
+		<pure_gain name="/instrumentation/crp[2]/active-x1000">
 			<input>/instrumentation/crp[2]/active</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[2]/active-mod">
+		<fcs_function name="/instrumentation/crp[2]/active-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[2]/active-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[2]/active-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[2]/active-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[2]/active-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[2]/active-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[2]/active-int-x1000">
+			<input>/instrumentation/crp[2]/active-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[2]/active-dec">
+			<input>/instrumentation/crp[2]/active-x1000</input>
+			<input>-/instrumentation/crp[2]/active-int-x1000</input>
+		</summer>
 		
 		<switch name="/instrumentation/crp[2]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
@@ -440,38 +405,31 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[2]/stby-x100">
+		<pure_gain name="/instrumentation/crp[2]/stby-x1000"> <!-- Eliminate floating point error -->
 			<input>/instrumentation/crp[2]/stby</input>
-			<gain>100</gain>
+			<gain>1000</gain>
 		</pure_gain>
 		
-		<fcs_function name="/instrumentation/crp[2]/stby-mod">
+		<fcs_function name="/instrumentation/crp[2]/stby-int">
 			<function>
-				<mod>
-					<property>/instrumentation/crp[2]/stby-x100</property>
-					<value>10</value>
-				</mod>
+				<integer>
+					<quotient>
+						<property>/instrumentation/crp[2]/stby-x1000</property>
+						<value>1000</value>
+					</quotient>
+				</integer>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/instrumentation/crp[2]/stby-5">
-			<function>
-				<ifthen>
-					<or>
-						<eq>
-							<property>/instrumentation/crp[2]/stby-mod</property>
-							<value>2</value>
-						</eq>
-						<eq>
-							<property>/instrumentation/crp[2]/stby-mod</property>
-							<value>7</value>
-						</eq>
-					</or>
-					<value>5</value>
-					<value>0</value>
-				</ifthen>
-			</function>
-		</fcs_function>
+		<pure_gain name="/instrumentation/crp[2]/stby-int-x1000">
+			<input>/instrumentation/crp[2]/stby-int</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<summer name="/instrumentation/crp[2]/stby-dec">
+			<input>/instrumentation/crp[2]/stby-x1000</input>
+			<input>-/instrumentation/crp[2]/stby-int-x1000</input>
+		</summer>
 	
 	</channel>
 

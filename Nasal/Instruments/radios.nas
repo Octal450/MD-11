@@ -36,25 +36,25 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 				me.selTemp = me.mode.getValue();
 			}
 			
-			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
-			me.stbyRight = right(me.stbySplit[1], 1);
-			
-			# This thing adds .X25 and .X75 support so that the knob works properly
-			if (me.stbyRight == 2 or me.stbyRight == 7) {
-				if (d > 0) me.stbyVal = me.stbySplit[1] + (3 * d);
-				else if (d < 0) me.stbyVal = me.stbySplit[1] + (2 * d);
-			} else {
-				if (d > 0) me.stbyVal = me.stbySplit[1] + (2 * d);
-				else if (d < 0) me.stbyVal = me.stbySplit[1] + (3 * d);
-			}
+			me.stbySplit = split(".", sprintf("%3.3f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
+			me.stbyVal = sprintf("%03d", me.stbySplit[1] + (5 * d));
+			me.stbyRight = right(me.stbyVal, 2);
 			
 			if (d > 0) {
-				if (me.stbyVal > 97) me.stbyVal = 0;
+				if (me.stbyVal > 990) { # 995 is skipped
+					me.stbyVal = 0;
+				} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) { # This thing adds 8.33KHz/25KHz mixed support
+					me.stbyVal = me.stbyVal + 5;
+				}
 			} else if (d < 0) {
-				if (me.stbyVal < 0) me.stbyVal = 97;
+				if (me.stbyVal < 0) {
+					me.stbyVal = 990; # 995 is skipped
+				} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) { # This thing adds 8.33KHz/25KHz mixed support
+					me.stbyVal = me.stbyVal - 5;
+				}
 			}
 			
-			me.stbyVal = sprintf("%02d", me.stbyVal);
+			me.stbyVal = sprintf("%03d", me.stbyVal);
 			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.selTemp].setValue(me.stbySplit[0] ~ "." ~ me.stbyVal);
 		}
 	},
@@ -66,13 +66,13 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 				me.selTemp = me.mode.getValue();
 			}
 			
-			me.stbySplit = split(".", sprintf("%3.2f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
+			me.stbySplit = split(".", sprintf("%3.3f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
 			me.stbyVal = me.stbySplit[0] + d;
 			
 			if (d > 0) {
-				if (me.stbyVal > 135) me.stbyVal = 118;
+				if (me.stbyVal > 136) me.stbyVal = 118;
 			} else if (d < 0) {
-				if (me.stbyVal < 118) me.stbyVal = 135;
+				if (me.stbyVal < 118) me.stbyVal = 136;
 			}
 			
 			pts.Instrumentation.Comm.Frequencies.standbyMhz[me.selTemp].setValue(me.stbyVal ~ "." ~ me.stbySplit[1]);

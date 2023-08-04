@@ -170,7 +170,7 @@
 			<property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
 			<binding>
 				<command>dialog-apply</command>
-				<object-name>com2-standby</object-name>
+				<object-name>com1-standby</object-name>
 			</binding>
 		</input>
 		

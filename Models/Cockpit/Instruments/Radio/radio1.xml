@@ -247,31 +247,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>active1</object-name>
-		<property>instrumentation/crp[0]/active-x100</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>active2</object-name>
-		<property>instrumentation/crp[0]/active-x100</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>active3</object-name>
-		<property>instrumentation/crp[0]/active-x100</property>
+		<property>instrumentation/crp[0]/active-int</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -282,8 +258,8 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
-		<object-name>active4</object-name>
-		<property>instrumentation/crp[0]/active-x100</property>
+		<object-name>active2</object-name>
+		<property>instrumentation/crp[0]/active-int</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -294,8 +270,8 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
-		<object-name>active5</object-name>
-		<property>instrumentation/crp[0]/active-x100</property>
+		<object-name>active3</object-name>
+		<property>instrumentation/crp[0]/active-int</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -306,8 +282,32 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
+		<object-name>active4</object-name>
+		<property>instrumentation/crp[0]/active-dec</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>active5</object-name>
+		<property>instrumentation/crp[0]/active-dec</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
 		<object-name>active6</object-name>
-		<property>instrumentation/crp[0]/active-5</property>
+		<property>instrumentation/crp[0]/active-dec</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -321,31 +321,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>stby1</object-name>
-		<property>instrumentation/crp[0]/stby-x100</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>stby2</object-name>
-		<property>instrumentation/crp[0]/stby-x100</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
-		<type>textranslate</type>
-		<object-name>stby3</object-name>
-		<property>instrumentation/crp[0]/stby-x100</property>
+		<property>instrumentation/crp[0]/stby-int</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -356,8 +332,8 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
-		<object-name>stby4</object-name>
-		<property>instrumentation/crp[0]/stby-x100</property>
+		<object-name>stby2</object-name>
+		<property>instrumentation/crp[0]/stby-int</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -368,8 +344,8 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
-		<object-name>stby5</object-name>
-		<property>instrumentation/crp[0]/stby-x100</property>
+		<object-name>stby3</object-name>
+		<property>instrumentation/crp[0]/stby-int</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -380,8 +356,32 @@
 	</animation>
 	<animation>
 		<type>textranslate</type>
+		<object-name>stby4</object-name>
+		<property>instrumentation/crp[0]/stby-dec</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
+		<object-name>stby5</object-name>
+		<property>instrumentation/crp[0]/stby-dec</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>textranslate</type>
 		<object-name>stby6</object-name>
-		<property>instrumentation/crp[0]/stby-5</property>
+		<property>instrumentation/crp[0]/stby-dec</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
