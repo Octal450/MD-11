@@ -10,9 +10,7 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 		m.root = "/instrumentation/crp[" ~ n ~ "]/";
 		
 		m.defMode = 0;
-		if (t) {
-			m.defMode = 2;
-		}
+		if (t) m.defMode = 2;
 		
 		m.activeSel = 0;
 		m.mode = props.globals.getNode(m.root ~ "mode"); # 0: VHF1, 1: VHF2, 2: VHF3, 3: HF1, 4: HF2
