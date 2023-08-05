@@ -23,6 +23,7 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 		m.stbySel = 0;
 		m.stbySplit = [0, 0];
 		m.stbyVal = 0;
+		m.stbyValRight = 0;
 		
 		return m;
 	},
@@ -38,32 +39,45 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 			}
 			
 			me.stbySplit = split(".", sprintf("%3.3f", pts.Instrumentation.Comm.Frequencies.standbyMhzFmt[me.selTemp].getValue()));
+			me.stbyRight = right(me.stbySplit[1], 2);
 			
-			if (ettr.getBoolValue() and !s) { # 8.33KHz/25KHz mixed
-				me.stbyVal = sprintf("%03d", me.stbySplit[1] + (5 * d));
-				me.stbyRight = right(me.stbyVal, 2);
+			if (ettr.getBoolValue()) { # 8.33KHz/25KHz mixed
+				# FG enforces 8.33KHz channel rounding
+				if (s) me.stbyVal = sprintf("%03d", me.stbySplit[1] + (100 * d));
+				else me.stbyVal = sprintf("%03d", me.stbySplit[1] + (5 * d));
+				
+				me.stbyValRight = right(me.stbyVal, 2);
 				
 				if (d > 0) {
 					if (me.stbyVal > 990) { # 995 is skipped
-						me.stbyVal = 0;
-					} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) {
+						if (s) me.stbyVal = me.stbyRight; # Initial value
+						else me.stbyVal = 0;
+					} else if (me.stbyValRight == 20 or me.stbyValRight == 45 or me.stbyValRight == 70 or me.stbyValRight == 95) {
 						me.stbyVal = me.stbyVal + 5;
 					}
 				} else if (d < 0) {
 					if (me.stbyVal < 0) {
-						me.stbyVal = 990; # 995 is skipped
-					} else if (me.stbyRight == 20 or me.stbyRight == 45 or me.stbyRight == 70 or me.stbyRight == 95) {
+						if (s) me.stbyVal = "9" ~ me.stbyRight; # Initial value
+						else me.stbyVal = 990; # 995 is skipped
+					} else if (me.stbyValRight == 20 or me.stbyValRight == 45 or me.stbyValRight == 70 or me.stbyValRight == 95) {
 						me.stbyVal = me.stbyVal - 5;
 					}
 				}
 			} else { # 25KHz
-				me.stbyVal = sprintf("%03d", math.round(me.stbySplit[1] + (25 * d), 25)); # Must manually enforce 25KHz with rounding
-				me.stbyRight = right(me.stbyVal, 2);
+				# Enforce 25KHz channel rounding because FG doesn't
+				if (s) me.stbyVal = sprintf("%03d", math.round(me.stbySplit[1] + (100 * d), 25));
+				else me.stbyVal = sprintf("%03d", math.round(me.stbySplit[1] + (25 * d), 25));
 				
 				if (d > 0) {
-					if (me.stbyVal > 975) me.stbyVal = 0;
+					if (me.stbyVal > 975) {
+						if (s) me.stbyVal = me.stbyRight; # Initial value
+						else me.stbyVal = 0;
+					}
 				} else if (d < 0) {
-					if (me.stbyVal < 0) me.stbyVal = 975;
+					if (me.stbyVal < 0) {
+						if (s) me.stbyVal = "9" ~ me.stbyRight; # Initial value
+						else me.stbyVal = 975;
+					}
 				}
 			}
 			
