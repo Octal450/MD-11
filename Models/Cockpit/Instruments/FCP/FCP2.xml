@@ -7,72 +7,782 @@
 	<path>FCP.ac</path>
 	
 	<animation>
-		<type>material</type>
-		<object-name>mcp_text</object-name>
-		<object-name>integlight.indicator</object-name>
-		<object-name>floodlight.indicator</object-name>
-		<object-name>BankLim.knob.indicator</object-name>
-		<emission>
-			<red>1.0</red>
-			<green>0.85</green>
-			<blue>0.6</blue>
-			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
-		</emission>
+		<type>select</type>
+		<object-name>LCD</object-name>
+		<condition>
+			<property>systems/electrical/outputs/fcp</property>
+		</condition>
 	</animation>
 	
-	<!-- Lighting Controls -->
+	<animation>
+		<type>select</type>
+		<object-name>m.ind</object-name>
+		<condition>
+			<property>instrumentation/fcp/unused</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD1</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd1</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD1X</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd1</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD2</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd2</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>OVRD2X</object-name>		
+		<condition>
+			<equals>
+				<property>it-autoflight/input/ovrd2</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+  
 	<animation>
 		<type>knob</type>
-		<object-name>integlight.knob</object-name>
-		<object-name>integlight.indicator</object-name>
-		<property>controls/cockpit/fcp-integ-knb</property>
-		<factor>-329</factor>
+		<object-name>BLimit.knob</object-name>
+		<object-name>BLimit.knob.indicator</object-name>
+		<drag-scale-px>15</drag-scale-px>
+		<expression>
+			<difference>
+				<value>360</value>
+				<product>
+					<property>controls/cockpit/bank-limit</property>
+					<value>60</value>
+				</product>
+			</difference>
+		</expression>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.0486</y-m>
+			<z-m>11.7668</z-m>
+		</center>
 		<axis>
 			<x>1</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>
-		<center>
-			<x-m>-25.7153</x-m>
-			<y-m>-0.2741</y-m>
-			<z-m>11.7855</z-m>
-		</center>
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/fcp-integ-knb</property>
-				<factor>0.05</factor>
+				<property>it-autoflight/input/bank-limit-sw</property>
+				<factor>1</factor>
 				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
+				<max>6</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<!-- LED displays-->
+	<!-- IAS/MACH -->
+	<animation>
+		<type>select</type>
+		<object-name>ias.ind</object-name>
+		<object-name>IAS.led1</object-name>
+		<object-name>IAS.led2</object-name>
+		<object-name>IAS.led3</object-name>
+		<condition>
+			<and>
+				<not>
+					<property>it-autoflight/input/kts-mach</property>
+				</not>
+				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led1</object-name>
+		<property>it-autoflight/input/kts</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led2</object-name>
+		<property>it-autoflight/input/kts</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>IAS.led3</object-name>
+		<property>it-autoflight/input/kts</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>mach.ind</object-name>
+		<object-name>MACH.led1</object-name>
+		<object-name>MACH.led2</object-name>
+		<object-name>MACH.led3</object-name>
+		<object-name>MACH.ledd</object-name>
+		<condition>
+			<and>
+				<property>it-autoflight/input/kts-mach</property>
+				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led1</object-name>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led2</object-name>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>MACH.led3</object-name>
+		<property>it-autoflight/input/mach-x1000</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- HDG/TRK -->
+	<animation>
+		<type>select</type>
+		<object-name>hdg.ind</object-name>
+		<condition>
+			<not>
+				<property>it-autoflight/input/trk</property>
+			</not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>trk.ind</object-name>
+		<condition>
+			<property>it-autoflight/input/trk</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>HDG.led1</object-name>
+		<object-name>HDG.led2</object-name>
+		<object-name>HDG.led3</object-name>
+		<condition>
+			<property>it-autoflight/output/show-hdg</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>HDG_dash</object-name>
+		<condition>
+			<not><property>it-autoflight/output/show-hdg</property></not>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led1</object-name>
+		<property>it-autoflight/input/hdg</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led2</object-name>
+		<property>it-autoflight/input/hdg</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>HDG.led3</object-name>
+		<property>it-autoflight/input/hdg</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+<!-- VS/FPA -->
+
+	<animation>
+		<type>select</type>
+		<object-name>vs.ind</object-name>
+		<condition>
+			<equals>
+				<property>it-autoflight/input/vs-fpa</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<object-name>VS.led4</object-name>
+		<condition>
+			<equals>
+				<property>it-autoflight/output/vert</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS_dash</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>it-autoflight/output/vert</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>it-autoflight/output/vert</property>
+					<value>5</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+					<property>it-autoflight/input/vs</property>
+					<value>-0.01</value>
+				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/vs-abs</property>
+					<value>0.01</value>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>it-autoflight/output/vert</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+					<property>it-autoflight/input/vs</property>
+					<value>-0.01</value>
+				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/vs-abs</property>
+					<value>0.01</value>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.ledminus</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>VS.ledminus2</object-name>
+		<condition>
+			<less-than>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>1000</value>
+			</less-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/vs-abs</property>
+				<value>100</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led1</object-name>
+		<property>it-autoflight/input/vs-abs</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led2</object-name>
+		<property>it-autoflight/input/vs-abs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led3</object-name>
+		<property>it-autoflight/input/vs-abs</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>VS.led4</object-name>
+		<property>it-autoflight/input/vs-abs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>fpa.ind</object-name>
+		<condition>
+			<equals>
+				<property>it-autoflight/input/vs-fpa</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FPA.led1</object-name>
+		<object-name>FPA.led2</object-name>
+		<object-name>FPA.ledd</object-name>
+		<condition>
+			<equals>
+				<property>it-autoflight/output/vert</property>
+				<value>5</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FPA.ledminus</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>it-autoflight/output/vert</property>
+					<value>5</value>
+				</equals>
+				<less-than>
+					<property>it-autoflight/input/fpa</property>
+					<value>-0.01</value>
+				</less-than>
+				<greater-than>
+					<property>it-autoflight/input/fpa-abs</property>
+					<value>0.01</value>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>FPA.led1</object-name>
+		<property>it-autoflight/input/fpa-abs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<bias>0.05</bias>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>FPA.led2</object-name>
+		<property>it-autoflight/input/fpa-abs</property>
+		<factor>1.0</factor>
+		<step>0.10</step>
+		<bias>0.05</bias>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- First Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>10000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Second Digit -->
+	<animation>
+		<type>select</type>
+		<object-name>ALT.led2</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>it-autoflight/input/alt</property>
+				<value>1000</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<!-- Altitude -->
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led1</object-name>
+		<property>it-autoflight/input/alt</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led2</object-name>
+		<property>it-autoflight/input/alt</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led3</object-name>
+		<property>it-autoflight/input/alt</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led4</object-name>
+		<property>it-autoflight/input/alt</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ALT.led5</object-name>
+		<property>it-autoflight/input/alt</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Knob push and pull -->
+	<animation>
+		<type>translate</type>
+		<object-name>ALT.knob</object-name>
+		<property>instrumentation/fcp/alt-translate</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>HDG.knob</object-name>
+		<property>instrumentation/fcp/hdg-translate</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>SPD.knob</object-name>
+		<property>instrumentation/fcp/spd-translate</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BaroSet.L</object-name>
+		<property>instrumentation/fcp/baro-l-translate</property>
+		<factor>-0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BaroSet.R</object-name>
+		<property>instrumentation/fcp/baro-r-translate</property>
+		<factor>-0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>MINS.L</object-name>
+		<property>instrumentation/fcp/mins-l-translate</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>MINS.R</object-name>
+		<property>instrumentation/fcp/mins-r-translate</property>
+		<factor>0.003</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!-- Clickspots -->
+	<animation>
+		<type>pick</type>
+		<object-name>OVRD1</object-name>			
+		<object-name>OVRD1X</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/shift</property></not>
+						<not><property>it-autoflight/input/ovrd1</property></not>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
+					<or>
+						<property>devices/status/keyboard/shift</property>
+						<property>it-autoflight/input/ovrd1</property>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/ovrd1</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
 			</binding>
 		</action>
 	</animation>
 	
-	<!--animation>
-		<type>knob</type>
-		<object-name>floodlight.knob</object-name>
-		<object-name>floodlight.indicator</object-name>
-		<property>controls/cockpit/mcp-panel-knb</property>
-		<factor>-329</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>-25.7153</x-m>
-			<y-m>-0.2741</y-m>
-			<z-m>11.7855</z-m>
-		</center>
+	<animation>
+		<type>pick</type>		
+		<object-name>OVRD2</object-name>		
+		<object-name>OVRD2X</object-name>
 		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/shift</property></not>
+						<not><property>it-autoflight/input/ovrd2</property></not>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
+			</binding>
+			<binding>
+				<condition>
+					<or>
+						<property>devices/status/keyboard/shift</property>
+						<property>it-autoflight/input/ovrd2</property>
+					</or>
+				</condition>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/ovrd2</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
 		</action>
-	</animation-->
-	
-	<!-- Speed Controls-->
+	</animation>
+
 	<animation>
 		<type>pick</type>
-		<object-name>IasMach</object-name>
+		<object-name>MACH.toggle</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -86,10 +796,98 @@
 			</binding>
 		</action>
 	</animation>
-	
+
 	<animation>
 		<type>pick</type>
-		<object-name>Spd.knob</object-name>
+		<object-name>TRK.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.apPanel.hdgTrk();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>FPA.toggle</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.apPanel.vsFpa();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+		</action>
+	</animation>
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>AP_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.apPanel.autoflight();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+		</action>
+	</animation>
+
+
+
+	<animation>
+		<type>pick</type>
+		<object-name>LNAV_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.apPanel.nav();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>APP_Switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.apPanel.appr();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>SPD.knob</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -204,21 +1002,10 @@
 			</binding>
 		</action>
 	</animation>
-	
-	<animation>
-		<type>translate</type>
-		<object-name>Spd.knob</object-name>
-		<property>instrumentation/fcp/spd-translate</property>
-		<factor>0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+
 	<animation>
 		<type>rotate</type>
-		<object-name>Spd.knob</object-name>
+		<object-name>SPD.knob</object-name>
 		<property>instrumentation/fcp/spd-rotate</property>
 		<factor>11.25</factor>
 		<center>
@@ -232,28 +1019,10 @@
 			<z>0</z>
 		</axis>
 	</animation>
-	
-	<!-- Heading Controls -->
+
 	<animation>
 		<type>pick</type>
-		<object-name>HdgTrk</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.apPanel.hdgTrk();</script>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.btn1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Hdg.knob</object-name>
+		<object-name>HDG.knob</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -368,21 +1137,10 @@
 			</binding>
 		</action>
 	</animation>
-	
-	<animation>
-		<type>translate</type>
-		<object-name>Hdg.knob</object-name>
-		<property>instrumentation/fcp/hdg-translate</property>
-		<factor>0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+
 	<animation>
 		<type>rotate</type>
-		<object-name>Hdg.knob</object-name>
+		<object-name>HDG.knob</object-name>
 		<property>instrumentation/fcp/hdg-rotate</property>
 		<factor>11.25</factor>
 		<center>
@@ -396,199 +1154,27 @@
 			<z>0</z>
 		</axis>
 	</animation>
-	
-	<animation>
-		<type>knob</type>
-		<object-name>BankLim.knob</object-name>
-		<object-name>BankLim.knob.indicator</object-name>
-		<drag-scale-px>15</drag-scale-px>
-		<expression>
-			<difference>
-				<value>360</value>
-				<product>
-					<property>controls/cockpit/bank-limit</property>
-					<value>60</value>
-				</product>
-			</difference>
-		</expression>
-		<center>
-			<x-m>-25.7153</x-m>
-			<y-m>-0.0486</y-m>
-			<z-m>11.7668</z-m>
-		</center>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<action>
-			<binding>
-				<command>property-adjust</command>
-				<property>it-autoflight/input/bank-limit-sw</property>
-				<factor>1</factor>
-				<min>0</min>
-				<max>6</max>
-				<wrap>true</wrap>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
+
+	<!--animation>
 		<type>pick</type>
-		<object-name>Nav</object-name>
+		<object-name>prof</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.apPanel.nav();</script>
+				<script>libraries.apPanel.PROF();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn1();</script>
 			</binding>
 		</action>
-	</animation>
-	
-	<!-- Main Buttons -->
+	</animation-->
+
 	<animation>
 		<type>pick</type>
-		<object-name>ApprLand</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.apPanel.appr();</script>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.btn1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>Autoflight</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.apPanel.autoflight();</script>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.btn1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>pick</type>
-		<object-name>AfsOvrd1</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<and>
-						<not><property>devices/status/keyboard/shift</property></not>
-						<not><property>it-autoflight/input/ovrd1</property></not>
-					</and>
-				</condition>
-				<command>nasal</command>
-				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
-			</binding>
-			<binding>
-				<condition>
-					<or>
-						<property>devices/status/keyboard/shift</property>
-						<property>it-autoflight/input/ovrd1</property>
-					</or>
-				</condition>
-				<command>property-toggle</command>
-				<property>it-autoflight/input/ovrd1</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>AfsOvrd1</object-name>
-		<property>controls/cockpit/afs-ovrd-1</property>
-		<factor>20</factor>
-		<center>
-			<x-m>-25.75</x-m>
-			<y-m>0</y-m>
-			<z-m>11.74</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>pick</type>		
-		<object-name>AfsOvrd2</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<and>
-						<not><property>devices/status/keyboard/shift</property></not>
-						<not><property>it-autoflight/input/ovrd2</property></not>
-					</and>
-				</condition>
-				<command>nasal</command>
-				<script>gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");</script>
-			</binding>
-			<binding>
-				<condition>
-					<or>
-						<property>devices/status/keyboard/shift</property>
-						<property>it-autoflight/input/ovrd2</property>
-					</or>
-				</condition>
-				<command>property-toggle</command>
-				<property>it-autoflight/input/ovrd2</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
-			</binding>
-		</action>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>AfsOvrd2</object-name>
-		<property>controls/cockpit/afs-ovrd-2</property>
-		<factor>20</factor>
-		<center>
-			<x-m>-25.75</x-m>
-			<y-m>0</y-m>
-			<z-m>11.74</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<!-- Altitude Controls -->
-	<animation>
-		<type>pick</type>
-		<object-name>Alt.knob</object-name>
+		<object-name>ALT.knob</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -703,21 +1289,10 @@
 			</binding>
 		</action>
 	</animation>
-	
-	<animation>
-		<type>translate</type>
-		<object-name>Alt.knob</object-name>
-		<property>instrumentation/fcp/alt-translate</property>
-		<factor>0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
+
 	<animation>
 		<type>rotate</type>
-		<object-name>Alt.knob</object-name>
+		<object-name>ALT.knob</object-name>
 		<property>instrumentation/fcp/alt-rotate</property>
 		<factor>11.25</factor>
 		<center>
@@ -732,27 +1307,9 @@
 		</axis>
 	</animation>
 	
-	<!-- VS/FPA Controls -->
-	<animation>
-		<type>pick</type>
-		<object-name>VsFpa</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.apPanel.vsFpa();</script>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>libraries.Sound.btn1();</script>
-			</binding>
-		</action>
-	</animation>
-	
 	<animation>
 		<type>knob</type>
-		<object-name>VsFpa.knob</object-name>
+		<object-name>VS.knob</object-name>
 		<property>instrumentation/fcp/vs-rotate</property>
 		<drag-direction>vertical</drag-direction>
 		<factor>11.25</factor>
@@ -795,701 +1352,87 @@
 			</binding>
 		</decrease>
 	</animation>
-	
-	<!-- Speed Window -->
-	<text>
-		<name>Digits.Ias</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.07908</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>%3.0f</format>
-		<property>it-autoflight/input/kts</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Mach</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.07908</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>.%3.0f</format>
-		<property>it-autoflight/input/mach-x1000</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Test</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.07908</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>.888</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.IasLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.10564</y-m>
-			<z-m>11.7932</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>IAS</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.MachLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.10564</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>MACH</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	
+
+	<!-- Lighting -->
 	<animation>
-		<type>select</type>
-		<object-name>Digits.Ias</object-name>
-		<condition>
-			<and>
-				<not><property>it-autoflight/input/kts-mach</property></not>
-				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Mach</object-name>
-		<condition>
-			<and>
-				<property>it-autoflight/input/kts-mach</property>
-				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.IasLabel</object-name>
-		<condition>
-			<or>
-				<not><property>it-autoflight/input/kts-mach</property></not>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.MachLabel</object-name>
-		<condition>
-			<or>
-				<property>it-autoflight/input/kts-mach</property>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	
-	<!-- Heading Window -->
-	<text>
-		<name>Digits.Hdg</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.03514</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>%003.0f</format>
-		<property>it-autoflight/input/hdg</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.HdgBlank</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.03514</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>---</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Test</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.03514</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>888</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.HdgLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.0617</y-m>
-			<z-m>11.7932</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>HDG</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.TrkLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>-0.0617</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>TRK</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Hdg</object-name>
-		<condition>
-			<property>it-autoflight/output/show-hdg</property>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.HdgBlank</object-name>
-		<condition>
-			<not><property>it-autoflight/output/show-hdg</property></not>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.HdgLabel</object-name>
-		<condition>
-			<or>
-				<not><property>it-autoflight/input/trk</property></not>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.TrkLabel</object-name>
-		<condition>
-			<or>
-				<property>it-autoflight/input/trk</property>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	
-	<!-- Altitude Window -->
-	<text>
-		<name>Digits.Alt</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.06319</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>%5.0f</format>
-		<property>it-autoflight/input/alt</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Test</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.06319</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>88888</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.FtLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.03404</y-m>
-			<z-m>11.7932</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>FT</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.MLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.03404</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>M</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	
-	<!--animation>
-		<type>select</type>
-		<object-name>Digits.FtLabel</object-name>
-		<condition>
-			<or>
-				Not in meters
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation-->
-	<animation>
-		<type>select</type>
-		<object-name>Digits.MLabel</object-name>
-		<condition>
-			<or>
-				<!-- In meters -->
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	
-	<!-- V/S and FPA Window -->
-	<text>
-		<name>Digits.Vs</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.10633</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>%4.0f</format>
-		<property>it-autoflight/input/vs</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.VsBlank</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.10633</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>----</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Fpa</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.10633</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>number-value</type>
-		<format>%2.1f</format>
-		<property>it-autoflight/input/fpa</property>
-		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.Test</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.10633</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>-88.88</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.VsLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.07798</y-m>
-			<z-m>11.7932</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>V/S</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
-		<name>Digits.FpaLabel</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.07798</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>left-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>FPA</text>
-		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.0031</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Vs</object-name>
-		<condition>
-			<equals>
-				<property>it-autoflight/output/vert</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.VsBlank</object-name>
-		<condition>
-			<and>
-				<not-equals>
-					<property>it-autoflight/output/vert</property>
-					<value>1</value>
-				</not-equals>
-				<not-equals>
-					<property>it-autoflight/output/vert</property>
-					<value>5</value>
-				</not-equals>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Fpa</object-name>
-		<condition>
-			<equals>
-				<property>it-autoflight/output/vert</property>
-				<value>5</value>
-			</equals>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.VsLabel</object-name>
-		<condition>
-			<or>
-				<not><property>it-autoflight/input/vs-fpa</property></not>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.FpaLabel</object-name>
-		<condition>
-			<or>
-				<property>it-autoflight/input/vs-fpa</property>
-				<property>controls/switches/annun-test</property>
-			</or>
-		</condition>
-	</animation>
-	
-	<!-- LCD Main -->
-	<animation>
-		<name>Digits</name>
-		<object-name>Digits.Alt</object-name>
-		<object-name>Digits.VsBlank</object-name>
-		<object-name>Digits.Fpa</object-name>
-		<object-name>Digits.Hdg</object-name>
-		<object-name>Digits.HdgBlank</object-name>
-		<object-name>Digits.Ias</object-name>
-		<object-name>Digits.Mach</object-name>
-		<object-name>Digits.Vs</object-name>
-	</animation>
-	<animation>
-		<name>Labels</name>
-		<object-name>Digits.FpaLabel</object-name>
-		<object-name>Digits.FtLabel</object-name>
-		<object-name>Digits.HdgLabel</object-name>
-		<object-name>Digits.IasLabel</object-name>
-		<object-name>Digits.MachLabel</object-name>
-		<object-name>Digits.MLabel</object-name>
-		<object-name>Digits.TrkLabel</object-name>
-		<object-name>Digits.VsLabel</object-name>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>Digits</object-name>
-		<condition>
-			<and>
-				<not><property>controls/switches/annun-test</property></not>
-				<greater-than-equals>
-					<property>systems/electrical/outputs/fcp</property>
-					<value>24</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Test</object-name>
-		<condition>
-			<and>
-				<property>controls/switches/annun-test</property>
-				<greater-than-equals>
-					<property>systems/electrical/outputs/fcp</property>
-					<value>24</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Labels</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/outputs/fcp</property>
-				<value>24</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
+		<name>Integ Panel lighting</name>
 		<type>material</type>
-		<object-name>Digits</object-name>
-		<object-name>Digits.Test</object-name>
-		<object-name>Labels</object-name>
-		<diffuse>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</diffuse>
-		<ambient>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</ambient>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
-		<emission>
-			<red-prop>controls/lighting/fcp-osg-red</red-prop>
-			<green-prop>controls/lighting/fcp-osg-green</green-prop>
-			<blue-prop>controls/lighting/fcp-osg-blue</blue-prop>
-		</emission>
-	</animation>
-	
-	<animation>
-		<type>material</type>
+		<object-name>mcp_text</object-name>
+		<object-name>integlight.indicator</object-name>
+		<object-name>floodlight.indicator</object-name>
+		<object-name>BLimit.knob.indicator</object-name>
 		<object-name>mcp_lcd</object-name>
 		<emission>
 			<red>1.0</red>
-			<green>0.5</green>
-			<blue>0.4</blue>
+			<green>0.85</green>
+			<blue>0.6</blue>
 			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
 		</emission>
 	</animation>
 	
-	<!-- Baro/Minimums Controls -->
+	<animation>
+		<name>Integ Panel LCD lighting</name>
+		<type>material</type>
+		<object-name>LCD</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>controls/lighting/fcp-lcd-integ-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<name>Integ panel light rotate</name>
+		<type>knob</type>
+		<object-name>integlight.knob</object-name>
+		<object-name>integlight.indicator</object-name>
+		<property>controls/cockpit/fcp-integ-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/fcp-integ-knb</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<!--animation>
+		<name>Panel light rotate</name>
+		<type>knob</type>
+		<object-name>floodlight.knob</object-name>
+		<object-name>floodlight.indicator</object-name>
+		<property>controls/cockpit/mcp-panel-knb</property>
+		<factor>-329</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-25.7153</x-m>
+			<y-m>-0.2741</y-m>
+			<z-m>11.7855</z-m>
+		</center>
+		<action>
+		</action>
+	</animation-->
+	
+	<!-- Baro/Minimums settings -->
 	<animation>
 		<type>pick</type>
 		<object-name>In-HPa.L</object-name>
@@ -1507,7 +1450,7 @@
 			</binding>
 		</action>
 	</animation>
-	
+
 	<animation>
 		<type>pick</type>
 		<object-name>BaroSet.L</object-name>
@@ -1643,17 +1586,6 @@
 		</action>
 	</animation>
 	
-	<animation>
-		<type>translate</type>
-		<object-name>BaroSet.L</object-name>
-		<property>instrumentation/fcp/baro-l-translate</property>
-		<factor>-0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.L</object-name>
@@ -1807,17 +1739,6 @@
 	</animation>
 	
 	<animation>
-		<type>translate</type>
-		<object-name>BaroSet.R</object-name>
-		<property>instrumentation/fcp/baro-r-translate</property>
-		<factor>-0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet.R</object-name>
 		<property>instrumentation/fcp/baro-r-rotate</property>
@@ -1936,17 +1857,6 @@
 		</action>
 	</animation>
 	
-	<animation>
-		<type>translate</type>
-		<object-name>MINS.L</object-name>
-		<property>instrumentation/fcp/mins-l-translate</property>
-		<factor>0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
 	<animation>
 		<type>rotate</type>
 		<object-name>MINS.L</object-name>
@@ -2067,17 +1977,6 @@
 	</animation>
 	
 	<animation>
-		<type>translate</type>
-		<object-name>MINS.R</object-name>
-		<property>instrumentation/fcp/mins-r-translate</property>
-		<factor>0.003</factor>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	<animation>
 		<type>rotate</type>
 		<object-name>MINS.R</object-name>
 		<property>instrumentation/fcp/mins-r-rotate</property>
@@ -2094,7 +1993,8 @@
 		</axis>
 	</animation>
 	
-	<!-- Left ND Controls -->
+	<!-- ND Captain Controls -->
+	
 	<animation>
 		<type>pick</type>
 		<object-name>traffic.1</object-name>
@@ -2226,7 +2126,7 @@
 			</binding>
 		</action>
 	</animation>
-	
+
 	<animation>
 		<type>pick</type>
 		<object-name>arpt.1</object-name>
@@ -2590,7 +2490,8 @@
 		</action>
 	</animation>
 	
-	<!-- Right ND Controls -->
+	<!-- ND First Officer Controls -->
+	
 	<animation>
 		<type>pick</type>
 		<object-name>traffic.2</object-name>
@@ -2722,7 +2623,7 @@
 			</binding>
 		</action>
 	</animation>
-	
+
 	<animation>
 		<type>pick</type>
 		<object-name>arpt.2</object-name>

@@ -14,6 +14,16 @@
 	<channel name="Animations">
 		
 		<!-- General -->
+		<lag_filter name="/controls/cockpit/afs-ovrd-1">
+			<input>/it-autoflight/input/ovrd1</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/afs-ovrd-2">
+			<input>/it-autoflight/input/ovrd2</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/aileron-yoke">
 			<input>hydraulics/aileron-yoke-sum</input>
 			<c1>20</c1>
@@ -452,6 +462,58 @@
 				/cabin/alt/prop gt 10000
 			</test-->
 		</switch>
+	
+	</channel>
+	
+	<channel name="OSG Text Emission" execrate="2"> <!-- Required or it will be badly lit, colors are intentially slightly tweaked due to rendering differences -->
+		
+		<fcs_function name="/controls/lighting/fcp-osg-red">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  1.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/fcp-osg-green">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.9
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/fcp-osg-blue">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.7
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/overhead-lcd-integ-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<tableData>
+						0  0.25
+						1  1.00
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

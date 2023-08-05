@@ -11,7 +11,7 @@ var afsCanvas = {
 		m._root = nil;
 		m._svgKeys = nil;
 		m._key = nil;
-		m._dialogUpdate = maketimer(0.07, m, afsCanvas._update);
+		m._dialogUpdate = maketimer(0.05, m, afsCanvas._update);
 		m._ovrd = [0, 0];
 		m._vert = 0;
 		
