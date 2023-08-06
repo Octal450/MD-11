@@ -236,6 +236,11 @@
 		<object-name>bleed-3.off</object-name>
 		<object-name>bleed-3B.manf</object-name>
 		<object-name>bleed-3B.temphi</object-name>
+		<object-name>Digits.Tank1</object-name>
+		<object-name>Digits.Tank2</object-name>
+		<object-name>Digits.Tank3</object-name>
+		<object-name>Digits.TankAux</object-name>
+		<object-name>Digits.TankTail</object-name>
 		<object-name>Dump.on</object-name>
 		<object-name>Econ.off</object-name>
 		<object-name>ElevFeel.manual</object-name>
@@ -334,32 +339,6 @@
 		<object-name>YD_lwra.off</object-name>
 		<object-name>YD_lwrb.fail</object-name>
 		<object-name>YD_lwrb.off</object-name>
-		<!-- Fuel LEDs -->
-		<object-name>ltank.1</object-name>
-		<object-name>ltank.2</object-name>
-		<object-name>ltank.3</object-name>
-		<object-name>ltank.4</object-name>
-		<object-name>ltank.5</object-name>
-		<object-name>ctank.1</object-name>
-		<object-name>ctank.2</object-name>
-		<object-name>ctank.3</object-name>
-		<object-name>ctank.4</object-name>
-		<object-name>ctank.5</object-name>
-		<object-name>rtank.1</object-name>
-		<object-name>rtank.2</object-name>
-		<object-name>rtank.3</object-name>
-		<object-name>rtank.4</object-name>
-		<object-name>rtank.5</object-name>
-		<object-name>atank.1</object-name>
-		<object-name>atank.2</object-name>
-		<object-name>atank.3</object-name>
-		<object-name>atank.4</object-name>
-		<object-name>atank.5</object-name>
-		<object-name>ttank.1</object-name>
-		<object-name>ttank.2</object-name>
-		<object-name>ttank.3</object-name>
-		<object-name>ttank.4</object-name>
-		<object-name>ttank.5</object-name>
 		<condition>
 			<or>
 				<greater-than-equals>
