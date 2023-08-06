@@ -6,6 +6,11 @@
 	
 	<path>transponder.ac</path>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>XPDR.text</object-name>
+	</effect>
+	
 	<animation>
 		<name>Display</name>
 		<object-name>ATC</object-name>
@@ -51,11 +56,6 @@
 			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
 		</emission>
 	</animation>
-	
-	<effect>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>XPDR.text</object-name>
-	</effect>
 	
 	<text>
 		<name>Digit0</name>

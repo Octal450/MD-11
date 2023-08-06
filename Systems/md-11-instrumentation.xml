@@ -223,32 +223,6 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[0]/active-x1000">
-			<input>/instrumentation/crp[0]/active</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[0]/active-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[0]/active-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[0]/active-int-x1000">
-			<input>/instrumentation/crp[0]/active-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[0]/active-dec">
-			<input>/instrumentation/crp[0]/active-x1000</input>
-			<input>-/instrumentation/crp[0]/active-int-x1000</input>
-		</summer>
-		
 		<switch name="/instrumentation/crp[0]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
 			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
@@ -258,32 +232,6 @@
 				/instrumentation/crp[0]/mode eq 2
 			</test>
 		</switch>
-		
-		<pure_gain name="/instrumentation/crp[0]/stby-x1000">
-			<input>/instrumentation/crp[0]/stby</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[0]/stby-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[0]/stby-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[0]/stby-int-x1000">
-			<input>/instrumentation/crp[0]/stby-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[0]/stby-dec">
-			<input>/instrumentation/crp[0]/stby-x1000</input>
-			<input>-/instrumentation/crp[0]/stby-int-x1000</input>
-		</summer>
 		
 		<!-- CRP 2 -->
 		<switch name="/instrumentation/crp[1]/active">
@@ -296,32 +244,6 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[1]/active-x1000">
-			<input>/instrumentation/crp[1]/active</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[1]/active-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[1]/active-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[1]/active-int-x1000">
-			<input>/instrumentation/crp[1]/active-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[1]/active-dec">
-			<input>/instrumentation/crp[1]/active-x1000</input>
-			<input>-/instrumentation/crp[1]/active-int-x1000</input>
-		</summer>
-		
 		<switch name="/instrumentation/crp[1]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
 			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
@@ -331,32 +253,6 @@
 				/instrumentation/crp[1]/mode eq 2
 			</test>
 		</switch>
-		
-		<pure_gain name="/instrumentation/crp[1]/stby-x1000">
-			<input>/instrumentation/crp[1]/stby</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[1]/stby-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[1]/stby-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[1]/stby-int-x1000">
-			<input>/instrumentation/crp[1]/stby-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[1]/stby-dec">
-			<input>/instrumentation/crp[1]/stby-x1000</input>
-			<input>-/instrumentation/crp[1]/stby-int-x1000</input>
-		</summer>
 		
 		<!-- CRP 3 -->
 		<switch name="/instrumentation/crp[2]/active">
@@ -369,32 +265,6 @@
 			</test>
 		</switch>
 		
-		<pure_gain name="/instrumentation/crp[2]/active-x1000">
-			<input>/instrumentation/crp[2]/active</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[2]/active-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[2]/active-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[2]/active-int-x1000">
-			<input>/instrumentation/crp[2]/active-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[2]/active-dec">
-			<input>/instrumentation/crp[2]/active-x1000</input>
-			<input>-/instrumentation/crp[2]/active-int-x1000</input>
-		</summer>
-		
 		<switch name="/instrumentation/crp[2]/stby">
 			<default value="/instrumentation/comm[0]/frequencies/standby-mhz-fmt"/>
 			<test value="/instrumentation/comm[1]/frequencies/standby-mhz-fmt">
@@ -404,32 +274,6 @@
 				/instrumentation/crp[2]/mode eq 2
 			</test>
 		</switch>
-		
-		<pure_gain name="/instrumentation/crp[2]/stby-x1000">
-			<input>/instrumentation/crp[2]/stby</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<fcs_function name="/instrumentation/crp[2]/stby-int">
-			<function>
-				<integer>
-					<quotient>
-						<property>/instrumentation/crp[2]/stby-x1000</property>
-						<value>1000</value>
-					</quotient>
-				</integer>
-			</function>
-		</fcs_function>
-		
-		<pure_gain name="/instrumentation/crp[2]/stby-int-x1000">
-			<input>/instrumentation/crp[2]/stby-int</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<summer name="/instrumentation/crp[2]/stby-dec">
-			<input>/instrumentation/crp[2]/stby-x1000</input>
-			<input>-/instrumentation/crp[2]/stby-int-x1000</input>
-		</summer>
 	
 	</channel>
 
