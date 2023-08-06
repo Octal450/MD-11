@@ -503,13 +503,37 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/controls/lighting/overhead-lcd-integ-norm">
+		<fcs_function name="/controls/lighting/overhead-osg-red">
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
 					<tableData>
-						0  0.25
-						1  1.00
+						0  0.1
+						1  1.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/overhead-osg-green">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.9
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/overhead-osg-blue">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.7
 					</tableData>
 				</table>
 			</function>

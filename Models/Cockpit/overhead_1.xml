@@ -7,7 +7,6 @@
 	<path>overhead_1.ac</path>
 	
 	<animation>
-		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>overhead.text</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
@@ -31,7 +30,6 @@
 		<object-name>CabinPressNeedle</object-name>
 		<object-name>Plane.022</object-name>
 		<object-name>CVRNeedle</object-name>
-		<object-name>ovhd_lcd</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -41,19 +39,17 @@
 	</animation>
 	
 	<animation>
-		<name>Integ Panel LCD lighting</name>
 		<type>material</type>
-		<object-name>LCD</object-name>
+		<object-name>ovhd_lcd</object-name>
 		<emission>
 			<red>1.0</red>
-			<green>0.85</green>
-			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-lcd-integ-norm</factor-prop>
+			<green>0.5</green>
+			<blue>0.4</blue>
+			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
 		</emission>
 	</animation>
 
 	<animation>
-		<name>Overhead Integ light knob</name>
 		<type>knob</type>
 		<object-name>ovhdinteg.knob</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
@@ -82,7 +78,6 @@
 	</animation>
 
 	<animation>
-		<name>Main Integ light knob</name>
 		<type>knob</type>
 		<object-name>maininteg.knob</object-name>
 		<object-name>maininteg.indicator</object-name>
@@ -111,7 +106,6 @@
 	</animation>
 
 	<!--animation>
-		<name>Overhead panel light</name>
 		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
 		<object-name>ovhdflood.indicator</object-name>
@@ -132,7 +126,6 @@
 	</animation-->
 	
 	<!--animation>
-		<name>Main light</name>
 		<type>knob</type>
 		<object-name>mainflood.knob</object-name>
 		<object-name>mainflood.indicator</object-name>
@@ -5458,495 +5451,125 @@
 		</condition>
 	</animation>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.1</object-name>
+	<text>
+		<name>Digits.Tank1</name>
+		<offsets>
+			<x-m>-21.7985</x-m>
+			<y-m>-0.07928</y-m>
+			<z-m>-17.98098</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%02.0f</format>
 		<property>systems/fuel/tank-1-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0065</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.2</object-name>
-		<property>systems/fuel/tank-1-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.3</object-name>
-		<property>systems/fuel/tank-1-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.4</object-name>
-		<property>systems/fuel/tank-1-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ltank.5</object-name>
-		<property>systems/fuel/tank-1-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ltank.1</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-1-lbs</property>
-				<value>10000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ltank.2</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-1-lbs</property>
-				<value>1000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ltank.3</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-1-lbs</property>
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.1</object-name>
+	<text>
+		<name>Digits.Tank2</name>
+		<offsets>
+			<x-m>-21.7985</x-m>
+			<y-m>-0.00469</y-m>
+			<z-m>-17.98098</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%02.0f</format>
 		<property>systems/fuel/tank-2-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0065</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.2</object-name>
-		<property>systems/fuel/tank-2-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.3</object-name>
-		<property>systems/fuel/tank-2-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.4</object-name>
-		<property>systems/fuel/tank-2-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ctank.5</object-name>
-		<property>systems/fuel/tank-2-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ctank.1</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-2-lbs</property>
-				<value>10000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ctank.2</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-2-lbs</property>
-				<value>1000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ctank.3</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-2-lbs</property>
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.1</object-name>
+	<text>
+		<name>Digits.Tank3</name>
+		<offsets>
+			<x-m>-21.7985</x-m>
+			<y-m>0.06689</y-m>
+			<z-m>-17.98098</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%02.0f</format>
 		<property>systems/fuel/tank-3-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0065</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.2</object-name>
-		<property>systems/fuel/tank-3-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.3</object-name>
-		<property>systems/fuel/tank-3-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.4</object-name>
-		<property>systems/fuel/tank-3-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>rtank.5</object-name>
-		<property>systems/fuel/tank-3-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>rtank.1</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-3-lbs</property>
-				<value>10000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>rtank.2</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-3-lbs</property>
-				<value>1000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>rtank.3</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tank-3-lbs</property>
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.1</object-name>
+	<text>
+		<name>Digits.TankAux</name>
+		<offsets>
+			<x-m>-21.7985</x-m>
+			<y-m>0.00849</y-m>
+			<z-m>-18.00828</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%02.0f</format>
 		<property>systems/fuel/aux-tanks-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0065</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.2</object-name>
-		<property>systems/fuel/aux-tanks-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.3</object-name>
-		<property>systems/fuel/aux-tanks-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.4</object-name>
-		<property>systems/fuel/aux-tanks-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>atank.5</object-name>
-		<property>systems/fuel/aux-tanks-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>atank.1</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/aux-tanks-lbs</property>
-				<value>10000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>atank.2</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/aux-tanks-lbs</property>
-				<value>1000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>atank.3</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/aux-tanks-lbs</property>
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.1</object-name>
+	<text>
+		<name>Digits.TankTail</name>
+		<offsets>
+			<x-m>-21.7985</x-m>
+			<y-m>0.08138</y-m>
+			<z-m>-18.00828</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%02.0f</format>
 		<property>systems/fuel/tail-tank-lbs</property>
-		<factor>0.00001</factor>
-		<step>10000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.2</object-name>
-		<property>systems/fuel/tail-tank-lbs</property>
-		<factor>0.0001</factor>
-		<step>1000</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.3</object-name>
-		<property>systems/fuel/tail-tank-lbs</property>
-		<factor>0.001</factor>
-		<step>100</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.4</object-name>
-		<property>systems/fuel/tail-tank-lbs</property>
-		<factor>0.01</factor>
-		<step>10</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>ttank.5</object-name>
-		<property>systems/fuel/tail-tank-lbs</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ttank.1</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tail-tank-lbs</property>
-				<value>10000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ttank.2</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tail-tank-lbs</property>
-				<value>1000</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>ttank.3</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/fuel/tail-tank-lbs</property>
-				<value>100</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0065</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<!-- FADEC/Engine Ignition Panel -->
 	<animation>
@@ -7448,6 +7071,35 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Digits.Tank1</object-name>
+		<object-name>Digits.Tank2</object-name>
+		<object-name>Digits.Tank3</object-name>
+		<object-name>Digits.TankAux</object-name>
+		<object-name>Digits.TankTail</object-name>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</diffuse>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red-prop>controls/lighting/overhead-osg-red</red-prop>
+			<green-prop>controls/lighting/overhead-osg-green</green-prop>
+			<blue-prop>controls/lighting/overhead-osg-blue</blue-prop>
+		</emission>
 	</animation>
 	
 </PropertyList>

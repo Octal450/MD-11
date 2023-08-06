@@ -1103,7 +1103,7 @@
 		<alignment>right-bottom</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>number-value</type>
-		<format>%5.0f</format>
+		<format>%03.0f</format>
 		<property>it-autoflight/input/alt</property>
 		<truncate>false</truncate>
 		<font>Std7SegCustom.ttf</font>
