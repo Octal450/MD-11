@@ -18,7 +18,7 @@ var afsCanvas = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Group", "AfsOvrd2Group", "AltKnob", "Alt_7seg", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Click", "AfsOvrd2Click", "AltKnob", "Alt_7seg", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
 		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "HdgInd", "HdgKnob", "HdgTrk", "Hdg_7seg", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "SpdKnob", "Spd_7seg", "TrkInd", "VsFpa", "VsInd", "VsKnob", "Vs_7seg"];
 	},
 	close: func() {
@@ -70,7 +70,7 @@ var afsCanvas = {
 			libraries.apPanel.fd2();
 		});
 		
-		me["AfsOvrd1Group"].addEventListener("click", func(e) {
+		me["AfsOvrd1Click"].addEventListener("click", func(e) {
 			me._ovrd[0] = afs.Input.ovrd1.getBoolValue();
 			if (e.shiftKey or me._ovrd[0]) {
 				afs.Input.ovrd1.setBoolValue(!me._ovrd[0]);
@@ -78,7 +78,9 @@ var afsCanvas = {
 				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
 			}
 		});
-		me["AfsOvrd2Group"].addEventListener("click", func(e) {
+		me["AfsOvrd1Click"].setColorFill(0,0,0,0); # Make it invisible
+		
+		me["AfsOvrd2Click"].addEventListener("click", func(e) {
 			me._ovrd[1] = afs.Input.ovrd2.getBoolValue();
 			if (e.shiftKey or me._ovrd[1]) {
 				afs.Input.ovrd2.setBoolValue(!me._ovrd[1]);
@@ -86,6 +88,7 @@ var afsCanvas = {
 				gui.popupTip("Shift + D or Yoke Btn: AFS Off\nCtrl + D or Throttle Btn: ATS Off\n\nThis is the emergency override, shift click to use");
 			}
 		});
+		me["AfsOvrd2Click"].setColorFill(0,0,0,0); # Make it invisible
 		
 		# Speed
 		me["SpdKnob"].addEventListener("click", func(e) {
