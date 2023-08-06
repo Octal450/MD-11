@@ -20,6 +20,11 @@
 		</emission>
 	</animation>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>mcp_text</object-name>
+	</effect>
+	
 	<!-- Lighting Controls -->
 	<animation>
 		<type>knob</type>

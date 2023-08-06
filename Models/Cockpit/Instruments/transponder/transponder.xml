@@ -9,12 +9,23 @@
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
-		<object-name>XPDR.text</object-name>
 		<object-name>Display</object-name>
+		<object-name>XPDR.text</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
+			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>LCD</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.5</green>
+			<blue>0.4</blue>
 			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
 		</emission>
 	</animation>
@@ -35,100 +46,256 @@
 		</condition>
 	</animation>
 	
-	<animation>
-		<type>select</type>
-		<object-name>digit0</object-name>
-		<condition>
-			<not-equals>
-				<property>instrumentation/transponder/output/digit[0]</property>
-				<value>-</value>
-			</not-equals>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>textranslate</type>
-		<object-name>digit0</object-name>
+	<text>
+		<name>Digit0</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.01731</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[0]</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DigitTest</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.01731</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>8</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<animation>
 		<type>select</type>
-		<object-name>digit1</object-name>
+		<object-name>Digit0</object-name>
 		<condition>
-			<not-equals>
-				<property>instrumentation/transponder/output/digit[1]</property>
-				<value>-</value>
-			</not-equals>
+			<and>
+				<not><property>controls/switches/annun-test</property></not>
+				<not-equals>
+					<property>instrumentation/transponder/output/digit[0]</property>
+					<value>-</value>
+				</not-equals>
+			</and>
 		</condition>
 	</animation>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>digit1</object-name>
+	<text>
+		<name>Digit1</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.02285</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[1]</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DigitTest</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.02285</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>8</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<animation>
 		<type>select</type>
-		<object-name>digit2</object-name>
+		<object-name>Digit1</object-name>
 		<condition>
-			<not-equals>
-				<property>instrumentation/transponder/output/digit[2]</property>
-				<value>-</value>
-			</not-equals>
+			<and>
+				<not><property>controls/switches/annun-test</property></not>
+				<not-equals>
+					<property>instrumentation/transponder/output/digit[1]</property>
+					<value>-</value>
+				</not-equals>
+			</and>
 		</condition>
 	</animation>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>digit2</object-name>
+	<text>
+		<name>Digit2</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.02786</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[2]</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DigitTest</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.02786</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>8</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<animation>
 		<type>select</type>
-		<object-name>digit3</object-name>
+		<object-name>Digit2</object-name>
 		<condition>
-			<not-equals>
-				<property>instrumentation/transponder/output/digit[3]</property>
-				<value>-</value>
-			</not-equals>
+			<and>
+				<not><property>controls/switches/annun-test</property></not>
+				<not-equals>
+					<property>instrumentation/transponder/output/digit[2]</property>
+					<value>-</value>
+				</not-equals>
+			</and>
 		</condition>
 	</animation>
 	
-	<animation>
-		<type>textranslate</type>
-		<object-name>digit3</object-name>
+	<text>
+		<name>Digit3</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.03333</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>number-value</type>
+		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[3]</property>
-		<factor>0.1</factor>
-		<step>1</step>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
+		<truncate>false</truncate>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>DigitTest</name>
+		<offsets>
+			<x-m>-0.0028</x-m>
+			<y-m>0.03333</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>8</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Digit3</object-name>
+		<condition>
+			<and>
+				<not><property>controls/switches/annun-test</property></not>
+				<not-equals>
+					<property>instrumentation/transponder/output/digit[3]</property>
+					<value>-</value>
+				</not-equals>
+			</and>
+		</condition>
 	</animation>
 	
 	<animation>
@@ -146,7 +313,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AltReportSw</object-name>
-		<property>instrumentation/transponder/input/alt-report</property>
+		<property>controls/cockpit/xpdr-alt</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>60</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -178,7 +345,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>XPDRSw</object-name>
-		<property>instrumentation/transponder/input/xpdr</property>
+		<property>controls/cockpit/xpdr-sw</property>
 		<factor>60</factor>
 		<center>
 			<x-m>0.01489</x-m>
@@ -192,25 +359,97 @@
 		</axis>
 	</animation>
 	
+	<text>
+		<name>ATC</name>
+		<offsets>
+			<x-m>-0.0136</x-m>
+			<y-m>0.01475</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>ATC</text>
+		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0045</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>ATC1</name>
+		<offsets>
+			<x-m>-0.0136</x-m>
+			<y-m>0.0225</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>1</text>
+		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0045</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	
 	<animation>
 		<type>select</type>
 		<object-name>ATC1</object-name>
 		<condition>
-			<equals>
-				<property>instrumentation/transponder/input/xpdr</property>
-				<value>0</value>
-			</equals>
+			<or>
+				<not><property>instrumentation/transponder/input/xpdr</property></not>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
+	
+	<text>
+		<name>ATC2</name>
+		<offsets>
+			<x-m>-0.0136</x-m>
+			<y-m>0.0274</y-m>
+			<z-m>0.00262</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>2</text>
+		<font>LiberationFonts/LiberationSans-Regular.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0045</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<animation>
 		<type>select</type>
 		<object-name>ATC2</object-name>
 		<condition>
-			<equals>
+			<or>
 				<property>instrumentation/transponder/input/xpdr</property>
-				<value>1</value>
-			</equals>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
 	
@@ -264,6 +503,51 @@
 				<script>instruments.XPDR.setIdent();</script>
 			</binding>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>DigitTest</object-name>
+		<condition>
+			<property>controls/switches/annun-test</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Display</name>
+		<object-name>ATC</object-name>
+		<object-name>ATC1</object-name>
+		<object-name>ATC2</object-name>
+		<object-name>Digit0</object-name>
+		<object-name>Digit1</object-name>
+		<object-name>Digit2</object-name>
+		<object-name>Digit3</object-name>
+		<object-name>DigitTest</object-name>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Display</object-name>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</diffuse>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red-prop>controls/lighting/main-osg-red</red-prop>
+			<green-prop>controls/lighting/main-osg-green</green-prop>
+			<blue-prop>controls/lighting/main-osg-blue</blue-prop>
+		</emission>
 	</animation>
 	
 	<!-- Keypad -->

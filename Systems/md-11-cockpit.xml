@@ -243,8 +243,18 @@
 			<output>fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/xpdr-alt">
+			<input>/instrumentation/transponder/input/alt-report</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/xpdr-knob">
 			<input>/instrumentation/transponder/output/knob</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/xpdr-sw">
+			<input>/instrumentation/transponder/input/xpdr</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -495,6 +505,42 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.7
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/main-osg-red">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  1.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/main-osg-green">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
+					<tableData>
+						0  0.1
+						1  0.9
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/controls/lighting/main-osg-blue">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
 					<tableData>
 						0  0.1
 						1  0.7

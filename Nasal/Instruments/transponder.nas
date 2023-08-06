@@ -2,7 +2,7 @@
 # Copyright (c) 2023 Josh Davidson (Octal450)
 
 var XPDR = {
-	altReport: props.globals.initNode("/instrumentation/transponder/input/alt-report", 1, "BOOL"),
+	altReport: props.globals.initNode("/instrumentation/transponder/input/alt-report"),
 	clearTime: 0,
 	code: "1200",
 	digit: [props.globals.initNode("/instrumentation/transponder/output/digit[0]", "1", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[1]", "2", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[2]", "0", "STRING"), props.globals.initNode("/instrumentation/transponder/output/digit[3]", "0", "STRING")],
@@ -17,7 +17,7 @@ var XPDR = {
 	onMode: 5,
 	power: props.globals.getNode("/systems/electrical/outputs/transponder", 1),
 	tcasMode: props.globals.getNode("/instrumentation/tcas/inputs/mode"),
-	xpdr: props.globals.initNode("/instrumentation/transponder/input/xpdr", 0, "BOOL"),
+	xpdr: props.globals.getNode("/instrumentation/transponder/input/xpdr"),
 	init: func() { # Don't reset the code
 		me.altReport.setBoolValue(1);
 		me.codeEntryActive = 0;

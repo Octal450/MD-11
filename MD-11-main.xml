@@ -1532,6 +1532,10 @@
 			</speaker>
 		</tcas>
 		<transponder n="0">
+			<input n="0">
+				<alt-report type="bool">1</alt-report>
+				<xpdr type="bool">0</xpdr>
+			</input>
 			<inputs n="0">
 				<knob-mode type="int">1</knob-mode>
 			</inputs>

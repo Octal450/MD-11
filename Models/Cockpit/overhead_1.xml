@@ -5550,6 +5550,35 @@
 		</font-resolution>
 	</text>
 	
+	<animation>
+		<type>material</type>
+		<object-name>Digits.Tank1</object-name>
+		<object-name>Digits.Tank2</object-name>
+		<object-name>Digits.Tank3</object-name>
+		<object-name>Digits.TankAux</object-name>
+		<object-name>Digits.TankTail</object-name>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</diffuse>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</ambient>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+		<emission>
+			<red-prop>controls/lighting/overhead-osg-red</red-prop>
+			<green-prop>controls/lighting/overhead-osg-green</green-prop>
+			<blue-prop>controls/lighting/overhead-osg-blue</blue-prop>
+		</emission>
+	</animation>
+	
 	<!-- FADEC/Engine Ignition Panel -->
 	<animation>
 		<type>pick</type>
@@ -7050,35 +7079,6 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>
-	
-	<animation>
-		<type>material</type>
-		<object-name>Digits.Tank1</object-name>
-		<object-name>Digits.Tank2</object-name>
-		<object-name>Digits.Tank3</object-name>
-		<object-name>Digits.TankAux</object-name>
-		<object-name>Digits.TankTail</object-name>
-		<diffuse>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</diffuse>
-		<ambient>
-			<red>1</red>
-			<green>1</green>
-			<blue>1</blue>
-		</ambient>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
-		<emission>
-			<red-prop>controls/lighting/overhead-osg-red</red-prop>
-			<green-prop>controls/lighting/overhead-osg-green</green-prop>
-			<blue-prop>controls/lighting/overhead-osg-blue</blue-prop>
-		</emission>
 	</animation>
 	
 </PropertyList>
