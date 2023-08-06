@@ -7,7 +7,29 @@
 	<path>transponder.ac</path>
 	
 	<animation>
-		<name>Panel lighting</name>
+		<name>Display</name>
+		<object-name>ATC</object-name>
+		<object-name>ATC1</object-name>
+		<object-name>ATC2</object-name>
+		<object-name>Digit0</object-name>
+		<object-name>Digit1</object-name>
+		<object-name>Digit2</object-name>
+		<object-name>Digit3</object-name>
+		<object-name>DigitTest</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/outputs/transponder</property>
+				<value>24</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>material</type>
 		<object-name>Display</object-name>
 		<object-name>XPDR.text</object-name>
@@ -34,17 +56,6 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>XPDR.text</object-name>
 	</effect>
-	
-	<animation>
-		<type>select</type>
-		<object-name>Display</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/outputs/transponder</property>
-				<value>24</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
 	
 	<text>
 		<name>Digit0</name>
@@ -511,18 +522,6 @@
 		<condition>
 			<property>controls/switches/annun-test</property>
 		</condition>
-	</animation>
-	
-	<animation>
-		<name>Display</name>
-		<object-name>ATC</object-name>
-		<object-name>ATC1</object-name>
-		<object-name>ATC2</object-name>
-		<object-name>Digit0</object-name>
-		<object-name>Digit1</object-name>
-		<object-name>Digit2</object-name>
-		<object-name>Digit3</object-name>
-		<object-name>DigitTest</object-name>
 	</animation>
 	
 	<animation>

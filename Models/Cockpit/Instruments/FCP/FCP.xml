@@ -7,6 +7,67 @@
 	<path>FCP.ac</path>
 	
 	<animation>
+		<name>Digits</name>
+		<object-name>Digits.Alt</object-name>
+		<object-name>Digits.VsBlank</object-name>
+		<object-name>Digits.Fpa</object-name>
+		<object-name>Digits.Hdg</object-name>
+		<object-name>Digits.HdgBlank</object-name>
+		<object-name>Digits.Ias</object-name>
+		<object-name>Digits.Mach</object-name>
+		<object-name>Digits.Vs</object-name>
+	</animation>
+	
+	<animation>
+		<name>Labels</name>
+		<object-name>Digits.FpaLabel</object-name>
+		<object-name>Digits.FtLabel</object-name>
+		<object-name>Digits.HdgLabel</object-name>
+		<object-name>Digits.IasLabel</object-name>
+		<object-name>Digits.MachLabel</object-name>
+		<object-name>Digits.MLabel</object-name>
+		<object-name>Digits.TrkLabel</object-name>
+		<object-name>Digits.VsLabel</object-name>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Digits</object-name>
+		<condition>
+			<and>
+				<not><property>controls/switches/annun-test</property></not>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/fcp</property>
+					<value>24</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Digits.Test</object-name>
+		<condition>
+			<and>
+				<property>controls/switches/annun-test</property>
+				<greater-than-equals>
+					<property>systems/electrical/outputs/fcp</property>
+					<value>24</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Labels</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>systems/electrical/outputs/fcp</property>
+				<value>24</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>material</type>
 		<object-name>mcp_text</object-name>
 		<object-name>integlight.indicator</object-name>
@@ -1395,67 +1456,7 @@
 		</condition>
 	</animation>
 	
-	<!-- LCD Main -->
-	<animation>
-		<name>Digits</name>
-		<object-name>Digits.Alt</object-name>
-		<object-name>Digits.VsBlank</object-name>
-		<object-name>Digits.Fpa</object-name>
-		<object-name>Digits.Hdg</object-name>
-		<object-name>Digits.HdgBlank</object-name>
-		<object-name>Digits.Ias</object-name>
-		<object-name>Digits.Mach</object-name>
-		<object-name>Digits.Vs</object-name>
-	</animation>
-	<animation>
-		<name>Labels</name>
-		<object-name>Digits.FpaLabel</object-name>
-		<object-name>Digits.FtLabel</object-name>
-		<object-name>Digits.HdgLabel</object-name>
-		<object-name>Digits.IasLabel</object-name>
-		<object-name>Digits.MachLabel</object-name>
-		<object-name>Digits.MLabel</object-name>
-		<object-name>Digits.TrkLabel</object-name>
-		<object-name>Digits.VsLabel</object-name>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>Digits</object-name>
-		<condition>
-			<and>
-				<not><property>controls/switches/annun-test</property></not>
-				<greater-than-equals>
-					<property>systems/electrical/outputs/fcp</property>
-					<value>24</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Digits.Test</object-name>
-		<condition>
-			<and>
-				<property>controls/switches/annun-test</property>
-				<greater-than-equals>
-					<property>systems/electrical/outputs/fcp</property>
-					<value>24</value>
-				</greater-than-equals>
-			</and>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>Labels</object-name>
-		<condition>
-			<greater-than-equals>
-				<property>systems/electrical/outputs/fcp</property>
-				<value>24</value>
-			</greater-than-equals>
-		</condition>
-	</animation>
-	
+	<!-- LCD Lighting -->
 	<animation>
 		<type>material</type>
 		<object-name>Digits</object-name>
