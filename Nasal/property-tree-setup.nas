@@ -45,6 +45,8 @@ var Controls = {
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
 		annunTest: props.globals.getNode("/controls/switches/annun-test"),
+		gpwsOvrd: props.globals.getNode("/controls/switches/gpws-ovrd"),
+		gpwsOvrdCover: props.globals.getNode("/controls/switches/gpws-ovrd-cover"),
 		minimums: props.globals.getNode("/controls/switches/minimums"),
 		noSmokingSign: props.globals.getNode("/controls/switches/no-smoking-sign"),
 		seatbeltSign: props.globals.getNode("/controls/switches/seatbelt-sign"),
@@ -191,6 +193,14 @@ var Instrumentation = {
 		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
 		middle: props.globals.getNode("/instrumentation/marker-beacon/middle"),
 		outer: props.globals.getNode("/instrumentation/marker-beacon/outer"),
+	},
+	MkViii: {
+		Inputs: {
+			Discretes: {
+				momentaryFlapOverride: props.globals.getNode("/instrumentation/mk-viii/inputs/discretes/momentary-flap-override"),
+				selfTest: props.globals.getNode("/instrumentation/mk-viii/inputs/discretes/self-test"),
+			},
+		},
 	},
 	Nav: {
 		Frequencies: {

@@ -1,6 +1,8 @@
 # McDonnell Douglas MD-11 Buttons and Switches
 # Copyright (c) 2023 Josh Davidson (Octal450)
 
+var gpwsOvrd = 0;
+
 # Resets buttons to the default values
 var variousReset = func() {
 	pts.Controls.Flight.dialAFlap.setValue(15); 
@@ -13,6 +15,8 @@ var variousReset = func() {
 	pts.Controls.Lighting.navLights.setBoolValue(0);
 	pts.Controls.Lighting.strobe.setBoolValue(0);
 	pts.Controls.Switches.adgHandle.setValue(0);
+	pts.Controls.Switches.gpwsOvrd.setValue(0);
+	pts.Controls.Switches.gpwsOvrdCover.setBoolValue(0);
 	pts.Controls.Switches.minimums.setValue(250);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
@@ -251,3 +255,13 @@ var unSTD = func() {
 		pts.Instrumentation.Altimeter.std.setBoolValue(0);
 	}
 }
+
+setlistener("/controls/switches/gpws-ovrd", func() {
+	gpwsOvrd = pts.Controls.Switches.gpwsOvrd.getValue();
+	
+	if (gpwsOvrd == 1) pts.Instrumentation.MkViii.Inputs.Discretes.selfTest.setBoolValue(1);
+	else pts.Instrumentation.MkViii.Inputs.Discretes.selfTest.setBoolValue(0);
+	
+	if (gpwsOvrd == -1) pts.Instrumentation.MkViii.Inputs.Discretes.momentaryFlapOverride.setBoolValue(1);
+	else pts.Instrumentation.MkViii.Inputs.Discretes.momentaryFlapOverride.setBoolValue(0);
+}, 0, 0);

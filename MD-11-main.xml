@@ -743,6 +743,8 @@
 		<switches n="0">
 			<adg-handle type="double">0</adg-handle>
 			<annun-test type="bool">0</annun-test>
+			<gpws-ovrd type="int">0</gpws-ovrd>
+			<gpws-ovrd-cover type="bool">0</gpws-ovrd-cover>
 			<minimums type="int">200</minimums>
 			<no-smoking-sign type="double">1</no-smoking-sign> <!-- Smoking is bad! -->
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>

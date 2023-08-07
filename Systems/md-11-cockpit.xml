@@ -299,6 +299,16 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/overhead/gpws-ovrd">
+			<input>/controls/switches/gpws-ovrd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/gpws-ovrd-cover">
+			<input>/controls/switches/gpws-ovrd-cover</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/overhead/iru-knob[0]">
 			<input>/controls/iru[0]/switches/knob</input>
 			<c1>20</c1>

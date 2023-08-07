@@ -59,6 +59,7 @@
 		</condition>
 	</animation>
 	
+	<!-- APU -->
 	<animation>
 		<type>pick</type>
 		<object-name>APUStartStop</object-name>
@@ -120,6 +121,140 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<!-- GPWS -->
+	<animation>
+		<type>knob</type>
+		<object-name>GpwsOvrdCover</object-name>
+		<property>controls/cockpit/overhead/gpws-ovrd-cover</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>-100</factor>
+		<center>
+			<x-m>-16.8084</x-m>
+			<y-m>0</y-m>
+			<z-m>-22.3806</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<increase>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/gpws-ovrd-cover</property>
+				<value>1</value>
+			</binding>
+		</increase>
+		<decrease>
+			<binding>
+				<condition>
+					<equals>
+						<property>controls/switches/gpws-ovrd</property>
+						<value>-1</value>
+					</equals>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>controls/switches/gpws-ovrd</property>
+						<value>-1</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/switches/gpws-ovrd</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/gpws-ovrd-cover</property>
+				<value>0</value>
+			</binding>
+		</decrease>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>GpwsOvrd</object-name>
+		<property>controls/cockpit/overhead/gpws-ovrd</property>
+		<interpolation>
+			<entry><ind>-1</ind><dep>-30</dep></entry>
+			<entry><ind> 0</ind><dep>  0</dep></entry>
+			<entry><ind> 1</ind><dep> 30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-16.8088</x-m>
+			<y-m>0</y-m>
+			<z-m>-22.3941</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>GpwsOvrd</object-name>
+		<action>
+		    <button>0</button>
+		    <repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>controls/switches/gpws-ovrd-cover</property></not>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/switches/gpws-ovrd</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+			<binding>
+				<condition>
+					<property>controls/switches/gpws-ovrd-cover</property>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/switches/gpws-ovrd</property>
+				<value>-1</value>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+		    <button>1</button>
+		    <repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>controls/switches/gpws-ovrd-cover</property></not>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/switches/gpws-ovrd</property>
+				<value>0</value>
+				<value>1</value>
+			</binding>
+			<binding>
+				<condition>
+					<property>controls/switches/gpws-ovrd-cover</property>
+				</condition>
+				<command>property-cycle</command>
+				<property>controls/switches/gpws-ovrd</property>
+				<value>1</value>
+				<value>0</value>
+				<value>-1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
 	</animation>
 
 </PropertyList>
