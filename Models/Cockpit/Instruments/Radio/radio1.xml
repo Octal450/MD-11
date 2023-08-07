@@ -15,6 +15,7 @@
 		<name>Display</name>
 		<object-name>DigitsActive</object-name>
 		<object-name>DigitsStby</object-name>
+		<object-name>DigitsTest</object-name>
 		<object-name>ModeVhf</object-name>
 		<object-name>Mode1</object-name>
 		<object-name>Mode2</object-name>
@@ -289,6 +290,29 @@
 			<height>32</height>
 		</font-resolution>
 	</text>
+	<text>
+		<name>DigitsTest</name>
+		<offsets>
+			<x-m>-0.0069</x-m>
+			<y-m>-0.01656</y-m>
+			<z-m>0.00219</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>888.888</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0055</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
 	
 	<text>
 		<name>DigitsStby</name>
@@ -315,6 +339,45 @@
 			<height>32</height>
 		</font-resolution>
 	</text>
+	<text>
+		<name>DigitsTest</name>
+		<offsets>
+			<x-m>-0.0069</x-m>
+			<y-m>0.04262</y-m>
+			<z-m>0.00219</z-m>
+			<heading-deg>90</heading-deg>
+			<roll-deg>-90</roll-deg>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>xz-plane</axis-alignment>
+		<type>literal</type>
+		<text>888.888</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.0055</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	
+	<animation>
+		<type>select</type>
+		<object-name>DigitsActive</object-name>
+		<object-name>DigitsStby</object-name>
+		<condition>
+			<not><property>controls/switches/annun-test</property></not>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>DigitsTest</object-name>
+		<condition>
+			<property>controls/switches/annun-test</property>
+		</condition>
+	</animation>
 	
 	<!-- Active Mode -->
 	<text>
