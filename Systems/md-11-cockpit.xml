@@ -284,6 +284,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/overhead/emer-lt">
+			<input>/controls/lighting/emer-lt</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/overhead/emer-pwr">
 			<input>/controls/electrical/switches/emer-pwr</input>
 			<c1>20</c1>

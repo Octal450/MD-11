@@ -6606,11 +6606,67 @@
 	<!-- Other -->
 	<animation>
 		<type>rotate</type>
+		<object-name>emerlt.lever</object-name>
+		<property>controls/cockpit/overhead/emer-lt</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep> 30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0439</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>emerlt.lever</object-name>
+		<action>
+			<button>0</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/emer-lt</property>
+				<value>0</value>
+				<value>0.5</value>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-cycle</command>
+				<property>controls/lighting/emer-lt</property>
+				<value>1</value>
+				<value>0.5</value>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
 		<object-name>nosmoking.lever</object-name>
 		<property>controls/cockpit/overhead/no-smoking-sign</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>-30</dep></entry>
-			<entry><ind>1.0</ind><dep> 30</dep></entry>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep> 30</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-21.7985</x-m>
@@ -6665,8 +6721,8 @@
 		<object-name>seatbelts.lever</object-name>
 		<property>controls/cockpit/overhead/seatbelt-sign</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>-30</dep></entry>
-			<entry><ind>1.0</ind><dep> 30</dep></entry>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep> 30</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-21.7985</x-m>

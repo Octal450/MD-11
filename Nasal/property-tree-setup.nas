@@ -35,6 +35,7 @@ var Controls = {
 	},
 	Lighting: {
 		beacon: props.globals.getNode("/controls/lighting/beacon"),
+		emerLt: props.globals.getNode("/controls/lighting/emer-lt"),
 		landingLightL: props.globals.getNode("/controls/lighting/landing-light-l"),
 		landingLightN: props.globals.getNode("/controls/lighting/landing-light-n"),
 		landingLightR: props.globals.getNode("/controls/lighting/landing-light-r"),

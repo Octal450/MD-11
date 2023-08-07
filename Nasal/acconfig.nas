@@ -314,6 +314,7 @@ var PANEL = {
 		pts.Services.Chocks.enable.setBoolValue(1);
 		systems.ELEC.Switch.battery.setBoolValue(1);
 		systems.ELEC.Switch.emerPwr.setValue(1);
+		pts.Controls.Lighting.emerLt.setValue(0.5);
 		systems.APU.fastStart();
 		systems.IRS.Switch.knob[0].setBoolValue(1);
 		systems.IRS.Switch.knob[1].setBoolValue(1);
@@ -347,6 +348,7 @@ var PANEL = {
 		pts.Services.Chocks.enable.setBoolValue(0);
 		systems.ELEC.Switch.battery.setBoolValue(1);
 		systems.ELEC.Switch.emerPwr.setValue(1);
+		pts.Controls.Lighting.emerLt.setValue(0.5);
 		systems.ELEC.Switch.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
 		systems.ELEC.Switch.extPwr.setBoolValue(1);
 		systems.ELEC.Switch.extGPwr.setBoolValue(1);
