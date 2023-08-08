@@ -21,7 +21,7 @@
 		<object-name>FlapLimit.light</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>emerPwrrKnb.light</object-name>
-		<object-name>SmokeElecAirNorm.light</object-name>
+		<object-name>SmokeElecAir.light</object-name>
 		<object-name>CockpitTemp.light</object-name>
 		<object-name>FwdTemp.light</object-name>
 		<object-name>MidTemp.light</object-name>
@@ -2844,7 +2844,7 @@
 		</condition>
 	</animation>
 	
-	<!-- ADG Electrical and Cabin Bus -->
+	<!-- ADG Electrical, Smoke Elec/Air, and Cabin Bus -->
 	<animation>
 		<type>pick</type>
 		<object-name>ADGElec</object-name>
@@ -2883,6 +2883,45 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>SmokeElecAir</object-name>
+		<object-name>SmokeElecAir.light</object-name>
+		<property>controls/cockpit/overhead/smoke-elec-air</property>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>90</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.12695</y-m>
+			<z-m>-17.7804</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<increase>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/electrical/switches/smoke-elec-air</property>
+				<step>1</step>
+				<min>0</min>
+				<max>4</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</increase>
+		<decrease>
+			<binding>
+				<command>nasal</command>
+				<script>gui.popupTip("This knob only rotates clockwise");</script>
+			</binding>
+		</decrease>
 	</animation>
 	
 	<animation>

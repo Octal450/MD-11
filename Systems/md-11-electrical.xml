@@ -772,6 +772,7 @@
 		<switch name="/systems/electrical/relay/idg-ac-gen-1/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/electrical/relay/idg-ac-gen-1/command-pos eq 1
 				/systems/electrical/sources/idg-1/output-volt ge 112
 			</test>
@@ -794,6 +795,7 @@
 		<switch name="/systems/electrical/relay/idg-ac-gen-2/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/relay/idg-ac-gen-2/command-pos eq 1
 				/systems/electrical/sources/idg-2/output-volt ge 112
 			</test>
@@ -816,6 +818,7 @@
 		<switch name="/systems/electrical/relay/idg-ac-gen-3/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/electrical/relay/idg-ac-gen-3/command-pos eq 1
 				/systems/electrical/sources/idg-3/output-volt ge 112
 			</test>
@@ -833,6 +836,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
@@ -848,6 +852,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
@@ -863,6 +868,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
@@ -884,6 +890,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/failures/electrical/ac-tie-1 ne 1
 			</test>
 		</switch>
@@ -903,6 +910,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-2 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/failures/electrical/ac-tie-2 ne 1
 			</test>
 		</switch>
@@ -922,6 +930,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/ac-tie-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/failures/electrical/ac-tie-3 ne 1
 			</test>
 		</switch>
@@ -1090,11 +1099,12 @@
 			</test>
 		</switch>
 		
-		<!-- APU External Power AC Gen Bus Relays -->
+		<!-- APU External Power AC Ground Service Relays -->
 		<switch name="/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/apu-pwr eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/sources/apu/output-volt ge 112
 			</test>
 		</switch>
@@ -1110,6 +1120,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu ne 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/relay/ext-pwr/output ge 112
 			</test>
 		</switch>
@@ -1176,7 +1187,8 @@
 		<!-- AC Gen Bus 2 AC Ground Service Bus Relay -->
 		<switch name="/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/bus/ac-gen-2 ge 112
 			</test>
 		</switch>
@@ -1452,6 +1464,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/dc-tie-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/failures/electrical/dc-tie-1 ne 1
 			</test>
 		</switch>
@@ -1465,7 +1478,8 @@
 		
 		<switch name="/systems/electrical/rcb/dc-tie-dc-2/contact-pos">
 			<default value="0"/>
-			<test value="1"> <!-- I don't know what triggers this, its a dummy -->
+			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/rcb/dc-tie-dc-2/command-pos eq 1
 			</test>
 		</switch>
@@ -1479,7 +1493,8 @@
 		
 		<switch name="/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos">
 			<default value="0"/>
-			<test value="1"> <!-- I don't know what triggers this, its a dummy -->
+			<test logic="AND" value="1">
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/electrical/rcb/dc-tie-dc-gndsvc/command-pos eq 1
 			</test>
 		</switch>
@@ -1495,6 +1510,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/electrical/switches/dc-tie-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/failures/electrical/dc-tie-3 ne 1
 			</test>
 		</switch>
@@ -1730,6 +1746,9 @@
 		<!-- Left Emergency DC Bus Remote Circuit Breaker -->
 		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos">
 			<default value="0"/>
+			<test value="0">
+				/controls/electrical/switches/smoke-elec-air eq 3
+			</test>
 			<test value="1"> <!-- ON -->
 				/controls/electrical/switches/emer-pwr eq 2
 			</test>
@@ -1808,6 +1827,9 @@
 		
 		<switch name="/systems/electrical/relay/si-1-l-emer-ac/command-pos">
 			<default value="0"/>
+			<test value="0">
+				/controls/electrical/switches/smoke-elec-air eq 3
+			</test>
 			<test value="1"> <!-- ON -->
 				/controls/electrical/switches/emer-pwr eq 2
 			</test>
@@ -1982,8 +2004,9 @@
 		<!-- Galley Bus Relays -->
 		<switch name="/systems/electrical/relay/galley-1/contact-pos">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/galley-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 			</test>
 		</switch>
 		
@@ -1996,8 +2019,9 @@
 		
 		<switch name="/systems/electrical/relay/galley-2/contact-pos">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/galley-2 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 			</test>
 		</switch>
 		
@@ -2010,8 +2034,9 @@
 		
 		<switch name="/systems/electrical/relay/galley-3/contact-pos">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
 				/controls/electrical/switches/galley-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 			</test>
 		</switch>
 		

@@ -368,6 +368,11 @@
 			<input>/controls/switches/seatbelt-sign</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/smoke-elec-air"> <!-- TODO: Fix this -->
+			<input>/controls/electrical/switches/smoke-elec-air</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
