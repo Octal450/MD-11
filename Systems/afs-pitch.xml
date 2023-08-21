@@ -367,6 +367,15 @@
 		</input>
 		<input>
 			<condition>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/nav-rate-of-climb-fpm</property>
+		</input>
+		<input>
+			<condition>
 				<or>
 					<equals>
 						<property>/it-autoflight/output/vert</property>
@@ -384,15 +393,6 @@
 			<condition>
 				<equals>
 					<property>/it-autoflight/output/vert</property>
-					<value>6</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/target-fpm-land</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/output/vert</property>
 					<value>5</value>
 				</equals>
 			</condition>
@@ -402,10 +402,10 @@
 			<condition>
 				<equals>
 					<property>/it-autoflight/output/vert</property>
-					<value>2</value>
+					<value>6</value>
 				</equals>
 			</condition>
-			<property>/it-autoflight/internal/nav-rate-of-climb-fpm</property>
+			<property>/it-autoflight/internal/target-fpm-land</property>
 		</input>
 		<output>/it-autoflight/internal/target-common-fpm</output>
 	</filter>
