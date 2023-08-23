@@ -2,7 +2,6 @@
 
 <!-- McDonnell Douglas MD-11 Aerodynamics -->
 <!-- Copyright (c) 2023 Josh Davidson (Octal450) -->
-<!-- Source A: Results of Winglet Development Studies for DC-10 Derivatives -->
 
 <aerodynamics>
 	
@@ -55,7 +54,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCLge</property>
-				<table> <!-- Based off: Source A, Figure 47 -->
+				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 					<tableData>
@@ -264,7 +263,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<table> <!-- Based off: Source A, Figure 47, 55, Factor 8 -->
+				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
 						-14.7960  0.0549
@@ -543,8 +542,8 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value> <!-- Correct graph -->
-				<table> <!-- Based off: Source A, Figure 11 -->
+				<value>0.44</value>
+				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
 						-4.4412 -0.0034
@@ -680,7 +679,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<table> <!-- Based off: Source A, Figure 7, -2 Bias -->
+				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
 						-9.4468  0.2663
@@ -814,8 +813,8 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value> <!-- Correct graph -->
-				<table> <!-- Based off: Source A, Figure 15 -->
+				<value>0.44</value>
+				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
 						-4.7093  0.0045
