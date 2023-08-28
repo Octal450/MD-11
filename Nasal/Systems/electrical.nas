@@ -103,16 +103,15 @@ var ELEC = {
 		si1_LEmerAc: props.globals.getNode("/systems/electrical/relay/si-1-l-emer-ac/contact-pos"),
 	},
 	Source: {
-		batChargerPowered: props.globals.getNode("/systems/electrical/sources/bat-charger-powered"),
 		Adg: {
 			hertz: props.globals.getNode("/systems/electrical/sources/adg/output-hertz"),
 			volt: props.globals.getNode("/systems/electrical/sources/adg/output-volt"),
 		},
 		Apu: {
 			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
-			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 			pmgHertz: props.globals.getNode("/systems/electrical/sources/apu/pmg-hertz"),
 			pmgVolt: props.globals.getNode("/systems/electrical/sources/apu/pmg-volt"),
+			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 		},
 		Bat1: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),
@@ -124,6 +123,7 @@ var ELEC = {
 			percent: props.globals.getNode("/systems/electrical/sources/bat-2/percent"),
 			volt: props.globals.getNode("/systems/electrical/sources/bat-2/volt"),
 		},
+		batChargerPowered: props.globals.getNode("/systems/electrical/sources/bat-charger-powered"),
 		Ext: {
 			hertz: props.globals.getNode("/systems/electrical/sources/ext/output-hertz"),
 			hertzGalley: props.globals.getNode("/systems/electrical/sources/ext/output-galley-hertz"),
