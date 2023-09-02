@@ -521,7 +521,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-1-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/l-eng-1-pump-psi</property>
@@ -537,7 +537,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-1-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/sys-1-pre-psi-cmd</property>
@@ -625,7 +625,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-2-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/l-eng-2-pump-psi</property>
@@ -641,7 +641,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-2-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/sys-2-pre-psi-cmd</property>
@@ -761,7 +761,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-3-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/l-eng-3-pump-psi</property>
@@ -779,7 +779,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-3-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<max>
 						<property>/systems/hydraulics/rmp/sys-1-to-sys-3</property>
@@ -810,7 +810,7 @@
 				<ifthen>
 					<ge>
 						<property>/systems/hydraulics/sys-3-aft-qty</property>
-						<value>1.0</value>
+						<value>1</value>
 					</ge>
 					<property>/systems/hydraulics/sys-3-psi-cmd</property>
 					<value>40</value>
