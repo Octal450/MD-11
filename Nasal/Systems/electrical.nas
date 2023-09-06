@@ -2,7 +2,7 @@
 # Copyright (c) 2023 Josh Davidson (Octal450)
 
 var ELEC = {
-	Bus: { # Volts
+	Bus: {
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
 		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),
 		ac3: props.globals.getNode("/systems/electrical/bus/ac-3"),
@@ -59,48 +59,6 @@ var ELEC = {
 	Light: {
 		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
-	},
-	RCB: { # 0 is Open, 1 is Closed
-		dcBat_LEmerDc: props.globals.getNode("/systems/electrical/rcb/dc-bat-l-emer-dc/contact-pos"),
-		dcTie_Dc1: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-1/contact-pos"),
-		dcTie_Dc2: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-2/contact-pos"),
-		dcTie_Dc3: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-3/contact-pos"),
-		dcTie_DcGndSvc: props.globals.getNode("/systems/electrical/rcb/dc-tie-dc-gndsvc/contact-pos"),
-		tr3_Dc3: props.globals.getNode("/systems/electrical/rcb/tr-3-dc-3/contact-pos"),
-	},
-	Relay: { # 0 is Open, 1 is Closed
-		acGen1_LEmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-1-l-emer-ac/contact-pos"),
-		acGen1_Tr1: props.globals.getNode("/systems/electrical/relay/ac-gen-1-tr-1/contact-pos"),
-		acGen2_AcGndSvc: props.globals.getNode("/systems/electrical/relay/ac-gen-2-ac-gndsvc/contact-pos"),
-		acGen2_Tr2a: props.globals.getNode("/systems/electrical/relay/ac-gen-2-tr-2a/contact-pos"),
-		acGen3_REmerAc: props.globals.getNode("/systems/electrical/relay/ac-gen-3-r-emer-ac/contact-pos"),
-		acGen_Ext_Galley1_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-ac-gen"),
-		acGen_Ext_Galley1_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-1/contact-pos-extg"),
-		acGen_Ext_Galley2_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-ac-gen"),
-		acGen_Ext_Galley2_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-2/contact-pos-extg"),
-		acGen_Ext_Galley3_S1: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-ac-gen"),
-		acGen_Ext_Galley3_S2: props.globals.getNode("/systems/electrical/relay/ac-gen-ext-galley-3/contact-pos-extg"),
-		acGndSvc_Tr2b: props.globals.getNode("/systems/electrical/relay/ac-gndsvc-tr-2b/contact-pos"),
-		acTie_AcGen1: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-1/contact-pos"),
-		acTie_AcGen2: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-2/contact-pos"),
-		acTie_AcGen3: props.globals.getNode("/systems/electrical/relay/ac-tie-ac-gen-3/contact-pos"),
-		adg_REmerAc: props.globals.getNode("/systems/electrical/relay/adg-r-emer-ac/contact-pos"),
-		apu_AcGen1: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-1/contact-pos"),
-		apu_AcGen2: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-2/contact-pos"),
-		apu_AcGen3: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-3/contact-pos"),
-		apu_Ext_AcGndSvc_S1: props.globals.getNode("/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-apu"),
-		apu_Ext_AcGndSvc_S2: props.globals.getNode("/systems/electrical/relay/apu-ext-ac-gndsvc/contact-pos-ext"),
-		ext_AcTie: props.globals.getNode("/systems/electrical/relay/ext-ac-tie/contact-pos"),
-		extPwr: props.globals.getNode("/systems/electrical/relay/ext-pwr/contact-pos"),
-		extGPwr: props.globals.getNode("/systems/electrical/relay/extg-pwr/contact-pos"),
-		galley1: props.globals.getNode("/systems/electrical/relay/galley-1/contact-pos"),
-		galley2: props.globals.getNode("/systems/electrical/relay/galley-2/contact-pos"),
-		galley3: props.globals.getNode("/systems/electrical/relay/galley-3/contact-pos"),
-		idg_AcGen1: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-1/contact-pos"),
-		idg_AcGen2: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-2/contact-pos"),
-		idg_AcGen3: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-3/contact-pos"),
-		rEmerAc_Tr3: props.globals.getNode("/systems/electrical/relay/r-emer-ac-tr-3/contact-pos"),
-		si1_LEmerAc: props.globals.getNode("/systems/electrical/relay/si-1-l-emer-ac/contact-pos"),
 	},
 	Source: {
 		Adg: {
