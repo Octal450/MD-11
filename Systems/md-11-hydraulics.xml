@@ -608,7 +608,7 @@
 				/systems/hydraulics/l-eng-2-pump-psi lt 2400
 				/systems/hydraulics/r-eng-2-pump-psi-input ge 2400
 			</test>
-			<test value="-2"> <!-- ARM -->
+			<test value="-1"> <!-- ARM -->
 				/controls/hydraulics/switches/r-pump-2 eq 1
 			</test>
 		</switch>
@@ -712,7 +712,7 @@
 				/systems/hydraulics/l-eng-3-pump-psi lt 2400
 				/systems/hydraulics/r-eng-3-pump-psi-input ge 2400
 			</test>
-			<test value="-3"> <!-- ARM -->
+			<test value="-1"> <!-- ARM -->
 				/controls/hydraulics/switches/r-pump-3 eq 1
 			</test>
 		</switch>
