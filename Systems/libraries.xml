@@ -219,6 +219,12 @@
 		<name>Engine 2 Cutoff</name>
 		<type>gain</type>
 		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/systems/failures/hydraulics/catastrophic-aft</property>
+			</condition>
+			<value>1</value>
+		</input>
 		<input>/systems/ignition/cutoff-2</input>
 		<output>/controls/engines/engine[1]/cutoff</output>
 	</filter>

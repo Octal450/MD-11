@@ -32,15 +32,17 @@
 		<!-- SYS 1 -->
 		<switch name="/systems/hydraulics/sys-1-qty-cmd">
 			<default value="/systems/hydraulics/sys-1-qty-input"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/systems/failures/hydraulics/sys-1-leak eq 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/hydraulics/sys-1-qty-decr-rate">
 			<default value="100"/> <!-- Instant -->
-			<test value="0.25">
+			<test logic="OR" value="0.25">
 				/systems/failures/hydraulics/sys-1-leak eq 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
 			</test>
 		</switch>
 		
@@ -53,15 +55,17 @@
 		<!-- SYS 2 -->
 		<switch name="/systems/hydraulics/sys-2-qty-cmd">
 			<default value="/systems/hydraulics/sys-2-qty-input"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/systems/failures/hydraulics/sys-2-leak eq 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/hydraulics/sys-2-qty-decr-rate">
 			<default value="100"/> <!-- Instant -->
-			<test value="0.25">
+			<test logic="OR" value="0.25">
 				/systems/failures/hydraulics/sys-2-leak eq 1
+				/systems/failures/hydraulics/catastrophic-aft eq 1
 			</test>
 		</switch>
 		
