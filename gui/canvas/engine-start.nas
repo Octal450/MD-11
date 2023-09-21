@@ -20,7 +20,7 @@ var engineStartCanvas = {
 		return ["cutoff1", "cutoff2", "cutoff3", "start1", "start2", "start3"];
 	},
 	close: func() {
-		me._dialogUpdateT.stop();
+		me._dialogUpdate.stop();
 		me._dialog.del();
 		me._dialog = nil;
 	},
