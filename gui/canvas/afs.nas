@@ -11,7 +11,7 @@ var afsCanvas = {
 		m._root = nil;
 		m._svgKeys = nil;
 		m._key = nil;
-		m._dialogUpdate = maketimer(0.05, m, afsCanvas._update);
+		m._dialogUpdate = maketimer(0.05, m, m._update);
 		m._ovrd = [0, 0];
 		m._vert = 0;
 		
@@ -22,7 +22,7 @@ var afsCanvas = {
 		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "HdgInd", "HdgKnob", "HdgTrk", "Hdg_7seg", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "SpdKnob", "Spd_7seg", "TrkInd", "VsFpa", "VsInd", "VsKnob", "Vs_7seg"];
 	},
 	close: func() {
-		me._dialogUpdateT.stop();
+		me._dialogUpdate.stop();
 		me._dialog.del();
 		me._dialog = nil;
 	},

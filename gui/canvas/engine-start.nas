@@ -11,7 +11,7 @@ var engineStartCanvas = {
 		m._root = nil;
 		m._svgKeys = nil;
 		m._key = nil;
-		m._dialogUpdate = maketimer(0.1, m, engineStartCanvas._update);
+		m._dialogUpdate = maketimer(0.1, m, m._update);
 		m._startCmd = [0, 0, 0];
 		
 		return m;
