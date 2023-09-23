@@ -374,8 +374,8 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>80</value>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
 				</less-than>
 			</condition>
 			<value>0</value>
@@ -423,8 +423,8 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>80</value>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
 				</less-than>
 			</condition>
 			<value>0</value>
@@ -1131,7 +1131,30 @@
 	</filter>
 	
 	<filter>
-		<name>FD Pitch Takeoff</name>
+		<name>FD Pitch Takeoff Schedule</name>
+		<type>noise-spike</type>
+		<input>
+			<expression>
+				<product>
+					<table>
+						<property>/orientation/pitch-deg</property>
+						<entry><ind> 1</ind><dep>1</dep></entry>
+						<entry><ind>10</ind><dep>0</dep></entry>
+					</table>
+					<table>
+						<property>/position/gear-agl-ft</property>
+						<entry><ind> 5</ind><dep>1</dep></entry>
+						<entry><ind>25</ind><dep>0</dep></entry>
+					</table>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/fd/pitch-bar-mixer</output>
+		<max-rate-of-change>2</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>FD Pitch Takeoff Command</name>
 		<type>noise-spike</type>
 		<input>
 			<condition>
@@ -1146,20 +1169,7 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<expression>
-				<product>
-					<table>
-						<property>/orientation/pitch-deg</property>
-						<entry><ind> 1</ind><dep>4.0</dep></entry>
-						<entry><ind>10</ind><dep>0.0</dep></entry>
-					</table>
-					<table>
-						<property>/position/gear-agl-ft</property>
-						<entry><ind> 5</ind><dep>1</dep></entry>
-						<entry><ind>30</ind><dep>0</dep></entry>
-					</table>
-				</product>
-			</expression>
+			<value>9.3</value>
 		</input>
 		<input>
 			<condition>
@@ -1174,53 +1184,114 @@
 					</greater-than-equals>
 				</and>
 			</condition>
-			<expression>
-				<product>
-					<table>
-						<property>/orientation/pitch-deg</property>
-						<entry><ind> 1</ind><dep>0.5</dep></entry>
-						<entry><ind>10</ind><dep>0.0</dep></entry>
-					</table>
-					<table>
-						<property>/position/gear-agl-ft</property>
-						<entry><ind> 5</ind><dep>1</dep></entry>
-						<entry><ind>30</ind><dep>0</dep></entry>
-					</table>
-				</product>
-			</expression>
+			<value>6</value>
 		</input>
 		<input>0</input>
-		<output>/it-autoflight/fd/pitch-bar-takeoff</output>
+		<output>/it-autoflight/fd/pitch-bar-takeoff-cmd</output>
 		<max-rate-of-change>7.5</max-rate-of-change>
 	</filter>
 	
 	<filter>
-		<name>FD Pitch</name>
-		<type>noise-spike</type>
+		<name>FD Pitch Takeoff</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</equals>
+					<greater-than>
+						<property>/it-autoflight/fd/pitch-bar-mixer</property>
+						<value>0</value>
+					</greater-than>
+				</and>
+			</condition>
+			<property>/it-autoflight/fd/pitch-bar-takeoff</property>
+		</input>
 		<input>
 			<expression>
+				<difference>
+					<property>/it-autoflight/fd/pitch-bar-takeoff-cmd</property>
+					<property>/orientation/pitch-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<output>/it-autoflight/fd/pitch-bar-takeoff</output>
+	</filter>
+	
+	<filter>
+		<name>FD Pitch Command</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/vert</property>
+					<value>8</value>
+				</equals>
+			</condition>
+			<expression>
+				<difference>
+					<property>/it-autoflight/input/pitch</property>
+					<property>/orientation/pitch-deg</property>
+				</difference>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<rad2deg>
+					<asin>
+						<div>
+							<difference>
+								<property>/it-autoflight/internal/target-common-fpm</property>
+								<property>/it-autoflight/internal/vert-speed-fpm</property>
+							</difference>
+							<product>
+								<max>
+									<property>/instrumentation/airspeed-indicator[0]/true-speed-kt</property>
+									<value>140</value>
+								</max>
+								<value>151.90288713910761</value> <!-- FPM to Knot * 1.5 -->
+							</product>
+						</div>
+					</asin>
+				</rad2deg>
+			</expression>
+		</input>
+		<output>/it-autoflight/fd/pitch-bar-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>FD Pitch Final</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/mode/vert</property>
+					<value>T/O CLB</value>
+				</equals>
+			</condition>
+			<expression>
 				<sum>
-					<rad2deg>
-						<asin>
-							<div>
-								<difference>
-									<property>/it-autoflight/internal/target-common-fpm</property>
-									<property>/it-autoflight/internal/vert-speed-fpm</property>
-								</difference>
-								<product>
-									<max>
-										<property>/instrumentation/airspeed-indicator[0]/true-speed-kt</property>
-										<value>140</value>
-									</max>
-									<value>151.90288713910761</value> <!-- FPM to Knot * 1.5 -->
-								</product>
-							</div>
-						</asin>
-					</rad2deg>
-					<property>/it-autoflight/fd/pitch-bar-takeoff</property>
+					<product>
+						<property>/it-autoflight/fd/pitch-bar-cmd</property>
+						<abs>
+							<sum>
+								<property>/it-autoflight/fd/pitch-bar-mixer</property>
+								<value>-1</value>
+							</sum>
+						</abs>
+					</product>
+					<product>
+						<property>/it-autoflight/fd/pitch-bar-takeoff</property>
+						<property>/it-autoflight/fd/pitch-bar-mixer</property>
+					</product>
 				</sum>
 			</expression>
 		</input>
+		<input>/it-autoflight/fd/pitch-bar-cmd</input>
 		<output>/it-autoflight/fd/pitch-bar</output>
 		<min>-15</min>
 		<max>15</max>
