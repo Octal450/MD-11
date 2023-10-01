@@ -414,7 +414,7 @@
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/tank-2-fwd-pump eq 1
 				/systems/failures/fuel/pumps-2 ne 1
-			</test>	
+			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-3 ge 112
 				/systems/fuel/system ne 1
@@ -480,7 +480,7 @@
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/tank-3-fwd-pump eq 1
 				/systems/failures/fuel/pumps-3 ne 1
-			</test>	
+			</test>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
 				/systems/fuel/system ne 1
