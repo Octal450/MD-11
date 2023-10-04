@@ -356,10 +356,10 @@ var FCC = {
 		lsasLeftOut: props.globals.getNode("/systems/failures/fcc/lsas-left-out"),
 		lsasRightIn: props.globals.getNode("/systems/failures/fcc/lsas-right-in"),
 		lsasRightOut: props.globals.getNode("/systems/failures/fcc/lsas-right-out"),
-		ydUpperA: props.globals.getNode("/systems/failures/fcc/yd-upper-a"),
-		ydUpperB: props.globals.getNode("/systems/failures/fcc/yd-upper-b"),
 		ydLowerA: props.globals.getNode("/systems/failures/fcc/yd-lower-a"),
 		ydLowerB: props.globals.getNode("/systems/failures/fcc/yd-lower-b"),
+		ydUpperA: props.globals.getNode("/systems/failures/fcc/yd-upper-a"),
+		ydUpperB: props.globals.getNode("/systems/failures/fcc/yd-upper-b"),
 	},
 	fcc1Power: props.globals.getNode("/fdm/jsbsim/fcc/fcc1-power"),
 	fcc2Power: props.globals.getNode("/fdm/jsbsim/fcc/fcc2-power"),
@@ -377,10 +377,10 @@ var FCC = {
 		lsasLeftOut: props.globals.getNode("/controls/fcc/switches/lsas-left-out"),
 		lsasRightIn: props.globals.getNode("/controls/fcc/switches/lsas-right-in"),
 		lsasRightOut: props.globals.getNode("/controls/fcc/switches/lsas-right-out"),
-		ydUpperA: props.globals.getNode("/controls/fcc/switches/yd-upper-a"),
-		ydUpperB: props.globals.getNode("/controls/fcc/switches/yd-upper-b"),
 		ydLowerA: props.globals.getNode("/controls/fcc/switches/yd-lower-a"),
 		ydLowerB: props.globals.getNode("/controls/fcc/switches/yd-lower-b"),
+		ydUpperA: props.globals.getNode("/controls/fcc/switches/yd-upper-a"),
+		ydUpperB: props.globals.getNode("/controls/fcc/switches/yd-upper-b"),
 	},
 	init: func() {
 		me.resetFailures();
@@ -391,10 +391,10 @@ var FCC = {
 		me.Switch.lsasLeftOut.setBoolValue(1);
 		me.Switch.lsasRightIn.setBoolValue(1);
 		me.Switch.lsasRightOut.setBoolValue(1);
-		me.Switch.ydUpperA.setBoolValue(1);
-		me.Switch.ydUpperB.setBoolValue(1);	
 		me.Switch.ydLowerA.setBoolValue(1);
 		me.Switch.ydLowerB.setBoolValue(1);
+		me.Switch.ydUpperA.setBoolValue(1);
+		me.Switch.ydUpperB.setBoolValue(1);	
 	},
 	resetFailures: func() {
 		me.Fail.elevatorFeel.setBoolValue(0);
@@ -403,10 +403,10 @@ var FCC = {
 		me.Fail.lsasLeftOut.setBoolValue(0);
 		me.Fail.lsasRightIn.setBoolValue(0);
 		me.Fail.lsasRightOut.setBoolValue(0);
-		me.Fail.ydUpperA.setBoolValue(0);
-		me.Fail.ydUpperB.setBoolValue(0);	
 		me.Fail.ydLowerA.setBoolValue(0);
 		me.Fail.ydLowerB.setBoolValue(0);
+		me.Fail.ydUpperA.setBoolValue(0);
+		me.Fail.ydUpperB.setBoolValue(0);
 	},
 };
 
