@@ -195,10 +195,12 @@
 		</enable>
 		<input>
 			<expression>
-				<sum>
-					<property>/fdm/jsbsim/fcc/elevator-feel/speed</property>
-					<property>/controls/fcc/switches/elevator-feel</property>
-				</sum>
+				<floor>
+					<sum>
+						<property>/fdm/jsbsim/fcc/elevator-feel/speed</property>
+						<property>/controls/fcc/switches/elevator-feel</property>
+					</sum>
+				</floor>
 			</expression>
 		</input>
 		<output>/fdm/jsbsim/fcc/elevator-feel/speed</output>
