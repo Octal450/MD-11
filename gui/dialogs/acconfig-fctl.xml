@@ -43,13 +43,13 @@
 			<layout>hbox</layout>
 
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 			<text>
 				<label>Roll</label>
 			</text>
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 		</group>
 		
@@ -129,13 +129,13 @@
 			<layout>hbox</layout>
 
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 			<text>
 				<label>Pitch</label>
 			</text>
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 		</group>
 		
@@ -232,13 +232,13 @@
 			<layout>hbox</layout>
 
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 			<text>
 				<label>Upper Rudder</label>
 			</text>
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 		</group>
 		
@@ -263,13 +263,13 @@
 			<layout>hbox</layout>
 
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 			<text>
 				<label>Lower Rudder</label>
 			</text>
 			<hrule>
-				<stretch type="bool">true</stretch>
+				<stretch>true</stretch>
 			</hrule>
 		</group>
 		
