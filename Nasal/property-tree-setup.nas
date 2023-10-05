@@ -335,7 +335,7 @@ var Systems = {
 	},
 	Shake: {
 		effect: props.globals.getNode("/systems/shake/effect"),
-		shaking: props.globals.initNode("/systems/shake/shaking", 0, "DOUBLE"),
+		shaking: props.globals.getNode("/systems/shake/shaking"),
 	},
 };
 
