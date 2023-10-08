@@ -334,6 +334,7 @@ var PANEL = {
 				me.l1 = nil; # Important
 				systems.ELEC.Switch.apuPwr.setBoolValue(1);
 				systems.PNEU.Switch.bleedApu.setBoolValue(1);
+				
 				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 				spinningT.stop();
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
