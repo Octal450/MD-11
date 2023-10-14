@@ -162,7 +162,7 @@ var RENDERING = {
 	model: props.globals.getNode("/sim/rendering/shaders/model"),
 	modelEffects: props.globals.getNode("/sim/gui/dialogs/advanced/model-effects", 1),
 	modelSet: 0,
-	rembrandt: props.globals.getNode("/sim/rendering/rembrandt/enabled"),
+	rembrandt: props.globals.getNode("/sim/rendering/rembrandt/enabled", 1),
 	check: func() {
 		if (OPTIONS.noRenderingWarn.getBoolValue()) {
 			return;
