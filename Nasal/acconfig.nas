@@ -15,7 +15,8 @@ var SYSTEM = {
 		outOfDate: 0,
 		reason: props.globals.initNode("/systems/acconfig/error-reason", "", "STRING"),
 	},
-	fgfs: split(".", getprop("/sim/version/flightgear")),
+	#fgfs: split(".", getprop("/sim/version/flightgear")),
+	fgfs: split(".", "2023.1.1"),
 	newRevision: props.globals.initNode("/systems/acconfig/new-revision", 0, "INT"),
 	revision: props.globals.initNode("/systems/acconfig/revision", 0, "INT"),
 	revisionTemp: 0,
@@ -132,16 +133,22 @@ var SYSTEM = {
 		props.globals.getNode("/systems/acconfig/spinner-prop").setValue(me.spinner);
 	},
 	versionCheck: func() {
-		if (SYSTEM.fgfs[0] < CONFIG.minFgfs[0] or SYSTEM.fgfs[1] < CONFIG.minFgfs[1]) {
-			return 0;
-		} else if (SYSTEM.fgfs[1] == CONFIG.minFgfs[1]) {
-			if (SYSTEM.fgfs[2] < CONFIG.minFgfs[2]) {
-				return 0;
-			} else {
+		if (SYSTEM.fgfs[0] > CONFIG.minFgfs[0]) {
+			return 1;
+		} else if (SYSTEM.fgfs[0] == CONFIG.minFgfs[0]) {
+			if (SYSTEM.fgfs[1] > CONFIG.minFgfs[1]) {
 				return 1;
+			} else if (SYSTEM.fgfs[1] == CONFIG.minFgfs[1]) {
+				if (SYSTEM.fgfs[2] >= CONFIG.minFgfs[2]) {
+					return 1;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
 			}
 		} else {
-			return 1;
+			return 0;
 		}
 	},
 };
@@ -165,7 +172,7 @@ var RENDERING = {
 		me.landmassSet = me.landmass.getValue() >= 4;
 		me.modelSet = me.model.getValue() >= 3;
 		
-		if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
+		if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
 			if (!me.rembrandt.getBoolValue() and (!me.als.getBoolValue() or !me.landmassSet or !me.modelSet)) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-rendering"}));
 			}
@@ -179,13 +186,13 @@ var RENDERING = {
 		# Don't override higher settings
 		if (me.landmass.getValue() < 4) {
 			me.landmass.setValue(4);
-			if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
+			if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
 				me.modelEffects.setValue("Medium");
 			}
 		}
 		if (me.model.getValue() < 3) {
 			me.model.setValue(3);
-			if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
+			if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
 				me.modelEffects.setValue("Enabled");
 			}
 		}
@@ -194,7 +201,7 @@ var RENDERING = {
 	},
 	fixCore: func() {
 		me.als.setBoolValue(1); # ALS on
-		if (SYSTEM.fgfs[0] >= 2020 and SYSTEM.fgfs[1] >= 4) {
+		if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
 			me.alsMode.setBoolValue(1);
 			me.lowSpecMode.setBoolValue(0);
 		} else {

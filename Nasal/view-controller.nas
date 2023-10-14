@@ -39,7 +39,7 @@ var resetView = func() {
 }
 
 var setView = func(n) {
-	if (fgfsVersion[0] >= 2020 and fgfsVersion[1] >= 4) {
+	if ((fgfsVersion[0] == 2020 and fgfsVersion[1] >= 4) or fgfsVersion[0] > 2020) {
 		pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
 	} else {
 		pts.Sim.CurrentView.viewNumber.setValue(viewsOld[n - 1]);
