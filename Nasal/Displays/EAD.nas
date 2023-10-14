@@ -366,6 +366,13 @@ var canvasBase = {
 			me["REV3"].setText("U/L");
 			me["REV3"].setColor(1,1,0);
 		}
+		
+		# Lower Right Warnings
+		if (pts.Instrumentation.Ead.configWarn.getBoolValue()) {
+			me["Config"].show();
+		} else {
+			me["Config"].hide();
+		}
 	},
 };
 
@@ -383,7 +390,6 @@ var canvasGe = {
 		"N23-decpnt", "N23-decimal", "N23-needle", "N23-cline", "N23-redline", "FF3", "FFOff3", "N1Lim", "N1Lim-decimal", "N1LimMode", "N1LimText", "FlexGroup", "FlexTemp", "REV1", "REV2", "REV3", "TAT", "Config"];
 	},
 	setup: func() {
-		me["Config"].hide();
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -529,7 +535,6 @@ var canvasPw = {
 		"FF3", "FFOff3", "EPRLim", "EPRLim-decimal", "EPRLimMode", "EPRLimText", "EPRLimModeGroup", "FlexGroup", "FlexTemp", "REV1", "REV2", "REV3", "TAT", "Config"];
 	},
 	setup: func() {
-		me["Config"].hide();
 	},
 	update: func() {
 		# Provide the value to here and the base

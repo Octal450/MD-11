@@ -163,6 +163,7 @@ var Instrumentation = {
 		mcduDimmer: [props.globals.getNode("/instrumentation/du/mcdu1-dimmer"), props.globals.getNode("/instrumentation/du/mcdu2-dimmer"), props.globals.getNode("/instrumentation/du/mcdu3-dimmer")],
 	},
 	Ead: {
+		configWarn: props.globals.getNode("/instrumentation/ead/config-warn"),
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
 		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
 		eprLimit: props.globals.getNode("/instrumentation/ead/epr-limit"),
