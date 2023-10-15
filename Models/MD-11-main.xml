@@ -539,7 +539,7 @@
 		<type>spin</type>
 		<object-name>fan_1</object-name>
 		<object-name>fan_1.center</object-name>
-		<factor>-67</factor>
+		<factor>67</factor>
 		<property>engines/engine[4]/n1</property>
 		<axis>
 			<x1-m>-4.8064</x1-m>
@@ -570,10 +570,10 @@
 		<type>select</type>
 		<object-name>fan_1_fast</object-name>
 		<condition>
-			<greater-than>
+			<greater-than-equals>
 				<property>engines/engine[4]/n1</property>
 				<value>50</value>
-			</greater-than>
+			</greater-than-equals>
 		</condition>
 	</animation>
 	
@@ -623,10 +623,10 @@
 		<type>select</type>
 		<object-name>fan_2_fast</object-name>
 		<condition>
-			<greater-than>
+			<greater-than-equals>
 				<property>engines/engine[5]/n1</property>
 				<value>50</value>
-			</greater-than>
+			</greater-than-equals>
 		</condition>
 	</animation>
 	
@@ -676,10 +676,10 @@
 		<type>select</type>
 		<object-name>fan_3_fast</object-name>
 		<condition>
-			<greater-than>
+			<greater-than-equals>
 				<property>engines/engine[6]/n1</property>
 				<value>50</value>
-			</greater-than>
+			</greater-than-equals>
 		</condition>
 	</animation>
 	
