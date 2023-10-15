@@ -665,10 +665,6 @@
 		<!-- Engine 2 -->
 		<switch name="fadec/reverse-2/position-cmd">
 			<default value="0"/>
-			<test logic="AND" value="0">
-				/gear/gear[0]/wow ne 1
-				fadec/reverse-2/position-cmd eq 0
-			</test>
 			<test value="1">
 				/controls/engines/engine[1]/reverse-engage eq 1
 			</test>
@@ -677,6 +673,14 @@
 				fadec/reverse-2/position-cmd eq 1
 			</test>
 			<output>/controls/engines/engine[1]/reverse-cmd</output>
+		</switch>
+		
+		<switch name="fadec/reverse-2/position-cmd-wow">
+			<default value="fadec/reverse-2/position-cmd"/>
+			<test logic="AND" value="0">
+				/gear/gear[0]/wow ne 1
+				fadec/reverse-2/position-cmd-wow eq 0
+			</test>
 		</switch>
 		
 		<switch name="fadec/reverse-2/position-rate">
@@ -688,7 +692,7 @@
 		</switch>
 		
 		<actuator name="fadec/reverse-2/position-norm">
-			<input>fadec/reverse-2/position-cmd</input>
+			<input>fadec/reverse-2/position-cmd-wow</input>
 			<rate_limit>fadec/reverse-2/position-rate</rate_limit>
 			<output>/engines/engine[1]/reverser-pos-norm</output>
 		</actuator>
