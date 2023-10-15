@@ -254,6 +254,7 @@
 					gear/unit[2]/status ne 2
 					/controls/flight/speedbrake-arm eq 0
 					/controls/gear/abs/knob lt 1
+					/controls/gear/brake-parking eq 1
 				</test>
 			</test>
 			<test value="1"> <!-- Takeoff --> <!-- Add flaps +/- 3 from FMS setting -->
@@ -266,6 +267,7 @@
 					gear/unit[2]/status ne 2
 					/controls/flight/speedbrake-arm eq 0
 					/controls/gear/abs/knob gt -1
+					/controls/gear/brake-parking eq 1
 					hydraulics/stabilizer/final-deg ge 0.05
 				</test>
 			</test>
