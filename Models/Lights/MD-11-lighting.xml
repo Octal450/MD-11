@@ -5,7 +5,23 @@
 <PropertyList>
 
     <path>empty.ac</path>
-
+	
+	<animation>
+		<type>noshadow</type>
+		<object-name>GreenLightALS</object-name>
+		<object-name>RedLightALS</object-name>
+		<object-name>Strobelight.1ALS</object-name>
+		<object-name>Strobelight.2ALS</object-name>
+		<object-name>Strobelight.3ALS</object-name>
+		<object-name>Strobelight.4ALS</object-name>
+		<object-name>Rearnav.1ALS</object-name>
+		<object-name>Rearnav.2ALS</object-name>
+		<object-name>Beacon.LowerALS</object-name>
+		<object-name>Beacon.UpperALS</object-name>
+		<object-name>LandLALS</object-name>
+		<object-name>LandRALS</object-name>
+	</animation>
+	
 	<!-- Landing lights (ALS only) -->
 	<model>
 		<path>ALS/landinglightL.xml</path>
