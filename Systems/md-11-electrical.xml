@@ -2167,6 +2167,27 @@
 			</test>
 		</switch>
 	
+		<switch name="/controls/lighting/fcp-flood-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/fcp-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/main-flood-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/main-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/overhead-flood-norm">
+			<default value="0"/>
+			<test value="/controls/lighting/overhead-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+	
 	</channel>
 	
 	<channel name="Overhead Lights" execrate="8">

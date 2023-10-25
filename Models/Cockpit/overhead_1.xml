@@ -105,7 +105,7 @@
 		</action>
 	</animation>
 
-	<!--animation>
+	<animation>
 		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
 		<object-name>ovhdflood.indicator</object-name>
@@ -122,10 +122,18 @@
 			<z-m>-18.0476</z-m>
 		</center>
 		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/overhead-flood-knb</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
 		</action>
-	</animation-->
+	</animation>
 	
-	<!--animation>
+	<animation>
 		<type>knob</type>
 		<object-name>mainflood.knob</object-name>
 		<object-name>mainflood.indicator</object-name>
@@ -142,8 +150,16 @@
 			<z-m>-18.0824</z-m>
 		</center>
 		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/main-flood-knb</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
 		</action>
-	</animation-->
+	</animation>
 	
 	<!-- No button lights without power! -->
 	<animation>

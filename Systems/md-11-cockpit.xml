@@ -88,6 +88,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/fcp-flood-knb">
+			<input>/controls/lighting/fcp-flood-knb</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<actuator name="/controls/cockpit/gear-lever">
 			<input>/controls/gear/lever-cockpit</input>
 			<rate_limit>4.5</rate_limit>
@@ -349,6 +354,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/overhead/main-flood-knb">
+			<input>/controls/lighting/main-flood-knb</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/overhead/mid-temp">
 			<input>/controls/pneumatics/switches/mid-temp</input>
 			<c1>20</c1>
@@ -361,6 +371,11 @@
 		
 		<lag_filter name="/controls/cockpit/overhead/overhead-integ-knb">
 			<input>/controls/lighting/overhead-integ-knb</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/overhead-flood-knb">
+			<input>/controls/lighting/overhead-flood-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
