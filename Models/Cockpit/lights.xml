@@ -6,12 +6,6 @@
     <light>
         <name>overhead-flood-light</name>
         <type>spot</type>
-        <debug-color>
-            <r>1</r>
-            <g>0</g>
-            <b>0</b>
-            <a>1</a>
-        </debug-color>
         <position>
             <x-m>-26.1417</x-m>
             <y-m>1.1</y-m>
@@ -31,14 +25,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -57,12 +51,6 @@
     <light>
         <name>main-flood-light-1</name>
         <type>spot</type>
-        <debug-color>
-            <r>1</r>
-            <g>0</g>
-            <b>0</b>
-            <a>1</a>
-        </debug-color>
         <position>
             <x-m>-27.4</x-m>
             <y-m>-0.55</y-m>
@@ -82,14 +70,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -132,14 +120,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -182,14 +170,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -233,14 +221,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -284,14 +272,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -334,14 +322,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -384,14 +372,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -402,6 +390,57 @@
         <spot-exponent>8</spot-exponent>
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
+        <dim-factor>
+            <property>controls/lighting/main-flood-norm</property>
+        </dim-factor>
+    </light>
+
+    <light>
+        <name>main-flood-light-pedestal</name>
+        <type>spot</type>
+        <debug-color>
+            <r>1</r>
+            <g>0</g>
+            <b>0</b>
+            <a>1</a>
+        </debug-color>
+        <position>
+            <x-m>-26.2</x-m>
+            <y-m>0</y-m>
+            <z-m>8</z-m>
+        </position>
+        <direction>
+            <pitch-deg>30</pitch-deg>
+            <roll-deg>0</roll-deg>
+            <heading-deg>0</heading-deg>
+        </direction>
+
+        <ambient>
+            <r>0</r>
+            <g>0</g>
+            <b>0</b>
+            <a>0</a>
+        </ambient>
+        <diffuse>
+            <r>0.9</r>
+            <g>0.7</g>
+            <b>0.4</b>
+            <a>1</a>
+        </diffuse>
+        <specular>
+            <r>0.9</r>
+            <g>0.7</g>
+            <b>0.4</b>
+            <a>1</a>
+        </specular>
+        <attenuation>
+            <c>0.1</c>
+            <l>0.1</l>
+            <q>0.5</q>
+        </attenuation>
+        <spot-exponent>50</spot-exponent>
+        <spot-cutoff>20</spot-cutoff>
+        <range-m>4</range-m>
         <dim-factor>
             <property>controls/lighting/main-flood-norm</property>
         </dim-factor>
@@ -435,14 +474,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -485,14 +524,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -535,14 +574,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -585,14 +624,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -635,14 +674,14 @@
         </ambient>
         <diffuse>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </diffuse>
         <specular>
             <r>0.9</r>
-            <g>0.8</g>
-            <b>0.7</b>
+            <g>0.7</g>
+            <b>0.4</b>
             <a>1</a>
         </specular>
         <attenuation>
@@ -668,6 +707,7 @@
         <object-name>main-flood-light-5</object-name>
         <object-name>main-flood-light-6</object-name>
         <object-name>main-flood-light-7</object-name>
+        <object-name>main-flood-light-pedestal</object-name>
         <object-name>fcp-flood-light-1</object-name>
         <object-name>fcp-flood-light-2</object-name>
         <object-name>fcp-flood-light-3</object-name>
