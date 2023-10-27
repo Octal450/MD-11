@@ -115,11 +115,11 @@
 		</action>
 	</animation>
 	
-	<!--animation>
+	<animation>
 		<type>knob</type>
 		<object-name>floodlight.knob</object-name>
 		<object-name>floodlight.indicator</object-name>
-		<property>controls/cockpit/mcp-panel-knb</property>
+		<property>controls/cockpit/fcp-flood-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -132,8 +132,16 @@
 			<z-m>11.7855</z-m>
 		</center>
 		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/lighting/fcp-flood-knb</property>
+				<factor>0.05</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
 		</action>
-	</animation-->
+	</animation>
 	
 	<!-- Speed Controls-->
 	<animation>
