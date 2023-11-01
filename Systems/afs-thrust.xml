@@ -286,7 +286,7 @@
 				<or>
 					<and>
 						<equals>
-							<property>/it-autoflight/mode/thr</property>
+							<property>/it-autoflight/mode/spd</property>
 							<value>RETARD</value>
 						</equals>
 						<or>

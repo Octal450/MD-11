@@ -244,7 +244,7 @@ var Text = {
 	land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
 	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
 	latTemp: "T/O",
-	thr: props.globals.initNode("/it-autoflight/mode/thr", "PITCH", "STRING"),
+	spd: props.globals.initNode("/it-autoflight/mode/spd", "PITCH", "STRING"),
 	vert: props.globals.initNode("/it-autoflight/mode/vert", "T/O CLB", "STRING"),
 	vertTemp: "T/O CLB",
 };
@@ -308,7 +308,7 @@ var ITAF = {
 		Internal.kts.setValue(fms.Speeds.v2.getValue());
 		Internal.mach.setValue(0.5);
 		me.updateActiveFms(1);
-		Text.thr.setValue("PITCH");
+		Text.spd.setValue("PITCH");
 		updateFma.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
@@ -466,7 +466,7 @@ var ITAF = {
 		}
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.thr.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.spd.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "DUAL";
 			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "SINGLE";
@@ -1106,32 +1106,32 @@ var ITAF = {
 		
 		if (Output.athr.getBoolValue() and Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
 			Output.thrMode.setValue(1);
-			Text.thr.setValue("RETARD");
+			Text.spd.setValue("RETARD");
 			Internal.retardLock = 1;
 		} else if (Internal.retardLock != 1) { # Stays in RETARD unless we tell it to go to THRUST or PITCH
 			if (Output.vertTemp == 4) {
 				if (Output.spdProtTemp == 2) {
 					Output.thrMode.setValue(1);
-					Text.thr.setValue("PITCH");
+					Text.spd.setValue("PITCH");
 					if (Internal.flchActive and Text.vert.getValue() != "SPD DES") {
 						me.updateVertText("SPD DES");
 					}
 				} else if (Output.spdProtTemp == 1) {
 					Output.thrMode.setValue(2);
-					Text.thr.setValue("PITCH");
+					Text.spd.setValue("PITCH");
 					if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") {
 						me.updateVertText("SPD CLB");
 					}
 				} else {
 					if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
 						Output.thrMode.setValue(2);
-						Text.thr.setValue("PITCH");
+						Text.spd.setValue("PITCH");
 						if (Internal.flchActive and Text.vert.getValue() != "SPD CLB") {
 							me.updateVertText("SPD CLB");
 						}
 					} else {
 						Output.thrMode.setValue(1);
-						Text.thr.setValue("PITCH");
+						Text.spd.setValue("PITCH");
 						if (Internal.flchActive and Text.vert.getValue() != "SPD DES") {
 							me.updateVertText("SPD DES");
 						}
@@ -1139,10 +1139,10 @@ var ITAF = {
 				}
 			} else if (Output.vertTemp == 7) {
 				Output.thrMode.setValue(2);
-				Text.thr.setValue("PITCH");
+				Text.spd.setValue("PITCH");
 			} else {
 				Output.thrMode.setValue(0);
-				Text.thr.setValue("THRUST");
+				Text.spd.setValue("THRUST");
 			}
 		}
 	},
