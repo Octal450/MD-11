@@ -442,9 +442,9 @@ var canvasGe = {
 				me["N11-tens-zero"].show();
 			}
 			
-			me["N11-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 7))) * 33.75);
-			me["N11-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 6))) * 33.75);
-			me["N11-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%04.3f", Value.Fadec.n1[0]), 5))) * 33.75);
+			me["N11-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[0]), 7))) * 33.75);
+			me["N11-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 6))) * 33.75);
+			me["N11-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 5))) * 33.75);
 			me["N11-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[0], 1), 0.001) * 33.75));
 			
 			me["N11-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[0].getValue() * D2R);
@@ -486,9 +486,9 @@ var canvasGe = {
 				me["N12-tens-zero"].show();
 			}
 			
-			me["N12-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 7))) * 33.75);
-			me["N12-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 6))) * 33.75);
-			me["N12-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%04.3f", Value.Fadec.n1[1]), 5))) * 33.75);
+			me["N12-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[1]), 7))) * 33.75);
+			me["N12-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 6))) * 33.75);
+			me["N12-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 5))) * 33.75);
 			me["N12-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[1], 1), 0.001) * 33.75));
 			
 			me["N12-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
@@ -530,9 +530,9 @@ var canvasGe = {
 				me["N13-tens-zero"].show();
 			}
 			
-			me["N13-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 7))) * 33.75);
-			me["N13-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 6))) * 33.75);
-			me["N13-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%04.3f", Value.Fadec.n1[2]), 5))) * 33.75);
+			me["N13-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[2]), 7))) * 33.75);
+			me["N13-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 6))) * 33.75);
+			me["N13-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 5))) * 33.75);
 			me["N13-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[2], 1), 0.001) * 33.75));
 			
 			me["N13-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[2].getValue() * D2R);
@@ -608,8 +608,8 @@ var canvasPw = {
 			
 			Value.Fadec.epr[0] = pts.Engines.Engine.eprActual[0].getValue();
 			
-			me["EPR1-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 6))) * 33.75);
-			me["EPR1-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%04.3f", Value.Fadec.epr[0] * 10), 5))) * 33.75);
+			me["EPR1-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 33.75);
+			me["EPR1-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 33.75);
 			me["EPR1-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR1-needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
@@ -635,8 +635,8 @@ var canvasPw = {
 			
 			Value.Fadec.epr[1] = pts.Engines.Engine.eprActual[1].getValue();
 			
-			me["EPR2-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 6))) * 33.75);
-			me["EPR2-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%04.3f", Value.Fadec.epr[1] * 10), 5))) * 33.75);
+			me["EPR2-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 33.75);
+			me["EPR2-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 33.75);
 			me["EPR2-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR2-needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
@@ -662,8 +662,8 @@ var canvasPw = {
 			
 			Value.Fadec.epr[2] = pts.Engines.Engine.eprActual[2].getValue();
 			
-			me["EPR3-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 6))) * 33.75);
-			me["EPR3-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%04.3f", Value.Fadec.epr[2] * 10), 5))) * 33.75);
+			me["EPR3-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 33.75);
+			me["EPR3-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 33.75);
 			me["EPR3-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR3-needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);

@@ -121,11 +121,11 @@ var canvasIesi = {
 		Value.Asi.Tape.ias = Value.Asi.ias - 40; # Subtract 40, since the scale starts at 40
 		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 5.559);
 		
-		Value.Asi.Tape.hundreds = num(right(sprintf("%05.1f", Value.Asi.ias), 5)) / 10; # Unlikely it would be above 999 but lets account for it anyways
+		Value.Asi.Tape.hundreds = num(right(sprintf("%07.3f", Value.Asi.ias), 7)) / 10; # Unlikely it would be above 999 but lets account for it anyways
 		Value.Asi.Tape.hundredsGeneva = genevaAsiHundreds(Value.Asi.Tape.hundreds);
 		me["ASI_hundreds"].setTranslation(0, Value.Asi.Tape.hundredsGeneva * 57.47);
 		
-		Value.Asi.Tape.tens = num(right(sprintf("%04.1f", Value.Asi.ias), 4)) / 10;
+		Value.Asi.Tape.tens = num(right(sprintf("%06.3f", Value.Asi.ias), 6)) / 10;
 		Value.Asi.Tape.tensGeneva = genevaAsiTens(Value.Asi.Tape.tens);
 		me["ASI_tens"].setTranslation(0, Value.Asi.Tape.tensGeneva * 57.47);
 		

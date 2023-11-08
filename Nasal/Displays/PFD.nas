@@ -1066,7 +1066,7 @@ var canvasBase = {
 		if (Value.Nav.selectedMhz != 0) {
 			if (Value.Nav.signalQuality > 0.99) {
 				if (pts.Instrumentation.Dme.inRange[2].getBoolValue()) {
-					me["ILS_DME"].setText(sprintf("%2.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
+					me["ILS_DME"].setText(sprintf("%3.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
 					me["ILS_DME"].show();
 				} else {
 					me["ILS_DME"].hide();
@@ -1075,7 +1075,7 @@ var canvasBase = {
 				me["ILS_Info"].show();
 			} else {
 				me["ILS_DME"].hide();
-				me["ILS_Info"].setText(sprintf("%5.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
+				me["ILS_Info"].setText(sprintf("%6.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
 				me["ILS_Info"].show();
 			}
 		} else {
