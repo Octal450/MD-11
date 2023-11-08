@@ -1607,7 +1607,7 @@
 				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
 				<du n="0">
 					<ead-fps type="double">20</ead-fps>
-					<iesi-fps type="double">10</iesi-fps>
+					<iesi-fps type="double">20</iesi-fps>
 					<mcdu-fps type="double">10</mcdu-fps>
 					<nd-fps type="double">20</nd-fps>
 					<pfd-fps type="double">20</pfd-fps>
@@ -1616,7 +1616,7 @@
 				<eight-three-three-radios type="bool">0</eight-three-three-radios>
 				<irs-align-instantly type="bool">0</irs-align-instantly>
 				<keyboard-mode type="bool">0</keyboard-mode>
-				<rcws-equipped type="bool">1</rcws-equipped>
+				<rcws-equipped type="bool">0</rcws-equipped>
 				<separate-tiller-axis type="bool">0</separate-tiller-axis>
 				<throttle-override type="string">Only In Clamp</throttle-override>
 			</options>

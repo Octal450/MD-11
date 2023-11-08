@@ -59,25 +59,25 @@ var Value = {
 		sel: 0,
 		Tape: {
 			five: 0,
-			fiveT: "000",
+			fiveT: "",
 			four: 0,
-			fourT: "000",
+			fourT: "",
 			hundreds: 0,
 			hundredsGeneva: 0,
 			middleOffset: 0,
 			middleText: 0,
 			offset: 0,
 			one: 0,
-			oneT: "000",
+			oneT: "",
 			tenThousands: 0,
 			tenThousandsGeneva: 0,
 			thousands: 0,
 			thousandsGeneva: 0,
 			three: 0,
-			threeT: "000",
+			threeT: "",
 			tens: 0,
 			two: 0,
-			twoT: "000",
+			twoT: "",
 		},
 	},
 	Asi: {
@@ -773,7 +773,7 @@ var canvasBase = {
 		Value.Alt.Tape.fiveT = sprintf("%01d", abs(Value.Alt.Tape.five));
 		
 		if (Value.Alt.Tape.fiveT == 0) {
-			me["ALT_five_T"].setText(" ");
+			me["ALT_five_T"].setText("");
 		} else {
 			me["ALT_five_T"].setText(Value.Alt.Tape.fiveT);
 		}
@@ -783,7 +783,7 @@ var canvasBase = {
 		Value.Alt.Tape.fourT = sprintf("%01d", abs(Value.Alt.Tape.four));
 		
 		if (Value.Alt.Tape.fourT == 0) {
-			me["ALT_four_T"].setText(" ");
+			me["ALT_four_T"].setText("");
 		} else {
 			me["ALT_four_T"].setText(Value.Alt.Tape.fourT);
 		}
@@ -793,7 +793,7 @@ var canvasBase = {
 		Value.Alt.Tape.threeT = sprintf("%01d", abs(Value.Alt.Tape.three));
 		
 		if (Value.Alt.Tape.threeT == 0) {
-			me["ALT_three_T"].setText(" ");
+			me["ALT_three_T"].setText("");
 		} else {
 			me["ALT_three_T"].setText(Value.Alt.Tape.threeT);
 		}
@@ -803,7 +803,7 @@ var canvasBase = {
 		Value.Alt.Tape.twoT = sprintf("%01d", abs(Value.Alt.Tape.two));
 		
 		if (Value.Alt.Tape.twoT == 0) {
-			me["ALT_two_T"].setText(" ");
+			me["ALT_two_T"].setText("");
 		} else {
 			me["ALT_two_T"].setText(Value.Alt.Tape.twoT);
 		}
@@ -813,7 +813,7 @@ var canvasBase = {
 		Value.Alt.Tape.oneT = sprintf("%01d", abs(Value.Alt.Tape.one));
 		
 		if (Value.Alt.Tape.oneT == 0) {
-			me["ALT_one_T"].setText(" ");
+			me["ALT_one_T"].setText("");
 		} else {
 			me["ALT_one_T"].setText(Value.Alt.Tape.oneT);
 		}

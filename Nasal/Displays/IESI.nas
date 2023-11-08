@@ -14,12 +14,32 @@ var Value = {
 		indicated: 0,
 		indicatedAbs: 0,
 		Tape: {
+			eight: 0,
+			eightT: "",
+			five: 0,
+			fiveT: "",
+			four: 0,
+			fourT: "",
 			hundreds: 0,
 			hundredsGeneva: 0,
+			middleOffset: 0,
+			middleText: 0,
+			offset: 0,
+			one: 0,
+			oneT: "",
+			seven: 0,
+			sevenT: "",
+			six: 0,
+			sixT: "",
 			tenThousands: 0,
 			tenThousandsGeneva: 0,
 			thousands: 0,
 			thousandsGeneva: 0,
+			three: 0,
+			threeT: "",
+			tens: 0,
+			two: 0,
+			twoT: "",
 		},
 	},
 	Asi: {
@@ -92,8 +112,9 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_tens", "ALT_tenthousands", "ALT_thousands", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones",
-		"ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error", "HDG_scale", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
+		"ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones", "ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error",
+		"HDG_scale", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -191,6 +212,43 @@ var canvasIesi = {
 		
 		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.Alt.indicatedAbs = abs(Value.Alt.indicated);
+		Value.Alt.Tape.offset = Value.Alt.indicated / 200 - int(Value.Alt.indicated / 200);
+		Value.Alt.Tape.middleText = right(sprintf("%03d", abs(roundAboutAlt(Value.Alt.indicated / 100))), 1) * 100;
+		if (Value.Alt.indicated < 0) Value.Alt.Tape.middleText = Value.Alt.Tape.middleText * -1;
+		Value.Alt.Tape.middleOffset = nil;
+		
+		if (Value.Alt.Tape.offset > 0.5) {
+			Value.Alt.Tape.middleOffset = -(Value.Alt.Tape.offset - 1) * 83.3;
+		} else {
+			Value.Alt.Tape.middleOffset = -Value.Alt.Tape.offset * 83.3;
+		}
+		
+		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
+		me["ALT_scale"].update();
+		
+		Value.Alt.Tape.eight = Value.Alt.Tape.middleText + 600;
+		me["ALT_eight"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.eight)), 3));
+		
+		Value.Alt.Tape.seven = Value.Alt.Tape.middleText + 400;
+		me["ALT_seven"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.seven)), 3));
+		
+		Value.Alt.Tape.six = Value.Alt.Tape.middleText + 200;
+		me["ALT_six"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.six)), 3));
+		
+		Value.Alt.Tape.five = Value.Alt.Tape.middleText;
+		me["ALT_five"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.five)), 3));
+		
+		Value.Alt.Tape.four = Value.Alt.Tape.middleText - 200;
+		me["ALT_four"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.four)), 3));
+		
+		Value.Alt.Tape.three = Value.Alt.Tape.middleText - 400;
+		me["ALT_three"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.three)), 3));
+		
+		Value.Alt.Tape.two = Value.Alt.Tape.middleText - 600;
+		me["ALT_two"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.two)), 3));
+		
+		Value.Alt.Tape.one = Value.Alt.Tape.middleText - 800;
+		me["ALT_one"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.one)), 3));
 		
 		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
 		Value.Alt.Tape.tenThousandsGeneva = genevaAltTenThousands(Value.Alt.Tape.tenThousands);
@@ -327,6 +385,11 @@ var hdgText = func(x) {
 		hdgOutput = sprintf("%d", x);
 		return hdgOutput;
 	}
+}
+
+var roundAboutAlt = func(x) { # For altitude tape numbers
+	var y = x * 0.5 - int(x * 0.5);
+	return y < 0.5 ? 2 * int(x * 0.5) : 2 + 2 * int(x * 0.5);
 }
 
 var genevaAsiHundreds = func(input) {
