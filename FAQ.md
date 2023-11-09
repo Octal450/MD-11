@@ -8,7 +8,7 @@ Try to download the aircraft again. The download may have failed for some reason
 
 ### Q. I found other distributors offering downloads of this aircraft. Can I use them?
 
-Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from [Octal450's repo](https://github.com/Octal450/MD-11.git).
+Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from FGAddon or [Octal450's repo](https://github.com/Octal450/MD-11.git).
 
 ## Startup
 
@@ -40,7 +40,6 @@ This error can also appear if you are starting FlightGear for the very first tim
 This aircraft has a complex and realistic flight control system, which contains a yaw damper and turn coordinator. Therefore, auto coordination is not necessary, and the rudder is only used in the air when de-crabbing during crosswind landings.
 
 When the aircraft detects that auto coordination has been turned on, it enables the aileron drives tiller system. This way, you will be able to control the nose wheel with the aileron axis to steer on the ground. Please use keyboard for rudder functionality.
-
 
 ### Q. Some menu items are greyed out when using this aircraft. Why?
 
