@@ -305,9 +305,9 @@
 					fcc/lsas/in-detent eq 0
 					attitude/roll-rad gt 0.558505
 					attitude/roll-rad lt -0.558505
+					/position/gear-agl-ft lt 100
 				</test>
 				position/wow eq 0
-				/position/gear-agl-ft ge 100
 			</test>
 		</switch>
 		
