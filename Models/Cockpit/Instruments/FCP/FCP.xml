@@ -2298,7 +2298,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptND("MAP");</script>
+				<script>instruments.EFIS.setCptND("MAP");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2331,7 +2331,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptND("VOR");</script>
+				<script>instruments.EFIS.setCptND("VOR");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2364,7 +2364,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptND("PLAN");</script>
+				<script>instruments.EFIS.setCptND("PLAN");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2397,7 +2397,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptND("APP");</script>
+				<script>instruments.EFIS.setCptND("APP");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2430,7 +2430,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setNDRange(0, 1);</script>
+				<script>instruments.EFIS.setNDRange(0, 1);</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2463,7 +2463,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setNDRange(0, -1);</script>
+				<script>instruments.EFIS.setNDRange(0, -1);</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2496,7 +2496,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptNDRadio("VOR1");</script>
+				<script>instruments.EFIS.setCptNDRadio("VOR1");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2529,7 +2529,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptNDRadio("VOR2");</script>
+				<script>instruments.EFIS.setCptNDRadio("VOR2");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2562,7 +2562,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptNDRadio("ADF1");</script>
+				<script>instruments.EFIS.setCptNDRadio("ADF1");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2595,7 +2595,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setCptNDRadio("ADF2");</script>
+				<script>instruments.EFIS.setCptNDRadio("ADF2");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2794,7 +2794,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoND("MAP");</script>
+				<script>instruments.EFIS.setFoND("MAP");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2827,7 +2827,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoND("VOR");</script>
+				<script>instruments.EFIS.setFoND("VOR");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2860,7 +2860,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoND("PLAN");</script>
+				<script>instruments.EFIS.setFoND("PLAN");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2893,7 +2893,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoND("APP");</script>
+				<script>instruments.EFIS.setFoND("APP");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2926,7 +2926,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setNDRange(1, 1);</script>
+				<script>instruments.EFIS.setNDRange(1, 1);</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2959,7 +2959,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setNDRange(1, -1);</script>
+				<script>instruments.EFIS.setNDRange(1, -1);</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2992,7 +2992,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoNDRadio("VOR1");</script>
+				<script>instruments.EFIS.setFoNDRadio("VOR1");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3025,7 +3025,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoNDRadio("VOR2");</script>
+				<script>instruments.EFIS.setFoNDRadio("VOR2");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3058,7 +3058,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoNDRadio("ADF1");</script>
+				<script>instruments.EFIS.setFoNDRadio("ADF1");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3091,7 +3091,7 @@
 					</or>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.setFoNDRadio("ADF2");</script>
+				<script>instruments.EFIS.setFoNDRadio("ADF2");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>

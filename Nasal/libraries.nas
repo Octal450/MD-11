@@ -36,6 +36,7 @@ var systemsInit = func() {
 		instruments.RADIOS.init();
 		mcdu.BASE.init();
 	}
+	instruments.EFIS.init();
 	instruments.XPDR.init();
 	libraries.variousReset();
 }

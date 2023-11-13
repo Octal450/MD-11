@@ -1715,7 +1715,6 @@
 		</pts>
 		<libraries>
 			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
-			<file>Aircraft/MD-11/Nasal/efis.nas</file>
 			<file>Aircraft/MD-11/Nasal/buttons.nas</file>
 			<file>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND.nas</file>
 			<file>Aircraft/MD-11/Nasal/shake.nas</file>
@@ -1765,6 +1764,7 @@
 			<file>Aircraft/MD-11/Nasal/Displays/MCDU.nas</file>
 		</canvas_mcdu>
 		<instruments>
+			<file>Aircraft/MD-11/Nasal/Instruments/efis.nas</file>
 			<file>Aircraft/MD-11/Nasal/Instruments/radios.nas</file>
 			<file>Aircraft/MD-11/Nasal/Instruments/transponder.nas</file>
 		</instruments>
