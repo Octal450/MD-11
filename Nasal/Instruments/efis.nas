@@ -8,8 +8,8 @@ var EFIS = {
 	init: func() {
 		me.setCptND("MAP");
 		me.setFoND("MAP");
-		pts.Instrumentation.Efis.Inputs.rangeNm[0].setValue(20);
-		pts.Instrumentation.Efis.Inputs.rangeNm[1].setValue(20);
+		pts.Instrumentation.Efis.Inputs.rangeNm[0].setValue(10);
+		pts.Instrumentation.Efis.Inputs.rangeNm[1].setValue(10);
 		pts.Instrumentation.Efis.Inputs.lhVorAdf[0].setValue(0);
 		pts.Instrumentation.Efis.Inputs.lhVorAdf[1].setValue(0);
 		pts.Instrumentation.Efis.Inputs.rhVorAdf[0].setValue(0);
