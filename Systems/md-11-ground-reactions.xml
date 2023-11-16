@@ -14,7 +14,7 @@
 		<static_friction>1.4</static_friction> <!-- Arbitrarily high to help nose wheel steering - no effect on braking -->
 		<dynamic_friction>0.6</dynamic_friction>
 		<rolling_friction>0.02</rolling_friction>
-		<spring_coeff unit="LBS/FT">55468</spring_coeff>
+		<spring_coeff unit="LBS/FT">59468</spring_coeff>
 		<damping_coeff unit="LBS/FT/SEC">21458</damping_coeff>
 		<max_steer unit="DEG">70</max_steer>
 		<table name="CORNERING_COEFF" type="internal">
