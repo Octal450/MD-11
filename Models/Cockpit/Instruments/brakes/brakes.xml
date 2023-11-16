@@ -197,6 +197,18 @@
 		</action>
 	</animation>
 	<animation>
+		<type>translate</type>
+		<object-name>AuxPump1</object-name>
+		<object-name>AuxPump1.on</object-name>
+		<property>controls/cockpit/pedestal/aux-pump-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	<animation>
 		<type>select</type>
 		<object-name>AuxPump1.on</object-name>
 		<condition>
@@ -213,18 +225,6 @@
 				</or>
 			</and>
 		</condition>
-	</animation>
-	<animation>
-		<type>translate</type>
-		<object-name>AuxPump1</object-name>
-		<object-name>AuxPump1.on</object-name>
-		<property>controls/cockpit/pedestal/aux-pump-1</property>
-		<factor>-0.001</factor>
-		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>1</z>
-		</axis>
 	</animation>
 
 </PropertyList>

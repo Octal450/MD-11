@@ -63,8 +63,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>APUStartStop</object-name>
-		<object-name>APUStartStop.on</object-name>
 		<object-name>APUStartStop.off</object-name>
+		<object-name>APUStartStop.on</object-name>
 		<action>
 		    <button>0</button>
 		    <repeatable>false</repeatable>
@@ -79,10 +79,35 @@
 				<script>systems.APU.startStop(0);</script> <!-- No auto connect -->
 		    </binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/apu-start-stop</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/apu-start-stop</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>APUStartStop</object-name>
+		<object-name>APUStartStop.off</object-name>
+		<object-name>APUStartStop.on</object-name>
+		<property>controls/cockpit/overhead/apu-start-stop</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
