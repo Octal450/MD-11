@@ -32,7 +32,33 @@
 				<command>property-toggle</command>
 				<property>instrumentation/altimeter/inhg</property>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/iesi/hpin</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/iesi/hpin</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>HpIn</object-name>
+		<property>controls/cockpit/iesi/hpin</property>
+		<factor>0.0005</factor>
+		<axis>
+			<x1-m>-27.4417</x1-m>
+			<y1-m>0.06021</y1-m>
+			<z1-m>6.7264</z1-m>
+			<x2-m>-27.4421</x2-m>
+			<y2-m>0.06021</y2-m>
+			<z2-m>6.72624</z2-m>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -49,6 +75,18 @@
 				<command>nasal</command>
 				<script>libraries.STD();</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/iesi/baro-translate</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/iesi/baro-translate</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 		<action>
 			<button>3</button>
@@ -96,7 +134,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/iesi/baro-rotate</property>
+				<property>controls/cockpit/iesi/baro-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>100000</max>
@@ -149,7 +187,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/iesi/baro-rotate</property>
+				<property>controls/cockpit/iesi/baro-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>100000</max>
@@ -159,9 +197,23 @@
 	</animation>
 	
 	<animation>
+		<type>translate</type>
+		<object-name>BaroSet</object-name>
+		<property>controls/cockpit/iesi/baro-translate</property>
+		<factor>0.002</factor>
+		<axis>
+			<x1-m>-27.4417</x1-m>
+			<y1-m>0.06021</y1-m>
+			<z1-m>6.7264</z1-m>
+			<x2-m>-27.4421</x2-m>
+			<y2-m>0.06021</y2-m>
+			<z2-m>6.72624</z2-m>
+		</axis>
+	</animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet</object-name>
-		<property>instrumentation/iesi/baro-rotate</property>
+		<property>controls/cockpit/iesi/baro-rotate</property>
 		<factor>11.25</factor>
 		<axis>
 			<x1-m>-27.4415</x1-m>

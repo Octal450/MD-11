@@ -10,9 +10,9 @@
 		<type>translate</type>
 		<property>systems/shake/shaking</property>
 		<axis>
-			<x1-m>0.0</x1-m>
-			<y1-m>0.0</y1-m>
-			<z1-m>0.0</z1-m>
+			<x1-m>0</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>0</z1-m>
 			<x2-m>0.5</x2-m>
 			<y2-m>-0.5</y2-m>
 			<z2-m>0.8</z2-m>
@@ -995,6 +995,7 @@
 	<animation>
 		<type>pick</type>
 		<object-name>FD1</object-name>
+		<object-name>FD1.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1009,9 +1010,21 @@
 				<property>it-autoflight/input/fd1</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/panel/fd1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/panel/fd1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1030,10 +1043,26 @@
 			</or>
 		</condition>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FD1</object-name>
+		<object-name>FD1.off</object-name>
+		<property>controls/cockpit/panel/fd1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x1-m>-27.5133</x1-m>
+			<y1-m>-0.79274</y1-m>
+			<z1-m>6.86301</z1-m>
+			<x2-m>-27.5069</x2-m>
+			<y2-m>-0.79274</y2-m>
+			<z2-m>6.86421</z2-m>
+		</axis>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
 		<object-name>FD2</object-name>
+		<object-name>FD2.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1048,9 +1077,21 @@
 				<property>it-autoflight/input/fd2</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/panel/fd2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/panel/fd2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1069,10 +1110,27 @@
 			</or>
 		</condition>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FD2</object-name>
+		<object-name>FD2.off</object-name>
+		<property>controls/cockpit/panel/fd2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x1-m>-27.5133</x1-m>
+			<y1-m>0.79274</y1-m>
+			<z1-m>6.86301</z1-m>
+			<x2-m>-27.5069</x2-m>
+			<y2-m>0.79274</y2-m>
+			<z2-m>6.86421</z2-m>
+		</axis>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
 		<object-name>IRS.capt</object-name>
+		<object-name>IRS.captaux</object-name>
+		<object-name>IRS.foaux</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1087,9 +1145,21 @@
 				<property>instrumentation/du/irs-capt</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/panel/irs-capt</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/panel/irs-capt</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1109,10 +1179,28 @@
 			</or>
 		</condition>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IRS.capt</object-name>
+		<object-name>IRS.captaux</object-name>
+		<object-name>IRS.foaux</object-name>
+		<property>controls/cockpit/panel/irs-capt</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x1-m>-27.5133</x1-m>
+			<y1-m>-0.79274</y1-m>
+			<z1-m>6.86301</z1-m>
+			<x2-m>-27.5069</x2-m>
+			<y2-m>-0.79274</y2-m>
+			<z2-m>6.86421</z2-m>
+		</axis>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
+		<object-name>IRS.captaux2</object-name>
 		<object-name>IRS.fo</object-name>
+		<object-name>IRS.foaux2</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1127,9 +1215,21 @@
 				<property>instrumentation/du/irs-fo</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/panel/irs-fo</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/panel/irs-fo</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1149,10 +1249,27 @@
 			</or>
 		</condition>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IRS.captaux2</object-name>
+		<object-name>IRS.fo</object-name>
+		<object-name>IRS.foaux2</object-name>
+		<property>controls/cockpit/panel/irs-fo</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x1-m>-27.5133</x1-m>
+			<y1-m>0.79274</y1-m>
+			<z1-m>6.86301</z1-m>
+			<x2-m>-27.5069</x2-m>
+			<y2-m>0.79274</y2-m>
+			<z2-m>6.86421</z2-m>
+		</axis>
+	</animation>
 	
 	<animation>
 		<type>pick</type>
 		<object-name>CenterGearUp</object-name>
+		<object-name>CenterGearUp.up</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1178,9 +1295,27 @@
 				<value>1</value>
 			</binding>
 			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/cockpit/panel/center-gear-up</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/panel/center-gear-up</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1198,6 +1333,21 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>CenterGearUp</object-name>
+		<object-name>CenterGearUp.up</object-name>
+		<property>controls/cockpit/panel/center-gear-up</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x1-m>-27.5125</x1-m>
+			<y1-m>0.03169</y1-m>
+			<z1-m>6.91528</z1-m>
+			<x2-m>-27.5061</x2-m>
+			<y2-m>0.03169</y2-m>
+			<z2-m>6.91648</z2-m>
+		</axis>
 	</animation>
 
 </PropertyList>

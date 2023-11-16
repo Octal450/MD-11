@@ -12,7 +12,7 @@ OBJECT world
 kids 115
 OBJECT poly
 name "SlatStow"
-loc -27.2725 6.70247 -0.140515
+loc -27.2724 6.70259 -0.140515
 data 20
 STRB.toggle.001.mesh
 texture "buttons.jpg"
@@ -7920,6 +7920,7 @@ data 13
 Cube.201.mesh
 texture "pedestal.png"
 crease 45.000000
+hidden
 numvert 92
 -27.2971 6.72368 0.21458
 -27.301 6.71443 0.21458
@@ -80838,7 +80839,7 @@ refs 3
 kids 0
 OBJECT poly
 name "SlatStow.on"
-loc -27.1747 6.67228 -0.172981
+loc -27.1746 6.67217 -0.172981
 texture "lights.png"
 crease 45.000000
 numvert 4

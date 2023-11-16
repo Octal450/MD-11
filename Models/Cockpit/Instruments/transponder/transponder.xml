@@ -37,7 +37,8 @@
 	<animation>
 		<type>material</type>
 		<object-name>Display</object-name>
-		<object-name>XPDR.text</object-name>
+		<object-name>Integrity</object-name>
+		<object-name>Test.Text</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -513,7 +514,34 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.setIdent();</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/ident</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/ident</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IdentBtn</object-name>
+		<property>controls/cockpit/transponder/ident</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -560,7 +588,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("1");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>1Btn</object-name>
+		<object-name>1Text</object-name>
+		<property>controls/cockpit/transponder/btn-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -573,7 +629,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("2");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>2Btn</object-name>
+		<object-name>2Text</object-name>
+		<property>controls/cockpit/transponder/btn-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -586,7 +670,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("3");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>3Btn</object-name>
+		<object-name>3Text</object-name>
+		<property>controls/cockpit/transponder/btn-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -599,7 +711,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("4");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-4</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-4</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>4Btn</object-name>
+		<object-name>4Text</object-name>
+		<property>controls/cockpit/transponder/btn-4</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -612,7 +752,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("5");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-5</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-5</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>5Btn</object-name>
+		<object-name>5Text</object-name>
+		<property>controls/cockpit/transponder/btn-5</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -625,7 +793,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("6");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-6</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-6</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>6Btn</object-name>
+		<object-name>6Text</object-name>
+		<property>controls/cockpit/transponder/btn-6</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -638,7 +834,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("7");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-7</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-7</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>7Btn</object-name>
+		<object-name>7Text</object-name>
+		<property>controls/cockpit/transponder/btn-7</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -651,7 +875,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("0");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-0</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-0</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>0Btn</object-name>
+		<object-name>0Text</object-name>
+		<property>controls/cockpit/transponder/btn-0</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -664,7 +916,35 @@
 				<command>nasal</command>
 				<script>instruments.XPDR.input("CLR");</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/transponder/btn-clr</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/transponder/btn-clr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ClrBtn</object-name>
+		<object-name>ClrText</object-name>
+		<property>controls/cockpit/transponder/btn-clr</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 
 </PropertyList>

@@ -158,7 +158,34 @@
 				<command>nasal</command>
 				<script>instruments.crp[1].swap();</script>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/radio-2/swap</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/radio-2/swap</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>swap.btn</object-name>
+		<property>controls/cockpit/radio-2/swap</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -171,8 +198,37 @@
 				<property>instrumentation/crp[1]/mode</property>
 				<value>0</value>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/radio-2/vhf-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/radio-2/vhf-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>vhf1.btn</object-name>
+		<object-name>vhf1.btn.light</object-name>
+		<property>controls/cockpit/radio-2/vhf-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
 	<animation>
 		<type>pick</type>
 		<object-name>vhf2.btn</object-name>
@@ -183,8 +239,37 @@
 				<property>instrumentation/crp[1]/mode</property>
 				<value>1</value>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/radio-2/vhf-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/radio-2/vhf-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>vhf2.btn</object-name>
+		<object-name>vhf2.btn.light</object-name>
+		<property>controls/cockpit/radio-2/vhf-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
 	<animation>
 		<type>pick</type>
 		<object-name>vhf3.btn</object-name>
@@ -195,7 +280,35 @@
 				<property>instrumentation/crp[1]/mode</property>
 				<value>2</value>
 			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/radio-2/vhf-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/radio-2/vhf-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>vhf3.btn</object-name>
+		<object-name>vhf3.btn.light</object-name>
+		<property>controls/cockpit/radio-2/vhf-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
