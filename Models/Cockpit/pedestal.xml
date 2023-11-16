@@ -1456,13 +1456,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/pedestal/gear-warning-inhibit-switch</property>
+				<property>controls/cockpit/pedestal/gear-horn-off</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/pedestal/gear-warning-inhibit-switch</property>
+					<property>controls/cockpit/pedestal/gear-horn-off</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1473,7 +1473,7 @@
 		<type>translate</type>
 		<object-name>GearHornOff</object-name>
 		<factor>-0.001</factor>
-		<property>controls/cockpit/pedestal/gear-warning-inhibit-switch</property>
+		<property>controls/cockpit/pedestal/gear-horn-off</property>
 		<axis>
 			<x>1</x>
 			<y>0</y>
