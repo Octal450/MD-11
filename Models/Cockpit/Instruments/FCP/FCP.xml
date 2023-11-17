@@ -93,7 +93,7 @@
 		<type>knob</type>
 		<object-name>integlight.knob</object-name>
 		<object-name>integlight.indicator</object-name>
-		<property>controls/cockpit/fcp-integ-knb</property>
+		<property>controls/cockpit/fcp/integ-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -121,7 +121,7 @@
 		<type>knob</type>
 		<object-name>floodlight.knob</object-name>
 		<object-name>floodlight.indicator</object-name>
-		<property>controls/cockpit/fcp-flood-knb</property>
+		<property>controls/cockpit/fcp/flood-knb</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>

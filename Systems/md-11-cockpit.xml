@@ -83,13 +83,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp-integ-knb">
-			<input>/controls/lighting/fcp-integ-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/flood-knb">
+			<input>/controls/lighting/fcp-flood-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp-flood-knb">
-			<input>/controls/lighting/fcp-flood-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/integ-knb">
+			<input>/controls/lighting/fcp-integ-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -140,36 +140,6 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/du1-dimmer">
-			<input>/instrumentation/du/du1-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/du2-dimmer">
-			<input>/instrumentation/du/du2-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/du3-dimmer">
-			<input>/instrumentation/du/du3-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/du4-dimmer">
-			<input>/instrumentation/du/du4-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/du5-dimmer">
-			<input>/instrumentation/du/du5-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/du6-dimmer">
-			<input>/instrumentation/du/du6-dimmer</input>
-			<c1>20</c1>
-		</lag_filter>
-		
 		<lag_filter name="/controls/cockpit/elevator-trim-lever">
 			<input>/controls/flight/elevator-trim-lever</input>
 			<c1>20</c1>
@@ -217,6 +187,36 @@
 		
 		<lag_filter name="/controls/cockpit/rudder-trim">
 			<input>/controls/flight/rudder-trim</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du1-dimmer">
+			<input>/instrumentation/du/du1-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du2-dimmer">
+			<input>/instrumentation/du/du2-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du3-dimmer">
+			<input>/instrumentation/du/du3-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du4-dimmer">
+			<input>/instrumentation/du/du4-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du5-dimmer">
+			<input>/instrumentation/du/du5-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/screensel/du6-dimmer">
+			<input>/instrumentation/du/du6-dimmer</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -349,13 +349,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-integ-knb">
-			<input>/controls/lighting/main-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-flood-knb">
+			<input>/controls/lighting/main-flood-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-flood-knb">
-			<input>/controls/lighting/main-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-integ-knb">
+			<input>/controls/lighting/main-integ-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -369,13 +369,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-integ-knb">
-			<input>/controls/lighting/overhead-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-flood-knb">
+			<input>/controls/lighting/overhead-flood-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-flood-knb">
-			<input>/controls/lighting/overhead-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-integ-knb">
+			<input>/controls/lighting/overhead-integ-knb</input>
 			<c1>20</c1>
 		</lag_filter>
 		

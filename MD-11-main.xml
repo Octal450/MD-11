@@ -536,6 +536,7 @@
 			<ap-disc-2 type="bool">0</ap-disc-2>
 			<armrest type="double">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
+			<iesi-baro-rotate type="int">50016</iesi-baro-rotate>
 			<fcp n="0">
 				<alt-rotate type="int">50000</alt-rotate>
 				<baro-l-rotate type="int">50000</baro-l-rotate>
@@ -547,9 +548,6 @@
 				<vs-rotate type="int">50000</vs-rotate>
 			</fcp>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
-			<iesi n="0">
-				<baro-rotate type="int">50016</baro-rotate>
-			</iesi>
 			<shade-left-cmd type="double">0</shade-left-cmd>
 			<shade-right-cmd type="double">0</shade-right-cmd>
 		</cockpit>

@@ -1456,13 +1456,17 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/pedestal/gear-horn-off</property>
+				<property>controls/cockpit/gear-horn-off</property>
 				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/pedestal/gear-horn-off</property>
+					<property>controls/cockpit/gear-horn-off</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1473,7 +1477,7 @@
 		<type>translate</type>
 		<object-name>GearHornOff</object-name>
 		<factor>-0.001</factor>
-		<property>controls/cockpit/pedestal/gear-horn-off</property>
+		<property>controls/cockpit/gear-horn-off</property>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -1500,7 +1504,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/panel/slat-stow</property>
+				<property>controls/cockpit/slat-stow</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -1510,7 +1514,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/panel/slat-stow</property>
+					<property>controls/cockpit/slat-stow</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1536,7 +1540,7 @@
 		<type>translate</type>
 		<object-name>SlatStow</object-name>
 		<object-name>SlatStow.on</object-name>
-		<property>controls/cockpit/panel/slat-stow</property>
+		<property>controls/cockpit/slat-stow</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x1-m>-27.2637</x1-m>

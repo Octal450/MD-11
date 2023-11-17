@@ -180,7 +180,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/pedestal/aux-pump-1</property>
+				<property>controls/cockpit/aux-pump-1</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -190,7 +190,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/pedestal/aux-pump-1</property>
+					<property>controls/cockpit/aux-pump-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -200,7 +200,7 @@
 		<type>translate</type>
 		<object-name>AuxPump1</object-name>
 		<object-name>AuxPump1.on</object-name>
-		<property>controls/cockpit/pedestal/aux-pump-1</property>
+		<property>controls/cockpit/aux-pump-1</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>0</x>

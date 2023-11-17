@@ -27,7 +27,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.1.knob</object-name>
-		<property>controls/cockpit/du1-dimmer</property>
+		<property>controls/cockpit/screensel/du1-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -54,7 +54,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.2.knob</object-name>
-		<property>controls/cockpit/du2-dimmer</property>
+		<property>controls/cockpit/screensel/du2-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -81,7 +81,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.3.knob</object-name>
-		<property>controls/cockpit/du3-dimmer</property>
+		<property>controls/cockpit/screensel/du3-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -108,7 +108,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.4.knob</object-name>
-		<property>controls/cockpit/du4-dimmer</property>
+		<property>controls/cockpit/screensel/du4-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -135,7 +135,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.5.knob</object-name>
-		<property>controls/cockpit/du5-dimmer</property>
+		<property>controls/cockpit/screensel/du5-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
@@ -162,7 +162,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>scrn.6.knob</object-name>
-		<property>controls/cockpit/du6-dimmer</property>
+		<property>controls/cockpit/screensel/du6-dimmer</property>
 		<factor>-275</factor>
 		<axis>
 			<x>0</x>
