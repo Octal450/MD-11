@@ -590,10 +590,34 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/galley-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/galley-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Galley1</object-name>
+		<object-name>Galley1.off</object-name>
+		<property>controls/cockpit/overhead/galley-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -646,10 +670,34 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/galley-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/galley-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Galley2</object-name>
+		<object-name>Galley2.off</object-name>
+		<property>controls/cockpit/overhead/galley-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -702,10 +750,34 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/galley-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/galley-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Galley3</object-name>
+		<object-name>Galley3.off</object-name>
+		<property>controls/cockpit/overhead/galley-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -793,8 +865,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>SystemHyd</object-name>
-		<object-name>SystemHyd.select</object-name>
 		<object-name>SystemHyd.manual</object-name>
+		<object-name>SystemHyd.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -809,10 +881,35 @@
 				<script>systems.HYD.systemMode();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/system-hyd</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/system-hyd</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>SystemHyd</object-name>
+		<object-name>SystemHyd.manual</object-name>
+		<object-name>SystemHyd.select</object-name>
+		<property>controls/cockpit/overhead/system-hyd</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -878,10 +975,34 @@
 				<property>controls/hydraulics/switches/aux-pump-1</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/aux-pump-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/aux-pump-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AuxPump1</object-name>
+		<object-name>AuxPump1.on</object-name>
+		<property>controls/cockpit/overhead/aux-pump-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -918,10 +1039,34 @@
 				<property>controls/hydraulics/switches/aux-pump-2</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/aux-pump-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/aux-pump-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AuxPump2</object-name>
+		<object-name>AuxPump2.on</object-name>
+		<property>controls/cockpit/overhead/aux-pump-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -976,10 +1121,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/l-pump-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/l-pump-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LPump1</object-name>
+		<object-name>LPump1.fault</object-name>
+		<object-name>LPump1.off</object-name>
+		<property>controls/cockpit/overhead/l-pump-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1055,10 +1225,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/r-pump-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/r-pump-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RPump1</object-name>
+		<object-name>RPump1.fault</object-name>
+		<object-name>RPump1.off</object-name>
+		<property>controls/cockpit/overhead/r-pump-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1134,10 +1329,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/l-pump-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/l-pump-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LPump2</object-name>
+		<object-name>LPump2.fault</object-name>
+		<object-name>LPump2.off</object-name>
+		<property>controls/cockpit/overhead/l-pump-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1213,10 +1433,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/r-pump-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/r-pump-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RPump2</object-name>
+		<object-name>RPump2.fault</object-name>
+		<object-name>RPump2.off</object-name>
+		<property>controls/cockpit/overhead/r-pump-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1292,10 +1537,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/l-pump-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/l-pump-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LPump3</object-name>
+		<object-name>LPump3.fault</object-name>
+		<object-name>LPump3.off</object-name>
+		<property>controls/cockpit/overhead/l-pump-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1371,10 +1641,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/r-pump-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/r-pump-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RPump3</object-name>
+		<object-name>RPump3.fault</object-name>
+		<object-name>RPump3.off</object-name>
+		<property>controls/cockpit/overhead/r-pump-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1419,8 +1714,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>RMP1-3</object-name>
-		<object-name>RMP1-3.on</object-name>
 		<object-name>RMP1-3.disag</object-name>
+		<object-name>RMP1-3.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1451,10 +1746,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/rmp-1-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/rmp-1-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RMP1-3</object-name>
+		<object-name>RMP1-3.disag</object-name>
+		<object-name>RMP1-3.on</object-name>
+		<property>controls/cockpit/overhead/rmp-1-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1492,8 +1812,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>RMP2-3</object-name>
-		<object-name>RMP2-3.on</object-name>
 		<object-name>RMP2-3.disag</object-name>
+		<object-name>RMP2-3.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1524,10 +1844,35 @@
 				<script>systems.manualHydLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/rmp-2-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/rmp-2-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RMP2-3</object-name>
+		<object-name>RMP2-3.disag</object-name>
+		<object-name>RMP2-3.on</object-name>
+		<property>controls/cockpit/overhead/rmp-2-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1615,7 +1960,6 @@
 	</animation>
 	
 	<!-- Hydraulic Test -->
-	
 	<animation>
 		<type>select</type>
 		<object-name>HydPressTest.test</object-name>
@@ -1638,8 +1982,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>SystemElec</object-name>
-		<object-name>SystemElec.select</object-name>
 		<object-name>SystemElec.manual</object-name>
+		<object-name>SystemElec.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1654,10 +1998,35 @@
 				<script>systems.ELEC.systemMode();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/system-elec</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/system-elec</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>SystemElec</object-name>
+		<object-name>SystemElec.manual</object-name>
+		<object-name>SystemElec.select</object-name>
+		<property>controls/cockpit/overhead/system-elec</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1717,10 +2086,34 @@
 				<property>controls/electrical/switches/battery</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/battery</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/battery</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Battery</object-name>
+		<object-name>Battery.off</object-name>
+		<property>controls/cockpit/overhead/battery</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1791,10 +2184,34 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/dc-tie-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/dc-tie-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>DCTie1</object-name>
+		<object-name>DCTie1.off</object-name>
+		<property>controls/cockpit/overhead/dc-tie-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1847,10 +2264,34 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/dc-tie-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/dc-tie-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>DCTie3</object-name>
+		<object-name>DCTie3.off</object-name>
+		<property>controls/cockpit/overhead/dc-tie-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1889,10 +2330,35 @@
 				<property>controls/electrical/switches/ext-pwr</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ext-pwr</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ext-pwr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ExtPwr</object-name>
+		<object-name>ExtPwr.avail</object-name>
+		<object-name>ExtPwr.on</object-name>
+		<property>controls/cockpit/overhead/ext-pwr</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -1946,10 +2412,35 @@
 				<property>controls/electrical/switches/extg-pwr</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/extg-pwr</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/extg-pwr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ExtGlyPwr</object-name>
+		<object-name>ExtGlyPwr.avail</object-name>
+		<object-name>ExtGlyPwr.on</object-name>
+		<property>controls/cockpit/overhead/extg-pwr</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2030,10 +2521,35 @@
 				<script>systems.APU.startStop(1);</script> <!-- Auto connect -->
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/apu-pwr</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/apu-pwr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ApuPwr</object-name>
+		<object-name>ApuPwr.avail</object-name>
+		<object-name>ApuPwr.on</object-name>
+		<property>controls/cockpit/overhead/apu-pwr</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2124,10 +2640,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ac-tie-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ac-tie-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ACTie1</object-name>
+		<object-name>ACTie1.arm</object-name>
+		<object-name>ACTie1.off</object-name>
+		<property>controls/cockpit/overhead/ac-tie-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2207,10 +2748,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ac-tie-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ac-tie-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ACTie2</object-name>
+		<object-name>ACTie2.arm</object-name>
+		<object-name>ACTie2.off</object-name>
+		<property>controls/cockpit/overhead/ac-tie-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2290,10 +2856,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ac-tie-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ac-tie-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ACTie3</object-name>
+		<object-name>ACTie3.arm</object-name>
+		<object-name>ACTie3.off</object-name>
+		<property>controls/cockpit/overhead/ac-tie-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2370,10 +2961,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gen1</object-name>
+		<object-name>Gen1.arm</object-name>
+		<object-name>Gen1.off</object-name>
+		<property>controls/cockpit/overhead/gen-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2444,14 +3060,41 @@
 				<value>0</value>
 			</binding>
 			<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/devices/status/keyboard/shift") == 1) {
-						libraries.Sound.btn2();
-					}
-				</script>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-drive-1</property>
+				<value>1</value>
 			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-drive-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Drive1</object-name>
+		<object-name>Drive1.disc</object-name>
+		<object-name>Drive1.fault</object-name>
+		<property>controls/cockpit/overhead/gen-drive-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2521,10 +3164,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gen2</object-name>
+		<object-name>Gen2.arm</object-name>
+		<object-name>Gen2.off</object-name>
+		<property>controls/cockpit/overhead/gen-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2595,14 +3263,41 @@
 				<value>0</value>
 			</binding>
 			<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/devices/status/keyboard/shift") == 1) {
-						libraries.Sound.btn2();
-					}
-				</script>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-drive-2</property>
+				<value>1</value>
 			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-drive-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Drive2</object-name>
+		<object-name>Drive2.disc</object-name>
+		<object-name>Drive2.fault</object-name>
+		<property>controls/cockpit/overhead/gen-drive-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2672,10 +3367,35 @@
 				<script>systems.manualElecLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gen3</object-name>
+		<object-name>Gen3.arm</object-name>
+		<object-name>Gen3.off</object-name>
+		<property>controls/cockpit/overhead/gen-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2746,14 +3466,41 @@
 				<value>0</value>
 			</binding>
 			<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/devices/status/keyboard/shift") == 1) {
-						libraries.Sound.btn2();
-					}
-				</script>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-drive-3</property>
+				<value>1</value>
 			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-drive-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Drive3</object-name>
+		<object-name>Drive3.disc</object-name>
+		<object-name>Drive3.fault</object-name>
+		<property>controls/cockpit/overhead/gen-drive-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2879,10 +3626,34 @@
 				<property>controls/electrical/switches/adg-elec</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/adg-elec</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/adg-elec</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ADGElec</object-name>
+		<object-name>ADGElec.on</object-name>
+		<property>controls/cockpit/overhead/adg-elec</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -2958,10 +3729,34 @@
 				<property>controls/electrical/switches/cab-bus</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/cab-bus</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/cab-bus</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>CabBus</object-name>
+		<object-name>CabBus.off</object-name>
+		<property>controls/cockpit/overhead/cab-bus</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6173,10 +6968,35 @@
 				<property>controls/fcc/switches/lsas-left-out</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/lsas-left-out</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/lsas-left-out</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LSAS_lo</object-name>
+		<object-name>LSAS_lo.fail</object-name>
+		<object-name>LSAS_lo.off</object-name>
+		<property>controls/cockpit/overhead/lsas-left-out</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6236,10 +7056,35 @@
 				<property>controls/fcc/switches/lsas-left-in</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/lsas-left-in</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/lsas-left-in</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LSAS_li</object-name>
+		<object-name>LSAS_li.fail</object-name>
+		<object-name>LSAS_li.off</object-name>
+		<property>controls/cockpit/overhead/lsas-left-in</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6299,10 +7144,35 @@
 				<property>controls/fcc/switches/lsas-right-in</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/lsas-right-in</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/lsas-right-in</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LSAS_ri</object-name>
+		<object-name>LSAS_ri.fail</object-name>
+		<object-name>LSAS_ri.off</object-name>
+		<property>controls/cockpit/overhead/lsas-right-in</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6362,10 +7232,35 @@
 				<property>controls/fcc/switches/lsas-right-out</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/lsas-right-out</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/lsas-right-out</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LSAS_ro</object-name>
+		<object-name>LSAS_ro.fail</object-name>
+		<object-name>LSAS_ro.off</object-name>
+		<property>controls/cockpit/overhead/lsas-right-out</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6425,10 +7320,35 @@
 				<property>controls/fcc/switches/yd-upper-a</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/yd-upper-a</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/yd-upper-a</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>YD_upra</object-name>
+		<object-name>YD_upra.fail</object-name>
+		<object-name>YD_upra.off</object-name>
+		<property>controls/cockpit/overhead/yd-upper-a</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6488,10 +7408,35 @@
 				<property>controls/fcc/switches/yd-upper-b</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/yd-upper-b</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/yd-upper-b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>YD_uprb</object-name>
+		<object-name>YD_uprb.fail</object-name>
+		<object-name>YD_uprb.off</object-name>
+		<property>controls/cockpit/overhead/yd-upper-b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6551,10 +7496,35 @@
 				<property>controls/fcc/switches/yd-lower-a</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/yd-lower-a</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/yd-lower-a</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>YD_lwra</object-name>
+		<object-name>YD_lwra.fail</object-name>
+		<object-name>YD_lwra.off</object-name>
+		<property>controls/cockpit/overhead/yd-lower-a</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6614,10 +7584,35 @@
 				<property>controls/fcc/switches/yd-lower-b</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/yd-lower-b</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/yd-lower-b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>YD_lwrb</object-name>
+		<object-name>YD_lwrb.fail</object-name>
+		<object-name>YD_lwrb.off</object-name>
+		<property>controls/cockpit/overhead/yd-lower-b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>

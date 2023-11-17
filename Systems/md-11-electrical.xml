@@ -101,6 +101,22 @@
 			<output>/controls/electrical/switches/ac-tie-3</output>
 		</switch>
 		
+		<switch name="/systems/electrical/epcu/ext-pwr">
+			<default value="/controls/electrical/switches/ext-pwr"/>
+			<test value="0">
+				/controls/electrical/switches/ground-cart eq 0
+			</test>
+			<output>/controls/electrical/switches/ext-pwr</output>
+		</switch>
+		
+		<switch name="/systems/electrical/epcu/extg-pwr">
+			<default value="/controls/electrical/switches/extg-pwr"/>
+			<test value="0">
+				/controls/electrical/switches/ground-cart eq 0
+			</test>
+			<output>/controls/electrical/switches/extg-pwr</output>
+		</switch>
+		
 		<switch name="/systems/electrical/epcu/apu-pwr">
 			<default value="/controls/electrical/switches/apu-pwr"/>
 			<test logic="OR" value="0">
