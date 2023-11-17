@@ -240,18 +240,18 @@
 		<object-name>AvionicsFan.flow</object-name>
 		<object-name>AvionicsFan.ovrd</object-name>
 		<object-name>BeaconLt.off</object-name>
-		<object-name>bleed-1.press</object-name>
-		<object-name>bleed-1.off</object-name>
-		<object-name>bleed-1B.manf</object-name>
-		<object-name>bleed-1B.temphi</object-name>
-		<object-name>bleed-2.press</object-name>
-		<object-name>bleed-2.off</object-name>
-		<object-name>bleed-2B.manf</object-name>
-		<object-name>bleed-2B.temphi</object-name>
-		<object-name>bleed-3.press</object-name>
-		<object-name>bleed-3.off</object-name>
-		<object-name>bleed-3B.manf</object-name>
-		<object-name>bleed-3B.temphi</object-name>
+		<object-name>Bleed-1.press</object-name>
+		<object-name>Bleed-1.off</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<object-name>Bleed-2.press</object-name>
+		<object-name>Bleed-2.off</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<object-name>Bleed-3.press</object-name>
+		<object-name>Bleed-3.off</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
 		<object-name>Digits.Tank1</object-name>
 		<object-name>Digits.Tank2</object-name>
 		<object-name>Digits.Tank3</object-name>
@@ -377,12 +377,12 @@
 	<animation>
 		<type>select</type>
 		<object-name>AvionicsFan.flow</object-name>
-		<object-name>bleed-1B.manf</object-name>
-		<object-name>bleed-1B.temphi</object-name>
-		<object-name>bleed-2B.manf</object-name>
-		<object-name>bleed-2B.temphi</object-name>
-		<object-name>bleed-3B.manf</object-name>
-		<object-name>bleed-3B.temphi</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
 		<object-name>Dump.on</object-name>
 		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE2.select</object-name>
@@ -3987,8 +3987,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>SystemPneu</object-name>
-		<object-name>SystemPneu.select</object-name>
 		<object-name>SystemPneu.manual</object-name>
+		<object-name>SystemPneu.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4003,10 +4003,35 @@
 				<script>systems.PNEU.systemMode();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/system-pneu</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/system-pneu</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>SystemPneu</object-name>
+		<object-name>SystemPneu.manual</object-name>
+		<object-name>SystemPneu.select</object-name>
+		<property>controls/cockpit/overhead/system-pneu</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4214,10 +4239,35 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pack-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pack-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Pack1</object-name>
+		<object-name>Pack1.flow</object-name>
+		<object-name>Pack1.off</object-name>
+		<property>controls/cockpit/overhead/pack-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4287,10 +4337,35 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pack-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pack-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Pack2</object-name>
+		<object-name>Pack2.flow</object-name>
+		<object-name>Pack2.off</object-name>
+		<property>controls/cockpit/overhead/pack-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4360,10 +4435,35 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pack-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pack-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Pack3</object-name>
+		<object-name>Pack3.flow</object-name>
+		<object-name>Pack3.off</object-name>
+		<property>controls/cockpit/overhead/pack-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4402,8 +4502,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>ISOL-1-2</object-name>
-		<object-name>ISOL-1-2.on</object-name>
 		<object-name>ISOL-1-2.disag</object-name>
+		<object-name>ISOL-1-2.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4434,10 +4534,35 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/isol-1-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/isol-1-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ISOL-1-2</object-name>
+		<object-name>ISOL-1-2.disag</object-name>
+		<object-name>ISOL-1-2.on</object-name>
+		<property>controls/cockpit/overhead/isol-1-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4507,10 +4632,35 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/isol-1-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/isol-1-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ISOL-1-3</object-name>
+		<object-name>ISOL-1-3.disag</object-name>
+		<object-name>ISOL-1-3.on</object-name>
+		<property>controls/cockpit/overhead/isol-1-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4548,9 +4698,9 @@
 	<!-- Bleeds -->
 	<animation>
 		<type>pick</type>
-		<object-name>bleed-1</object-name>
-		<object-name>bleed-1.press</object-name>
-		<object-name>bleed-1.off</object-name>
+		<object-name>Bleed-1</object-name>
+		<object-name>Bleed-1.off</object-name>
+		<object-name>Bleed-1.press</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4581,14 +4731,39 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
+		<type>translate</type>
+		<object-name>Bleed-1</object-name>
+		<object-name>Bleed-1.off</object-name>
+		<object-name>Bleed-1.press</object-name>
+		<property>controls/cockpit/overhead/bleed-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
 		<type>select</type>
-		<object-name>bleed-1.press</object-name>
+		<object-name>Bleed-1.press</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4604,7 +4779,7 @@
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>bleed-1.off</object-name>
+		<object-name>Bleed-1.off</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4621,9 +4796,9 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>bleed-2</object-name>
-		<object-name>bleed-2.press</object-name>
-		<object-name>bleed-2.off</object-name>
+		<object-name>Bleed-2</object-name>
+		<object-name>Bleed-2.off</object-name>
+		<object-name>Bleed-2.press</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4654,14 +4829,39 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
+		<type>translate</type>
+		<object-name>Bleed-2</object-name>
+		<object-name>Bleed-2.off</object-name>
+		<object-name>Bleed-2.press</object-name>
+		<property>controls/cockpit/overhead/bleed-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
 		<type>select</type>
-		<object-name>bleed-2.press</object-name>
+		<object-name>Bleed-2.press</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4677,7 +4877,7 @@
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>bleed-2.off</object-name>
+		<object-name>Bleed-2.off</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4710,10 +4910,34 @@
 				<property>controls/pneumatics/switches/bleed-apu</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-apu</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-apu</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>APUBleed</object-name>
+		<object-name>APUBleed.on</object-name>
+		<property>controls/cockpit/overhead/bleed-apu</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4734,9 +4958,9 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>bleed-3</object-name>
-		<object-name>bleed-3.press</object-name>
-		<object-name>bleed-3.off</object-name>
+		<object-name>Bleed-3</object-name>
+		<object-name>Bleed-3.press</object-name>
+		<object-name>Bleed-3.off</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4767,14 +4991,39 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 	<animation>
+		<type>translate</type>
+		<object-name>Bleed-3</object-name>
+		<object-name>Bleed-3.off</object-name>
+		<object-name>Bleed-3.press</object-name>
+		<property>controls/cockpit/overhead/bleed-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
 		<type>select</type>
-		<object-name>bleed-3.press</object-name>
+		<object-name>Bleed-3.press</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4790,7 +5039,7 @@
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>bleed-3.off</object-name>
+		<object-name>Bleed-3.off</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -4839,10 +5088,34 @@
 				<script>systems.manualPneuLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trim-air</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trim-air</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>TrimAir</object-name>
+		<object-name>TrimAir.off</object-name>
+		<property>controls/cockpit/overhead/trim-air</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4879,10 +5152,34 @@
 				<property>controls/pneumatics/switches/avionics-fan</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/avionics-fan</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/avionics-fan</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AvionicsFan</object-name>
+		<object-name>AvionicsFan.ovrd</object-name>
+		<property>controls/cockpit/overhead/avionics-fan</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4919,10 +5216,34 @@
 				<property>controls/pneumatics/switches/econ</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/econ</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/econ</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Econ</object-name>
+		<object-name>Econ.off</object-name>
+		<property>controls/cockpit/overhead/econ</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -4942,12 +5263,12 @@
 	</animation>
 
 	<!-- FUEL -->
-	<!-- Pneumatic System Control Button -->
+	<!-- Fuel System Control Button -->
 	<animation>
 		<type>pick</type>
 		<object-name>SystemFuel</object-name>
-		<object-name>SystemFuel.select</object-name>
 		<object-name>SystemFuel.manual</object-name>
+		<object-name>SystemFuel.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -4962,10 +5283,35 @@
 				<script>systems.FUEL.systemMode();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/system-fuel</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/system-fuel</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>SystemFuel</object-name>
+		<object-name>SystemFuel.manual</object-name>
+		<object-name>SystemFuel.select</object-name>
+		<property>controls/cockpit/overhead/system-fuel</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5048,10 +5394,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/fill-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/fill-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank1Fill</object-name>
+		<object-name>Tank1Fill.arm</object-name>
+		<object-name>Tank1Fill.fill</object-name>
+		<property>controls/cockpit/overhead/fill-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5133,10 +5504,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pumps-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pumps-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank1Pumps</object-name>
+		<object-name>Tank1Pumps.low</object-name>
+		<object-name>Tank1Pumps.off</object-name>
+		<property>controls/cockpit/overhead/pumps-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5180,8 +5576,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank1XFeed</object-name>
-		<object-name>Tank1XFeed.on</object-name>
 		<object-name>Tank1XFeed.disag</object-name>
+		<object-name>Tank1XFeed.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5212,10 +5608,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/x-feed-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/x-feed-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank1XFeed</object-name>
+		<object-name>Tank1XFeed.disag</object-name>
+		<object-name>Tank1XFeed.on</object-name>
+		<property>controls/cockpit/overhead/x-feed-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5253,8 +5674,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank1Trans</object-name>
-		<object-name>Tank1Trans.on</object-name>
 		<object-name>Tank1Trans.low</object-name>
+		<object-name>Tank1Trans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5285,10 +5706,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank1Trans</object-name>
+		<object-name>Tank1Trans.low</object-name>
+		<object-name>Tank1Trans.on</object-name>
+		<property>controls/cockpit/overhead/trans-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5365,10 +5811,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/fill-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/fill-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank2Fill</object-name>
+		<object-name>Tank2Fill.arm</object-name>
+		<object-name>Tank2Fill.fill</object-name>
+		<property>controls/cockpit/overhead/fill-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5450,10 +5921,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pumps-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pumps-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank2Pumps</object-name>
+		<object-name>Tank2Pumps.low</object-name>
+		<object-name>Tank2Pumps.off</object-name>
+		<property>controls/cockpit/overhead/pumps-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5497,8 +5993,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank2XFeed</object-name>
-		<object-name>Tank2XFeed.on</object-name>
 		<object-name>Tank2XFeed.disag</object-name>
+		<object-name>Tank2XFeed.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5529,10 +6025,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/x-feed-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/x-feed-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank2XFeed</object-name>
+		<object-name>Tank2XFeed.disag</object-name>
+		<object-name>Tank2XFeed.on</object-name>
+		<property>controls/cockpit/overhead/x-feed-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5570,8 +6091,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank2Trans</object-name>
-		<object-name>Tank2Trans.on</object-name>
 		<object-name>Tank2Trans.low</object-name>
+		<object-name>Tank2Trans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5602,10 +6123,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank2Trans</object-name>
+		<object-name>Tank2Trans.low</object-name>
+		<object-name>Tank2Trans.on</object-name>
+		<property>controls/cockpit/overhead/trans-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5682,10 +6228,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/fill-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/fill-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank3Fill</object-name>
+		<object-name>Tank3Fill.arm</object-name>
+		<object-name>Tank3Fill.fill</object-name>
+		<property>controls/cockpit/overhead/fill-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5767,10 +6338,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/pumps-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/pumps-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank3Pumps</object-name>
+		<object-name>Tank3Pumps.low</object-name>
+		<object-name>Tank3Pumps.off</object-name>
+		<property>controls/cockpit/overhead/pumps-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5814,8 +6410,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank3XFeed</object-name>
-		<object-name>Tank3XFeed.on</object-name>
 		<object-name>Tank3XFeed.disag</object-name>
+		<object-name>Tank3XFeed.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5846,10 +6442,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/x-feed-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/x-feed-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank3XFeed</object-name>
+		<object-name>Tank3XFeed.disag</object-name>
+		<object-name>Tank3XFeed.on</object-name>
+		<property>controls/cockpit/overhead/x-feed-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5887,8 +6508,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>Tank3Trans</object-name>
-		<object-name>Tank3Trans.on</object-name>
 		<object-name>Tank3Trans.low</object-name>
+		<object-name>Tank3Trans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5919,10 +6540,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Tank3Trans</object-name>
+		<object-name>Tank3Trans.low</object-name>
+		<object-name>Tank3Trans.on</object-name>
+		<property>controls/cockpit/overhead/trans-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -5967,8 +6613,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>LTrans</object-name>
-		<object-name>LTrans.on</object-name>
 		<object-name>LTrans.low</object-name>
+		<object-name>LTrans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -5999,10 +6645,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-aux-l</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-aux-l</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LTrans</object-name>
+		<object-name>LTrans.low</object-name>
+		<object-name>LTrans.on</object-name>
+		<property>controls/cockpit/overhead/trans-aux-l</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6046,8 +6717,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>RTrans</object-name>
-		<object-name>RTrans.on</object-name>
 		<object-name>RTrans.low</object-name>
+		<object-name>RTrans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6078,10 +6749,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-aux-r</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-aux-r</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>RTrans</object-name>
+		<object-name>RTrans.low</object-name>
+		<object-name>RTrans.on</object-name>
+		<property>controls/cockpit/overhead/trans-aux-r</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6125,8 +6821,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>TailTrans</object-name>
-		<object-name>TailTrans.on</object-name>
 		<object-name>TailTrans.low</object-name>
+		<object-name>TailTrans.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6157,10 +6853,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/trans-tail</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/trans-tail</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>TailTrans</object-name>
+		<object-name>TailTrans.low</object-name>
+		<object-name>TailTrans.on</object-name>
+		<property>controls/cockpit/overhead/trans-tail</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6204,8 +6925,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>AltPump</object-name>
-		<object-name>AltPump.on</object-name>
 		<object-name>AltPump.low</object-name>
+		<object-name>AltPump.on</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6236,10 +6957,35 @@
 				<script>systems.manualFuelLightt.start();</script>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/alt-pump</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/alt-pump</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AltPump</object-name>
+		<object-name>AltPump.low</object-name>
+		<object-name>AltPump.on</object-name>
+		<property>controls/cockpit/overhead/alt-pump</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6433,8 +7179,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>FADEC_MODE1</object-name>
-		<object-name>FADEC_MODE1.select</object-name>
 		<object-name>FADEC_MODE1.altn</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6449,10 +7195,35 @@
 				<property>controls/fadec/eng-1-altn</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/eng-1-altn</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/eng-1-altn</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FADEC_MODE1</object-name>
+		<object-name>FADEC_MODE1.altn</object-name>
+		<object-name>FADEC_MODE1.select</object-name>
+		<property>controls/cockpit/overhead/eng-1-altn</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6474,8 +7245,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>FADEC_MODE2</object-name>
-		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE2.altn</object-name>
+		<object-name>FADEC_MODE2.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6490,10 +7261,35 @@
 				<property>controls/fadec/eng-2-altn</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/eng-2-altn</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/eng-2-altn</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FADEC_MODE2</object-name>
+		<object-name>FADEC_MODE2.altn</object-name>
+		<object-name>FADEC_MODE2.select</object-name>
+		<property>controls/cockpit/overhead/eng-2-altn</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6515,8 +7311,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>FADEC_MODE3</object-name>
-		<object-name>FADEC_MODE3.select</object-name>
 		<object-name>FADEC_MODE3.altn</object-name>
+		<object-name>FADEC_MODE3.select</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -6531,10 +7327,35 @@
 				<property>controls/fadec/eng-3-altn</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/eng-3-altn</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/eng-3-altn</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FADEC_MODE3</object-name>
+		<object-name>FADEC_MODE3.altn</object-name>
+		<object-name>FADEC_MODE3.select</object-name>
+		<property>controls/cockpit/overhead/eng-3-altn</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6595,10 +7416,35 @@
 				<property>controls/ignition/ign-a</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ign-a</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ign-a</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IGN_A</object-name>
+		<object-name>IGN_A.a</object-name>
+		<object-name>IGN_A.manual</object-name>
+		<property>controls/cockpit/overhead/ign-a</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6636,10 +7482,35 @@
 				<property>controls/ignition/ign-b</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ign-b</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ign-b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IGN_B</object-name>
+		<object-name>IGN_B.b</object-name>
+		<object-name>IGN_B.manual</object-name>
+		<property>controls/cockpit/overhead/ign-b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -6676,10 +7547,34 @@
 				<property>controls/ignition/ign-ovrd</property>
 			</binding>
 			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/ign-ovrd</property>
+				<value>1</value>
+			</binding>
+			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/ign-ovrd</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>IGN_OVRD</object-name>
+		<object-name>IGN_OVRD.ovrdon</object-name>
+		<property>controls/cockpit/overhead/ign-ovrd</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -7840,6 +8735,18 @@
 		</action>
 	</animation>
 	<animation>
+		<type>translate</type>
+		<object-name>BeaconLt</object-name>
+		<object-name>BeaconLt.off</object-name>
+		<property>controls/lighting/beacon</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
 		<type>select</type>
 		<object-name>BeaconLt.off</object-name>
 		<condition>
@@ -7872,6 +8779,18 @@
 				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>NavLt</object-name>
+		<object-name>NavLt.off</object-name>
+		<property>controls/lighting/nav-lights</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -7907,6 +8826,19 @@
 				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LogoLt</object-name>
+		<object-name>LogoLt.off</object-name>
+		<object-name>LogoLt.on</object-name>
+		<property>controls/lighting/logo-lights</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
@@ -7957,6 +8889,18 @@
 				<script>libraries.Sound.btn2();</script>
 			</binding>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>StrobeLt</object-name>
+		<object-name>StrobeLt.off</object-name>
+		<property>controls/lighting/strobe</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	<animation>
 		<type>select</type>
