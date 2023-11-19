@@ -285,6 +285,7 @@ var ITAF = {
 			Input.fd2.setBoolValue(1);
 		}
 		Input.vs.setValue(0);
+		Input.vsAbs.setValue(0);
 		Input.fpa.setValue(0);
 		Input.fpaAbs.setValue(0);
 		Input.lat.setValue(5);
@@ -1388,7 +1389,9 @@ var ITAF = {
 		Internal.alt.setValue(math.clamp(math.round(Internal.altPredicted.getValue(), 100), 0, 50000));
 	},
 	syncVs: func() {
-		Input.vs.setValue(math.clamp(math.round(Internal.vs.getValue(), 100), -6000, 6000));
+		Internal.vsTemp = Internal.vs.getValue();
+		Input.vs.setValue(math.clamp(math.round(Internal.vsTemp, 100), -6000, 6000));
+		Input.vsAbs.setValue(abs(math.clamp(math.round(Internal.vsTemp, 100), -6000, 6000)));
 	},
 	syncFpa: func() {
 		Internal.fpaTemp = Internal.fpa.getValue();
