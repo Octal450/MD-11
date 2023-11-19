@@ -127,7 +127,7 @@ var Input = {
 	latTemp: 5,
 	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
 	machTemp: 0,
-	machX1000: props.globals.initNode("/it-autoflight/input/mach-x1000", 500, "DOUBLE"),
+	machX1000: props.globals.initNode("/it-autoflight/input/mach-x1000", 500, "INT"),
 	ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
 	ovrd1Temp: 0,
 	ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
