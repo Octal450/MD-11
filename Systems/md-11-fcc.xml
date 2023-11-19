@@ -736,7 +736,7 @@
 		
 		<lag_filter name="fcc/rcws/input-demand">
 			<input>fcc/rcws/input-gain</input>
-			<c1>5</c1>
+			<c1>5.0</c1>
 		</lag_filter>
 		
 		<pure_gain name="fcc/rcws/rate-demand">

@@ -90,6 +90,7 @@ var Velocities = {
 	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/kts-predicted-5", 1),
 	indicatedMach: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-mach", 1),
 	indicatedMach5Sec: props.globals.getNode("/it-autoflight/internal/mach-predicted-5", 1),
+	indicatedMachTemp: 0,
 	vmax: 365,
 	vmin: 0,
 };
@@ -124,12 +125,13 @@ var Input = {
 	ktsMachTemp: 0,
 	lat: props.globals.initNode("/it-autoflight/input/lat", 5, "INT"),
 	latTemp: 5,
+	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
+	machX1000: props.globals.initNode("/it-autoflight/input/mach-x1000", 500, "DOUBLE"),
+	machTemp: 0,
 	ovrd1: props.globals.initNode("/it-autoflight/input/ovrd1", 0, "BOOL"),
 	ovrd1Temp: 0,
 	ovrd2: props.globals.initNode("/it-autoflight/input/ovrd2", 0, "BOOL"),
 	ovrd2Temp: 0,
-	mach: props.globals.initNode("/it-autoflight/input/mach", 0.5, "DOUBLE"),
-	machTemp: 0,
 	radioSel: props.globals.initNode("/it-autoflight/input/radio-sel", 2, "INT"),
 	radioSelTemp: 0,
 	toga: props.globals.initNode("/it-autoflight/input/toga", 0, "BOOL"),
@@ -162,6 +164,7 @@ var Internal = {
 	enableAthrOff: 0,
 	flchActive: 0,
 	fpa: props.globals.initNode("/it-autoflight/internal/fpa", 0, "DOUBLE"),
+	fpaTemp: 0,
 	hdg: props.globals.initNode("/it-autoflight/internal/hdg", 0, "INT"),
 	hdgCalc: 0,
 	hdgPredicted: props.globals.initNode("/it-autoflight/internal/heading-predicted", 0, "DOUBLE"),
@@ -263,6 +266,7 @@ var ITAF = {
 			Input.ktsMach.setBoolValue(0);
 			Input.kts.setValue(250);
 			Input.mach.setValue(0.5);
+			Input.machX1000.setValue(500);
 			Input.hdg.setValue(0);
 			Input.trk.setBoolValue(0);
 			Internal.alt.setValue(10000);
@@ -282,6 +286,7 @@ var ITAF = {
 		}
 		Input.vs.setValue(0);
 		Input.fpa.setValue(0);
+		Input.fpaAbs.setValue(0);
 		Input.lat.setValue(5);
 		Input.vert.setValue(7);
 		Input.toga.setBoolValue(0);
@@ -1369,7 +1374,9 @@ var ITAF = {
 		Internal.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), fms.Speeds.athrMinMach.getValue(), fms.Speeds.athrMaxMach.getValue()));
 	},
 	syncMachSel: func() {
-		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMach.getValue(), 0.001), 0.5, 0.87));
+		Velocities.indicatedMachTemp = Velocities.indicatedMach.getValue();
+		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMachTemp, 0.001), 0.5, 0.87));
+		Input.machX1000.setValue(math.clamp(math.round(Velocities.indicatedMachTemp * 1000, 1), 500, 870));
 	},
 	syncHdg: func() {
 		Internal.hdgSet = math.round(Internal.hdgPredicted.getValue()); # Switches to track automatically
@@ -1384,7 +1391,9 @@ var ITAF = {
 		Input.vs.setValue(math.clamp(math.round(Internal.vs.getValue(), 100), -6000, 6000));
 	},
 	syncFpa: func() {
-		Input.fpa.setValue(math.clamp(math.round(Internal.fpa.getValue(), 0.1), -9.9, 9.9));
+		Internal.fpaTemp = Internal.fpa.getValue();
+		Input.fpa.setValue(math.clamp(math.round(Internal.fpaTemp, 0.1), -9.9, 9.9));
+		Input.fpaAbs.setValue(abs(math.clamp(math.round(Internal.fpaTemp, 0.1), -9.9, 9.9)));
 	},
 	spdPush: func() {
 		Internal.retardLock = 0;
