@@ -62,12 +62,10 @@
 
 	<logic>
 		<input>
-			<not>
-				<equals>
-					<property>/sim/sound/internal-custom</property>
-					<value>1</value>
-				</equals>
-			</not>
+			<not-equals>
+				<property>/sim/sound/internal-custom</property>
+				<value>1</value>
+			</not-equals>
 		</input>
 		<output>/sim/sound/external-custom</output>
 	</logic>
@@ -148,6 +146,33 @@
 		</input>
 		<input>0</input>
 		<output>/sim/sound/other/windp</output>
+	</filter>
+	
+	<filter>
+		<type>noise-spike</type>
+		<input>
+			<expression>
+				<min>
+					<sum>
+						<product>
+							<property>/systems/pneumatics/pack-1-flow</property>
+							<value>0.04</value>
+						</product>
+						<product>
+							<property>/systems/pneumatics/pack-2-flow</property>
+							<value>0.04</value>
+						</product>
+						<product>
+							<property>/systems/pneumatics/pack-3-flow</property>
+							<value>0.04</value>
+						</product>
+					</sum>
+					<value>0.85</value>
+				</min>
+			</expression> 
+		</input>
+		<output>/sim/sound/other/packs</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 
 </PropertyList>

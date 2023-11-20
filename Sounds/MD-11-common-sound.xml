@@ -117,28 +117,14 @@
 		</cvrtone>
 		
 		<misc>
-			<name>md11 cockpit fans</name>
+			<name>md11 cockpit packs</name>
 			<mode>looped</mode>
-			<path>Aircraft/MD-11/Sounds/Cockpit/cockpit_ambiance.wav</path>
+			<path>Aircraft/MD-11/Sounds/Cockpit/packs.wav</path>
 			<condition>
-				<or>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-2</property>
-						<value>112</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-3</property>
-						<value>112</value>
-					</greater-than-equals>
-				</or>
+				<property>/sim/current-view/internal</property>
 			</condition>
 			<volume>
-				<property>sim/current-view/internal</property>
-				<factor>0.6</factor>
+				<property>/sim/sound/other/packs</property>
 			</volume>
 		</misc>
 		
@@ -147,23 +133,13 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Avionics.wav</path>
 			<condition>
-				<or>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-2</property>
-						<value>112</value>
-					</greater-than-equals>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-3</property>
-						<value>112</value>
-					</greater-than-equals>
-				</or>
+				<greater-than-equals>
+					<property>/systems/electrical/outputs/efis</property>
+					<value>24</value>
+				</greater-than-equals>
 			</condition>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>/sim/current-view/internal</property>
 				<factor>0.9</factor>
 			</volume>
 		</misc>
