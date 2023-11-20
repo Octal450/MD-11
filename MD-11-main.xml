@@ -920,8 +920,8 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/switches/ats-lever1", 1);
-						setprop("/controls/switches/ats-lever3", 1);
+						setprop("/controls/cockpit/at-disc-1", 1);
+						setprop("/controls/cockpit/at-disc-3", 1);
 						libraries.apPanel.atDisc();
 					</script>
 				</binding>
@@ -929,8 +929,8 @@
 					<binding>
 						<command>nasal</command>
 						<script>
-							setprop("/controls/switches/ats-lever1", 0);
-							setprop("/controls/switches/ats-lever3", 0);
+							setprop("/controls/cockpit/at-disc-1", 0);
+							setprop("/controls/cockpit/at-disc-3", 0);
 						</script>
 					</binding>
 				</mod-up>
@@ -941,7 +941,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/switches/ga-button", 1);
+						setprop("/controls/cockpit/go-around", 1);
 						libraries.apPanel.toga();
 					</script>
 				</binding>
@@ -949,7 +949,7 @@
 					<binding>
 						<command>nasal</command>
 						<script>
-							setprop("/controls/switches/ga-button", 0);
+							setprop("/controls/cockpit/go-around", 0);
 						</script>
 					</binding>
 				</mod-up>
@@ -1174,8 +1174,8 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/switches/ap-yoke-button1", 1);
-						setprop("/controls/switches/ap-yoke-button2", 1);
+						setprop("/controls/cockpit/ap-disc-1", 1);
+						setprop("/controls/cockpit/ap-disc-2", 1);
 						libraries.apPanel.apDisc();
 					</script>
 				</binding>
@@ -1183,8 +1183,8 @@
 					<binding>
 						<command>nasal</command>
 						<script>
-							setprop("/controls/switches/ap-yoke-button1", 0);
-							setprop("/controls/switches/ap-yoke-button2", 0);
+							setprop("/controls/cockpit/ap-disc-1", 0);
+							setprop("/controls/cockpit/ap-disc-2", 0);
 						</script>
 					</binding>
 				</mod-up>
