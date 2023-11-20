@@ -317,7 +317,6 @@
 		<view n="100">
 			<name>First Officer View</name>
 			<type>lookfrom</type>
-			<enabled type="bool">true</enabled>
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
@@ -333,7 +332,6 @@
 		<view n="101"> 
 			<name>Overhead Panel</name>
 			<type>lookfrom</type>
-			<enabled type="bool">true</enabled>
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
