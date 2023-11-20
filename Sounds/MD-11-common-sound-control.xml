@@ -87,7 +87,7 @@
 			</expression> 
 		</input>
 		<input>0</input>
-		<output>/sim/sound/other/roll-v</output>
+		<output>/sim/sound/roll-v</output>
 	</filter>
 	
 	<filter>
@@ -106,7 +106,7 @@
 			</expression> 
 		</input>
 		<input>0</input>
-		<output>/sim/sound/other/roll-p</output>
+		<output>/sim/sound/roll-p</output>
 	</filter>
 	
 	<filter>
@@ -126,7 +126,7 @@
 			</expression> 
 		</input>
 		<input>0</input>
-		<output>/sim/sound/other/wind</output>
+		<output>/sim/sound/wind</output>
 	</filter>
 	
 	<filter>
@@ -145,7 +145,7 @@
 			</expression> 
 		</input>
 		<input>0</input>
-		<output>/sim/sound/other/windp</output>
+		<output>/sim/sound/windp</output>
 	</filter>
 	
 	<filter>
@@ -171,7 +171,7 @@
 				</min>
 			</expression> 
 		</input>
-		<output>/sim/sound/other/packs</output>
+		<output>/sim/sound/packs</output>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 

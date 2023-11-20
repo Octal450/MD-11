@@ -124,7 +124,7 @@
 				<property>/sim/current-view/internal</property>
 			</condition>
 			<volume>
-				<property>/sim/sound/other/packs</property>
+				<property>/sim/sound/packs</property>
 			</volume>
 		</misc>
 		
@@ -204,10 +204,10 @@
 				<property>/sim/current-view/internal</property>
 			</condition>
 			<volume>
-				<property>/sim/sound/other/wind</property>
+				<property>/sim/sound/wind</property>
 			</volume>
 			<pitch>
-				<property>/sim/sound/other/windp</property>
+				<property>/sim/sound/windp</property>
 			</pitch>
 		</wind>
 		
@@ -265,11 +265,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[0]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
@@ -280,11 +280,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[1]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
@@ -295,11 +295,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[2]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
@@ -310,11 +310,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[3]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
@@ -325,11 +325,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[1]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
@@ -340,11 +340,11 @@
 			<path>Aircraft/MD-11/Sounds/Effects/roll.wav</path>
 			<property>gear/gear[2]/wow</property>
 			<volume>
-				<property>sim/sound/other/roll-v</property>
+				<property>sim/sound/roll-v</property>
 				<factor>1</factor>
 			</volume>
 			<pitch>
-				<property>sim/sound/other/roll-p</property>
+				<property>sim/sound/roll-p</property>
 				<factor>1</factor>
 			</pitch>
 		</misc>
