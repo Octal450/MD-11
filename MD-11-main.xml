@@ -347,7 +347,7 @@
 		<view n="102">
 			<name>Forward Pedestal View</name>
 			<type>lookfrom</type>
-			<internal archive="y">true</internal>
+			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0</x-offset-m>
@@ -362,7 +362,7 @@
 		<view n="103">
 			<name>Aft Pedestal View</name>
 			<type>lookfrom</type>
-			<internal archive="y">true</internal>
+			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0</x-offset-m>
@@ -377,7 +377,7 @@
 		<view n="104">
 			<name>FCP Panel View</name>
 			<type>lookfrom</type>
-			<internal archive="y">true</internal>
+			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0</x-offset-m>
@@ -392,7 +392,7 @@
 		<view n="105">
 			<name>MCDU View</name>
 			<type>lookfrom</type>
-			<internal archive="y">true</internal>
+			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">0</x-offset-m>
@@ -407,7 +407,7 @@
 		<view n="106">
 			<name>Left Front View</name>
 			<type>lookfrom</type>
-			<internal type="bool" archive="y">true</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">-3.53</x-offset-m>
@@ -422,7 +422,7 @@
 		<view n="107">
 			<name>Right Front View</name>
 			<type>lookfrom</type>
-			<internal type="bool" archive="y">true</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
@@ -437,7 +437,7 @@
 		<view n="108">
 			<name>Left Mid View</name>
 			<type>lookfrom</type>
-			<internal archive="y">false</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">-3.53</x-offset-m>
@@ -452,7 +452,7 @@
 		<view n="109">
 			<name>Right Mid View</name>
 			<type>lookfrom</type>
-			<internal archive="y">false</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
@@ -467,7 +467,7 @@
 		<view n="110">
 			<name>Left Aft View</name>
 			<type>lookfrom</type>
-			<internal archive="y">false</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">-3.53</x-offset-m>
@@ -482,7 +482,7 @@
 		<view n="111">
 			<name>Right Aft View</name>
 			<type>lookfrom</type>
-			<internal archive="y">false</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
