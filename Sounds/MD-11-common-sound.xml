@@ -121,7 +121,7 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/packs.wav</path>
 			<condition>
-				<property>/sim/current-view/internal</property>
+				<property>/sim/sound/internal-custom</property>
 			</condition>
 			<volume>
 				<property>/sim/sound/packs</property>
@@ -139,7 +139,7 @@
 				</greater-than-equals>
 			</condition>
 			<volume>
-				<property>/sim/current-view/internal</property>
+				<property>/sim/sound/internal-custom</property>
 				<factor>0.8</factor>
 			</volume>
 		</misc>
