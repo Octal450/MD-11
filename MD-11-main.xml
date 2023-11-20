@@ -409,7 +409,6 @@
 		<view n="106">
 			<name>Left Front View</name>
 			<type>lookfrom</type>
-			<enabled type="bool">true</enabled>
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
@@ -425,7 +424,6 @@
 		<view n="107">
 			<name>Right Front View</name>
 			<type>lookfrom</type>
-			<enabled type="bool">true</enabled>
 			<internal type="bool" archive="y">true</internal>
 			<config>
 				<from-model type="bool">true</from-model>
