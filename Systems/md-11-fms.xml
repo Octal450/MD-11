@@ -177,34 +177,34 @@
 		<switch name="/fms/speeds/flap-gear-max">
 			<default value="-1"/> <!-- Hide the tape -->
 			<test value="/fms/speeds/flap-50-max-kts">
-				fcs/flap-pos-deg ge 35.1
+				fcs/flap-pos-deg ge 36
 			</test>
 			<test value="/fms/speeds/flap-35-max-kts">
-				fcs/flap-pos-deg ge 28.1
+				fcs/flap-pos-deg ge 29
 			</test>
 			<test value="/fms/speeds/flap-28-max-kts">
-				fcs/flap-pos-deg ge 25.1
+				fcs/flap-pos-deg ge 26
 			</test>
 			<test value="/fms/speeds/flap-20-25-max-kts">
-				fcs/flap-pos-deg ge 20.1
+				fcs/flap-pos-deg ge 21
 			</test>
 			<test logic="AND" value="/fms/speeds/gear-ret-max-kts">
 				/controls/gear/lever eq 0
 				/gear/gear[1]/position-norm gt 0.01
 			</test>
 			<test value="/fms/speeds/flap-15-20-max-kts">
-				fcs/flap-pos-deg ge 15.1
+				fcs/flap-pos-deg ge 16
 			</test>
 			<test value="/fms/speeds/flap-0-15-max-kts">
-				fcs/flap-pos-deg ge 0.1
+				fcs/flap-pos-deg ge 1
 			</test>
 			<test logic="AND" value="/fms/speeds/gear-ext-max-kts">
 				/controls/gear/lever eq 1
 				/gear/gear[1]/position-norm lt 0.99
 			</test>
 			<test logic="AND" value="/fms/speeds/slat-max-kts">
-				fcs/slat-pos-deg ge 0.1
-				fcs/flap-pos-deg lt 0.1
+				fcs/slat-pos-deg ge 1
+				fcs/flap-pos-deg lt 1
 			</test>
 			<test value="/fms/speeds/gear-max-kts">
 				/controls/gear/lever eq 1
