@@ -96,8 +96,8 @@ var apPanel = {
 				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
 					afs.Input.mach.setValue(0.50);
-				} else if (me.machTemp > 0.87) {
-					afs.Input.mach.setValue(0.87);
+				} else if (me.machTemp > 0.9) {
+					afs.Input.mach.setValue(0.9);
 				} else {
 					afs.Input.mach.setValue(me.machTemp);
 				}
@@ -105,8 +105,8 @@ var apPanel = {
 				me.ktsTemp = afs.Input.kts.getValue() + d;
 				if (me.ktsTemp < 100) {
 					afs.Input.kts.setValue(100);
-				} else if (me.ktsTemp > 365) {
-					afs.Input.kts.setValue(365);
+				} else if (me.ktsTemp > 380) {
+					afs.Input.kts.setValue(380);
 				} else {
 					afs.Input.kts.setValue(me.ktsTemp);
 				}
