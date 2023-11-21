@@ -1306,7 +1306,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ADGHandle</object-name>
-		<property>controls/switches/adg-handle</property>
+		<property>controls/cockpit/adg-handle</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>25</dep></entry>
 			<entry><ind>0.5</ind><dep> 0</dep></entry>
@@ -1326,7 +1326,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ADGHandle</object-name>
-		<property>controls/switches/adg-handle</property>
+		<property>controls/cockpit/adg-handle</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.00</dep></entry>
 			<entry><ind>0.5</ind><dep>0.08</dep></entry>
@@ -1342,7 +1342,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ADGHandle</object-name>
-		<property>controls/switches/adg-handle</property>
+		<property>controls/cockpit/adg-handle</property>
 		<interpolation>
 			<entry><ind>0.5</ind><dep> 0</dep></entry>
 			<entry><ind>1.0</ind><dep>30</dep></entry>

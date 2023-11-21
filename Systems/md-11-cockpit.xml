@@ -125,6 +125,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/adg-handle">
+			<input>/controls/switches/adg-handle</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/aileron-trim">
 			<input>/controls/flight/aileron-trim</input>
 			<c1>20</c1>
