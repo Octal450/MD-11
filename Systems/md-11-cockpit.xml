@@ -741,7 +741,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/caws/logic/overspeed eq 0
-				fcs/slat-pos-deg ge 0.1
+				fcs/slat-pos-deg ge 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/slat-max-kts
 			</test>
 		</switch>
