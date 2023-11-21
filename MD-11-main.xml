@@ -941,7 +941,8 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/cockpit/go-around", 1);
+						setprop("/controls/cockpit/toga-1", 1);
+						setprop("/controls/cockpit/toga-2", 1);
 						libraries.apPanel.toga();
 					</script>
 				</binding>
@@ -949,7 +950,8 @@
 					<binding>
 						<command>nasal</command>
 						<script>
-							setprop("/controls/cockpit/go-around", 0);
+							setprop("/controls/cockpit/toga-1", 0);
+							setprop("/controls/cockpit/toga-2", 0);
 						</script>
 					</binding>
 				</mod-up>

@@ -413,13 +413,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/go-around</property>
+				<property>controls/cockpit/toga-1</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/go-around</property>
+					<property>controls/cockpit/toga-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -433,7 +433,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>throttle.2.ga</object-name>
-		<property>controls/cockpit/go-around</property>
+		<property>controls/cockpit/toga-1</property>
 		<factor>0.002</factor>
 		<axis>
 			<x1-m>-27.1205</x1-m>
