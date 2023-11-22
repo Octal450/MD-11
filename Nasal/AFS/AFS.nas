@@ -274,6 +274,10 @@ var ITAF = {
 			Input.ovrd1.setBoolValue(0);
 			Input.ovrd2.setBoolValue(0);
 			Input.vsFpa.setBoolValue(0);
+		} else {
+			if (Text.spd.getValue() == "RETARD") {
+				me.killAthrSilent();
+			}
 		}
 		Internal.ktsMach.setBoolValue(0);
 		Internal.takeoffLvl.setBoolValue(1);
