@@ -82,27 +82,7 @@ var updateFma = {
 			Fma.pitchArm.setValue("");
 		}
 	},
-	ap: func() {
-		ap1 = Output.ap1.getBoolValue();
-		ap2 = Output.ap2.getBoolValue();
-		if (ap1 and ap2) {
-			Fma.ap.setValue("AP1");
-		} else if (ap1 and !ap2) {
-			Fma.ap.setValue("AP1");
-		} else if (ap2 and !ap1) {
-			Fma.ap.setValue("AP2");
-		} else if (!ap1 and !ap2) {
-			Fma.ap.setValue("");
-		}
-	},
 };
-
-setlistener("/it-autoflight/output/ap1", func() {
-	updateFma.ap();
-}, 0, 0);
-setlistener("/it-autoflight/output/ap2", func() {
-	updateFma.ap();
-}, 0, 0);
 
 var Clamp = {
 	active: 0,

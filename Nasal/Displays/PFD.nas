@@ -1396,7 +1396,13 @@ var canvasBase = {
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
 			me["FMA_AP"].setColor(0.3215,0.8078,1);
-			me["FMA_AP"].setText(sprintf("%s", afs.Fma.ap.getValue()));
+			if (Value.Afs.land == "DUAL") {
+				me["FMA_AP"].setText("AP");
+			} else if (Value.Afs.ap1) {
+				me["FMA_AP"].setText("AP1");
+			} else if (Value.Afs.ap2) {
+				me["FMA_AP"].setText("AP2");
+			}
 			me["FMA_AP"].show();
 		} else if (Value.Afs.apSound and !Value.Afs.apWarn) {
 			me["FMA_AP"].hide();
