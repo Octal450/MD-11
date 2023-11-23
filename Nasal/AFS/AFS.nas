@@ -175,6 +175,7 @@ var Internal = {
 	ktsTemp: 250,
 	landCondition: 0,
 	landModeActive: 0,
+	locOnly: 0,
 	lnavAdvanceNm: props.globals.initNode("/it-autoflight/internal/lnav-advance-nm", 0, "DOUBLE"),
 	lnavEngageFt: 100,
 	mach: props.globals.initNode("/it-autoflight/internal/mach", 0.5, "DOUBLE"),
@@ -974,6 +975,8 @@ var ITAF = {
 			}
 		} else if (n == 2) { # VOR/LOC
 			me.updateLnavArm(0);
+			me.updateApprArm(0); # Because this is VOR and LOC only
+			Internal.locOnly = 1;
 			me.checkLoc(0);
 		} else if (n == 3) { # HDG HLD
 			me.updateLnavArm(0);
@@ -1018,13 +1021,10 @@ var ITAF = {
 	},
 	setVertMode: func(n) {
 		Input.altDiff = Input.alt.getValue() - Position.indicatedAltitudeFt.getValue();
-		Output.latTemp = Output.lat.getValue();
 		if (n == 0) { # ALT HLD
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			if (Output.latTemp == 2) {
-				me.updateApprArm(0);
-			}
+			me.updateApprArm(0);
 			Output.vert.setValue(0);
 			me.resetClimbRateLim();
 			me.updateVertText("ALT HLD");
@@ -1102,9 +1102,7 @@ var ITAF = {
 			Internal.retardLock = 0;
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			if (Output.latTemp == 2) {
-				me.updateApprArm(0);
-			}
+			me.updateApprArm(0);
 			Output.vert.setValue(7);
 			me.updateThrustMode();
 		}
@@ -1514,10 +1512,16 @@ var ITAF = {
 	},
 	updateLocArm: func(n) {
 		Output.locArm.setBoolValue(n);
+		if (n == 0) {
+			Internal.locOnly = 0;
+		}
 		updateFma.arm();
 	},
 	updateApprArm: func(n) {
 		Output.apprArm.setBoolValue(n);
+		if (n == 1) {
+			Internal.locOnly = 0;
+		}
 		updateFma.arm();
 	},
 };

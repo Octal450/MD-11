@@ -68,6 +68,8 @@ var updateFma = {
 		if (Output.locArm.getBoolValue()) {
 			if (Input.radioSel.getValue() != 2) {
 				Fma.rollArm.setValue("VOR ARMED");
+			} else if (Internal.locOnly) {
+				Fma.rollArm.setValue("LOC ONLY");
 			} else {
 				Fma.rollArm.setValue("LAND ARMED");
 			}

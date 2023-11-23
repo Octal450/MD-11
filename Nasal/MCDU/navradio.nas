@@ -158,6 +158,21 @@ var NavRadio = {
 		} else {
 			me.Display.R2 = "";
 		}
+		
+		if (me.commonValue.navSet[2] and me.commonValue.navCrsSet[2]) {
+			if (afs.Internal.locOnly and afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 2) {
+				me.Display.LFont[4] = FONT.normal;
+				me.Display.L5 = "LOC ONLY";
+			} else if (afs.Internal.locOnly and afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 2) {
+				me.Display.LFont[4] = FONT.normal;
+				me.Display.L5 = "LOC ONLY";
+			} else {
+				me.Display.LFont[4] = FONT.small;
+				me.Display.L5 = "*LOC ONLY";
+			}
+		} else {
+			me.Display.L5 = "";
+		}
 	},
 	insertAdf: func(n) {
 		if (mcdu.unit[me.id].stringDecimalLengthInRange(0, 1) and mcdu.unit[me.id].stringLengthInRange(3, 6) and !mcdu.unit[me.id].stringContains("-")) {
@@ -258,9 +273,11 @@ var NavRadio = {
 			if (me.scratchpadState == 0) {
 				if (me.Display.L2 == "VOR ARMED") {
 					afs.ITAF.updateLocArm(0);
+					mcdu.unit[me.id].scratchpadClear();
 				} else if (me.Display.L2 == "*VOR ARM") {
 					afs.Input.radioSel.setValue(0);
 					afs.Input.lat.setValue(2);
+					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
@@ -302,6 +319,27 @@ var NavRadio = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else if (k == "l5") {
+			if (me.scratchpadState == 0) {
+				if (me.Display.L5 == "LOC ONLY") {
+					afs.ITAF.updateLocArm(0);
+					mcdu.unit[me.id].scratchpadClear();
+				} else if (me.Display.L5 == "*LOC ONLY") {
+					afs.Internal.locOnly = 1;
+					afs.Input.radioSel.setValue(2);
+					afs.Input.lat.setValue(2);
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			} else {
+				if (me.Display.L5 == "*LOC ONLY") {
+					afs.Input.radioSel.setValue(2);
+					afs.Input.lat.setValue(2);
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			}
 		} else if (k == "r1") {
 			if (me.scratchpadState == 2) {
 				me.insertNav(1);
@@ -322,9 +360,11 @@ var NavRadio = {
 			if (me.scratchpadState == 0) {
 				if (me.Display.R2 == "VOR ARMED") {
 					afs.ITAF.updateLocArm(0);
+					mcdu.unit[me.id].scratchpadClear();
 				} else if (me.Display.R2 == "VOR ARM*") {
 					afs.Input.radioSel.setValue(1);
 					afs.Input.lat.setValue(2);
+					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
