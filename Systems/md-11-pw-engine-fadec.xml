@@ -459,6 +459,140 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="fadec/limit/active">
+			<default value="1.5"/>
+			<test value="fadec/limit/takeoff">
+				fadec/limit/active-mode-int eq 0
+			</test>
+			<test value="fadec/limit/go-around">
+				fadec/limit/active-mode-int eq 1
+			</test>
+			<test value="fadec/limit/mct">
+				fadec/limit/active-mode-int eq 2
+			</test>
+			<test value="fadec/limit/climb">
+				fadec/limit/active-mode-int eq 3
+			</test>
+			<test value="fadec/limit/cruise">
+				fadec/limit/active-mode-int eq 4
+			</test>
+		</switch>
+		
+		<fcs_function name="fadec/limit/active-norm-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>fadec/limit/active</property>
+						<property>fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>fadec/epr/c1</property>
+						<value>0.001</value>
+					</max>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/active-norm-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<pow>
+					<table>
+						<independentVar lookup="row">fadec/limit/active-norm-ref</independentVar>
+						<tableData>
+							0.00     24743.1
+							0.03     65768.7
+							1.00  14591440.5
+						</tableData>
+					</table>
+					<quotient>
+						<value>1</value>
+						<value>3.5</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/active-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/active-norm-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="fadec/limit/ats-max">
+			<default value="fadec/limit/active-norm"/>
+			<test value="1"> 
+				fadec/limit/active-mode-int eq 0
+			</test>
+		</switch>
+		
+		<fcs_function name="fadec/limit/max">
+			<function>
+				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
+					<eq>
+						<property>fadec/limit/active-mode-int</property>
+						<value>0</value>
+					</eq>
+					<property>fadec/limit/takeoff</property>
+					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
+						<property>fadec/limit/go-around</property>
+						<property>fadec/limit/mct</property>
+					</max>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>fadec/limit/max</property>
+						<property>fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>fadec/epr/c1</property>
+						<value>0.001</value>
+					</max>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<pow>
+					<table>
+						<independentVar lookup="row">fadec/limit/max-norm-ref</independentVar>
+						<tableData>
+							0.00     24743.1
+							0.03     65768.7
+							1.00  14591440.5
+						</tableData>
+					</table>
+					<quotient>
+						<value>1</value>
+						<value>3.5</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/max-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/max-norm-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/idle-input">
 			<function>
 				<ifthen>
@@ -525,38 +659,49 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/active">
-			<default value="1.5"/>
-			<test value="fadec/limit/takeoff">
-				fadec/limit/active-mode-int eq 0
-			</test>
-			<test value="fadec/limit/go-around">
-				fadec/limit/active-mode-int eq 1
-			</test>
-			<test value="fadec/limit/mct">
-				fadec/limit/active-mode-int eq 2
-			</test>
-			<test value="fadec/limit/climb">
-				fadec/limit/active-mode-int eq 3
-			</test>
-			<test value="fadec/limit/cruise">
-				fadec/limit/active-mode-int eq 4
-			</test>
-		</switch>
-		
-		<fcs_function name="fadec/limit/max">
+		<fcs_function name="fadec/limit/idle-norm-ref"> <!-- Opposite of EPR Calc -->
 			<function>
-				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
-					<eq>
-						<property>fadec/limit/active-mode-int</property>
-						<value>0</value>
-					</eq>
-					<property>fadec/limit/takeoff</property>
-					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
-						<property>fadec/limit/go-around</property>
-						<property>fadec/limit/mct</property>
+				<quotient>
+					<difference>
+						<property>fadec/limit/idle</property>
+						<property>fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>fadec/epr/c1</property>
+						<value>0.001</value>
 					</max>
-				</ifthen>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/idle-norm-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<pow>
+					<table>
+						<independentVar lookup="row">fadec/limit/idle-norm-ref</independentVar>
+						<tableData>
+							0.00     24743.1
+							0.03     65768.7
+							1.00  14591440.5
+						</tableData>
+					</table>
+					<quotient>
+						<value>1</value>
+						<value>3.5</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/idle-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">fadec/limit/idle-norm-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 	
@@ -869,151 +1014,6 @@
 	</channel>
 	
 	<channel name="Engine Control">
-		
-		<fcs_function name="fadec/limit/max-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>fadec/limit/max</property>
-						<property>fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">fadec/limit/max-norm-ref</independentVar>
-						<tableData>
-							0.00     24743.1
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/max-norm">
-			<function>
-				<table>
-					<independentVar lookup="row">fadec/limit/max-norm-input</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/active-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>fadec/limit/active</property>
-						<property>fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/active-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">fadec/limit/active-norm-ref</independentVar>
-						<tableData>
-							0.00     24743.1
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/active-norm">
-			<function>
-				<table>
-					<independentVar lookup="row">fadec/limit/active-norm-input</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<switch name="fadec/limit/ats-max">
-			<default value="fadec/limit/active-norm"/>
-			<test value="1"> 
-				fadec/limit/active-mode-int eq 0
-			</test>
-		</switch>
-		
-		<fcs_function name="fadec/limit/idle-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>fadec/limit/idle</property>
-						<property>fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/idle-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">fadec/limit/idle-norm-ref</independentVar>
-						<tableData>
-							0.00     24743.1
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/idle-norm">
-			<function>
-				<table>
-					<independentVar lookup="row">fadec/limit/idle-norm-input</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
 		
 		<!-- Engine 1 -->
 		<switch name="fadec/control-1/max">
