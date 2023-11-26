@@ -397,7 +397,7 @@ var ITAF = {
 		
 		# Takeoff Mode Logic
 		if (Output.latTemp == 5 and (Internal.takeoffLvl.getBoolValue() or Gear.wow1Temp or Gear.wow2Temp)) {
-			me.takeoffLogic();
+			me.takeoffLogic(0);
 		}
 		
 		# Update LNAV engage altitude
@@ -998,7 +998,7 @@ var ITAF = {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
 			me.updateApprArm(0);
-			me.takeoffLogic();
+			me.takeoffLogic(1);
 			Output.lat.setValue(5);
 			me.bankLimit();
 			Output.showHdg.setBoolValue(1);
@@ -1306,12 +1306,15 @@ var ITAF = {
 			}
 		}
 	},
-	takeoffLogic: func() {
+	takeoffLogic: func(t) {
 		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
 			if (abs(Orientation.rollDeg.getValue()) > 5) {
 				Internal.takeoffHdg.setValue(math.round(Internal.hdgTrk.getValue())); # Switches to track automatically
 				Internal.takeoffLvl.setBoolValue(1);
 			} else {
+				if (t == 1) { # Sync anyway
+					Internal.takeoffHdg.setValue(math.round(Internal.hdgTrk.getValue())); # Switches to track automatically
+				}
 				Internal.takeoffLvl.setBoolValue(0);
 			}
 		} else {
