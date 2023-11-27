@@ -452,9 +452,9 @@ var IGNITION = {
 	starter2: props.globals.getNode("/systems/ignition/starter-2"),
 	starter3: props.globals.getNode("/systems/ignition/starter-3"),
 	Switch: {
-		ignA: props.globals.getNode("/controls/ignition/ign-a"),
-		ignB: props.globals.getNode("/controls/ignition/ign-b"),
-		ignOvrd: props.globals.getNode("/controls/ignition/ign-ovrd"),
+		ignA: props.globals.getNode("/controls/ignition/switches/ign-a"),
+		ignB: props.globals.getNode("/controls/ignition/switches/ign-b"),
+		ignOvrd: props.globals.getNode("/controls/ignition/switches/ign-ovrd"),
 	},
 	init: func() {
 		me.Switch.ignA.setBoolValue(0);

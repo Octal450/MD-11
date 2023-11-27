@@ -685,9 +685,11 @@
 			</switches>
 		</hydraulics>
 		<ignition n="0">
-			<ign-a type="bool">0</ign-a>
-			<ign-b type="bool">0</ign-b>
-			<ign-ovrd type="bool">0</ign-ovrd>
+			<switches n="0">
+				<ign-a type="bool">0</ign-a>
+				<ign-b type="bool">0</ign-b>
+				<ign-ovrd type="bool">0</ign-ovrd>
+			</switches>
 		</ignition>
 		<iru n="0">
 			<switches n="0">
