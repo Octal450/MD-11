@@ -89,14 +89,6 @@ var systemsLoop = maketimer(0.1, func() {
 			systems.PNEU.Switch.groundAir.setBoolValue(0);
 		}
 	}
-	
-	if (pts.Sim.Replay.replayState.getBoolValue()) {
-		pts.Sim.Replay.wasActive.setBoolValue(1);
-	} else if (!pts.Sim.Replay.replayState.getBoolValue() and pts.Sim.Replay.wasActive.getBoolValue()) {
-		pts.Sim.Replay.wasActive.setBoolValue(0);
-		acconfig.PANEL.coldDark();
-		gui.popupTip("Replay Ended: Setting Cold and Dark state...");
-	}
 });
 
 setlistener("/fdm/jsbsim/position/wow", func() {

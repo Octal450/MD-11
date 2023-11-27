@@ -295,7 +295,6 @@ var Sim = {
 	},
 	Replay: {
 		replayState: props.globals.getNode("/sim/replay/replay-state"),
-		wasActive: props.globals.initNode("/sim/replay/was-active", 0, "BOOL"),
 	},
 	Sound: {
 		btn1: props.globals.initNode("/sim/sound/btn1", 0, "BOOL"),
