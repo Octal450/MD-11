@@ -322,7 +322,7 @@ var NavRadio = {
 		} else if (k == "l5") {
 			if (me.scratchpadState == 0) {
 				if (me.Display.L5 == "LOC ONLY") {
-					afs.ITAF.updateLocArm(0);
+					afs.ITAF.updateLocArm(0, 1); # Do not reset locOnly
 					mcdu.unit[me.id].scratchpadClear();
 				} else if (me.Display.L5 == "*LOC ONLY") {
 					afs.Internal.locOnly = 1;

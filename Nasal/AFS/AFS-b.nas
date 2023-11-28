@@ -13,54 +13,56 @@ var updateFma = {
 	ap1: 0,
 	ap2: 0,
 	InternalRadioSel: 2,
-	pitchText: "T/O CLB",
-	rollText: "T/O",
-	roll: func() {
-		me.rollText = Text.lat.getValue();
-		if (me.rollText == "HDG") {
+	latText: "T/O",
+	vertText: "T/O CLB",
+	lat: func() {
+		me.latText = Text.lat.getValue();
+		if (me.latText == "HDG") {
 			if (Input.trk.getBoolValue()) {
 				Fma.roll.setValue("TRACK");
 			} else {
 				Fma.roll.setValue("HEADING");
 			}
-		} else if (me.rollText == "LNAV") {
+		} else if (me.latText == "LNAV") {
 			Fma.roll.setValue("NAV" ~ Internal.activeFms.getValue());
-		} else if (me.rollText == "LOC") {
+		} else if (me.latText == "LOC") {
 			me.InternalRadioSel = Internal.radioSel.getValue();
 			if (me.InternalRadioSel == 0) {
 				Fma.roll.setValue("VOR1");
 			} else if (me.InternalRadioSel == 1) {
 				Fma.roll.setValue("VOR2");
+			} else if (Internal.locOnly) {
+				Fma.roll.setValue("LOC ONLY");
 			} else {
 				Fma.roll.setValue("LOC");
 			}
-		} else if (me.rollText == "ALGN") {
+		} else if (me.latText == "ALGN") {
 			Fma.roll.setValue("ALIGN");
-		} else if (me.rollText == "T/O") {
+		} else if (me.latText == "T/O") {
 			Fma.roll.setValue("TAKEOFF");
-		} else if (me.rollText == "RLOU") {
+		} else if (me.latText == "RLOU") {
 			Fma.roll.setValue("ROLLOUT");
 		}
 	},
-	pitch: func() {
-		me.pitchText = Text.vert.getValue();
-		if (me.pitchText == "SPD DES") {
+	vert: func() {
+		me.vertText = Text.vert.getValue();
+		if (me.vertText == "SPD DES") {
 			Fma.pitch.setValue("IDLE CLAMP");
-		} else if (me.pitchText == "G/A CLB") {
+		} else if (me.vertText == "G/A CLB") {
 			Fma.pitch.setValue("GO AROUND");
-		} else if (me.pitchText == "ALT HLD") {
+		} else if (me.vertText == "ALT HLD") {
 			Fma.pitch.setValue("HOLD");
-		} else if (me.pitchText == "ALT CAP") {
+		} else if (me.vertText == "ALT CAP") {
 			Fma.pitch.setValue("HOLD");
-		} else if (me.pitchText == "V/S") {
+		} else if (me.vertText == "V/S") {
 			Fma.pitch.setValue("V/S");
-		} else if (me.pitchText == "G/S") {
+		} else if (me.vertText == "G/S") {
 			Fma.pitch.setValue("G/S");
-		} else if (me.pitchText == "FPA") {
+		} else if (me.vertText == "FPA") {
 			Fma.pitch.setValue("FPA");
-		} else if (me.pitchText == "FLARE") {
+		} else if (me.vertText == "FLARE") {
 			Fma.pitch.setValue("FLARE");
-		} else if (me.pitchText == "ROLLOUT") {
+		} else if (me.vertText == "ROLLOUT") {
 			Fma.pitch.setValue("ROLLOUT");
 		}
 	},
@@ -69,7 +71,7 @@ var updateFma = {
 			if (Input.radioSel.getValue() != 2) {
 				Fma.rollArm.setValue("VOR ARMED");
 			} else if (Internal.locOnly) {
-				Fma.rollArm.setValue("LOC ONLY");
+				Fma.rollArm.setValue("LOC ARMED");
 			} else {
 				Fma.rollArm.setValue("LAND ARMED");
 			}
@@ -89,15 +91,15 @@ var updateFma = {
 var Clamp = {
 	active: 0,
 	fmaOutput: 0,
-	pitchText: "T/O CLB",
+	vertText: "T/O CLB",
 	stopCheck: 0,
 	stopThrottleReset: 0,
 	throttleMax: 0,
 	loop: func() {
-		me.pitchText = Text.vert.getValue();
+		me.vertText = Text.vert.getValue();
 		me.throttleMax = systems.FADEC.throttleCompareMax.getValue();
 		
-		if (me.pitchText == "T/O CLB") {
+		if (me.vertText == "T/O CLB") {
 			if (Output.athr.getBoolValue() and pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() < 80) {
 				if (me.throttleMax >= 0.6) {
 					me.active = 0;
@@ -105,7 +107,7 @@ var Clamp = {
 			} else {
 				me.active = 1;
 			}
-		} else if (me.pitchText == "SPD DES") {
+		} else if (me.vertText == "SPD DES") {
 			if (me.throttleMax <= 0.005) {
 				me.stopCheck = 1;
 				me.active = 1;
@@ -132,19 +134,19 @@ var Clamp = {
 			}
 		}
 		
-		if (me.pitchText == "T/O CLB") {
+		if (me.vertText == "T/O CLB") {
 			if (me.active) {
 				me.fmaOutput = 1;
 			} else {
 				me.fmaOutput = 0;
 			}
-		} else if (me.pitchText == "SPD DES") {
+		} else if (me.vertText == "SPD DES") {
 			me.fmaOutput = 1;
 		} else {
 			me.fmaOutput = 0;
 		}
 		
-		if (me.pitchText == "SPD CLB" or me.pitchText == "T/O CLB") {
+		if (me.vertText == "SPD CLB" or me.vertText == "T/O CLB") {
 			if (me.fmaOutput) {
 				Fma.pitch.setValue(systems.FADEC.Limit.activeMode.getValue() ~ " CLAMP");
 			} else {

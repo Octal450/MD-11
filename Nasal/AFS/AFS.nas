@@ -314,6 +314,7 @@ var ITAF = {
 		Internal.altCaptureActive = 0;
 		Internal.kts.setValue(fms.Speeds.v2.getValue());
 		Internal.mach.setValue(0.5);
+		Internal.locOnly = 0;
 		me.updateActiveFms(1);
 		Text.spd.setValue("PITCH");
 		updateFma.arm();
@@ -972,7 +973,7 @@ var ITAF = {
 		} else if (n == 2) { # VOR/LOC
 			me.updateLnavArm(0);
 			me.updateApprArm(0); # Because this is VOR and LOC only
-			Internal.locOnly = 1;
+			me.updateLocOnly(1);
 			me.checkLoc(0);
 		} else if (n == 3) { # HDG HLD
 			me.updateLnavArm(0);
@@ -1212,7 +1213,7 @@ var ITAF = {
 	activateLoc: func() {
 		if (Output.lat.getValue() != 2 or Input.radioSelTemp != Internal.radioSel.getValue()) {
 			me.updateLnavArm(0);
-			me.updateLocArm(0);
+			me.updateLocArm(0, 1); # Do not reset locOnly
 			Internal.radioSel.setValue(Input.radioSel.getValue());
 			Output.lat.setValue(2);
 			me.bankLimit();
@@ -1495,32 +1496,37 @@ var ITAF = {
 	},
 	updateActiveFms: func(n) {
 		Internal.activeFms.setValue(n);
-		updateFma.roll();
+		updateFma.lat();
 	},
 	updateLatText: func(t) {
 		Text.lat.setValue(t);
-		updateFma.roll();
+		updateFma.lat();
 	},
 	updateVertText: func(t) {
 		Text.vert.setValue(t);
-		updateFma.pitch();
+		updateFma.vert();
 	},
 	updateLnavArm: func(n) {
 		Output.lnavArm.setBoolValue(n);
 		updateFma.arm();
 	},
-	updateLocArm: func(n) {
+	updateLocArm: func(n, t = 0) {
 		Output.locArm.setBoolValue(n);
-		if (n == 0) {
-			Internal.locOnly = 0;
+		if (n == 0 and t != 1) {
+			me.updateLocOnly(0);
 		}
 		updateFma.arm();
 	},
 	updateApprArm: func(n) {
 		Output.apprArm.setBoolValue(n);
 		if (n == 1) {
-			Internal.locOnly = 0;
+			me.updateLocOnly(0);
 		}
+		updateFma.arm();
+	},
+	updateLocOnly: func(n) {
+		Internal.locOnly = n;
+		updateFma.lat();
 		updateFma.arm();
 	},
 };
@@ -1638,7 +1644,7 @@ setlistener("/it-autoflight/input/trk", func() {
 	Internal.hdg.setValue(Internal.hdgCalc);
 	Internal.takeoffHdg.setValue(Internal.takeoffHdgCalc);
 	
-	updateFma.roll();
+	updateFma.lat();
 	
 	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
