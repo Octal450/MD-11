@@ -192,6 +192,16 @@
 						</binding>
 					</item>
 				</menu>
+				<menu n="105">
+					<label>Documentation</label>
+					<item>
+						<label>Autoflight System</label>
+						<binding>
+							<command>open-browser</command>
+							<path>Aircraft/MD-11/Docs/Autoflight_System.pdf</path>
+						</binding>
+					</item>
+				</menu>
 			</default>
 		</menubar>
 		<minimum-fg-version>2020.3.14</minimum-fg-version>
