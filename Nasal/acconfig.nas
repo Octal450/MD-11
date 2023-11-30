@@ -359,13 +359,13 @@ var PANEL = {
 		systems.ELEC.Switch.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
 		systems.ELEC.Switch.extPwr.setBoolValue(1);
 		systems.ELEC.Switch.extGPwr.setBoolValue(1);
-		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
 		systems.IRS.Switch.knob[0].setBoolValue(1);
 		systems.IRS.Switch.knob[1].setBoolValue(1);
 		systems.IRS.Switch.knob[2].setBoolValue(1);
 		systems.IRS.Switch.mcduBtn.setBoolValue(1);
 		pts.Controls.Lighting.beacon.setBoolValue(1);
 		pts.Controls.Lighting.navLights.setBoolValue(1);
+		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
 		systems.IGNITION.Switch.ignA.setBoolValue(1);
 		
 		if (pts.Engines.Engine.state[0].getValue() != 3 or pts.Engines.Engine.state[1].getValue() != 3 or pts.Engines.Engine.state[2].getValue() != 3) {
