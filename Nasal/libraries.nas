@@ -151,6 +151,14 @@ var lightsLoop = maketimer(0.2, func() {
 });
 
 # Custom controls.nas overwrites
+controls.autopilotDisconnect = func() {
+	libraries.apPanel.apDisc();
+}
+
+controls.reverserTogglePosition = func() {
+	systems.toggleRevThrust();
+}
+
 controls.flapsDown = func(step) {
 	pts.Controls.Flight.flapsTemp = pts.Controls.Flight.flaps.getValue();
 	if (step == 1) {
