@@ -451,6 +451,7 @@
 				/systems/iru-common/any-aligned-out eq 1
 				fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws-equipped eq 1
+				/position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
@@ -470,6 +471,7 @@
 				/systems/iru-common/any-aligned-out eq 1
 				fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws-equipped eq 1
+				/position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
