@@ -749,13 +749,6 @@
 	
 	<channel name="Rudder General">
 		
-		<switch name="hydraulics/rudder/pedal-switch">
-			<default value="fcc/yaw/rudder-nul"/>
-			<test value="fcc/yaw/afs-cmd">
-				fcc/yaw/autoland-switch eq 1
-			</test>
-		</switch>
-		
 		<pure_gain name="hydraulics/rudder/trim">
 			<input>/controls/flight/rudder-trim</input>
 			<gain>0.43333333333333333333333333333333</gain> <!-- 13 deg trim/30 deg rudder -->
@@ -778,6 +771,14 @@
 				<max>1.0</max>
 			</clipto>
 		</summer>
+		
+		<switch name="hydraulics/rudder/pedal-switch">
+			<default value="fcc/yaw/rudder-nul"/>
+			<test logic="OR" value="fcc/yaw/output-and-rudder"> <!-- Parallel Rudder -->
+				fcc/yaw/autoland-switch eq 1
+				/it-autoflight/output/vert eq 7
+			</test>
+		</switch>
 		
 		<summer name="hydraulics/rudder/pedal-sum">
 			<input>hydraulics/rudder/pedal-switch</input>

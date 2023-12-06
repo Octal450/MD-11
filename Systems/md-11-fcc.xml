@@ -1425,6 +1425,15 @@
 			<input>fcc/yaw/afs-cmd</input>
 		</summer>
 		
+		<summer name="fcc/yaw/output-and-rudder">
+			<input>fcc/yaw/rudder-nul</input>
+			<input>fcc/yaw/upper-output</input>
+			<clipto>
+				<min>-1.0</min>
+				<max>1.0</max>
+			</clipto>
+		</summer>
+		
 		<switch name="fcc/yaw/upper-output">
 			<default value="fcc/yaw/afs-cmd"/> <!-- AFS keeps working even if YD is unavail -->
 			<test value="fcc/yaw/output-sum">
