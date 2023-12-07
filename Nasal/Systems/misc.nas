@@ -291,6 +291,13 @@ var doIdleThrust = func() {
 	ENGINE.throttle[2].setValue(0);
 }
 
+var doLimitThrust = func() {
+	var active = FADEC.Limit.activeNorm.getValue();
+	ENGINE.throttle[0].setValue(active);
+	ENGINE.throttle[1].setValue(active);
+	ENGINE.throttle[2].setValue(active);
+}
+
 var doFullThrust = func() {
 	ENGINE.throttle[0].setValue(1);
 	ENGINE.throttle[1].setValue(1);
@@ -307,6 +314,7 @@ var FADEC = {
 		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
 		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),
 		activeModeInt: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode-int"), # 0 T/O, 1 G/A, 2 MCT, 3 CLB, 4 CRZ
+		activeNorm: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-norm"),
 		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
 		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
 		flexActive: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-active"),

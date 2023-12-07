@@ -1203,6 +1203,14 @@
 					</binding>
 				</mod-up>
 			</key>
+			<key n="70">
+				<name>F</name>
+				<desc>Thrust to full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>systems.doFullThrust();</script>
+				</binding>
+			</key>
 			<key n="88">
 				<name>X</name>
 				<desc>Increase field of view</desc>
@@ -1221,7 +1229,7 @@
 			</key>
 			<key n="101">
 				<name>e</name>
-				<desc>Thrust Levers Idle</desc>
+				<desc>Throttles to idle</desc>
 				<binding>
 					<command>nasal</command>
 					<script>systems.doIdleThrust();</script>
@@ -1229,10 +1237,10 @@
 			</key>
 			<key n="102">
 				<name>f</name>
-				<desc>Thrust Lever Full</desc>
+				<desc>Thrust to limit</desc>
 				<binding>
 					<command>nasal</command>
-					<script>systems.doFullThrust();</script>
+					<script>systems.doLimitThrust();</script>
 				</binding>
 			</key>
 			<key n="120">
