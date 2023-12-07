@@ -46,7 +46,9 @@ var updateFma = {
 	},
 	vert: func() {
 		me.vertText = Text.vert.getValue();
-		if (me.vertText == "SPD DES") {
+		if (me.vertText == "SPD CLB" or me.vertText == "T/O CLB") {
+			Clamp.loop(1);
+		} else if (me.vertText == "SPD DES") {
 			Fma.pitch.setValue("IDLE CLAMP");
 		} else if (me.vertText == "G/A CLB") {
 			Fma.pitch.setValue("GO AROUND");
@@ -95,7 +97,7 @@ var Clamp = {
 	stopCheck: 0,
 	stopThrottleReset: 0,
 	throttleMax: 0,
-	loop: func() {
+	loop: func(t = 0) {
 		me.vertText = Text.vert.getValue();
 		me.throttleMax = systems.FADEC.throttleCompareMax.getValue();
 		
@@ -144,6 +146,10 @@ var Clamp = {
 			me.fmaOutput = 1;
 		} else {
 			me.fmaOutput = 0;
+		}
+		
+		if (t == 1) {
+			systems.FADEC.loop(); # Update thrust mode in case of out of sync loops
 		}
 		
 		if (me.vertText == "SPD CLB" or me.vertText == "T/O CLB") {
