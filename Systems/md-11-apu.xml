@@ -76,11 +76,6 @@
 			</test>
 			<output>fcs/throttle-pos-norm[3]</output>
 		</switch>
-		
-		<pure_gain name="/systems/apu/dc-fuel-pump">
-			<input>/controls/apu/switches/start</input>
-			<gain>1.0</gain>
-		</pure_gain>
 	
 	</channel>
 	
@@ -181,6 +176,14 @@
 				/systems/apu/starter eq 1
 			</test>
 			<output>/engines/engine[3]/state</output>
+		</switch>
+		
+		<switch name="/systems/apu/dc-fuel-pump">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/apu/switches/start eq 1
+				/systems/apu/cutoff eq 0
+			</test>
 		</switch>
 		
 		<switch name="/controls/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
