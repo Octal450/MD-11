@@ -40,11 +40,11 @@ var thunder_listener = func() {
 	var lightning_distance_norm = std.min(1.0, 1 / math.pow(lightning_distance / 5000.0, 2));
 	
 	settimer(func() {
-		var thunder1 = getprop("sim/sound/sound/thunder1");
-		var thunder2 = getprop("sim/sound/sound/thunder2");
-		var thunder3 = getprop("sim/sound/sound/thunder3");
-		var thunder4 = getprop("sim/sound/sound/thunder4");
-		var thunder5 = getprop("sim/sound/sound/thunder5");
+		var thunder1 = getprop("sim/sound/thunder1");
+		var thunder2 = getprop("sim/sound/thunder2");
+		var thunder3 = getprop("sim/sound/thunder3");
+		var thunder4 = getprop("sim/sound/thunder4");
+		var thunder5 = getprop("sim/sound/thunder5");
 		var vol = 0;
 		if (getprop("sim/current-view/internal") != nil) {
 			vol = clamp(1-(getprop("sim/current-view/internal")*0.5), 0, 1);
@@ -53,23 +53,23 @@ var thunder_listener = func() {
 		}
 		if (!thunder1) {
 			thunderCalls = 1;
-			setprop("sim/sound/sound/dist-thunder1", lightning_distance_norm * vol * 2.25);
+			setprop("sim/sound/dist-thunder1", lightning_distance_norm * vol * 2.25);
 		}
 		else if (!thunder2) {
 			thunderCalls = 2;
-			setprop("sim/sound/sound/dist-thunder2", lightning_distance_norm * vol * 2.25);
+			setprop("sim/sound/dist-thunder2", lightning_distance_norm * vol * 2.25);
 		}
 		else if (!thunder3) {
 			thunderCalls = 3;
-			setprop("sim/sound/sound/dist-thunder3", lightning_distance_norm * vol * 2.25);
+			setprop("sim/sound/dist-thunder3", lightning_distance_norm * vol * 2.25);
 		}
 		else if (!thunder4) {
 			thunderCalls = 4;
-			setprop("sim/sound/sound/dist-thunder4", lightning_distance_norm * vol * 2.25);
+			setprop("sim/sound/dist-thunder4", lightning_distance_norm * vol * 2.25);
 		}
 		else if (!thunder5) {
 			thunderCalls = 5;
-			setprop("sim/sound/sound/dist-thunder5", lightning_distance_norm * vol * 2.25);
+			setprop("sim/sound/dist-thunder5", lightning_distance_norm * vol * 2.25);
 		}
 		else
 			return;
@@ -80,7 +80,7 @@ var thunder_listener = func() {
 };
 
 var play_thunder = func (name, timeout=0.1, delay=0) {
-	var sound_prop = "/sim/sound/sound/" ~ name;
+	var sound_prop = "/sim/sound/" ~ name;
 	
 	settimer(func() {
 		# Play the sound

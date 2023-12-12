@@ -1013,16 +1013,16 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/thunder1.wav</path>
 			<type>avionics</type>
-			<property>sim/sound/sound/thunder1</property>
+			<property>sim/sound/thunder1</property>
 			<pitch>
-				<property>sim/sound/sound/dist-thunder1</property>
+				<property>sim/sound/dist-thunder1</property>
 				<factor>2</factor>
 				<offset>0.50</offset>
 				<min>1.00</min>
 				<max>2.00</max>
 			</pitch>
 			<volume>
-				<property>sim/sound/sound/dist-thunder1</property>
+				<property>sim/sound/dist-thunder1</property>
 			</volume>
 		</thunder1>
 		
@@ -1031,16 +1031,16 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/thunder2.wav</path>
 			<type>avionics</type>
-			<property>sim/sound/sound/thunder2</property>
+			<property>sim/sound/thunder2</property>
 			<pitch>
-				<property>sim/sound/sound/dist-thunder2</property>
+				<property>sim/sound/dist-thunder2</property>
 				<factor>2</factor>
 				<offset>0.50</offset>
 				<min>1.00</min>
 				<max>2.00</max>
 			</pitch>
 			<volume>
-				<property>sim/sound/sound/dist-thunder2</property>
+				<property>sim/sound/dist-thunder2</property>
 			</volume>
 		</thunder2>
 		
@@ -1049,16 +1049,16 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/thunder3.wav</path>
 			<type>avionics</type>
-			<property>sim/sound/sound/thunder3</property>
+			<property>sim/sound/thunder3</property>
 			<pitch>
-				<property>sim/sound/sound/dist-thunder3</property>
+				<property>sim/sound/dist-thunder3</property>
 				<factor>1</factor>
 				<offset>0.50</offset>
 				<min>1.00</min>
 				<max>2.00</max>
 			</pitch>
 			<volume>
-				<property>sim/sound/sound/dist-thunder3</property>
+				<property>sim/sound/dist-thunder3</property>
 			</volume>
 		</thunder3>
 		
@@ -1067,16 +1067,16 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/thunder4.wav</path>
 			<type>avionics</type>
-			<property>sim/sound/sound/thunder4</property>
+			<property>sim/sound/thunder4</property>
 			<pitch>
-				<property>sim/sound/sound/dist-thunder4</property>
+				<property>sim/sound/dist-thunder4</property>
 				<factor>1</factor>
 				<offset>0.50</offset>
 				<min>1.00</min>
 				<max>2.00</max>
 			</pitch>
 			<volume>
-				<property>sim/sound/sound/dist-thunder4</property>
+				<property>sim/sound/dist-thunder4</property>
 			</volume>
 		</thunder4>
 		
@@ -1085,16 +1085,16 @@
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/thunder5.wav</path>
 			<type>avionics</type>
-			<property>sim/sound/sound/thunder5</property>
+			<property>sim/sound/thunder5</property>
 			<pitch>
-				<property>sim/sound/sound/dist-thunder5</property>
+				<property>sim/sound/dist-thunder5</property>
 				<factor>1</factor>
 				<offset>0.50</offset>
 				<min>1.00</min>
 				<max>2.00</max>
 			</pitch>
 			<volume>
-				<property>sim/sound/sound/dist-thunder5</property>
+				<property>sim/sound/dist-thunder5</property>
 			</volume>
 		</thunder5>
 		
