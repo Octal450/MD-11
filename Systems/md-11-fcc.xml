@@ -283,8 +283,8 @@
 				fcc/afs/enabled eq 0
 				fcc/lsas/spd-prot/active ne 1
 				fcc/lsas/alpha-prot/active ne 1
-				attitude/pitch-rad le 0.558505
-				attitude/pitch-rad ge -0.20944
+				attitude/pitch-rad le 0.523599
+				attitude/pitch-rad ge -0.174533
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
 				fcc/lsas/in-detent eq 1
@@ -911,6 +911,20 @@
 			<c1>10</c1>
 		</lag_filter>
 		
+		<fcs_function name="fcc/lsas/pal/output">
+			<function>
+				<table>
+					<independentVar lookup="row">attitude/pitch-rad</independentVar>
+					<tableData>
+						-0.200713 -0.249
+						-0.174533  0.000
+						 0.523599  0.000
+						 0.549779  0.249
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<washout_filter name="fcc/lsas/q-washout">
 			<input>velocities/q-rad_sec</input>
 			<c1>0.5</c1>
@@ -1075,6 +1089,7 @@
 		
 		<summer name="fcc/lsas/output-sum">
 			<input>fcc/lsas/pah/output</input> <!-- Pitch Attitude Hold -->
+			<input>fcc/lsas/pal/output</input> <!-- Pitch Attitude Limiting -->
 			<input>fcc/lsas/prd/output</input> <!-- Pitch Rate Damping -->
 			<input>fcc/lsas/pap/output</input> <!-- Pitch Attitude Protection -->
 			<input>fcc/lsas/pnl/output</input> <!-- Positive Nose Lowering -->
