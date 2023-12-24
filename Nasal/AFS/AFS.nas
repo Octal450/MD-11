@@ -367,9 +367,16 @@ var ITAF = {
 			}
 		}
 		
-		# VOR/ILS Revision
+		# LNAV Reversion
+		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
+			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
+				me.setLatMode(3);
+			}
+		}
+		
+		# VOR/ILS Reversion
 		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
-			me.checkRadioRevision(Output.latTemp, Output.vertTemp);
+			me.checkRadioReversion(Output.latTemp, Output.vertTemp);
 		}
 		
 		Output.ap1Temp = Output.ap1.getBoolValue();
@@ -659,14 +666,7 @@ var ITAF = {
 			Internal.syncedSpd = 0;
 		}
 	},
-	slowLoop: func() {		
-		# If in LNAV mode and route is not longer active, or IRUs unaligned, switch to HDG HLD
-		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
-			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
-				me.setLatMode(3);
-			}
-		}
-		
+	slowLoop: func() {
 		# Reset system once flight complete
 		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Gear.wow0.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Output.vert.getValue() != 7) { # Not in T/O or G/A
 			fms.CORE.resetFms();
@@ -1296,7 +1296,7 @@ var ITAF = {
 			me.updateApprArm(0);
 		}
 	},
-	checkRadioRevision: func(l, v) { # Revert mode if signal lost
+	checkRadioReversion: func(l, v) { # Revert mode if signal lost
 		if (!Radio.inRange[Internal.radioSel.getValue()].getBoolValue()) {
 			if (l == 4 or v == 6) {
 				me.ap1Master(0);
