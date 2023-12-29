@@ -427,6 +427,20 @@
 				<live>true</live>
 			</checkbox>
 			
+			<!--checkbox>
+				<label>IESI Equipped</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/iesi-equipped</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox-->
+			
 			<checkbox>
 				<label>RCWS Equipped</label>
 				<halign>left</halign>

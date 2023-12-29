@@ -62,9 +62,30 @@
 		</condition>
 	</animation>
 	
+	<!--model>
+		<name>Analog Standby</name>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/standby/standby.xml</path>
+		<offsets>
+			<x-m>-27.473</x-m>
+			<y-m>-0.00238</y-m>
+			<z-m>6.7505</z-m>
+			<pitch-deg>-20.12</pitch-deg>
+		</offsets>
+		<condition>
+			<not><property>systems/acconfig/options/iesi-equipped</property></not>
+		</condition>
+	</model-->
+	
 	<model>
 		<name>IESI</name>
 		<path>Aircraft/MD-11/Models/Cockpit/Instruments/IESI/IESI.xml</path>
+		<offsets>
+			<y-m>-0.00238</y-m>
+			<z-m>0.002</z-m>
+		</offsets>
+		<!--condition>
+			<property>systems/acconfig/options/iesi-equipped</property>
+		</condition-->
 	</model>
 
 	<model>

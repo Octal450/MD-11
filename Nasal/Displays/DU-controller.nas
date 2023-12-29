@@ -220,12 +220,20 @@ var DUController = {
 					me.counterIesi.secs = 0;
 				}
 				
-				if (!me.updateIesi) {
-					me.updateIesi = 1;
-					canvas_iesi.iesi.update();
-					me.iesiLcdOn.setBoolValue(1);
-					canvas_iesi.iesi.page.show();
-				}
+				#if (pts.Systems.Acconfig.Options.iesiEquipped.getBoolValue()) { # Equipped
+					if (!me.updateIesi) {
+						me.updateIesi = 1;
+						canvas_iesi.iesi.update();
+						me.iesiLcdOn.setBoolValue(1);
+						canvas_iesi.iesi.page.show();
+					}
+				#} else { # Not equipped
+				#	if (me.updateIesi) {
+				#		me.updateIesi = 0;
+				#		canvas_iesi.iesi.page.hide();
+				#		me.iesiLcdOn.setBoolValue(0);
+				#	}
+				#}
 			} else {
 				me.counterIesi.secs = 180;
 				me.counterIesi.time = 0;

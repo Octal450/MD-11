@@ -6,6 +6,7 @@ OBJECT world
 kids 8
 OBJECT poly
 name "blankSTBY"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 8
 Cube.002
 texture "IESI.png"
@@ -406,6 +407,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Circle"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 6
 Circle
 crease 40.000000
@@ -1075,6 +1077,7 @@ refs 3
 kids 0
 OBJECT poly
 name "HpIn"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 9
 Plane.006
 texture "IESI.png"
@@ -1522,6 +1525,7 @@ refs 4
 kids 0
 OBJECT poly
 name "BaroSet"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 8
 Cylinder
 texture "IESI.png"
@@ -1969,6 +1973,7 @@ refs 16
 kids 0
 OBJECT poly
 name "ISFD"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 4
 Cube
 texture "IESI.png"
@@ -6086,7 +6091,7 @@ refs 3
 kids 0
 OBJECT poly
 name "bkgnd"
-loc -6.86645e-05 -4.76837e-06 0
+loc -0.000118256 1.36424e-12 -0.00447
 data 8
 Cube.001
 crease 40.000000
@@ -6118,6 +6123,7 @@ refs 10
 kids 0
 OBJECT poly
 name "Test"
+loc -4.95911e-05 4.76837e-06 -0.00447
 data 9
 Plane.000
 texture "IESI.png"
@@ -6565,7 +6571,7 @@ refs 4
 kids 0
 OBJECT poly
 name "iesi.screen"
-loc -27.4725 6.75255 -0.04162
+loc -27.4725 6.75255 -0.04609
 texture "screen.png"
 crease 45.000000
 numvert 4

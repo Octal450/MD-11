@@ -330,6 +330,7 @@ var Systems = {
 				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
+			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
 		}
 	},
