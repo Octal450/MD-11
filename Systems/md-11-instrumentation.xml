@@ -275,6 +275,530 @@
 	
 	</channel>
 	
+	<channel name="Standby Airspeed/Altimeter" execrate="2">
+		
+		<switch name="/instrumentation/stby-combo/power-avail">
+			<default value="1"/>
+		</switch>
+		
+		<switch name="/instrumentation/stby-combo/speed-kt-input">
+			<default value="/instrumentation/stby-combo/speed-kt-input"/>
+			<test value="/instrumentation/airspeed-indicator/indicated-speed-kt">
+				/instrumentation/stby-combo/power-avail eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/instrumentation/stby-combo/speed-kt-actuator">
+			<input>/instrumentation/stby-combo/speed-kt-input</input>
+			<rate_limit>100</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/instrumentation/stby-combo/speed-kt">
+			<input>/instrumentation/stby-combo/speed-kt-actuator</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/instrumentation/stby-combo/power-avail">
+			<default value="1"/>
+		</switch>
+		
+		<switch name="/instrumentation/stby-combo/altitude-ft-input">
+			<default value="/instrumentation/stby-combo/altitude-ft-input"/>
+			<test value="/instrumentation/altimeter[0]/indicated-altitude-ft"> <!-- Fix me when they are seperate -->
+				/instrumentation/stby-combo/power-avail eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/instrumentation/stby-combo/altitude-ft-actuator">
+			<input>/instrumentation/stby-combo/altitude-ft-input</input>
+			<rate_limit>1500</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/instrumentation/stby-combo/altitude-ft">
+			<input>/instrumentation/stby-combo/altitude-ft-actuator</input>
+			<c1>15</c1>
+		</lag_filter>
+		
+		<fcs_function name="/instrumentation/stby-combo/altitude-ft-geneva"> <!-- Wrap around when below 0 -->
+			<function>
+				<ifthen>
+					<lt>
+						<property>/instrumentation/stby-combo/altitude-ft</property>
+						<value>0</value>
+					</lt>
+					<sum>
+						<value>100000</value>
+						<property>/instrumentation/stby-combo/altitude-ft</property>
+					</sum>
+					<property>/instrumentation/stby-combo/altitude-ft</property>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/altitude-ft-thousands">
+			<function>
+				<difference>
+					<quotient>
+						<property>/instrumentation/stby-combo/altitude-ft</property>
+						<value>1000</value>
+					</quotient>
+					<product>
+						<integer>
+							<quotient>
+								<property>/instrumentation/stby-combo/altitude-ft</property>
+								<value>10000</value>
+							</quotient>
+						</integer>
+						<value>10000</value>
+					</product>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/altitude-ft-tenthousands">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
+							<value>10000</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<product>
+							<difference>
+								<quotient>
+									<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
+									<value>10000</value>
+								</quotient>
+								<integer>
+									<quotient>
+										<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
+										<value>10000</value>
+									</quotient>
+								</integer>
+								<value>0.99</value>
+							</difference>
+							<value>100</value>
+						</product>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-inhg-input">
+			<function>
+				<floor>
+					<sum>
+						<product>
+							<property>/instrumentation/altimeter[0]/setting-inhg</property> <!-- Fix me when they are seperate -->
+							<value>100</value>
+						</product>
+						<value>0.5</value>
+					</sum>
+				</floor>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/instrumentation/stby-combo/setting-inhg-text">
+			<input>/instrumentation/stby-combo/setting-inhg-input</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tenths">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-inhg-text</property>
+							<value>10</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<product>
+							<difference>
+								<quotient>
+									<property>/instrumentation/stby-combo/setting-inhg-text</property>
+									<value>10</value>
+								</quotient>
+								<integer>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-inhg-text</property>
+										<value>10</value>
+									</quotient>
+								</integer>
+								<value>0.9</value>
+							</difference>
+							<value>10</value>
+						</product>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-inhg-ones">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-inhg-text</property>
+							<value>100</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<ifthen> <!-- Stops it from animating for the wrong digit place -->
+							<lt>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-inhg-text</property>
+										<value>100</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-inhg-text</property>
+											<value>100</value>
+										</quotient>
+									</integer>
+								</difference>
+								<value>0.9</value>
+							</lt>
+							<value>0</value>
+							<product>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-inhg-text</property>
+										<value>10</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-inhg-text</property>
+											<value>10</value>
+										</quotient>
+									</integer>
+									<value>0.9</value>
+								</difference>
+								<value>10</value>
+							</product>
+						</ifthen>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tens">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-inhg-text</property>
+							<value>1000</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<ifthen> <!-- Stops it from animating for the wrong digit place -->
+							<or>
+								<lt>
+									<difference>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-inhg-text</property>
+											<value>100</value>
+										</quotient>
+										<integer>
+											<quotient>
+												<property>/instrumentation/stby-combo/setting-inhg-text</property>
+												<value>100</value>
+											</quotient>
+										</integer>
+									</difference>
+									<value>0.9</value>
+								</lt>
+								<lt>
+									<difference>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-inhg-text</property>
+											<value>1000</value>
+										</quotient>
+										<integer>
+											<quotient>
+												<property>/instrumentation/stby-combo/setting-inhg-text</property>
+												<value>1000</value>
+											</quotient>
+										</integer>
+									</difference>
+									<value>0.9</value>
+								</lt>
+							</or>
+							<value>0</value>
+							<product>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-inhg-text</property>
+										<value>10</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-inhg-text</property>
+											<value>10</value>
+										</quotient>
+									</integer>
+									<value>0.9</value>
+								</difference>
+								<value>10</value>
+							</product>
+						</ifthen>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-hpa-input">
+			<function>
+				<floor>
+					<sum>
+						<property>/instrumentation/altimeter[0]/setting-hpa</property> <!-- Fix me when they are seperate -->
+						<value>0.5</value>
+					</sum>
+				</floor>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/instrumentation/stby-combo/setting-hpa-text">
+			<input>/instrumentation/stby-combo/setting-hpa-input</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-hpa-tens">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-hpa-text</property>
+							<value>10</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<product>
+							<difference>
+								<quotient>
+									<property>/instrumentation/stby-combo/setting-hpa-text</property>
+									<value>10</value>
+								</quotient>
+								<integer>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-hpa-text</property>
+										<value>10</value>
+									</quotient>
+								</integer>
+								<value>0.9</value>
+							</difference>
+							<value>10</value>
+						</product>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-hpa-hundreds">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-hpa-text</property>
+							<value>100</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<ifthen> <!-- Stops it from animating for the wrong digit place -->
+							<lt>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-hpa-text</property>
+										<value>100</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-hpa-text</property>
+											<value>100</value>
+										</quotient>
+									</integer>
+								</difference>
+								<value>0.9</value>
+							</lt>
+							<value>0</value>
+							<product>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-hpa-text</property>
+										<value>10</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-hpa-text</property>
+											<value>10</value>
+										</quotient>
+									</integer>
+									<value>0.9</value>
+								</difference>
+								<value>10</value>
+							</product>
+						</ifthen>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/stby-combo/setting-hpa-thousands">
+			<function> <!-- Geneva drive -->
+				<sum>
+					<integer> <!-- M -->
+						<quotient>
+							<property>/instrumentation/stby-combo/setting-hpa-text</property>
+							<value>1000</value>
+						</quotient>
+					</integer>
+					<max> <!-- S -->
+						<value>0</value>
+						<ifthen> <!-- Stops it from animating for the wrong digit place -->
+							<or>
+								<lt>
+									<difference>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-hpa-text</property>
+											<value>100</value>
+										</quotient>
+										<integer>
+											<quotient>
+												<property>/instrumentation/stby-combo/setting-hpa-text</property>
+												<value>100</value>
+											</quotient>
+										</integer>
+									</difference>
+									<value>0.9</value>
+								</lt>
+								<lt>
+									<difference>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-hpa-text</property>
+											<value>1000</value>
+										</quotient>
+										<integer>
+											<quotient>
+												<property>/instrumentation/stby-combo/setting-hpa-text</property>
+												<value>1000</value>
+											</quotient>
+										</integer>
+									</difference>
+									<value>0.9</value>
+								</lt>
+							</or>
+							<value>0</value>
+							<product>
+								<difference>
+									<quotient>
+										<property>/instrumentation/stby-combo/setting-hpa-text</property>
+										<value>10</value>
+									</quotient>
+									<integer>
+										<quotient>
+											<property>/instrumentation/stby-combo/setting-hpa-text</property>
+											<value>10</value>
+										</quotient>
+									</integer>
+									<value>0.9</value>
+								</difference>
+								<value>10</value>
+							</product>
+						</ifthen>
+					</max>
+				</sum>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
+	<channel name="Standby Attitude Indicator" execrate="2">
+		
+		<switch name="/instrumentation/stby-ai/spin-cmd">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/dc-bat ge 24
+			</test>
+		</switch>
+		
+		<lag_filter name="/instrumentation/stby-ai/flag">
+			<input>/instrumentation/stby-ai/spin-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<actuator name="/instrumentation/stby-ai/spin-pos">
+			<input>/instrumentation/stby-ai/spin-cmd</input>
+			<rate_limit sense="incr">0.2</rate_limit>
+			<rate_limit sense="decr">0.04</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/instrumentation/stby-ai/spin">
+			<input>/instrumentation/stby-ai/spin-pos</input>
+			<c1>1</c1>
+		</lag_filter>
+		
+		<fcs_function name="/instrumentation/stby-ai/pitch-deg-cmd">
+			<function>
+				<sum>
+					<value>20</value>
+					<product>
+						<property>/instrumentation/stby-ai/spin</property>
+						<difference>
+							<property>/orientation/pitch-deg</property>
+							<value>20</value>
+						</difference>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/instrumentation/stby-ai/pitch-deg-pos">
+			<input>/instrumentation/stby-ai/pitch-deg-cmd</input>
+			<rate_limit>360</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/instrumentation/stby-ai/pitch-deg">
+			<input>/instrumentation/stby-ai/pitch-deg-pos</input>
+			<c1>40</c1>
+		</lag_filter>
+		
+		<fcs_function name="/instrumentation/stby-ai/roll-deg-cmd">
+			<function>
+				<sum>
+					<value>40</value>
+					<product>
+						<property>/instrumentation/stby-ai/spin</property>
+						<difference>
+							<property>/orientation/roll-deg</property>
+							<value>40</value>
+						</difference>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/instrumentation/stby-ai/roll-deg-pos">
+			<input>/instrumentation/stby-ai/roll-deg-cmd</input>
+			<rate_limit>720</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/instrumentation/stby-ai/roll-deg">
+			<input>/instrumentation/stby-ai/roll-deg-pos</input>
+			<c1>40</c1>
+		</lag_filter>
+	
+	</channel>
+	
 	<channel name="Radios" execrate="4"> <!-- We work with x1000 so that floating point error does not break the formatting -->
 		
 		<!-- CRP 1 -->

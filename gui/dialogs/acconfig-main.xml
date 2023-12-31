@@ -427,7 +427,7 @@
 				<live>true</live>
 			</checkbox>
 			
-			<!--checkbox>
+			<checkbox>
 				<label>IESI Equipped</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/iesi-equipped</property>
@@ -439,7 +439,7 @@
 					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
-			</checkbox-->
+			</checkbox>
 			
 			<checkbox>
 				<label>RCWS Equipped</label>
