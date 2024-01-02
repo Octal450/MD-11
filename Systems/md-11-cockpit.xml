@@ -838,6 +838,29 @@
 			<output>/systems/caws/apoff/out</output>
 		</actuator>
 		
+		<!-- Autopilot Horn Once -->
+		<switch name="/systems/caws/apoff/single-trigger">
+			<default value="/systems/caws/apoff/single-trigger"/>
+			<test logic="OR" value="0">
+				/systems/electrical/outputs/mk-viii lt 24
+				<test logic="AND">
+					/it-autoflight/sound/apoff-single eq 0
+					/systems/caws/apoff/single-out eq 1
+				</test>
+			</test>
+			<test logic="AND" value="1">
+				/systems/caws/apoff/single-out eq 0
+				/it-autoflight/sound/apoff-single eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/caws/apoff/single-actuator">
+			<input>/systems/caws/apoff/single-trigger</input>
+			<rate_limit sense="incr">0.35</rate_limit>
+			<rate_limit sense="decr">100</rate_limit>
+			<output>/systems/caws/apoff/single-out</output>
+		</actuator>
+		
 		<!-- Landing Gear Horn -->
 		<switch name="/systems/caws/landing-gear/trigger">
 			<default value="/systems/caws/landing-gear/trigger"/>

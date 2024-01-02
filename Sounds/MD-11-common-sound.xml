@@ -886,13 +886,25 @@
 			</condition>
 		</caws>
 		<caws>
-			<name>AP Off</name>
+			<name>AP Off Warning</name>
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
 			<type>avionics</type>
 			<condition>
 				<greater-than>
 					<property>/systems/caws/apoff/out</property>
+					<value>0</value>
+				</greater-than>
+			</condition>
+		</caws>
+		<caws>
+			<name>AP Off Warning 2</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/CAWS/apoff.wav</path>
+			<type>avionics</type>
+			<condition>
+				<greater-than>
+					<property>/systems/caws/apoff/single-out</property>
 					<value>0</value>
 				</greater-than>
 			</condition>

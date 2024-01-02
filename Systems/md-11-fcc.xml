@@ -52,6 +52,14 @@
 			</test>
 		</switch>
 		
+		<switch name="fcc/power-avail">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				fcc/fcc1-power eq 1
+				fcc/fcc2-power eq 1
+			</test>
+		</switch>
+		
 		<switch name="fcc/afs/enabled">
 			<default value="0"/>
 			<test logic="OR" value="1">

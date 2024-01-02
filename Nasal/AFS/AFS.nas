@@ -241,7 +241,9 @@ var Settings = {
 
 var Sound = {
 	apOff: props.globals.getNode("/it-autoflight/sound/apoff"),
+	apOffSingle: props.globals.initNode("/it-autoflight/sound/apoff-single", 0, "BOOL"),
 	enableApOff: 0,
+	enablePowerApOff: 0,
 };
 
 var Text = {
@@ -331,10 +333,12 @@ var ITAF = {
 			Warning.atsFlash.setBoolValue(0);
 			Warning.ats.setBoolValue(0);
 			Sound.enableApOff = 0;
+			Sound.enablePowerApOff = 0;
 			Internal.enableAthrOff = 0;
 			apKill.stop();
 			atsKill.stop();
 		}
+		Sound.apOffSingle.setBoolValue(0);
 		systems.WARNINGS.altitudeAlert.setValue(0); # Cancel altitude alert
 		loopTimer.start();
 		slowLoopTimer.start();
@@ -365,6 +369,20 @@ var ITAF = {
 			} else {
 				me.athrMaster(0);
 			}
+		}
+		
+		# AP Power Warning - when FCC power cycles, sounds warning
+		pts.Fdm.JSBsim.Fcc.powerAvailTemp = pts.Fdm.JSBsim.Fcc.powerAvail.getValue();
+		if (pts.Fdm.JSBsim.Fcc.powerAvailTemp == 1) {
+			if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) { # Don't do it during autoconfig
+				Sound.enablePowerApOff = 0;
+			} else if (Sound.enablePowerApOff) {
+				Sound.apOffSingle.setBoolValue(1);
+				Sound.enablePowerApOff = 0;
+			}
+		} else if (pts.Fdm.JSBsim.Fcc.powerAvailTemp == 0) {
+			Sound.enablePowerApOff = 1;
+			Sound.apOffSingle.setBoolValue(0);
 		}
 		
 		# LNAV Reversion

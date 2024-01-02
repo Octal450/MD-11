@@ -85,6 +85,8 @@ var Fdm = {
 			Lsas: {
 				autotrimInhibit: props.globals.getNode("/fdm/jsbsim/fcc/lsas/autotrim-inhibit"),
 			},
+			powerAvail: props.globals.getNode("/fdm/jsbsim/fcc/power-avail"),
+			powerAvailTemp: 0,
 			pitchTrimSpeed: props.globals.getNode("/fdm/jsbsim/fcc/pitch-trim-speed"),
 			stallAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-alpha-deg"),
 			stallWarnAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-warn-alpha-deg"),
