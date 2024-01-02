@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 AFS Interface
-# Copyright (c) 2023 Josh Davidson (Octal450)
+# Copyright (c) 2024 Josh Davidson (Octal450)
 
 var Fma = {
 	ap: props.globals.initNode("/instrumentation/pfd/fma/ap-mode", "", "STRING"),

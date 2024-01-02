@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Radios
-# Copyright (c) 2023 Josh Davidson (Octal450)
+# Copyright (c) 2024 Josh Davidson (Octal450)
 
 var crp = [nil, nil, nil];
 var ettr = props.globals.getNode("/systems/acconfig/options/eight-three-three-radios");
