@@ -705,7 +705,7 @@
 		
 		<lead_lag_filter name="fcc/rcws/p-leadlag">
 			<input>fcc/rcws/p-switched</input>
-			<c1>1.1</c1>
+			<c1>1.05</c1>
 			<c2>1.0</c2>
 			<c3>0.97</c3>
 			<c4>1.0</c4>
@@ -747,7 +747,7 @@
 		
 		<lag_filter name="fcc/rcws/input-demand">
 			<input>fcc/rcws/input-gain</input>
-			<c1>5.0</c1>
+			<c1>3.5</c1>
 		</lag_filter>
 		
 		<pure_gain name="fcc/rcws/rate-demand">
