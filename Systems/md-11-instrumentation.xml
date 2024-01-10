@@ -87,6 +87,10 @@
 			<test value="/instrumentation/pfd/slip-skid-Ny">
 				position/wow eq 1
 			</test>
+			<clipto>
+				<min>-15</min>
+				<max>15</max>
+			</clipto>
 		</switch>
 		
 		<lag_filter name="/instrumentation/pfd/slip-skid">
