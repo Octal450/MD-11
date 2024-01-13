@@ -235,6 +235,21 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/start-switch-1">
+			<input>/systems/ignition/start-switch-1</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/start-switch-2">
+			<input>/systems/ignition/start-switch-2</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/start-switch-3">
+			<input>/systems/ignition/start-switch-3</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/throttle-lever[0]">
 			<input>fadec/control-1/throttle-pos</input>
 			<c1>20</c1>
