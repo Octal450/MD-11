@@ -1251,12 +1251,46 @@
 			</clipto>
 		</fcs_function>
 		
+		<fcs_function name="fcc/lsas/out-of-trim-threshold">
+			<function>
+				<table>
+					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-speed-kt</independentVar>
+					<tableData> <!-- Graph normalized -->
+						138  0.0349
+						150  0.0321
+						175  0.0267
+						200  0.0226
+						225  0.0191
+						250  0.0171
+						275  0.0155
+						300  0.0151
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<switch name="fcc/lsas/out-of-trim">
+			<default value="fcc/lsas/out-of-trim"/>
+			<test value="0">
+				fcc/lsas/pah/active eq 0
+			</test>
+			<test logic="OR" value="1">
+				fcc/lsas/pah/output ge fcc/lsas/out-of-trim-threshold
+				fcc/lsas/pah/output le -fcc/lsas/out-of-trim-threshold
+			</test>
+			<test logic="AND" value="0">
+				fcc/lsas/pah/output lt 0.01
+				fcc/lsas/pah/output gt -0.01
+			</test>-
+		</switch>
+		
 		<switch name="fcc/lsas/autotrim-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				fcc/lsas/autotrim-inhibit eq 0
 				fcc/lsas/pah/active eq 1
-				fcc/lsas/pah/output ge 0.02
+				fcc/lsas/out-of-trim eq 1
+				fcc/lsas/pah/output gt 0.001
 				/controls/flight/elevator-trim le 0.064516
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
@@ -1264,7 +1298,8 @@
 			<test logic="AND" value="2">
 				fcc/lsas/autotrim-inhibit eq 0
 				fcc/lsas/pah/active eq 1
-				fcc/lsas/pah/output le -0.02
+				fcc/lsas/out-of-trim eq 1
+				fcc/lsas/pah/output lt -0.001
 				/controls/flight/elevator-trim ge -1.0
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
@@ -1282,8 +1317,8 @@
 						<table>
 							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
 							<tableData>
-								0.02  0.00001
-								0.25  0.00010
+								0.010  0.00002
+								0.249  0.00010
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -1296,8 +1331,8 @@
 						<table>
 							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
 							<tableData>
-								-0.25 -0.00010
-								-0.02 -0.00001
+								-0.249 -0.00010
+								-0.010 -0.00002
 							</tableData>
 						</table>
 						<value>0.0</value>

@@ -705,6 +705,51 @@
 	</filter>
 	
 	<filter>
+		<name>Elevator Trim Flip Flop</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<not><property>/it-autoflight/output/ap-on</property></not>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>
+			<condition>
+				<greater-than-equals>
+					<expression>
+						<abs>
+							<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+						</abs>
+					</expression>
+					<expression>
+						<max>
+							<property>/fdm/jsbsim/fcc/lsas/out-of-trim-threshold</property>
+							<value>0.02</value>
+						</max>
+					</expression>
+				</greater-than-equals>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<expression>
+						<abs>
+							<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+						</abs>
+					</expression>
+					<value>0.01</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/it-autoflight/internal/out-of-trim</input>
+		<output>/it-autoflight/internal/out-of-trim</output>
+	</filter>
+	
+	<filter>
 		<name>System Command: Elevator Trim</name>
 		<type>noise-spike</type>
 		<initialize-to>output</initialize-to>
@@ -720,16 +765,10 @@
 						<property>/gear/gear[2]/wow</property>
 						<value>0</value>
 					</equals>
-					<or>
-						<greater-than>
-							<property>/it-autoflight/internal/elevator-cmd</property>
-							<value>0.01</value>
-						</greater-than>
-						<less-than>
-							<property>/it-autoflight/internal/elevator-cmd</property>
-							<value>-0.01</value>
-						</less-than>
-					</or>
+					<equals>
+						<property>/it-autoflight/internal/out-of-trim</property>
+						<value>1</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
@@ -737,7 +776,7 @@
 			<condition>
 				<greater-than>
 					<property>/it-autoflight/internal/elevator-cmd</property>
-					<value>0.01</value>
+					<value>0.001</value>
 				</greater-than>
 			</condition>
 			<value>1</value>
@@ -746,7 +785,7 @@
 			<condition>
 				<less-than>
 					<property>/it-autoflight/internal/elevator-cmd</property>
-					<value>-0.01</value>
+					<value>-0.001</value>
 				</less-than>
 			</condition>
 			<value>-1</value>
@@ -758,7 +797,7 @@
 			<expression>
 				<table>
 					<abs><property>/it-autoflight/internal/elevator-cmd</property></abs>
-					<entry><ind>0.01</ind><dep>0.001</dep></entry>
+					<entry><ind>0.01</ind><dep>0.002</dep></entry>
 					<entry><ind>0.10</ind><dep>0.010</dep></entry>
 				</table>
 			</expression>
