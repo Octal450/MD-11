@@ -775,7 +775,7 @@
 		<input>
 			<condition>
 				<greater-than>
-					<property>/it-autoflight/internal/elevator-cmd</property>
+					<property>/fdm/jsbsim/dfgs/afs/pitch-cmd</property>
 					<value>0.001</value>
 				</greater-than>
 			</condition>
@@ -784,7 +784,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/it-autoflight/internal/elevator-cmd</property>
+					<property>/fdm/jsbsim/dfgs/afs/pitch-cmd</property>
 					<value>-0.001</value>
 				</less-than>
 			</condition>
@@ -796,7 +796,7 @@
 		<max-rate-of-change>
 			<expression>
 				<table>
-					<abs><property>/it-autoflight/internal/elevator-cmd</property></abs>
+					<abs><property>/fdm/jsbsim/dfgs/afs/pitch-cmd</property></abs>
 					<entry><ind>0.01</ind><dep>0.002</dep></entry>
 					<entry><ind>0.10</ind><dep>0.010</dep></entry>
 				</table>
