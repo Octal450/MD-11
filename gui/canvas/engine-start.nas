@@ -26,10 +26,6 @@ var engineStartCanvas = {
 	},
 	open: func() {
 		me._dialog = canvas.Window.new([307, 200], "dialog", nil, 0);
-		me._dialog._onClose = func() {
-			engineStartCanvas._onClose();
-		}
-		
 		me._dialog.set("title", me._title);
 		me._canvas  = me._dialog.createCanvas();
 		me._root = me._canvas.createGroup();

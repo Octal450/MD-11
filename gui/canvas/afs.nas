@@ -28,10 +28,6 @@ var afsCanvas = {
 	},
 	open: func() {
 		me._dialog = canvas.Window.new([599, 200], "dialog", nil, 0);
-		me._dialog._onClose = func() {
-			afsCanvas._onClose();
-		}
-		
 		me._dialog.set("title", me._title);
 		me._canvas  = me._dialog.createCanvas();
 		me._root = me._canvas.createGroup();
