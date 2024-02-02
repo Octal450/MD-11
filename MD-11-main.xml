@@ -1641,6 +1641,11 @@
 		<apu n="0">
 			<state type="int">0</state>
 		</apu>
+		<caws n="0">
+			<logic n="0">
+				<altitude-alert type="int">0</altitude-alert>
+			</logic>
+		</caws>
 		<failures n="0">
 			<brakes n="0">
 				<abs type="bool">0</abs>
