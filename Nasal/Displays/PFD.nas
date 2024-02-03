@@ -1568,6 +1568,10 @@ var canvasPfd1 = {
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
 		
 		# FMA
+		if (find("CLAMP", Value.Afs.pitch) != -1) {
+			Value.Afs.pitch = Value.Afs.pitch ~ " ";
+		}
+		
 		if (Value.Afs.fd1) {
 			if (Value.Afs.land == "OFF") {
 				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
@@ -1730,6 +1734,10 @@ var canvasPfd2 = {
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
 		
 		# FMA
+		if (find("CLAMP", Value.Afs.pitch) != -1) {
+			Value.Afs.pitch = Value.Afs.pitch ~ " ";
+		}
+		
 		if (Value.Afs.fd2) {
 			if (Value.Afs.land == "OFF") {
 				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));

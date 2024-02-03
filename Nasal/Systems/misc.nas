@@ -306,6 +306,7 @@ var doFullThrust = func() {
 
 # FADEC
 var FADEC = {
+	anyEngineOut: 0,
 	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
 	pitchMode: 0,
 	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
@@ -338,6 +339,7 @@ var FADEC = {
 		me.Limit.flexTemp.setValue(30);
 	},
 	loop: func() {
+		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();
 		me.pitchMode = afs.Text.vert.getValue();
 		if (me.pitchMode == "G/A CLB") {
 			me.Limit.activeModeInt.setValue(1);
@@ -346,11 +348,21 @@ var FADEC = {
 			me.Limit.activeModeInt.setValue(0);
 			me.Limit.activeMode.setValue("T/O");
 		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
-			me.Limit.activeModeInt.setValue(3);
-			me.Limit.activeMode.setValue("CLB");
+			if (me.anyEngineOut) {
+				me.Limit.activeModeInt.setValue(2);
+				me.Limit.activeMode.setValue("MCT");
+			} else {
+				me.Limit.activeModeInt.setValue(3);
+				me.Limit.activeMode.setValue("CLB");
+			}
 		} else {
-			me.Limit.activeModeInt.setValue(4);
-			me.Limit.activeMode.setValue("CRZ");
+			if (me.anyEngineOut) {
+				me.Limit.activeModeInt.setValue(2);
+				me.Limit.activeMode.setValue("MCT");
+			} else {
+				me.Limit.activeModeInt.setValue(4);
+				me.Limit.activeMode.setValue("CRZ");
+			}
 		}
 	},
 };
