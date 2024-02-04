@@ -222,6 +222,7 @@ var Output = {
 	fd2: props.globals.initNode("/it-autoflight/output/fd2", 1, "BOOL"),
 	fd2Temp: 0,
 	hdgCaptured: 1,
+	landArm: props.globals.initNode("/it-autoflight/output/land-armed", 0, "BOOL"),
 	lat: props.globals.initNode("/it-autoflight/output/lat", 5, "INT"),
 	latTemp: 5,
 	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-armed", 0, "BOOL"),
@@ -306,6 +307,7 @@ var ITAF = {
 		Output.lnavArm.setBoolValue(0);
 		Output.locArm.setBoolValue(0);
 		Output.apprArm.setBoolValue(0);
+		Output.landArm.setBoolValue(0);
 		Output.thrMode.setValue(2);
 		Output.lat.setValue(5);
 		Output.vert.setValue(7);
@@ -475,11 +477,23 @@ var ITAF = {
 		}
 		
 		if (Output.vertTemp == 2 or Output.vertTemp == 6) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Internal.landCondition == "OFF") {
+				if (!Output.landArm.getBoolValue()) {
+					me.updateLandArm(1);
+				}
+			} else {
+				if (Output.landArm.getBoolValue()) {
+					me.updateLandArm(0);
+				}
+			}
 			Internal.radioSelTemp = Internal.radioSel.getValue();
 			Radio.locDeflTemp[Internal.radioSelTemp] = Radio.locDefl[Internal.radioSelTemp].getValue();
 			Radio.signalQualityTemp[Internal.radioSelTemp] = Radio.signalQuality[Internal.radioSelTemp].getValue();
 			Internal.canAutoland = (abs(Radio.locDeflTemp[Internal.radioSelTemp]) <= 0.1 and Radio.locDeflTemp[Internal.radioSelTemp] != 0 and Radio.signalQualityTemp[Internal.radioSelTemp] >= 0.99) or Gear.wow0.getBoolValue();
 		} else {
+			if (Output.landArm.getBoolValue()) {
+				me.updateLandArm(0);
+			}
 			Internal.canAutoland = 0;
 		}
 		Internal.landModeActive = (Output.latTemp == 2 or Output.latTemp == 4) and (Output.vertTemp == 2 or Output.vertTemp == 6);
@@ -507,6 +521,9 @@ var ITAF = {
 				Internal.landCondition = "APPR";
 			} else {
 				Internal.landCondition = "OFF";
+			}
+			if (Output.landArm.getBoolValue()) {
+				me.updateLandArm(0);
 			}
 		} else {
 			Internal.landCondition = "OFF";
@@ -1050,6 +1067,7 @@ var ITAF = {
 				if (abs(Input.altDiff) >= 25) {
 					Internal.flchActive = 0;
 					Internal.altCaptureActive = 0;
+					me.updateLandArm(0);
 					Output.vert.setValue(5);
 					me.updateVertText("FPA");
 					me.syncFpa();
@@ -1061,6 +1079,7 @@ var ITAF = {
 				if (abs(Input.altDiff) >= 25) {
 					Internal.flchActive = 0;
 					Internal.altCaptureActive = 0;
+					me.updateLandArm(0);
 					Output.vert.setValue(1);
 					me.updateVertText("V/S");
 					me.syncVs();
@@ -1084,6 +1103,7 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 125) { # SPD CLB or SPD DES
 				Internal.retardLock = 0;
 				Internal.altCaptureActive = 0;
+				me.updateLandArm(0);
 				Output.vert.setValue(4);
 				Internal.flchActive = 1;
 				Internal.alt.setValue(Input.alt.getValue());
@@ -1092,6 +1112,7 @@ var ITAF = {
 				Internal.flchActive = 0;
 				Internal.alt.setValue(Input.alt.getValue());
 				Internal.altCaptureActive = 1;
+				me.updateLandArm(0);
 				Output.vert.setValue(0);
 				me.updateVertText("ALT CAP");
 				me.updateThrustMode();
@@ -1100,6 +1121,7 @@ var ITAF = {
 			if (abs(Input.altDiff) >= 25) {
 				Internal.flchActive = 0;
 				Internal.altCaptureActive = 0;
+				me.updateLandArm(0);
 				Output.vert.setValue(5);
 				me.updateVertText("FPA");
 				me.syncFpa();
@@ -1243,10 +1265,15 @@ var ITAF = {
 		if (Output.vert.getValue() != 2) {
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			me.updateApprArm(0);
+			me.updateApprArm(0, 1); # Do not reset landArm
 			Output.vert.setValue(2);
 			me.updateVertText("G/S");
 			me.updateThrustMode();
+			if (Output.ap1Temp or Output.ap2Temp) {
+				if (!Output.landArm.getBoolValue()) {
+					me.updateLandArm(1);
+				}
+			}
 		}
 	},
 	checkLnav: func(t) {
@@ -1535,11 +1562,17 @@ var ITAF = {
 		}
 		updateFma.arm();
 	},
-	updateApprArm: func(n) {
+	updateApprArm: func(n, t = 0) {
 		Output.apprArm.setBoolValue(n);
 		if (n == 1) {
 			me.updateLocOnly(0);
+		} else if (n == 0 and t != 1) {
+			Output.landArm.setBoolValue(0);
 		}
+		updateFma.arm();
+	},
+	updateLandArm: func(n) {
+		Output.landArm.setBoolValue(n);
 		updateFma.arm();
 	},
 	updateLocOnly: func(n) {

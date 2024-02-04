@@ -82,7 +82,7 @@ var updateFma = {
 		} else {
 			Fma.rollArm.setValue("");
 		}
-		if (Output.apprArm.getBoolValue() and !Output.locArm.getBoolValue()) {
+		if ((Output.apprArm.getBoolValue() or Output.landArm.getBoolValue()) and !Output.locArm.getBoolValue()) {
 			Fma.pitchArm.setValue("LAND ARMED");
 		} else {
 			Fma.pitchArm.setValue("");
