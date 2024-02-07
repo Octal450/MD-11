@@ -98,7 +98,7 @@ var Init = {
 		}
 		
 		if (fms.FlightData.costIndex != 0) {
-			me.Display.R6 = fms.FlightData.costIndex;
+			me.Display.R6 = sprintf("%3.0f", fms.FlightData.costIndex);;
 		#} else if () { # FROM/TO set
 		#	me.Display.R6 = "___";
 		} else {
@@ -140,7 +140,7 @@ var Init = {
 			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad > 1) {
-						fms.FlightData.costIndex = me.scratchpad;
+						fms.FlightData.costIndex = int(me.scratchpad);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
