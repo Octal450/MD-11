@@ -23,6 +23,7 @@ var MCDU = {
 			acStatus2: AcStatus2.new(n),
 			closestAirports: ClosestAirports.new(n),
 			fallback: Fallback.new(n),
+			init: Init.new(n),
 			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
@@ -52,6 +53,7 @@ var MCDU = {
 		
 		me.PageList.acStatus.reset();
 		me.PageList.closestAirports.reset();
+		me.PageList.init.reset();
 		me.PageList.menu.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
@@ -250,6 +252,21 @@ var MCDU = {
 				} else {
 					return 0;
 				}
+			}
+		} else {
+			return 0;
+		}
+	},
+	stringIsInt: func(test = nil) {
+		if (test == nil) {
+			test = me.scratchpad;
+		}
+		
+		if (int(test) != nil) {
+			if (test - int(test) != 0) {
+				return 0;
+			} else {
+				return 1;
 			}
 		} else {
 			return 0;

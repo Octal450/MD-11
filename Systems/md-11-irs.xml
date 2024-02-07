@@ -43,8 +43,7 @@
 			</test>
 		</switch>
 		
-		<!-- Uncomment when MCDU is added -->
-		<!--switch name="/systems/iru-common/mcdu-btn">
+		<switch name="/systems/iru-common/mcdu-btn"> <!-- Reset MCDU initialize button -->
 			<default value="/controls/iru-common/mcdu-btn"/>
 			<test logic="AND" value="0">
 				/controls/iru[0]/switches/knob ne 1
@@ -52,7 +51,7 @@
 				/controls/iru[2]/switches/knob ne 1
 			</test>
 			<output>/controls/iru-common/mcdu-btn</output>
-		</switch-->
+		</switch>
 	
 	</channel>
 	
@@ -85,6 +84,7 @@
 			<test logic="AND" value="1">
 				/controls/iru[0]/switches/knob eq 1
 				/systems/iru[0]/powered eq 1
+				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
 		
@@ -180,6 +180,7 @@
 			<test logic="AND" value="1">
 				/controls/iru[1]/switches/knob eq 1
 				/systems/iru[1]/powered eq 1
+				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
 		
@@ -275,6 +276,7 @@
 			<test logic="AND" value="1">
 				/controls/iru[2]/switches/knob eq 1
 				/systems/iru[2]/powered eq 1
+				/controls/iru-common/mcdu-btn eq 1
 			</test>
 		</switch>
 		

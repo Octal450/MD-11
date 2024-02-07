@@ -703,17 +703,17 @@
 		</ignition>
 		<iru n="0">
 			<switches n="0">
-				<knob type="int">0</knob>
+				<knob type="bool">0</knob>
 			</switches>
 		</iru>
 		<iru n="1">
 			<switches n="0">
-				<knob type="int">0</knob>
+				<knob type="bool">0</knob>
 			</switches>
 		</iru>
 		<iru n="2">
 			<switches n="0">
-				<knob type="int">0</knob>
+				<knob type="bool">0</knob>
 			</switches>
 		</iru>
 		<iru-common n="0">
@@ -1766,6 +1766,7 @@
 			<file>Aircraft/MD-11/Nasal/MCDU/MCDU.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/closestairports.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/fallback.nas</file>
+			<file>Aircraft/MD-11/Nasal/MCDU/init.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/menus.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/navradio.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/posref.nas</file>

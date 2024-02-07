@@ -506,10 +506,10 @@ var IRS = {
 		mcduBtn: props.globals.getNode("/controls/iru-common/mcdu-btn"),
 	},
 	init: func() {
-		me.Switch.knob[0].setValue(0);
-		me.Switch.knob[1].setValue(0);
-		me.Switch.knob[2].setValue(0);
-		me.Switch.mcduBtn.setBoolValue(1); # Should be 0 once MCDU is implemented
+		me.Switch.knob[0].setBoolValue(0);
+		me.Switch.knob[1].setBoolValue(0);
+		me.Switch.knob[2].setBoolValue(0);
+		me.Switch.mcduBtn.setBoolValue(0);
 	},
 	anyAlignedUpdate: func() { # Called when the logical OR of the 3 aligned changes
 		me.hdg = pts.Orientation.headingMagneticDeg.getValue();

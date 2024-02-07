@@ -1,5 +1,10 @@
-# MD-11 FMS
+# MD-11 McDonnell Douglas MD-11 FMS
 # Copyright (c) 2024 Josh Davidson (Octal450)
+
+var FlightData = {
+	costIndex: 0,
+	flightNumber: "",
+};
 
 var Internal = {
 	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
@@ -37,7 +42,12 @@ var Speeds = {
 
 var CORE = {
 	resetFms: func() {
-		afs.ITAF.init(1);
+		afs.ITAF.init(1); # First
+		
+		FlightData.costIndex = 0;
+		FlightData.flightNumber = "";
+		
+		# Last
 		mcdu.BASE.reset();
 	},
 	resetRadio: func() {
