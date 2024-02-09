@@ -493,7 +493,7 @@ var ITAF = {
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2) {
 			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.spd.getValue() == "RETARD") and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "DUAL";
-			} else if (Output.ap1Temp or Output.ap2Temp and Position.gearAglFtTemp <= 1500) {
+			} else if ((Output.ap1Temp or Output.ap2Temp) and Position.gearAglFtTemp <= 1500) {
 				Internal.landCondition = "SINGLE";
 			} else if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
 				Internal.landCondition = "APPR";
