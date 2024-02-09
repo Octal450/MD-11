@@ -398,7 +398,7 @@ var ITAF = {
 		}
 		
 		# VOR/ILS Reversion
-		if (Output.latTemp == 2 or Output.vertTemp == 2 or Output.vertTemp == 6) {
+		if (Output.latTemp == 2 or Output.latTemp == 4 or Output.vertTemp == 2 or Output.vertTemp == 6) {
 			me.checkRadioReversion(Output.latTemp, Output.vertTemp);
 		}
 		
@@ -511,26 +511,24 @@ var ITAF = {
 			Text.land.setValue(Internal.landCondition);
 		}
 		
-		if (Output.latTemp == 2) {
-			if (Position.gearAglFtTemp <= 150) {
-				if ((Output.ap1Temp or Output.ap2Temp) and (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE")) {
+		if (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE") {
+			if (Output.latTemp == 2) {
+				if (Position.gearAglFtTemp <= 150) {
 					me.setLatMode(4);
 				}
 			}
-		}
-		if (Output.vertTemp == 2) {
-			if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5) {
-				if ((Output.ap1Temp or Output.ap2Temp) and (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE")) {
+			if (Output.vertTemp == 2) {
+				if (Position.gearAglFtTemp <= 50 and Position.gearAglFtTemp >= 5) {
 					me.setVertMode(6);
 				}
-			}
-		} else if (Output.vertTemp == 6) {
-			if ((Output.ap1Temp or Output.ap2Temp) and (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE")) {
+			} else if (Output.vertTemp == 6) {
 				if (Gear.wow1Temp and Gear.wow2Temp and Text.vert.getValue() != "ROLLOUT") {
 					me.updateLatText("RLOU");
 					me.updateVertText("ROLLOUT");
 				}
-			} else {
+			}
+		} else {
+			if (Output.latTemp == 4 or Output.vertTemp == 6) {
 				me.activateLoc();
 				me.activateGs();
 			}
