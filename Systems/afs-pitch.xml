@@ -769,6 +769,10 @@
 						<property>/it-autoflight/internal/out-of-trim</property>
 						<value>1</value>
 					</equals>
+					<not-equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>6</value>
+					</not-equals>
 				</and>
 			</condition>
 		</enable>

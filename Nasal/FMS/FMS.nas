@@ -1,4 +1,4 @@
-# MD-11 McDonnell Douglas MD-11 FMS
+# McDonnell Douglas MD-11 FMS
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var FlightData = {
@@ -47,8 +47,7 @@ var CORE = {
 		FlightData.costIndex = 0;
 		FlightData.flightNumber = "";
 		
-		# Last
-		mcdu.BASE.reset();
+		mcdu.BASE.reset(); # Last
 	},
 	resetRadio: func() {
 		pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
