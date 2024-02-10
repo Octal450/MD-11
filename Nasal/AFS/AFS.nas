@@ -503,6 +503,15 @@ var ITAF = {
 			if (Output.landArm.getBoolValue()) {
 				me.updateLandArm(0);
 			}
+		} else if (!Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2 and Position.gearAglFtTemp <= 1500) {
+			if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
+				Internal.landCondition = "APPR";
+			} else {
+				Internal.landCondition = "OFF";
+			}
+			if (Output.landArm.getBoolValue()) {
+				me.updateLandArm(0);
+			}
 		} else {
 			Internal.landCondition = "OFF";
 		}
