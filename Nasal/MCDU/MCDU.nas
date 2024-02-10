@@ -162,7 +162,7 @@ var MCDU = {
 	scratchpadState: func() {
 		if (me.clear) { # CLR
 			return 0;
-		} else if (size(me.scratchpad) > 0 and me.message.size() == 0) { # Scratchpad Entry
+		} else if (size(me.scratchpad) > 0 and me.message.size() == 0) { # Entry
 			return 2;
 		} else { # Empty or Message
 			return 1;

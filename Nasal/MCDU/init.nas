@@ -25,15 +25,15 @@ var Init = {
 			C6S: "      OPT/MAXFL",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "__________",
+			L1: "",
 			L1S: "CO ROUTE",
-			L2: "----------",
+			L2: "",
 			L2S: "ALTN ROUTE",
 			L3: "",
 			L3S: "LAT",
 			L4: "",
 			L4S: "FLT NO",
-			L5: "---/---/---/---/---/---",
+			L5: "",
 			L5S: "CRZ LEVELS",
 			L6: "---g/-----",
 			L6S: "TEMP/WIND",
@@ -41,9 +41,9 @@ var Init = {
 			pageNum: "1/3",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "_____/_____",
+			R1: "",
 			R1S: "FROM/ TO   ",
-			R2: "-----",
+			R2: "",
 			R2S: "ALTN",
 			R3: "",
 			R3S: "LONG",
@@ -66,6 +66,7 @@ var Init = {
 		m.name = "init";
 		m.nextPage = "init2";
 		m.scratchpad = "";
+		m.scratchpadSplit = nil;
 		m.scratchpadState = 0;
 		
 		m.Value = {
@@ -85,10 +86,44 @@ var Init = {
 		me.Display.L3 = me.Value.positionSplit[0];
 		me.Display.R3 = me.Value.positionSplit[1];
 		
+		if (fms.FlightData.airportTo != "") {
+			me.Display.L1 = "";
+		} else {
+			me.Display.L1 = "__________";
+		}
+		
+		if (fms.FlightData.airportAlt != "") {
+			me.Display.L2 = "";
+		} else if (fms.FlightData.airportTo != "") {
+			me.Display.L2 = "__________";
+		} else {
+			me.Display.L2 = "----------";
+		}
+		
 		if (fms.FlightData.flightNumber != "") {
 			me.Display.L4 = fms.FlightData.flightNumber;
 		} else {
 			me.Display.L4 = "________";
+		}
+		
+		if (fms.FlightData.airportTo != "") {
+			me.Display.L5 = "___/[ ]/[ ]/[ ]/[ ]/[ ]";
+		} else {
+			me.Display.L5 = "---/---/---/---/---/---";
+		}
+		
+		if (fms.FlightData.airportTo != "") {
+			me.Display.R1 = fms.FlightData.airportFrom ~ "/" ~ fms.FlightData.airportTo;
+		} else {
+			me.Display.R1 = "_____/_____";
+		}
+		
+		if (fms.FlightData.airportAlt != "") {
+			me.Display.R2 = fms.FlightData.airportAlt;
+		} else if (fms.FlightData.airportTo != "") {
+			me.Display.R2 = "_____";
+		} else {
+			me.Display.R2 = "-----";
 		}
 		
 		if (systems.IRS.Switch.mcduBtn.getBoolValue()) {
@@ -99,8 +134,8 @@ var Init = {
 		
 		if (fms.FlightData.costIndex != 0) {
 			me.Display.R6 = sprintf("%3.0f", fms.FlightData.costIndex);;
-		#} else if () { # FROM/TO set
-		#	me.Display.R6 = "___";
+		} else if (fms.FlightData.airportTo != "") {
+			me.Display.R6 = "___";
 		} else {
 			me.Display.R6 = "---";
 		}
@@ -117,6 +152,51 @@ var Init = {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 8)) {
 					fms.FlightData.flightNumber = me.scratchpad;
 					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r1") {
+			if (me.scratchpadState == 0) {
+				fms.FPLN.resetFlightData();
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				me.scratchpadSplit = split("/", me.scratchpad);
+				if (size(me.scratchpadSplit) == 2) {
+					if (mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[1])) {
+						if (size(findAirportsByICAO(me.scratchpadSplit[0])) == 1 and size(findAirportsByICAO(me.scratchpadSplit[1])) == 1) {
+							fms.FPLN.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r2") {
+			if (me.scratchpadState == 0) {
+				fms.FPLN.insertAlternate("");
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
+					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
+						if (fms.FlightData.airportTo != "") {
+							fms.FPLN.insertAlternate(me.scratchpad);
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("NOT ALLOWED");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
+					}
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}

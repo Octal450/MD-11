@@ -1,7 +1,11 @@
 # McDonnell Douglas MD-11 FMS
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
+# Properties and Data
 var FlightData = {
+	airportAlt: "",
+	airportFrom: "",
+	airportTo: "",
 	costIndex: 0,
 	flightNumber: "",
 };
@@ -10,6 +14,14 @@ var Internal = {
 	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
 	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2", 0, "DOUBLE"),
 	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss", 0, "DOUBLE"),
+};
+
+var RouteManager = {
+	active: props.globals.getNode("/autopilot/route-manager/active"),
+	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
+	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
+	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
+	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
 };
 
 var Speeds = {
@@ -40,13 +52,11 @@ var Speeds = {
 	vssTape: props.globals.getNode("/fms/speeds/vss-tape"),
 };
 
+# Logic
 var CORE = {
 	resetFms: func() {
 		afs.ITAF.init(1); # First
-		
-		FlightData.costIndex = 0;
-		FlightData.flightNumber = "";
-		
+		FPLN.resetFlightData();
 		mcdu.BASE.reset(); # Last
 	},
 	resetRadio: func() {
@@ -58,5 +68,35 @@ var CORE = {
 		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(0);
 		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(0);
 		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(0);
+	},
+};
+
+var FPLN = {
+	resetFlightData: func() {
+		flightplan().cleanPlan(); # Clear List function in Route Manager
+		RouteManager.alternateAirport.setValue("");
+		RouteManager.departureAirport.setValue("");
+		RouteManager.destinationAirport.setValue("");
+		FlightData.airportAlt = "";
+		FlightData.airportFrom = "";
+		FlightData.airportTo = "";
+		FlightData.costIndex = 0;
+		FlightData.flightNumber = "";
+	},
+	newFlightplan: func(from, to) { # Assumes validation is already done
+		FlightData.airportFrom = from;
+		FlightData.airportTo = to;
+		RouteManager.departureAirport.setValue(from);
+		RouteManager.destinationAirport.setValue(to);
+		
+		if (!RouteManager.active.getBoolValue()) {
+			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
+		}
+		RouteManager.currentWp.setValue(0); # This fixes a weird issue where the Route Manager sets it to -1
+	},
+	insertAlternate: func(arpt) { # Assumes validation is already done
+		FlightData.airportAlt = arpt;
+		RouteManager.alternateAirport.setValue(arpt);
+		RouteManager.currentWp.setValue(0); # This fixes a weird issue where the Route Manager sets it to -1
 	},
 };
