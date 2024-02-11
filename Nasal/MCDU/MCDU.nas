@@ -155,6 +155,23 @@ var MCDU = {
 			}
 		}
 	},
+	removeMessage: func(m) {
+		me.clear = 0;
+		
+		if (me.message.contains(m)) {
+			if (me.message.size() > 1) {
+				me.message.pop(me.message.index(m));
+				me.scratchpad = me.message.vector[0];
+			} else if (me.message.size() > 0) {
+				me.message.pop(me.message.index(m));
+				if (size(me.scratchpadOld) > 0) {
+					me.scratchpad = me.scratchpadOld;
+				} else {
+					me.scratchpad = "";
+				}
+			}
+		}
+	},
 	scratchpadClear: func() {
 		me.clear = 0;
 		me.scratchpad = "";
@@ -173,7 +190,8 @@ var MCDU = {
 		me.clear = 0;
 		
 		if (me.message.size() > 0) {
-			if (me.message.vector[0] != m) {
+			if (me.message.vector[0] != m) { # Don't duplicate top message
+				me.removeMessage(m); # Remove duplicate if it exists
 				me.message.insert(0, m);
 				me.scratchpad = m;
 			}
@@ -322,6 +340,11 @@ var BASE = {
 		unit[1] = MCDU.new(1, 0);
 		unit[2] = MCDU.new(2, 1);
 	},
+	loop: func() {
+		unit[0].loop();
+		unit[1].loop();
+		unit[2].loop();
+	},
 	reset: func() {
 		me.acStatus.databaseSelected = 1;
 		fms.CORE.resetRadio();
@@ -329,10 +352,15 @@ var BASE = {
 			unit[i].reset();
 		}
 	},
-	loop: func() {
-		unit[0].loop();
-		unit[1].loop();
-		unit[2].loop();
+	removeGlobalMessage: func(m) {
+		for (var i = 0; i < 3; i = i + 1) {
+			unit[i].removeMessage(m);
+		}
+	},
+	setGlobalMessage: func(m) {
+		for (var i = 0; i < 3; i = i + 1) {
+			unit[i].setMessage(m);
+		}
 	},
 };
 

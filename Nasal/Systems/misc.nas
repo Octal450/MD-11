@@ -304,6 +304,18 @@ var doFullThrust = func() {
 	ENGINE.throttle[2].setValue(1);
 }
 
+setlistener("/engines/engine[0]/state", func() {
+	setprop("/sim/sound/shutdown[0]", pts.Engines.Engine.state[0].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[1]/state", func() {
+	setprop("/sim/sound/shutdown[1]", pts.Engines.Engine.state[1].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[2]/state", func() {
+	setprop("/sim/sound/shutdown[2]", pts.Engines.Engine.state[2].getValue());
+}, 0, 0);
+
 # FADEC
 var FADEC = {
 	anyEngineOut: 0,
@@ -494,6 +506,7 @@ var IRS = {
 	Iru: {
 		aligned: [props.globals.getNode("/systems/iru[0]/aligned"), props.globals.getNode("/systems/iru[1]/aligned"), props.globals.getNode("/systems/iru[2]/aligned")],
 		aligning: [props.globals.getNode("/systems/iru[0]/aligning"), props.globals.getNode("/systems/iru[1]/aligning"), props.globals.getNode("/systems/iru[2]/aligning")],
+		alignMcduMsgOut: [props.globals.getNode("/systems/iru[0]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[1]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[2]/align-mcdu-msg-out")],
 		alignTimer: [props.globals.getNode("/systems/iru[0]/align-timer"), props.globals.getNode("/systems/iru[1]/align-timer"), props.globals.getNode("/systems/iru[2]/align-timer")],
 		alignTimeRemainingMinutes: [props.globals.getNode("/systems/iru[0]/align-time-remaining-minutes"),props.globals.getNode("/systems/iru[1]/align-time-remaining-minutes"),props.globals.getNode("/systems/iru[2]/align-time-remaining-minutes")],
 		allAligned: props.globals.getNode("/systems/iru-common/all-aligned-out"),
@@ -522,22 +535,31 @@ var IRS = {
 			afs.Internal.hdg.setValue(me.hdg);
 		}
 	},
+	mcduMsgUpdate: func() {
+		if (me.Iru.alignMcduMsgOut[0].getBoolValue() or me.Iru.alignMcduMsgOut[1].getBoolValue() or me.Iru.alignMcduMsgOut[2].getBoolValue()) {
+			if (IRS.Switch.mcduBtn.getBoolValue()) {
+				mcdu.BASE.removeGlobalMessage("ALIGN IRS");
+			} else {
+				mcdu.BASE.setGlobalMessage("ALIGN IRS");
+			}
+		} else {
+			mcdu.BASE.removeGlobalMessage("ALIGN IRS");
+		}
+	},
 };
 
-setlistener("/engines/engine[0]/state", func() {
-	setprop("/sim/sound/shutdown[0]", pts.Engines.Engine.state[0].getValue());
+# IRS MCDU Messages Logic
+setlistener("/systems/iru[0]/align-mcdu-msg-out", func() {
+	IRS.mcduMsgUpdate();
 }, 0, 0);
-
-setlistener("/engines/engine[1]/state", func() {
-	setprop("/sim/sound/shutdown[1]", pts.Engines.Engine.state[1].getValue());
+setlistener("/systems/iru[1]/align-mcdu-msg-out", func() {
+	IRS.mcduMsgUpdate();
 }, 0, 0);
-
-setlistener("/engines/engine[2]/state", func() {
-	setprop("/sim/sound/shutdown[2]", pts.Engines.Engine.state[2].getValue());
+setlistener("/systems/iru[2]/align-mcdu-msg-out", func() {
+	IRS.mcduMsgUpdate();
 }, 0, 0);
-
-setlistener("/systems/iru-common/any-aligned-out", func() {
-	IRS.anyAlignedUpdate();
+setlistener("/controls/iru-common/mcdu-btn", func() {
+	IRS.mcduMsgUpdate();
 }, 0, 0);
 
 # Warnings
