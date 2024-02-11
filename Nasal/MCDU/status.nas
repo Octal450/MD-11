@@ -55,7 +55,7 @@ var AcStatus = {
 			R6S: "",
 			
 			simple: 1,
-			title: "A/C STATUS   ",
+			title: "A/C STATUS",
 		};
 		
 		m.group = "fmc";
@@ -192,7 +192,7 @@ var AcStatus2 = {
 			R6S: "",
 			
 			simple: 1,
-			title: "A/C STATUS   ",
+			title: "A/C STATUS",
 		};
 		
 		m.group = "fmc";

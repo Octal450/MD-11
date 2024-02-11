@@ -92,11 +92,15 @@ var FPLN = {
 		if (!RouteManager.active.getBoolValue()) {
 			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
 		}
-		RouteManager.currentWp.setValue(1); # This fixes a weird issue where the Route Manager sets it to -1
+		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
+			RouteManager.currentWp.setValue(0);
+		}
 	},
 	insertAlternate: func(arpt) { # Assumes validation is already done
 		FlightData.airportAlt = arpt;
 		RouteManager.alternateAirport.setValue(arpt);
-		RouteManager.currentWp.setValue(1); # This fixes a weird issue where the Route Manager sets it to -1
+		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
+			RouteManager.currentWp.setValue(0);
+		}
 	},
 };

@@ -22,6 +22,7 @@ var MCDU = {
 			acStatus: AcStatus.new(n),
 			acStatus2: AcStatus2.new(n),
 			closestAirports: ClosestAirports.new(n),
+			compRte: CompRte.new(n),
 			fallback: Fallback.new(n),
 			init: Init.new(n),
 			menu: Menu.new(n, t),

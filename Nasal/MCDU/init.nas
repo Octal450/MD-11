@@ -55,7 +55,7 @@ var Init = {
 			R6S: "CI",
 			
 			simple: 1,
-			title: "F-PLN INIT  ",
+			title: "F-PLN INIT",
 		};
 		
 		m.Value = {
@@ -68,10 +68,6 @@ var Init = {
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
 		m.scratchpadState = 0;
-		
-		m.Value = {
-			databaseConfirm: 0,
-		};
 		
 		return m;
 	},
@@ -169,6 +165,7 @@ var Init = {
 						if (size(findAirportsByICAO(me.scratchpadSplit[0])) == 1 and size(findAirportsByICAO(me.scratchpadSplit[1])) == 1) {
 							fms.FPLN.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
 							mcdu.unit[me.id].scratchpadClear();
+							mcdu.unit[me.id].setPage("compRte");
 						} else {
 							mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
 						}
@@ -231,6 +228,85 @@ var Init = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+};
+
+var CompRte = {
+	new: func(n) {
+		var m = {parents: [CompRte]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			C1: "",
+			C1S: "",
+			C2: "",
+			C2S: "",
+			C3: "",
+			C3S: "",
+			C4: "",
+			C4S: "",
+			C5: "",
+			C5S: "",
+			C6: "",
+			C6S: "",
+			
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1: "NONE",
+			L1S: "",
+			L2: "",
+			L2S: "",
+			L3: "",
+			L3S: "",
+			L4: "",
+			L4S: "",
+			L5: "",
+			L5S: "",
+			L6: "",
+			L6S: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1: "",
+			R1S: "",
+			R2: "",
+			R2S: "",
+			R3: "",
+			R3S: "",
+			R4: "",
+			R4S: "",
+			R5: "",
+			R5S: "",
+			R6: "F-PLN INIT>",
+			R6S: "RETURN TO ",
+			
+			simple: 1,
+			title: "",
+		};
+		
+		m.group = "fmc";
+		m.name = "compRte";
+		m.nextPage = "none";
+		
+		return m;
+	},
+	setup: func() {
+		if (fms.FlightData.airportTo != "") {
+			me.Display.title = fms.FlightData.airportFrom ~ "/" ~ fms.FlightData.airportTo;
+		}
+	},
+	loop: func() {
+	},
+	softKey: func(k) {
+		if (k == "r6") {
+			mcdu.unit[me.id].setPage("init");
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}
