@@ -96,7 +96,7 @@ var Menu = {
 	softKey: func(k) {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (me.scratchpadState == 1 or me.scratchpadState == 3) {
+		if (me.scratchpadState == 1) {
 			if (k == "l1" and !me.type) {
 				if (me.Value.request) {
 					me.Value.request = 0;

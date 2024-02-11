@@ -30,7 +30,7 @@ var Init = {
 			L2: "",
 			L2S: "ALTN ROUTE",
 			L3: "",
-			L3S: "LAT",
+			L3S: "",
 			L4: "",
 			L4S: "FLT NO",
 			L5: "",
@@ -46,7 +46,7 @@ var Init = {
 			R2: "",
 			R2S: "ALTN",
 			R3: "",
-			R3S: "LONG",
+			R3S: "",
 			R4: "",
 			R4S: "",
 			R5: "",
@@ -62,6 +62,7 @@ var Init = {
 			cruiseFlText: ["", "", "", "", "", ""],
 			cruiseInput: 0,
 			cruiseInputVals: [0, 0, 0, 0, 0, 0],
+			gnsPosSide: 0,
 			positionSplit: ["", ""],
 		};
 		
@@ -79,11 +80,19 @@ var Init = {
 		me.setup();
 	},
 	setup: func() {
-	},
-	loop: func() {
+		me.Value.gnsPosSide = 0;
 		me.Value.positionSplit = split("/", positionFormat(pts.Position.node));
 		me.Display.L3 = me.Value.positionSplit[0];
 		me.Display.R3 = me.Value.positionSplit[1];
+	},
+	loop: func() {
+		if (me.Value.gnsPosSide) {
+			me.Display.L3S = "LAT";
+			me.Display.R3S = "^  LONG";
+		} else {
+			me.Display.L3S = "LAT  ^";
+			me.Display.R3S = "LONG";
+		}
 		
 		if (fms.FlightData.airportTo != "") {
 			me.Display.L1 = "";
@@ -166,7 +175,13 @@ var Init = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l4") {
+		if (k == "l3") {
+			if (me.scratchpadState == 1) {
+				me.Value.gnsPosSide = 0;
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l4") {
 			if (me.scratchpadState == 0) {
 				fms.FlightData.flightNumber = "";
 				mcdu.unit[me.id].scratchpadClear();
@@ -279,11 +294,17 @@ var Init = {
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else if (k == "r3") {
+			if (me.scratchpadState == 1) {
+				me.Value.gnsPosSide = 1;
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
 		} else if (k == "r4") {
 			if (systems.IRS.Switch.mcduBtn.getBoolValue()) {
 				mcdu.unit[me.id].setPage("posRef");
 			} else {
-				if (systems.IRS.Switch.knob[0].getBoolValue() or systems.IRS.Switch.knob[1].getBoolValue() or systems.IRS.Switch.knob[2].getBoolValue()) {
+				if ((systems.IRS.Switch.knob[0].getBoolValue() or systems.IRS.Switch.knob[1].getBoolValue() or systems.IRS.Switch.knob[2].getBoolValue()) and me.scratchpadState == 1) {
 					systems.IRS.Switch.mcduBtn.setBoolValue(1);
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
