@@ -178,7 +178,13 @@ var Init = {
 				me.scratchpadSplit = split("/", me.scratchpad);
 				me.scratchpadSplitSize = size(me.scratchpadSplit);
 				
-				if (me.scratchpadSplitSize >= 1 and me.scratchpadSplitSize <= 6) {
+				##### Temporarily disable step climb entry, since the FMS doesn't support that yet
+				if (me.scratchpadSplitSize > 1) {
+					mcdu.unit[me.id].setMessage("STEP CLIMB INOP");
+				} else if (me.scratchpadSplitSize == 1) {
+				##### End step climb disable
+				
+				#if (me.scratchpadSplitSize >= 1 and me.scratchpadSplitSize <= 6) {
 					for (var i = 0; i < me.scratchpadSplitSize; i = i + 1) {
 						if (!mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[i]) or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[i])) {
 							me.Value.cruiseInput = 0;
