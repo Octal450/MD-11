@@ -35,7 +35,7 @@ var Init = {
 			L4S: "FLT NO",
 			L5: "",
 			L5S: "CRZ LEVELS",
-			L6: "---g/-----",
+			L6: "",
 			L6S: "TEMP/WIND",
 			
 			pageNum: "1/3",
@@ -124,6 +124,14 @@ var Init = {
 			me.Display.L5 = "___/[ ]/[ ]/[ ]/[ ]/[ ]";
 		} else {
 			me.Display.L5 = "---/---/---/---/---/---";
+		}
+		
+		if (fms.FlightData.cruiseTemp != nil) {
+			me.Display.L6 = fms.FlightData.cruiseTemp ~ "g/HD000";
+			me.Display.LFont[5] = FONT.small;
+		} else {
+			me.Display.L6 = "---g/-----";
+			me.Display.LFont[5] = FONT.normal;
 		}
 		
 		if (fms.FlightData.airportTo != "") {

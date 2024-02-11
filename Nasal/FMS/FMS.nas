@@ -11,6 +11,7 @@ var FlightData = {
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
+	cruiseTemp: nil,
 	flightNumber: "",
 };
 
@@ -91,6 +92,7 @@ var FPLN = {
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
+		FlightData.cruiseTemp = nil;
 		FlightData.flightNumber = "";
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
@@ -118,6 +120,13 @@ var FPLN = {
 		FlightData.cruiseAltAll = [s1 * 100, s2 * 100, s3 * 100, s4 * 100, s5 * 100, s6 * 100];
 		FlightData.cruiseFl = s1;
 		FlightData.cruiseFlAll = [s1, s2, s3, s4, s5, s6];
+		if (s1 == 0) {
+			FlightData.cruiseTemp = nil;
+		} else if (s1 * 100 < 36090) {
+			FlightData.cruiseTemp = math.round(15 - (math.round(s1 / 10) * 1.98));
+		} else {
+			FlightData.cruiseTemp = -56; # Rounded
+		}
 		RouteManager.cruiseAlt.setValue(s1 * 100);
 	},
 };
