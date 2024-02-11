@@ -7,6 +7,10 @@ var FlightData = {
 	airportFrom: "",
 	airportTo: "",
 	costIndex: 0,
+	cruiseAlt: 0,
+	cruiseAltAll: [0, 0, 0, 0, 0, 0],
+	cruiseFl: 0,
+	cruiseFlAll: [0, 0, 0, 0, 0, 0],
 	flightNumber: "",
 };
 
@@ -19,6 +23,7 @@ var Internal = {
 var RouteManager = {
 	active: props.globals.getNode("/autopilot/route-manager/active"),
 	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
+	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
 	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
 	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
 	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
@@ -75,12 +80,17 @@ var FPLN = {
 	resetFlightData: func() {
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		RouteManager.alternateAirport.setValue("");
+		RouteManager.cruiseAlt.setValue(0);
 		RouteManager.departureAirport.setValue("");
 		RouteManager.destinationAirport.setValue("");
 		FlightData.airportAlt = "";
 		FlightData.airportFrom = "";
 		FlightData.airportTo = "";
 		FlightData.costIndex = 0;
+		FlightData.cruiseAlt = 0;
+		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
+		FlightData.cruiseFl = 0;
+		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
 		FlightData.flightNumber = "";
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
@@ -102,5 +112,12 @@ var FPLN = {
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(0);
 		}
+	},
+	insertCruiseFl: func(s1, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0) {
+		FlightData.cruiseAlt = s1 * 100;
+		FlightData.cruiseAltAll = [s1 * 100, s2 * 100, s3 * 100, s4 * 100, s5 * 100, s6 * 100];
+		FlightData.cruiseFl = s1;
+		FlightData.cruiseFlAll = [s1, s2, s3, s4, s5, s6];
+		RouteManager.cruiseAlt.setValue(s1 * 100);
 	},
 };

@@ -92,7 +92,7 @@ var MCDU = {
 			if (me.message.size() > 0) {
 				me.clearMessage(1);
 			}
-			if (size(me.scratchpad) < 22) {
+			if (size(me.scratchpad) < 23) {
 				me.scratchpad = me.scratchpad ~ k;
 			}
 		}

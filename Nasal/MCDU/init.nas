@@ -59,6 +59,9 @@ var Init = {
 		};
 		
 		m.Value = {
+			cruiseFlText: ["", "", "", "", "", ""],
+			cruiseInput: 0,
+			cruiseInputVals: [0, 0, 0, 0, 0, 0],
 			positionSplit: ["", ""],
 		};
 		
@@ -67,6 +70,7 @@ var Init = {
 		m.nextPage = "init2";
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize = 0;
 		m.scratchpadState = 0;
 		
 		return m;
@@ -75,7 +79,6 @@ var Init = {
 		me.setup();
 	},
 	setup: func() {
-		
 	},
 	loop: func() {
 		me.Value.positionSplit = split("/", positionFormat(pts.Position.node));
@@ -102,7 +105,22 @@ var Init = {
 			me.Display.L4 = "________";
 		}
 		
-		if (fms.FlightData.airportTo != "") {
+		if (fms.FlightData.cruiseFl > 0) {
+			me.Value.cruiseFlText[0] = fms.FlightData.cruiseFlAll[0];
+			
+			if (fms.FlightData.cruiseFlAll[1] > 0) me.Value.cruiseFlText[1] = sprintf("%03d", fms.FlightData.cruiseFlAll[1]);
+			else me.Value.cruiseFlText[1] = "[ ]";
+			if (fms.FlightData.cruiseFlAll[2] > 0) me.Value.cruiseFlText[2] = sprintf("%03d", fms.FlightData.cruiseFlAll[2]);
+			else me.Value.cruiseFlText[2] = "[ ]";
+			if (fms.FlightData.cruiseFlAll[3] > 0) me.Value.cruiseFlText[3] = sprintf("%03d", fms.FlightData.cruiseFlAll[3]);
+			else me.Value.cruiseFlText[3] = "[ ]";
+			if (fms.FlightData.cruiseFlAll[4] > 0) me.Value.cruiseFlText[4] = sprintf("%03d", fms.FlightData.cruiseFlAll[4]);
+			else me.Value.cruiseFlText[4] = "[ ]";
+			if (fms.FlightData.cruiseFlAll[5] > 0) me.Value.cruiseFlText[5] = sprintf("%03d", fms.FlightData.cruiseFlAll[5]);
+			else me.Value.cruiseFlText[5] = "[ ]";
+			
+			me.Display.L5 = me.Value.cruiseFlText[0] ~ "/" ~ me.Value.cruiseFlText[1] ~ "/" ~ me.Value.cruiseFlText[2] ~ "/" ~ me.Value.cruiseFlText[3] ~ "/" ~ me.Value.cruiseFlText[4] ~ "/" ~ me.Value.cruiseFlText[5];
+		} else if (fms.FlightData.airportTo != "") {
 			me.Display.L5 = "___/[ ]/[ ]/[ ]/[ ]/[ ]";
 		} else {
 			me.Display.L5 = "---/---/---/---/---/---";
@@ -148,6 +166,53 @@ var Init = {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 8)) {
 					fms.FlightData.flightNumber = me.scratchpad;
 					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l5") {
+			if (me.scratchpadState == 2) {
+				me.Value.cruiseInput = 3;
+				me.scratchpadSplit = split("/", me.scratchpad);
+				me.scratchpadSplitSize = size(me.scratchpadSplit);
+				
+				if (me.scratchpadSplitSize >= 1 and me.scratchpadSplitSize <= 6) {
+					for (var i = 0; i < me.scratchpadSplitSize; i = i + 1) {
+						if (!mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[i]) or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[i])) {
+							me.Value.cruiseInput = 0;
+							break;
+						}
+						if (int(me.scratchpadSplit[i]) <= 0 or int(me.scratchpadSplit[i]) > 430) {
+							me.Value.cruiseInput = 1;
+							break;
+						}
+						if (i > 0) {
+							if (int(me.scratchpadSplit[i]) <= int(me.scratchpadSplit[i - 1])) {
+								me.Value.cruiseInput = 2;
+								break;
+							}
+						}
+					}
+					
+					if (me.Value.cruiseInput == 0) {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					} else if (me.Value.cruiseInput == 1) {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					} else if (me.Value.cruiseInput == 2) {
+						mcdu.unit[me.id].setMessage("STEP DOWN INVALID");
+					} else {
+						for (var i = 0; i < 6; i = i + 1) { # Set values so unused inputs go to 0
+							if (i < me.scratchpadSplitSize) {
+								me.Value.cruiseInputVals[i] = me.scratchpadSplit[i];
+							} else {
+								me.Value.cruiseInputVals[i] = 0;
+							}
+						}
+						fms.FPLN.insertCruiseFl(int(me.Value.cruiseInputVals[0]), int(me.Value.cruiseInputVals[1]), int(me.Value.cruiseInputVals[2]), int(me.Value.cruiseInputVals[3]), int(me.Value.cruiseInputVals[4]), int(me.Value.cruiseInputVals[5]));
+						mcdu.unit[me.id].scratchpadClear();
+					}
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
@@ -211,10 +276,7 @@ var Init = {
 				}
 			}
 		} else if (k == "r6") {
-			if (me.scratchpadState == 0) {
-				fms.FlightData.costIndex = 0;
-				mcdu.unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad > 1) {
 						fms.FlightData.costIndex = int(me.scratchpad);
