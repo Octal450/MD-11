@@ -25,6 +25,8 @@ var MCDU = {
 			compRte: CompRte.new(n),
 			fallback: Fallback.new(n),
 			init: Init.new(n),
+			init2: Init2.new(n),
+			init3: Init3.new(n),
 			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),

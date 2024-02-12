@@ -11,6 +11,7 @@ var Menu = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -122,6 +123,7 @@ var Ref = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",

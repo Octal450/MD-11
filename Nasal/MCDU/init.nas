@@ -11,6 +11,7 @@ var Init = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 100],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -21,8 +22,8 @@ var Init = {
 			C4S: "",
 			C5: "",
 			C5S: "",
-			C6: "     ---/---",
-			C6S: "      OPT/MAXFL",
+			C6: "---/---",
+			C6S: "OPT/MAXFL",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			L1: "",
@@ -328,6 +329,171 @@ var Init = {
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}
+	},
+};
+
+var Init2 = {
+	new: func(n) {
+		var m = {parents: [Init2]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 1,
+			
+			CFont: [FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [150, 0, 150, 0, 0, 0],
+			C1: "",
+			C1S: "UFOB",
+			C2: "",
+			C2S: "",
+			C3: "0.0",
+			C3S: "BLST",
+			C4: "",
+			C4S: "",
+			C5: "",
+			C5S: "",
+			C6: "",
+			C6S: "",
+			
+			LFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			L1: "0.5",
+			L1S: "TAXI",
+			L2: "---.-/----",
+			L2S: "TRIP/TIME",
+			L3: "--.-/05.0",
+			L3S: "RTE RSV/%",
+			L4: "---.-",
+			L4S: "ALTN",
+			L5: "---.-/0030",
+			L5S: "FINAL/TIME",
+			L6: "---.-/----",
+			L6S: "EXTRA/TIME",
+			
+			pageNum: "2/3",
+			
+			RFont: [FONT.normal, FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal],
+			R1: "___._",
+			R1S: "BLOCK",
+			R2: "___._",
+			R2S: "TOGW",
+			R3: "___._",
+			R3S: "IN ZFW",
+			R4: "---.-",
+			R4S: "LW",
+			R5: "__._",
+			R5S: "TOCG",
+			R6: "__._",
+			R6S: "ZFWCG",
+			
+			simple: 1,
+			title: "WEIGHT INIT",
+		};
+		
+		m.Value = {
+			ufob: 0,
+		};
+		
+		m.group = "fmc";
+		m.name = "init2";
+		m.nextPage = "init3";
+		m.scratchpad = "";
+		m.scratchpadState = 0;
+		
+		return m;
+	},
+	loop: func() {
+		me.Value.ufob = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		me.Display.C1 = sprintf("%5.1f", me.Value.ufob);
+	},
+	softKey: func(k) {
+		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		
+		#} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		#}
+	},
+};
+
+var Init3 = {
+	new: func(n) {
+		var m = {parents: [Init3]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 1,
+			
+			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
+			C1: "",
+			C1S: "",
+			C2: "",
+			C2S: "",
+			C3: "",
+			C3S: "",
+			C4: "",
+			C4S: "",
+			C5: "",
+			C5S: "",
+			C6: "",
+			C6S: "",
+			
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1: "[  .]",
+			L1S: "REFUEL QTY",
+			L2: "[ .]",
+			L2S: "BLST FUEL",
+			L3: "_",
+			L3S: "BLST TANK",
+			L4: "",
+			L4S: "",
+			L5: "",
+			L5S: "",
+			L6: "",
+			L6S: "",
+			
+			pageNum: "3/3",
+			
+			RFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal],
+			R1: "---.-",
+			R1S: "DUMP TO GW",
+			R2: "----",
+			R2S: "DUMP TIME",
+			R3: "JET A",
+			R3S: "FUEL TYPE",
+			R4: "-40",
+			R4S: "FREEZE TEMP",
+			R5: "FUEL DIPSTICK>",
+			R5S: "",
+			R6: "",
+			R6S: "",
+			
+			simple: 1,
+			title: "FUEL INIT",
+		};
+		
+		m.Value = {
+		};
+		
+		m.group = "fmc";
+		m.name = "init3";
+		m.nextPage = "init";
+		m.scratchpad = "";
+		m.scratchpadState = 0;
+		
+		return m;
+	},
+	loop: func() {
+	},
+	softKey: func(k) {
+		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		
+		#} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		#}
 	},
 };
 

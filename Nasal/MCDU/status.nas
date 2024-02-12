@@ -11,6 +11,7 @@ var AcStatus = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -148,6 +149,7 @@ var AcStatus2 = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -226,6 +228,7 @@ var SensorStatus = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "      3",
 			C2: "",

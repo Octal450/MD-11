@@ -11,6 +11,7 @@ var PosRef = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -152,6 +153,7 @@ var IrsGnsPos = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "-",
 			C1S: "",
 			C2: "-",
@@ -300,6 +302,7 @@ var IrsStatus = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "DRIFT RATE    ",
 			C2: "",

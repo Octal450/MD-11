@@ -128,6 +128,19 @@ var canvasBase = {
 			me["Simple_Title"].setText(mcdu.unit[n].page.Display.title);
 			
 			me.updateFontSize(n);
+			
+			me["Simple_C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
+			me["Simple_C1S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
+			me["Simple_C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
+			me["Simple_C2S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
+			me["Simple_C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
+			me["Simple_C3S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
+			me["Simple_C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
+			me["Simple_C4S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
+			me["Simple_C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
+			me["Simple_C5S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
+			me["Simple_C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
+			me["Simple_C6S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
 		} else {
 			me["Simple"].hide();
 		}
@@ -153,26 +166,6 @@ var canvasBase = {
 		if (me["Simple_R4"].get("character-size") != mcdu.unit[n].page.Display.RFont[3]) me["Simple_R4"].setFontSize(mcdu.unit[n].page.Display.RFont[3]);
 		if (me["Simple_R5"].get("character-size") != mcdu.unit[n].page.Display.RFont[4]) me["Simple_R5"].setFontSize(mcdu.unit[n].page.Display.RFont[4]);
 		if (me["Simple_R6"].get("character-size") != mcdu.unit[n].page.Display.RFont[5]) me["Simple_R6"].setFontSize(mcdu.unit[n].page.Display.RFont[5]);
-	},
-	resetFontSize: func() {
-		#me["Simple_C1"].setFontSize(Font.normal);
-		#me["Simple_C2"].setFontSize(Font.normal);
-		#me["Simple_C3"].setFontSize(Font.normal);
-		#me["Simple_C4"].setFontSize(Font.normal);
-		#me["Simple_C5"].setFontSize(Font.normal);
-		#me["Simple_C6"].setFontSize(Font.normal);
-		#me["Simple_L1"].setFontSize(Font.normal);
-		#me["Simple_L2"].setFontSize(Font.normal);
-		#me["Simple_L3"].setFontSize(Font.normal);
-		#me["Simple_L4"].setFontSize(Font.normal);
-		#me["Simple_L5"].setFontSize(Font.normal);
-		#me["Simple_L6"].setFontSize(Font.normal);
-		#me["Simple_R1"].setFontSize(Font.normal);
-		#me["Simple_R2"].setFontSize(Font.normal);
-		#me["Simple_R3"].setFontSize(Font.normal);
-		#me["Simple_R4"].setFontSize(Font.normal);
-		#me["Simple_R5"].setFontSize(Font.normal);
-		#me["Simple_R6"].setFontSize(Font.normal);
 	},
 };
 
