@@ -314,7 +314,7 @@ var Init = {
 		} else if (k == "r6") {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
-					if (me.scratchpad > 1) {
+					if (me.scratchpad >= 1) {
 						fms.FlightData.costIndex = int(me.scratchpad);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
@@ -373,8 +373,8 @@ var Init2 = {
 			pageNum: "2/3",
 			
 			RFont: [FONT.normal, FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal],
-			R1: "___._",
-			R1S: "BLOCK",
+			R1: "",
+			R1S: "",
 			R2: "___._",
 			R2S: "TOGW",
 			R3: "___._",
@@ -402,17 +402,46 @@ var Init2 = {
 		
 		return m;
 	},
+	setup: func() {
+	},
 	loop: func() {
 		me.Value.ufob = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
-		me.Display.C1 = sprintf("%5.1f", me.Value.ufob);
+		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
+			me.Display.C1 = "";
+			me.Display.R1 = sprintf("%5.1f", me.Value.ufob) ~ "/FF+FQ";
+			me.Display.R1S = "";
+		} else {
+			me.Display.C1 = sprintf("%5.1f", me.Value.ufob);
+			if (fms.FlightData.blockFuel != 0) {
+				me.Display.R1 = sprintf("%5.1f", fms.FlightData.blockFuel);
+			} else {
+				me.Display.R1 = "___._";
+			}
+			me.Display.R1S = "BLOCK";
+		}
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		#} else {
+		if (k == "r1") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
+						fms.FlightData.blockFuel = me.scratchpad + 0; # Convert to number
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
-		#}
+		}
 	},
 };
 
@@ -484,6 +513,8 @@ var Init3 = {
 		m.scratchpadState = 0;
 		
 		return m;
+	},
+	setup: func() {
 	},
 	loop: func() {
 	},

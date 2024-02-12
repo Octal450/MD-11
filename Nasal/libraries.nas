@@ -31,6 +31,7 @@ var systemsInit = func() {
 	systems.IRS.init();
 	systems.PNEU.init();
 	afs.ITAF.init();
+	fms.CORE.init();
 	if (initDone) { # Anytime after sim init
 		instruments.RADIOS.reset();
 		mcdu.BASE.reset();
@@ -62,6 +63,7 @@ var systemsLoop = maketimer(0.1, func() {
 	mcdu.BASE.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
+	fms.CORE.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
 		pts.Systems.Shake.effect.setBoolValue(1);

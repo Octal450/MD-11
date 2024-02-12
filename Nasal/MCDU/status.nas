@@ -204,10 +204,8 @@ var AcStatus2 = {
 		return m;
 	},
 	setup: func() {
-		# Placeholder
 	},
 	loop: func() {
-		# Placeholder
 	},
 	softKey: func(k) {
 		if (k == "r6") {
@@ -286,7 +284,6 @@ var SensorStatus = {
 		return m;
 	},
 	setup: func() {
-		# Placeholder
 	},
 	loop: func() {
 		if (systems.IRS.Iru.aligned[0].getValue()) {

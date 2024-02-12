@@ -67,10 +67,8 @@ var Fallback = {
 		return m;
 	},
 	setup: func() {
-		# Placeholder
 	},
 	loop: func() {
-		# Placeholder
 	},
 	softKey: func(k) {
 		mcdu.unit[me.id].setMessage("NOT ALLOWED");

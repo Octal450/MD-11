@@ -83,7 +83,6 @@ var Menu = {
 		me.Value.request = 1;
 	},
 	setup: func() {
-		# Placeholder
 	},
 	loop: func() {
 		if (me.type) {
@@ -179,7 +178,6 @@ var Ref = {
 		return m;
 	},
 	setup: func() {
-		# Placeholder
 	},
 	loop: func() {
 		# Placeholder

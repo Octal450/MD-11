@@ -6,6 +6,7 @@ var FlightData = {
 	airportAlt: "",
 	airportFrom: "",
 	airportTo: "",
+	blockFuel: 0,
 	costIndex: 0,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
@@ -60,6 +61,13 @@ var Speeds = {
 
 # Logic
 var CORE = {
+	init: func() {
+		FPLN.resetFlightData();
+		me.resetRadio();
+	},
+	loop: func() {
+		FPLN.loop();
+	},
 	resetFms: func() {
 		afs.ITAF.init(1); # First
 		FPLN.resetFlightData();
@@ -78,6 +86,11 @@ var CORE = {
 };
 
 var FPLN = {
+	loop: func() {
+		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
+			FlightData.blockFuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		}
+	},
 	resetFlightData: func() {
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		RouteManager.alternateAirport.setValue("");
@@ -87,6 +100,7 @@ var FPLN = {
 		FlightData.airportAlt = "";
 		FlightData.airportFrom = "";
 		FlightData.airportTo = "";
+		FlightData.blockFuel = 0;
 		FlightData.costIndex = 0;
 		FlightData.cruiseAlt = 0;
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
