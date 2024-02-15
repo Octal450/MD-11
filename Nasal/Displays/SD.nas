@@ -87,7 +87,7 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2",
+		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Cg", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2",
 		"OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
 		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "Stab-needle", "StabBox", "StabUnit"];
 	},
@@ -108,7 +108,7 @@ var canvasEng = {
 		me["StabBox"].hide();
 	},
 	update: func() {
-		# GW and Fuel
+		# GW, Fuel, CG
 		Value.Misc.gw = math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue(), 100);
 		me["GW-thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
 		me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
@@ -116,6 +116,8 @@ var canvasEng = {
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
 		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
 		me["Fuel"].setText(right(sprintf("%d", Value.Misc.fuel), 3));
+		
+		me["Cg"].setText(sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1)));
 		
 		# Oil Psi
 		me["OilPsi1"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[0].getValue()));
@@ -284,7 +286,7 @@ var init = func() {
 	
 	var engGroup = display.createGroup();
 	
-	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/ENG.svg");
+	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG.svg");
 	
 	canvasBase.setup();
 	update.start();
