@@ -80,7 +80,7 @@
 			<max-lb type="double">6120</max-lb>
 		</weight>
 		<weight n="2">
-			<name>Center Cabin</name>
+			<name>Mid Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">21960</max-lb>
@@ -98,13 +98,13 @@
 			<max-lb type="double">25200</max-lb>
 		</weight>
 		<weight n="5">
-			<name>Center Cargo</name>
+			<name>Aft Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">33600</max-lb>
 		</weight>
 		<weight n="6">
-			<name>Aft Cargo</name>
+			<name>Aft Bulk Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
 			<min-lb type="double">0</min-lb>
 			<max-lb type="double">2000</max-lb>
