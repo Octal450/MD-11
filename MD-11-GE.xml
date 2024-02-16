@@ -79,12 +79,12 @@
 			</thruster>
 		</engine>
 		
-		<!-- Fuel Tank Capacities from FCOM -->
+		<!-- Fuel Tank Capacities from FCOM, positions fudged for CG accuracy -->
 		<tank type="FUEL"> <!-- Tank 1 Outboard -->
 			<location unit="M">
-				<x>2.77556</x>
+				<x>4.65468</x>
 				<y>-17.0253</y>
-				<z>5.69282</z>
+				<z>5.96573</z>
 			</location>
 			<capacity unit="LBS">6500</capacity>
 			<contents unit="LBS">6500</contents>
@@ -95,9 +95,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Tank 1 Inboard -->
 			<location unit="M">
-				<x>2.77556</x>
-				<y>-11.3314</y>
-				<z>5.69282</z>
+				<x>3.39431</x>
+				<y>-9.78756</y>
+				<z>5.55365</z>
 			</location>
 			<capacity unit="LBS">33988</capacity>
 			<contents unit="LBS">13500</contents>
@@ -108,9 +108,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Tank 2 -->
 			<location unit="M">
-				<x>2.77556</x>
+				<x>0.85765</x>
 				<y>0</y>
-				<z>5.69282</z>
+				<z>5.70658</z>
 			</location>
 			<capacity unit="LBS">64040</capacity>
 			<contents unit="LBS">20000</contents>
@@ -121,9 +121,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Tank 3 Inboard -->
 			<location unit="M">
-				<x>2.77556</x>
-				<y>11.3314</y>
-				<z>5.69282</z>
+				<x>3.39431</x>
+				<y>9.78756</y>
+				<z>5.55365</z>
 			</location>
 			<capacity unit="LBS">33988</capacity>
 			<contents unit="LBS">13500</contents>
@@ -134,9 +134,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Tank 3 Outboard -->
 			<location unit="M">
-				<x>2.77556</x>
+				<x>4.65468</x>
 				<y>17.0253</y>
-				<z>5.69282</z>
+				<z>5.96573</z>
 			</location>
 			<capacity unit="LBS">6500</capacity>
 			<contents unit="LBS">6500</contents>
@@ -147,9 +147,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Upper Aux Tank -->
 			<location unit="M">
-				<x>2.77556</x>
+				<x>1.59574</x>
 				<y>0</y>
-				<z>5.69282</z>
+				<z>5.09697</z>
 			</location>
 			<capacity unit="LBS">87105</capacity>
 			<contents unit="LBS">0</contents>
@@ -160,9 +160,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Lower Aux Tank -->
 			<location unit="M">
-				<x>2.77556</x>
+				<x>1.59574</x>
 				<y>0</y>
-				<z>5.69282</z>
+				<z>4.18259</z>
 			</location>
 			<capacity unit="LBS">11001</capacity>
 			<contents unit="LBS">0</contents>
@@ -173,9 +173,9 @@
 		</tank>
 		<tank type="FUEL"> <!-- Tail Tank -->
 			<location unit="M">
-				<x>15.0705</x>
+				<x>15.47398</x>
 				<y>0</y>
-				<z>5.69282</z>
+				<z>7.14628</z>
 			</location>
 			<capacity unit="LBS">13118</capacity>
 			<contents unit="LBS">0</contents>
