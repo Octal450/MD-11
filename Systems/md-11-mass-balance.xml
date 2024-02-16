@@ -28,6 +28,7 @@
 		</location>
 	</pointmass>
 	
+	<!-- All below positions fudged for CG accuracy -->
 	<pointmass name="Forward Cabin">
 		<weight unit="LBS">5000</weight>
 		<location name="POINTMASS" unit="M">
