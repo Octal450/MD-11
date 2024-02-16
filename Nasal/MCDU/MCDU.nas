@@ -326,7 +326,7 @@ var BASE = {
 		databaseCode: "MD11605001",
 		databaseCode2: "MD11605002",
 		databaseSelected: 1,
-		eng: props.globals.getNode("/MCDUC/eng").getValue(),
+		eng: props.globals.getNode("/options/eng-string").getValue(),
 		perfFactor: 0,
 		program: "PS4070541-921", # -921 software load
 	},
