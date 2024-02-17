@@ -58,6 +58,24 @@
 			<gain>0.45359237</gain>
 		</pure_gain>
 		
+		<fcs_function name="inertia/cg-percent-mac">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<product>
+								<property>inertia/cg-x-in</property>
+								<value>0.0254</value>
+							</product>
+							<value>0.24116</value> <!-- offset -->
+						</difference>
+						<value>7.68</value> <!-- MAC length -->
+					</quotient>
+					<value>100</value>
+				</product>
+			</function>
+		</fcs_function>
+		
 		<actuator name="/gear/gear[0]/wow-timer">
 			<input>/gear/gear[0]/wow</input>
 			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
@@ -78,24 +96,6 @@
 				/velocities/groundspeed-kt ge 1
 			</test>
 		</switch>
-		
-		<fcs_function name="inertia/cg-percent-mac">
-			<function>
-				<product>
-					<quotient>
-						<difference>
-							<product>
-								<property>inertia/cg-x-in</property>
-								<value>0.0254</value>
-							</product>
-							<value>0.24116</value> <!-- offset -->
-						</difference>
-						<value>7.68</value> <!-- MAC length -->
-					</quotient>
-					<value>100</value>
-				</product>
-			</function>
-		</fcs_function>
 	
 	</channel>
 	
