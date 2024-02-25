@@ -57,9 +57,9 @@ var MCDU = {
 		me.PageList.acStatus.reset();
 		me.PageList.closestAirports.reset();
 		me.PageList.init.reset();
-		me.PageList.menu.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
+		me.PageList.menu.reset();
 		me.PageList.navRadio.reset();
 		me.PageList.posRef.reset();
 		
@@ -336,6 +336,10 @@ var BASE = {
 		fidoPn: "ABC1234DAC456789",
 		opcPn: "1234DAC567891234",
 		perfDbPn: "ABC1234567867789",
+	},
+	initPage2: {
+		maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
+		maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	},
 	init: func() {
 		unit[0] = MCDU.new(0, 0);

@@ -28,7 +28,7 @@ var AcStatus = {
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
 			L1: "",
 			L1S: " MODEL",
-			L2: mcdu.BASE.acStatus.program,
+			L2: BASE.acStatus.program,
 			L2S: " OP PROGRAM",
 			L3: "",
 			L3S: " ACTIVE DATA BASE",
@@ -42,7 +42,7 @@ var AcStatus = {
 			pageNum: "1/2",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: mcdu.BASE.acStatus.eng,
+			R1: BASE.acStatus.eng,
 			R1S: "ENGINE ",
 			R2: "",
 			R2S: "",
@@ -85,17 +85,17 @@ var AcStatus = {
 			me.Display.L1 = "MD-11";
 		}
 		
-		if (mcdu.BASE.acStatus.databaseSelected) {
-			me.Display.L3 = mcdu.BASE.acStatus.database2;
-			me.Display.L4 = mcdu.BASE.acStatus.database;
-			me.Display.R3 = mcdu.BASE.acStatus.databaseCode2;
+		if (BASE.acStatus.databaseSelected) {
+			me.Display.L3 = BASE.acStatus.database2;
+			me.Display.L4 = BASE.acStatus.database;
+			me.Display.R3 = BASE.acStatus.databaseCode2;
 		} else {
-			me.Display.L3 = mcdu.BASE.acStatus.database;
-			me.Display.L4 = mcdu.BASE.acStatus.database2;
-			me.Display.R3 = mcdu.BASE.acStatus.databaseCode;
+			me.Display.L3 = BASE.acStatus.database;
+			me.Display.L4 = BASE.acStatus.database2;
+			me.Display.R3 = BASE.acStatus.databaseCode;
 		}
 		
-		me.Display.L6 = sprintf("%+2.1f", mcdu.BASE.acStatus.perfFactor);
+		me.Display.L6 = sprintf("%+2.1f", BASE.acStatus.perfFactor);
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
@@ -114,7 +114,7 @@ var AcStatus = {
 					if (abs(me.scratchpad) > 9.9) {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else {
-						mcdu.BASE.acStatus.perfFactor = me.scratchpad;
+						BASE.acStatus.perfFactor = me.scratchpad;
 						mcdu.unit[me.id].scratchpadClear();
 					}
 				} else {
@@ -125,7 +125,7 @@ var AcStatus = {
 			}
 		} else if (k == "r4") {
 			if (me.Value.databaseConfirm) {
-				mcdu.BASE.acStatus.databaseSelected = !mcdu.BASE.acStatus.databaseSelected;
+				BASE.acStatus.databaseSelected = !BASE.acStatus.databaseSelected;
 				me.Value.databaseConfirm = 0;
 				me.Display.R4 = "";
 			} else {
@@ -164,15 +164,15 @@ var AcStatus2 = {
 			C6S: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: mcdu.BASE.acStatus2.perfDbPn,
+			L1: BASE.acStatus2.perfDbPn,
 			L1S: " PERF DATABASE",
-			L2: mcdu.BASE.acStatus2.opcPn,
+			L2: BASE.acStatus2.opcPn,
 			L2S: " OPC P/N",
-			L3: mcdu.BASE.acStatus2.amiPn,
+			L3: BASE.acStatus2.amiPn,
 			L3S: " AMI P/N",
-			L4: mcdu.BASE.acStatus2.fidoPn,
+			L4: BASE.acStatus2.fidoPn,
 			L4S: " FIDO P/N",
-			L5: mcdu.BASE.acStatus2.dataLink,
+			L5: BASE.acStatus2.dataLink,
 			L5S: " DATA LINK",
 			L6: "",
 			L6S: "",

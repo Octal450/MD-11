@@ -2,20 +2,6 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 # Properties and Data
-var FlightData = {
-	airportAlt: "",
-	airportFrom: "",
-	airportTo: "",
-	blockFuel: 0,
-	costIndex: 0,
-	cruiseAlt: 0,
-	cruiseAltAll: [0, 0, 0, 0, 0, 0],
-	cruiseFl: 0,
-	cruiseFlAll: [0, 0, 0, 0, 0, 0],
-	cruiseTemp: nil,
-	flightNumber: "",
-};
-
 var Internal = {
 	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
 	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2", 0, "DOUBLE"),
@@ -82,65 +68,5 @@ var CORE = {
 		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(0);
 		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(0);
 		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(0);
-	},
-};
-
-var FPLN = {
-	loop: func() {
-		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
-			FlightData.blockFuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
-		}
-	},
-	resetFlightData: func() {
-		flightplan().cleanPlan(); # Clear List function in Route Manager
-		RouteManager.alternateAirport.setValue("");
-		RouteManager.cruiseAlt.setValue(0);
-		RouteManager.departureAirport.setValue("");
-		RouteManager.destinationAirport.setValue("");
-		FlightData.airportAlt = "";
-		FlightData.airportFrom = "";
-		FlightData.airportTo = "";
-		FlightData.blockFuel = 0;
-		FlightData.costIndex = 0;
-		FlightData.cruiseAlt = 0;
-		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
-		FlightData.cruiseFl = 0;
-		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
-		FlightData.cruiseTemp = nil;
-		FlightData.flightNumber = "";
-	},
-	newFlightplan: func(from, to) { # Assumes validation is already done
-		FlightData.airportFrom = from;
-		FlightData.airportTo = to;
-		RouteManager.departureAirport.setValue(from);
-		RouteManager.destinationAirport.setValue(to);
-		
-		if (!RouteManager.active.getBoolValue()) {
-			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
-		}
-		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(0);
-		}
-	},
-	insertAlternate: func(arpt) { # Assumes validation is already done
-		FlightData.airportAlt = arpt;
-		RouteManager.alternateAirport.setValue(arpt);
-		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(0);
-		}
-	},
-	insertCruiseFl: func(s1, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0) {
-		FlightData.cruiseAlt = s1 * 100;
-		FlightData.cruiseAltAll = [s1 * 100, s2 * 100, s3 * 100, s4 * 100, s5 * 100, s6 * 100];
-		FlightData.cruiseFl = s1;
-		FlightData.cruiseFlAll = [s1, s2, s3, s4, s5, s6];
-		if (s1 == 0) {
-			FlightData.cruiseTemp = nil;
-		} else if (s1 * 100 < 36090) {
-			FlightData.cruiseTemp = math.round(15 - (math.round(s1 / 10) * 1.98));
-		} else {
-			FlightData.cruiseTemp = -56; # Rounded
-		}
-		RouteManager.cruiseAlt.setValue(s1 * 100);
 	},
 };

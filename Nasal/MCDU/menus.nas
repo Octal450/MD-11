@@ -80,9 +80,9 @@ var Menu = {
 	},
 	reset: func() {
 		me.setup();
-		me.Value.request = 1;
 	},
 	setup: func() {
+		me.Value.request = 1;
 	},
 	loop: func() {
 		if (me.type) {

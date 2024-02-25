@@ -357,7 +357,7 @@ var Init2 = {
 			C6S: "",
 			
 			LFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
-			L1: "0.5",
+			L1: "",
 			L1S: "TAXI",
 			L2: "---.-/----",
 			L2S: "TRIP/TIME",
@@ -372,10 +372,10 @@ var Init2 = {
 			
 			pageNum: "2/3",
 			
-			RFont: [FONT.normal, FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal],
+			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
 			R1: "",
 			R1S: "",
-			R2: "___._",
+			R2: "",
 			R2S: "TOGW",
 			R3: "___._",
 			R3S: "IN ZFW",
@@ -405,6 +405,8 @@ var Init2 = {
 	setup: func() {
 	},
 	loop: func() {
+		me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
+		
 		me.Value.ufob = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
 			me.Display.C1 = "";
@@ -419,6 +421,30 @@ var Init2 = {
 			}
 			me.Display.R1S = "BLOCK";
 		}
+		
+		if (fms.FlightData.togw > 0) {
+			me.Display.R2 = sprintf("%4.1f", fms.FlightData.togw);
+			if (fms.FlightData.lastTogwZfw) {
+				me.Display.RFont[1] = FONT.small;
+			} else {
+				me.Display.RFont[1] = FONT.normal;
+			}
+		} else {
+			me.Display.R2 = "___._";
+			me.Display.RFont[1] = FONT.normal;
+		}
+		
+		if (fms.FlightData.zfw > 0) {
+			me.Display.R3 = sprintf("%4.1f", fms.FlightData.zfw);
+			if (!fms.FlightData.lastTogwZfw) {
+				me.Display.RFont[2] = FONT.small;
+			} else {
+				me.Display.RFont[2] = FONT.normal;
+			}
+		} else {
+			me.Display.R3 = "___._";
+			me.Display.RFont[2] = FONT.normal;
+		}
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
@@ -428,8 +454,47 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
-						fms.FlightData.blockFuel = me.scratchpad + 0; # Convert to number
-						mcdu.unit[me.id].scratchpadClear();
+						if (fms.FPLN.insertBlockFuel(me.scratchpad)) {
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r2") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 1 and me.scratchpad <= 633) {
+						if (fms.FPLN.insertTogw(me.scratchpad)) {
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r3") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 1 and me.scratchpad <= BASE.initPage2.maxZfw) {
+						if (fms.FPLN.insertZfw(me.scratchpad)) {
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+						}
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
