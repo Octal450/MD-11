@@ -423,7 +423,7 @@ var Init2 = {
 		}
 		
 		if (fms.FlightData.togw > 0) {
-			me.Display.R2 = sprintf("%4.1f", fms.FlightData.togw);
+			me.Display.R2 = sprintf("%5.1f", fms.FlightData.togw);
 			if (fms.FlightData.lastTogwZfw) {
 				me.Display.RFont[1] = FONT.small;
 			} else {
@@ -435,7 +435,7 @@ var Init2 = {
 		}
 		
 		if (fms.FlightData.zfw > 0) {
-			me.Display.R3 = sprintf("%4.1f", fms.FlightData.zfw);
+			me.Display.R3 = sprintf("%5.1f", fms.FlightData.zfw);
 			if (!fms.FlightData.lastTogwZfw) {
 				me.Display.RFont[2] = FONT.small;
 			} else {
@@ -483,6 +483,9 @@ var Init2 = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 1) {
+				mcdu.unit[me.id].clearMessage(1);
+				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1) - fms.FlightData.taxiFuel);
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -501,6 +504,9 @@ var Init2 = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 1) {
+				mcdu.unit[me.id].clearMessage(1);
+				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
