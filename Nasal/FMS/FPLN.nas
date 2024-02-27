@@ -17,8 +17,10 @@ var FlightData = {
 	flightNumber: "",
 	lastTogwZfw: 1, # Which was entered last
 	taxiFuel: 0.7,
+	tocg: 0,
 	togw: 0,
 	zfw: 0,
+	zfwcg: 0,
 	Temp: { # Values used for internal checking, do not use
 		togw: 0,
 		zfw: 0,
@@ -51,8 +53,10 @@ var FPLN = {
 		FlightData.flightNumber = "";
 		FlightData.lastTogwZfw = 1;
 		FlightData.taxiFuel = 0.7;
+		FlightData.tocg = 0;
 		FlightData.togw = 0;
 		FlightData.zfw = 0;
+		FlightData.zfwcg = 0;
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
 		FlightData.airportFrom = from;

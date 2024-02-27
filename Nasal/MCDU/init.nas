@@ -381,9 +381,9 @@ var Init2 = {
 			R3S: "IN ZFW",
 			R4: "---.-",
 			R4S: "LW",
-			R5: "__._",
+			R5: "",
 			R5S: "TOCG",
-			R6: "__._",
+			R6: "",
 			R6S: "ZFWCG",
 			
 			simple: 1,
@@ -444,6 +444,18 @@ var Init2 = {
 		} else {
 			me.Display.R3 = "___._";
 			me.Display.RFont[2] = FONT.normal;
+		}
+		
+		if (fms.FlightData.tocg > 0) {
+			me.Display.R5 = sprintf("%4.1f", fms.FlightData.tocg);
+		} else {
+			me.Display.R5 = "__._";
+		}
+		
+		if (fms.FlightData.zfwcg > 0) {
+			me.Display.R6 = sprintf("%4.1f", fms.FlightData.zfwcg);
+		} else {
+			me.Display.R6 = "__._";
 		}
 	},
 	softKey: func(k) {
@@ -507,6 +519,39 @@ var Init2 = {
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
 				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r5") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 1 and me.scratchpad <= 35) {
+						fms.FlightData.tocg = me.scratchpad;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 1) {
+				mcdu.unit[me.id].clearMessage(1);
+				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1));
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r6") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 1 and me.scratchpad <= 34) {
+						fms.FlightData.zfwcg = me.scratchpad;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
