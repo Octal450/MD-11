@@ -17,6 +17,7 @@ var FlightData = {
 	flightNumber: "",
 	lastTogwZfw: 1, # Which was entered last
 	taxiFuel: 0.7,
+	taxiFuelSet: 0,
 	tocg: 0,
 	togw: 0,
 	zfw: 0,
@@ -53,6 +54,7 @@ var FPLN = {
 		FlightData.flightNumber = "";
 		FlightData.lastTogwZfw = 1;
 		FlightData.taxiFuel = 0.7;
+		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
 		FlightData.togw = 0;
 		FlightData.zfw = 0;
@@ -107,6 +109,32 @@ var FPLN = {
 			FlightData.cruiseTemp = math.round(15 - (math.round(s1 / 10) * 1.98));
 		} else {
 			FlightData.cruiseTemp = -56; # Rounded
+		}
+	},
+	insertTaxiFuel: func(taxi) { # Recalculate TOGW or ZFW
+		if (FlightData.togw > 0 and FlightData.zfw > 0) {
+			if (FlightData.lastTogwZfw) { # TOGW
+				FlightData.Temp.togw = FlightData.blockFuel + FlightData.zfw - taxi;
+				if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
+					FlightData.taxiFuel = taxi + 0;
+					FlightData.togw = FlightData.Temp.togw;
+					return 0;
+				} else {
+					return 1;
+				}
+			} else { # ZFW
+				FlightData.Temp.zfw = FlightData.togw + taxi - FlightData.blockFuel;
+				if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
+					FlightData.taxiFuel = taxi + 0;
+					FlightData.zfw = FlightData.Temp.zfw;
+					return 0;
+				} else {
+					return 2;
+				}
+			}
+		} else {
+			FlightData.taxiFuel = taxi + 0;
+			return 0;
 		}
 	},
 	insertTogw: func(togw) { # Recalculate ZFW

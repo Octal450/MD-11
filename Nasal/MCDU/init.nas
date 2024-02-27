@@ -391,6 +391,7 @@ var Init2 = {
 		};
 		
 		m.Value = {
+			taxiInsertStatus: 0,
 			ufob: 0,
 		};
 		
@@ -406,6 +407,11 @@ var Init2 = {
 	},
 	loop: func() {
 		me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
+		if (fms.FlightData.taxiFuelSet) {
+			me.Display.LFont[0] = FONT.normal;
+		} else {
+			me.Display.LFont[0] = FONT.small;
+		}
 		
 		me.Value.ufob = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
@@ -462,7 +468,29 @@ var Init2 = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "r1") {
+		if (k == "l1") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if (me.scratchpad >= 0 and me.scratchpad <= 9.9) {
+						me.Value.taxiInsertStatus = fms.FPLN.insertTaxiFuel(me.scratchpad);
+						if (me.Value.taxiInsertStatus == 0) {
+							fms.FlightData.taxiFuelSet = 1;
+							mcdu.unit[me.id].scratchpadClear();
+						} else if (me.Value.taxiInsertStatus == 1) {
+							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+						} else if (me.Value.taxiInsertStatus == 2) {
+							mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r1") {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
