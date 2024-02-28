@@ -38,6 +38,14 @@
 		<variant-of>MD-11F-GE</variant-of>
 	</sim>
 	
+	<fdm n="0">
+		<jsbsim n="0">
+			<inertia n="0">
+				<empty-weight-x-in type="double">111.692913</empty-weight-x-in> <!-- 2.837 meters, 33.8% MAC -->
+			</inertia>
+		</jsbsim>
+	</fdm>
+	
 	<limits>
 		<mass-and-balance> <!-- Data source: TCDS -->
 			<maximum-takeoff-mass-lbs>633000</maximum-takeoff-mass-lbs>

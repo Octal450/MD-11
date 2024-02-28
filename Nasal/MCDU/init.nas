@@ -580,6 +580,9 @@ var Init2 = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 1) {
+				mcdu.unit[me.id].clearMessage(1);
+				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwcgPercentMac.getValue(), 0.1));
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

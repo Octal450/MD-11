@@ -107,6 +107,7 @@ var Fdm = {
 			cgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/cg-percent-mac"),
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
 			zfwLbs: props.globals.getNode("/fdm/jsbsim/inertia/zfw-lbs"),
+			zfwcgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/zfwcg-percent-mac"),
 		},
 		Libraries: {
 			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),

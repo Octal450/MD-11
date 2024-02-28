@@ -73,13 +73,6 @@
 						</binding>
 					</item>
 					<item> <!-- Temporary -->
-						<label>V Speed Applet</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>v-speed</dialog-name>
-						</binding>
-					</item>
-					<item> <!-- Temporary -->
 						<label>Flex Temp Applet</label>
 						<binding>
 							<command>dialog-show</command>
@@ -189,6 +182,13 @@
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>acconfig-failures</dialog-name>
+						</binding>
+					</item>
+					<item> <!-- Temporary -->
+						<label>Speeds/CG Applet</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>speedscg</dialog-name>
 						</binding>
 					</item>
 				</menu>
