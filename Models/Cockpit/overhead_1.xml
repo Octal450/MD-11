@@ -8,28 +8,30 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>overhead.text</object-name>
-		<object-name>ovhdinteg.indicator</object-name>
-		<object-name>maininteg.indicator</object-name>
-		<object-name>ovhdflood.indicator</object-name>
-		<object-name>mainflood.indicator</object-name>
-		<object-name>IR1Knb.light</object-name>
-		<object-name>IRAuxKnb.light</object-name>
-		<object-name>IR2Knb.light</object-name>
-		<object-name>CargoFwdTemp.light</object-name>
-		<object-name>CargoAftTemp.light</object-name>
-		<object-name>FlapLimit.light</object-name>
-		<object-name>ElevFeel.light</object-name>
-		<object-name>emerPwrrKnb.light</object-name>
-		<object-name>SmokeElecAir.light</object-name>
-		<object-name>CockpitTemp.light</object-name>
-		<object-name>FwdTemp.light</object-name>
-		<object-name>MidTemp.light</object-name>
 		<object-name>AftTemp.light</object-name>
-		<object-name>CabinPressKnb.light</object-name>
+		<object-name>CargoAftTemp.light</object-name>
+		<object-name>CargoFwdTemp.light</object-name>
+		<object-name>CabinPress.light</object-name>
 		<object-name>CabinPressNeedle</object-name>
-		<object-name>Plane.022</object-name>
+		<object-name>CockpitTemp.light</object-name>
 		<object-name>CVRNeedle</object-name>
+		<object-name>ElevFeel.light</object-name>
+		<object-name>EmerPwr.light</object-name>
+		<object-name>FlapLimit.light</object-name>
+		<object-name>FwdTemp.light</object-name>
+		<object-name>IR1Knb.light</object-name>
+		<object-name>IR2Knb.light</object-name>
+		<object-name>IRAuxKnb.light</object-name>
+		<object-name>mainflood.indicator</object-name>
+		<object-name>maininteg.indicator</object-name>
+		<object-name>MidTemp.light</object-name>
+		<object-name>overhead.text</object-name>
+		<object-name>ovhdflood.indicator</object-name>
+		<object-name>ovhdinteg.indicator</object-name>
+		<object-name>Plane.022</object-name>
+		<object-name>SmokeElecAir.light</object-name>
+		<object-name>wiper.knob1.light</object-name>
+		<object-name>wiper.knob2.light</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -3538,8 +3540,8 @@
 	<!-- Emergency Power -->
 	<animation>
 		<type>knob</type>
-		<object-name>emerPwrrKnb</object-name>
-		<object-name>emerPwrrKnb.light</object-name>
+		<object-name>EmerPwr</object-name>
+		<object-name>EmerPwr.light</object-name>
 		<property>controls/cockpit/overhead/emer-pwr</property>
 		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
