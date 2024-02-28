@@ -1,0 +1,139 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
+OBJECT world
+kids 7
+OBJECT poly
+name "lights"
+loc -21.8932 -17.5793 -0.0532833
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102394 0.106429
+0 -0.102394 -0.106429
+0 -0.106428 0.106429
+0 -0.106428 -0.106429
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+0 0 0.018952
+2 0 0
+3 1 0
+1 1 0.018952
+kids 0
+OBJECT poly
+name "lights"
+loc -21.8979 -17.6203 -0.192896
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 0.0726467
+0 -0.102526 0.0726467
+0 -0.106428 0.010722
+0 -0.102526 0.010722
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0.449629 0.0183337
+1 0.158709 0.0183337
+0 0.158709 0
+2 0.449629 0
+kids 0
+OBJECT poly
+name "lights"
+loc -21.8886 -17.5576 -0.0551513
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 -0.0798116
+0 -0.102526 -0.0798116
+0 -0.106428 -0.0518098
+0 -0.102526 -0.0518098
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+1 0.874952 0.0183337
+3 0.743401 0.0183337
+2 0.743401 0
+0 0.874952 0
+kids 0
+OBJECT poly
+name "lights2"
+loc -21.9302 -17.8759 0.00948691
+texture "lights2.png"
+crease 45.000000
+numvert 4
+0 0 0.106429
+0 0 -0.106429
+0 0.106428 -0.106429
+0 0.106428 0.106429
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+1 1 0.5
+2 1 1
+3 0 1
+0 0 0.5
+kids 0
+OBJECT poly
+name "lights"
+loc -21.8683 -17.5885 -0.163582
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102526 -0.0216879
+0 -0.106428 -0.0216879
+0 -0.106428 0.000194818
+0 -0.102526 0.000194818
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+0 0.601889 0.0183337
+3 0.499085 0.0183337
+2 0.499085 0
+1 0.601889 0
+kids 0
+OBJECT poly
+name "lights"
+loc -21.9139 -17.8774 -0.190643
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 0.106428 -0.106429
+0 0.106428 0.106429
+0 -0.106428 0.106429
+0 -0.106428 -0.106429
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "lights2"
+loc -21.9331 -17.8944 0.0343748
+texture "lights2.png"
+crease 45.000000
+numvert 5
+0 -0.106428 -0.106429
+0 -0.106428 0.106429
+0 0 -0.106429
+0 0 0.106429
+0 -0.106428 0.0160237
+numsurf 1
+SURF 0x30
+mat 0
+refs 5
+3 0 0.5
+1 0 0
+4 0.424721 0
+0 1 0
+2 1 0.5
+kids 0

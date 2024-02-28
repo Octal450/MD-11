@@ -6,7 +6,7 @@ MATERIAL "Buttons.002" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105
 MATERIAL "glass" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 1
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 0  trans 0
 OBJECT world
-kids 82
+kids 81
 OBJECT poly
 name "turnoff.left.003"
 loc -16.8049 -22.3201 0.2713
@@ -139581,25 +139581,6 @@ refs 4
 1 0.167528 0
 0 0.204073 0
 2 0.204073 0.0186294
-kids 0
-OBJECT poly
-name "lights"
-loc -16.8887 -22.1583 -0.243901
-texture "lights.png"
-crease 45.000000
-numvert 4
-0 -0.106428 -0.106429
-0 -0.106428 0.106429
-0 0.106428 0.106429
-0 0.106428 -0.106429
-numsurf 1
-SURF 0x30
-mat 5
-refs 4
-3 1 1
-2 0 1
-1 0 0
-0 1 0
 kids 0
 OBJECT poly
 name "Unknown"
