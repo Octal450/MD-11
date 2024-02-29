@@ -38,15 +38,6 @@
 	</animation>
 	
 	<animation>
-		<type>shader</type>
-		<shader>chrome</shader>
-		<texture>windshield.png</texture>
-		<object-name>lampcover.left</object-name>
-		<object-name>lampcover.right</object-name>
-		<object-name>Windshield.inner</object-name>
-	</animation>
-	
-	<animation>
 		<name>Integ Panel lighting</name>
 		<type>material</type>
 		<object-name>dashboard.text</object-name>
