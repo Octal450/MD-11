@@ -227,9 +227,9 @@
 		<type>pick</type>
 		<object-name>GpwsOvrd</object-name>
 		<action>
-		    <button>0</button>
-		    <button>4</button>
-		    <repeatable>false</repeatable>
+			<button>0</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<not><property>controls/switches/gpws-ovrd-cover</property></not>
@@ -255,9 +255,9 @@
 			</binding>
 		</action>
 		<action>
-		    <button>1</button>
-		    <button>3</button>
-		    <repeatable>false</repeatable>
+			<button>1</button>
+			<button>3</button>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<not><property>controls/switches/gpws-ovrd-cover</property></not>
