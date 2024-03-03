@@ -1651,16 +1651,14 @@
 		<caws n="0">
 			<apoff n="0">
 				<out type="double">0</out>
+				<single-out type="double">0</single-out>
 			</apoff>
-			<apoff n="0">
-				<out type="double">0</out>
-			</apoff>
-			<logic n="0">
-				<altitude-alert type="int">0</altitude-alert>
-			</logic>
 			<landing-gear n="0">
 				<out type="double">0</out>
 			</landing-gear>
+			<logic n="0">
+				<altitude-alert type="int">0</altitude-alert>
+			</logic>
 			<overspeed n="0">
 				<out type="double">0</out>
 			</overspeed>
