@@ -256,6 +256,7 @@ var Instrumentation = {
 
 var Options = {
 	eng: props.globals.getNode("/options/eng"),
+	pw62k: props.globals.getNode("/options/pw-62k"),
 };
 
 var Orientation = {

@@ -16,7 +16,6 @@ var Value = {
 		epr: [0, 0, 0],
 		eprFixed: [0, 0, 0],
 		eprLimitFixed: 0,
-		flexActive: 0,
 		n1: [0, 0, 0],
 		n1LimitFixed: 0,
 		n2: [0, 0, 0],
@@ -567,9 +566,9 @@ var canvasPw = {
 	getKeys: func() {
 		return ["Config", "EGT1", "EGT1-ignition", "EGT1-needle", "EGT1-redline", "EGT1-redstart", "EGT1-yline", "EGT2", "EGT2-ignition", "EGT2-needle", "EGT2-redline", "EGT2-redstart", "EGT2-yline", "EGT3", "EGT3-ignition", "EGT3-needle", "EGT3-redline",
 		"EGT3-redstart", "EGT3-yline", "EPR1-box", "EPR1-decpnt", "EPR1-hundreths", "EPR1-lim", "EPR1-needle", "EPR1-ones", "EPR1-tenths", "EPR1-thr", "EPR2-box", "EPR2-decpnt", "EPR2-hundreths", "EPR2-lim", "EPR2-needle", "EPR2-ones", "EPR2-tenths", "EPR2-thr",
-		"EPR3-box", "EPR3-decpnt", "EPR3-hundreths", "EPR3-lim", "EPR3-needle", "EPR3-ones", "EPR3-tenths", "EPR3-thr", "EPRLim", "EPRLim-decimal", "EPRLimMode", "EPRLimModeGroup", "EPRLimText", "FF1", "FF2", "FF3", "FFOff1", "FFOff2", "FFOff3", "FlexGroup",
-		"FlexTemp", "N11", "N11-decimal", "N11-decpnt", "N11-needle", "N11-redline", "N12", "N12-decimal", "N12-decpnt", "N12-needle", "N12-redline", "N13", "N13-decimal", "N13-decpnt", "N13-needle", "N13-redline", "N21", "N21-cline", "N21-decimal", "N21-decpnt", 
-		"N21-needle", "N21-redline", "N22", "N22-cline", "N22-decimal", "N22-decpnt", "N22-needle", "N22-redline", "N23", "N23-cline", "N23-decimal", "N23-decpnt", "N23-needle", "N23-redline", "REV1", "REV2", "REV3", "TAT"];
+		"EPR3-box", "EPR3-decpnt", "EPR3-hundreths", "EPR3-lim", "EPR3-needle", "EPR3-ones", "EPR3-tenths", "EPR3-thr", "EPRLim", "EPRLim-decimal", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF2", "FF3", "FFOff1", "FFOff2", "FFOff3",
+		"FlexGroup", "FlexTemp", "N11", "N11-decimal", "N11-decpnt", "N11-needle", "N11-redline", "N12", "N12-decimal", "N12-decpnt", "N12-needle", "N12-redline", "N13", "N13-decimal", "N13-decpnt", "N13-needle", "N13-redline", "N21", "N21-cline", "N21-decimal",
+		"N21-decpnt", "N21-needle", "N21-redline", "N22", "N22-cline", "N22-decimal", "N22-decpnt", "N22-needle", "N22-redline", "N23", "N23-cline", "N23-decimal", "N23-decpnt", "N23-needle", "N23-redline", "REV1", "REV2", "REV3", "TAT"];
 	},
 	setup: func() {
 	},
@@ -583,12 +582,30 @@ var canvasPw = {
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
 		Value.Fadec.eprLimitFixed = systems.FADEC.Limit.active.getValue() + 0.005;
 		
-		if (Value.Fadec.activeMode == "T/O" and systems.FADEC.Limit.flexActive.getBoolValue()) {
-			me["EPRLimText"].setText("FLEX");
-			me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
-			me["FlexGroup"].show();
+		if (Value.Fadec.activeMode == "T/O" or Value.Fadec.activeMode == "G/A") {
+			me["EPRLimModeGroup"].setTranslation(56.496, 0);
+			me["FlexGroup"].setTranslation(26.204, 0);
+			
+			if (pts.Options.pw62k.getBoolValue()) {
+				me["EPRLimRating"].setText("62K");
+			} else {
+				me["EPRLimRating"].setText("60K");
+			}
+			me["EPRLimRating"].show();
+			
+			if (Value.Fadec.activeMode == "T/O" and systems.FADEC.Limit.flexActive.getBoolValue()) {
+				me["EPRLimText"].setText("FLEX");
+				me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
+				me["FlexGroup"].show();
+			} else {
+				me["EPRLimText"].setText("LIM");
+				me["FlexGroup"].hide();
+			}
 		} else {
+			me["EPRLimModeGroup"].setTranslation(0, 0);
+			me["EPRLimRating"].hide();
 			me["EPRLimText"].setText("LIM");
+			me["FlexGroup"].setTranslation(0, 0);
 			me["FlexGroup"].hide();
 		}
 		
