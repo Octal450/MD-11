@@ -115,7 +115,7 @@ var canvasEng = {
 		
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
 		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
-		me["Fuel"].setText(right(sprintf("%d", Value.Misc.fuel), 3));
+		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
 		
 		me["Cg"].setText(sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1)));
 		
