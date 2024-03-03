@@ -5,12 +5,6 @@
 
 <system name="MD-11: Cockpit"> <!-- Everything here is after all systems -->
 	
-	<property value="0">/systems/caws/apoff/out</property>
-	<property value="0">/systems/caws/landing-gear/out</property>
-	<property value="0">/systems/caws/overspeed/out</property>
-	<property value="0">/systems/caws/slat-overspeed/out</property>
-	<property value="0">/systems/caws/stabilizer-motion/out</property>
-	
 	<channel name="Animations">
 		
 		<!-- General -->

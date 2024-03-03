@@ -1649,9 +1649,27 @@
 			<state type="int">0</state>
 		</apu>
 		<caws n="0">
+			<apoff n="0">
+				<out type="double">0</out>
+			</apoff>
+			<apoff n="0">
+				<out type="double">0</out>
+			</apoff>
 			<logic n="0">
 				<altitude-alert type="int">0</altitude-alert>
 			</logic>
+			<landing-gear n="0">
+				<out type="double">0</out>
+			</landing-gear>
+			<overspeed n="0">
+				<out type="double">0</out>
+			</overspeed>
+			<slat-overspeed n="0">
+				<out type="double">0</out>
+			</slat-overspeed>
+			<stabilizer-motion n="0">
+				<out type="double">0</out>
+			</stabilizer-motion>
 		</caws>
 		<failures n="0">
 			<brakes n="0">
