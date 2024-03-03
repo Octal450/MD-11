@@ -101,17 +101,17 @@ var light_manager = {
 		me.light2_ypos =  0.0;
 		me.light2_zpos =  2.0;
 		
-		me.light3_xpos =  -9.0;
-		me.light3_ypos =  25.0;
-		me.light3_zpos =  2.0;
+		me.light3_xpos =  0.0;
+		me.light3_ypos =  0.0;
+		me.light3_zpos =  0.0;
 		
-		me.light4_xpos =  -9.0;
-		me.light4_ypos =  -25.0;
-		me.light4_zpos =  2.0;
+		me.light4_xpos =  0.0;
+		me.light4_ypos =  0.0;
+		me.light4_zpos =  0.0;
 		
-		me.light5_xpos =  -40.0;
+		me.light5_xpos =  0.0;
 		me.light5_ypos =  0.0;
-		me.light5_zpos =  2.0;
+		me.light5_zpos =  0.0;
 		
  
 		# color values
@@ -213,16 +213,6 @@ var light_manager = {
 				}
 			} else {
 				me.light2_off();
-			}
-			
-			if (nav == 1 and hasPower) {
-				me.light3_on();
-				me.light4_on();
-				me.light5_on();
-			} else {
-				me.light3_off();
-				me.light4_off();
-				me.light5_off();
 			}
 			
 			if (!hasPower) {
