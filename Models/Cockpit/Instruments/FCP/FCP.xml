@@ -69,11 +69,11 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>Integrity</object-name>
-		<object-name>BtnText</object-name>
-		<object-name>integlight.indicator</object-name>
-		<object-name>floodlight.indicator</object-name>
 		<object-name>BankLim.knob.indicator</object-name>
+		<object-name>BtnText</object-name>
+		<object-name>floodlight.indicator</object-name>
+		<object-name>Integrity</object-name>
+		<object-name>integlight.indicator</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -84,15 +84,15 @@
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>Integrity</object-name>
 		<object-name>BtnText</object-name>
+		<object-name>Integrity</object-name>
 	</effect>
 	
 	<!-- Lighting Controls -->
 	<animation>
 		<type>knob</type>
-		<object-name>integlight.knob</object-name>
 		<object-name>integlight.indicator</object-name>
+		<object-name>integlight.knob</object-name>
 		<property>controls/cockpit/fcp/integ-knb</property>
 		<factor>-329</factor>
 		<axis>
@@ -119,8 +119,8 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>floodlight.knob</object-name>
 		<object-name>floodlight.indicator</object-name>
+		<object-name>floodlight.knob</object-name>
 		<property>controls/cockpit/fcp/flood-knb</property>
 		<factor>-329</factor>
 		<axis>
@@ -1174,7 +1174,7 @@
 		<alignment>right-bottom</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>number-value</type>
-		<format>%003.0f</format>
+		<format>%03.0f</format>
 		<property>it-autoflight/input/hdg</property>
 		<truncate>false</truncate>
 		<font>Std7SegCustom.ttf</font>
