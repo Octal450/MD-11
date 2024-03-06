@@ -549,6 +549,9 @@ var IRS = {
 };
 
 # IRS MCDU Messages Logic
+setlistener("/systems/iru-common/any-aligned-out", func() {
+	IRS.anyAlignedUpdate();
+}, 0, 0);
 setlistener("/systems/iru[0]/align-mcdu-msg-out", func() {
 	IRS.mcduMsgUpdate();
 }, 0, 0);
