@@ -1433,7 +1433,7 @@ var ITAF = {
 	syncMachSel: func() {
 		Velocities.indicatedMachTemp = Velocities.indicatedMach.getValue();
 		Input.mach.setValue(math.clamp(math.round(Velocities.indicatedMachTemp, 0.001), 0.5, 0.87));
-		Input.machX1000.setValue(math.clamp(math.round(Velocities.indicatedMachTemp * 1000, 1), 500, 870));
+		Input.machX1000.setValue(math.clamp(math.round(Velocities.indicatedMachTemp * 1000), 500, 870));
 	},
 	syncHdg: func() {
 		Internal.hdgSet = math.round(Internal.hdgPredicted.getValue()); # Switches to track automatically
