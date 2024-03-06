@@ -197,7 +197,7 @@ var afsCanvas = {
 				me["Alt_7seg"].setText("88888");
 				me["Hdg_7seg"].setText("888");
 				me["Spd_7seg"].setText(".888");
-				me["Vs_7seg"].setText("-88.88");
+				me["Vs_7seg"].setText("-888.8");
 			} else {
 				# Speed
 				if (afs.Input.ktsMach.getBoolValue()) {

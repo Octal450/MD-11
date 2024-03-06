@@ -1441,27 +1441,6 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>Digits.VsBlank</name>
-		<offsets>
-			<x-m>-25.7247</x-m>
-			<y-m>0.10633</y-m>
-			<z-m>11.7893</z-m>
-		</offsets>
-		<alignment>right-bottom</alignment>
-		<axis-alignment>yz-plane</axis-alignment>
-		<type>literal</type>
-		<text>----</text>
-		<font>Std7SegCustom.ttf</font>
-		<draw-text>true</draw-text>
-		<draw-alignment>false</draw-alignment>
-		<draw-boundingbox>false</draw-boundingbox>
-		<character-size>0.006</character-size>
-		<font-resolution>
-			<width>30</width>
-			<height>32</height>
-		</font-resolution>
-	</text>
-	<text>
 		<name>Digits.Fpa</name>
 		<offsets>
 			<x-m>-25.7247</x-m>
@@ -1485,6 +1464,27 @@
 		</font-resolution>
 	</text>
 	<text>
+		<name>Digits.VsBlank</name>
+		<offsets>
+			<x-m>-25.7247</x-m>
+			<y-m>0.10633</y-m>
+			<z-m>11.7893</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>----</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
 		<name>Digits.Test</name>
 		<offsets>
 			<x-m>-25.7247</x-m>
@@ -1494,7 +1494,7 @@
 		<alignment>right-bottom</alignment>
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
-		<text>-88.88</text>
+		<text>-888.8</text>
 		<font>Std7SegCustom.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
