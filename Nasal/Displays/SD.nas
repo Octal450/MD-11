@@ -2,6 +2,7 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var display = nil;
+var config = nil;
 var conseq = nil;
 var eng = nil;
 var misc = nil;
@@ -10,6 +11,9 @@ var status = nil;
 var Value = {
 	Apu: {
 		n2: 0,
+	},
+	Config: {
+		gearStatus: [0, 0, 0, 0],
 	},
 	Eng: {
 		oilQty: [0, 0, 0],
@@ -68,9 +72,11 @@ var canvasBase = {
 		# Hide the pages by default
 		me.hidePages();
 		
+		config.setup();
 		eng.setup();
 	},
 	hidePages: func() {
+		config.page.hide();
 		conseq.page.hide();
 		eng.page.hide();
 		misc.page.hide();
@@ -78,7 +84,9 @@ var canvasBase = {
 	},
 	update: func() {
 		if (systems.DUController.updateSd) {
-			if (systems.DUController.sdPage == "CONSEQ") {
+			if (systems.DUController.sdPage == "CONFIG") {
+				config.update();
+			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
 			} else if (systems.DUController.sdPage == "ENG") {
 				eng.update();
@@ -87,6 +95,104 @@ var canvasBase = {
 			} else if (systems.DUController.sdPage == "STATUS") {
 				status.update();
 			}
+		}
+	},
+};
+
+var canvasConfig = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasConfig, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["CenterPressL", "CenterPressR", "CenterStatus", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd",
+		"RightStatus", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+	},
+	setup: func() {
+		# Unsimulated stuff, fix later
+		me["StabBox"].hide();
+	},
+	update: func() {
+		# Stab
+		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
+		
+		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
+		
+		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
+			me["StabUnit"].setText("AND");
+		} else {
+			me["StabUnit"].setText("ANU");
+		}
+		
+		# Tire Pressure
+		me["NosePressL"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.noseL.getValue())));
+		me["NosePressR"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.noseR.getValue())));
+		
+		me["LeftPressLAft"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.leftLAft.getValue())));
+		me["LeftPressLFwd"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.leftLFwd.getValue())));
+		me["LeftPressRAft"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.leftRAft.getValue())));
+		me["LeftPressRFwd"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.leftRFwd.getValue())));
+		
+		me["CenterPressL"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.centerL.getValue())));
+		me["CenterPressR"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.centerR.getValue())));
+		
+		me["RightPressLAft"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.rightLAft.getValue())));
+		me["RightPressLFwd"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.rightLFwd.getValue())));
+		me["RightPressRAft"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.rightRAft.getValue())));
+		me["RightPressRFwd"].setText(sprintf("%d", math.round(systems.GEAR.TirePressurePsi.rightRFwd.getValue())));
+		
+		# Gear Status Indications
+		Value.Config.gearStatus[0] = systems.GEAR.status[0].getValue();
+		Value.Config.gearStatus[1] = systems.GEAR.status[1].getValue();
+		Value.Config.gearStatus[2] = systems.GEAR.status[2].getValue();
+		Value.Config.gearStatus[3] = systems.GEAR.status[3].getValue();
+		
+		if (Value.Config.gearStatus[0] == 0) {
+			me["NoseStatus"].hide();
+		} else {
+			if (Value.Config.gearStatus[0] == 2) {
+				me["NoseStatus"].setColor(0,1,0);
+			} else {
+				me["NoseStatus"].setColor(1,0,0);
+			}
+			me["NoseStatus"].show();
+		}
+		
+		if (Value.Config.gearStatus[1] == 0) {
+			me["LeftStatus"].hide();
+		} else {
+			if (Value.Config.gearStatus[1] == 2) {
+				me["LeftStatus"].setColor(0,1,0);
+			} else {
+				me["LeftStatus"].setColor(1,0,0);
+			}
+			me["LeftStatus"].show();
+		}
+		
+		if (Value.Config.gearStatus[2] == 0) {
+			me["RightStatus"].hide();
+		} else {
+			if (Value.Config.gearStatus[2] == 2) {
+				me["RightStatus"].setColor(0,1,0);
+			} else {
+				me["RightStatus"].setColor(1,0,0);
+			}
+			me["RightStatus"].show();
+		}
+		
+		if (Value.Config.gearStatus[3] == 0) {
+			me["CenterStatus"].hide();
+		} else {
+			if (Value.Config.gearStatus[3] == 2) {
+				me["CenterStatus"].setColor(0,1,0);
+			} else {
+				me["CenterStatus"].setColor(1,0,0);
+			}
+			me["CenterStatus"].show();
 		}
 	},
 };
@@ -115,7 +221,7 @@ var canvasEng = {
 	getKeys: func() {
 		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Cg", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2",
 		"OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
-		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "Stab-needle", "StabBox", "StabUnit"];
+		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -144,6 +250,19 @@ var canvasEng = {
 		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
 		
 		me["Cg"].setText(sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1)));
+		
+		# Stab
+		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
+		
+		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
+		
+		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
+			me["StabUnit"].setText("AND");
+		} else {
+			me["StabUnit"].setText("ANU");
+		}
 		
 		# Oil Psi
 		me["OilPsi1"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[0].getValue()));
@@ -273,19 +392,6 @@ var canvasEng = {
 		me["NacelleTemp2"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[1].getValue())));
 		me["NacelleTemp3"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[2].getValue())));
 		
-		# Stab
-		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
-		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
-		
-		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
-		me["Stab-needle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
-		
-		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
-			me["StabUnit"].setText("AND");
-		} else {
-			me["StabUnit"].setText("ANU");
-		}
-		
 		# APU
 		Value.Apu.n2 = systems.APU.n2.getValue();
 		if (Value.Apu.n2 >= 1) {
@@ -338,11 +444,13 @@ var init = func() {
 	
 	display.addPlacement({"node": "sd.screen"});
 	
+	var configGroup = display.createGroup();
 	var conseqGroup = display.createGroup();
 	var engGroup = display.createGroup();
 	var miscGroup = display.createGroup();
 	var statusGroup = display.createGroup();
 	
+	config = canvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
 	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG.svg");
 	misc = canvasStatus.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");

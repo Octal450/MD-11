@@ -899,6 +899,28 @@
 			<fcs n="0">
 				<slat-pos-deg type="double">0</slat-pos-deg>
 			</fcs>
+			<gear n="0">
+				<unit n="0">
+					<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
+				</unit>
+				<unit n="1">
+					<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
+					<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
+				</unit>
+				<unit n="2">
+					<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
+					<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
+				</unit>
+				<unit n="3">
+					<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
+					<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
+				</unit>
+			</gear>
 			<zero type="int">0</zero>
 		</jsbsim>
 	</fdm>

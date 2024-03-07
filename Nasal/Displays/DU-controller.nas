@@ -281,31 +281,43 @@ var DUController = {
 		me.sdPage = p;
 	},
 	showSdPage: func(p) {
-		if (p == "CONSEQ") {
+		if (p == "CONFIG") {
+			canvas_sd.conseq.page.hide();
+			canvas_sd.eng.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+			canvas_sd.config.update();
+			canvas_sd.config.page.show();
+		} else if (p == "CONSEQ") {
+			canvas_sd.config.page.hide();
 			canvas_sd.eng.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
 		} else if (p == "ENG") {
+			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.eng.update();
 			canvas_sd.eng.page.show();
 		} else if (p == "MISC") {
+			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.eng.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
 			canvas_sd.status.page.hide();
 		} else if (p == "STATUS") {
+			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.eng.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
 		} else {
+			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.eng.page.hide();
 			canvas_sd.misc.page.hide();

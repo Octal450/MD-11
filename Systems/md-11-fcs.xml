@@ -1197,6 +1197,7 @@
 			</function>
 		</fcs_function>
 		
+		<!-- Gear Status Indicators -->
 		<switch name="gear/unit[0]/status">
 			<default value="1"/> <!-- In transit -->
 			<test logic="AND" value="0"> <!-- Up -->
@@ -1248,6 +1249,79 @@
 				gear/unit[3]/pos-norm-actuator gt 0.99
 			</test>
 		</switch>
+		
+		<!-- Tire Pressure Calculations -->
+		<fcs_function name="gear/tire-psi-delta">
+			<function>
+				<product>
+					<difference>
+						<property>/environment/temperature-degc</property>
+						<value>15</value> <!-- Input calibrated at 15C -->
+					</difference>
+					<value>0.19</value> <!-- Average -->
+				</product>
+			</function>
+		</fcs_function>
+		
+		<summer name="gear/unit[0]/tire-l-psi">
+			<input>gear/unit[0]/tire-l-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[0]/tire-r-psi">
+			<input>gear/unit[0]/tire-r-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[1]/tire-l-aft-psi">
+			<input>gear/unit[1]/tire-l-aft-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[1]/tire-l-fwd-psi">
+			<input>gear/unit[1]/tire-l-fwd-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[1]/tire-r-aft-psi">
+			<input>gear/unit[1]/tire-r-aft-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[1]/tire-r-fwd-psi">
+			<input>gear/unit[1]/tire-r-fwd-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[2]/tire-l-aft-psi">
+			<input>gear/unit[2]/tire-l-aft-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[2]/tire-l-fwd-psi">
+			<input>gear/unit[2]/tire-l-fwd-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[2]/tire-r-aft-psi">
+			<input>gear/unit[2]/tire-r-aft-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[2]/tire-r-fwd-psi">
+			<input>gear/unit[2]/tire-r-fwd-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[3]/tire-l-psi">
+			<input>gear/unit[3]/tire-l-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
+		
+		<summer name="gear/unit[3]/tire-r-psi">
+			<input>gear/unit[3]/tire-r-psi-input</input>
+			<input>gear/tire-psi-delta</input>
+		</summer>
 	
 	</channel>
 	
