@@ -3,7 +3,11 @@
 # This file manages the DU Canvas hide/showing in an efficient and synchronized way
 
 var DUController = {
-	counterIesi: {
+	BlinkSd: {
+		active: 0,
+		time: -10,
+	},
+	CounterIesi: {
 		secs: 180,
 		time: 0,
 	},
@@ -11,7 +15,7 @@ var DUController = {
 	elapsedSec: 0,
 	errorActive: 0,
 	iesiLcdOn: props.globals.initNode("/instrumentation/iesi/lcd-on", 0, "BOOL"),
-	pwrSource: {
+	PwrSource: {
 		ac1: 0,
 		ac3: 0,
 		dcBat: 0,
@@ -21,16 +25,16 @@ var DUController = {
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
+	updateEad: 0,
+	updateIesi: 0,
 	updateMcdu1: 0,
 	updateMcdu2: 0,
 	updateMcdu3: 0,
-	updatePfd1: 0,
-	updatePfd2: 0,
 	updateNd1: 0,
 	updateNd2: 0,
-	updateEad: 0,
+	updatePfd1: 0,
+	updatePfd2: 0,
 	updateSd: 0,
-	updateIesi: 0,
 	showError: func() {
 		me.errorActive = 1;
 		
@@ -64,14 +68,14 @@ var DUController = {
 	},
 	loop: func() {
 		if (!me.errorActive) {
-			me.pwrSource.ac1 = systems.ELEC.Bus.ac1.getValue();
-			me.pwrSource.ac3 = systems.ELEC.Bus.ac3.getValue();
-			me.pwrSource.dcBat = systems.ELEC.Bus.dcBat.getValue();
-			me.pwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
-			me.pwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
+			me.PwrSource.ac1 = systems.ELEC.Bus.ac1.getValue();
+			me.PwrSource.ac3 = systems.ELEC.Bus.ac3.getValue();
+			me.PwrSource.dcBat = systems.ELEC.Bus.dcBat.getValue();
+			me.PwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
+			me.PwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
 			
 			# L Emer AC
-			if (me.pwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
+			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
 				if (!me.updatePfd1) {
 					me.updatePfd1 = 1;
 					canvas_pfd.pfd1.update();
@@ -84,7 +88,7 @@ var DUController = {
 				}
 			}
 				
-			if (me.pwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
+			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
 					if (me.eadType == "GE") {
@@ -103,7 +107,7 @@ var DUController = {
 				}
 			}
 			
-			if (me.pwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.mcduDimmer[0].getValue() > 0.01) {
+			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.mcduDimmer[0].getValue() > 0.01) {
 				if (!mcdu.unit[0].Blink.active) {
 					if (!me.updateMcdu1) {
 						me.updateMcdu1 = 1;
@@ -119,7 +123,7 @@ var DUController = {
 			}
 			
 			# AC 1
-			if (me.pwrSource.ac1 >= 112 and pts.Instrumentation.Du.duDimmer[1].getValue() > 0.01) {
+			if (me.PwrSource.ac1 >= 112 and pts.Instrumentation.Du.duDimmer[1].getValue() > 0.01) {
 				if (!me.updateNd1) {
 					me.updateNd1 = 1;
 					me.showNd1.setBoolValue(1); # Temporary
@@ -131,7 +135,7 @@ var DUController = {
 				}
 			}
 			
-			if (me.pwrSource.ac1 >= 112 and pts.Instrumentation.Du.mcduDimmer[2].getValue() > 0.01) {
+			if (me.PwrSource.ac1 >= 112 and pts.Instrumentation.Du.mcduDimmer[2].getValue() > 0.01) {
 				if (!mcdu.unit[2].Blink.active) {
 					if (!me.updateMcdu3) {
 						me.updateMcdu3 = 1;
@@ -147,7 +151,7 @@ var DUController = {
 			}
 			
 			# AC 3
-			if (me.pwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[5].getValue() > 0.01) {
+			if (me.PwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[5].getValue() > 0.01) {
 				if (!me.updatePfd2) {
 					me.updatePfd2 = 1;
 					canvas_pfd.pfd2.update();
@@ -160,7 +164,7 @@ var DUController = {
 				}
 			}
 			
-			if (me.pwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[4].getValue() > 0.01) {
+			if (me.PwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[4].getValue() > 0.01) {
 				if (!me.updateNd2) {
 					me.updateNd2 = 1;
 					me.showNd2.setBoolValue(1); # Temporary
@@ -172,25 +176,31 @@ var DUController = {
 				}
 			}
 			
-			if (me.pwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[3].getValue() > 0.01) {
-				me.sdPage = pts.Instrumentation.Sd.selectedSynoptic.getValue();
-				if (!me.updateSd) {
-					me.updateSd = 1;
-					me.updateSdPage(me.sdPage);
+			if (me.BlinkSd.active) {
+				if (me.BlinkSd.time < pts.Sim.Time.elapsedSec.getValue()) {
+					me.BlinkSd.active = 0;
 				}
-				if (me.sdPage != me.sdPageActive) {
-					me.sdPageActive = me.sdPage;
-					me.updateSdPage(me.sdPage);
+			}
+			if (me.PwrSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[3].getValue() > 0.01) {
+				if (!me.BlinkSd.active) {
+					if (!me.updateSd) {
+						me.updateSd = 1;
+						me.showSdPage(me.sdPage);
+					}
+					if (me.sdPage != me.sdPageActive) {
+						me.sdPageActive = me.sdPage;
+						me.showSdPage(me.sdPage);
+					}
 				}
 			} else {
 				if (me.updateSd) {
 					me.updateSd = 0;
-					canvas_sd.eng.page.hide();
+					canvas_sd.canvasBase.hidePages();
 				}
 			}
 			
 			# R Emer AC
-			if (me.pwrSource.rEmerAc >= 112 and pts.Instrumentation.Du.mcduDimmer[1].getValue() > 0.01) {
+			if (me.PwrSource.rEmerAc >= 112 and pts.Instrumentation.Du.mcduDimmer[1].getValue() > 0.01) {
 				if (!mcdu.unit[1].Blink.active) {
 					if (!me.updateMcdu2) {
 						me.updateMcdu2 = 1;
@@ -205,38 +215,38 @@ var DUController = {
 				}
 			}
 			
-			if (me.pwrSource.dcBat >= 24) {
+			if (me.PwrSource.dcBat >= 24) {
 				me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
-				if (me.counterIesi.time == 0) {
+				if (me.CounterIesi.time == 0) {
 					if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-						me.counterIesi.time = me.elapsedSec - 178;
+						me.CounterIesi.time = me.elapsedSec - 178;
 					} else {
-						me.counterIesi.time = me.elapsedSec;
+						me.CounterIesi.time = me.elapsedSec;
 					}
 				}
-				if (me.counterIesi.secs > 0) {
-					me.counterIesi.secs = math.round(me.counterIesi.time + 180 - me.elapsedSec);
+				if (me.CounterIesi.secs > 0) {
+					me.CounterIesi.secs = math.round(me.CounterIesi.time + 180 - me.elapsedSec);
 				} else {
-					me.counterIesi.secs = 0;
+					me.CounterIesi.secs = 0;
 				}
 				
-				#if (pts.Systems.Acconfig.Options.iesiEquipped.getBoolValue()) { # Equipped
+				if (pts.Systems.Acconfig.Options.iesiEquipped.getBoolValue()) { # Equipped
 					if (!me.updateIesi) {
 						me.updateIesi = 1;
 						canvas_iesi.iesi.update();
 						me.iesiLcdOn.setBoolValue(1);
 						canvas_iesi.iesi.page.show();
 					}
-				#} else { # Not equipped
-				#	if (me.updateIesi) {
-				#		me.updateIesi = 0;
-				#		canvas_iesi.iesi.page.hide();
-				#		me.iesiLcdOn.setBoolValue(0);
-				#	}
-				#}
+				} else { # Not equipped
+					if (me.updateIesi) {
+						me.updateIesi = 0;
+						canvas_iesi.iesi.page.hide();
+						me.iesiLcdOn.setBoolValue(0);
+					}
+				}
 			} else {
-				me.counterIesi.secs = 180;
-				me.counterIesi.time = 0;
+				me.CounterIesi.secs = 180;
+				me.CounterIesi.time = 0;
 				
 				if (me.updateIesi) {
 					me.updateIesi = 0;
@@ -245,6 +255,12 @@ var DUController = {
 				}
 			}
 		}
+	},
+	blinkSd: func() {
+		me.BlinkSd.active = 1;
+		me.updateSd = 0;
+		canvas_sd.canvasBase.hidePages();
+		me.BlinkSd.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
 	},
 	hideMcdu: func(n) {
 		if (n == 0) {
@@ -260,12 +276,40 @@ var DUController = {
 			canvas_mcdu.mcdu3.page.hide();
 		}
 	},
-	updateSdPage: func(p) {
-		if (p == "ENG") {
+	setSdPage: func(p) {
+		me.blinkSd();
+		me.sdPage = p;
+	},
+	showSdPage: func(p) {
+		if (p == "CONSEQ") {
+			canvas_sd.eng.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+			canvas_sd.conseq.update();
+			canvas_sd.conseq.page.show();
+		} else if (p == "ENG") {
+			canvas_sd.conseq.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
 			canvas_sd.eng.update();
 			canvas_sd.eng.page.show();
-		} else {
+		} else if (p == "MISC") {
+			canvas_sd.conseq.page.hide();
 			canvas_sd.eng.page.hide();
+			canvas_sd.misc.update();
+			canvas_sd.misc.page.show();
+			canvas_sd.status.page.hide();
+		} else if (p == "STATUS") {
+			canvas_sd.conseq.page.hide();
+			canvas_sd.eng.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.update();
+			canvas_sd.status.page.show();
+		} else {
+			canvas_sd.conseq.page.hide();
+			canvas_sd.eng.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
 		}
 	},
 };

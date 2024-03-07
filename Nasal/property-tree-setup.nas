@@ -250,7 +250,6 @@ var Instrumentation = {
 			oilQtyCline: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[2]")],
 			oilTemp: [props.globals.getNode("/instrumentation/sd/eng/oil-temp[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[2]")],
 		},
-		selectedSynoptic: props.globals.getNode("/instrumentation/sd/selected-synoptic"),
 	},
 };
 

@@ -171,7 +171,7 @@ var canvasIesi = {
 		}
 		
 		# AI
-		if (systems.DUController.counterIesi.secs <= 0) {
+		if (systems.DUController.CounterIesi.secs <= 0) {
 			Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 			
@@ -189,7 +189,7 @@ var canvasIesi = {
 			me["AI_bank_mask"].hide();
 			me["AI_horizon"].hide();
 			me["AI_init"].show();
-			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.counterIesi.secs) ~ " SECS");
+			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIesi.secs) ~ " SECS");
 		}
 		
 		# ALT

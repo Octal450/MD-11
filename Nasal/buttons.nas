@@ -34,7 +34,7 @@ var variousReset = func() {
 	pts.Instrumentation.Du.irsFo.setBoolValue(0);
 	pts.Instrumentation.Efis.Mfd.trueNorth[0].setBoolValue(0);
 	pts.Instrumentation.Efis.Mfd.trueNorth[1].setBoolValue(0);
-	pts.Instrumentation.Sd.selectedSynoptic.setValue("ENG");
+	systems.DUController.sdPage = "ENG";
 }
 
 var apPanel = {

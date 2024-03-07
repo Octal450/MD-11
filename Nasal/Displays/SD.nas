@@ -2,10 +2,10 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var display = nil;
+var conseq = nil;
 var eng = nil;
-
-# Slow update enable
-var updateSd = 0;
+var misc = nil;
+var status = nil;
 
 var Value = {
 	Apu: {
@@ -66,16 +66,42 @@ var canvasBase = {
 	},
 	setup: func() {
 		# Hide the pages by default
-		eng.page.hide();
+		me.hidePages();
 		
 		eng.setup();
 	},
+	hidePages: func() {
+		conseq.page.hide();
+		eng.page.hide();
+		misc.page.hide();
+		status.page.hide();
+	},
 	update: func() {
 		if (systems.DUController.updateSd) {
-			if (systems.DUController.sdPage == "ENG") {
+			if (systems.DUController.sdPage == "CONSEQ") {
+				conseq.update();
+			} else if (systems.DUController.sdPage == "ENG") {
 				eng.update();
+			} else if (systems.DUController.sdPage == "MISC") {
+				misc.update();
+			} else if (systems.DUController.sdPage == "STATUS") {
+				status.update();
 			}
 		}
+	},
+};
+
+var canvasConseq = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasConseq, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return [];
+	},
+	update: func() {
 	},
 };
 
@@ -274,6 +300,34 @@ var canvasEng = {
 	},
 };
 
+var canvasMisc = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasMisc, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return [];
+	},
+	update: func() {
+	},
+};
+
+var canvasStatus = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasStatus, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return [];
+	},
+	update: func() {
+	},
+};
+
 var init = func() {
 	display = canvas.new({
 		"name": "SD",
@@ -284,9 +338,15 @@ var init = func() {
 	
 	display.addPlacement({"node": "sd.screen"});
 	
+	var conseqGroup = display.createGroup();
 	var engGroup = display.createGroup();
+	var miscGroup = display.createGroup();
+	var statusGroup = display.createGroup();
 	
+	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
 	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG.svg");
+	misc = canvasStatus.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
+	status = canvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");
 	
 	canvasBase.setup();
 	update.start();

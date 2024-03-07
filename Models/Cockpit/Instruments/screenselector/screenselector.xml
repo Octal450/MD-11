@@ -10,6 +10,7 @@
 		<name>Panel lighting</name>
 		<type>material</type>
 		<object-name>Labels</object-name>
+		<object-name>Labels.btn</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -184,6 +185,162 @@
 				<wrap>false</wrap>
 			</binding>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>conseq.btn</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+					systems.DUController.setSdPage("CONSEQ");
+					libraries.Sound.btn2();
+				</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/screensel/conseq</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/screensel/conseq</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>conseq.btn</object-name>
+		<object-name>conseq.label</object-name>
+		<property>controls/cockpit/screensel/conseq</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>eng.btn</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+					systems.DUController.setSdPage("ENG");
+					libraries.Sound.btn2();
+				</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/screensel/eng</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/screensel/eng</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>eng.btn</object-name>
+		<object-name>eng.label</object-name>
+		<property>controls/cockpit/screensel/eng</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>misc.btn</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+					systems.DUController.setSdPage("MISC");
+					libraries.Sound.btn2();
+				</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/screensel/misc</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/screensel/misc</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>misc.btn</object-name>
+		<object-name>misc.label</object-name>
+		<property>controls/cockpit/screensel/misc</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>status.btn</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+					systems.DUController.setSdPage("STATUS");
+					libraries.Sound.btn2();
+				</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/screensel/status</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/screensel/status</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>status.btn</object-name>
+		<object-name>status.label</object-name>
+		<property>controls/cockpit/screensel/status</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 
 </PropertyList>
