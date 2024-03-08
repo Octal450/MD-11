@@ -117,15 +117,23 @@ var canvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorLDown", "ElevatorLUp", "ElevatorRDown", "ElevatorRUp", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox", "LeftPressLAft",
-		"LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight", "RudderUpperLeft",
-		"RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorLDown", "ElevatorLUp", "ElevatorRDown", "ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox",
+		"LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight",
+		"RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		# Unsimulated stuff, fix later
 		me["StabBox"].hide();
 	},
 	update: func() {
+		# Elevator Feel Speed
+		if (systems.FCC.ElevatorFeel.auto.getBoolValue()) {
+			me["ELFGroup"].hide();
+		} else {
+			me["ELFNeedle"].setTranslation(0, (systems.FCC.ElevatorFeel.speed.getValue() - 120) * -0.7166055);
+			me["ELFGroup"].show();
+		}
+		
 		# Stab
 		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
 		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);

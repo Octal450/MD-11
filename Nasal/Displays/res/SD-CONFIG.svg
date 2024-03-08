@@ -35,6 +35,13 @@
        inkscape:vp_z="1024 : 512 : 1"
        inkscape:persp3d-origin="512 : 341.33333 : 1"
        id="perspective5101" />
+    <pattern
+       y="0"
+       x="0"
+       height="6"
+       width="6"
+       patternUnits="userSpaceOnUse"
+       id="EMFhbasepattern" />
   </defs>
   <sodipodi:namedview
      pagecolor="#000000"
@@ -45,15 +52,15 @@
      guidetolerance="20"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="1536"
-     inkscape:window-height="793"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.5"
-     inkscape:cx="60.141644"
-     inkscape:cy="746.29514"
-     inkscape:window-x="-8"
-     inkscape:window-y="223"
+     inkscape:zoom="1"
+     inkscape:cx="625.1249"
+     inkscape:cy="1096.8112"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2"
      showguides="false"
@@ -362,19 +369,19 @@
        style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <text
-     transform="scale(0.87620832,1.1412811)"
+     transform="scale(0.87620963,1.1412794)"
      inkscape:label="#text4415"
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:28.03866577px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="836.58942"
-     y="131.05171"
-     id="text4474"
+     x="837.92584"
+     y="131.26134"
+     id="text4313"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
-       id="tspan4476"
-       x="836.58942"
-       y="131.05171"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">STAB</tspan></text>
+       id="tspan4315"
+       x="837.92584"
+       y="131.26134"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.9411068px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">STAB</tspan></text>
   <text
      sodipodi:linespacing="125%"
      id="StabUnit"
@@ -992,4 +999,103 @@
        x="770.05646"
        id="tspan5147"
        sodipodi:role="line">00</tspan></text>
+  <g
+     id="ELFGroup"
+     inkscape:label="#g4382">
+    <rect
+       transform="matrix(0,-1,-1,0,0,0)"
+       style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4294"
+       width="156"
+       height="8.1396942"
+       x="-240.98801"
+       y="-254.57642" />
+    <path
+       inkscape:label="#rect4516"
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="ELFNeedle"
+       d="m 272.05803,240.988 0,-27.01076 c -6.15,4.50178 -12.3,9.00355 -18.45,13.50534 z"
+       style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       transform="scale(0.87620963,1.1412794)"
+       inkscape:label="#text4415"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:28.03866577px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="285.35992"
+       y="58.887306"
+       id="text4348"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4350"
+         x="285.35992"
+         y="58.887306"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.9411068px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">ELF  SPD</tspan></text>
+    <rect
+       y="-237.39874"
+       x="-240.98801"
+       height="8.1396942"
+       width="27.011"
+       id="rect4352"
+       style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0,-1,-1,0,0,0)" />
+    <rect
+       transform="matrix(0,-1,-1,0,0,0)"
+       style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4358"
+       width="27.011"
+       height="8.1396942"
+       x="-183.65956"
+       y="-237.39874" />
+    <rect
+       y="-237.39874"
+       x="-111.99901"
+       height="8.1396942"
+       width="27.011"
+       id="rect4364"
+       style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0,-1,-1,0,0,0)" />
+    <text
+       transform="scale(0.97755877,1.0229564)"
+       inkscape:label="#text4415"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.20000076px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="203.6577"
+       y="234.15047"
+       id="text4370"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4372"
+         x="203.6577"
+         y="234.15047"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.20000076px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">120</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4374"
+       y="178.10855"
+       x="203.6577"
+       style="font-style:normal;font-weight:normal;font-size:34.20000076px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:label="#text4415"
+       transform="scale(0.97755877,1.0229564)"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.20000076px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff"
+         y="178.10855"
+         x="203.6577"
+         id="tspan4376"
+         sodipodi:role="line">200</tspan></text>
+    <text
+       transform="scale(0.97755877,1.0229564)"
+       inkscape:label="#text4415"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:34.20000076px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="203.6577"
+       y="108.05614"
+       id="text4378"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4380"
+         x="203.6577"
+         y="108.05614"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.20000076px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">300</tspan></text>
+  </g>
 </svg>

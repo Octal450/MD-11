@@ -381,6 +381,10 @@ var FADEC = {
 
 # Flight Control Computers
 var FCC = {
+	ElevatorFeel: {
+		auto: props.globals.getNode("/fdm/jsbsim/fcc/elevator-feel/auto"),
+		speed: props.globals.getNode("/fdm/jsbsim/fcc/elevator-feel/speed"),
+	},
 	Fail: {
 		elevatorFeel: props.globals.getNode("/systems/failures/fcc/elevator-feel"),
 		flapLimit: props.globals.getNode("/systems/failures/fcc/flap-limit"),
