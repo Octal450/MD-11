@@ -279,6 +279,61 @@
 	
 	</channel>
 	
+	<channel name="Systems Display" execrate="2">
+		
+		<!-- CONFIG -->
+		<fcs_function name="/instrumentation/sd/config/aileron-l">
+			<function>
+				<avg>
+					<property>hydraulics/aileron-in-l/final-deg</property>
+					<table>
+						<independentVar lookup="row">hydraulics/aileron-out-l/final-deg</independentVar>
+						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
+						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
+						<tableData breakPoint="0">
+							     0   1
+							-20 -20 -20
+							  0   0   0
+							 20  20  20
+						</tableData>
+						<tableData breakPoint="1"> <!-- Removes the effect of the 4 degree droop with flaps up -->
+							     0   1
+							-16 -20 -20
+							  4   0   0
+							 20  20  20
+						</tableData>
+					</table>
+				</avg>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/config/aileron-r">
+			<function>
+				<avg>
+					<property>hydraulics/aileron-in-r/final-deg</property>
+					<table>
+						<independentVar lookup="row">hydraulics/aileron-out-r/final-deg</independentVar>
+						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
+						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
+						<tableData breakPoint="0">
+							     0   1
+							-20 -20 -20
+							  0   0   0
+							 20  20  20
+						</tableData>
+						<tableData breakPoint="1"> <!-- Removes the effect of the 4 degree droop with flaps up -->
+							     0   1
+							-16 -20 -20
+							  4   0   0
+							 20  20  20
+						</tableData>
+					</table>
+				</avg>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Standby Airspeed/Altimeter" execrate="2">
 		
 		<switch name="/instrumentation/stby-combo/power-avail">

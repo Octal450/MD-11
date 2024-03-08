@@ -244,6 +244,10 @@ var Instrumentation = {
 		vsDigit: props.globals.initNode("/instrumentation/pfd/vs-digit", 0, "DOUBLE"),
 	},
 	Sd: {
+		Config: {
+			aileronL: props.globals.getNode("/instrumentation/sd/config/aileron-l"),
+			aileronR: props.globals.getNode("/instrumentation/sd/config/aileron-r"),
+		},
 		Eng: {
 			oilPsi: [props.globals.getNode("/instrumentation/sd/eng/oil-psi[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[2]")],
 			oilQty: [props.globals.getNode("/instrumentation/sd/eng/oil-qty[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[2]")],

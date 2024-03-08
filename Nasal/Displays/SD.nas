@@ -22,6 +22,8 @@ var Value = {
 		type: "GE",
 	},
 	Fctl: {
+		aileronL: 0,
+		aileronR: 0,
 		stab: 0,
 		stabText: 0,
 	},
@@ -107,8 +109,8 @@ var canvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["CenterPressL", "CenterPressR", "CenterStatus", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd",
-		"RightStatus", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd",
+		"RightStatus", "SlatExt", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		# Unsimulated stuff, fix later
@@ -126,6 +128,63 @@ var canvasConfig = {
 			me["StabUnit"].setText("AND");
 		} else {
 			me["StabUnit"].setText("ANU");
+		}
+		
+		# Ailerons
+		Value.Fctl.aileronL = pts.Instrumentation.Sd.Config.aileronL.getValue();
+		Value.Fctl.aileronR = pts.Instrumentation.Sd.Config.aileronR.getValue();
+		
+		if (Value.Fctl.aileronL <= -1) {
+			me["AileronLDown"].hide();
+			if (Value.Fctl.aileronL <= -19.9) {
+				me["AileronLUp"].setColorFill(0,1,0);
+			} else {
+				me["AileronLUp"].setColorFill(0,0,0);
+			}
+			me["AileronLUp"].setTranslation(0, math.clamp(Value.Fctl.aileronL, -20, 0) * 2.04915);
+			me["AileronLUp"].show();
+		} else if (Value.Fctl.aileronL >= 1) {
+			me["AileronLUp"].hide();
+			if (Value.Fctl.aileronL >= 19.9) {
+				me["AileronLDown"].setColorFill(0,1,0);
+			} else {
+				me["AileronLDown"].setColorFill(0,0,0);
+			}
+			me["AileronLDown"].setTranslation(0, math.clamp(Value.Fctl.aileronL, 0, 20) * 2.04915);
+			me["AileronLDown"].show();
+		} else {
+			me["AileronLDown"].hide();
+			me["AileronLUp"].hide();
+		}
+		
+		if (Value.Fctl.aileronR <= -1) {
+			me["AileronRDown"].hide();
+			if (Value.Fctl.aileronR <= -19.9) {
+				me["AileronRUp"].setColorFill(0,1,0);
+			} else {
+				me["AileronRUp"].setColorFill(0,0,0);
+			}
+			me["AileronRUp"].setTranslation(0, math.clamp(Value.Fctl.aileronR, -20, 0) * 2.04915);
+			me["AileronRUp"].show();
+		} else if (Value.Fctl.aileronR >= 1) {
+			me["AileronRUp"].hide();
+			if (Value.Fctl.aileronR >= 19.9) {
+				me["AileronRDown"].setColorFill(0,1,0);
+			} else {
+				me["AileronRDown"].setColorFill(0,0,0);
+			}
+			me["AileronRDown"].setTranslation(0, math.clamp(Value.Fctl.aileronR, 0, 20) * 2.04915);
+			me["AileronRDown"].show();
+		} else {
+			me["AileronRDown"].hide();
+			me["AileronRUp"].hide();
+		}
+		
+		# Flaps and Slats
+		if (pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue() >= 0.1) {
+			me["SlatExt"].show();
+		} else {
+			me["SlatExt"].hide();
 		}
 		
 		# Tire Pressure
