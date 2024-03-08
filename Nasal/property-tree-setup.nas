@@ -101,6 +101,9 @@ var Fdm = {
 			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),
 		},
 		Hydraulics: {
+			DeflectedAileron: {
+				active: props.globals.getNode("/fdm/jsbsim/hydraulics/deflected-aileron/active"),
+			},
 			RudderLower: {
 				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-lower/final-deg"),
 			},

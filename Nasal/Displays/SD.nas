@@ -22,6 +22,7 @@ var Value = {
 		type: "GE",
 	},
 	Fctl: {
+		aileronDeflGreen: 0,
 		aileronL: 0,
 		aileronR: 0,
 		elevatorL: 0,
@@ -139,12 +140,18 @@ var canvasConfig = {
 		}
 		
 		# Ailerons
+		if (pts.Fdm.JSBsim.Hydraulics.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
+			Value.Fctl.aileronDeflGreen = -8.6;
+		} else {
+			Value.Fctl.aileronDeflGreen = -19.8;
+		}
+		
 		Value.Fctl.aileronL = pts.Instrumentation.Sd.Config.aileronL.getValue();
 		Value.Fctl.aileronR = pts.Instrumentation.Sd.Config.aileronR.getValue();
 		
 		if (Value.Fctl.aileronL <= -0.5) {
 			me["AileronLDown"].hide();
-			if (Value.Fctl.aileronL <= -19.8) {
+			if (Value.Fctl.aileronL <= Value.Fctl.aileronDeflGreen) {
 				me["AileronLUp"].setColorFill(0,1,0);
 			} else {
 				me["AileronLUp"].setColorFill(0,0,0);
@@ -167,7 +174,7 @@ var canvasConfig = {
 		
 		if (Value.Fctl.aileronR <= -0.5) {
 			me["AileronRDown"].hide();
-			if (Value.Fctl.aileronR <= -19.8) {
+			if (Value.Fctl.aileronR <= Value.Fctl.aileronDeflGreen) {
 				me["AileronRUp"].setColorFill(0,1,0);
 			} else {
 				me["AileronRUp"].setColorFill(0,0,0);
