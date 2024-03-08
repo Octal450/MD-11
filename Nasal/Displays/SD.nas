@@ -24,6 +24,8 @@ var Value = {
 	Fctl: {
 		aileronL: 0,
 		aileronR: 0,
+		elevatorL: 0,
+		elevatorR: 0,
 		flapDeg: 0,
 		rudderLower: 0,
 		rudderUpper: 0,
@@ -114,9 +116,9 @@ var canvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus",
-		"NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight", "RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab",
-		"StabBox", "StabNeedle", "StabUnit"];
+		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorLDown", "ElevatorLUp", "ElevatorRDown", "ElevatorRUp", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox", "LeftPressLAft",
+		"LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight", "RudderUpperLeft",
+		"RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		# Unsimulated stuff, fix later
@@ -140,18 +142,18 @@ var canvasConfig = {
 		Value.Fctl.aileronL = pts.Instrumentation.Sd.Config.aileronL.getValue();
 		Value.Fctl.aileronR = pts.Instrumentation.Sd.Config.aileronR.getValue();
 		
-		if (Value.Fctl.aileronL <= -1) {
+		if (Value.Fctl.aileronL <= -0.5) {
 			me["AileronLDown"].hide();
-			if (Value.Fctl.aileronL <= -19.9) {
+			if (Value.Fctl.aileronL <= -19.8) {
 				me["AileronLUp"].setColorFill(0,1,0);
 			} else {
 				me["AileronLUp"].setColorFill(0,0,0);
 			}
 			me["AileronLUp"].setTranslation(0, math.clamp(Value.Fctl.aileronL, -20, 0) * 2.04915);
 			me["AileronLUp"].show();
-		} else if (Value.Fctl.aileronL >= 1) {
+		} else if (Value.Fctl.aileronL >= 0.5) {
 			me["AileronLUp"].hide();
-			if (Value.Fctl.aileronL >= 19.9) {
+			if (Value.Fctl.aileronL >= 19.8) {
 				me["AileronLDown"].setColorFill(0,1,0);
 			} else {
 				me["AileronLDown"].setColorFill(0,0,0);
@@ -163,18 +165,18 @@ var canvasConfig = {
 			me["AileronLUp"].hide();
 		}
 		
-		if (Value.Fctl.aileronR <= -1) {
+		if (Value.Fctl.aileronR <= -0.5) {
 			me["AileronRDown"].hide();
-			if (Value.Fctl.aileronR <= -19.9) {
+			if (Value.Fctl.aileronR <= -19.8) {
 				me["AileronRUp"].setColorFill(0,1,0);
 			} else {
 				me["AileronRUp"].setColorFill(0,0,0);
 			}
 			me["AileronRUp"].setTranslation(0, math.clamp(Value.Fctl.aileronR, -20, 0) * 2.04915);
 			me["AileronRUp"].show();
-		} else if (Value.Fctl.aileronR >= 1) {
+		} else if (Value.Fctl.aileronR >= 0.5) {
 			me["AileronRUp"].hide();
-			if (Value.Fctl.aileronR >= 19.9) {
+			if (Value.Fctl.aileronR >= 19.8) {
 				me["AileronRDown"].setColorFill(0,1,0);
 			} else {
 				me["AileronRDown"].setColorFill(0,0,0);
@@ -190,8 +192,8 @@ var canvasConfig = {
 		Value.Fctl.spoilerL = pts.Fdm.JSBsim.Fcs.spoilerL.getValue();
 		Value.Fctl.spoilerR = pts.Fdm.JSBsim.Fcs.spoilerR.getValue();
 		
-		if (Value.Fctl.spoilerL >= 1) {
-			if (Value.Fctl.spoilerL >= 59.7) {
+		if (Value.Fctl.spoilerL >= 1.5) {
+			if (Value.Fctl.spoilerL >= 59.4) {
 				me["SpoilerL"].setColorFill(0,1,0);
 			} else {
 				me["SpoilerL"].setColorFill(0,0,0);
@@ -202,8 +204,8 @@ var canvasConfig = {
 			me["SpoilerL"].hide();
 		}
 		
-		if (Value.Fctl.spoilerR >= 1) {
-			if (Value.Fctl.spoilerR >= 59.7) {
+		if (Value.Fctl.spoilerR >= 1.5) {
+			if (Value.Fctl.spoilerR >= 59.4) {
 				me["SpoilerR"].setColorFill(0,1,0);
 			} else {
 				me["SpoilerR"].setColorFill(0,0,0);
@@ -214,22 +216,72 @@ var canvasConfig = {
 			me["SpoilerR"].hide();
 		}
 		
+		# Elevators
+		Value.Fctl.elevatorL = pts.Instrumentation.Sd.Config.elevatorL.getValue();
+		Value.Fctl.elevatorR = pts.Instrumentation.Sd.Config.elevatorR.getValue();
+		
+		if (Value.Fctl.elevatorL <= -0.5) {
+			me["ElevatorLDown"].hide();
+			if (Value.Fctl.elevatorL <= -19.9) {
+				me["ElevatorLUp"].setColorFill(0,1,0);
+			} else {
+				me["ElevatorLUp"].setColorFill(0,0,0);
+			}
+			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -20.1, 0) * 1.29269);
+			me["ElevatorLUp"].show();
+		} else if (Value.Fctl.elevatorL >= 0.5) {
+			me["ElevatorLUp"].hide();
+			if (Value.Fctl.elevatorL >= 17) {
+				me["ElevatorLDown"].setColorFill(0,1,0);
+			} else {
+				me["ElevatorLDown"].setColorFill(0,0,0);
+			}
+			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 17.2) * 1.29269);
+			me["ElevatorLDown"].show();
+		} else {
+			me["ElevatorLDown"].hide();
+			me["ElevatorLUp"].hide();
+		}
+		
+		if (Value.Fctl.elevatorR <= -0.5) {
+			me["ElevatorRDown"].hide();
+			if (Value.Fctl.elevatorR <= -19.9) {
+				me["ElevatorRUp"].setColorFill(0,1,0);
+			} else {
+				me["ElevatorRUp"].setColorFill(0,0,0);
+			}
+			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -20.1, 0) * 1.29269);
+			me["ElevatorRUp"].show();
+		} else if (Value.Fctl.elevatorR >= 0.5) {
+			me["ElevatorRUp"].hide();
+			if (Value.Fctl.elevatorR >= 17) {
+				me["ElevatorRDown"].setColorFill(0,1,0);
+			} else {
+				me["ElevatorRDown"].setColorFill(0,0,0);
+			}
+			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 17.2) * 1.29269);
+			me["ElevatorRDown"].show();
+		} else {
+			me["ElevatorRDown"].hide();
+			me["ElevatorRUp"].hide();
+		}
+		
 		# Rudders
 		Value.Fctl.rudderUpper = pts.Fdm.JSBsim.Hydraulics.RudderUpper.finalDeg.getValue();
 		Value.Fctl.rudderLower = pts.Fdm.JSBsim.Hydraulics.RudderLower.finalDeg.getValue();
 		
-		if (Value.Fctl.rudderUpper <= -1) {
+		if (Value.Fctl.rudderUpper <= -0.8) {
 			me["RudderUpperRight"].hide();
-			if (Value.Fctl.rudderUpper <= -29.8) {
+			if (Value.Fctl.rudderUpper <= -29.7) {
 				me["RudderUpperLeft"].setColorFill(0,1,0);
 			} else {
 				me["RudderUpperLeft"].setColorFill(0,0,0);
 			}
 			me["RudderUpperLeft"].setTranslation(math.clamp(Value.Fctl.rudderUpper, -30, 0) * 0.69943, 0);
 			me["RudderUpperLeft"].show();
-		} else if (Value.Fctl.rudderUpper >= 1) {
+		} else if (Value.Fctl.rudderUpper >= 0.8) {
 			me["RudderUpperLeft"].hide();
-			if (Value.Fctl.rudderUpper >= 29.8) {
+			if (Value.Fctl.rudderUpper >= 29.7) {
 				me["RudderUpperRight"].setColorFill(0,1,0);
 			} else {
 				me["RudderUpperRight"].setColorFill(0,0,0);
@@ -241,18 +293,18 @@ var canvasConfig = {
 			me["RudderUpperRight"].hide();
 		}
 		
-		if (Value.Fctl.rudderLower <= -1) {
+		if (Value.Fctl.rudderLower <= -0.8) {
 			me["RudderLowerRight"].hide();
-			if (Value.Fctl.rudderLower <= -29.8) {
+			if (Value.Fctl.rudderLower <= -29.7) {
 				me["RudderLowerLeft"].setColorFill(0,1,0);
 			} else {
 				me["RudderLowerLeft"].setColorFill(0,0,0);
 			}
 			me["RudderLowerLeft"].setTranslation(math.clamp(Value.Fctl.rudderLower, -30, 0) * 0.69943, 0);
 			me["RudderLowerLeft"].show();
-		} else if (Value.Fctl.rudderLower >= 1) {
+		} else if (Value.Fctl.rudderLower >= 0.8) {
 			me["RudderLowerLeft"].hide();
-			if (Value.Fctl.rudderLower >= 29.8) {
+			if (Value.Fctl.rudderLower >= 29.7) {
 				me["RudderLowerRight"].setColorFill(0,1,0);
 			} else {
 				me["RudderLowerRight"].setColorFill(0,0,0);

@@ -331,6 +331,24 @@
 				</avg>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/config/elevator-l">
+			<function>
+				<avg>
+					<property>hydraulics/elevator-in-l/final-deg</property>
+					<property>hydraulics/elevator-out-l/final-deg</property>
+				</avg>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/config/elevator-r">
+			<function>
+				<avg>
+					<property>hydraulics/elevator-in-r/final-deg</property>
+					<property>hydraulics/elevator-out-r/final-deg</property>
+				</avg>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

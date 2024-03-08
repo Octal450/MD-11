@@ -255,6 +255,8 @@ var Instrumentation = {
 		Config: {
 			aileronL: props.globals.getNode("/instrumentation/sd/config/aileron-l"),
 			aileronR: props.globals.getNode("/instrumentation/sd/config/aileron-r"),
+			elevatorL: props.globals.getNode("/instrumentation/sd/config/elevator-l"),
+			elevatorR: props.globals.getNode("/instrumentation/sd/config/elevator-r"),
 		},
 		Eng: {
 			oilPsi: [props.globals.getNode("/instrumentation/sd/eng/oil-psi[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[2]")],
