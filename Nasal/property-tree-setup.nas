@@ -94,6 +94,8 @@ var Fdm = {
 		Fcs: {
 			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
 			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
+			spoilerL: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-left-deg"),
+			spoilerR: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-right-deg"),
 		},
 		Gear: {
 			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),

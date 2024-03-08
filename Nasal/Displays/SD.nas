@@ -24,6 +24,9 @@ var Value = {
 	Fctl: {
 		aileronL: 0,
 		aileronR: 0,
+		flapDeg: 0,
+		spoilerL: 0,
+		spoilerR: 0,
 		stab: 0,
 		stabText: 0,
 	},
@@ -109,8 +112,8 @@ var canvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd",
-		"RightStatus", "SlatExt", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus",
+		"NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		# Unsimulated stuff, fix later
@@ -180,11 +183,54 @@ var canvasConfig = {
 			me["AileronRUp"].hide();
 		}
 		
+		# Spoilers
+		Value.Fctl.spoilerL = pts.Fdm.JSBsim.Fcs.spoilerL.getValue();
+		Value.Fctl.spoilerR = pts.Fdm.JSBsim.Fcs.spoilerR.getValue();
+		
+		if (Value.Fctl.spoilerL >= 1) {
+			if (Value.Fctl.spoilerL >= 59.9) {
+				me["SpoilerL"].setColorFill(0,1,0);
+			} else {
+				me["SpoilerL"].setColorFill(0,0,0);
+			}
+			me["SpoilerL"].setTranslation(0, Value.Fctl.spoilerL * -0.68305);
+			me["SpoilerL"].show();
+		} else {
+			me["SpoilerL"].hide();
+		}
+		
+		if (Value.Fctl.spoilerR >= 1) {
+			if (Value.Fctl.spoilerR >= 59.9) {
+				me["SpoilerR"].setColorFill(0,1,0);
+			} else {
+				me["SpoilerR"].setColorFill(0,0,0);
+			}
+			me["SpoilerR"].setTranslation(0, Value.Fctl.spoilerR * -0.68305);
+			me["SpoilerR"].show();
+		} else {
+			me["SpoilerR"].hide();
+		}
+		
 		# Flaps and Slats
 		if (pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue() >= 0.1) {
 			me["SlatExt"].show();
 		} else {
 			me["SlatExt"].hide();
+		}
+		
+		Value.Fctl.flapDeg = math.round(pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue());
+		if (Value.Fctl.flapDeg >= 0.1) {
+			me["Flap1"].setText(sprintf("%d", Value.Fctl.flapDeg));
+			me["Flap2"].setText(sprintf("%d", Value.Fctl.flapDeg));
+			me["Flap3"].setText(sprintf("%d", Value.Fctl.flapDeg));
+			me["Flap4"].setText(sprintf("%d", Value.Fctl.flapDeg));
+			me["FlapBox"].show();
+		} else {
+			me["Flap1"].setText("");
+			me["Flap2"].setText("");
+			me["Flap3"].setText("");
+			me["Flap4"].setText("");
+			me["FlapBox"].hide();
 		}
 		
 		# Tire Pressure
