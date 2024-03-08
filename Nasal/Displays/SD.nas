@@ -25,6 +25,8 @@ var Value = {
 		aileronL: 0,
 		aileronR: 0,
 		flapDeg: 0,
+		rudderLower: 0,
+		rudderUpper: 0,
 		spoilerL: 0,
 		spoilerR: 0,
 		stab: 0,
@@ -113,7 +115,8 @@ var canvasConfig = {
 	},
 	getKeys: func() {
 		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus",
-		"NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		"NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight", "RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab",
+		"StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		# Unsimulated stuff, fix later
@@ -188,7 +191,7 @@ var canvasConfig = {
 		Value.Fctl.spoilerR = pts.Fdm.JSBsim.Fcs.spoilerR.getValue();
 		
 		if (Value.Fctl.spoilerL >= 1) {
-			if (Value.Fctl.spoilerL >= 59.9) {
+			if (Value.Fctl.spoilerL >= 59.7) {
 				me["SpoilerL"].setColorFill(0,1,0);
 			} else {
 				me["SpoilerL"].setColorFill(0,0,0);
@@ -200,7 +203,7 @@ var canvasConfig = {
 		}
 		
 		if (Value.Fctl.spoilerR >= 1) {
-			if (Value.Fctl.spoilerR >= 59.9) {
+			if (Value.Fctl.spoilerR >= 59.7) {
 				me["SpoilerR"].setColorFill(0,1,0);
 			} else {
 				me["SpoilerR"].setColorFill(0,0,0);
@@ -209,6 +212,56 @@ var canvasConfig = {
 			me["SpoilerR"].show();
 		} else {
 			me["SpoilerR"].hide();
+		}
+		
+		# Rudders
+		Value.Fctl.rudderUpper = pts.Fdm.JSBsim.Hydraulics.RudderUpper.finalDeg.getValue();
+		Value.Fctl.rudderLower = pts.Fdm.JSBsim.Hydraulics.RudderLower.finalDeg.getValue();
+		
+		if (Value.Fctl.rudderUpper <= -1) {
+			me["RudderUpperRight"].hide();
+			if (Value.Fctl.rudderUpper <= -29.8) {
+				me["RudderUpperLeft"].setColorFill(0,1,0);
+			} else {
+				me["RudderUpperLeft"].setColorFill(0,0,0);
+			}
+			me["RudderUpperLeft"].setTranslation(math.clamp(Value.Fctl.rudderUpper, -30, 0) * 0.69943, 0);
+			me["RudderUpperLeft"].show();
+		} else if (Value.Fctl.rudderUpper >= 1) {
+			me["RudderUpperLeft"].hide();
+			if (Value.Fctl.rudderUpper >= 29.8) {
+				me["RudderUpperRight"].setColorFill(0,1,0);
+			} else {
+				me["RudderUpperRight"].setColorFill(0,0,0);
+			}
+			me["RudderUpperRight"].setTranslation(math.clamp(Value.Fctl.rudderUpper, 0, 30) * 0.69943, 0);
+			me["RudderUpperRight"].show();
+		} else {
+			me["RudderUpperLeft"].hide();
+			me["RudderUpperRight"].hide();
+		}
+		
+		if (Value.Fctl.rudderLower <= -1) {
+			me["RudderLowerRight"].hide();
+			if (Value.Fctl.rudderLower <= -29.8) {
+				me["RudderLowerLeft"].setColorFill(0,1,0);
+			} else {
+				me["RudderLowerLeft"].setColorFill(0,0,0);
+			}
+			me["RudderLowerLeft"].setTranslation(math.clamp(Value.Fctl.rudderLower, -30, 0) * 0.69943, 0);
+			me["RudderLowerLeft"].show();
+		} else if (Value.Fctl.rudderLower >= 1) {
+			me["RudderLowerLeft"].hide();
+			if (Value.Fctl.rudderLower >= 29.8) {
+				me["RudderLowerRight"].setColorFill(0,1,0);
+			} else {
+				me["RudderLowerRight"].setColorFill(0,0,0);
+			}
+			me["RudderLowerRight"].setTranslation(math.clamp(Value.Fctl.rudderLower, 0, 30) * 0.69943, 0);
+			me["RudderLowerRight"].show();
+		} else {
+			me["RudderLowerLeft"].hide();
+			me["RudderLowerRight"].hide();
 		}
 		
 		# Flaps and Slats

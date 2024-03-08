@@ -101,6 +101,12 @@ var Fdm = {
 			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),
 		},
 		Hydraulics: {
+			RudderLower: {
+				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-lower/final-deg"),
+			},
+			RudderUpper: {
+				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-upper/final-deg"),
+			},
 			Stabilizer: {
 				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/stabilizer/final-deg"),
 			},
