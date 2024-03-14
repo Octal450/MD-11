@@ -528,7 +528,7 @@
 			<difference>
 				<value>360</value>
 				<product>
-					<property>controls/cockpit/bank-limit</property>
+					<property>controls/cockpit/fcp/bank-limit</property>
 					<value>60</value>
 				</product>
 			</difference>
@@ -714,7 +714,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AfsOvrd1</object-name>
-		<property>controls/cockpit/afs-ovrd-1</property>
+		<property>controls/cockpit/fcp/afs-ovrd-1</property>
 		<factor>20</factor>
 		<center>
 			<x-m>-25.75</x-m>
@@ -763,7 +763,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AfsOvrd2</object-name>
-		<property>controls/cockpit/afs-ovrd-2</property>
+		<property>controls/cockpit/fcp/afs-ovrd-2</property>
 		<factor>20</factor>
 		<center>
 			<x-m>-25.75</x-m>

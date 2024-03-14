@@ -8,16 +8,6 @@
 	<channel name="Animations">
 		
 		<!-- General -->
-		<lag_filter name="/controls/cockpit/afs-ovrd-1">
-			<input>/it-autoflight/input/ovrd1</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/afs-ovrd-2">
-			<input>/it-autoflight/input/ovrd2</input>
-			<c1>20</c1>
-		</lag_filter>
-		
 		<lag_filter name="/controls/cockpit/aileron-yoke">
 			<input>hydraulics/aileron-yoke-sum</input>
 			<c1>20</c1>
@@ -47,16 +37,6 @@
 			<c1>10</c1>
 		</lag_filter>
 		
-		<linear_actuator name="/controls/cockpit/bank-limit-linear">
-			<input>/it-autoflight/input/bank-limit-sw</input>
-			<module>6</module>
-		</linear_actuator>
-		
-		<lag_filter name="/controls/cockpit/bank-limit">
-			<input>/controls/cockpit/bank-limit-linear</input>
-			<c1>20</c1>
-		</lag_filter>
-		
 		<lag_filter name="/controls/cockpit/brake-pedal-left">
 			<input>/controls/gear/brake-left</input>
 			<c1>5</c1>
@@ -74,6 +54,26 @@
 		
 		<lag_filter name="/controls/cockpit/elevator-yoke">
 			<input>hydraulics/elevator-yoke-switch</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/fcp/afs-ovrd-1">
+			<input>/it-autoflight/input/ovrd1</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/fcp/afs-ovrd-2">
+			<input>/it-autoflight/input/ovrd2</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<linear_actuator name="/controls/cockpit/fcp/bank-limit-linear">
+			<input>/it-autoflight/input/bank-limit-sw</input>
+			<module>6</module>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/fcp/bank-limit">
+			<input>/controls/cockpit/fcp/bank-limit-linear</input>
 			<c1>20</c1>
 		</lag_filter>
 		
