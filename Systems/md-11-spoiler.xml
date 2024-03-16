@@ -169,16 +169,30 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="spoilers/aileron-input">
+			<function>
+				<table>
+					<independentVar lookup="row">hydraulics/aileron/output-surfaces</independentVar>
+					<tableData>
+						-1.00 -1
+						-0.01  0
+						 0.01  0
+						 1.00  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="spoilers/aileron">
 			<function>
 				<product>
 					<pow>
-						<abs><property>hydraulics/aileron/output-surfaces</property></abs>
+						<abs><property>spoilers/aileron-input</property></abs>
 						<value>1.75</value>
 					</pow>
 					<ifthen>
 						<lt>
-							<property>hydraulics/aileron/output-surfaces</property>
+							<property>spoilers/aileron-input</property>
 							<value>0</value>
 						</lt>
 						<value>-1</value>
