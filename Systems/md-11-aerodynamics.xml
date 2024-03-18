@@ -542,16 +542,15 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
-						-4.4412 -0.0034
-						-2.2116 -0.0038
-						 0.1900 -0.0040
-						 2.4828 -0.0043
-						 4.9473 -0.0043
-						 6.1394 -0.0044
+						-4.4412 -0.00150
+						-2.2116 -0.00167
+						 0.1900 -0.00176
+						 2.4828 -0.00189
+						 4.9473 -0.00189
+						 6.1394 -0.00194
 					</tableData>
 				</table>
 			</product>
@@ -725,7 +724,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>aero/alphadot-rad_sec</property>
-				<value>-1.1306</value>
+				<value>-12.6734</value>
 			</product>
 		</function>
 		
@@ -813,15 +812,14 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-deg</property>
-				<value>0.44</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<tableData>
-						-4.7093  0.0045
-						-2.2164  0.0048
-						 0.2903  0.0044
-						 2.9836  0.0041
-						 5.5629  0.0047
+						-4.7093  0.00198
+						-2.2164  0.00211
+						 0.2903  0.00194
+						 2.9836  0.00180
+						 5.5629  0.00207
 					</tableData>
 				</table>
 			</product>
