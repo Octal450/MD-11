@@ -1281,7 +1281,7 @@
 			<test logic="AND" value="0">
 				fcc/lsas/pah/output lt 0.01
 				fcc/lsas/pah/output gt -0.01
-			</test>-
+			</test>
 		</switch>
 		
 		<switch name="fcc/lsas/autotrim-switch">
