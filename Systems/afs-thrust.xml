@@ -5,6 +5,22 @@
 <PropertyList>
 	
 	<filter>
+		<name>A/THR Knots Lag</name>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/internal/athr-kts-input-lag</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Mach Lag</name>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
+		<output>/it-autoflight/internal/athr-mach-input-lag</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
 		<name>A/THR Knots Input Gain</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -137,7 +153,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<input>/it-autoflight/internal/athr-kts-input-lag</input>
 		<reference>/it-autoflight/internal/athr-kts</reference>
 		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
 		<config>
@@ -167,7 +183,7 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+			<property>/it-autoflight/internal/athr-mach-input-lag</property>
 			<scale>1000</scale>
 		</input>
 		<reference>
