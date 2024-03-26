@@ -47,10 +47,6 @@ Some functions in the regular menu (like Autopilot) have moved to custom menus. 
 
 Some of the functions may be implemented in custom way and still usable. Check the custom menus to the right of the "|" for these functions.
 
-### Q. Why does the cold and dark state load after exiting replay mode?
-
-The flight recording system does not record the systems or internal functions of the aircraft. Doing so would require recording thousands of properties, and this would likely cause bugs and a performance hit. This means, that after replay, the systems might be in an invalid state. To ensure the aircraft remains functional, we reset the aircraft to cold and dark to reset everything.
-
 ## Reporting Issues / Debugging
 
 ### Q. Where should I report issues?
