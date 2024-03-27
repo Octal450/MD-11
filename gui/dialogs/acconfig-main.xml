@@ -82,8 +82,8 @@
 					<legend>Aircraft Help</legend>
 					<pref-width>140</pref-width>
 					<binding>
-						<command>dialog-show</command>
-						<dialog-name>acconfig-help</dialog-name>
+						<command>nasal</command>
+						<script>gui.showHelpDialog("/sim/help");</script>
 					</binding>
 				</button>
 				<button>
