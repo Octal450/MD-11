@@ -47,7 +47,7 @@
 				<row>0</row>
 				<col>0</col>
 				<halign>left</halign>
-				<label>Latest available revision:</label>
+				<label>Latest available version:</label>
 			</text>
 			
 			<text>
@@ -64,7 +64,7 @@
 				<row>1</row>
 				<col>0</col>
 				<halign>left</halign>
-				<label>Current installed revision:</label>
+				<label>Current installed version:</label>
 			</text>
 			
 			<text>
@@ -107,7 +107,7 @@
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>HTTP: http://www.github.com/Octal450/MD-11.git or SSH: git@github.com:Octal450/MD-11.git</label>
+			<label>HTTPS: https://github.com/Octal450/MD-11.git or SSH: git@github.com:Octal450/MD-11.git</label>
 		</text>
 	</group>
 	
@@ -135,7 +135,7 @@
 			<pref-width>220</pref-width>
 			<binding>
 				<command>open-browser</command>
-				<path>https://www.github.com/Octal450/MD-11/archive/master.zip</path>
+				<path>https://github.com/Octal450/MD-11/archive/master.zip</path>
 			</binding>
 			<binding>
 				<command>exit</command>

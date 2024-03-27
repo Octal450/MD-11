@@ -23,8 +23,8 @@
 			<pref-height>20</pref-height>
 			<legend>?</legend>
 			<binding>
-				<command>dialog-show</command>
-				<dialog-name>acconfig-help</dialog-name>
+				<command>nasal</command>
+				<script>gui.showHelpDialog("/sim/help");</script>
 			</binding>
 		</button>
 		<button>
@@ -380,10 +380,22 @@
 				<live>true</live>
 			</checkbox>
 			
-			<hrule/>
+			<group>
+				<layout>hbox</layout>
+
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+				<text>
+					<label>Options (See Aircraft Help)</label>
+				</text>
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+			</group>
 			
 			<checkbox>
-				<label>Keyboard Mode (See Aircraft Help)</label>
+				<label>Keyboard Mode</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/keyboard-mode</property>
 				<binding>

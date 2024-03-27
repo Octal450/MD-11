@@ -37,6 +37,7 @@
 		<expected-aircraft-dir-name type="string">MD-11</expected-aircraft-dir-name>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
+		<help n="0" include="gui/help.xml"/>
 		<hud n="0">
 			<enable3d n="0">false</enable3d>
 			<enable3d n="1">false</enable3d>
@@ -56,10 +57,17 @@
 				<menu n="101">
 					<label>System</label>
 					<item>
-						<label>Aircraft Config</label>
+						<label>Aircraft Config Center</label>
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>acconfig-main</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Aircraft Help</label>
+						<binding>
+							<command>nasal</command>
+							<script>gui.showHelpDialog("/sim/help");</script>
 						</binding>
 					</item>
 				</menu>
@@ -391,7 +399,7 @@
 			</config>
 		</view>
 		<view n="104">
-			<name>FCP Panel View</name>
+			<name>Glareshield View</name>
 			<type>lookfrom</type>
 			<internal type="bool" archive="y">true</internal>
 			<config>

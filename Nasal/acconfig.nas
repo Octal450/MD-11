@@ -1,4 +1,4 @@
-# Aircraft Config Center V2.0.0
+# Aircraft Config Center V2
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var CONFIG = {

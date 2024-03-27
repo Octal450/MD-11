@@ -23,8 +23,8 @@
 			<pref-height>20</pref-height>
 			<legend>?</legend>
 			<binding>
-				<command>dialog-show</command>
-				<dialog-name>acconfig-help</dialog-name>
+				<command>nasal</command>
+				<script>gui.showHelpDialog("/sim/help");</script>
 			</binding>
 		</button>
         <button>
@@ -46,15 +46,11 @@
 		
 		<text>
 			<halign>center</halign>
-			<label>Welcome to the MD-11!</label>
+			<label>Welcome to the McDonnell Douglas MD-11!</label>
 		</text>
 		<text>
 			<halign>center</halign>
-			<label>This is a complex simulation of these amazing McDonnell Douglas aircraft.</label>
-		</text>
-		<text>
-			<halign>center</halign>
-			<label>Use Aircraft Config to select livery, manage panel states, and more!</label>
+			<label>Use the Aircraft Config Center to load panel states and manage equipment.</label>
 		</text>
 		
 	</group>
@@ -65,7 +61,7 @@
 		<layout>hbox</layout>
 	
 		<checkbox>
-			<label>Do not show this screen at FlightGear startup</label>
+			<label>Do not show this window at FlightGear startup</label>
 			<halign>center</halign>
 			<property>/systems/acconfig/options/welcome-skip</property>
 			<binding>
@@ -87,7 +83,7 @@
 		
 		<button>
 			<halign>center</halign>
-			<legend>Aircraft Config</legend>
+			<legend>Aircraft Config Center</legend>
 			<pref-width>210</pref-width>
 			<binding>
 				<command>dialog-show</command>
