@@ -37,7 +37,7 @@
 		<expected-aircraft-dir-name type="string">MD-11</expected-aircraft-dir-name>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
-		<help n="0" include="gui/help.xml"/>
+		<help include="gui/help.xml"/>
 		<hud n="0">
 			<enable3d n="0">false</enable3d>
 			<enable3d n="1">false</enable3d>
