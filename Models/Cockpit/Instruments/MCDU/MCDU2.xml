@@ -63,7 +63,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l1");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l1</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L1</object-name>
+		<object-name>L1.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l1</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -82,7 +110,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l2");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l2</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L2</object-name>
+		<object-name>L2.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l2</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -101,7 +157,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l3");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l3</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L3</object-name>
+		<object-name>L3.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l3</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -120,7 +204,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l4");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l4</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l4</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L4</object-name>
+		<object-name>L4.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l4</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -139,7 +251,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l5");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l5</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l5</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L5</object-name>
+		<object-name>L5.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l5</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -158,7 +298,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("l6");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l6</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l6</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>L6</object-name>
+		<object-name>L6.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l6</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -177,7 +345,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r1");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r1</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R1</object-name>
+		<object-name>R1.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r1</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -196,7 +392,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r2");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r2</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R2</object-name>
+		<object-name>R2.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r2</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -215,7 +439,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r3");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r3</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R3</object-name>
+		<object-name>R3.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r3</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -234,7 +486,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r4");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r4</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r4</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R4</object-name>
+		<object-name>R4.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r4</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -253,7 +533,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r5");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r5</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r5</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R5</object-name>
+		<object-name>R5.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r5</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -272,7 +580,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].softKey("r6");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r6</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r6</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>R6</object-name>
+		<object-name>R6.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r6</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<!-- Page Keys -->
@@ -292,7 +628,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("dir");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/dir</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/dir</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>dir</object-name>
+		<object-name>dir.g</object-name>
+		<property>controls/cockpit/mcdu[1]/dir</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -311,7 +675,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("navRadio");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/navrad</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/navrad</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>navrad</object-name>
+		<object-name>navrad.g</object-name>
+		<property>controls/cockpit/mcdu[1]/navrad</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -330,7 +722,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("perf");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/perf</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/perf</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>perf</object-name>
+		<object-name>perf.g</object-name>
+		<property>controls/cockpit/mcdu[1]/perf</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -349,7 +769,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("init");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/init</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/init</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>init</object-name>
+		<object-name>init.g</object-name>
+		<property>controls/cockpit/mcdu[1]/init</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -368,7 +816,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("toAppr");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/toappr</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/toappr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>toappr</object-name>
+		<object-name>toappr.g</object-name>
+		<property>controls/cockpit/mcdu[1]/toappr</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -387,7 +863,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("fpln");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/fpln</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/fpln</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>fpln</object-name>
+		<object-name>fpln.g</object-name>
+		<property>controls/cockpit/mcdu[1]/fpln</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -406,7 +910,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("prog");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/prog</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/prog</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>prog</object-name>
+		<object-name>prog.g</object-name>
+		<property>controls/cockpit/mcdu[1]/prog</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -425,7 +957,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("fix");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/fix</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/fix</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>fix</object-name>
+		<object-name>fix.g</object-name>
+		<property>controls/cockpit/mcdu[1]/fix</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -444,7 +1004,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("secFpln");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/secfpln</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/secpln</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>secfpln</object-name>
+		<object-name>secfpln.g</object-name>
+		<property>controls/cockpit/mcdu[1]/secfpln</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -463,7 +1051,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("ref");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/ref</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/ref</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ref</object-name>
+		<object-name>ref.g</object-name>
+		<property>controls/cockpit/mcdu[1]/ref</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -482,7 +1098,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("engOut");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/engout</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/engout</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>engout</object-name>
+		<object-name>engout.g</object-name>
+		<property>controls/cockpit/mcdu[1]/engout</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -501,7 +1145,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].pageKey("menu");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/menu</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/menu</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>menu</object-name>
+		<object-name>menu.g</object-name>
+		<property>controls/cockpit/mcdu[1]/menu</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -520,7 +1192,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].nextPage();</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/nextpage</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/nextpage</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>nextpage</object-name>
+		<object-name>nextpage.g</object-name>
+		<property>controls/cockpit/mcdu[1]/nextpage</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -539,7 +1239,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].arrowKey(1);</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/up</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/up</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>up</object-name>
+		<object-name>up.g</object-name>
+		<property>controls/cockpit/mcdu[1]/up</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -558,7 +1286,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].arrowKey(-1);</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/down</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/down</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>down</object-name>
+		<object-name>down.g</object-name>
+		<property>controls/cockpit/mcdu[1]/down</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<!-- Alpha Numeric Keys -->
@@ -578,7 +1334,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("A");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/a</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/a</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>a</object-name>
+		<object-name>a.g</object-name>
+		<property>controls/cockpit/mcdu[1]/a</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -597,7 +1381,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("B");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/b</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>b</object-name>
+		<object-name>b.g</object-name>
+		<property>controls/cockpit/mcdu[1]/b</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -616,7 +1428,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("C");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/c</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/c</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>c</object-name>
+		<object-name>c.g</object-name>
+		<property>controls/cockpit/mcdu[1]/c</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -635,7 +1475,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("D");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/d</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/d</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>d</object-name>
+		<object-name>d.g</object-name>
+		<property>controls/cockpit/mcdu[1]/d</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -654,7 +1522,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("E");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/e</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/e</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>e</object-name>
+		<object-name>e.g</object-name>
+		<property>controls/cockpit/mcdu[1]/e</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -673,7 +1569,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("F");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/f</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/f</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>f</object-name>
+		<object-name>f.g</object-name>
+		<property>controls/cockpit/mcdu[1]/f</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -692,7 +1616,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("G");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/g</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/g</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>g</object-name>
+		<object-name>g.g</object-name>
+		<property>controls/cockpit/mcdu[1]/g</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -711,7 +1663,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("H");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/h</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/h</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>h</object-name>
+		<object-name>h.g</object-name>
+		<property>controls/cockpit/mcdu[1]/h</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -730,7 +1710,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("I");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/i</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/i</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>i</object-name>
+		<object-name>i.g</object-name>
+		<property>controls/cockpit/mcdu[1]/i</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -749,7 +1757,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("J");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/j</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/j</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>j</object-name>
+		<object-name>j.g</object-name>
+		<property>controls/cockpit/mcdu[1]/j</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -768,7 +1804,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("K");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/k</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/k</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>k</object-name>
+		<object-name>k.g</object-name>
+		<property>controls/cockpit/mcdu[1]/k</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -787,7 +1851,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("L");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/l</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/l</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>l</object-name>
+		<object-name>l.g</object-name>
+		<property>controls/cockpit/mcdu[1]/l</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -806,7 +1898,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("M");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/m</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/m</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>m</object-name>
+		<object-name>m.g</object-name>
+		<property>controls/cockpit/mcdu[1]/m</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -825,7 +1945,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("N");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>n</object-name>
+		<object-name>n.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -844,7 +1992,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("O");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/o</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/o</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>o</object-name>
+		<object-name>o.g</object-name>
+		<property>controls/cockpit/mcdu[1]/o</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -863,7 +2039,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("P");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/p</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/p</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>p</object-name>
+		<object-name>p.g</object-name>
+		<property>controls/cockpit/mcdu[1]/p</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -882,7 +2086,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("Q");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/q</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/q</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>q</object-name>
+		<object-name>q.g</object-name>
+		<property>controls/cockpit/mcdu[1]/q</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -901,7 +2133,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("R");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/r</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/r</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>r</object-name>
+		<object-name>r.g</object-name>
+		<property>controls/cockpit/mcdu[1]/r</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -920,7 +2180,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("S");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/s</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/s</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>s</object-name>
+		<object-name>s.g</object-name>
+		<property>controls/cockpit/mcdu[1]/s</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -939,7 +2227,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("T");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/t</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/t</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>t</object-name>
+		<object-name>t.g</object-name>
+		<property>controls/cockpit/mcdu[1]/t</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -958,7 +2274,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("U");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/u</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/u</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>u</object-name>
+		<object-name>u.g</object-name>
+		<property>controls/cockpit/mcdu[1]/u</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -977,7 +2321,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("V");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/v</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/v</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>v</object-name>
+		<object-name>v.g</object-name>
+		<property>controls/cockpit/mcdu[1]/v</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -996,7 +2368,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("W");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/w</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/w</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>w</object-name>
+		<object-name>w.g</object-name>
+		<property>controls/cockpit/mcdu[1]/w</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1015,7 +2415,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("X");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/x</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/x</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>x</object-name>
+		<object-name>x.g</object-name>
+		<property>controls/cockpit/mcdu[1]/x</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1034,7 +2462,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("Y");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/y</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/y</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>y</object-name>
+		<object-name>y.g</object-name>
+		<property>controls/cockpit/mcdu[1]/y</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1053,7 +2509,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("Z");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/z</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/z</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>z</object-name>
+		<object-name>z.g</object-name>
+		<property>controls/cockpit/mcdu[1]/z</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1072,7 +2556,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("-");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/dash</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/dash</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>-</object-name>
+		<object-name>-.g</object-name>
+		<property>controls/cockpit/mcdu[1]/dash</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1091,7 +2603,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("+");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/plus</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/plus</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>+</object-name>
+		<object-name>+.g</object-name>
+		<property>controls/cockpit/mcdu[1]/plus</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1110,7 +2650,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey(" ");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/sp</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/sp</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>sp</object-name>
+		<object-name>sp.g</object-name>
+		<property>controls/cockpit/mcdu[1]/sp</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1129,7 +2697,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("CLR");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/clr</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/clr</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>clr</object-name>
+		<object-name>clr.g</object-name>
+		<property>controls/cockpit/mcdu[1]/clr</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1148,7 +2744,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("1");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n1</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>1</object-name>
+		<object-name>1.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n1</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1167,7 +2791,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("2");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n2</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>2</object-name>
+		<object-name>2.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n2</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1186,7 +2838,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("3");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n3</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>3</object-name>
+		<object-name>3.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n3</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1205,7 +2885,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("4");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n4</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n4</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>4</object-name>
+		<object-name>4.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n4</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1224,7 +2932,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("5");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n5</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n5</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>5</object-name>
+		<object-name>5.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n5</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1243,7 +2979,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("6");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n6</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n6</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>6</object-name>
+		<object-name>6.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n6</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1262,7 +3026,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("7");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n7</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n7</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>7</object-name>
+		<object-name>7.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n7</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1281,7 +3073,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("8");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n8</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n8</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>8</object-name>
+		<object-name>8.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n8</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1300,7 +3120,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("9");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n9</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n9</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>9</object-name>
+		<object-name>9.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n9</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1319,7 +3167,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("/");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/slash</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/slash</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>/</object-name>
+		<object-name>/.g</object-name>
+		<property>controls/cockpit/mcdu[1]/slash</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1338,7 +3214,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey("0");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/n0</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/n0</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>0</object-name>
+		<object-name>0.g</object-name>
+		<property>controls/cockpit/mcdu[1]/n0</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -1357,7 +3261,35 @@
 				<command>nasal</command>
 				<script>mcdu.unit[1].alphaNumKey(".");</script>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/mcdu[1]/dot</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/mcdu[1]/dot</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>.</object-name>
+		<object-name>.g</object-name>
+		<property>controls/cockpit/mcdu[1]/dot</property>
+		<factor>-0.0006</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
 	</animation>
 
 </PropertyList>
