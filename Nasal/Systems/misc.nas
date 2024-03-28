@@ -25,6 +25,12 @@ var APU = {
 		me.Light.avail.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
 		me.autoConnect = 0;
+		settimer(func() { # Required delay
+			if (me.n2.getValue() >= 1.8) {
+				pts.Fdm.JSBsim.Propulsion.Engine.n1[3].setValue(0.1);
+				pts.Fdm.JSBsim.Propulsion.Engine.n2[3].setValue(0.1);
+			}
+		}, 0.1);
 	},
 	fastStart: func() {
 		me.Switch.start.setBoolValue(1);
@@ -61,7 +67,7 @@ var APU = {
 	},
 	startStop: func(t) {
 		if (ELEC.Bus.dcBat.getValue() >= 24) {
-			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 2) {
+			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 1.8) {
 				me.autoConnect = t;
 				me.Switch.start.setBoolValue(1);
 				onLightt.start();
@@ -539,6 +545,13 @@ var IGNITION = {
 	fastStart: func(n) {
 		ENGINE.cutoffSwitch[n].setBoolValue(0);
 		pts.Fdm.JSBsim.Propulsion.setRunning.setValue(n);
+	},
+	fastStop: func(n) {
+		ENGINE.cutoffSwitch[n].setBoolValue(1);
+		settimer(func() { # Required delay
+			pts.Fdm.JSBsim.Propulsion.Engine.n1[n].setValue(0.1);
+			pts.Fdm.JSBsim.Propulsion.Engine.n2[n].setValue(0.1);
+		}, 0.1);
 	},
 };
 

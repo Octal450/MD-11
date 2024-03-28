@@ -131,6 +131,10 @@ var Fdm = {
 			wowTemp: 0,
 		},
 		Propulsion: {
+			Engine: {
+				n1: [props.globals.getNode("/fdm/jsbsim/propulsion/engine[0]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[1]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[2]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[3]/n1")],
+				n2: [props.globals.getNode("/fdm/jsbsim/propulsion/engine[0]/n2"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[1]/n2"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[2]/n2"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[3]/n2")],
+			},
 			setRunning: props.globals.getNode("/fdm/jsbsim/propulsion/set-running"),
 			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),
 		},

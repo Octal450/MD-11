@@ -619,7 +619,7 @@ var canvasEng = {
 		
 		# APU
 		Value.Apu.n2 = systems.APU.n2.getValue();
-		if (Value.Apu.n2 >= 1) {
+		if (Value.Apu.n2 >= 1.8) {
 			me["APU-EGT"].setText(sprintf("%d", math.round(systems.APU.egt.getValue())));
 			me["APU-N1"].setText(sprintf("%d", math.round(systems.APU.n1.getValue())));
 			me["APU-N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
