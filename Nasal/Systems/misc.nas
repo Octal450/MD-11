@@ -26,7 +26,7 @@ var APU = {
 		me.Light.on.setBoolValue(0);
 		me.autoConnect = 0;
 		settimer(func() { # Required delay
-			if (me.n2.getValue() >= 1.8) {
+			if (me.n2.getValue() >= 1) {
 				pts.Fdm.JSBsim.Propulsion.Engine.n1[3].setValue(0.1);
 				pts.Fdm.JSBsim.Propulsion.Engine.n2[3].setValue(0.1);
 			}
