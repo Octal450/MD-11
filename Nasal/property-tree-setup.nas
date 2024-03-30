@@ -370,5 +370,3 @@ var Velocities = {
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt"),
 	groundspeedKtTemp: 0,
 };
-
-setprop("/systems/acconfig/property-tree-setup-loaded", 1);

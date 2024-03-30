@@ -496,5 +496,3 @@ setlistener("/controls/switches/no-smoking-sign-status", func() {
 		}, 1);
 	}
 }, 0, 0);
-
-setprop("/systems/acconfig/libraries-loaded", 1);

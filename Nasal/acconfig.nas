@@ -86,17 +86,7 @@ var SYSTEM = {
 			me.Error.active.setBoolValue(1);
 			me.Error.reason.setValue("FGFS version is too old. Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
-			print("System: FGVer Error");
-		} else if (getprop("/gear/gear[0]/wow") == 0 or getprop("/position/altitude-ft") >= 15000) {
-			me.Error.active.setBoolValue(1);
-			me.Error.reason.setValue("Preposterous configuration detected for initialization. Check your position or scenery.");
-			me.showError();
-			print("System: Init Error");
-		} else if (getprop("/systems/acconfig/libraries-loaded") != 1 or getprop("/systems/acconfig/property-tree-setup-loaded") != 1) {
-			me.Error.active.setBoolValue(1);
-			me.Error.reason.setValue("System files are missing or damaged. Please download a new copy of the aircraft.");
-			me.showError();
-			print("System: Files Error");
+			print("System: FGFS Version Error");
 		}
 	},
 	resetFailures: func() {

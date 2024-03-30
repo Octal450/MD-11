@@ -25,7 +25,6 @@
 	<property value="0">/systems/hydraulics/rmp/sys-3-to-sys-2</property>
 	<property value="0">/systems/hydraulics/rmp/sys-multi-thru-sys-3</property>
 	<property value="0">/systems/hydraulics/sys-3-qty</property>
-	<property value="500">/systems/hydraulics/sys-incr-rate</property> <!-- 2 seconds per 1000 psi -->
 	
 	<channel name="SYS Leak Logic" execrate="8">
 		
@@ -448,9 +447,16 @@
 	<channel name="Main Hydraulics" execrate="8">
 		
 		<!-- Common -->
+		<switch name="/systems/hydraulics/sys-incr-rate">
+			<default value="500"/> <!-- 2 seconds per 1000 psi -->
+			<test value="100000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/hydraulics/sys-decr-rate">
 			<default value="45.45455"/> <!-- 22 seconds per 1000 psi -->
-			<test value="500"> <!-- 2 seconds per 1000 psi for ACCONFIG -->
+			<test value="100000"> <!-- Instant -->
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
