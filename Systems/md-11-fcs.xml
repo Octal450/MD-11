@@ -719,10 +719,12 @@
 		
 		<switch name="hydraulics/stabilizer/rate">
 			<default value="0"/>
+			<test value="20">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
 			<test logic="OR" value="fcc/pitch-trim-speed">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
-				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
