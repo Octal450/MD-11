@@ -10,29 +10,6 @@ Try to download the aircraft again. The download may have failed for some reason
 
 Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from FGAddon or [Octal450's repo](https://github.com/Octal450/MD-11.git).
 
-## Startup
-
-### Q. "FGFS version is too old" appears on startup. Why?
-
-This error occurs if you are trying to use this aircraft on a version of FlightGear that is too old.
-See [INSTALL.md](https://github.com/Octal450/MD-11/blob/master/INSTALL.md) for more information.
-
-### Q. "Preposterous configuration detected for initialization" appears on startup. Why?
-
-This error occurs when there is an issue with the scenery that prevents initialization, or if you are starting in air.
-
-Starting in air is not possible with this aircraft.
-
-The simulation is so complex that there is no support for starting it in mid-air. Therefore, please make sure that you start it on the ground, powering it up appropriately.
-
-In case that you want to practice landing, it might be better to fly to your destination, landing, and performing a missed approach (like real pilots do).
-
-### Q. "System files are missing or damaged" appears on startup. Why?
-
-This error most commonly occurs if your download is corrupted, or a serious problem with the aircraft's systems occurs.
-
-This error can also appear if you are starting FlightGear for the very first time with this aircraft. This is a known issue and we are working to correct it. To fix this, simply start FlightGear again at an airport that is in a different scenery file. After this, all airports (including the original one attempted) will work properly.
-
 ## Behavior
 
 ### Q. I can't control the rudder with my aileron axis after turning on the FlightGear auto coordination system. Why?
