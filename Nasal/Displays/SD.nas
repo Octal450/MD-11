@@ -160,18 +160,18 @@ var canvasConfig = {
 		if (Value.Fctl.aileronL <= -0.5) {
 			me["AileronLDown"].hide();
 			if (Value.Fctl.aileronL <= Value.Fctl.aileronDeflGreen) {
-				me["AileronLUp"].setColorFill(0,1,0);
+				me["AileronLUp"].setColorFill(0, 1, 0);
 			} else {
-				me["AileronLUp"].setColorFill(0,0,0);
+				me["AileronLUp"].setColorFill(0, 0, 0);
 			}
 			me["AileronLUp"].setTranslation(0, math.clamp(Value.Fctl.aileronL, -20, 0) * 2.04915);
 			me["AileronLUp"].show();
 		} else if (Value.Fctl.aileronL >= 0.5) {
 			me["AileronLUp"].hide();
 			if (Value.Fctl.aileronL >= 19.8) {
-				me["AileronLDown"].setColorFill(0,1,0);
+				me["AileronLDown"].setColorFill(0, 1, 0);
 			} else {
-				me["AileronLDown"].setColorFill(0,0,0);
+				me["AileronLDown"].setColorFill(0, 0, 0);
 			}
 			me["AileronLDown"].setTranslation(0, math.clamp(Value.Fctl.aileronL, 0, 20) * 2.04915);
 			me["AileronLDown"].show();
@@ -183,18 +183,18 @@ var canvasConfig = {
 		if (Value.Fctl.aileronR <= -0.5) {
 			me["AileronRDown"].hide();
 			if (Value.Fctl.aileronR <= Value.Fctl.aileronDeflGreen) {
-				me["AileronRUp"].setColorFill(0,1,0);
+				me["AileronRUp"].setColorFill(0, 1, 0);
 			} else {
-				me["AileronRUp"].setColorFill(0,0,0);
+				me["AileronRUp"].setColorFill(0, 0, 0);
 			}
 			me["AileronRUp"].setTranslation(0, math.clamp(Value.Fctl.aileronR, -20, 0) * 2.04915);
 			me["AileronRUp"].show();
 		} else if (Value.Fctl.aileronR >= 0.5) {
 			me["AileronRUp"].hide();
 			if (Value.Fctl.aileronR >= 19.8) {
-				me["AileronRDown"].setColorFill(0,1,0);
+				me["AileronRDown"].setColorFill(0, 1, 0);
 			} else {
-				me["AileronRDown"].setColorFill(0,0,0);
+				me["AileronRDown"].setColorFill(0, 0, 0);
 			}
 			me["AileronRDown"].setTranslation(0, math.clamp(Value.Fctl.aileronR, 0, 20) * 2.04915);
 			me["AileronRDown"].show();
@@ -209,9 +209,9 @@ var canvasConfig = {
 		
 		if (Value.Fctl.spoilerL >= 1.5) {
 			if (Value.Fctl.spoilerL >= 59.4) {
-				me["SpoilerL"].setColorFill(0,1,0);
+				me["SpoilerL"].setColorFill(0, 1, 0);
 			} else {
-				me["SpoilerL"].setColorFill(0,0,0);
+				me["SpoilerL"].setColorFill(0, 0, 0);
 			}
 			me["SpoilerL"].setTranslation(0, Value.Fctl.spoilerL * -0.68305);
 			me["SpoilerL"].show();
@@ -221,9 +221,9 @@ var canvasConfig = {
 		
 		if (Value.Fctl.spoilerR >= 1.5) {
 			if (Value.Fctl.spoilerR >= 59.4) {
-				me["SpoilerR"].setColorFill(0,1,0);
+				me["SpoilerR"].setColorFill(0, 1, 0);
 			} else {
-				me["SpoilerR"].setColorFill(0,0,0);
+				me["SpoilerR"].setColorFill(0, 0, 0);
 			}
 			me["SpoilerR"].setTranslation(0, Value.Fctl.spoilerR * -0.68305);
 			me["SpoilerR"].show();
@@ -238,18 +238,18 @@ var canvasConfig = {
 		if (Value.Fctl.elevatorL <= -0.5) {
 			me["ElevatorLDown"].hide();
 			if (Value.Fctl.elevatorL <= -19.9) {
-				me["ElevatorLUp"].setColorFill(0,1,0);
+				me["ElevatorLUp"].setColorFill(0, 1, 0);
 			} else {
-				me["ElevatorLUp"].setColorFill(0,0,0);
+				me["ElevatorLUp"].setColorFill(0, 0, 0);
 			}
 			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -20.1, 0) * 1.29269);
 			me["ElevatorLUp"].show();
 		} else if (Value.Fctl.elevatorL >= 0.5) {
 			me["ElevatorLUp"].hide();
 			if (Value.Fctl.elevatorL >= 17) {
-				me["ElevatorLDown"].setColorFill(0,1,0);
+				me["ElevatorLDown"].setColorFill(0, 1, 0);
 			} else {
-				me["ElevatorLDown"].setColorFill(0,0,0);
+				me["ElevatorLDown"].setColorFill(0, 0, 0);
 			}
 			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 17.2) * 1.29269);
 			me["ElevatorLDown"].show();
@@ -261,18 +261,18 @@ var canvasConfig = {
 		if (Value.Fctl.elevatorR <= -0.5) {
 			me["ElevatorRDown"].hide();
 			if (Value.Fctl.elevatorR <= -19.9) {
-				me["ElevatorRUp"].setColorFill(0,1,0);
+				me["ElevatorRUp"].setColorFill(0, 1, 0);
 			} else {
-				me["ElevatorRUp"].setColorFill(0,0,0);
+				me["ElevatorRUp"].setColorFill(0, 0, 0);
 			}
 			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -20.1, 0) * 1.29269);
 			me["ElevatorRUp"].show();
 		} else if (Value.Fctl.elevatorR >= 0.5) {
 			me["ElevatorRUp"].hide();
 			if (Value.Fctl.elevatorR >= 17) {
-				me["ElevatorRDown"].setColorFill(0,1,0);
+				me["ElevatorRDown"].setColorFill(0, 1, 0);
 			} else {
-				me["ElevatorRDown"].setColorFill(0,0,0);
+				me["ElevatorRDown"].setColorFill(0, 0, 0);
 			}
 			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 17.2) * 1.29269);
 			me["ElevatorRDown"].show();
@@ -288,18 +288,18 @@ var canvasConfig = {
 		if (Value.Fctl.rudderUpper <= -0.8) {
 			me["RudderUpperRight"].hide();
 			if (Value.Fctl.rudderUpper <= -29.7) {
-				me["RudderUpperLeft"].setColorFill(0,1,0);
+				me["RudderUpperLeft"].setColorFill(0, 1, 0);
 			} else {
-				me["RudderUpperLeft"].setColorFill(0,0,0);
+				me["RudderUpperLeft"].setColorFill(0, 0, 0);
 			}
 			me["RudderUpperLeft"].setTranslation(math.clamp(Value.Fctl.rudderUpper, -30, 0) * 0.69943, 0);
 			me["RudderUpperLeft"].show();
 		} else if (Value.Fctl.rudderUpper >= 0.8) {
 			me["RudderUpperLeft"].hide();
 			if (Value.Fctl.rudderUpper >= 29.7) {
-				me["RudderUpperRight"].setColorFill(0,1,0);
+				me["RudderUpperRight"].setColorFill(0, 1, 0);
 			} else {
-				me["RudderUpperRight"].setColorFill(0,0,0);
+				me["RudderUpperRight"].setColorFill(0, 0, 0);
 			}
 			me["RudderUpperRight"].setTranslation(math.clamp(Value.Fctl.rudderUpper, 0, 30) * 0.69943, 0);
 			me["RudderUpperRight"].show();
@@ -311,18 +311,18 @@ var canvasConfig = {
 		if (Value.Fctl.rudderLower <= -0.8) {
 			me["RudderLowerRight"].hide();
 			if (Value.Fctl.rudderLower <= -29.7) {
-				me["RudderLowerLeft"].setColorFill(0,1,0);
+				me["RudderLowerLeft"].setColorFill(0, 1, 0);
 			} else {
-				me["RudderLowerLeft"].setColorFill(0,0,0);
+				me["RudderLowerLeft"].setColorFill(0, 0, 0);
 			}
 			me["RudderLowerLeft"].setTranslation(math.clamp(Value.Fctl.rudderLower, -30, 0) * 0.69943, 0);
 			me["RudderLowerLeft"].show();
 		} else if (Value.Fctl.rudderLower >= 0.8) {
 			me["RudderLowerLeft"].hide();
 			if (Value.Fctl.rudderLower >= 29.7) {
-				me["RudderLowerRight"].setColorFill(0,1,0);
+				me["RudderLowerRight"].setColorFill(0, 1, 0);
 			} else {
-				me["RudderLowerRight"].setColorFill(0,0,0);
+				me["RudderLowerRight"].setColorFill(0, 0, 0);
 			}
 			me["RudderLowerRight"].setTranslation(math.clamp(Value.Fctl.rudderLower, 0, 30) * 0.69943, 0);
 			me["RudderLowerRight"].show();
@@ -380,9 +380,9 @@ var canvasConfig = {
 			me["NoseStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[0] == 2) {
-				me["NoseStatus"].setColor(0,1,0);
+				me["NoseStatus"].setColor(0, 1, 0);
 			} else {
-				me["NoseStatus"].setColor(1,0,0);
+				me["NoseStatus"].setColor(1, 0, 0);
 			}
 			me["NoseStatus"].show();
 		}
@@ -391,9 +391,9 @@ var canvasConfig = {
 			me["LeftStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[1] == 2) {
-				me["LeftStatus"].setColor(0,1,0);
+				me["LeftStatus"].setColor(0, 1, 0);
 			} else {
-				me["LeftStatus"].setColor(1,0,0);
+				me["LeftStatus"].setColor(1, 0, 0);
 			}
 			me["LeftStatus"].show();
 		}
@@ -402,9 +402,9 @@ var canvasConfig = {
 			me["RightStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[2] == 2) {
-				me["RightStatus"].setColor(0,1,0);
+				me["RightStatus"].setColor(0, 1, 0);
 			} else {
-				me["RightStatus"].setColor(1,0,0);
+				me["RightStatus"].setColor(1, 0, 0);
 			}
 			me["RightStatus"].show();
 		}
@@ -413,9 +413,9 @@ var canvasConfig = {
 			me["CenterStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[3] == 2) {
-				me["CenterStatus"].setColor(0,1,0);
+				me["CenterStatus"].setColor(0, 1, 0);
 			} else {
-				me["CenterStatus"].setColor(1,0,0);
+				me["CenterStatus"].setColor(1, 0, 0);
 			}
 			me["CenterStatus"].show();
 		}
@@ -515,33 +515,33 @@ var canvasEng = {
 		
 		if (Value.Eng.type == "PW") {
 			if (Value.Eng.oilTemp[0] <= 50) {
-				me["OilTemp1"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp1"].setColor(0.9647, 0.8196, 0.07843);
 				me["OilTemp1-box"].show();
-				me["OilTemp1-needle"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp1-needle"].setColor(0.9647, 0.8196, 0.07843);
 			} else {
-				me["OilTemp1"].setColor(1,1,1);
+				me["OilTemp1"].setColor(1, 1, 1);
 				me["OilTemp1-box"].hide();
-				me["OilTemp1-needle"].setColor(1,1,1);
+				me["OilTemp1-needle"].setColor(1, 1, 1);
 			}
 			
 			if (Value.Eng.oilTemp[1] <= 50) {
-				me["OilTemp2"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp2"].setColor(0.9647, 0.8196, 0.07843);
 				me["OilTemp2-box"].show();
-				me["OilTemp2-needle"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp2-needle"].setColor(0.9647, 0.8196, 0.07843);
 			} else {
-				me["OilTemp2"].setColor(1,1,1);
+				me["OilTemp2"].setColor(1, 1, 1);
 				me["OilTemp2-box"].hide();
-				me["OilTemp2-needle"].setColor(1,1,1);
+				me["OilTemp2-needle"].setColor(1, 1, 1);
 			}
 			
 			if (Value.Eng.oilTemp[2] <= 50) {
-				me["OilTemp3"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp3"].setColor(0.9647, 0.8196, 0.07843);
 				me["OilTemp3-box"].show();
-				me["OilTemp3-needle"].setColor(0.9647,0.8196,0.07843);
+				me["OilTemp3-needle"].setColor(0.9647, 0.8196, 0.07843);
 			} else {
-				me["OilTemp3"].setColor(1,1,1);
+				me["OilTemp3"].setColor(1, 1, 1);
 				me["OilTemp3-box"].hide();
-				me["OilTemp3-needle"].setColor(1,1,1);
+				me["OilTemp3-needle"].setColor(1, 1, 1);
 			}
 		}
 		
@@ -560,33 +560,33 @@ var canvasEng = {
 		me["OilQty3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
-			me["OilQty1"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty1"].setColor(0.9647, 0.8196, 0.07843);
 			me["OilQty1-box"].show();
-			me["OilQty1-needle"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty1-needle"].setColor(0.9647, 0.8196, 0.07843);
 		} else {
-			me["OilQty1"].setColor(1,1,1);
+			me["OilQty1"].setColor(1, 1, 1);
 			me["OilQty1-box"].hide();
-			me["OilQty1-needle"].setColor(1,1,1);
+			me["OilQty1-needle"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Eng.oilQty[1] <= 4) {
-			me["OilQty2"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty2"].setColor(0.9647, 0.8196, 0.07843);
 			me["OilQty2-box"].show();
-			me["OilQty2-needle"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty2-needle"].setColor(0.9647, 0.8196, 0.07843);
 		} else {
-			me["OilQty2"].setColor(1,1,1);
+			me["OilQty2"].setColor(1, 1, 1);
 			me["OilQty2-box"].hide();
-			me["OilQty2-needle"].setColor(1,1,1);
+			me["OilQty2-needle"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Eng.oilQty[2] <= 4) {
-			me["OilQty3"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty3"].setColor(0.9647, 0.8196, 0.07843);
 			me["OilQty3-box"].show();
-			me["OilQty3-needle"].setColor(0.9647,0.8196,0.07843);
+			me["OilQty3-needle"].setColor(0.9647, 0.8196, 0.07843);
 		} else {
-			me["OilQty3"].setColor(1,1,1);
+			me["OilQty3"].setColor(1, 1, 1);
 			me["OilQty3-box"].hide();
-			me["OilQty3-needle"].setColor(1,1,1);
+			me["OilQty3-needle"].setColor(1, 1, 1);
 		}
 		
 		Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();

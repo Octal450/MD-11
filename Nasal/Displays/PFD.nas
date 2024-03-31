@@ -140,6 +140,7 @@ var Value = {
 		flapsPos: 0,
 		gearOut: 0,
 		minimums: 0,
+		risingRunwayTBar: 0,
 		slatsCmd: 0,
 		slatsOut: 0,
 		slatsPos: 0,
@@ -208,7 +209,7 @@ var canvasBase = {
 		
 		return me;
 	},
-	getKeys: func() {
+	getKeys: func() { # TODO: Alphabetize
 		return ["FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "FMA_Roll", "FMA_Roll_Arm", "FMA_Pitch", "FMA_Pitch_Land", "FMA_Land", "FMA_Pitch_Arm", "FMA_Altitude_Thousand", "FMA_Altitude", "FMA_ATS_Thrust_Off", "FMA_ATS_Pitch_Off", "FMA_AP_Pitch_Off_Box",
 		"FMA_AP_Thrust_Off_Box", "FMA_AP", "ASI_ias_group", "ASI_taxi_group", "ASI_taxi", "ASI_groundspeed", "ASI_v_speed", "ASI_scale", "ASI_bowtie_mach", "ASI", "ASI_mach", "ASI_mach_decimal", "ASI_bowtie_L", "ASI_bowtie_R", "ASI_presel", "ASI_sel",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_trend_up", "ASI_trend_dn", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_flap_max", "ASI_vss", "ASI_vmin", "ASI_vmin_bar", "ASI_ref_bugs", "ASI_gr", "ASI_ge", "ASI_sr", "ASI_se",
@@ -217,7 +218,7 @@ var canvasBase = {
 		"ALT_four", "ALT_five", "ALT_one_T", "ALT_two_T", "ALT_three_T", "ALT_four_T", "ALT_five_T", "ALT_presel", "ALT_sel", "ALT_sel_up", "ALT_sel_up_text_T", "ALT_sel_up_text", "ALT_sel_dn", "ALT_sel_dn_text_T", "ALT_sel_dn_text", "ALT_agl", "ALT_bowtie",
 		"VSI_needle_up", "VSI_needle_dn", "VSI_up", "VSI_dn", "VSI_bug_up", "VSI_bug_dn", "VSI_group", "VSI_error", "HDG", "HDG_dial", "HDG_presel", "HDG_sel", "HDG_group", "HDG_error", "HDG_sel_left_text", "HDG_sel_right_text", "HDG_mode", "HDG_magtru",
 		"TRK_pointer", "TCAS_fail", "TCAS_off", "Slats", "Slats_auto", "Slats_no", "Slats_up", "Slats_dn", "Flaps", "Flaps_up", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "QNH", "LOC_scale", "LOC_pointer", "LOC_no", "GS_scale", "GS_pointer",
-		"GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
+		"GS_no", "ILS_Info", "ILS_DME", "RA", "RA_box", "RA_group", "Minimums", "Inner_Marker", "Middle_Marker", "Outer_Marker"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -295,21 +296,21 @@ var canvasBase = {
 		
 		if (Value.Asi.ias < 53 and Value.Misc.wow) {
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
-				me["ASI_groundspeed"].setColor(0.9412,0.7255,0);
+				me["ASI_groundspeed"].setColor(0.9412, 0.7255, 0);
 				me["ASI_groundspeed"].setText("NO");
-				me["ASI_taxi"].setColor(0.9412,0.7255,0);
+				me["ASI_taxi"].setColor(0.9412, 0.7255, 0);
 			} else if (!Value.Iru.aligned[Value.Iru.source[n]]) {
-				me["ASI_groundspeed"].setColor(1,1,1);
+				me["ASI_groundspeed"].setColor(1, 1, 1);
 				me["ASI_groundspeed"].setText("--");
-				me["ASI_taxi"].setColor(1,1,1);
+				me["ASI_taxi"].setColor(1, 1, 1);
 			} else {
-				me["ASI_groundspeed"].setColor(1,1,1);
+				me["ASI_groundspeed"].setColor(1, 1, 1);
 				me["ASI_groundspeed"].setText(sprintf("%d", math.round(pts.Velocities.groundspeedKt.getValue())));
-				me["ASI_taxi"].setColor(1,1,1);
+				me["ASI_taxi"].setColor(1, 1, 1);
 			}
 			
-			me["ASI_sel_up"].setColor(1,1,1);
-			me["ASI_sel_dn"].setColor(1,1,1);
+			me["ASI_sel_up"].setColor(1, 1, 1);
+			me["ASI_sel_dn"].setColor(1, 1, 1);
 			me["ASI_ias_group"].hide();
 			me["ASI_taxi_group"].show();
 		} else {
@@ -384,44 +385,44 @@ var canvasBase = {
 			}
 			
 			if (Value.Asi.ias > Value.Asi.vmoMmo) {
-				me["ASI"].setColor(1,0,0);
-				me["ASI_bowtie_L"].setColor(1,0,0);
-				me["ASI_bowtie_R"].setColor(1,0,0);
-				me["ASI_mach"].setColor(1,0,0);
-				me["ASI_mach_decimal"].setColor(1,0,0);
+				me["ASI"].setColor(1, 0, 0);
+				me["ASI_bowtie_L"].setColor(1, 0, 0);
+				me["ASI_bowtie_R"].setColor(1, 0, 0);
+				me["ASI_mach"].setColor(1, 0, 0);
+				me["ASI_mach_decimal"].setColor(1, 0, 0);
 			} else if (Value.Asi.ias < Value.Asi.vss) {
-				me["ASI"].setColor(1,0,0);
-				me["ASI_bowtie_L"].setColor(1,0,0);
-				me["ASI_bowtie_R"].setColor(1,0,0);
-				me["ASI_mach"].setColor(1,0,0);
-				me["ASI_mach_decimal"].setColor(1,0,0);
+				me["ASI"].setColor(1, 0, 0);
+				me["ASI_bowtie_L"].setColor(1, 0, 0);
+				me["ASI_bowtie_R"].setColor(1, 0, 0);
+				me["ASI_mach"].setColor(1, 0, 0);
+				me["ASI_mach_decimal"].setColor(1, 0, 0);
 			} else if (Value.Asi.ias > Value.Asi.flapGearMax and Value.Asi.flapGearMax >= 0) {
-				me["ASI"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
+				me["ASI"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_L"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_R"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach_decimal"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.ias < Value.Asi.vmin) {
-				me["ASI"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_bowtie_L"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_bowtie_R"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_mach"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_mach_decimal"].setColor(0.9647,0.8196,0.0784);
+				me["ASI"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_L"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_R"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach_decimal"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
-				me["ASI"].setColor(1,1,1);
-				me["ASI_bowtie_L"].setColor(1,1,1);
-				me["ASI_bowtie_R"].setColor(1,1,1);
-				me["ASI_mach"].setColor(1,1,1);
-				me["ASI_mach_decimal"].setColor(1,1,1);
+				me["ASI"].setColor(1, 1, 1);
+				me["ASI_bowtie_L"].setColor(1, 1, 1);
+				me["ASI_bowtie_R"].setColor(1, 1, 1);
+				me["ASI_mach"].setColor(1, 1, 1);
+				me["ASI_mach_decimal"].setColor(1, 1, 1);
 			}
 			
 			# Reference Speed Bugs
 			if (Value.Misc.gearOut) {
 				Value.Asi.Tape.gr = fms.Speeds.gearRetMax.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.gr > 0) {
-					me["ASI_gr"].setColor(0,1,0);
+					me["ASI_gr"].setColor(0, 1, 0);
 				} else {
-					me["ASI_gr"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_gr"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_gr"].setTranslation(0, Value.Asi.Tape.gr * -4.48656);
 				me["ASI_gr"].show();
@@ -431,18 +432,18 @@ var canvasBase = {
 			
 			Value.Asi.Tape.ge = fms.Speeds.gearExtMax.getValue() - 50 - Value.Asi.Tape.ias;
 			if (Value.Asi.Tape.ge > 0) {
-				me["ASI_ge"].setColor(0,1,0);
+				me["ASI_ge"].setColor(0, 1, 0);
 			} else {
-				me["ASI_ge"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_ge"].setColor(0.9647, 0.8196, 0.0784);
 			}
 			me["ASI_ge"].setTranslation(0, Value.Asi.Tape.ge * -4.48656);
 			
 			if (Value.Misc.slatsOut) {
 				Value.Asi.Tape.sr = fms.Speeds.vsr.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.sr < 0) {
-					me["ASI_sr"].setColor(0,1,0);
+					me["ASI_sr"].setColor(0, 1, 0);
 				} else {
-					me["ASI_sr"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_sr"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_sr"].setTranslation(0, Value.Asi.Tape.sr * -4.48656);
 				me["ASI_sr"].show();
@@ -453,9 +454,9 @@ var canvasBase = {
 			if (!Value.Misc.slatsOut) {
 				Value.Asi.Tape.se = fms.Speeds.slatMax.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.se > 0) {
-					me["ASI_se"].setColor(0,1,0);
+					me["ASI_se"].setColor(0, 1, 0);
 				} else {
-					me["ASI_se"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_se"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_se"].setTranslation(0, Value.Asi.Tape.se * -4.48656);
 				me["ASI_se"].show();
@@ -466,9 +467,9 @@ var canvasBase = {
 			if (Value.Misc.flapsOut) {
 				Value.Asi.Tape.fr = fms.Speeds.vfr.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.fr < 0) {
-					me["ASI_fr"].setColor(0,1,0);
+					me["ASI_fr"].setColor(0, 1, 0);
 				} else {
-					me["ASI_fr"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_fr"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_fr"].setTranslation(0, Value.Asi.Tape.fr * -4.48656);
 				me["ASI_fr"].show();
@@ -493,9 +494,9 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f50 = Value.Asi.f50 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f50 > 0) {
-					me["ASI_f50"].setColor(0,1,0);
+					me["ASI_f50"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f50"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_f50"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f50"].setTranslation(0, Value.Asi.Tape.f50 * -4.48656);
 				me["ASI_f50"].show();
@@ -505,9 +506,9 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f35 = Value.Asi.f35 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f35 > 0) {
-					me["ASI_f35"].setColor(0,1,0);
+					me["ASI_f35"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f35"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_f35"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f35"].setTranslation(0, Value.Asi.Tape.f35 * -4.48656);
 				me["ASI_f35"].show();
@@ -518,9 +519,9 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f28 = Value.Asi.f28 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f28 > 0) {
-					me["ASI_f28"].setColor(0,1,0);
+					me["ASI_f28"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f28"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_f28"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f28"].setTranslation(0, Value.Asi.Tape.f28 * -4.48656);
 				me["ASI_f28"].show();
@@ -530,9 +531,9 @@ var canvasBase = {
 			} else if (Value.Misc.slatsOut and Value.Afs.vertText != "T/O CLB") {
 				Value.Asi.Tape.f15 = Value.Asi.f15 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f15 > 0) {
-					me["ASI_f15"].setColor(0,1,0);
+					me["ASI_f15"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f15"].setColor(0.9647,0.8196,0.0784);
+					me["ASI_f15"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f15"].setTranslation(0, Value.Asi.Tape.f15 * -4.48656);
 				me["ASI_f15"].show();
@@ -573,17 +574,17 @@ var canvasBase = {
 			me["ASI_presel"].hide();
 		} else {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
-				me["ASI_presel"].setColor(1,0,0);
+				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
-				me["ASI_presel"].setColor(1,0,0);
+				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
-				me["ASI_presel"].setColor(1,0,0);
+				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
-				me["ASI_presel"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_presel"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
-				me["ASI_presel"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_presel"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
-				me["ASI_presel"].setColor(1,1,1);
+				me["ASI_presel"].setColor(1, 1, 1);
 			}
 			me["ASI_presel"].show();
 		}
@@ -595,25 +596,25 @@ var canvasBase = {
 		
 		if (Value.Asi.Tape.preSel > 60 and !afs.Internal.syncedSpd) {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
-				me["ASI_sel_up"].setColor(1,0,0);
-				me["ASI_sel_up_text"].setColor(1,0,0);
+				me["ASI_sel_up"].setColor(1, 0, 0);
+				me["ASI_sel_up_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
-				me["ASI_sel_up"].setColor(1,0,0);
-				me["ASI_sel_up_text"].setColor(1,0,0);
+				me["ASI_sel_up"].setColor(1, 0, 0);
+				me["ASI_sel_up_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
-				me["ASI_sel_up"].setColor(1,0,0);
-				me["ASI_sel_up_text"].setColor(1,0,0);
+				me["ASI_sel_up"].setColor(1, 0, 0);
+				me["ASI_sel_up_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
-				me["ASI_sel_up"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_sel_up_text"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_up"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_sel_up_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
-				me["ASI_sel_up"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_sel_up_text"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_up"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_sel_up_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
-				me["ASI_sel_up"].setColor(1,1,1);
-				me["ASI_sel_up_text"].setColor(1,1,1);
+				me["ASI_sel_up"].setColor(1, 1, 1);
+				me["ASI_sel_up_text"].setColor(1, 1, 1);
 			}
-			me["ASI_sel_up"].setColorFill(0,0,0);
+			me["ASI_sel_up"].setColorFill(0, 0, 0);
 			me["ASI_sel_up"].show();
 			if (Value.Afs.ktsMachSel) {
 				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
@@ -622,9 +623,9 @@ var canvasBase = {
 			}
 			me["ASI_sel_up_text"].show();
 		} else if (Value.Asi.Tape.sel > 60) { # It will never go outside envelope, so keep it white
-			me["ASI_sel_up"].setColor(1,1,1);
-			me["ASI_sel_up"].setColorFill(1,1,1);
-			me["ASI_sel_up_text"].setColor(1,1,1);
+			me["ASI_sel_up"].setColor(1, 1, 1);
+			me["ASI_sel_up"].setColorFill(1, 1, 1);
+			me["ASI_sel_up_text"].setColor(1, 1, 1);
 			me["ASI_sel_up"].show();
 			if (Value.Afs.ktsMach) {
 				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
@@ -638,25 +639,25 @@ var canvasBase = {
 		}
 		if (Value.Asi.Tape.preSel < -60 and !afs.Internal.syncedSpd) {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
-				me["ASI_sel_dn"].setColor(1,0,0);
-				me["ASI_sel_dn_text"].setColor(1,0,0);
+				me["ASI_sel_dn"].setColor(1, 0, 0);
+				me["ASI_sel_dn_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
-				me["ASI_sel_dn"].setColor(1,0,0);
-				me["ASI_sel_dn_text"].setColor(1,0,0);
+				me["ASI_sel_dn"].setColor(1, 0, 0);
+				me["ASI_sel_dn_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
-				me["ASI_sel_dn"].setColor(1,0,0);
-				me["ASI_sel_dn_text"].setColor(1,0,0);
+				me["ASI_sel_dn"].setColor(1, 0, 0);
+				me["ASI_sel_dn_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
-				me["ASI_sel_dn"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_sel_dn_text"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_dn"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_sel_dn_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
-				me["ASI_sel_dn"].setColor(0.9647,0.8196,0.0784);
-				me["ASI_sel_dn_text"].setColor(0.9647,0.8196,0.0784);
+				me["ASI_sel_dn"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_sel_dn_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
-				me["ASI_sel_dn"].setColor(1,1,1);
-				me["ASI_sel_dn_text"].setColor(1,1,1);
+				me["ASI_sel_dn"].setColor(1, 1, 1);
+				me["ASI_sel_dn_text"].setColor(1, 1, 1);
 			}
-			me["ASI_sel_dn"].setColorFill(0,0,0);
+			me["ASI_sel_dn"].setColorFill(0, 0, 0);
 			me["ASI_sel_dn"].show();
 			if (Value.Afs.ktsMachSel) {
 				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
@@ -665,9 +666,9 @@ var canvasBase = {
 			}
 			me["ASI_sel_dn_text"].show();
 		} else if (Value.Asi.Tape.sel < -60) { # It will never go outside envelope, so keep it white
-			me["ASI_sel_dn"].setColor(1,1,1);
-			me["ASI_sel_dn"].setColorFill(1,1,1);
-			me["ASI_sel_dn_text"].setColor(1,1,1);
+			me["ASI_sel_dn"].setColor(1, 1, 1);
+			me["ASI_sel_dn"].setColorFill(1, 1, 1);
+			me["ASI_sel_dn_text"].setColor(1, 1, 1);
 			me["ASI_sel_dn"].show();
 			if (Value.Afs.ktsMach) {
 				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
@@ -722,17 +723,17 @@ var canvasBase = {
 		
 		me["AI_PLI"].setTranslation(0, math.clamp(Value.Ai.stallAlphaDeg - Value.Ai.alpha, -20, 20) * -10.246);
 		if (Value.Ai.alpha >= Value.Ai.stallAlphaDeg) {
-			me["AI_PLI"].setColor(1,0,0);
-			me["AI_banklimit_L"].setColor(1,0,0);
-			me["AI_banklimit_R"].setColor(1,0,0);
+			me["AI_PLI"].setColor(1, 0, 0);
+			me["AI_banklimit_L"].setColor(1, 0, 0);
+			me["AI_banklimit_R"].setColor(1, 0, 0);
 		} else if (Value.Ai.alpha >= pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue() and Value.Misc.slatsPos >= 0.1) {
-			me["AI_PLI"].setColor(0.9647,0.8196,0.0784);
-			me["AI_banklimit_L"].setColor(1,1,1);
-			me["AI_banklimit_R"].setColor(1,1,1);
+			me["AI_PLI"].setColor(0.9647, 0.8196, 0.0784);
+			me["AI_banklimit_L"].setColor(1, 1, 1);
+			me["AI_banklimit_R"].setColor(1, 1, 1);
 		} else {
-			me["AI_PLI"].setColor(0.3412,0.7882,0.9922);
-			me["AI_banklimit_L"].setColor(1,1,1);
-			me["AI_banklimit_R"].setColor(1,1,1);
+			me["AI_PLI"].setColor(0.3412, 0.7882, 0.9922);
+			me["AI_banklimit_L"].setColor(1, 1, 1);
+			me["AI_banklimit_R"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Ai.pitch > 25) {
@@ -856,9 +857,9 @@ var canvasBase = {
 		
 		Value.Alt.alert = systems.WARNINGS.altitudeAlert.getValue();
 		if (Value.Alt.alert == 1 or (Value.Alt.alert == 2 and Value.Misc.blinkMed)) {
-			me["ALT_bowtie"].setColor(0.9412,0.7255,0);
+			me["ALT_bowtie"].setColor(0.9412, 0.7255, 0);
 		} else {
-			me["ALT_bowtie"].setColor(1,1,1);
+			me["ALT_bowtie"].setColor(1, 1, 1);
 		}
 		
 		# ALT Pre-Sel/Sel
@@ -882,7 +883,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Alt.preSel > 525 and !afs.Internal.syncedAlt) {
-			me["ALT_sel_up"].setColorFill(0,0,0);
+			me["ALT_sel_up"].setColorFill(0, 0, 0);
 			me["ALT_sel_up"].show();
 			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
 			me["ALT_sel_up_text"].show();
@@ -893,7 +894,7 @@ var canvasBase = {
 				me["ALT_sel_up_text_T"].show();
 			}
 		} else if (Value.Alt.sel > 525) {
-			me["ALT_sel_up"].setColorFill(1,1,1);
+			me["ALT_sel_up"].setColorFill(1, 1, 1);
 			me["ALT_sel_up"].show();
 			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
 			me["ALT_sel_up_text"].show();
@@ -910,7 +911,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Alt.preSel < -525 and !afs.Internal.syncedAlt) {
-			me["ALT_sel_dn"].setColorFill(0,0,0);
+			me["ALT_sel_dn"].setColorFill(0, 0, 0);
 			me["ALT_sel_dn"].show();
 			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
 			me["ALT_sel_dn_text"].show();
@@ -921,7 +922,7 @@ var canvasBase = {
 				me["ALT_sel_dn_text_T"].show();
 			}
 		} else if (Value.Alt.sel < -525) {
-			me["ALT_sel_dn"].setColorFill(1,1,1);
+			me["ALT_sel_dn"].setColorFill(1, 1, 1);
 			me["ALT_sel_dn"].show();
 			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
 			me["ALT_sel_dn_text"].show();
@@ -990,7 +991,8 @@ var canvasBase = {
 			me["VSI_bug_dn"].hide();
 		}
 		
-		# ILS
+		# ILS LOC
+		Value.Misc.risingRunwayTBar = pts.Systems.Acconfig.Options.risingRunwayTBar.getBoolValue();
 		Value.Nav.headingNeedleDeflectionNorm = pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue();
 		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
@@ -999,11 +1001,15 @@ var canvasBase = {
 				me["LOC_no"].hide();
 				
 				if (Value.Ra.agl <= 300 and !Value.Misc.wow and (Value.Afs.roll == "LOC" or Value.Afs.roll == "ALIGN") and abs(Value.Nav.headingNeedleDeflectionNorm) > 0.105) { # 1/4 Dot
-					me["LOC_pointer"].setColor(0.9647,0.8196,0.0784);
+					me["LOC_pointer"].setColor(0.9647, 0.8196, 0.0784);
 					
 					if (Value.Misc.blinkMed) {
-						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
-						me["AI_rising_runway"].show();
+						if (Value.Misc.risingRunwayTBar) {
+							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+							me["AI_rising_runway"].show();
+						} else {
+							me["AI_rising_runway"].hide();
+						}
 						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 						me["LOC_pointer"].show();
 					} else {
@@ -1011,9 +1017,13 @@ var canvasBase = {
 						me["LOC_pointer"].hide();
 					}
 				} else {
-					me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
-					me["AI_rising_runway"].show();
-					me["LOC_pointer"].setColor(0.9607,0,0.7764);
+					if (Value.Misc.risingRunwayTBar) {
+						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
+						me["AI_rising_runway"].show();
+					} else {
+						me["AI_rising_runway"].hide();
+					}
+					me["LOC_pointer"].setColor(0.9607, 0, 0.7764);
 					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 					me["LOC_pointer"].show();
 				}
@@ -1031,6 +1041,14 @@ var canvasBase = {
 			me["LOC_scale"].hide();
 		}
 		
+		# RA Rising Runway
+		if (Value.Misc.risingRunwayTBar) { # When T-bar equipped, RA doesn't move
+			me["RA_group"].setTranslation(0, 0);
+		} else {
+			me["RA_group"].setTranslation(0, (200 - math.clamp(Value.Ra.agl, 0, 200)) * -1.0349);
+		}
+		
+		# ILS G/S
 		Value.Nav.gsNeedleDeflectionNorm = pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue();
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
 		if (Value.Nav.selectedMhz != 0) {
@@ -1038,7 +1056,7 @@ var canvasBase = {
 				me["GS_no"].hide();
 				
 				if (Value.Ra.agl >= 100 and Value.Ra.agl <= 500 and Value.Afs.pitch == "G/S" and abs(Value.Nav.gsNeedleDeflectionNorm) > 0.41) { # One Dot
-					me["GS_pointer"].setColor(0.9647,0.8196,0.0784);
+					me["GS_pointer"].setColor(0.9647, 0.8196, 0.0784);
 					
 					if (Value.Misc.blinkMed) {
 						me["GS_pointer"].setTranslation(0, Value.Nav.gsNeedleDeflectionNorm * -204);
@@ -1047,7 +1065,7 @@ var canvasBase = {
 						me["GS_pointer"].hide();
 					}
 				} else {
-					me["GS_pointer"].setColor(0.9607,0,0.7764);
+					me["GS_pointer"].setColor(0.9607, 0, 0.7764);
 					me["GS_pointer"].setTranslation(0, Value.Nav.gsNeedleDeflectionNorm * -204);
 					me["GS_pointer"].show();
 				}
@@ -1107,13 +1125,13 @@ var canvasBase = {
 		
 		if (Value.Ra.agl <= 2500) {
 			if (Value.Ra.agl <= Value.Misc.minimums) {
-				me["Minimums"].setColor(0.9412,0.7255,0);
-				me["RA"].setColor(0.9412,0.7255,0);
-				me["RA_box"].setColor(0.9412,0.7255,0);
+				me["Minimums"].setColor(0.9412, 0.7255, 0);
+				me["RA"].setColor(0.9412, 0.7255, 0);
+				me["RA_box"].setColor(0.9412, 0.7255, 0);
 			} else {
-				me["Minimums"].setColor(1,1,1);
-				me["RA"].setColor(1,1,1);
-				me["RA_box"].setColor(1,1,1);
+				me["Minimums"].setColor(1, 1, 1);
+				me["RA"].setColor(1, 1, 1);
+				me["RA_box"].setColor(1, 1, 1);
 			}
 			if (Value.Ra.agl <= 5) {
 				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl)));
@@ -1131,10 +1149,10 @@ var canvasBase = {
 		
 		# HDG
 		if (pts.Instrumentation.Efis.Mfd.trueNorth[n].getBoolValue()) {
-			me["HDG_magtru"].setColor(0.3412,0.7882,0.9922);
+			me["HDG_magtru"].setColor(0.3412, 0.7882, 0.9922);
 			me["HDG_magtru"].setText("TRU");
 		} else {
-			me["HDG_magtru"].setColor(1,1,1);
+			me["HDG_magtru"].setColor(1, 1, 1);
 			me["HDG_magtru"].setText("MAG");
 		}
 		
@@ -1254,44 +1272,44 @@ var canvasBase = {
 		me["FMA_Roll_Arm"].setText(sprintf("%s", Value.Afs.rollArm));
 		
 		if (Value.Afs.land == "DUAL") {
-			me["FMA_Roll"].setColor(0,1,0);
+			me["FMA_Roll"].setColor(0, 1, 0);
 		} else if (Value.Afs.roll == "NAV1" or Value.Afs.roll == "NAV2") {
-			me["FMA_Roll"].setColor(0.9607,0,0.7764);
+			me["FMA_Roll"].setColor(0.9607, 0, 0.7764);
 		} else {
-			me["FMA_Roll"].setColor(1,1,1);
+			me["FMA_Roll"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.rollArm == "NAV ARMED") {
-			me["FMA_Roll_Arm"].setColor(0.9607,0,0.7764);
+			me["FMA_Roll_Arm"].setColor(0.9607, 0, 0.7764);
 		} else {
-			me["FMA_Roll_Arm"].setColor(1,1,1);
+			me["FMA_Roll_Arm"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.land == "DUAL") {
 			me["FMA_Altitude"].hide();
 			me["FMA_Altitude_Thousand"].hide();
-			me["FMA_Land"].setColor(0,1,0);
+			me["FMA_Land"].setColor(0, 1, 0);
 			me["FMA_Land"].setText("DUAL LAND");
 			me["FMA_Land"].show();
-			me["FMA_Pitch_Land"].setColor(0,1,0);
+			me["FMA_Pitch_Land"].setColor(0, 1, 0);
 			me["FMA_Pitch_Land"].setText(sprintf("%s", Value.Afs.pitch));
 			me["FMA_Pitch_Land"].show();
 		} else if (Value.Afs.land == "SINGLE") {
 			me["FMA_Altitude"].hide();
 			me["FMA_Altitude_Thousand"].hide();
-			me["FMA_Land"].setColor(1,1,1);
+			me["FMA_Land"].setColor(1, 1, 1);
 			me["FMA_Land"].setText("SINGLE LAND");
 			me["FMA_Land"].show();
-			me["FMA_Pitch_Land"].setColor(1,1,1);
+			me["FMA_Pitch_Land"].setColor(1, 1, 1);
 			me["FMA_Pitch_Land"].setText(sprintf("%s", Value.Afs.pitch));
 			me["FMA_Pitch_Land"].show();
 		} else if (Value.Afs.land == "APPR") {
 			me["FMA_Altitude"].hide();
 			me["FMA_Altitude_Thousand"].hide();
-			me["FMA_Land"].setColor(1,1,1);
+			me["FMA_Land"].setColor(1, 1, 1);
 			me["FMA_Land"].setText("APPR ONLY");
 			me["FMA_Land"].show();
-			me["FMA_Pitch_Land"].setColor(1,1,1);
+			me["FMA_Pitch_Land"].setColor(1, 1, 1);
 			me["FMA_Pitch_Land"].setText(sprintf("%s", Value.Afs.pitch));
 			me["FMA_Pitch_Land"].show();
 		} else {
@@ -1334,28 +1352,28 @@ var canvasBase = {
 		Value.Afs.atsWarn = afs.Warning.ats.getBoolValue();
 		
 		if (Value.Afs.atsFlash) {
-			me["FMA_ATS_Pitch_Off"].setColor(1,0,0);
-			me["FMA_ATS_Thrust_Off"].setColor(1,0,0);
+			me["FMA_ATS_Pitch_Off"].setColor(1, 0, 0);
+			me["FMA_ATS_Thrust_Off"].setColor(1, 0, 0);
 		} else if (!afs.Input.athrAvail.getBoolValue()) {
-			me["FMA_ATS_Pitch_Off"].setColor(0.9412,0.7255,0);
-			me["FMA_ATS_Thrust_Off"].setColor(0.9412,0.7255,0);
+			me["FMA_ATS_Pitch_Off"].setColor(0.9412, 0.7255, 0);
+			me["FMA_ATS_Thrust_Off"].setColor(0.9412, 0.7255, 0);
 		} else {
-			me["FMA_ATS_Pitch_Off"].setColor(1,1,1);
-			me["FMA_ATS_Thrust_Off"].setColor(1,1,1);
+			me["FMA_ATS_Pitch_Off"].setColor(1, 1, 1);
+			me["FMA_ATS_Thrust_Off"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.apSound) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,0,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,0,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(1, 0, 0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1, 0, 0);
 		} else if (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412, 0.7255, 0);
 		} else if ((Value.Afs.apDisc[0] or Value.Afs.apDisc[1]) and !Value.Afs.ap1 and !Value.Afs.ap2) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412,0.7255,0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412,0.7255,0);
+			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412, 0.7255, 0);
 		} else {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1,1,1);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1,1,1);
+			me["FMA_AP_Pitch_Off_Box"].setColor(1, 1, 1);
+			me["FMA_AP_Thrust_Off_Box"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.ats == 1) {
@@ -1395,7 +1413,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
-			me["FMA_AP"].setColor(0.3215,0.8078,1);
+			me["FMA_AP"].setColor(0.3215, 0.8078, 1);
 			if (Value.Afs.land == "DUAL") {
 				me["FMA_AP"].setText("AP");
 			} else if (Value.Afs.ap1) {
@@ -1407,15 +1425,15 @@ var canvasBase = {
 		} else if (Value.Afs.apSound and !Value.Afs.apWarn) {
 			me["FMA_AP"].hide();
 		} else if (Value.Afs.apSound and Value.Afs.apWarn) {
-			me["FMA_AP"].setColor(1,0,0);
+			me["FMA_AP"].setColor(1, 0, 0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else if (Value.Afs.apDisc[0] or Value.Afs.apDisc[1] or (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail)) {
-			me["FMA_AP"].setColor(0.9412,0.7255,0);
+			me["FMA_AP"].setColor(0.9412, 0.7255, 0);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		} else {
-			me["FMA_AP"].setColor(1,1,1);
+			me["FMA_AP"].setColor(1, 1, 1);
 			me["FMA_AP"].setText("AP OFF");
 			me["FMA_AP"].show();
 		}
@@ -1502,7 +1520,7 @@ var canvasBase = {
 		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
 			me["Flaps_dn"].hide();
 			me["Flaps_up"].hide();
-			me["Flaps_num"].setColor(0.9647,0.8196,0.0784);
+			me["Flaps_num"].setColor(0.9647, 0.8196, 0.0784);
 			me["Flaps_num_boxes"].show();
 			me["Flaps_num2"].setText(sprintf("%2.0f", Value.Misc.flapsCmd));
 			me["Flaps_num2"].show();
@@ -1517,7 +1535,7 @@ var canvasBase = {
 				me["Flaps_dn"].hide();
 				me["Flaps_up"].hide();
 			}
-			me["Flaps_num"].setColor(1,1,1);
+			me["Flaps_num"].setColor(1, 1, 1);
 			me["Flaps_num_boxes"].hide();
 			me["Flaps_num2"].hide();
 		}

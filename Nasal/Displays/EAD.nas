@@ -332,10 +332,10 @@ var canvasBase = {
 		
 		if (Value.Fadec.revState[0] == 2) {
 			me["REV1"].setText("REV");
-			me["REV1"].setColor(0,1,0);
+			me["REV1"].setColor(0, 1, 0);
 		} else {
 			me["REV1"].setText("U/L");
-			me["REV1"].setColor(0.9412,0.7255,0);
+			me["REV1"].setColor(0.9412, 0.7255, 0);
 		}
 		
 		if (Value.Fadec.revState[1] != 0 and Value.Fadec.engPowered[1]) {
@@ -346,10 +346,10 @@ var canvasBase = {
 		
 		if (Value.Fadec.revState[1] == 2) {
 			me["REV2"].setText("REV");
-			me["REV2"].setColor(0,1,0);
+			me["REV2"].setColor(0, 1, 0);
 		} else {
 			me["REV2"].setText("U/L");
-			me["REV2"].setColor(0.9412,0.7255,0);
+			me["REV2"].setColor(0.9412, 0.7255, 0);
 		}
 		
 		if (Value.Fadec.revState[2] != 0 and Value.Fadec.engPowered[2]) {
@@ -360,10 +360,10 @@ var canvasBase = {
 		
 		if (Value.Fadec.revState[2] == 2) {
 			me["REV3"].setText("REV");
-			me["REV3"].setColor(0,1,0);
+			me["REV3"].setColor(0, 1, 0);
 		} else {
 			me["REV3"].setText("U/L");
-			me["REV3"].setColor(0.9412,0.7255,0);
+			me["REV3"].setColor(0.9412, 0.7255, 0);
 		}
 		
 		# Lower Right Warnings

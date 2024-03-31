@@ -206,92 +206,6 @@
 		<group>
 			<layout>vbox</layout>
 			
-			<group>
-				<layout>hbox</layout>
-				
-				<checkbox>
-					<label>Enable De-icing Truck</label>
-					<halign>left</halign>
-					<property>/services/deicing_truck/enable</property>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-					<live>true</live>
-				</checkbox>
-				
-				<button>
-					<legend>De-ice</legend>
-					<halign>center</halign>
-					<pref-height>25</pref-height>
-					<padding>5</padding>
-					<enable>
-						<property>/services/deicing_truck/enable</property>
-					</enable>
-					<binding>
-						<command>nasal</command>
-						<script>gui.popupTip("The aircraft was de-iced!");</script>
-					</binding>
-				</button>
-			</group>
-			
-			<checkbox>
-				<label>Enable Fuel Truck</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<!--enable>
-					<not><property>/services/fuel-truck/connect</property></not>
-				</enable-->
-				<property>/services/fuel-truck/enable</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Connect Fuel Truck</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<!--enable>
-					<property>/services/fuel-truck/enable</property>
-				</enable-->
-				<property>/services/fuel-truck/connect</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Enable Catering Truck</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<property>/services/catering/enable</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Enable Baggage Ramp</label>
-				<halign>left</halign>
-				<enable>
-					<property>/systems/acconfig/extra-stuff</property>
-				</enable>
-				<property>/services/baggage/enable</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
 			<checkbox>
 				<label>Enable Wheel Chocks</label>
 				<halign>left</halign>
@@ -435,6 +349,20 @@
 						acconfig.OPTIONS.write();
 						instruments.RADIOS.toggle833();
 					</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Rising Runway T-Bar</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/rising-runway-t-bar</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
 				</binding>
 				<live>true</live>
 			</checkbox>
