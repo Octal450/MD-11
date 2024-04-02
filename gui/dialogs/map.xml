@@ -48,7 +48,6 @@ command interface /autopilot/route-manager/input:
 	<group>
 		<layout>hbox</layout>
 		<default-padding>1</default-padding>
-		<empty><stretch>1</stretch></empty>
 
 		<text>
 			<label>Map</label>
@@ -286,7 +285,7 @@ command interface /autopilot/route-manager/input:
 				<button>
 					<name>zoomout</name>
 					<legend>-</legend>
-					<pref-width>22</pref-width>
+					<pref-width>52</pref-width>
 					<pref-height>22</pref-height>
 
 					<binding>
@@ -307,7 +306,7 @@ command interface /autopilot/route-manager/input:
 				<button>
 					<name>zoomin</name>
 					<legend>+</legend>
-					<pref-width>22</pref-width>
+					<pref-width>52</pref-width>
 					<pref-height>22</pref-height>
 
 					<binding>

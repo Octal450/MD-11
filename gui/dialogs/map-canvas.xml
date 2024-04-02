@@ -41,7 +41,6 @@
 	<group>
 		<layout>hbox</layout>
 		<default-padding>1</default-padding>
-		<empty><stretch>1</stretch></empty>
 
 		<text>
 			<label>Map (Canvas)</label>
@@ -593,7 +592,7 @@
 
 				<button>
 					<name>zoomout</name>
-					<legend>out</legend>
+					<legend>-</legend>
 					<pref-width>52</pref-width>
 					<pref-height>22</pref-height>
 
@@ -617,7 +616,7 @@
 
 				<button>
 					<name>zoomin</name>
-					<legend>in</legend>
+					<legend>+</legend>
 					<pref-width>52</pref-width>
 					<pref-height>22</pref-height>
 
