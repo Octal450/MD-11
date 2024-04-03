@@ -37,7 +37,7 @@ var variousReset = func() {
 	systems.DUController.sdPage = "ENG";
 }
 
-var apPanel = {
+var ApPanel = {
 	altTemp: 0,
 	fpaTemp: 0,
 	hdgTemp: 0,

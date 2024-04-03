@@ -44,26 +44,26 @@ var afsCanvas = {
 		# Set up clickspots
 		# Center Buttons
 		me["Autoflight"].addEventListener("click", func(e) {
-			libraries.apPanel.autoflight();
+			libraries.ApPanel.autoflight();
 		});
 		me["ApprLand"].addEventListener("click", func(e) {
-			libraries.apPanel.appr();
+			libraries.ApPanel.appr();
 		});
 		
 		me["AfsDisc"].addEventListener("click", func(e) {
-			libraries.apPanel.apDisc();
+			libraries.ApPanel.apDisc();
 		});
 		me["AtsDisc"].addEventListener("click", func(e) {
-			libraries.apPanel.atDisc();
+			libraries.ApPanel.atDisc();
 		});
 		me["Fd1"].addEventListener("click", func(e) {
-			libraries.apPanel.fd1();
+			libraries.ApPanel.fd1();
 		});
 		me["Ga"].addEventListener("click", func(e) {
-			libraries.apPanel.toga();
+			libraries.ApPanel.toga();
 		});
 		me["Fd2"].addEventListener("click", func(e) {
-			libraries.apPanel.fd2();
+			libraries.ApPanel.fd2();
 		});
 		
 		me["AfsOvrd1Click"].addEventListener("click", func(e) {
@@ -89,45 +89,45 @@ var afsCanvas = {
 		# Speed
 		me["SpdKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.apPanel.spdPull();
+				libraries.ApPanel.spdPull();
 			} else if (e.button == 0) {
-				libraries.apPanel.spdPush();
+				libraries.ApPanel.spdPush();
 			}
 		});
 		me["SpdKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.apPanel.spdAdjust(10 * e.deltaY);
+				libraries.ApPanel.spdAdjust(10 * e.deltaY);
 			} else {
-				libraries.apPanel.spdAdjust(e.deltaY);
+				libraries.ApPanel.spdAdjust(e.deltaY);
 			}
 		});
 		
 		me["IasMach"].addEventListener("click", func(e) {
-			libraries.apPanel.ktsMach();
+			libraries.ApPanel.ktsMach();
 		});
 		
 		# Heading
 		me["HdgKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.apPanel.hdgPull();
+				libraries.ApPanel.hdgPull();
 			} else if (e.button == 0) {
-				libraries.apPanel.hdgPush();
+				libraries.ApPanel.hdgPush();
 			}
 		});
 		me["HdgKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.apPanel.hdgAdjust(10 * e.deltaY);
+				libraries.ApPanel.hdgAdjust(10 * e.deltaY);
 			} else {
-				libraries.apPanel.hdgAdjust(e.deltaY);
+				libraries.ApPanel.hdgAdjust(e.deltaY);
 			}
 		});
 		
 		me["HdgTrk"].addEventListener("click", func(e) {
-			libraries.apPanel.hdgTrk();
+			libraries.ApPanel.hdgTrk();
 		});
 		
 		me["Nav"].addEventListener("click", func(e) {
-			libraries.apPanel.nav();
+			libraries.ApPanel.nav();
 		});
 		
 		# Bank Limit
@@ -153,30 +153,30 @@ var afsCanvas = {
 		# Altitude
 		me["AltKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.apPanel.altPull();
+				libraries.ApPanel.altPull();
 			} else if (e.button == 0) {
-				libraries.apPanel.altPush();
+				libraries.ApPanel.altPush();
 			}
 		});
 		me["AltKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.apPanel.altAdjust(10 * e.deltaY);
+				libraries.ApPanel.altAdjust(10 * e.deltaY);
 			} else {
-				libraries.apPanel.altAdjust(e.deltaY);
+				libraries.ApPanel.altAdjust(e.deltaY);
 			}
 		});
 		
 		# Vertical Speed
 		me["VsKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.apPanel.vsAdjust(-10 * e.deltaY); # Inverted
+				libraries.ApPanel.vsAdjust(-10 * e.deltaY); # Inverted
 			} else {
-				libraries.apPanel.vsAdjust(-1 * e.deltaY); # Inverted
+				libraries.ApPanel.vsAdjust(-1 * e.deltaY); # Inverted
 			}
 		});
 		
 		me["VsFpa"].addEventListener("click", func(e) {
-			libraries.apPanel.vsFpa();
+			libraries.ApPanel.vsFpa();
 		});
 		
 		me._update();

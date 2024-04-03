@@ -154,7 +154,7 @@ var lightsLoop = maketimer(0.2, func() {
 
 # Custom controls.nas overwrites
 controls.autopilotDisconnect = func() {
-	libraries.apPanel.apDisc();
+	libraries.ApPanel.apDisc();
 }
 
 controls.reverserTogglePosition = func() {

@@ -970,7 +970,7 @@
 					<script>
 						setprop("/controls/cockpit/at-disc-1", 1);
 						setprop("/controls/cockpit/at-disc-3", 1);
-						libraries.apPanel.atDisc();
+						libraries.ApPanel.atDisc();
 					</script>
 				</binding>
 				<mod-up>
@@ -991,7 +991,7 @@
 					<script>
 						setprop("/controls/cockpit/toga-1", 1);
 						setprop("/controls/cockpit/toga-2", 1);
-						libraries.apPanel.toga();
+						libraries.ApPanel.toga();
 					</script>
 				</binding>
 				<mod-up>
@@ -1226,7 +1226,7 @@
 					<script>
 						setprop("/controls/cockpit/ap-disc-1", 1);
 						setprop("/controls/cockpit/ap-disc-2", 1);
-						libraries.apPanel.apDisc();
+						libraries.ApPanel.apDisc();
 					</script>
 				</binding>
 				<mod-up>
