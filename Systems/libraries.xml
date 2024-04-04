@@ -143,7 +143,7 @@
 			</condition>
 		</enable>
 		<input>/fdm/jsbsim/aero/coefficient/CLalpha</input>
-		<output>/controls/flight/wingflex</output>
+		<output>/sim/model/wingflex</output>
 		<filter-time>0.04</filter-time>
 	</filter>
 	

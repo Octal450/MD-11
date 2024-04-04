@@ -249,6 +249,7 @@
 			<lights>
 				<nav-lights type="bool">0</nav-lights>
 			</lights>
+			<wingflex type="double">0</wingflex>
 		</model>
 		<multiplay n="0">
 			<generic n="0">
@@ -264,7 +265,7 @@
 				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
 				<float n="10" alias="/gear/gear[0]/steering-norm"/>
 				<float n="11" alias="/fdm/jsbsim/fcs/slat-pos-norm"/>
-				<float n="12" alias="/controls/flight/wingflex"/>
+				<float n="12" alias="/sim/model/wingflex"/>
 				<int n="0" alias="/sim/model/lights/strobe/state"/>
 				<int n="1" alias="/sim/model/lights/beacon/state"/>
 				<int n="2" alias="/controls/lighting/landing-light-n"/>
@@ -659,7 +660,6 @@
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
 			<slat-stow type="bool">0</slat-stow>
 			<speedbrake-arm type="bool">0</speedbrake-arm>
-			<wingflex type="double">0</wingflex>
 		</flight>
 		<fuel n="0">
 			<switches n="0">
