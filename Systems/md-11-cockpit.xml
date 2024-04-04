@@ -398,8 +398,14 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/smoke-elec-air"> <!-- TODO: Fix this -->
+		<linear_actuator name="/controls/cockpit/overhead/smoke-elec-air-cmd">
 			<input>/controls/electrical/switches/smoke-elec-air</input>
+			<module>4</module>
+			<rate>0.5</rate>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/overhead/smoke-elec-air">
+			<input>/controls/cockpit/overhead/smoke-elec-air-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 	
