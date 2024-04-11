@@ -240,7 +240,7 @@ var Output = {
 };
 
 var Settings = {
-	accelFt: props.globals.initNode("/it-autoflight/settings/accel-ft", 1000, "INT"), # Will be changable from FMS
+	accelFt: props.globals.initNode("/it-autoflight/settings/accel-ft", 1500, "INT"), # Will be changable from FMS
 };
 
 var Sound = {
