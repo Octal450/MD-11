@@ -12,8 +12,9 @@ var ClosestAirports = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
-			C1S: "",
+			C1S: "BRG /DIST",
 			C2: "",
 			C2S: "",
 			C3: "",
@@ -43,7 +44,7 @@ var ClosestAirports = {
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			R1: "",
-			R1S: "BRG /DIST      ",
+			R1S: "",
 			R2: "",
 			R2S: "",
 			R3: "",
@@ -101,44 +102,50 @@ var ClosestAirports = {
 	},
 	loop: func() {
 		if (size(me.Value.airports) == 0) {
-			me.Display.C3 = "NONE WITHIN 4000NM";
-		} else {
+			me.Display.L1 = "";
+			me.Display.L2 = "";
+			me.Display.L3 = "";
+			me.Display.L4 = "";
+			me.Display.C1 = "NONE WITHIN 4000NM";
+			me.Display.C2 = "";
 			me.Display.C3 = "";
+			me.Display.C4 = "";
+		} else {
 			me.Value.magVar = magvar();
 			
 			if (size(me.Value.airports) >= 1) {
 				me.Display.L1 = me.Value.airports[0].id;
 				me.Value.cdVector[0] = courseAndDistance(me.Value.airports[0]);
-				me.Display.R1 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[0][0] - me.Value.magVar), math.round(me.Value.cdVector[0][1]));
+				me.Display.C1 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[0][0] - me.Value.magVar), math.round(me.Value.cdVector[0][1]));
 			}
 			
 			if (size(me.Value.airports) >= 2) {
 				me.Display.L2 = me.Value.airports[1].id;
 				me.Value.cdVector[1] = courseAndDistance(me.Value.airports[1]);
-				me.Display.R2 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[1][0] - me.Value.magVar), math.round(me.Value.cdVector[1][1]));
+				me.Display.C2 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[1][0] - me.Value.magVar), math.round(me.Value.cdVector[1][1]));
 			}
 			
 			if (size(me.Value.airports) >= 3) {
 				me.Display.L3 = me.Value.airports[2].id;
 				me.Value.cdVector[2] = courseAndDistance(me.Value.airports[2]);
-				me.Display.R3 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[2][0] - me.Value.magVar), math.round(me.Value.cdVector[2][1]));
+				me.Display.C3 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[2][0] - me.Value.magVar), math.round(me.Value.cdVector[2][1]));
 			}
 			
 			if (size(me.Value.airports) >= 4) {
 				me.Display.L4 = me.Value.airports[3].id;
 				me.Value.cdVector[3] = courseAndDistance(me.Value.airports[3]);
-				me.Display.R4 = sprintf("%-03.0fg/%-4d    ", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
+				me.Display.C4 = sprintf("%-03.0fg/%-4d", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
 			}
 		
 		}
 		
 		if (me.Value.customAirport == nil) {
 			me.Display.L5 = "[    ]";
-			me.Display.R5 = sprintf("---g/----    ");
+			me.Display.C5 = sprintf("---g/----");
 		} else {
 			me.Value.cdVector[4] = courseAndDistance(me.Value.customAirport);
 			me.Display.L5 = me.Value.customAirport.id;
-			me.Display.R5 = sprintf("%03.0fg/%-4d    ", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
+			me.Display.C5 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
 		}
 	},
 	softKey: func(k) {

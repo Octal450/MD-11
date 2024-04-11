@@ -34,6 +34,7 @@ var MCDU = {
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
+			takeoff: Takeoff.new(n),
 		};
 		
 		m.page = m.PageList.menu;
@@ -62,6 +63,7 @@ var MCDU = {
 		me.PageList.menu.reset();
 		me.PageList.navRadio.reset();
 		me.PageList.posRef.reset();
+		me.PageList.takeoff.reset();
 		
 		me.scratchpad = "";
 		me.scratchpadDecimal = nil;
@@ -212,6 +214,10 @@ var MCDU = {
 		
 		if (me.message.size() > 0) {
 			me.clearMessage(2);
+		}
+		
+		if (p == "toAppr") { # TO/APPR page logic
+			p = "takeoff";
 		}
 		
 		if (contains(me.PageList, p)) {

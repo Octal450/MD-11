@@ -130,17 +130,17 @@ var canvasBase = {
 			me.updateFontSize(n);
 			
 			me["Simple_C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
-			me["Simple_C1S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
+			me["Simple_C1S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[0], 0);
 			me["Simple_C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
-			me["Simple_C2S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
+			me["Simple_C2S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[1], 0);
 			me["Simple_C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
-			me["Simple_C3S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
+			me["Simple_C3S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[2], 0);
 			me["Simple_C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
-			me["Simple_C4S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
+			me["Simple_C4S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[3], 0);
 			me["Simple_C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
-			me["Simple_C5S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
+			me["Simple_C5S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[4], 0);
 			me["Simple_C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
-			me["Simple_C6S"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
+			me["Simple_C6S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[5], 0);
 		} else {
 			me["Simple"].hide();
 		}

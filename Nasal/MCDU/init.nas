@@ -11,7 +11,8 @@ var Init = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, 0, 0, 0, 100],
+			CTranslate: [0, 0, -40, 0, 0, 40],
+			CSTranslate: [0, 0, -40, 0, 0, 40],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -342,7 +343,8 @@ var Init2 = {
 			arrow: 1,
 			
 			CFont: [FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [150, 0, 150, 0, 0, 0],
+			CTranslate: [150, 0, 170, 0, 0, 0],
+			CSTranslate: [150, 0, 150, 0, 0, 0],
 			C1: "",
 			C1S: "UFOB",
 			C2: "",
@@ -603,6 +605,7 @@ var Init3 = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -685,6 +688,8 @@ var CompRte = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",

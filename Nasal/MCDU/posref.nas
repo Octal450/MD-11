@@ -12,6 +12,7 @@ var PosRef = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -56,7 +57,7 @@ var PosRef = {
 			R6S: "RETURN TO ",
 			
 			simple: 1,
-			title: "POS REF   ",
+			title: "POS REF",
 		};
 		
 		m.Value = {
@@ -154,30 +155,31 @@ var IrsGnsPos = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
-			C1: "-",
+			CSTranslate: [0, 0, 0, 0, 0, 0],
+			C1: "",
 			C1S: "",
-			C2: "-",
+			C2: "",
 			C2S: "",
-			C3: "-",
+			C3: "",
 			C3S: "",
 			C4: "",
-			C4S: "NAV",
+			C4S: "",
 			C5: "",
-			C5S: "NAV",
+			C5S: "",
 			C6: "",
 			C6S: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			L1: "",
-			L1S: " IRU 1",
+			L1S: "",
 			L2: "",
-			L2S: " IRU 2",
+			L2S: "",
 			L3: "",
-			L3S: " IRU 3",
+			L3S: "",
 			L4: "",
-			L4S: " GNS 1",
+			L4S: " GNS 1 - NAV",
 			L5: "",
-			L5S: " GNS 2",
+			L5S: " GNS 2 - NAV",
 			L6: "",
 			L6S: "",
 			
@@ -198,7 +200,7 @@ var IrsGnsPos = {
 			R6S: "RETURN TO ",
 			
 			simple: 1,
-			title: "IRS/GNS POS   ",
+			title: "IRS/GNS POS",
 		};
 		
 		m.Value = {
@@ -227,51 +229,51 @@ var IrsGnsPos = {
 		me.Value.positionString = positionFormat(pts.Position.node);
 		if (systems.IRS.Iru.aligned[0].getValue()) {
 			me.Display.L1 = me.Value.positionString;
-			me.Display.C1S = "NAV";
+			me.Display.L1S = " IRU 1 - NAV";
 			me.Display.R1 = "000g/00";
 			me.Display.R1S = "";
 		} else {
 			me.Display.L1 = "-----.-/------.-";
 			me.Display.R1 = "";
 			if (systems.IRS.Iru.aligning[0].getValue()) {
-				me.Display.C1S = "ALIGN";
+				me.Display.L1S = " IRU 1 - ALIGN";
 				me.Display.R1S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[0].getValue());
 			} else {
-				me.Display.C1S = "";
+				me.Display.L1S = " IRU 1";
 				me.Display.R1S = "";
 			}
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
 			me.Display.L2 = me.Value.positionString;
-			me.Display.C2S = "NAV";
+			me.Display.L2S = " IRU 2 - NAV";
 			me.Display.R2 = "000g/00";
 			me.Display.R2S = "";
 		} else {
 			me.Display.L2 = "-----.-/------.-";
 			me.Display.R2 = "";
 			if (systems.IRS.Iru.aligning[1].getValue()) {
-				me.Display.C2S = "ALIGN";
+				me.Display.L2S = " IRU 2 - ALIGN";
 				me.Display.R2S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[1].getValue());
 			} else {
-				me.Display.C2S = "";
+				me.Display.L2S = " IRU 2";
 				me.Display.R2S = "";
 			}
 		}
 		
 		if (systems.IRS.Iru.aligned[2].getValue()) {
 			me.Display.L3 = me.Value.positionString;
-			me.Display.C3S = "NAV";
+			me.Display.L3S = " IRU 3 - NAV";
 			me.Display.R3 = "000g/00";
 			me.Display.R3S = "";
 		} else {
 			me.Display.L3 = "-----.-/------.-";
 			me.Display.R3 = "";
 			if (systems.IRS.Iru.aligning[2].getValue()) {
-				me.Display.C3S = "ALIGN";
+				me.Display.L3S = " IRU 3 - ALIGN";
 				me.Display.R3S = sprintf("%2.0f MIN", systems.IRS.Iru.alignTimeRemainingMinutes[2].getValue());
 			} else {
-				me.Display.C3S = "";
+				me.Display.L3S = " IRU 3";
 				me.Display.R3S = "";
 			}
 		}
@@ -302,9 +304,10 @@ var IrsStatus = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, 0, 0, 0, 0],
+			CTranslate: [160, 160, 160, 0, 0, 0],
+			CSTranslate: [-80, 0, 0, 0, 0, 0],
 			C1: "",
-			C1S: "DRIFT RATE    ",
+			C1S: "DRIFT RATE",
 			C2: "",
 			C2S: "",
 			C3: "",
@@ -334,7 +337,7 @@ var IrsStatus = {
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			R1: "",
-			R1S: "GS",
+			R1S: "GS ",
 			R2: "",
 			R2S: "",
 			R3: "",
@@ -347,7 +350,7 @@ var IrsStatus = {
 			R6S: "RETURN TO ",
 			
 			simple: 1,
-			title: "IRS STATUS   ",
+			title: "IRS STATUS",
 		};
 		
 		m.fromPage = "";
@@ -372,26 +375,26 @@ var IrsStatus = {
 		pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
 		if (systems.IRS.Iru.aligned[0].getValue()) {
 			me.Display.C1 = " 0";
-			me.Display.R1 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
+			me.Display.R1 = sprintf("%3.0f ",pts.Velocities.groundspeedKtTemp);
 		} else {
 			me.Display.C1 = " -";
-			me.Display.R1 = "-";
+			me.Display.R1 = "- ";
 		}
 		
 		if (systems.IRS.Iru.aligned[1].getValue()) {
 			me.Display.C2 = " 0";
-			me.Display.R2 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
+			me.Display.R2 = sprintf("%3.0f ",pts.Velocities.groundspeedKtTemp);
 		} else {
 			me.Display.C2 = " -";
-			me.Display.R2 = "-";
+			me.Display.R2 = "- ";
 		}
 	
 		if (systems.IRS.Iru.aligned[2].getValue()) {
 			me.Display.C3 = " 0";
-			me.Display.R3 = sprintf("%3.0f",pts.Velocities.groundspeedKtTemp);
+			me.Display.R3 = sprintf("%3.0f ",pts.Velocities.groundspeedKtTemp);
 		} else {
 			me.Display.C3 = " -";
-			me.Display.R3 = "-";
+			me.Display.R3 = "- ";
 		}
 	},
 	softKey: func(k) {

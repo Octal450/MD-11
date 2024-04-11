@@ -11,7 +11,8 @@ var Menu = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, 0, 0, 0, 0],
+			CTranslate: [-60, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -88,9 +89,9 @@ var Menu = {
 		if (me.type) {
 			me.Display.C1 = "";
 		} else if (me.Value.request) {
-			me.Display.C1 = "<REQ>  ";
+			me.Display.C1 = "<REQ>";
 		} else {
-			me.Display.C1 = "<ACT>  ";
+			me.Display.C1 = "<ACT>";
 		}
 	},
 	softKey: func(k) {
@@ -123,6 +124,7 @@ var Ref = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",

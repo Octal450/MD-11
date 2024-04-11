@@ -12,6 +12,7 @@ var AcStatus = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -150,6 +151,7 @@ var AcStatus2 = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
 			C1S: "",
 			C2: "",
@@ -227,8 +229,9 @@ var SensorStatus = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CTranslate: [0, 0, 0, 0, 0, 0],
+			CSTranslate: [0, 0, 0, 0, 0, 0],
 			C1: "",
-			C1S: "      3",
+			C1S: "   3",
 			C2: "",
 			C2S: "",
 			C3: "",
