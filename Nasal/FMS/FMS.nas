@@ -48,15 +48,15 @@ var Speeds = {
 # Logic
 var CORE = {
 	init: func() {
-		FPLN.resetFlightData();
+		EditFlightData.reset();
 		me.resetRadio();
 	},
 	loop: func() {
-		FPLN.loop();
+		EditFlightData.loop();
 	},
 	resetFms: func() {
 		afs.ITAF.init(1); # First
-		FPLN.resetFlightData();
+		EditFlightData.reset();
 		mcdu.BASE.reset(); # Last
 	},
 	resetRadio: func() {

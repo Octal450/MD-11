@@ -46,9 +46,8 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["Arrow", "Clr", "Scratchpad", "Simple", "Simple_C1", "Simple_C1S", "Simple_C2", "Simple_C2S", "Simple_C3", "Simple_C3S", "Simple_C4", "Simple_C4S", "Simple_C5", "Simple_C5S", "Simple_C6", "Simple_C6S", "Simple_L1", "Simple_L1A", "Simple_L1S",
-		"Simple_L2", "Simple_L2A", "Simple_L2S", "Simple_L3", "Simple_L3A", "Simple_L3S", "Simple_L4", "Simple_L4A", "Simple_L4S", "Simple_L5", "Simple_L5A", "Simple_L5S", "Simple_L6", "Simple_L6A", "Simple_L6S", "Simple_PageNum", "Simple_R1", "Simple_R1A",
-		"Simple_R1S", "Simple_R2", "Simple_R2A", "Simple_R2S", "Simple_R3", "Simple_R3A", "Simple_R3S", "Simple_R4", "Simple_R4A", "Simple_R4S", "Simple_R5", "Simple_R5A", "Simple_R5S", "Simple_R6", "Simple_R6A", "Simple_R6S", "Simple_Title"];
+		return ["Arrow", "Clr", "C1", "C1S", "C2", "C2S", "C3", "C3S", "C4", "C4S", "C5", "C5S", "C6", "C6S", "L1", "L1A", "L1S", "L2", "L2A", "L2S", "L3", "L3A", "L3S", "L4", "L4A", "L4S", "L5", "L5A", "L5S", "L6", "L6A", "L6S",
+		"PageNum", "R1", "R1A", "R1S", "R2", "R2A", "R2S", "R3", "R3A", "R3S", "R4", "R4A", "R4S", "R5", "R5A", "R5S", "R6", "R6A", "R6S", "Scratchpad", "Title"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -75,97 +74,91 @@ var canvasBase = {
 		}
 		me["Scratchpad"].setText(mcdu.unit[n].scratchpad);
 		
-		if (mcdu.unit[n].page.Display.simple) {
-			if (mcdu.unit[n].page.Display.arrow) {
-				me["Arrow"].show();
-			} else {
-				me["Arrow"].hide();
-			}
-			
-			me["Simple"].show();
-			
-			me["Simple_C1"].setText(mcdu.unit[n].page.Display.C1);
-			me["Simple_C1S"].setText(mcdu.unit[n].page.Display.C1S);
-			me["Simple_C2"].setText(mcdu.unit[n].page.Display.C2);
-			me["Simple_C2S"].setText(mcdu.unit[n].page.Display.C2S);
-			me["Simple_C3"].setText(mcdu.unit[n].page.Display.C3);
-			me["Simple_C3S"].setText(mcdu.unit[n].page.Display.C3S);
-			me["Simple_C4"].setText(mcdu.unit[n].page.Display.C4);
-			me["Simple_C4S"].setText(mcdu.unit[n].page.Display.C4S);
-			me["Simple_C5"].setText(mcdu.unit[n].page.Display.C5);
-			me["Simple_C5S"].setText(mcdu.unit[n].page.Display.C5S);
-			me["Simple_C6"].setText(mcdu.unit[n].page.Display.C6);
-			me["Simple_C6S"].setText(mcdu.unit[n].page.Display.C6S);
-			
-			me["Simple_L1"].setText(mcdu.unit[n].page.Display.L1);
-			me["Simple_L1S"].setText(mcdu.unit[n].page.Display.L1S);
-			me["Simple_L2"].setText(mcdu.unit[n].page.Display.L2);
-			me["Simple_L2S"].setText(mcdu.unit[n].page.Display.L2S);
-			me["Simple_L3"].setText(mcdu.unit[n].page.Display.L3);
-			me["Simple_L3S"].setText(mcdu.unit[n].page.Display.L3S);
-			me["Simple_L4"].setText(mcdu.unit[n].page.Display.L4);
-			me["Simple_L4S"].setText(mcdu.unit[n].page.Display.L4S);
-			me["Simple_L5"].setText(mcdu.unit[n].page.Display.L5);
-			me["Simple_L5S"].setText(mcdu.unit[n].page.Display.L5S);
-			me["Simple_L6"].setText(mcdu.unit[n].page.Display.L6);
-			me["Simple_L6S"].setText(mcdu.unit[n].page.Display.L6S);
-			
-			me["Simple_PageNum"].setText(mcdu.unit[n].page.Display.pageNum);
-			
-			me["Simple_R1"].setText(mcdu.unit[n].page.Display.R1);
-			me["Simple_R1S"].setText(mcdu.unit[n].page.Display.R1S);
-			me["Simple_R2"].setText(mcdu.unit[n].page.Display.R2);
-			me["Simple_R2S"].setText(mcdu.unit[n].page.Display.R2S);
-			me["Simple_R3"].setText(mcdu.unit[n].page.Display.R3);
-			me["Simple_R3S"].setText(mcdu.unit[n].page.Display.R3S);
-			me["Simple_R4"].setText(mcdu.unit[n].page.Display.R4);
-			me["Simple_R4S"].setText(mcdu.unit[n].page.Display.R4S);
-			me["Simple_R5"].setText(mcdu.unit[n].page.Display.R5);
-			me["Simple_R5S"].setText(mcdu.unit[n].page.Display.R5S);
-			me["Simple_R6"].setText(mcdu.unit[n].page.Display.R6);
-			me["Simple_R6S"].setText(mcdu.unit[n].page.Display.R6S);
-			
-			me["Simple_Title"].setText(mcdu.unit[n].page.Display.title);
-			
-			me.updateFontSize(n);
-			
-			me["Simple_C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
-			me["Simple_C1S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[0], 0);
-			me["Simple_C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
-			me["Simple_C2S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[1], 0);
-			me["Simple_C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
-			me["Simple_C3S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[2], 0);
-			me["Simple_C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
-			me["Simple_C4S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[3], 0);
-			me["Simple_C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
-			me["Simple_C5S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[4], 0);
-			me["Simple_C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
-			me["Simple_C6S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[5], 0);
+		if (mcdu.unit[n].page.Display.arrow) {
+			me["Arrow"].show();
 		} else {
-			me["Simple"].hide();
+			me["Arrow"].hide();
 		}
+		
+		me["C1"].setText(mcdu.unit[n].page.Display.C1);
+		me["C1S"].setText(mcdu.unit[n].page.Display.C1S);
+		me["C2"].setText(mcdu.unit[n].page.Display.C2);
+		me["C2S"].setText(mcdu.unit[n].page.Display.C2S);
+		me["C3"].setText(mcdu.unit[n].page.Display.C3);
+		me["C3S"].setText(mcdu.unit[n].page.Display.C3S);
+		me["C4"].setText(mcdu.unit[n].page.Display.C4);
+		me["C4S"].setText(mcdu.unit[n].page.Display.C4S);
+		me["C5"].setText(mcdu.unit[n].page.Display.C5);
+		me["C5S"].setText(mcdu.unit[n].page.Display.C5S);
+		me["C6"].setText(mcdu.unit[n].page.Display.C6);
+		me["C6S"].setText(mcdu.unit[n].page.Display.C6S);
+		
+		me["L1"].setText(mcdu.unit[n].page.Display.L1);
+		me["L1S"].setText(mcdu.unit[n].page.Display.L1S);
+		me["L2"].setText(mcdu.unit[n].page.Display.L2);
+		me["L2S"].setText(mcdu.unit[n].page.Display.L2S);
+		me["L3"].setText(mcdu.unit[n].page.Display.L3);
+		me["L3S"].setText(mcdu.unit[n].page.Display.L3S);
+		me["L4"].setText(mcdu.unit[n].page.Display.L4);
+		me["L4S"].setText(mcdu.unit[n].page.Display.L4S);
+		me["L5"].setText(mcdu.unit[n].page.Display.L5);
+		me["L5S"].setText(mcdu.unit[n].page.Display.L5S);
+		me["L6"].setText(mcdu.unit[n].page.Display.L6);
+		me["L6S"].setText(mcdu.unit[n].page.Display.L6S);
+		
+		me["PageNum"].setText(mcdu.unit[n].page.Display.pageNum);
+		
+		me["R1"].setText(mcdu.unit[n].page.Display.R1);
+		me["R1S"].setText(mcdu.unit[n].page.Display.R1S);
+		me["R2"].setText(mcdu.unit[n].page.Display.R2);
+		me["R2S"].setText(mcdu.unit[n].page.Display.R2S);
+		me["R3"].setText(mcdu.unit[n].page.Display.R3);
+		me["R3S"].setText(mcdu.unit[n].page.Display.R3S);
+		me["R4"].setText(mcdu.unit[n].page.Display.R4);
+		me["R4S"].setText(mcdu.unit[n].page.Display.R4S);
+		me["R5"].setText(mcdu.unit[n].page.Display.R5);
+		me["R5S"].setText(mcdu.unit[n].page.Display.R5S);
+		me["R6"].setText(mcdu.unit[n].page.Display.R6);
+		me["R6S"].setText(mcdu.unit[n].page.Display.R6S);
+		
+		me["Title"].setText(mcdu.unit[n].page.Display.title);
+		
+		me.updateFontSize(n);
+		
+		me["C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0], 0);
+		me["C1S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[0], 0);
+		me["C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1], 0);
+		me["C2S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[1], 0);
+		me["C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2], 0);
+		me["C3S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[2], 0);
+		me["C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3], 0);
+		me["C4S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[3], 0);
+		me["C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4], 0);
+		me["C5S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[4], 0);
+		me["C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5], 0);
+		me["C6S"].setTranslation(mcdu.unit[n].page.Display.CSTranslate[5], 0);
 	},
 	updateFontSize: func(n) {
-		if (me["Simple_C1"].get("character-size") != mcdu.unit[n].page.Display.CFont[0]) me["Simple_C1"].setFontSize(mcdu.unit[n].page.Display.CFont[0]);
-		if (me["Simple_C2"].get("character-size") != mcdu.unit[n].page.Display.CFont[1]) me["Simple_C2"].setFontSize(mcdu.unit[n].page.Display.CFont[1]);
-		if (me["Simple_C3"].get("character-size") != mcdu.unit[n].page.Display.CFont[2]) me["Simple_C3"].setFontSize(mcdu.unit[n].page.Display.CFont[2]);
-		if (me["Simple_C4"].get("character-size") != mcdu.unit[n].page.Display.CFont[3]) me["Simple_C4"].setFontSize(mcdu.unit[n].page.Display.CFont[3]);
-		if (me["Simple_C5"].get("character-size") != mcdu.unit[n].page.Display.CFont[4]) me["Simple_C5"].setFontSize(mcdu.unit[n].page.Display.CFont[4]);
-		if (me["Simple_C6"].get("character-size") != mcdu.unit[n].page.Display.CFont[5]) me["Simple_C6"].setFontSize(mcdu.unit[n].page.Display.CFont[5]);
+		if (me["C1"].get("character-size") != mcdu.unit[n].page.Display.CFont[0]) me["C1"].setFontSize(mcdu.unit[n].page.Display.CFont[0]);
+		if (me["C2"].get("character-size") != mcdu.unit[n].page.Display.CFont[1]) me["C2"].setFontSize(mcdu.unit[n].page.Display.CFont[1]);
+		if (me["C3"].get("character-size") != mcdu.unit[n].page.Display.CFont[2]) me["C3"].setFontSize(mcdu.unit[n].page.Display.CFont[2]);
+		if (me["C4"].get("character-size") != mcdu.unit[n].page.Display.CFont[3]) me["C4"].setFontSize(mcdu.unit[n].page.Display.CFont[3]);
+		if (me["C5"].get("character-size") != mcdu.unit[n].page.Display.CFont[4]) me["C5"].setFontSize(mcdu.unit[n].page.Display.CFont[4]);
+		if (me["C6"].get("character-size") != mcdu.unit[n].page.Display.CFont[5]) me["C6"].setFontSize(mcdu.unit[n].page.Display.CFont[5]);
 		
-		if (me["Simple_L1"].get("character-size") != mcdu.unit[n].page.Display.LFont[0]) me["Simple_L1"].setFontSize(mcdu.unit[n].page.Display.LFont[0]);
-		if (me["Simple_L2"].get("character-size") != mcdu.unit[n].page.Display.LFont[1]) me["Simple_L2"].setFontSize(mcdu.unit[n].page.Display.LFont[1]);
-		if (me["Simple_L3"].get("character-size") != mcdu.unit[n].page.Display.LFont[2]) me["Simple_L3"].setFontSize(mcdu.unit[n].page.Display.LFont[2]);
-		if (me["Simple_L4"].get("character-size") != mcdu.unit[n].page.Display.LFont[3]) me["Simple_L4"].setFontSize(mcdu.unit[n].page.Display.LFont[3]);
-		if (me["Simple_L5"].get("character-size") != mcdu.unit[n].page.Display.LFont[4]) me["Simple_L5"].setFontSize(mcdu.unit[n].page.Display.LFont[4]);
-		if (me["Simple_L6"].get("character-size") != mcdu.unit[n].page.Display.LFont[5]) me["Simple_L6"].setFontSize(mcdu.unit[n].page.Display.LFont[5]);
+		if (me["L1"].get("character-size") != mcdu.unit[n].page.Display.LFont[0]) me["L1"].setFontSize(mcdu.unit[n].page.Display.LFont[0]);
+		if (me["L2"].get("character-size") != mcdu.unit[n].page.Display.LFont[1]) me["L2"].setFontSize(mcdu.unit[n].page.Display.LFont[1]);
+		if (me["L3"].get("character-size") != mcdu.unit[n].page.Display.LFont[2]) me["L3"].setFontSize(mcdu.unit[n].page.Display.LFont[2]);
+		if (me["L4"].get("character-size") != mcdu.unit[n].page.Display.LFont[3]) me["L4"].setFontSize(mcdu.unit[n].page.Display.LFont[3]);
+		if (me["L5"].get("character-size") != mcdu.unit[n].page.Display.LFont[4]) me["L5"].setFontSize(mcdu.unit[n].page.Display.LFont[4]);
+		if (me["L6"].get("character-size") != mcdu.unit[n].page.Display.LFont[5]) me["L6"].setFontSize(mcdu.unit[n].page.Display.LFont[5]);
 		
-		if (me["Simple_R1"].get("character-size") != mcdu.unit[n].page.Display.RFont[0]) me["Simple_R1"].setFontSize(mcdu.unit[n].page.Display.RFont[0]);
-		if (me["Simple_R2"].get("character-size") != mcdu.unit[n].page.Display.RFont[1]) me["Simple_R2"].setFontSize(mcdu.unit[n].page.Display.RFont[1]);
-		if (me["Simple_R3"].get("character-size") != mcdu.unit[n].page.Display.RFont[2]) me["Simple_R3"].setFontSize(mcdu.unit[n].page.Display.RFont[2]);
-		if (me["Simple_R4"].get("character-size") != mcdu.unit[n].page.Display.RFont[3]) me["Simple_R4"].setFontSize(mcdu.unit[n].page.Display.RFont[3]);
-		if (me["Simple_R5"].get("character-size") != mcdu.unit[n].page.Display.RFont[4]) me["Simple_R5"].setFontSize(mcdu.unit[n].page.Display.RFont[4]);
-		if (me["Simple_R6"].get("character-size") != mcdu.unit[n].page.Display.RFont[5]) me["Simple_R6"].setFontSize(mcdu.unit[n].page.Display.RFont[5]);
+		if (me["R1"].get("character-size") != mcdu.unit[n].page.Display.RFont[0]) me["R1"].setFontSize(mcdu.unit[n].page.Display.RFont[0]);
+		if (me["R2"].get("character-size") != mcdu.unit[n].page.Display.RFont[1]) me["R2"].setFontSize(mcdu.unit[n].page.Display.RFont[1]);
+		if (me["R3"].get("character-size") != mcdu.unit[n].page.Display.RFont[2]) me["R3"].setFontSize(mcdu.unit[n].page.Display.RFont[2]);
+		if (me["R4"].get("character-size") != mcdu.unit[n].page.Display.RFont[3]) me["R4"].setFontSize(mcdu.unit[n].page.Display.RFont[3]);
+		if (me["R5"].get("character-size") != mcdu.unit[n].page.Display.RFont[4]) me["R5"].setFontSize(mcdu.unit[n].page.Display.RFont[4]);
+		if (me["R6"].get("character-size") != mcdu.unit[n].page.Display.RFont[5]) me["R6"].setFontSize(mcdu.unit[n].page.Display.RFont[5]);
 	},
 };
 

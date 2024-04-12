@@ -11,52 +11,51 @@ var Init = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, -40, 0, 0, 40],
 			CSTranslate: [0, 0, -40, 0, 0, 40],
-			C1: "",
+			CTranslate: [0, 0, -40, 0, 0, 40],
 			C1S: "",
-			C2: "",
+			C1: "",
 			C2S: "",
-			C3: "",
+			C2: "",
 			C3S: "GNS POS",
-			C4: "",
+			C3: "",
 			C4S: "",
-			C5: "",
+			C4: "",
 			C5S: "",
-			C6: "---/---",
+			C5: "",
 			C6S: "OPT/MAXFL",
+			C6: "---/---",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "",
 			L1S: "CO ROUTE",
-			L2: "",
+			L1: "",
 			L2S: "ALTN ROUTE",
-			L3: "",
+			L2: "",
 			L3S: "",
-			L4: "",
+			L3: "",
 			L4S: "FLT NO",
-			L5: "",
+			L4: "",
 			L5S: "CRZ LEVELS",
-			L6: "",
+			L5: "",
 			L6S: "TEMP/WIND",
+			L6: "",
 			
 			pageNum: "1/3",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "",
 			R1S: "FROM/ TO   ",
-			R2: "",
+			R1: "",
 			R2S: "ALTN",
-			R3: "",
+			R2: "",
 			R3S: "",
-			R4: "",
+			R3: "",
 			R4S: "",
-			R5: "",
+			R4: "",
 			R5S: "",
-			R6: "",
+			R5: "",
 			R6S: "CI",
+			R6: "",
 			
-			simple: 1,
 			title: "F-PLN INIT",
 		};
 		
@@ -241,7 +240,7 @@ var Init = {
 								me.Value.cruiseInputVals[i] = 0;
 							}
 						}
-						fms.FPLN.insertCruiseFl(int(me.Value.cruiseInputVals[0]), int(me.Value.cruiseInputVals[1]), int(me.Value.cruiseInputVals[2]), int(me.Value.cruiseInputVals[3]), int(me.Value.cruiseInputVals[4]), int(me.Value.cruiseInputVals[5]));
+						fms.EditFlightData.insertCruiseFl(int(me.Value.cruiseInputVals[0]), int(me.Value.cruiseInputVals[1]), int(me.Value.cruiseInputVals[2]), int(me.Value.cruiseInputVals[3]), int(me.Value.cruiseInputVals[4]), int(me.Value.cruiseInputVals[5]));
 						mcdu.unit[me.id].scratchpadClear();
 					}
 				} else {
@@ -252,14 +251,14 @@ var Init = {
 			}
 		} else if (k == "r1") {
 			if (me.scratchpadState == 0) {
-				fms.FPLN.resetFlightData();
+				fms.EditFlightData.reset();
 				mcdu.unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
 				me.scratchpadSplit = split("/", me.scratchpad);
 				if (size(me.scratchpadSplit) == 2) {
 					if (mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[1])) {
 						if (size(findAirportsByICAO(me.scratchpadSplit[0])) == 1 and size(findAirportsByICAO(me.scratchpadSplit[1])) == 1) {
-							fms.FPLN.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
+							fms.EditFlightData.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
 							mcdu.unit[me.id].scratchpadClear();
 							mcdu.unit[me.id].setPage("compRte");
 						} else {
@@ -276,13 +275,13 @@ var Init = {
 			}
 		} else if (k == "r2") {
 			if (me.scratchpadState == 0) {
-				fms.FPLN.insertAlternate("");
+				fms.EditFlightData.insertAlternate("");
 				mcdu.unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
 						if (fms.FlightData.airportTo != "") {
-							fms.FPLN.insertAlternate(me.scratchpad);
+							fms.EditFlightData.insertAlternate(me.scratchpad);
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -343,52 +342,51 @@ var Init2 = {
 			arrow: 1,
 			
 			CFont: [FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [150, 0, 170, 0, 0, 0],
 			CSTranslate: [150, 0, 150, 0, 0, 0],
-			C1: "",
+			CTranslate: [150, 0, 170, 0, 0, 0],
 			C1S: "UFOB",
-			C2: "",
+			C1: "",
 			C2S: "",
-			C3: "0.0",
+			C2: "",
 			C3S: "BLST",
-			C4: "",
+			C3: "0.0",
 			C4S: "",
-			C5: "",
+			C4: "",
 			C5S: "",
-			C6: "",
+			C5: "",
 			C6S: "",
+			C6: "",
 			
 			LFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
-			L1: "",
 			L1S: "TAXI",
-			L2: "---.-/----",
+			L1: "",
 			L2S: "TRIP/TIME",
-			L3: "--.-/05.0",
+			L2: "---.-/----",
 			L3S: "RTE RSV/%",
-			L4: "---.-",
+			L3: "--.-/05.0",
 			L4S: "ALTN",
-			L5: "---.-/0030",
+			L4: "---.-",
 			L5S: "FINAL/TIME",
-			L6: "---.-/----",
+			L5: "---.-/0030",
 			L6S: "EXTRA/TIME",
+			L6: "---.-/----",
 			
 			pageNum: "2/3",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
-			R1: "",
 			R1S: "",
-			R2: "",
+			R1: "",
 			R2S: "TOGW",
-			R3: "",
+			R2: "",
 			R3S: "IN ZFW",
-			R4: "---.-",
+			R3: "",
 			R4S: "LW",
-			R5: "",
+			R4: "---.-",
 			R5S: "TOCG",
-			R6: "",
+			R5: "",
 			R6S: "ZFWCG",
+			R6: "",
 			
-			simple: 1,
 			title: "WEIGHT INIT",
 		};
 		
@@ -474,7 +472,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 0 and me.scratchpad <= 9.9) {
-						me.Value.taxiInsertStatus = fms.FPLN.insertTaxiFuel(me.scratchpad);
+						me.Value.taxiInsertStatus = fms.EditFlightData.insertTaxiFuel(me.scratchpad);
 						if (me.Value.taxiInsertStatus == 0) {
 							fms.FlightData.taxiFuelSet = 1;
 							mcdu.unit[me.id].scratchpadClear();
@@ -496,7 +494,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
-						if (fms.FPLN.insertBlockFuel(me.scratchpad)) {
+						if (fms.EditFlightData.insertBlockFuel(me.scratchpad)) {
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
@@ -514,7 +512,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 633) {
-						if (fms.FPLN.insertTogw(me.scratchpad)) {
+						if (fms.EditFlightData.insertTogw(me.scratchpad)) {
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
@@ -535,7 +533,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= BASE.initPage2.maxZfw) {
-						if (fms.FPLN.insertZfw(me.scratchpad)) {
+						if (fms.EditFlightData.insertZfw(me.scratchpad)) {
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
@@ -604,52 +602,51 @@ var Init3 = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, 0, 0, 0, 0],
 			CSTranslate: [0, 0, 0, 0, 0, 0],
-			C1: "",
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1S: "",
-			C2: "",
+			C1: "",
 			C2S: "",
-			C3: "",
+			C2: "",
 			C3S: "",
-			C4: "",
+			C3: "",
 			C4S: "",
-			C5: "",
+			C4: "",
 			C5S: "",
-			C6: "",
+			C5: "",
 			C6S: "",
+			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "[  .]",
 			L1S: "REFUEL QTY",
-			L2: "[ .]",
+			L1: "[  .]",
 			L2S: "BLST FUEL",
-			L3: "_",
+			L2: "[ .]",
 			L3S: "BLST TANK",
-			L4: "",
+			L3: "_",
 			L4S: "",
-			L5: "",
+			L4: "",
 			L5S: "",
-			L6: "",
+			L5: "",
 			L6S: "",
+			L6: "",
 			
 			pageNum: "3/3",
 			
 			RFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal],
-			R1: "---.-",
 			R1S: "DUMP TO GW",
-			R2: "----",
+			R1: "---.-",
 			R2S: "DUMP TIME",
-			R3: "JET A",
+			R2: "----",
 			R3S: "FUEL TYPE",
-			R4: "-40",
+			R3: "JET A",
 			R4S: "FREEZE TEMP",
-			R5: "FUEL DIPSTICK>",
+			R4: "-40",
 			R5S: "",
-			R6: "",
+			R5: "FUEL DIPSTICK>",
 			R6S: "",
+			R6: "",
 			
-			simple: 1,
 			title: "FUEL INIT",
 		};
 		
@@ -688,52 +685,51 @@ var CompRte = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CTranslate: [0, 0, 0, 0, 0, 0],
 			CSTranslate: [0, 0, 0, 0, 0, 0],
-			C1: "",
+			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1S: "",
-			C2: "",
+			C1: "",
 			C2S: "",
-			C3: "",
+			C2: "",
 			C3S: "",
-			C4: "",
+			C3: "",
 			C4S: "",
-			C5: "",
+			C4: "",
 			C5S: "",
-			C6: "",
+			C5: "",
 			C6S: "",
+			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: "NONE",
 			L1S: "",
-			L2: "",
+			L1: "NONE",
 			L2S: "",
-			L3: "",
+			L2: "",
 			L3S: "",
-			L4: "",
+			L3: "",
 			L4S: "",
-			L5: "",
+			L4: "",
 			L5S: "",
-			L6: "",
+			L5: "",
 			L6S: "",
+			L6: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1: "",
 			R1S: "",
-			R2: "",
+			R1: "",
 			R2S: "",
-			R3: "",
+			R2: "",
 			R3S: "",
-			R4: "",
+			R3: "",
 			R4S: "",
-			R5: "",
+			R4: "",
 			R5S: "",
-			R6: "F-PLN INIT>",
+			R5: "",
 			R6S: "RETURN TO ",
+			R6: "F-PLN INIT>",
 			
-			simple: 1,
 			title: "",
 		};
 		

@@ -29,13 +29,13 @@ var FlightData = {
 };
 
 # Logic
-var FPLN = {
+var EditFlightData = {
 	loop: func() {
 		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
 			FlightData.blockFuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		}
 	},
-	resetFlightData: func() {
+	reset: func() {
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		RouteManager.alternateAirport.setValue("");
 		RouteManager.cruiseAlt.setValue(0);
