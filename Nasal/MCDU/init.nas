@@ -358,7 +358,7 @@ var Init2 = {
 			C6: "",
 			
 			LFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
-			L1S: "TAXI",
+			L1S: "",
 			L1: "",
 			L2S: "TRIP/TIME",
 			L2: "---.-/----",
@@ -376,7 +376,7 @@ var Init2 = {
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
 			R1S: "",
 			R1: "",
-			R2S: "TOGW",
+			R2S: "",
 			R2: "",
 			R3S: "IN ZFW",
 			R3: "",
@@ -392,7 +392,6 @@ var Init2 = {
 		
 		m.Value = {
 			taxiInsertStatus: 0,
-			ufob: 0,
 		};
 		
 		m.group = "fmc";
@@ -406,43 +405,61 @@ var Init2 = {
 	setup: func() {
 	},
 	loop: func() {
-		me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
-		if (fms.FlightData.taxiFuelSet) {
-			me.Display.LFont[0] = FONT.normal;
-		} else {
-			me.Display.LFont[0] = FONT.small;
-		}
-		
-		me.Value.ufob = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
-		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
+		if (fms.Internal.engOn) {
+			me.Display.L1S = "";
+			me.Display.L1 = "";
 			me.Display.C1 = "";
-			me.Display.R1 = sprintf("%5.1f", me.Value.ufob) ~ "/FF+FQ";
 			me.Display.R1S = "";
+			me.Display.R1 = sprintf("%5.1f", fms.FlightData.ufobLbs) ~ "/FF+FQ";
 		} else {
-			me.Display.C1 = sprintf("%5.1f", me.Value.ufob);
-			if (fms.FlightData.blockFuel != 0) {
-				me.Display.R1 = sprintf("%5.1f", fms.FlightData.blockFuel);
+			me.Display.L1S = "TAXI";
+			me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
+			if (fms.FlightData.taxiFuelSet) {
+				me.Display.LFont[0] = FONT.normal;
+			} else {
+				me.Display.LFont[0] = FONT.small;
+			}
+			
+			me.Display.C1 = sprintf("%5.1f", fms.FlightData.ufobLbs);
+			me.Display.R1S = "BLOCK";
+			if (fms.FlightData.blockFuelLbs != 0) {
+				me.Display.R1 = sprintf("%5.1f", fms.FlightData.blockFuelLbs);
 			} else {
 				me.Display.R1 = "___._";
 			}
-			me.Display.R1S = "BLOCK";
 		}
 		
-		if (fms.FlightData.togw > 0) {
-			me.Display.R2 = sprintf("%5.1f", fms.FlightData.togw);
-			if (fms.FlightData.lastTogwZfw) {
-				me.Display.RFont[1] = FONT.small;
+		if (fms.Internal.engOn) {
+			me.Display.R2S = "GW";
+			if (fms.FlightData.gwLbs > 0) {
+				me.Display.R2 = sprintf("%5.1f", fms.FlightData.gwLbs);
+				if (fms.FlightData.lastGwZfw) {
+					me.Display.RFont[1] = FONT.small;
+				} else {
+					me.Display.RFont[1] = FONT.normal;
+				}
 			} else {
+				me.Display.R2 = "___._";
 				me.Display.RFont[1] = FONT.normal;
 			}
 		} else {
-			me.Display.R2 = "___._";
-			me.Display.RFont[1] = FONT.normal;
+			me.Display.R2S = "TOGW";
+			if (fms.FlightData.togwLbs > 0) {
+				me.Display.R2 = sprintf("%5.1f", fms.FlightData.togwLbs);
+				if (fms.FlightData.lastGwZfw) {
+					me.Display.RFont[1] = FONT.small;
+				} else {
+					me.Display.RFont[1] = FONT.normal;
+				}
+			} else {
+				me.Display.R2 = "___._";
+				me.Display.RFont[1] = FONT.normal;
+			}
 		}
 		
-		if (fms.FlightData.zfw > 0) {
-			me.Display.R3 = sprintf("%5.1f", fms.FlightData.zfw);
-			if (!fms.FlightData.lastTogwZfw) {
+		if (fms.FlightData.zfwLbs > 0) {
+			me.Display.R3 = sprintf("%5.1f", fms.FlightData.zfwLbs);
+			if (!fms.FlightData.lastGwZfw) {
 				me.Display.RFont[2] = FONT.small;
 			} else {
 				me.Display.RFont[2] = FONT.normal;
@@ -469,7 +486,7 @@ var Init2 = {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
-			if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2 and me.Display.L1S == "TAXI") {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 0 and me.scratchpad <= 9.9) {
 						me.Value.taxiInsertStatus = fms.EditFlightData.insertTaxiFuel(me.scratchpad);

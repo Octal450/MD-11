@@ -218,7 +218,7 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="/fms/flight-data/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
+		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
 			<input>-/fms/flight-data/flex-temp</input>
 			<input>propulsion/tat-c</input>
@@ -232,7 +232,7 @@
 						<sum>
 							<table>
 								<independentVar lookup="row">/position/altitude-ft</independentVar>
-								<independentVar lookup="column">/fms/flight-data/flex-temp-input</independentVar>
+								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
 								<tableData>
 									      -60   -30     0      30     60
 									    0  90.3   95.9  101.0  106.0  100.8

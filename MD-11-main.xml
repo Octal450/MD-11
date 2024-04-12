@@ -928,10 +928,12 @@
 	<fms n="0">
 		<flight-data n="0">
 			<flex-active type="bool">0</flex-active>
-			<flex-temp type="int">30</flex-temp>
+			<flex-temp type="int">0</flex-temp>
+			<gw-lbs type="double">0</gw-lbs>
 			<oat-c type="int">-100</oat-c>
 			<to-flaps type="double">0</to-flaps>
 			<to-packs type="bool">0</to-packs>
+			<togw-lbs type="double">0</togw-lbs>
 		</flight-data>
 	</fms>
 	

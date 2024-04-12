@@ -60,11 +60,11 @@ var Takeoff = {
 		};
 		
 		m.Value = {
-			oatC: 0,
 			oatCEntry: 0,
 			tocg: "",
-			toFlaps: 0,
 			togw: "",
+			toSlopeFmt: "",
+			toWindFmt: "",
 		};
 		
 		m.group = "fmc";
@@ -94,13 +94,13 @@ var Takeoff = {
 			me.Display.title = "TAKE OFF";
 		}
 		
-		if (fms.FlightData.flexActive.getBoolValue()) {
-			me.Display.L1 = sprintf("%d", fms.FlightData.flexTemp.getValue()) ~ "g";
+		if (fms.FlightData.flexActive) {
+			me.Display.L1 = sprintf("%d", fms.FlightData.flexTemp) ~ "g";
 		} else {
 			me.Display.L1 = "*[ ]";
 		}
 		
-		if (fms.FlightData.toPacks.getBoolValue()) {
+		if (fms.FlightData.toPacks) {
 			me.Display.L2 = "ON";
 			me.Display.LFont[1] = FONT.normal;
 		} else {
@@ -108,9 +108,8 @@ var Takeoff = {
 			me.Display.LFont[1] = FONT.small;
 		}
 		
-		me.Value.toFlaps = fms.FlightData.toFlaps.getValue();
-		if (me.Value.toFlaps > 0) {
-			me.Display.L3 = sprintf("%4.1f", me.Value.toFlaps);
+		if (fms.FlightData.toFlaps > 0) {
+			me.Display.L3 = sprintf("%4.1f", fms.FlightData.toFlaps);
 		} else {
 			me.Display.L3 = "__._";
 		}
@@ -120,8 +119,8 @@ var Takeoff = {
 		} else {
 			me.Value.tocg = "--.-";
 		}
-		if (fms.FlightData.togw > 0) {
-			me.Value.togw = sprintf("%5.1f", fms.FlightData.togw);
+		if (fms.FlightData.togwLbs > 0) {
+			me.Value.togw = sprintf("%5.1f", fms.FlightData.togwLbs);
 		} else {
 			me.Value.togw = "---.-";
 		}
@@ -133,20 +132,19 @@ var Takeoff = {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue());
 		}
 		
-		if (fms.FlightData.zfw > 0) {
-			me.Display.C5 = sprintf("%d", math.round(fms.Speeds.vsr.getValue()));
-			me.Display.C6 = sprintf("%d", math.round(fms.Speeds.vcl.getValue()));
+		if (fms.FlightData.togwLbs > 0) {
+			me.Display.C5 = sprintf("%d", math.round(fms.Speeds.vsrTo.getValue()));
+			me.Display.C6 = sprintf("%d", math.round(fms.Speeds.vclTo.getValue()));
 		} else {
 			me.Display.C5 = "---";
 			me.Display.C6 = "---";
 		}
 		
-		me.Value.oatC = fms.FlightData.oatC.getValue();
-		if (me.Value.oatC > -100) {
+		if (fms.FlightData.oatC > -100) {
 			if (fms.FlightData.oatUnit) {
-				me.Display.R3 = sprintf("%d", math.round((me.Value.oatC * 1.8) + 32)) ~ "F";
+				me.Display.R3 = sprintf("%d", math.round((fms.FlightData.oatC * 1.8) + 32)) ~ "F";
 			} else {
-				me.Display.R3 = sprintf("%d", me.Value.oatC) ~ "C";
+				me.Display.R3 = sprintf("%d", fms.FlightData.oatC) ~ "C";
 			}
 		} else {
 			me.Display.R3 = "____";
@@ -158,14 +156,14 @@ var Takeoff = {
 		
 		if (k == "l1") {
 			if (me.scratchpadState == 0) {
-				fms.FlightData.flexActive.setBoolValue(0);
-				fms.FlightData.flexTemp.setValue(30);
+				fms.FlightData.flexActive = 0;
+				fms.FlightData.flexTemp = 0;
 				mcdu.unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
-						fms.FlightData.flexActive.setBoolValue(1);
-						fms.FlightData.flexTemp.setValue(me.scratchpad + 0); # Convert string to int
+						fms.FlightData.flexActive = 1;
+						fms.FlightData.flexTemp = me.scratchpad + 0; # Convert string to int
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -178,7 +176,7 @@ var Takeoff = {
 			}
 		} else if (k == "l2") {
 			if (me.scratchpadState == 1) {
-				fms.FlightData.toPacks.setBoolValue(!fms.FlightData.toPacks.getBoolValue());
+				fms.FlightData.toPacks = !fms.FlightData.toPacks;
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -186,7 +184,7 @@ var Takeoff = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue())) {
-						fms.FlightData.toFlaps.setValue(me.scratchpad);
+						fms.FlightData.toFlaps = me.scratchpad;
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -204,7 +202,7 @@ var Takeoff = {
 					if (mcdu.unit[me.id].stringContains("F")) {
 						me.Value.oatCEntry = math.round((string.replace(me.scratchpad, "F", "") - 32) / 1.8);
 						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
-							fms.FlightData.oatC.setValue(me.Value.oatCEntry);
+							fms.FlightData.oatC = me.Value.oatCEntry;
 							fms.FlightData.oatUnit = 1;
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
@@ -213,7 +211,7 @@ var Takeoff = {
 					} else if (mcdu.unit[me.id].stringContains("C")) {
 						me.Value.oatCEntry = string.replace(me.scratchpad, "C", "") + 0; # Convert string to int
 						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
-							fms.FlightData.oatC.setValue(me.Value.oatCEntry); 
+							fms.FlightData.oatC = me.Value.oatCEntry; 
 							fms.FlightData.oatUnit = 0;
 							mcdu.unit[me.id].scratchpadClear();
 						} else {

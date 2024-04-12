@@ -6,6 +6,7 @@ var Internal = {
 	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1", 0, "DOUBLE"),
 	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2", 0, "DOUBLE"),
 	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss", 0, "DOUBLE"),
+	engOn: 0,
 };
 
 var RouteManager = {
@@ -34,6 +35,7 @@ var Speeds = {
 	v2: props.globals.getNode("/fms/speeds/v2"),
 	v2Plus10: props.globals.getNode("/fms/speeds/v2-plus-10"),
 	vcl: props.globals.getNode("/fms/speeds/vcl"),
+	vclTo: props.globals.getNode("/fms/speeds/vcl-to"),
 	vfr: props.globals.getNode("/fms/speeds/vfr"),
 	vmax: props.globals.getNode("/fms/speeds/vmax"),
 	vmin: props.globals.getNode("/fms/speeds/vmin"),
@@ -41,6 +43,7 @@ var Speeds = {
 	vmoMmo: props.globals.getNode("/fms/speeds/vmo-mmo"),
 	vr: props.globals.getNode("/fms/speeds/vr"),
 	vsr: props.globals.getNode("/fms/speeds/vsr"),
+	vsrTo: props.globals.getNode("/fms/speeds/vsr-to"),
 	vss: props.globals.getNode("/fms/speeds/vss"),
 	vssTape: props.globals.getNode("/fms/speeds/vss-tape"),
 };
@@ -52,6 +55,12 @@ var CORE = {
 		me.resetRadio();
 	},
 	loop: func() {
+		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
+			Internal.engOn = 1;
+		} else {
+			Internal.engOn = 0;
+		}
+		
 		EditFlightData.loop();
 	},
 	resetFms: func() {

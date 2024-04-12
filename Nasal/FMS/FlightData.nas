@@ -7,39 +7,67 @@ var FlightData = {
 	airportAlt: "",
 	airportFrom: "",
 	airportTo: "",
-	blockFuel: 0,
+	blockFuelLbs: 0,
 	costIndex: 0,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
 	cruiseTemp: nil,
-	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
-	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
+	flexActive: 0,
+	flexTemp: 0,
 	flightNumber: "",
-	lastTogwZfw: 1, # Which was entered last
-	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
+	gwLbs: 0,
+	lastGwZfw: 1, # Which was entered last
+	oatC: -100,
 	oatUnit: 0,
 	taxiFuel: 0.7,
 	taxiFuelSet: 0,
 	tocg: 0,
-	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
-	togw: 0,
-	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
-	zfw: 0,
+	toFlaps: 0,
+	togwLbs: 0,
+	toPacks: 0,
+	toSlope: -100, 
+	toWind: -100,
+	ufobLbs: 0,
 	zfwcg: 0,
+	zfwLbs: 0,
 	Temp: { # Values used for internal checking, do not use
 		togw: 0,
 		zfw: 0,
 	},
 };
 
+var FlightDataOut = {
+	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
+	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
+	gw: props.globals.getNode("/fms/flight-data/gw-lbs"),
+	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
+	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
+	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
+	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
+};
+
 # Logic
 var EditFlightData = {
 	loop: func() {
-		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
-			FlightData.blockFuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		FlightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		
+		if (Internal.engOn) {
+			FlightData.blockFuelLbs = FlightData.ufobLbs;
+			
+			if (!FlightData.lastGwZfw) {
+				FlightData.lastGwZfw = 1;
+			}
 		}
+		
+		if (FlightData.zfwLbs > 0) {
+			FlightData.gwLbs = FlightData.zfwLbs + FlightData.ufobLbs;
+		} else {
+			FlightData.gwLbs = 0;
+		}
+		
+		me.writeOut();
 	},
 	reset: func() {
 		# Reset Route Manager
@@ -53,27 +81,38 @@ var EditFlightData = {
 		FlightData.airportAlt = "";
 		FlightData.airportFrom = "";
 		FlightData.airportTo = "";
-		FlightData.blockFuel = 0;
+		FlightData.blockFuelLbs = 0;
 		FlightData.costIndex = 0;
 		FlightData.cruiseAlt = 0;
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseTemp = nil;
-		FlightData.flexActive.setBoolValue(0);
-		FlightData.flexTemp.setValue(30);
+		FlightData.flexActive = 0;
+		FlightData.flexTemp = 0;
 		FlightData.flightNumber = "";
-		FlightData.lastTogwZfw = 1;
-		FlightData.oatC.setValue(-100);
+		FlightData.lastGwZfw = 1;
+		FlightData.oatC = -100;
 		FlightData.oatUnit = 0;
 		FlightData.taxiFuel = 0.7;
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
-		FlightData.toFlaps.setValue(0);
-		FlightData.togw = 0;
-		FlightData.toPacks.setBoolValue(0);
-		FlightData.zfw = 0;
+		FlightData.toFlaps = 0;
+		FlightData.togwLbs = 0;
+		FlightData.toPacks = 0;
+		FlightData.toSlope = 0;
+		FlightData.toWind = 0;
 		FlightData.zfwcg = 0;
+		FlightData.zfwLbs = 0;
+		me.writeOut();
+	},
+	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
+		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
+		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
+		FlightDataOut.oatC.setValue(FlightData.oatC);
+		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
+		FlightDataOut.togw.setValue(FlightData.togwLbs);
+		FlightDataOut.toPacks.setValue(FlightData.toPacks);
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
 		FlightData.airportFrom = from;
@@ -96,18 +135,18 @@ var EditFlightData = {
 		}
 	},
 	insertBlockFuel: func(block) { # Recalculate TOGW
-		if (FlightData.zfw > 0) {
-			FlightData.Temp.togw = block + FlightData.zfw - FlightData.taxiFuel;
+		if (FlightData.zfwLbs > 0) {
+			FlightData.Temp.togw = block + FlightData.zfwLbs - FlightData.taxiFuel;
 			if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
-				FlightData.blockFuel = block + 0;
-				FlightData.togw = FlightData.Temp.togw;
-				FlightData.lastTogwZfw = 1;
+				FlightData.blockFuelLbs = block + 0;
+				FlightData.togwLbs = FlightData.Temp.togw;
+				FlightData.lastGwZfw = 1;
 				return 1;
 			} else {
 				return 0;
 			}
 		} else {
-			FlightData.blockFuel = block + 0;
+			FlightData.blockFuelLbs = block + 0;
 			return 1;
 		}
 	},
@@ -127,21 +166,21 @@ var EditFlightData = {
 		}
 	},
 	insertTaxiFuel: func(taxi) { # Recalculate TOGW or ZFW
-		if (FlightData.togw > 0 and FlightData.zfw > 0) {
-			if (FlightData.lastTogwZfw) { # TOGW
-				FlightData.Temp.togw = FlightData.blockFuel + FlightData.zfw - taxi;
+		if (FlightData.togwLbs > 0 and FlightData.zfwLbs > 0) {
+			if (FlightData.lastGwZfw) { # TOGW
+				FlightData.Temp.togw = FlightData.blockFuelLbs + FlightData.zfwLbs - taxi;
 				if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
 					FlightData.taxiFuel = taxi + 0;
-					FlightData.togw = FlightData.Temp.togw;
+					FlightData.togwLbs = FlightData.Temp.togw;
 					return 0;
 				} else {
 					return 1;
 				}
 			} else { # ZFW
-				FlightData.Temp.zfw = FlightData.togw + taxi - FlightData.blockFuel;
+				FlightData.Temp.zfw = FlightData.togwLbs + taxi - FlightData.blockFuelLbs;
 				if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
 					FlightData.taxiFuel = taxi + 0;
-					FlightData.zfw = FlightData.Temp.zfw;
+					FlightData.zfwLbs = FlightData.Temp.zfw;
 					return 0;
 				} else {
 					return 2;
@@ -153,34 +192,34 @@ var EditFlightData = {
 		}
 	},
 	insertTogw: func(togw) { # Recalculate ZFW
-		if (FlightData.blockFuel > 0) {
-			FlightData.Temp.zfw = togw + FlightData.taxiFuel - FlightData.blockFuel;
+		if (FlightData.blockFuelLbs > 0) {
+			FlightData.Temp.zfw = togw + FlightData.taxiFuel - FlightData.blockFuelLbs;
 			if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
-				FlightData.togw = togw + 0;
-				FlightData.zfw = FlightData.Temp.zfw;
-				FlightData.lastTogwZfw = 0;
+				FlightData.togwLbs = togw + 0;
+				FlightData.zfwLbs = FlightData.Temp.zfw;
+				FlightData.lastGwZfw = 0;
 				return 1;
 			} else {
 				return 0;
 			}
 		} else {
-			FlightData.togw = togw + 0;
+			FlightData.togwLbs = togw + 0;
 			return 1;
 		}
 	},
 	insertZfw: func(zfw) { # Recalculate TOGW
-		if (FlightData.blockFuel > 0) {
-			FlightData.Temp.togw = zfw + FlightData.blockFuel - FlightData.taxiFuel;
+		if (FlightData.blockFuelLbs > 0) {
+			FlightData.Temp.togw = zfw + FlightData.blockFuelLbs - FlightData.taxiFuel;
 			if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
-				FlightData.zfw = zfw + 0;
-				FlightData.togw = FlightData.Temp.togw;
-				FlightData.lastTogwZfw = 1;
+				FlightData.zfwLbs = zfw + 0;
+				FlightData.togwLbs = FlightData.Temp.togw;
+				FlightData.lastGwZfw = 1;
 				return 1;
 			} else {
 				return 0;
 			}
 		} else {
-			FlightData.zfw = zfw + 0;
+			FlightData.zfwLbs = zfw + 0;
 			return 1;
 		}
 	},

@@ -444,8 +444,8 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Cg", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle", "OilPsi2",
-		"OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
+		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Cg", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "GW-units", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle",
+		"OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
 		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "StabBox", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
@@ -466,9 +466,18 @@ var canvasEng = {
 	},
 	update: func() {
 		# GW, Fuel, CG
-		Value.Misc.gw = math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue(), 100);
-		me["GW-thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
-		me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
+		if (fms.FlightData.gwLbs > 0) {
+			Value.Misc.gw = math.round(fms.FlightData.gwLbs * 1000, 100);
+			me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
+			me["GW-thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
+			me["GW"].show();
+			me["GW-thousands"].show();
+			me["GW-units"].show();
+		} else {
+			me["GW"].hide();
+			me["GW-thousands"].hide();
+			me["GW-units"].hide();
+		}
 		
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
 		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
