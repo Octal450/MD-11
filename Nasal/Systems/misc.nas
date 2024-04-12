@@ -25,12 +25,6 @@ var APU = {
 		me.Light.avail.setBoolValue(0);
 		me.Light.on.setBoolValue(0);
 		me.autoConnect = 0;
-		settimer(func() { # Required delay
-			if (me.n2.getValue() >= 1) {
-				pts.Fdm.JSBsim.Propulsion.Engine.n1[3].setValue(0.1);
-				pts.Fdm.JSBsim.Propulsion.Engine.n2[3].setValue(0.1);
-			}
-		}, 0.1);
 	},
 	fastStart: func() {
 		me.Switch.start.setBoolValue(1);
@@ -40,6 +34,14 @@ var APU = {
 		settimer(func() { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
 		}, 1);
+	},
+	stopRpm: func() {
+		settimer(func() { # Required delay
+			if (me.n2.getValue() >= 1) {
+				pts.Fdm.JSBsim.Propulsion.Engine.n1[3].setValue(0.1);
+				pts.Fdm.JSBsim.Propulsion.Engine.n2[3].setValue(0.1);
+			}
+		}, 0.1);
 	},
 	onLight: func() {
 		me.Light.onTemp = me.Light.on.getValue();
