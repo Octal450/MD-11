@@ -336,8 +336,6 @@ var FADEC = {
 		activeNorm: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-norm"),
 		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
 		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
-		flexActive: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-active"),
-		flexTemp: props.globals.getNode("/fdm/jsbsim/fadec/limit/flex-temp"),
 		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
 		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
 		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
@@ -353,8 +351,6 @@ var FADEC = {
 		me.Switch.eng3Altn.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
-		me.Limit.flexActive.setBoolValue(0);
-		me.Limit.flexTemp.setValue(30);
 	},
 	loop: func() {
 		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();

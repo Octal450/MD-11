@@ -14,7 +14,7 @@ var Takeoff = {
 			CSTranslate: [-120, -120, -120, -120, -120, -120],
 			CTranslate: [-120, -120, -120, -120, -120, -120],
 			C1S: "TOCG/TOGW",
-			C1: "--.-/---.-",
+			C1: "",
 			C2S: "",
 			C2: "",
 			C3S: "STAB",
@@ -22,13 +22,13 @@ var Takeoff = {
 			C4S: "VFR",
 			C4: "---",
 			C5S: "VSR/V3",
-			C5: "---",
+			C5: "",
 			C6S: "VCL",
-			C6: "---",
+			C6: "",
 			
 			LFont: [FONT.normal, FONT.small, FONT.normal, FONT.small, FONT.small, FONT.small],
 			L1S: "FLEX",
-			L1: "*[ ]",
+			L1: "",
 			L2S: "PACKS",
 			L2: "OFF",
 			L3S: "FLAP",
@@ -60,6 +60,8 @@ var Takeoff = {
 		};
 		
 		m.Value = {
+			tocg: "",
+			togw: "",
 		};
 		
 		m.group = "fmc";
@@ -89,18 +91,78 @@ var Takeoff = {
 			me.Display.title = "TAKE OFF";
 		}
 		
+		if (fms.FlightData.flexActive.getBoolValue()) {
+			me.Display.L1 = sprintf("%d", fms.FlightData.flexTemp.getValue()) ~ "g";
+		} else {
+			me.Display.L1 = "*[ ]";
+		}
+		
+		if (fms.FlightData.toPacks.getBoolValue()) {
+			me.Display.L2 = "ON";
+			me.Display.LFont[1] = FONT.normal;
+		} else {
+			me.Display.L2 = "OFF";
+			me.Display.LFont[1] = FONT.small;
+		}
+		
+		if (fms.FlightData.tocg > 0) {
+			me.Value.tocg = sprintf("%4.1f", fms.FlightData.tocg);
+		} else {
+			me.Value.tocg = "--.-";
+		}
+		if (fms.FlightData.togw > 0) {
+			me.Value.togw = sprintf("%5.1f", fms.FlightData.togw);
+		} else {
+			me.Value.togw = "---.-";
+		}
+		me.Display.C1 = me.Value.tocg ~ "/" ~ me.Value.togw;
+		
 		if (pts.Options.eng.getValue() == "PW") {
 			me.Display.C2 = sprintf("%4.2f", systems.FADEC.Limit.takeoff.getValue());
 		} else {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue());
+		}
+		
+		if (fms.FlightData.zfw > 0) {
+			me.Display.C5 = sprintf("%d", math.round(fms.Speeds.vsr.getValue()));
+			me.Display.C6 = sprintf("%d", math.round(fms.Speeds.vcl.getValue()));
+		} else {
+			me.Display.C5 = "---";
+			me.Display.C6 = "---";
 		}
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		#} else {
+		if (k == "l1") {
+			if (me.scratchpadState == 0) {
+				fms.FlightData.flexActive.setBoolValue(0);
+				fms.FlightData.flexTemp.setValue(30);
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+						fms.FlightData.flexActive.setBoolValue(1);
+						fms.FlightData.flexTemp.setValue(me.scratchpad + 0); # Convert string to int
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l2") {
+			if (me.scratchpadState == 1) {
+				fms.FlightData.toPacks.setBoolValue(!fms.FlightData.toPacks.getBoolValue());
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
-		#}
+		}
 	},
 };

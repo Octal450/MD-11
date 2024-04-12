@@ -11,8 +11,8 @@ var Init = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CSTranslate: [0, 0, -40, 0, 0, 40],
-			CTranslate: [0, 0, -40, 0, 0, 40],
+			CSTranslate: [0, 0, -50, 0, 0, 40],
+			CTranslate: [0, 0, 0, 0, 0, 40],
 			C1S: "",
 			C1: "",
 			C2S: "",

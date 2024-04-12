@@ -401,8 +401,8 @@ var canvasGe = {
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
 		Value.Fadec.n1LimitFixed = systems.FADEC.Limit.active.getValue() + 0.05;
 		
-		if (Value.Fadec.activeMode == "T/O" and systems.FADEC.Limit.flexActive.getBoolValue()) {
-			me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
+		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive.getBoolValue()) {
+			me["FlexTemp"].setText(sprintf("%d", fms.FlightData.flexTemp.getValue()));
 			me["FlexGroup"].show();
 			me["N1LimText"].setText("FLEX");
 		} else {
@@ -593,9 +593,9 @@ var canvasPw = {
 			}
 			me["EPRLimRating"].show();
 			
-			if (Value.Fadec.activeMode == "T/O" and systems.FADEC.Limit.flexActive.getBoolValue()) {
+			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive.getBoolValue()) {
 				me["EPRLimText"].setText("FLEX");
-				me["FlexTemp"].setText(sprintf("%d", systems.FADEC.Limit.flexTemp.getValue()));
+				me["FlexTemp"].setText(sprintf("%d", fms.FlightData.flexTemp.getValue()));
 				me["FlexGroup"].show();
 			} else {
 				me["EPRLimText"].setText("LIM");

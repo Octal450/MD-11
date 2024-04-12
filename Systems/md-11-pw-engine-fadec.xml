@@ -206,10 +206,10 @@
 							</tableData>
 						</table>
 						<table>
-							<independentVar lookup="row">fadec/limit/packs-off</independentVar>
+							<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
 							<tableData>
-								0 -0.4
-								1  0.0
+								0  0.0
+								1 -0.4
 							</tableData>
 						</table>
 					</sum>
@@ -218,9 +218,9 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
+		<summer name="/fms/flight-data/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
-			<input>-fadec/limit/flex-temp</input>
+			<input>-/fms/flight-data/flex-temp</input>
 			<input>propulsion/tat-c</input>
 		</summer>
 		
@@ -232,7 +232,7 @@
 						<sum>
 							<table>
 								<independentVar lookup="row">/position/altitude-ft</independentVar>
-								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
+								<independentVar lookup="column">/fms/flight-data/flex-temp-input</independentVar>
 								<tableData>
 									      -60   -30     0      30     60
 									    0  90.3   95.9  101.0  106.0  100.8
@@ -241,10 +241,10 @@
 								</tableData>
 							</table>
 							<table>
-								<independentVar lookup="row">fadec/limit/packs-off</independentVar>
+								<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
 								<tableData>
-									0 -0.4
-									1  0.0
+									0  0.0
+									1 -0.4
 								</tableData>
 							</table>
 						</sum>
@@ -257,7 +257,7 @@
 		<switch name="fadec/limit/takeoff-final-input">
 			<default value="fadec/limit/takeoff-input"/>
 			<test value="fadec/limit/takeoff-flex-input">
-				fadec/limit/flex-active eq 1
+				/fms/flight-data/flex-active eq 1
 			</test>
 		</switch>
 		

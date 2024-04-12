@@ -183,27 +183,26 @@
 							10000  107.5  109.5  111.4  113.2  114.9  112.9  110.8  109.2  107.9
 						</tableData>
 					</table>
-					<product>
-						<table>
-							<independentVar lookup="row">/position/altitude-ft</independentVar>
-							<tableData>
-								    0  0.3
-								 2000  0.4
-								 4000  0.4
-								 6000  0.3
-								 8000  0.4
-								10000  0.4
-							</tableData>
-						</table>
-						<property>fadec/limit/packs-off</property>
-					</product>
+					<table>
+						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<independentVar lookup="column">/fms/flight-data/to-packs</independentVar>
+						<tableData>
+							       0    1
+							    0  0.4  0.0
+							 2000  0.4  0.0
+							 4000  0.3  0.0
+							 6000  0.4  0.0
+							 8000  0.4  0.0
+							10000  0.3  0.0
+						</tableData>
+					</table>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
+		<summer name="/fms/flight-data/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
-			<input>-fadec/limit/flex-temp</input>
+			<input>-/fms/flight-data/flex-temp</input>
 			<input>propulsion/tat-c</input>
 		</summer>
 		
@@ -214,7 +213,7 @@
 					<sum>
 						<table>
 							<independentVar lookup="row">/position/altitude-ft</independentVar>
-							<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
+							<independentVar lookup="column">/fms/flight-data/flex-temp-input</independentVar>
 							<tableData>
 								      -30    -20    -10     0      10     20     30     40     50
 								-1000   98.9  100.7  102.5  104.3  106.1  107.8  109.6  108.7  107.0
@@ -231,20 +230,19 @@
 								10000  107.5  109.5  111.4  113.2  114.9  112.9  110.8  109.2  107.9
 							</tableData>
 						</table>
-						<product>
-							<table>
-								<independentVar lookup="row">/position/altitude-ft</independentVar>
-								<tableData>
-									    0  0.3
-									 2000  0.4
-									 4000  0.4
-									 6000  0.3
-									 8000  0.4
-									10000  0.4
-								</tableData>
-							</table>
-							<property>fadec/limit/packs-off</property>
-						</product>
+						<table>
+							<independentVar lookup="row">/position/altitude-ft</independentVar>
+							<independentVar lookup="column">/fms/flight-data/to-packs</independentVar>
+							<tableData>
+								       0    1
+								    0  0.4  0.0
+								 2000  0.4  0.0
+								 4000  0.3  0.0
+								 6000  0.4  0.0
+								 8000  0.4  0.0
+								10000  0.3  0.0
+							</tableData>
+						</table>
 					</sum>
 				</min>
 			</function>
@@ -253,7 +251,7 @@
 		<switch name="fadec/limit/takeoff-final-ref">
 			<default value="fadec/limit/takeoff-ref"/>
 			<test value="fadec/limit/takeoff-flex-ref">
-				fadec/limit/flex-active eq 1
+				/fms/flight-data/flex-active eq 1
 			</test>
 		</switch>
 		

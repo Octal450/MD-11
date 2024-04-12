@@ -80,13 +80,6 @@
 							<dialog-name>route-manager</dialog-name>
 						</binding>
 					</item>
-					<item> <!-- Temporary -->
-						<label>Flex Temp Applet</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>flex-temp</dialog-name>
-						</binding>
-					</item>
 				</menu>
 				<menu n="103">
 					<label>2D Panels</label>
@@ -875,8 +868,6 @@
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
-					<flex-active type="bool">0</flex-active>
-					<flex-temp type="int">30</flex-temp>
 				</limit>
 				<throttle-compare-max type="double">0</throttle-compare-max>
 			</fadec>
@@ -933,6 +924,14 @@
 			<zero type="int">0</zero>
 		</jsbsim>
 	</fdm>
+	
+	<fms n="0">
+		<flight-data n="0">
+			<flex-active type="bool">0</flex-active>
+			<flex-temp type="int">30</flex-temp>
+			<to-packs type="bool">0</to-packs>
+		</flight-data>
+	</fms>
 	
 	<gear n="0">
 		<abs n="0">

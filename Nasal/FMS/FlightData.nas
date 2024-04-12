@@ -14,12 +14,15 @@ var FlightData = {
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
 	cruiseTemp: nil,
+	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
+	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
 	flightNumber: "",
 	lastTogwZfw: 1, # Which was entered last
 	taxiFuel: 0.7,
 	taxiFuelSet: 0,
 	tocg: 0,
 	togw: 0,
+	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
 	zfw: 0,
 	zfwcg: 0,
 	Temp: { # Values used for internal checking, do not use
@@ -36,11 +39,14 @@ var EditFlightData = {
 		}
 	},
 	reset: func() {
+		# Reset Route Manager
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		RouteManager.alternateAirport.setValue("");
 		RouteManager.cruiseAlt.setValue(0);
 		RouteManager.departureAirport.setValue("");
 		RouteManager.destinationAirport.setValue("");
+		
+		# Clear FlightData
 		FlightData.airportAlt = "";
 		FlightData.airportFrom = "";
 		FlightData.airportTo = "";
@@ -51,12 +57,15 @@ var EditFlightData = {
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseTemp = nil;
+		FlightData.flexActive.setBoolValue(0);
+		FlightData.flexTemp.setValue(30);
 		FlightData.flightNumber = "";
 		FlightData.lastTogwZfw = 1;
 		FlightData.taxiFuel = 0.7;
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
 		FlightData.togw = 0;
+		FlightData.toPacks.setBoolValue(0);
 		FlightData.zfw = 0;
 		FlightData.zfwcg = 0;
 	},
