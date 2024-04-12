@@ -462,13 +462,39 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/fms/speeds/vmcg-to"> <!-- From FCOM -->
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/position/altitude-ft</independentVar>
+						<independentVar lookup="column">/fms/flight-data/oat-c</independentVar>
+						<tableData>
+							       15   20   25   30   35   40   45   50
+							    0  136  135  135  135  133  130  128  125
+							 1000  134  133  133  132  130  128  125  123
+							 2000  132  131  131  130  128  125  123  120
+							 3000  130  130  129  128  125  123  120  120
+							 4000  128  128  127  125  123  120  118  118
+							 5000  126  125  124  123  120  118  115  115
+							 6000  124  123  122  120  118  115  115  115
+							 7000  121  121  119  117  115  113  113  113
+							 8000  119  118  117  115  112  112  112  112
+							 9000  117  116  115  113  111  111  111  111
+							10000  115  114  112  111  109  109  109  109
+						</tableData>
+					</table>
+					<value>2</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<!-- V1 -->
 		<fcs_function name="/fms/speeds/v1-table"> <!-- From FCOM -->
 			<function>
 				<sum>
 					<table>
 						<independentVar lookup="row">inertia/weight-kg</independentVar>
-						<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+						<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
 						<tableData>
 							        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 							160000   98   98   96   96   95   95   94   94   94   94   93   93   92   92   92   92   91
@@ -537,7 +563,7 @@
 						<property>/fms/speeds/v1-table</property>
 						<property>/fms/speeds/v1-delta</property>
 					</sum>
-					<property>/fms/speeds/vmcg</property>
+					<property>/fms/speeds/vmcg-to</property>
 				</max>
 			</function>
 		</fcs_function>
@@ -548,7 +574,7 @@
 				<sum>
 					<table>
 						<independentVar lookup="row">inertia/weight-kg</independentVar>
-						<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+						<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
 						<tableData>
 							        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 							160000  124  124  123  123  121  121  120  120  119  119  118  118  117  117  117  117  115
@@ -617,7 +643,7 @@
 						<property>/fms/speeds/vr-table</property>
 						<property>/fms/speeds/vr-delta</property>
 					</sum>
-					<property>/fms/speeds/vmcg</property>
+					<property>/fms/speeds/vmcg-to</property>
 				</max>
 			</function>
 		</fcs_function>
@@ -628,7 +654,7 @@
 				<sum>
 					<table>
 						<independentVar lookup="row">inertia/weight-kg</independentVar>
-						<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+						<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
 						<tableData>
 							        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 							160000  148  148  147  147  145  145  144  144  142  142  141  141  141  141  140  140  137
@@ -698,10 +724,10 @@
 							<property>/fms/speeds/vr-table</property>
 							<property>/fms/speeds/vr-delta</property>
 						</sum>
-						<property>/fms/speeds/vmcg</property>
+						<property>/fms/speeds/vmcg-to</property>
 					</lt>
 					<sum>
-						<property>/fms/speeds/vmcg</property>
+						<property>/fms/speeds/vmcg-to</property>
 						<property>/fms/speeds/vr-to-v2-delta</property>
 					</sum>
 					<property>/fms/speeds/v2-table</property>

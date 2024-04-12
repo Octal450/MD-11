@@ -14,7 +14,6 @@ var FlightData = {
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
 	cruiseTemp: nil,
-	flaps: 0,
 	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
 	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
 	flightNumber: "",
@@ -24,6 +23,7 @@ var FlightData = {
 	taxiFuel: 0.7,
 	taxiFuelSet: 0,
 	tocg: 0,
+	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
 	togw: 0,
 	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
 	zfw: 0,
@@ -60,7 +60,6 @@ var EditFlightData = {
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseTemp = nil;
-		FlightData.flaps = 0;
 		FlightData.flexActive.setBoolValue(0);
 		FlightData.flexTemp.setValue(30);
 		FlightData.flightNumber = "";
@@ -70,6 +69,7 @@ var EditFlightData = {
 		FlightData.taxiFuel = 0.7;
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
+		FlightData.toFlaps.setValue(0);
 		FlightData.togw = 0;
 		FlightData.toPacks.setBoolValue(0);
 		FlightData.zfw = 0;

@@ -185,11 +185,11 @@
 							<dialog-name>acconfig-failures</dialog-name>
 						</binding>
 					</item>
-					<item> <!-- Temporary -->
-						<label>Speeds/CG Applet</label>
+					<item>
+						<label>CG Applet</label>
 						<binding>
 							<command>dialog-show</command>
-							<dialog-name>speedscg</dialog-name>
+							<dialog-name>cg</dialog-name>
 						</binding>
 					</item>
 				</menu>
@@ -930,6 +930,7 @@
 			<flex-active type="bool">0</flex-active>
 			<flex-temp type="int">30</flex-temp>
 			<oat-c type="int">-100</oat-c>
+			<to-flaps type="double">0</to-flaps>
 			<to-packs type="bool">0</to-packs>
 		</flight-data>
 	</fms>

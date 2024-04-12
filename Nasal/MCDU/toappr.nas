@@ -63,6 +63,7 @@ var Takeoff = {
 			oatC: 0,
 			oatCEntry: 0,
 			tocg: "",
+			toFlaps: 0,
 			togw: "",
 		};
 		
@@ -107,8 +108,9 @@ var Takeoff = {
 			me.Display.LFont[1] = FONT.small;
 		}
 		
-		if (fms.FlightData.flaps > 0) {
-			me.Display.L3 = sprintf("%4.1f", fms.FlightData.flaps);
+		me.Value.toFlaps = fms.FlightData.toFlaps.getValue();
+		if (me.Value.toFlaps > 0) {
+			me.Display.L3 = sprintf("%4.1f", me.Value.toFlaps);
 		} else {
 			me.Display.L3 = "__._";
 		}
@@ -184,7 +186,7 @@ var Takeoff = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue())) {
-						fms.FlightData.flaps = me.scratchpad;
+						fms.FlightData.toFlaps.setValue(me.scratchpad);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
-<!-- MD-11 Temporary Speeds/CG Applet -->
+<!-- MD-11 CG Applet -->
 <!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
 
 <PropertyList>
 	
-	<name>speedscg</name>
+	<name>cg</name>
 	<layout>vbox</layout>
 	
 	<nasal>
@@ -13,17 +13,9 @@
 			setprop("/sim/gui/dialogs/speedscg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
 			setprop("/sim/gui/dialogs/speedscg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
 			
-			setprop("/sim/gui/dialogs/speedscg/v1-round", math.round(getprop("/fms/speeds/v1")));
-			setprop("/sim/gui/dialogs/speedscg/vr-round", math.round(getprop("/fms/speeds/vr")));
-			setprop("/sim/gui/dialogs/speedscg/v2-round", math.round(getprop("/fms/speeds/v2")));
-			
 			var loop = maketimer(0.1, func() {
 				setprop("/sim/gui/dialogs/speedscg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
 				setprop("/sim/gui/dialogs/speedscg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
-				
-				setprop("/sim/gui/dialogs/speedscg/v1-round", math.round(getprop("/fms/speeds/v1")));
-				setprop("/sim/gui/dialogs/speedscg/vr-round", math.round(getprop("/fms/speeds/vr")));
-				setprop("/sim/gui/dialogs/speedscg/v2-round", math.round(getprop("/fms/speeds/v2")));
 			});
 			loop.start();
 		</open>
@@ -37,7 +29,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Speeds/CG Applet</label>
+			<label>CG Applet</label>
 		</text>
 		
 		<button>
@@ -65,7 +57,7 @@
 		<text>
 			<row>0</row>
 			<col>1</col>
-			<label>999999999</label>
+			<label>9999999999</label>
 			<live>true</live>
 			<property>/sim/gui/dialogs/speedscg/cg-percent-mac</property>
 		</text>
@@ -77,60 +69,9 @@
 		<text>
 			<row>1</row>
 			<col>1</col>
-			<label>999999999</label>
+			<label>9999999999</label>
 			<live>true</live>
 			<property>/sim/gui/dialogs/speedscg/zfwcg-percent-mac</property>
-		</text>
-	</group>
-	
-	<hrule/>
-	
-	<text>
-		<label>Speeds calculated from current flap position</label>
-	</text>
-	
-	<hrule/>
-	
-	<group>
-		<layout>table</layout>
-		
-		<text>
-			<row>0</row>
-			<col>0</col>
-			<label>V1: </label>
-		</text>
-		<text>
-			<row>0</row>
-			<col>1</col>
-			<label>999</label>
-			<live>true</live>
-			<property>/sim/gui/dialogs/speedscg/v1-round</property>
-		</text>
-		
-		<text>
-			<row>1</row>
-			<col>0</col>
-			<label>VR: </label>
-		</text>
-		<text>
-			<row>1</row>
-			<col>1</col>
-			<label>999</label>
-			<live>true</live>
-			<property>/sim/gui/dialogs/speedscg/vr-round</property>
-		</text>
-		
-		<text>
-			<row>2</row>
-			<col>0</col>
-			<label>V2: </label>
-		</text>
-		<text>
-			<row>2</row>
-			<col>1</col>
-			<label>999</label>
-			<live>true</live>
-			<property>/sim/gui/dialogs/speedscg/v2-round</property>
 		</text>
 	</group>
 
