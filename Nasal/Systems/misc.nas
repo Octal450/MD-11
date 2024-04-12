@@ -547,8 +547,10 @@ var IGNITION = {
 	fastStop: func(n) {
 		ENGINE.cutoffSwitch[n].setBoolValue(1);
 		settimer(func() { # Required delay
-			pts.Fdm.JSBsim.Propulsion.Engine.n1[n].setValue(0.1);
-			pts.Fdm.JSBsim.Propulsion.Engine.n2[n].setValue(0.1);
+			if (pts.Engines.Engine.n2Actual[n].getValue() > 1) {
+				pts.Fdm.JSBsim.Propulsion.Engine.n1[n].setValue(0.1);
+				pts.Fdm.JSBsim.Propulsion.Engine.n2[n].setValue(0.1);
+			}
 		}, 0.1);
 	},
 };
