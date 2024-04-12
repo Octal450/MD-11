@@ -14,6 +14,7 @@ var FlightData = {
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
 	cruiseTemp: nil,
+	flaps: 0,
 	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
 	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
 	flightNumber: "",
@@ -57,6 +58,7 @@ var EditFlightData = {
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseTemp = nil;
+		FlightData.flaps = 0;
 		FlightData.flexActive.setBoolValue(0);
 		FlightData.flexTemp.setValue(30);
 		FlightData.flightNumber = "";

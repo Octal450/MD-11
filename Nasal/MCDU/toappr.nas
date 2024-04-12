@@ -32,7 +32,7 @@ var Takeoff = {
 			L2S: "PACKS",
 			L2: "OFF",
 			L3S: "FLAP",
-			L3: "__._",
+			L3: "",
 			L4S: "V1",
 			L4: "---",
 			L5S: "VR",
@@ -105,6 +105,12 @@ var Takeoff = {
 			me.Display.LFont[1] = FONT.small;
 		}
 		
+		if (fms.FlightData.flaps > 0) {
+			me.Display.L3 = sprintf("%4.1f", fms.FlightData.flaps);
+		} else {
+			me.Display.L3 = "__._";
+		}
+		
 		if (fms.FlightData.tocg > 0) {
 			me.Value.tocg = sprintf("%4.1f", fms.FlightData.tocg);
 		} else {
@@ -158,6 +164,21 @@ var Takeoff = {
 		} else if (k == "l2") {
 			if (me.scratchpadState == 1) {
 				fms.FlightData.toPacks.setBoolValue(!fms.FlightData.toPacks.getBoolValue());
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue())) {
+						fms.FlightData.flaps = me.scratchpad;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
