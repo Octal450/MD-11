@@ -19,6 +19,8 @@ var FlightData = {
 	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
 	flightNumber: "",
 	lastTogwZfw: 1, # Which was entered last
+	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
+	oatUnit: 0,
 	taxiFuel: 0.7,
 	taxiFuelSet: 0,
 	tocg: 0,
@@ -63,6 +65,8 @@ var EditFlightData = {
 		FlightData.flexTemp.setValue(30);
 		FlightData.flightNumber = "";
 		FlightData.lastTogwZfw = 1;
+		FlightData.oatC.setValue(-100);
+		FlightData.oatUnit = 0;
 		FlightData.taxiFuel = 0.7;
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;

@@ -48,7 +48,7 @@ var Takeoff = {
 			R2S: "SLOPE/WIND",
 			R2: "___._/____",
 			R3S: "OAT",
-			R3: "____",
+			R3: "",
 			R4S: "CLB THRUST",
 			R4: "----",
 			R5S: "ACCEL",
@@ -60,6 +60,8 @@ var Takeoff = {
 		};
 		
 		m.Value = {
+			oatC: 0,
+			oatCEntry: 0,
 			tocg: "",
 			togw: "",
 		};
@@ -136,6 +138,17 @@ var Takeoff = {
 			me.Display.C5 = "---";
 			me.Display.C6 = "---";
 		}
+		
+		me.Value.oatC = fms.FlightData.oatC.getValue();
+		if (me.Value.oatC > -100) {
+			if (fms.FlightData.oatUnit) {
+				me.Display.R3 = sprintf("%d", math.round((me.Value.oatC * 1.8) + 32)) ~ "F";
+			} else {
+				me.Display.R3 = sprintf("%d", me.Value.oatC) ~ "C";
+			}
+		} else {
+			me.Display.R3 = "____";
+		}
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
@@ -179,6 +192,39 @@ var Takeoff = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r3") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5)) {
+					me.scratchpad = string.replace(me.scratchpad, "+", "");
+					if (mcdu.unit[me.id].stringContains("F")) {
+						me.Value.oatCEntry = math.round((string.replace(me.scratchpad, "F", "") - 32) / 1.8);
+						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
+							fms.FlightData.oatC.setValue(me.Value.oatCEntry);
+							fms.FlightData.oatUnit = 1;
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						}
+					} else if (mcdu.unit[me.id].stringContains("C")) {
+						me.Value.oatCEntry = string.replace(me.scratchpad, "C", "") + 0; # Convert string to int
+						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
+							fms.FlightData.oatC.setValue(me.Value.oatCEntry); 
+							fms.FlightData.oatUnit = 0;
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 1) {
+				fms.FlightData.oatUnit = !fms.FlightData.oatUnit;
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

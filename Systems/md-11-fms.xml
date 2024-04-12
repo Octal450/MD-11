@@ -516,7 +516,7 @@
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">propulsion/tat-c</independentVar>
+						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25   0
 							60  10
@@ -596,7 +596,7 @@
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">propulsion/tat-c</independentVar>
+						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25  0
 							60  5
@@ -676,7 +676,7 @@
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">propulsion/tat-c</independentVar>
+						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25  0
 							60 -5
