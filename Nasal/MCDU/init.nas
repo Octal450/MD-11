@@ -530,12 +530,11 @@ var Init2 = {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 633) {
 						if (me.Display.R2S == "GW") {
-							#if (fms.EditFlightData.insertGw(me.scratchpad)) {
-							#	mcdu.unit[me.id].scratchpadClear();
-							#} else {
-							#	mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
-							#}
-							mcdu.unit[me.id].setMessage("NOT ALLOWED");
+							if (fms.EditFlightData.insertGw(me.scratchpad)) {
+								mcdu.unit[me.id].scratchpadClear();
+							} else {
+								mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+							}
 						} else {
 							if (fms.EditFlightData.insertTogw(me.scratchpad)) {
 								mcdu.unit[me.id].scratchpadClear();
@@ -551,7 +550,11 @@ var Init2 = {
 				}
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
-				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000) - fms.FlightData.taxiFuel, 0.1));
+				if (me.Display.R2S == "GW") {
+					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1));
+				} else {
+					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000) - fms.FlightData.taxiFuel, 0.1));
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

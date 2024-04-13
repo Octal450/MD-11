@@ -55,10 +55,6 @@ var EditFlightData = {
 		
 		if (Internal.engOn) {
 			FlightData.blockFuelLbs = FlightData.ufobLbs;
-			
-			if (!FlightData.lastGwZfw) {
-				FlightData.lastGwZfw = 1;
-			}
 		}
 		
 		if (FlightData.zfwLbs > 0) {
@@ -163,6 +159,17 @@ var EditFlightData = {
 			FlightData.cruiseTemp = math.round(15 - (math.round(s1 / 10) * 1.98));
 		} else {
 			FlightData.cruiseTemp = -56; # Rounded
+		}
+	},
+	insertGw: func(gw) { # Recalculate TOGW and ZFW, let GW calculate on it's own, block synced with ufob
+		FlightData.Temp.zfw = gw - FlightData.ufobLbs;
+		if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
+			FlightData.togwLbs = gw - FlightData.taxiFuel;
+			FlightData.zfwLbs = FlightData.Temp.zfw;
+			FlightData.lastGwZfw = 0;
+			return 1;
+		} else {
+			return 0;
 		}
 	},
 	insertTaxiFuel: func(taxi) { # Recalculate TOGW or ZFW
