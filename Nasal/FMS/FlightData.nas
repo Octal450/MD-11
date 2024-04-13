@@ -46,6 +46,8 @@ var FlightDataOut = {
 	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
 	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
 	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
+	zfwcg: props.globals.getNode("/fms/flight-data/zfwcg"),
+	zfwLbs: props.globals.getNode("/fms/flight-data/zfw-lbs"),
 };
 
 # Logic
@@ -109,6 +111,8 @@ var EditFlightData = {
 		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
 		FlightDataOut.togw.setValue(FlightData.togwLbs);
 		FlightDataOut.toPacks.setValue(FlightData.toPacks);
+		FlightDataOut.zfwcg.setValue(FlightData.zfwcg);
+		FlightDataOut.zfwLbs.setValue(FlightData.zfwLbs);
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
 		FlightData.airportFrom = from;

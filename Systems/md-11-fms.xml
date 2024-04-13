@@ -9,6 +9,7 @@
 	
 	<channel name="Flight Data" execrate="8">
 		
+		<!-- Weight Inputs -->
 		<pure_gain name="/fms/flight-data/gw-full-lbs">
 			<input>/fms/flight-data/gw-lbs</input>
 			<gain>1000</gain>
@@ -28,10 +29,113 @@
 			<input>/fms/flight-data/togw-full-lbs</input>
 			<gain>0.45359237</gain>
 		</pure_gain>
+		
+		<pure_gain name="/fms/flight-data/zfw-full-lbs">
+			<input>/fms/flight-data/zfw-lbs</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<pure_gain name="/fms/flight-data/zfw-full-kg">
+			<input>/fms/flight-data/zfw-full-lbs</input>
+			<gain>0.45359237</gain>
+		</pure_gain>
 	
 	</channel>
 	
-	<channel name="Envelope Protection" execrate="8">
+	<channel name="FMS Calculations" execrate="8">
+		
+		<!-- FMS CG Calculation -->
+		<fcs_function name="/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-libraries.xml -->
+			<function>
+				<quotient>
+					<sum>
+						<product>
+							<quotient>
+								<property>/fms/flight-data/zfwcg</property> <!-- MCDU value -->
+								<value>100</value>
+							</quotient>
+							<value>7.68</value> <!-- MAC length -->
+						</product>
+						<value>0.24116</value> <!-- Offset -->
+					</sum>
+					<value>0.0254</value> <!-- Inches to meters -->
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/fms/internal/cg-x-in"> <!-- Uses MCDU ZFWCG/ZFW and fuel sensors to calculate real CG -->
+			<function>
+				<quotient> <!-- Weighted average -->
+					<sum>
+						<product> <!-- Undo the quotient done to get ZFWCG position but with MCDU value -->
+							<property>/fms/internal/zfwcg-x-in</property>
+							<property>/fms/flight-data/zfw-full-lbs</property>
+						</product>
+						<product>
+							<property>propulsion/tank[0]/contents-lbs</property>
+							<property>propulsion/tank[0]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[1]/contents-lbs</property>
+							<property>propulsion/tank[1]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[2]/contents-lbs</property>
+							<property>propulsion/tank[2]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[3]/contents-lbs</property>
+							<property>propulsion/tank[3]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[4]/contents-lbs</property>
+							<property>propulsion/tank[4]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[5]/contents-lbs</property>
+							<property>propulsion/tank[5]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[6]/contents-lbs</property>
+							<property>propulsion/tank[6]/x-position</property>
+						</product>
+						<product>
+							<property>propulsion/tank[7]/contents-lbs</property>
+							<property>propulsion/tank[7]/x-position</property>
+						</product>
+					</sum>
+					<sum>
+						<property>/fms/flight-data/zfw-full-lbs</property>
+						<property>propulsion/tank[0]/contents-lbs</property>
+						<property>propulsion/tank[1]/contents-lbs</property>
+						<property>propulsion/tank[2]/contents-lbs</property>
+						<property>propulsion/tank[3]/contents-lbs</property>
+						<property>propulsion/tank[4]/contents-lbs</property>
+						<property>propulsion/tank[5]/contents-lbs</property>
+						<property>propulsion/tank[6]/contents-lbs</property>
+						<property>propulsion/tank[7]/contents-lbs</property>
+					</sum>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/fms/internal/cg-percent-mac"> <!-- From md-11-libraries.xml -->
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<product>
+								<property>/fms/internal/cg-x-in</property>
+								<value>0.0254</value> <!-- Inches to meters -->
+							</product>
+							<value>0.24116</value> <!-- Offset -->
+						</difference>
+						<value>7.68</value> <!-- MAC length -->
+					</quotient>
+					<value>100</value>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<!-- Vmo/Mmo -->
 		<fcs_function name="/fms/speeds/vmo-kts"> <!-- From FCOM -->
