@@ -65,7 +65,7 @@
 						<difference>
 							<product>
 								<property>inertia/cg-x-in</property>
-								<value>0.0254</value>
+								<value>0.0254</value> <!-- Inches to meters -->
 							</product>
 							<value>0.24116</value> <!-- Offset -->
 						</difference>
@@ -129,7 +129,7 @@
 						<difference>
 							<product>
 								<property>inertia/zfwcg-x-in</property>
-								<value>0.0254</value>
+								<value>0.0254</value> <!-- Inches to meters -->
 							</product>
 							<value>0.24116</value> <!-- Offset -->
 						</difference>
