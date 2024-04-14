@@ -41,7 +41,7 @@ var FlightData = {
 var FlightDataOut = {
 	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
 	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
-	gw: props.globals.getNode("/fms/flight-data/gw-lbs"),
+	gwLbs: props.globals.getNode("/fms/flight-data/gw-lbs"),
 	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
 	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
 	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
@@ -107,6 +107,7 @@ var EditFlightData = {
 	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
 		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
+		FlightDataOut.gwLbs.setValue(FlightData.gwLbs);
 		FlightDataOut.oatC.setValue(FlightData.oatC);
 		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
 		FlightDataOut.togw.setValue(FlightData.togwLbs);
