@@ -36,6 +36,7 @@ var Value = {
 		stabText: 0,
 	},
 	Misc: {
+		cg: 0,
 		fuel: 0,
 		gw: 0,
 	},
@@ -483,8 +484,9 @@ var canvasEng = {
 		me["Fuel-thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
 		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
 		
-		if (fms.FlightData.zfwcg > 0 and fms.FlightData.zfwLbs > 0) {
-			me["Cg"].setText(sprintf("%4.1f", math.round(fms.Internal.cgPercentMac.getValue(), 0.1)));
+		Value.Misc.cg = fms.Internal.cgPercentMac.getValue();
+		if (Value.Misc.cg > 0) {
+			me["Cg"].setText(sprintf("%4.1f", math.round(Value.Misc.cg, 0.1)));
 			me["Cg"].show();
 		} else {
 			me["Cg"].hide();

@@ -65,57 +65,70 @@
 		
 		<fcs_function name="/fms/internal/cg-x-in"> <!-- Uses MCDU ZFWCG/ZFW and fuel sensors to calculate real CG -->
 			<function>
-				<quotient> <!-- Weighted average -->
-					<sum>
-						<product> <!-- Undo the quotient done to get ZFWCG position but with MCDU value -->
-							<property>/fms/internal/zfwcg-x-in</property>
+				<ifthen>
+					<and>
+						<gt>
+							<property>/fms/flight-data/zfwcg</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/fms/flight-data/zfw-lbs</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<quotient> <!-- Weighted average -->
+						<sum>
+							<product> <!-- Undo the quotient done to get ZFWCG position but with MCDU value -->
+								<property>/fms/internal/zfwcg-x-in</property>
+								<property>/fms/flight-data/zfw-full-lbs</property>
+							</product>
+							<product>
+								<property>propulsion/tank[0]/contents-lbs</property>
+								<property>propulsion/tank[0]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[1]/contents-lbs</property>
+								<property>propulsion/tank[1]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[2]/contents-lbs</property>
+								<property>propulsion/tank[2]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[3]/contents-lbs</property>
+								<property>propulsion/tank[3]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[4]/contents-lbs</property>
+								<property>propulsion/tank[4]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[5]/contents-lbs</property>
+								<property>propulsion/tank[5]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[6]/contents-lbs</property>
+								<property>propulsion/tank[6]/x-position</property>
+							</product>
+							<product>
+								<property>propulsion/tank[7]/contents-lbs</property>
+								<property>propulsion/tank[7]/x-position</property>
+							</product>
+						</sum>
+						<sum>
 							<property>/fms/flight-data/zfw-full-lbs</property>
-						</product>
-						<product>
 							<property>propulsion/tank[0]/contents-lbs</property>
-							<property>propulsion/tank[0]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[1]/contents-lbs</property>
-							<property>propulsion/tank[1]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[2]/contents-lbs</property>
-							<property>propulsion/tank[2]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[3]/contents-lbs</property>
-							<property>propulsion/tank[3]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[4]/contents-lbs</property>
-							<property>propulsion/tank[4]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[5]/contents-lbs</property>
-							<property>propulsion/tank[5]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[6]/contents-lbs</property>
-							<property>propulsion/tank[6]/x-position</property>
-						</product>
-						<product>
 							<property>propulsion/tank[7]/contents-lbs</property>
-							<property>propulsion/tank[7]/x-position</property>
-						</product>
-					</sum>
-					<sum>
-						<property>/fms/flight-data/zfw-full-lbs</property>
-						<property>propulsion/tank[0]/contents-lbs</property>
-						<property>propulsion/tank[1]/contents-lbs</property>
-						<property>propulsion/tank[2]/contents-lbs</property>
-						<property>propulsion/tank[3]/contents-lbs</property>
-						<property>propulsion/tank[4]/contents-lbs</property>
-						<property>propulsion/tank[5]/contents-lbs</property>
-						<property>propulsion/tank[6]/contents-lbs</property>
-						<property>propulsion/tank[7]/contents-lbs</property>
-					</sum>
-				</quotient>
+						</sum>
+					</quotient>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
