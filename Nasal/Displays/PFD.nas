@@ -93,6 +93,7 @@ var Value = {
 		trend: 0,
 		vmin: 0,
 		vmoMmo: 0,
+		vsr: 0,
 		vss: 0,
 		Tape: {
 			f15: 0,
@@ -254,6 +255,7 @@ var canvasBase = {
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
 		Value.Asi.vmin = fms.Speeds.vminTape.getValue();
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
+		Value.Asi.vsr = fms.Speeds.vsrTape.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
 		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
@@ -322,7 +324,7 @@ var canvasBase = {
 				Value.Asi.Tape.vmoMmo = Value.Asi.vmoMmo - 50 - Value.Asi.Tape.ias;
 			}
 			
-			if (Value.Asi.flapGearMax < 0) {
+			if (Value.Asi.flapGearMax == 0) {
 				Value.Asi.Tape.flapGearMax = 0;
 				me["ASI_flap_max"].hide();
 				me["ASI_vmo_bar"].show();
@@ -346,7 +348,7 @@ var canvasBase = {
 			
 			Value.Asi.Tape.vmin = Value.Asi.vss - math.clamp(Value.Asi.vmin, 0, fms.Speeds.vmax.getValue());
 			
-			if (Value.Asi.vss < 0) {
+			if (Value.Asi.vss == 0) {
 				me["ASI_vss"].hide();
 			} else if (Value.Asi.vss <= 50) {
 				Value.Asi.Tape.vss = 0 - Value.Asi.Tape.ias;
@@ -396,7 +398,7 @@ var canvasBase = {
 				me["ASI_bowtie_R"].setColor(1, 0, 0);
 				me["ASI_mach"].setColor(1, 0, 0);
 				me["ASI_mach_decimal"].setColor(1, 0, 0);
-			} else if (Value.Asi.ias > Value.Asi.flapGearMax and Value.Asi.flapGearMax >= 0) {
+			} else if (Value.Asi.ias > Value.Asi.flapGearMax and Value.Asi.flapGearMax > 0) {
 				me["ASI"].setColor(0.9647, 0.8196, 0.0784);
 				me["ASI_bowtie_L"].setColor(0.9647, 0.8196, 0.0784);
 				me["ASI_bowtie_R"].setColor(0.9647, 0.8196, 0.0784);
@@ -438,8 +440,8 @@ var canvasBase = {
 			}
 			me["ASI_ge"].setTranslation(0, Value.Asi.Tape.ge * -4.48656);
 			
-			if (Value.Misc.slatsOut) {
-				Value.Asi.Tape.sr = fms.Speeds.vsr.getValue() - 50 - Value.Asi.Tape.ias;
+			if (Value.Misc.slatsOut and Value.Asi.vsr > 0) {
+				Value.Asi.Tape.sr = Value.Asi.vsr - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.sr < 0) {
 					me["ASI_sr"].setColor(0, 1, 0);
 				} else {
@@ -573,13 +575,13 @@ var canvasBase = {
 		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd) {
 			me["ASI_presel"].hide();
 		} else {
-			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
 				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
 				me["ASI_presel"].setColor(1, 0, 0);
-			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax > 0) {
 				me["ASI_presel"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
 				me["ASI_presel"].setColor(0.9647, 0.8196, 0.0784);
@@ -595,7 +597,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Asi.Tape.preSel > 60 and !afs.Internal.syncedSpd) {
-			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_up"].setColor(1, 0, 0);
 				me["ASI_sel_up_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
@@ -604,7 +606,7 @@ var canvasBase = {
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
 				me["ASI_sel_up"].setColor(1, 0, 0);
 				me["ASI_sel_up_text"].setColor(1, 0, 0);
-			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_up"].setColor(0.9647, 0.8196, 0.0784);
 				me["ASI_sel_up_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
@@ -638,7 +640,7 @@ var canvasBase = {
 			me["ASI_sel_up_text"].hide();
 		}
 		if (Value.Asi.Tape.preSel < -60 and !afs.Internal.syncedSpd) {
-			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax >= 0) {
+			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_dn"].setColor(1, 0, 0);
 				me["ASI_sel_dn_text"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
@@ -647,7 +649,7 @@ var canvasBase = {
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
 				me["ASI_sel_dn"].setColor(1, 0, 0);
 				me["ASI_sel_dn_text"].setColor(1, 0, 0);
-			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax >= 0) {
+			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_dn"].setColor(0.9647, 0.8196, 0.0784);
 				me["ASI_sel_dn_text"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {

@@ -316,7 +316,7 @@
 		
 		<!-- Flap/Slat/Gear Max -->
 		<switch name="/fms/speeds/flap-gear-max">
-			<default value="-1"/> <!-- Hide the tape -->
+			<default value="0"/> <!-- Hide the tape -->
 			<test value="/fms/speeds/flap-50-max-kts">
 				fcs/flap-pos-deg ge 36
 			</test>
@@ -357,7 +357,7 @@
 		<switch name="/fms/speeds/vmax">
 			<default value="/fms/speeds/vmo-mmo"/>
 			<test value="/fms/speeds/flap-gear-max">
-				/fms/speeds/flap-gear-max gt -1
+				/fms/speeds/flap-gear-max gt 0
 			</test>
 		</switch>
 		
@@ -480,9 +480,10 @@
 		
 		<switch name="/fms/speeds/vss-tape">
 			<default value="/fms/speeds/vss"/>
-			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if GW is invalid -->
 				position/wow eq 1
 				/fms/speeds/v2-latch ne 1
+				/fms/flight-data/gw-lbs eq 0
 			</test>
 		</switch>
 		
@@ -539,9 +540,10 @@
 		
 		<switch name="/fms/speeds/vmin-tape">
 			<default value="/fms/speeds/vmin"/>
-			<test logic="OR" value="-1"> <!-- Hide the tape until we pass speed and airbone -->
+			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if GW is invalid -->
 				position/wow eq 1
 				/fms/speeds/v2-latch ne 1
+				/fms/flight-data/gw-lbs eq 0
 			</test>
 		</switch>
 		
@@ -930,6 +932,13 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<switch name="/fms/speeds/vsr-tape">
+			<default value="/fms/speeds/vsr"/>
+			<test value="0"> <!-- Hide if GW is invalid -->
+				/fms/flight-data/gw-lbs eq 0
+			</test>
+		</switch>
 		
 		<fcs_function name="/fms/speeds/vsr-to"> <!-- From FCOM -->
 			<function>
