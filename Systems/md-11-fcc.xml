@@ -451,7 +451,7 @@
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/it-autoflight/input/ovrd1 eq 0
+				/it-autoflight/input/ap1-avail eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
@@ -471,7 +471,7 @@
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/it-autoflight/input/ovrd2 eq 0
+				/it-autoflight/input/ap2-avail eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200

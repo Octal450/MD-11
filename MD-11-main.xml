@@ -1604,6 +1604,8 @@
 	<it-autoflight>
 		<input n="0">
 			<alt type="int">0</alt>
+			<ap1-avail type="bool">0</ap1-avail>
+			<ap2-avail type="bool">0</ap2-avail>
 			<athr-avail type="bool">0</athr-avail>
 			<bank-limit-sw type="int">0</bank-limit-sw>
 			<fpa type="double">0</fpa>
