@@ -8,6 +8,7 @@ var FlightData = {
 	airportFrom: "",
 	airportTo: "",
 	blockFuelLbs: 0,
+	canCalcVspeeds: 0,
 	costIndex: 0,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
@@ -66,6 +67,13 @@ var EditFlightData = {
 		}
 		
 		me.writeOut();
+		
+		# After write out
+		if (FlightData.airportFrom != "" and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.gwLbs > 0) {
+			FlightData.canCalcVspeeds = 1;
+		} else {
+			FlightData.canCalcVspeeds = 0;
+		}
 	},
 	reset: func() {
 		# Reset Route Manager
@@ -116,8 +124,12 @@ var EditFlightData = {
 		FlightDataOut.zfwLbs.setValue(FlightData.zfwLbs);
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
+		flightplan().cleanPlan(); # Clear List function in Route Manager
 		FlightData.airportFrom = from;
 		FlightData.airportTo = to;
+		FlightData.toSlope = -100;
+		FlightData.toWind = -100;
+		
 		RouteManager.departureAirport.setValue(from);
 		RouteManager.destinationAirport.setValue(to);
 		
