@@ -1,0 +1,14 @@
+body
+{
+    background: #000;
+    display: flex;
+    justify-content: center; 
+}
+
+#mcdu
+{
+    width: 700px;
+    height: 900px;
+    border: #fff solid 1px;   
+    display: inline-block;
+}
