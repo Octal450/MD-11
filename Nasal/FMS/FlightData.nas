@@ -4,11 +4,18 @@
 
 # Properties and Data
 var FlightData = {
+	accelAlt: -10000,
+	accelAltSet: 0,
+	accelAltEo: -10000,
+	accelAltEoSet: 0,
 	airportAlt: "",
 	airportFrom: "",
+	airportFromElev: -10000,
 	airportTo: "",
 	blockFuelLbs: 0,
 	canCalcVspeeds: 0,
+	climbThrustAlt: -10000,
+	climbThrustAltSet: 0,
 	costIndex: 0,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
@@ -84,10 +91,17 @@ var EditFlightData = {
 		RouteManager.destinationAirport.setValue("");
 		
 		# Clear FlightData
+		FlightData.accelAlt = -10000;
+		FlightData.accelAltSet = 0;
+		FlightData.accelAltEo = -10000;
+		FlightData.accelAltEoSet = 0;
 		FlightData.airportAlt = "";
 		FlightData.airportFrom = "";
+		FlightData.airportFromElev = -10000;
 		FlightData.airportTo = "";
 		FlightData.blockFuelLbs = 0;
+		FlightData.climbThrustAlt = -10000;
+		FlightData.climbThrustAltSet = 0;
 		FlightData.costIndex = 0;
 		FlightData.cruiseAlt = 0;
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
@@ -127,8 +141,6 @@ var EditFlightData = {
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		FlightData.airportFrom = from;
 		FlightData.airportTo = to;
-		FlightData.toSlope = -100;
-		FlightData.toWind = -100;
 		
 		RouteManager.departureAirport.setValue(from);
 		RouteManager.destinationAirport.setValue(to);
@@ -139,6 +151,10 @@ var EditFlightData = {
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(0);
 		}
+		
+		FlightData.airportFromElev = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);
+		FlightData.toSlope = -100;
+		FlightData.toWind = -100;
 	},
 	insertAlternate: func(arpt) { # Assumes validation is already done
 		FlightData.airportAlt = arpt;
