@@ -46,7 +46,7 @@ var Takeoff = {
 			R1S: "THRUST ",
 			R1: "LIMITS>",
 			R2S: "SLOPE/WIND",
-			R2: "___._/____",
+			R2: "",
 			R3S: "OAT",
 			R3: "",
 			R4S: "CLB THRUST",
@@ -140,6 +140,24 @@ var Takeoff = {
 			me.Display.C6 = "---";
 		}
 		
+		if (fms.FlightData.toSlope > -100 and fms.FlightData.toWind > -100) {
+			if (fms.FlightData.toSlope < 0) {
+				me.Value.toSlopeFmt = "DN" ~ sprintf("%3.1f", abs(fms.FlightData.toSlope));
+			} else {
+				me.Value.toSlopeFmt = "UP" ~ sprintf("%3.1f", fms.FlightData.toSlope);
+			}
+			
+			if (fms.FlightData.toWind < 0) {
+				me.Value.toWindFmt = "TL" ~ sprintf("%02d", abs(fms.FlightData.toWind));
+			} else {
+				me.Value.toWindFmt = "HD" ~ sprintf("%02d", fms.FlightData.toWind);
+			}
+			
+			me.Display.R2 = me.Value.toSlopeFmt ~ "/" ~ me.Value.toWindFmt;
+		} else {
+			me.Display.R2 = "___._/____";
+		}
+		
 		if (fms.FlightData.oatC > -100) {
 			if (fms.FlightData.oatUnit) {
 				me.Display.R3 = sprintf("%d", math.round((fms.FlightData.oatC * 1.8) + 32)) ~ "F";
@@ -188,6 +206,56 @@ var Takeoff = {
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r2") {
+			if (me.scratchpadState == 2) {
+				me.scratchpad = string.replace(me.scratchpad, "+", "");
+				me.scratchpadSplit = split("/", me.scratchpad);
+				if (size(me.scratchpadSplit) == 2) {
+					if (mcdu.unit[me.id].stringLengthInRange(1, 4, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[1])) {
+						# Check Slope
+						if ((find("U", me.scratchpadSplit[0]) == 0 and find("D", me.scratchpadSplit[0]) == -1) or (find("D", me.scratchpadSplit[0]) == 0 and find("U", me.scratchpadSplit[0]) == -1)) {
+							if (mcdu.unit[me.id].stringContains("+", me.scratchpadSplit[0]) or mcdu.unit[me.id].stringContains("-", me.scratchpadSplit[0])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							me.scratchpadSplit[0] = string.replace(me.scratchpadSplit[0], "U", "");
+							me.scratchpadSplit[0] = string.replace(me.scratchpadSplit[0], "D", "-");
+						}
+						
+						if (!mcdu.unit[me.id].stringDecimalLengthInRange(0, 1, me.scratchpadSplit[0])) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						fms.FlightData.toSlope = me.scratchpadSplit[0] + 0; # Convert string to int
+						
+						# Check Wind
+						if ((find("H", me.scratchpadSplit[1]) == 0 and find("T", me.scratchpadSplit[1]) == -1) or (find("T", me.scratchpadSplit[1]) == 0 and find("H", me.scratchpadSplit[1]) == -1)) {
+							if (mcdu.unit[me.id].stringContains("+", me.scratchpadSplit[1]) or mcdu.unit[me.id].stringContains("-", me.scratchpadSplit[1])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							me.scratchpadSplit[1] = string.replace(me.scratchpadSplit[1], "H", "");
+							me.scratchpadSplit[1] = string.replace(me.scratchpadSplit[1], "T", "-");
+						}
+						
+						if (!mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						
+						fms.FlightData.toWind = me.scratchpadSplit[1] + 0; # Convert string to int
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
 					}
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");

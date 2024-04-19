@@ -98,8 +98,8 @@ var EditFlightData = {
 		FlightData.toFlaps = 0;
 		FlightData.togwLbs = 0;
 		FlightData.toPacks = 0;
-		FlightData.toSlope = 0;
-		FlightData.toWind = 0;
+		FlightData.toSlope = -100;
+		FlightData.toWind = -100;
 		FlightData.zfwcg = 0;
 		FlightData.zfwLbs = 0;
 		me.writeOut();
