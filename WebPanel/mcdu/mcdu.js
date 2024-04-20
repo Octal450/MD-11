@@ -8,7 +8,6 @@ const MCDU = (() => {
     {
         console.info("MCDU INIT");
 
-        // H
 		setInterval(refreshMcduImg, refresh_cooldown);
     }
 
@@ -16,7 +15,7 @@ const MCDU = (() => {
     {
         cacheDate = new Date().getTime();
         return new Promise((resolve, reject) => {
-            const new_url = screenshot_mcdu1 + '&cacheBust=' + cacheDate;
+            const new_url = baseUrl + '&cacheBust=' + cacheDate;
             const check_img = new Image;
 
             check_img.addEventListener('error', reject);
@@ -43,7 +42,7 @@ const MCDU = (() => {
 
     function refreshMcduImg() 
     {
-        getMcduUrl()
+        getMcduUrl(screenshot_mcdu1)
          .then(setMcduUrl)
          .catch(mcduRefreshFail);        
     }
