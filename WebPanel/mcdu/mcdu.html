@@ -1,3 +1,5 @@
+<!-- Code inspired by: https://github.com/legoboyvdlp/A320-family/blob/dev/WebPanel/WebPanel1/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +8,142 @@
     <link rel="stylesheet" href="mcdu.css">
     <title>MD-11 MCDU</title>
 </head>
-<body>
-    <div id="mcdu">
-        <img id="mcduimg" width="400"  src="/screenshot?canvasindex=8&type=jpg"/>
-    </div>
+<body style="width: 100%" oncontextmenu="return false;">
+    <table class="enter" style="width: 100%">
+        <tr>
+            <td>
+                <br/>
+            </td>
+            <td rowspan="8">
+                <img id="mcduimg" width="100%"  src="/screenshot?canvasindex=8&type=jpg"/>
+            </td>
+            <td>
+                <br/>
+            </td>            
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-1">-</td>
+            <td data-buttoncode="rsbutton-1">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-2">-</td>
+            <td data-buttoncode="rsbutton-2">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-3">-</td>
+            <td data-buttoncode="rsbutton-3">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-4">-</td>
+            <td data-buttoncode="rsbutton-4">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-5">-</td>
+            <td data-buttoncode="rsbutton-5">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="lsbutton-6">-</td>
+            <td data-buttoncode="rsbutton-6">-</td>
+        </tr>
+        <tr>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+    </table>
+    <table class="menu" style="width: 100%">
+		<tr>
+			<td data-buttoncode="pagebutton:dirtintc" class="dirtintc">DIR<br/>INTC</td>
+			<td data-buttoncode="pagebutton:navrad" class="navrad">NAV<br/>RAD</td>
+			<td data-buttoncode="pagebutton:perf" class="perf">PERF</td>
+			<td data-buttoncode="pagebutton:init" class="init">INIT</td>
+			<td data-buttoncode="pagebutton:toappr" class="data">TO/<br/>APPR</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td data-buttoncode="pagebutton:f-pln" class="f-pln">F-PLN</td>
+			<td data-buttoncode="pagebutton:prog" class="prog">PROG</td>
+			<td data-buttoncode="pagebutton:fix" class="fix">FIX</td>
+			<td data-buttoncode="pagebutton:sec-f-pln" class="sec-f-pln">SEC<br>F-PLN</td>
+			<td data-buttoncode="pagebutton:REF"  class="REF">REF</td>
+			<td data-buttoncode="pagebutton:mcdu" class="mcdu">ENG<br>OUT</td>
+		</tr>
+	</table>
+    <table class="input" style="float: right; width: 62.5%">
+		<tr>
+			<td data-buttoncode="button:A">A</td>
+			<td data-buttoncode="button:B">B</td>
+			<td data-buttoncode="button:C">C</td>
+			<td data-buttoncode="button:D">D</td>
+			<td data-buttoncode="button:E">E</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:F">F</td>
+			<td data-buttoncode="button:G">G</td>
+			<td data-buttoncode="button:H">H</td>
+			<td data-buttoncode="button:I">I</td>
+			<td data-buttoncode="button:J">J</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:K">K</td>
+			<td data-buttoncode="button:L">L</td>
+			<td data-buttoncode="button:M">M</td>
+			<td data-buttoncode="button:N">N</td>
+			<td data-buttoncode="button:O">O</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:P">P</td>
+			<td data-buttoncode="button:Q">Q</td>
+			<td data-buttoncode="button:R">R</td>
+			<td data-buttoncode="button:S">S</td>
+			<td data-buttoncode="button:T">T</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:U">U</td>
+			<td data-buttoncode="button:V">V</td>
+			<td data-buttoncode="button:W">W</td>
+			<td data-buttoncode="button:X">X</td>
+			<td data-buttoncode="button:Y">Y</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:Z">Z</td>
+			<td data-buttoncode="button:MINUS">-</td>
+			<td data-buttoncode="button:PLUS">+</td>
+			<td style="font-size: 33%" data-buttoncode="button:SP">SP</td>
+			<td style="font-size: 33%" data-buttoncode="button:CLR">CLR</td>
+		</tr>
+	</table>
+	<table class="arrows" style="width: 29.5%">
+		<tr>
+			<td style="font-size: 30%" data-buttoncode=""="arrowbutton:menu" class="left">MENU</td>
+			<td data-buttoncode="arrowbutton:up" class="up">↑</td>
+		</tr>
+		<tr>
+			<td style="font-size: 30%" data-buttoncode="arrowbutton:right" class="right">→<br/>PAGE</td>
+			<td data-buttoncode="arrowbutton:down" class="down">↓</td>
+		</tr>
+	</table>
+	<table class="input" style="width: 30%">
+		<tr>
+			<td data-buttoncode="button:1">1</td>
+			<td data-buttoncode="button:2">2</td>
+			<td data-buttoncode="button:3">3</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:4">4</td>
+			<td data-buttoncode="button:5">5</td>
+			<td data-buttoncode="button:6">6</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:7">7</td>
+			<td data-buttoncode="button:8">8</td>
+			<td data-buttoncode="button:9">9</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="button:SLASH">/</td>
+			<td data-buttoncode="button:0">0</td>
+			<td data-buttoncode="button:DOT">.</td>
+		</tr>
+	</table>
     <script src="mcdu.js"></script>
 </body>
 </html>

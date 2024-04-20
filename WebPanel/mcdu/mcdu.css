@@ -1,14 +1,86 @@
-body
-{
-    background: #000;
-    display: flex;
-    justify-content: center; 
+/*
+ Code inspired by: https://github.com/legoboyvdlp/A320-family/blob/dev/WebPanel/WebPanel1/index.html
+*/
+
+body {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
 }
 
-#mcdu
-{
-    width: 700px;
-    height: 900px;
-    border: #fff solid 1px;   
-    display: inline-block;
+table {
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    overflow-wrap: normal;
+}
+
+tr {
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    outline: 1px solid white;
+    
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+td[data-buttoncode]:active {
+    background-color: white;
+    color: black;
+}
+
+img {
+    display: block;
+}
+
+.enter{
+    font-size: 60%;
+}
+
+.enter tr:first-child {
+    font-size: 70%;
+}
+
+.enter tr:last-child {
+    font-size: 50%;
+}
+
+.enter td:first-child,
+.enter td:last-child {
+    padding: 0 0.55em;
+}
+
+.menu,
+.arrows .airport {
+    font-size: 40%;
+	line-height: 1em;
+}
+
+.menu td {
+    height: 2.5em;
+}
+
+.arrows td {
+    width: 50%;
+	padding: 0;
+	font-size: 60%;
+}
+
+img {
+    display: block;
 }
