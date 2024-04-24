@@ -530,21 +530,6 @@
 				</expression>
 			</u_min>
 			<u_max>
-				<condition>
-					<or>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</condition>
-				<value>10</value>
-			</u_max>
-			<u_max>
 				<expression>
 					<min>
 						<sum>
