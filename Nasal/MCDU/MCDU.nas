@@ -334,7 +334,7 @@ var BASE = {
 		databaseSelected: 1,
 		eng: props.globals.getNode("/options/eng-string").getValue(),
 		perfFactor: 0,
-		program: "PS4070541-921", # -921 software load
+		program: "PS4070541-924", # -924 software load
 	},
 	acStatus2: {
 		amiPn: "1234DAC123456789",
