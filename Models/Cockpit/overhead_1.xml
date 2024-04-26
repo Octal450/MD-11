@@ -194,8 +194,8 @@
 		<object-name>Drive2.fault</object-name>
 		<object-name>Drive3.disc</object-name>
 		<object-name>Drive3.fault</object-name>
-		<object-name>emerPwrrOff.off</object-name>
-		<object-name>emerPwrrOn.on</object-name>
+		<object-name>EmerPwrOff.off</object-name>
+		<object-name>EmerPwrOn.on</object-name>
 		<object-name>ExtGlyPwr.avail</object-name>
 		<object-name>ExtGlyPwr.on</object-name>
 		<object-name>ExtPwr.avail</object-name>
@@ -3577,7 +3577,7 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>emerPwrrOff.off</object-name>
+		<object-name>EmerPwrOff.off</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -3594,7 +3594,7 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>emerPwrrOn.on</object-name>
+		<object-name>EmerPwrOn.on</object-name>
 		<condition>
 			<or>
 				<equals>
@@ -8551,6 +8551,45 @@
 	</animation>
 	
 	<!-- Other -->
+	<animation>
+		<type>rotate</type>
+		<object-name>thunderstorm.lever</object-name>
+		<property>controls/cockpit/overhead/thunderstorm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep> 30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-21.7985</x-m>
+			<y-m>0</y-m>
+			<z-m>-18.0789</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>thunderstorm.lever</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/thunderstorm</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.switch1();</script>
+			</binding>
+		</action>
+	</animation>
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>emerlt.lever</object-name>
