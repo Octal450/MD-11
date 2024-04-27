@@ -953,10 +953,18 @@ var canvasBase = {
 			me["ALT_sel_dn_text_T"].hide();
 		}
 		
+		# ALT AGL
 		Value.Misc.minimums = pts.Controls.Switches.minimums.getValue();
 		Value.Ra.agl = pts.Position.gearAglFt.getValue();
+		
 		me["ALT_agl"].setTranslation(0, (math.clamp(Value.Ra.agl, -700, 700) / 100) * 50.9016);
 		me["ALT_minimums"].setTranslation(0, (math.clamp(Value.Ra.agl - Value.Misc.minimums, -700, 700) / 100) * 50.9016);
+		
+		if (Value.Ra.agl <= Value.Misc.minimums) {
+			me["ALT_minimums"].setColorFill(0.9412, 0.7255, 0);
+		} else {
+			me["ALT_minimums"].setColorFill(1, 1, 1);
+		}
 		
 		# VS
 		Value.Vs.digit = pts.Instrumentation.Pfd.vsDigit.getValue();
