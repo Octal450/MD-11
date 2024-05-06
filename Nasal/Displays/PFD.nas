@@ -50,6 +50,7 @@ var Value = {
 		pitch: 0,
 		roll: 0,
 		stallAlphaDeg: 0,
+		stallWarnAlphaDeg: 0,
 	},
 	Alt: {
 		alert: 0,
@@ -214,15 +215,15 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_arrow_dn", "AI_arrow_up", "AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_scale",
-		"AI_slipskid", "ALT_agl", "ALT_bowtie", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text",
-		"ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L",
-		"ASI_bowtie_mach", "ASI_bowtie_R", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se",
-		"ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_speed", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss",
-		"FD_group", "FD_pitch", "FD_roll", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off",
-		"FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_group", "HDG_group2",
-		"HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_DME", "ILS_Info", "Inner_Marker", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_group",
-		"Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS_fail", "TCAS_off", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_scale", "AI_slipskid", "ALT_agl",
+		"ALT_bowtie", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T",
+		"ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R",
+		"ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text",
+		"ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_speed", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "FD_group", "FD_pitch", "FD_roll", "Flaps",
+		"Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm",
+		"FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel",
+		"HDG_sel_left_text", "HDG_sel_right_text", "ILS_DME", "ILS_Info", "Inner_Marker", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no",
+		"Slats_up", "TCAS_fail", "TCAS_off", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -250,6 +251,9 @@ var canvasBase = {
 		Value.Afs.machSel = afs.Input.mach.getValue();
 		Value.Afs.vert = afs.Output.vert.getValue();
 		Value.Afs.vertText = afs.Text.vert.getValue();
+		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
+		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
+		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue();
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
@@ -388,7 +392,7 @@ var canvasBase = {
 				me["ASI_bowtie_mach"].hide();
 			}
 			
-			if (Value.Asi.ias > Value.Asi.vmoMmo) {
+			if (Value.Asi.ias > Value.Asi.vmoMmo or Value.Ai.alpha >= Value.Ai.stallAlphaDeg) {
 				me["ASI"].setColor(1, 0, 0);
 				me["ASI_bowtie_L"].setColor(1, 0, 0);
 				me["ASI_bowtie_R"].setColor(1, 0, 0);
@@ -400,6 +404,12 @@ var canvasBase = {
 				me["ASI_bowtie_R"].setColor(1, 0, 0);
 				me["ASI_mach"].setColor(1, 0, 0);
 				me["ASI_mach_decimal"].setColor(1, 0, 0);
+			} else if (Value.Ai.alpha >= Value.Ai.stallWarnAlphaDeg and Value.Misc.slatsPos >= 0.1) {
+				me["ASI"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_L"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_bowtie_R"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_mach_decimal"].setColor(0.9647, 0.8196, 0.0784);
 			} else if (Value.Asi.ias > Value.Asi.flapGearMax and Value.Asi.flapGearMax >= 0) {
 				me["ASI"].setColor(0.9647, 0.8196, 0.0784);
 				me["ASI_bowtie_L"].setColor(0.9647, 0.8196, 0.0784);
@@ -686,11 +696,9 @@ var canvasBase = {
 		}
 		
 		# AI
-		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
 		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
-		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
 		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug[0].getValue();
 		
 		me.aiBackgroundTrans.setTranslation(0, math.clamp(Value.Ai.pitch * 10.246, -202, 202));
@@ -733,7 +741,7 @@ var canvasBase = {
 			me["AI_PLI"].setColor(1, 0, 0);
 			me["AI_banklimit_L"].setColor(1, 0, 0);
 			me["AI_banklimit_R"].setColor(1, 0, 0);
-		} else if (Value.Ai.alpha >= pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue() and Value.Misc.slatsPos >= 0.1) {
+		} else if (Value.Ai.alpha >= Value.Ai.stallWarnAlphaDeg and Value.Misc.slatsPos >= 0.1) {
 			me["AI_PLI"].setColor(0.9647, 0.8196, 0.0784);
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
@@ -741,19 +749,6 @@ var canvasBase = {
 			me["AI_PLI"].setColor(0.3412, 0.7882, 0.9922);
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
-		}
-		
-		if (Value.Ai.pitch > 25) {
-			me["AI_arrow_dn"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
-			me["AI_arrow_dn"].show();
-			me["AI_arrow_up"].hide();
-		} else if (Value.Ai.pitch < -15) {
-			me["AI_arrow_up"].setRotation(math.clamp(-Value.Ai.roll, -45, 45) * D2R);
-			me["AI_arrow_dn"].hide();
-			me["AI_arrow_up"].show();
-		} else {
-			me["AI_arrow_dn"].hide();
-			me["AI_arrow_up"].hide();
 		}
 		
 		me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
