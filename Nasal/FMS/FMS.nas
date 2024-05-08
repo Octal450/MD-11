@@ -44,7 +44,6 @@ var Speeds = {
 	vmoMmo: props.globals.getNode("/fms/speeds/vmo-mmo"),
 	vr: props.globals.getNode("/fms/speeds/vr"),
 	vsr: props.globals.getNode("/fms/speeds/vsr"),
-	vsrTape: props.globals.getNode("/fms/speeds/vsr-tape"),
 	vsrTo: props.globals.getNode("/fms/speeds/vsr-to"),
 	vss: props.globals.getNode("/fms/speeds/vss"),
 	vssTape: props.globals.getNode("/fms/speeds/vss-tape"),

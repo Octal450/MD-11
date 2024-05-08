@@ -4,17 +4,17 @@
 
 # Properties and Data
 var FlightData = {
-	accelAlt: -10000,
+	accelAlt: -1000,
 	accelAltSet: 0,
-	accelAltEo: -10000,
+	accelAltEo: -1000,
 	accelAltEoSet: 0,
-	airportAlt: "",
+	airportAltn: "",
 	airportFrom: "",
-	airportFromElev: -10000,
+	airportFromAlt: -1000,
 	airportTo: "",
 	blockFuelLbs: 0,
 	canCalcVspeeds: 0,
-	climbThrustAlt: -10000,
+	climbThrustAlt: -1000,
 	climbThrustAltSet: 0,
 	costIndex: 0,
 	cruiseAlt: 0,
@@ -91,16 +91,16 @@ var EditFlightData = {
 		RouteManager.destinationAirport.setValue("");
 		
 		# Clear FlightData
-		FlightData.accelAlt = -10000;
+		FlightData.accelAlt = -1000;
 		FlightData.accelAltSet = 0;
-		FlightData.accelAltEo = -10000;
+		FlightData.accelAltEo = -1000;
 		FlightData.accelAltEoSet = 0;
-		FlightData.airportAlt = "";
+		FlightData.airportAltn = "";
 		FlightData.airportFrom = "";
-		FlightData.airportFromElev = -10000;
+		FlightData.airportFromAlt = -1000;
 		FlightData.airportTo = "";
 		FlightData.blockFuelLbs = 0;
-		FlightData.climbThrustAlt = -10000;
+		FlightData.climbThrustAlt = -1000;
 		FlightData.climbThrustAltSet = 0;
 		FlightData.costIndex = 0;
 		FlightData.cruiseAlt = 0;
@@ -137,27 +137,8 @@ var EditFlightData = {
 		FlightDataOut.zfwcg.setValue(FlightData.zfwcg);
 		FlightDataOut.zfwLbs.setValue(FlightData.zfwLbs);
 	},
-	newFlightplan: func(from, to) { # Assumes validation is already done
-		flightplan().cleanPlan(); # Clear List function in Route Manager
-		FlightData.airportFrom = from;
-		FlightData.airportTo = to;
-		
-		RouteManager.departureAirport.setValue(from);
-		RouteManager.destinationAirport.setValue(to);
-		
-		if (!RouteManager.active.getBoolValue()) {
-			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
-		}
-		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(0);
-		}
-		
-		FlightData.airportFromElev = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);
-		FlightData.toSlope = -100;
-		FlightData.toWind = -100;
-	},
 	insertAlternate: func(arpt) { # Assumes validation is already done
-		FlightData.airportAlt = arpt;
+		FlightData.airportAltn = arpt;
 		RouteManager.alternateAirport.setValue(arpt);
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(0);
@@ -231,6 +212,21 @@ var EditFlightData = {
 			return 0;
 		}
 	},
+	insertToAlts: func(t = 0) {
+		if (FlightData.airportFromAlt > -1000) {
+			if (t == 0 or t == 1) FlightData.climbThrustAlt = math.max(FlightData.climbThrustAltCalc = FlightData.airportFromAlt + 1500, 0);
+			if (t == 0 or t == 2) FlightData.accelAlt = math.max(FlightData.accelAltCalc = FlightData.airportFromAlt + 3000, 0);
+			if (t == 0 or t == 3) FlightData.accelAltEo = math.max(FlightData.accelAltEoCalc = FlightData.airportFromAlt + 1500, 0);
+		} else {
+			if (t == 0 or t == 1) FlightData.climbThrustAlt = -1000;
+			if (t == 0 or t == 2) FlightData.accelAlt = -1000;
+			if (t == 0 or t == 3) FlightData.accelAltEo = -1000;
+		}
+		
+		if (t == 0 or t == 1) FlightData.climbThrustAltSet = 0;
+		if (t == 0 or t == 2) FlightData.accelAltSet = 0;
+		if (t == 0 or t == 3) FlightData.accelAltEoSet = 0;
+	},
 	insertTogw: func(togw) { # Recalculate ZFW
 		if (FlightData.blockFuelLbs > 0) {
 			FlightData.Temp.zfw = togw + FlightData.taxiFuel - FlightData.blockFuelLbs;
@@ -262,5 +258,26 @@ var EditFlightData = {
 			FlightData.zfwLbs = zfw + 0;
 			return 1;
 		}
+	},
+	newFlightplan: func(from, to) { # Assumes validation is already done
+		flightplan().cleanPlan(); # Clear List function in Route Manager
+		FlightData.airportFrom = from;
+		FlightData.airportTo = to;
+		
+		RouteManager.departureAirport.setValue(from);
+		RouteManager.destinationAirport.setValue(to);
+		
+		if (!RouteManager.active.getBoolValue()) {
+			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
+		}
+		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
+			RouteManager.currentWp.setValue(0);
+		}
+		
+		FlightData.airportFromAlt = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);
+		me.insertToAlts();
+		
+		FlightData.toSlope = -100;
+		FlightData.toWind = -100;
 	},
 };

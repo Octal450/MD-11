@@ -101,7 +101,7 @@ var Init = {
 			me.Display.L1 = "__________";
 		}
 		
-		if (fms.FlightData.airportAlt != "") {
+		if (fms.FlightData.airportAltn != "") {
 			me.Display.L2 = "";
 		} else if (fms.FlightData.airportTo != "") {
 			me.Display.L2 = "__________";
@@ -150,8 +150,8 @@ var Init = {
 			me.Display.R1 = "_____/_____";
 		}
 		
-		if (fms.FlightData.airportAlt != "") {
-			me.Display.R2 = fms.FlightData.airportAlt;
+		if (fms.FlightData.airportAltn != "") {
+			me.Display.R2 = fms.FlightData.airportAltn;
 		} else if (fms.FlightData.airportTo != "") {
 			me.Display.R2 = "_____";
 		} else {

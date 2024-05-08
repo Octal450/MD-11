@@ -239,10 +239,6 @@ var Output = {
 	vertTemp: 7,
 };
 
-var Settings = {
-	accelFt: props.globals.initNode("/it-autoflight/settings/accel-ft", 1500, "INT"), # Will be changable from FMS
-};
-
 var Sound = {
 	apOff: props.globals.getNode("/it-autoflight/sound/apoff"),
 	apOffSingle: props.globals.initNode("/it-autoflight/sound/apoff-single", 0, "BOOL"),
@@ -578,7 +574,7 @@ var ITAF = {
 				Internal.kts.setValue(Internal.v2Speed);
 			}
 			
-			me.checkFlch(Settings.accelFt.getValue());
+			me.checkFlch(fms.FlightData.climbThrustAlt);
 		}
 		
 		# Altitude Capture/Sync Logic
@@ -1304,7 +1300,7 @@ var ITAF = {
 		}
 	},
 	checkFlch: func(a) {
-		if (Position.gearAglFt.getValue() >= a and a != 0) {
+		if (Position.indicatedAltitudeFt.getValue() >= a and a > -1000) {
 			me.setVertMode(4);
 		}
 	},

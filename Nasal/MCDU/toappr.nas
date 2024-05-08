@@ -26,7 +26,7 @@ var Takeoff = {
 			C6S: "VCL",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.small, FONT.normal, FONT.small, FONT.small, FONT.small],
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.small, FONT.small],
 			L1S: "FLEX",
 			L1: "",
 			L2S: "PACKS",
@@ -42,7 +42,7 @@ var Takeoff = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.small, FONT.small],
+			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			R1S: "THRUST ",
 			R1: "LIMITS>",
 			R2S: "SLOPE/WIND",
@@ -50,11 +50,11 @@ var Takeoff = {
 			R3S: "OAT",
 			R3: "",
 			R4S: "CLB THRUST",
-			R4: "----",
+			R4: "",
 			R5S: "ACCEL",
-			R5: "----",
+			R5: "",
 			R6S: "EO ACCEL",
-			R6: "----",
+			R6: "",
 			
 			title: "",
 		};
@@ -65,6 +65,8 @@ var Takeoff = {
 			togw: "",
 			toSlopeFmt: "",
 			toWindFmt: "",
+			vcl: 0,
+			vsr: 0,
 		};
 		
 		m.group = "fmc";
@@ -132,11 +134,19 @@ var Takeoff = {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue());
 		}
 		
-		if (fms.FlightData.togwLbs > 0) {
-			me.Display.C5 = sprintf("%d", math.round(fms.Speeds.vsrTo.getValue()));
+		me.Value.vsr = fms.Speeds.vsrTo.getValue();
+		if (me.Value.vsr > 0) {
+			me.Display.C5 = sprintf("%d", math.round(me.Value.vsr));
 			me.Display.C6 = sprintf("%d", math.round(fms.Speeds.vclTo.getValue()));
 		} else {
 			me.Display.C5 = "---";
+			me.Display.C6 = "---";
+		}
+		
+		me.Value.vcl = fms.Speeds.vclTo.getValue();
+		if (me.Value.vcl > 0) {
+			me.Display.C6 = sprintf("%d", math.round(me.Value.vcl));
+		} else {
 			me.Display.C6 = "---";
 		}
 		
@@ -166,6 +176,42 @@ var Takeoff = {
 			}
 		} else {
 			me.Display.R3 = "____";
+		}
+		
+		if (fms.FlightData.climbThrustAlt > -1000) {
+			me.Display.R4 = sprintf("%d", fms.FlightData.climbThrustAlt);
+			if (fms.FlightData.climbThrustAltSet) {
+				me.Display.RFont[3] = FONT.normal;
+			} else {
+				me.Display.RFont[3] = FONT.small;
+			}
+		} else {
+			me.Display.R4 = "----";
+			me.Display.RFont[3] = FONT.small;
+		}
+		
+		if (fms.FlightData.accelAlt > -1000) {
+			me.Display.R5 = sprintf("%d", fms.FlightData.accelAlt);
+			if (fms.FlightData.accelAltSet) {
+				me.Display.RFont[4] = FONT.normal;
+			} else {
+				me.Display.RFont[4] = FONT.small;
+			}
+		} else {
+			me.Display.R5 = "----";
+			me.Display.RFont[4] = FONT.small;
+		}
+		
+		if (fms.FlightData.accelAltEo > -1000) {
+			me.Display.R6 = sprintf("%d", fms.FlightData.accelAltEo);
+			if (fms.FlightData.accelAltEoSet) {
+				me.Display.RFont[5] = FONT.normal;
+			} else {
+				me.Display.RFont[5] = FONT.small;
+			}
+		} else {
+			me.Display.R6 = "----";
+			me.Display.RFont[5] = FONT.small;
 		}
 	},
 	softKey: func(k) {
@@ -293,6 +339,66 @@ var Takeoff = {
 				}
 			} else if (me.scratchpadState == 1) {
 				fms.FlightData.oatUnit = !fms.FlightData.oatUnit;
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r4") {
+			if (me.scratchpadState == 0) {
+				fms.EditFlightData.insertToAlts(1);
+				fms.FlightData.climbThrustAltSet = 0;
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= fms.FlightData.airportFromAlt + 1000) {
+						fms.FlightData.climbThrustAlt = me.scratchpad + 0; # Convert string to int
+						fms.FlightData.climbThrustAltSet = 1;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r5") {
+			if (me.scratchpadState == 0) {
+				fms.EditFlightData.insertToAlts(2);
+				fms.FlightData.accelAltSet = 0;
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= fms.FlightData.airportFromAlt + 1000) {
+						fms.FlightData.accelAlt = me.scratchpad + 0; # Convert string to int
+						fms.FlightData.accelAltSet = 1;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r6") {
+			if (me.scratchpadState == 0) {
+				fms.EditFlightData.insertToAlts(3);
+				fms.FlightData.accelAltEoSet = 0;
+				mcdu.unit[me.id].scratchpadClear();
+			} else if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= fms.FlightData.airportFromAlt + 400) {
+						fms.FlightData.accelAltEo = me.scratchpad + 0; # Convert string to int
+						fms.FlightData.accelAltEoSet = 1;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

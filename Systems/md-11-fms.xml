@@ -399,33 +399,40 @@
 		<!-- Vstall -->
 		<fcs_function name="/fms/speeds/vss-kts">
 			<function>
-				<table> <!-- +15 FAA Stall -->
-					<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
-					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-					<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
-					<tableData breakPoint="0"> <!-- Values clipped and rounded down so Vmin (FAA Stall * 1.3) won't exceed flap max (as per manual) -->
-						        0       15      25      28      35      50
-						140000  149.22  141.92  137.31  136.54  134.88  133.22
-						160000  158.53  150.38  146.54  145.77  143.99  141.26
-						180000  167.38  158.85  154.23  153.46  151.31  147.91
-						200000  175.63  166.54  161.92  160.38  157.93  149.61
-						220000  183.56  174.23  168.85  168.08  161.15  149.61
-						240000  190.73  181.15  175.77  175.01  161.15  149.61
-						260000  198.14  188.08  182.69  176.53  161.15  149.61
-						280000  204.93  195.01  184.23  176.53  161.15  149.61
-					</tableData>
-					<tableData breakPoint="31">
-						        0       10      15      20      25      28      35      50
-						140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
-						160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
-						180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
-						200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
-						220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
-						240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
-						260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
-						280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
-					</tableData>
-				</table>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table> <!-- +15 FAA Stall -->
+						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+						<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
+						<tableData breakPoint="0"> <!-- Values clipped and rounded down so Vmin (FAA Stall * 1.3) won't exceed flap max (as per manual) -->
+							        0       15      25      28      35      50
+							140000  149.22  141.92  137.31  136.54  134.88  133.22
+							160000  158.53  150.38  146.54  145.77  143.99  141.26
+							180000  167.38  158.85  154.23  153.46  151.31  147.91
+							200000  175.63  166.54  161.92  160.38  157.93  149.61
+							220000  183.56  174.23  168.85  168.08  161.15  149.61
+							240000  190.73  181.15  175.77  175.01  161.15  149.61
+							260000  198.14  188.08  182.69  176.53  161.15  149.61
+							280000  204.93  195.01  184.23  176.53  161.15  149.61
+						</tableData>
+						<tableData breakPoint="31">
+							        0       10      15      20      25      28      35      50
+							140000  124.19  120.99  118.85  117.33  116.47  115.89  114.48  113.07
+							160000  131.75  128.24  125.95  124.42  123.40  122.69  121.19  118.89
+							180000  138.92  135.11  132.59  131.06  130.02  129.36  127.55  124.68
+							200000  145.64  141.67  139.15  137.47  136.34  135.63  133.56  129.98
+							220000  152.05  147.62  145.41  143.35  142.30  141.55  139.34  135.14
+							240000  158.07  153.65  150.98  148.99  147.82  147.07  144.77  140.00
+							260000  163.87  159.52  156.62  154.56  153.16  152.37  150.03  144.77
+							280000  169.52  164.94  161.74  159.74  158.33  157.58  155.24  149.19
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
@@ -480,10 +487,9 @@
 		
 		<switch name="/fms/speeds/vss-tape">
 			<default value="/fms/speeds/vss"/>
-			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if GW is invalid -->
+			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone -->
 				position/wow eq 1
 				/fms/speeds/v2-latch ne 1
-				/fms/flight-data/gw-lbs eq 0
 			</test>
 		</switch>
 		
@@ -540,10 +546,10 @@
 		
 		<switch name="/fms/speeds/vmin-tape">
 			<default value="/fms/speeds/vmin"/>
-			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if GW is invalid -->
+			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if Vstall is invalid -->
 				position/wow eq 1
 				/fms/speeds/v2-latch ne 1
-				/fms/flight-data/gw-lbs eq 0
+				/fms/speeds/vss-tape eq 0
 			</test>
 		</switch>
 		
@@ -898,157 +904,178 @@
 		<!-- Vsr -->
 		<fcs_function name="/fms/speeds/vsr"> <!-- From FCOM -->
 			<function>
-				<table>
-					<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
-					<tableData>
-						160000  190
-						165000  193
-						170000  196
-						175000  199
-						180000  202
-						185000  205
-						190000  207
-						195000  210
-						200000  213
-						205000  216
-						210000  218
-						215000  221
-						220000  223
-						225000  226
-						230000  228
-						235000  231
-						240000  233
-						245000  236
-						250000  238
-						255000  241
-						260000  243
-						265000  245
-						270000  247
-						275000  250
-						280000  252
-						285000  254
-						290000  256
-					</tableData>
-				</table>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<tableData>
+							160000  190
+							165000  193
+							170000  196
+							175000  199
+							180000  202
+							185000  205
+							190000  207
+							195000  210
+							200000  213
+							205000  216
+							210000  218
+							215000  221
+							220000  223
+							225000  226
+							230000  228
+							235000  231
+							240000  233
+							245000  236
+							250000  238
+							255000  241
+							260000  243
+							265000  245
+							270000  247
+							275000  250
+							280000  252
+							285000  254
+							290000  256
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/vsr-tape">
-			<default value="/fms/speeds/vsr"/>
-			<test value="0"> <!-- Hide if GW is invalid -->
-				/fms/flight-data/gw-lbs eq 0
-			</test>
-		</switch>
-		
 		<fcs_function name="/fms/speeds/vsr-to"> <!-- From FCOM -->
 			<function>
-				<table>
-					<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
-					<tableData>
-						160000  190
-						165000  193
-						170000  196
-						175000  199
-						180000  202
-						185000  205
-						190000  207
-						195000  210
-						200000  213
-						205000  216
-						210000  218
-						215000  221
-						220000  223
-						225000  226
-						230000  228
-						235000  231
-						240000  233
-						245000  236
-						250000  238
-						255000  241
-						260000  243
-						265000  245
-						270000  247
-						275000  250
-						280000  252
-						285000  254
-						290000  256
-					</tableData>
-				</table>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/togw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
+						<tableData>
+							160000  190
+							165000  193
+							170000  196
+							175000  199
+							180000  202
+							185000  205
+							190000  207
+							195000  210
+							200000  213
+							205000  216
+							210000  218
+							215000  221
+							220000  223
+							225000  226
+							230000  228
+							235000  231
+							240000  233
+							245000  236
+							250000  238
+							255000  241
+							260000  243
+							265000  245
+							270000  247
+							275000  250
+							280000  252
+							285000  254
+							290000  256
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<!-- Vcl -->
 		<fcs_function name="/fms/speeds/vcl"> <!-- From FCOM -->
 			<function>
-				<table>
-					<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
-					<tableData>
-						160000  214
-						165000  217
-						170000  220
-						175000  223
-						180000  226
-						185000  229
-						190000  232
-						195000  235
-						200000  238
-						205000  241
-						210000  244
-						215000  247
-						220000  250
-						225000  253
-						230000  256
-						235000  259
-						240000  262
-						245000  265
-						250000  268
-						255000  270
-						260000  273
-						265000  276
-						270000  279
-						275000  282
-						280000  285
-						285000  288
-						290000  291
-					</tableData>
-				</table>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<tableData>
+							160000  214
+							165000  217
+							170000  220
+							175000  223
+							180000  226
+							185000  229
+							190000  232
+							195000  235
+							200000  238
+							205000  241
+							210000  244
+							215000  247
+							220000  250
+							225000  253
+							230000  256
+							235000  259
+							240000  262
+							245000  265
+							250000  268
+							255000  270
+							260000  273
+							265000  276
+							270000  279
+							275000  282
+							280000  285
+							285000  288
+							290000  291
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/fms/speeds/vcl-to"> <!-- From FCOM -->
 			<function>
-				<table>
-					<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
-					<tableData>
-						160000  214
-						165000  217
-						170000  220
-						175000  223
-						180000  226
-						185000  229
-						190000  232
-						195000  235
-						200000  238
-						205000  241
-						210000  244
-						215000  247
-						220000  250
-						225000  253
-						230000  256
-						235000  259
-						240000  262
-						245000  265
-						250000  268
-						255000  270
-						260000  273
-						265000  276
-						270000  279
-						275000  282
-						280000  285
-						285000  288
-						290000  291
-					</tableData>
-				</table>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/togw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
+						<tableData>
+							160000  214
+							165000  217
+							170000  220
+							175000  223
+							180000  226
+							185000  229
+							190000  232
+							195000  235
+							200000  238
+							205000  241
+							210000  244
+							215000  247
+							220000  250
+							225000  253
+							230000  256
+							235000  259
+							240000  262
+							245000  265
+							250000  268
+							255000  270
+							260000  273
+							265000  276
+							270000  279
+							275000  282
+							280000  285
+							285000  288
+							290000  291
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
