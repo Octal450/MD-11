@@ -33,7 +33,8 @@ var Value = {
 		spoilerL: 0,
 		spoilerR: 0,
 		stab: 0,
-		stabText: 0,
+		stabComp: 0,
+		stabRound: 0,
 	},
 	Misc: {
 		cg: 0,
@@ -120,11 +121,9 @@ var canvasConfig = {
 	getKeys: func() {
 		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorLDown", "ElevatorLUp", "ElevatorRDown", "ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox",
 		"LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight",
-		"RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		"RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
-		# Unsimulated stuff, fix later
-		me["StabBox"].hide();
 	},
 	update: func() {
 		# Elevator Feel Speed
@@ -136,17 +135,6 @@ var canvasConfig = {
 		}
 		
 		# Stab
-		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
-		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
-		
-		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
-		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
-		
-		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
-			me["StabUnit"].setText("AND");
-		} else {
-			me["StabUnit"].setText("ANU");
-		}
 		
 		# Ailerons
 		if (pts.Fdm.JSBsim.Hydraulics.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
@@ -447,7 +435,7 @@ var canvasEng = {
 	getKeys: func() {
 		return ["APU", "APU-EGT", "APU-N1", "APU-N2", "APU-QTY", "CabinRateDn", "CabinRateUp", "Cg", "Fuel", "Fuel-thousands", "GEGroup", "GW", "GW-thousands", "GW-units", "NacelleTemp1", "NacelleTemp2", "NacelleTemp3", "PWGroup", "OilPsi1", "OilPsi1-needle",
 		"OilPsi2", "OilPsi2-needle", "OilPsi3", "OilPsi3-needle", "OilQty1", "OilQty1-box", "OilQty1-cline", "OilQty1-needle", "OilQty2", "OilQty2-box", "OilQty2-cline", "OilQty2-needle", "OilQty3", "OilQty3-box", "OilQty3-cline", "OilQty3-needle", "OilTemp1",
-		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "StabBox", "StabNeedle", "StabUnit"];
+		"OilTemp1-box", "OilTemp1-needle", "OilTemp2", "OilTemp2-box", "OilTemp2-needle", "OilTemp3", "OilTemp3-box", "OilTemp3-needle", "Stab", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -463,7 +451,6 @@ var canvasEng = {
 		# Unsimulated stuff, fix later
 		me["CabinRateDn"].hide();
 		me["CabinRateUp"].hide();
-		me["StabBox"].hide();
 	},
 	update: func() {
 		# GW, Fuel, CG
@@ -494,12 +481,40 @@ var canvasEng = {
 		
 		# Stab
 		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
-		Value.Fctl.stabText = math.round(abs(Value.Fctl.stab), 0.1);
+		Value.Fctl.stabComp = math.round(fms.Internal.stabilizerDeg.getValue(), 0.1);
+		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
+		print(Value.Fctl.stabComp);
+		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
 		
-		me["Stab"].setText(sprintf("%2.1f", Value.Fctl.stabText));
-		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.6451613, 0);
+		if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+			me["Stab"].setColor(1, 1, 1);
+			me["StabBox"].hide();
+			me["StabGreen"].hide();
+			me["StabNeedle"].setColorFill(1, 1, 1);
+		} else {
+			if (Value.Fctl.stabComp > 0) {
+				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.620903, 0);
+				me["StabGreen"].show();
+				
+				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
+					me["Stab"].setColor(0, 1, 0);
+					me["StabBox"].hide();
+					me["StabNeedle"].setColorFill(0, 1, 0);
+				} else {
+					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+					me["StabBox"].show();
+					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+				}
+			} else {
+				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+				me["StabBox"].show();
+				me["StabGreen"].hide();
+				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+			}
+		}
 		
-		if (Value.Fctl.stab > 0 and Value.Fctl.stabText > 0) {
+		if (Value.Fctl.stabRound > 0) {
 			me["StabUnit"].setText("AND");
 		} else {
 			me["StabUnit"].setText("ANU");
@@ -531,9 +546,9 @@ var canvasEng = {
 		
 		if (Value.Eng.type == "PW") {
 			if (Value.Eng.oilTemp[0] <= 50) {
-				me["OilTemp1"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp1"].setColor(0.9647, 0.8196, 0.0784);
 				me["OilTemp1-box"].show();
-				me["OilTemp1-needle"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp1-needle"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
 				me["OilTemp1"].setColor(1, 1, 1);
 				me["OilTemp1-box"].hide();
@@ -541,9 +556,9 @@ var canvasEng = {
 			}
 			
 			if (Value.Eng.oilTemp[1] <= 50) {
-				me["OilTemp2"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp2"].setColor(0.9647, 0.8196, 0.0784);
 				me["OilTemp2-box"].show();
-				me["OilTemp2-needle"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp2-needle"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
 				me["OilTemp2"].setColor(1, 1, 1);
 				me["OilTemp2-box"].hide();
@@ -551,9 +566,9 @@ var canvasEng = {
 			}
 			
 			if (Value.Eng.oilTemp[2] <= 50) {
-				me["OilTemp3"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp3"].setColor(0.9647, 0.8196, 0.0784);
 				me["OilTemp3-box"].show();
-				me["OilTemp3-needle"].setColor(0.9647, 0.8196, 0.07843);
+				me["OilTemp3-needle"].setColor(0.9647, 0.8196, 0.0784);
 			} else {
 				me["OilTemp3"].setColor(1, 1, 1);
 				me["OilTemp3-box"].hide();
@@ -576,9 +591,9 @@ var canvasEng = {
 		me["OilQty3-needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
-			me["OilQty1"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty1"].setColor(0.9647, 0.8196, 0.0784);
 			me["OilQty1-box"].show();
-			me["OilQty1-needle"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty1-needle"].setColor(0.9647, 0.8196, 0.0784);
 		} else {
 			me["OilQty1"].setColor(1, 1, 1);
 			me["OilQty1-box"].hide();
@@ -586,9 +601,9 @@ var canvasEng = {
 		}
 		
 		if (Value.Eng.oilQty[1] <= 4) {
-			me["OilQty2"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty2"].setColor(0.9647, 0.8196, 0.0784);
 			me["OilQty2-box"].show();
-			me["OilQty2-needle"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty2-needle"].setColor(0.9647, 0.8196, 0.0784);
 		} else {
 			me["OilQty2"].setColor(1, 1, 1);
 			me["OilQty2-box"].hide();
@@ -596,9 +611,9 @@ var canvasEng = {
 		}
 		
 		if (Value.Eng.oilQty[2] <= 4) {
-			me["OilQty3"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty3"].setColor(0.9647, 0.8196, 0.0784);
 			me["OilQty3-box"].show();
-			me["OilQty3-needle"].setColor(0.9647, 0.8196, 0.07843);
+			me["OilQty3-needle"].setColor(0.9647, 0.8196, 0.0784);
 		} else {
 			me["OilQty3"].setColor(1, 1, 1);
 			me["OilQty3-box"].hide();

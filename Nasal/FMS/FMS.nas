@@ -8,6 +8,7 @@ var Internal = {
 	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss"),
 	cgPercentMac: props.globals.initNode("/fms/internal/cg-percent-mac"),
 	engOn: 0,
+	stabilizerDeg: props.globals.initNode("/fms/internal/stabilizer-deg"),
 };
 
 var RouteManager = {

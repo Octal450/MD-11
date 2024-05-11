@@ -52,6 +52,7 @@ var FlightDataOut = {
 	gwLbs: props.globals.getNode("/fms/flight-data/gw-lbs"),
 	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
 	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
+	tocg: props.globals.getNode("/fms/flight-data/tocg"),
 	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
 	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
 	zfwcg: props.globals.getNode("/fms/flight-data/zfwcg"),
@@ -131,6 +132,7 @@ var EditFlightData = {
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
 		FlightDataOut.gwLbs.setValue(FlightData.gwLbs);
 		FlightDataOut.oatC.setValue(FlightData.oatC);
+		FlightDataOut.tocg.setValue(FlightData.tocg);
 		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
 		FlightDataOut.togw.setValue(FlightData.togwLbs);
 		FlightDataOut.toPacks.setValue(FlightData.toPacks);

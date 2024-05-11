@@ -18,7 +18,7 @@ var Takeoff = {
 			C2S: "",
 			C2: "",
 			C3S: "STAB",
-			C3: "---",
+			C3: "",
 			C4S: "VFR",
 			C4: "---",
 			C5S: "VSR/V3",
@@ -61,6 +61,7 @@ var Takeoff = {
 		
 		m.Value = {
 			oatCEntry: 0,
+			stabilizerDeg: 0,
 			tocg: "",
 			togw: "",
 			toSlopeFmt: "",
@@ -132,6 +133,13 @@ var Takeoff = {
 			me.Display.C2 = sprintf("%4.2f", systems.FADEC.Limit.takeoff.getValue());
 		} else {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue());
+		}
+		
+		me.Value.stabilizerDeg = fms.Internal.stabilizerDeg.getValue();
+		if (me.Value.stabilizerDeg > 0) {
+			me.Display.C3 = sprintf("%4.1f", math.round(me.Value.stabilizerDeg, 0.1));
+		} else {
+			me.Display.C3 = "---";
 		}
 		
 		me.Value.vsr = fms.Speeds.vsrTo.getValue();

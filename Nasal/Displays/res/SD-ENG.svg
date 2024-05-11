@@ -41,9 +41,9 @@
      inkscape:window-height="1057"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1.0000001"
-     inkscape:cx="559.81883"
-     inkscape:cy="1094.4813"
+     inkscape:zoom="4.0000004"
+     inkscape:cx="531.58887"
+     inkscape:cy="1117.3178"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -1106,16 +1106,10 @@
        x="656.82849"
        id="tspan4484"
        sodipodi:role="line">ANU</tspan></text>
-  <rect
+  <path
      style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="StabBox"
-     width="91.270889"
-     height="46.821747"
-     x="448.00244"
-     y="64.535538"
-     ry="0"
-     rx="0"
-     inkscape:label="#rect4490" />
+     d="m 448.00244,64.535538 91.27089,0 0,46.821742 -91.27089,0 z"
+     id="StabBox" />
   <text
      transform="scale(0.87620832,1.1412811)"
      inkscape:label="#text4415"
@@ -1264,7 +1258,7 @@
      sodipodi:nodetypes="cccc"
      inkscape:connector-curvature="0"
      id="StabNeedle"
-     d="m 372.3375,114.63248 27.00814,0 c -4.50135,6.15 -9.00268,12.3 -13.50403,18.45 z"
+     d="m 372.337,114.63248 27.00814,0 c -4.50135,6.15 -9.00268,12.3 -13.50403,18.45 z"
      style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1422,4 +1416,20 @@
      style="fill:none;stroke:#fecd00;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 739.77698,535.47101 61.22091,0 0,46.82196 -61.22091,0 z"
      id="OilQty3-box" />
+  <rect
+     y="132.11409"
+     x="360.59927"
+     height="8.1396942"
+     width="50.483612"
+     id="StabGreen"
+     style="fill:#00ff00;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="#rect4313" />
+  <rect
+     y="132.11409"
+     x="370.76538"
+     height="8.1396942"
+     width="211.42201"
+     id="StabGreen_clip"
+     style="fill:#ff00ff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1;opacity:0.46"
+     inkscape:label="#rect4315" />
 </svg>
