@@ -271,7 +271,7 @@
 				<command>nasal</command>
 				<script>
 					pts.Systems.Acconfig.Options.Du.eadFps.setValue(20);
-					pts.Systems.Acconfig.Options.Du.iesiFps.setValue(10);
+					pts.Systems.Acconfig.Options.Du.iesiFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
