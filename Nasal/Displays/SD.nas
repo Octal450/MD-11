@@ -136,9 +136,8 @@ var canvasConfig = {
 		
 		# Stab
 		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
-		Value.Fctl.stabComp = math.round(fms.Internal.stabilizerDeg.getValue(), 0.1);
+		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
-		print(Value.Fctl.stabComp);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
 		
@@ -520,9 +519,8 @@ var canvasEng = {
 		
 		# Stab
 		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
-		Value.Fctl.stabComp = math.round(fms.Internal.stabilizerDeg.getValue(), 0.1);
+		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
-		print(Value.Fctl.stabComp);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
 		

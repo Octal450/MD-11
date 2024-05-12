@@ -275,7 +275,6 @@ var PANEL = {
 		libraries.systemsInit();
 		pts.Controls.Flight.speedbrake.setValue(0);
 		if (t == 1) {
-			pts.Controls.Flight.elevatorTrim.setValue(-0.348387); # About 5.4ANU, TODO: Pull from FMS
 			pts.Controls.Flight.flaps.setValue(0.36); # 10-25/EXT
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(1);
 			systems.BRAKES.Switch.abs.setValue(-1); # T/O
@@ -381,8 +380,12 @@ var PANEL = {
 				systems.ELEC.Switch.extPwr.setBoolValue(0);
 				systems.ELEC.Switch.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
+				fms.EditFlightData.setAcconfigWeightBalanceData();
 				
 				if (t == 1) {
+					settimer(func() {
+						pts.Controls.Flight.elevatorTrim.setValue(fms.Internal.takeoffStabDeg.getValue() / -15.5);
+					}, 0.2);
 					pts.Controls.Lighting.strobe.setBoolValue(1);
 					pts.Controls.Lighting.landingLightL.setValue(1);
 					pts.Controls.Lighting.landingLightN.setValue(1);

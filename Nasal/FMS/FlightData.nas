@@ -282,4 +282,16 @@ var EditFlightData = {
 		FlightData.toSlope = -100;
 		FlightData.toWind = -100;
 	},
+	setAcconfigWeightBalanceData: func() {
+		Internal.request[0] = 0;
+		Internal.request[1] = 0;
+		Internal.request[2] = 0;
+		mcdu.unit[0].setPage("acStatus");
+		mcdu.unit[1].setPage("acStatus");
+		FlightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1));
+		FlightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1));
+		FlightData.toFlaps = 15;
+		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwcgPercentMac.getValue(), 0.1));
+		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+	},
 };

@@ -1131,7 +1131,7 @@
 		</fcs_function>
 		
 		<!-- Stabilizer Computer -->
-		<fcs_function name="/fms/internal/stabilizer-deg">
+		<fcs_function name="/fms/internal/takeoff-stab-deg-calc">
 			<function>
 				<ifthen>
 					<and>
@@ -1196,6 +1196,23 @@
 					</table>
 					<value>0</value>
 				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/fms/internal/takeoff-stab-deg">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>/fms/internal/takeoff-stab-deg-calc</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value>
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
 			</function>
 		</fcs_function>
 	

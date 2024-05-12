@@ -60,7 +60,6 @@ var MCDU = {
 		me.PageList.init.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
-		me.PageList.menu.reset();
 		me.PageList.navRadio.reset();
 		me.PageList.posRef.reset();
 		me.PageList.takeoff.reset();
@@ -151,7 +150,7 @@ var MCDU = {
 	},
 	pageKey: func(p) {
 		if (!me.Blink.active) {
-			if (p == "menu" or !me.PageList.menu.Value.request) {
+			if (p == "menu" or !fms.Internal.request[me.id]) {
 				me.setPage(p);
 			} else {
 				me.blinkScreen();

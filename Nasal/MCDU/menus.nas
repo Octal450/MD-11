@@ -72,22 +72,14 @@ var Menu = {
 		m.nextPage = "none";
 		m.type = t;
 		
-		m.Value = {
-			request: 1,
-		};
-		
 		return m;
 	},
-	reset: func() {
-		me.setup();
-	},
 	setup: func() {
-		me.Value.request = 1;
 	},
 	loop: func() {
 		if (me.type) {
 			me.Display.C1 = "";
-		} else if (me.Value.request) {
+		} else if (fms.Internal.request[me.id]) {
 			me.Display.C1 = "<REQ>";
 		} else {
 			me.Display.C1 = "<ACT>";
@@ -98,8 +90,8 @@ var Menu = {
 		
 		if (me.scratchpadState == 1) {
 			if (k == "l1" and !me.type) {
-				if (me.Value.request) {
-					me.Value.request = 0;
+				if (fms.Internal.request[me.id]) {
+					fms.Internal.request[me.id] = 0;
 				} else {
 					mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
 				}

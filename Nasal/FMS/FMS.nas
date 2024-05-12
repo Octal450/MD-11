@@ -8,7 +8,8 @@ var Internal = {
 	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss"),
 	cgPercentMac: props.globals.initNode("/fms/internal/cg-percent-mac"),
 	engOn: 0,
-	stabilizerDeg: props.globals.initNode("/fms/internal/stabilizer-deg"),
+	request: [1, 1, 0],
+	takeoffStabDeg: props.globals.initNode("/fms/internal/takeoff-stab-deg"),
 };
 
 var RouteManager = {
@@ -54,6 +55,9 @@ var Speeds = {
 var CORE = {
 	init: func() {
 		EditFlightData.reset();
+		Internal.request[0] = 1;
+		Internal.request[1] = 1;
+		Internal.request[2] = 0;
 		me.resetRadio();
 	},
 	loop: func() {
@@ -68,6 +72,9 @@ var CORE = {
 	resetFms: func() {
 		afs.ITAF.init(1); # First
 		EditFlightData.reset();
+		Internal.request[0] = 1;
+		Internal.request[1] = 1;
+		Internal.request[2] = 0;
 		mcdu.BASE.reset(); # Last
 	},
 	resetRadio: func() {
