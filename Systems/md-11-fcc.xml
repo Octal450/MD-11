@@ -595,8 +595,8 @@
 					<table>
 						<independentVar lookup="row">velocities/vc-kts</independentVar>
 						<tableData>
-							140  15
-							360   3
+							140  20
+							360   7
 						</tableData>
 					</table>
 					<!--property>fcc/lsas/pah/i-gain-tune</property--> <!-- For tuning -->
@@ -898,8 +898,8 @@
 				fcc/lsas/pah/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				fcc/lsas/pah/pid le -0.248
-				fcc/lsas/pah/pid ge 0.248
+				fcc/lsas/pah/pid le -0.249
+				fcc/lsas/pah/pid ge 0.249
 			</test>
 		</switch>
 		
@@ -910,8 +910,8 @@
 			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
 			<trigger>fcc/lsas/pah/trigger</trigger>
 			<clipto>
-				<min>-0.249</min>
-				<max>0.249</max>
+				<min>-0.25</min>
+				<max>0.25</max>
 			</clipto>
 		</pid>
 		
@@ -925,10 +925,10 @@
 				<table>
 					<independentVar lookup="row">attitude/pitch-rad</independentVar>
 					<tableData>
-						-0.200713 -0.249
-						-0.174533  0.000
-						 0.523599  0.000
-						 0.549779  0.249
+						-0.200713 -0.25
+						-0.174533  0.00
+						 0.523599  0.00
+						 0.549779  0.25
 					</tableData>
 				</table>
 			</function>
@@ -964,8 +964,8 @@
 			<input>fcc/lsas/q-washout-s</input>
 			<gain>fcc/lsas/prd/p-gain-scheduled</gain>
 			<clipto>
-				<min>-0.249</min>
-				<max>0.249</max>
+				<min>-0.25</min>
+				<max>0.25</max>
 			</clipto>
 		</pure_gain>
 		
@@ -992,8 +992,8 @@
 					<table>
 						<independentVar lookup="row">fcc/lsas/pap/max-error</independentVar>
 						<tableData>
-							-0.0174533  0.000
-							 0.0000000  0.249
+							-0.0174533  0.00
+							 0.0000000  0.25
 						</tableData>
 					</table>
 					<property>fcc/lsas/pap/active</property>
@@ -1068,8 +1068,8 @@
 					<table>
 						<independentVar lookup="row">fcc/lsas/spd-prot/error</independentVar>
 						<tableData>
-							0  0.000
-							1 -0.249
+							0  0.00
+							1 -0.25
 						</tableData>
 					</table>
 				</product>
@@ -1088,8 +1088,8 @@
 					<table>
 						<independentVar lookup="row">fcc/lsas/alpha-prot/error</independentVar>
 						<tableData>
-							0.0  0.000
-							1.5  0.249
+							0.0  0.00
+							1.5  0.25
 						</tableData>
 					</table>
 				</product>
@@ -1105,8 +1105,8 @@
 			<input>fcc/lsas/spd-prot/output</input> <!-- Overspeed Protection -->
 			<input>fcc/lsas/alpha-prot/output</input> <!-- Stall Protection -->
 			<clipto> <!-- +/- 5 degrees -->
-				<min>-0.249</min>
-				<max>0.249</max>
+				<min>-0.25</min>
+				<max>0.25</max>
 			</clipto>
 		</summer>
 		
@@ -1318,7 +1318,7 @@
 							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
 							<tableData>
 								0.010  0.00002
-								0.249  0.00010
+								0.25  0.00010
 							</tableData>
 						</table>
 						<value>0.0</value>
@@ -1331,7 +1331,7 @@
 						<table>
 							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
 							<tableData>
-								-0.249 -0.00010
+								-0.25 -0.00010
 								-0.010 -0.00002
 							</tableData>
 						</table>

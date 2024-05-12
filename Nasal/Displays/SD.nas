@@ -264,21 +264,21 @@ var canvasConfig = {
 		
 		if (Value.Fctl.elevatorL <= -0.5) {
 			me["ElevatorLDown"].hide();
-			if (Value.Fctl.elevatorL <= -19.9) {
+			if (Value.Fctl.elevatorL <= -19.8) {
 				me["ElevatorLUp"].setColorFill(0, 1, 0);
 			} else {
 				me["ElevatorLUp"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -20.1, 0) * 1.29269);
+			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -20, 0) * 1.29269);
 			me["ElevatorLUp"].show();
 		} else if (Value.Fctl.elevatorL >= 0.5) {
 			me["ElevatorLUp"].hide();
-			if (Value.Fctl.elevatorL >= 17) {
+			if (Value.Fctl.elevatorL >= 17.8) {
 				me["ElevatorLDown"].setColorFill(0, 1, 0);
 			} else {
 				me["ElevatorLDown"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 17.2) * 1.29269);
+			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 18) * 1.29269);
 			me["ElevatorLDown"].show();
 		} else {
 			me["ElevatorLDown"].hide();
@@ -287,21 +287,21 @@ var canvasConfig = {
 		
 		if (Value.Fctl.elevatorR <= -0.5) {
 			me["ElevatorRDown"].hide();
-			if (Value.Fctl.elevatorR <= -19.9) {
+			if (Value.Fctl.elevatorR <= -19.8) {
 				me["ElevatorRUp"].setColorFill(0, 1, 0);
 			} else {
 				me["ElevatorRUp"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -20.1, 0) * 1.29269);
+			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -20, 0) * 1.29269);
 			me["ElevatorRUp"].show();
 		} else if (Value.Fctl.elevatorR >= 0.5) {
 			me["ElevatorRUp"].hide();
-			if (Value.Fctl.elevatorR >= 17) {
+			if (Value.Fctl.elevatorR >= 17.8) {
 				me["ElevatorRDown"].setColorFill(0, 1, 0);
 			} else {
 				me["ElevatorRDown"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 17.2) * 1.29269);
+			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 18) * 1.29269);
 			me["ElevatorRDown"].show();
 		} else {
 			me["ElevatorRDown"].hide();
