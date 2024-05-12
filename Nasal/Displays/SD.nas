@@ -135,6 +135,45 @@ var canvasConfig = {
 		}
 		
 		# Stab
+		Value.Fctl.stab = pts.Fdm.JSBsim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stabComp = math.round(fms.Internal.stabilizerDeg.getValue(), 0.1);
+		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
+		print(Value.Fctl.stabComp);
+		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
+		
+		if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+			me["Stab"].setColor(1, 1, 1);
+			me["StabBox"].hide();
+			me["StabGreen"].hide();
+			me["StabNeedle"].setColorFill(1, 1, 1);
+		} else {
+			if (Value.Fctl.stabComp > 0) {
+				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.620903, 0);
+				me["StabGreen"].show();
+				
+				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
+					me["Stab"].setColor(0, 1, 0);
+					me["StabBox"].hide();
+					me["StabNeedle"].setColorFill(0, 1, 0);
+				} else {
+					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+					me["StabBox"].show();
+					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+				}
+			} else {
+				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+				me["StabBox"].show();
+				me["StabGreen"].hide();
+				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+			}
+		}
+		
+		if (Value.Fctl.stabRound > 0) {
+			me["StabUnit"].setText("AND");
+		} else {
+			me["StabUnit"].setText("ANU");
+		}
 		
 		# Ailerons
 		if (pts.Fdm.JSBsim.Hydraulics.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
