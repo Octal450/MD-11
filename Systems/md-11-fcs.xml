@@ -571,10 +571,10 @@
 		
 		<pure_gain name="hydraulics/elevator-out-l/cmd-deg">
 			<input>hydraulics/elevator-out-l/switch</input>
-			<gain>20</gain>
+			<gain>22</gain>
 			<clipto>
-				<min>-20</min>
-				<max>18</max>
+				<min>-22</min>
+				<max>20</max>
 			</clipto>
 		</pure_gain>
 		
@@ -611,10 +611,10 @@
 		
 		<pure_gain name="hydraulics/elevator-in-l/cmd-deg">
 			<input>hydraulics/elevator-in-l/switch</input>
-			<gain>20</gain>
+			<gain>22</gain>
 			<clipto>
-				<min>-20</min>
-				<max>18</max>
+				<min>-22</min>
+				<max>20</max>
 			</clipto>
 		</pure_gain>
 		
@@ -651,10 +651,10 @@
 		
 		<pure_gain name="hydraulics/elevator-in-r/cmd-deg">
 			<input>hydraulics/elevator-in-r/switch</input>
-			<gain>20</gain>
+			<gain>22</gain>
 			<clipto>
-				<min>-20</min>
-				<max>18</max>
+				<min>-22</min>
+				<max>20</max>
 			</clipto>
 		</pure_gain>
 		
@@ -691,10 +691,10 @@
 		
 		<pure_gain name="hydraulics/elevator-out-r/cmd-deg">
 			<input>hydraulics/elevator-out-r/switch</input>
-			<gain>20</gain>
+			<gain>22</gain>
 			<clipto>
-				<min>-20</min>
-				<max>18</max>
+				<min>-22</min>
+				<max>20</max>
 			</clipto>
 		</pure_gain>
 		
