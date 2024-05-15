@@ -1529,26 +1529,43 @@
 	
 	<channel name="Flap Lever">
 		
+		<fcs_function name="/controls/flight/flaps-fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>/controls/flight/flaps</property>
+								<value>10000</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10000</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<switch name="/controls/flight/flaps-input">
 			<default value="0"/> <!-- UP/RET -->
 			<test logic="AND" value="1"> <!-- UP/EXT -->
-				/controls/flight/flaps ge 0.20
-				/controls/flight/flaps lt 0.36
+				/controls/flight/flaps-fixed ge 0.20
+				/controls/flight/flaps-fixed lt 0.36
 			</test>
 			<test logic="AND" value="2"> <!-- 10-25/EXT -->
-				/controls/flight/flaps ge 0.36
-				/controls/flight/flaps lt 0.52
+				/controls/flight/flaps-fixed ge 0.36
+				/controls/flight/flaps-fixed lt 0.52
 			</test>
 			<test logic="AND" value="3"> <!-- 28/EXT -->
-				/controls/flight/flaps ge 0.52
-				/controls/flight/flaps lt 0.68
+				/controls/flight/flaps-fixed ge 0.52
+				/controls/flight/flaps-fixed lt 0.68
 			</test>
 			<test logic="AND" value="4"> <!-- 35/EXT -->
-				/controls/flight/flaps ge 0.68
-				/controls/flight/flaps lt 0.84
+				/controls/flight/flaps-fixed ge 0.68
+				/controls/flight/flaps-fixed lt 0.84
 			</test>
 			<test value="5"> <!-- 50/EXT -->
-				/controls/flight/flaps ge 0.84
+				/controls/flight/flaps-fixed ge 0.84
 			</test>
 			<output>/fms/speeds/flaps-input-feedback</output>
 		</switch>
