@@ -7,10 +7,27 @@
 	
 	<channel name="Spoiler Lever and Logic">
 		
+		<fcs_function name="/controls/flight/speedbrake-fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>/controls/flight/speedbrake</property>
+								<value>10000</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10000</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<switch name="spoilers/auto-speedbrake-arm"> <!-- Important for spoiler axis -->
 			<default value="/controls/flight/speedbrake-arm"/>
 			<test value="0">
-				/controls/flight/speedbrake gt 0
+				/controls/flight/speedbrake-fixed gt 0
 			</test>
 			<output>/controls/flight/speedbrake-arm</output>
 		</switch>
@@ -32,19 +49,19 @@
 		<switch name="spoilers/lever-input">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/flight/speedbrake ge 0.2
-				/controls/flight/speedbrake lt 0.4
+				/controls/flight/speedbrake-fixed ge 0.2
+				/controls/flight/speedbrake-fixed lt 0.4
 			</test>
 			<test logic="AND" value="2">
-				/controls/flight/speedbrake ge 0.4
-				/controls/flight/speedbrake lt 0.6
+				/controls/flight/speedbrake-fixed ge 0.4
+				/controls/flight/speedbrake-fixed lt 0.6
 			</test>
 			<test logic="AND" value="3">
-				/controls/flight/speedbrake ge 0.6
-				/controls/flight/speedbrake lt 0.8
+				/controls/flight/speedbrake-fixed ge 0.6
+				/controls/flight/speedbrake-fixed lt 0.8
 			</test>
 			<test value="4">
-				/controls/flight/speedbrake ge 0.8
+				/controls/flight/speedbrake-fixed ge 0.8
 			</test>
 			<clipto>
 				<min>0</min>
