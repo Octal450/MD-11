@@ -27,7 +27,7 @@
 		<switch name="spoilers/auto-speedbrake-arm"> <!-- Important for spoiler axis -->
 			<default value="/controls/flight/speedbrake-arm"/>
 			<test value="0">
-				/controls/flight/speedbrake-fixed gt 0
+				/controls/flight/speedbrake-fixed ge 0.2
 			</test>
 			<output>/controls/flight/speedbrake-arm</output>
 		</switch>
