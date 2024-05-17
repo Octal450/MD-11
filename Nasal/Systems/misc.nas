@@ -202,7 +202,7 @@ var ENGINE = {
 
 # Base off Engine 2
 var doRevThrust = func() {
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
 		ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
 		if (!ENGINE.reverseEngage[0].getBoolValue() or !ENGINE.reverseEngage[1].getBoolValue() or !ENGINE.reverseEngage[2].getBoolValue()) {
 			ENGINE.reverseEngage[0].setBoolValue(1);
@@ -235,7 +235,7 @@ var doRevThrust = func() {
 }
 
 var unRevThrust = func() {
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
 			ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
 			if (ENGINE.throttleTemp[1] > 0.7) {
@@ -270,7 +270,7 @@ var unRevThrust = func() {
 }
 
 var toggleRevThrust = func() {
-	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and systems.FADEC.throttleCompareMax.getValue() <= 0.05) {
+	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
 		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
 			ENGINE.throttle[0].setValue(0);
 			ENGINE.throttle[1].setValue(0);
