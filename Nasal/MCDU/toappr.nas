@@ -273,15 +273,12 @@ var Takeoff = {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
-			if (me.scratchpadState == 0) {
-				fms.FlightData.flexActive = 0;
-				fms.FlightData.flexTemp = 0;
-				mcdu.unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
 						fms.FlightData.flexActive = 1;
 						fms.FlightData.flexTemp = int(me.scratchpad);
+						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -289,6 +286,11 @@ var Takeoff = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 0) {
+				fms.FlightData.flexActive = 0;
+				fms.FlightData.flexTemp = 0;
+				fms.EditFlightData.resetVspeeds();
+				mcdu.unit[me.id].scratchpadClear();
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -303,6 +305,7 @@ var Takeoff = {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue())) {
 						fms.FlightData.toFlaps = me.scratchpad + 0;
+						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -336,6 +339,62 @@ var Takeoff = {
 				if (fms.FlightData.v1State > 0) {
 					fms.FlightData.v1 = 0;
 					fms.FlightData.v1State = 0;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			}
+		} else if (k == "l5") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(2, 3) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= 90 and me.scratchpad <= 250) {
+						fms.FlightData.vr = int(me.scratchpad);
+						fms.FlightData.vrState = 2;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 1) {
+				me.Value.vrCalc = math.round(fms.Speeds.vr.getValue());
+				if (fms.FlightData.vrState == 0 and me.Value.vrCalc > 0) {
+					fms.FlightData.vr = me.Value.vrCalc;
+					fms.FlightData.vrState = 1;
+				}
+			} else {
+				if (fms.FlightData.vrState > 0) {
+					fms.FlightData.vr = 0;
+					fms.FlightData.vrState = 0;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			}
+		} else if (k == "l6") {
+			if (me.scratchpadState == 2) {
+				if (mcdu.unit[me.id].stringLengthInRange(2, 3) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= 90 and me.scratchpad <= 250) {
+						fms.FlightData.v2 = int(me.scratchpad);
+						fms.FlightData.v2State = 2;
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 1) {
+				me.Value.v2Calc = math.round(fms.Speeds.v2.getValue());
+				if (fms.FlightData.v2State == 0 and me.Value.v2Calc > 0) {
+					fms.FlightData.v2 = me.Value.v2Calc;
+					fms.FlightData.v2State = 1;
+				}
+			} else {
+				if (fms.FlightData.v2State > 0) {
+					fms.FlightData.v2 = 0;
+					fms.FlightData.v2State = 0;
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -381,6 +440,7 @@ var Takeoff = {
 						}
 						
 						fms.FlightData.toWind = int(me.scratchpadSplit[1]);
+						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("FORMAT ERROR");
@@ -400,6 +460,7 @@ var Takeoff = {
 						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
 							fms.FlightData.oatC = me.Value.oatCEntry;
 							fms.FlightData.oatUnit = 1;
+							fms.EditFlightData.resetVspeeds();
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -409,6 +470,7 @@ var Takeoff = {
 						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
 							fms.FlightData.oatC = me.Value.oatCEntry; 
 							fms.FlightData.oatUnit = 0;
+							fms.EditFlightData.resetVspeeds();
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
 							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");

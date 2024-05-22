@@ -75,11 +75,6 @@ var EditFlightData = {
 		# Calculate UFOB
 		FlightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		
-		# Sync block when engines running
-		if (Internal.engOn) {
-			FlightData.blockFuelLbs = FlightData.ufobLbs;
-		}
-		
 		# Calculate GW
 		if (FlightData.zfwLbs > 0) {
 			FlightData.gwLbs = FlightData.zfwLbs + FlightData.ufobLbs;
@@ -87,14 +82,37 @@ var EditFlightData = {
 			FlightData.gwLbs = 0;
 		}
 		
+		# Sync block and update TOGW when engines running
+		if (Internal.engOn) {
+			FlightData.blockFuelLbs = FlightData.ufobLbs;
+		}
+		
 		me.writeOut();
 		
 		# After write out
-		# Enable/Disable V Speed Calc
+		# Enable/Disable V speeds Calc
 		if (FlightData.airportFrom != "" and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.oatC > -100 and FlightData.gwLbs > 0) {
 			FlightData.canCalcVspeeds = 1;
 		} else {
 			FlightData.canCalcVspeeds = 0;
+			me.resetVspeeds();
+		}
+		
+		# Check if V speeds still valid
+		if (FlightData.v1State == 1) {
+			if (abs(FlightData.v1 - math.round(Speeds.v1.getValue())) > 2) {
+				me.resetVspeeds(1);
+			}
+		}
+		if (FlightData.vrState == 1) {
+			if (abs(FlightData.vr - math.round(Speeds.vr.getValue())) > 2) {
+				me.resetVspeeds(2);
+			}
+		}
+		if (FlightData.v2State == 1) {
+			if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
+				me.resetVspeeds(3);
+			}
 		}
 	},
 	reset: func() {
@@ -178,6 +196,7 @@ var EditFlightData = {
 				FlightData.blockFuelLbs = block + 0;
 				FlightData.togwLbs = FlightData.Temp.togw;
 				FlightData.lastGwZfw = 1;
+				me.resetVspeeds();
 				return 1;
 			} else {
 				return 0;
@@ -208,6 +227,7 @@ var EditFlightData = {
 			FlightData.togwLbs = gw - FlightData.taxiFuel;
 			FlightData.zfwLbs = FlightData.Temp.zfw;
 			FlightData.lastGwZfw = 0;
+			me.resetVspeeds();
 			return 1;
 		} else {
 			return 0;
@@ -220,6 +240,7 @@ var EditFlightData = {
 				if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
 					FlightData.taxiFuel = taxi + 0;
 					FlightData.togwLbs = FlightData.Temp.togw;
+					me.resetVspeeds();
 					return 0;
 				} else {
 					return 1;
@@ -229,6 +250,7 @@ var EditFlightData = {
 				if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
 					FlightData.taxiFuel = taxi;
 					FlightData.zfwLbs = FlightData.Temp.zfw;
+					me.resetVspeeds();
 					return 0;
 				} else {
 					return 2;
@@ -243,7 +265,7 @@ var EditFlightData = {
 		if (FlightData.airportFromAlt > -1000) {
 			if (t == 0 or t == 1) FlightData.climbThrustAlt = math.max(FlightData.climbThrustAltCalc = FlightData.airportFromAlt + 1500, 0);
 			if (t == 0 or t == 2) FlightData.accelAlt = math.max(FlightData.accelAltCalc = FlightData.airportFromAlt + 3000, 0);
-			if (t == 0 or t == 3) FlightData.accelAltEo = math.max(FlightData.accelAltEoCalc = FlightData.airportFromAlt + 1000, 0);
+			if (t == 0 or t == 3) FlightData.accelAltEo = math.max(FlightData.accelAltEoCalc = FlightData.airportFromAlt + 800, 0);
 		} else {
 			if (t == 0 or t == 1) FlightData.climbThrustAlt = -1000;
 			if (t == 0 or t == 2) FlightData.accelAlt = -1000;
@@ -261,6 +283,7 @@ var EditFlightData = {
 				FlightData.togwLbs = togw + 0;
 				FlightData.zfwLbs = FlightData.Temp.zfw;
 				FlightData.lastGwZfw = 0;
+				me.resetVspeeds();
 				return 1;
 			} else {
 				return 0;
@@ -277,6 +300,7 @@ var EditFlightData = {
 				FlightData.zfwLbs = zfw + 0;
 				FlightData.togwLbs = FlightData.Temp.togw;
 				FlightData.lastGwZfw = 1;
+				me.resetVspeeds();
 				return 1;
 			} else {
 				return 0;
@@ -304,8 +328,23 @@ var EditFlightData = {
 		FlightData.airportFromAlt = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);
 		me.insertToAlts();
 		
+		me.resetVspeeds();
 		FlightData.toSlope = -100;
 		FlightData.toWind = -100;
+	},
+	resetVspeeds: func(t = 0) {
+		if (FlightData.v1State == 1 and (t == 0 or t == 1)) {
+			FlightData.v1 = 0;
+			FlightData.v1State = 0;
+		}
+		if (FlightData.vrState == 1 and (t == 0 or t == 2)) {
+			FlightData.vr = 0;
+			FlightData.vrState = 0;
+		}
+		if (FlightData.v2State == 1 and (t == 0 or t == 3)) {
+			FlightData.v2 = 0;
+			FlightData.v2State = 0;
+		}
 	},
 	setAcconfigWeightBalanceData: func() {
 		Internal.request[0] = 0;
