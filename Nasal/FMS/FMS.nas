@@ -8,6 +8,9 @@ var Internal = {
 	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss"),
 	cgPercentMac: props.globals.initNode("/fms/internal/cg-percent-mac"),
 	engOn: 0,
+	Messages: {
+		vspeeds: 0,
+	},
 	request: [1, 1, 0],
 	takeoffStabDeg: props.globals.initNode("/fms/internal/takeoff-stab-deg"),
 };

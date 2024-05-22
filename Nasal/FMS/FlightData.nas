@@ -82,11 +82,12 @@ var EditFlightData = {
 			FlightData.gwLbs = 0;
 		}
 		
-		# Sync block and update TOGW when engines running
+		# Sync block when engines running
 		if (Internal.engOn) {
 			FlightData.blockFuelLbs = FlightData.ufobLbs;
 		}
 		
+		# Write out values for JSBsim to use
 		me.writeOut();
 		
 		# After write out
@@ -112,6 +113,19 @@ var EditFlightData = {
 		if (FlightData.v2State == 1) {
 			if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
 				me.resetVspeeds(3);
+			}
+		}
+		
+		# V speeds MCDU message
+		if ((FlightData.v1State == 0 and fms.Speeds.v1.getValue() > 0) or (FlightData.vrState == 0 and fms.Speeds.vr.getValue() > 0) or (FlightData.v2State == 0 and fms.Speeds.v2.getValue() > 0)) {
+			if (!Internal.Messages.vspeeds) {
+				Internal.Messages.vspeeds = 1;
+				mcdu.BASE.setGlobalMessage("CHECK/CONFIRM VSPDS");
+			}
+		} else {
+			if (Internal.Messages.vspeeds) {
+				Internal.Messages.vspeeds = 0;
+				mcdu.BASE.removeGlobalMessage("CHECK/CONFIRM VSPDS");
 			}
 		}
 	},
