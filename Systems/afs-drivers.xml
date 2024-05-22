@@ -1168,7 +1168,7 @@
 						<property>/it-autoflight/mode/vert</property>
 						<value>T/O CLB</value>
 					</equals>
-					<greater-than> <!-- Means no Vr set -->
+					<greater-than> <!-- 0 means no Vr set -->
 						<property>/fms/flight-data/vr</property>
 						<value>0</value>
 					</greater-than>
