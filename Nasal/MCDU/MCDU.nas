@@ -1,6 +1,5 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2024 Josh Davidson (Octal450)
-# Thanks to legoboyvdlp!
 
 var unit = [nil, nil, nil];
 

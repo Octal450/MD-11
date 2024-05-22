@@ -315,7 +315,7 @@ var ITAF = {
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
 		Internal.altCaptureActive = 0;
-		Internal.kts.setValue(fms.Speeds.v2.getValue());
+		Internal.kts.setValue(fms.FlightData.v2);
 		Internal.mach.setValue(0.5);
 		Internal.locOnly = 0;
 		me.updateActiveFms(1);
@@ -570,7 +570,7 @@ var ITAF = {
 				}
 			} else {
 				Internal.v2Toggle = 0;
-				Internal.v2Speed = math.round(fms.Speeds.v2.getValue());
+				Internal.v2Speed = fms.FlightData.v2;
 				Internal.kts.setValue(Internal.v2Speed);
 			}
 			
@@ -1424,7 +1424,7 @@ var ITAF = {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 	},
 	syncKtsGa: func() {
-		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.v2.getValue(), fms.Speeds.athrMax.getValue()));
+		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.v2.getValue(), fms.Speeds.athrMax.getValue())); # NOT MCDU V2
 	},
 	syncKtsSel: func() {
 		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));

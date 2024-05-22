@@ -36,7 +36,6 @@ var Speeds = {
 	slatMax: props.globals.getNode("/fms/speeds/slat-max-kts"),
 	v1: props.globals.getNode("/fms/speeds/v1"),
 	v2: props.globals.getNode("/fms/speeds/v2"),
-	v2Plus10: props.globals.getNode("/fms/speeds/v2-plus-10"),
 	vcl: props.globals.getNode("/fms/speeds/vcl"),
 	vclTo: props.globals.getNode("/fms/speeds/vcl-to"),
 	vfr: props.globals.getNode("/fms/speeds/vfr"),

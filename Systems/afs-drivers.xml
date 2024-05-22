@@ -1162,7 +1162,7 @@
 					</equals>
 					<greater-than-equals>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/fms/speeds/vr</property>
+						<property>/fms/flight-data/vr</property>
 					</greater-than-equals>
 				</and>
 			</condition>
