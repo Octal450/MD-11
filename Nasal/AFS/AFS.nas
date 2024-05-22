@@ -193,6 +193,8 @@ var Internal = {
 	retardLock: 0,
 	selfCheckStatus: 0,
 	selfCheckTime: 0,
+	spdPitchAvail: props.globals.initNode("/it-autoflight/internal/spd-pitch-avail", 0, "BOOL"),
+	spdPitchAvailTemp: 0,
 	spdProtOnPitch: 0,
 	syncedAlt: 0,
 	syncedHdg: 0,
@@ -205,7 +207,6 @@ var Internal = {
 	targetKtsError: 0,
 	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "INT"),
 	throttleSaturatedTemp: 0,
-	v2Speed: 0,
 	v2Toggle: 0,
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
@@ -315,9 +316,10 @@ var ITAF = {
 		Internal.minVs.setValue(-500);
 		Internal.maxVs.setValue(500);
 		Internal.altCaptureActive = 0;
-		Internal.kts.setValue(fms.FlightData.v2);
+		Internal.kts.setValue(250);
 		Internal.mach.setValue(0.5);
 		Internal.locOnly = 0;
+		Internal.spdPitchAvail.setBoolValue(0);
 		me.updateActiveFms(1);
 		Text.spd.setValue("PITCH");
 		updateFma.arm();
@@ -557,21 +559,6 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
-			if (Velocities.indicatedAirspeedKtTemp >= 30) { # Temporary until MCDU handles it
-				if (!Gear.wow1Temp and !Gear.wow2Temp and Internal.v2Toggle != 1) {
-					Internal.v2Toggle = 1;
-					if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
-						Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKtTemp), Internal.v2Speed, Internal.v2Speed + 10));
-					} else {
-						Internal.kts.setValue(Internal.v2Speed + 10);
-					}
-				}
-			} else {
-				Internal.v2Toggle = 0;
-				Internal.v2Speed = fms.FlightData.v2;
-				Internal.kts.setValue(Internal.v2Speed);
-			}
-			
 			me.checkFlch(fms.FlightData.climbThrustAlt);
 		}
 		
@@ -608,6 +595,35 @@ var ITAF = {
 		# Bank Limits
 		me.bankLimit();
 		
+		# Speed by Pitch Available Logic
+		Text.vertTemp = Text.vert.getValue();
+		if (Text.vertTemp == "T/O CLB" and fms.FlightData.v2 == 0) {
+			Internal.spdPitchAvail.setBoolValue(0);
+		} else {
+			Internal.spdPitchAvail.setBoolValue(1);
+		}
+		Internal.spdPitchAvailTemp = Internal.spdPitchAvail.getBoolValue();
+		
+		# Takeoff Speed Target
+		if (Text.vertTemp == "T/O CLB" and Internal.spdPitchAvailTemp) {
+			if (!Gear.wow1Temp and !Gear.wow2Temp) {
+				if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
+					if (!Internal.v2Toggle) { # Only set the speed once
+						Internal.v2Toggle = 1;
+						Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKtTemp), fms.FlightData.v2, fms.FlightData.v2 + 10));
+					}
+				} else {
+					Internal.kts.setValue(fms.FlightData.v2 + 10);
+				}
+			} else {
+				Internal.v2Toggle = 0;
+				Internal.kts.setValue(fms.FlightData.v2);
+			}
+			Output.spdCaptured = 1; # Always captured when driven for takeoff
+		} else {
+			Internal.v2Toggle = 0;
+		}
+		
 		# Speed Capture + ATS Speed Limits
 		Velocities.athrMax = fms.Speeds.athrMax.getValue();
 		Velocities.athrMaxMach = fms.Speeds.athrMaxMach.getValue();
@@ -619,7 +635,7 @@ var ITAF = {
 		Internal.ktsTemp = Internal.kts.getValue();
 		Internal.machTemp = Internal.mach.getValue();
 		
-		if (!Output.spdCaptured) {
+		if (!Output.spdCaptured or !Internal.spdPitchAvailTemp) { # If takeoff speed target is not available (spdPitchAvail = false), then force sync to FCP value
 			if (Input.ktsMachTemp) {
 				Internal.mach.setValue(math.clamp(Input.machTemp, Velocities.athrMinMach, Velocities.athrMaxMach));
 				Internal.targetKts = Internal.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
@@ -627,9 +643,14 @@ var ITAF = {
 				Internal.kts.setValue(math.clamp(Input.ktsTemp, Velocities.athrMin, Velocities.athrMax));
 				Internal.targetKts = Internal.kts.getValue();
 			}
-			Internal.targetKtsError = Internal.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
-			if (abs(Internal.targetKtsError) <= 2.5) {
-				Output.spdCaptured = 1;
+			
+			if (Internal.spdPitchAvailTemp) {
+				Internal.targetKtsError = Internal.targetKts - Velocities.indicatedAirspeedKt5Sec.getValue();
+				if (abs(Internal.targetKtsError) <= 2.5) {
+					Output.spdCaptured = 1;
+				}
+			} else {
+				Output.spdCaptured = 0;
 			}
 		} else if (!Gear.wow1Temp and !Gear.wow2Temp) {
 			if (Internal.ktsMach.getBoolValue()) {
@@ -687,7 +708,7 @@ var ITAF = {
 		} else {
 			Internal.syncedHdg = 0;
 		}
-		if (Input.ktsMachTemp == Internal.ktsMach.getBoolValue()) {
+		if (Input.ktsMachTemp == Internal.ktsMach.getBoolValue() and Internal.spdPitchAvailTemp) {
 			if (Input.ktsMachTemp) {
 				if (Input.machTemp == Internal.mach.getValue()) {
 					Internal.syncedSpd = 1;

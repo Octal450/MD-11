@@ -45,6 +45,10 @@
 						<value>1</value>
 					</equals>
 				</or>
+				<equals>
+					<property>/it-autoflight/internal/spd-pitch-avail</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</input>
 		<output>/it-autoflight/input/ap1-avail</output>
@@ -86,6 +90,10 @@
 						<value>1</value>
 					</equals>
 				</or>
+				<equals>
+					<property>/it-autoflight/internal/spd-pitch-avail</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</input>
 		<output>/it-autoflight/input/ap2-avail</output>
@@ -1160,6 +1168,10 @@
 						<property>/it-autoflight/mode/vert</property>
 						<value>T/O CLB</value>
 					</equals>
+					<greater-than> <!-- Means no Vr set -->
+						<property>/fms/flight-data/vr</property>
+						<value>0</value>
+					</greater-than>
 					<greater-than-equals>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 						<property>/fms/flight-data/vr</property>

@@ -37,6 +37,7 @@ var Value = {
 		pitchArm: "",
 		roll: "",
 		rollArm: "",
+		spdPitchAvail: 0,
 		spdProt: 0,
 		thrust: "",
 		vert: 0,
@@ -92,6 +93,7 @@ var Value = {
 		preSel: 0,
 		sel: 0,
 		trend: 0,
+		vfr: 0,
 		vmin: 0,
 		vmoMmo: 0,
 		vsr: 0,
@@ -251,7 +253,6 @@ var canvasBase = {
 		Value.Afs.mach = afs.Internal.mach.getValue();
 		Value.Afs.machSel = afs.Input.mach.getValue();
 		Value.Afs.vert = afs.Output.vert.getValue();
-		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
 		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
 		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue();
@@ -261,6 +262,7 @@ var canvasBase = {
 		Value.Asi.preSel = pts.Instrumentation.Pfd.spdPreSel.getValue();
 		Value.Asi.sel = pts.Instrumentation.Pfd.spdSel.getValue();
 		Value.Asi.trend = pts.Instrumentation.Pfd.speedTrend.getValue();
+		Value.Asi.vfr = fms.Speeds.vfr.getValue();
 		Value.Asi.vmin = fms.Speeds.vminTape.getValue();
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
@@ -480,8 +482,8 @@ var canvasBase = {
 				me["ASI_se"].hide();
 			}
 			
-			if (Value.Misc.flapsOut) {
-				Value.Asi.Tape.fr = fms.Speeds.vfr.getValue() - 50 - Value.Asi.Tape.ias;
+			if (Value.Misc.flapsOut and Value.Asi.vfr > 0) {
+				Value.Asi.Tape.fr = Value.Asi.vfr - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.fr < 0) {
 					me["ASI_fr"].setColor(0, 1, 0);
 				} else {
@@ -604,7 +606,7 @@ var canvasBase = {
 			}
 			me["ASI_presel"].show();
 		}
-		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60) {
+		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60 or !Value.Afs.spdPitchAvail) {
 			me["ASI_sel"].hide();
 		} else {
 			me["ASI_sel"].show();
@@ -1352,7 +1354,7 @@ var canvasBase = {
 			me["FMA_Pitch_Land"].setTranslation(0, 0);
 		}
 		
-		if (Value.Afs.thrust == "RETARD") {
+		if (Value.Afs.thrust == "RETARD" or !Value.Afs.spdPitchAvail) {
 			me["FMA_Speed"].hide();
 		} else {
 			if (Value.Afs.ktsMach) {
@@ -1593,9 +1595,11 @@ var canvasPfd1 = {
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.pitch = afs.Fma.pitch.getValue();
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
+		Value.Afs.spdPitchAvail = afs.Internal.spdPitchAvail.getBoolValue();
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.thrust = afs.Text.spd.getValue();
+		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
 		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
 		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
@@ -1669,7 +1673,11 @@ var canvasPfd1 = {
 		
 		# FD
 		if (Value.Afs.fd1) {
-			me["FD_pitch"].show();
+			if (Value.Afs.spdPitchAvail) {
+				me["FD_pitch"].show();
+			} else {
+				me["FD_pitch"].hide();
+			}
 			me["FD_roll"].show();
 		} else {
 			me["FD_pitch"].hide();
@@ -1763,9 +1771,11 @@ var canvasPfd2 = {
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.pitch = afs.Fma.pitch.getValue();
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
+		Value.Afs.spdPitchAvail = afs.Internal.spdPitchAvail.getBoolValue();
 		Value.Afs.roll = afs.Fma.roll.getValue();
 		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
 		Value.Afs.thrust = afs.Text.spd.getValue();
+		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
 		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
 		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
@@ -1839,7 +1849,11 @@ var canvasPfd2 = {
 		
 		# FD
 		if (Value.Afs.fd2) {
-			me["FD_pitch"].show();
+			if (Value.Afs.spdPitchAvail) {
+				me["FD_pitch"].show();
+			} else {
+				me["FD_pitch"].hide();
+			}
 			me["FD_roll"].show();
 		} else {
 			me["FD_pitch"].hide();
