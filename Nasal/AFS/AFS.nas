@@ -612,7 +612,7 @@ var ITAF = {
 						Internal.v2Toggle = 1;
 						Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKtTemp), fms.FlightData.v2, fms.FlightData.v2 + 10));
 					}
-				} else {
+				} else if (Position.gearAglFtTemp < 400) { # Once hitting 400 feet, this is overridable
 					Internal.kts.setValue(fms.FlightData.v2 + 10);
 				}
 			} else {
