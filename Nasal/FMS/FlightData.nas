@@ -100,21 +100,21 @@ var EditFlightData = {
 		}
 		
 		# Check if V speeds still valid
-		if (FlightData.v1State == 1) {
-			if (abs(FlightData.v1 - math.round(Speeds.v1.getValue())) > 2) {
-				me.resetVspeeds(1);
-			}
-		}
-		if (FlightData.vrState == 1) {
-			if (abs(FlightData.vr - math.round(Speeds.vr.getValue())) > 2) {
-				me.resetVspeeds(2);
-			}
-		}
-		if (FlightData.v2State == 1) {
-			if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
-				me.resetVspeeds(3);
-			}
-		}
+		#if (FlightData.v1State == 1) {
+		#	if (abs(FlightData.v1 - math.round(Speeds.v1.getValue())) > 2) {
+		#		me.resetVspeeds(1);
+		#	}
+		#}
+		#if (FlightData.vrState == 1) {
+		#	if (abs(FlightData.vr - math.round(Speeds.vr.getValue())) > 2) {
+		#		me.resetVspeeds(2);
+		#	}
+		#}
+		#if (FlightData.v2State == 1) {
+		#	if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
+		#		me.resetVspeeds(3);
+		#	}
+		#}
 		
 		# V speeds MCDU message
 		if ((FlightData.v1State == 0 and fms.Speeds.v1.getValue() > 0) or (FlightData.vrState == 0 and fms.Speeds.vr.getValue() > 0) or (FlightData.v2State == 0 and fms.Speeds.v2.getValue() > 0)) {
