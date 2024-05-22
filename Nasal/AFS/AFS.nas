@@ -431,14 +431,12 @@ var ITAF = {
 			me.takeoffLogic(0);
 		}
 		
-		# Update LNAV engage altitude
+		# LNAV Engagement
 		if (Output.ap1Temp or Output.ap2Temp) {
 			Internal.lnavEngageFt = 400;
 		} else {
 			Internal.lnavEngageFt = 100;
 		}
-		
-		# LNAV Engagement
 		if (Output.lnavArm.getBoolValue()) {
 			me.checkLnav(1);
 		}

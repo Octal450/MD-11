@@ -584,7 +584,7 @@
 			</condition>
 			<property>/orientation/track-magnetic-deg</property>
 		</input>
-		<input>/it-autoflight/internal/heading-magnetic-deg</input>
+		<input>/it-autoflight/internal/heading-deg</input>
 		<reference>0</reference>
 		<output>/it-autoflight/internal/track-deg</output>
 	</filter>
