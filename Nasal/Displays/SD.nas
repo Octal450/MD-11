@@ -141,7 +141,7 @@ var canvasConfig = {
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
 		
-		if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
 			me["Stab"].setColor(1, 1, 1);
 			me["StabBox"].hide();
 			me["StabGreen"].hide();
@@ -524,7 +524,7 @@ var canvasEng = {
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
 		
-		if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
 			me["Stab"].setColor(1, 1, 1);
 			me["StabBox"].hide();
 			me["StabGreen"].hide();

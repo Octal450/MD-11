@@ -334,6 +334,8 @@ var Takeoff = {
 				if (fms.FlightData.v1State == 0 and me.Value.v1Calc > 0) {
 					fms.FlightData.v1 = me.Value.v1Calc;
 					fms.FlightData.v1State = 1;
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
 				if (fms.FlightData.v1State > 0) {
@@ -362,6 +364,8 @@ var Takeoff = {
 				if (fms.FlightData.vrState == 0 and me.Value.vrCalc > 0) {
 					fms.FlightData.vr = me.Value.vrCalc;
 					fms.FlightData.vrState = 1;
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
 				if (fms.FlightData.vrState > 0) {
@@ -390,6 +394,8 @@ var Takeoff = {
 				if (fms.FlightData.v2State == 0 and me.Value.v2Calc > 0) {
 					fms.FlightData.v2 = me.Value.v2Calc;
 					fms.FlightData.v2State = 1;
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
 				if (fms.FlightData.v2State > 0) {
