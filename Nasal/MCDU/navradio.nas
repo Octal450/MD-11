@@ -59,6 +59,12 @@ var NavRadio = {
 			title: "NAV RADIO",
 		};
 		
+		m.Value = {
+			adfKhz: [0, 0],
+			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
+			navMhz: [0, 0, 0],
+		};
+		
 		m.group = "fmc";
 		m.name = "navRadio";
 		m.nextPage = "none";
@@ -68,69 +74,61 @@ var NavRadio = {
 		
 		return m;
 	},
-	commonValue: {
-		adfSet: [0, 0],
-		navCrsSet: [0, 0, 0],
-		navSet: [0, 0, 0],
-	},
-	reset: func() {
-		me.setup();
-	},
 	setup: func() {
-		me.commonValue.adfSet[0] = 0;
-		me.commonValue.adfSet[1] = 0;
-		me.commonValue.navCrsSet[0] = 0;
-		me.commonValue.navCrsSet[1] = 0;
-		me.commonValue.navCrsSet[2] = 0;
-		me.commonValue.navSet[0] = 0;
-		me.commonValue.navSet[1] = 0;
-		me.commonValue.navSet[2] = 0;
 	},
 	loop: func() {
-		if (me.commonValue.navSet[0]) {
-			if (me.commonValue.navCrsSet[0]) {
-				me.Display.L1 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[0].getValue(), 0.01)) ~ "/" ~ sprintf("%03d", pts.Instrumentation.Nav.Radials.selectedDeg[0].getValue()) ~ "g";
+		me.Value.navCrs[0] = pts.Instrumentation.Nav.Radials.selectedDeg[0].getValue();
+		me.Value.navMhz[0] = pts.Instrumentation.Nav.Frequencies.selectedMhz[0].getValue();
+		if (me.Value.navMhz[0] > 0) {
+			if (me.Value.navCrs[0] > -1) {
+				me.Display.L1 = sprintf("%5.2f", math.round(me.Value.navMhz[0], 0.01)) ~ "/" ~ sprintf("%03d", me.Value.navCrs[0]) ~ "g";
 			} else {
-				me.Display.L1 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[0].getValue(), 0.01)) ~ "/[ ]g";
+				me.Display.L1 = sprintf("%5.2f", math.round(me.Value.navMhz[0], 0.01)) ~ "/[ ]g";
 			}
 		} else {
 			me.Display.L1 = "[  ]/[ ]g";
 			me.Display.L2 = "";
 		}
 		
-		if (me.commonValue.navSet[1]) {
-			if (me.commonValue.navCrsSet[1]) {
-				me.Display.R1 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[1].getValue(), 0.01)) ~ "/" ~ sprintf("%03d", pts.Instrumentation.Nav.Radials.selectedDeg[1].getValue()) ~ "g";
+		me.Value.navCrs[1] = pts.Instrumentation.Nav.Radials.selectedDeg[1].getValue();
+		me.Value.navMhz[1] = pts.Instrumentation.Nav.Frequencies.selectedMhz[1].getValue();
+		if (me.Value.navMhz[1] > 0) {
+			if (me.Value.navCrs[1] > -1) {
+				me.Display.R1 = sprintf("%5.2f", math.round(me.Value.navMhz[1], 0.01)) ~ "/" ~ sprintf("%03d", me.Value.navCrs[1]) ~ "g";
 			} else {
-				me.Display.R1 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[1].getValue(), 0.01)) ~ "/[ ]g";
+				me.Display.R1 = sprintf("%5.2f", math.round(me.Value.navMhz[1], 0.01)) ~ "/[ ]g";
 			}
 		} else {
 			me.Display.R1 = "[  ]/[ ]g";
 		}
 		
-		if (me.commonValue.navSet[2]) {
-			if (me.commonValue.navCrsSet[2]) {
-				me.Display.L4 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue(), 0.01)) ~ "/" ~ sprintf("%03d", pts.Instrumentation.Nav.Radials.selectedDeg[2].getValue()) ~ "g";
+		me.Value.navCrs[2] = pts.Instrumentation.Nav.Radials.selectedDeg[2].getValue();
+		me.Value.navMhz[2] = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
+		if (me.Value.navMhz[2] > 0) {
+			if (me.Value.navCrs[2] > -1) {
+				me.Display.L4 = sprintf("%5.2f", math.round(me.Value.navMhz[2], 0.01)) ~ "/" ~ sprintf("%03d", me.Value.navCrs[2]) ~ "g";
 			} else {
-				me.Display.L4 = sprintf("%5.2f", math.round(pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue(), 0.01)) ~ "/[ ]g";
+				me.Display.L4 = sprintf("%5.2f", math.round(me.Value.navMhz[2], 0.01)) ~ "/[ ]g";
 			}
 		} else {
 			me.Display.L4 = "[  ]/[ ]g";
 		}
 		
-		if (me.commonValue.adfSet[0]) {
-			me.Display.L3 = sprintf("%4.1f", math.round(pts.Instrumentation.Adf.Frequencies.selectedKhz[0].getValue(), 0.1));
+		me.Value.adfKhz[0] = pts.Instrumentation.Adf.Frequencies.selectedKhz[0].getValue();
+		if (me.Value.adfKhz[0] > 0) {
+			me.Display.L3 = sprintf("%4.1f", math.round(me.Value.adfKhz[0], 0.1));
 		} else {
 			me.Display.L3 = "[  ]";
 		}
 		
-		if (me.commonValue.adfSet[1]) {
-			me.Display.R3 = sprintf("%4.1f", math.round(pts.Instrumentation.Adf.Frequencies.selectedKhz[1].getValue(), 0.1));
+		me.Value.adfKhz[1] = pts.Instrumentation.Adf.Frequencies.selectedKhz[1].getValue();
+		if (me.Value.adfKhz[1] > 0) {
+			me.Display.R3 = sprintf("%4.1f", math.round(me.Value.adfKhz[1], 0.1));
 		} else {
 			me.Display.R3 = "[  ]";
 		}
 		
-		if (me.commonValue.navSet[0] and me.commonValue.navCrsSet[0]) {
+		if (me.Value.navMhz[0] > 0 and me.Value.navCrs[0] > -1) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 0) {
 				me.Display.LFont[1] = FONT.normal;
 				me.Display.L2 = "VOR TRACK";
@@ -145,7 +143,7 @@ var NavRadio = {
 			me.Display.L2 = "";
 		}
 		
-		if (me.commonValue.navSet[1] and me.commonValue.navCrsSet[1]) {
+		if (me.Value.navMhz[1] > 0 and me.Value.navCrs[1] > -1) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 1) {
 				me.Display.RFont[1] = FONT.normal;
 				me.Display.R2 = "VOR TRACK";
@@ -160,7 +158,7 @@ var NavRadio = {
 			me.Display.R2 = "";
 		}
 		
-		if (me.commonValue.navSet[2] and me.commonValue.navCrsSet[2]) {
+		if (me.Value.navMhz[2] > 0 and me.Value.navCrs[2] > -1) {
 			if (afs.Internal.locOnly and afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 2) {
 				me.Display.LFont[4] = FONT.normal;
 				me.Display.L5 = "LOC ONLY";
@@ -179,7 +177,6 @@ var NavRadio = {
 		if (mcdu.unit[me.id].stringDecimalLengthInRange(0, 1) and mcdu.unit[me.id].stringLengthInRange(3, 6) and !mcdu.unit[me.id].stringContains("-")) {
 			if (me.scratchpad >= 190 and me.scratchpad <= 1750) {
 				pts.Instrumentation.Adf.Frequencies.selectedKhz[n].setValue(me.scratchpad);
-				me.commonValue.adfSet[n] = 1;
 				mcdu.unit[me.id].scratchpadClear();
 			} else {
 				mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -237,12 +234,10 @@ var NavRadio = {
 		
 		if (size(me.scratchpadSplit[0]) > 0) {
 			pts.Instrumentation.Nav.Frequencies.selectedMhz[n].setValue(me.scratchpadSplit[0]);
-			me.commonValue.navSet[n] = 1;
 		}
 		if (size(me.scratchpadSplit[1]) > 0) {
-			if (me.commonValue.navSet[n]) {
+			if (pts.Instrumentation.Nav.Frequencies.selectedMhz[n].getValue()) {
 				pts.Instrumentation.Nav.Radials.selectedDeg[n].setValue(me.scratchpadSplit[1]);
-				me.commonValue.navCrsSet[n] = 1;
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				return;
@@ -258,11 +253,9 @@ var NavRadio = {
 			if (me.scratchpadState == 2) {
 				me.insertNav(0);
 			} else if (me.scratchpadState == 0) {
-				if (me.commonValue.navSet[0]) {
-					me.commonValue.navSet[0] = 0;
-					me.commonValue.navCrsSet[0] = 0;
+				if (pts.Instrumentation.Nav.Frequencies.selectedMhz[0].getValue() > 0) {
 					pts.Instrumentation.Nav.Frequencies.selectedMhz[0].setValue(0);
-					pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(0);
+					pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(-1);
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -294,8 +287,7 @@ var NavRadio = {
 			if (me.scratchpadState == 2) {
 				me.insertAdf(0);
 			} else if (me.scratchpadState == 0) {
-				if (me.commonValue.adfSet[0]) {
-					me.commonValue.adfSet[0] = 0;
+				if (pts.Instrumentation.Adf.Frequencies.selectedKhz[0].getValue() > 0) {
 					pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
@@ -308,11 +300,9 @@ var NavRadio = {
 			if (me.scratchpadState == 2) {
 				me.insertNav(2);
 			} else if (me.scratchpadState == 0) {
-				if (me.commonValue.navSet[2]) {
-					me.commonValue.navSet[2] = 0;
-					me.commonValue.navCrsSet[2] = 0;
+				if (pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue() > 0) {
 					pts.Instrumentation.Nav.Frequencies.selectedMhz[2].setValue(0);
-					pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(0);
+					pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(-1);
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -345,11 +335,9 @@ var NavRadio = {
 			if (me.scratchpadState == 2) {
 				me.insertNav(1);
 			} else if (me.scratchpadState == 0) {
-				if (me.commonValue.navSet[1]) {
-					me.commonValue.navSet[1] = 0;
-					me.commonValue.navCrsSet[1] = 0;
+				if (pts.Instrumentation.Nav.Frequencies.selectedMhz[1].getValue() > 0) {
 					pts.Instrumentation.Nav.Frequencies.selectedMhz[1].setValue(0);
-					pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(0);
+					pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(-1);
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -381,8 +369,7 @@ var NavRadio = {
 			if (me.scratchpadState == 2) {
 				me.insertAdf(1);
 			} else if (me.scratchpadState == 0) {
-				if (me.commonValue.adfSet[1]) {
-					me.commonValue.adfSet[1] = 0;
+				if (pts.Instrumentation.Adf.Frequencies.selectedKhz[1].getValue() > 0) {
 					pts.Instrumentation.Adf.Frequencies.selectedKhz[1].setValue(0);
 					mcdu.unit[me.id].scratchpadClear();
 				} else {

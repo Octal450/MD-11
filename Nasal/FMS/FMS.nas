@@ -169,8 +169,8 @@ var CORE = {
 		pts.Instrumentation.Nav.Frequencies.selectedMhz[0].setValue(0);
 		pts.Instrumentation.Nav.Frequencies.selectedMhz[1].setValue(0);
 		pts.Instrumentation.Nav.Frequencies.selectedMhz[2].setValue(0);
-		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(0);
-		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(0);
-		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(0);
+		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(-1);
+		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(-1);
+		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(-1);
 	},
 };
