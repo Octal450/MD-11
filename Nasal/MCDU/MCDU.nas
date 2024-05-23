@@ -60,7 +60,6 @@ var MCDU = {
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
 		me.PageList.menu.reset();
-		me.PageList.navRadio.reset();
 		me.PageList.posRef.reset();
 		
 		me.scratchpad = "";
