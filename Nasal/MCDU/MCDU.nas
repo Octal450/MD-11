@@ -59,7 +59,6 @@ var MCDU = {
 		me.PageList.init.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
-		me.PageList.menu.reset();
 		me.PageList.posRef.reset();
 		me.PageList.takeoff.reset();
 		
