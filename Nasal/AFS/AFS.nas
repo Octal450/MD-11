@@ -74,6 +74,7 @@ var Radio = {
 	inRange: [props.globals.getNode("/instrumentation/nav[0]/in-range", 1), props.globals.getNode("/instrumentation/nav[1]/in-range", 1), props.globals.getNode("/instrumentation/nav[2]/in-range", 1)],
 	locDefl: [props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[1]/heading-needle-deflection-norm", 1), props.globals.getNode("/instrumentation/nav[2]/heading-needle-deflection-norm", 1)],
 	locDeflTemp: [0, 0, 0],
+	selectedDeg: [props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg"), props.globals.getNode("/instrumentation/nav[1]/radials/selected-deg"), props.globals.getNode("/instrumentation/nav[2]/radials/selected-deg")],
 	signalQuality: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm", 1), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm", 1)],
 	signalQualityTemp: [0, 0, 0],
 };
@@ -1325,7 +1326,7 @@ var ITAF = {
 	},
 	checkLoc: func(t) {
 		Input.radioSelTemp = Input.radioSel.getValue();
-		if (Radio.inRange[Input.radioSelTemp].getBoolValue() and (mcdu.unit[0].PageList.navRadio.commonValue.navCrsSet[Input.radioSelTemp] or Input.radioSelTemp == 2)) { # Only evaulate the rest of the condition unless we are in range
+		if (Radio.inRange[Input.radioSelTemp].getBoolValue() and (Radio.selectedDeg[Input.radioSelTemp].getValue() > -1 or Input.radioSelTemp == 2)) { # Only evaulate the rest of the condition unless we are in range
 			Internal.navHeadingErrorDegTemp[Input.radioSelTemp] = Internal.navHeadingErrorDeg[Input.radioSelTemp].getValue();
 			Radio.locDeflTemp[Input.radioSelTemp] = Radio.locDefl[Input.radioSelTemp].getValue();
 			Radio.signalQualityTemp[Input.radioSelTemp] = Radio.signalQuality[Input.radioSelTemp].getValue();
