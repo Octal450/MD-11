@@ -69,12 +69,17 @@ var Value = { # Local store of commonly accessed values
 
 # Logic
 var CORE = {
-	init: func() {
+	init: func(t = 0) {
 		EditFlightData.reset();
+		Internal.phase = 0;
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
 		Internal.request[2] = 0;
-		me.resetRadio();
+		if (t == 1) {
+			mcdu.BASE.reset(); # Last
+		} else {
+			me.resetRadio();
+		}
 	},
 	loop: func() {
 		Value.active = RouteManager.active.getBoolValue();
@@ -152,16 +157,9 @@ var CORE = {
 		} else {
 			if (Internal.resetToggle) {
 				Internal.resetToggle = 0;
-				me.reset();
+				me.init(1);
 			}
 		}
-	},
-	reset: func() {
-		EditFlightData.reset();
-		Internal.request[0] = 1;
-		Internal.request[1] = 1;
-		Internal.request[2] = 0;
-		mcdu.BASE.reset(); # Last
 	},
 	resetRadio: func() {
 		pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
