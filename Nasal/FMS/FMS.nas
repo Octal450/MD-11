@@ -71,7 +71,9 @@ var Value = { # Local store of commonly accessed values
 var CORE = {
 	init: func(t = 0) {
 		EditFlightData.reset();
+		Internal.phaseNew = 0;
 		Internal.phase = 0;
+		Internal.phaseOut.setValue(0);
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
 		Internal.request[2] = 0;
@@ -100,46 +102,45 @@ var CORE = {
 		# Flight Phases
 		if (Internal.phase == 0) { # Preflight
 			if (Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() >= 0.7) {
-				Internal.phaseNew = 1;
+				Internal.phaseNew = 1; # Takeoff
 			}
 		} else if (Internal.phase == 1) { # Takeoff
 			if (systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0;
 			} else if (FlightData.accelAlt > -1000) {
 				if (Value.vertText != "T/O CLB" and Value.altitude >= FlightData.accelAlt) {
-					Internal.phaseNew = 2;
+					Internal.phaseNew = 2; # Climb
 				}
 			}
 		} else if (Internal.phase == 2) { # Climb
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
-					Internal.phaseNew = 3;
+					Internal.phaseNew = 3; # Cruise
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.afsAlt < FlightData.cruiseAltAll[0]) {
-					Internal.phaseNew = 4;
+					Internal.phaseNew = 4; # Descent
 				}
 			}
 		} else if (Internal.phase == 4) { # Descent
 			if (Value.active) {
 				if (Value.distanceRemainingNm <= 15 or Value.vertText == "G/S") { # Fix this
-					Internal.phaseNew = 5;
+					Internal.phaseNew = 5; # Approach
 				}
 			}
 		} else if (Internal.phase == 5) { # Approach
 			if (Value.active) {
 				if (Value.wow) {
-					Internal.phaseNew = 6;
-				} else if (Value.vertText == "G/A CLB") {
-					Internal.phaseNew = 4;
+					print("TEST");
+					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 6) { # Rollout
 			if (Value.active) {
 				if (Value.vertText == "G/A CLB") {
-					Internal.phaseNew = 4;
+					Internal.phaseNew = 5; # Approach
 				}
 			}
 		}
