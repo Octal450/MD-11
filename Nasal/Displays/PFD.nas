@@ -277,7 +277,7 @@ var canvasBase = {
 		# ASI
 		me["ASI_v_speed"].hide(); # Not working yet
 		
-		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 500 situations
+		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 450 situations
 		if (Value.Asi.ias <= 50) {
 			Value.Asi.Tape.ias = 0;
 		} else if (Value.Asi.ias >= 450) {
