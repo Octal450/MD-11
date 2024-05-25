@@ -1444,7 +1444,7 @@ var ITAF = {
 		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 	},
 	syncKtsGa: func() {
-		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.v2.getValue(), fms.Speeds.athrMax.getValue())); # NOT MCDU V2
+		Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), fms.Speeds.athrMin.getValue() + 5, fms.Speeds.athrMax.getValue()));
 	},
 	syncKtsSel: func() {
 		Input.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKt.getValue()), 100, 365));

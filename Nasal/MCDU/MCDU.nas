@@ -20,6 +20,7 @@ var MCDU = {
 		m.PageList = {
 			acStatus: AcStatus.new(n),
 			acStatus2: AcStatus2.new(n),
+			approach: Approach.new(n),
 			closestAirports: ClosestAirports.new(n),
 			compRte: CompRte.new(n),
 			fallback: Fallback.new(n),
@@ -214,7 +215,11 @@ var MCDU = {
 		}
 		
 		if (p == "toAppr") { # TO/APPR page logic
-			p = "takeoff";
+			if (fms.Internal.phase <= 1) {
+				p = "takeoff";
+			} else {
+				p = "approach";
+			}
 		}
 		
 		if (contains(me.PageList, p)) {

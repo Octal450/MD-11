@@ -96,6 +96,10 @@ var Takeoff = {
 		}
 	},
 	loop: func() {
+		if (fms.Internal.phase > 1) {
+			mcdu.unit[me.id].setPage("approach");
+		}
+		
 		if (fms.FlightData.airportFrom != "") {
 			me.Display.title = "TAKE OFF " ~ fms.FlightData.airportFrom; # Add runway
 		} else {
@@ -427,6 +431,11 @@ var Takeoff = {
 							mcdu.unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
+						if (me.scratchpadSplit[0] < -2 or me.scratchpadSplit[0] > 2) {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							return;
+						}
+						
 						fms.FlightData.toSlope = me.scratchpadSplit[0] + 0;
 						
 						# Check Wind
@@ -442,6 +451,10 @@ var Takeoff = {
 						
 						if (!mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
 							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						if (me.scratchpadSplit[1] < -50 or me.scratchpadSplit[1] > 50) {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 							return;
 						}
 						
@@ -557,3 +570,156 @@ var Takeoff = {
 		}
 	},
 };
+
+var Approach = {
+	new: func(n) {
+		var m = {parents: [Approach]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CSTranslate: [0, 0, 0, 0, -120, 0],
+			CTranslate: [0, 0, 0, 0, -120, 0],
+			C1S: "",
+			C1: "",
+			C2S: "",
+			C2: "",
+			C3S: "",
+			C3: "",
+			C4S: "",
+			C4: "",
+			C5S: "VREF",
+			C5: "",
+			C6S: "",
+			C6: "",
+			
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1S: "CLEAN MIN",
+			L1: "",
+			L2S: "SLAT EXT MIN",
+			L2: "",
+			L3S: "FLAP 28g MIN",
+			L3: "",
+			L4S: "",
+			L4: "",
+			L5S: "VAPP",
+			L5: "",
+			L6S: "",
+			L6: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1S: "LW",
+			R1: "---.-",
+			R2S: "LENGTH",
+			R2: "-----",
+			R3S: "ELEV",
+			R3: "",
+			R4S: "TIMER MMSS",
+			R4: "[  ]",
+			R5S: "",
+			R5: "",
+			R6S: "",
+			R6: "GO AROUND>",
+			
+			title: "",
+		};
+		
+		m.Value = {
+			cleanMin: 0,
+			flap28Min: 0,
+			slatMin: 0,
+			vapp: 0,
+			vref: 0,
+		};
+		
+		m.group = "fmc";
+		m.name = "approach";
+		m.nextPage = "none";
+		m.scratchpad = "";
+		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize = 0;
+		m.scratchpadState = 0;
+		
+		return m;
+	},
+	setup: func() {
+	},
+	loop: func() {
+		if (fms.FlightData.airportTo != "") {
+			me.Display.title = "APPROACH " ~ fms.FlightData.airportTo; # Add runway
+		} else {
+			me.Display.title = "APPROACH";
+		}
+		
+		me.Value.cleanMin = math.round(fms.Speeds.cleanMin.getValue());
+		if (me.Value.cleanMin > 0) {
+			me.Display.L1 = sprintf("%d", me.Value.cleanMin);
+		} else {
+			me.Display.L1 = "---";
+		}
+		
+		me.Value.slatMin = math.round(fms.Speeds.slatMin.getValue());
+		if (me.Value.slatMin > 0) {
+			me.Display.L2 = sprintf("%d", me.Value.slatMin);
+		} else {
+			me.Display.L2 = "---";
+		}
+		
+		me.Value.flap28Min = math.round(fms.Speeds.flap28Min.getValue());
+		if (me.Value.flap28Min > 0) {
+			me.Display.L3 = sprintf("%d", me.Value.flap28Min);
+		} else {
+			me.Display.L3 = "---";
+		}
+		
+		me.Value.vapp = math.round(fms.Speeds.vapp.getValue());
+		if (me.Value.vapp > 0) {
+			me.Display.L5 = sprintf("%d", me.Value.vapp);
+		} else {
+			me.Display.L5 = "---";
+		}
+		
+		me.Value.vref = math.round(fms.Speeds.vref.getValue());
+		if (me.Value.vref > 0) {
+			me.Display.C5 = sprintf("%d", me.Value.vref);
+		} else {
+			me.Display.C5 = "---";
+		}
+		
+		if (fms.FlightData.airportToAlt > -1000) {
+			me.Display.R3 = sprintf("%d", math.round(fms.FlightData.airportToAlt));
+		} else {
+			me.Display.R3 = "----";
+		}
+		
+		if (fms.FlightData.landFlaps == 50) {
+			me.Display.L4 = "50/LAND";
+			me.Display.L6 = "*35/LAND";
+		} else {
+			me.Display.L4 = "35/LAND";
+			me.Display.L6 = "*50/LAND";
+		}
+	},
+	softKey: func(k) {
+		me.scratchpad = mcdu.unit[me.id].scratchpad;
+		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		
+		if (k == "l6") {
+			if (me.scratchpadState == 1) {
+				if (fms.FlightData.landFlaps == 50) {
+					fms.FlightData.landFlaps = 35;
+				} else {
+					fms.FlightData.landFlaps = 50;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		}
+	},
+};
+	

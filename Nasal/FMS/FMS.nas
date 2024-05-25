@@ -34,16 +34,20 @@ var Speeds = {
 	athrMaxMach: props.globals.getNode("/fms/speeds/athr-max-mach"),
 	athrMin: props.globals.getNode("/fms/speeds/athr-min"),
 	athrMinMach: props.globals.getNode("/fms/speeds/athr-min-mach"),
+	cleanMin: props.globals.getNode("/fms/speeds/clean-min"),
 	flap15Max: props.globals.getNode("/fms/speeds/flap-0-15-max-kts"),
 	flap28Max: props.globals.getNode("/fms/speeds/flap-28-max-kts"),
+	flap28Min: props.globals.getNode("/fms/speeds/flap-28-min"),
 	flap35Max: props.globals.getNode("/fms/speeds/flap-35-max-kts"),
 	flap50Max: props.globals.getNode("/fms/speeds/flap-50-max-kts"),
 	flapGearMax: props.globals.getNode("/fms/speeds/flap-gear-max"),
 	gearExtMax: props.globals.getNode("/fms/speeds/gear-ext-max-kts"),
 	gearRetMax: props.globals.getNode("/fms/speeds/gear-ret-max-kts"),
+	slatMin: props.globals.getNode("/fms/speeds/slat-min"),
 	slatMax: props.globals.getNode("/fms/speeds/slat-max-kts"),
 	v1: props.globals.getNode("/fms/speeds/v1"),
 	v2: props.globals.getNode("/fms/speeds/v2"),
+	vapp: props.globals.getNode("/fms/speeds/vapp"),
 	vcl: props.globals.getNode("/fms/speeds/vcl"),
 	vclTo: props.globals.getNode("/fms/speeds/vcl-to"),
 	vfr: props.globals.getNode("/fms/speeds/vfr"),
@@ -52,6 +56,7 @@ var Speeds = {
 	vminTape: props.globals.getNode("/fms/speeds/vmin-tape"),
 	vmoMmo: props.globals.getNode("/fms/speeds/vmo-mmo"),
 	vr: props.globals.getNode("/fms/speeds/vr"),
+	vref: props.globals.getNode("/fms/speeds/vref"),
 	vsr: props.globals.getNode("/fms/speeds/vsr"),
 	vsrTo: props.globals.getNode("/fms/speeds/vsr-to"),
 	vss: props.globals.getNode("/fms/speeds/vss"),
@@ -105,7 +110,9 @@ var CORE = {
 				Internal.phaseNew = 1; # Takeoff
 			}
 		} else if (Internal.phase == 1) { # Takeoff
-			if (systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
+			if (!Value.wow and Value.vertText == "ALT HLD") {
+				Internal.phaseNew = 2; # Climb
+			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0;
 			} else if (FlightData.accelAlt > -1000) {
 				if (Value.vertText != "T/O CLB" and Value.altitude >= FlightData.accelAlt) {

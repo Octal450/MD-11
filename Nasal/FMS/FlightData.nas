@@ -12,6 +12,7 @@ var FlightData = {
 	airportFrom: "",
 	airportFromAlt: -1000,
 	airportTo: "",
+	airportToAlt: -1000,
 	blockFuelLbs: 0,
 	canCalcVspeeds: 0,
 	climbThrustAlt: -1000,
@@ -26,10 +27,11 @@ var FlightData = {
 	flexTemp: 0,
 	flightNumber: "",
 	gwLbs: 0,
+	landFlaps: 35,
 	lastGwZfw: 1, # Which was entered last
 	oatC: -100,
 	oatUnit: 0,
-	taxiFuel: 0.7,
+	taxiFuel: 1.5,
 	taxiFuelSet: 0,
 	tocg: 0,
 	toFlaps: 0,
@@ -53,15 +55,20 @@ var FlightData = {
 };
 
 var FlightDataOut = {
+	airportFromAlt: props.globals.getNode("/fms/flight-data/airport-from-alt"),
+	airportToAlt: props.globals.getNode("/fms/flight-data/airport-to-alt"),
 	canCalcVspeeds: props.globals.getNode("/fms/flight-data/can-calc-vspeeds"),
 	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
 	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
 	gwLbs: props.globals.getNode("/fms/flight-data/gw-lbs"),
+	landFlaps: props.globals.getNode("/fms/flight-data/land-flaps"),
 	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
 	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
 	tocg: props.globals.getNode("/fms/flight-data/tocg"),
 	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
 	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
+	toSlope: props.globals.getNode("/fms/flight-data/to-slope"),
+	toWind: props.globals.getNode("/fms/flight-data/to-wind"),
 	v1: props.globals.getNode("/fms/flight-data/v1"),
 	v2: props.globals.getNode("/fms/flight-data/v2"),
 	vr: props.globals.getNode("/fms/flight-data/vr"),
@@ -92,7 +99,7 @@ var EditFlightData = {
 		
 		# After write out
 		# Enable/Disable V speeds Calc
-		if (FlightData.airportFrom != "" and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.oatC > -100 and FlightData.gwLbs > 0) {
+		if (FlightData.airportFromAlt > -1000 and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.oatC > -100 and FlightData.gwLbs > 0) {
 			FlightData.canCalcVspeeds = 1;
 		} else {
 			FlightData.canCalcVspeeds = 0;
@@ -146,6 +153,7 @@ var EditFlightData = {
 		FlightData.airportFrom = "";
 		FlightData.airportFromAlt = -1000;
 		FlightData.airportTo = "";
+		FlightData.airportToAlt = -1000;
 		FlightData.blockFuelLbs = 0;
 		FlightData.canCalcVspeeds = 0;
 		FlightData.climbThrustAlt = -1000;
@@ -159,10 +167,11 @@ var EditFlightData = {
 		FlightData.flexActive = 0;
 		FlightData.flexTemp = 0;
 		FlightData.flightNumber = "";
+		FlightData.landFlaps = 35;
 		FlightData.lastGwZfw = 1;
 		FlightData.oatC = -100;
 		FlightData.oatUnit = 0;
-		FlightData.taxiFuel = 0.7;
+		FlightData.taxiFuel = 1.5;
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
 		FlightData.toFlaps = 0;
@@ -181,15 +190,20 @@ var EditFlightData = {
 		me.writeOut();
 	},
 	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
+		FlightDataOut.airportFromAlt.setBoolValue(FlightData.airportFromAlt);
+		FlightDataOut.airportToAlt.setBoolValue(FlightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(FlightData.canCalcVspeeds);
 		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
 		FlightDataOut.gwLbs.setValue(FlightData.gwLbs);
+		FlightDataOut.landFlaps.setValue(FlightData.landFlaps);
 		FlightDataOut.oatC.setValue(FlightData.oatC);
 		FlightDataOut.tocg.setValue(FlightData.tocg);
 		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
 		FlightDataOut.togw.setValue(FlightData.togwLbs);
 		FlightDataOut.toPacks.setValue(FlightData.toPacks);
+		FlightDataOut.toSlope.setValue(FlightData.toSlope);
+		FlightDataOut.toWind.setValue(FlightData.toWind);
 		FlightDataOut.v1.setValue(FlightData.v1);
 		FlightDataOut.v2.setValue(FlightData.v2);
 		FlightDataOut.vr.setValue(FlightData.vr);
@@ -340,6 +354,7 @@ var EditFlightData = {
 		}
 		
 		FlightData.airportFromAlt = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);
+		FlightData.airportToAlt = math.round(airportinfo(FlightData.airportTo).elevation * M2FT);
 		me.insertToAlts();
 		
 		me.resetVspeeds();

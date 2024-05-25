@@ -928,14 +928,19 @@
 	
 	<fms n="0">
 		<flight-data n="0">
+			<airport-from-alt type="int">-1000</airport-from-alt>
+			<airport-to-alt type="int">-1000</airport-to-alt>
 			<can-calc-vspeeds type="bool">0</can-calc-vspeeds>
 			<flex-active type="bool">0</flex-active>
 			<flex-temp type="int">0</flex-temp>
 			<gw-lbs type="double">0</gw-lbs>
+			<land-flaps type="int">35</land-flaps>
 			<oat-c type="int">-100</oat-c>
 			<tocg type="double">0</tocg>
 			<to-flaps type="double">0</to-flaps>
 			<to-packs type="bool">0</to-packs>
+			<to-slope type="int">-100</to-slope>
+			<to-wind type="int">-100</to-wind>
 			<togw-lbs type="double">0</togw-lbs>
 			<v1 type="int">0</v1>
 			<v2 type="int">0</v2>
