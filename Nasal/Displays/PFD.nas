@@ -653,7 +653,6 @@ var canvasBase = {
 				me["ASI_vr_bug"].setTranslation(0, 0);
 				me["ASI_vr_box"].setColor(1, 1, 1);
 				me["ASI_vr_box"].show();
-				me["ASI_vr_text"].setColor(1, 1, 1);
 				me["ASI_vr_dash"].show();
 				me["ASI_vr_text"].setColor(1, 1, 1);
 				me["ASI_vr_text"].hide();
