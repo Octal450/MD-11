@@ -195,6 +195,20 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="libraries/blink-fast">
+			<function>
+				<integer>
+					<mod>
+						<product>
+							<property>sim-time-sec</property>
+							<value>3.5</value>
+						</product>
+						<value>2</value>
+					</mod>
+				</integer>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="libraries/blink-med">
 			<function>
 				<integer>

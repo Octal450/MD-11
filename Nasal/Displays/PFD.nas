@@ -143,6 +143,7 @@ var Value = {
 		source: [0, 1],
 	},
 	Misc: {
+		blinkFast: 0,
 		blinkMed: 0,
 		blinkMed2: 0,
 		flapsCmd: 0,
@@ -168,6 +169,8 @@ var Value = {
 	},
 	Ra: {
 		agl: 0,
+		below: 0,
+		time: -10,
 	},
 	Vs: {
 		digit: 0,
@@ -274,8 +277,10 @@ var canvasBase = {
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
+		Value.Misc.blinkFast = pts.Fdm.JSBsim.Libraries.blinkFast.getBoolValue();
 		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
+		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
 		Value.Misc.flapsPos = pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue();
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
@@ -1276,11 +1281,33 @@ var canvasBase = {
 				me["Minimums"].setColor(0.9412, 0.7255, 0);
 				me["RA"].setColor(0.9412, 0.7255, 0);
 				me["RA_box"].setColor(0.9412, 0.7255, 0);
+				
+				if (!Value.Ra.below) {
+					Value.Ra.below = 1;
+					if (!Value.Misc.wow) { # Start blinking
+						Value.Ra.time = Value.Misc.elapsedSec;
+					} else { # Don't starting blinking
+						Value.Ra.time = -10;
+					}
+				}
 			} else {
 				me["Minimums"].setColor(1, 1, 1);
 				me["RA"].setColor(1, 1, 1);
 				me["RA_box"].setColor(1, 1, 1);
+				Value.Ra.below = 0;
+				Value.Ra.time = -10;
 			}
+			
+			if (Value.Ra.time + 5 >= Value.Misc.elapsedSec) {
+				if (Value.Misc.blinkFast) {
+					me["Minimums"].show();
+				} else {
+					me["Minimums"].hide();
+				}
+			} else if (Value.Misc.blinkFast) { # So that it doesn't interrupt its blink
+				me["Minimums"].show();
+			}
+			
 			if (Value.Ra.agl <= 5) {
 				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl)));
 			} else if (Value.Ra.agl <= 50) {
@@ -1288,6 +1315,7 @@ var canvasBase = {
 			} else {
 				me["RA"].setText(sprintf("%4.0f", math.round(Value.Ra.agl, 10)));
 			}
+			
 			me["RA"].show();
 			me["RA_box"].show();
 		} else {

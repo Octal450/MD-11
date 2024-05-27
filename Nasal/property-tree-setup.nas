@@ -123,6 +123,7 @@ var Fdm = {
 		},
 		Libraries: {
 			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
+			blinkFast: props.globals.getNode("/fdm/jsbsim/libraries/blink-fast"),
 			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),
 			blinkMed2: props.globals.getNode("/fdm/jsbsim/libraries/blink-med-2"),
 			multiEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/multi-engine-out"),
