@@ -61,8 +61,10 @@ var Value = {
 		sel: 0,
 		Tape: {
 			five: 0,
+			fiveI: 0,
 			fiveT: "",
 			four: 0,
+			fourI: 0,
 			fourT: "",
 			hundreds: 0,
 			hundredsGeneva: 0,
@@ -70,15 +72,18 @@ var Value = {
 			middleText: 0,
 			offset: 0,
 			one: 0,
+			oneI: 0,
 			oneT: "",
 			tenThousands: 0,
 			tenThousandsGeneva: 0,
 			thousands: 0,
 			thousandsGeneva: 0,
 			three: 0,
+			threeI: 0,
 			threeT: "",
 			tens: 0,
 			two: 0,
+			twoI: 0,
 			twoT: "",
 		},
 	},
@@ -906,50 +911,75 @@ var canvasBase = {
 		me["ALT_scale"].update();
 		me["ALT_scale_num"].update();
 		
-		Value.Alt.Tape.five = int((Value.Alt.Tape.middleText + 1000) * 0.001);
-		me["ALT_five"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText + 1000) * 0.001) - Value.Alt.Tape.five))));
+		Value.Alt.Tape.fiveI = (Value.Alt.Tape.middleText + 1000) * 0.001;
+		Value.Alt.Tape.five = int(Value.Alt.Tape.fiveI);
 		Value.Alt.Tape.fiveT = sprintf("%01d", abs(Value.Alt.Tape.five));
 		
+		if (Value.Alt.Tape.fiveI == 0) {
+			me["ALT_five"].setText("00"); # Only God knows why...
+		} else {
+			me["ALT_five"].setText(sprintf("%03d", abs(1000 * (Value.Alt.Tape.fiveI - Value.Alt.Tape.five))));
+		}
 		if (Value.Alt.Tape.fiveT == 0) {
 			me["ALT_five_T"].setText("");
 		} else {
 			me["ALT_five_T"].setText(Value.Alt.Tape.fiveT);
 		}
 		
-		Value.Alt.Tape.four = int((Value.Alt.Tape.middleText + 500) * 0.001);
-		me["ALT_four"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText + 500) * 0.001) - Value.Alt.Tape.four))));
+		Value.Alt.Tape.fourI = (Value.Alt.Tape.middleText + 500) * 0.001;
+		Value.Alt.Tape.four = int(Value.Alt.Tape.fourI);
 		Value.Alt.Tape.fourT = sprintf("%01d", abs(Value.Alt.Tape.four));
 		
+		if (Value.Alt.Tape.fourI == 0) {
+			me["ALT_four"].setText("00"); # Only God knows why...
+		} else {
+			me["ALT_four"].setText(sprintf("%03d", abs(1000 * (Value.Alt.Tape.fourI - Value.Alt.Tape.four))));
+		}
 		if (Value.Alt.Tape.fourT == 0) {
 			me["ALT_four_T"].setText("");
 		} else {
 			me["ALT_four_T"].setText(Value.Alt.Tape.fourT);
 		}
 		
-		Value.Alt.Tape.three = int(Value.Alt.Tape.middleText * 0.001);
-		me["ALT_three"].setText(sprintf("%03d", abs(1000 * ((Value.Alt.Tape.middleText  * 0.001) - Value.Alt.Tape.three))));
+		Value.Alt.Tape.threeI = Value.Alt.Tape.middleText * 0.001;
+		Value.Alt.Tape.three = int(Value.Alt.Tape.threeI);
 		Value.Alt.Tape.threeT = sprintf("%01d", abs(Value.Alt.Tape.three));
 		
+		if (Value.Alt.Tape.threeI == 0) {
+			me["ALT_three"].setText("00"); # Only God knows why...
+		} else {
+			me["ALT_three"].setText(sprintf("%03d", abs(1000 * (Value.Alt.Tape.threeI - Value.Alt.Tape.three))));
+		}
 		if (Value.Alt.Tape.threeT == 0) {
 			me["ALT_three_T"].setText("");
 		} else {
 			me["ALT_three_T"].setText(Value.Alt.Tape.threeT);
 		}
 		
-		Value.Alt.Tape.two = int((Value.Alt.Tape.middleText - 500) * 0.001);
-		me["ALT_two"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText - 500) * 0.001) - Value.Alt.Tape.two))));
+		Value.Alt.Tape.twoI = (Value.Alt.Tape.middleText - 500) * 0.001;
+		Value.Alt.Tape.two = int(Value.Alt.Tape.twoI);
 		Value.Alt.Tape.twoT = sprintf("%01d", abs(Value.Alt.Tape.two));
 		
+		if (Value.Alt.Tape.twoI == 0) {
+			me["ALT_two"].setText("00"); # Only God knows why...
+		} else {
+			me["ALT_two"].setText(sprintf("%03d", abs(1000 * (Value.Alt.Tape.twoI - Value.Alt.Tape.two))));
+		}
 		if (Value.Alt.Tape.twoT == 0) {
 			me["ALT_two_T"].setText("");
 		} else {
 			me["ALT_two_T"].setText(Value.Alt.Tape.twoT);
 		}
 		
-		Value.Alt.Tape.one = int((Value.Alt.Tape.middleText - 1000) * 0.001);
-		me["ALT_one"].setText(sprintf("%03d", abs(1000 * (((Value.Alt.Tape.middleText - 1000) * 0.001) - Value.Alt.Tape.one))));
+		Value.Alt.Tape.oneI = (Value.Alt.Tape.middleText - 1000) * 0.001;
+		Value.Alt.Tape.one = int(Value.Alt.Tape.oneI);
 		Value.Alt.Tape.oneT = sprintf("%01d", abs(Value.Alt.Tape.one));
 		
+		if (Value.Alt.Tape.oneI == 0) {
+			me["ALT_one"].setText("00"); # Only God knows why...
+		} else {
+			me["ALT_one"].setText(sprintf("%03d", abs(1000 * (Value.Alt.Tape.oneI - Value.Alt.Tape.one))));
+		}
 		if (Value.Alt.Tape.oneT == 0) {
 			me["ALT_one_T"].setText("");
 		} else {
