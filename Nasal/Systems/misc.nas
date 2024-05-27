@@ -366,7 +366,7 @@ var FADEC = {
 		} else if (afs.Output.spdProt.getValue() == 1) {
 			me.Limit.activeModeInt.setValue(2);
 			me.Limit.activeMode.setValue("MCT");
-		} else if (me.pitchMode == "SPD CLB" or (me.pitchMode == "V/S" and afs.Input.vs.getValue() >= 50) or (me.pitchMode == "FPA" and afs.Input.fpa.getValue() >= 0.05) or pts.Controls.Flight.flapsInput.getValue() >= 2) {
+		} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or pts.Controls.Flight.flapsInput.getValue() >= 2) {
 			if (me.anyEngineOut) {
 				me.Limit.activeModeInt.setValue(2);
 				me.Limit.activeMode.setValue("MCT");
