@@ -427,30 +427,34 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="fadec/limit/approach-idle">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				position/wow eq 0
+				/controls/flight/flaps-input ge 1
+			</test>
+		</switch>
+		
 		<fcs_function name="fadec/limit/idle-ref">
 			<function>
-				<ifthen>
-					<eq>
-						<property>position/wow</property>
-						<value>0</value>
-					</eq>
-					<table>
-						<independentVar lookup="row">velocities/mach</independentVar>
-						<independentVar lookup="column">/controls/flight/flaps-input</independentVar>
-						<independentVar lookup="table">/position/altitude-ft</independentVar>
-						<tableData breakPoint="0">
-							      0     1
-							0.21  30.3  37.3
-							0.70  39.4  44.6
-						</tableData>
-						<tableData breakPoint="45000">
-							      0     1
-							0.55  50.1  57.1
-							0.90  56.7  59.2
-						</tableData>
-					</table>
-					<value>0</value>
-				</ifthen>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fadec/limit/approach-idle</independentVar>
+					<independentVar lookup="table">/position/altitude-ft</independentVar>
+					<tableData breakPoint="0">
+						      0     1
+						0.08  23.7  23.7
+						0.21  30.3  37.3
+						0.70  39.4  44.6
+					</tableData>
+					<tableData breakPoint="45000">
+						      0     1
+						0.08  23.7  23.7
+						0.21  30.3  37.3
+						0.55  50.1  57.1
+						0.90  56.7  59.2
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 		
@@ -861,6 +865,10 @@
 			<test value="fadec/reverse-1/throttle-rev">
 				fadec/reverse-1/active eq 1
 			</test>
+			<clipto>
+				<min>fadec/control-1/min</min>
+				<max>1.0</max> <!-- Intentional -->
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-1/throttle-fdm">
@@ -937,6 +945,10 @@
 			<test value="fadec/reverse-2/throttle-rev">
 				fadec/reverse-2/active eq 1
 			</test>
+			<clipto>
+				<min>fadec/control-2/min</min>
+				<max>1.0</max> <!-- Intentional -->
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-2/throttle-fdm">
@@ -1013,6 +1025,10 @@
 			<test value="fadec/reverse-3/throttle-rev">
 				fadec/reverse-3/active eq 1
 			</test>
+			<clipto>
+				<min>fadec/control-3/min</min>
+				<max>1.0</max> <!-- Intentional -->
+			</clipto>
 		</switch>
 		
 		<lag_filter name="fadec/control-3/throttle-fdm">
