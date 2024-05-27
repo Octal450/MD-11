@@ -73,7 +73,7 @@
 					<property>systems/electrical/bus/dc-bat</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.STD();</script>
+				<script>libraries.Baro.std();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -94,43 +94,28 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/bus/dc-bat</property>
-						<equals>
-							<property>instrumentation/altimeter/inhg</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>instrumentation/altimeter/std</property>
-							<value>0</value>
-						</equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") + 0.01);</script>
+				<script>libraries.Baro.adjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/bus/dc-bat</property>
-						<equals>
-							<property>instrumentation/altimeter/inhg</property>
-							<value>0</value>
-						</equals>
-						<equals>
-							<property>instrumentation/altimeter/std</property>
-							<value>0</value>
-						</equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") + 1.0);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/bus/dc-bat</property>
-				</condition>
-				<command>nasal</command>
-				<script>libraries.unSTD();</script>
+				<script>libraries.Baro.adjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -147,43 +132,28 @@
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/bus/dc-bat</property>
-						<equals>
-							<property>instrumentation/altimeter/inhg</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>instrumentation/altimeter/std</property>
-							<value>0</value>
-						</equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+						<not><property>devices/status/keyboard/shift</property></not>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-inhg", getprop("/instrumentation/altimeter/setting-inhg") - 0.01);</script>
+				<script>libraries.Baro.adjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
 					<and>
-						<property>systems/electrical/bus/dc-bat</property>
-						<equals>
-							<property>instrumentation/altimeter/inhg</property>
-							<value>0</value>
-						</equals>
-						<equals>
-							<property>instrumentation/altimeter/std</property>
-							<value>0</value>
-						</equals>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+						<property>devices/status/keyboard/shift</property>
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>setprop("/instrumentation/altimeter/setting-hpa", getprop("/instrumentation/altimeter/setting-hpa") - 1.0);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>systems/electrical/bus/dc-bat</property>
-				</condition>
-				<command>nasal</command>
-				<script>libraries.unSTD();</script>
+				<script>libraries.Baro.adjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
