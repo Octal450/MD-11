@@ -314,8 +314,8 @@
 		</axis>
 	</animation>
 	
-	<!-- Controls -->
-	<animation> <!-- Reuse the IESI's property -->
+	<!-- Controls --> <!-- Reuse the IESI's property --> <!-- Don't enable until qnh setting is separate -->
+	<!--animation>
 		<type>knob</type>
 		<object-name>Baro.knob</object-name>
 		<property>controls/cockpit/iesi-baro-rotate</property>
@@ -348,6 +348,6 @@
 				<wrap>true</wrap>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 
 </PropertyList>
