@@ -48,8 +48,7 @@ var MCDU = {
 		return m;
 	},
 	reset: func() {
-		me.Blink.active = 0;
-		me.Blink.time = -10;
+		me.blinkScreen();
 		me.clear = 0;
 		me.lastFmcPage = "acStatus";
 		me.message.clear();
