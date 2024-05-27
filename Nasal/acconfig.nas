@@ -273,6 +273,7 @@ var PANEL = {
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psload"}));
 		systems.doIdleThrust();
 		libraries.systemsInit();
+		afs.ITAF.syncHdg();
 		pts.Controls.Flight.speedbrake.setValue(0);
 		if (t == 1) {
 			pts.Controls.Flight.flaps.setValue(0.36); # 10-25/EXT

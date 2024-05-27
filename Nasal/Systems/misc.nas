@@ -560,7 +560,6 @@ var IGNITION = {
 
 # IRS
 var IRS = {
-	hdg: 0,
 	setHdg: 1,
 	Iru: {
 		aligned: [props.globals.getNode("/systems/iru[0]/aligned"), props.globals.getNode("/systems/iru[1]/aligned"), props.globals.getNode("/systems/iru[2]/aligned")],
@@ -584,14 +583,12 @@ var IRS = {
 		me.Switch.mcduBtn.setBoolValue(0);
 	},
 	anyAlignedUpdate: func() { # Called when the logical OR of the 3 aligned changes
-		me.hdg = pts.Orientation.headingMagneticDeg.getValue();
 		if (!me.Iru.aligned[0].getBoolValue() and !me.Iru.aligned[1].getBoolValue() and !me.Iru.aligned[2].getBoolValue()) {
 			me.setHdg = 1;
 		}
 		if ((me.Iru.aligned[0].getBoolValue() or me.Iru.aligned[1].getBoolValue() or me.Iru.aligned[2].getBoolValue()) and me.setHdg) {
 			me.setHdg = 0;
-			afs.Input.hdg.setValue(me.hdg);
-			afs.Internal.hdg.setValue(me.hdg);
+			afs.ITAF.syncHdg();
 		}
 	},
 	mcduMsgUpdate: func() {
