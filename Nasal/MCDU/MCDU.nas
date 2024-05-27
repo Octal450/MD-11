@@ -4,7 +4,7 @@
 var unit = [nil, nil, nil];
 
 var MCDU = {
-	new: func(n, t) {
+	new: func(n, t, ps) {
 		var m = {parents: [MCDU]};
 		
 		m.Blink = {
@@ -38,7 +38,7 @@ var MCDU = {
 		};
 		
 		m.page = m.PageList.menu;
-		
+		m.powerSource = ps;
 		m.scratchpad = "";
 		m.scratchpadDecimal = nil;
 		m.scratchpadOld = "";
@@ -68,6 +68,13 @@ var MCDU = {
 		me.scratchpadSize = 0;
 	},
 	loop: func() {
+		if (me.powerSource.getValue() < 112) {
+			if (me.page != me.PageList.menu) {
+				me.page = me.PageList.menu;
+			}
+			fms.Internal.request[me.id] = 1;
+		}
+		
 		if (me.Blink.active) {
 			if (me.Blink.time < pts.Sim.Time.elapsedSec.getValue()) {
 				me.Blink.active = 0;
@@ -349,9 +356,9 @@ var BASE = {
 		maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	},
 	init: func() {
-		unit[0] = MCDU.new(0, 0);
-		unit[1] = MCDU.new(1, 0);
-		unit[2] = MCDU.new(2, 1);
+		unit[0] = MCDU.new(0, 0, systems.ELEC.Bus.lEmerAc);
+		unit[1] = MCDU.new(1, 0, systems.ELEC.Bus.rEmerAc);
+		unit[2] = MCDU.new(2, 1, systems.ELEC.Bus.ac1);
 	},
 	loop: func() {
 		unit[0].loop();
