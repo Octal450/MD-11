@@ -60,10 +60,10 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 });
 
 var systemsLoop = maketimer(0.1, func() {
+	fms.CORE.loop();
 	mcdu.BASE.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
-	fms.CORE.loop();
 	
 	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
 		pts.Systems.Shake.effect.setBoolValue(1);

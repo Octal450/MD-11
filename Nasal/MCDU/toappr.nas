@@ -506,11 +506,7 @@ var Takeoff = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r4") {
-			if (me.scratchpadState == 0) {
-				fms.EditFlightData.insertToAlts(1);
-				fms.FlightData.climbThrustAltSet = 0;
-				mcdu.unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= fms.FlightData.airportFromAlt + 1000) {
 						fms.FlightData.climbThrustAlt = int(me.scratchpad);
@@ -522,15 +518,19 @@ var Takeoff = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 0) {
+				if (fms.FlightData.climbThrustAltSet)  {
+					fms.EditFlightData.insertToAlts(1);
+					fms.FlightData.climbThrustAltSet = 0;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r5") {
-			if (me.scratchpadState == 0) {
-				fms.EditFlightData.insertToAlts(2);
-				fms.FlightData.accelAltSet = 0;
-				mcdu.unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= fms.FlightData.airportFromAlt + 1000) {
 						fms.FlightData.accelAlt = int(me.scratchpad);
@@ -542,15 +542,19 @@ var Takeoff = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 0) {
+				if (fms.FlightData.accelAltSet) {
+					fms.EditFlightData.insertToAlts(2);
+					fms.FlightData.accelAltSet = 0;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			if (me.scratchpadState == 0) {
-				fms.EditFlightData.insertToAlts(3);
-				fms.FlightData.accelAltEoSet = 0;
-				mcdu.unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= fms.FlightData.airportFromAlt + 400) {
 						fms.FlightData.accelAltEo = int(me.scratchpad);
@@ -561,6 +565,14 @@ var Takeoff = {
 					}
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 0) {
+				if (fms.FlightData.accelAltEoSet) {
+					fms.EditFlightData.insertToAlts(3);
+					fms.FlightData.accelAltEoSet = 0;
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -633,7 +645,7 @@ var Approach = {
 			cleanMin: 0,
 			flap28Min: 0,
 			slatMin: 0,
-			vapp: 0,
+			vappMax: 0,
 			vref: 0,
 		};
 		
@@ -677,9 +689,8 @@ var Approach = {
 			me.Display.L3 = "---";
 		}
 		
-		me.Value.vapp = math.round(fms.Speeds.vapp.getValue());
-		if (me.Value.vapp > 0) {
-			me.Display.L5 = sprintf("%d", me.Value.vapp);
+		if (fms.FlightData.vapp > 0) {
+			me.Display.L5 = sprintf("%d", fms.FlightData.vapp);
 		} else {
 			me.Display.L5 = "---";
 		}
@@ -709,7 +720,36 @@ var Approach = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l6") {
+		if (k == "l5") {
+			if (me.scratchpadState == 2) {
+				if (fms.FlightData.landFlaps == 50) { # Ignore mach, not relevant here
+					me.Value.vappMax = 175;
+				} else {
+					me.Value.vappMax = 190;
+				}
+				if (mcdu.unit[me.id].stringLengthInRange(3, 3) and mcdu.unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= math.round(fms.Speeds.vref.getValue()) and me.scratchpad <= me.Value.vappMax) {
+						fms.FlightData.vappOvrd = 1; # Must be set first
+						fms.FlightData.vapp = int(me.scratchpad);
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else if (me.scratchpadState == 0) {
+				if (fms.FlightData.vappOvrd) {
+					fms.FlightData.vappOvrd = 0;
+					fms.EditFlightData.calcSpeeds(); # Force update
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l6") {
 			if (me.scratchpadState == 1) {
 				if (fms.FlightData.landFlaps == 50) {
 					fms.FlightData.landFlaps = 35;

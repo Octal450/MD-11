@@ -35,15 +35,17 @@ var FlightData = {
 	taxiFuelSet: 0,
 	tocg: 0,
 	toFlaps: 0,
-	togwLbs: 0,
 	toPacks: 0,
 	toSlope: -100, 
 	toWind: -100,
+	togwLbs: 0,
 	ufobLbs: 0,
 	v1: 0,
 	v1State: 0,
 	v2: 0,
 	v2State: 0,
+	vapp: 0,
+	vappOvrd: 0,
 	vr: 0,
 	vrState: 0,
 	zfwcg: 0,
@@ -65,10 +67,10 @@ var FlightDataOut = {
 	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
 	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
 	tocg: props.globals.getNode("/fms/flight-data/tocg"),
-	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
 	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
 	toSlope: props.globals.getNode("/fms/flight-data/to-slope"),
 	toWind: props.globals.getNode("/fms/flight-data/to-wind"),
+	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
 	v1: props.globals.getNode("/fms/flight-data/v1"),
 	v2: props.globals.getNode("/fms/flight-data/v2"),
 	vr: props.globals.getNode("/fms/flight-data/vr"),
@@ -93,6 +95,9 @@ var EditFlightData = {
 		if (Internal.engOn) {
 			FlightData.blockFuelLbs = FlightData.ufobLbs;
 		}
+		
+		# Calculate speeds
+		me.calcSpeeds();
 		
 		# Write out values for JSBsim to use
 		me.writeOut();
@@ -175,14 +180,16 @@ var EditFlightData = {
 		FlightData.taxiFuelSet = 0;
 		FlightData.tocg = 0;
 		FlightData.toFlaps = 0;
-		FlightData.togwLbs = 0;
 		FlightData.toPacks = 0;
 		FlightData.toSlope = -100;
 		FlightData.toWind = -100;
+		FlightData.togwLbs = 0;
 		FlightData.v1 = 0;
 		FlightData.v1State = 0;
 		FlightData.v2 = 0;
 		FlightData.v2State = 0;
+		FlightData.vapp = 0;
+		FlightData.vappOvrd = 0;
 		FlightData.vr = 0;
 		FlightData.vrState = 0;
 		FlightData.zfwcg = 0;
@@ -200,15 +207,20 @@ var EditFlightData = {
 		FlightDataOut.oatC.setValue(FlightData.oatC);
 		FlightDataOut.tocg.setValue(FlightData.tocg);
 		FlightDataOut.toFlaps.setValue(FlightData.toFlaps);
-		FlightDataOut.togw.setValue(FlightData.togwLbs);
 		FlightDataOut.toPacks.setValue(FlightData.toPacks);
 		FlightDataOut.toSlope.setValue(FlightData.toSlope);
 		FlightDataOut.toWind.setValue(FlightData.toWind);
+		FlightDataOut.togw.setValue(FlightData.togwLbs);
 		FlightDataOut.v1.setValue(FlightData.v1);
 		FlightDataOut.v2.setValue(FlightData.v2);
 		FlightDataOut.vr.setValue(FlightData.vr);
 		FlightDataOut.zfwcg.setValue(FlightData.zfwcg);
 		FlightDataOut.zfwLbs.setValue(FlightData.zfwLbs);
+	},
+	calcSpeeds: func() {
+		if (!FlightData.vappOvrd) {
+			FlightData.vapp = math.round(fms.Speeds.vapp.getValue());
+		}
 	},
 	insertAlternate: func(arpt) { # Assumes validation is already done
 		FlightData.airportAltn = arpt;
