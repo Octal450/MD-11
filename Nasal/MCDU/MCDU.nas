@@ -108,6 +108,8 @@ var MCDU = {
 	arrowKey: func(d) {
 		if (!me.Blink.active) {
 			# Do cool up/down stuff here
+		} else {
+			me.setMessage("BUTTON PUSH IGNORED");
 		}
 	},
 	blinkScreen: func() {
@@ -151,6 +153,8 @@ var MCDU = {
 			} else {
 				me.setMessage("NOT ALLOWED");
 			}
+		} else {
+			me.setMessage("BUTTON PUSH IGNORED");
 		}
 	},
 	pageKey: func(p) {
@@ -161,6 +165,8 @@ var MCDU = {
 				me.blinkScreen();
 				me.setMessage("NOT ALLOWED");
 			}
+		} else {
+			me.setMessage("BUTTON PUSH IGNORED");
 		}
 	},
 	removeMessage: func(m) {
@@ -250,6 +256,8 @@ var MCDU = {
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			me.page.softKey(k);
+		} else {
+			me.setMessage("BUTTON PUSH IGNORED");
 		}
 	},
 	# String checking functions - if no test string is provided, they will check the scratchpad

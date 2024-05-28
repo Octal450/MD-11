@@ -122,6 +122,7 @@ var Fdm = {
 			zfwcgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/zfwcg-percent-mac"),
 		},
 		Libraries: {
+			anyEngineOn: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-on"),
 			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
 			blinkFast: props.globals.getNode("/fdm/jsbsim/libraries/blink-fast"),
 			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),

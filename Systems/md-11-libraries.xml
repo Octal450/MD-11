@@ -170,6 +170,15 @@
 	
 	<channel name="Execrate 8 Libraries" execrate="8">
 		
+		<switch name="libraries/any-engine-on">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/engines/engine[0]/state eq 3
+				/engines/engine[1]/state eq 3
+				/engines/engine[2]/state eq 3
+			</test>
+		</switch>
+		
 		<switch name="libraries/any-engine-out">
 			<default value="0"/>
 			<test logic="OR" value="1">

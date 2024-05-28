@@ -150,6 +150,7 @@ var Value = {
 		source: [0, 1],
 	},
 	Misc: {
+		anyEngineOn: 0,
 		blinkFast: 0,
 		blinkMed: 0,
 		blinkMed2: 0,
@@ -284,6 +285,7 @@ var canvasBase = {
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
+		Value.Misc.anyEngineOn = pts.Fdm.JSBsim.Libraries.anyEngineOn.getBoolValue();
 		Value.Misc.blinkFast = pts.Fdm.JSBsim.Libraries.blinkFast.getBoolValue();
 		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
@@ -622,13 +624,22 @@ var canvasBase = {
 					me["ASI_v1_bug"].setTranslation(0, Value.Asi.Tape.v1Final);
 					me["ASI_v1_dash"].hide();
 				} else {
-					me["ASI_v1_bug"].setColor(1, 1, 1);
+					if (Value.Misc.anyEngineOn) {
+						me["ASI_v1_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_box"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_dash"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_text"].setColor(0.9647, 0.8196, 0.0784);
+					} else {
+						me["ASI_v1_bug"].setColor(1, 1, 1);
+						me["ASI_v1_box"].setColor(1, 1, 1);
+						me["ASI_v1_dash"].setColor(1, 1, 1);
+						me["ASI_v1_text"].setColor(1, 1, 1);
+					}
+				
 					me["ASI_v1_bug"].setTranslation(0, 0);
 					me["ASI_v1_bug"].show();
-					me["ASI_v1_box"].setColor(1, 1, 1);
 					me["ASI_v1_box"].show();
 					me["ASI_v1_dash"].show();
-					me["ASI_v1_text"].setColor(1, 1, 1);
 					me["ASI_v1_text"].hide();
 				}
 			}
@@ -671,13 +682,23 @@ var canvasBase = {
 					}
 				} else {
 					Value.Asi.hideV1 = 0;
-					me["ASI_vr_bug"].setColor(1, 1, 1);
+					
+					if (Value.Misc.anyEngineOn) {
+						me["ASI_vr_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_box"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_dash"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_text"].setColor(0.9647, 0.8196, 0.0784);
+					} else {
+						me["ASI_vr_bug"].setColor(1, 1, 1);
+						me["ASI_vr_box"].setColor(1, 1, 1);
+						me["ASI_vr_dash"].setColor(1, 1, 1);
+						me["ASI_vr_text"].setColor(1, 1, 1);
+					}
+					
 					me["ASI_vr_bug"].setTranslation(0, 0);
 					me["ASI_vr_bug"].show();
-					me["ASI_vr_box"].setColor(1, 1, 1);
 					me["ASI_vr_box"].show();
 					me["ASI_vr_dash"].show();
-					me["ASI_vr_text"].setColor(1, 1, 1);
 					me["ASI_vr_text"].hide();
 				}
 			}
@@ -714,13 +735,23 @@ var canvasBase = {
 				}
 			} else {
 				Value.Asi.hideVr = 0;
-				me["ASI_v2_bug"].setColor(1, 1, 1);
+				
+				if (Value.Misc.anyEngineOn) {
+					me["ASI_v2_bug"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_box"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_dash"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_text"].setColor(0.9647, 0.8196, 0.0784);
+				} else {
+					me["ASI_v2_bug"].setColor(1, 1, 1);
+					me["ASI_v2_box"].setColor(1, 1, 1);
+					me["ASI_v2_dash"].setColor(1, 1, 1);
+					me["ASI_v2_text"].setColor(1, 1, 1);
+				}
+				
 				me["ASI_v2_bug"].setTranslation(0, 0);
 				me["ASI_v2_bug"].show();
-				me["ASI_v2_box"].setColor(1, 1, 1);
 				me["ASI_v2_box"].show();
 				me["ASI_v2_dash"].show();
-				me["ASI_v2_text"].setColor(1, 1, 1);
 				me["ASI_v2_text"].hide();
 			}
 		} else {

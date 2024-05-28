@@ -116,7 +116,7 @@ var Init = {
 		}
 		
 		if (fms.FlightData.cruiseFl > 0) {
-			me.Value.cruiseFlText[0] = fms.FlightData.cruiseFlAll[0];
+			me.Value.cruiseFlText[0] = sprintf("%03d", fms.FlightData.cruiseFlAll[0]);
 			
 			if (fms.FlightData.cruiseFlAll[1] > 0) me.Value.cruiseFlText[1] = sprintf("%03d", fms.FlightData.cruiseFlAll[1]);
 			else me.Value.cruiseFlText[1] = "[ ]";
