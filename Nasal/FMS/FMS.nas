@@ -68,6 +68,8 @@ var Value = { # Local store of commonly accessed values
 	afsAlt: 0,
 	altitude: 0,
 	distanceRemainingNm: 0,
+	flapLever: 0,
+	gearLever: 0,
 	vertText: 0,
 	wow: 0,
 };
@@ -93,6 +95,8 @@ var CORE = {
 		Value.afsAlt = afs.Internal.alt.getValue();
 		Value.altitude = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
+		Value.flapLever = pts.Controls.Flight.flapsInput.getValue();
+		Value.gearLever = systems.GEAR.Switch.lever.getValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		
@@ -123,30 +127,39 @@ var CORE = {
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 3; # Cruise
+				} else if (Value.wow) {
+					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.afsAlt < FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 4; # Descent
+				} else if (Value.flapLever >= 4) {
+					Internal.phaseNew = 5; # Approach
+				} else if (Value.wow) {
+					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 4) { # Descent
 			if (Value.active) {
 				if (Value.distanceRemainingNm <= 15 or Value.vertText == "G/S") { # Fix this
 					Internal.phaseNew = 5; # Approach
+				} else if (Value.flapLever >= 4) {
+					Internal.phaseNew = 5; # Approach
+				} else if (Value.wow) {
+					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 5) { # Approach
 			if (Value.active) {
-				if (Value.wow) {
-					print("TEST");
+				if (Value.wow and Value.vertText != "G/A CLB") {
 					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 6) { # Rollout
 			if (Value.active) {
-				if (Value.vertText == "G/A CLB") {
+				if (!Value.wow or Value.vertText == "G/A CLB") {
 					Internal.phaseNew = 5; # Approach
 				}
 			}

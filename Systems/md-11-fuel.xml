@@ -53,43 +53,28 @@
 			<output>/controls/fuel/switches/pumps-3</output>
 		</switch>
 		
-		<switch name="/systems/fuel/fsc/fwd-pumps-cmd"> <!-- Simplified logic, use FMS States later for detailed logic -->
+		<switch name="/systems/fuel/fsc/phase-6-timer-cmd">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/it-autoflight/output/vert eq 7
-				position/wow eq 0
+			<test value="1">
+				/fms/internal/phase eq 6
 			</test>
-			<test logic="AND" value="1">
-				/it-autoflight/output/vert eq 7
-				fadec/throttle-lever-feedback[0] ge 0.7
-			</test>
-			<test logic="AND" value="1">
-				/it-autoflight/output/vert eq 7
-				fadec/throttle-lever-feedback[1] ge 0.7
-			</test>
-			<test logic="AND" value="1">
-				/it-autoflight/output/vert eq 7
-				fadec/throttle-lever-feedback[2] ge 0.7
-			</test>
-			<test logic="AND" value="0"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 4
-				/it-autoflight/output/thr-mode eq 2
-			</test>
-			<test logic="AND" value="0"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 1
-				/it-autoflight/input/vs ge 100
-			</test>
-			<test logic="AND" value="0"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 5
-				/it-autoflight/input/fpa ge 100
+		</switch>
+		
+		<actuator name="/systems/fuel/fsc/phase-6-timer">
+			<input>/systems/fuel/fsc/phase-6-timer-cmd</input>
+			<rate_limit sense="incr">0.01666666667</rate_limit> <!-- 1 minute -->
+			<rate_limit sense="decr">1000</rate_limit> <!-- Instant -->
+		</actuator>
+		
+		<switch name="/systems/fuel/fsc/fwd-pumps-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Turn off one minute after entering phase 6 -->
+				/fms/internal/phase eq 6
+				/systems/fuel/fsc/phase-6-timer lt 1
 			</test>
 			<test logic="OR" value="1">
-				/it-autoflight/output/vert eq 2
-				/it-autoflight/output/vert eq 6
-			</test>
-			<test value="1">
-				/it-autoflight/output/vert ne 7
-				/position/gear-agl-ft lt 1500
+				/fms/internal/phase eq 1
+				/fms/internal/phase eq 5
 			</test>
 		</switch>
 		
@@ -117,30 +102,12 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/fsc/aux-pumps-cmd"> <!-- Simplified logic, use FMS States later for detailed logic -->
+		<switch name="/systems/fuel/fsc/aux-pumps-cmd">
 			<default value="1"/>
-			<test value="0">
-				/it-autoflight/output/vert eq 7
-			</test>
-			<test logic="AND" value="1"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 4
-				/it-autoflight/output/thr-mode eq 2
-			</test>
-			<test logic="AND" value="1"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 1
-				/it-autoflight/input/vs ge 100
-			</test>
-			<test logic="AND" value="1"> <!-- To stop last condition from triggering in climbing, but not in descending -->
-				/it-autoflight/output/vert eq 5
-				/it-autoflight/input/fpa ge 100
-			</test>
 			<test logic="OR" value="0">
-				/it-autoflight/output/vert eq 2
-				/it-autoflight/output/vert eq 6
-			</test>
-			<test value="0">
-				/it-autoflight/output/vert ne 7
-				/position/gear-agl-ft lt 1500
+				/fms/internal/phase eq 1
+				/fms/internal/phase eq 5
+				/fms/internal/phase eq 6
 			</test>
 		</switch>
 		
