@@ -2,8 +2,8 @@
 A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear.
 
 Present pack includes the following McDonnell Douglas MD-11 variants:
-- MD-11 (GE CF6 and PW4000)
-- MD-11F (GE CF6 and PW4000)
+- MD-11 (GE CF6-80C2D1F and PW4462)
+- MD-11F (GE CF6-80C2D1F and PW4462)
 
 ## Frequently Asked Questions
 For frequently asked questions about this project, please refer to our [FAQ page](https://github.com/Octal450/MD-11/blob/master/FAQ.md).
