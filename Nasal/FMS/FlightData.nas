@@ -362,7 +362,7 @@ var EditFlightData = {
 			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
 		}
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(0);
+			RouteManager.currentWp.setValue(1);
 		}
 		
 		FlightData.airportFromAlt = math.round(airportinfo(FlightData.airportFrom).elevation * M2FT);

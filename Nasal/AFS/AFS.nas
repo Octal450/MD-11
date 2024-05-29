@@ -829,6 +829,11 @@ var ITAF = {
 		
 		if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
 			if ((FPLN.currentWpTemp + 1) < FPLN.numTemp) {
+				if (FPLN.currentWpTemp == -1) { # This fixes a Route Manager bug
+					FPLN.currentWp.setValue(1);
+					FPLN.currentWpTemp = 1;
+				}
+				
 				Velocities.groundspeedMps = Velocities.groundspeedKt.getValue() * 0.5144444444444;
 				FPLN.wpFlyFrom = FPLN.currentWpTemp;
 				if (FPLN.wpFlyFrom < 0) {
