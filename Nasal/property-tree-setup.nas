@@ -77,6 +77,7 @@ var Fdm = {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},
 		Fadec: {
+			pw62k: props.globals.getNode("/fdm/jsbsim/fadec/pw-62k"),
 			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
 		},
 		Fcc: {
@@ -279,7 +280,6 @@ var Instrumentation = {
 
 var Options = {
 	eng: props.globals.getNode("/options/eng"),
-	pw62k: props.globals.getNode("/options/pw-62k"),
 };
 
 var Orientation = {

@@ -586,7 +586,7 @@ var canvasPw = {
 			me["EPRLimModeGroup"].setTranslation(56.496, 0);
 			me["FlexGroup"].setTranslation(26.204, 0);
 			
-			if (pts.Options.pw62k.getBoolValue()) {
+			if (pts.Fdm.JSBsim.Fadec.pw62k.getBoolValue()) {
 				me["EPRLimRating"].setText("62K");
 			} else {
 				me["EPRLimRating"].setText("60K");

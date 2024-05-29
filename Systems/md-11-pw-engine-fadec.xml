@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 PW4460 Engine/FADEC -->
+<!-- McDonnell Douglas MD-11 PW4462 Engine/FADEC -->
 <!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
 
 <system name="MD-11: PW Engine/FADEC">
 	
 	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
-	<property value="60000">fadec/limit/rated-thrust</property>
+	<property value="62000">fadec/limit/rated-thrust</property>
 	
 	<channel name="Thrust Limits">
 		
@@ -601,48 +601,26 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="fadec/limit/idle-input">
+		<fcs_function name="fadec/limit/idle-ref"> <!-- Idle speed governor is N1 based -->
 			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">velocities/mach</independentVar>
-						<independentVar lookup="column">fadec/limit/approach-idle</independentVar>
-						<independentVar lookup="table">/position/altitude-ft</independentVar>
-						<tableData breakPoint="0">
-							      0     1
-							0.08  23.8  23.8
-							0.21  29.9  36.5
-							0.70  38.5  43.3
-						</tableData>
-						<tableData breakPoint="45000">
-							      0     1
-							0.08  23.8  23.8
-							0.21  29.9  36.5
-							0.55  48.5  54.9
-							0.90  54.6  56.9
-						</tableData>
-					</table>
-					<value>3.5</value>
-				</pow>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/idle-ref">
-			<function>
-				<sum>
-					<product>
-						<table>
-							<independentVar lookup="row">fadec/limit/idle-input</independentVar>
-							<tableData>
-								   24743.1  0.00
-								   65768.7  0.03
-								14591440.5  1.00
-							</tableData>
-						</table>
-						<property>fadec/epr/c1</property>
-					</product>
-					<property>fadec/epr/c2</property>
-				</sum>
+				<table>
+					<independentVar lookup="row">velocities/mach</independentVar>
+					<independentVar lookup="column">fadec/limit/approach-idle</independentVar>
+					<independentVar lookup="table">/position/altitude-ft</independentVar>
+					<tableData breakPoint="0">
+						      0     1
+						0.08  23.8  23.8
+						0.21  29.9  36.5
+						0.70  38.5  43.3
+					</tableData>
+					<tableData breakPoint="45000">
+						      0     1
+						0.08  23.8  23.8
+						0.21  29.9  36.5
+						0.55  48.5  54.9
+						0.90  54.6  56.9
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 		
@@ -653,54 +631,20 @@
 						<sum>
 							<product>
 								<property>fadec/limit/idle-ref</property>
-								<value>1000</value>
+								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
 					</integer>
-					<value>1000</value>
+					<value>10</value>
 				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/idle-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>fadec/limit/idle</property>
-						<property>fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="fadec/limit/idle-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">fadec/limit/idle-norm-ref</independentVar>
-						<tableData>
-							0.00     24743.1
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="fadec/limit/idle-norm">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/limit/idle-norm-input</independentVar>
+					<independentVar lookup="row">fadec/limit/idle</independentVar>
 					<tableData>
 						 23.8  0
 						111.4  1

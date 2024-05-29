@@ -2,9 +2,9 @@
 
 <!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
 
-<turbine_engine name="PW4460">
+<turbine_engine name="PW4462">
 	
-	<milthrust>60000</milthrust>
+	<milthrust>62000</milthrust>
 	<tsfc>0.552</tsfc>
 	<bleed>0</bleed> <!-- Set by pneumatic system -->
 	<ignitionn1>2.9</ignitionn1>
@@ -24,7 +24,7 @@
 	
 	<function name="N1SpoolUp">
 		<table>
-			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<independentVar lookup="column">/systems/acconfig/autoconfig-running</independentVar>
 			<tableData>
 				      0    1
@@ -41,7 +41,7 @@
 	
 	<function name="N1SpoolDown">
 		<table>
-			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<independentVar lookup="column">/systems/acconfig/autoconfig-running</independentVar>
 			<tableData>
 				      0    1
@@ -58,7 +58,7 @@
 	
 	<function name="N2SpoolUp"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<independentVar lookup="column">/systems/acconfig/autoconfig-running</independentVar>
 			<tableData>
 				      0    1
@@ -75,7 +75,7 @@
 	
 	<function name="N2SpoolDown"> <!-- N1 to N2 factor 0.461187214611872 -->
 		<table>
-			<independentVar lookup="row">propulsion/engine[0]/n1</independentVar>
+			<independentVar lookup="row">propulsion/engine[1]/n1</independentVar>
 			<independentVar lookup="column">/systems/acconfig/autoconfig-running</independentVar>
 			<tableData>
 				      0    1
@@ -126,7 +126,7 @@
 			</table>
 			<property>fadec/limit/rated-thrust-factor</property>
 			<table> <!-- Thrust loss due to reverser angle -->
-				<independentVar lookup="row">/engines/engine[0]/reverser-pos-norm</independentVar>
+				<independentVar lookup="row">/engines/engine[1]/reverser-pos-norm</independentVar>
 				<tableData>
 					0.01  1.00
 					1.00  0.65

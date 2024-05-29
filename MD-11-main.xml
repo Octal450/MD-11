@@ -870,6 +870,7 @@
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
 				</limit>
+				<pw-62k type="bool">1</pw-62k>
 				<throttle-compare-max type="double">0</throttle-compare-max>
 			</fadec>
 			<fcc n="0">
@@ -1661,10 +1662,6 @@
 			<apoff-single type="bool">0</apoff-single>
 		</sound>
 	</it-autoflight>
-	
-	<options n="0">
-		<pw-62k type="bool">0</pw-62k>
-	</options>
 	
 	<services n="0">
 		<chocks n="0">
