@@ -368,6 +368,26 @@
 			</checkbox>
 			
 			<checkbox>
+				<enable>
+					<equals>
+						<property>/options/eng</property>
+						<value>PW</value>
+					</equals>
+				</enable>
+				<label>EAD EGT Above N1 (PW Engines)</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/egt-above-n1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>IESI Equipped</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/iesi-equipped</property>

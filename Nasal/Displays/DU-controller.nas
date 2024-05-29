@@ -74,6 +74,11 @@ var DUController = {
 			me.PwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
 			me.PwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
 			
+			# Set up PW dial location
+			if (me.eadType == "PW") {
+				canvas_ead.pw.setDials();
+			}
+			
 			# L Emer AC
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
 				if (!me.updatePfd1) {
@@ -91,12 +96,12 @@ var DUController = {
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
-					if (me.eadType == "GE") {
-						canvas_ead.ge.update();
-						canvas_ead.ge.page.show();
-					} else {
+					if (me.eadType == "PW") {
 						canvas_ead.pw.update();
 						canvas_ead.pw.page.show();
+					} else {
+						canvas_ead.ge.update();
+						canvas_ead.ge.page.show();
 					}
 				}
 			} else {
