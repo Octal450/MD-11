@@ -5,9 +5,9 @@
 
 <system name="MD-11: PW Engine/FADEC">
 	
-	<property value="1">fadec/limit/packs-off</property>
 	<property value="30">fadec/limit/rated-temp</property>
-	<property value="62000">fadec/limit/rated-thrust</property>
+	<property value="62000">fadec/limit/rated-thrust</property> <!-- 62K mode -->
+	<property value="60000">fadec/limit/derated-thrust</property> <!-- 60K mode -->
 	
 	<channel name="Thrust Limits">
 		
@@ -48,18 +48,18 @@
 		
 		<!-- Following functions fix a FGTurbine inaccuracy... rated thrust N1% should be rated thrust lbs -->
 		<!-- These calculations change it so that the rated power at sea level is at the correct N1% value. It still changes with altitude and mach as it should -->
-		<fcs_function name="fadec/limit/fgturbine-thrust-lbs">
+		<fcs_function name="fadec/limit/fgturbine-thrust">
 			<function>
 				<sum>
 					<product>
-						<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
+						<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
 						<property>fadec/limit/rated-thrust</property>
 					</product>
 					<product>
 						<difference>
 							<property>fadec/limit/rated-thrust</property>
 							<product>
-								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
+								<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
 								<property>fadec/limit/rated-thrust</property>
 							</product>
 						</difference>
@@ -69,11 +69,11 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limit/rated-thrust-lbs">
+		<fcs_function name="fadec/limit/rated-thrust-actual">
 			<function>
 				<sum>
 					<product>
-						<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
+						<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
 						<property>fadec/limit/rated-thrust</property>
 					</product>
 					<product>
@@ -81,32 +81,28 @@
 							<difference>
 								<property>fadec/limit/rated-thrust</property>
 								<product>
-									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, its same for all -->
+									<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
 									<property>fadec/limit/rated-thrust</property>
 								</product>
 							</difference>
 							<property>fadec/limit/milthrust-unmodified</property>
 						</product>
-						<quotient>
-							<difference>
-								<property>fadec/limit/rated-thrust-n1</property>
-								<value>23.8</value>
-							</difference>
-							<value>87.6</value>
-						</quotient>
-						<quotient>
-							<difference>
-								<property>fadec/limit/rated-thrust-n1</property>
-								<value>23.8</value>
-							</difference>
-							<value>87.6</value>
-						</quotient>
+						<pow>
+							<quotient>
+								<difference>
+									<property>fadec/limit/rated-thrust-n1</property>
+									<value>23.8</value>
+								</difference>
+								<value>87.6</value>
+							</quotient>
+							<value>2</value>
+						</pow>
 					</product>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limit/rated-thrust-factor"> <!-- Normalize -->
+		<fcs_function name="fadec/limit/rated-thrust-factor">
 			<function>
 				<ifthen>
 					<eq>
@@ -116,12 +112,12 @@
 					<value>0</value>
 					<ifthen>
 						<nq> <!-- Prevent divide by 0 -->
-							<property>fadec/limit/rated-thrust-lbs</property>
+							<property>fadec/limit/rated-thrust-actual</property>
 							<value>0</value>
 						</nq>
 						<quotient>
-							<property>fadec/limit/fgturbine-thrust-lbs</property>
-							<property>fadec/limit/rated-thrust-lbs</property>
+							<property>fadec/limit/fgturbine-thrust</property>
+							<property>fadec/limit/rated-thrust-actual</property>
 						</quotient>
 						<value>1</value>
 					</ifthen>
@@ -137,19 +133,102 @@
 		Well the advantage is the plane is actually targetting EPR, so its more realistic to do this way even if its more steps
 		I think that's better than just pretending to use EPR, and actually using N1 - if you look close enough, you can tell!
 		-->
+		<fcs_function name="fadec/limit/go-around-table">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
+					<tableData>
+						      -60   -30     0      30     60
+						    0  90.3   95.9  101.0  106.0  100.8
+						10000  96.4  100.2  105.6  107.1  102.6
+						45000  96.4   96.7  102.1  107.4  105.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/go-around-derate"> <!-- Inverse N1 thrust calculation, gives N1 per wanted thrust -->
+			<function>
+				<sum>
+					<product>
+						<sqrt>
+							<quotient>
+								<difference>
+									<product>
+										<!-- Calculate uncorrected thrust -->
+										<sum>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+											<product>
+												<product>
+													<difference>
+														<property>fadec/limit/rated-thrust</property>
+														<product>
+															<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+															<property>fadec/limit/rated-thrust</property>
+														</product>
+													</difference>
+													<property>fadec/limit/milthrust-unmodified</property>
+												</product>
+												<pow>
+													<quotient>
+														<difference>
+															<property>fadec/limit/go-around-table</property>
+															<value>23.8</value>
+														</difference>
+														<value>87.6</value>
+													</quotient>
+													<value>2</value>
+												</pow>
+											</product>
+										</sum>
+										<!-- End calculate uncorrected thrust -->
+										<quotient>
+											<property>fadec/limit/derated-thrust</property>
+											<property>fadec/limit/rated-thrust</property>
+										</quotient>
+									</product>
+									<product>
+										<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+										<property>fadec/limit/rated-thrust</property>
+									</product>
+								</difference>
+								<max> <!-- Prevent divide by 0 -->
+									<product>
+										<difference>
+											<property>fadec/limit/rated-thrust</property>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+										</difference>
+										<property>fadec/limit/milthrust-unmodified</property>
+									</product>
+									<value>0.00001</value>
+								</max>
+							</quotient>
+						</sqrt>
+						<value>87.6</value>
+					</product>
+					<value>23.8</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/go-around-input">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/position/altitude-ft</independentVar>
-						<independentVar lookup="column">propulsion/tat-c</independentVar>
-						<tableData>
-							      -60   -30     0      30     60
-							    0  90.3   95.9  101.0  106.0  100.8
-							10000  96.4  100.2  105.6  107.1  102.6
-							45000  96.4   96.7  102.1  107.4  105.1
-						</tableData>
-					</table>
+					<ifthen>
+						<eq>
+							<property>fadec/limit/pw-derate</property>
+							<value>1</value>
+						</eq>
+						<property>fadec/limit/go-around-derate</property>
+						<property>fadec/limit/go-around-table</property>
+					</ifthen>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -191,20 +270,103 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fadec/limit/takeoff-table">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
+					<tableData>
+						      -60   -30     0      30     60
+						    0  90.3   95.9  101.0  106.0  100.8
+						10000  96.4  100.2  105.6  107.1  102.6
+						45000  96.4   96.7  102.1  107.4  105.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/takeoff-derate"> <!-- Inverse N1 thrust calculation, gives N1 per wanted thrust -->
+			<function>
+				<sum>
+					<product>
+						<sqrt>
+							<quotient>
+								<difference>
+									<product>
+										<!-- Calculate uncorrected thrust -->
+										<sum>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+											<product>
+												<product>
+													<difference>
+														<property>fadec/limit/rated-thrust</property>
+														<product>
+															<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+															<property>fadec/limit/rated-thrust</property>
+														</product>
+													</difference>
+													<property>fadec/limit/milthrust-unmodified</property>
+												</product>
+												<pow>
+													<quotient>
+														<difference>
+															<property>fadec/limit/takeoff-table</property>
+															<value>23.8</value>
+														</difference>
+														<value>87.6</value>
+													</quotient>
+													<value>2</value>
+												</pow>
+											</product>
+										</sum>
+										<!-- End calculate uncorrected thrust -->
+										<quotient>
+											<property>fadec/limit/derated-thrust</property>
+											<property>fadec/limit/rated-thrust</property>
+										</quotient>
+									</product>
+									<product>
+										<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+										<property>fadec/limit/rated-thrust</property>
+									</product>
+								</difference>
+								<max> <!-- Prevent divide by 0 -->
+									<product>
+										<difference>
+											<property>fadec/limit/rated-thrust</property>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+										</difference>
+										<property>fadec/limit/milthrust-unmodified</property>
+									</product>
+									<value>0.00001</value>
+								</max>
+							</quotient>
+						</sqrt>
+						<value>87.6</value>
+					</product>
+					<value>23.8</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/takeoff-input">
 			<function>
 				<pow>
 					<sum>
-						<table>
-							<independentVar lookup="row">/position/altitude-ft</independentVar>
-							<independentVar lookup="column">propulsion/tat-c</independentVar>
-							<tableData>
-								      -60   -30     0      30     60
-								    0  90.3   95.9  101.0  106.0  100.8
-								10000  96.4  100.2  105.6  107.1  102.6
-								45000  96.4   96.7  102.1  107.4  105.1
-							</tableData>
-						</table>
+						<ifthen>
+							<eq>
+								<property>fadec/limit/pw-derate</property>
+								<value>1</value>
+							</eq>
+							<property>fadec/limit/takeoff-derate</property>
+							<property>fadec/limit/takeoff-table</property>
+						</ifthen>
 						<table>
 							<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
 							<tableData>
@@ -224,22 +386,105 @@
 			<input>propulsion/tat-c</input>
 		</summer>
 		
+		<fcs_function name="fadec/limit/takeoff-flex-table">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
+					<tableData>
+						      -60   -30     0      30     60
+						    0  90.3   95.9  101.0  106.0  100.8
+						10000  96.4  100.2  105.6  107.1  102.6
+						45000  96.4   96.7  102.1  107.4  105.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/takeoff-flex-derate"> <!-- Inverse N1 thrust calculation, gives N1 per wanted thrust -->
+			<function>
+				<sum>
+					<product>
+						<sqrt>
+							<quotient>
+								<difference>
+									<product>
+										<!-- Calculate uncorrected thrust -->
+										<sum>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+											<product>
+												<product>
+													<difference>
+														<property>fadec/limit/rated-thrust</property>
+														<product>
+															<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+															<property>fadec/limit/rated-thrust</property>
+														</product>
+													</difference>
+													<property>fadec/limit/milthrust-unmodified</property>
+												</product>
+												<pow>
+													<quotient>
+														<difference>
+															<property>fadec/limit/takeoff-flex-table</property>
+															<value>23.8</value>
+														</difference>
+														<value>87.6</value>
+													</quotient>
+													<value>2</value>
+												</pow>
+											</product>
+										</sum>
+										<!-- End calculate uncorrected thrust -->
+										<quotient>
+											<property>fadec/limit/derated-thrust</property>
+											<property>fadec/limit/rated-thrust</property>
+										</quotient>
+									</product>
+									<product>
+										<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+										<property>fadec/limit/rated-thrust</property>
+									</product>
+								</difference>
+								<max> <!-- Prevent divide by 0 -->
+									<product>
+										<difference>
+											<property>fadec/limit/rated-thrust</property>
+											<product>
+												<property>propulsion/engine[0]/IdleThrust</property> <!-- It doesn't matter which engine, same for all -->
+												<property>fadec/limit/rated-thrust</property>
+											</product>
+										</difference>
+										<property>fadec/limit/milthrust-unmodified</property>
+									</product>
+									<value>0.00001</value>
+								</max>
+							</quotient>
+						</sqrt>
+						<value>87.6</value>
+					</product>
+					<value>23.8</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="fadec/limit/takeoff-flex-input">
 			<function>
 				<min> <!-- FLEX can not increase thrust past T/O -->
 					<property>fadec/limit/takeoff-input</property>
 					<pow>
 						<sum>
-							<table>
-								<independentVar lookup="row">/position/altitude-ft</independentVar>
-								<independentVar lookup="column">fadec/limit/flex-temp-input</independentVar>
-								<tableData>
-									      -60   -30     0      30     60
-									    0  90.3   95.9  101.0  106.0  100.8
-									10000  96.4  100.2  105.6  107.1  102.6
-									45000  96.4   96.7  102.1  107.4  105.1
-								</tableData>
-							</table>
+							<ifthen>
+								<eq>
+									<property>fadec/limit/pw-derate</property>
+									<value>1</value>
+								</eq>
+								<property>fadec/limit/takeoff-flex-derate</property>
+								<property>fadec/limit/takeoff-flex-table</property>
+							</ifthen>
 							<table>
 								<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
 								<tableData>

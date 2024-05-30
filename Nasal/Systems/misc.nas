@@ -340,6 +340,7 @@ var FADEC = {
 		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
 		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
 		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
+		pwDerate: props.globals.getNode("/fdm/jsbsim/fadec/limit/pw-derate"),
 		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
 	},
 	Switch: {
@@ -353,6 +354,7 @@ var FADEC = {
 		me.Switch.eng3Altn.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
+		me.Limit.pwDerate.setBoolValue(0);
 	},
 	loop: func() {
 		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();

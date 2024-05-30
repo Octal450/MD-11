@@ -869,8 +869,8 @@
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
+					<pw-derate type="bool">0</pw-derate>
 				</limit>
-				<pw-62k type="bool">1</pw-62k>
 				<throttle-compare-max type="double">0</throttle-compare-max>
 			</fadec>
 			<fcc n="0">
