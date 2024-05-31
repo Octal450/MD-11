@@ -4293,8 +4293,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/pack-1</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/pack-1-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -4391,8 +4391,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/pack-2</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/pack-2-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -4489,8 +4489,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/pack-3</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/pack-3-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -4785,8 +4785,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/bleed-1</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/bleed-1-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -4883,8 +4883,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/bleed-2</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/bleed-2-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>
@@ -5045,8 +5045,8 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/bleed-3</property>
-					<value>0</value>
+					<property>controls/pneumatics/lights/bleed-3-off</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>

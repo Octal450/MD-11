@@ -162,6 +162,13 @@
 		
 		<switch name="/systems/pneumatics/esc/isol-1-2">
 			<default value="/controls/pneumatics/switches/isol-1-2"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				<test logic="OR">
+					/controls/electrical/switches/smoke-elec-air eq 1
+					/controls/electrical/switches/smoke-elec-air eq 3
+				</test>
+			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
 				/systems/pneumatics/esc/packs-cmd-off eq 1
@@ -210,6 +217,13 @@
 		
 		<switch name="/systems/pneumatics/esc/isol-1-3">
 			<default value="/controls/pneumatics/switches/isol-1-3"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				<test logic="OR">
+					/controls/electrical/switches/smoke-elec-air eq 1
+					/controls/electrical/switches/smoke-elec-air eq 2
+				</test>
+			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
 				/systems/pneumatics/esc/packs-cmd-off eq 1
@@ -300,6 +314,7 @@
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-1-psi-cmd">
 				/controls/pneumatics/switches/bleed-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/engines/engine[0]/state ge 2
 				/systems/failures/pneumatics/bleed-1 ne 1
 			</test>
@@ -321,6 +336,7 @@
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-2-psi-cmd">
 				/controls/pneumatics/switches/bleed-2 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/engines/engine[1]/state ge 2
 				/systems/failures/pneumatics/bleed-2 ne 1
 			</test>
@@ -342,6 +358,7 @@
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-3-psi-cmd">
 				/controls/pneumatics/switches/bleed-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/engines/engine[2]/state ge 2
 				/systems/failures/pneumatics/bleed-3 ne 1
 			</test>
@@ -504,6 +521,10 @@
 							<value>1</value>
 						</eq>
 						<nq>
+							<property>/controls/electrical/switches/smoke-elec-air</property>
+							<value>1</value>
+						</nq>
+						<nq>
 							<property>/systems/failures/pneumatics/pack-1</property>
 							<value>1</value>
 						</nq>
@@ -527,6 +548,7 @@
 			<test logic="AND" value="1">
 				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/failures/pneumatics/pack-1 ne 1
 			</test>
 		</switch>
@@ -572,6 +594,10 @@
 							<value>1</value>
 						</eq>
 						<nq>
+							<property>/controls/electrical/switches/smoke-elec-air</property>
+							<value>3</value>
+						</nq>
+						<nq>
 							<property>/systems/failures/pneumatics/pack-2</property>
 							<value>1</value>
 						</nq>
@@ -595,6 +621,7 @@
 			<test logic="AND" value="1">
 				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-2 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/failures/pneumatics/pack-2 ne 1
 			</test>
 		</switch>
@@ -640,6 +667,10 @@
 							<value>1</value>
 						</eq>
 						<nq>
+							<property>/controls/electrical/switches/smoke-elec-air</property>
+							<value>2</value>
+						</nq>
+						<nq>
 							<property>/systems/failures/pneumatics/pack-3</property>
 							<value>1</value>
 						</nq>
@@ -663,6 +694,7 @@
 			<test logic="AND" value="1">
 				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
 				/controls/pneumatics/switches/pack-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/failures/pneumatics/pack-3 ne 1
 			</test>
 		</switch>
@@ -829,22 +861,52 @@
 		
 		<switch name="/controls/pneumatics/lights/bleed-1-press">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
+				/controls/pneumatics/switches/bleed-1 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 1
 				/systems/pneumatics/bleed-1-psi lt 10.5
 			</test>
 		</switch>
 		
 		<switch name="/controls/pneumatics/lights/bleed-2-press">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
+				/controls/pneumatics/switches/bleed-2 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 3
 				/systems/pneumatics/bleed-2-psi lt 10.5
 			</test>
 		</switch>
 		
 		<switch name="/controls/pneumatics/lights/bleed-3-press">
 			<default value="0"/>
-			<test value="1">
+			<test logic="AND" value="1">
+				/controls/pneumatics/switches/bleed-3 eq 1
+				/controls/electrical/switches/smoke-elec-air ne 2
 				/systems/pneumatics/bleed-3-psi lt 10.5
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/bleed-1-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/bleed-1 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/bleed-2-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/bleed-2 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 3
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/bleed-3-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/bleed-3 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 2
 			</test>
 		</switch>
 		
@@ -899,6 +961,30 @@
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-3-flow lt 10
 				/controls/pneumatics/switches/pack-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/pack-1-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/pack-1 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 1
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/pack-2-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/pack-2 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 3
+			</test>
+		</switch>
+		
+		<switch name="/controls/pneumatics/lights/pack-3-off">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/controls/pneumatics/switches/pack-3 eq 0
+				/controls/electrical/switches/smoke-elec-air eq 2
 			</test>
 		</switch>
 	
