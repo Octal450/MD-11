@@ -150,6 +150,7 @@ var Value = {
 		source: [0, 1],
 	},
 	Misc: {
+		annunTestWow: 0,
 		anyEngineOn: 0,
 		blinkFast: 0,
 		blinkMed: 0,
@@ -168,7 +169,9 @@ var Value = {
 	Nav: {
 		gsInRange: 0,
 		gsNeedleDeflectionNorm: 0,
+		hasGs: 0,
 		headingNeedleDeflectionNorm: 0,
+		navLoc: 0,
 		selectedMhz: 0,
 		signalQuality: 0,
 	},
@@ -236,15 +239,15 @@ var canvasBase = {
 	},
 	getKeys: func() {
 		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid",
-		"ALT_agl", "ALT_bowtie", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T",
-		"ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R",
-		"ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text",
-		"ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug",
-		"ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "FD_group", "FD_pitch", "FD_roll", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude",
-		"FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust",
-		"FMA_Thrust_Arm", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_DME", "ILS_Info", "Inner_Marker", "LOC_no",
-		"LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS_fail", "TCAS_off", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn",
-		"VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text",
+		"ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L",
+		"ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale",
+		"ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug",
+		"ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_pitch", "FD_roll",
+		"Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land",
+		"FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru",
+		"HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_DME", "ILS_Info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_group",
+		"Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS_fail", "TCAS_off", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -297,7 +300,27 @@ var canvasBase = {
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		Value.Misc.gearOut = pts.Fdm.JSBsim.Gear.gearAllNorm.getValue() > 0;
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) { 
+			me["ALT_error"].show();
+			me["ASI_error"].show();
+			me["Comparators"].show();
+			me["FD_error"].show();
+			me["Flaps_error"].show();
+			me["HDG_error2"].show();
+			me["GS_error"].show();
+			me["LOC_error"].show();
+		} else {
+			me["ALT_error"].hide();
+			me["ASI_error"].hide();
+			me["Comparators"].hide();
+			me["FD_error"].hide();
+			me["Flaps_error"].hide();
+			me["HDG_error2"].hide();
+			me["GS_error"].hide();
+			me["LOC_error"].hide();
+		}
 		
 		# ASI
 		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 450 situations
@@ -950,7 +973,7 @@ var canvasBase = {
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
 		} else {
-			me["AI_PLI"].setColor(0.3412, 0.7882, 0.9922);
+			me["AI_PLI"].setColor(0.3398, 0.7852, 0.9883);
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
 		}
@@ -1244,12 +1267,21 @@ var canvasBase = {
 		# ILS LOC
 		Value.Misc.risingRunwayTBar = pts.Systems.Acconfig.Options.risingRunwayTBar.getBoolValue();
 		Value.Nav.headingNeedleDeflectionNorm = pts.Instrumentation.Nav.headingNeedleDeflectionNorm[2].getValue();
+		Value.Nav.navLoc = pts.Instrumentation.Nav.navLoc[2].getBoolValue();
 		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
+		if (Value.Misc.annunTestWow) {
+			me["LOC_no"].setColor(0.9647, 0.8196, 0.0784);
+			me["LOC_no"].show();
+		} else if (Value.Nav.selectedMhz != 0 and (!Value.Nav.navLoc or Value.Nav.signalQuality < 0.99)) {
+			me["LOC_no"].setColor(0.3398, 0.7852, 0.9883);
+			me["LOC_no"].show();
+		} else {
+			me["LOC_no"].hide();
+		}
+		
 		if (Value.Nav.selectedMhz != 0) {
-			if (pts.Instrumentation.Nav.navLoc[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["LOC_no"].hide();
-				
+			if (Value.Nav.navLoc and Value.Nav.signalQuality >= 0.99) {
 				if (Value.Ra.agl <= 300 and !Value.Misc.wow and (Value.Afs.roll == "LOC" or Value.Afs.roll == "ALIGN") and abs(Value.Nav.headingNeedleDeflectionNorm) > 0.105) { # 1/4 Dot
 					me["LOC_pointer"].setColor(0.9647, 0.8196, 0.0784);
 					
@@ -1292,7 +1324,6 @@ var canvasBase = {
 			} else {
 				me["AI_rising_runway"].hide();
 				me["AI_rising_runway_E"].hide();
-				me["LOC_no"].show();
 				me["LOC_pointer"].hide();
 			}
 			
@@ -1300,7 +1331,6 @@ var canvasBase = {
 		} else {
 			me["AI_rising_runway"].hide();
 			me["AI_rising_runway_E"].hide();
-			me["LOC_no"].hide();
 			me["LOC_pointer"].hide();
 			me["LOC_scale"].hide();
 		}
@@ -1315,10 +1345,19 @@ var canvasBase = {
 		# ILS G/S
 		Value.Nav.gsNeedleDeflectionNorm = pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue();
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
+		Value.Nav.hasGs = pts.Instrumentation.Nav.hasGs[2].getBoolValue();
+		if (Value.Misc.annunTestWow) {
+			me["GS_no"].setColor(0.9647, 0.8196, 0.0784);
+			me["GS_no"].show();
+		} else if (Value.Nav.selectedMhz != 0 and (!Value.Nav.gsInRange or !Value.Nav.hasGs or Value.Nav.signalQuality < 0.99)) {
+			me["GS_no"].setColor(0.3398, 0.7852, 0.9883);
+			me["GS_no"].show();
+		} else {
+			me["GS_no"].hide();
+		}
+		
 		if (Value.Nav.selectedMhz != 0) {
-			if (Value.Nav.gsInRange and pts.Instrumentation.Nav.hasGs[2].getBoolValue() and Value.Nav.signalQuality > 0.99) {
-				me["GS_no"].hide();
-				
+			if (Value.Nav.gsInRange and Value.Nav.hasGs and Value.Nav.signalQuality >= 0.99) {
 				if (Value.Ra.agl >= 100 and Value.Ra.agl <= 500 and Value.Afs.pitch == "G/S" and abs(Value.Nav.gsNeedleDeflectionNorm) > 0.41) { # One Dot
 					me["GS_pointer"].setColor(0.9647, 0.8196, 0.0784);
 					
@@ -1334,19 +1373,17 @@ var canvasBase = {
 					me["GS_pointer"].show();
 				}
 			} else {
-				me["GS_no"].show();
 				me["GS_pointer"].hide();
 			}
 			me["GS_scale"].show();
 		} else {
-			me["GS_no"].hide();
 			me["GS_pointer"].hide();
 			me["GS_scale"].hide();
 		}
 		
 		# ILS DME
 		if (Value.Nav.selectedMhz != 0) {
-			if (Value.Nav.signalQuality > 0.99) {
+			if (Value.Nav.signalQuality >= 0.99) {
 				if (pts.Instrumentation.Dme.inRange[2].getBoolValue()) {
 					me["ILS_DME"].setText(sprintf("%3.1f", math.round(pts.Instrumentation.Dme.indicatedDistanceNm[2].getValue(), 0.1)));
 					me["ILS_DME"].show();
@@ -1698,7 +1735,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
-			me["FMA_AP"].setColor(0.3215, 0.8078, 1);
+			me["FMA_AP"].setColor(0.3398, 0.7852, 0.9883);
 			if (Value.Afs.land == "DUAL") {
 				me["FMA_AP"].setText("AP");
 			} else if (Value.Afs.ap1) {
@@ -1826,7 +1863,7 @@ var canvasBase = {
 		}
 		
 		# Warnings
-		if (Value.Iru.mainAvail[0] or Value.Iru.mainAvail[1] or Value.Iru.mainAvail[2]) {
+		if (!Value.Misc.annunTestWow and (Value.Iru.mainAvail[0] or Value.Iru.mainAvail[1] or Value.Iru.mainAvail[2])) {
 			me["TCAS_fail"].hide();
 			if (instruments.XPDR.tcasMode.getValue() >= 2) {
 				me["TCAS_off"].hide();
@@ -1871,6 +1908,8 @@ var canvasPfd1 = {
 		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
 		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
 		if (find("CLAMP", Value.Afs.pitch) != -1) {
@@ -1954,19 +1993,34 @@ var canvasPfd1 = {
 		}
 		
 		if (Value.Iru.aligned[Value.Iru.source[0]]) {
-			me["AI_error"].hide();
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
+			
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
 			me["AI_scale"].show();
 			me["FD_group"].show();
-			me["HDG_error"].hide();
 			me["HDG_group"].show();
 			me["HDG_group2"].show();
-			me["VSI_error"].hide();
 			me["VSI_group"].show();
 		} else if (Value.Iru.aligning[Value.Iru.source[0]]) {
-			me["AI_error"].hide();
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
 			
 			if (systems.IRS.Iru.attAvail[Value.Iru.source[0]].getBoolValue()) {
 				me["AI_group"].show();
@@ -1983,9 +2037,6 @@ var canvasPfd1 = {
 				me["AI_group3"].hide();
 				me["AI_scale"].hide();
 			}
-			
-			me["HDG_error"].hide();
-			me["VSI_error"].hide();
 			
 			if (Value.Iru.mainAvail[Value.Iru.source[0]]) {
 				me["FD_group"].show();
@@ -2047,6 +2098,8 @@ var canvasPfd2 = {
 		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
 		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
 		if (find("CLAMP", Value.Afs.pitch) != -1) {
