@@ -235,8 +235,8 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_scale", "AI_slipskid", "ALT_agl",
-		"ALT_bowtie", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T",
+		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid",
+		"ALT_agl", "ALT_bowtie", "ALT_five", "ALT_five_T", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T",
 		"ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R",
 		"ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text",
 		"ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug",
@@ -1257,8 +1257,14 @@ var canvasBase = {
 						if (Value.Misc.risingRunwayTBar) {
 							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
 							me["AI_rising_runway"].show();
+							if (Value.Ra.agl <= 200) {
+								me["AI_rising_runway_E"].show();
+							} else {
+								me["AI_rising_runway_E"].hide();
+							}
 						} else {
 							me["AI_rising_runway"].hide();
+							me["AI_rising_runway_E"].hide();
 						}
 						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 						me["LOC_pointer"].show();
@@ -1270,8 +1276,14 @@ var canvasBase = {
 					if (Value.Misc.risingRunwayTBar) {
 						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
 						me["AI_rising_runway"].show();
+						if (Value.Ra.agl <= 200) {
+							me["AI_rising_runway_E"].show();
+						} else {
+							me["AI_rising_runway_E"].hide();
+						}
 					} else {
 						me["AI_rising_runway"].hide();
+						me["AI_rising_runway_E"].hide();
 					}
 					me["LOC_pointer"].setColor(0.9607, 0, 0.7764);
 					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
@@ -1279,6 +1291,7 @@ var canvasBase = {
 				}
 			} else {
 				me["AI_rising_runway"].hide();
+				me["AI_rising_runway_E"].hide();
 				me["LOC_no"].show();
 				me["LOC_pointer"].hide();
 			}
@@ -1286,6 +1299,7 @@ var canvasBase = {
 			me["LOC_scale"].show();
 		} else {
 			me["AI_rising_runway"].hide();
+			me["AI_rising_runway_E"].hide();
 			me["LOC_no"].hide();
 			me["LOC_pointer"].hide();
 			me["LOC_scale"].hide();
