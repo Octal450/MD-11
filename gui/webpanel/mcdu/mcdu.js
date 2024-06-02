@@ -32,7 +32,7 @@ const MCDU = (() => {
 
     function mcduRefreshFail()
     {
-        let err_msg = "Error loading MCDU image, try refresh page";
+        let err_msg = "Error loading MCDU image, try to refresh the page";
 
         console.error(err_msg);
         alert(err_msg);
