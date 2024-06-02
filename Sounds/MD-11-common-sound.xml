@@ -19,7 +19,7 @@
 				</and>
 			</condition>
 			<volume>
-				<property>/sim/current-view/internal</property>
+				<property>/sim/sound/internal-custom</property>
 			</volume>
 		</sb>
 		
@@ -37,7 +37,7 @@
 				</and>
 			</condition>
 			<volume>
-				<property>/sim/current-view/internal</property>
+				<property>/sim/sound/internal-custom</property>
 			</volume>
 		</ns>
 		
@@ -157,7 +157,7 @@
 						<property>engines/engine[3]/n2-actual</property>
 						<value>1</value>
 					</greater-than>
-					<property>sim/current-view/internal</property>
+					<property>sim/sound/internal-custom</property>
 				</and>
 			</condition>
 			<volume>
@@ -182,7 +182,7 @@
 						<value>1</value>
 					</greater-than>
 					<not>
-						<property>sim/current-view/internal</property>
+						<property>sim/sound/internal-custom</property>
 					</not>
 				</and>
 			</condition>
@@ -201,7 +201,7 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Devyn-Common/MD11-wind.wav</path>
 			<condition>
-				<property>/sim/current-view/internal</property>
+				<property>/sim/sound/internal-custom</property>
 			</condition>
 			<volume>
 				<property>/sim/sound/wind</property>
@@ -217,7 +217,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[0]/position-norm</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>2</factor>
 				<offset>0.1</offset>
 			</volume>
@@ -229,7 +229,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[1]/position-norm</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>2</factor>
 				<offset>0.1</offset>
 			</volume>
@@ -241,7 +241,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[2]/position-norm</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>2</factor>
 				<offset>0.1</offset>
 			</volume>
@@ -253,7 +253,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/gear.wav</path>
 			<property>gear/gear[3]/position-norm</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>2</factor>
 				<offset>0.1</offset>
 			</volume>
@@ -357,7 +357,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[0]/wow</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
@@ -368,7 +368,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[1]/wow</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
@@ -379,7 +379,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/touch.wav</path>
 			<property>gear/gear[2]/wow</property>
 			<volume>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<factor>50</factor>
 			</volume>
 		</touch>
@@ -953,7 +953,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/ambience_outside.wav</path>
 			<condition>
 				<not>
-					<property>sim/current-view/internal</property>
+					<property>sim/sound/internal-custom</property>
 				</not>
 				<property>gear/gear[0]/wow</property>
 				<property>gear/gear[1]/wow</property>
@@ -971,7 +971,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/rain.wav</path>
 			<condition>
 				<not>
-					<property>sim/current-view/internal</property>
+					<property>sim/sound/internal-custom</property>
 				</not>
 				<greater-than>
 					<property>/environment/rain-norm</property>
@@ -989,7 +989,7 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/rain.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<greater-than>
 					<property>/environment/rain-norm</property>
 					<value>0</value>
@@ -1006,7 +1006,7 @@
 			<mode>looped</mode>
 			<path>Aircraft/MD-11/Sounds/Effects/rain-windshield.wav</path>
 			<condition>
-				<property>sim/current-view/internal</property>
+				<property>sim/sound/internal-custom</property>
 				<greater-than>
 					<property>/environment/rain-norm</property>
 					<value>0</value>
@@ -1117,7 +1117,7 @@
 			<condition>
 				<and>
 					<not>
-						<property>/sim/current-view/internal</property>
+						<property>/sim/sound/internal-custom</property>
 					</not>
 					<property>/sim/model/autopush/enabled</property>
 				</and>
@@ -1140,7 +1140,7 @@
 			<path>Aircraft/MD-11/Sounds/Effects/pushback.wav</path>
 			<condition>
 				<and>
-					<property>/sim/current-view/internal</property>	
+					<property>/sim/sound/internal-custom</property>	
 					<property>/sim/model/autopush/enabled</property>
 	   		 	</and>
 			</condition>

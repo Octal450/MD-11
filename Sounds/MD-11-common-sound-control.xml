@@ -95,6 +95,34 @@
 							<value>1</value>
 						</equals>
 						<property>/sim/sound/wingview-fwd-old</property>
+					</or>
+				</and>
+				<and>
+					<property>/sim/use-new-views</property>
+					<or>
+						<equals>
+							<property>/sim/current-view/internal</property>
+							<value>1</value>
+						</equals>
+						<property>/sim/sound/wingview-fwd</property>
+					</or>
+				</and>
+			</or>
+		</input>
+		<output>/sim/sound/internal</output>
+	</logic>
+
+	<logic>
+		<input>
+			<or>
+				<and>
+					<not><property>/sim/use-new-views</property></not>
+					<or>
+						<equals>
+							<property>/sim/current-view/internal</property>
+							<value>1</value>
+						</equals>
+						<property>/sim/sound/wingview-fwd-old</property>
 						<property>/sim/sound/wingview-aft-old</property>
 					</or>
 				</and>

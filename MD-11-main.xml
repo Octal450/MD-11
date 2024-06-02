@@ -425,7 +425,7 @@
 		<view n="106">
 			<name>Left Front View</name>
 			<type>lookfrom</type>
-			<internal type="bool" archive="y">true</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">-3.53</x-offset-m>
@@ -440,7 +440,7 @@
 		<view n="107">
 			<name>Right Front View</name>
 			<type>lookfrom</type>
-			<internal type="bool" archive="y">true</internal>
+			<internal type="bool" archive="y">false</internal>
 			<config>
 				<from-model type="bool">true</from-model>
 				<x-offset-m archive="y">3.53</x-offset-m>
