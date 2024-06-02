@@ -88,7 +88,7 @@
 		<input>
 			<or>
 				<and>
-					<not><property>/sim/use-old-views</property></not>
+					<not><property>/sim/use-new-views</property></not>
 					<or>
 						<equals>
 							<property>/sim/current-view/internal</property>
@@ -99,7 +99,7 @@
 					</or>
 				</and>
 				<and>
-					<property>/sim/use-old-views</property>
+					<property>/sim/use-new-views</property>
 					<or>
 						<equals>
 							<property>/sim/current-view/internal</property>
