@@ -10,9 +10,12 @@ var canChangeZOffset = 0;
 var decStep = -5;
 var incStep = 5;
 var shakeFlag = 0;
+var useOldViews = (fgfsVersion[0] == 2020 and fgfsVersion[1] >= 4) or fgfsVersion[0] > 2020;
 var viewNumberRaw = 0;
 var views = [0, 9, 10, 11, 12, 13, 14];
 var viewsOld = [0, 8, 9, 10, 11, 12, 13];
+
+props.globals.initNode("/sim/use-old-views", useOldViews, "BOOL");
 
 var resetView = func() {
 	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
@@ -39,7 +42,7 @@ var resetView = func() {
 }
 
 var setView = func(n) {
-	if ((fgfsVersion[0] == 2020 and fgfsVersion[1] >= 4) or fgfsVersion[0] > 2020) {
+	if (useOldViews) {
 		pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
 	} else {
 		pts.Sim.CurrentView.viewNumber.setValue(viewsOld[n - 1]);
