@@ -1270,11 +1270,8 @@ var canvasBase = {
 		Value.Nav.navLoc = pts.Instrumentation.Nav.navLoc[2].getBoolValue();
 		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
-		if (Value.Misc.annunTestWow) {
-			me["LOC_no"].setColor(0.9647, 0.8196, 0.0784);
-			me["LOC_no"].show();
-		} else if (Value.Nav.selectedMhz != 0 and (!Value.Nav.navLoc or Value.Nav.signalQuality < 0.99)) {
-			me["LOC_no"].setColor(0.3398, 0.7852, 0.9883);
+		if (Value.Nav.selectedMhz != 0 and (!Value.Nav.navLoc or Value.Nav.signalQuality < 0.99)) {
+			#me["LOC_no"].setColor(0.3398, 0.7852, 0.9883);
 			me["LOC_no"].show();
 		} else {
 			me["LOC_no"].hide();
@@ -1346,11 +1343,8 @@ var canvasBase = {
 		Value.Nav.gsNeedleDeflectionNorm = pts.Instrumentation.Nav.gsNeedleDeflectionNorm[2].getValue();
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
 		Value.Nav.hasGs = pts.Instrumentation.Nav.hasGs[2].getBoolValue();
-		if (Value.Misc.annunTestWow) {
-			me["GS_no"].setColor(0.9647, 0.8196, 0.0784);
-			me["GS_no"].show();
-		} else if (Value.Nav.selectedMhz != 0 and (!Value.Nav.gsInRange or !Value.Nav.hasGs or Value.Nav.signalQuality < 0.99)) {
-			me["GS_no"].setColor(0.3398, 0.7852, 0.9883);
+		if (Value.Nav.selectedMhz != 0 and (!Value.Nav.gsInRange or !Value.Nav.hasGs or Value.Nav.signalQuality < 0.99)) {
+			#me["GS_no"].setColor(0.3398, 0.7852, 0.9883);
 			me["GS_no"].show();
 		} else {
 			me["GS_no"].hide();

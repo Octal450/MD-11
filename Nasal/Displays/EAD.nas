@@ -24,6 +24,10 @@ var Value = {
 	Ignition: {
 		starter: [0, 0, 0],
 	},
+	Misc: {
+		annunTestWow: 0,
+		wow: 0,
+	},
 	needleRest: -44 * D2R,
 	tat: 0,
 };
@@ -102,192 +106,192 @@ var canvasBase = {
 		# EGT
 		if (Value.Fadec.engPowered[0]) {
 			me["EGT1"].show();
-			me["EGT1-needle"].show();
-			me["EGT1-redline"].show();
-			me["EGT1-yline"].show();
+			me["EGT1_needle"].show();
+			me["EGT1_redline"].show();
+			me["EGT1_yline"].show();
 			
 			me["EGT1"].setText(sprintf("%d", pts.Engines.Engine.egtActual[0].getValue()));
 			
-			me["EGT1-needle"].setRotation(pts.Instrumentation.Ead.egt[0].getValue() * D2R);
+			me["EGT1_needle"].setRotation(pts.Instrumentation.Ead.egt[0].getValue() * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
-				me["EGT1-ignition"].show();
+				me["EGT1_ignition"].show();
 			} else {
-				me["EGT1-ignition"].hide();
+				me["EGT1_ignition"].hide();
 			}
 			
 			if (Value.Ignition.starter[0]) {
-				me["EGT1-redstart"].show();
+				me["EGT1_redstart"].show();
 			} else {
-				me["EGT1-redstart"].hide();
+				me["EGT1_redstart"].hide();
 			}
 		} else {
 			me["EGT1"].hide();
-			me["EGT1-ignition"].hide();
-			me["EGT1-needle"].hide();
-			me["EGT1-redline"].hide();
-			me["EGT1-redstart"].hide();
-			me["EGT1-yline"].hide();
+			me["EGT1_ignition"].hide();
+			me["EGT1_needle"].hide();
+			me["EGT1_redline"].hide();
+			me["EGT1_redstart"].hide();
+			me["EGT1_yline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[1]) {
 			me["EGT2"].show();
-			me["EGT2-needle"].show();
-			me["EGT2-redline"].show();
-			me["EGT2-yline"].show();
+			me["EGT2_needle"].show();
+			me["EGT2_redline"].show();
+			me["EGT2_yline"].show();
 			
 			me["EGT2"].setText(sprintf("%d", pts.Engines.Engine.egtActual[1].getValue()));
 			
-			me["EGT2-needle"].setRotation(pts.Instrumentation.Ead.egt[1].getValue() * D2R);
+			me["EGT2_needle"].setRotation(pts.Instrumentation.Ead.egt[1].getValue() * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
-				me["EGT2-ignition"].show();
+				me["EGT2_ignition"].show();
 			} else {
-				me["EGT2-ignition"].hide();
+				me["EGT2_ignition"].hide();
 			}
 			
 			if (Value.Ignition.starter[1]) {
-				me["EGT2-redstart"].show();
+				me["EGT2_redstart"].show();
 			} else {
-				me["EGT2-redstart"].hide();
+				me["EGT2_redstart"].hide();
 			}
 		} else {
 			me["EGT2"].hide();
-			me["EGT2-ignition"].hide();
-			me["EGT2-needle"].hide();
-			me["EGT2-redline"].hide();
-			me["EGT2-redstart"].hide();
-			me["EGT2-yline"].hide();
+			me["EGT2_ignition"].hide();
+			me["EGT2_needle"].hide();
+			me["EGT2_redline"].hide();
+			me["EGT2_redstart"].hide();
+			me["EGT2_yline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[2]) {
 			me["EGT3"].show();
-			me["EGT3-needle"].show();
-			me["EGT3-redline"].show();
-			me["EGT3-yline"].show();
+			me["EGT3_needle"].show();
+			me["EGT3_redline"].show();
+			me["EGT3_yline"].show();
 			
 			me["EGT3"].setText(sprintf("%d", pts.Engines.Engine.egtActual[2].getValue()));
 			
-			me["EGT3-needle"].setRotation(pts.Instrumentation.Ead.egt[2].getValue() * D2R);
+			me["EGT3_needle"].setRotation(pts.Instrumentation.Ead.egt[2].getValue() * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
-				me["EGT3-ignition"].show();
+				me["EGT3_ignition"].show();
 			} else {
-				me["EGT3-ignition"].hide();
+				me["EGT3_ignition"].hide();
 			}
 			
 			if (Value.Ignition.starter[2]) {
-				me["EGT3-redstart"].show();
+				me["EGT3_redstart"].show();
 			} else {
-				me["EGT3-redstart"].hide();
+				me["EGT3_redstart"].hide();
 			}
 		} else {
 			me["EGT3"].hide();
-			me["EGT3-ignition"].hide();
-			me["EGT3-needle"].hide();
-			me["EGT3-redline"].hide();
-			me["EGT3-redstart"].hide();
-			me["EGT3-yline"].hide();
+			me["EGT3_ignition"].hide();
+			me["EGT3_needle"].hide();
+			me["EGT3_redline"].hide();
+			me["EGT3_redstart"].hide();
+			me["EGT3_yline"].hide();
 		}
 		
 		# N2
 		if (Value.Fadec.engPowered[0]) {
 			me["N21"].show();
-			me["N21-decpnt"].show();
-			me["N21-decimal"].show();
-			me["N21-needle"].show();
-			me["N21-redline"].show();
+			me["N21_decpnt"].show();
+			me["N21_decimal"].show();
+			me["N21_needle"].show();
+			me["N21_redline"].show();
 			
 			Value.Fadec.n2[0] = pts.Engines.Engine.n2Actual[0].getValue();
 			
 			if (Value.Fadec.n2[0] < 1.8) {
 				Value.Fadec.n2[0] = 0;
-				me["N21-needle"].setRotation(Value.needleRest);
+				me["N21_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N21-needle"].setRotation(pts.Instrumentation.Ead.n2[0].getValue() * D2R);
+				me["N21_needle"].setRotation(pts.Instrumentation.Ead.n2[0].getValue() * D2R);
 			}
 			
 			me["N21"].setText(sprintf("%d", Value.Fadec.n2[0] + 0.05));
-			me["N21-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[0] + 0.05, 1))));
+			me["N21_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[0] + 0.05, 1))));
 			
 			if (Value.Ignition.starter[0] and systems.IGNITION.cutoff1.getBoolValue()) {
-				me["N21-cline"].show();
+				me["N21_cline"].show();
 			} else {
-				me["N21-cline"].hide();
+				me["N21_cline"].hide();
 			}
 		} else {
 			me["N21"].hide();
-			me["N21-cline"].hide();
-			me["N21-decpnt"].hide();
-			me["N21-decimal"].hide();
-			me["N21-needle"].hide();
-			me["N21-redline"].hide();
+			me["N21_cline"].hide();
+			me["N21_decpnt"].hide();
+			me["N21_decimal"].hide();
+			me["N21_needle"].hide();
+			me["N21_redline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[1]) {
 			me["N22"].show();
-			me["N22-decpnt"].show();
-			me["N22-decimal"].show();
-			me["N22-needle"].show();
-			me["N22-redline"].show();
+			me["N22_decpnt"].show();
+			me["N22_decimal"].show();
+			me["N22_needle"].show();
+			me["N22_redline"].show();
 			
 			Value.Fadec.n2[1] = pts.Engines.Engine.n2Actual[1].getValue();
 			
 			if (Value.Fadec.n2[1] < 1.8) {
 				Value.Fadec.n2[1] = 0;
-				me["N22-needle"].setRotation(Value.needleRest);
+				me["N22_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N22-needle"].setRotation(pts.Instrumentation.Ead.n2[1].getValue() * D2R);
+				me["N22_needle"].setRotation(pts.Instrumentation.Ead.n2[1].getValue() * D2R);
 			}
 			
 			me["N22"].setText(sprintf("%d", Value.Fadec.n2[1] + 0.05));
-			me["N22-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[1] + 0.05, 1))));
+			me["N22_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[1] + 0.05, 1))));
 			
 			if (Value.Ignition.starter[1] and systems.IGNITION.cutoff2.getBoolValue()) {
-				me["N22-cline"].show();
+				me["N22_cline"].show();
 			} else {
-				me["N22-cline"].hide();
+				me["N22_cline"].hide();
 			}
 		} else {
 			me["N22"].hide();
-			me["N22-cline"].hide();
-			me["N22-decpnt"].hide();
-			me["N22-decimal"].hide();
-			me["N22-needle"].hide();
-			me["N22-redline"].hide();
+			me["N22_cline"].hide();
+			me["N22_decpnt"].hide();
+			me["N22_decimal"].hide();
+			me["N22_needle"].hide();
+			me["N22_redline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[2]) {
 			me["N23"].show();
-			me["N23-decpnt"].show();
-			me["N23-decimal"].show();
-			me["N23-needle"].show();
-			me["N23-redline"].show();
+			me["N23_decpnt"].show();
+			me["N23_decimal"].show();
+			me["N23_needle"].show();
+			me["N23_redline"].show();
 			
 			Value.Fadec.n2[2] = pts.Engines.Engine.n2Actual[2].getValue();
 			
 			if (Value.Fadec.n2[2] < 1.8) {
 				Value.Fadec.n2[2] = 0;
-				me["N23-needle"].setRotation(Value.needleRest);
+				me["N23_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N23-needle"].setRotation(pts.Instrumentation.Ead.n2[2].getValue() * D2R);
+				me["N23_needle"].setRotation(pts.Instrumentation.Ead.n2[2].getValue() * D2R);
 			}
 			
 			me["N23"].setText(sprintf("%d", Value.Fadec.n2[2] + 0.05));
-			me["N23-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[2] + 0.05, 1))));
+			me["N23_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[2] + 0.05, 1))));
 			
 			if (Value.Ignition.starter[2] and systems.IGNITION.cutoff3.getBoolValue()) {
-				me["N23-cline"].show();
+				me["N23_cline"].show();
 			} else {
-				me["N23-cline"].hide();
+				me["N23_cline"].hide();
 			}
 		} else {
 			me["N23"].hide();
-			me["N23-cline"].hide();
-			me["N23-decpnt"].hide();
-			me["N23-decimal"].hide();
-			me["N23-needle"].hide();
-			me["N23-redline"].hide();
+			me["N23_cline"].hide();
+			me["N23_decpnt"].hide();
+			me["N23_decimal"].hide();
+			me["N23_needle"].hide();
+			me["N23_redline"].hide();
 		}
 		
 		# FF
@@ -383,11 +387,12 @@ var canvasGe = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Config", "EGT1", "EGT1-ignition", "EGT1-needle", "EGT1-redline", "EGT1-redstart", "EGT1-yline", "EGT2", "EGT2-ignition", "EGT2-needle", "EGT2-redline", "EGT2-redstart", "EGT2-yline", "EGT3", "EGT3-ignition", "EGT3-needle", "EGT3-redline",
-		"EGT3-redstart", "EGT3-yline", "FF1", "FF2", "FF3", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11-box", "N11-decimal", "N11-decpnt", "N11-hundreds", "N11-lim", "N11-needle", "N11-ones", "N11-redline", "N11-tens", "N11-tens-zero", "N11-thr",
-		"N12-box", "N12-decimal", "N12-decpnt", "N12-hundreds", "N12-lim", "N12-needle", "N12-ones", "N12-redline", "N12-tens", "N12-tens-zero", "N12-thr", "N13-box", "N13-decimal", "N13-decpnt", "N13-hundreds", "N13-lim", "N13-needle", "N13-ones", "N13-redline",
-		"N13-tens", "N13-tens-zero", "N13-thr", "N1Lim", "N1Lim-decimal", "N1LimMode", "N1LimText", "N21", "N21-decpnt", "N21-decimal", "N21-needle", "N21-cline", "N21-redline", "N22", "N22-decpnt", "N22-decimal", "N22-needle", "N22-cline", "N22-redline", "N23",
-		"N23-decpnt", "N23-decimal", "N23-needle", "N23-cline", "N23-redline", "REV1", "REV2", "REV3", "TAT"];
+		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
+		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11_box", "N11_decimal", "N11_decpnt",
+		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens-zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens",
+		"N12_tens-zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens-zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimMode", "N1LimText",
+		"N21", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_cline", "N21_redline", "N22", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_cline", "N22_redline", "N23", "N23_decpnt", "N23_decimal", "N23_error", "N23_needle",
+		"N23_cline", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 	},
@@ -396,6 +401,43 @@ var canvasGe = {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) { 
+			me["Alert_error"].show();
+			me["EGT1_error"].show();
+			me["EGT2_error"].show();
+			me["EGT3_error"].show();
+			me["FF1_error"].show();
+			me["FF2_error"].show();
+			me["FF3_error"].show();
+			me["N11_error"].show();
+			me["N12_error"].show();
+			me["N13_error"].show();
+			me["N1Lim_error"].show();
+			me["N21_error"].show();
+			me["N22_error"].show();
+			me["N23_error"].show();
+			me["TAT_error"].show();
+		} else {
+			me["Alert_error"].hide();
+			me["EGT1_error"].hide();
+			me["EGT2_error"].hide();
+			me["EGT3_error"].hide();
+			me["FF1_error"].hide();
+			me["FF2_error"].hide();
+			me["FF3_error"].hide();
+			me["N11_error"].hide();
+			me["N12_error"].hide();
+			me["N13_error"].hide();
+			me["N1Lim_error"].hide();
+			me["N21_error"].hide();
+			me["N22_error"].hide();
+			me["N23_error"].hide();
+			me["TAT_error"].hide();
+		}
 		
 		# N1 Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
@@ -412,145 +454,145 @@ var canvasGe = {
 		
 		me["N1LimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
 		me["N1Lim"].setText(sprintf("%d", math.floor(Value.Fadec.n1LimitFixed)));
-		me["N1Lim-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1LimitFixed, 1))));
+		me["N1Lim_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1LimitFixed, 1))));
 		
 		# N1
 		if (Value.Fadec.engPowered[0]) {
-			me["N11-box"].show();
-			me["N11-decimal"].show();
-			me["N11-decpnt"].show();
-			me["N11-hundreds"].show();
-			me["N11-needle"].show();
-			me["N11-ones"].show();
-			me["N11-redline"].show();
-			me["N11-tens"].show();
-			me["N11-thr"].show();
+			me["N11_box"].show();
+			me["N11_decimal"].show();
+			me["N11_decpnt"].show();
+			me["N11_hundreds"].show();
+			me["N11_needle"].show();
+			me["N11_ones"].show();
+			me["N11_redline"].show();
+			me["N11_tens"].show();
+			me["N11_thr"].show();
 			
 			Value.Fadec.n1[0] = pts.Engines.Engine.n1Actual[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
-				me["N11-needle"].setRotation(Value.needleRest);
+				me["N11_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N11-needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
+				me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 			}
 			
 			if (Value.Fadec.n1[0] < 99) { # Prepare to show the zero at 100
-				me["N11-tens-zero"].hide();
+				me["N11_tens-zero"].hide();
 			} else {
-				me["N11-tens-zero"].show();
+				me["N11_tens-zero"].show();
 			}
 			
-			me["N11-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[0]), 7))) * 33.75);
-			me["N11-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 6))) * 33.75);
-			me["N11-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 5))) * 33.75);
-			me["N11-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[0], 1), 0.001) * 33.75));
+			me["N11_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[0]), 7))) * 33.75);
+			me["N11_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 6))) * 33.75);
+			me["N11_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 5))) * 33.75);
+			me["N11_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[0], 1), 0.001) * 33.75));
 			
-			me["N11-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[0].getValue() * D2R);
+			me["N11_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[0].getValue() * D2R);
 		} else {
-			me["N11-box"].hide();
-			me["N11-decimal"].hide();
-			me["N11-decpnt"].hide();
-			me["N11-hundreds"].hide();
-			me["N11-needle"].hide();
-			me["N11-ones"].hide();
-			me["N11-redline"].hide();
-			me["N11-tens"].hide();
-			me["N11-thr"].hide();
+			me["N11_box"].hide();
+			me["N11_decimal"].hide();
+			me["N11_decpnt"].hide();
+			me["N11_hundreds"].hide();
+			me["N11_needle"].hide();
+			me["N11_ones"].hide();
+			me["N11_redline"].hide();
+			me["N11_tens"].hide();
+			me["N11_thr"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[1]) {
-			me["N12-box"].show();
-			me["N12-decimal"].show();
-			me["N12-decpnt"].show();
-			me["N12-hundreds"].show();
-			me["N12-needle"].show();
-			me["N12-ones"].show();
-			me["N12-redline"].show();
-			me["N12-tens"].show();
-			me["N12-thr"].show();
+			me["N12_box"].show();
+			me["N12_decimal"].show();
+			me["N12_decpnt"].show();
+			me["N12_hundreds"].show();
+			me["N12_needle"].show();
+			me["N12_ones"].show();
+			me["N12_redline"].show();
+			me["N12_tens"].show();
+			me["N12_thr"].show();
 			
 			Value.Fadec.n1[1] = pts.Engines.Engine.n1Actual[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
-				me["N12-needle"].setRotation(Value.needleRest);
+				me["N12_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N12-needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
+				me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 			}
 			
 			if (Value.Fadec.n1[1] < 99) { # Prepare to show the zero at 100
-				me["N12-tens-zero"].hide();
+				me["N12_tens-zero"].hide();
 			} else {
-				me["N12-tens-zero"].show();
+				me["N12_tens-zero"].show();
 			}
 			
-			me["N12-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[1]), 7))) * 33.75);
-			me["N12-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 6))) * 33.75);
-			me["N12-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 5))) * 33.75);
-			me["N12-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[1], 1), 0.001) * 33.75));
+			me["N12_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[1]), 7))) * 33.75);
+			me["N12_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 6))) * 33.75);
+			me["N12_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 5))) * 33.75);
+			me["N12_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[1], 1), 0.001) * 33.75));
 			
-			me["N12-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
+			me["N12_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
 		} else {
-			me["N12-box"].hide();
-			me["N12-decimal"].hide();
-			me["N12-decpnt"].hide();
-			me["N12-hundreds"].hide();
-			me["N12-needle"].hide();
-			me["N12-ones"].hide();
-			me["N12-redline"].hide();
-			me["N12-tens"].hide();
-			me["N12-thr"].hide();
+			me["N12_box"].hide();
+			me["N12_decimal"].hide();
+			me["N12_decpnt"].hide();
+			me["N12_hundreds"].hide();
+			me["N12_needle"].hide();
+			me["N12_ones"].hide();
+			me["N12_redline"].hide();
+			me["N12_tens"].hide();
+			me["N12_thr"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[2]) {
-			me["N13-box"].show();
-			me["N13-decimal"].show();
-			me["N13-decpnt"].show();
-			me["N13-hundreds"].show();
-			me["N13-needle"].show();
-			me["N13-ones"].show();
-			me["N13-redline"].show();
-			me["N13-tens"].show();
-			me["N13-thr"].show();
+			me["N13_box"].show();
+			me["N13_decimal"].show();
+			me["N13_decpnt"].show();
+			me["N13_hundreds"].show();
+			me["N13_needle"].show();
+			me["N13_ones"].show();
+			me["N13_redline"].show();
+			me["N13_tens"].show();
+			me["N13_thr"].show();
 			
 			Value.Fadec.n1[2] = pts.Engines.Engine.n1Actual[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
-				me["N13-needle"].setRotation(Value.needleRest);
+				me["N13_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N13-needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
+				me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
 			}
 			
 			if (Value.Fadec.n1[2] < 99) { # Prepare to show the zero at 100
-				me["N13-tens-zero"].hide();
+				me["N13_tens-zero"].hide();
 			} else {
-				me["N13-tens-zero"].show();
+				me["N13_tens-zero"].show();
 			}
 			
-			me["N13-hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[2]), 7))) * 33.75);
-			me["N13-tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 6))) * 33.75);
-			me["N13-ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 5))) * 33.75);
-			me["N13-decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[2], 1), 0.001) * 33.75));
+			me["N13_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[2]), 7))) * 33.75);
+			me["N13_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 6))) * 33.75);
+			me["N13_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 5))) * 33.75);
+			me["N13_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[2], 1), 0.001) * 33.75));
 			
-			me["N13-thr"].setRotation(pts.Instrumentation.Ead.n1Thr[2].getValue() * D2R);
+			me["N13_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[2].getValue() * D2R);
 		} else {
-			me["N13-box"].hide();
-			me["N13-decimal"].hide();
-			me["N13-decpnt"].hide();
-			me["N13-hundreds"].hide();
-			me["N13-needle"].hide();
-			me["N13-ones"].hide();
-			me["N13-redline"].hide();
-			me["N13-tens"].hide();
-			me["N13-thr"].hide();
+			me["N13_box"].hide();
+			me["N13_decimal"].hide();
+			me["N13_decpnt"].hide();
+			me["N13_hundreds"].hide();
+			me["N13_needle"].hide();
+			me["N13_ones"].hide();
+			me["N13_redline"].hide();
+			me["N13_tens"].hide();
+			me["N13_thr"].hide();
 		}
 		
 		Value.Du.n1Limit = pts.Instrumentation.Ead.n1Limit.getValue();
-		me["N11-lim"].setRotation(Value.Du.n1Limit * D2R);
-		me["N12-lim"].setRotation(Value.Du.n1Limit * D2R);
-		me["N13-lim"].setRotation(Value.Du.n1Limit * D2R);
+		me["N11_lim"].setRotation(Value.Du.n1Limit * D2R);
+		me["N12_lim"].setRotation(Value.Du.n1Limit * D2R);
+		me["N13_lim"].setRotation(Value.Du.n1Limit * D2R);
 		
 		me.updateBase();
 	},
@@ -564,12 +606,13 @@ var canvasPw = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Config", "EGT1", "EGT1-ignition", "EGT1-needle", "EGT1-redline", "EGT1-redstart", "EGT1-yline", "EGT2", "EGT2-ignition", "EGT2-needle", "EGT2-redline", "EGT2-redstart", "EGT2-yline", "EGT3", "EGT3-ignition", "EGT3-needle", "EGT3-redline",
-		"EGT3-redstart", "EGT3-yline", "EGTGroup", "EPR1-box", "EPR1-decpnt", "EPR1-hundreths", "EPR1-lim", "EPR1-needle", "EPR1-ones", "EPR1-tenths", "EPR1-thr", "EPR2-box", "EPR2-decpnt", "EPR2-hundreths", "EPR2-lim", "EPR2-needle", "EPR2-ones", "EPR2-tenths",
-		"EPR2-thr", "EPR3-box", "EPR3-decpnt", "EPR3-hundreths", "EPR3-lim", "EPR3-needle", "EPR3-ones", "EPR3-tenths", "EPR3-thr", "EPRLim", "EPRLim-decimal", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF2", "FF3", "FFOff1", "FFOff2",
-		"FFOff3", "FlexGroup", "FlexTemp", "N11", "N11-decimal", "N11-decpnt", "N11-needle", "N11-redline", "N12", "N12-decimal", "N12-decpnt", "N12-needle", "N12-redline", "N13", "N13-decimal", "N13-decpnt", "N13-needle", "N13-redline", "N1Group", "N21",
-		"N21-cline", "N21-decimal", "N21-decpnt", "N21-needle", "N21-redline", "N22", "N22-cline", "N22-decimal", "N22-decpnt", "N22-needle", "N22-redline", "N23", "N23-cline", "N23-decimal", "N23-decpnt", "N23-needle", "N23-redline", "REV1", "REV2", "REV3",
-		"TAT"];
+		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
+		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EGTGroup", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box",
+		"EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim",
+		"EPRLim_decimal", "EPRLim_error", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11", "N11_decimal", "N11_decpnt",
+		"N11_error", "N11_needle", "N11_redline", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1Group", "N21", "N21_cline", "N21_decimal",
+		"N21_decpnt", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2",
+		"REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 	},
@@ -587,6 +630,49 @@ var canvasPw = {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) { 
+			me["Alert_error"].show();
+			me["EGT1_error"].show();
+			me["EGT2_error"].show();
+			me["EGT3_error"].show();
+			me["EPR1_error"].show();
+			me["EPR2_error"].show();
+			me["EPR3_error"].show();
+			me["EPRLim_error"].show();
+			me["FF1_error"].show();
+			me["FF2_error"].show();
+			me["FF3_error"].show();
+			me["N11_error"].show();
+			me["N12_error"].show();
+			me["N13_error"].show();
+			me["N21_error"].show();
+			me["N22_error"].show();
+			me["N23_error"].show();
+			me["TAT_error"].show();
+		} else {
+			me["Alert_error"].hide();
+			me["EGT1_error"].hide();
+			me["EGT2_error"].hide();
+			me["EGT3_error"].hide();
+			me["EPR1_error"].hide();
+			me["EPR2_error"].hide();
+			me["EPR3_error"].hide();
+			me["EPRLim_error"].hide();
+			me["FF1_error"].hide();
+			me["FF2_error"].hide();
+			me["FF3_error"].hide();
+			me["N11_error"].hide();
+			me["N12_error"].hide();
+			me["N13_error"].hide();
+			me["N21_error"].hide();
+			me["N22_error"].hide();
+			me["N23_error"].hide();
+			me["TAT_error"].hide();
+		}
 		
 		# EPR Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
@@ -621,172 +707,172 @@ var canvasPw = {
 		
 		me["EPRLimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
 		me["EPRLim"].setText(sprintf("%1.0f", math.floor(Value.Fadec.eprLimitFixed)));
-		me["EPRLim-decimal"].setText(sprintf("%d", math.floor((Value.Fadec.eprLimitFixed - int(Value.Fadec.eprLimitFixed)) * 100)));
+		me["EPRLim_decimal"].setText(sprintf("%d", math.floor((Value.Fadec.eprLimitFixed - int(Value.Fadec.eprLimitFixed)) * 100)));
 		
 		# EPR
 		if (Value.Fadec.engPowered[0]) {
-			me["EPR1-box"].show();
-			me["EPR1-decpnt"].show();
-			me["EPR1-hundreths"].show();
-			me["EPR1-needle"].show();
-			me["EPR1-ones"].show();
-			me["EPR1-tenths"].show();
-			me["EPR1-thr"].show();
+			me["EPR1_box"].show();
+			me["EPR1_decpnt"].show();
+			me["EPR1_hundreths"].show();
+			me["EPR1_needle"].show();
+			me["EPR1_ones"].show();
+			me["EPR1_tenths"].show();
+			me["EPR1_thr"].show();
 			
 			Value.Fadec.epr[0] = pts.Engines.Engine.eprActual[0].getValue();
 			
-			me["EPR1-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 33.75);
-			me["EPR1-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 33.75);
-			me["EPR1-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 33.75));
+			me["EPR1_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 33.75);
+			me["EPR1_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 33.75);
+			me["EPR1_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 33.75));
 			
-			me["EPR1-needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
-			me["EPR1-thr"].setRotation(pts.Instrumentation.Ead.eprThr[0].getValue() * D2R);
+			me["EPR1_needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
+			me["EPR1_thr"].setRotation(pts.Instrumentation.Ead.eprThr[0].getValue() * D2R);
 		} else {
-			me["EPR1-box"].hide();
-			me["EPR1-decpnt"].hide();
-			me["EPR1-hundreths"].hide();
-			me["EPR1-needle"].hide();
-			me["EPR1-ones"].hide();
-			me["EPR1-tenths"].hide();
-			me["EPR1-thr"].hide();
+			me["EPR1_box"].hide();
+			me["EPR1_decpnt"].hide();
+			me["EPR1_hundreths"].hide();
+			me["EPR1_needle"].hide();
+			me["EPR1_ones"].hide();
+			me["EPR1_tenths"].hide();
+			me["EPR1_thr"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[1]) {
-			me["EPR2-box"].show();
-			me["EPR2-decpnt"].show();
-			me["EPR2-hundreths"].show();
-			me["EPR2-needle"].show();
-			me["EPR2-ones"].show();
-			me["EPR2-tenths"].show();
-			me["EPR2-thr"].show();
+			me["EPR2_box"].show();
+			me["EPR2_decpnt"].show();
+			me["EPR2_hundreths"].show();
+			me["EPR2_needle"].show();
+			me["EPR2_ones"].show();
+			me["EPR2_tenths"].show();
+			me["EPR2_thr"].show();
 			
 			Value.Fadec.epr[1] = pts.Engines.Engine.eprActual[1].getValue();
 			
-			me["EPR2-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 33.75);
-			me["EPR2-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 33.75);
-			me["EPR2-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 33.75));
+			me["EPR2_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 33.75);
+			me["EPR2_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 33.75);
+			me["EPR2_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 33.75));
 			
-			me["EPR2-needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
-			me["EPR2-thr"].setRotation(pts.Instrumentation.Ead.eprThr[1].getValue() * D2R);
+			me["EPR2_needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
+			me["EPR2_thr"].setRotation(pts.Instrumentation.Ead.eprThr[1].getValue() * D2R);
 		} else {
-			me["EPR2-box"].hide();
-			me["EPR2-decpnt"].hide();
-			me["EPR2-hundreths"].hide();
-			me["EPR2-needle"].hide();
-			me["EPR2-ones"].hide();
-			me["EPR2-tenths"].hide();
-			me["EPR2-thr"].hide();
+			me["EPR2_box"].hide();
+			me["EPR2_decpnt"].hide();
+			me["EPR2_hundreths"].hide();
+			me["EPR2_needle"].hide();
+			me["EPR2_ones"].hide();
+			me["EPR2_tenths"].hide();
+			me["EPR2_thr"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[2]) {
-			me["EPR3-box"].show();
-			me["EPR3-decpnt"].show();
-			me["EPR3-hundreths"].show();
-			me["EPR3-needle"].show();
-			me["EPR3-ones"].show();
-			me["EPR3-tenths"].show();
-			me["EPR3-thr"].show();
+			me["EPR3_box"].show();
+			me["EPR3_decpnt"].show();
+			me["EPR3_hundreths"].show();
+			me["EPR3_needle"].show();
+			me["EPR3_ones"].show();
+			me["EPR3_tenths"].show();
+			me["EPR3_thr"].show();
 			
 			Value.Fadec.epr[2] = pts.Engines.Engine.eprActual[2].getValue();
 			
-			me["EPR3-ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 33.75);
-			me["EPR3-tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 33.75);
-			me["EPR3-hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 33.75));
+			me["EPR3_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 33.75);
+			me["EPR3_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 33.75);
+			me["EPR3_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 33.75));
 			
-			me["EPR3-needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);
-			me["EPR3-thr"].setRotation(pts.Instrumentation.Ead.eprThr[2].getValue() * D2R);
+			me["EPR3_needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);
+			me["EPR3_thr"].setRotation(pts.Instrumentation.Ead.eprThr[2].getValue() * D2R);
 		} else {
-			me["EPR3-box"].hide();
-			me["EPR3-decpnt"].hide();
-			me["EPR3-hundreths"].hide();
-			me["EPR3-needle"].hide();
-			me["EPR3-ones"].hide();
-			me["EPR3-tenths"].hide();
-			me["EPR3-thr"].hide();
+			me["EPR3_box"].hide();
+			me["EPR3_decpnt"].hide();
+			me["EPR3_hundreths"].hide();
+			me["EPR3_needle"].hide();
+			me["EPR3_ones"].hide();
+			me["EPR3_tenths"].hide();
+			me["EPR3_thr"].hide();
 		}
 		
 		Value.Du.eprLimit = pts.Instrumentation.Ead.eprLimit.getValue();
-		me["EPR1-lim"].setRotation(Value.Du.eprLimit * D2R);
-		me["EPR2-lim"].setRotation(Value.Du.eprLimit * D2R);
-		me["EPR3-lim"].setRotation(Value.Du.eprLimit * D2R);
+		me["EPR1_lim"].setRotation(Value.Du.eprLimit * D2R);
+		me["EPR2_lim"].setRotation(Value.Du.eprLimit * D2R);
+		me["EPR3_lim"].setRotation(Value.Du.eprLimit * D2R);
 		
 		# N1
 		if (Value.Fadec.engPowered[0]) {
 			me["N11"].show();
-			me["N11-decimal"].show();
-			me["N11-decpnt"].show();
-			me["N11-needle"].show();
-			me["N11-redline"].show();
+			me["N11_decimal"].show();
+			me["N11_decpnt"].show();
+			me["N11_needle"].show();
+			me["N11_redline"].show();
 			
 			Value.Fadec.n1[0] = pts.Engines.Engine.n1Actual[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
-				me["N11-needle"].setRotation(Value.needleRest);
+				me["N11_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N11-needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
+				me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 			}
 			
 			me["N11"].setText(sprintf("%d", Value.Fadec.n1[0] + 0.05));
-			me["N11-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[0] + 0.05, 1))));
+			me["N11_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[0] + 0.05, 1))));
 		} else {
 			me["N11"].hide();
-			me["N11-decimal"].hide();
-			me["N11-decpnt"].hide();
-			me["N11-needle"].hide();
-			me["N11-redline"].hide();
+			me["N11_decimal"].hide();
+			me["N11_decpnt"].hide();
+			me["N11_needle"].hide();
+			me["N11_redline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[1]) {
 			me["N12"].show();
-			me["N12-decimal"].show();
-			me["N12-decpnt"].show();
-			me["N12-needle"].show();
-			me["N12-redline"].show();
+			me["N12_decimal"].show();
+			me["N12_decpnt"].show();
+			me["N12_needle"].show();
+			me["N12_redline"].show();
 			
 			Value.Fadec.n1[1] = pts.Engines.Engine.n1Actual[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
-				me["N12-needle"].setRotation(Value.needleRest);
+				me["N12_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N12-needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
+				me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 			}
 			
 			me["N12"].setText(sprintf("%d", Value.Fadec.n1[1] + 0.05));
-			me["N12-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[1] + 0.05, 1))));
+			me["N12_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[1] + 0.05, 1))));
 		} else {
 			me["N12"].hide();
-			me["N12-decimal"].hide();
-			me["N12-decpnt"].hide();
-			me["N12-needle"].hide();
-			me["N12-redline"].hide();
+			me["N12_decimal"].hide();
+			me["N12_decpnt"].hide();
+			me["N12_needle"].hide();
+			me["N12_redline"].hide();
 		}
 		
 		if (Value.Fadec.engPowered[2]) {
 			me["N13"].show();
-			me["N13-decimal"].show();
-			me["N13-decpnt"].show();
-			me["N13-needle"].show();
-			me["N13-redline"].show();
+			me["N13_decimal"].show();
+			me["N13_decpnt"].show();
+			me["N13_needle"].show();
+			me["N13_redline"].show();
 			
 			Value.Fadec.n1[2] = pts.Engines.Engine.n1Actual[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
-				me["N13-needle"].setRotation(Value.needleRest);
+				me["N13_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N13-needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
+				me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
 			}
 			
 			me["N13"].setText(sprintf("%d", Value.Fadec.n1[2] + 0.05));
-			me["N13-decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[2] + 0.05, 1))));
+			me["N13_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[2] + 0.05, 1))));
 		} else {
 			me["N13"].hide();
-			me["N13-decimal"].hide();
-			me["N13-decpnt"].hide();
-			me["N13-needle"].hide();
-			me["N13-redline"].hide();
+			me["N13_decimal"].hide();
+			me["N13_decpnt"].hide();
+			me["N13_needle"].hide();
+			me["N13_redline"].hide();
 		}
 		
 		me.updateBase();
