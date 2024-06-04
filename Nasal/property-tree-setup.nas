@@ -251,6 +251,7 @@ var Instrumentation = {
 		hdgSel: props.globals.initNode("/instrumentation/pfd/heading-sel", 0, "DOUBLE"),
 		hdgDeg: [props.globals.initNode("/instrumentation/pfd/heading-deg[0]", 0, "DOUBLE"), props.globals.initNode("/instrumentation/pfd/heading-deg[1]", 0, "DOUBLE")],
 		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
+		spdFms: props.globals.initNode("/instrumentation/pfd/spd-fms", 0, "DOUBLE"),
 		spdPreSel: props.globals.initNode("/instrumentation/pfd/spd-pre-sel", 0, "DOUBLE"),
 		spdSel: props.globals.initNode("/instrumentation/pfd/spd-sel", 0, "DOUBLE"),
 		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),

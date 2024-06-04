@@ -78,9 +78,26 @@ var FlightDataOut = {
 	zfwLbs: props.globals.getNode("/fms/flight-data/zfw-lbs"),
 };
 
+var RouteManager = {
+	active: props.globals.getNode("/autopilot/route-manager/active"),
+	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
+	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
+	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
+	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
+	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
+	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
+};
+
 # Logic
 var EditFlightData = {
 	loop: func() {
+		# Force 60K for FLEX
+		if (FlightData.flexActive) {
+			if (!systems.FADEC.Limit.pwDerate.getBoolValue()) {
+				systems.FADEC.Limit.pwDerate.setBoolValue(1);
+			}
+		}
+		
 		# Calculate UFOB
 		FlightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		
@@ -195,6 +212,9 @@ var EditFlightData = {
 		FlightData.zfwcg = 0;
 		FlightData.zfwLbs = 0;
 		me.writeOut();
+		
+		# Reset other system logic
+		systems.FADEC.Limit.pwDerate.setBoolValue(0);
 	},
 	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
 		FlightDataOut.airportFromAlt.setBoolValue(FlightData.airportFromAlt);

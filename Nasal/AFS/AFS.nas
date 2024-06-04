@@ -598,7 +598,7 @@ var ITAF = {
 		
 		# Speed by Pitch Available Logic
 		Text.vertTemp = Text.vert.getValue();
-		if (Text.vertTemp == "T/O CLB" and fms.FlightData.v2 == 0) {
+		if (fms.Internal.phase <= 1 and fms.FlightData.v2 == 0) {
 			Internal.spdPitchAvail.setBoolValue(0);
 		} else {
 			Internal.spdPitchAvail.setBoolValue(1);
@@ -606,7 +606,7 @@ var ITAF = {
 		Internal.spdPitchAvailTemp = Internal.spdPitchAvail.getBoolValue();
 		
 		# Takeoff Speed Target
-		if (Text.vertTemp == "T/O CLB" and Internal.spdPitchAvailTemp) {
+		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp) {
 			if (!Gear.wow1Temp and !Gear.wow2Temp) {
 				if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
 					if (!Internal.v2Toggle) { # Only set the speed once
@@ -1483,7 +1483,8 @@ var ITAF = {
 	},
 	spdPush: func() {
 		Internal.retardLock = 0;
-		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (fms.Internal.phase > 1 or Position.gearAglFt.getValue() >= 400)) {
+			fms.FmsSpd.cancel();
 			Output.spdCaptured = 1;
 			if (Input.ktsMach.getBoolValue()) {
 				Internal.ktsMach.setBoolValue(1);
@@ -1504,7 +1505,8 @@ var ITAF = {
 	},
 	spdPull: func() {
 		Internal.retardLock = 0;
-		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (fms.Internal.phase > 1 or Position.gearAglFt.getValue() >= 400)) {
+			fms.FmsSpd.cancel();
 			Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 			if (Internal.ktsMach.getBoolValue() != Input.ktsMachTemp) {
 				Internal.ktsMach.setBoolValue(Input.ktsMachTemp);
@@ -1687,7 +1689,7 @@ setlistener("/it-autoflight/input/lat", func() {
 });
 
 setlistener("/it-autoflight/input/vert", func() {
-	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (Text.vert.getValue() != "T/O CLB" or Position.gearAglFt.getValue() >= 400)) {
+	if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and (fms.Internal.phase > 1 or Position.gearAglFt.getValue() >= 400)) {
 		ITAF.setVertMode(Input.vert.getValue());
 	}
 });

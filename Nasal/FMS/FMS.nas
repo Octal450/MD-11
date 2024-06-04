@@ -19,54 +19,12 @@ var Internal = {
 	takeoffStabDeg: props.globals.initNode("/fms/internal/takeoff-stab-deg"),
 };
 
-var RouteManager = {
-	active: props.globals.getNode("/autopilot/route-manager/active"),
-	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
-	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
-	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
-	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
-	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
-	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
-};
-
-var Speeds = {
-	athrMax: props.globals.getNode("/fms/speeds/athr-max"),
-	athrMaxMach: props.globals.getNode("/fms/speeds/athr-max-mach"),
-	athrMin: props.globals.getNode("/fms/speeds/athr-min"),
-	athrMinMach: props.globals.getNode("/fms/speeds/athr-min-mach"),
-	cleanMin: props.globals.getNode("/fms/speeds/clean-min"),
-	flap15Max: props.globals.getNode("/fms/speeds/flap-0-15-max-kts"),
-	flap28Max: props.globals.getNode("/fms/speeds/flap-28-max-kts"),
-	flap28Min: props.globals.getNode("/fms/speeds/flap-28-min"),
-	flap35Max: props.globals.getNode("/fms/speeds/flap-35-max-kts"),
-	flap50Max: props.globals.getNode("/fms/speeds/flap-50-max-kts"),
-	flapGearMax: props.globals.getNode("/fms/speeds/flap-gear-max"),
-	gearExtMax: props.globals.getNode("/fms/speeds/gear-ext-max-kts"),
-	gearRetMax: props.globals.getNode("/fms/speeds/gear-ret-max-kts"),
-	slatMin: props.globals.getNode("/fms/speeds/slat-min"),
-	slatMax: props.globals.getNode("/fms/speeds/slat-max-kts"),
-	v1: props.globals.getNode("/fms/speeds/v1"),
-	v2: props.globals.getNode("/fms/speeds/v2"),
-	vapp: props.globals.getNode("/fms/speeds/vapp"),
-	vcl: props.globals.getNode("/fms/speeds/vcl"),
-	vclTo: props.globals.getNode("/fms/speeds/vcl-to"),
-	vfr: props.globals.getNode("/fms/speeds/vfr"),
-	vmax: props.globals.getNode("/fms/speeds/vmax"),
-	vmin: props.globals.getNode("/fms/speeds/vmin"),
-	vminTape: props.globals.getNode("/fms/speeds/vmin-tape"),
-	vmoMmo: props.globals.getNode("/fms/speeds/vmo-mmo"),
-	vr: props.globals.getNode("/fms/speeds/vr"),
-	vref: props.globals.getNode("/fms/speeds/vref"),
-	vsr: props.globals.getNode("/fms/speeds/vsr"),
-	vsrTo: props.globals.getNode("/fms/speeds/vsr-to"),
-	vss: props.globals.getNode("/fms/speeds/vss"),
-	vssTape: props.globals.getNode("/fms/speeds/vss-tape"),
-};
-
 var Value = { # Local store of commonly accessed values
 	active: 0,
 	afsAlt: 0,
 	altitude: 0,
+	asiKts: 0,
+	asiMach: 0,
 	distanceRemainingNm: 0,
 	flapLever: 0,
 	gearLever: 0,
@@ -84,6 +42,7 @@ var CORE = {
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
 		Internal.request[2] = 0;
+		FmsSpd.init();
 		if (t == 1) {
 			mcdu.BASE.reset(); # Last
 		} else {
@@ -96,6 +55,7 @@ var CORE = {
 		Value.altitude = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
 		Value.flapLever = pts.Controls.Flight.flapsInput.getValue();
+		Value.gearAglFt = pts.Position.gearAglFt.getValue();
 		Value.gearLever = systems.GEAR.Switch.lever.getValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
@@ -169,6 +129,9 @@ var CORE = {
 			Internal.phase = Internal.phaseNew;
 			Internal.phaseOut.setValue(Internal.phaseNew);
 		}
+		
+		# FMS SPD logic
+		FmsSpd.loop();
 		
 		# Reset system once engines shutdown
 		if (Internal.engOn) {

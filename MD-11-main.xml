@@ -949,6 +949,12 @@
 			<zfwcg type="double">0</zfwcg>
 			<zfw-lbs type="double">0</zfw-lbs>
 		</flight-data>
+		<fms-spd n="0">
+			<active type="bool">0</active>
+			<kts type="int">0</kts>
+			<kts-mach type="bool">0</kts-mach>
+			<mach type="double">0</mach>
+		</fms-spd>
 		<internal n="0">
 			<phase type="int">0</phase>
 		</internal>
@@ -1524,6 +1530,16 @@
 			<mcdu2-dimmer type="double">1</mcdu2-dimmer>
 			<mcdu3-dimmer type="double">1</mcdu3-dimmer>
 		</du>
+		<efis n="0">
+			<mfd n="0">
+				<true-north type="bool">0</true-north>
+			</mfd>
+		</efis>
+		<efis n="1">
+			<mfd n="0">
+				<true-north type="bool">0</true-north>
+			</mfd>
+		</efis>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
 			<configuration-module n="0">
@@ -1836,6 +1852,7 @@
 		<fms>
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 			<file>Aircraft/MD-11/Nasal/FMS/FlightData.nas</file>
+			<file>Aircraft/MD-11/Nasal/FMS/Speeds.nas</file>
 		</fms>
 		<mcdu>
 			<file>Aircraft/MD-11/Nasal/MCDU/MCDU.nas</file>

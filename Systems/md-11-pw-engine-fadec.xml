@@ -477,7 +477,7 @@
 					<property>fadec/limit/takeoff-input</property>
 					<pow>
 						<sum>
-							<ifthen>
+							<ifthen> <!-- FLEX is disallowed in 62K mode, but I'm leaving the code in here anyway since removing it would only remove this ifthen, all the other above code is still required to compute 60K FLEX -->
 								<eq>
 									<property>fadec/limit/pw-derate</property>
 									<value>1</value>

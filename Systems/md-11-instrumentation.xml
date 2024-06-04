@@ -46,6 +46,38 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/instrumentation/pfd/spd-fms">
+			<function>
+				<ifthen>
+					<and> <!-- Both must be valid -->
+						<gt>
+							<property>/fms/fms-spd/kts</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/fms/fms-spd/mach</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<ifthen>
+						<eq>
+							<property>/fms/fms-spd/kts-mach</property>
+							<value>1</value>
+						</eq>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<property>/fms/fms-spd/mach</property>
+						</product>
+						<property>/fms/fms-spd/kts</property>
+					</ifthen>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<!-- Bank Limit -->
 		<fcs_function name="/instrumentation/pfd/bank-limit-cmd">
 			<function>
