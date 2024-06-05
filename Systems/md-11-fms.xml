@@ -499,8 +499,8 @@
 			<test value="0">
 				position/wow eq 1
 			</test>	
-			<test logic="OR" value="1"> <!-- Should be accel alt -->
-				/position/gear-agl-ft ge 1250
+			<test logic="OR" value="1">
+				/fms/internal/phase ge 2
 				/fms/speeds/flaps-input-feedback ge 4
 			</test>
 		</switch>
