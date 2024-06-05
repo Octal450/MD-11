@@ -142,9 +142,17 @@
 					<property>/engines/engine[2]/reverser-pos-norm</property>
 					<value>0.01</value>
 				</less-than>
-				<not><property>/controls/fadec/eng-1-altn</property></not>
-				<not><property>/controls/fadec/eng-2-altn</property></not>
-				<not><property>/controls/fadec/eng-3-altn</property></not>
+				<or>
+					<equals>
+						<property>/options/eng</property>
+						<value>GE</value>
+					</equals>
+					<and>
+						<not><property>/controls/fadec/eng-1-altn</property></not>
+						<not><property>/controls/fadec/eng-2-altn</property></not>
+						<not><property>/controls/fadec/eng-3-altn</property></not>
+					</and>
+				</or>
 			</and>
 		</input>
 		<output>/it-autoflight/input/athr-avail</output>
