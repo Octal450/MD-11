@@ -9,7 +9,7 @@ var Fma = {
 	rollArm: props.globals.initNode("/instrumentation/pfd/fma/roll-mode-armed", "", "STRING"),
 };
 
-var updateFma = {
+var UpdateFma = {
 	ap1: 0,
 	ap2: 0,
 	InternalRadioSel: 2,

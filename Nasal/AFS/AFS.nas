@@ -322,7 +322,7 @@ var ITAF = {
 		Internal.spdPitchAvail.setBoolValue(0);
 		me.updateActiveFms(1);
 		Text.spd.setValue("PITCH");
-		updateFma.arm();
+		UpdateFma.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
 		Internal.retardLock = 0;
@@ -1573,26 +1573,26 @@ var ITAF = {
 	},
 	updateActiveFms: func(n) {
 		Internal.activeFms.setValue(n);
-		updateFma.lat();
+		UpdateFma.lat();
 	},
 	updateLatText: func(t) {
 		Text.lat.setValue(t);
-		updateFma.lat();
+		UpdateFma.lat();
 	},
 	updateVertText: func(t) {
 		Text.vert.setValue(t);
-		updateFma.vert();
+		UpdateFma.vert();
 	},
 	updateLnavArm: func(n) {
 		Output.lnavArm.setBoolValue(n);
-		updateFma.arm();
+		UpdateFma.arm();
 	},
 	updateLocArm: func(n, t = 0) {
 		Output.locArm.setBoolValue(n);
 		if (n == 0 and t != 1) {
 			me.updateLocOnly(0);
 		}
-		updateFma.arm();
+		UpdateFma.arm();
 	},
 	updateApprArm: func(n, t = 0) {
 		Output.apprArm.setBoolValue(n);
@@ -1601,16 +1601,16 @@ var ITAF = {
 		} else if (n == 0 and t != 1) {
 			Output.landArm.setBoolValue(0);
 		}
-		updateFma.arm();
+		UpdateFma.arm();
 	},
 	updateLandArm: func(n) {
 		Output.landArm.setBoolValue(n);
-		updateFma.arm();
+		UpdateFma.arm();
 	},
 	updateLocOnly: func(n) {
 		Internal.locOnly = n;
-		updateFma.lat();
-		updateFma.arm();
+		UpdateFma.lat();
+		UpdateFma.arm();
 	},
 };
 
@@ -1727,7 +1727,7 @@ setlistener("/it-autoflight/input/trk", func() {
 	Internal.hdg.setValue(Internal.hdgCalc);
 	Internal.takeoffHdg.setValue(Internal.takeoffHdgCalc);
 	
-	updateFma.lat();
+	UpdateFma.lat();
 	
 	pts.Instrumentation.Efis.hdgTrkSelected[0].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
 	pts.Instrumentation.Efis.hdgTrkSelected[1].setBoolValue(Input.trkTemp); # For Canvas Nav Display.
