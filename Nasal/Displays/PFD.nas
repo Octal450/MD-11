@@ -864,7 +864,7 @@ var canvasBase = {
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
-				me["ASI_fms"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
+				me["ASI_fms"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
 			}
 			me["ASI_fms"].setTranslation(0, Value.Asi.Tape.fms * -4.48656);
 			me["ASI_fms"].show();
@@ -915,7 +915,7 @@ var canvasBase = {
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_up"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
-				me["ASI_fms_up"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
+				me["ASI_fms_up"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
 			}
 			me["ASI_fms_up"].show();
 			me["ASI_sel_up"].hide();
@@ -977,7 +977,7 @@ var canvasBase = {
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_dn"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
-				me["ASI_fms_dn"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
+				me["ASI_fms_dn"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
 			}
 			me["ASI_fms_dn"].show();
 			me["ASI_sel_dn"].hide();
