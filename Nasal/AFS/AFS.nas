@@ -208,7 +208,6 @@ var Internal = {
 	targetKtsError: 0,
 	throttleSaturated: props.globals.initNode("/it-autoflight/internal/throttle-saturated", 0, "INT"),
 	throttleSaturatedTemp: 0,
-	v2Toggle: 0,
 	vs: props.globals.initNode("/it-autoflight/internal/vert-speed-fpm", 0, "DOUBLE"),
 	vsTemp: 0,
 };
@@ -598,31 +597,25 @@ var ITAF = {
 		
 		# Speed by Pitch Available Logic
 		Text.vertTemp = Text.vert.getValue();
-		if (fms.Internal.phase <= 1 and fms.FlightData.v2 == 0) {
+		if (fms.Internal.phase <= 1 and (fms.FlightData.v2 == 0 or fms.FmsSpd.toKts == 0)) {
 			Internal.spdPitchAvail.setBoolValue(0);
 		} else {
 			Internal.spdPitchAvail.setBoolValue(1);
 		}
 		Internal.spdPitchAvailTemp = Internal.spdPitchAvail.getBoolValue();
 		
-		# Takeoff Speed Target
-		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp) {
-			if (!Gear.wow1Temp and !Gear.wow2Temp) {
-				if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
-					if (!Internal.v2Toggle) { # Only set the speed once
-						Internal.v2Toggle = 1;
-						Internal.kts.setValue(math.clamp(math.round(Velocities.indicatedAirspeedKtTemp), fms.FlightData.v2, fms.FlightData.v2 + 10));
-					}
-				} else if (Position.gearAglFtTemp < 400) { # Once hitting 400 feet, this is overridable
-					Internal.kts.setValue(fms.FlightData.v2 + 10);
-				}
-			} else {
-				Internal.v2Toggle = 0;
-				Internal.kts.setValue(fms.FlightData.v2);
+		# Takeoff Speed Guidance
+		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp and fms.FmsSpd.toKts > 0) {
+			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
+				Output.spdCaptured = 1; # Always captured when driven
+				Internal.kts.setValue(fms.FmsSpd.toKts);
 			}
-			Output.spdCaptured = 1; # Always captured when driven for takeoff
-		} else {
-			Internal.v2Toggle = 0;
+		}
+		
+		# FMS SPD
+		if (fms.FmsSpd.active) {
+			Output.spdCaptured = 1; # Always captured when driven
+			Internal.kts.setValue(fms.FmsSpd.toKts);
 		}
 		
 		# Speed Capture + ATS Speed Limits

@@ -56,7 +56,7 @@ var CORE = {
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
 		Value.flapLever = pts.Controls.Flight.flapsInput.getValue();
 		Value.gearAglFt = pts.Position.gearAglFt.getValue();
-		Value.gearLever = systems.GEAR.Switch.lever.getValue();
+		Value.gearLever = systems.GEAR.Switch.lever.getBoolValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		
@@ -87,6 +87,8 @@ var CORE = {
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 3; # Cruise
+				} else if (Value.flapLever >= 4 and Value.gearLever) {
+					Internal.phaseNew = 5; # Approach
 				} else if (Value.wow) {
 					Internal.phaseNew = 6; # Rollout
 				}
@@ -95,7 +97,7 @@ var CORE = {
 			if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.afsAlt < FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 4; # Descent
-				} else if (Value.flapLever >= 4) {
+				} else if (Value.flapLever >= 4 and Value.gearLever) {
 					Internal.phaseNew = 5; # Approach
 				} else if (Value.wow) {
 					Internal.phaseNew = 6; # Rollout
@@ -103,9 +105,9 @@ var CORE = {
 			}
 		} else if (Internal.phase == 4) { # Descent
 			if (Value.active) {
-				if (Value.distanceRemainingNm <= 15 or Value.vertText == "G/S") { # Fix this
+				if (Value.distanceRemainingNm <= 15 or Value.vertText == "G/S") {
 					Internal.phaseNew = 5; # Approach
-				} else if (Value.flapLever >= 4) {
+				} else if (Value.flapLever >= 4 and Value.gearLever) {
 					Internal.phaseNew = 5; # Approach
 				} else if (Value.wow) {
 					Internal.phaseNew = 6; # Rollout

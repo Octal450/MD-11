@@ -23,6 +23,7 @@ var Value = {
 		atsWarn: 0,
 		fd1: 0,
 		fd2: 0,
+		fmsSpdDriving: 0,
 		hdg: 0,
 		hdgSel: 0,
 		kts: 0,
@@ -94,13 +95,13 @@ var Value = {
 		f50: 0,
 		flapGearMax: 0,
 		fms: 0,
-		fmsSpdActive: 0,
 		hideV1: 0,
 		hideVr: 0,
 		ias: 0,
 		mach: 0,
 		preSel: 0,
 		sel: 0,
+		showTaxi: 0,
 		trend: 0,
 		vfr: 0,
 		vmin: 0,
@@ -363,6 +364,8 @@ var canvasBase = {
 		}
 		
 		if (Value.Asi.ias < 53 and Value.Misc.wow) {
+			Value.Asi.showTaxi = 1;
+			
 			if (Value.Iru.aligning[0] or Value.Iru.aligning[1] or Value.Iru.aligning[2]) {
 				me["ASI_groundspeed"].setColor(0.9412, 0.7255, 0);
 				me["ASI_groundspeed"].setText("NO");
@@ -382,6 +385,8 @@ var canvasBase = {
 			me["ASI_ias_group"].hide();
 			me["ASI_taxi_group"].show();
 		} else {
+			Value.Asi.showTaxi = 0;
+			
 			if (Value.Asi.vmoMmo <= 50) {
 				Value.Asi.Tape.vmoMmo = 0 - Value.Asi.Tape.ias;
 			} else if (Value.Asi.vmoMmo >= 450) {
@@ -822,13 +827,13 @@ var canvasBase = {
 		}
 		
 		# ASI Pre-Sel/Sel
-		if (Value.Asi.fms > 0 and fms.FmsSpd.active) {
-			Value.Asi.fmsSpdActive = 1;
+		if (Value.Asi.fms > 0 and fms.FmsSpd.activeOrToDriving) {
+			Value.Afs.fmsSpdDriving = 1;
 		} else {
-			Value.Asi.fmsSpdActive = 0;
+			Value.Afs.fmsSpdDriving = 0;
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd) {
+		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or fms.FmsSpd.active) {
 			me["ASI_presel"].hide();
 		} else {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
@@ -847,7 +852,7 @@ var canvasBase = {
 			me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.48656);
 			me["ASI_presel"].show();
 		}
-		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fmsSpdActive) {
+		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60 or !Value.Afs.spdPitchAvail or Value.Afs.fmsSpdDriving) {
 			me["ASI_sel"].hide();
 		} else {
 			me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.48656);
@@ -856,7 +861,7 @@ var canvasBase = {
 		if (Value.Asi.Tape.fms < -60 or Value.Asi.Tape.fms > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fms == 0) {
 			me["ASI_fms"].hide();
 		} else {
-			if (Value.Asi.fmsSpdActive) {
+			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
 				me["ASI_fms"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
@@ -865,7 +870,7 @@ var canvasBase = {
 			me["ASI_fms"].show();
 		}
 		
-		if (Value.Asi.Tape.preSel > 60 and !afs.Internal.syncedSpd) {
+		if ((Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi) and !afs.Internal.syncedSpd and !fms.FmsSpd.active) {
 			me["ASI_fms_up"].hide();
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_up"].setColor(1, 0, 0);
@@ -894,7 +899,7 @@ var canvasBase = {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
 			}
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.sel > 60) { # It will never go outside envelope
+		} else if ((Value.Asi.Tape.sel > 60 or Value.Asi.showTaxi) and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
 			me["ASI_fms_up"].hide();
 			me["ASI_sel_up"].setColor(1, 1, 1);
 			me["ASI_sel_up"].setColorFill(1, 1, 1);
@@ -906,8 +911,8 @@ var canvasBase = {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.fms > 60 and Value.Asi.fms != 0) { # It will never go outside envelope
-			if (Value.Asi.fmsSpdActive) {
+		} else if ((Value.Asi.Tape.fms > 60 or Value.Asi.showTaxi) and Value.Asi.fms != 0) { # It will never go outside envelope
+			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_up"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
 				me["ASI_fms_up"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
@@ -927,7 +932,7 @@ var canvasBase = {
 			me["ASI_sel_up_text"].hide();
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 and !afs.Internal.syncedSpd) {
+		if (Value.Asi.Tape.preSel < -60 and !Value.Asi.showTaxi and !afs.Internal.syncedSpd and !fms.FmsSpd.active) {
 			me["ASI_fms_dn"].hide();
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_dn"].setColor(1, 0, 0);
@@ -956,7 +961,7 @@ var canvasBase = {
 				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
 			}
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.sel < -60) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.sel < -60 and !Value.Asi.showTaxi and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
 			me["ASI_fms_dn"].hide();
 			me["ASI_sel_dn"].setColor(1, 1, 1);
 			me["ASI_sel_dn"].setColorFill(1, 1, 1);
@@ -968,8 +973,8 @@ var canvasBase = {
 				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.fms < -60 and Value.Asi.fms != 0) { # It will never go outside envelope
-			if (Value.Asi.fmsSpdActive) {
+		} else if (Value.Asi.Tape.fms < -60 and !Value.Asi.showTaxi and Value.Asi.fms != 0) { # It will never go outside envelope
+			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_dn"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
 				me["ASI_fms_dn"].setColorFill(0, 0, 0, 0.01); # Alpha = 0 doesn't work
@@ -1636,7 +1641,7 @@ var canvasBase = {
 		}
 		
 		# FMA
-		if (fms.FmsSpd.active) {
+		if (fms.FmsSpd.active) { # Only if the actual FMS SPD mode is active, this excludes takeoff speed guidance
 			me["FMA_Thrust"].setColor(0.9607, 0, 0.7764);
 		} else {
 			me["FMA_Thrust"].setColor(1, 1, 1);
@@ -1721,13 +1726,13 @@ var canvasBase = {
 		}
 		
 		if (fms.FmsSpd.ktsMach) {
-			if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.001) {
+			if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.001 or Value.Afs.fmsSpdDriving) {
 				me["FMA_Speed"].setColor(0.9607, 0, 0.7764);
 			} else {
 				me["FMA_Speed"].setColor(1, 1, 1);
 			}
 		} else {
-			if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1) {
+			if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1 or Value.Afs.fmsSpdDriving) {
 				me["FMA_Speed"].setColor(0.9607, 0, 0.7764);
 			} else {
 				me["FMA_Speed"].setColor(1, 1, 1);
