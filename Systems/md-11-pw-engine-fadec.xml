@@ -2181,8 +2181,8 @@
 					<independentVar lookup="row">/engines/engine[0]/epr-actual</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2194,8 +2194,8 @@
 					<independentVar lookup="row">/engines/engine[1]/epr-actual</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2207,8 +2207,8 @@
 					<independentVar lookup="row">/engines/engine[2]/epr-actual</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2220,8 +2220,8 @@
 					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2233,8 +2233,8 @@
 					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2246,8 +2246,8 @@
 					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2259,8 +2259,8 @@
 					<independentVar lookup="row">fadec/limit/active</independentVar>
 					<tableData>
 						0  -44
-						1   37
-						2  118
+						1   38
+						2  120
 					</tableData>
 				</table>
 			</function>
@@ -2271,8 +2271,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2283,8 +2283,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2295,8 +2295,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2308,7 +2308,7 @@
 					<independentVar lookup="row">/engines/engine[0]/egt-actual</independentVar>
 					<tableData>
 						  0  -44
-						700  130
+						700  133
 					</tableData>
 				</table>
 			</function>
@@ -2320,7 +2320,7 @@
 					<independentVar lookup="row">/engines/engine[1]/egt-actual</independentVar>
 					<tableData>
 						  0  -44
-						700  130
+						700  133
 					</tableData>
 				</table>
 			</function>
@@ -2332,7 +2332,7 @@
 					<independentVar lookup="row">/engines/engine[2]/egt-actual</independentVar>
 					<tableData>
 						  0  -44
-						700  130
+						700  133
 					</tableData>
 				</table>
 			</function>
@@ -2343,8 +2343,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2355,8 +2355,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2367,8 +2367,8 @@
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 					<tableData>
-						  0.0  -44
-						117.5  130
+						  0  -44
+						120  133
 					</tableData>
 				</table>
 			</function>
@@ -2380,7 +2380,7 @@
 					<independentVar lookup="row">/engines/engine[0]/oil-psi</independentVar>
 					<tableData>
 						  0  -44
-						440  130
+						440  133
 					</tableData>
 				</table>
 			</function>
@@ -2392,7 +2392,7 @@
 					<independentVar lookup="row">/engines/engine[1]/oil-psi</independentVar>
 					<tableData>
 						  0  -44
-						440  130
+						440  133
 					</tableData>
 				</table>
 			</function>
@@ -2404,7 +2404,7 @@
 					<independentVar lookup="row">/engines/engine[2]/oil-psi</independentVar>
 					<tableData>
 						  0  -44
-						440  130
+						440  133
 					</tableData>
 				</table>
 			</function>
@@ -2416,7 +2416,7 @@
 					<independentVar lookup="row">/engines/engine[0]/oil-temp</independentVar>
 					<tableData>
 						  0  -44
-						180  130
+						190  133
 					</tableData>
 				</table>
 			</function>
@@ -2428,7 +2428,7 @@
 					<independentVar lookup="row">/engines/engine[1]/oil-temp</independentVar>
 					<tableData>
 						  0  -44
-						180  130
+						190  133
 					</tableData>
 				</table>
 			</function>
@@ -2440,7 +2440,7 @@
 					<independentVar lookup="row">/engines/engine[2]/oil-temp</independentVar>
 					<tableData>
 						  0  -44
-						180  130
+						190  133
 					</tableData>
 				</table>
 			</function>
@@ -2452,7 +2452,7 @@
 					<independentVar lookup="row">/engines/engine[0]/oil-qty</independentVar>
 					<tableData>
 						 0  -44
-						30  130
+						30  133
 					</tableData>
 				</table>
 			</function>
@@ -2464,7 +2464,7 @@
 					<independentVar lookup="row">/engines/engine[1]/oil-qty</independentVar>
 					<tableData>
 						 0  -44
-						30  130
+						30  133
 					</tableData>
 				</table>
 			</function>
@@ -2476,7 +2476,7 @@
 					<independentVar lookup="row">/engines/engine[2]/oil-qty</independentVar>
 					<tableData>
 						 0  -44
-						30  130
+						30  133
 					</tableData>
 				</table>
 			</function>
