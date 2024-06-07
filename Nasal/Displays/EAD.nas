@@ -429,7 +429,7 @@ var canvasGe = {
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
-		if (Value.Misc.annunTestWow) { 
+		if (Value.Misc.annunTestWow) {
 			me["Alert_error"].show();
 			me["EGT1_error"].show();
 			me["EGT2_error"].show();
@@ -658,7 +658,7 @@ var canvasPw = {
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
-		if (Value.Misc.annunTestWow) { 
+		if (Value.Misc.annunTestWow) {
 			me["Alert_error"].show();
 			me["EGT1_error"].show();
 			me["EGT2_error"].show();

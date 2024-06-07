@@ -309,7 +309,7 @@ var canvasBase = {
 		Value.Misc.gearOut = pts.Fdm.JSBsim.Gear.gearAllNorm.getValue() > 0;
 		
 		# Errors, these don't have separate logic yet.
-		if (Value.Misc.annunTestWow) { 
+		if (Value.Misc.annunTestWow) {
 			me["ALT_error"].show();
 			me["ASI_error"].show();
 			me["Comparators"].show();

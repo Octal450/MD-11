@@ -121,15 +121,51 @@ var canvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AileronLDown", "AileronLUp", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorLDown", "ElevatorLUp", "ElevatorRDown", "ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap2", "Flap3", "Flap4", "FlapBox",
-		"LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL", "NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLowerLeft", "RudderLowerRight",
-		"RudderUpperLeft", "RudderUpperRight", "SlatExt", "SpoilerL", "SpoilerR", "Stab", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+		return ["Alert_error", "AileronL_error", "AileronLDown", "AileronLUp", "AileronR_error", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorL_error", "ElevatorLDown", "ElevatorLUp", "ElevatorR_error", "ElevatorRDown",
+		"ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap1_error", "Flap2", "Flap2_error", "Flap3", "Flap3_error", "Flap4", "Flap4_error", "FlapBox", "GearTest", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL",
+		"NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLower_error", "RudderLowerLeft", "RudderLowerRight", "RudderUpper_error", "RudderUpperLeft", "RudderUpperRight", "SlatExt",
+		"SpoilerL", "SpoilerL_error", "SpoilerR", "SpoilerR_error", "Stab", "Stab_error", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 	},
 	update: func() {
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Alert_error"].show();
+			me["AileronL_error"].show();
+			me["AileronR_error"].show();
+			me["ElevatorL_error"].show();
+			me["ElevatorR_error"].show();
+			me["Flap1_error"].show();
+			me["Flap2_error"].show();
+			me["Flap3_error"].show();
+			me["Flap4_error"].show();
+			me["GearTest"].show();
+			me["RudderLower_error"].show();
+			me["RudderUpper_error"].show();
+			me["SpoilerL_error"].show();
+			me["SpoilerR_error"].show();
+			me["Stab_error"].show();
+		} else {
+			me["Alert_error"].hide();
+			me["AileronL_error"].hide();
+			me["AileronR_error"].hide();
+			me["ElevatorL_error"].hide();
+			me["ElevatorR_error"].hide();
+			me["Flap1_error"].hide();
+			me["Flap2_error"].hide();
+			me["Flap3_error"].hide();
+			me["Flap4_error"].hide();
+			me["GearTest"].hide();
+			me["RudderLower_error"].hide();
+			me["RudderUpper_error"].hide();
+			me["SpoilerL_error"].hide();
+			me["SpoilerR_error"].hide();
+			me["Stab_error"].hide();
+		}
 		
 		# Elevator Feel Speed
 		if (systems.FCC.ElevatorFeel.auto.getBoolValue()) {
@@ -408,7 +444,7 @@ var canvasConfig = {
 		Value.Config.gearStatus[2] = systems.GEAR.status[2].getValue();
 		Value.Config.gearStatus[3] = systems.GEAR.status[3].getValue();
 		
-		if (Value.Config.gearStatus[0] == 0) {
+		if (Value.Config.gearStatus[0] == 0 or Value.Misc.annunTestWow) {
 			me["NoseStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[0] == 2) {
@@ -419,7 +455,7 @@ var canvasConfig = {
 			me["NoseStatus"].show();
 		}
 		
-		if (Value.Config.gearStatus[1] == 0) {
+		if (Value.Config.gearStatus[1] == 0 or Value.Misc.annunTestWow) {
 			me["LeftStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[1] == 2) {
@@ -430,7 +466,7 @@ var canvasConfig = {
 			me["LeftStatus"].show();
 		}
 		
-		if (Value.Config.gearStatus[2] == 0) {
+		if (Value.Config.gearStatus[2] == 0 or Value.Misc.annunTestWow) {
 			me["RightStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[2] == 2) {
@@ -441,7 +477,7 @@ var canvasConfig = {
 			me["RightStatus"].show();
 		}
 		
-		if (Value.Config.gearStatus[3] == 0) {
+		if (Value.Config.gearStatus[3] == 0 or Value.Misc.annunTestWow) {
 			me["CenterStatus"].hide();
 		} else {
 			if (Value.Config.gearStatus[3] == 2) {
@@ -462,9 +498,18 @@ var canvasConseq = {
 		return m;
 	},
 	getKeys: func() {
-		return [];
+		return ["Error"];
 	},
 	update: func() {
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Error"].show();
+		} else {
+			me["Error"].hide();
+		}
 	},
 };
 
@@ -502,7 +547,7 @@ var canvasEng = {
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
-		if (Value.Misc.annunTestWow) { 
+		if (Value.Misc.annunTestWow) {
 			me["Alert_error"].show();
 			me["CabinAlt_error"].show();
 			me["CabinRate_error"].show();
@@ -772,9 +817,18 @@ var canvasMisc = {
 		return m;
 	},
 	getKeys: func() {
-		return [];
+		return ["Error"];
 	},
 	update: func() {
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Error"].show();
+		} else {
+			me["Error"].hide();
+		}
 	},
 };
 
@@ -786,9 +840,18 @@ var canvasStatus = {
 		return m;
 	},
 	getKeys: func() {
-		return [];
+		return ["Error"];
 	},
 	update: func() {
+		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Error"].show();
+		} else {
+			me["Error"].hide();
+		}
 	},
 };
 
