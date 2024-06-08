@@ -521,11 +521,12 @@ var canvasEng = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "APU", "APU_EGT", "APU_N1", "APU_N2", "APU_QTY", "CabinAlt_error", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error", "EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error",
-		"EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error", "GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2",
-		"NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3", "OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline",
-		"OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error", "OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle",
-		"OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_QTY", "APU_QTY_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
+		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
+		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
+		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
+		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
+		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -539,6 +540,8 @@ var canvasEng = {
 		}
 		
 		# Unsimulated stuff, fix later
+		me["CabinAlt"].setText("0");
+		me["CabinRate"].setText("0");
 		me["CabinRateDn"].hide();
 		me["CabinRateUp"].hide();
 	},
@@ -549,6 +552,10 @@ var canvasEng = {
 		# Errors, these don't have separate logic yet.
 		if (Value.Misc.annunTestWow) {
 			me["Alert_error"].show();
+			me["APU_EGT_error"].show();
+			me["APU_N1_error"].show();
+			me["APU_N2_error"].show();
+			me["APU_QTY_error"].show();
 			me["CabinAlt_error"].show();
 			me["CabinRate_error"].show();
 			me["CG_error"].show();
@@ -575,6 +582,10 @@ var canvasEng = {
 			me["Stab_error"].show();
 		} else {
 			me["Alert_error"].hide();
+			me["APU_EGT_error"].hide();
+			me["APU_N1_error"].hide();
+			me["APU_N2_error"].hide();
+			me["APU_QTY_error"].hide();
 			me["CabinAlt_error"].hide();
 			me["CabinRate_error"].hide();
 			me["CG_error"].hide();
@@ -797,7 +808,7 @@ var canvasEng = {
 		
 		# APU
 		Value.Apu.n2 = systems.APU.n2.getValue();
-		if (Value.Apu.n2 >= 1.8) {
+		if (Value.Apu.n2 >= 1.8 or Value.Misc.annunTestWow) {
 			me["APU_EGT"].setText(sprintf("%d", math.round(systems.APU.egt.getValue())));
 			me["APU_N1"].setText(sprintf("%d", math.round(systems.APU.n1.getValue())));
 			me["APU_N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
