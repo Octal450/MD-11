@@ -11,7 +11,8 @@ var DUController = {
 		secs: 180,
 		time: 0,
 	},
-	eadType: pts.Options.eng.getValue(),
+	eadType: "GE-Dials",
+	eng: pts.Options.eng.getValue(),
 	elapsedSec: 0,
 	errorActive: 0,
 	iesiLcdOn: props.globals.initNode("/instrumentation/iesi/lcd-on", 0, "BOOL"),
@@ -67,17 +68,26 @@ var DUController = {
 		canvas_pfd.pfd2Error.page.show();
 	},
 	loop: func() {
+		if (me.eng == "PW") {
+			if (pts.Systems.Acconfig.Options.engTapes.getBoolValue()) {
+				me.eadType = "PW-Tapes";
+			} else {
+				me.eadType = "PW-Dials";
+			}
+		} else {
+			if (pts.Systems.Acconfig.Options.engTapes.getBoolValue()) {
+				me.eadType = "GE-Tapes";
+			} else {
+				me.eadType = "GE-Dials";
+			}
+		}
+		
 		if (!me.errorActive) {
 			me.PwrSource.ac1 = systems.ELEC.Bus.ac1.getValue();
 			me.PwrSource.ac3 = systems.ELEC.Bus.ac3.getValue();
 			me.PwrSource.dcBat = systems.ELEC.Bus.dcBat.getValue();
 			me.PwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
 			me.PwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
-			
-			# Set up PW dial location
-			if (me.eadType == "PW") {
-				canvas_ead.pw.setDials();
-			}
 			
 			# L Emer AC
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
@@ -96,19 +106,40 @@ var DUController = {
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
-					if (me.eadType == "PW") {
-						canvas_ead.pw.update();
-						canvas_ead.pw.page.show();
+					if (me.eadType == "PW-Tapes") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.update();
+						canvas_ead.pwTapes.page.show();
+					} else if (me.eadType == "GE-Tapes") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.geTapes.update();
+						canvas_ead.geTapes.page.show();
+					} else if (me.eadType == "PW-Dials") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.pwDials.setDials();
+						canvas_ead.pwDials.update();
+						canvas_ead.pwDials.page.show();
 					} else {
-						canvas_ead.ge.update();
-						canvas_ead.ge.page.show();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.geDials.update();
+						canvas_ead.geDials.page.show();
 					}
 				}
 			} else {
 				if (me.updateEad) {
 					me.updateEad = 0;
-					canvas_ead.ge.page.hide();
-					canvas_ead.pw.page.hide();
+					canvas_ead.geDials.page.hide();
+					canvas_ead.geTapes.page.hide();
+					canvas_ead.pwDials.page.hide();
+					canvas_ead.pwTapes.page.hide();
 				}
 			}
 			
@@ -330,3 +361,15 @@ var DUController = {
 		}
 	},
 };
+
+# Update PW Dial Positions
+setlistener("/systems/acconfig/options/egt-above-n1", func() {
+	if (DUController.eadType == "PW-Dials") {
+		canvas_ead.pwDials.setDials();
+	}
+}, 0, 0);
+
+# Update Dials vs Tapes
+setlistener("/systems/acconfig/options/eng-tapes", func() {
+	DUController.updateEad = 0; # This forces it to show the appropriate page
+}, 0, 0);

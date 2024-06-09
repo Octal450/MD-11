@@ -531,12 +531,12 @@ var canvasEng = {
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
 		
-		if (Value.Eng.type == "GE") {
-			me["GEGroup"].show();
-			me["PWGroup"].hide();
-		} else {
+		if (Value.Eng.type == "PW") {
 			me["GEGroup"].hide();
 			me["PWGroup"].show();
+		} else {
+			me["GEGroup"].show();
+			me["PWGroup"].hide();
 		}
 		
 		# Unsimulated stuff, fix later

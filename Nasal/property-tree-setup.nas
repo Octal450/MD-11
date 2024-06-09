@@ -360,6 +360,7 @@ var Systems = {
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
 			egtAboveN1: props.globals.getNode("/systems/acconfig/options/egt-above-n1"),
+			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
 			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
 			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),

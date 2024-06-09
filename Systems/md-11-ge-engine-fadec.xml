@@ -834,7 +834,7 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-1/throttle">
+		<fcs_function name="fadec/control-1/throttle-n1">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-1/throttle-lag</independentVar>
@@ -914,7 +914,7 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-2/throttle">
+		<fcs_function name="fadec/control-2/throttle-n1">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-2/throttle-lag</independentVar>
@@ -994,7 +994,7 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<fcs_function name="fadec/control-3/throttle">
+		<fcs_function name="fadec/control-3/throttle-n1">
 			<function>
 				<table>
 					<independentVar lookup="row">fadec/control-3/throttle-lag</independentVar>
@@ -1645,7 +1645,7 @@
 		<fcs_function name="/instrumentation/ead/n1-thr[0]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-1/throttle-n1</independentVar>
 					<tableData>
 						  0  -44
 						120  133
@@ -1657,7 +1657,7 @@
 		<fcs_function name="/instrumentation/ead/n1-thr[1]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-2/throttle-n1</independentVar>
 					<tableData>
 						  0  -44
 						120  133
@@ -1669,7 +1669,7 @@
 		<fcs_function name="/instrumentation/ead/n1-thr[2]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-3/throttle-n1</independentVar>
 					<tableData>
 						  0  -44
 						120  133

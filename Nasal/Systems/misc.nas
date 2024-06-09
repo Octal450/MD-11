@@ -331,6 +331,8 @@ var FADEC = {
 	pitchMode: 0,
 	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
 	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
+	throttleEpr: [props.globals.getNode("/fdm/jsbsim/fadec/control-1/throttle-epr", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-2/throttle-epr", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-3/throttle-epr", 1)],
+	throttleN1: [props.globals.getNode("/fdm/jsbsim/fadec/control-1/throttle-n1", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-2/throttle-n1", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-3/throttle-n1", 1)],
 	Limit: {
 		active: props.globals.getNode("/fdm/jsbsim/fadec/limit/active"),
 		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),

@@ -1265,7 +1265,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/control-1/throttle">
+		<fcs_function name="fadec/control-1/throttle-epr">
 			<function>
 				<sum>
 					<product>
@@ -1367,7 +1367,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/control-2/throttle">
+		<fcs_function name="fadec/control-2/throttle-epr">
 			<function>
 				<sum>
 					<product>
@@ -1469,7 +1469,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/control-3/throttle">
+		<fcs_function name="fadec/control-3/throttle-epr">
 			<function>
 				<sum>
 					<product>
@@ -2217,7 +2217,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[0]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-1/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-1/throttle-epr</independentVar>
 					<tableData>
 						0  -44
 						1   38
@@ -2230,7 +2230,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[1]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-2/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-2/throttle-epr</independentVar>
 					<tableData>
 						0  -44
 						1   38
@@ -2243,7 +2243,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[2]">
 			<function>
 				<table>
-					<independentVar lookup="row">fadec/control-3/throttle</independentVar>
+					<independentVar lookup="row">fadec/control-3/throttle-epr</independentVar>
 					<tableData>
 						0  -44
 						1   38

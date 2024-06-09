@@ -368,13 +368,30 @@
 			</checkbox>
 			
 			<checkbox>
+				<label>Engine Gauge Tapes (EAD &amp; SD)</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/eng-tapes</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<enable>
-					<equals>
-						<property>/options/eng</property>
-						<value>PW</value>
-					</equals>
+					<and>
+						<equals>
+							<property>/options/eng</property>
+							<value>PW</value>
+						</equals>
+						<not><property>/systems/acconfig/options/eng-tapes</property></not>
+					</and>
 				</enable>
-				<label>EAD EGT Above N1 (PW Engines)</label>
+				<label>EGT Dials Above N1 (PW Engines)</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/egt-above-n1</property>
 				<binding>
