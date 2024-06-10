@@ -103,9 +103,6 @@ var canvasBase = {
 		Value.Ignition.starter[0] = systems.IGNITION.starter1.getBoolValue();
 		Value.Ignition.starter[1] = systems.IGNITION.starter2.getBoolValue();
 		Value.Ignition.starter[2] = systems.IGNITION.starter3.getBoolValue();
-		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
-		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
-		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
 		
 		if (systems.DUController.eadType == "GE-Tapes" or systems.DUController.eadType == "PW-Tapes") {
 			me.updateBaseTapes();
@@ -642,6 +639,9 @@ var canvasGeDials = {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
+		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
+		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -859,6 +859,9 @@ var canvasGeTapes = {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
+		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
+		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -1065,6 +1068,9 @@ var canvasPwDials = {
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
+		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
+		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -1324,17 +1330,20 @@ var canvasPwTapes = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_decpnt", "EPR1_error", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_decpnt",
-		"EPR2_error", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_decpnt", "EPR3_error", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF1_error",
-		"FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars",
-		"N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group",
-		"N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_error", "EPR2_group",
+		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF1_error", "FF2",
+		"FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21",
+		"N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline",
+		"REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
 		Value.Fadec.engPowered[0] = systems.FADEC.engPowered[0].getBoolValue();
 		Value.Fadec.engPowered[1] = systems.FADEC.engPowered[1].getBoolValue();
 		Value.Fadec.engPowered[2] = systems.FADEC.engPowered[2].getBoolValue();
+		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
+		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
+		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -1424,22 +1433,22 @@ var canvasPwTapes = {
 			Value.Fadec.epr[0] = pts.Engines.Engine.eprActual[0].getValue();
 			Value.Fadec.eprFixed[0] = pts.Engines.Engine.eprActual[0].getValue() + 0.005;
 			
-			me["EPR1"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[0])));
-			me["EPR1_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[0] - int(Value.Fadec.eprFixed[0])) * 100)));
+			if (Value.Fadec.revState[0] != 0) {
+				me["EPR1_group"].hide();
+			} else {
+				me["EPR1"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[0])));
+				me["EPR1_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[0] - int(Value.Fadec.eprFixed[0])) * 100)));
+				me["EPR1_group"].show();
+			}
 			
 			me["EPR1_bar"].setTranslation(0, (Value.Fadec.epr[0] - 0.4) / 1.6 * -293);
 			me["EPR1_thr"].setTranslation(0, (systems.FADEC.throttleEpr[0].getValue() - 0.4) / 1.6 * -293);
 			
-			me["EPR1"].show();
 			me["EPR1_bar"].show();
-			me["EPR1_decimal"].show();
-			me["EPR1_decpnt"].show();
 			me["EPR1_thr"].show();
 		} else {
-			me["EPR1"].hide();
 			me["EPR1_bar"].hide();
-			me["EPR1_decimal"].hide();
-			me["EPR1_decpnt"].hide();
+			me["EPR1_group"].hide();
 			me["EPR1_thr"].hide();
 		}
 		
@@ -1447,22 +1456,22 @@ var canvasPwTapes = {
 			Value.Fadec.epr[1] = pts.Engines.Engine.eprActual[1].getValue();
 			Value.Fadec.eprFixed[1] = pts.Engines.Engine.eprActual[1].getValue() + 0.005;
 			
-			me["EPR2"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[1])));
-			me["EPR2_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[1] - int(Value.Fadec.eprFixed[1])) * 100)));
+			if (Value.Fadec.revState[1] != 0) {
+				me["EPR2_group"].hide();
+			} else {
+				me["EPR2"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[1])));
+				me["EPR2_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[1] - int(Value.Fadec.eprFixed[1])) * 100)));
+				me["EPR2_group"].show();
+			}
 			
 			me["EPR2_bar"].setTranslation(0, (Value.Fadec.epr[1] - 0.4) / 1.6 * -293);
 			me["EPR2_thr"].setTranslation(0, (systems.FADEC.throttleEpr[1].getValue() - 0.4) / 1.6 * -293);
 			
-			me["EPR2"].show();
 			me["EPR2_bar"].show();
-			me["EPR2_decimal"].show();
-			me["EPR2_decpnt"].show();
 			me["EPR2_thr"].show();
 		} else {
-			me["EPR2"].hide();
 			me["EPR2_bar"].hide();
-			me["EPR2_decimal"].hide();
-			me["EPR2_decpnt"].hide();
+			me["EPR2_group"].hide();
 			me["EPR2_thr"].hide();
 		}
 		
@@ -1470,22 +1479,22 @@ var canvasPwTapes = {
 			Value.Fadec.epr[2] = pts.Engines.Engine.eprActual[2].getValue();
 			Value.Fadec.eprFixed[2] = pts.Engines.Engine.eprActual[2].getValue() + 0.005;
 			
-			me["EPR3"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[2])));
-			me["EPR3_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[2] - int(Value.Fadec.eprFixed[2])) * 100)));
+			if (Value.Fadec.revState[2] != 0) {
+				me["EPR3_group"].hide();
+			} else {
+				me["EPR3"].setText(sprintf("%d", math.floor(Value.Fadec.eprFixed[2])));
+				me["EPR3_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprFixed[2] - int(Value.Fadec.eprFixed[2])) * 100)));
+				me["EPR3_group"].show();
+			}
 			
 			me["EPR3_bar"].setTranslation(0, (Value.Fadec.epr[2] - 0.4) / 1.6 * -293);
 			me["EPR3_thr"].setTranslation(0, (systems.FADEC.throttleEpr[2].getValue() - 0.4) / 1.6 * -293);
 			
-			me["EPR3"].show();
 			me["EPR3_bar"].show();
-			me["EPR3_decimal"].show();
-			me["EPR3_decpnt"].show();
 			me["EPR3_thr"].show();
 		} else {
-			me["EPR3"].hide();
 			me["EPR3_bar"].hide();
-			me["EPR3_decimal"].hide();
-			me["EPR3_decpnt"].hide();
+			me["EPR3_group"].hide();
 			me["EPR3_thr"].hide();
 		}
 		
