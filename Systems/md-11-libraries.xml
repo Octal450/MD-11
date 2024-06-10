@@ -204,6 +204,22 @@
 			</test>
 		</switch>
 		
+		<switch name="libraries/two-engine-on">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state eq 3
+				/engines/engine[1]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state eq 3
+				/engines/engine[2]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[1]/state eq 3
+				/engines/engine[2]/state eq 3
+			</test>
+		</switch>
+		
 		<fcs_function name="libraries/blink-fast">
 			<function>
 				<integer>

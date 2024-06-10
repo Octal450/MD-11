@@ -50,9 +50,9 @@
      inkscape:window-height="1057"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="534.76724"
-     inkscape:cy="392.85029"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="334.53954"
+     inkscape:cy="450.02432"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -945,6 +945,25 @@
          x="541.12195"
          id="tspan4833"
          sodipodi:role="line">0000</tspan></text>
+    <g
+       id="RA_error"
+       inkscape:label="#g4635"
+       transform="matrix(0,1,-1,0,1024.4866,-271.49325)">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path5291-4"
+         d="M 964.04048,608.62581 937.63102,507.79828"
+         style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:4.80000019;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:label="#path5088" />
+      <path
+         inkscape:label="#path5088"
+         style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:4.80000019;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 937.63102,608.62581 964.04048,507.79828"
+         id="path5099"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
   </g>
   <g
      id="FD_group"
@@ -6632,7 +6651,7 @@
   <text
      transform="scale(0.92632793,1.0795313)"
      sodipodi:linespacing="125%"
-     id="ILS_Info"
+     id="ILS_info"
      y="827.55682"
      x="18.16572"
      style="font-style:normal;font-weight:normal;font-size:29.6424942px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#f500c6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -7421,4 +7440,18 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.71525574px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#f0b900;fill-opacity:1"
          id="tspan5249">LOC</tspan></text>
   </g>
+  <text
+     inkscape:label="#text4965"
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:28.89192772px;line-height:125%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#f0b900;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="783.20862"
+     y="694.3894"
+     id="ILS_alt"
+     sodipodi:linespacing="125%"
+     transform="scale(0.90287282,1.1075757)"><tspan
+       sodipodi:role="line"
+       x="783.20862"
+       y="694.3894"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.13909912px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;text-anchor:start;fill:#f0b900;fill-opacity:1"
+       id="tspan5203-0">ILS2</tspan></text>
 </svg>

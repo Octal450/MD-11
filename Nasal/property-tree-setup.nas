@@ -128,6 +128,7 @@ var Fdm = {
 			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),
 			blinkMed2: props.globals.getNode("/fdm/jsbsim/libraries/blink-med-2"),
 			multiEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/multi-engine-out"),
+			twoEngineOn: props.globals.getNode("/fdm/jsbsim/libraries/two-engine-on"),
 		},
 		Position: {
 			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),

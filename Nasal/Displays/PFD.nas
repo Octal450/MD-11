@@ -155,7 +155,6 @@ var Value = {
 	},
 	Misc: {
 		annunTestWow: 0,
-		anyEngineOn: 0,
 		blinkFast: 0,
 		blinkMed: 0,
 		blinkMed2: 0,
@@ -168,6 +167,7 @@ var Value = {
 		slatsCmd: 0,
 		slatsOut: 0,
 		slatsPos: 0,
+		twoEngineOn: 0,
 		wow: 0,
 	},
 	Nav: {
@@ -250,8 +250,9 @@ var canvasBase = {
 		"ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators",
 		"FD_error", "FD_group", "FD_pitch", "FD_roll", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
 		"FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error",
-		"HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_DME", "ILS_Info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums",
-		"Outer_Marker", "QNH", "RA", "RA_box", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker",
+		"Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn",
+		"VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -295,7 +296,7 @@ var canvasBase = {
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
-		Value.Misc.anyEngineOn = pts.Fdm.JSBsim.Libraries.anyEngineOn.getBoolValue();
+		Value.Misc.twoEngineOn = pts.Fdm.JSBsim.Libraries.twoEngineOn.getBoolValue();
 		Value.Misc.blinkFast = pts.Fdm.JSBsim.Libraries.blinkFast.getBoolValue();
 		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
@@ -317,7 +318,9 @@ var canvasBase = {
 			me["Flaps_error"].show();
 			me["HDG_error2"].show();
 			me["GS_error"].show();
+			me["ILS_alt"].show();
 			me["LOC_error"].show();
+			me["RA_error"].show();
 		} else {
 			me["ALT_error"].hide();
 			me["ASI_error"].hide();
@@ -326,7 +329,9 @@ var canvasBase = {
 			me["Flaps_error"].hide();
 			me["HDG_error2"].hide();
 			me["GS_error"].hide();
+			me["ILS_alt"].hide();
 			me["LOC_error"].hide();
+			me["RA_error"].hide();
 		}
 		
 		# ASI
@@ -666,7 +671,7 @@ var canvasBase = {
 					me["ASI_v1_bug"].setTranslation(0, Value.Asi.Tape.v1Final);
 					me["ASI_v1_dash"].hide();
 				} else {
-					if (Value.Misc.anyEngineOn) {
+					if (Value.Misc.twoEngineOn) {
 						me["ASI_v1_bug"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_v1_box"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_v1_dash"].setColor(0.9647, 0.8196, 0.0784);
@@ -725,7 +730,7 @@ var canvasBase = {
 				} else {
 					Value.Asi.hideV1 = 0;
 					
-					if (Value.Misc.anyEngineOn) {
+					if (Value.Misc.twoEngineOn) {
 						me["ASI_vr_bug"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_vr_box"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_vr_dash"].setColor(0.9647, 0.8196, 0.0784);
@@ -778,7 +783,7 @@ var canvasBase = {
 			} else {
 				Value.Asi.hideVr = 0;
 				
-				if (Value.Misc.anyEngineOn) {
+				if (Value.Misc.twoEngineOn) {
 					me["ASI_v2_bug"].setColor(0.9647, 0.8196, 0.0784);
 					me["ASI_v2_box"].setColor(0.9647, 0.8196, 0.0784);
 					me["ASI_v2_dash"].setColor(0.9647, 0.8196, 0.0784);
@@ -1456,16 +1461,16 @@ var canvasBase = {
 				} else {
 					me["ILS_DME"].hide();
 				}
-				me["ILS_Info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
-				me["ILS_Info"].show();
+				me["ILS_info"].setText(pts.Instrumentation.Nav.navId[2].getValue());
+				me["ILS_info"].show();
 			} else {
 				me["ILS_DME"].hide();
-				me["ILS_Info"].setText(sprintf("%6.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
-				me["ILS_Info"].show();
+				me["ILS_info"].setText(sprintf("%6.2f", pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue()));
+				me["ILS_info"].show();
 			}
 		} else {
 			me["ILS_DME"].hide();
-			me["ILS_Info"].hide();
+			me["ILS_info"].hide();
 		}
 		
 		# Marker Beacons
@@ -2169,6 +2174,8 @@ var canvasPfd2 = {
 		return m;
 	},
 	setup: func() {
+		me["ILS_alt"].setText("ILS1");
+		
 		# Hide unimplemented objects
 		me["ALT_fms"].hide();
 		me["ALT_fms_dn"].hide();
