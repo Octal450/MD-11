@@ -328,6 +328,7 @@ setlistener("/engines/engine[2]/state", func() {
 var FADEC = {
 	anyEngineOut: 0,
 	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
+	n1Mode: [props.globals.getNode("/fdm/jsbsim/fadec/control-1/n1-mode", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-2/n1-mode", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-3/n1-mode", 1)],
 	pitchMode: 0,
 	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
 	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),

@@ -1165,7 +1165,12 @@ var canvasPwDials = {
 			me["EPR1_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR1_needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
-			me["EPR1_thr"].setRotation(pts.Instrumentation.Ead.eprThr[0].getValue() * D2R);
+			if (!systems.FADEC.n1Mode[0].getValue()) {
+				me["EPR1_thr"].setRotation(pts.Instrumentation.Ead.eprThr[0].getValue() * D2R);
+				me["EPR1_thr"].show();
+			} else {
+				me["EPR1_thr"].hide();
+			}
 			
 			me["EPR1_box"].show();
 			me["EPR1_decpnt"].show();
@@ -1173,7 +1178,6 @@ var canvasPwDials = {
 			me["EPR1_needle"].show();
 			me["EPR1_ones"].show();
 			me["EPR1_tenths"].show();
-			me["EPR1_thr"].show();
 		} else {
 			me["EPR1_box"].hide();
 			me["EPR1_decpnt"].hide();
@@ -1192,7 +1196,12 @@ var canvasPwDials = {
 			me["EPR2_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR2_needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
-			me["EPR2_thr"].setRotation(pts.Instrumentation.Ead.eprThr[1].getValue() * D2R);
+			if (!systems.FADEC.n1Mode[1].getValue()) {
+				me["EPR2_thr"].setRotation(pts.Instrumentation.Ead.eprThr[1].getValue() * D2R);
+				me["EPR2_thr"].show();
+			} else {
+				me["EPR2_thr"].hide();
+			}
 			
 			me["EPR2_box"].show();
 			me["EPR2_decpnt"].show();
@@ -1200,7 +1209,6 @@ var canvasPwDials = {
 			me["EPR2_needle"].show();
 			me["EPR2_ones"].show();
 			me["EPR2_tenths"].show();
-			me["EPR2_thr"].show();
 		} else {
 			me["EPR2_box"].hide();
 			me["EPR2_decpnt"].hide();
@@ -1219,7 +1227,12 @@ var canvasPwDials = {
 			me["EPR3_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 33.75));
 			
 			me["EPR3_needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);
-			me["EPR3_thr"].setRotation(pts.Instrumentation.Ead.eprThr[2].getValue() * D2R);
+			if (!systems.FADEC.n1Mode[2].getValue()) {
+				me["EPR3_thr"].setRotation(pts.Instrumentation.Ead.eprThr[2].getValue() * D2R);
+				me["EPR3_thr"].show();
+			} else {
+				me["EPR3_thr"].hide();
+			}
 			
 			me["EPR3_box"].show();
 			me["EPR3_decpnt"].show();
@@ -1227,7 +1240,6 @@ var canvasPwDials = {
 			me["EPR3_needle"].show();
 			me["EPR3_ones"].show();
 			me["EPR3_tenths"].show();
-			me["EPR3_thr"].show();
 		} else {
 			me["EPR3_box"].hide();
 			me["EPR3_decpnt"].hide();
@@ -1442,10 +1454,14 @@ var canvasPwTapes = {
 			}
 			
 			me["EPR1_bar"].setTranslation(0, (Value.Fadec.epr[0] - 0.4) / 1.6 * -293);
-			me["EPR1_thr"].setTranslation(0, (systems.FADEC.throttleEpr[0].getValue() - 0.4) / 1.6 * -293);
+			if (!systems.FADEC.n1Mode[0].getValue()) {
+				me["EPR1_thr"].setTranslation(0, (systems.FADEC.throttleEpr[0].getValue() - 0.4) / 1.6 * -293);
+				me["EPR1_thr"].show();
+			} else {
+				me["EPR1_thr"].hide();
+			}
 			
 			me["EPR1_bar"].show();
-			me["EPR1_thr"].show();
 		} else {
 			me["EPR1_bar"].hide();
 			me["EPR1_group"].hide();
@@ -1465,10 +1481,14 @@ var canvasPwTapes = {
 			}
 			
 			me["EPR2_bar"].setTranslation(0, (Value.Fadec.epr[1] - 0.4) / 1.6 * -293);
-			me["EPR2_thr"].setTranslation(0, (systems.FADEC.throttleEpr[1].getValue() - 0.4) / 1.6 * -293);
+			if (!systems.FADEC.n1Mode[1].getValue()) {
+				me["EPR2_thr"].setTranslation(0, (systems.FADEC.throttleEpr[1].getValue() - 0.4) / 1.6 * -293);
+				me["EPR2_thr"].show();
+			} else {
+				me["EPR2_thr"].hide();
+			}
 			
 			me["EPR2_bar"].show();
-			me["EPR2_thr"].show();
 		} else {
 			me["EPR2_bar"].hide();
 			me["EPR2_group"].hide();
@@ -1488,10 +1508,14 @@ var canvasPwTapes = {
 			}
 			
 			me["EPR3_bar"].setTranslation(0, (Value.Fadec.epr[2] - 0.4) / 1.6 * -293);
-			me["EPR3_thr"].setTranslation(0, (systems.FADEC.throttleEpr[2].getValue() - 0.4) / 1.6 * -293);
+			if (!systems.FADEC.n1Mode[2].getValue()) {
+				me["EPR3_thr"].setTranslation(0, (systems.FADEC.throttleEpr[2].getValue() - 0.4) / 1.6 * -293);
+				me["EPR3_thr"].show();
+			} else {
+				me["EPR3_thr"].hide();
+			}
 			
 			me["EPR3_bar"].show();
-			me["EPR3_thr"].show();
 		} else {
 			me["EPR3_bar"].hide();
 			me["EPR3_group"].hide();
