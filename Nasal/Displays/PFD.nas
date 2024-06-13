@@ -245,7 +245,7 @@ var canvasBase = {
 		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid",
 		"ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel",
 		"ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI",
-		"ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach",
+		"ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach",
 		"ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug",
 		"ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators",
 		"FD_error", "FD_group", "FD_pitch", "FD_roll", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
@@ -352,6 +352,7 @@ var canvasBase = {
 			Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
 		}
 		
+		# Sometimes clipped by V speed box code below
 		if (Value.Asi.sel <= 50) {
 			Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.sel >= 450) {
@@ -360,12 +361,202 @@ var canvasBase = {
 			Value.Asi.Tape.sel = Value.Asi.sel - 50 - Value.Asi.Tape.ias;
 		}
 		
+		# Sometimes clipped by V speed box code below
 		if (Value.Asi.fms <= 50) {
 			Value.Asi.Tape.fms = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.fms >= 450) {
 			Value.Asi.Tape.fms = 400 - Value.Asi.Tape.ias;
 		} else {
 			Value.Asi.Tape.fms = Value.Asi.fms - 50 - Value.Asi.Tape.ias;
+		}
+		
+		# V Speed Bugs/Boxes
+		if (fms.Internal.phase <= 1) {
+			if (Value.Asi.hideV1 or Value.Asi.hideVr) { # If VR is hidden, hide V1 also
+				me["ASI_v1_box"].hide();
+				me["ASI_v1_bug"].hide();
+				me["ASI_v1_dash"].hide();
+				me["ASI_v1_text"].hide();
+			} else {
+				if (fms.FlightData.v1 > 0) {
+					Value.Asi.Tape.v1 = fms.FlightData.v1 - 50 - Value.Asi.Tape.ias;
+					
+					if (fms.FlightData.v1State == 1) {
+						me["ASI_v1_bug"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_box"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_text"].setColor(0.9607, 0, 0.7764);
+					} else {
+						me["ASI_v1_bug"].setColor(1, 1, 1);
+						me["ASI_v1_box"].setColor(1, 1, 1);
+						me["ASI_v1_text"].setColor(1, 1, 1);
+					}
+					
+					Value.Asi.Tape.v1Final = math.clamp((Value.Asi.Tape.v1 * -4.48656) + 147.259, 0, 1000); # Offset from center: 147.259
+					if (Value.Asi.Tape.v1Final > 0.0001) {
+						me["ASI_v1_box"].hide();
+						me["ASI_v1_text"].hide();
+					} else {
+						me["ASI_v1_box"].show();
+						me["ASI_v1_text"].setText(sprintf("%03d", fms.FlightData.v1));
+						me["ASI_v1_text"].show();
+					}
+					
+					me["ASI_v1_bug"].setTranslation(0, Value.Asi.Tape.v1Final);
+					me["ASI_v1_dash"].hide();
+				} else {
+					if (Value.Misc.twoEngineOn) {
+						me["ASI_v1_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_box"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_dash"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_text"].setColor(0.9647, 0.8196, 0.0784);
+					} else {
+						me["ASI_v1_bug"].setColor(1, 1, 1);
+						me["ASI_v1_box"].setColor(1, 1, 1);
+						me["ASI_v1_dash"].setColor(1, 1, 1);
+						me["ASI_v1_text"].setColor(1, 1, 1);
+					}
+				
+					me["ASI_v1_bug"].setTranslation(0, 0);
+					me["ASI_v1_bug"].show();
+					me["ASI_v1_box"].show();
+					me["ASI_v1_dash"].show();
+					me["ASI_v1_text"].hide();
+				}
+			}
+			
+			if (Value.Asi.hideVr) {
+				me["ASI_vr_box"].hide();
+				me["ASI_vr_bug"].hide();
+				me["ASI_vr_dash"].hide();
+				me["ASI_vr_text"].hide();
+			} else {
+				if (fms.FlightData.vr > 0) {
+					Value.Asi.Tape.vr = fms.FlightData.vr - 50 - Value.Asi.Tape.ias;
+					
+					if (fms.FlightData.vrState == 1) {
+						me["ASI_vr_bug"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_box"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_text"].setColor(0.9607, 0, 0.7764);
+					} else {
+						me["ASI_vr_bug"].setColor(1, 1, 1);
+						me["ASI_vr_box"].setColor(1, 1, 1);
+						me["ASI_vr_text"].setColor(1, 1, 1);
+					}
+					
+					Value.Asi.Tape.vrFinal = math.clamp((Value.Asi.Tape.vr * -4.48656) + 190.759, 0, 1000); # Offset from center: 190.759
+					if (Value.Asi.Tape.vrFinal > 0.0001) {
+						me["ASI_vr_box"].hide();
+						me["ASI_vr_text"].hide();
+					} else {
+						me["ASI_vr_box"].show();
+						me["ASI_vr_text"].setText(sprintf("%03d", fms.FlightData.vr));
+						me["ASI_vr_text"].show();
+					}
+					
+					me["ASI_vr_bug"].setTranslation(0, Value.Asi.Tape.vrFinal);
+					me["ASI_vr_bug"].show();
+					me["ASI_vr_dash"].hide();
+					
+					if (Value.Asi.ias >= fms.FlightData.vr) {
+						Value.Asi.hideV1 = 1;
+					}
+				} else {
+					Value.Asi.hideV1 = 0;
+					
+					if (Value.Misc.twoEngineOn) {
+						me["ASI_vr_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_box"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_dash"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_text"].setColor(0.9647, 0.8196, 0.0784);
+					} else {
+						me["ASI_vr_bug"].setColor(1, 1, 1);
+						me["ASI_vr_box"].setColor(1, 1, 1);
+						me["ASI_vr_dash"].setColor(1, 1, 1);
+						me["ASI_vr_text"].setColor(1, 1, 1);
+					}
+					
+					me["ASI_vr_bug"].setTranslation(0, 0);
+					me["ASI_vr_bug"].show();
+					me["ASI_vr_box"].show();
+					me["ASI_vr_dash"].show();
+					me["ASI_vr_text"].hide();
+				}
+			}
+			
+			if (fms.FlightData.v2 > 0) {
+				# Keep sel/fms bug by the box maximum
+				if (Value.Asi.Tape.sel > 52.21349) {
+					Value.Asi.Tape.sel = 52.21349;
+				}
+				if (Value.Asi.Tape.fms > 52.21349) {
+					Value.Asi.Tape.fms = 52.21349;
+				}
+				
+				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
+				
+				if (fms.FlightData.v2State == 1) {
+					me["ASI_v2_bug"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_box"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_text"].setColor(0.9607, 0, 0.7764);
+				} else {
+					me["ASI_v2_bug"].setColor(1, 1, 1);
+					me["ASI_v2_box"].setColor(1, 1, 1);
+					me["ASI_v2_text"].setColor(1, 1, 1);
+				}
+				
+				Value.Asi.Tape.v2Final = math.clamp((Value.Asi.Tape.v2 * -4.48656) + 234.259, 0, 1000); # Offset from center: 234.259
+				if (Value.Asi.Tape.v2Final > 0.0001) {
+					me["ASI_v2_box"].hide();
+					me["ASI_v2_text"].hide();
+				} else {
+					me["ASI_v2_box"].show();
+					me["ASI_v2_text"].setText(sprintf("%03d", fms.FlightData.v2));
+					me["ASI_v2_text"].show();
+				}
+				
+				me["ASI_v2_bug"].setTranslation(0, Value.Asi.Tape.v2Final);
+				me["ASI_v2_bug"].show();
+				me["ASI_v2_dash"].hide();
+				
+				if (Value.Asi.ias >= fms.FlightData.v2) {
+					Value.Asi.hideVr = 1;
+				}
+			} else {
+				Value.Asi.hideVr = 0;
+				
+				if (Value.Misc.twoEngineOn) {
+					me["ASI_v2_bug"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_box"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_dash"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_text"].setColor(0.9647, 0.8196, 0.0784);
+				} else {
+					me["ASI_v2_bug"].setColor(1, 1, 1);
+					me["ASI_v2_box"].setColor(1, 1, 1);
+					me["ASI_v2_dash"].setColor(1, 1, 1);
+					me["ASI_v2_text"].setColor(1, 1, 1);
+				}
+				
+				me["ASI_v2_bug"].setTranslation(0, 0);
+				me["ASI_v2_bug"].show();
+				me["ASI_v2_box"].show();
+				me["ASI_v2_dash"].show();
+				me["ASI_v2_text"].hide();
+			}
+		} else {
+			Value.Asi.hideV1 = 0;
+			Value.Asi.hideVr = 0;
+			me["ASI_v1_bug"].hide();
+			me["ASI_v1_box"].hide();
+			me["ASI_v1_dash"].hide();
+			me["ASI_v1_text"].hide();
+			me["ASI_v2_bug"].hide();
+			me["ASI_v2_box"].hide();
+			me["ASI_v2_dash"].hide();
+			me["ASI_v2_text"].hide();
+			me["ASI_vr_bug"].hide();
+			me["ASI_vr_box"].hide();
+			me["ASI_vr_dash"].hide();
+			me["ASI_vr_text"].hide();
 		}
 		
 		if (Value.Asi.ias < 53 and Value.Misc.wow) {
@@ -387,6 +578,7 @@ var canvasBase = {
 			
 			me["ASI_sel_up"].setColor(1, 1, 1);
 			me["ASI_sel_dn"].setColor(1, 1, 1);
+			me["ASI_bowtie"].hide();
 			me["ASI_ias_group"].hide();
 			me["ASI_taxi_group"].show();
 		} else {
@@ -633,189 +825,9 @@ var canvasBase = {
 			}
 			
 			# Let the whole ASI tape update before showing
+			me["ASI_bowtie"].show();
 			me["ASI_ias_group"].show();
 			me["ASI_taxi_group"].hide();
-		}
-		
-		# V Speed Bugs/Boxes
-		if (fms.Internal.phase <= 1) {
-			if (Value.Asi.hideV1 or Value.Asi.hideVr) { # If VR is hidden, hide V1 also
-				me["ASI_v1_box"].hide();
-				me["ASI_v1_bug"].hide();
-				me["ASI_v1_dash"].hide();
-				me["ASI_v1_text"].hide();
-			} else {
-				if (fms.FlightData.v1 > 0) {
-					Value.Asi.Tape.v1 = fms.FlightData.v1 - 50 - Value.Asi.Tape.ias;
-					
-					if (fms.FlightData.v1State == 1) {
-						me["ASI_v1_bug"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_box"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_text"].setColor(0.9607, 0, 0.7764);
-					} else {
-						me["ASI_v1_bug"].setColor(1, 1, 1);
-						me["ASI_v1_box"].setColor(1, 1, 1);
-						me["ASI_v1_text"].setColor(1, 1, 1);
-					}
-					
-					Value.Asi.Tape.v1Final = math.clamp((Value.Asi.Tape.v1 * -4.48656) + 130.99, 0, 1000); # Offset from center: 130.99
-					if (Value.Asi.Tape.v1Final > 0.0001) {
-						me["ASI_v1_box"].hide();
-						me["ASI_v1_text"].hide();
-					} else {
-						me["ASI_v1_box"].show();
-						me["ASI_v1_text"].setText(sprintf("%03d", fms.FlightData.v1));
-						me["ASI_v1_text"].show();
-					}
-					
-					me["ASI_v1_bug"].setTranslation(0, Value.Asi.Tape.v1Final);
-					me["ASI_v1_dash"].hide();
-				} else {
-					if (Value.Misc.twoEngineOn) {
-						me["ASI_v1_bug"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_v1_box"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_v1_dash"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_v1_text"].setColor(0.9647, 0.8196, 0.0784);
-					} else {
-						me["ASI_v1_bug"].setColor(1, 1, 1);
-						me["ASI_v1_box"].setColor(1, 1, 1);
-						me["ASI_v1_dash"].setColor(1, 1, 1);
-						me["ASI_v1_text"].setColor(1, 1, 1);
-					}
-				
-					me["ASI_v1_bug"].setTranslation(0, 0);
-					me["ASI_v1_bug"].show();
-					me["ASI_v1_box"].show();
-					me["ASI_v1_dash"].show();
-					me["ASI_v1_text"].hide();
-				}
-			}
-			
-			if (Value.Asi.hideVr) {
-				me["ASI_vr_box"].hide();
-				me["ASI_vr_bug"].hide();
-				me["ASI_vr_dash"].hide();
-				me["ASI_vr_text"].hide();
-			} else {
-				if (fms.FlightData.vr > 0) {
-					Value.Asi.Tape.vr = fms.FlightData.vr - 50 - Value.Asi.Tape.ias;
-					
-					if (fms.FlightData.vrState == 1) {
-						me["ASI_vr_bug"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_box"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_text"].setColor(0.9607, 0, 0.7764);
-					} else {
-						me["ASI_vr_bug"].setColor(1, 1, 1);
-						me["ASI_vr_box"].setColor(1, 1, 1);
-						me["ASI_vr_text"].setColor(1, 1, 1);
-					}
-					
-					Value.Asi.Tape.vrFinal = math.clamp((Value.Asi.Tape.vr * -4.48656) + 182.49, 0, 1000); # Offset from center: 182.49
-					if (Value.Asi.Tape.vrFinal > 0.0001) {
-						me["ASI_vr_box"].hide();
-						me["ASI_vr_text"].hide();
-					} else {
-						me["ASI_vr_box"].show();
-						me["ASI_vr_text"].setText(sprintf("%03d", fms.FlightData.vr));
-						me["ASI_vr_text"].show();
-					}
-					
-					me["ASI_vr_bug"].setTranslation(0, Value.Asi.Tape.vrFinal);
-					me["ASI_vr_bug"].show();
-					me["ASI_vr_dash"].hide();
-					
-					if (Value.Asi.ias >= fms.FlightData.vr) {
-						Value.Asi.hideV1 = 1;
-					}
-				} else {
-					Value.Asi.hideV1 = 0;
-					
-					if (Value.Misc.twoEngineOn) {
-						me["ASI_vr_bug"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_vr_box"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_vr_dash"].setColor(0.9647, 0.8196, 0.0784);
-						me["ASI_vr_text"].setColor(0.9647, 0.8196, 0.0784);
-					} else {
-						me["ASI_vr_bug"].setColor(1, 1, 1);
-						me["ASI_vr_box"].setColor(1, 1, 1);
-						me["ASI_vr_dash"].setColor(1, 1, 1);
-						me["ASI_vr_text"].setColor(1, 1, 1);
-					}
-					
-					me["ASI_vr_bug"].setTranslation(0, 0);
-					me["ASI_vr_bug"].show();
-					me["ASI_vr_box"].show();
-					me["ASI_vr_dash"].show();
-					me["ASI_vr_text"].hide();
-				}
-			}
-			
-			if (fms.FlightData.v2 > 0) {
-				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
-				
-				if (fms.FlightData.v2State == 1) {
-					me["ASI_v2_bug"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_box"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_text"].setColor(0.9607, 0, 0.7764);
-				} else {
-					me["ASI_v2_bug"].setColor(1, 1, 1);
-					me["ASI_v2_box"].setColor(1, 1, 1);
-					me["ASI_v2_text"].setColor(1, 1, 1);
-				}
-				
-				Value.Asi.Tape.v2Final = math.clamp((Value.Asi.Tape.v2 * -4.48656) + 233.99, 0, 1000); # Offset from center: 233.99
-				if (Value.Asi.Tape.v2Final > 0.0001) {
-					me["ASI_v2_box"].hide();
-					me["ASI_v2_text"].hide();
-				} else {
-					me["ASI_v2_box"].show();
-					me["ASI_v2_text"].setText(sprintf("%03d", fms.FlightData.v2));
-					me["ASI_v2_text"].show();
-				}
-				
-				me["ASI_v2_bug"].setTranslation(0, Value.Asi.Tape.v2Final);
-				me["ASI_v2_bug"].show();
-				me["ASI_v2_dash"].hide();
-				
-				if (Value.Asi.ias >= fms.FlightData.v2) {
-					Value.Asi.hideVr = 1;
-				}
-			} else {
-				Value.Asi.hideVr = 0;
-				
-				if (Value.Misc.twoEngineOn) {
-					me["ASI_v2_bug"].setColor(0.9647, 0.8196, 0.0784);
-					me["ASI_v2_box"].setColor(0.9647, 0.8196, 0.0784);
-					me["ASI_v2_dash"].setColor(0.9647, 0.8196, 0.0784);
-					me["ASI_v2_text"].setColor(0.9647, 0.8196, 0.0784);
-				} else {
-					me["ASI_v2_bug"].setColor(1, 1, 1);
-					me["ASI_v2_box"].setColor(1, 1, 1);
-					me["ASI_v2_dash"].setColor(1, 1, 1);
-					me["ASI_v2_text"].setColor(1, 1, 1);
-				}
-				
-				me["ASI_v2_bug"].setTranslation(0, 0);
-				me["ASI_v2_bug"].show();
-				me["ASI_v2_box"].show();
-				me["ASI_v2_dash"].show();
-				me["ASI_v2_text"].hide();
-			}
-		} else {
-			Value.Asi.hideV1 = 0;
-			Value.Asi.hideVr = 0;
-			me["ASI_v1_bug"].hide();
-			me["ASI_v1_box"].hide();
-			me["ASI_v1_dash"].hide();
-			me["ASI_v1_text"].hide();
-			me["ASI_v2_bug"].hide();
-			me["ASI_v2_box"].hide();
-			me["ASI_v2_dash"].hide();
-			me["ASI_v2_text"].hide();
-			me["ASI_vr_bug"].hide();
-			me["ASI_vr_box"].hide();
-			me["ASI_vr_dash"].hide();
-			me["ASI_vr_text"].hide();
 		}
 		
 		if (Value.Asi.trend >= 2) {
