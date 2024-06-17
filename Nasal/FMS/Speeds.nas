@@ -96,31 +96,7 @@ var FmsSpd = {
 		}
 		
 		# Takeoff Guidance Logic
-		if (fms.FmsSpd.active) {
-			me.toDriving = 0; # Ensure it doesn't interfere with FMS SPD
-		}
-		
-		if (fms.FlightData.v2 > 0) {
-			if (!Value.wow) {
-				if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
-					if (!me.v2Toggle) { # Only set the speed once
-						me.v2Toggle = 1;
-						me.toKts = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);
-					}
-				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
-					me.toDriving = 1;
-					me.toKts = fms.FlightData.v2 + 10;
-				}
-			} else {
-				me.toDriving = 1;
-				me.toKts = math.clamp(math.max(FlightData.v2, math.round(Value.asiKts)), FlightData.v2, FlightData.v2 + 10);
-				me.v2Toggle = 0;
-			}
-		} else {
-			me.toDriving = 1;
-			me.toKts = 0;
-			me.v2Toggle = 0;
-		}
+		me.takeoffLogic();
 		
 		# Special Takeoff Guidance Logic
 		# Only when FMS SPD is active, or non-overridden V2 is set
@@ -160,4 +136,38 @@ var FmsSpd = {
 	setConvertMach: func(kts, mach) {
 		me.mach = math.round(me.kts * (mach / kts), 0.001);
 	},
+	takeoffLogic: func() {
+		if (fms.FmsSpd.active) {
+			me.toDriving = 0; # Ensure it doesn't interfere with FMS SPD
+		}
+		
+		if (fms.FlightData.v2 > 0) {
+			if (!Value.wow) {
+				if (pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue()) {
+					if (!me.v2Toggle) { # Only set the speed once
+						me.v2Toggle = 1;
+						me.toKts = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);
+					}
+				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
+					me.toDriving = 1;
+					me.toKts = fms.FlightData.v2 + 10;
+				}
+			} else {
+				me.toDriving = 1;
+				me.toKts = math.clamp(math.max(FlightData.v2, math.round(Value.asiKts)), FlightData.v2, FlightData.v2 + 10);
+				me.v2Toggle = 0;
+			}
+		} else {
+			me.toDriving = 1;
+			me.toKts = 0;
+			me.v2Toggle = 0;
+		}
+	},
 };
+
+setlistener("/fms/internal/ias-v2-clamp-out", func() { # This is used only to make the loop update when the speed changes between V2 and V2 + 10
+	if (FmsSpd.toDriving) {
+		FmsSpd.takeoffLogic();
+		afs.ITAF.takeoffSpdLogic();
+	}
+}, 0, 0);

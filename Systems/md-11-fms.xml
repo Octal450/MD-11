@@ -7,6 +7,51 @@
 	
 	<property value="0">/fms/speeds/flaps-input-feedback</property>
 	
+	<channel name="Fast Logic">
+		
+		<!-- V2 Target Logic -->
+		<!-- This is used only to make the loop update when the speed changes between V2 and V2 + 10 -->
+		<fcs_function name="/fms/flight-data/v2-plus-10">
+			<function>
+				<sum>
+					<property>/fms/flight-data/v2</property>
+					<value>10</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/fms/internal/ias-v2-clamp">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/fms/flight-data/v2</property>
+						<value>0</value>
+					</gt>
+					<ifthen>
+						<eq>
+							<property>position/wow</property>
+							<value>0</value>
+						</eq>
+						<property>/fms/flight-data/v2-plus-10</property>
+						<integer>
+							<sum>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<value>0.5</value>
+							</sum>
+						</integer>
+					</ifthen>
+					<value>0</value>
+				</ifthen>
+			</function>
+			<output>/fms/internal/ias-v2-clamp-out</output>
+			<clipto>
+				<min>/fms/flight-data/v2</min>
+				<max>/fms/flight-data/v2-plus-10</max>
+			</clipto>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Flight Data" execrate="8">
 		
 		<!-- Weight Inputs -->

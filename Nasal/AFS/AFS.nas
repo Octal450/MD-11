@@ -605,15 +605,10 @@ var ITAF = {
 		Internal.spdPitchAvailTemp = Internal.spdPitchAvail.getBoolValue();
 		
 		# Takeoff Speed Guidance
-		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp and fms.FmsSpd.toKts > 0) {
-			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
-				Output.spdCaptured = 1; # Always captured when driven
-				Internal.kts.setValue(fms.FmsSpd.toKts);
-			}
-		}
+		me.takeoffSpdLogic();
 		
 		# FMS SPD
-		if (fms.FmsSpd.active) {
+		if (fms.FmsSpd.active) { # Separate from Takeoff Speed Guidance
 			Output.spdCaptured = 1; # Always captured when driven
 			Internal.kts.setValue(fms.FmsSpd.toKts);
 		}
@@ -1510,6 +1505,14 @@ var ITAF = {
 				Internal.kts.setValue(math.clamp(Input.kts.getValue(), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 			}
 			Output.spdCaptured = 0;
+		}
+	},
+	takeoffSpdLogic: func() {
+		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp and fms.FmsSpd.toKts > 0) {
+			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
+				Output.spdCaptured = 1; # Always captured when driven
+				Internal.kts.setValue(fms.FmsSpd.toKts);
+			}
 		}
 	},
 	autoflight: func() {
