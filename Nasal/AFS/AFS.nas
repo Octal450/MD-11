@@ -602,7 +602,7 @@ var ITAF = {
 		
 		# Speed by Pitch Available Logic
 		Text.vertTemp = Text.vert.getValue();
-		if (fms.Internal.phase <= 1 and (fms.FlightData.v2 == 0 or fms.FmsSpd.toKts == 0)) {
+		if (Text.vertTemp == "T/O CLB" and (fms.FlightData.v2 == 0 or fms.FmsSpd.toKts == 0)) {
 			Internal.spdPitchAvail.setBoolValue(0);
 		} else {
 			Internal.spdPitchAvail.setBoolValue(1);
@@ -1513,7 +1513,7 @@ var ITAF = {
 		}
 	},
 	takeoffSpdLogic: func() {
-		if (fms.Internal.phase <= 1 and Internal.spdPitchAvailTemp and fms.FmsSpd.toKts > 0) {
+		if (Text.vert.getValue() == "T/O CLB" and Internal.spdPitchAvail.getBoolValue() and fms.FmsSpd.toKts > 0) {
 			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
 				Output.spdCaptured = 1; # Always captured when driven
 				Internal.kts.setValue(fms.FmsSpd.toKts);
