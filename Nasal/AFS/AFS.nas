@@ -400,6 +400,11 @@ var ITAF = {
 			me.checkRadioReversion(Output.latTemp, Output.vertTemp);
 		}
 		
+		# Takeoff Lateral Reversion
+		if (Output.latTemp == 5 and Output.vertTemp != 7) {
+			me.setLatMode(3);
+		}
+		
 		Output.ap1Temp = Output.ap1.getBoolValue();
 		Output.ap2Temp = Output.ap2.getBoolValue();
 		Output.athrTemp = Output.athr.getBoolValue();
