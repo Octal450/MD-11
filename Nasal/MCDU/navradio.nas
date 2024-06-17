@@ -61,8 +61,10 @@ var NavRadio = {
 		
 		m.Value = {
 			adfKhz: [0, 0],
+			lat: 0,
 			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
 			navMhz: [0, 0, 0],
+			vert: 0,
 		};
 		
 		m.group = "fmc";
@@ -297,7 +299,12 @@ var NavRadio = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
-			if (me.scratchpadState == 2) {
+			me.Value.lat = afs.Output.lat.getValue();
+			me.Value.vert = afs.Output.vert.getValue();
+			
+			if ((me.Value.lat == 2 or me.Value.lat == 4 or me.Value.vert == 2 or me.Value.vert == 6) and afs.Input.radioSel.getValue() == 2) {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			} else if (me.scratchpadState == 2) {
 				me.insertNav(2);
 			} else if (me.scratchpadState == 0) {
 				if (pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue() > 0) {
