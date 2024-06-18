@@ -56,7 +56,7 @@ var DUController = {
 		me.showNd2.setBoolValue(0); # Temporary
 		canvas_ead.ge.page.hide();
 		canvas_ead.pw.page.hide();
-		canvas_sd.eng.page.hide();
+		canvas_sd.engDials.page.hide();
 		canvas_iesi.iesi.page.hide();
 		canvas_mcdu.mcdu1.page.hide();
 		canvas_mcdu.mcdu2.page.hide();
@@ -319,43 +319,59 @@ var DUController = {
 	showSdPage: func(p) {
 		if (p == "CONFIG") {
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.config.update();
 			canvas_sd.config.page.show();
 		} else if (p == "CONSEQ") {
 			canvas_sd.config.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
 		} else if (p == "ENG") {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
-			canvas_sd.eng.update();
-			canvas_sd.eng.page.show();
+			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.engDials.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engTapes.update();
+				canvas_sd.engTapes.page.show();
+			} else {
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.engTapes.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engDials.update();
+				canvas_sd.engDials.page.show();
+			}
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
 			canvas_sd.status.page.hide();
 		} else if (p == "STATUS") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
 		} else {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 		}
@@ -371,5 +387,7 @@ setlistener("/systems/acconfig/options/egt-above-n1", func() {
 
 # Update Dials vs Tapes
 setlistener("/systems/acconfig/options/eng-tapes", func() {
-	DUController.updateEad = 0; # This forces it to show the appropriate page
+	# This forces them to show the appropriate page
+	DUController.updateEad = 0;
+	DUController.updateSd = 0;
 }, 0, 0);

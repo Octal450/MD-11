@@ -4,7 +4,8 @@
 var display = nil;
 var config = nil;
 var conseq = nil;
-var eng = nil;
+var engDials = nil;
+var engTapes = nil;
 var misc = nil;
 var status = nil;
 
@@ -87,12 +88,14 @@ var canvasBase = {
 		me.hidePages();
 		
 		config.setup();
-		eng.setup();
+		engDials.setup();
+		engTapes.setup();
 	},
 	hidePages: func() {
 		config.page.hide();
 		conseq.page.hide();
-		eng.page.hide();
+		engDials.page.hide();
+		engTapes.page.hide();
 		misc.page.hide();
 		status.page.hide();
 	},
@@ -103,7 +106,11 @@ var canvasBase = {
 			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
 			} else if (systems.DUController.sdPage == "ENG") {
-				eng.update();
+				if (systems.DUController.eadType == "GE-Tapes" or systems.DUController.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+					engTapes.update();
+				} else {
+					engDials.update();
+				}
 			} else if (systems.DUController.sdPage == "MISC") {
 				misc.update();
 			} else if (systems.DUController.sdPage == "STATUS") {
@@ -513,39 +520,8 @@ var canvasConseq = {
 	},
 };
 
-var canvasEng = {
-	new: func(canvasGroup, file) {
-		var m = {parents: [canvasEng, canvasBase]};
-		m.init(canvasGroup, file);
-		
-		return m;
-	},
-	getKeys: func() {
-		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_QTY", "APU_QTY_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
-		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
-		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
-		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
-		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
-		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
-	},
-	setup: func() {
-		Value.Eng.type = pts.Options.eng.getValue();
-		
-		if (Value.Eng.type == "PW") {
-			me["GEGroup"].hide();
-			me["PWGroup"].show();
-		} else {
-			me["GEGroup"].show();
-			me["PWGroup"].hide();
-		}
-		
-		# Unsimulated stuff, fix later
-		me["CabinAlt"].setText("0");
-		me["CabinRate"].setText("0");
-		me["CabinRateDn"].hide();
-		me["CabinRateUp"].hide();
-	},
-	update: func() {
+var canvasEngBase = {
+	updateEngBase: func() {
 		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -555,7 +531,7 @@ var canvasEng = {
 			me["APU_EGT_error"].show();
 			me["APU_N1_error"].show();
 			me["APU_N2_error"].show();
-			me["APU_QTY_error"].show();
+			me["APU_Qty_error"].show();
 			me["CabinAlt_error"].show();
 			me["CabinRate_error"].show();
 			me["CG_error"].show();
@@ -585,7 +561,7 @@ var canvasEng = {
 			me["APU_EGT_error"].hide();
 			me["APU_N1_error"].hide();
 			me["APU_N2_error"].hide();
-			me["APU_QTY_error"].hide();
+			me["APU_Qty_error"].hide();
 			me["CabinAlt_error"].hide();
 			me["CabinRate_error"].hide();
 			me["CG_error"].hide();
@@ -677,6 +653,60 @@ var canvasEng = {
 		} else {
 			me["StabUnit"].setText("ANU");
 		}
+		
+		# Nacelle Temp
+		me["NacelleTemp1"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[0].getValue())));
+		me["NacelleTemp2"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[1].getValue())));
+		me["NacelleTemp3"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[2].getValue())));
+		
+		# APU
+		Value.Apu.n2 = systems.APU.n2.getValue();
+		if (Value.Apu.n2 >= 1.8 or Value.Misc.annunTestWow) {
+			me["APU_EGT"].setText(sprintf("%d", math.round(systems.APU.egt.getValue())));
+			me["APU_N1"].setText(sprintf("%d", math.round(systems.APU.n1.getValue())));
+			me["APU_N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
+			me["APU_Qty"].setText(sprintf("%2.1f", math.round(systems.APU.oilQty.getValue(), 0.5)));
+			me["APU"].show();
+		} else {
+			me["APU"].hide();
+		}
+	},
+};
+
+var canvasEngDials = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasEngDials, canvasEngBase, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
+		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
+		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
+		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
+		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
+		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+	},
+	setup: func() {
+		Value.Eng.type = pts.Options.eng.getValue();
+		
+		if (Value.Eng.type == "PW") {
+			me["GEGroup"].hide();
+			me["PWGroup"].show();
+		} else {
+			me["GEGroup"].show();
+			me["PWGroup"].hide();
+		}
+		
+		# Unsimulated stuff, fix later
+		me["CabinAlt"].setText("0");
+		me["CabinRate"].setText("0");
+		me["CabinRateDn"].hide();
+		me["CabinRateUp"].hide();
+	},
+	update: func() {
+		me.updateEngBase();
 		
 		# Oil Psi
 		me["OilPsi1"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[0].getValue()));
@@ -800,23 +830,43 @@ var canvasEng = {
 		} else {
 			me["OilQty3_cline"].hide();
 		}
+	},
+};
+
+var canvasEngTapes = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasEngTapes, canvasEngBase, canvasBase]};
+		m.init(canvasGroup, file);
 		
-		# Nacelle Temp
-		me["NacelleTemp1"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[0].getValue())));
-		me["NacelleTemp2"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[1].getValue())));
-		me["NacelleTemp3"].setText(sprintf("%d", math.round(pts.Engines.Engine.nacelleTemp[2].getValue())));
+		return m;
+	},
+	getKeys: func() {
+		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
+		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
+		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
+		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
+		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
+		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+	},
+	setup: func() {
+		Value.Eng.type = pts.Options.eng.getValue();
 		
-		# APU
-		Value.Apu.n2 = systems.APU.n2.getValue();
-		if (Value.Apu.n2 >= 1.8 or Value.Misc.annunTestWow) {
-			me["APU_EGT"].setText(sprintf("%d", math.round(systems.APU.egt.getValue())));
-			me["APU_N1"].setText(sprintf("%d", math.round(systems.APU.n1.getValue())));
-			me["APU_N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
-			me["APU_QTY"].setText(sprintf("%2.1f", math.round(systems.APU.oilQty.getValue(), 0.5)));
-			me["APU"].show();
+		if (Value.Eng.type == "PW") {
+			me["GEGroup"].hide();
+			me["PWGroup"].show();
 		} else {
-			me["APU"].hide();
+			me["GEGroup"].show();
+			me["PWGroup"].hide();
 		}
+		
+		# Unsimulated stuff, fix later
+		me["CabinAlt"].setText("0");
+		me["CabinRate"].setText("0");
+		me["CabinRateDn"].hide();
+		me["CabinRateUp"].hide();
+	},
+	update: func() {
+		me.updateEngBase();
 	},
 };
 
@@ -878,13 +928,15 @@ var init = func() {
 	
 	var configGroup = display.createGroup();
 	var conseqGroup = display.createGroup();
-	var engGroup = display.createGroup();
+	var engDialsGroup = display.createGroup();
+	var engTapesGroup = display.createGroup();
 	var miscGroup = display.createGroup();
 	var statusGroup = display.createGroup();
 	
 	config = canvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
-	eng = canvasEng.new(engGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG.svg");
+	engDials = canvasEngDials.new(engDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Dials.svg");
+	engTapes = canvasEngTapes.new(engTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Tapes.svg");
 	misc = canvasStatus.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
 	status = canvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");
 	
