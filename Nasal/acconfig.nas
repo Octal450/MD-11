@@ -29,7 +29,7 @@ var SYSTEM = {
 			http.load("https://raw.githubusercontent.com/Octal450/MD-11/master/revision.txt").done(func(r) me.newRevision.setValue(r.response));
 		}
 		me.revision.setValue(io.readfile(getprop("/sim/aircraft-dir") ~ "/revision.txt"));
-		print("System: MD-11 Revision " ~ me.revision.getValue());
+		print("System: MD-11 Version " ~ me.revision.getValue());
 	},
 	fdmInit: func() {
 		me.revisionTemp = me.revision.getValue();

@@ -17,6 +17,8 @@ var Value = {
 		gearStatus: [0, 0, 0, 0],
 	},
 	Eng: {
+		oilPsi: [0, 0, 0],
+		oilPsiScale: 160,
 		oilQty: [0, 0, 0],
 		oilQtyCline: [0, 0, 0],
 		oilTemp: [0, 0, 0],
@@ -106,7 +108,9 @@ var canvasBase = {
 			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
 			} else if (systems.DUController.sdPage == "ENG") {
-				if (systems.DUController.eadType == "GE-Tapes" or systems.DUController.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+				if (systems.DUController.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+					engTapes.update();
+				} else if (systems.DUController.eadType == "GE-Tapes") { # Tape style EAD means tape style SD
 					engTapes.update();
 				} else {
 					engDials.update();
@@ -682,21 +686,21 @@ var canvasEngDials = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
-		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
+		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
 		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
 		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
-		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
+		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab", "Stab_error",
 		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
 		
 		if (Value.Eng.type == "PW") {
-			me["GEGroup"].hide();
-			me["PWGroup"].show();
+			me["GE_group"].hide();
+			me["PW_group"].show();
 		} else {
-			me["GEGroup"].show();
-			me["PWGroup"].hide();
+			me["GE_group"].show();
+			me["PW_group"].hide();
 		}
 		
 		# Unsimulated stuff, fix later
@@ -762,6 +766,10 @@ var canvasEngDials = {
 				me["OilTemp3_box"].hide();
 				me["OilTemp3_needle"].setColorFill(1, 1, 1);
 			}
+		} else {
+			me["OilTemp1_box"].hide();
+			me["OilTemp2_box"].hide();
+			me["OilTemp3_box"].hide();
 		}
 		
 		# Oil Qty
@@ -842,21 +850,21 @@ var canvasEngTapes = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
-		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GEGroup", "GW", "GW_error",
-		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
-		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
-		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PWGroup", "Stab", "Stab_error",
+		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
+		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2", "OilPsi2_bar", "OilPsi2_error", "OilPsi3",
+		"OilPsi3_bar", "OilPsi3_error", "OilQty_bars", "OilQty1", "OilQty1_bar", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty2", "OilQty2_bar", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty3", "OilQty3_bar", "OilQty3_box", "OilQty3_cline",
+		"OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box", "OilTemp3_error", "PW_group", "Stab", "Stab_error",
 		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
 		
 		if (Value.Eng.type == "PW") {
-			me["GEGroup"].hide();
-			me["PWGroup"].show();
+			me["GE_group"].hide();
+			me["PW_group"].show();
 		} else {
-			me["GEGroup"].show();
-			me["PWGroup"].hide();
+			me["GE_group"].show();
+			me["PW_group"].hide();
 		}
 		
 		# Unsimulated stuff, fix later
@@ -867,6 +875,143 @@ var canvasEngTapes = {
 	},
 	update: func() {
 		me.updateEngBase();
+		
+		if (Value.Eng.type == "PW") {
+			Value.Eng.oilPsiScale = 440;
+		} else {
+			Value.Eng.oilPsiScale = 160;
+		}
+		
+		# Oil Psi
+		Value.Eng.oilPsi[0] = pts.Engines.Engine.oilPsi[0].getValue();
+		Value.Eng.oilPsi[1] = pts.Engines.Engine.oilPsi[1].getValue();
+		Value.Eng.oilPsi[2] = pts.Engines.Engine.oilPsi[2].getValue();
+		
+		me["OilPsi1"].setText(sprintf("%d", Value.Eng.oilPsi[0]));
+		me["OilPsi1_bar"].setTranslation(0, Value.Eng.oilPsi[0] / Value.Eng.oilPsiScale * -251);
+		
+		me["OilPsi2"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[1].getValue()));
+		me["OilPsi2_bar"].setTranslation(0, Value.Eng.oilPsi[1] / Value.Eng.oilPsiScale * -251);
+		
+		me["OilPsi3"].setText(sprintf("%d", pts.Engines.Engine.oilPsi[2].getValue()));
+		me["OilPsi3_bar"].setTranslation(0, Value.Eng.oilPsi[2] / Value.Eng.oilPsiScale * -251);
+		
+		# Oil Temp
+		Value.Eng.oilTemp[0] = math.round(pts.Engines.Engine.oilTemp[0].getValue());
+		Value.Eng.oilTemp[1] = math.round(pts.Engines.Engine.oilTemp[1].getValue());
+		Value.Eng.oilTemp[2] = math.round(pts.Engines.Engine.oilTemp[2].getValue());
+		
+		me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
+		me["OilTemp1_bar"].setTranslation(0, Value.Eng.oilTemp[0] / 190 * -251);
+		
+		me["OilTemp2"].setText(sprintf("%d", Value.Eng.oilTemp[1]));
+		me["OilTemp2_bar"].setTranslation(0, Value.Eng.oilTemp[1] / 190 * -251);
+		
+		me["OilTemp3"].setText(sprintf("%d", Value.Eng.oilTemp[2]));
+		me["OilTemp3_bar"].setTranslation(0, Value.Eng.oilTemp[2] / 190 * -251);
+		
+		if (Value.Eng.type == "PW") {
+			if (Value.Eng.oilTemp[0] <= 50) {
+				me["OilTemp1"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp1_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp1_box"].show();
+			} else {
+				me["OilTemp1"].setColor(1, 1, 1);
+				me["OilTemp1_bar"].setColorFill(1, 1, 1);
+				me["OilTemp1_box"].hide();
+			}
+			
+			if (Value.Eng.oilTemp[1] <= 50) {
+				me["OilTemp2"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp2_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp2_box"].show();
+			} else {
+				me["OilTemp2"].setColor(1, 1, 1);
+				me["OilTemp2_bar"].setColorFill(1, 1, 1);
+				me["OilTemp2_box"].hide();
+			}
+			
+			if (Value.Eng.oilTemp[2] <= 50) {
+				me["OilTemp3"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp3_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp3_box"].show();
+			} else {
+				me["OilTemp3"].setColor(1, 1, 1);
+				me["OilTemp3_bar"].setColorFill(1, 1, 1);
+				me["OilTemp3_box"].hide();
+			}
+		} else {
+			me["OilTemp1_box"].hide();
+			me["OilTemp2_box"].hide();
+			me["OilTemp3_box"].hide();
+		}
+		
+		# Oil Qty
+		Value.Eng.oilQty[0] = math.round(pts.Engines.Engine.oilQty[0].getValue());
+		Value.Eng.oilQty[1] = math.round(pts.Engines.Engine.oilQty[1].getValue());
+		Value.Eng.oilQty[2] = math.round(pts.Engines.Engine.oilQty[2].getValue());
+		
+		me["OilQty1"].setText(sprintf("%d", Value.Eng.oilQty[0]));
+		me["OilQty1_bar"].setTranslation(0, Value.Eng.oilQty[0] / 30 * -251);
+		
+		me["OilQty2"].setText(sprintf("%d", Value.Eng.oilQty[1]));
+		me["OilQty2_bar"].setTranslation(0, Value.Eng.oilQty[1] / 30 * -251);
+		
+		me["OilQty3"].setText(sprintf("%d", Value.Eng.oilQty[2]));
+		me["OilQty3_bar"].setTranslation(0, Value.Eng.oilQty[2] / 30 * -251);
+		
+		if (Value.Eng.oilQty[0] <= 4) {
+			me["OilQty1"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty1_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty1_box"].show();
+		} else {
+			me["OilQty1"].setColor(1, 1, 1);
+			me["OilQty1_bar"].setColorFill(1, 1, 1);
+			me["OilQty1_box"].hide();
+		}
+		
+		if (Value.Eng.oilQty[1] <= 4) {
+			me["OilQty2"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty2_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty2_box"].show();
+		} else {
+			me["OilQty2"].setColor(1, 1, 1);
+			me["OilQty2_bar"].setColorFill(1, 1, 1);
+			me["OilQty2_box"].hide();
+		}
+		
+		if (Value.Eng.oilQty[2] <= 4) {
+			me["OilQty3"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty3_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty3_box"].show();
+		} else {
+			me["OilQty3"].setColor(1, 1, 1);
+			me["OilQty3_bar"].setColorFill(1, 1, 1);
+			me["OilQty3_box"].hide();
+		}
+		
+		#Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();
+		#Value.Eng.oilQtyCline[1] = pts.Instrumentation.Sd.Eng.oilQtyCline[1].getValue();
+		#Value.Eng.oilQtyCline[2] = pts.Instrumentation.Sd.Eng.oilQtyCline[2].getValue();
+		
+		if (Value.Eng.oilQtyCline[0] != -1) {
+			me["OilQty1_cline"].setRotation(Value.Eng.oilQtyCline[0] * D2R);
+			me["OilQty1_cline"].show();
+		} else {
+			me["OilQty1_cline"].hide();
+		}
+		if (Value.Eng.oilQtyCline[1] != -1) {
+			me["OilQty2_cline"].setRotation(Value.Eng.oilQtyCline[1] * D2R);
+			me["OilQty2_cline"].show();
+		} else {
+			me["OilQty2_cline"].hide();
+		}
+		if (Value.Eng.oilQtyCline[2] != -1) {
+			me["OilQty3_cline"].setRotation(Value.Eng.oilQtyCline[2] * D2R);
+			me["OilQty3_cline"].show();
+		} else {
+			me["OilQty3_cline"].hide();
+		}
 	},
 };
 

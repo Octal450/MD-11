@@ -13,7 +13,8 @@ var Value = {
 		eprLimit: 0,
 		n1Limit: 0,
 	},
-	egtScale: 0,
+	egtScale: 1000,
+	engType: "GE",
 	Fadec: {
 		activeMode: "T/O",
 		egt: [0, 0, 0],
@@ -82,14 +83,14 @@ var canvasBase = {
 		geTapes.page.hide();
 		pwDials.page.hide();
 		pwTapes.page.hide();
+		
+		Value.engType = pts.Options.eng.getValue();
 	},
 	update: func() {
 		if (systems.DUController.updateEad) {
 			if (systems.DUController.eadType == "PW-Tapes") {
-				Value.egtScale = 700;
 				pwTapes.update();
 			} else if (systems.DUController.eadType == "GE-Tapes") {
-				Value.egtScale = 1000;
 				geTapes.update();
 			} else if (systems.DUController.eadType == "PW-Dials") {
 				pwDials.update();
@@ -411,6 +412,12 @@ var canvasBase = {
 		}
 	},
 	updateBaseTapes: func() {
+		if (Value.engType == "PW") {
+			Value.egtScale = 700;
+		} else {
+			Value.egtScale = 1000;
+		}
+		
 		# EGT
 		if (Value.Fadec.engPowered[0]) {
 			Value.Fadec.egt[0] = pts.Engines.Engine.egtActual[0].getValue();
