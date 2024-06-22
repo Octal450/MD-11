@@ -21,6 +21,7 @@ var Value = {
 		oilPsiScale: 160,
 		oilQty: [0, 0, 0],
 		oilQtyCline: [0, 0, 0],
+		oilQtyClineQt: [0, 0, 0],
 		oilTemp: [0, 0, 0],
 		type: "GE",
 	},
@@ -773,17 +774,17 @@ var canvasEngDials = {
 		}
 		
 		# Oil Qty
-		Value.Eng.oilQty[0] = math.round(pts.Engines.Engine.oilQty[0].getValue());
-		Value.Eng.oilQty[1] = math.round(pts.Engines.Engine.oilQty[1].getValue());
-		Value.Eng.oilQty[2] = math.round(pts.Engines.Engine.oilQty[2].getValue());
+		Value.Eng.oilQty[0] = pts.Engines.Engine.oilQty[0].getValue();
+		Value.Eng.oilQty[1] = pts.Engines.Engine.oilQty[1].getValue();
+		Value.Eng.oilQty[2] = pts.Engines.Engine.oilQty[2].getValue();
 		
-		me["OilQty1"].setText(sprintf("%d", Value.Eng.oilQty[0]));
+		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
 		me["OilQty1_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[0].getValue() * D2R);
 		
-		me["OilQty2"].setText(sprintf("%d", Value.Eng.oilQty[1]));
+		me["OilQty2"].setText(sprintf("%d", math.round(Value.Eng.oilQty[1])));
 		me["OilQty2_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[1].getValue() * D2R);
 		
-		me["OilQty3"].setText(sprintf("%d", Value.Eng.oilQty[2]));
+		me["OilQty3"].setText(sprintf("%d", math.round(Value.Eng.oilQty[2])));
 		me["OilQty3_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
@@ -820,19 +821,19 @@ var canvasEngDials = {
 		Value.Eng.oilQtyCline[1] = pts.Instrumentation.Sd.Eng.oilQtyCline[1].getValue();
 		Value.Eng.oilQtyCline[2] = pts.Instrumentation.Sd.Eng.oilQtyCline[2].getValue();
 		
-		if (Value.Eng.oilQtyCline[0] != -1) {
+		if (Value.Eng.oilQtyCline[0] != -45) {
 			me["OilQty1_cline"].setRotation(Value.Eng.oilQtyCline[0] * D2R);
 			me["OilQty1_cline"].show();
 		} else {
 			me["OilQty1_cline"].hide();
 		}
-		if (Value.Eng.oilQtyCline[1] != -1) {
+		if (Value.Eng.oilQtyCline[1] != -45) {
 			me["OilQty2_cline"].setRotation(Value.Eng.oilQtyCline[1] * D2R);
 			me["OilQty2_cline"].show();
 		} else {
 			me["OilQty2_cline"].hide();
 		}
-		if (Value.Eng.oilQtyCline[2] != -1) {
+		if (Value.Eng.oilQtyCline[2] != -45) {
 			me["OilQty3_cline"].setRotation(Value.Eng.oilQtyCline[2] * D2R);
 			me["OilQty3_cline"].show();
 		} else {
@@ -947,17 +948,17 @@ var canvasEngTapes = {
 		}
 		
 		# Oil Qty
-		Value.Eng.oilQty[0] = math.round(pts.Engines.Engine.oilQty[0].getValue());
-		Value.Eng.oilQty[1] = math.round(pts.Engines.Engine.oilQty[1].getValue());
-		Value.Eng.oilQty[2] = math.round(pts.Engines.Engine.oilQty[2].getValue());
+		Value.Eng.oilQty[0] = pts.Engines.Engine.oilQty[0].getValue();
+		Value.Eng.oilQty[1] = pts.Engines.Engine.oilQty[1].getValue();
+		Value.Eng.oilQty[2] = pts.Engines.Engine.oilQty[2].getValue();
 		
-		me["OilQty1"].setText(sprintf("%d", Value.Eng.oilQty[0]));
+		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
 		me["OilQty1_bar"].setTranslation(0, Value.Eng.oilQty[0] / 30 * -251);
 		
-		me["OilQty2"].setText(sprintf("%d", Value.Eng.oilQty[1]));
+		me["OilQty2"].setText(sprintf("%d", math.round(Value.Eng.oilQty[1])));
 		me["OilQty2_bar"].setTranslation(0, Value.Eng.oilQty[1] / 30 * -251);
 		
-		me["OilQty3"].setText(sprintf("%d", Value.Eng.oilQty[2]));
+		me["OilQty3"].setText(sprintf("%d", math.round(Value.Eng.oilQty[2])));
 		me["OilQty3_bar"].setTranslation(0, Value.Eng.oilQty[2] / 30 * -251);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
@@ -990,24 +991,24 @@ var canvasEngTapes = {
 			me["OilQty3_box"].hide();
 		}
 		
-		#Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();
-		#Value.Eng.oilQtyCline[1] = pts.Instrumentation.Sd.Eng.oilQtyCline[1].getValue();
-		#Value.Eng.oilQtyCline[2] = pts.Instrumentation.Sd.Eng.oilQtyCline[2].getValue();
+		Value.Eng.oilQtyClineQt[0] = pts.Instrumentation.Sd.Eng.oilQtyClineQt[0].getValue();
+		Value.Eng.oilQtyClineQt[1] = pts.Instrumentation.Sd.Eng.oilQtyClineQt[1].getValue();
+		Value.Eng.oilQtyClineQt[2] = pts.Instrumentation.Sd.Eng.oilQtyClineQt[2].getValue();
 		
-		if (Value.Eng.oilQtyCline[0] != -1) {
-			me["OilQty1_cline"].setRotation(Value.Eng.oilQtyCline[0] * D2R);
+		if (Value.Eng.oilQtyClineQt[0] != -1) {
+			me["OilQty1_cline"].setTranslation(0, Value.Eng.oilQtyClineQt[0] / 30 * -251);
 			me["OilQty1_cline"].show();
 		} else {
 			me["OilQty1_cline"].hide();
 		}
-		if (Value.Eng.oilQtyCline[1] != -1) {
-			me["OilQty2_cline"].setRotation(Value.Eng.oilQtyCline[1] * D2R);
+		if (Value.Eng.oilQtyClineQt[1] != -1) {
+			me["OilQty2_cline"].setTranslation(0, Value.Eng.oilQtyClineQt[1] / 30 * -251);
 			me["OilQty2_cline"].show();
 		} else {
 			me["OilQty2_cline"].hide();
 		}
-		if (Value.Eng.oilQtyCline[2] != -1) {
-			me["OilQty3_cline"].setRotation(Value.Eng.oilQtyCline[2] * D2R);
+		if (Value.Eng.oilQtyClineQt[2] != -1) {
+			me["OilQty3_cline"].setTranslation(0, Value.Eng.oilQtyClineQt[2] / 30 * -251);
 			me["OilQty3_cline"].show();
 		} else {
 			me["OilQty3_cline"].hide();

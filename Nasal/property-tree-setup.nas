@@ -274,6 +274,7 @@ var Instrumentation = {
 			oilPsi: [props.globals.getNode("/instrumentation/sd/eng/oil-psi[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[2]")],
 			oilQty: [props.globals.getNode("/instrumentation/sd/eng/oil-qty[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[2]")],
 			oilQtyCline: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[2]")],
+			oilQtyClineQt: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[2]")],
 			oilTemp: [props.globals.getNode("/instrumentation/sd/eng/oil-temp[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[2]")],
 		},
 	},
