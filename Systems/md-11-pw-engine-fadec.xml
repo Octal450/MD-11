@@ -2506,50 +2506,89 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/instrumentation/sd/eng/oil-qty-cline[0]">
-			<default value="/instrumentation/sd/eng/oil-qty-cline[0]"/>
+		<switch name="/instrumentation/sd/eng/oil-qty-cline-qt[0]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline-qt[0]"/>
 			<test logic="AND" value="-1">
 				/engines/engine[0]/state ne 3
 				position/wow eq 1
 			</test>
-			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[0]">
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline-qt[0]">
 				/engines/engine[0]/state eq 3
 				position/wow eq 0
 			</test>
-			<test value="/instrumentation/sd/eng/oil-qty[0]">
+			<test value="/engines/engine[0]/oil-qty">
 				/engines/engine[0]/state eq 3
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/sd/eng/oil-qty-cline[1]">
-			<default value="/instrumentation/sd/eng/oil-qty-cline[1]"/>
+		<switch name="/instrumentation/sd/eng/oil-qty-cline-qt[1]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline-qt[1]"/>
 			<test logic="AND" value="-1">
 				/engines/engine[1]/state ne 3
 				position/wow eq 1
 			</test>
-			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[1]">
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline-qt[1]">
 				/engines/engine[1]/state eq 3
 				position/wow eq 0
 			</test>
-			<test value="/instrumentation/sd/eng/oil-qty[1]">
+			<test value="/engines/engine[1]/oil-qty">
 				/engines/engine[1]/state eq 3
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/sd/eng/oil-qty-cline[2]">
-			<default value="/instrumentation/sd/eng/oil-qty-cline[2]"/>
+		<switch name="/instrumentation/sd/eng/oil-qty-cline-qt[2]">
+			<default value="/instrumentation/sd/eng/oil-qty-cline-qt[2]"/>
 			<test logic="AND" value="-1">
 				/engines/engine[2]/state ne 3
 				position/wow eq 1
 			</test>
-			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline[2]">
+			<test logic="AND" value="/instrumentation/sd/eng/oil-qty-cline-qt[2]">
 				/engines/engine[2]/state eq 3
 				position/wow eq 0
 			</test>
-			<test value="/instrumentation/sd/eng/oil-qty[2]">
+			<test value="/engines/engine[2]/oil-qty">
 				/engines/engine[2]/state eq 3
 			</test>
 		</switch>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty-cline[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">/instrumentation/sd/eng/oil-qty-cline-qt[0]</independentVar>
+					<tableData>
+						-1  -45
+						 0  -44
+						30  133
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty-cline[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">/instrumentation/sd/eng/oil-qty-cline-qt[1]</independentVar>
+					<tableData>
+						-1  -45
+						 0  -44
+						30  133
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/sd/eng/oil-qty-cline[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">/instrumentation/sd/eng/oil-qty-cline-qt[2]</independentVar>
+					<tableData>
+						-1  -45
+						 0  -44
+						30  133
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 
