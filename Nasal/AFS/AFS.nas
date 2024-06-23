@@ -746,21 +746,28 @@ var ITAF = {
 				if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 10 or (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and Internal.throttleSaturatedTemp == 1 and Output.spdProtTemp == 0))) { # High Speed Prot
 					Output.spdProt.setValue(2);
 					Internal.spdProtOnPitch = 1;
-					me.setVertMode(4);
+					if (Output.vertTemp != 4) {
+						me.setVertMode(4);
+						Fma.startBlink(0);
+					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
 					}
 				} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 10 or (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and Internal.throttleSaturatedTemp == 2 and Output.spdProtTemp == 0))) { # Low Speed Prot
 					Output.spdProt.setValue(1);
 					Internal.spdProtOnPitch = 1;
-					me.setVertMode(4);
+					if (Output.vertTemp != 4) {
+						me.setVertMode(4);
+						Fma.startBlink(0);
+					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
 					}
 				} else if (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5 and !Internal.spdProtOnPitch) {
 					Output.spdProt.setValue(2);
 					if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
-						me.setBasicMode(1); # Pitch mode only, no ALT
+						me.setBasicMode(1); # Pitch mode only and only V/S or FPA
+						Fma.startBlink(0); # setBasicMode already blinks 2
 					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
@@ -768,7 +775,8 @@ var ITAF = {
 				} else if (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5 and !Internal.spdProtOnPitch) {
 					Output.spdProt.setValue(1);
 					if (Output.vertTemp != 0 and Output.vertTemp != 1 and Output.vertTemp != 5) {
-						me.setBasicMode(1); # Pitch mode only, no ALT
+						me.setBasicMode(1); # Pitch mode only and only V/S or FPA
+						Fma.startBlink(0); # setBasicMode already blinks 2
 					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
@@ -783,14 +791,20 @@ var ITAF = {
 				if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp >= Velocities.vmax + 5)) { # High Speed Prot
 					Output.spdProt.setValue(2);
 					Internal.spdProtOnPitch = 1;
-					me.setVertMode(4);
+					if (Output.vertTemp != 4) {
+						me.setVertMode(4);
+						Fma.startBlink(0);
+					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
 					}
 				} else if (Output.vertTemp != 0 and (Velocities.indicatedAirspeedKtTemp <= Velocities.vmin - 5)) { # Low Speed Prot
 					Output.spdProt.setValue(1);
 					Internal.spdProtOnPitch = 1;
-					me.setVertMode(4);
+					if (Output.vertTemp != 4) {
+						me.setVertMode(4);
+						Fma.startBlink(0);
+					}
 					if (!Output.athr.getBoolValue()) {
 						me.athrMaster(1);
 					}
@@ -1018,15 +1032,30 @@ var ITAF = {
 	},
 	setBasicMode: func(t) {
 		if (t != 1) {
-			me.setLatMode(3); # HDG HOLD
+			if (Output.lat.getValue() != 0) { # Sync and blink
+				me.setLatMode(3); # HDG HLD
+				Fma.startBlink(1);
+			} else { # Just sync
+				me.setLatMode(3); # HDG HLD
+			}
 		}
+		
 		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
-			me.setVertMode(1); # V/S or FPA
+			Output.vertTemp = Output.vert.getValue();
+			if (Output.vertTemp != 1 and Output.vertTemp != 5) { # Sync and blink
+				me.setVertMode(1); # V/S or FPA
+				Fma.startBlink(2);
+			} else { # Just sync
+				me.setVertMode(1); # V/S or FPA
+			}
 		} else {
-			me.setVertMode(0); # HOLD
+			if (Output.vert.getValue() != 0) { # Sync and blink
+				me.setVertMode(0); # ALT HLD
+				Fma.startBlink(2);
+			} else { # Just sync
+				me.setVertMode(0); # ALT HLD
+			}
 		}
-		Fma.startBlink(1);
-		Fma.startBlink(2);
 	},
 	setLatMode: func(n) {
 		Output.vertTemp = Output.vert.getValue();
