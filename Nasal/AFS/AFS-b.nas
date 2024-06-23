@@ -7,6 +7,36 @@ var Fma = {
 	pitchArm: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode-armed", "", "STRING"),
 	roll: props.globals.initNode("/instrumentation/pfd/fma/roll-mode", "TAKEOFF", "STRING"),
 	rollArm: props.globals.initNode("/instrumentation/pfd/fma/roll-mode-armed", "", "STRING"),
+	Blink: {
+		active: [0, 0, 0],
+		count: [0, 0, 0],
+		diff: [0, 0, 0],
+		elapsed: 0,
+		hide: [0, 0, 0],
+		time: [-5, -5, -5],
+	},
+	loop: func() {
+		me.Blink.elapsed = pts.Sim.Time.elapsedSec.getValue();
+		
+		for (var i = 0; i < 3; i = i + 1) {
+			if (me.Blink.elapsed < me.Blink.time[i] + 5) {
+				me.Blink.active[i] = 1;
+				me.Blink.count[i] = math.floor(math.max(me.Blink.elapsed - me.Blink.time[i], 0) * 2);
+				me.Blink.hide[i] = !math.mod(me.Blink.count[i], 2);
+			} else {
+				me.Blink.active[i] = 0;
+				me.Blink.count[i] = 0;
+				me.Blink.hide[i] = 0;
+			}
+		}
+	},
+	startBlink: func(w) { # 0 Speed, 1 Roll, 2 Pitch
+		me.Blink.time[w] = pts.Sim.Time.elapsedSec.getValue();
+		me.loop(); # Force update
+	},
+	stopBlink: func(w) {
+		me.Blink.time[w] = -5;
+	},
 };
 
 var UpdateFma = {

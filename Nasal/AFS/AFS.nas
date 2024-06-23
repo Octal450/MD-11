@@ -340,6 +340,9 @@ var ITAF = {
 			Internal.enableAthrOff = 0;
 			apKill.stop();
 			atsKill.stop();
+			Fma.stopBlink(0);
+			Fma.stopBlink(1);
+			Fma.stopBlink(2);
 		}
 		Sound.apOffSingle.setBoolValue(0);
 		systems.WARNINGS.altitudeAlert.setValue(0); # Cancel altitude alert
@@ -392,6 +395,7 @@ var ITAF = {
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
 			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
 				me.setLatMode(3);
+				Fma.startBlink(1);
 			}
 		}
 		
@@ -403,6 +407,7 @@ var ITAF = {
 		# Takeoff Lateral Reversion
 		if (Output.latTemp == 5 and Output.vertTemp != 7) {
 			me.setLatMode(3);
+			Fma.startBlink(1);
 		}
 		
 		Output.ap1Temp = Output.ap1.getBoolValue();
@@ -719,6 +724,9 @@ var ITAF = {
 		} else {
 			Internal.syncedSpd = 0;
 		}
+		
+		# FMA Update
+		Fma.loop();
 	},
 	slowLoop: func() {
 		# Reset system once flight complete
@@ -799,7 +807,7 @@ var ITAF = {
 		}
 		
 		# Mach Switchover
-		#if (notFMSSpeed) {
+		if (!fms.FmsSpd.active) {
 			if (Internal.machSwitchover) {
 				if (Position.indicatedAltitudeFt.getValue() < 25990) {
 					Internal.machSwitchover = 0;
@@ -813,7 +821,7 @@ var ITAF = {
 					me.spdPull();
 				}
 			}
-		#}
+		}
 		
 		# Waypoint Advance Logic
 		FPLN.activeTemp = FPLN.active.getValue();
@@ -1017,6 +1025,8 @@ var ITAF = {
 		} else {
 			me.setVertMode(0); # HOLD
 		}
+		Fma.startBlink(1);
+		Fma.startBlink(2);
 	},
 	setLatMode: func(n) {
 		Output.vertTemp = Output.vert.getValue();
@@ -1028,6 +1038,7 @@ var ITAF = {
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
+				Fma.startBlink(2);
 			}
 		} else if (n == 1) { # LNAV
 			if (systems.IRS.Iru.anyAligned.getBoolValue()) { # Remember that slowLoop kills NAV if the IRUs fail
@@ -1051,6 +1062,7 @@ var ITAF = {
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
+				Fma.startBlink(2);
 			}
 		} else if (n == 4) { # ALIGN
 			me.updateLnavArm(0);
@@ -1070,6 +1082,7 @@ var ITAF = {
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("T/O");
 		}
+		Fma.stopBlink(1);
 	},
 	setLatArm: func(n) {
 		if (n == 1) {
@@ -1121,6 +1134,7 @@ var ITAF = {
 		} else if (n == 2) { # G/S
 			me.updateLnavArm(0);
 			me.checkLoc(0);
+			Fma.stopBlink(1); # Because setVertMode only stops 2
 			me.checkAppr(0);
 		} else if (n == 3) { # ALT CAP
 			Internal.flchActive = 0;
@@ -1173,6 +1187,7 @@ var ITAF = {
 			Output.vert.setValue(7);
 			me.updateThrustMode();
 		}
+		Fma.stopBlink(2);
 	},
 	updateThrustMode: func() {
 		Output.spdProtTemp = Output.spdProt.getValue();
@@ -1274,8 +1289,10 @@ var ITAF = {
 			Output.lat.setValue(1);
 			me.bankLimit();
 			me.updateLatText("LNAV");
+			Fma.stopBlink(1);
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
 				me.setVertMode(1);
+				Fma.startBlink(2);
 			}
 		}
 		Output.showHdg.setBoolValue(0);
@@ -1288,6 +1305,7 @@ var ITAF = {
 			Output.lat.setValue(2);
 			me.bankLimit();
 			me.updateLatText("LOC");
+			Fma.stopBlink(1);
 		}
 		Output.showHdg.setBoolValue(0);
 	},
@@ -1298,6 +1316,7 @@ var ITAF = {
 			me.updateApprArm(0, 1); # Do not reset landArm
 			Output.vert.setValue(2);
 			me.updateVertText("G/S");
+			Fma.stopBlink(2);
 			me.updateThrustMode();
 			if (Output.ap1Temp or Output.ap2Temp) {
 				if (!Output.landArm.getBoolValue()) {
@@ -1377,8 +1396,10 @@ var ITAF = {
 				me.ap1Master(0);
 				me.ap2Master(0);
 				me.setLatMode(3); # Also cancels G/S and land modes if active
+				Fma.startBlink(1);
 			} else {
 				me.setLatMode(3); # Also cancels G/S and land modes if active
+				Fma.startBlink(1);
 			}
 		}
 	},
