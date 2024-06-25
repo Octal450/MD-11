@@ -231,28 +231,31 @@ var canvasBase = {
 		me.aiScaleTrans = me["AI_scale"].createTransform();
 		me.aiScaleRot = me["AI_scale"].createTransform();
 		
-		me.AI_fpv_trans = me["AI_fpv"].createTransform();
-		me.AI_fpv_rot = me["AI_fpv"].createTransform();
+		me.fpdTrans = me["FPD"].createTransform();
+		me.fpdRot = me["FPD"].createTransform();
 		
-		me.AI_fpd_trans = me["AI_fpd"].createTransform();
-		me.AI_fpd_rot = me["AI_fpd"].createTransform();
+		me.fpvTrans = me["FPV"].createTransform();
+		me.fpvRot = me["FPV"].createTransform();
+		
+		me.fdVTrans = me["FD_v"].createTransform();
+		me.fdVRot = me["FD_v"].createTransform();
 		
 		me.page = canvasGroup;
 		
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_error", "AI_fpd", "AI_fpv", "AI_group", "AI_group2", "AI_group3", "AI_overbank_index", "AI_PLI", "AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid",
-		"ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel",
-		"ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI",
-		"ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach",
-		"ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug",
-		"ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators",
-		"FD_error", "FD_group", "FD_pitch", "FD_roll", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box",
-		"FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust", "FMA_Thrust_Arm", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error",
-		"HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker",
-		"Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn",
-		"VSI_needle_up", "VSI_up"];
+		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_dual_cue", "AI_error", "AI_group", "AI_group2", "AI_group3", "AI_group4", "AI_overbank_index", "AI_PLI", "AI_PLI_dual_cue", "AI_PLI_single_cue", "AI_rising_runway",
+		"AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one",
+		"ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands",
+		"ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn",
+		"ASI_fms_up", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr",
+		"ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text",
+		"ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes",
+		"Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed",
+		"FMA_Thrust", "FMA_Thrust_Arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text",
+		"HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn",
+		"Slats_no", "Slats_up", "TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -1012,6 +1015,18 @@ var canvasBase = {
 		}
 		
 		# AI
+		if (systems.DUController.singleCueFd) {
+			me["AI_dual_cue"].hide();
+			me["AI_PLI_dual_cue"].hide();
+			me["AI_PLI_single_cue"].show();
+			me["AI_single_cue"].show();
+		} else {
+			me["AI_dual_cue"].show();
+			me["AI_PLI_dual_cue"].show();
+			me["AI_PLI_single_cue"].hide();
+			me["AI_single_cue"].hide();
+		}
+		
 		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
@@ -1035,21 +1050,21 @@ var canvasBase = {
 			me["AI_overbank_index"].hide();
 		}
 		
-		if (afs.Input.vsFpa.getBoolValue()) {
-			me.AI_fpv_trans.setTranslation(math.clamp(Value.Hdg.track, -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
-			me.AI_fpv_rot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
-			me["AI_fpv"].setRotation(Value.Ai.roll * D2R); # It shouldn't be rotated, only the axis should be
-			me["AI_fpv"].show();
+		if (Value.Afs.vert == 5) {
+			me.fpdTrans.setTranslation(0, (Value.Ai.pitch - afs.Input.fpa.getValue()) * 10.246);
+			me.fpdRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
+			me["FPD"].show();
 		} else {
-			me["AI_fpv"].hide();
+			me["FPD"].hide();
 		}
 		
-		if (Value.Afs.vert == 5) {
-			me.AI_fpd_trans.setTranslation(0, (Value.Ai.pitch - afs.Input.fpa.getValue()) * 10.246);
-			me.AI_fpd_rot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
-			me["AI_fpd"].show();
+		if (afs.Input.vsFpa.getBoolValue()) {
+			me.fpvTrans.setTranslation(math.clamp(Value.Hdg.track, -20, 20) * 10.246, math.clamp(Value.Ai.alpha, -20, 20) * 10.246);
+			me.fpvRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
+			me["FPV"].setRotation(Value.Ai.roll * D2R); # It shouldn't be rotated, only the axis should be
+			me["FPV"].show();
 		} else {
-			me["AI_fpd"].hide();
+			me["FPV"].hide();
 		}
 		
 		me["AI_PLI"].setTranslation(0, math.clamp(Value.Ai.stallAlphaDeg - Value.Ai.alpha, -20, 20) * -10.246);
@@ -1066,9 +1081,6 @@ var canvasBase = {
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
 		}
-		
-		me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
-		me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
 		
 		# ALT
 		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
@@ -1373,7 +1385,11 @@ var canvasBase = {
 					
 					if (Value.Misc.blinkMed) {
 						if (Value.Misc.risingRunwayTBar) {
-							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+							if (systems.DUController.singleCueFd) {
+								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, (math.clamp(Value.Ra.agl, 0, 200) * 1.11) + 12); # Laterally aligned to edge of AI sphere
+							} else {
+								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+							}
 							me["AI_rising_runway"].show();
 							if (Value.Ra.agl <= 200) {
 								me["AI_rising_runway_E"].show();
@@ -1392,7 +1408,11 @@ var canvasBase = {
 					}
 				} else {
 					if (Value.Misc.risingRunwayTBar) {
-						me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, Value.Ra.agl * 1.17); # Laterally aligned to edge of AI sphere
+						if (systems.DUController.singleCueFd) {
+							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, (math.clamp(Value.Ra.agl, 0, 200) * 1.11) + 12); # Laterally aligned to edge of AI sphere
+						} else {
+							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+						}
 						me["AI_rising_runway"].show();
 						if (Value.Ra.agl <= 200) {
 							me["AI_rising_runway_E"].show();
@@ -2101,15 +2121,33 @@ var canvasPfd1 = {
 		
 		# FD
 		if (Value.Afs.fd1) {
-			if (Value.Afs.spdPitchAvail) {
-				me["FD_pitch"].show();
-			} else {
+			if (systems.DUController.singleCueFd) {
 				me["FD_pitch"].hide();
+				me["FD_roll"].hide();
+				
+				if (Value.Afs.spdPitchAvail) {
+					me.fdVTrans.setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
+					me.fdVRot.setRotation(afs.Fd.rollBar.getValue() * D2R, me["AI_center"].getCenter());
+					me["FD_v"].show();
+				} else {
+					me["FD_v"].hide();
+				}
+			} else {
+				if (Value.Afs.spdPitchAvail) {
+					me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
+					me["FD_pitch"].show();
+				} else {
+					me["FD_pitch"].hide();
+				}
+				
+				me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
+				me["FD_roll"].show();
+				me["FD_v"].hide();
 			}
-			me["FD_roll"].show();
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
+			me["FD_v"].hide();
 		}
 		
 		# IRU
@@ -2133,8 +2171,10 @@ var canvasPfd1 = {
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
+			me["AI_group4"].show();
 			me["AI_scale"].show();
 			me["FD_group"].show();
+			me["FD_group2"].show();
 			me["HDG_group"].show();
 			me["HDG_group2"].show();
 			me["VSI_group"].show();
@@ -2153,6 +2193,7 @@ var canvasPfd1 = {
 				me["AI_group"].show();
 				me["AI_group2"].show();
 				me["AI_group3"].show();
+				me["AI_group4"].show();
 				if (systems.IRS.Iru.alignTimer[Value.Iru.source[0]].getValue() >= 31) {
 					me["AI_scale"].show();
 				} else {
@@ -2162,16 +2203,19 @@ var canvasPfd1 = {
 				me["AI_group"].hide();
 				me["AI_group2"].hide();
 				me["AI_group3"].hide();
+				me["AI_group4"].hide();
 				me["AI_scale"].hide();
 			}
 			
 			if (Value.Iru.mainAvail[Value.Iru.source[0]]) {
 				me["FD_group"].show();
+				me["FD_group2"].show();
 				me["HDG_group"].show();
 				me["HDG_group2"].show();
 				me["VSI_group"].show();
 			} else {
 				me["FD_group"].hide();
+				me["FD_group2"].hide();
 				me["HDG_group"].hide();
 				me["HDG_group2"].hide();
 				me["VSI_group"].hide();
@@ -2181,8 +2225,10 @@ var canvasPfd1 = {
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
 			me["AI_group3"].hide();
+			me["AI_group4"].hide();
 			me["AI_scale"].hide();
 			me["FD_group"].hide();
+			me["FD_group2"].hide();
 			me["HDG_error"].show();
 			me["HDG_group"].hide();
 			me["HDG_group2"].hide();
@@ -2316,15 +2362,33 @@ var canvasPfd2 = {
 		
 		# FD
 		if (Value.Afs.fd2) {
-			if (Value.Afs.spdPitchAvail) {
-				me["FD_pitch"].show();
-			} else {
+			if (systems.DUController.singleCueFd) {
 				me["FD_pitch"].hide();
+				me["FD_roll"].hide();
+				
+				if (Value.Afs.spdPitchAvail) {
+					me.fdVTrans.setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
+					me.fdVRot.setRotation(afs.Fd.rollBar.getValue() * D2R, me["AI_center"].getCenter());
+					me["FD_v"].show();
+				} else {
+					me["FD_v"].hide();
+				}
+			} else {
+				if (Value.Afs.spdPitchAvail) {
+					me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.246);
+					me["FD_pitch"].show();
+				} else {
+					me["FD_pitch"].hide();
+				}
+				
+				me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
+				me["FD_roll"].show();
+				me["FD_v"].hide();
 			}
-			me["FD_roll"].show();
 		} else {
 			me["FD_pitch"].hide();
 			me["FD_roll"].hide();
+			me["FD_v"].hide();
 		}
 		
 		# IRU
@@ -2335,24 +2399,42 @@ var canvasPfd2 = {
 		}
 		
 		if (Value.Iru.aligned[Value.Iru.source[1]]) {
-			me["AI_error"].hide();
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
+			
 			me["AI_group"].show();
 			me["AI_group2"].show();
 			me["AI_group3"].show();
+			me["AI_group4"].show();
 			me["AI_scale"].show();
 			me["FD_group"].show();
-			me["HDG_error"].hide();
+			me["FD_group2"].show();
 			me["HDG_group"].show();
 			me["HDG_group2"].show();
-			me["VSI_error"].hide();
 			me["VSI_group"].show();
 		} else if (Value.Iru.aligning[Value.Iru.source[1]]) {
-			me["AI_error"].hide();
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
 			
 			if (systems.IRS.Iru.attAvail[Value.Iru.source[1]].getBoolValue()) {
 				me["AI_group"].show();
 				me["AI_group2"].show();
 				me["AI_group3"].show();
+				me["AI_group4"].show();
 				if (systems.IRS.Iru.alignTimer[Value.Iru.source[1]].getValue() >= 31) {
 					me["AI_scale"].show();
 				} else {
@@ -2362,19 +2444,19 @@ var canvasPfd2 = {
 				me["AI_group"].hide();
 				me["AI_group2"].hide();
 				me["AI_group3"].hide();
+				me["AI_group4"].hide();
 				me["AI_scale"].hide();
 			}
 			
-			me["HDG_error"].hide();
-			me["VSI_error"].hide();
-			
 			if (Value.Iru.mainAvail[Value.Iru.source[1]]) {
 				me["FD_group"].show();
+				me["FD_group2"].show();
 				me["HDG_group"].show();
 				me["HDG_group2"].show();
 				me["VSI_group"].show();
 			} else {
 				me["FD_group"].hide();
+				me["FD_group2"].hide();
 				me["HDG_group"].hide();
 				me["HDG_group2"].hide();
 				me["VSI_group"].hide();
@@ -2384,8 +2466,10 @@ var canvasPfd2 = {
 			me["AI_group"].hide();
 			me["AI_group2"].hide();
 			me["AI_group3"].hide();
+			me["AI_group4"].hide();
 			me["AI_scale"].hide();
 			me["FD_group"].hide();
+			me["FD_group2"].hide();
 			me["HDG_error"].show();
 			me["HDG_group"].hide();
 			me["HDG_group2"].hide();

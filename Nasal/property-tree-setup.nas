@@ -365,7 +365,7 @@ var Systems = {
 			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
 			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
-			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
+			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
 	},
 	Shake: {

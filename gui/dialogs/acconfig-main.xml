@@ -354,6 +354,20 @@
 			</checkbox>
 			
 			<checkbox>
+				<label>Single Cue Flight Director</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/single-cue-fd</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>Rising Runway T-Bar</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/rising-runway-t-bar</property>
@@ -459,30 +473,6 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-			
-			<group>
-				<layout>hbox</layout>
-				
-				<text>
-					<halign>left</halign>
-					<label>ATS Override:</label>
-				</text>
-				<combo>
-					<halign>right</halign>
-					<pref-width>150</pref-width>
-					<property>/systems/acconfig/options/throttle-override</property>
-					<value>Only in Clamp</value>
-					<value>Never</value>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-					<binding>
-						<command>nasal</command>
-						<script>acconfig.OPTIONS.write();</script>
-					</binding>
-					<live>true</live>
-				</combo>
-			</group>
 			
 			<group>
 				<layout>hbox</layout>

@@ -26,6 +26,7 @@ var DUController = {
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
+	singleCueFd: 0,
 	updateEad: 0,
 	updateIesi: 0,
 	updateMcdu1: 0,
@@ -68,6 +69,8 @@ var DUController = {
 		canvas_pfd.pfd2Error.page.show();
 	},
 	loop: func() {
+		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
+		
 		if (me.eng == "PW") {
 			if (pts.Systems.Acconfig.Options.engTapes.getBoolValue()) {
 				me.eadType = "PW-Tapes";

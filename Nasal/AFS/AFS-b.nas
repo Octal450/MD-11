@@ -156,14 +156,8 @@ var Clamp = {
 			me.active = 0;
 		}
 		
-		if (pts.Systems.Acconfig.Options.throttleOverride.getValue() == "Never") {
-			if (Output.clamp.getBoolValue() != 0) {
-				Output.clamp.setBoolValue(0);
-			}
-		} else {
-			if (Output.clamp.getBoolValue() != me.active) {
-				Output.clamp.setBoolValue(me.active);
-			}
+		if (Output.clamp.getBoolValue() != me.active) {
+			Output.clamp.setBoolValue(me.active);
 		}
 		
 		if (me.vertText == "T/O CLB") {

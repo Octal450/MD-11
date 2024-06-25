@@ -42,24 +42,6 @@
 		</ns>
 		
 		<switch>
-			<name>Clamp on</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/Cockpit/clamp.wav</path>
-			<condition>
-				<property>/it-autoflight/output/clamp</property>
-			</condition>
-		</switch>
-		
-		<switch>
-			<name>Clamp off</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/Cockpit/clamp.wav</path>
-			<condition>
-				<not><property>/it-autoflight/output/clamp</property></not>
-			</condition>
-		</switch>
-		
-		<switch>
 			<name>Button1</name>
 			<mode>once</mode>
 			<path>Aircraft/MD-11/Sounds/Cockpit/button.wav</path>
