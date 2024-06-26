@@ -12,7 +12,7 @@
 		
         <text>
             <halign>left</halign>
-            <label>Flight Controls</label>
+            <label>Flight Control Monitor</label>
         </text>
 		
         <button>
@@ -32,7 +32,7 @@
 	<group>
 		<layout>hbox</layout>
 		<text>
-			<label>MD-11 Flight Controls</label>
+			<label>Surface Up = Slider Up</label>
 		</text>
 	</group>
 	
@@ -46,7 +46,7 @@
 				<stretch>true</stretch>
 			</hrule>
 			<text>
-				<label>Roll</label>
+				<label>Ailerons</label>
 			</text>
 			<hrule>
 				<stretch>true</stretch>
@@ -63,11 +63,11 @@
 					<label>L1:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/aileron-out-l/final-deg</property>
-					<min>-20</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-20</max>
 					<step>0.002</step>
 					<live>true</live>
 				</slider>
@@ -80,11 +80,11 @@
 					<label>L2:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/aileron-in-l/final-deg</property>
-					<min>-20</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-20</max>
 					<step>0.002</step>
 					<live>true</live>
 				</slider>
@@ -97,11 +97,11 @@
 					<label>R2:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/aileron-in-r/final-deg</property>
-					<min>-20</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-20</max>
 					<step>0.002</step>
 					<live>true</live>
 				</slider>
@@ -114,11 +114,11 @@
 					<label>R1:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/aileron-out-r/final-deg</property>
-					<min>-20</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-20</max>
 					<step>0.002</step>
 					<live>true</live>
 				</slider>
@@ -132,7 +132,59 @@
 				<stretch>true</stretch>
 			</hrule>
 			<text>
-				<label>Pitch</label>
+				<label>Spoilers</label>
+			</text>
+			<hrule>
+				<stretch>true</stretch>
+			</hrule>
+		</group>
+		
+		<group>
+			<layout>hbox</layout>
+			
+			<group>
+				<layout>vbox</layout>
+				
+				<text>
+					<label>L:</label>
+				</text>
+				<slider>
+					<pref-height>100</pref-height>
+					<vertical>true</vertical>
+					<property>/fdm/jsbsim/fcs/spoiler-left-deg</property>
+					<min>0</min>
+					<max>60</max>
+					<step>0.006</step>
+					<live>true</live>
+				</slider>
+			</group>
+			
+			<group>
+				<layout>vbox</layout>
+				
+				<text>
+					<label>R:</label>
+				</text>
+				<slider>
+					<pref-height>100</pref-height>
+					<vertical>true</vertical>
+					<property>/fdm/jsbsim/fcs/spoiler-right-deg</property>
+					<min>0</min>
+					<max>60</max>
+					<step>0.006</step>
+					<live>true</live>
+				</slider>
+			</group>
+		</group>
+		
+		<group>
+			<layout>hbox</layout>
+
+			<hrule>
+				<stretch>true</stretch>
+			</hrule>
+			<text>
+				<label>Elevators</label>
 			</text>
 			<hrule>
 				<stretch>true</stretch>
@@ -149,11 +201,11 @@
 					<label>L1:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-out-l/final-deg</property>
-					<min>-22</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-22</max>
 					<step>0.0022</step>
 					<live>true</live>
 				</slider>
@@ -166,11 +218,11 @@
 					<label>L2:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-in-l/final-deg</property>
-					<min>-22</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-22</max>
 					<step>0.0022</step>
 					<live>true</live>
 				</slider>
@@ -180,14 +232,14 @@
 				<layout>vbox</layout>
 		
 				<text>
-					<label>Trim:</label>
+					<label>Stab:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/stabilizer/final-deg</property>
-					<min>-15.5</min>
-					<max>1</max>
+					<min>1</min>
+					<max>-15.5</max>
 					<step>0.0015</step>
 					<live>true</live>
 				</slider>
@@ -200,11 +252,11 @@
 					<label>R2:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-in-r/final-deg</property>
-					<min>-22</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-22</max>
 					<step>0.0022</step>
 					<live>true</live>
 				</slider>
@@ -217,11 +269,11 @@
 					<label>R1:</label>
 				</text>
 				<slider>
-					<pref-height>150</pref-height>
+					<pref-height>125</pref-height>
 					<vertical>true</vertical>
 					<property>/fdm/jsbsim/hydraulics/elevator-out-r/final-deg</property>
-					<min>-22</min>
-					<max>20</max>
+					<min>20</min>
+					<max>-22</max>
 					<step>0.0022</step>
 					<live>true</live>
 				</slider>

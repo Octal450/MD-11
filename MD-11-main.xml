@@ -192,6 +192,13 @@
 							<dialog-name>cg</dialog-name>
 						</binding>
 					</item>
+					<item>
+						<label>Flight Control Monitor</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-fctl</dialog-name>
+						</binding>
+					</item>
 				</menu>
 				<menu n="105">
 					<label>Documentation</label>

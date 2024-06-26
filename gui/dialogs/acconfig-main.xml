@@ -31,6 +31,16 @@
 			<halign>right</halign>
 			<pref-width>20</pref-width>
 			<pref-height>20</pref-height>
+			<legend>W</legend>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name>acconfig-welcome</dialog-name>
+			</binding>
+		</button>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
 			<legend>X</legend>
 			<key>Esc</key>
 			<binding>
@@ -52,29 +62,11 @@
 				
 				<button>
 					<halign>center</halign>
-					<legend>Welcome</legend>
-					<pref-width>140</pref-width>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>acconfig-welcome</dialog-name>
-					</binding>
-				</button>
-				<button>
-					<halign>center</halign>
 					<legend>Select Livery</legend>
 					<pref-width>140</pref-width>
 					<binding>
 						<command>nasal</command>
 						<script>aircraft.livery.dialog.toggle();</script>
-					</binding>
-				</button>
-				<button>
-					<halign>center</halign>
-					<legend>Checklists</legend>
-					<pref-width>140</pref-width>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>checklist</dialog-name>
 					</binding>
 				</button>
 				<button>
@@ -88,11 +80,32 @@
 				</button>
 				<button>
 					<halign>center</halign>
+					<legend>Checklists</legend>
+					<pref-width>140</pref-width>
+					<binding>
+						<command>dialog-show</command>
+						<dialog-name>checklist</dialog-name>
+					</binding>
+				</button>
+				<button>
+					<halign>center</halign>
 					<legend>DU Framerate</legend>
 					<pref-width>140</pref-width>
 					<binding>
 						<command>dialog-show</command>
 						<dialog-name>acconfig-du-framerate</dialog-name>
+					</binding>
+				</button>
+				<button>
+					<halign>center</halign>
+					<legend>System Failures</legend>
+					<pref-width>140</pref-width>
+					<enable>
+						<not><property>/systems/acconfig/options/allow-damage</property></not>
+					</enable>
+					<binding>
+						<command>dialog-show</command>
+						<dialog-name>acconfig-failures</dialog-name>
 					</binding>
 				</button>
 			</group>
@@ -301,12 +314,26 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
-					<label>Options (See Aircraft Help)</label>
+					<label>Simulation (See Aircraft Help)</label>
 				</text>
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
 			</group>
+			
+			<checkbox>
+				<label>IRS Aligns Instantly</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/irs-align-instantly</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
 			
 			<checkbox>
 				<label>Keyboard Mode</label>
@@ -323,9 +350,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>IRS Aligns Instantly</label>
+				<label>Separate Tiller Axis</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/irs-align-instantly</property>
+				<property>/systems/acconfig/options/separate-tiller-axis</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -335,6 +362,20 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
+			
+			<group>
+				<layout>hbox</layout>
+				
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+				<text>
+					<label>Aircraft (See Aircraft Help)</label>
+				</text>
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+			</group>
 			
 			<checkbox>
 				<label>8.33KHz Radio Equipped</label>
@@ -354,37 +395,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Single Cue Flight Director</label>
+				<label>Deflected Ailerons Equipped (PIP)</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/single-cue-fd</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>acconfig.OPTIONS.write();</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Rising Runway T-Bar</label>
-				<halign>left</halign>
-				<property>/systems/acconfig/options/rising-runway-t-bar</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>acconfig.OPTIONS.write();</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Engine Gauge Tapes (EAD &amp; SD)</label>
-				<halign>left</halign>
-				<property>/systems/acconfig/options/eng-tapes</property>
+				<property>/systems/acconfig/options/deflected-aileron-equipped</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -408,6 +421,20 @@
 				<label>EGT Dials Above N1 (PW Engines)</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/egt-above-n1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Engine Tape Gauges (EAD &amp; SD)</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/eng-tapes</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -447,9 +474,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Deflected Ailerons Equipped (PIP)</label>
+				<label>Rising Runway T-Bar</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/deflected-aileron-equipped</property>
+				<property>/systems/acconfig/options/rising-runway-t-bar</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -461,9 +488,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Use Separate Tiller Axis</label>
+				<label>Single Cue Flight Director</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/separate-tiller-axis</property>
+				<property>/systems/acconfig/options/single-cue-fd</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -473,34 +500,6 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-			
-			<group>
-				<layout>hbox</layout>
-			
-				<button>
-					<legend>Flight Controls</legend>
-					<halign>center</halign>
-					<padding>5</padding>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>acconfig-fctl</dialog-name>
-					</binding>
-				</button>
-				
-				<button>
-					<legend>System Failures</legend>
-					<halign>center</halign>
-					<padding>5</padding>
-					<enable>
-						<not><property>/options/system/allow-damage</property></not>
-					</enable>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>acconfig-failures</dialog-name>
-					</binding>
-				</button>
-				
-			</group>
 			
 		</group>
 		

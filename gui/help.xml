@@ -92,21 +92,23 @@
 
 2D versions of certain cockpit panels are included to make certain tasks easier. These can be opened from the "2D Panels" menu.
 
-The Aircraft Config Center can be used to load panel states as well as configure aircraft and ground equipment.
+Aircraft Config Center:
+Can be used to load panel states and set ground equipment, as well as configure simulation and aircraft options.
 
-Aircraft Config Center Options:
-* Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortucts.
+Simulation:
 * IRS Aligns Instantly: Skips the ~10 minute alignment process of the IRS.
+* Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortucts.
+* Separate Tiller Axis: Separates the tiller from the rudder and maps it to /controls/gear/steering.
+
+Aircraft:
 * 8.33KHz Radio Equipped: Equips the COMM radios with the new 8.33KHz VHF frequency spacing.
-* Single Cue Flight Director: Equips the PFD with the single cue flight director option.
-* Rising Runway T-Bar: Equips the PFD with the more advanced T-shaped rising runway symbol.
-* Engine Gauge Tapes (EAD &amp; SD): Equips the EAD with the tape style engine gauges rather than dials.
+* Deflected Ailerons Equipped (PIP): Equips the aircraft with the deflected ailerons system.
 * EGT Dials Above N1 (PW Engines): Equips the EAD with inverted N1 and EGT positions. Only for PW engines.
+* Engine Tape Gauges (EAD &amp; SD): Equips the EAD with the tape style engine gauges rather than dials.
 * IESI Equipped: Equips the aircraft with a digital standby instrument instead of the mechanical gauges.
 * RCWS Equipped: Equips the aircraft with the optional Roll Control Wheel Steering system.
-* Deflected Ailerons Equipped (PIP): Equips the aircraft with the deflected ailerons system.
-* Use Separate Tiller Axis: Separates the tiller from the rudder and maps it to /controls/gear/steering.
-* ATS Override: Configures whether the autothrottle can be overriden by the pilot when in Clamp.
+* Rising Runway T-Bar: Equips the PFD with the more advanced T-shaped rising runway symbol.
+* Single Cue Flight Director: Equips the PFD with the single cue flight director option.
 </text>
 
 </PropertyList>
