@@ -196,7 +196,7 @@ var Value = {
 var canvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
-			return "LiberationFonts/LiberationSans-Regular.ttf";
+			return "DULarge.ttf";
 		};
 		
 		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
@@ -2042,10 +2042,6 @@ var canvasPfd1 = {
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
-		if (find("CLAMP", Value.Afs.pitch) != -1) {
-			Value.Afs.pitch = Value.Afs.pitch ~ " ";
-		}
-		
 		if (Value.Afs.fd1) {
 			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
 				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
@@ -2283,10 +2279,6 @@ var canvasPfd2 = {
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
-		if (find("CLAMP", Value.Afs.pitch) != -1) {
-			Value.Afs.pitch = Value.Afs.pitch ~ " ";
-		}
-		
 		if (Value.Afs.fd2) {
 			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
 				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
