@@ -394,7 +394,7 @@ var canvasBase = {
 						me["ASI_v1_text"].setColor(1, 1, 1);
 					}
 					
-					Value.Asi.Tape.v1Final = math.clamp((Value.Asi.Tape.v1 * -4.48656) + 147.259, 0, 1000); # Offset from center: 147.259
+					Value.Asi.Tape.v1Final = math.clamp((Value.Asi.Tape.v1 * -4.48656) + 147.259, 0, 1000); # Offset from center: 146.259
 					if (Value.Asi.Tape.v1Final > 0.0001) {
 						me["ASI_v1_box"].hide();
 						me["ASI_v1_text"].hide();
@@ -446,7 +446,7 @@ var canvasBase = {
 						me["ASI_vr_text"].setColor(1, 1, 1);
 					}
 					
-					Value.Asi.Tape.vrFinal = math.clamp((Value.Asi.Tape.vr * -4.48656) + 190.759, 0, 1000); # Offset from center: 190.759
+					Value.Asi.Tape.vrFinal = math.clamp((Value.Asi.Tape.vr * -4.48656) + 190.759, 0, 1000); # Offset from center: 190.259
 					if (Value.Asi.Tape.vrFinal > 0.0001) {
 						me["ASI_vr_box"].hide();
 						me["ASI_vr_text"].hide();
