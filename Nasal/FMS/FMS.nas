@@ -70,7 +70,7 @@ var CORE = {
 		
 		# Flight Phases
 		if (Internal.phase == 0) { # Preflight
-			if (Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() >= 0.7) {
+			if ((Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() >= 0.7) or !Value.wow) {
 				Internal.phaseNew = 1; # Takeoff
 			}
 		} else if (Internal.phase == 1) { # Takeoff
