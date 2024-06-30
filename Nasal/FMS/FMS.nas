@@ -85,7 +85,7 @@ var CORE = {
 			}
 		} else if (Internal.phase == 2) { # Climb
 			if (FlightData.cruiseAltAll[0] > 0) {
-				if ((Value.vertText == "ALT CAP" or Value.vertText == "ALT HLD") and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
+				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 3; # Cruise
 				} else if (Value.flapLever >= 4 and Value.gearLever) {
 					Internal.phaseNew = 5; # Approach
