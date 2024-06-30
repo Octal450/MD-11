@@ -248,15 +248,15 @@ var canvasBase = {
 	getKeys: func() {
 		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_dual_cue", "AI_error", "AI_group", "AI_group2", "AI_group3", "AI_group4", "AI_overbank_index", "AI_PLI", "AI_PLI_dual_cue", "AI_PLI_single_cue", "AI_rising_runway",
 		"AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one",
-		"ALT_one_T", "ALT_presel", "ALT_scale", "ALT_scale_num", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands",
-		"ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn",
-		"ASI_fms_up", "ASI_fr", "ASI_ge", "ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr",
-		"ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text",
-		"ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes",
-		"Flaps_up", "FMA_Altitude", "FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed",
-		"FMA_Thrust", "FMA_Thrust_Arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text",
-		"HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn",
-		"Slats_no", "Slats_up", "TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero",
+		"ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_ge",
+		"ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group",
+		"ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar",
+		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude",
+		"FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust",
+		"FMA_Thrust_Arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text",
+		"ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up",
+		"TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -1102,9 +1102,7 @@ var canvasBase = {
 		}
 		
 		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
-		me["ALT_scale_num"].setTranslation(0, -Value.Alt.Tape.middleOffset);
 		me["ALT_scale"].update();
-		me["ALT_scale_num"].update();
 		
 		Value.Alt.Tape.fiveI = (Value.Alt.Tape.middleText + 1000) * 0.001;
 		Value.Alt.Tape.five = int(Value.Alt.Tape.fiveI);
@@ -1204,22 +1202,22 @@ var canvasBase = {
 		
 		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
 		Value.Alt.Tape.tenThousandsGeneva = genevaAltTenThousands(Value.Alt.Tape.tenThousands);
-		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 42.65);
+		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 41);
 		
 		Value.Alt.Tape.thousands = num(right(sprintf("%04d", Value.Alt.indicatedAbs), 4)) / 100;
 		Value.Alt.Tape.thousandsGeneva = genevaAltThousands(Value.Alt.Tape.thousands);
-		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 42.65);
+		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 41);
 		
 		Value.Alt.Tape.hundreds = num(right(sprintf("%03d", Value.Alt.indicatedAbs), 3)) / 100;
 		Value.Alt.Tape.hundredsGeneva = genevaAltHundreds(Value.Alt.Tape.hundreds);
-		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 42.65);
+		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 41);
 		
 		if (abs(Value.Vs.indicated) >= 2975) {
 			me["ALT_tens"].hide();
 			me["ALT_tens_dash"].show();
 		} else {
 			Value.Alt.Tape.tens = num(right(sprintf("%02d", Value.Alt.indicatedAbs), 2));
-			me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.1325);
+			me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.05);
 			me["ALT_tens"].show();
 			me["ALT_tens_dash"].hide();
 		}
@@ -1236,7 +1234,6 @@ var canvasBase = {
 		Value.Afs.altSel = afs.Input.alt.getValue();
 		Value.Alt.preSel = pts.Instrumentation.Pfd.altPreSel.getValue();
 		Value.Alt.sel = pts.Instrumentation.Pfd.altSel.getValue();
-		
 		
 		if (Value.Alt.preSel < -525 or Value.Alt.preSel > 525 or afs.Internal.syncedAlt) {
 			me["ALT_presel"].hide();
