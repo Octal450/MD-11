@@ -1223,7 +1223,11 @@ var ITAF = {
 		Output.vertTemp = Output.vert.getValue();
 		Velocities.indicatedAirspeedKtTemp = Velocities.indicatedAirspeedKt.getValue();
 		
-		if (Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5) {
+		if (Output.spdProtTemp != 0) { # Kick it out of RETARD
+			Internal.retardLock = 0;
+		}
+		
+		if (Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5 and Output.spdProtTemp == 0) {
 			Output.thrMode.setValue(1);
 			Text.spd.setValue("RETARD");
 			Internal.retardLock = 1;

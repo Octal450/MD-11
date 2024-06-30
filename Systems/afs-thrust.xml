@@ -320,6 +320,10 @@
 						<property>/it-autoflight/output/vert</property>
 						<value>7</value>
 					</equals>
+					<not-equals> <!-- Don't slow throttle in Spd Prot -->
+						<property>/it-autoflight/output/spd-prot</property>
+						<value>0</value>
+					</not-equals>
 				</or>
 			</condition>
 			<value>0.3</value>
