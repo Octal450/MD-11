@@ -636,8 +636,8 @@ var canvasGeDials = {
 	getKeys: func() {
 		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11_box", "N11_decimal", "N11_decpnt",
-		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens-zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens",
-		"N12_tens-zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens-zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimMode", "N1LimText",
+		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens",
+		"N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimMode", "N1LimText",
 		"N21", "N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt", "N23_decimal", "N23_error",
 		"N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
@@ -722,15 +722,15 @@ var canvasGeDials = {
 			}
 			
 			if (Value.Fadec.n1[0] < 99) { # Prepare to show the zero at 100
-				me["N11_tens-zero"].hide();
+				me["N11_tens_zero"].hide();
 			} else {
-				me["N11_tens-zero"].show();
+				me["N11_tens_zero"].show();
 			}
 			
-			me["N11_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[0]), 7))) * 33.75);
-			me["N11_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 6))) * 33.75);
-			me["N11_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 5))) * 33.75);
-			me["N11_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[0], 1), 0.001) * 33.75));
+			me["N11_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[0]), 7))) * 34);
+			me["N11_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[0]), 6))) * 34);
+			me["N11_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[0]), 5))) * 34);
+			me["N11_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[0], 1), 0.001) * 34));
 			
 			me["N11_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[0].getValue() * D2R);
 			
@@ -766,15 +766,15 @@ var canvasGeDials = {
 			}
 			
 			if (Value.Fadec.n1[1] < 99) { # Prepare to show the zero at 100
-				me["N12_tens-zero"].hide();
+				me["N12_tens_zero"].hide();
 			} else {
-				me["N12_tens-zero"].show();
+				me["N12_tens_zero"].show();
 			}
 			
-			me["N12_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[1]), 7))) * 33.75);
-			me["N12_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 6))) * 33.75);
-			me["N12_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 5))) * 33.75);
-			me["N12_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[1], 1), 0.001) * 33.75));
+			me["N12_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[1]), 7))) * 34);
+			me["N12_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[1]), 6))) * 34);
+			me["N12_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[1]), 5))) * 34);
+			me["N12_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[1], 1), 0.001) * 34));
 			
 			me["N12_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
 			
@@ -810,15 +810,15 @@ var canvasGeDials = {
 			}
 			
 			if (Value.Fadec.n1[2] < 99) { # Prepare to show the zero at 100
-				me["N13_tens-zero"].hide();
+				me["N13_tens_zero"].hide();
 			} else {
-				me["N13_tens-zero"].show();
+				me["N13_tens_zero"].show();
 			}
 			
-			me["N13_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[2]), 7))) * 33.75);
-			me["N13_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 6))) * 33.75);
-			me["N13_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 5))) * 33.75);
-			me["N13_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[2], 1), 0.001) * 33.75));
+			me["N13_hundreds"].setTranslation(0, genevaN1Hundreds(num(right(sprintf("%07.3f", Value.Fadec.n1[2]), 7))) * 34);
+			me["N13_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1[2]), 6))) * 34);
+			me["N13_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1[2]), 5))) * 34);
+			me["N13_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1[2], 1), 0.001) * 34));
 			
 			me["N13_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[2].getValue() * D2R);
 			
@@ -1167,9 +1167,9 @@ var canvasPwDials = {
 		if (Value.Fadec.engPowered[0]) {
 			Value.Fadec.epr[0] = pts.Engines.Engine.eprActual[0].getValue();
 			
-			me["EPR1_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 33.75);
-			me["EPR1_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 33.75);
-			me["EPR1_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 33.75));
+			me["EPR1_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 34);
+			me["EPR1_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 34);
+			me["EPR1_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[0] * 10, 1), 0.0001) * 34));
 			
 			me["EPR1_needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
 			if (!systems.FADEC.n1Mode[0].getValue()) {
@@ -1198,9 +1198,9 @@ var canvasPwDials = {
 		if (Value.Fadec.engPowered[1]) {
 			Value.Fadec.epr[1] = pts.Engines.Engine.eprActual[1].getValue();
 			
-			me["EPR2_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 33.75);
-			me["EPR2_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 33.75);
-			me["EPR2_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 33.75));
+			me["EPR2_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 34);
+			me["EPR2_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 34);
+			me["EPR2_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[1] * 10, 1), 0.0001) * 34));
 			
 			me["EPR2_needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
 			if (!systems.FADEC.n1Mode[1].getValue()) {
@@ -1229,9 +1229,9 @@ var canvasPwDials = {
 		if (Value.Fadec.engPowered[2]) {
 			Value.Fadec.epr[2] = pts.Engines.Engine.eprActual[2].getValue();
 			
-			me["EPR3_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 33.75);
-			me["EPR3_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 33.75);
-			me["EPR3_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 33.75));
+			me["EPR3_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 34);
+			me["EPR3_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 34);
+			me["EPR3_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.epr[2] * 10, 1), 0.0001) * 34));
 			
 			me["EPR3_needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);
 			if (!systems.FADEC.n1Mode[2].getValue()) {
