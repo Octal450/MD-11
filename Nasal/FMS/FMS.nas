@@ -104,26 +104,20 @@ var CORE = {
 				}
 			}
 		} else if (Internal.phase == 4) { # Descent
-			if (Value.active) {
-				if (Value.distanceRemainingNm <= 15 or Value.vertText == "G/S") {
-					Internal.phaseNew = 5; # Approach
-				} else if (Value.flapLever >= 4 and Value.gearLever) {
-					Internal.phaseNew = 5; # Approach
-				} else if (Value.wow) {
-					Internal.phaseNew = 6; # Rollout
-				}
+			if (Value.flapLever > 0) {
+				Internal.phaseNew = 5; # Approach
+			} else if (Value.wow) {
+				Internal.phaseNew = 6; # Rollout
 			}
 		} else if (Internal.phase == 5) { # Approach
-			if (Value.active) {
-				if (Value.wow and Value.vertText != "G/A CLB") {
-					Internal.phaseNew = 6; # Rollout
-				}
+			if (Value.flapLever == 0) {
+				Internal.phaseNew = 4; # Descent
+			} else if (Value.wow and Value.vertText != "G/A CLB") {
+				Internal.phaseNew = 6; # Rollout
 			}
 		} else if (Internal.phase == 6) { # Rollout
-			if (Value.active) {
-				if (!Value.wow or Value.vertText == "G/A CLB") {
-					Internal.phaseNew = 5; # Approach
-				}
+			if (!Value.wow or Value.vertText == "G/A CLB") {
+				Internal.phaseNew = 5; # Approach
 			}
 		}
 		
