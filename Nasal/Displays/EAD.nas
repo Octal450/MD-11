@@ -524,14 +524,6 @@ var canvasBase = {
 				me["N21_bar"].setTranslation(0, Value.Fadec.n2[0] / 120 * -209);
 			}
 			
-			if (Value.Fadec.n2[0] + 0.05 < 10) {
-				me["N21_group"].setTranslation(-21.064, 0);
-			} else if (Value.Fadec.n2[0] + 0.05 < 100) {
-				me["N21_group"].setTranslation(-10.169, 0);
-			} else {
-				me["N21_group"].setTranslation(0, 0);
-			}
-			
 			me["N21"].setText(sprintf("%d", Value.Fadec.n2[0] + 0.05));
 			me["N21_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[0] + 0.05, 1))));
 			
@@ -561,14 +553,6 @@ var canvasBase = {
 				me["N22_bar"].setTranslation(0, Value.Fadec.n2[1] / 120 * -209);
 			}
 			
-			if (Value.Fadec.n2[1] + 0.05 < 10) {
-				me["N22_group"].setTranslation(-21.064, 0);
-			} else if (Value.Fadec.n2[1] + 0.05 < 100) {
-				me["N22_group"].setTranslation(-10.169, 0);
-			} else {
-				me["N22_group"].setTranslation(0, 0);
-			}
-			
 			me["N22"].setText(sprintf("%d", Value.Fadec.n2[1] + 0.05));
 			me["N22_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n2[1] + 0.05, 1))));
 			
@@ -596,14 +580,6 @@ var canvasBase = {
 				me["N23_bar"].setTranslation(0, Value.barRest);
 			} else {
 				me["N23_bar"].setTranslation(0, Value.Fadec.n2[2] / 120 * -209);
-			}
-			
-			if (Value.Fadec.n2[2] + 0.05 < 10) {
-				me["N23_group"].setTranslation(-21.064, 0);
-			} else if (Value.Fadec.n2[2] + 0.05 < 100) {
-				me["N23_group"].setTranslation(-10.169, 0);
-			} else {
-				me["N23_group"].setTranslation(0, 0);
 			}
 			
 			me["N23"].setText(sprintf("%d", Value.Fadec.n2[2] + 0.05));
@@ -853,10 +829,10 @@ var canvasGeTapes = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N1_bars", "N11", "N11_bar", "N11_decimal",
-		"N11_error", "N11_group", "N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim", "N13_redline", "N13_thr",
-		"N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimMode", "N1LimText", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline",
-		"N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_decimal", "N11_error", "N11_group",
+		"N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim", "N13_redline", "N13_thr", "N1Lim", "N1Lim_decimal",
+		"N1Lim_error", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline",
+		"N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -910,15 +886,11 @@ var canvasGeTapes = {
 		Value.Fadec.n1LimitFixed = Value.Fadec.n1Limit + 0.05;
 		
 		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
-			me["FlexTemp"].setText(sprintf("%d", fms.FlightData.flexTemp));
-			me["FlexGroup"].show();
-			me["N1LimText"].setText("FLEX");
+			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
 		} else {
-			me["FlexGroup"].hide();
-			me["N1LimText"].setText("LIM");
+			me["N1LimMode"].setText(Value.Fadec.activeMode ~ " LIM");
 		}
 		
-		me["N1LimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
 		me["N1Lim"].setText(sprintf("%d", math.floor(Value.Fadec.n1LimitFixed)));
 		me["N1Lim_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1LimitFixed, 1))));
 		
@@ -941,14 +913,6 @@ var canvasGeTapes = {
 			if (Value.Fadec.revState[0] != 0) {
 				me["N11_group"].hide();
 			} else {
-				if (Value.Fadec.n1[0] + 0.05 < 10) {
-					me["N11_group"].setTranslation(-21.064, 0);
-				} else if (Value.Fadec.n1[0] + 0.05 < 100) {
-					me["N11_group"].setTranslation(-10.169, 0);
-				} else {
-					me["N11_group"].setTranslation(0, 0);
-				}
-				
 				me["N11"].setText(sprintf("%d", Value.Fadec.n1[0] + 0.05));
 				me["N11_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[0] + 0.05, 1))));
 				me["N11_group"].show();
@@ -978,14 +942,6 @@ var canvasGeTapes = {
 			if (Value.Fadec.revState[1] != 0) {
 				me["N12_group"].hide();
 			} else {
-				if (Value.Fadec.n1[1] + 0.05 < 10) {
-					me["N12_group"].setTranslation(-21.064, 0);
-				} else if (Value.Fadec.n1[1] + 0.05 < 100) {
-					me["N12_group"].setTranslation(-10.169, 0);
-				} else {
-					me["N12_group"].setTranslation(0, 0);
-				}
-				
 				me["N12"].setText(sprintf("%d", Value.Fadec.n1[1] + 0.05));
 				me["N12_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[1] + 0.05, 1))));
 				me["N12_group"].show();
@@ -1015,14 +971,6 @@ var canvasGeTapes = {
 			if (Value.Fadec.revState[2] != 0) {
 				me["N13_group"].hide();
 			} else {
-				if (Value.Fadec.n1[2] + 0.05 < 10) {
-					me["N13_group"].setTranslation(-21.064, 0);
-				} else if (Value.Fadec.n1[2] + 0.05 < 100) {
-					me["N13_group"].setTranslation(-10.169, 0);
-				} else {
-					me["N13_group"].setTranslation(0, 0);
-				}
-				
 				me["N13"].setText(sprintf("%d", Value.Fadec.n1[2] + 0.05));
 				me["N13_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1[2] + 0.05, 1))));
 				me["N13_group"].show();
