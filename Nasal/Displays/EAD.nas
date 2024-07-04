@@ -1282,10 +1282,9 @@ var canvasPwTapes = {
 	getKeys: func() {
 		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_error", "EPR2_group",
-		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimMode", "EPRLimModeGroup", "EPRLimRating", "EPRLimText", "FF1", "FF1_error", "FF2",
-		"FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "FlexGroup", "FlexTemp", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21",
-		"N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline",
-		"REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimMode", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2",
+		"FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline",
+		"N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -1345,33 +1344,21 @@ var canvasPwTapes = {
 		Value.Fadec.eprLimitFixed = Value.Fadec.eprLimit + 0.005;
 		
 		if (Value.Fadec.activeMode == "T/O" or Value.Fadec.activeMode == "G/A") {
-			me["EPRLimModeGroup"].setTranslation(56.496, 0);
-			me["FlexGroup"].setTranslation(26.204, 0);
-			
 			if (systems.FADEC.Limit.pwDerate.getBoolValue()) {
-				me["EPRLimRating"].setText("60K");
+				Value.Fadec.rating = "60K";
 			} else {
-				me["EPRLimRating"].setText("62K");
+				Value.Fadec.rating = "62K";
 			}
-			me["EPRLimRating"].show();
 			
 			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
-				me["EPRLimText"].setText("FLEX");
-				me["FlexTemp"].setText(sprintf("%d", fms.FlightData.flexTemp));
-				me["FlexGroup"].show();
+				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
 			} else {
-				me["EPRLimText"].setText("LIM");
-				me["FlexGroup"].hide();
+				me["EPRLimMode"].setText(Value.Fadec.rating ~ " " ~ Value.Fadec.activeMode ~ " LIM");
 			}
 		} else {
-			me["EPRLimModeGroup"].setTranslation(0, 0);
-			me["EPRLimRating"].hide();
-			me["EPRLimText"].setText("LIM");
-			me["FlexGroup"].setTranslation(0, 0);
-			me["FlexGroup"].hide();
+			me["EPRLimMode"].setText(Value.Fadec.activeMode ~ " LIM");
 		}
 		
-		me["EPRLimMode"].setText(sprintf("%s", Value.Fadec.activeMode));
 		me["EPRLim"].setText(sprintf("%d", math.floor(Value.Fadec.eprLimitFixed)));
 		me["EPRLim_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprLimitFixed - int(Value.Fadec.eprLimitFixed)) * 100)));
 		
