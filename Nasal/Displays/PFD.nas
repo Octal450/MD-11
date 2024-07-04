@@ -249,14 +249,16 @@ var canvasBase = {
 		return ["AI_background", "AI_bank", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_dual_cue", "AI_error", "AI_group", "AI_group2", "AI_group3", "AI_group4", "AI_overbank_index", "AI_PLI", "AI_PLI_dual_cue", "AI_PLI_single_cue", "AI_rising_runway",
 		"AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds", "ALT_minimums", "ALT_minus", "ALT_one",
 		"ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero",
-		"ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15","ASI_f28", "ASI_f35", "ASI_f50", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_ge",
-		"ASI_gr", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_taxi", "ASI_taxi_group",
-		"ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar",
-		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_Altitude",
-		"FMA_Altitude_Thousand", "FMA_AP", "FMA_AP_Pitch_Off_Box", "FMA_AP_Thrust_Off_Box", "FMA_ATS_Pitch_Off", "FMA_ATS_Thrust_Off", "FMA_Land", "FMA_Pitch", "FMA_Pitch_Arm", "FMA_Pitch_Land", "FMA_Roll", "FMA_Roll_Arm", "FMA_Speed", "FMA_Thrust",
-		"FMA_Thrust_Arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text",
-		"ILS_alt", "ILS_DME", "ILS_info", "Inner_Marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_Marker", "Minimums", "Outer_Marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up",
-		"TCAS", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15", "ASI_f15_p", "ASI_f15_t", "ASI_f28", "ASI_f28_p", "ASI_f28_t", "ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50",
+		"ASI_f50_p", "ASI_f50_t", "ASI_bowtie", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p", "ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t", "ASI_groundspeed", "ASI_ias_group", "ASI_mach",
+		"ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn",
+		"ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug",
+		"ASI_vr_bug_n", "ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll",
+		"FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box",
+		"FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV",
+		"GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info",
+		"Inner_marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "Outer_marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2",
+		"TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -291,6 +293,7 @@ var canvasBase = {
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.fms = pts.Instrumentation.Pfd.spdFms.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
+		Value.Asi.iasInt = math.round(Value.Asi.ias);
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.preSel = pts.Instrumentation.Pfd.spdPreSel.getValue();
 		Value.Asi.sel = pts.Instrumentation.Pfd.spdSel.getValue();
@@ -386,11 +389,15 @@ var canvasBase = {
 					Value.Asi.Tape.v1 = fms.FlightData.v1 - 50 - Value.Asi.Tape.ias;
 					
 					if (fms.FlightData.v1State == 1) {
-						me["ASI_v1_bug"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_bug_n"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_bug_p"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_bug_v"].setColor(0.9607, 0, 0.7764);
 						me["ASI_v1_box"].setColor(0.9607, 0, 0.7764);
 						me["ASI_v1_text"].setColor(0.9607, 0, 0.7764);
 					} else {
-						me["ASI_v1_bug"].setColor(1, 1, 1);
+						me["ASI_v1_bug_n"].setColor(1, 1, 1);
+						me["ASI_v1_bug_p"].setColor(1, 1, 1);
+						me["ASI_v1_bug_v"].setColor(1, 1, 1);
 						me["ASI_v1_box"].setColor(1, 1, 1);
 						me["ASI_v1_text"].setColor(1, 1, 1);
 					}
@@ -409,12 +416,16 @@ var canvasBase = {
 					me["ASI_v1_dash"].hide();
 				} else {
 					if (Value.Misc.twoEngineOn) {
-						me["ASI_v1_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_bug_n"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_bug_p"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_v1_bug_v"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_v1_box"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_v1_dash"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_v1_text"].setColor(0.9647, 0.8196, 0.0784);
 					} else {
-						me["ASI_v1_bug"].setColor(1, 1, 1);
+						me["ASI_v1_bug_n"].setColor(1, 1, 1);
+						me["ASI_v1_bug_p"].setColor(1, 1, 1);
+						me["ASI_v1_bug_v"].setColor(1, 1, 1);
 						me["ASI_v1_box"].setColor(1, 1, 1);
 						me["ASI_v1_dash"].setColor(1, 1, 1);
 						me["ASI_v1_text"].setColor(1, 1, 1);
@@ -438,11 +449,15 @@ var canvasBase = {
 					Value.Asi.Tape.vr = fms.FlightData.vr - 50 - Value.Asi.Tape.ias;
 					
 					if (fms.FlightData.vrState == 1) {
-						me["ASI_vr_bug"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_bug_n"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_bug_p"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_bug_v"].setColor(0.9607, 0, 0.7764);
 						me["ASI_vr_box"].setColor(0.9607, 0, 0.7764);
 						me["ASI_vr_text"].setColor(0.9607, 0, 0.7764);
 					} else {
-						me["ASI_vr_bug"].setColor(1, 1, 1);
+						me["ASI_vr_bug_n"].setColor(1, 1, 1);
+						me["ASI_vr_bug_p"].setColor(1, 1, 1);
+						me["ASI_vr_bug_v"].setColor(1, 1, 1);
 						me["ASI_vr_box"].setColor(1, 1, 1);
 						me["ASI_vr_text"].setColor(1, 1, 1);
 					}
@@ -468,12 +483,16 @@ var canvasBase = {
 					Value.Asi.hideV1 = 0;
 					
 					if (Value.Misc.twoEngineOn) {
-						me["ASI_vr_bug"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_bug_n"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_bug_p"].setColor(0.9647, 0.8196, 0.0784);
+						me["ASI_vr_bug_v"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_vr_box"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_vr_dash"].setColor(0.9647, 0.8196, 0.0784);
 						me["ASI_vr_text"].setColor(0.9647, 0.8196, 0.0784);
 					} else {
-						me["ASI_vr_bug"].setColor(1, 1, 1);
+						me["ASI_vr_bug_n"].setColor(1, 1, 1);
+						me["ASI_vr_bug_p"].setColor(1, 1, 1);
+						me["ASI_vr_bug_v"].setColor(1, 1, 1);
 						me["ASI_vr_box"].setColor(1, 1, 1);
 						me["ASI_vr_dash"].setColor(1, 1, 1);
 						me["ASI_vr_text"].setColor(1, 1, 1);
@@ -499,11 +518,15 @@ var canvasBase = {
 				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
 				
 				if (fms.FlightData.v2State == 1) {
-					me["ASI_v2_bug"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_bug_n"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_bug_p"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_bug_v"].setColor(0.9607, 0, 0.7764);
 					me["ASI_v2_box"].setColor(0.9607, 0, 0.7764);
 					me["ASI_v2_text"].setColor(0.9607, 0, 0.7764);
 				} else {
-					me["ASI_v2_bug"].setColor(1, 1, 1);
+					me["ASI_v2_bug_n"].setColor(1, 1, 1);
+					me["ASI_v2_bug_p"].setColor(1, 1, 1);
+					me["ASI_v2_bug_v"].setColor(1, 1, 1);
 					me["ASI_v2_box"].setColor(1, 1, 1);
 					me["ASI_v2_text"].setColor(1, 1, 1);
 				}
@@ -529,12 +552,16 @@ var canvasBase = {
 				Value.Asi.hideVr = 0;
 				
 				if (Value.Misc.twoEngineOn) {
-					me["ASI_v2_bug"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_bug_n"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_bug_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_v2_bug_v"].setColor(0.9647, 0.8196, 0.0784);
 					me["ASI_v2_box"].setColor(0.9647, 0.8196, 0.0784);
 					me["ASI_v2_dash"].setColor(0.9647, 0.8196, 0.0784);
 					me["ASI_v2_text"].setColor(0.9647, 0.8196, 0.0784);
 				} else {
-					me["ASI_v2_bug"].setColor(1, 1, 1);
+					me["ASI_v2_bug_n"].setColor(1, 1, 1);
+					me["ASI_v2_bug_p"].setColor(1, 1, 1);
+					me["ASI_v2_bug_v"].setColor(1, 1, 1);
 					me["ASI_v2_box"].setColor(1, 1, 1);
 					me["ASI_v2_dash"].setColor(1, 1, 1);
 					me["ASI_v2_text"].setColor(1, 1, 1);
@@ -700,9 +727,11 @@ var canvasBase = {
 			if (Value.Misc.gearOut) {
 				Value.Asi.Tape.gr = fms.Speeds.gearRetMax.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.gr > 0) {
-					me["ASI_gr"].setColor(0, 1, 0);
+					me["ASI_gr_p"].setColor(0, 1, 0);
+					me["ASI_gr_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_gr"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_gr_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_gr_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_gr"].setTranslation(0, Value.Asi.Tape.gr * -4.48656);
 				me["ASI_gr"].show();
@@ -712,18 +741,22 @@ var canvasBase = {
 			
 			Value.Asi.Tape.ge = fms.Speeds.gearExtMax.getValue() - 50 - Value.Asi.Tape.ias;
 			if (Value.Asi.Tape.ge > 0) {
-				me["ASI_ge"].setColor(0, 1, 0);
+				me["ASI_ge_p"].setColor(0, 1, 0);
+				me["ASI_ge_t"].setColor(0, 1, 0);
 			} else {
-				me["ASI_ge"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_ge_p"].setColor(0.9647, 0.8196, 0.0784);
+				me["ASI_ge_t"].setColor(0.9647, 0.8196, 0.0784);
 			}
 			me["ASI_ge"].setTranslation(0, Value.Asi.Tape.ge * -4.48656);
 			
 			if (Value.Misc.slatsOut and Value.Asi.vsr > 0) {
 				Value.Asi.Tape.sr = Value.Asi.vsr - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.sr < 0) {
-					me["ASI_sr"].setColor(0, 1, 0);
+					me["ASI_sr_p"].setColor(0, 1, 0);
+					me["ASI_sr_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_sr"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_sr_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_sr_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_sr"].setTranslation(0, Value.Asi.Tape.sr * -4.48656);
 				me["ASI_sr"].show();
@@ -734,9 +767,11 @@ var canvasBase = {
 			if (!Value.Misc.slatsOut) {
 				Value.Asi.Tape.se = fms.Speeds.slatMax.getValue() - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.se > 0) {
-					me["ASI_se"].setColor(0, 1, 0);
+					me["ASI_se_p"].setColor(0, 1, 0);
+					me["ASI_se_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_se"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_se_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_se_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_se"].setTranslation(0, Value.Asi.Tape.se * -4.48656);
 				me["ASI_se"].show();
@@ -747,9 +782,11 @@ var canvasBase = {
 			if (Value.Misc.flapsOut and Value.Asi.vfr > 0) {
 				Value.Asi.Tape.fr = Value.Asi.vfr - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.fr < 0) {
-					me["ASI_fr"].setColor(0, 1, 0);
+					me["ASI_fr_p"].setColor(0, 1, 0);
+					me["ASI_fr_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_fr"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_fr_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_fr_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_fr"].setTranslation(0, Value.Asi.Tape.fr * -4.48656);
 				me["ASI_fr"].show();
@@ -774,9 +811,11 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f50 = Value.Asi.f50 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f50 > 0) {
-					me["ASI_f50"].setColor(0, 1, 0);
+					me["ASI_f50_p"].setColor(0, 1, 0);
+					me["ASI_f50_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f50"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f50_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f50_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f50"].setTranslation(0, Value.Asi.Tape.f50 * -4.48656);
 				me["ASI_f50"].show();
@@ -786,9 +825,11 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f35 = Value.Asi.f35 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f35 > 0) {
-					me["ASI_f35"].setColor(0, 1, 0);
+					me["ASI_f35_p"].setColor(0, 1, 0);
+					me["ASI_f35_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f35"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f35_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f35_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f35"].setTranslation(0, Value.Asi.Tape.f35 * -4.48656);
 				me["ASI_f35"].show();
@@ -799,9 +840,11 @@ var canvasBase = {
 				
 				Value.Asi.Tape.f28 = Value.Asi.f28 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f28 > 0) {
-					me["ASI_f28"].setColor(0, 1, 0);
+					me["ASI_f28_p"].setColor(0, 1, 0);
+					me["ASI_f28_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f28"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f28_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f28_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f28"].setTranslation(0, Value.Asi.Tape.f28 * -4.48656);
 				me["ASI_f28"].show();
@@ -811,9 +854,11 @@ var canvasBase = {
 			} else if (Value.Misc.slatsOut and Value.Afs.vertText != "T/O CLB") {
 				Value.Asi.Tape.f15 = Value.Asi.f15 - 50 - Value.Asi.Tape.ias;
 				if (Value.Asi.Tape.f15 > 0) {
-					me["ASI_f15"].setColor(0, 1, 0);
+					me["ASI_f15_p"].setColor(0, 1, 0);
+					me["ASI_f15_t"].setColor(0, 1, 0);
 				} else {
-					me["ASI_f15"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f15_p"].setColor(0.9647, 0.8196, 0.0784);
+					me["ASI_f15_t"].setColor(0.9647, 0.8196, 0.0784);
 				}
 				me["ASI_f15"].setTranslation(0, Value.Asi.Tape.f15 * -4.48656);
 				me["ASI_f15"].show();
@@ -1075,17 +1120,20 @@ var canvasBase = {
 		}
 		
 		if (Value.Ai.alpha >= Value.Ai.stallAlphaDeg) {
-			me["AI_PLI"].setColor(1, 0, 0);
 			me["AI_banklimit_L"].setColor(1, 0, 0);
 			me["AI_banklimit_R"].setColor(1, 0, 0);
+			me["AI_PLI_dual_cue"].setColor(1, 0, 0);
+			me["AI_PLI_single_cue"].setColor(1, 0, 0);
 		} else if (Value.Ai.alpha >= Value.Ai.stallWarnAlphaDeg and Value.Misc.slatsPos >= 0.1) {
-			me["AI_PLI"].setColor(0.9647, 0.8196, 0.0784);
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
+			me["AI_PLI_dual_cue"].setColor(0.9647, 0.8196, 0.0784);
+			me["AI_PLI_single_cue"].setColor(0.9647, 0.8196, 0.0784);
 		} else {
-			me["AI_PLI"].setColor(0.3398, 0.7852, 0.9883);
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
+			me["AI_PLI_dual_cue"].setColor(0.3398, 0.7852, 0.9883);
+			me["AI_PLI_single_cue"].setColor(0.3398, 0.7852, 0.9883);
 		}
 		
 		# ALT
@@ -1510,21 +1558,21 @@ var canvasBase = {
 		
 		# Marker Beacons
 		if (pts.Instrumentation.MarkerBeacon.inner.getBoolValue()) {
-			me["Inner_Marker"].show();
-			me["Middle_Marker"].hide();
-			me["Outer_Marker"].hide();
+			me["Inner_marker"].show();
+			me["Middle_marker"].hide();
+			me["Outer_marker"].hide();
 		} else if (pts.Instrumentation.MarkerBeacon.middle.getBoolValue()) {
-			me["Inner_Marker"].hide();
-			me["Middle_Marker"].show();
-			me["Outer_Marker"].hide();
+			me["Inner_marker"].hide();
+			me["Middle_marker"].show();
+			me["Outer_marker"].hide();
 		} else if (pts.Instrumentation.MarkerBeacon.outer.getBoolValue()) {
-			me["Inner_Marker"].hide();
-			me["Middle_Marker"].hide();
-			me["Outer_Marker"].show();
+			me["Inner_marker"].hide();
+			me["Middle_marker"].hide();
+			me["Outer_marker"].show();
 		} else {
-			me["Inner_Marker"].hide();
-			me["Middle_Marker"].hide();
-			me["Outer_Marker"].hide();
+			me["Inner_marker"].hide();
+			me["Middle_marker"].hide();
+			me["Outer_marker"].hide();
 		}
 		
 		# RA and Minimums
@@ -1682,111 +1730,111 @@ var canvasBase = {
 		
 		# FMA
 		if (fms.FmsSpd.active) { # Only if the actual FMS SPD mode is active, this excludes takeoff speed guidance
-			me["FMA_Thrust"].setColor(0.9607, 0, 0.7764);
+			me["FMA_thrust"].setColor(0.9607, 0, 0.7764);
 		} else {
-			me["FMA_Thrust"].setColor(1, 1, 1);
+			me["FMA_thrust"].setColor(1, 1, 1);
 		}
 		
 		Value.Afs.spdProt = afs.Output.spdProt.getValue();
 		if (Value.Afs.ats and Value.Afs.spdProt != 0) {
 			if (Value.Misc.blinkMed) {
 				if (Value.Afs.spdProt == 2) {
-					me["FMA_Thrust_Arm"].setText("HI SPEED");
+					me["FMA_thrust_arm"].setText("HI SPEED");
 				} else {
-					me["FMA_Thrust_Arm"].setText("LO SPEED");
+					me["FMA_thrust_arm"].setText("LO SPEED");
 				}
 			} else {
-				me["FMA_Thrust_Arm"].setText("PROTECTION");
+				me["FMA_thrust_arm"].setText("PROTECTION");
 			}
 		} else {
-			me["FMA_Thrust_Arm"].setText("");
+			me["FMA_thrust_arm"].setText("");
 		}
 		
-		me["FMA_Pitch_Arm"].setText(sprintf("%s", Value.Afs.pitchArm));
-		me["FMA_Roll_Arm"].setText(sprintf("%s", Value.Afs.rollArm));
+		me["FMA_pitch_arm"].setText(sprintf("%s", Value.Afs.pitchArm));
+		me["FMA_roll_arm"].setText(sprintf("%s", Value.Afs.rollArm));
 		
 		if (Value.Afs.land == "DUAL") {
-			me["FMA_Roll"].setColor(0, 1, 0);
+			me["FMA_roll"].setColor(0, 1, 0);
 		} else if (Value.Afs.roll == "NAV1" or Value.Afs.roll == "NAV2") {
-			me["FMA_Roll"].setColor(0.9607, 0, 0.7764);
+			me["FMA_roll"].setColor(0.9607, 0, 0.7764);
 		} else {
-			me["FMA_Roll"].setColor(1, 1, 1);
+			me["FMA_roll"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.rollArm == "NAV ARMED") {
-			me["FMA_Roll_Arm"].setColor(0.9607, 0, 0.7764);
+			me["FMA_roll_arm"].setColor(0.9607, 0, 0.7764);
 		} else {
-			me["FMA_Roll_Arm"].setColor(1, 1, 1);
+			me["FMA_roll_arm"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.land != "OFF") {
 			if (Value.Afs.land == "DUAL") {
-				me["FMA_Land"].setColor(0, 1, 0);
-				me["FMA_Land"].setText("DUAL LAND");
-				me["FMA_Pitch_Land"].setColor(0, 1, 0);
+				me["FMA_land"].setColor(0, 1, 0);
+				me["FMA_land"].setText("DUAL LAND");
+				me["FMA_pitch_land"].setColor(0, 1, 0);
 			} else if (Value.Afs.land == "SINGLE") {
-				me["FMA_Land"].setColor(1, 1, 1);
-				me["FMA_Land"].setText("SINGLE LAND");
-				me["FMA_Pitch_Land"].setColor(1, 1, 1);
+				me["FMA_land"].setColor(1, 1, 1);
+				me["FMA_land"].setText("SINGLE LAND");
+				me["FMA_pitch_land"].setColor(1, 1, 1);
 			} else {
-				me["FMA_Land"].setColor(1, 1, 1);
-				me["FMA_Land"].setText("APPR ONLY");
-				me["FMA_Pitch_Land"].setColor(1, 1, 1);
+				me["FMA_land"].setColor(1, 1, 1);
+				me["FMA_land"].setText("APPR ONLY");
+				me["FMA_pitch_land"].setColor(1, 1, 1);
 			}
 			
-			me["FMA_Altitude"].hide();
-			me["FMA_Altitude_Thousand"].hide();
-			me["FMA_Pitch_Land"].setText(sprintf("%s", Value.Afs.pitch));
+			me["FMA_altitude"].hide();
+			me["FMA_altitude_T"].hide();
+			me["FMA_pitch_land"].setText(sprintf("%s", Value.Afs.pitch));
 			
 			if (afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2]) {
-				me["FMA_Land"].hide();
-				me["FMA_Pitch_Land"].hide();
+				me["FMA_land"].hide();
+				me["FMA_pitch_land"].hide();
 			} else {
-				me["FMA_Land"].show();
-				me["FMA_Pitch_Land"].show();
+				me["FMA_land"].show();
+				me["FMA_pitch_land"].show();
 			}
 		} else {
-			me["FMA_Altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
-			me["FMA_Altitude"].show();
+			me["FMA_altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			me["FMA_altitude"].show();
 			if (Value.Afs.alt < 1000) {
-				me["FMA_Altitude_Thousand"].hide();
+				me["FMA_altitude_T"].hide();
 			} else {
-				me["FMA_Altitude_Thousand"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
-				me["FMA_Altitude_Thousand"].show();
+				me["FMA_altitude_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
+				me["FMA_altitude_T"].show();
 			}
-			me["FMA_Land"].hide();
-			me["FMA_Pitch_Land"].hide();
+			me["FMA_land"].hide();
+			me["FMA_pitch_land"].hide();
 		}
 		
 		if (Value.Afs.pitch == "ROLLOUT") {
-			me["FMA_Pitch_Land"].setTranslation(-10, 0);
+			me["FMA_pitch_land"].setTranslation(-10, 0);
 		} else {
-			me["FMA_Pitch_Land"].setTranslation(0, 0);
+			me["FMA_pitch_land"].setTranslation(0, 0);
 		}
 		
 		if (fms.FmsSpd.ktsMach) {
 			if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.001 or Value.Afs.fmsSpdDriving) {
-				me["FMA_Speed"].setColor(0.9607, 0, 0.7764);
+				me["FMA_speed"].setColor(0.9607, 0, 0.7764);
 			} else {
-				me["FMA_Speed"].setColor(1, 1, 1);
+				me["FMA_speed"].setColor(1, 1, 1);
 			}
 		} else {
 			if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1 or Value.Afs.fmsSpdDriving) {
-				me["FMA_Speed"].setColor(0.9607, 0, 0.7764);
+				me["FMA_speed"].setColor(0.9607, 0, 0.7764);
 			} else {
-				me["FMA_Speed"].setColor(1, 1, 1);
+				me["FMA_speed"].setColor(1, 1, 1);
 			}
 		}
 		
 		if (Value.Afs.thrust == "RETARD" or !Value.Afs.spdPitchAvail) {
-			me["FMA_Speed"].hide();
+			me["FMA_speed"].hide();
 		} else {
 			if (Value.Afs.ktsMach) {
-				me["FMA_Speed"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
+				me["FMA_speed"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 			} else {
-				me["FMA_Speed"].setText(sprintf("%3.0f", Value.Afs.kts));
+				me["FMA_speed"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
-			me["FMA_Speed"].show();
+			me["FMA_speed"].show();
 		}
 		
 		Value.Afs.apDisc[0] = pts.Controls.Cockpit.apDisc[0].getBoolValue();
@@ -1799,64 +1847,70 @@ var canvasBase = {
 		Value.Afs.atsWarn = afs.Warning.ats.getBoolValue();
 		
 		if (Value.Afs.atsFlash) {
-			me["FMA_ATS_Pitch_Off"].setColor(1, 0, 0);
-			me["FMA_ATS_Thrust_Off"].setColor(1, 0, 0);
+			me["FMA_ATS_pitch_off_box"].setColor(1, 0, 0);
+			me["FMA_ATS_pitch_off_text"].setColor(1, 0, 0);
+			me["FMA_ATS_thrust_off_box"].setColor(1, 0, 0);
+			me["FMA_ATS_thrust_off_text"].setColor(1, 0, 0);
 		} else if (!afs.Input.athrAvail.getBoolValue()) {
-			me["FMA_ATS_Pitch_Off"].setColor(0.9412, 0.7255, 0);
-			me["FMA_ATS_Thrust_Off"].setColor(0.9412, 0.7255, 0);
+			me["FMA_ATS_pitch_off_box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_ATS_pitch_off_text"].setColor(0.9412, 0.7255, 0);
+			me["FMA_ATS_thrust_off_box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_ATS_thrust_off_text"].setColor(0.9412, 0.7255, 0);
 		} else {
-			me["FMA_ATS_Pitch_Off"].setColor(1, 1, 1);
-			me["FMA_ATS_Thrust_Off"].setColor(1, 1, 1);
+			me["FMA_ATS_pitch_off_box"].setColor(1, 1, 1);
+			me["FMA_ATS_pitch_off_text"].setColor(1, 1, 1);
+			me["FMA_ATS_thrust_off_box"].setColor(1, 1, 1);
+			me["FMA_ATS_thrust_off_text"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.apSound) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1, 0, 0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1, 0, 0);
+			me["FMA_AP_pitch_off_box"].setColor(1, 0, 0);
+			me["FMA_AP_thrust_off_box"].setColor(1, 0, 0);
 		} else if (!Value.Afs.ap1Avail and !Value.Afs.ap2Avail) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412, 0.7255, 0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_pitch_off_box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_thrust_off_box"].setColor(0.9412, 0.7255, 0);
 		} else if ((Value.Afs.apDisc[0] or Value.Afs.apDisc[1]) and !Value.Afs.ap1 and !Value.Afs.ap2) {
-			me["FMA_AP_Pitch_Off_Box"].setColor(0.9412, 0.7255, 0);
-			me["FMA_AP_Thrust_Off_Box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_pitch_off_box"].setColor(0.9412, 0.7255, 0);
+			me["FMA_AP_thrust_off_box"].setColor(0.9412, 0.7255, 0);
 		} else {
-			me["FMA_AP_Pitch_Off_Box"].setColor(1, 1, 1);
-			me["FMA_AP_Thrust_Off_Box"].setColor(1, 1, 1);
+			me["FMA_AP_pitch_off_box"].setColor(1, 1, 1);
+			me["FMA_AP_thrust_off_box"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.ats == 1) {
 			if (Value.Afs.spdProt != 0 and Value.Afs.thrust == "PITCH") {
 				if (Value.Misc.blinkMed2) {
-					me["FMA_ATS_Pitch_Off"].show();
+					me["FMA_ATS_pitch_off"].show();
 				} else {
-					me["FMA_ATS_Pitch_Off"].hide();
+					me["FMA_ATS_pitch_off"].hide();
 				}
-				me["FMA_ATS_Thrust_Off"].hide();
+				me["FMA_ATS_thrust_off"].hide();
 			} else if (Value.Afs.spdProt != 0) {
-				me["FMA_ATS_Pitch_Off"].hide();
+				me["FMA_ATS_pitch_off"].hide();
 				if (Value.Misc.blinkMed2) {
-					me["FMA_ATS_Thrust_Off"].show();
+					me["FMA_ATS_thrust_off"].show();
 				} else {
-					me["FMA_ATS_Thrust_Off"].hide();
+					me["FMA_ATS_thrust_off"].hide();
 				}
 			} else {
-				me["FMA_ATS_Pitch_Off"].hide();
-				me["FMA_ATS_Thrust_Off"].hide();
+				me["FMA_ATS_pitch_off"].hide();
+				me["FMA_ATS_thrust_off"].hide();
 			}
 		} else if (Value.Afs.atsFlash and !Value.Afs.atsWarn) {
-			me["FMA_ATS_Pitch_Off"].hide();
-			me["FMA_ATS_Thrust_Off"].hide();
+			me["FMA_ATS_pitch_off"].hide();
+			me["FMA_ATS_thrust_off"].hide();
 		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.thrust == "PITCH") {
-			me["FMA_ATS_Pitch_Off"].show();
-			me["FMA_ATS_Thrust_Off"].hide();
+			me["FMA_ATS_pitch_off"].show();
+			me["FMA_ATS_thrust_off"].hide();
 		} else if (Value.Afs.atsFlash and Value.Afs.atsWarn and Value.Afs.thrust != "PITCH") {
-			me["FMA_ATS_Pitch_Off"].hide();
-			me["FMA_ATS_Thrust_Off"].show();
+			me["FMA_ATS_pitch_off"].hide();
+			me["FMA_ATS_thrust_off"].show();
 		} else if (Value.Afs.thrust == "PITCH") {
-			me["FMA_ATS_Pitch_Off"].show();
-			me["FMA_ATS_Thrust_Off"].hide();
+			me["FMA_ATS_pitch_off"].show();
+			me["FMA_ATS_thrust_off"].hide();
 		} else {
-			me["FMA_ATS_Pitch_Off"].hide();
-			me["FMA_ATS_Thrust_Off"].show();
+			me["FMA_ATS_pitch_off"].hide();
+			me["FMA_ATS_thrust_off"].show();
 		}
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
@@ -1886,23 +1940,23 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
-			me["FMA_AP_Pitch_Off_Box"].hide();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP_pitch_off_box"].hide();
+			me["FMA_AP_thrust_off_box"].hide();
 		} else if (Value.Afs.apSound and !Value.Afs.apWarn) {
-			me["FMA_AP_Pitch_Off_Box"].hide();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP_pitch_off_box"].hide();
+			me["FMA_AP_thrust_off_box"].hide();
 		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.thrust == "PITCH") {
-			me["FMA_AP_Pitch_Off_Box"].show();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP_pitch_off_box"].show();
+			me["FMA_AP_thrust_off_box"].hide();
 		} else if (Value.Afs.apSound and Value.Afs.apWarn and Value.Afs.thrust != "PITCH") {
-			me["FMA_AP_Pitch_Off_Box"].hide();
-			me["FMA_AP_Thrust_Off_Box"].show();
+			me["FMA_AP_pitch_off_box"].hide();
+			me["FMA_AP_thrust_off_box"].show();
 		} else if (Value.Afs.thrust == "PITCH") {
-			me["FMA_AP_Pitch_Off_Box"].show();
-			me["FMA_AP_Thrust_Off_Box"].hide();
+			me["FMA_AP_pitch_off_box"].show();
+			me["FMA_AP_thrust_off_box"].hide();
 		} else {
-			me["FMA_AP_Pitch_Off_Box"].hide();
-			me["FMA_AP_Thrust_Off_Box"].show();
+			me["FMA_AP_pitch_off_box"].hide();
+			me["FMA_AP_thrust_off_box"].show();
 		}
 		
 		# QNH
@@ -1992,13 +2046,15 @@ var canvasBase = {
 			if (instruments.XPDR.tcasMode.getValue() >= 2) {
 				me["TCAS"].hide();
 			} else {
+				me["TCAS_1"].setColor(1, 1, 1);
+				me["TCAS_2"].setColor(1, 1, 1);
 				me["TCAS_2"].setText("OFF");
-				me["TCAS"].setColor(1, 1, 1);
 				me["TCAS"].show();
 			}
 		} else {
+			me["TCAS_1"].setColor(0.9412, 0.7255, 0);
+			me["TCAS_2"].setColor(0.9412, 0.7255, 0);
 			me["TCAS_2"].setText("FAIL");
-			me["TCAS"].setColor(0.9412, 0.7255, 0);
 			me["TCAS"].show();
 		}
 	},
@@ -2047,74 +2103,74 @@ var canvasPfd1 = {
 		# FMA
 		if (Value.Afs.fd1) {
 			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-				me["FMA_Pitch"].show();
+				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+				me["FMA_pitch"].show();
 			} else {
-				me["FMA_Pitch"].hide();
+				me["FMA_pitch"].hide();
 			}
 			
 			if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-				me["FMA_Roll"].hide();
+				me["FMA_roll"].hide();
 			} else {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
 				}
-				me["FMA_Roll"].show();
+				me["FMA_roll"].show();
 			}
 			
 			if (afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) {
-				me["FMA_Thrust"].hide();
+				me["FMA_thrust"].hide();
 			} else {
-				me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-				me["FMA_Thrust"].show();
+				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+				me["FMA_thrust"].show();
 			}
 		} else {
 			if (Value.Afs.thrust == "PITCH") {
 				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_Thrust"].show();
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
 				} else {
-					me["FMA_Thrust"].hide();
+					me["FMA_thrust"].hide();
 				}
 				
 				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_Pitch"].show();
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
 				} else {
-					me["FMA_Pitch"].hide();
+					me["FMA_pitch"].hide();
 				}
 			} else {
 				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_Pitch"].show();
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
 				} else {
-					me["FMA_Pitch"].hide();
+					me["FMA_pitch"].hide();
 				}
 				
 				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_Thrust"].show();
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
 				} else {
-					me["FMA_Thrust"].hide();
+					me["FMA_thrust"].hide();
 				}
 			}
 			
 			if (Value.Afs.ap1 or Value.Afs.ap2) {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
 				}
 				
 				if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-					me["FMA_Roll"].hide();
+					me["FMA_roll"].hide();
 				} else {
-					me["FMA_Roll"].show();
+					me["FMA_roll"].show();
 				}
 			} else {
-				me["FMA_Roll"].hide();
+				me["FMA_roll"].hide();
 			}
 		}
 		
@@ -2293,74 +2349,74 @@ var canvasPfd2 = {
 		# FMA
 		if (Value.Afs.fd2) {
 			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-				me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-				me["FMA_Pitch"].show();
+				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+				me["FMA_pitch"].show();
 			} else {
-				me["FMA_Pitch"].hide();
+				me["FMA_pitch"].hide();
 			}
 			
 			if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-				me["FMA_Roll"].hide();
+				me["FMA_roll"].hide();
 			} else {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
 				}
-				me["FMA_Roll"].show();
+				me["FMA_roll"].show();
 			}
 			
 			if (afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) {
-				me["FMA_Thrust"].hide();
+				me["FMA_thrust"].hide();
 			} else {
-				me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-				me["FMA_Thrust"].show();
+				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+				me["FMA_thrust"].show();
 			}
 		} else {
 			if (Value.Afs.thrust == "PITCH") {
 				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_Thrust"].show();
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
 				} else {
-					me["FMA_Thrust"].hide();
+					me["FMA_thrust"].hide();
 				}
 				
 				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_Pitch"].show();
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
 				} else {
-					me["FMA_Pitch"].hide();
+					me["FMA_pitch"].hide();
 				}
 			} else {
 				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_Pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_Pitch"].show();
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
 				} else {
-					me["FMA_Pitch"].hide();
+					me["FMA_pitch"].hide();
 				}
 				
 				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_Thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_Thrust"].show();
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
 				} else {
-					me["FMA_Thrust"].hide();
+					me["FMA_thrust"].hide();
 				}
 			}
 			
 			if (Value.Afs.ap1 or Value.Afs.ap2) {
 				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
 				} else {
-					me["FMA_Roll"].setText(sprintf("%s", Value.Afs.roll));
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
 				}
 				
 				if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-					me["FMA_Roll"].hide();
+					me["FMA_roll"].hide();
 				} else {
-					me["FMA_Roll"].show();
+					me["FMA_roll"].show();
 				}
 			} else {
-				me["FMA_Roll"].hide();
+				me["FMA_roll"].hide();
 			}
 		}
 		
