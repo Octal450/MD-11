@@ -1,7 +1,5 @@
-# McDonnell Douglas MD-11 Buttons and Switches
+# McDonnell Douglas MD-11 Cockpit Controls
 # Copyright (c) 2024 Josh Davidson (Octal450)
-
-var gpwsOvrd = 0;
 
 # Resets buttons to the default values
 var variousReset = func() {
@@ -280,6 +278,7 @@ var Mins = {
 	},
 };
 
+var gpwsOvrd = 0;
 setlistener("/controls/switches/gpws-ovrd", func() {
 	gpwsOvrd = pts.Controls.Switches.gpwsOvrd.getValue();
 	

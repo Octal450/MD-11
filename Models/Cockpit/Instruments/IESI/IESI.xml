@@ -73,7 +73,7 @@
 					<property>systems/electrical/bus/dc-bat</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Baro.std();</script>
+				<script>cockpit.Baro.std();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -102,7 +102,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Baro.adjust(1);</script>
+				<script>cockpit.Baro.adjust(1);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -115,7 +115,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Baro.adjust(10);</script>
+				<script>cockpit.Baro.adjust(10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>
@@ -140,7 +140,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Baro.adjust(-1);</script>
+				<script>cockpit.Baro.adjust(-1);</script>
 			</binding>
 			<binding>
 				<condition>
@@ -153,7 +153,7 @@
 					</and>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Baro.adjust(-10);</script>
+				<script>cockpit.Baro.adjust(-10);</script>
 			</binding>
 			<binding>
 				<command>property-adjust</command>

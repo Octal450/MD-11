@@ -447,7 +447,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.ApPanel.apDisc();</script>
+				<script>cockpit.ApPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -541,7 +541,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.ApPanel.apDisc();</script>
+				<script>cockpit.ApPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>

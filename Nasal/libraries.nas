@@ -41,7 +41,7 @@ var systemsInit = func() {
 	}
 	instruments.EFIS.init();
 	instruments.XPDR.init();
-	libraries.variousReset();
+	cockpit.variousReset();
 }
 
 var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
@@ -152,9 +152,22 @@ var lightsLoop = maketimer(0.2, func() {
 	}
 });
 
-# Custom controls.nas overwrites
+# Backwards compatibility
+var ApPanel = {
+	apDisc: func() {
+		cockpit.ApPanel.apDisc();
+	},
+	atDisc: func() {
+		cockpit.ApPanel.atDisc();
+	},
+	toga: func() {
+		cockpit.ApPanel.toga();
+	},
+};
+
+# Custom controls.nas overrides
 controls.autopilotDisconnect = func() {
-	libraries.ApPanel.apDisc();
+	cockpit.ApPanel.apDisc();
 }
 
 controls.reverserTogglePosition = func() {
