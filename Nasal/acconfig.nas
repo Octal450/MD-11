@@ -87,11 +87,6 @@ var SYSTEM = {
 			me.Error.reason.setValue("FGFS version is too old. Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
 			print("System: FGFS version error");
-		} else if (!libraries.initDone) {
-			me.Error.active.setBoolValue(1);
-			me.Error.reason.setValue("Initialization did not complete successfully. System files may be damaged.");
-			me.showError();
-			print("System: Initialization error");
 		}
 	},
 	resetFailures: func() {
