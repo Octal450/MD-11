@@ -456,7 +456,7 @@ var ITAF = {
 		
 		# G/S Capture
 		if (Output.gsArm.getBoolValue()) {
-			me.checkAppr(1);
+			me.checkGs(1);
 		}
 		
 		# Autoland Logic
@@ -1164,7 +1164,7 @@ var ITAF = {
 			me.updateLnavArm(0);
 			me.checkLoc(0);
 			Fma.stopBlink(1); # Because setVertMode only stops 2
-			me.checkAppr(0);
+			me.checkGs(0);
 		} else if (n == 3) { # ALT CAP
 			Internal.flchActive = 0;
 			Output.vert.setValue(0);
@@ -1404,7 +1404,7 @@ var ITAF = {
 			me.updateLocArm(0);
 		}
 	},
-	checkAppr: func(t) {
+	checkGs: func(t) {
 		if (Radio.inRange[2].getBoolValue()) { #  # Only evaulate the rest of the condition unless we are in range
 			if (Input.radioSel.getValue() == 2) {
 				Radio.gsDeflTemp[2] = Radio.gsDefl[2].getValue();
