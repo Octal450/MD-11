@@ -217,7 +217,6 @@ var Output = {
 	ap1Temp: 0,
 	ap2: props.globals.initNode("/it-autoflight/output/ap2", 0, "BOOL"),
 	ap2Temp: 0,
-	apprArm: props.globals.initNode("/it-autoflight/output/appr-armed", 0, "BOOL"),
 	athr: props.globals.initNode("/it-autoflight/output/athr", 0, "BOOL"),
 	athrTemp: 0,
 	clamp: props.globals.getNode("/it-autoflight/output/clamp"),
@@ -225,12 +224,13 @@ var Output = {
 	fd1Temp: 0,
 	fd2: props.globals.initNode("/it-autoflight/output/fd2", 1, "BOOL"),
 	fd2Temp: 0,
+	gsArm: props.globals.initNode("/it-autoflight/output/gs-arm", 0, "BOOL"),
 	hdgCaptured: 1,
-	landArm: props.globals.initNode("/it-autoflight/output/land-armed", 0, "BOOL"),
+	landArm: props.globals.initNode("/it-autoflight/output/land-arm", 0, "BOOL"),
 	lat: props.globals.initNode("/it-autoflight/output/lat", 5, "INT"),
 	latTemp: 5,
-	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-armed", 0, "BOOL"),
-	locArm: props.globals.initNode("/it-autoflight/output/loc-armed", 0, "BOOL"),
+	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-arm", 0, "BOOL"),
+	locArm: props.globals.initNode("/it-autoflight/output/loc-arm", 0, "BOOL"),
 	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
 	spdCaptured: 1,
 	spdProt: props.globals.initNode("/it-autoflight/output/spd-prot", 0, "INT"),
@@ -306,7 +306,7 @@ var ITAF = {
 		}
 		Output.lnavArm.setBoolValue(0);
 		Output.locArm.setBoolValue(0);
-		Output.apprArm.setBoolValue(0);
+		Output.gsArm.setBoolValue(0);
 		Output.landArm.setBoolValue(0);
 		Output.thrMode.setValue(2);
 		Output.lat.setValue(5);
@@ -455,7 +455,7 @@ var ITAF = {
 		}
 		
 		# G/S Capture
-		if (Output.apprArm.getBoolValue()) {
+		if (Output.gsArm.getBoolValue()) {
 			me.checkAppr(1);
 		}
 		
@@ -1072,18 +1072,18 @@ var ITAF = {
 		} else if (n == 1) { # LNAV
 			if (systems.IRS.Iru.anyAligned.getBoolValue()) { # Remember that slowLoop kills NAV if the IRUs fail
 				me.updateLocArm(0);
-				me.updateApprArm(0);
+				me.updateGsArm(0);
 				me.checkLnav(0);
 			}
 		} else if (n == 2) { # VOR/LOC
 			me.updateLnavArm(0);
-			me.updateApprArm(0); # Because this is VOR and LOC only
+			me.updateGsArm(0); # Because this is VOR and LOC only
 			me.updateLocOnly(1);
 			me.checkLoc(0);
 		} else if (n == 3) { # HDG HLD
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			me.syncHdg();
 			Output.lat.setValue(0);
 			me.bankLimit();
@@ -1096,7 +1096,7 @@ var ITAF = {
 		} else if (n == 4) { # ALIGN
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			Output.lat.setValue(4);
 			me.bankLimit();
 			Output.showHdg.setBoolValue(0);
@@ -1104,7 +1104,7 @@ var ITAF = {
 		} else if (n == 5) { # T/O
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			me.takeoffLogic(1);
 			Output.lat.setValue(5);
 			me.bankLimit();
@@ -1128,7 +1128,7 @@ var ITAF = {
 		if (n == 0) { # ALT HLD
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			Output.vert.setValue(0);
 			me.resetClimbRateLim();
 			me.updateVertText("ALT HLD");
@@ -1145,7 +1145,7 @@ var ITAF = {
 					me.syncFpa();
 					me.updateThrustMode();
 				} else {
-					me.updateApprArm(0);
+					me.updateGsArm(0);
 				}
 			} else { # V/S
 				if (abs(Input.altDiff) >= 25) {
@@ -1157,7 +1157,7 @@ var ITAF = {
 					me.syncVs();
 					me.updateThrustMode();
 				} else {
-					me.updateApprArm(0);
+					me.updateGsArm(0);
 				}
 			}
 		} else if (n == 2) { # G/S
@@ -1200,7 +1200,7 @@ var ITAF = {
 				me.syncFpa();
 				me.updateThrustMode();
 			} else {
-				me.updateApprArm(0);
+				me.updateGsArm(0);
 			}
 		} else if (n == 6) { # FLARE/ROLLOUT
 			Internal.flchActive = 0;
@@ -1212,7 +1212,7 @@ var ITAF = {
 			Internal.retardLock = 0;
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			Output.vert.setValue(7);
 			me.updateThrustMode();
 		}
@@ -1318,7 +1318,7 @@ var ITAF = {
 		if (Output.lat.getValue() != 1) {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 			Output.lat.setValue(1);
 			me.bankLimit();
 			me.updateLatText("LNAV");
@@ -1346,7 +1346,7 @@ var ITAF = {
 		if (Output.vert.getValue() != 2) {
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
-			me.updateApprArm(0, 1); # Do not reset landArm
+			me.updateGsArm(0, 1); # Do not reset landArm
 			Output.vert.setValue(2);
 			me.updateVertText("G/S");
 			Fma.stopBlink(2);
@@ -1412,15 +1412,15 @@ var ITAF = {
 					me.activateGs();
 				} else if (t != 1) { # Do not do this if loop calls it
 					if (Output.vert.getValue() != 2) {
-						me.updateApprArm(1);
+						me.updateGsArm(1);
 					}
 				}
 			} else {
-				me.updateApprArm(0);
+				me.updateGsArm(0);
 			}
 		} else {
 			Radio.signalQuality[2].setValue(0); # Prevent bad behavior due to FG not updating it when not in range
-			me.updateApprArm(0);
+			me.updateGsArm(0);
 		}
 	},
 	checkRadioReversion: func(l, v) { # Revert mode if signal lost
@@ -1656,8 +1656,8 @@ var ITAF = {
 		}
 		UpdateFma.arm();
 	},
-	updateApprArm: func(n, t = 0) {
-		Output.apprArm.setBoolValue(n);
+	updateGsArm: func(n, t = 0) {
+		Output.gsArm.setBoolValue(n);
 		if (n == 1) {
 			me.updateLocOnly(0);
 		} else if (n == 0 and t != 1) {
