@@ -48,6 +48,7 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	acconfig.SYSTEM.fdmInit();
 	systemsInit();
 	systemsLoop.start();
+	slowLoop.start();
 	lightsLoop.start();
 	canvas_pfd.init();
 	canvas_ead.init();
@@ -92,6 +93,12 @@ var systemsLoop = maketimer(0.1, func() {
 		if (systems.PNEU.Switch.groundAir.getBoolValue()) {
 			systems.PNEU.Switch.groundAir.setBoolValue(0);
 		}
+	}
+});
+
+var slowLoop = maketimer(1, func() {
+	if (acconfig.SYSTEM.Error.active.getBoolValue()) {
+		systemsInit();
 	}
 });
 
