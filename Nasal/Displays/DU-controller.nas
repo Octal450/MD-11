@@ -55,9 +55,11 @@ var DUController = {
 		canvas_pfd.pfd2.page.hide();
 		me.showNd1.setBoolValue(0); # Temporary
 		me.showNd2.setBoolValue(0); # Temporary
-		canvas_ead.ge.page.hide();
-		canvas_ead.pw.page.hide();
-		canvas_sd.engDials.page.hide();
+		canvas_ead.geDials.page.hide();
+		canvas_ead.geTapes.page.hide();
+		canvas_ead.pwDials.page.hide();
+		canvas_ead.pwTapes.page.hide();
+		me.showSdPage("NONE");
 		canvas_iesi.iesi.page.hide();
 		canvas_mcdu.mcdu1.page.hide();
 		canvas_mcdu.mcdu2.page.hide();
