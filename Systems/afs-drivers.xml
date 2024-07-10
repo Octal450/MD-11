@@ -13,20 +13,10 @@
 					<value>1</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd1</property></not>
-				<or> <!-- Basic modes except NAV work with only partial alignment -->
-					<equals>
-						<property>/systems/iru[0]/main-avail</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/systems/iru[1]/main-avail</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/systems/iru[2]/main-avail</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<equals> <!-- Basic modes except NAV work with only partial alignment -->
+					<property>/systems/iru[0]/main-avail</property>
+					<value>1</value>
+				</equals>
 				<greater-than-equals> <!-- Controls -->
 					<property>/systems/hydraulics/sys-2-psi</property>
 					<value>2200</value>
@@ -62,20 +52,10 @@
 					<value>1</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd2</property></not>
-				<or> <!-- Basic modes except NAV work with only partial alignment -->
-					<equals>
-						<property>/systems/iru[0]/main-avail</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/systems/iru[1]/main-avail</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/systems/iru[2]/main-avail</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<equals> <!-- Basic modes except NAV work with only partial alignment -->
+					<property>/systems/iru[1]/main-avail</property>
+					<value>1</value>
+				</equals>
 				<greater-than-equals>
 					<property>/systems/hydraulics/sys-1-psi</property>
 					<value>2200</value>
