@@ -14,7 +14,7 @@
 		<switch name="/systems/iru-common/align-time">
 			<default value="1"/> <!-- 600 seconds -->
 			<test logic="OR" value="300"> <!-- 2 seconds -->
-				/systems/acconfig/options/irs-align-instantly eq 1
+				/systems/acconfig/options/irs-aligns-instantly eq 1
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>

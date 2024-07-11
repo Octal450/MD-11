@@ -324,7 +324,7 @@
 			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/irs-align-instantly</property>
+				<property>/systems/acconfig/options/irs-aligns-instantly</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
