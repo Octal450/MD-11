@@ -159,43 +159,6 @@
 	</model>
 	
 	<model>
-		<name>tyre-smoke-0</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-0.xml</path>
-		<offsets>
-			<x-m>-20.6516</x-m>
-			<y-m>0</y-m>
-			<z-m>1.2853</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-1</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-1.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>-5.31</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-2</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-2.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>5.31</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-3</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-3.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>0</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	
-	<model>
 		<name>NoseChock</name>
 		<path>Aircraft/MD-11/Models/Services/Chocks/chock_nose.ac</path>
 		<condition>
