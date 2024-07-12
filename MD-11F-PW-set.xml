@@ -104,10 +104,10 @@
 		</ignition>
 	</systems>
     
-    <nasal n="0">
+	<nasal n="0">
 		<setup>
 			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11F/PW");</script>
 		</setup>
-    </nasal>
+	</nasal>
 
 </PropertyList>
