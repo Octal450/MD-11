@@ -2643,32 +2643,36 @@ var showPfd2 = func() {
 	dlg.set("title", "First Officer's PFD");
 }
 
+var m = 0;
+var s = 0;
+var y = 0;
+
 var roundAbout = func(x) { # Unused but left here for reference
-	var y = x - int(x);
+	y = x - int(x);
 	return y < 0.5 ? int(x) : 1 + int(x);
 }
 
 var roundAboutAlt = func(x) { # For altitude tape numbers
-	var y = x * 0.2 - int(x * 0.2);
+	y = x * 0.2 - int(x * 0.2);
 	return y < 0.5 ? 5 * int(x * 0.2) : 5 + 5 * int(x * 0.2);
 }
 
 var genevaAltTenThousands = func(input) {
-	var m = math.floor(input / 100);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input / 100);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	if (math.mod(input / 10, 1) < 0.9 or math.mod(input / 100, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaAltThousands = func(input) {
-	var m = math.floor(input / 10);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input / 10);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	if (math.mod(input / 10, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaAltHundreds = func(input) {
-	var m = math.floor(input);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	return m + s;
 }

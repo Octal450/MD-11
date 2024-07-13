@@ -34,6 +34,18 @@
 	<animation>
 		<type>knob</type>
 		<object-name>knob</object-name>
+		<property>controls/cockpit/mcdu[0]/dimmer</property>
+		<factor>-275</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<center>
+			<x-m>-0.32327</x-m>
+			<y-m>-0.13003</y-m>
+			<z-m>0</z-m>
+		</center>
 		<action>
 			<binding>
 				<command>property-adjust</command>

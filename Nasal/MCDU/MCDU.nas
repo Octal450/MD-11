@@ -392,10 +392,9 @@ var BASE = {
 	},
 };
 
-var FONT = {
-	default: "MCDULarge.ttf",
-	normal: 65,
-	small: 54,
+var FONT = { # Letter separation in Canvas: 38.77
+	normal: "MCDULarge.ttf",
+	small: "MCDUSmall.ttf",
 };
 
 var dms = nil;

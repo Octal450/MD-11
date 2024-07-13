@@ -387,40 +387,44 @@ var hdgText = func(x) {
 	}
 }
 
+var m = 0;
+var s = 0;
+var y = 0;
+
 var roundAboutAlt = func(x) { # For altitude tape numbers
-	var y = x * 0.5 - int(x * 0.5);
+	y = x * 0.5 - int(x * 0.5);
 	return y < 0.5 ? 2 * int(x * 0.5) : 2 + 2 * int(x * 0.5);
 }
 
 var genevaAsiHundreds = func(input) {
-	var m = math.floor(input / 10);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input / 10);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	if (math.mod(input / 10, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaAsiTens = func(input) {
-	var m = math.floor(input);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	return m + s;
 }
 
 var genevaAltTenThousands = func(input) {
-	var m = math.floor(input / 100);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input / 100);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	if (math.mod(input / 10, 1) < 0.9 or math.mod(input / 100, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaAltThousands = func(input) {
-	var m = math.floor(input / 10);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input / 10);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	if (math.mod(input / 10, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaAltHundreds = func(input) {
-	var m = math.floor(input);
-	var s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
+	m = math.floor(input);
+	s = math.max(0, (math.mod(input, 1) - 0.8) * 5);
 	return m + s;
 }

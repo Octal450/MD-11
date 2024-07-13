@@ -1561,35 +1561,38 @@ var showEad = func() {
 	dlg.set("title", "Engine and Alert Display");
 }
 
+var m = 0;
+var s = 0;
+
 var genevaN1Hundreds = func(input) {
-	var m = math.floor(input / 100);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input / 100);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	if (math.mod(input / 10, 1) < 0.9 or math.mod(input / 100, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaN1Tens = func(input) {
-	var m = math.floor(input / 10);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input / 10);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	if (math.mod(input / 10, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaN1Ones = func(input) {
-	var m = math.floor(input);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	return m + s;
 }
 
 var genevaEprOnes = func(input) {
-	var m = math.floor(input / 10);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input / 10);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	if (math.mod(input / 10, 1) < 0.9) s = 0;
 	return m + s;
 }
 
 var genevaEprTenths = func(input) {
-	var m = math.floor(input);
-	var s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
+	m = math.floor(input);
+	s = math.max(0, (math.mod(input, 1) - 0.9) * 10);
 	return m + s;
 }
