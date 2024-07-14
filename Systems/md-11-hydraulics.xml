@@ -905,7 +905,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-2-psi-cmd">
 				/systems/hydraulics/nrmp/sys-2-to-sys-1-cmd eq 1
 				/systems/failures/hydraulics/nrmp-2-1 ne 1
-				/systems/hydraulics/sys-2-qty ge 1.0
+				/systems/hydraulics/sys-2-qty ge 1
 			</test>
 		</switch>
 		
@@ -925,7 +925,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-3-aft-psi-cmd">
 				/systems/hydraulics/nrmp/sys-3-to-sys-2-cmd eq 1
 				/systems/failures/hydraulics/nrmp-3-2 ne 1
-				/systems/hydraulics/sys-3-qty ge 1.0
+				/systems/hydraulics/sys-3-qty ge 1
 			</test>
 		</switch>
 		
