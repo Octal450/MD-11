@@ -76,9 +76,6 @@ var Fdm = {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},
-		Fadec: {
-			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
-		},
 		Fcc: {
 			Flap: {
 				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
