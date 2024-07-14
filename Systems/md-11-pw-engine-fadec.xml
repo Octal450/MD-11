@@ -763,13 +763,6 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/ats-max">
-			<default value="fadec/limit/active-norm"/>
-			<test value="1"> 
-				fadec/limit/active-mode-int eq 0
-			</test>
-		</switch>
-		
 		<fcs_function name="fadec/limit/max">
 			<function>
 				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
