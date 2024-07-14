@@ -634,9 +634,11 @@
 			<throttle-max type="double">0</throttle-max>
 		</engines>
 		<fadec n="0">
-			<eng-1-altn type="bool">0</eng-1-altn>
-			<eng-2-altn type="bool">0</eng-2-altn>
-			<eng-3-altn type="bool">0</eng-3-altn>
+			<switches n="0">
+				<eng-1-altn type="bool">0</eng-1-altn>
+				<eng-2-altn type="bool">0</eng-2-altn>
+				<eng-3-altn type="bool">0</eng-3-altn>
+			</switches>
 		</fadec>
 		<fcc n="0">
 			<switches n="0">

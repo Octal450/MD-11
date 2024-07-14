@@ -7194,7 +7194,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-1-altn</property>
+				<property>controls/fadec/switches/eng-1-altn</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7233,7 +7233,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-1-altn</property>
+					<property>controls/fadec/switches/eng-1-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7260,7 +7260,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-2-altn</property>
+				<property>controls/fadec/switches/eng-2-altn</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7299,7 +7299,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-2-altn</property>
+					<property>controls/fadec/switches/eng-2-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7326,7 +7326,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-3-altn</property>
+				<property>controls/fadec/switches/eng-3-altn</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7365,7 +7365,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-3-altn</property>
+					<property>controls/fadec/switches/eng-3-altn</property>
 					<value>1</value>
 				</equals>
 				<equals>

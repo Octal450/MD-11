@@ -128,9 +128,9 @@
 						<value>GE</value>
 					</equals>
 					<and>
-						<not><property>/controls/fadec/eng-1-altn</property></not>
-						<not><property>/controls/fadec/eng-2-altn</property></not>
-						<not><property>/controls/fadec/eng-3-altn</property></not>
+						<not><property>/controls/fadec/switches/eng-1-altn</property></not>
+						<not><property>/controls/fadec/switches/eng-2-altn</property></not>
+						<not><property>/controls/fadec/switches/eng-3-altn</property></not>
 					</and>
 				</or>
 			</and>
