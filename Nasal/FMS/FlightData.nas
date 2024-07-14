@@ -217,8 +217,8 @@ var EditFlightData = {
 		systems.FADEC.Limit.pwDerate.setBoolValue(0);
 	},
 	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
-		FlightDataOut.airportFromAlt.setBoolValue(FlightData.airportFromAlt);
-		FlightDataOut.airportToAlt.setBoolValue(FlightData.airportToAlt);
+		FlightDataOut.airportFromAlt.setValue(FlightData.airportFromAlt);
+		FlightDataOut.airportToAlt.setValue(FlightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(FlightData.canCalcVspeeds);
 		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);

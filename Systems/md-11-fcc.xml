@@ -1130,9 +1130,14 @@
 			</test>
 		</switch>
 		
+		<lag_filter name="fcc/elevator-feel/kts-lag">
+			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<switch name="fcc/elevator-feel/switch"> <!-- Manual knob control is in libraries.xml -->
 			<default value="fcc/elevator-feel/speed"/>
-			<test value="velocities/vc-kts">
+			<test value="fcc/elevator-feel/kts-lag">
 				fcc/elevator-feel/auto eq 1
 			</test>
 			<output>fcc/elevator-feel/speed</output>
