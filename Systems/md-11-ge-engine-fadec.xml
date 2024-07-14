@@ -818,6 +818,11 @@
 			</test>
 		</switch>
 		
+		<lag_filter name="fadec/control-1/throttle-pos-lag">
+			<input>fadec/control-1/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<switch name="fadec/control-1/throttle-cmd">
 			<default value="fadec/control-1/throttle-pos"/>
 			<test value="fadec/reverse-1/throttle-rev">
@@ -897,6 +902,11 @@
 				/it-autoflight/output/clamp eq 0
 			</test>
 		</switch>
+		
+		<lag_filter name="fadec/control-2/throttle-pos-lag">
+			<input>fadec/control-2/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
 		
 		<switch name="fadec/control-2/throttle-cmd">
 			<default value="fadec/control-2/throttle-pos"/>
@@ -978,6 +988,11 @@
 			</test>
 		</switch>
 		
+		<lag_filter name="fadec/control-3/throttle-pos-lag">
+			<input>fadec/control-3/throttle-pos</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<switch name="fadec/control-3/throttle-cmd">
 			<default value="fadec/control-3/throttle-pos"/>
 			<test value="fadec/reverse-3/throttle-rev">
@@ -1031,6 +1046,17 @@
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[2]</output>
 		</lag_filter>
+		
+		<!-- Comparator -->
+		<fcs_function name="fadec/throttle-compare-max">
+			<function>
+				<max> <!-- Don't use clipped -->
+					<property>fadec/control-1/throttle-pos-lag</property>
+					<property>fadec/control-2/throttle-pos-lag</property>
+					<property>fadec/control-3/throttle-pos-lag</property>
+				</max>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
