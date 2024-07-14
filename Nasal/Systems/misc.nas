@@ -347,14 +347,14 @@ var FADEC = {
 		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
 	},
 	Switch: {
-		eng1Altn: props.globals.getNode("/controls/fadec/switches/eng-1-altn"),
-		eng2Altn: props.globals.getNode("/controls/fadec/switches/eng-2-altn"),
-		eng3Altn: props.globals.getNode("/controls/fadec/switches/eng-3-altn"),
+		altn1: props.globals.getNode("/controls/fadec/switches/altn-1"),
+		altn2: props.globals.getNode("/controls/fadec/switches/altn-2"),
+		altn3: props.globals.getNode("/controls/fadec/switches/altn-3"),
 	},
 	init: func() {
-		me.Switch.eng1Altn.setBoolValue(0);
-		me.Switch.eng2Altn.setBoolValue(0);
-		me.Switch.eng3Altn.setBoolValue(0);
+		me.Switch.altn1.setBoolValue(0);
+		me.Switch.altn2.setBoolValue(0);
+		me.Switch.altn3.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
 		me.Limit.pwDerate.setBoolValue(0);
