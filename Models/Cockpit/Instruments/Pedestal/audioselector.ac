@@ -773,7 +773,7 @@ kids 0
 OBJECT poly
 name "Cube.047"
 loc 4e-07 2.5e-06 -0.000487896
-texture "audioselector.png"
+texture "audioselector.jpg"
 crease 45.000000
 numvert 92
 -0.008463 -0.0052533 0.0601435
@@ -1694,7 +1694,7 @@ kids 0
 OBJECT poly
 name "Cylinder.000"
 loc 0.0357645 3e-06 -0.000487696
-texture "audioselector.png"
+texture "audioselector.jpg"
 crease 45.000000
 numvert 40
 -0.0157674 0.006804 0.0575358
@@ -1997,7 +1997,7 @@ kids 0
 OBJECT poly
 name "Cylinder.001"
 loc 0.0357645 3e-06 0.001163
-texture "audioselector.png"
+texture "audioselector.jpg"
 crease 45.000000
 numvert 40
 -0.0157674 0.006804 -0.0575358
@@ -2300,7 +2300,7 @@ kids 0
 OBJECT poly
 name "Cylinder.002"
 loc 4e-07 3e-06 0.001163
-texture "audioselector.png"
+texture "audioselector.jpg"
 crease 45.000000
 numvert 40
 -0.0157674 0.006804 -0.0575358
@@ -2603,7 +2603,7 @@ kids 0
 OBJECT poly
 name "Cylinder.905"
 loc 4e-07 3e-06 -0.000487696
-texture "audioselector.png"
+texture "audioselector.jpg"
 crease 45.000000
 numvert 40
 -0.0157674 0.006804 0.0575358
@@ -2905,7 +2905,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.909"
-loc 4e-07 3.5e-06 -0.000487896
+loc 4e-07 3.49991e-06 -0.000487896
 crease 45.000000
 numvert 16
 0.0087431 0.0026877 -0.0157287
@@ -7969,7 +7969,7 @@ kids 0
 OBJECT poly
 name "mic"
 loc -0.0285537 0.00970207 0.044
-texture "audioselector.png"
+texture "audioselector_text.png"
 crease 45.000000
 numvert 4
 -0.00138523 0 -0.00464103
@@ -7988,7 +7988,7 @@ kids 0
 OBJECT poly
 name "audioselector.text"
 loc -0.016034 0.0057256 0.0453725
-texture "audioselector.png"
+texture "audioselector_text.png"
 crease 45.000000
 numvert 148
 0.0482011 0 -0.0408049

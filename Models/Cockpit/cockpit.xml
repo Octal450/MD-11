@@ -29,6 +29,12 @@
 		<object-name>Windshield.inner</object-name>
 	</effect>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>dashboard.text</object-name>
+		<object-name>sidepanel.text</object-name>
+	</effect>
+	
 	<animation>
 		<type>shader</type>
 		<shader>chrome</shader>
@@ -70,7 +76,7 @@
 	
 	<model>
 		<name>Compass</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/compass/compass.xml</path>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/Compass/compass.xml</path>
 		<offsets>
 			<x-m>0.095</x-m>
 			<y-m>-0.025</y-m>
@@ -130,8 +136,8 @@
 	</model>
 	
 	<model>
-		<name>3. Audio selector</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/audioselector/audioselector.xml</path>
+		<name>Audio Selector 3</name>
+		<path>Aircraft/MD-11/Models/Cockpit/Instruments/Pedestal/audioselector.xml</path>
 		<offsets>
 			<pitch-deg>90</pitch-deg>
 			<heading-deg>-90</heading-deg>

@@ -1074,7 +1074,7 @@ kids 0
 OBJECT poly
 name "brake.text"
 loc 2.5e-06 0 1.8e-06
-texture "brakes.png"
+texture "brakes_text.png"
 crease 45.000000
 numvert 56
 -0.0117705 0.0075519 -0.0169593
@@ -1250,7 +1250,7 @@ kids 0
 OBJECT poly
 name "brake.text.underglass"
 loc 2.5e-06 0 1.8e-06
-texture "brakes.png"
+texture "brakes_text.png"
 crease 45.000000
 numvert 148
 -0.0105798 0.0051236 0.0773318
@@ -1700,7 +1700,7 @@ kids 0
 OBJECT poly
 name "Cube"
 loc 5e-07 5e-07 1.8e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 155
 0.029661 0.0013158 -0.0889817
@@ -2810,7 +2810,7 @@ kids 0
 OBJECT poly
 name "Cylinder.000"
 loc 0.0361673 0 1.7e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 40
 -0.0220496 0.0099619 0.0936001
@@ -3113,7 +3113,7 @@ kids 0
 OBJECT poly
 name "Cylinder.001"
 loc 0.017663 0.007626 -0.0925824
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 40
 -0.0035453 0.0023359 0.0014591
@@ -3416,7 +3416,7 @@ kids 0
 OBJECT poly
 name "Cylinder.002"
 loc -0.0185018 0.007626 -0.0925824
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 40
 -0.0035453 0.0023359 0.0014591
@@ -3719,7 +3719,7 @@ kids 0
 OBJECT poly
 name "Cylinder.003"
 loc -0.02217 0.0089364 -0.041422
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 63
 6.80052e-06 -0.0002898 -0.0025669
@@ -4241,7 +4241,7 @@ kids 0
 OBJECT poly
 name "Cylinder.004"
 loc 0.0223936 0.0089364 -0.0609577
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 63
 6.80052e-06 -0.0002898 -0.0025669
@@ -4763,7 +4763,7 @@ kids 0
 OBJECT poly
 name "Cylinder.005"
 loc 0.0223936 0.0089364 0.0154163
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 63
 6.80052e-06 -0.0002898 -0.0025669
@@ -5285,7 +5285,7 @@ kids 0
 OBJECT poly
 name "Cylinder.006"
 loc 2.5e-06 0 1.8e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 64
 0.0079301 0.0024602 0.0502454
@@ -5693,7 +5693,7 @@ kids 0
 OBJECT poly
 name "Cylinder.008"
 loc 2.5e-06 0 1.8e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 26
 0.013137 0.0050317 0.0667829
@@ -5811,7 +5811,7 @@ kids 0
 OBJECT poly
 name "Cylinder.026"
 loc 2.5e-06 0 1.8e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 48
 0.0072326 0.0050317 0.0519295
@@ -6105,7 +6105,7 @@ kids 0
 OBJECT poly
 name "Cylinder.060"
 loc 2.5e-06 0 1.7e-06
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 40
 -0.0220496 0.0099619 0.0936001
@@ -6408,7 +6408,7 @@ kids 0
 OBJECT poly
 name "Cylinder.908"
 loc -0.02217 0.0089364 0.034952
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 63
 6.80052e-06 -0.0002898 -0.0025669
@@ -6930,7 +6930,7 @@ kids 0
 OBJECT poly
 name "needle.1"
 loc 0.0045346 0.0064115 0.0693983
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 10
 0.0062265 0 0.000925802
@@ -7009,7 +7009,7 @@ kids 0
 OBJECT poly
 name "needle.2"
 loc 0.0045346 0.0055943 0.0693983
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 10
 0.0062265 0 0.000925802
@@ -7088,7 +7088,7 @@ kids 0
 OBJECT poly
 name "needle.3"
 loc 0 -0.0018109 0.0693983
-texture "brakes.png"
+texture "brakes.jpg"
 crease 45.000000
 numvert 32
 0 0.0065299 0.0065299

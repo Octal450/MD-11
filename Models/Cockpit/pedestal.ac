@@ -14,7 +14,7 @@ OBJECT poly
 name "DialAFlapWheel"
 data 17
 Cylinder.007.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 50
 -27.0242 6.73086 -0.15557
@@ -309,7 +309,7 @@ name "aileron.trim"
 loc 0 0.101449 -1.15919
 data 17
 aileron.trim.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 488
 -26.7094 6.61453 1.16962
@@ -4548,7 +4548,7 @@ OBJECT poly
 name "BrkLever"
 data 13
 BrkLever.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.1336 6.682 0.17008
@@ -5239,7 +5239,7 @@ OBJECT poly
 name "Cube"
 data 9
 Cube.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 10
 -26.6364 6.68739 -0.09629
@@ -5543,7 +5543,7 @@ OBJECT poly
 name "Cube.045"
 data 13
 Cube.045.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 92
 -26.7309 6.7056 -0.05687
@@ -6264,7 +6264,7 @@ OBJECT poly
 name "Cube.046"
 data 13
 Cube.046.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 86
 -26.728 6.7056 -0.07731
@@ -6985,7 +6985,7 @@ OBJECT poly
 name "Cube.051"
 data 13
 Cube.051.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 104
 -26.6651 6.66817 0.17846
@@ -7774,7 +7774,7 @@ OBJECT poly
 name "Cube.201"
 data 13
 Cube.201.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 hidden
 numvert 92
@@ -8927,7 +8927,7 @@ name "Cylinder.000"
 loc 0 -4.76837e-06 -0.001495
 data 21
 Cylinder.021.mesh.001
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4866 6.78462 -0.00386
@@ -9451,7 +9451,7 @@ name "Cylinder.001"
 loc 0 -4.76837e-06 -0.001495
 data 21
 Cylinder.021.mesh.002
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4866 6.78462 0.00592
@@ -9975,7 +9975,7 @@ name "Cylinder.003"
 loc 0 -4.76837e-06 -0.001495
 data 21
 Cylinder.021.mesh.003
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4611 6.71626 0.00592
@@ -10499,7 +10499,7 @@ name "Cylinder.004"
 loc 0 -4.76837e-06 -0.001495
 data 21
 Cylinder.021.mesh.004
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4611 6.71626 -0.00386
@@ -11023,7 +11023,7 @@ name "Cylinder.016"
 loc 0 -4.76837e-06 -0.0039925
 data 17
 Cylinder.016.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4611 6.71646 0.09206
@@ -11546,7 +11546,7 @@ OBJECT poly
 name "flaplever.circle"
 data 17
 Cylinder.017.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 20
 -27.027 6.73285 -0.10082
@@ -11638,7 +11638,7 @@ OBJECT poly
 name "Cylinder.018"
 data 17
 Cylinder.018.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.6788 6.7083 -0.03943
@@ -12161,7 +12161,7 @@ OBJECT poly
 name "Cylinder.019"
 data 17
 Cylinder.019.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.0383 6.74616 -0.0104
@@ -12273,7 +12273,7 @@ name "Cylinder.021"
 loc 0 -4.76837e-06 0.00400251
 data 17
 Cylinder.021.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4866 6.78462 -0.09299
@@ -12796,7 +12796,7 @@ OBJECT poly
 name "Cylinder.025"
 data 17
 Cylinder.025.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.6788 6.7083 0.03453
@@ -13320,7 +13320,7 @@ name "Cylinder.026"
 loc 0 -4.76837e-06 -0.0039925
 data 17
 Cylinder.026.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4866 6.78462 0.09206
@@ -13843,7 +13843,7 @@ OBJECT poly
 name "Cylinder.027"
 data 17
 Cylinder.027.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.2742 6.71449 -0.10703
@@ -14147,7 +14147,7 @@ OBJECT poly
 name "Cylinder.028"
 data 17
 Cylinder.028.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 95
 -27.027 6.73793 -0.08599
@@ -14855,7 +14855,7 @@ OBJECT poly
 name "Cylinder.031"
 data 17
 Cylinder.031.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -26.6178 6.71022 0.03371
@@ -15152,7 +15152,7 @@ OBJECT poly
 name "Cylinder.033"
 data 17
 Cylinder.033.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.0383 6.74616 0.02479
@@ -15263,7 +15263,7 @@ OBJECT poly
 name "Cylinder.036"
 data 17
 Cylinder.036.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.7227 6.70613 -0.17255
@@ -15567,7 +15567,7 @@ OBJECT poly
 name "Cylinder.037"
 data 17
 Cylinder.037.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.7064 6.70613 -0.17255
@@ -15871,7 +15871,7 @@ OBJECT poly
 name "Cylinder.038"
 data 17
 Cylinder.038.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.7195 6.7083 -0.03538
@@ -16394,7 +16394,7 @@ OBJECT poly
 name "Cylinder.039"
 data 17
 Cylinder.039.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.7195 6.7083 0.02962
@@ -17097,7 +17097,7 @@ OBJECT poly
 name "Cylinder.059"
 data 17
 Cylinder.059.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.2825 6.71902 -0.12492
@@ -17621,7 +17621,7 @@ name "Cylinder.060"
 loc 0 -4.76837e-06 0.00400251
 data 17
 Cylinder.060.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.4611 6.71646 -0.09299
@@ -18144,7 +18144,7 @@ OBJECT poly
 name "Cylinder.061"
 data 17
 Cylinder.061.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.5924 6.7083 -0.03943
@@ -18667,7 +18667,7 @@ OBJECT poly
 name "Cylinder.095"
 data 17
 Cylinder.095.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 22
 -26.7235 6.6949 0.03524
@@ -18856,7 +18856,7 @@ OBJECT poly
 name "Cylinder.907"
 data 17
 Cylinder.907.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -26.7159 6.68492 0.0312
@@ -19873,7 +19873,7 @@ OBJECT poly
 name "Cylinder.913"
 data 17
 Cylinder.913.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 52
 -27.0867 6.78049 0.1139
@@ -20228,7 +20228,7 @@ OBJECT poly
 name "Cylinder.916"
 data 17
 Cylinder.916.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0149 6.71906 0.08358
@@ -20751,7 +20751,7 @@ OBJECT poly
 name "Cylinder.932"
 data 17
 Cylinder.932.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 16
 -26.5741 6.69678 -0.06079
@@ -28644,7 +28644,7 @@ OBJECT poly
 name "Cylinder.936"
 data 17
 Cylinder.936.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0219 6.73049 0.15221
@@ -29167,7 +29167,7 @@ OBJECT poly
 name "Cylinder.937"
 data 17
 Cylinder.937.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0149 6.71906 0.13829
@@ -29690,7 +29690,7 @@ OBJECT poly
 name "Cylinder.938"
 data 17
 Cylinder.938.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0149 6.71906 -0.07643
@@ -30213,7 +30213,7 @@ OBJECT poly
 name "Cylinder.939"
 data 17
 Cylinder.939.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0149 6.71906 -0.11224
@@ -30736,7 +30736,7 @@ OBJECT poly
 name "Cylinder.940"
 data 17
 Cylinder.940.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0206 6.71906 -0.1577
@@ -31259,7 +31259,7 @@ OBJECT poly
 name "Cylinder.942"
 data 17
 Cylinder.942.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.8258 6.70613 -0.1735
@@ -31563,7 +31563,7 @@ OBJECT poly
 name "Cylinder.943"
 data 17
 Cylinder.943.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.8561 6.70613 -0.1735
@@ -31867,7 +31867,7 @@ OBJECT poly
 name "Cylinder.944"
 data 17
 Cylinder.944.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.747 6.70613 0.06541
@@ -32171,7 +32171,7 @@ OBJECT poly
 name "Cylinder.945"
 data 17
 Cylinder.945.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.747 6.70613 0.17641
@@ -32475,7 +32475,7 @@ OBJECT poly
 name "Cylinder.946"
 data 17
 Cylinder.946.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -26.5924 6.7083 0.03453
@@ -32998,7 +32998,7 @@ OBJECT poly
 name "Cylinder.947"
 data 17
 Cylinder.947.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.7064 6.70613 -0.06365
@@ -33302,7 +33302,7 @@ OBJECT poly
 name "Cylinder.948"
 data 17
 Cylinder.948.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -26.7227 6.70613 -0.06365
@@ -33606,7 +33606,7 @@ OBJECT poly
 name "Cylinder.949"
 data 17
 Cylinder.949.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.1806 6.78288 0.01705
@@ -34129,7 +34129,7 @@ OBJECT poly
 name "Cylinder.950"
 data 17
 Cylinder.950.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.1806 6.78288 -0.0202
@@ -34652,7 +34652,7 @@ OBJECT poly
 name "Cylinder.951"
 data 17
 Cylinder.951.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.2586 6.70805 -0.0894
@@ -34956,7 +34956,7 @@ OBJECT poly
 name "Cylinder.952"
 data 17
 Cylinder.952.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.2586 6.70805 0.09581
@@ -35260,7 +35260,7 @@ OBJECT poly
 name "Cylinder.953"
 data 17
 Cylinder.953.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.279 6.71789 -0.19843
@@ -35783,7 +35783,7 @@ OBJECT poly
 name "Cylinder.954"
 data 17
 Cylinder.954.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.2677 6.71169 0.10652
@@ -36087,7 +36087,7 @@ OBJECT poly
 name "Cylinder.955"
 data 17
 Cylinder.955.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.2796 6.71695 0.21762
@@ -36391,7 +36391,7 @@ OBJECT poly
 name "Cylinder.957"
 data 17
 Cylinder.957.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0121 6.70633 0.01678
@@ -36914,7 +36914,7 @@ OBJECT poly
 name "Cylinder.958"
 data 17
 Cylinder.958.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0121 6.70633 -0.03168
@@ -37437,7 +37437,7 @@ OBJECT poly
 name "Cylinder.959"
 data 17
 Cylinder.959.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0758 6.78124 -0.0202
@@ -37960,7 +37960,7 @@ OBJECT poly
 name "Cylinder.960"
 data 17
 Cylinder.960.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 63
 -27.0758 6.78124 0.01705
@@ -38483,7 +38483,7 @@ OBJECT poly
 name "Cylinder.961"
 data 17
 Cylinder.961.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.0383 6.74616 -0.04577
@@ -38594,7 +38594,7 @@ OBJECT poly
 name "Cylinder.963"
 data 17
 Cylinder.963.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.021 6.71703 -0.0158
@@ -38705,7 +38705,7 @@ OBJECT poly
 name "Cylinder.964"
 data 17
 Cylinder.964.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.021 6.71703 -0.05053
@@ -39128,7 +39128,7 @@ name "Eng1Cutoff"
 loc 0.615547 10.1299 0
 data 15
 Eng1Cutoff.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 145
 -27.6368 -3.41085 0.03556
@@ -40235,7 +40235,7 @@ name "Eng2Cutoff"
 loc 0.615547 10.1299 0
 data 15
 Eng2Cutoff.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 145
 -27.6368 -3.41085 0.00018
@@ -41342,7 +41342,7 @@ name "Eng3Cutoff"
 loc 0.615547 10.1299 0
 data 15
 Eng3Cutoff.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 145
 -27.6368 -3.41085 -0.03482
@@ -43763,7 +43763,7 @@ OBJECT poly
 name "pedestal.text"
 data 18
 pedestal.text.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 412
 -26.6427 6.68778 -0.06551
@@ -44983,7 +44983,7 @@ name "pedestal.text"
 loc -16.2492 -18.7094 0
 data 18
 pedestal.text.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 4
 -10.4722 25.428 0.00185
@@ -45006,7 +45006,7 @@ OBJECT poly
 name "PitchTrim.ctr"
 data 18
 PitchTrim.ctr.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 39
 -27.1244 6.80995 0.17143
@@ -45184,7 +45184,7 @@ OBJECT poly
 name "PitchTrim.dn"
 data 17
 PitchTrim.dn.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 206
 -27.1244 6.80995 0.17143
@@ -46787,7 +46787,7 @@ OBJECT poly
 name "PitchTrim.up"
 data 17
 PitchTrim.up.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 191
 -27.1191 6.80982 0.14442
@@ -51789,7 +51789,7 @@ OBJECT poly
 name "rudder.light"
 data 17
 rudder.light.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 8
 -26.5904 6.7113 0
@@ -53196,7 +53196,7 @@ OBJECT poly
 name "rudder.trim2"
 data 17
 rudder.trim2.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -26.6245 6.71612 0.0312
@@ -53673,7 +53673,7 @@ OBJECT poly
 name "spdbrklever"
 data 16
 spdbrklever.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 105
 -27.1244 6.84888 0.08221
@@ -54571,7 +54571,7 @@ OBJECT poly
 name "starter.1.off"
 data 18
 starter.1.off.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 0.03591
@@ -55806,7 +55806,7 @@ name "starter.1.on"
 loc 0 -4.76837e-06 9.31323e-10
 data 17
 starter.1.on.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 0.03592
@@ -57040,7 +57040,7 @@ OBJECT poly
 name "starter.2.off"
 data 18
 starter.2.off.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 0.00064
@@ -58275,7 +58275,7 @@ name "starter.2.on"
 loc 0 -4.76837e-06 9.31323e-10
 data 17
 starter.2.on.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 0.00065
@@ -59509,7 +59509,7 @@ OBJECT poly
 name "starter.3.off"
 data 18
 starter.3.off.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 -0.03438
@@ -60744,7 +60744,7 @@ name "starter.3.on"
 loc 0 -4.76837e-06 9.31323e-10
 data 17
 starter.3.on.mesh
-texture "pedestal.png"
+texture "pedestal_text.png"
 crease 45.000000
 numvert 161
 -27.0317 6.75349 -0.03437
@@ -64798,7 +64798,7 @@ OBJECT poly
 name "throttle.1.circle"
 data 22
 throttle.1.circle.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -27.0826 6.77485 0.04685
@@ -67686,7 +67686,7 @@ OBJECT poly
 name "throttle.2.circle"
 data 22
 throttle.2.circle.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -27.0826 6.77485 0.00892
@@ -70789,7 +70789,7 @@ OBJECT poly
 name "throttle.3.circle"
 data 22
 throttle.3.circle.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 64
 -27.0826 6.77485 -0.04188
@@ -71073,7 +71073,7 @@ name "aileron.light"
 loc -4.37071 -9.2976 0
 data 17
 rudder.light.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 4
 -22.3439 16.0147 0
@@ -71247,7 +71247,7 @@ OBJECT poly
 name "Cylinder.962"
 data 17
 Cylinder.962.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 12
 -27.021 6.71703 0.01939
@@ -71358,7 +71358,7 @@ OBJECT poly
 name "spdbrklever.circle"
 data 23
 spdbrklever.circle.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 40
 -27.0493 6.75685 0.09343
@@ -71540,7 +71540,7 @@ OBJECT poly
 name "PitchTrim.circle"
 data 21
 PitchTrim.circle.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 114
 -27.1776 6.78115 0.1585
@@ -72509,7 +72509,7 @@ OBJECT poly
 name "Cylinder.020"
 data 17
 Cylinder.020.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 626
 -27.0209 6.72661 0.02192
@@ -77171,7 +77171,7 @@ OBJECT poly
 name "brake.light"
 data 16
 brake.light.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 48
 -27.0155 6.71474 0.17655
@@ -77524,7 +77524,7 @@ OBJECT poly
 name "Cylinder.002"
 data 17
 Cylinder.002.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 383
 -28.0625 6.22525 -0.3492
@@ -80407,7 +80407,7 @@ name "ADGHandleLabel"
 loc -3.8147e-06 0 7.45058e-09
 data 19
 ADGHandleLabel.mesh
-texture "pedestal.png"
+texture "pedestal.jpg"
 crease 45.000000
 numvert 4
 -26.5817 6.49746 -0.07168

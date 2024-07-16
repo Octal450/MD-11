@@ -6,6 +6,11 @@
 
 	<path>overhead_1.ac</path>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>overhead.text</object-name>
+	</effect>
+	
 	<animation>
 		<type>material</type>
 		<object-name>AftTemp.light</object-name>

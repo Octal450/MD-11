@@ -9,6 +9,7 @@
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
+		<object-name>dots</object-name>
 		<object-name>radar.text</object-name>
 		<emission>
 			<red>1.0</red>
@@ -20,6 +21,7 @@
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>dots</object-name>
 		<object-name>radar.text</object-name>
 	</effect>
 

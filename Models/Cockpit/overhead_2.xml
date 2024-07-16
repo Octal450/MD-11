@@ -6,6 +6,11 @@
 	
 	<path>overhead_2.ac</path>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>overhead.text.2</object-name>
+	</effect>
+	
 	<animation>
 		<type>shader</type>
 		<shader>chrome</shader>

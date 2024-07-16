@@ -9,7 +9,7 @@ OBJECT poly
 name "body"
 data 13
 Cube.053.mesh
-texture "radio.png"
+texture "radio.jpg"
 crease 45.000000
 numvert 208
 -0.03353 0.00523 0.05761
@@ -1732,7 +1732,7 @@ OBJECT poly
 name "Cylinder.001"
 data 17
 Cylinder.001.mesh
-texture "radio.png"
+texture "radio.jpg"
 crease 45.000000
 numvert 80
 -0.02783 0.00435 -0.0573
@@ -2331,7 +2331,7 @@ OBJECT poly
 name "Cylinder.042"
 data 17
 Cylinder.042.mesh
-texture "radio.png"
+texture "radio.jpg"
 crease 45.000000
 numvert 80
 -0.02783 0.00435 0.0573
@@ -4286,7 +4286,7 @@ OBJECT poly
 name "Labels"
 data 10
 Plane.mesh
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 68
 0.0146974 0.00556 0.046335
@@ -4557,7 +4557,7 @@ name "hf1.btn.light"
 loc 4.10364e-09 0 -0.014336
 data 23
 vhf1.btn.light.mesh.002
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 12
 0.0189174 0.01034 0.04499
@@ -4600,7 +4600,7 @@ name "hf2.btn.light"
 loc 4.10364e-09 0 -0.028666
 data 23
 vhf1.btn.light.mesh.002
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 12
 0.0189174 0.01034 0.04499
@@ -4643,7 +4643,7 @@ name "vhf1.btn.light"
 loc -1.63855e-08 0 0.028664
 data 23
 vhf1.btn.light.mesh.002
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 12
 0.0189174 0.01034 0.04499
@@ -4686,7 +4686,7 @@ name "vhf2.btn.light"
 loc 4.10364e-09 0 0.014334
 data 23
 vhf1.btn.light.mesh.002
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 12
 0.0189174 0.01034 0.04499
@@ -4729,7 +4729,7 @@ name "vhf3.btn.light"
 loc 4.10364e-09 0 3.9991e-06
 data 23
 vhf1.btn.light.mesh.002
-texture "radio.png"
+texture "radio_text.png"
 crease 45.000000
 numvert 12
 0.0189174 0.01034 0.04499
@@ -5141,7 +5141,7 @@ kids 0
 OBJECT poly
 name "LCD"
 loc -0.012295 0.00218 -0.000539999
-texture "radio.png"
+texture "radio.jpg"
 crease 45.000000
 numvert 16
 -0.0101077 0 -0.043

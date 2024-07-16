@@ -1367,7 +1367,7 @@ OBJECT poly
 name "Cube"
 data 9
 Cube.mesh
-texture "screenselector.png"
+texture "screenselector.jpg"
 crease 45.000000
 numvert 140
 0.0328 0.00162 -0.05907
@@ -2515,7 +2515,7 @@ OBJECT poly
 name "Cylinder.005"
 data 17
 Cylinder.005.mesh
-texture "screenselector.png"
+texture "screenselector.jpg"
 crease 45.000000
 numvert 40
 -0.01936 0.0019 0.05373
@@ -2819,7 +2819,7 @@ OBJECT poly
 name "Cylinder.006"
 data 17
 Cylinder.006.mesh
-texture "screenselector.png"
+texture "screenselector.jpg"
 crease 45.000000
 numvert 40
 -0.01936 0.0019 -0.05373
@@ -3123,7 +3123,7 @@ OBJECT poly
 name "Cylinder.007"
 data 17
 Cylinder.007.mesh
-texture "screenselector.png"
+texture "screenselector.jpg"
 crease 45.000000
 numvert 40
 0.02549 0.0019 -0.05373
@@ -3427,7 +3427,7 @@ OBJECT poly
 name "Cylinder.008"
 data 17
 Cylinder.906.mesh
-texture "screenselector.png"
+texture "screenselector.jpg"
 crease 45.000000
 numvert 40
 0.02549 0.0019 0.05373
@@ -5636,7 +5636,7 @@ name "Labels"
 loc -0.00447 0.007445 0.001835
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 108
 -0.00411 -0.001915 -0.0365564
@@ -6060,7 +6060,7 @@ name "eng.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.00659847 0.000529431 0.038995
@@ -6081,7 +6081,7 @@ name "hyd.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0215949 0.000529431 0.038995
@@ -6102,7 +6102,7 @@ name "elec.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0215949 0.000529431 0.02458
@@ -6123,7 +6123,7 @@ name "air.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0215949 0.000529431 0.00958002
@@ -6144,7 +6144,7 @@ name "fuel.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0215899 0.000529431 -0.00541999
@@ -6165,7 +6165,7 @@ name "nd.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.00659847 0.000529431 -0.00541999
@@ -6186,7 +6186,7 @@ name "conseq.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.00327847 0.000529431 -0.029725
@@ -6207,7 +6207,7 @@ name "config.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0217099 0.000529431 -0.018965
@@ -6228,7 +6228,7 @@ name "misc.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.0215899 0.000529431 -0.03542
@@ -6249,7 +6249,7 @@ name "status.label"
 loc -2.32831e-10 0 0
 data 24
 screenselector.text.mesh
-texture "screenselector.png"
+texture "screenselector_text.png"
 crease 45.000000
 numvert 4
 0.00658347 0.000529431 -0.03448
