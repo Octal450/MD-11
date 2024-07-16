@@ -79,7 +79,7 @@
 		</fcs_function>
 		
 		<!-- Bank Limit -->
-		<fcs_function name="/instrumentation/pfd/bank-limit-cmd">
+		<fcs_function name="/instrumentation/pfd/bank-limit">
 			<function>
 				<table>
 					<independentVar lookup="row">/it-autoflight/internal/bank-limit</independentVar>
@@ -91,11 +91,6 @@
 				</table>
 			</function>
 		</fcs_function>
-		
-		<lag_filter name="/instrumentation/pfd/bank-limit">
-			<input>/instrumentation/pfd/bank-limit-cmd</input>
-			<c1>10</c1>
-		</lag_filter>
 		
 		<!-- Altitude Bugs -->
 		<summer name="/instrumentation/pfd/alt-pre-sel">
