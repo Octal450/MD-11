@@ -1669,7 +1669,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Hdg.showHdg) {
-			if (Value.Afs.lat == 0 and afs.Internal.syncedHdg) {
+			if (afs.Internal.syncedHdg) {
 				me["HDG_presel"].hide();
 			} else {
 				me["HDG_presel"].setRotation(Value.Hdg.Tape.preSel * D2R);
@@ -1685,7 +1685,7 @@ var canvasBase = {
 			} else {
 				me["HDG_sel_left_text"].hide();
 			}
-		
+			
 			if (Value.Hdg.preSel > 35 and !afs.Internal.syncedHdg) {
 				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdgSel), 3));
 				me["HDG_sel_right_text"].show();
@@ -1708,7 +1708,7 @@ var canvasBase = {
 				Value.Hdg.hideHdgSel = 0;
 			}
 			
-			if (Value.Afs.lat == 0 and !Value.Hdg.hideHdgSel) {
+			if (!Value.Hdg.hideHdgSel) {
 				me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
 				me["HDG_sel"].show();
 			} else {

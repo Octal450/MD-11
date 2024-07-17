@@ -202,6 +202,7 @@ var Internal = {
 	syncedSpd: 0,
 	takeoffHdg: props.globals.initNode("/it-autoflight/internal/takeoff-hdg", 0, "INT"),
 	takeoffHdgCalc: 0,
+	takeoffHdgNew: 0,
 	takeoffLvl: props.globals.initNode("/it-autoflight/internal/takeoff-lvl", 1, "BOOL"),
 	targetHdgError: 0,
 	targetKts: 0,
@@ -405,9 +406,13 @@ var ITAF = {
 		}
 		
 		# Takeoff Lateral Reversion
-		if (Output.latTemp == 5 and Output.vertTemp != 7) {
-			me.setLatMode(3);
-			Fma.startBlink(1);
+		if (Output.latTemp == 5 and (Output.vertTemp != 7 or pts.Controls.Flight.flapsInput.getValue() == 0)) {
+			if (!Internal.takeoffLvl.getBoolValue()) { # Don't sync or blink if it's captured heading (T/O mode)
+				me.setLatMode(0);
+			} else { # Sync and blink
+				me.setLatMode(3);
+				Fma.startBlink(1);
+			}
 		}
 		
 		Output.ap1Temp = Output.ap1.getBoolValue();
@@ -675,7 +680,7 @@ var ITAF = {
 			}
 		} # Refresh Internal.ktsTemp and Internal.machTemp if using past this point
 		
-		# Heading Sync
+		# Heading Sync (except takeoff mode)
 		if (!Output.showHdg.getBoolValue()) {
 			Misc.pfdHeadingTrackDegTemp = math.round(Misc.pfdHeadingTrackDeg.getValue());
 			Internal.hdg.setValue(Misc.pfdHeadingTrackDegTemp);
@@ -692,6 +697,8 @@ var ITAF = {
 					Output.hdgCaptured = 1;
 				}
 			}
+		} else if (Output.latTemp == 5) {
+			Output.hdgCaptured = 0;
 		} else if (!Output.hdgCaptured) {
 			Output.hdgCaptured = 1;
 		}
@@ -1105,11 +1112,11 @@ var ITAF = {
 			me.updateLnavArm(0);
 			me.updateLocArm(0);
 			me.updateGsArm(0);
-			me.takeoffLogic(1);
+			me.takeoffLogic(1); # Does not call set Text.lat, we need to do that AFTER Output.lat is set to 5, but the rest before
 			Output.lat.setValue(5);
 			me.bankLimit();
 			Output.showHdg.setBoolValue(1);
-			me.updateLatText("T/O");
+			me.takeoffFma();
 		}
 		Fma.stopBlink(1);
 	},
@@ -1437,19 +1444,41 @@ var ITAF = {
 		}
 	},
 	takeoffLogic: func(t) {
-		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue()) {
+		if (!Gear.wow1.getBoolValue() and !Gear.wow2.getBoolValue() and Position.gearAglFt.getValue() >= 10) {
 			if (abs(Orientation.rollDeg.getValue()) > 5) {
-				Internal.takeoffHdg.setValue(math.round(Internal.hdgTrk.getValue())); # Switches to track automatically
+				Internal.takeoffHdgNew = math.round(Internal.hdgTrk.getValue()); # Switches to track automatically
+				Internal.takeoffHdg.setValue(Internal.takeoffHdgNew);
+				Internal.hdg.setValue(Internal.takeoffHdgNew);
 				Internal.takeoffLvl.setBoolValue(1);
 			} else {
 				if (t == 1) { # Sync anyway
-					Internal.takeoffHdg.setValue(math.round(Internal.hdgTrk.getValue())); # Switches to track automatically
+					Internal.takeoffHdgNew = math.round(Internal.hdgTrk.getValue()); # Switches to track automatically
+					Internal.takeoffHdg.setValue(Internal.takeoffHdgNew);
+					Internal.hdg.setValue(Internal.takeoffHdgNew);
 				}
 				Internal.takeoffLvl.setBoolValue(0);
 			}
 		} else {
-			Internal.takeoffHdg.setValue(math.round(Internal.hdgTrk.getValue())); # Switches to track automatically
+			Internal.takeoffHdgNew = math.round(Internal.hdgTrk.getValue()); # Switches to track automatically
+			Internal.takeoffHdg.setValue(Internal.takeoffHdgNew);
+			Internal.hdg.setValue(Internal.takeoffHdgNew);
 			Internal.takeoffLvl.setBoolValue(1);
+		}
+		if (t != 1) {
+			me.takeoffFma();
+		}
+	},
+	takeoffFma: func() {
+		if (Output.lat.getValue() == 5) {
+			if (Internal.takeoffLvl.getBoolValue()) {
+				if (Text.lat.getValue() != "T/O") {
+					me.updateLatText("T/O");
+				}
+			} else {
+				if (Text.lat.getValue() != "HDG") {
+					me.updateLatText("HDG");
+				}
+			}
 		}
 	},
 	setClimbRateLim: func() {
