@@ -1089,16 +1089,16 @@ var init = func() {
 	canvasBase.setup();
 	update.start();
 	
-	if (pts.Systems.Acconfig.Options.Du.sdFps.getValue() != 10) {
+	if (pts.Systems.Acconfig.Options.Du.sdFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	update.restart(1 / pts.Systems.Acconfig.Options.Du.sdFps.getValue()); # 10FPS
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.sdFps.getValue());
 }
 
-var update = maketimer(0.1, func() { # 10FPS
+var update = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 

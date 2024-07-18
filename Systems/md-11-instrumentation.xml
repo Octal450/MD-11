@@ -78,31 +78,6 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Bank Limit -->
-		<fcs_function name="/instrumentation/pfd/bank-limit">
-			<function>
-				<table>
-					<independentVar lookup="row">/it-autoflight/internal/bank-limit</independentVar>
-					<tableData>
-						 0 -25
-						25   0
-						30   5
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<!-- Altitude Bugs -->
-		<summer name="/instrumentation/pfd/alt-pre-sel">
-			<input>/it-autoflight/input/alt</input>
-			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
-		</summer>
-		
-		<summer name="/instrumentation/pfd/alt-sel">
-			<input>/it-autoflight/internal/alt</input>
-			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
-		</summer>
-		
 		<!-- Slip Skid -->
 		<pure_gain name="/instrumentation/pfd/slip-skid-Ny">
 			<input>accelerations/Ny</input>
@@ -381,19 +356,8 @@
 	
 	<channel name="Standby Airspeed/Altimeter" execrate="2">
 		
-		<switch name="/instrumentation/stby-combo/power-avail">
-			<default value="1"/>
-		</switch>
-		
-		<switch name="/instrumentation/stby-combo/speed-kt-input">
-			<default value="/instrumentation/stby-combo/speed-kt-input"/>
-			<test value="/instrumentation/airspeed-indicator/indicated-speed-kt">
-				/instrumentation/stby-combo/power-avail eq 1
-			</test>
-		</switch>
-		
 		<actuator name="/instrumentation/stby-combo/speed-kt-actuator">
-			<input>/instrumentation/stby-combo/speed-kt-input</input>
+			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 			<rate_limit>100</rate_limit>
 		</actuator>
 		
@@ -402,19 +366,8 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<switch name="/instrumentation/stby-combo/power-avail">
-			<default value="1"/>
-		</switch>
-		
-		<switch name="/instrumentation/stby-combo/altitude-ft-input">
-			<default value="/instrumentation/stby-combo/altitude-ft-input"/>
-			<test value="/instrumentation/altimeter[0]/indicated-altitude-ft"> <!-- Fix me when they are seperate -->
-				/instrumentation/stby-combo/power-avail eq 1
-			</test>
-		</switch>
-		
 		<actuator name="/instrumentation/stby-combo/altitude-ft-actuator">
-			<input>/instrumentation/stby-combo/altitude-ft-input</input>
+			<input>/instrumentation/altimeter[0]/indicated-altitude-ft</input> <!-- Fix me when they are seperate -->
 			<rate_limit>1500</rate_limit>
 		</actuator>
 		

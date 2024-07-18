@@ -53,7 +53,6 @@
 	
 	<filter>
 		<name>Heading Bug Pre Sel</name>
-		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -79,7 +78,6 @@
 	
 	<filter>
 		<name>Heading Bug Sel</name>
-		<update-interval-secs>0.05</update-interval-secs>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>

@@ -507,14 +507,6 @@ var canvasBase = {
 			}
 			
 			if (fms.FlightData.v2 > 0) {
-				# Keep sel/fms bug by the box maximum
-				if (Value.Asi.Tape.sel > 52.21349) {
-					Value.Asi.Tape.sel = 52.21349;
-				}
-				if (Value.Asi.Tape.fms > 52.21349) {
-					Value.Asi.Tape.fms = 52.21349;
-				}
-				
 				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
 				
 				if (fms.FlightData.v2State == 1) {
@@ -536,6 +528,14 @@ var canvasBase = {
 					me["ASI_v2_box"].hide();
 					me["ASI_v2_text"].hide();
 				} else {
+					# Keep sel/fms bug by the box maximum
+					if (Value.Asi.Tape.sel > 52.21349) {
+						Value.Asi.Tape.sel = 52.21349;
+					}
+					if (Value.Asi.Tape.fms > 52.21349) {
+						Value.Asi.Tape.fms = 52.21349;
+					}
+					
 					me["ASI_v2_box"].show();
 					me["ASI_v2_text"].setText(sprintf("%03d", fms.FlightData.v2));
 					me["ASI_v2_text"].show();
@@ -1073,7 +1073,7 @@ var canvasBase = {
 			me["AI_single_cue"].hide();
 		}
 		
-		Value.Ai.bankLimit = pts.Instrumentation.Pfd.bankLimit.getValue();
+		Value.Ai.bankLimit = afs.Internal.bankLimit.getValue() - 25; # Because SVG has it set to 25
 		Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 		Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 		Value.Hdg.track = pts.Instrumentation.Pfd.trackBug[0].getValue();
@@ -1148,9 +1148,7 @@ var canvasBase = {
 		} else {
 			Value.Alt.Tape.middleOffset = -Value.Alt.Tape.offset * 254.508;
 		}
-		
 		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
-		me["ALT_scale"].update();
 		
 		Value.Alt.Tape.fiveI = (Value.Alt.Tape.middleText + 1000) * 0.001;
 		Value.Alt.Tape.five = int(Value.Alt.Tape.fiveI);
@@ -1280,8 +1278,9 @@ var canvasBase = {
 		# ALT Pre-Sel/Sel
 		Value.Afs.alt = afs.Internal.alt.getValue();
 		Value.Afs.altSel = afs.Input.alt.getValue();
-		Value.Alt.preSel = pts.Instrumentation.Pfd.altPreSel.getValue();
-		Value.Alt.sel = pts.Instrumentation.Pfd.altSel.getValue();
+		
+		Value.Alt.preSel = Value.Afs.altSel - Value.Alt.indicated;
+		Value.Alt.sel = Value.Afs.alt - Value.Alt.indicated;
 		
 		if (Value.Alt.preSel < -525 or Value.Alt.preSel > 525 or afs.Internal.syncedAlt) {
 			me["ALT_presel"].hide();
