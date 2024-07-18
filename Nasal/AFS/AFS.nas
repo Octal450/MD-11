@@ -282,6 +282,7 @@ var ITAF = {
 		}
 		Internal.ktsMach.setBoolValue(0);
 		Internal.takeoffLvl.setBoolValue(1);
+		Internal.landCondition == "OFF";
 		Input.ap1.setBoolValue(0);
 		Input.ap2.setBoolValue(0);
 		Input.athr.setBoolValue(0);
@@ -1064,7 +1065,11 @@ var ITAF = {
 			}
 		}
 	},
-	setLatMode: func(n) {
+	setLatMode: func(n, t = 0) {
+		if (t != 1 and n != 2 and n != 4 and Internal.landCondition != "OFF") { # Locked, t = 1 to unlock
+			return;
+		}
+		
 		Output.vertTemp = Output.vert.getValue();
 		if (n == 0) { # HDG SEL
 			Output.hdgCaptured = 0;
@@ -1073,7 +1078,7 @@ var ITAF = {
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
-				me.setVertMode(1);
+				me.setVertMode(1, t);
 				Fma.startBlink(2);
 			}
 		} else if (n == 1) { # LNAV
@@ -1097,7 +1102,7 @@ var ITAF = {
 			Output.showHdg.setBoolValue(1);
 			me.updateLatText("HDG");
 			if (Output.vertTemp == 2 or Output.vertTemp == 6) { # Also cancel G/S or FLARE if active
-				me.setVertMode(1);
+				me.setVertMode(1, t);
 				Fma.startBlink(2);
 			}
 		} else if (n == 4) { # ALIGN
@@ -1130,7 +1135,11 @@ var ITAF = {
 			me.updateLnavArm(0);
 		} 
 	},
-	setVertMode: func(n) {
+	setVertMode: func(n, t = 0) {
+		if (t != 1 and n != 2 and n != 6 and Internal.landCondition != "OFF") { # Locked, t = 1 to unlock
+			return;
+		}
+		
 		Input.altDiff = Input.alt.getValue() - Position.indicatedAltitudeFt.getValue();
 		if (n == 0) { # ALT HLD
 			Internal.flchActive = 0;
@@ -1435,10 +1444,10 @@ var ITAF = {
 			if (l == 4 or v == 6) {
 				me.ap1Master(0);
 				me.ap2Master(0);
-				me.setLatMode(3); # Also cancels G/S and land modes if active
+				me.setLatMode(3, 1); # Also cancels G/S and land modes if active
 				Fma.startBlink(1);
 			} else {
-				me.setLatMode(3); # Also cancels G/S and land modes if active
+				me.setLatMode(3, 1); # Also cancels G/S and land modes if active
 				Fma.startBlink(1);
 			}
 		}
@@ -1504,8 +1513,8 @@ var ITAF = {
 			if (!Output.fd2.getBoolValue()) {
 				me.fd2Master(1);
 			}
-			me.setLatMode(3);
-			me.setVertMode(7);
+			me.setLatMode(3, 1);
+			me.setVertMode(7, 1);
 			me.updateVertText("G/A CLB");
 			if (!Output.athr.getBoolValue()) {
 				me.athrMaster(1);
