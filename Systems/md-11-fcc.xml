@@ -1364,11 +1364,14 @@
 	
 	<channel name="FCC: Yaw Axis and Yaw Damper">
 		
-		<switch name="fcc/yaw/autoland-switch">
+		<switch name="fcc/yaw/parallel-rudder-active">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				fcc/afs/enabled eq 1
-				/it-autoflight/output/lat eq 4
+				<test logic="OR">
+					/it-autoflight/output/lat eq 4
+					/it-autoflight/output/lat eq 5
+				</test>
 			</test>
 		</switch>
 		
@@ -1376,7 +1379,7 @@
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/flight/rudder</independentVar>
-					<independentVar lookup="column">fcc/yaw/autoland-switch</independentVar>
+					<independentVar lookup="column">fcc/yaw/parallel-rudder-active</independentVar>
 					<tableData>
 						       0  1
 						-1.00 -1  0
@@ -1472,14 +1475,14 @@
 			<default value="fcc/yaw/tc-pd"/>
 			<test logic="OR" value="0">
 				fcc/yaw/active ne 1
-				fcc/yaw/autoland-switch eq 1
+				fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		
 		<switch name="fcc/yaw/afs-cmd">
 			<default value="0"/>
 			<test value="fcc/afs/yaw-cmd">
-				fcc/yaw/autoland-switch eq 1
+				fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		

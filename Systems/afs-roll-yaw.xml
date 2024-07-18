@@ -329,6 +329,105 @@
 		<max>0.15</max>
 	</pi-simple-controller>
 	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: Takeoff Parallel Rudder PI</name>
+		<enable>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<equals>
+						<property>/it-autoflight/output/lat</property>
+						<value>5</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>/fdm/jsbsim/aero/beta-deg</input> <!-- Deg on purpose -->
+		<reference>0</reference>
+		<output>/it-autoflight/internal/rudder-pi-cmd</output>
+		<config> <!-- FCC turn coordination is turned off, this replaces it and closes error faster -->
+			<Kp>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>-0.15</dep></entry>
+						<entry><ind>360</ind><dep>-0.10</dep></entry>
+					</table>
+				</expression>
+			</Kp>
+			<Ki>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>-0.05</dep></entry>
+						<entry><ind>360</ind><dep>-0.03</dep></entry>
+					</table>
+				</expression>
+			</Ki>
+		</config>
+		<min>-1.0</min>
+		<max>1.0</max>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>IT-CONTROLLER: Takeoff Parallel Rudder D</name>
+		<type>derivative</type>
+		<enable>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<equals>
+						<property>/it-autoflight/output/lat</property>
+						<value>5</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>/fdm/jsbsim/aero/beta-rad</input> <!-- Rad on purpose -->
+		<reference>0</reference>
+		<output>/it-autoflight/internal/rudder-d-cmd</output>
+		<filter-time>
+			<expression>
+				<table>
+					<property>/velocities/airspeed-kt</property>
+					<entry><ind>140</ind><dep>3</dep></entry>
+					<entry><ind>360</ind><dep>1</dep></entry>
+				</table>
+			</expression>
+		</filter-time>
+		<min>-1.0</min>
+		<max>1.0</max>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: Takeoff Parallel Rudder</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/ap-on</property>
+					<equals>
+						<property>/it-autoflight/output/lat</property>
+						<value>5</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-autoflight/internal/rudder-pi-cmd</property>
+					<property>/it-autoflight/internal/rudder-d-cmd</property>
+				</sum>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/rudder-cmd</output>
+		<min>-1.0</min>
+		<max>1.0</max>
+	</filter>
+	
 	<filter>
 		<name>System Command: Rudder</name>
 		<type>noise-spike</type>
@@ -336,10 +435,16 @@
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>4</value>
-					</equals>
+					<or>
+						<equals>
+							<property>/it-autoflight/output/lat</property>
+							<value>4</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/lat</property>
+							<value>5</value>
+						</equals>
+					</or>
 				</and>
 			</condition>
 			<property>/it-autoflight/internal/rudder-cmd</property>

@@ -776,9 +776,8 @@
 		
 		<switch name="hydraulics/rudder/pedal-switch">
 			<default value="fcc/yaw/rudder-nul"/>
-			<test logic="OR" value="fcc/yaw/output-and-rudder"> <!-- Parallel Rudder -->
-				fcc/yaw/autoland-switch eq 1
-				/it-autoflight/output/vert eq 7
+			<test value="fcc/yaw/output-and-rudder"> <!-- Parallel Rudder -->
+				fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		
