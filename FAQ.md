@@ -8,7 +8,7 @@ Try to download the aircraft again. The download may have failed for some reason
 
 ### Q. I found other distributors offering downloads of this aircraft. Can I use them?
 
-Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from FGAddon or [Octal450's repo](https://github.com/Octal450/MD-11.git).
+Yes, but they may have changes that result in difficulties or issues. You should get the aircraft from FGAddon or [Octal450's repo](https://github.com/Octal450/MD-11).
 
 ## Behavior
 
