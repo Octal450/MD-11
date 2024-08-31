@@ -559,7 +559,7 @@ var IRS = {
 		aligning: [props.globals.getNode("/systems/iru[0]/aligning"), props.globals.getNode("/systems/iru[1]/aligning"), props.globals.getNode("/systems/iru[2]/aligning")],
 		alignMcduMsgOut: [props.globals.getNode("/systems/iru[0]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[1]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[2]/align-mcdu-msg-out")],
 		alignTimer: [props.globals.getNode("/systems/iru[0]/align-timer"), props.globals.getNode("/systems/iru[1]/align-timer"), props.globals.getNode("/systems/iru[2]/align-timer")],
-		alignTimeRemainingMinutes: [props.globals.getNode("/systems/iru[0]/align-time-remaining-minutes"),props.globals.getNode("/systems/iru[1]/align-time-remaining-minutes"),props.globals.getNode("/systems/iru[2]/align-time-remaining-minutes")],
+		alignTimeRemainingMinutes: [props.globals.getNode("/systems/iru[0]/align-time-remaining-minutes"), props.globals.getNode("/systems/iru[1]/align-time-remaining-minutes"), props.globals.getNode("/systems/iru[2]/align-time-remaining-minutes")],
 		allAligned: props.globals.getNode("/systems/iru-common/all-aligned-out"),
 		anyAligned: props.globals.getNode("/systems/iru-common/any-aligned-out"),
 		attAvail: [props.globals.getNode("/systems/iru[0]/att-avail"), props.globals.getNode("/systems/iru[1]/att-avail"), props.globals.getNode("/systems/iru[2]/att-avail")],
