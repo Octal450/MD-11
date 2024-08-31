@@ -293,7 +293,6 @@ var canvasBase = {
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.fms = pts.Instrumentation.Pfd.spdFms.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
-		Value.Asi.iasInt = math.round(Value.Asi.ias);
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.preSel = pts.Instrumentation.Pfd.spdPreSel.getValue();
 		Value.Asi.sel = pts.Instrumentation.Pfd.spdSel.getValue();
