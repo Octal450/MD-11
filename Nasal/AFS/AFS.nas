@@ -380,15 +380,15 @@ var ITAF = {
 		}
 		
 		# AP Power Warning - when FCC power cycles, sounds warning
-		pts.Fdm.JSBsim.Fcc.powerAvailTemp = pts.Fdm.JSBsim.Fcc.powerAvail.getValue();
-		if (pts.Fdm.JSBsim.Fcc.powerAvailTemp == 1) {
+		pts.Fdm.JSBsim.Fcc.powerAvailTemp = pts.Fdm.JSBsim.Fcc.powerAvail.getBoolValue();
+		if (pts.Fdm.JSBsim.Fcc.powerAvailTemp) {
 			if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) { # Don't do it during autoconfig
 				Sound.enablePowerApOff = 0;
 			} else if (Sound.enablePowerApOff) {
 				Sound.apOffSingle.setBoolValue(1);
 				Sound.enablePowerApOff = 0;
 			}
-		} else if (pts.Fdm.JSBsim.Fcc.powerAvailTemp == 0) {
+		} else if (!pts.Fdm.JSBsim.Fcc.powerAvailTemp) {
 			Sound.enablePowerApOff = 1;
 			Sound.apOffSingle.setBoolValue(0);
 		}
