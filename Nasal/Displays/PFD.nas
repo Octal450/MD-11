@@ -257,8 +257,8 @@ var canvasBase = {
 		"FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box",
 		"FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV",
 		"GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info",
-		"Inner_marker", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "Outer_marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2",
-		"TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"Inner_marker", "IRS_aux", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "Outer_marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1",
+		"TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -2206,8 +2206,10 @@ var canvasPfd1 = {
 		# IRU
 		if (pts.Instrumentation.Du.irsCapt.getBoolValue()) {
 			Value.Iru.source[0] = 2; # AUX
+			me["IRS_aux"].show();
 		} else {
 			Value.Iru.source[0] = 0;
+			me["IRS_aux"].hide();
 		}
 		
 		if (Value.Iru.aligned[Value.Iru.source[0]]) {
@@ -2452,8 +2454,10 @@ var canvasPfd2 = {
 		# IRU
 		if (pts.Instrumentation.Du.irsFo.getBoolValue()) {
 			Value.Iru.source[1] = 2; # AUX
+			me["IRS_aux"].show();
 		} else {
 			Value.Iru.source[1] = 1;
+			me["IRS_aux"].hide();
 		}
 		
 		if (Value.Iru.aligned[Value.Iru.source[1]]) {
