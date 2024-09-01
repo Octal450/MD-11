@@ -228,6 +228,7 @@
 			<test logic="AND" value="/fms/speeds/mmo-kts">
 				/fms/speeds/mmo-kts lt /fms/speeds/vmo-kts
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -252,6 +253,7 @@
 			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 300
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -260,6 +262,7 @@
 			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 260
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -268,6 +271,7 @@
 			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
 				/fms/speeds/gear-max-mach-kts lt 230
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -292,6 +296,7 @@
 			<test logic="AND" value="/fms/speeds/slat-max-mach-kts">
 				/fms/speeds/slat-max-mach-kts lt 280
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -316,6 +321,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 255
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -324,6 +330,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 240
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -332,6 +339,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 220
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -340,6 +348,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 210
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -348,6 +357,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 190
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
@@ -356,6 +366,7 @@
 			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
 				/fms/speeds/flap-max-mach-kts lt 175
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
