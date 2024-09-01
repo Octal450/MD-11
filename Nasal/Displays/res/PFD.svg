@@ -57,9 +57,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.5"
-     inkscape:cx="520.74373"
-     inkscape:cy="453.76189"
+     inkscape:zoom="2"
+     inkscape:cx="549.39251"
+     inkscape:cy="747.24232"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -1055,31 +1055,40 @@
          style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       transform="matrix(1.0000013,0,0,1,21.645177,-3.221875)"
-       inkscape:label="#g4814"
        id="AI_bank"
-       inkscape:transform-center-y="-247.77022">
-      <rect
-         y="185.12387"
-         x="440.3154"
-         height="22.309221"
-         width="8.9448996"
-         id="rect4818"
-         style="fill:#0055ae;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       inkscape:label="#g5210"
+       inkscape:transform-center-y="-249.84705">
+      <path
+         style="fill:#0044a0;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 461.96115,181.90199 8.94491,0 0,12.88601 -8.94491,0 z"
+         id="path5116"
+         inkscape:label="#rect4818"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
       <path
          inkscape:label="#rect902"
          sodipodi:nodetypes="cccccccc"
          inkscape:connector-curvature="0"
-         id="AI_bankt"
-         d="m 431.3792,198.0096 10.0552,3e-5 0,-11.91381 6.7776,0 0,11.9138 10.0552,-2e-5 -13.44396,-22.59861 z"
+         id="AI_bank_t"
+         d="m 453.02494,194.78772 10.05521,2.8e-4 0,-11.91406 6.77761,0 0,11.9138 10.05521,-2e-5 -13.44397,-22.59861 z"
          style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke" />
-      <path
-         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
-         d="m 422.53645,212.87512 c 14.85785,-3e-5 29.71569,-7e-5 44.57354,-1e-5 l -8.84279,-14.86551 -10.0552,0 0,8.42352 -6.7776,0 0,-8.42352 -10.0552,0 z"
+      <g
          id="AI_slipskid"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="ccccccccc"
-         inkscape:label="#rect902" />
+         inkscape:label="#g5219">
+        <path
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           style="fill:#0044a0;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 461.96115,194.788 8.94491,0 0,9.42321 -8.94491,0 z"
+           id="path5199" />
+        <path
+           inkscape:label="#rect902"
+           sodipodi:nodetypes="ccccccccc"
+           inkscape:connector-curvature="0"
+           id="AI_slipskid_t"
+           d="m 444.18218,209.65324 c 14.85787,-3e-5 29.71572,-7e-5 44.57359,-1e-5 l -8.8428,-14.86551 -10.05521,0 0,8.42352 -6.77761,0 0,-8.42352 -10.05521,0 z"
+           style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke" />
+      </g>
     </g>
     <g
        id="FPD"
