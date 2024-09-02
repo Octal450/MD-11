@@ -30,12 +30,12 @@ var Fma = {
 			}
 		}
 	},
-	startBlink: func(w) { # 0 Speed, 1 Roll, 2 Pitch
-		me.Blink.time[w] = pts.Sim.Time.elapsedSec.getValue();
+	startBlink: func(window) { # 0 Speed, 1 Roll, 2 Pitch
+		me.Blink.time[window] = pts.Sim.Time.elapsedSec.getValue();
 		me.loop(); # Force update
 	},
-	stopBlink: func(w) {
-		me.Blink.time[w] = -5;
+	stopBlink: func(window) {
+		me.Blink.time[window] = -5;
 	},
 };
 
