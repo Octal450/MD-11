@@ -2175,7 +2175,7 @@
 	
 	</channel>
 	
-	<channel name="EAD Reverser Status" execrate="8">
+	<channel name="Status" execrate="8">
 		
 		<switch name="fadec/eng-1-powered">
 			<default value="0"/>
