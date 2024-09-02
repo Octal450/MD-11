@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 AFS Interface
+# McDonnell Douglas MD-11 AFS
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var Fma = {
