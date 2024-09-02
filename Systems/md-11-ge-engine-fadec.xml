@@ -1568,7 +1568,7 @@
 				/engines/engine[0]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 24
+				/systems/electrical/bus/dc-1 ge 24
 				/engines/engine[0]/n2-actual ge 1.8
 			</test>
 		</switch>
@@ -1579,7 +1579,7 @@
 				/engines/engine[1]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 24
+				/systems/electrical/bus/dc-2 ge 24
 				/engines/engine[1]/n2-actual ge 1.8
 			</test>
 		</switch>
@@ -1590,7 +1590,7 @@
 				/engines/engine[2]/state eq 3
 			</test>
 			<test logic="AND" value="1">
-				/systems/electrical/outputs/efis ge 24
+				/systems/electrical/bus/dc-3 ge 24
 				/engines/engine[2]/n2-actual ge 1.8
 			</test>
 		</switch>
