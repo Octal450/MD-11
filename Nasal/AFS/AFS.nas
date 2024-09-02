@@ -353,6 +353,8 @@ var ITAF = {
 		clampLoop.start();
 	},
 	loop: func() {
+		Gear.wow1Temp = Gear.wow1.getBoolValue();
+		Gear.wow2Temp = Gear.wow2.getBoolValue();
 		Output.ap1Temp = Output.ap1.getBoolValue();
 		Output.ap2Temp = Output.ap2.getBoolValue();
 		Output.latTemp = Output.lat.getValue();
@@ -407,9 +409,9 @@ var ITAF = {
 		}
 		
 		# Takeoff Lateral Reversion
-		if (Output.latTemp == 5 and (Output.vertTemp != 7 or pts.Controls.Flight.flapsInput.getValue() == 0)) {
+		if (Output.latTemp == 5 and (Output.vertTemp != 7 or (pts.Controls.Flight.flapsInput.getValue() == 0 and !Gear.wow1Temp and !Gear.wow2Temp))) {
 			if (!Internal.takeoffLvl.getBoolValue()) { # Don't sync or blink if it's captured heading (T/O mode)
-				me.setLatMode(0);
+				me.setLatMode(3);
 			} else { # Sync and blink
 				me.setLatMode(3);
 				Fma.startBlink(1);
@@ -430,8 +432,6 @@ var ITAF = {
 			}
 		}
 		
-		Gear.wow1Temp = Gear.wow1.getBoolValue();
-		Gear.wow2Temp = Gear.wow2.getBoolValue();
 		Output.latTemp = Output.lat.getValue();
 		Output.vertTemp = Output.vert.getValue();
 		Text.vertTemp = Text.vert.getValue();
