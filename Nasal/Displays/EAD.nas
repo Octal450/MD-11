@@ -9,12 +9,9 @@ var pwTapes = nil;
 
 var Value = {
 	barRest: 293,
-	Du: {
-		eprLimit: 0,
-		n1Limit: 0,
-	},
 	egtScale: 1000,
 	engType: "GE",
+	eprLimit: 0,
 	Fadec: {
 		activeMode: "T/O",
 		egt: [0, 0, 0],
@@ -37,6 +34,7 @@ var Value = {
 		annunTestWow: 0,
 		wow: 0,
 	},
+	n1Limit: 0,
 	needleRest: -44 * D2R,
 	tat: 0,
 };
@@ -678,10 +676,10 @@ var canvasGeDials = {
 		me["N1Lim"].setText(sprintf("%d", math.floor(Value.Fadec.n1LimitFixed)));
 		me["N1Lim_decimal"].setText(sprintf("%d", int(10 * math.mod(Value.Fadec.n1LimitFixed, 1))));
 		
-		Value.Du.n1Limit = pts.Instrumentation.Ead.n1Limit.getValue();
-		me["N11_lim"].setRotation(Value.Du.n1Limit * D2R);
-		me["N12_lim"].setRotation(Value.Du.n1Limit * D2R);
-		me["N13_lim"].setRotation(Value.Du.n1Limit * D2R);
+		Value.n1Limit = pts.Instrumentation.Ead.n1Limit.getValue();
+		me["N11_lim"].setRotation(Value.n1Limit * D2R);
+		me["N12_lim"].setRotation(Value.n1Limit * D2R);
+		me["N13_lim"].setRotation(Value.n1Limit * D2R);
 		
 		# N1
 		if (Value.Fadec.engPowered[0]) {
@@ -1090,10 +1088,10 @@ var canvasPwDials = {
 		me["EPRLim"].setText(sprintf("%d", math.floor(Value.Fadec.eprLimitFixed)));
 		me["EPRLim_decimal"].setText(sprintf("%02d", math.floor((Value.Fadec.eprLimitFixed - int(Value.Fadec.eprLimitFixed)) * 100)));
 		
-		Value.Du.eprLimit = pts.Instrumentation.Ead.eprLimit.getValue();
-		me["EPR1_lim"].setRotation(Value.Du.eprLimit * D2R);
-		me["EPR2_lim"].setRotation(Value.Du.eprLimit * D2R);
-		me["EPR3_lim"].setRotation(Value.Du.eprLimit * D2R);
+		Value.eprLimit = pts.Instrumentation.Ead.eprLimit.getValue();
+		me["EPR1_lim"].setRotation(Value.eprLimit * D2R);
+		me["EPR2_lim"].setRotation(Value.eprLimit * D2R);
+		me["EPR3_lim"].setRotation(Value.eprLimit * D2R);
 		
 		# EPR
 		if (Value.Fadec.engPowered[0]) {
