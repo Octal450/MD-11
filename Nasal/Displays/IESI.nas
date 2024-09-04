@@ -112,7 +112,7 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
+		return ["AI_bank", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_mask", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
 		"ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones", "ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error",
 		"HDG_scale", "QNH", "QNH_type"];
 	},
@@ -140,7 +140,7 @@ var canvasIesi = {
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		
 		Value.Asi.Tape.ias = Value.Asi.ias - 40; # Subtract 40, since the scale starts at 40
-		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 5.559);
+		me["ASI_scale"].setTranslation(0, Value.Asi.Tape.ias * 5.55785);
 		
 		Value.Asi.Tape.hundreds = num(right(sprintf("%07.3f", Value.Asi.ias), 7)) / 10; # Unlikely it would be above 999 but lets account for it anyways
 		Value.Asi.Tape.hundredsGeneva = genevaAsiHundreds(Value.Asi.Tape.hundreds);
@@ -175,18 +175,15 @@ var canvasIesi = {
 			Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
 			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 			
-			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.668);
+			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.6644);
 			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			
 			me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
 			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
-			me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
 			
-			me["AI_bank_mask"].show();
 			me["AI_horizon"].show();
 			me["AI_init"].hide();
 		} else {
-			me["AI_bank_mask"].hide();
 			me["AI_horizon"].hide();
 			me["AI_init"].show();
 			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIesi.secs) ~ " SECS");
@@ -291,14 +288,14 @@ var canvasIesi = {
 				Value.Hdg.middleText = 0;
 			}
 			
-			Value.Hdg.leftText1 = Value.Hdg.middleText == 0?35:Value.Hdg.middleText - 1;
-			Value.Hdg.rightText1 = Value.Hdg.middleText == 35?0:Value.Hdg.middleText + 1;
-			Value.Hdg.leftText2 = Value.Hdg.leftText1 == 0?35:Value.Hdg.leftText1 - 1;
-			Value.Hdg.rightText2 = Value.Hdg.rightText1 == 35?0:Value.Hdg.rightText1 + 1;
-			Value.Hdg.leftText3 = Value.Hdg.leftText2 == 0?35:Value.Hdg.leftText2 - 1;
-			Value.Hdg.rightText3 = Value.Hdg.rightText2 == 35?0:Value.Hdg.rightText2 + 1;
-			Value.Hdg.leftText4 = Value.Hdg.leftText3 == 0?35:Value.Hdg.leftText3 - 1;
-			Value.Hdg.rightText4 = Value.Hdg.rightText3 == 35?0:Value.Hdg.rightText3 + 1;
+			Value.Hdg.leftText1 = Value.Hdg.middleText == 0 ? 35 : Value.Hdg.middleText - 1;
+			Value.Hdg.rightText1 = Value.Hdg.middleText == 35 ? 0 : Value.Hdg.middleText + 1;
+			Value.Hdg.leftText2 = Value.Hdg.leftText1 == 0 ? 35 : Value.Hdg.leftText1 - 1;
+			Value.Hdg.rightText2 = Value.Hdg.rightText1 == 35 ? 0 : Value.Hdg.rightText1 + 1;
+			Value.Hdg.leftText3 = Value.Hdg.leftText2 == 0 ? 35 : Value.Hdg.leftText2 - 1;
+			Value.Hdg.rightText3 = Value.Hdg.rightText2 == 35 ? 0 : Value.Hdg.rightText2 + 1;
+			Value.Hdg.leftText4 = Value.Hdg.leftText3 == 0 ? 35 : Value.Hdg.leftText3 - 1;
+			Value.Hdg.rightText4 = Value.Hdg.rightText3 == 35 ? 0 :Value.Hdg.rightText3 + 1;
 			
 			if (Value.Hdg.offset > 0.5) {
 				Value.Hdg.middleOffset = -(Value.Hdg.offset - 1) * 60.5;
