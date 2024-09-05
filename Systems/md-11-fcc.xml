@@ -5,9 +5,6 @@
 
 <system name="MD-11: FCC">
 	
-	<property value="0">fadec/throttle-lever-feedback[0]</property>
-	<property value="0">fadec/throttle-lever-feedback[1]</property>
-	<property value="0">fadec/throttle-lever-feedback[2]</property>
 	<property value="0">fcc/aileron-out-enable</property>
 	<property value="0">fcc/flap/cmd-deg</property>
 	<property value="0">fcc/lsas/autotrim-inhibit</property>
