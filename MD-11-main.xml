@@ -881,6 +881,9 @@
 					<pw-derate type="bool">0</pw-derate>
 				</limit>
 				<throttle-compare-max type="double">0</throttle-compare-max>
+				<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>
+				<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
+				<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
 			</fadec>
 			<fcc n="0">
 				<afs n="0">
