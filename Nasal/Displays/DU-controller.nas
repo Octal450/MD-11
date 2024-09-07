@@ -317,9 +317,9 @@ var DUController = {
 			canvas_mcdu.mcdu3.page.hide();
 		}
 	},
-	setSdPage: func(p) {
+	setSdPage: func(page) {
 		me.blinkSd();
-		me.sdPage = p;
+		me.sdPage = page;
 	},
 	showSdPage: func(p) {
 		if (p == "CONFIG") {
