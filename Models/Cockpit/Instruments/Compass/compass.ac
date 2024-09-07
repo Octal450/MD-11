@@ -7,13 +7,11 @@ kids 2
 OBJECT group
 name "Main"
 loc -27.4871 7.44449 -0.00266517
-hidden
 kids 6
 OBJECT poly
 name "compass.glass"
 loc 0.0182667 -0.00229359 0.00266497
 crease 45.000000
-hidden
 numvert 10
 0 0.0245972 0.0215789
 0 0.0245972 -0.0215789
@@ -60,7 +58,6 @@ name "compass.needle"
 loc 0.0178661 -0.00229359 0.00266497
 texture "compass.png"
 crease 45.000000
-hidden
 numvert 28
 -6.67572e-05 0.00561523 0.000447299
 -6.67572e-05 0.00561523 -0.000447299
@@ -279,7 +276,6 @@ name "Cylinder.007"
 loc -0.0432339 -0.00229359 0.00266497
 texture "compass.png"
 crease 45.000000
-hidden
 numvert 490
 0.0624866 0.0272202 0.0059457
 0.0613155 0.0272202 0.0059457
@@ -4436,7 +4432,6 @@ name "Cylinder.026"
 loc -0.0113335 -0.00229359 0.00266497
 texture "compass.png"
 crease 45.000000
-hidden
 numvert 64
 0 -0.00845575 0.0260596
 -0.00508308 -0.00845575 0.0255589
@@ -5093,7 +5088,6 @@ name "Cylinder.028"
 loc 0.0297661 0.0226064 -0.013286
 texture "compass.png"
 crease 45.000000
-hidden
 numvert 252
 -0.010334 -4.76837e-06 -0.0020126
 -0.0102596 -4.76837e-06 -0.0018859
