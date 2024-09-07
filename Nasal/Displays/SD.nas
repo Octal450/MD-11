@@ -192,7 +192,7 @@ var canvasConfig = {
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
-		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.62, 0);
 		
 		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
 			me["Stab"].setColor(1, 1, 1);
@@ -201,7 +201,7 @@ var canvasConfig = {
 			me["StabNeedle"].setColorFill(1, 1, 1);
 		} else {
 			if (Value.Fctl.stabComp > 0) {
-				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.620903, 0);
+				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
 				me["StabGreen"].show();
 				
 				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
@@ -624,7 +624,7 @@ var canvasEngBase = {
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
-		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.620903, 0);
+		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.62, 0);
 		
 		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
 			me["Stab"].setColor(1, 1, 1);
@@ -633,7 +633,7 @@ var canvasEngBase = {
 			me["StabNeedle"].setColorFill(1, 1, 1);
 		} else {
 			if (Value.Fctl.stabComp > 0) {
-				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.620903, 0);
+				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
 				me["StabGreen"].show();
 				
 				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {

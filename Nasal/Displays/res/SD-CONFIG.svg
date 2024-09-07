@@ -56,9 +56,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.7071068"
-     inkscape:cx="395.59091"
-     inkscape:cy="1000.9591"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="1169.349"
+     inkscape:cy="1068.0966"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -476,47 +476,48 @@
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:32px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="769.79565"
-     y="150.033"
+     y="145.52138"
      id="text4468"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4470"
        x="769.79565"
-       y="150.033"
+       y="145.52138"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:end;text-anchor:end;fill:#ffffff">STAB</tspan></text>
   <text
      sodipodi:linespacing="125%"
      id="StabUnit"
-     y="150.033"
+     y="145.52138"
      x="884.59406"
      style="font-style:normal;font-weight:normal;font-size:32px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4367-8"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#ffffff"
-       y="150.033"
+       y="145.52138"
        x="884.59406"
        id="tspan4474"
        sodipodi:role="line">ANU</tspan></text>
   <path
      style="fill:none;stroke:#f0b900;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 781.74652,111.04688 91.27089,0 0,46.82175 -91.27089,0 z"
-     id="StabBox" />
+     d="m 781.74652,106.53525 91.27089,0 0,46.82175 -91.27089,0 z"
+     id="StabBox"
+     inkscape:connector-curvature="0" />
   <text
      sodipodi:linespacing="125%"
      id="Stab"
-     y="150.03294"
+     y="145.52132"
      x="865.93958"
      style="font-style:normal;font-weight:normal;font-size:41px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"
      inkscape:label="#text4367-8"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:end;text-anchor:end;fill:#ffffff"
-       y="150.03294"
+       y="145.52132"
        x="865.93958"
        id="tspan4478"
        sodipodi:role="line">0.0</tspan></text>
   <rect
      y="-719.58917"
-     x="163.85252"
+     x="164.08733"
      height="0.0069941874"
      width="28.035675"
      id="rect4547"
@@ -530,20 +531,14 @@
      width="211.42201"
      height="8.1396942"
      x="704.50946"
-     y="178.62543" />
+     y="178.86023" />
   <path
      inkscape:label="#rect4516"
      sodipodi:nodetypes="cccc"
      inkscape:connector-curvature="0"
      id="StabNeedle"
-     d="m 706.08156,161.14382 27.00814,0 c -4.50135,6.15 -9.00268,12.3 -13.50403,18.45 z"
+     d="m 706.08156,161.37862 27.00814,0 c -4.50135,6.15 -9.00268,12.3 -13.50403,18.45 z"
      style="fill:#ffffff;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-  <path
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 917.04406,184.26534 18.74193,0 10.93259,-21.154 -16.39701,0 -13.15251,17.9"
-     id="path4553"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccc" />
   <text
      inkscape:label="#text4367-8"
      xml:space="preserve"
@@ -1130,8 +1125,14 @@
        x="752.77478"
        y="328.3768"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:center;text-anchor:middle;fill:#ffffff">00</tspan></text>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 916.15234,185.4998 18.74193,0 12.48822,-24.69958 -16.82127,0 -13.99727,19.55958 20.10129,0"
+     id="path4553-7"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccccc" />
   <rect
-     y="178.62543"
+     y="178.86023"
      x="704.50946"
      height="8.1396942"
      width="211.42203"
@@ -1139,7 +1140,7 @@
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#rect4315" />
   <rect
-     y="178.62543"
+     y="178.86023"
      x="694.34381"
      height="8.1396942"
      width="50.483612"
@@ -1188,7 +1189,7 @@
   </g>
   <g
      style="stroke-width:1.9101187;stroke-miterlimit:4;stroke-dasharray:none"
-     transform="matrix(0,2.5129329,-2.5129329,0,2311.0105,-2253.2211)"
+     transform="matrix(0,2.5129329,-2.5129329,0,2311.0105,-2257.7327)"
      inkscape:label="#g4635"
      id="Stab_error">
     <path
