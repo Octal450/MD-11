@@ -90,7 +90,6 @@ var canvasBase = {
 		# Hide the pages by default
 		me.hidePages();
 		
-		config.setup();
 		engDials.setup();
 		engTapes.setup();
 	},
