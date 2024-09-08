@@ -415,12 +415,6 @@ var canvasConfig = {
 		}
 		
 		# Flaps and Slats
-		if (pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue() >= 0.1) {
-			me["SlatExt"].show();
-		} else {
-			me["SlatExt"].hide();
-		}
-		
 		Value.Fctl.flapDeg = math.round(pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue());
 		if (Value.Fctl.flapDeg >= 0.1) {
 			me["Flap1"].setText(sprintf("%d", Value.Fctl.flapDeg));
@@ -434,6 +428,12 @@ var canvasConfig = {
 			me["Flap3"].setText("");
 			me["Flap4"].setText("");
 			me["FlapBox"].hide();
+		}
+		
+		if (pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue() >= 0.1) {
+			me["SlatExt"].show();
+		} else {
+			me["SlatExt"].hide();
 		}
 		
 		# Tire Pressure
