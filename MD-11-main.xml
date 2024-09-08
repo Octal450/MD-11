@@ -1712,7 +1712,7 @@
 					<sd-fps type="double">20</sd-fps>
 				</du>
 				<eight-three-three-radios type="bool">0</eight-three-three-radios>
-				<egt-above-n1 type="bool">0</egt-above-n1>
+				<egt-above-n1 type="bool">1</egt-above-n1>
 				<eng-tapes type="bool">0</eng-tapes>
 				<iesi-equipped type="bool">0</iesi-equipped>
 				<irs-aligns-instantly type="bool">0</irs-aligns-instantly>
@@ -1827,7 +1827,6 @@
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 		</hydraulics>
 		<shake n="0">
-			<effect type="bool">0</effect>
 			<shaking type="double">0</shaking>
 		</shake>
 	</systems>

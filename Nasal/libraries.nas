@@ -65,12 +65,7 @@ var systemsLoop = maketimer(0.1, func() {
 	mcdu.BASE.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
-	
-	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
-		pts.Systems.Shake.effect.setBoolValue(1);
-	} else {
-		pts.Systems.Shake.effect.setBoolValue(0);
-	}
+	SHAKE.loop();
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {
 		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
