@@ -1138,8 +1138,8 @@ var canvasBase = {
 		} else {
 			me["AI_banklimit_L"].setColor(1, 1, 1);
 			me["AI_banklimit_R"].setColor(1, 1, 1);
-			me["AI_PLI_dual_cue"].setColor(0.3398, 0.7852, 0.9883);
-			me["AI_PLI_single_cue"].setColor(0.3398, 0.7852, 0.9883);
+			me["AI_PLI_dual_cue"].setColor(0.3412, 0.7882, 0.9922);
+			me["AI_PLI_single_cue"].setColor(0.3412, 0.7882, 0.9922);
 		}
 		
 		# ALT
@@ -1428,7 +1428,7 @@ var canvasBase = {
 		Value.Nav.selectedMhz = pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue();
 		Value.Nav.signalQuality = pts.Instrumentation.Nav.signalQualityNorm[2].getValue();
 		if (Value.Nav.selectedMhz != 0 and (!Value.Nav.navLoc or Value.Nav.signalQuality < 0.99)) {
-			#me["LOC_no"].setColor(0.3398, 0.7852, 0.9883);
+			#me["LOC_no"].setColor(0.3412, 0.7882, 0.9922);
 			me["LOC_no"].show();
 		} else {
 			me["LOC_no"].hide();
@@ -1509,7 +1509,7 @@ var canvasBase = {
 		Value.Nav.gsInRange = pts.Instrumentation.Nav.gsInRange[2].getBoolValue();
 		Value.Nav.hasGs = pts.Instrumentation.Nav.hasGs[2].getBoolValue();
 		if (Value.Nav.selectedMhz != 0 and (!Value.Nav.gsInRange or !Value.Nav.hasGs or Value.Nav.signalQuality < 0.99)) {
-			#me["GS_no"].setColor(0.3398, 0.7852, 0.9883);
+			#me["GS_no"].setColor(0.3412, 0.7882, 0.9922);
 			me["GS_no"].show();
 		} else {
 			me["GS_no"].hide();
@@ -1919,7 +1919,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Afs.ap1 or Value.Afs.ap2) {
-			me["FMA_AP"].setColor(0.3398, 0.7852, 0.9883);
+			me["FMA_AP"].setColor(0.3412, 0.7882, 0.9922);
 			if (Value.Afs.land == "DUAL") {
 				me["FMA_AP"].setText("AP");
 			} else if (Value.Afs.ap1) {
