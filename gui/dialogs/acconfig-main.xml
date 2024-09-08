@@ -409,29 +409,6 @@
 			</checkbox>
 			
 			<checkbox>
-				<enable>
-					<and>
-						<equals>
-							<property>/options/eng</property>
-							<value>PW</value>
-						</equals>
-						<not><property>/systems/acconfig/options/eng-tapes</property></not>
-					</and>
-				</enable>
-				<label>EGT Dials Above N1 (PW Engines)</label>
-				<halign>left</halign>
-				<property>/systems/acconfig/options/egt-above-n1</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>acconfig.OPTIONS.write();</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
 				<label>Engine Tape Gauges (EAD &amp; SD)</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/eng-tapes</property>
@@ -449,6 +426,29 @@
 				<label>IESI Equipped</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/iesi-equipped</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<enable>
+					<and>
+						<equals>
+							<property>/options/eng</property>
+							<value>PW</value>
+						</equals>
+						<not><property>/systems/acconfig/options/eng-tapes</property></not>
+					</and>
+				</enable>
+				<label>N1 Dials Below EPR (PW Engines)</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/n1-below-epr</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

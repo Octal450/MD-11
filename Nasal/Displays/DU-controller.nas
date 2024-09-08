@@ -384,7 +384,7 @@ var DUController = {
 };
 
 # Update PW Dial Positions
-setlistener("/systems/acconfig/options/egt-above-n1", func() {
+setlistener("/systems/acconfig/options/n1-below-epr", func() {
 	if (DUController.eadType == "PW-Dials") {
 		canvas_ead.pwDials.setDials();
 	}

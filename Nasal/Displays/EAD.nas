@@ -1004,9 +1004,9 @@ var canvasPwDials = {
 		"N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setDials: func() {
-		if (pts.Systems.Acconfig.Options.egtAboveN1.getBoolValue()) {
-			me["EGT_group"].setTranslation(0, -153.127);
-			me["N1_group"].setTranslation(0, 153.127);
+		if (pts.Systems.Acconfig.Options.n1BelowEpr.getBoolValue()) {
+			me["EGT_group"].setTranslation(0, 153.127);
+			me["N1_group"].setTranslation(0, -153.127);
 		} else {
 			me["EGT_group"].setTranslation(0, 0);
 			me["N1_group"].setTranslation(0, 0);

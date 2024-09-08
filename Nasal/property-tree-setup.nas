@@ -355,9 +355,9 @@ var Systems = {
 				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
-			egtAboveN1: props.globals.getNode("/systems/acconfig/options/egt-above-n1"),
 			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
 			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
+			n1BelowEpr: props.globals.getNode("/systems/acconfig/options/n1-below-epr"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
