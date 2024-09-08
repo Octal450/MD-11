@@ -198,6 +198,7 @@ var canvasConfig = {
 			me["StabBox"].hide();
 			me["StabGreen"].hide();
 			me["StabNeedle"].setColorFill(1, 1, 1);
+			me["StabUnit"].setColor(1, 1, 1);
 		} else {
 			if (Value.Fctl.stabComp > 0) {
 				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
@@ -207,16 +208,19 @@ var canvasConfig = {
 					me["Stab"].setColor(0, 1, 0);
 					me["StabBox"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
+					me["StabUnit"].setColor(0, 1, 0);
 				} else {
 					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
 					me["StabBox"].show();
 					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 				}
 			} else {
 				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
 				me["StabBox"].show();
 				me["StabGreen"].hide();
 				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 			}
 		}
 		
@@ -630,6 +634,7 @@ var canvasEngBase = {
 			me["StabBox"].hide();
 			me["StabGreen"].hide();
 			me["StabNeedle"].setColorFill(1, 1, 1);
+			me["StabUnit"].setColor(1, 1, 1);
 		} else {
 			if (Value.Fctl.stabComp > 0) {
 				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
@@ -639,16 +644,19 @@ var canvasEngBase = {
 					me["Stab"].setColor(0, 1, 0);
 					me["StabBox"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
+					me["StabUnit"].setColor(0, 1, 0);
 				} else {
 					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
 					me["StabBox"].show();
 					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 				}
 			} else {
 				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
 				me["StabBox"].show();
 				me["StabGreen"].hide();
 				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 			}
 		}
 		
