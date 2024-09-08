@@ -247,7 +247,7 @@ var canvasConfig = {
 			} else {
 				me["AileronLUp"].setColorFill(0, 0, 0);
 			}
-			me["AileronLUp"].setTranslation(0, math.clamp(Value.Fctl.aileronL, -20, 0) * 2.04915);
+			me["AileronLUp"].setTranslation(0, math.clamp(Value.Fctl.aileronL, -20, 0) * 2.05);
 			me["AileronLUp"].show();
 		} else if (Value.Fctl.aileronL >= 0.5) {
 			me["AileronLUp"].hide();
@@ -256,7 +256,7 @@ var canvasConfig = {
 			} else {
 				me["AileronLDown"].setColorFill(0, 0, 0);
 			}
-			me["AileronLDown"].setTranslation(0, math.clamp(Value.Fctl.aileronL, 0, 20) * 2.04915);
+			me["AileronLDown"].setTranslation(0, math.clamp(Value.Fctl.aileronL, 0, 20) * 2.05);
 			me["AileronLDown"].show();
 		} else {
 			me["AileronLDown"].hide();
@@ -270,7 +270,7 @@ var canvasConfig = {
 			} else {
 				me["AileronRUp"].setColorFill(0, 0, 0);
 			}
-			me["AileronRUp"].setTranslation(0, math.clamp(Value.Fctl.aileronR, -20, 0) * 2.04915);
+			me["AileronRUp"].setTranslation(0, math.clamp(Value.Fctl.aileronR, -20, 0) * 2.05);
 			me["AileronRUp"].show();
 		} else if (Value.Fctl.aileronR >= 0.5) {
 			me["AileronRUp"].hide();
@@ -279,7 +279,7 @@ var canvasConfig = {
 			} else {
 				me["AileronRDown"].setColorFill(0, 0, 0);
 			}
-			me["AileronRDown"].setTranslation(0, math.clamp(Value.Fctl.aileronR, 0, 20) * 2.04915);
+			me["AileronRDown"].setTranslation(0, math.clamp(Value.Fctl.aileronR, 0, 20) * 2.05);
 			me["AileronRDown"].show();
 		} else {
 			me["AileronRDown"].hide();
@@ -296,7 +296,7 @@ var canvasConfig = {
 			} else {
 				me["SpoilerL"].setColorFill(0, 0, 0);
 			}
-			me["SpoilerL"].setTranslation(0, Value.Fctl.spoilerL * -0.68305);
+			me["SpoilerL"].setTranslation(0, Value.Fctl.spoilerL * -0.68333);
 			me["SpoilerL"].show();
 		} else {
 			me["SpoilerL"].hide();
@@ -308,7 +308,7 @@ var canvasConfig = {
 			} else {
 				me["SpoilerR"].setColorFill(0, 0, 0);
 			}
-			me["SpoilerR"].setTranslation(0, Value.Fctl.spoilerR * -0.68305);
+			me["SpoilerR"].setTranslation(0, Value.Fctl.spoilerR * -0.68333);
 			me["SpoilerR"].show();
 		} else {
 			me["SpoilerR"].hide();
@@ -325,7 +325,7 @@ var canvasConfig = {
 			} else {
 				me["ElevatorLUp"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -22, 0) * 1.18105);
+			me["ElevatorLUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, -22, 0) * 1.18181);
 			me["ElevatorLUp"].show();
 		} else if (Value.Fctl.elevatorL >= 0.5) {
 			me["ElevatorLUp"].hide();
@@ -334,7 +334,7 @@ var canvasConfig = {
 			} else {
 				me["ElevatorLDown"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 20) * 1.18105);
+			me["ElevatorLDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorL, 0, 20) * 1.18181);
 			me["ElevatorLDown"].show();
 		} else {
 			me["ElevatorLDown"].hide();
@@ -348,7 +348,7 @@ var canvasConfig = {
 			} else {
 				me["ElevatorRUp"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -22, 0) * 1.18105);
+			me["ElevatorRUp"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, -22, 0) * 1.18181);
 			me["ElevatorRUp"].show();
 		} else if (Value.Fctl.elevatorR >= 0.5) {
 			me["ElevatorRUp"].hide();
@@ -357,7 +357,7 @@ var canvasConfig = {
 			} else {
 				me["ElevatorRDown"].setColorFill(0, 0, 0);
 			}
-			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 20) * 1.18105);
+			me["ElevatorRDown"].setTranslation(0, math.clamp(Value.Fctl.elevatorR, 0, 20) * 1.18181);
 			me["ElevatorRDown"].show();
 		} else {
 			me["ElevatorRDown"].hide();
@@ -375,7 +375,7 @@ var canvasConfig = {
 			} else {
 				me["RudderUpperLeft"].setColorFill(0, 0, 0);
 			}
-			me["RudderUpperLeft"].setTranslation(math.clamp(Value.Fctl.rudderUpper, -30, 0) * 0.69943, 0);
+			me["RudderUpperLeft"].setTranslation(math.clamp(Value.Fctl.rudderUpper, -30, 0) * 0.7, 0);
 			me["RudderUpperLeft"].show();
 		} else if (Value.Fctl.rudderUpper >= 0.8) {
 			me["RudderUpperLeft"].hide();
@@ -384,7 +384,7 @@ var canvasConfig = {
 			} else {
 				me["RudderUpperRight"].setColorFill(0, 0, 0);
 			}
-			me["RudderUpperRight"].setTranslation(math.clamp(Value.Fctl.rudderUpper, 0, 30) * 0.69943, 0);
+			me["RudderUpperRight"].setTranslation(math.clamp(Value.Fctl.rudderUpper, 0, 30) * 0.7, 0);
 			me["RudderUpperRight"].show();
 		} else {
 			me["RudderUpperLeft"].hide();
@@ -398,7 +398,7 @@ var canvasConfig = {
 			} else {
 				me["RudderLowerLeft"].setColorFill(0, 0, 0);
 			}
-			me["RudderLowerLeft"].setTranslation(math.clamp(Value.Fctl.rudderLower, -30, 0) * 0.69943, 0);
+			me["RudderLowerLeft"].setTranslation(math.clamp(Value.Fctl.rudderLower, -30, 0) * 0.7, 0);
 			me["RudderLowerLeft"].show();
 		} else if (Value.Fctl.rudderLower >= 0.8) {
 			me["RudderLowerLeft"].hide();
@@ -407,7 +407,7 @@ var canvasConfig = {
 			} else {
 				me["RudderLowerRight"].setColorFill(0, 0, 0);
 			}
-			me["RudderLowerRight"].setTranslation(math.clamp(Value.Fctl.rudderLower, 0, 30) * 0.69943, 0);
+			me["RudderLowerRight"].setTranslation(math.clamp(Value.Fctl.rudderLower, 0, 30) * 0.7, 0);
 			me["RudderLowerRight"].show();
 		} else {
 			me["RudderLowerLeft"].hide();
