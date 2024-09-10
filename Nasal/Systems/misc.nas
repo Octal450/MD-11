@@ -345,7 +345,7 @@ var FADEC = {
 		me.Switch.altn3.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
-		me.Limit.pwDerate.setBoolValue(0);
+		me.Limit.pwDerate.setBoolValue(1);
 	},
 	loop: func() {
 		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();
@@ -359,6 +359,7 @@ var FADEC = {
 		} else if (afs.Output.spdProt.getValue() == 1) {
 			me.Limit.activeModeInt.setValue(2);
 			me.Limit.activeMode.setValue("MCT");
+			me.Limit.pwDerate.setBoolValue(1);
 		} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or pts.Controls.Flight.flapsInput.getValue() >= 2) {
 			if (me.anyEngineOut) {
 				me.Limit.activeModeInt.setValue(2);
@@ -367,6 +368,7 @@ var FADEC = {
 				me.Limit.activeModeInt.setValue(3);
 				me.Limit.activeMode.setValue("CLB");
 			}
+			me.Limit.pwDerate.setBoolValue(1);
 		} else {
 			if (me.anyEngineOut) {
 				me.Limit.activeModeInt.setValue(2);
@@ -375,6 +377,7 @@ var FADEC = {
 				me.Limit.activeModeInt.setValue(4);
 				me.Limit.activeMode.setValue("CRZ");
 			}
+			me.Limit.pwDerate.setBoolValue(1);
 		}
 	},
 };

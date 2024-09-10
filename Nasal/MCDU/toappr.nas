@@ -312,7 +312,6 @@ var Takeoff = {
 				fms.FlightData.flexActive = 0;
 				fms.FlightData.flexTemp = 0;
 				fms.EditFlightData.resetVspeeds();
-				systems.FADEC.Limit.pwDerate.setBoolValue(0); # This reset is temporary until the selection between 62K and 60K is available
 				mcdu.unit[me.id].scratchpadClear();
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");

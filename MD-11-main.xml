@@ -878,7 +878,7 @@
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
-					<pw-derate type="bool">0</pw-derate>
+					<pw-derate type="bool">1</pw-derate>
 				</limit>
 				<throttle-compare-max type="double">0</throttle-compare-max>
 				<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>

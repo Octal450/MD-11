@@ -212,9 +212,6 @@ var EditFlightData = {
 		FlightData.zfwcg = 0;
 		FlightData.zfwLbs = 0;
 		me.writeOut();
-		
-		# Reset other system logic
-		systems.FADEC.Limit.pwDerate.setBoolValue(0);
 	},
 	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
 		FlightDataOut.airportFromAlt.setValue(FlightData.airportFromAlt);
