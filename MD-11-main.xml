@@ -1172,7 +1172,7 @@
 			</key>
 			<key n="54">
 				<name>6</name>
-				<desc>AFS Panel/Aileron Right</desc>
+				<desc>Glareshield View/Aileron Right</desc>
 				<binding>
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
@@ -1190,7 +1190,7 @@
 			</key>
 			<key n="55">
 				<name>7</name>
-				<desc>Elevator Trim Down</desc>
+				<desc>MCDU View/Elevator Trim Down</desc>
 				<binding>
 					<condition>
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
