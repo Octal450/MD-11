@@ -16,13 +16,7 @@
 					<value>62.899</value>
 				</less-than>
 			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[0]/n2-actual</property>
-					<entry><ind> 0.0</ind><dep> 0.0</dep></entry>
-					<entry><ind>62.9</ind><dep>62.9</dep></entry>
-				</table>
-			</expression> 
+			<property>/engines/engine[0]/n2-actual</property>
 		</input>
 		<input>
 			<expression>
@@ -32,7 +26,7 @@
 					<entry><ind> 23.7</ind><dep> 62.9</dep></entry>
 					<entry><ind>117.5</ind><dep>112.6</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<output>/sim/sound/fake-n2[0]</output>
 	</filter>
@@ -47,13 +41,7 @@
 					<value>62.899</value>
 				</less-than>
 			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[1]/n2-actual</property>
-					<entry><ind> 0.0</ind><dep> 0.0</dep></entry>
-					<entry><ind>62.9</ind><dep>62.9</dep></entry>
-				</table>
-			</expression> 
+			<property>/engines/engine[1]/n2-actual</property>
 		</input>
 		<input>
 			<expression>
@@ -63,7 +51,7 @@
 					<entry><ind> 23.7</ind><dep> 62.9</dep></entry>
 					<entry><ind>117.5</ind><dep>112.6</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<output>/sim/sound/fake-n2[1]</output>
 	</filter>
@@ -78,13 +66,7 @@
 					<value>62.899</value>
 				</less-than>
 			</condition>
-			<expression>
-				<table>
-					<property>/engines/engine[2]/n2-actual</property>
-					<entry><ind> 0.0</ind><dep> 0.0</dep></entry>
-					<entry><ind>62.9</ind><dep>62.9</dep></entry>
-				</table>
-			</expression> 
+			<property>/engines/engine[2]/n2-actual</property>
 		</input>
 		<input>
 			<expression>
@@ -94,7 +76,7 @@
 					<entry><ind> 23.7</ind><dep> 62.9</dep></entry>
 					<entry><ind>117.5</ind><dep>112.6</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<output>/sim/sound/fake-n2[2]</output>
 	</filter>
@@ -117,7 +99,7 @@
 					<entry><ind>36.600</ind><dep>0.3</dep></entry>
 					<entry><ind>60.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-1-low-v</output>
@@ -138,7 +120,7 @@
 					<entry><ind>36.600</ind><dep>0.3</dep></entry>
 					<entry><ind>60.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-2-low-v</output>
@@ -159,7 +141,7 @@
 					<entry><ind>36.600</ind><dep>0.3</dep></entry>
 					<entry><ind>60.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-3-low-v</output>
@@ -178,7 +160,7 @@
 					<entry><ind> 23.7</ind><dep>1.000</dep></entry>
 					<entry><ind>100.0</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-1-low-p</output>
@@ -196,7 +178,7 @@
 					<entry><ind> 23.7</ind><dep>1.000</dep></entry>
 					<entry><ind>100.0</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-2-low-p</output>
@@ -214,7 +196,7 @@
 					<entry><ind> 23.7</ind><dep>1.000</dep></entry>
 					<entry><ind>100.0</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-3-low-p</output>
@@ -236,7 +218,7 @@
 					<entry><ind>28.000</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-1-v</output>
@@ -256,7 +238,7 @@
 					<entry><ind>28.000</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-2-v</output>
@@ -276,7 +258,7 @@
 					<entry><ind>28.000</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-3-v</output>
@@ -295,7 +277,7 @@
 					<entry><ind>23</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-1-p</output>
@@ -313,7 +295,7 @@
 					<entry><ind>23</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-2-p</output>
@@ -331,7 +313,7 @@
 					<entry><ind>23</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-3-p</output>
@@ -352,7 +334,7 @@
 					<entry><ind>28.5</ind><dep>0.4</dep></entry>
 					<entry><ind>50.0</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-1-v</output>
@@ -371,7 +353,7 @@
 					<entry><ind>28.5</ind><dep>0.4</dep></entry>
 					<entry><ind>50.0</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-2-v</output>
@@ -390,7 +372,7 @@
 					<entry><ind>28.5</ind><dep>0.4</dep></entry>
 					<entry><ind>50.0</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-3-v</output>
@@ -409,7 +391,7 @@
 					<entry><ind>23</ind><dep>0.95</dep></entry>
 					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-1-p</output>
@@ -427,7 +409,7 @@
 					<entry><ind>23</ind><dep>0.95</dep></entry>
 					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-2-p</output>
@@ -445,7 +427,7 @@
 					<entry><ind>23</ind><dep>0.95</dep></entry>
 					<entry><ind>55</ind><dep>1.30</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/idle-whistle-3-p</output>
@@ -468,7 +450,7 @@
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-1-v</output>
@@ -489,7 +471,7 @@
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-2-v</output>
@@ -510,7 +492,7 @@
 					<entry><ind>100.000</ind><dep>0.1367</dep></entry>
 					<entry><ind>110.000</ind><dep>0.0157</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-3-v</output>
@@ -529,7 +511,7 @@
 					<entry><ind> 23</ind><dep>0.5</dep></entry>
 					<entry><ind>110</ind><dep>2.1</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-1-p</output>
@@ -547,7 +529,7 @@
 					<entry><ind> 23</ind><dep>0.5</dep></entry>
 					<entry><ind>110</ind><dep>2.1</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-2-p</output>
@@ -565,7 +547,7 @@
 					<entry><ind> 23</ind><dep>0.5</dep></entry>
 					<entry><ind>110</ind><dep>2.1</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/spool-3-p</output>
@@ -586,7 +568,7 @@
 					<entry><ind> 88.000</ind><dep>0.0200</dep></entry>
 					<entry><ind>110.800</ind><dep>0.3000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-1-v</output>
@@ -605,7 +587,7 @@
 					<entry><ind> 88.000</ind><dep>0.0200</dep></entry>
 					<entry><ind>110.800</ind><dep>0.3000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-2-v</output>
@@ -624,7 +606,7 @@
 					<entry><ind> 88.000</ind><dep>0.0200</dep></entry>
 					<entry><ind>110.800</ind><dep>0.3000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-3-v</output>
@@ -643,7 +625,7 @@
 					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-1-p</output>
@@ -661,7 +643,7 @@
 					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-2-p</output>
@@ -679,7 +661,7 @@
 					<entry><ind> 50</ind><dep>0.5</dep></entry>
 					<entry><ind>100</ind><dep>1.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/power-3-p</output>
@@ -700,7 +682,7 @@
 					<entry><ind> 95</ind><dep>0.4</dep></entry>
 					<entry><ind>105</ind><dep>0.5</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-1-v</output>
@@ -719,7 +701,7 @@
 					<entry><ind> 95</ind><dep>0.4</dep></entry>
 					<entry><ind>105</ind><dep>0.5</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-2-v</output>
@@ -738,7 +720,7 @@
 					<entry><ind> 95</ind><dep>0.4</dep></entry>
 					<entry><ind>105</ind><dep>0.5</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-3-v</output>
@@ -759,7 +741,7 @@
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 					<entry><ind>120</ind><dep>1.09</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-1-p</output>
@@ -779,7 +761,7 @@
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 					<entry><ind>120</ind><dep>1.09</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-2-p</output>
@@ -799,7 +781,7 @@
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 					<entry><ind>120</ind><dep>1.09</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/growl-3-p</output>
@@ -823,7 +805,7 @@
 					</table>
 					<property>/engines/engine[0]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-1-v</output>
@@ -845,7 +827,7 @@
 					</table>
 					<property>/engines/engine[1]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-2-v</output>
@@ -867,7 +849,7 @@
 					</table>
 					<property>/engines/engine[2]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-3-v</output>
@@ -886,7 +868,7 @@
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-1-p</output>
@@ -904,7 +886,7 @@
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-2-p</output>
@@ -922,7 +904,7 @@
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/cockpit/reverse-3-p</output>
@@ -947,7 +929,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-low-v</output>
@@ -969,7 +951,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-low-v</output>
@@ -991,7 +973,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-low-v</output>
@@ -1010,7 +992,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-low-p</output>
@@ -1028,7 +1010,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-low-p</output>
@@ -1046,7 +1028,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-low-p</output>
@@ -1068,7 +1050,7 @@
 					<entry><ind>28.200</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-v</output>
@@ -1088,7 +1070,7 @@
 					<entry><ind>28.200</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-v</output>
@@ -1108,7 +1090,7 @@
 					<entry><ind>28.200</ind><dep>0.1</dep></entry>
 					<entry><ind>35.000</ind><dep>0.0</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-v</output>
@@ -1127,7 +1109,7 @@
 					<entry><ind>26</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-p</output>
@@ -1145,7 +1127,7 @@
 					<entry><ind>26</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-p</output>
@@ -1163,7 +1145,7 @@
 					<entry><ind>26</ind><dep>1.000</dep></entry>
 					<entry><ind>60</ind><dep>1.333</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-p</output>
@@ -1187,7 +1169,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-1-v</output>
@@ -1209,7 +1191,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-2-v</output>
@@ -1231,7 +1213,7 @@
 					<entry><ind>50.000</ind><dep>0.10</dep></entry>
 					<entry><ind>80.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-3-v</output>
@@ -1250,7 +1232,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-1-p</output>
@@ -1268,7 +1250,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-2-p</output>
@@ -1286,7 +1268,7 @@
 					<entry><ind> 26</ind><dep>1.000</dep></entry>
 					<entry><ind>100</ind><dep>4.000</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle2-3-p</output>
@@ -1307,7 +1289,7 @@
 					<entry><ind>28.200</ind><dep>0.75</dep></entry>
 					<entry><ind>50.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-whistle-v</output>
@@ -1326,7 +1308,7 @@
 					<entry><ind>28.200</ind><dep>0.75</dep></entry>
 					<entry><ind>50.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-whistle-v</output>
@@ -1345,7 +1327,7 @@
 					<entry><ind>28.200</ind><dep>0.75</dep></entry>
 					<entry><ind>50.000</ind><dep>0.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-whistle-v</output>
@@ -1364,7 +1346,7 @@
 					<entry><ind>25</ind><dep>0.950</dep></entry>
 					<entry><ind>50</ind><dep>1.300</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-1-whistle-p</output>
@@ -1382,7 +1364,7 @@
 					<entry><ind>25</ind><dep>0.950</dep></entry>
 					<entry><ind>50</ind><dep>1.300</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-2-whistle-p</output>
@@ -1400,7 +1382,7 @@
 					<entry><ind>25</ind><dep>0.950</dep></entry>
 					<entry><ind>50</ind><dep>1.300</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/idle-3-whistle-p</output>
@@ -1422,7 +1404,7 @@
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-1-v</output>
@@ -1442,7 +1424,7 @@
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-2-v</output>
@@ -1462,7 +1444,7 @@
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-3-v</output>
@@ -1481,7 +1463,7 @@
 					<entry><ind> 25</ind><dep>0.50</dep></entry>
 					<entry><ind>110</ind><dep>2.10</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-1-p</output>
@@ -1499,7 +1481,7 @@
 					<entry><ind> 25</ind><dep>0.50</dep></entry>
 					<entry><ind>110</ind><dep>2.10</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-2-p</output>
@@ -1517,7 +1499,7 @@
 					<entry><ind> 25</ind><dep>0.50</dep></entry>
 					<entry><ind>110</ind><dep>2.10</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/spool-3-p</output>
@@ -1537,7 +1519,7 @@
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
 					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-1-v</output>
@@ -1555,7 +1537,7 @@
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
 					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-2-v</output>
@@ -1573,7 +1555,7 @@
 					<entry><ind>88.000</ind><dep>0.00</dep></entry>
 					<entry><ind>95.000</ind><dep>1.50</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-3-v</output>
@@ -1592,7 +1574,7 @@
 					<entry><ind> 88</ind><dep>0.80</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-1-p</output>
@@ -1610,7 +1592,7 @@
 					<entry><ind> 88</ind><dep>0.80</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-2-p</output>
@@ -1628,7 +1610,7 @@
 					<entry><ind> 88</ind><dep>0.80</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/roar-3-p</output>
@@ -1648,7 +1630,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-1-v</output>
@@ -1666,7 +1648,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-2-v</output>
@@ -1684,7 +1666,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-3-v</output>
@@ -1703,7 +1685,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-1-p</output>
@@ -1721,7 +1703,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-2-p</output>
@@ -1739,7 +1721,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/whoosh-3-p</output>
@@ -1759,7 +1741,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-1-v</output>
@@ -1777,7 +1759,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-2-v</output>
@@ -1795,7 +1777,7 @@
 					<entry><ind> 60</ind><dep>0.00</dep></entry>
 					<entry><ind>110</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-3-v</output>
@@ -1814,7 +1796,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-1-p</output>
@@ -1832,7 +1814,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-2-p</output>
@@ -1850,7 +1832,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-side-3-p</output>
@@ -1871,7 +1853,7 @@
 					<entry><ind>54.0</ind><dep>0.024</dep></entry>
 					<entry><ind>99.8</ind><dep>0.936</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-1-v</output>
@@ -1890,7 +1872,7 @@
 					<entry><ind>54.0</ind><dep>0.024</dep></entry>
 					<entry><ind>99.8</ind><dep>0.936</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-2-v</output>
@@ -1909,7 +1891,7 @@
 					<entry><ind>54.0</ind><dep>0.024</dep></entry>
 					<entry><ind>99.8</ind><dep>0.936</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-3-v</output>
@@ -1928,7 +1910,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-1-p</output>
@@ -1946,7 +1928,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-2-p</output>
@@ -1964,7 +1946,7 @@
 					<entry><ind>  0</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/rumble-3-p</output>
@@ -1988,7 +1970,7 @@
 					</table>
 					<property>/engines/engine[0]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/reverse-1-v</output>
@@ -2010,7 +1992,7 @@
 					</table>
 					<property>/engines/engine[1]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/reverse-2-v</output>
@@ -2032,7 +2014,7 @@
 					</table>
 					<property>/engines/engine[2]/reverser-pos-norm</property>
 				</product>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/reverse-3-v</output>
@@ -2087,7 +2069,7 @@
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
-			</expression> 
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/sim/sound/external/reverse-3-p</output>
