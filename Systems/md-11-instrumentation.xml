@@ -361,8 +361,8 @@
 			<input>/instrumentation/pfd/slip-skid-cmd</input> <!-- Take from PFD -->
 			<gain>1.0</gain>
 			<clipto>
-				<min>-13</min>
-				<max>13</max>
+				<min>-12</min>
+				<max>12</max>
 			</clipto>
 		</pure_gain>
 		

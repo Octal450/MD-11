@@ -52,7 +52,7 @@
      id="namedview371"
      showgrid="false"
      inkscape:zoom="0.70710682"
-     inkscape:cx="626.26985"
+     inkscape:cx="385.14645"
      inkscape:cy="458.39223"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
@@ -1732,29 +1732,6 @@
        id="tspan4468"
        sodipodi:role="line">IN</tspan></text>
   <g
-     id="AI_bank"
-     inkscape:label="#g4337"
-     inkscape:transform-center-y="-134.09131">
-    <path
-       inkscape:label="#rect4171"
-       sodipodi:nodetypes="cccc"
-       inkscape:connector-curvature="0"
-       id="AI_bankt"
-       d="M 264.133,70.045 255.99898,55.949884 247.865,70.045 c 5.42267,0 10.84533,0 16.268,0 z"
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:transform-center-y="202.16519"
-       inkscape:transform-center-x="0.0033924869" />
-    <path
-       inkscape:transform-center-x="0.0033924869"
-       inkscape:transform-center-y="202.16519"
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 243.099,78.304005 25.8,0 -4.766,-8.259005 c -5.42267,0 -10.84533,0 -16.268,0 z"
-       id="AI_slipskid"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc"
-       inkscape:label="#rect4171" />
-  </g>
-  <g
      id="AI_bank_index"
      inkscape:label="#g4299">
     <path
@@ -1870,6 +1847,29 @@
        id="path4312"
        d="m 131.03315,129.35611 c 25.71753,-44.724153 73.37538,-72.294907 124.96647,-72.294907 51.59109,0 99.24894,27.570754 124.96647,72.294907"
        style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:3.49043059;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="AI_bank"
+     inkscape:label="#g4337"
+     inkscape:transform-center-y="-134.09131">
+    <path
+       inkscape:label="#rect4171"
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="AI_bankt"
+       d="M 264.133,70.045 255.99898,55.949884 247.865,70.045 c 5.42267,0 10.84533,0 16.268,0 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:transform-center-y="202.16519"
+       inkscape:transform-center-x="0.0033924869" />
+    <path
+       inkscape:transform-center-x="0.0033924869"
+       inkscape:transform-center-y="202.16519"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 243.099,78.304005 25.8,0 -4.766,-8.259005 c -5.42267,0 -10.84533,0 -16.268,0 z"
+       id="AI_slipskid"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:label="#rect4171" />
   </g>
   <g
      id="HDG_error"
