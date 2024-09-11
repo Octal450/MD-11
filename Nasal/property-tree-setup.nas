@@ -212,6 +212,9 @@ var Instrumentation = {
 			trueNorth: [props.globals.initNode("/instrumentation/efis[0]/mfd/true-north", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/mfd/true-north", 0, "BOOL")],
 		},
 	},
+	Iesi: {
+		slipSkid: props.globals.initNode("/instrumentation/iesi/slip-skid", 0, "DOUBLE"),
+	},
 	MarkerBeacon: {
 		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
 		middle: props.globals.getNode("/instrumentation/marker-beacon/middle"),

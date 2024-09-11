@@ -9,6 +9,7 @@ var Value = {
 		center: nil,
 		pitch: 0,
 		roll: 0,
+		slipSkid: 0,
 	},
 	Alt: {
 		indicated: 0,
@@ -178,7 +179,13 @@ var canvasIesi = {
 			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.6644);
 			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			
-			me["AI_slipskid"].setTranslation(pts.Instrumentation.Pfd.slipSkid.getValue() * 4.05, 0);
+			Value.Ai.slipSkid = pts.Instrumentation.Iesi.slipSkid.getValue() * 4.235;
+			if (abs(Value.Ai.slipSkid) >= 16.268) {
+				me["AI_slipskid"].setColorFill(0.9647, 0.8196, 0.0784);
+			} else {
+				me["AI_slipskid"].setColorFill(1, 1, 1);
+			}
+			me["AI_slipskid"].setTranslation(Value.Ai.slipSkid, 0);
 			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
 			
 			me["AI_horizon"].show();
