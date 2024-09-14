@@ -49,9 +49,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="3.6349376"
-     inkscape:cx="1068.6976"
-     inkscape:cy="704.9971"
+     inkscape:zoom="0.64257226"
+     inkscape:cx="343.34043"
+     inkscape:cy="953.11512"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -1693,7 +1693,7 @@
        id="tspan4599"
        x="202.76997"
        y="43.217033"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">T/O LIM ( 00gC)</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">60K T/O FLEX ( 00gC)</tspan></text>
   <text
      transform="scale(1.0000015,0.9999985)"
      inkscape:label="#text5233"
@@ -2219,4 +2219,25 @@
          inkscape:label="#path5088" />
     </g>
   </g>
+  <path
+     inkscape:label="#rect4649"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="EPRLimFlexBox"
+     d="m 196.87,10.737 362.478,0 0,40.08 -362.478,0 z"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     inkscape:label="#rect4649"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="EPRLimToBox"
+     d="m 196.87,10.737 207.444,0 0,40.08 -207.444,0 z"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 196.87,10.737 138.109,0 0,40.08 -138.109,0 z"
+     id="EPRLimBox"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc"
+     inkscape:label="#rect4649" />
 </svg>

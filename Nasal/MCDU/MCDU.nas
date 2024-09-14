@@ -34,6 +34,7 @@ var MCDU = {
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
+			thrLim: ThrLim.new(n),
 			takeoff: Takeoff.new(n),
 		};
 		
@@ -216,7 +217,7 @@ var MCDU = {
 		}
 	},
 	setPage: func(p) {
-		if (p == "menu" and me.page.group == "fmc") {
+		if (me.page.group == "fmc") {
 			me.lastFmcPage = me.page.name;
 		}
 		

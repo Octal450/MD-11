@@ -14,6 +14,7 @@ var Value = {
 	eprLimit: 0,
 	Fadec: {
 		activeMode: "T/O",
+		auto: 0,
 		egt: [0, 0, 0],
 		engPowered: [0, 0, 0],
 		epr: [0, 0, 0],
@@ -612,9 +613,9 @@ var canvasGeDials = {
 		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds",
 		"N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens", "N12_tens_zero", "N12_thr",
-		"N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimMode", "N21", "N21_cline", "N21_decpnt",
-		"N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt", "N23_decimal", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2",
-		"REV3", "TAT", "TAT_error"];
+		"N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21",
+		"N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt", "N23_decimal", "N23_error", "N23_needle",
+		"N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -664,13 +665,32 @@ var canvasGeDials = {
 		
 		# N1 Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
+		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.n1Limit = systems.FADEC.Limit.active.getValue();
 		Value.Fadec.n1LimitFixed = Value.Fadec.n1Limit + 0.05;
 		
 		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+			me["N1LimBox"].hide();
 			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+			
+			if (!Value.Fadec.auto) {
+				me["N1LimFlexBox"].show();
+				me["N1LimMode"].setColor(1, 1, 1);
+			} else {
+				me["N1LimFlexBox"].hide();
+				me["N1LimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		} else {
+			me["N1LimFlexBox"].hide();
 			me["N1LimMode"].setText(Value.Fadec.activeMode ~ " LIM");
+			
+			if (!Value.Fadec.auto) {
+				me["N1LimBox"].show();
+				me["N1LimMode"].setColor(1, 1, 1);
+			} else {
+				me["N1LimBox"].hide();
+				me["N1LimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		}
 		
 		me["N1Lim"].setText(sprintf("%d", math.floor(Value.Fadec.n1LimitFixed)));
@@ -829,8 +849,8 @@ var canvasGeTapes = {
 		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_decimal", "N11_error", "N11_group",
 		"N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim", "N13_redline", "N13_thr", "N1Lim", "N1Lim_decimal",
-		"N1Lim_error", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline",
-		"N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23",
+		"N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -880,13 +900,32 @@ var canvasGeTapes = {
 		
 		# N1 Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
+		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.n1Limit = systems.FADEC.Limit.active.getValue();
 		Value.Fadec.n1LimitFixed = Value.Fadec.n1Limit + 0.05;
 		
 		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+			me["N1LimBox"].hide();
 			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+			
+			if (!Value.Fadec.auto) {
+				me["N1LimFlexBox"].show();
+				me["N1LimMode"].setColor(1, 1, 1);
+			} else {
+				me["N1LimFlexBox"].hide();
+				me["N1LimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		} else {
+			me["N1LimFlexBox"].hide();
 			me["N1LimMode"].setText(Value.Fadec.activeMode ~ " LIM");
+			
+			if (!Value.Fadec.auto) {
+				me["N1LimBox"].show();
+				me["N1LimMode"].setColor(1, 1, 1);
+			} else {
+				me["N1LimBox"].hide();
+				me["N1LimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		}
 		
 		me["N1Lim"].setText(sprintf("%d", math.floor(Value.Fadec.n1LimitFixed)));
@@ -999,9 +1038,10 @@ var canvasPwDials = {
 		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box",
 		"EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim",
-		"EPRLim_decimal", "EPRLim_error", "EPRLimMode", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error", "N11_needle", "N11_redline", "N12", "N12_decimal", "N12_decpnt",
-		"N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline",
-		"N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error", "N11_needle",
+		"N11_redline", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt", "N21_error",
+		"N21_needle", "N21_redline", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT",
+		"TAT_error"];
 	},
 	setDials: func() {
 		if (pts.Systems.Acconfig.Options.n1BelowEpr.getBoolValue()) {
@@ -1066,6 +1106,7 @@ var canvasPwDials = {
 		
 		# EPR Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
+		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.eprLimit = systems.FADEC.Limit.active.getValue();
 		Value.Fadec.eprLimitFixed = Value.Fadec.eprLimit + 0.005;
 		
@@ -1077,12 +1118,42 @@ var canvasPwDials = {
 			}
 			
 			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+				me["EPRLimBox"].hide();
+				me["EPRLimToBox"].hide();
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+				
+				if (!Value.Fadec.auto) {
+					me["EPRLimFlexBox"].show();
+					me["EPRLimMode"].setColor(1, 1, 1);
+				} else {
+					me["EPRLimFlexBox"].hide();
+					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+				}
 			} else {
+				me["EPRLimBox"].hide();
+				me["EPRLimFlexBox"].hide();
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " " ~ Value.Fadec.activeMode ~ " LIM");
+				
+				if (!Value.Fadec.auto) {
+					me["EPRLimToBox"].show();
+					me["EPRLimMode"].setColor(1, 1, 1);
+				} else {
+					me["EPRLimToBox"].hide();
+					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+				}
 			}
 		} else {
+			me["EPRLimFlexBox"].hide();
+			me["EPRLimToBox"].hide();
 			me["EPRLimMode"].setText(Value.Fadec.activeMode ~ " LIM");
+				
+			if (!Value.Fadec.auto) {
+				me["EPRLimBox"].show();
+				me["EPRLimMode"].setColor(1, 1, 1);
+			} else {
+				me["EPRLimBox"].hide();
+				me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		}
 		
 		me["EPRLim"].setText(sprintf("%d", math.floor(Value.Fadec.eprLimitFixed)));
@@ -1280,9 +1351,10 @@ var canvasPwTapes = {
 	getKeys: func() {
 		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
 		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_error", "EPR2_group",
-		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimMode", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2",
-		"FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline",
-		"N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2",
+		"FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21", "N21_bar", "N21_cline",
+		"N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3",
+		"TAT", "TAT_error"];
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -1338,6 +1410,7 @@ var canvasPwTapes = {
 		
 		# EPR Limit
 		Value.Fadec.activeMode = systems.FADEC.Limit.activeMode.getValue();
+		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.eprLimit = systems.FADEC.Limit.active.getValue();
 		Value.Fadec.eprLimitFixed = Value.Fadec.eprLimit + 0.005;
 		
@@ -1349,12 +1422,42 @@ var canvasPwTapes = {
 			}
 			
 			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+				me["EPRLimBox"].hide();
+				me["EPRLimToBox"].hide();
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+				
+				if (!Value.Fadec.auto) {
+					me["EPRLimFlexBox"].show();
+					me["EPRLimMode"].setColor(1, 1, 1);
+				} else {
+					me["EPRLimFlexBox"].hide();
+					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+				}
 			} else {
+				me["EPRLimBox"].hide();
+				me["EPRLimFlexBox"].hide();
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " " ~ Value.Fadec.activeMode ~ " LIM");
+				
+				if (!Value.Fadec.auto) {
+					me["EPRLimToBox"].show();
+					me["EPRLimMode"].setColor(1, 1, 1);
+				} else {
+					me["EPRLimToBox"].hide();
+					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+				}
 			}
 		} else {
+			me["EPRLimFlexBox"].hide();
+			me["EPRLimToBox"].hide();
 			me["EPRLimMode"].setText(Value.Fadec.activeMode ~ " LIM");
+				
+			if (!Value.Fadec.auto) {
+				me["EPRLimBox"].show();
+				me["EPRLimMode"].setColor(1, 1, 1);
+			} else {
+				me["EPRLimBox"].hide();
+				me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+			}
 		}
 		
 		me["EPRLim"].setText(sprintf("%d", math.floor(Value.Fadec.eprLimitFixed)));

@@ -41,9 +41,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="988.70381"
-     inkscape:cy="759.06695"
+     inkscape:zoom="2"
+     inkscape:cx="407.30986"
+     inkscape:cy="1195.3858"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -1913,7 +1913,7 @@
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:43px;line-height:125%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#f500c6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="220.41838"
-     y="43.408604"
+     y="43.217064"
      id="N1LimMode"
      sodipodi:linespacing="125%"
      inkscape:label="#text5233"
@@ -1921,19 +1921,19 @@
        sodipodi:role="line"
        id="tspan4599"
        x="220.41838"
-       y="43.408604"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">T/O LIM ( 00gC)</tspan></text>
+       y="43.217064"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">T/O FLEX ( 00gC)</tspan></text>
   <text
      transform="scale(1.0000024,0.9999976)"
      inkscape:label="#text5233"
      sodipodi:linespacing="125%"
      id="N1Lim_decpnt"
-     y="43.408649"
+     y="43.217102"
      x="164.44295"
      style="font-style:normal;font-weight:normal;font-size:41px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#f500c6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:center;text-anchor:middle;fill:#f500c6;fill-opacity:1"
-       y="43.408649"
+       y="43.217102"
        x="164.44295"
        id="tspan4766"
        sodipodi:role="line">.</tspan></text>
@@ -1942,12 +1942,12 @@
      inkscape:label="#text5233"
      sodipodi:linespacing="125%"
      id="N1Lim"
-     y="43.408585"
+     y="43.217037"
      x="159.58635"
      style="font-style:normal;font-weight:normal;font-size:43px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#f500c6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:end;text-anchor:end;fill:#f500c6;fill-opacity:1"
-       y="43.408585"
+       y="43.217037"
        x="159.58635"
        id="tspan4770"
        sodipodi:role="line">100</tspan></text>
@@ -1955,7 +1955,7 @@
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:43px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#f500c6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="191.28128"
-     y="43.408585"
+     y="43.217037"
      id="N1Lim_decimal"
      sodipodi:linespacing="125%"
      inkscape:label="#text5233"
@@ -1963,7 +1963,7 @@
        sodipodi:role="line"
        id="tspan4774"
        x="191.28128"
-       y="43.408585"
+       y="43.217037"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:41px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:end;text-anchor:end;fill:#f500c6;fill-opacity:1">0</tspan></text>
   <g
      id="N1Lim_error"
@@ -2033,4 +2033,18 @@
        style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:1.33231854;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="#path5088" />
   </g>
+  <path
+     inkscape:label="#rect4649"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="N1LimFlexBox"
+     d="m 213.882,10.736999 291.58,0 0,40.080001 -291.58,0 z"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 213.882,10.736999 138.109,0 0,40.080001 -138.109,0 z"
+     id="N1LimBox"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc"
+     inkscape:label="#rect4649" />
 </svg>

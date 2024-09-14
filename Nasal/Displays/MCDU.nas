@@ -283,57 +283,57 @@ var canvasBase = {
 	updateTranslation: func(n) {
 		if (Value.titleTranslate[n] != mcdu.unit[n].page.Display.titleTranslate) {
 			Value.titleTranslate[n] = mcdu.unit[n].page.Display.titleTranslate;
-			me["Title"].setTranslation(mcdu.unit[n].page.Display.titleTranslate * 38.769826, 0);
+			me["Title"].setTranslation(mcdu.unit[n].page.Display.titleTranslate * 38.77, 0);
 		}
 		
 		if (Value.CTranslate[n][0] != mcdu.unit[n].page.Display.CTranslate[0]) {
 			Value.CTranslate[n][0] = mcdu.unit[n].page.Display.CTranslate[0];
-			me["C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0] * 38.769826, 0);
+			me["C1"].setTranslation(mcdu.unit[n].page.Display.CTranslate[0] * 38.77, 0);
 		}
 		if (Value.CTranslate[n][1] != mcdu.unit[n].page.Display.CTranslate[1]) {
 			Value.CTranslate[n][1] = mcdu.unit[n].page.Display.CTranslate[1];
-			me["C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1] * 38.769826, 0);
+			me["C2"].setTranslation(mcdu.unit[n].page.Display.CTranslate[1] * 38.77, 0);
 		}
 		if (Value.CTranslate[n][2] != mcdu.unit[n].page.Display.CTranslate[2]) {
 			Value.CTranslate[n][2] = mcdu.unit[n].page.Display.CTranslate[2];
-			me["C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2] * 38.769826, 0);
+			me["C3"].setTranslation(mcdu.unit[n].page.Display.CTranslate[2] * 38.77, 0);
 		}
 		if (Value.CTranslate[n][3] != mcdu.unit[n].page.Display.CTranslate[3]) {
 			Value.CTranslate[n][3] = mcdu.unit[n].page.Display.CTranslate[3];
-			me["C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3] * 38.769826, 0);
+			me["C4"].setTranslation(mcdu.unit[n].page.Display.CTranslate[3] * 38.77, 0);
 		}
 		if (Value.CTranslate[n][4] != mcdu.unit[n].page.Display.CTranslate[4]) {
 			Value.CTranslate[n][4] = mcdu.unit[n].page.Display.CTranslate[4];
-			me["C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4] * 38.769826, 0);
+			me["C5"].setTranslation(mcdu.unit[n].page.Display.CTranslate[4] * 38.77, 0);
 		}
 		if (Value.CTranslate[n][5] != mcdu.unit[n].page.Display.CTranslate[5]) {
 			Value.CTranslate[n][5] = mcdu.unit[n].page.Display.CTranslate[5];
-			me["C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5] * 38.769826, 0);
+			me["C6"].setTranslation(mcdu.unit[n].page.Display.CTranslate[5] * 38.77, 0);
 		}
 		
 		if (Value.CLTranslate[n][0] != mcdu.unit[n].page.Display.CLTranslate[0]) {
 			Value.CLTranslate[n][0] = mcdu.unit[n].page.Display.CLTranslate[0];
-			me["C1_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[0] * 38.769826, 0);
+			me["C1_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[0] * 38.77, 0);
 		}
 		if (Value.CLTranslate[n][1] != mcdu.unit[n].page.Display.CLTranslate[1]) {
 			Value.CLTranslate[n][1] = mcdu.unit[n].page.Display.CLTranslate[1];
-			me["C2_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[1] * 38.769826, 0);
+			me["C2_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[1] * 38.77, 0);
 		}
 		if (Value.CLTranslate[n][2] != mcdu.unit[n].page.Display.CLTranslate[2]) {
 			Value.CLTranslate[n][2] = mcdu.unit[n].page.Display.CLTranslate[2];
-			me["C3_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[2] * 38.769826, 0);
+			me["C3_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[2] * 38.77, 0);
 		}
 		if (Value.CLTranslate[n][3] != mcdu.unit[n].page.Display.CLTranslate[3]) {
 			Value.CLTranslate[n][3] = mcdu.unit[n].page.Display.CLTranslate[3];
-			me["C4_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[3] * 38.769826, 0);
+			me["C4_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[3] * 38.77, 0);
 		}
 		if (Value.CLTranslate[n][4] != mcdu.unit[n].page.Display.CLTranslate[4]) {
 			Value.CLTranslate[n][4] = mcdu.unit[n].page.Display.CLTranslate[4];
-			me["C5_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[4] * 38.769826, 0);
+			me["C5_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[4] * 38.77, 0);
 		}
 		if (Value.CLTranslate[n][5] != mcdu.unit[n].page.Display.CLTranslate[5]) {
 			Value.CLTranslate[n][5] = mcdu.unit[n].page.Display.CLTranslate[5];
-			me["C6_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[5] * 38.769826, 0);
+			me["C6_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[5] * 38.77, 0);
 		}
 	},
 };

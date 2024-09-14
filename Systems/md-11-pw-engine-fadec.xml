@@ -379,6 +379,41 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fadec/limit/takeoff-no-flex-ref">
+			<function>
+				<sum>
+					<product>
+						<table>
+							<independentVar lookup="row">fadec/limit/takeoff-input</independentVar>
+							<tableData>
+								   65768.7  0.03
+								14591440.5  1.00
+							</tableData>
+						</table>
+						<property>fadec/epr/c1</property>
+					</product>
+					<property>fadec/epr/c2</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="fadec/limit/takeoff-no-flex">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/takeoff-no-flex-ref</property>
+								<value>1000</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>1000</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
 			<input>-/fms/flight-data/flex-temp</input>
@@ -498,19 +533,12 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/takeoff-final-input">
-			<default value="fadec/limit/takeoff-input"/>
-			<test value="fadec/limit/takeoff-flex-input">
-				/fms/flight-data/flex-active eq 1
-			</test>
-		</switch>
-		
-		<fcs_function name="fadec/limit/takeoff-ref">
+		<fcs_function name="fadec/limit/takeoff-flex-ref">
 			<function>
 				<sum>
 					<product>
 						<table>
-							<independentVar lookup="row">fadec/limit/takeoff-final-input</independentVar>
+							<independentVar lookup="row">fadec/limit/takeoff-flex-input</independentVar>
 							<tableData>
 								   65768.7  0.03
 								14591440.5  1.00
@@ -523,13 +551,13 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fadec/limit/takeoff">
+		<fcs_function name="fadec/limit/takeoff-flex">
 			<function>
 				<quotient>
 					<integer>
 						<sum>
 							<product>
-								<property>fadec/limit/takeoff-ref</property>
+								<property>fadec/limit/takeoff-flex-ref</property>
 								<value>1000</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -539,6 +567,13 @@
 				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="fadec/limit/takeoff">
+			<default value="fadec/limit/takeoff-no-flex"/>
+			<test value="fadec/limit/takeoff-flex">
+				/fms/flight-data/flex-active eq 1
+			</test>
+		</switch>
 		
 		<fcs_function name="fadec/limit/mct-input">
 			<function>

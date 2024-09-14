@@ -195,6 +195,23 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="fadec/limit/takeoff-no-flex">
+			<function>
+				<quotient>
+					<integer>
+						<sum>
+							<product>
+								<property>fadec/limit/takeoff-ref</property>
+								<value>10</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</integer>
+					<value>10</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
 		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
 			<input>-/fms/flight-data/flex-temp</input>
@@ -243,20 +260,13 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fadec/limit/takeoff-final-ref">
-			<default value="fadec/limit/takeoff-ref"/>
-			<test value="fadec/limit/takeoff-flex-ref">
-				/fms/flight-data/flex-active eq 1
-			</test>
-		</switch>
-		
-		<fcs_function name="fadec/limit/takeoff">
+		<fcs_function name="fadec/limit/takeoff-flex">
 			<function>
 				<quotient>
 					<integer>
 						<sum>
 							<product>
-								<property>fadec/limit/takeoff-final-ref</property>
+								<property>fadec/limit/takeoff-flex-ref</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -266,6 +276,13 @@
 				</quotient>
 			</function>
 		</fcs_function>
+		
+		<switch name="fadec/limit/takeoff">
+			<default value="fadec/limit/takeoff-no-flex"/>
+			<test value="fadec/limit/takeoff-flex">
+				/fms/flight-data/flex-active eq 1
+			</test>
+		</switch>
 		
 		<fcs_function name="fadec/limit/mct-ref">
 			<function>

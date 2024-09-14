@@ -327,12 +327,15 @@ var FADEC = {
 		activeMode: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode"),
 		activeModeInt: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-mode-int"), # 0 T/O, 1 G/A, 2 MCT, 3 CLB, 4 CRZ
 		activeNorm: props.globals.getNode("/fdm/jsbsim/fadec/limit/active-norm"),
+		auto: props.globals.getNode("/fdm/jsbsim/fadec/limit/auto"),
 		cruise: props.globals.getNode("/fdm/jsbsim/fadec/limit/cruise"),
 		climb: props.globals.getNode("/fdm/jsbsim/fadec/limit/climb"),
 		goAround: props.globals.getNode("/fdm/jsbsim/fadec/limit/go-around"),
 		mct: props.globals.getNode("/fdm/jsbsim/fadec/limit/mct"),
 		pwDerate: props.globals.getNode("/fdm/jsbsim/fadec/limit/pw-derate"),
 		takeoff: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff"),
+		takeoffFlex: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff-flex"),
+		takeoffNoFlex: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff-no-flex"),
 	},
 	Switch: {
 		altn1: props.globals.getNode("/controls/fadec/switches/altn-1"),
@@ -345,39 +348,61 @@ var FADEC = {
 		me.Switch.altn3.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
+		me.Limit.auto.setBoolValue(1);
 		me.Limit.pwDerate.setBoolValue(1);
 	},
 	loop: func() {
 		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();
 		me.pitchMode = afs.Text.vert.getValue();
-		if (me.pitchMode == "G/A CLB") {
-			me.Limit.activeModeInt.setValue(1);
-			me.Limit.activeMode.setValue("G/A");
-		} else if (me.pitchMode == "T/O CLB") {
+		
+		if (me.Limit.auto.getBoolValue()) {
+			if (me.pitchMode == "G/A CLB") {
+				me.setMode(1, 1); # G/A
+			} else if (me.pitchMode == "T/O CLB") {
+				me.setMode(0, 1); # T/O
+			} else if (afs.Output.spdProt.getValue() == 1) {
+				me.setMode(2, 1); # MCT
+			} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or pts.Controls.Flight.flapsInput.getValue() >= 2) {
+				if (me.anyEngineOut) {
+					me.setMode(2, 1); # MCT
+				} else {
+					me.setMode(3, 1); # CLB
+				}
+			} else {
+				if (me.anyEngineOut) {
+					me.setMode(2, 1); # MCT
+				} else {
+					me.setMode(4, 1); # CRZ
+				}
+			}
+		}
+	},
+	setMode: func(m, nfr = 0) {
+		if (m == 0) {
 			me.Limit.activeModeInt.setValue(0);
 			me.Limit.activeMode.setValue("T/O");
-		} else if (afs.Output.spdProt.getValue() == 1) {
+		} else if (m == 1) {
+			me.Limit.activeModeInt.setValue(1);
+			me.Limit.activeMode.setValue("G/A");
+		} else if (m == 2) {
 			me.Limit.activeModeInt.setValue(2);
 			me.Limit.activeMode.setValue("MCT");
 			me.Limit.pwDerate.setBoolValue(1);
-		} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or pts.Controls.Flight.flapsInput.getValue() >= 2) {
-			if (me.anyEngineOut) {
-				me.Limit.activeModeInt.setValue(2);
-				me.Limit.activeMode.setValue("MCT");
-			} else {
-				me.Limit.activeModeInt.setValue(3);
-				me.Limit.activeMode.setValue("CLB");
-			}
+		} else if (m == 3) {
+			me.Limit.activeModeInt.setValue(3);
+			me.Limit.activeMode.setValue("CLB");
 			me.Limit.pwDerate.setBoolValue(1);
-		} else {
-			if (me.anyEngineOut) {
-				me.Limit.activeModeInt.setValue(2);
-				me.Limit.activeMode.setValue("MCT");
-			} else {
-				me.Limit.activeModeInt.setValue(4);
-				me.Limit.activeMode.setValue("CRZ");
-			}
+		} else if (m == 4) {
+			me.Limit.activeModeInt.setValue(4);
+			me.Limit.activeMode.setValue("CRZ");
 			me.Limit.pwDerate.setBoolValue(1);
+		}
+		
+		if (m != 0 and !nfr) { # NFR = Don't reset while in auto mode
+			if (fms.FlightData.flexActive) {
+				fms.FlightData.flexActive = 0;
+				fms.FlightData.flexTemp = 0;
+			}
 		}
 	},
 };

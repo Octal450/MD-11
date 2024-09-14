@@ -878,6 +878,7 @@
 				<limit n="0">
 					<active-mode type="string">T/O</active-mode>
 					<active-mode-int type="int">0</active-mode-int>
+					<auto type="bool">1</auto>
 					<pw-derate type="bool">1</pw-derate>
 				</limit>
 				<throttle-compare-max type="double">0</throttle-compare-max>
@@ -1870,6 +1871,7 @@
 			<file>Aircraft/MD-11/Nasal/MCDU/navradio.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/posref.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/status.nas</file>
+			<file>Aircraft/MD-11/Nasal/MCDU/thrlim.nas</file>
 			<file>Aircraft/MD-11/Nasal/MCDU/toappr.nas</file>
 		</mcdu>
 		<cockpit>

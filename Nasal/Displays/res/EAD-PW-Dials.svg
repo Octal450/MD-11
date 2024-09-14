@@ -49,9 +49,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="400.60657"
-     inkscape:cy="729.86967"
+     inkscape:zoom="2"
+     inkscape:cx="820.84808"
+     inkscape:cy="1229.8954"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -3263,7 +3263,7 @@
        id="tspan4599"
        x="461.84851"
        y="43.217064"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">T/O LIM ( 00gC)</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:start;text-anchor:start;fill:#f500c6;fill-opacity:1">60K T/O FLEX ( 00gC)</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:43px;line-height:125%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -3422,4 +3422,25 @@
        style="fill:none;fill-opacity:1;stroke:#f0b900;stroke-width:1.33231854;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="#path5088" />
   </g>
+  <path
+     inkscape:label="#rect4649"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="EPRLimFlexBox"
+     d="m 455.313,10.637 362.478,0 0,40.08 -362.478,0 z"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     inkscape:label="#rect4649"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     id="EPRLimToBox"
+     d="m 455.313,10.637 207.444,0 0,40.08 -207.444,0 z"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 455.313,10.637 138.109,0 0,40.08 -138.109,0 z"
+     id="EPRLimBox"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc"
+     inkscape:label="#rect4649" />
 </svg>

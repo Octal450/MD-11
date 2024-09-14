@@ -389,11 +389,11 @@ var canvasBase = {
 					Value.Asi.Tape.v1 = fms.FlightData.v1 - 50 - Value.Asi.Tape.ias;
 					
 					if (fms.FlightData.v1State == 1) {
-						me["ASI_v1_bug_n"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_bug_p"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_bug_v"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_box"].setColor(0.9607, 0, 0.7764);
-						me["ASI_v1_text"].setColor(0.9607, 0, 0.7764);
+						me["ASI_v1_bug_n"].setColor(0.9608, 0, 0.7765);
+						me["ASI_v1_bug_p"].setColor(0.9608, 0, 0.7765);
+						me["ASI_v1_bug_v"].setColor(0.9608, 0, 0.7765);
+						me["ASI_v1_box"].setColor(0.9608, 0, 0.7765);
+						me["ASI_v1_text"].setColor(0.9608, 0, 0.7765);
 					} else {
 						me["ASI_v1_bug_n"].setColor(1, 1, 1);
 						me["ASI_v1_bug_p"].setColor(1, 1, 1);
@@ -449,11 +449,11 @@ var canvasBase = {
 					Value.Asi.Tape.vr = fms.FlightData.vr - 50 - Value.Asi.Tape.ias;
 					
 					if (fms.FlightData.vrState == 1) {
-						me["ASI_vr_bug_n"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_bug_p"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_bug_v"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_box"].setColor(0.9607, 0, 0.7764);
-						me["ASI_vr_text"].setColor(0.9607, 0, 0.7764);
+						me["ASI_vr_bug_n"].setColor(0.9608, 0, 0.7765);
+						me["ASI_vr_bug_p"].setColor(0.9608, 0, 0.7765);
+						me["ASI_vr_bug_v"].setColor(0.9608, 0, 0.7765);
+						me["ASI_vr_box"].setColor(0.9608, 0, 0.7765);
+						me["ASI_vr_text"].setColor(0.9608, 0, 0.7765);
 					} else {
 						me["ASI_vr_bug_n"].setColor(1, 1, 1);
 						me["ASI_vr_bug_p"].setColor(1, 1, 1);
@@ -510,11 +510,11 @@ var canvasBase = {
 				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
 				
 				if (fms.FlightData.v2State == 1) {
-					me["ASI_v2_bug_n"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_bug_p"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_bug_v"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_box"].setColor(0.9607, 0, 0.7764);
-					me["ASI_v2_text"].setColor(0.9607, 0, 0.7764);
+					me["ASI_v2_bug_n"].setColor(0.9608, 0, 0.7765);
+					me["ASI_v2_bug_p"].setColor(0.9608, 0, 0.7765);
+					me["ASI_v2_bug_v"].setColor(0.9608, 0, 0.7765);
+					me["ASI_v2_box"].setColor(0.9608, 0, 0.7765);
+					me["ASI_v2_text"].setColor(0.9608, 0, 0.7765);
 				} else {
 					me["ASI_v2_bug_n"].setColor(1, 1, 1);
 					me["ASI_v2_bug_p"].setColor(1, 1, 1);
@@ -985,7 +985,7 @@ var canvasBase = {
 			}
 			me["ASI_fms_up"].show();
 			me["ASI_sel_up"].hide();
-			me["ASI_sel_up_text"].setColor(0.9607, 0, 0.7764);
+			me["ASI_sel_up_text"].setColor(0.9608, 0, 0.7765);
 			if (fms.FmsSpd.ktsMach) {
 				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.mach * 1000));
 			} else {
@@ -1047,7 +1047,7 @@ var canvasBase = {
 			}
 			me["ASI_fms_dn"].show();
 			me["ASI_sel_dn"].hide();
-			me["ASI_sel_dn_text"].setColor(0.9607, 0, 0.7764);
+			me["ASI_sel_dn_text"].setColor(0.9608, 0, 0.7765);
 			if (fms.FmsSpd.ktsMach) {
 				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.mach * 1000));
 			} else {
@@ -1478,7 +1478,7 @@ var canvasBase = {
 						me["AI_rising_runway"].hide();
 						me["AI_rising_runway_E"].hide();
 					}
-					me["LOC_pointer"].setColor(0.9607, 0, 0.7764);
+					me["LOC_pointer"].setColor(0.9608, 0, 0.7765);
 					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 					me["LOC_pointer"].show();
 				}
@@ -1525,7 +1525,7 @@ var canvasBase = {
 						me["GS_pointer"].hide();
 					}
 				} else {
-					me["GS_pointer"].setColor(0.9607, 0, 0.7764);
+					me["GS_pointer"].setColor(0.9608, 0, 0.7765);
 					me["GS_pointer"].setTranslation(0, Value.Nav.gsNeedleDeflectionNorm * -204);
 					me["GS_pointer"].show();
 				}
@@ -1733,7 +1733,7 @@ var canvasBase = {
 		
 		# FMA
 		if (fms.FmsSpd.active) { # Only if the actual FMS SPD mode is active, this excludes takeoff speed guidance
-			me["FMA_thrust"].setColor(0.9607, 0, 0.7764);
+			me["FMA_thrust"].setColor(0.9608, 0, 0.7765);
 		} else {
 			me["FMA_thrust"].setColor(1, 1, 1);
 		}
@@ -1759,13 +1759,13 @@ var canvasBase = {
 		if (Value.Afs.land == "DUAL") {
 			me["FMA_roll"].setColor(0, 1, 0);
 		} else if (Value.Afs.roll == "NAV1" or Value.Afs.roll == "NAV2") {
-			me["FMA_roll"].setColor(0.9607, 0, 0.7764);
+			me["FMA_roll"].setColor(0.9608, 0, 0.7765);
 		} else {
 			me["FMA_roll"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.rollArm == "NAV ARMED") {
-			me["FMA_roll_arm"].setColor(0.9607, 0, 0.7764);
+			me["FMA_roll_arm"].setColor(0.9608, 0, 0.7765);
 		} else {
 			me["FMA_roll_arm"].setColor(1, 1, 1);
 		}
@@ -1817,13 +1817,13 @@ var canvasBase = {
 		
 		if (fms.FmsSpd.ktsMach) {
 			if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.001 or Value.Afs.fmsSpdDriving) {
-				me["FMA_speed"].setColor(0.9607, 0, 0.7764);
+				me["FMA_speed"].setColor(0.9608, 0, 0.7765);
 			} else {
 				me["FMA_speed"].setColor(1, 1, 1);
 			}
 		} else {
 			if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1 or Value.Afs.fmsSpdDriving) {
-				me["FMA_speed"].setColor(0.9607, 0, 0.7764);
+				me["FMA_speed"].setColor(0.9608, 0, 0.7765);
 			} else {
 				me["FMA_speed"].setColor(1, 1, 1);
 			}

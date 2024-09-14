@@ -79,6 +79,7 @@ var Takeoff = {
 		
 		m.Value = {
 			oatCEntry: 0,
+			pw: 0,
 			takeoffStabDeg: 0,
 			tocg: "",
 			togw: "",
@@ -108,8 +109,10 @@ var Takeoff = {
 	setup: func() {
 		if (pts.Options.eng.getValue() == "PW") {
 			me.Display.C2L = "EPR";
+			me.Value.pw = 1;
 		} else {
 			me.Display.C2L = "N1";
+			me.Value.pw = 0;
 		}
 	},
 	loop: func() {
@@ -191,8 +194,8 @@ var Takeoff = {
 		}
 		me.Display.C1 = me.Value.tocg ~ "/" ~ me.Value.togw;
 		
-		if (pts.Options.eng.getValue() == "PW") {
-			me.Display.C2 = sprintf("%4.2f", systems.FADEC.Limit.takeoff.getValue()); # EPR
+		if (me.Value.pw) {
+			me.Display.C2 = sprintf("%4.2f", math.round(systems.FADEC.Limit.takeoff.getValue(), 0.01)); # EPR
 		} else {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue()); # N1
 		}
@@ -293,10 +296,16 @@ var Takeoff = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l1") {
+		if (k == "l1") { # Also in thrlim.nas
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+						if (systems.FADEC.Limit.activeModeInt.getValue() != 0) {
+							if (!systems.FADEC.Limit.auto.getBoolValue()) {
+								systems.FADEC.setMode(0);
+							}
+						}
+						
 						fms.FlightData.flexActive = 1;
 						fms.FlightData.flexTemp = int(me.scratchpad);
 						systems.FADEC.Limit.pwDerate.setBoolValue(1);
@@ -428,6 +437,8 @@ var Takeoff = {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			}
+		} else if (k == "r1") {
+			mcdu.unit[me.id].setPage("thrLim");
 		} else if (k == "r2") {
 			if (me.scratchpadState == 2) {
 				me.scratchpad = string.replace(me.scratchpad, "+", "");
