@@ -12,8 +12,8 @@ var Takeoff = {
 			arrow: 0,
 			
 			CFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
-			CLTranslate: [-155.08, -155.08, -155.08, -155.08, -155.08, -155.08],
-			CTranslate: [-155.08, -155.08, -155.08, -155.08, -155.08, -155.08],
+			CLTranslate: [-4, -4, -4, -4, -4, -4],
+			CTranslate: [-4, -4, -4, -4, -4, -4],
 			C1L: "TOCG/TOGW",
 			C1: "",
 			C2L: "",
@@ -611,8 +611,8 @@ var Approach = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CLTranslate: [0, 0, 0, 0, -116.31, 0],
-			CTranslate: [0, 0, 0, 0, -116.31, 0],
+			CLTranslate: [0, 0, 0, 0, -3, 0],
+			CTranslate: [0, 0, 0, 0, -3, 0],
 			C1L: "",
 			C1: "",
 			C2L: "",

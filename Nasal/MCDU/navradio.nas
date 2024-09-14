@@ -11,7 +11,7 @@ var NavRadio = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CLTranslate: [0, 0, 0, 0, 0, -130],
+			CLTranslate: [0, 0, 0, 0, 0, -3],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
 			C1: "",

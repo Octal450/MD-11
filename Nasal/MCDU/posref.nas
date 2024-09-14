@@ -336,8 +336,8 @@ var IrsStatus = {
 			arrow: 1,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CLTranslate: [-155, 0, 0, 0, 0, 0],
-			CTranslate: [150, 150, 150, 0, 0, 0],
+			CLTranslate: [-4, 0, 0, 0, 0, 0],
+			CTranslate: [4, 4, 4, 0, 0, 0],
 			C1L: "DRIFT RATE",
 			C1: "",
 			C2L: "",

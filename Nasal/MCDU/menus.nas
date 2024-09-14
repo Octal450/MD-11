@@ -12,7 +12,7 @@ var Menu = {
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
-			CTranslate: [-77.54, 0, 0, 0, 0, 0],
+			CTranslate: [-2, 0, 0, 0, 0, 0],
 			C1L: "",
 			C1: "",
 			C2L: "",
@@ -73,7 +73,7 @@ var Menu = {
 			R6B: "",
 			
 			title: "MENU",
-			titleTranslate: 38.77,
+			titleTranslate: 1,
 		};
 		
 		if (t) {
