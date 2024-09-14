@@ -12,12 +12,9 @@ Author: Nikolai V. Chr.
 		<dirt-factor>0.09</dirt-factor>
 		<use_filters>1</use_filters>
 
-
-
 		<texture n="0">
 			<type>white</type>
 		</texture>
-
 		<texture n="1">
 			<type>2d</type>
 			<filter>linear-mipmap-linear</filter>
@@ -223,24 +220,12 @@ Author: Nikolai V. Chr.
 		   	<!-- Albedo texture unit-->
 			<texture-unit>
 				<unit>0</unit>
-				<image>
-				   <use>texture[0]/image</use>
-				</image>
-				<type>
-				   <use>texture[0]/type</use>
-				</type>
-				<filter>
-				   <use>texture[0]/filter</use>
-				</filter>
-				<wrap-s>
-				   <use>texture[0]/wrap-s</use>
-				</wrap-s>
-				<wrap-t>
-				   <use>texture[0]/wrap-t</use>
-				</wrap-t>
-				<internal-format>
-				   <use>texture[0]/internal-format</use>
-				</internal-format>
+				<image><use>texture[0]/image</use></image>
+				<type><use>texture[0]/type</use></type>
+				<filter><use>texture[0]/filter</use></filter>
+				<wrap-s><use>texture[0]/wrap-s</use></wrap-s>
+				<wrap-t><use>texture[0]/wrap-t</use></wrap-t>
+				<internal-format><use>texture[0]/internal-format</use></internal-format>
 		   	</texture-unit>
 		   	<texture-unit>
 		        <unit>1</unit>
@@ -449,4 +434,54 @@ Author: Nikolai V. Chr.
         -->
 		</pass>
 	</technique>
+	<technique n="109">
+		<scheme>hdr-geometry</scheme>
+		<pass>
+		  <depth>
+			<enabled>true</enabled>
+			<function>less</function>
+			<write-mask>true</write-mask>
+		  </depth>
+		  <stencil>
+			<function>always</function>
+			<value>8</value>
+			<pass>replace</pass>
+		  </stencil>
+		  <texture-unit>
+			<unit>0</unit>
+			<type><use>texture[0]/type</use></type>
+			<image><use>texture[0]/image</use></image>
+			<filter><use>texture[0]/filter</use></filter>
+			<wrap-s><use>texture[0]/wrap-s</use></wrap-s>
+			<wrap-t><use>texture[0]/wrap-t</use></wrap-t>
+		  </texture-unit>
+		  <blend>0</blend>
+		  <rendering-hint>opaque</rendering-hint>
+		  <cull-face><use>cull-face</use></cull-face>
+		  <program>
+			<vertex-shader>Shaders/HDR/model_default.vert</vertex-shader>
+			<vertex-shader>Shaders/HDR/logarithmic_depth.glsl</vertex-shader>
+			<fragment-shader>Shaders/HDR/model_default.frag</fragment-shader>
+			<fragment-shader>Shaders/HDR/logarithmic_depth.glsl</fragment-shader>
+			<fragment-shader>Shaders/HDR/gbuffer_pack.glsl</fragment-shader>
+			<fragment-shader>Shaders/HDR/normal_encoding.glsl</fragment-shader>
+			<fragment-shader>Shaders/HDR/color.glsl</fragment-shader>
+		  </program>
+		  <uniform>
+			<name>color_tex</name>
+			<type>sampler-2d</type>
+			<value type="int">0</value>
+		  </uniform>
+		  <uniform>
+			<name>color_mode</name>
+			<type>int</type>
+			<value><use>material/color-mode</use></value>
+		  </uniform>
+		  <uniform>
+			<name>material_diffuse</name>
+			<type>float-vec4</type>
+			<value>1 1 1 1</value>
+		  </uniform>
+		</pass>
+	  </technique>
 </PropertyList>
