@@ -391,6 +391,8 @@ var EditFlightData = {
 		FlightData.toWind = -100;
 	},
 	resetVspeeds: func(t = 0) {
+		if (Internal.phase > 0) return;
+		
 		if (FlightData.v1State == 1 and (t == 0 or t == 1)) {
 			FlightData.v1 = 0;
 			FlightData.v1State = 0;

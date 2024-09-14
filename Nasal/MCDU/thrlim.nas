@@ -85,6 +85,7 @@ var ThrLim = {
 		
 		m.Value = {
 			Limit: {
+				auto: 0,
 				climb: 0,
 				cruise: 0,
 				goAround: 0,
@@ -125,6 +126,7 @@ var ThrLim = {
 		}
 		if (me.Value.Limit.mode == 0 and fms.FlightData.flexActive) me.Value.Limit.mode = 5; # T/O FLEX mode
 		
+		me.Value.Limit.auto = systems.FADEC.Limit.auto.getBoolValue();
 		me.Value.Limit.climb = systems.FADEC.Limit.climb.getValue();
 		me.Value.Limit.cruise = systems.FADEC.Limit.cruise.getValue();
 		me.Value.Limit.goAround = systems.FADEC.Limit.goAround.getValue();
@@ -133,10 +135,14 @@ var ThrLim = {
 		me.Value.Limit.takeoffFlex = systems.FADEC.Limit.takeoffFlex.getValue();
 		me.Value.Limit.takeoffNoFlex = systems.FADEC.Limit.takeoffNoFlex.getValue();
 		
-		if (systems.FADEC.Limit.auto.getBoolValue()) {
+		if (me.Value.Limit.auto) {
 			me.Display.title = "AUTO THRUST LIMITS";
+			me.Display.R5 = "";
+			me.Display.R5L = "";
 		} else {
 			me.Display.title = "MANUAL THRUST LIMITS";
+			me.Display.R5 = "AUTO*";
+			me.Display.R5L = "SELECT ";
 		}
 		
 		if (me.Value.toPhase) {
@@ -289,7 +295,30 @@ var ThrLim = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "r1") { # Also in toappr.nas
+		if (k == "l1") {
+			systems.FADEC.Limit.auto.setBoolValue(0);
+			if (me.Value.toPhase == 1) {
+				systems.FADEC.setMode(0);
+			} else {
+				systems.FADEC.setMode(1);
+			}
+		} else if (k == "l2") {
+			if (me.Display.L2 != "" and me.Value.toPhase == 1) {
+				systems.FADEC.Limit.auto.setBoolValue(0);
+				systems.FADEC.setMode(0);
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
+			systems.FADEC.Limit.auto.setBoolValue(0);
+			systems.FADEC.setMode(2);
+		} else if (k == "l4") {
+			systems.FADEC.Limit.auto.setBoolValue(0);
+			systems.FADEC.setMode(3);
+		} else if (k == "l6") {
+			systems.FADEC.Limit.auto.setBoolValue(0);
+			systems.FADEC.setMode(4);
+		} else if (k == "r1") { # Also in toappr.nas
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
@@ -321,6 +350,12 @@ var ThrLim = {
 		} else if (k == "r3") {
 			if (me.Display.R3 != "") {
 				systems.FADEC.Limit.pwDerate.setBoolValue(!systems.FADEC.Limit.pwDerate.getBoolValue());
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r5") {
+			if (me.Display.R5 != "") {
+				systems.FADEC.Limit.auto.setBoolValue(1);
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

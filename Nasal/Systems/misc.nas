@@ -402,6 +402,7 @@ var FADEC = {
 			if (fms.FlightData.flexActive) {
 				fms.FlightData.flexActive = 0;
 				fms.FlightData.flexTemp = 0;
+				fms.EditFlightData.resetVspeeds();
 			}
 		}
 	},
