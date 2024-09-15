@@ -804,7 +804,7 @@ var canvasBase = {
 				me["ASI_f28"].hide();
 				me["ASI_f35"].hide();
 				me["ASI_f50"].hide();
-			} else if ((Value.Misc.flapsCmd >= 34.9 or Value.Misc.flapsPos >= 34.9) or (Value.Asi.ias < Value.Asi.f50 and Value.Misc.slatsOut) and Value.Afs.vertText != "T/O CLB") {
+			} else if (((Value.Misc.flapsCmd >= 34.9 or Value.Misc.flapsPos >= 34.9) or (Value.Asi.ias < Value.Asi.f50 and Value.Misc.slatsOut)) and Value.Afs.vertText != "T/O CLB") {
 				me["ASI_f15"].hide();
 				me["ASI_f28"].hide();
 				me["ASI_f35"].hide();
@@ -819,7 +819,7 @@ var canvasBase = {
 				}
 				me["ASI_f50"].setTranslation(0, Value.Asi.Tape.f50 * -4.4866);
 				me["ASI_f50"].show();
-			} else if ((Value.Misc.flapsCmd >= 27.9 or Value.Misc.flapsPos >= 27.9) or (Value.Asi.ias < Value.Asi.f35 and Value.Misc.slatsOut) and Value.Afs.vertText != "T/O CLB") {
+			} else if (((Value.Misc.flapsCmd >= 27.9 or Value.Misc.flapsPos >= 27.9) or (Value.Asi.ias < Value.Asi.f35 and Value.Misc.slatsOut)) and Value.Afs.vertText != "T/O CLB") {
 				me["ASI_f15"].hide();
 				me["ASI_f28"].hide();
 				
@@ -835,7 +835,7 @@ var canvasBase = {
 				me["ASI_f35"].show();
 				
 				me["ASI_f50"].hide();
-			} else if ((Value.Misc.flapsCmd >= 14.9 or Value.Misc.flapsPos >= 14.9) or (Value.Asi.ias < Value.Asi.f28 and Value.Misc.slatsOut) and Value.Afs.vertText != "T/O CLB") {
+			} else if (((Value.Misc.flapsCmd >= 14.9 or Value.Misc.flapsPos >= 14.9) or (Value.Asi.ias < Value.Asi.f28 and Value.Misc.slatsOut)) and Value.Afs.vertText != "T/O CLB") {
 				me["ASI_f15"].hide();
 				
 				Value.Asi.Tape.f28 = Value.Asi.f28 - 50 - Value.Asi.Tape.ias;
