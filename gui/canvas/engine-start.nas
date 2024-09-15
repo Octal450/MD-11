@@ -25,7 +25,7 @@ var engineStartCanvas = {
 		me._dialog = nil;
 	},
 	open: func() {
-		if (me._dialog != nil) return; # Prevent more than one open
+		if (me._dialog != nil and singleInstance) return; # Prevent more than one open
 		
 		me._dialog = canvas.Window.new([307, 200], "dialog", nil, 0);
 		me._dialog.set("title", me._title);
