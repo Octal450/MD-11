@@ -274,8 +274,9 @@
 					/controls/flight/speedbrake-arm eq 0
 					/controls/gear/abs/knob gt -1
 					/controls/gear/brake-parking eq 1
-					hydraulics/stabilizer/final-deg ge 0.05
-				</test>
+					/fms/internal/takeoff-stab-error ge 2.05
+					/fms/internal/takeoff-stab-error le -2.05
+				</test> <!-- 2.05 instead of 2 in order to fix floating point error -->
 			</test>
 		</switch>
 	

@@ -1459,6 +1459,26 @@
 				</quotient>
 			</function>
 		</fcs_function>
+		
+		<fcs_function name="/fms/internal/takeoff-stab-error">
+			<function>
+				<difference>
+					<quotient>
+						<integer>
+							<sum>
+								<product>
+									<property>hydraulics/stabilizer/final-deg</property>
+									<value>-10</value> <!-- Because ANU = negative -->
+								</product>
+								<value>0.5</value> <!-- Make the integer rounded correctly -->
+							</sum>
+						</integer>
+						<value>10</value>
+					</quotient>
+					<property>/fms/internal/takeoff-stab-deg</property>
+				</difference>
+			</function>
+		</fcs_function>
 	
 	</channel>
 
