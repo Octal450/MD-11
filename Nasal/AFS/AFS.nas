@@ -362,7 +362,7 @@ var ITAF = {
 		
 		# Trip system off
 		if (Output.ap1Temp or Output.ap2Temp) { 
-			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue()) {
+			if (abs(Controls.aileron.getValue()) >= 0.2 or abs(Controls.elevator.getValue()) >= 0.2 or pts.Fdm.JSBSim.Aero.alphaDegDamped.getValue() >= pts.Fdm.JSBSim.Fcc.stallAlphaDeg.getValue()) {
 				me.ap1Master(0);
 				me.ap2Master(0);
 			}
@@ -382,15 +382,15 @@ var ITAF = {
 		}
 		
 		# AP Power Warning - when FCC power cycles, sounds warning
-		pts.Fdm.JSBsim.Fcc.powerAvailTemp = pts.Fdm.JSBsim.Fcc.powerAvail.getBoolValue();
-		if (pts.Fdm.JSBsim.Fcc.powerAvailTemp) {
+		pts.Fdm.JSBSim.Fcc.powerAvailTemp = pts.Fdm.JSBSim.Fcc.powerAvail.getBoolValue();
+		if (pts.Fdm.JSBSim.Fcc.powerAvailTemp) {
 			if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) { # Don't do it during autoconfig
 				Sound.enablePowerApOff = 0;
 			} else if (Sound.enablePowerApOff) {
 				Sound.apOffSingle.setBoolValue(1);
 				Sound.enablePowerApOff = 0;
 			}
-		} else if (!pts.Fdm.JSBsim.Fcc.powerAvailTemp) {
+		} else if (!pts.Fdm.JSBSim.Fcc.powerAvailTemp) {
 			Sound.enablePowerApOff = 1;
 			Sound.apOffSingle.setBoolValue(0);
 		}

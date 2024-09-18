@@ -299,7 +299,7 @@ var Takeoff = {
 		if (k == "l1") { # Also in thrlim.nas
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
-					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+					if (me.scratchpad >= math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
 						if (systems.FADEC.Limit.activeModeInt.getValue() != 0) {
 							if (!systems.FADEC.Limit.auto.getBoolValue()) {
 								systems.FADEC.setMode(0);

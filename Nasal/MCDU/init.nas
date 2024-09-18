@@ -585,9 +585,9 @@ var Init2 = {
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
 				if (me.Display.R2L == "GW") {
-					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1));
+					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1));
 				} else {
-					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000) - fms.FlightData.taxiFuel, 0.1));
+					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000) - fms.FlightData.taxiFuel, 0.1));
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -609,7 +609,7 @@ var Init2 = {
 				}
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
-				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+				mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1));
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -627,7 +627,7 @@ var Init2 = {
 				}
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
-				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1));
+				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1));
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -645,7 +645,7 @@ var Init2 = {
 				}
 			} else if (me.scratchpadState == 1) {
 				mcdu.unit[me.id].clearMessage(1);
-				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwcgPercentMac.getValue(), 0.1));
+				mcdu.unit[me.id].scratchpad = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1));
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}

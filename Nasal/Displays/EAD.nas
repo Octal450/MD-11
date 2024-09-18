@@ -141,7 +141,7 @@ var canvasBase = {
 		}
 		
 		# TAT Indication
-		Value.tat = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue());
+		Value.tat = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue());
 		if (Value.tat < 0) {
 			me["TAT"].setText(sprintf("%2.0f", Value.tat) ~ "gC");
 		} else {
@@ -625,7 +625,7 @@ var canvasGeDials = {
 		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
 		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
 		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -860,7 +860,7 @@ var canvasGeTapes = {
 		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
 		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
 		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -1060,7 +1060,7 @@ var canvasPwDials = {
 		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
 		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
 		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -1364,7 +1364,7 @@ var canvasPwTapes = {
 		Value.Fadec.revState[0] = systems.FADEC.revState[0].getValue();
 		Value.Fadec.revState[1] = systems.FADEC.revState[1].getValue();
 		Value.Fadec.revState[2] = systems.FADEC.revState[2].getValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.

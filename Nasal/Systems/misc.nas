@@ -32,14 +32,14 @@ var APU = {
 		me.Light.on.setValue(1);
 		me.autoConnect = 0;
 		settimer(func() { # Give the fuel system a moment to provide fuel in the pipe
-			pts.Fdm.JSBsim.Propulsion.setRunning.setValue(3);
+			pts.Fdm.JSBSim.Propulsion.setRunning.setValue(3);
 		}, 1);
 	},
 	stopRpm: func() {
 		settimer(func() { # Required delay
 			if (me.n2.getValue() >= 1) {
-				pts.Fdm.JSBsim.Propulsion.Engine.n1[3].setValue(0.1);
-				pts.Fdm.JSBsim.Propulsion.Engine.n2[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n1[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n2[3].setValue(0.1);
 			}
 		}, 0.1);
 	},
@@ -133,9 +133,9 @@ var BRAKES = {
 		me.Abs.mode.setValue(0);
 	},
 	absSetUpdate: func(n) {
-		pts.Fdm.JSBsim.Position.wowTemp = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		pts.Fdm.JSBSim.Position.wowTemp = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		if (n == -1) {
-			if (pts.Fdm.JSBsim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(-1);
 				me.Abs.armed.setBoolValue(1);
 			} else {
@@ -144,21 +144,21 @@ var BRAKES = {
 		} else if (n == 0) {
 			me.absSetOff(0);
 		} else if (n == 1) {
-			if (!pts.Fdm.JSBsim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(1);
 				me.Abs.armed.setBoolValue(1);
 			} else {
 				me.absSetOff(1);
 			}
 		} else if (n == 2) {
-			if (!pts.Fdm.JSBsim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(2);
 				me.Abs.armed.setBoolValue(1);
 			} else {
 				me.absSetOff(1);
 			}
 		} else if (n == 3) {
-			if (!pts.Fdm.JSBsim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(3);
 				me.Abs.armed.setBoolValue(1);
 			} else {
@@ -352,7 +352,7 @@ var FADEC = {
 		me.Limit.pwDerate.setBoolValue(1);
 	},
 	loop: func() {
-		me.anyEngineOut = pts.Fdm.JSBsim.Libraries.anyEngineOut.getBoolValue();
+		me.anyEngineOut = pts.Fdm.JSBSim.Libraries.anyEngineOut.getBoolValue();
 		me.pitchMode = afs.Text.vert.getValue();
 		
 		if (me.Limit.auto.getBoolValue()) {
@@ -567,14 +567,14 @@ var IGNITION = {
 	},
 	fastStart: func(n) {
 		ENGINE.cutoffSwitch[n].setBoolValue(0);
-		pts.Fdm.JSBsim.Propulsion.setRunning.setValue(n);
+		pts.Fdm.JSBSim.Propulsion.setRunning.setValue(n);
 	},
 	fastStop: func(n) {
 		ENGINE.cutoffSwitch[n].setBoolValue(1);
 		settimer(func() { # Required delay
 			if (pts.Engines.Engine.n2Actual[n].getValue() > 1) {
-				pts.Fdm.JSBsim.Propulsion.Engine.n1[n].setValue(0.1);
-				pts.Fdm.JSBsim.Propulsion.Engine.n2[n].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n1[n].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n2[n].setValue(0.1);
 			}
 		}, 0.1);
 	},

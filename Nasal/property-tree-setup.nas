@@ -72,7 +72,7 @@ var Engines = {
 };
 
 var Fdm = {
-	JSBsim: {
+	JSBSim: {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},

@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<!-- Not in JSBsim, cause then it takes too long to tune -->
+	<!-- Not in JSBSim, cause then it takes too long to tune -->
 	<filter>
 		<name>EPR C1</name>
 		<type>gain</type>
@@ -165,7 +165,7 @@
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>
 	
-	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
+	<filter> <!-- Don't put in JSBSim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>
 		<type>gain</type>
@@ -201,7 +201,7 @@
 		<max>300</max>
 	</filter>
 	
-	<!-- Because overwriting from JSBsim doesn't work -->
+	<!-- Because overwriting from JSBSim doesn't work -->
 	<filter>
 		<name>Engine 1 Cutoff</name>
 		<type>gain</type>

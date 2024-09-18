@@ -58,7 +58,7 @@ var CORE = {
 		Value.gearAglFt = pts.Position.gearAglFt.getValue();
 		Value.gearLever = systems.GEAR.Switch.lever.getBoolValue();
 		Value.vertText = afs.Text.vert.getValue();
-		Value.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		
 		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
 			Internal.engOn = 1;

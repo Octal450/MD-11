@@ -116,7 +116,7 @@ var EditFlightData = {
 		# Calculate speeds
 		me.calcSpeeds();
 		
-		# Write out values for JSBsim to use
+		# Write out values for JSBSim to use
 		me.writeOut();
 		
 		# After write out
@@ -213,7 +213,7 @@ var EditFlightData = {
 		FlightData.zfwLbs = 0;
 		me.writeOut();
 	},
-	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
+	writeOut: func() { # Write out FlightData to property tree as required so that JSBSim can access it
 		FlightDataOut.airportFromAlt.setValue(FlightData.airportFromAlt);
 		FlightDataOut.airportToAlt.setValue(FlightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(FlightData.canCalcVspeeds);
@@ -412,11 +412,11 @@ var EditFlightData = {
 		Internal.request[2] = 0;
 		mcdu.unit[0].setPage("acStatus");
 		mcdu.unit[1].setPage("acStatus");
-		FlightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1));
-		FlightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1));
+		FlightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1));
+		FlightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1));
 		FlightData.togwLbs = FlightData.gwLbs - FlightData.taxiFuel;
 		FlightData.toFlaps = 15;
-		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwcgPercentMac.getValue(), 0.1));
-		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1));
+		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1));
 	},
 };

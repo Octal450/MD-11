@@ -277,7 +277,7 @@ var ThrLim = {
 			me.Display.L6B = "a";
 		}
 		
-		me.Display.R1B = math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) ~ "g        ";
+		me.Display.R1B = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) ~ "g        ";
 		
 		if (me.Value.pw and (me.Value.Limit.mode == 0 or me.Value.Limit.mode == 1)) {
 			if (me.Value.Limit.pwDerate) {
@@ -321,7 +321,7 @@ var ThrLim = {
 		} else if (k == "r1") { # Also in toappr.nas
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
-					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+					if (me.scratchpad >= math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
 						if (systems.FADEC.Limit.activeModeInt.getValue() != 0) {
 							if (!systems.FADEC.Limit.auto.getBoolValue()) {
 								systems.FADEC.setMode(0);

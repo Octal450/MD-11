@@ -288,9 +288,9 @@ var canvasBase = {
 		Value.Afs.mach = afs.Internal.mach.getValue();
 		Value.Afs.machSel = afs.Input.mach.getValue();
 		Value.Afs.vert = afs.Output.vert.getValue();
-		Value.Ai.alpha = pts.Fdm.JSBsim.Aero.alphaDegDamped.getValue();
-		Value.Ai.stallAlphaDeg = pts.Fdm.JSBsim.Fcc.stallAlphaDeg.getValue();
-		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBsim.Fcc.stallWarnAlphaDeg.getValue();
+		Value.Ai.alpha = pts.Fdm.JSBSim.Aero.alphaDegDamped.getValue();
+		Value.Ai.stallAlphaDeg = pts.Fdm.JSBSim.Fcc.stallAlphaDeg.getValue();
+		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBSim.Fcc.stallWarnAlphaDeg.getValue();
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.fms = pts.Instrumentation.Pfd.spdFms.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
@@ -303,18 +303,18 @@ var canvasBase = {
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
-		Value.Misc.blinkFast = pts.Fdm.JSBsim.Libraries.blinkFast.getBoolValue();
-		Value.Misc.blinkMed = pts.Fdm.JSBsim.Libraries.blinkMed.getBoolValue();
-		Value.Misc.blinkMed2 = pts.Fdm.JSBsim.Libraries.blinkMed2.getBoolValue();
-		Value.Misc.twoEngineOn = pts.Fdm.JSBsim.Libraries.twoEngineOn.getBoolValue();
+		Value.Misc.blinkFast = pts.Fdm.JSBSim.Libraries.blinkFast.getBoolValue();
+		Value.Misc.blinkMed = pts.Fdm.JSBSim.Libraries.blinkMed.getBoolValue();
+		Value.Misc.blinkMed2 = pts.Fdm.JSBSim.Libraries.blinkMed2.getBoolValue();
+		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
 		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
-		Value.Misc.flapsPos = pts.Fdm.JSBsim.Fcs.flapPosDeg.getValue();
+		Value.Misc.flapsPos = pts.Fdm.JSBSim.Fcs.flapPosDeg.getValue();
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
-		Value.Misc.slatsPos = pts.Fdm.JSBsim.Fcs.slatPosDeg.getValue();
+		Value.Misc.slatsPos = pts.Fdm.JSBSim.Fcs.slatPosDeg.getValue();
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
-		Value.Misc.gearOut = pts.Fdm.JSBsim.Gear.gearAllNorm.getValue() > 0;
+		Value.Misc.gearOut = pts.Fdm.JSBSim.Gear.gearAllNorm.getValue() > 0;
 		
 		# Errors, these don't have separate logic yet.
 		if (Value.Misc.annunTestWow) {
@@ -2021,7 +2021,7 @@ var canvasBase = {
 			me["Slats_no"].hide();
 		}
 		
-		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= pts.Fdm.JSBsim.Fcc.Flap.maxDeg.getValue()) {
+		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= pts.Fdm.JSBSim.Fcc.Flap.maxDeg.getValue()) {
 			me["Flaps_dn"].hide();
 			me["Flaps_up"].hide();
 			me["Flaps_num"].setColor(0.9647, 0.8196, 0.0784);
@@ -2100,7 +2100,7 @@ var canvasPfd1 = {
 		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
 		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
@@ -2348,7 +2348,7 @@ var canvasPfd2 = {
 		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
 		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
-		Value.Misc.wow = pts.Fdm.JSBsim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# FMA
