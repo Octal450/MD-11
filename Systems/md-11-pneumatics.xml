@@ -529,7 +529,7 @@
 						</nq>
 					</and>
 					<table>
-						<independentVar lookup="row">/systems/pneumatics/bleed-1-psi-cmd</independentVar>
+						<independentVar lookup="row">/systems/pneumatics/bleed-1-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
 							16  -6
@@ -602,7 +602,7 @@
 						</nq>
 					</and>
 					<table>
-						<independentVar lookup="row">/systems/pneumatics/bleed-2-psi-cmd</independentVar>
+						<independentVar lookup="row">/systems/pneumatics/bleed-2-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
 							16  -6
@@ -675,7 +675,7 @@
 						</nq>
 					</and>
 					<table>
-						<independentVar lookup="row">/systems/pneumatics/bleed-3-psi-cmd</independentVar>
+						<independentVar lookup="row">/systems/pneumatics/bleed-3-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
 							16  -6
