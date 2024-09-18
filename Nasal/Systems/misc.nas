@@ -315,9 +315,9 @@ var doFullThrust = func() {
 # FADEC
 var FADEC = {
 	anyEngineOut: 0,
-	engPowered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
 	n1Mode: [props.globals.getNode("/fdm/jsbsim/fadec/control-1/n1-mode", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-2/n1-mode", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-3/n1-mode", 1)],
 	pitchMode: 0,
+	powered: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-powered"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-powered")],
 	revState: [props.globals.getNode("/fdm/jsbsim/fadec/eng-1-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-2-rev-state"), props.globals.getNode("/fdm/jsbsim/fadec/eng-3-rev-state")],
 	throttleCompareMax: props.globals.getNode("/fdm/jsbsim/fadec/throttle-compare-max"),
 	throttleEpr: [props.globals.getNode("/fdm/jsbsim/fadec/control-1/throttle-epr", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-2/throttle-epr", 1), props.globals.getNode("/fdm/jsbsim/fadec/control-3/throttle-epr", 1)],
