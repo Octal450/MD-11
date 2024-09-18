@@ -1429,13 +1429,13 @@
 						<independentVar lookup="row">/fms/flight-data/tocg</independentVar>
 						<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
 						<tableData>
-							      10    15    20    25    28
-							12.0  10.1  10.5  10.9  11.1  11.2
-							15.0   9.1   9.5   9.8  10.0  10.1
-							20.0   7.4   7.8   8.0   8.2   8.3
-							25.0   5.7   6.0   6.2   6.3   6.4
-							30.0   4.0   4.3   4.4   4.5   4.6
-							34.0   2.6   2.9   3.0   3.0   3.0
+							    10    15    20    25    28
+							12  10.1  10.5  10.9  11.1  11.2
+							15   9.1   9.5   9.8  10.0  10.1
+							20   7.4   7.8   8.0   8.2   8.3
+							25   5.7   6.0   6.2   6.3   6.4
+							30   4.0   4.3   4.4   4.5   4.6
+							34   2.6   2.9   3.0   3.0   3.0
 						</tableData>
 					</table>
 					<value>0</value>
