@@ -5,7 +5,7 @@
 
 <system name="MD-11: Misc"> <!-- Everything here is after all systems -->
 	
-	<channel name="Cabin" execrate="8">
+	<channel name="Misc Logic" execrate="8">
 		
 		<switch name="/controls/switches/seatbelt-sign-status">
 			<default value="0"/>
