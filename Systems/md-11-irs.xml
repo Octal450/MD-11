@@ -55,7 +55,7 @@
 	
 	</channel>
 	
-	<channel name="IRU 1 Alignment" execrate="8">
+	<channel name="IRU 1" execrate="8">
 		
 		<switch name="/systems/iru[0]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[0]/can-align"/>
@@ -160,7 +160,7 @@
 	
 	</channel>
 	
-	<channel name="IRU 2 Alignment" execrate="8">
+	<channel name="IRU 2" execrate="8">
 		
 		<switch name="/systems/iru[1]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[1]/can-align"/>
@@ -265,7 +265,7 @@
 	
 	</channel>
 	
-	<channel name="IRU AUX Alignment" execrate="8">
+	<channel name="IRU AUX" execrate="8">
 		
 		<switch name="/systems/iru[2]/can-align"> <!-- Flip flop, so that if it can't aligned, switch must be reset to off -->
 			<default value="/systems/iru[2]/can-align"/>
