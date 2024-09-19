@@ -1304,7 +1304,11 @@ var canvasBase = {
 		if (Value.Alt.preSel > 525 and !afs.Internal.syncedAlt) {
 			me["ALT_sel_up"].setColorFill(0, 0, 0);
 			me["ALT_sel_up"].show();
-			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
+			if (Value.Afs.altSel == 0) {
+				me["ALT_sel_up_text"].setText("0");
+			} else {
+				me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
+			}
 			me["ALT_sel_up_text"].show();
 			if (Value.Afs.altSel < 1000) {
 				me["ALT_sel_up_text_T"].hide();
@@ -1315,7 +1319,11 @@ var canvasBase = {
 		} else if (Value.Alt.sel > 525) {
 			me["ALT_sel_up"].setColorFill(1, 1, 1);
 			me["ALT_sel_up"].show();
-			me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			if (Value.Afs.alt == 0) {
+				me["ALT_sel_up_text"].setText("0");
+			} else {
+				me["ALT_sel_up_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			}
 			me["ALT_sel_up_text"].show();
 			if (Value.Afs.alt < 1000) {
 				me["ALT_sel_up_text_T"].hide();
@@ -1332,7 +1340,11 @@ var canvasBase = {
 		if (Value.Alt.preSel < -525 and !afs.Internal.syncedAlt) {
 			me["ALT_sel_dn"].setColorFill(0, 0, 0);
 			me["ALT_sel_dn"].show();
-			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
+			if (Value.Afs.altSel == 0) {
+				me["ALT_sel_dn_text"].setText("0");
+			} else {
+				me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.altSel), 3));
+			}
 			me["ALT_sel_dn_text"].show();
 			if (Value.Afs.altSel < 1000) {
 				me["ALT_sel_dn_text_T"].hide();
@@ -1343,7 +1355,11 @@ var canvasBase = {
 		} else if (Value.Alt.sel < -525) {
 			me["ALT_sel_dn"].setColorFill(1, 1, 1);
 			me["ALT_sel_dn"].show();
-			me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			if (Value.Afs.alt == 0) {
+				me["ALT_sel_dn_text"].setText("0");
+			} else {
+				me["ALT_sel_dn_text"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			}
 			me["ALT_sel_dn_text"].show();
 			if (Value.Afs.alt < 1000) {
 				me["ALT_sel_dn_text_T"].hide();
@@ -1797,7 +1813,11 @@ var canvasBase = {
 				me["FMA_pitch_land"].show();
 			}
 		} else {
-			me["FMA_altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			if (Value.Afs.alt == 0) {
+				me["FMA_altitude"].setText("0");
+			} else {
+				me["FMA_altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+			}
 			me["FMA_altitude"].show();
 			if (Value.Afs.alt < 1000) {
 				me["FMA_altitude_T"].hide();
