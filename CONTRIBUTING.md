@@ -43,7 +43,6 @@ var MyClass = func() { # Notice how it is alphabetized, except that methods are 
 		me.SubClass.someVariable = 1;
 	},
 };
-
 ```
 Brackets, Spaces, Commas, Semi-Colons, and Parentheses:
 ```
