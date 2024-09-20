@@ -135,7 +135,7 @@ var canvasConfig = {
 		return ["Alert_error", "AileronL_error", "AileronLDown", "AileronLUp", "AileronR_error", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorL_error", "ElevatorLDown", "ElevatorLUp", "ElevatorR_error", "ElevatorRDown",
 		"ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap1_error", "Flap2", "Flap2_error", "Flap3", "Flap3_error", "Flap4", "Flap4_error", "FlapBox", "GearTest", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL",
 		"NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLower_error", "RudderLowerLeft", "RudderLowerRight", "RudderUpper_error", "RudderUpperLeft", "RudderUpperRight", "SlatExt",
-		"SpoilerL", "SpoilerL_error", "SpoilerR", "SpoilerR_error", "Stab", "Stab_error", "StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+		"SpoilerL", "SpoilerL_error", "SpoilerR", "SpoilerR_error", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 	},
@@ -195,7 +195,7 @@ var canvasConfig = {
 		
 		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
 			me["Stab"].setColor(1, 1, 1);
-			me["StabBox"].hide();
+			me["Stab_box"].hide();
 			me["StabGreen"].hide();
 			me["StabNeedle"].setColorFill(1, 1, 1);
 			me["StabUnit"].setColor(1, 1, 1);
@@ -206,18 +206,18 @@ var canvasConfig = {
 				
 				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
 					me["Stab"].setColor(0, 1, 0);
-					me["StabBox"].hide();
+					me["Stab_box"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
 				} else {
 					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
-					me["StabBox"].show();
+					me["Stab_box"].show();
 					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
 					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 				}
 			} else {
 				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
-				me["StabBox"].show();
+				me["Stab_box"].show();
 				me["StabGreen"].hide();
 				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
 				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
@@ -631,7 +631,7 @@ var canvasEngBase = {
 		
 		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
 			me["Stab"].setColor(1, 1, 1);
-			me["StabBox"].hide();
+			me["Stab_box"].hide();
 			me["StabGreen"].hide();
 			me["StabNeedle"].setColorFill(1, 1, 1);
 			me["StabUnit"].setColor(1, 1, 1);
@@ -642,18 +642,18 @@ var canvasEngBase = {
 				
 				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
 					me["Stab"].setColor(0, 1, 0);
-					me["StabBox"].hide();
+					me["Stab_box"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
 				} else {
 					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
-					me["StabBox"].show();
+					me["Stab_box"].show();
 					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
 					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
 				}
 			} else {
 				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
-				me["StabBox"].show();
+				me["Stab_box"].show();
 				me["StabGreen"].hide();
 				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
 				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
@@ -697,8 +697,8 @@ var canvasEngDials = {
 		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
 		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
 		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
-		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab", "Stab_error",
-		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab", "Stab_box",
+		"Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -861,8 +861,8 @@ var canvasEngTapes = {
 		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
 		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2", "OilPsi2_bar", "OilPsi2_error", "OilPsi3",
 		"OilPsi3_bar", "OilPsi3_error", "OilQty_bars", "OilQty1", "OilQty1_bar", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty2", "OilQty2_bar", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty3", "OilQty3_bar", "OilQty3_box", "OilQty3_cline",
-		"OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box", "OilTemp3_error", "PW_group", "Stab", "Stab_error",
-		"StabBox", "StabGreen", "StabNeedle", "StabUnit"];
+		"OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box", "OilTemp3_error", "PW_group", "Stab", "Stab_box",
+		"Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
