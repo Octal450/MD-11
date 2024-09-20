@@ -3,16 +3,18 @@
 These examples will show the guidelines for contributing. Please try to follow this at all times, or we may not merge your contribution.
 
 ## Basic Guidelines:
-- Use Tabs to indent code, DO NOT USE SPACE.
-- Use lowerCamelCase or underscores for naming Nasal variables/functions (someFunction, some_function).
+- ALWAYS use IntegratedSystems.
+- DO NOT USE setprop/getprop unless its only done once! Use props.nas and Property Tree Setup.
+- Use tabs to indent code, DO NOT USE SPACE.
+- Use lowerCamelCase for naming Nasal variables/functions (someFunction).
+- Use UpperCamelCase to name Nasal classes (SomeClass). All uppercase for root classes is permitted.
 - Use comments when necessary, but no need to comment simple things.
 - Do not add a comment to every line, only to functions/groups of code.
 - Remove .bak or .blend files, unless absolutely needed.
 - Leave one extra line at the bottom of each file.
-- DO NOT USE setprop/getprop unless its only done once! Use props.nas and Property Tree Setup.
 
 ## Formatting Guidelines:
-Indenting and Line Breaks:
+Capitalization, Indenting, and Line Breaks:
 ```
 <!-- XML -->
 <something>
@@ -28,6 +30,20 @@ Indenting and Line Breaks:
 var something = func() {
 	somethingElse();
 }
+
+var MyClass = func() { # Notice how it is alphabetized, except that methods are always last
+	myVariable: 0,
+	SubClass: {
+		someVariable: 0,
+	},
+	myFunction: func() {
+		me.myVariable = 1;
+	},
+	someFunction: func() {
+		me.SubClass.someVariable = 1;
+	},
+};
+
 ```
 Brackets, Spaces, Commas, Semi-Colons, and Parentheses:
 ```
@@ -38,6 +54,7 @@ var someOtherThing = func() {
 	} else {
 		something = 1;
 	}
+	
 	settimer(func {
 		props.globals.getNode("/something").setValue(something);
 	}, 5);
