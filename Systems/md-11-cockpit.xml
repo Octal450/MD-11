@@ -531,7 +531,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="glass-effects/splashx">
+		<fcs_function name="glass-effects/splash-x">
 			<function>
 				<difference>
 					<value>-0.1</value>
@@ -544,14 +544,14 @@
 			<output>/environment/aircraft-effects/splash-vector-x</output>
 		</fcs_function>
 		
-		<fcs_function name="glass-effects/splashy">
+		<fcs_function name="glass-effects/splash-y">
 			<function>
 				<value>0</value>
 			</function>
 			<output>/environment/aircraft-effects/splash-vector-y</output>
 		</fcs_function>
 		
-		<fcs_function name="glass-effects/splashz">
+		<fcs_function name="glass-effects/splash-z">
 			<function>
 				<difference>
 					<value>1</value>
