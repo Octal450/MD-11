@@ -21,8 +21,7 @@ var Value = {
 		ats: 0,
 		atsFlash: 0,
 		atsWarn: 0,
-		fd1: 0,
-		fd2: 0,
+		fd: [0, 0],
 		fmsSpdDriving: 0,
 		hdg: 0,
 		hdgSel: 0,
@@ -279,15 +278,29 @@ var canvasBase = {
 		}
 	},
 	updateBase: func(n) {
+		Value.Afs.ap1 = afs.Output.ap1.getBoolValue();
+		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
+		Value.Afs.ats = afs.Output.athr.getBoolValue();
+		if (n == 0) Value.Afs.fd[0] = afs.Output.fd1.getBoolValue();
+		if (n == 1) Value.Afs.fd[1] = afs.Output.fd2.getBoolValue();
+		Value.Afs.hdg = afs.Internal.hdg.getValue();
 		Value.Afs.hdgSel = afs.Input.hdg.getValue();
 		Value.Afs.kts = afs.Internal.kts.getValue();
 		Value.Afs.ktsSel = afs.Input.kts.getValue();
 		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
 		Value.Afs.ktsMachSel = afs.Input.ktsMach.getBoolValue();
 		Value.Afs.lat = afs.Output.lat.getValue();
+		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
 		Value.Afs.machSel = afs.Input.mach.getValue();
+		Value.Afs.pitch = afs.Fma.pitch.getValue();
+		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
+		Value.Afs.roll = afs.Fma.roll.getValue();
+		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
+		Value.Afs.spdPitchAvail = afs.Internal.spdPitchAvail.getBoolValue();
+		Value.Afs.thrust = afs.Text.spd.getValue();
 		Value.Afs.vert = afs.Output.vert.getValue();
+		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Ai.alpha = pts.Fdm.JSBSim.Aero.alphaDegDamped.getValue();
 		Value.Ai.stallAlphaDeg = pts.Fdm.JSBSim.Fcc.stallAlphaDeg.getValue();
 		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBSim.Fcc.stallWarnAlphaDeg.getValue();
@@ -303,18 +316,29 @@ var canvasBase = {
 		Value.Asi.vmoMmo = fms.Speeds.vmoMmo.getValue();
 		Value.Asi.vsr = fms.Speeds.vsr.getValue();
 		Value.Asi.vss = fms.Speeds.vssTape.getValue();
+		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
+		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
+		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
+		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
+		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
+		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
+		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
+		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
+		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
 		Value.Misc.blinkFast = pts.Fdm.JSBSim.Libraries.blinkFast.getBoolValue();
 		Value.Misc.blinkMed = pts.Fdm.JSBSim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBSim.Libraries.blinkMed2.getBoolValue();
-		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
 		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
 		Value.Misc.flapsPos = pts.Fdm.JSBSim.Fcs.flapPosDeg.getValue();
+		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
+		Value.Misc.gearOut = pts.Fdm.JSBSim.Gear.gearAllNorm.getValue() > 0;
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
 		Value.Misc.slatsPos = pts.Fdm.JSBSim.Fcs.slatPosDeg.getValue();
-		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
-		Value.Misc.gearOut = pts.Fdm.JSBSim.Gear.gearAllNorm.getValue() > 0;
+		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
+		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
 		if (Value.Misc.annunTestWow) {
@@ -339,6 +363,95 @@ var canvasBase = {
 			me["ILS_alt"].hide();
 			me["LOC_error"].hide();
 			me["RA_error"].hide();
+		}
+		
+		# IRS
+		if (Value.Iru.aligned[Value.Iru.source[n]]) {
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
+			
+			me["AI_group"].show();
+			me["AI_group2"].show();
+			me["AI_group3"].show();
+			me["AI_group4"].show();
+			me["AI_scale"].show();
+			me["FD_group"].show();
+			me["FD_group2"].show();
+			me["HDG_group"].show();
+			me["HDG_group2"].show();
+			me["VSI_group"].show();
+			
+			Value.Ai.pliAnimate[1] = 1;
+		} else if (Value.Iru.aligning[Value.Iru.source[n]]) {
+			if (Value.Misc.annunTestWow) {
+				me["AI_error"].show();
+				me["HDG_error"].show();
+				me["VSI_error"].show();
+			} else {
+				me["AI_error"].hide();
+				me["HDG_error"].hide();
+				me["VSI_error"].hide();
+			}
+			
+			if (systems.IRS.Iru.attAvail[Value.Iru.source[n]].getBoolValue()) {
+				me["AI_group"].show();
+				me["AI_group2"].show();
+				me["AI_group3"].show();
+				me["AI_group4"].show();
+				
+				if (systems.IRS.Iru.alignTimer[Value.Iru.source[n]].getValue() >= 31) {
+					me["AI_scale"].show();
+				} else {
+					me["AI_scale"].hide();
+				}
+				
+				Value.Ai.pliAnimate[1] = 1;
+			} else {
+				me["AI_group"].hide();
+				me["AI_group2"].hide();
+				me["AI_group3"].hide();
+				me["AI_group4"].hide();
+				me["AI_scale"].hide();
+				
+				Value.Ai.pliAnimate[1] = 0;
+			}
+			
+			if (Value.Iru.mainAvail[Value.Iru.source[n]]) {
+				me["FD_group"].show();
+				me["FD_group2"].show();
+				me["HDG_group"].show();
+				me["HDG_group2"].show();
+				me["VSI_group"].show();
+			} else {
+				me["FD_group"].hide();
+				me["FD_group2"].hide();
+				me["HDG_group"].hide();
+				me["HDG_group2"].hide();
+				me["VSI_group"].hide();
+			}
+		} else {
+			me["AI_error"].show();
+			me["AI_group"].hide();
+			me["AI_group2"].hide();
+			me["AI_group3"].hide();
+			me["AI_group4"].hide();
+			me["AI_scale"].hide();
+			me["FD_group"].hide();
+			me["FD_group2"].hide();
+			me["HDG_error"].show();
+			me["HDG_group"].hide();
+			me["HDG_group2"].hide();
+			me["VSI_error"].show();
+			me["VSI_group"].hide();
+			
+			Value.Ai.pliAnimate[1] = 0;
 		}
 		
 		# ASI
@@ -1102,6 +1215,36 @@ var canvasBase = {
 			me["AI_overbank_index"].hide();
 		}
 		
+		if (Value.Afs.fd[n]) {
+			if (systems.DUController.singleCueFd) {
+				me["FD_pitch"].hide();
+				me["FD_roll"].hide();
+				
+				if (Value.Afs.spdPitchAvail) {
+					me.fdVTrans.setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
+					me.fdVRot.setRotation(afs.Fd.rollBar.getValue() * D2R, me["AI_center"].getCenter());
+					me["FD_v"].show();
+				} else {
+					me["FD_v"].hide();
+				}
+			} else {
+				if (Value.Afs.spdPitchAvail) {
+					me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
+					me["FD_pitch"].show();
+				} else {
+					me["FD_pitch"].hide();
+				}
+				
+				me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
+				me["FD_roll"].show();
+				me["FD_v"].hide();
+			}
+		} else {
+			me["FD_pitch"].hide();
+			me["FD_roll"].hide();
+			me["FD_v"].hide();
+		}
+		
 		if (Value.Afs.vert == 5) {
 			me.fpdTrans.setTranslation(0, (Value.Ai.pitch - afs.Input.fpa.getValue()) * 10.2462);
 			me.fpdRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
@@ -1748,6 +1891,79 @@ var canvasBase = {
 		}
 		
 		# FMA
+		if (Value.Afs.fd[n]) {
+			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
+				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+				me["FMA_pitch"].show();
+			} else {
+				me["FMA_pitch"].hide();
+			}
+			
+			if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
+				me["FMA_roll"].hide();
+			} else {
+				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+				} else {
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
+				}
+				me["FMA_roll"].show();
+			}
+			
+			if (afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) {
+				me["FMA_thrust"].hide();
+			} else {
+				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+				me["FMA_thrust"].show();
+			}
+		} else {
+			if (Value.Afs.thrust == "PITCH") {
+				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
+				} else {
+					me["FMA_thrust"].hide();
+				}
+				
+				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
+				} else {
+					me["FMA_pitch"].hide();
+				}
+			} else {
+				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
+					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
+					me["FMA_pitch"].show();
+				} else {
+					me["FMA_pitch"].hide();
+				}
+				
+				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
+					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
+					me["FMA_thrust"].show();
+				} else {
+					me["FMA_thrust"].hide();
+				}
+			}
+			
+			if (Value.Afs.ap1 or Value.Afs.ap2) {
+				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
+				} else {
+					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
+				}
+				
+				if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
+					me["FMA_roll"].hide();
+				} else {
+					me["FMA_roll"].show();
+				}
+			} else {
+				me["FMA_roll"].hide();
+			}
+		}
+		
 		if (fms.FmsSpd.active) { # Only if the actual FMS SPD mode is active, this excludes takeoff speed guidance
 			me["FMA_thrust"].setColor(0.9608, 0, 0.7765);
 		} else {
@@ -2097,232 +2313,12 @@ var canvasPfd1 = {
 		me["ALT_fms_up"].hide();
 	},
 	update: func() {
-		# Provide the value to here and the base
-		Value.Afs.ap1 = afs.Output.ap1.getBoolValue();
-		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
-		Value.Afs.ats = afs.Output.athr.getBoolValue();
-		Value.Afs.fd1 = afs.Output.fd1.getBoolValue();
-		Value.Afs.hdg = afs.Internal.hdg.getValue();
-		Value.Afs.land = afs.Text.land.getValue();
-		Value.Afs.pitch = afs.Fma.pitch.getValue();
-		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
-		Value.Afs.roll = afs.Fma.roll.getValue();
-		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
-		Value.Afs.spdPitchAvail = afs.Internal.spdPitchAvail.getBoolValue();
-		Value.Afs.thrust = afs.Text.spd.getValue();
-		Value.Afs.vertText = afs.Text.vert.getValue();
-		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
-		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
-		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
-		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
-		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
-		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
-		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
-		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
-		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
-		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
-		
-		# FMA
-		if (Value.Afs.fd1) {
-			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-				me["FMA_pitch"].show();
-			} else {
-				me["FMA_pitch"].hide();
-			}
-			
-			if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-				me["FMA_roll"].hide();
-			} else {
-				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
-				} else {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
-				}
-				me["FMA_roll"].show();
-			}
-			
-			if (afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) {
-				me["FMA_thrust"].hide();
-			} else {
-				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-				me["FMA_thrust"].show();
-			}
-		} else {
-			if (Value.Afs.thrust == "PITCH") {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_thrust"].show();
-				} else {
-					me["FMA_thrust"].hide();
-				}
-				
-				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_pitch"].show();
-				} else {
-					me["FMA_pitch"].hide();
-				}
-			} else {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_pitch"].show();
-				} else {
-					me["FMA_pitch"].hide();
-				}
-				
-				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_thrust"].show();
-				} else {
-					me["FMA_thrust"].hide();
-				}
-			}
-			
-			if (Value.Afs.ap1 or Value.Afs.ap2) {
-				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
-				} else {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
-				}
-				
-				if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-					me["FMA_roll"].hide();
-				} else {
-					me["FMA_roll"].show();
-				}
-			} else {
-				me["FMA_roll"].hide();
-			}
-		}
-		
-		# FD
-		if (Value.Afs.fd1) {
-			if (systems.DUController.singleCueFd) {
-				me["FD_pitch"].hide();
-				me["FD_roll"].hide();
-				
-				if (Value.Afs.spdPitchAvail) {
-					me.fdVTrans.setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
-					me.fdVRot.setRotation(afs.Fd.rollBar.getValue() * D2R, me["AI_center"].getCenter());
-					me["FD_v"].show();
-				} else {
-					me["FD_v"].hide();
-				}
-			} else {
-				if (Value.Afs.spdPitchAvail) {
-					me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
-					me["FD_pitch"].show();
-				} else {
-					me["FD_pitch"].hide();
-				}
-				
-				me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
-				me["FD_roll"].show();
-				me["FD_v"].hide();
-			}
-		} else {
-			me["FD_pitch"].hide();
-			me["FD_roll"].hide();
-			me["FD_v"].hide();
-		}
-		
-		# IRU
 		if (pts.Instrumentation.Du.irsCapt.getBoolValue()) {
 			Value.Iru.source[0] = 2; # AUX
 			me["IRS_aux"].show();
 		} else {
 			Value.Iru.source[0] = 0;
 			me["IRS_aux"].hide();
-		}
-		
-		if (Value.Iru.aligned[Value.Iru.source[0]]) {
-			if (Value.Misc.annunTestWow) {
-				me["AI_error"].show();
-				me["HDG_error"].show();
-				me["VSI_error"].show();
-			} else {
-				me["AI_error"].hide();
-				me["HDG_error"].hide();
-				me["VSI_error"].hide();
-			}
-			
-			me["AI_group"].show();
-			me["AI_group2"].show();
-			me["AI_group3"].show();
-			me["AI_group4"].show();
-			me["AI_scale"].show();
-			me["FD_group"].show();
-			me["FD_group2"].show();
-			me["HDG_group"].show();
-			me["HDG_group2"].show();
-			me["VSI_group"].show();
-			
-			Value.Ai.pliAnimate[0] = 1;
-		} else if (Value.Iru.aligning[Value.Iru.source[0]]) {
-			if (Value.Misc.annunTestWow) {
-				me["AI_error"].show();
-				me["HDG_error"].show();
-				me["VSI_error"].show();
-			} else {
-				me["AI_error"].hide();
-				me["HDG_error"].hide();
-				me["VSI_error"].hide();
-			}
-			
-			if (systems.IRS.Iru.attAvail[Value.Iru.source[0]].getBoolValue()) {
-				me["AI_group"].show();
-				me["AI_group2"].show();
-				me["AI_group3"].show();
-				me["AI_group4"].show();
-				
-				if (systems.IRS.Iru.alignTimer[Value.Iru.source[0]].getValue() >= 31) {
-					me["AI_scale"].show();
-				} else {
-					me["AI_scale"].hide();
-				}
-				
-				Value.Ai.pliAnimate[0] = 1;
-			} else {
-				me["AI_group"].hide();
-				me["AI_group2"].hide();
-				me["AI_group3"].hide();
-				me["AI_group4"].hide();
-				me["AI_scale"].hide();
-				
-				Value.Ai.pliAnimate[0] = 0;
-			}
-			
-			if (Value.Iru.mainAvail[Value.Iru.source[0]]) {
-				me["FD_group"].show();
-				me["FD_group2"].show();
-				me["HDG_group"].show();
-				me["HDG_group2"].show();
-				me["VSI_group"].show();
-			} else {
-				me["FD_group"].hide();
-				me["FD_group2"].hide();
-				me["HDG_group"].hide();
-				me["HDG_group2"].hide();
-				me["VSI_group"].hide();
-			}
-		} else {
-			me["AI_error"].show();
-			me["AI_group"].hide();
-			me["AI_group2"].hide();
-			me["AI_group3"].hide();
-			me["AI_group4"].hide();
-			me["AI_scale"].hide();
-			me["FD_group"].hide();
-			me["FD_group2"].hide();
-			me["HDG_error"].show();
-			me["HDG_group"].hide();
-			me["HDG_group2"].hide();
-			me["VSI_error"].show();
-			me["VSI_group"].hide();
-			
-			Value.Ai.pliAnimate[0] = 0;
 		}
 		
 		me.updateBase(0);
@@ -2345,232 +2341,12 @@ var canvasPfd2 = {
 		me["ALT_fms_up"].hide();
 	},
 	update: func() {
-		# Provide the value to here and the base
-		Value.Afs.ap1 = afs.Output.ap1.getBoolValue();
-		Value.Afs.ap2 = afs.Output.ap2.getBoolValue();
-		Value.Afs.ats = afs.Output.athr.getBoolValue();
-		Value.Afs.fd2 = afs.Output.fd2.getBoolValue();
-		Value.Afs.hdg = afs.Internal.hdg.getValue();
-		Value.Afs.land = afs.Text.land.getValue();
-		Value.Afs.pitch = afs.Fma.pitch.getValue();
-		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
-		Value.Afs.roll = afs.Fma.roll.getValue();
-		Value.Afs.rollArm = afs.Fma.rollArm.getValue();
-		Value.Afs.spdPitchAvail = afs.Internal.spdPitchAvail.getBoolValue();
-		Value.Afs.thrust = afs.Text.spd.getValue();
-		Value.Afs.vertText = afs.Text.vert.getValue();
-		Value.Iru.aligned[0] = systems.IRS.Iru.aligned[0].getBoolValue();
-		Value.Iru.aligned[1] = systems.IRS.Iru.aligned[1].getBoolValue();
-		Value.Iru.aligned[2] = systems.IRS.Iru.aligned[2].getBoolValue();
-		Value.Iru.aligning[0] = systems.IRS.Iru.aligning[0].getBoolValue();
-		Value.Iru.aligning[1] = systems.IRS.Iru.aligning[1].getBoolValue();
-		Value.Iru.aligning[2] = systems.IRS.Iru.aligning[2].getBoolValue();
-		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
-		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
-		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
-		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
-		
-		# FMA
-		if (Value.Afs.fd2) {
-			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-				me["FMA_pitch"].show();
-			} else {
-				me["FMA_pitch"].hide();
-			}
-			
-			if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-				me["FMA_roll"].hide();
-			} else {
-				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
-				} else {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
-				}
-				me["FMA_roll"].show();
-			}
-			
-			if (afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) {
-				me["FMA_thrust"].hide();
-			} else {
-				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-				me["FMA_thrust"].show();
-			}
-		} else {
-			if (Value.Afs.thrust == "PITCH") {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_thrust"].show();
-				} else {
-					me["FMA_thrust"].hide();
-				}
-				
-				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_pitch"].show();
-				} else {
-					me["FMA_pitch"].hide();
-				}
-			} else {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
-					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
-					me["FMA_pitch"].show();
-				} else {
-					me["FMA_pitch"].hide();
-				}
-				
-				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
-					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
-					me["FMA_thrust"].show();
-				} else {
-					me["FMA_thrust"].hide();
-				}
-			}
-			
-			if (Value.Afs.ap1 or Value.Afs.ap2) {
-				if (Value.Afs.roll == "HEADING" or Value.Afs.roll == "TRACK") {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll ~ " " ~ sprintf("%03d", Value.Afs.hdg)));
-				} else {
-					me["FMA_roll"].setText(sprintf("%s", Value.Afs.roll));
-				}
-				
-				if (afs.Fma.Blink.active[1] and afs.Fma.Blink.hide[1]) {
-					me["FMA_roll"].hide();
-				} else {
-					me["FMA_roll"].show();
-				}
-			} else {
-				me["FMA_roll"].hide();
-			}
-		}
-		
-		# FD
-		if (Value.Afs.fd2) {
-			if (systems.DUController.singleCueFd) {
-				me["FD_pitch"].hide();
-				me["FD_roll"].hide();
-				
-				if (Value.Afs.spdPitchAvail) {
-					me.fdVTrans.setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
-					me.fdVRot.setRotation(afs.Fd.rollBar.getValue() * D2R, me["AI_center"].getCenter());
-					me["FD_v"].show();
-				} else {
-					me["FD_v"].hide();
-				}
-			} else {
-				if (Value.Afs.spdPitchAvail) {
-					me["FD_pitch"].setTranslation(0, afs.Fd.pitchBar.getValue() * -10.2462);
-					me["FD_pitch"].show();
-				} else {
-					me["FD_pitch"].hide();
-				}
-				
-				me["FD_roll"].setTranslation(afs.Fd.rollBar.getValue() * 2.2, 0);
-				me["FD_roll"].show();
-				me["FD_v"].hide();
-			}
-		} else {
-			me["FD_pitch"].hide();
-			me["FD_roll"].hide();
-			me["FD_v"].hide();
-		}
-		
-		# IRU
 		if (pts.Instrumentation.Du.irsFo.getBoolValue()) {
 			Value.Iru.source[1] = 2; # AUX
 			me["IRS_aux"].show();
 		} else {
 			Value.Iru.source[1] = 1;
 			me["IRS_aux"].hide();
-		}
-		
-		if (Value.Iru.aligned[Value.Iru.source[1]]) {
-			if (Value.Misc.annunTestWow) {
-				me["AI_error"].show();
-				me["HDG_error"].show();
-				me["VSI_error"].show();
-			} else {
-				me["AI_error"].hide();
-				me["HDG_error"].hide();
-				me["VSI_error"].hide();
-			}
-			
-			me["AI_group"].show();
-			me["AI_group2"].show();
-			me["AI_group3"].show();
-			me["AI_group4"].show();
-			me["AI_scale"].show();
-			me["FD_group"].show();
-			me["FD_group2"].show();
-			me["HDG_group"].show();
-			me["HDG_group2"].show();
-			me["VSI_group"].show();
-			
-			Value.Ai.pliAnimate[1] = 1;
-		} else if (Value.Iru.aligning[Value.Iru.source[1]]) {
-			if (Value.Misc.annunTestWow) {
-				me["AI_error"].show();
-				me["HDG_error"].show();
-				me["VSI_error"].show();
-			} else {
-				me["AI_error"].hide();
-				me["HDG_error"].hide();
-				me["VSI_error"].hide();
-			}
-			
-			if (systems.IRS.Iru.attAvail[Value.Iru.source[1]].getBoolValue()) {
-				me["AI_group"].show();
-				me["AI_group2"].show();
-				me["AI_group3"].show();
-				me["AI_group4"].show();
-				
-				if (systems.IRS.Iru.alignTimer[Value.Iru.source[1]].getValue() >= 31) {
-					me["AI_scale"].show();
-				} else {
-					me["AI_scale"].hide();
-				}
-				
-				Value.Ai.pliAnimate[1] = 1;
-			} else {
-				me["AI_group"].hide();
-				me["AI_group2"].hide();
-				me["AI_group3"].hide();
-				me["AI_group4"].hide();
-				me["AI_scale"].hide();
-				
-				Value.Ai.pliAnimate[1] = 0;
-			}
-			
-			if (Value.Iru.mainAvail[Value.Iru.source[1]]) {
-				me["FD_group"].show();
-				me["FD_group2"].show();
-				me["HDG_group"].show();
-				me["HDG_group2"].show();
-				me["VSI_group"].show();
-			} else {
-				me["FD_group"].hide();
-				me["FD_group2"].hide();
-				me["HDG_group"].hide();
-				me["HDG_group2"].hide();
-				me["VSI_group"].hide();
-			}
-		} else {
-			me["AI_error"].show();
-			me["AI_group"].hide();
-			me["AI_group2"].hide();
-			me["AI_group3"].hide();
-			me["AI_group4"].hide();
-			me["AI_scale"].hide();
-			me["FD_group"].hide();
-			me["FD_group2"].hide();
-			me["HDG_error"].show();
-			me["HDG_group"].hide();
-			me["HDG_group2"].hide();
-			me["VSI_error"].show();
-			me["VSI_group"].hide();
-			
-			Value.Ai.pliAnimate[1] = 0;
 		}
 		
 		me.updateBase(1);
