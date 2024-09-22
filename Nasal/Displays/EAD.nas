@@ -231,9 +231,16 @@ var canvasBase = {
 			me["Checklist_box"].setColor(0, 1, 0);
 			me["Checklist_box"].show();
 		} else {
+			if (pts.Instrumentation.Ead.checklistRed.getBoolValue()) {
+				me["Checklist"].setColor(1, 0, 0);
+				me["Checklist_box"].setColor(1, 0, 0);
+			} else {
+				me["Checklist"].setColor(1, 1, 1);
+				me["Checklist_box"].setColor(1, 1, 1);
+			}
+			
 			me["Checklist"].setText(Value.Misc.checklistItems[Value.Misc.checklist]);
 			me["Checklist"].show();
-			me["Checklist_box"].setColor(1, 1, 1);
 			me["Checklist_box"].show();
 		}
 	},

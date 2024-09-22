@@ -297,6 +297,15 @@
 				/instrumentation/ead/checklist-mode ge 1
 			</test>
 		</switch>
+		
+		<switch name="/instrumentation/ead/checklist-red">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/instrumentation/ead/checklist gt 0
+				/instrumentation/ead/checklist-mode eq 1
+				/fms/internal/phase eq 1
+			</test>
+		</switch>
 	
 	</channel>
 	

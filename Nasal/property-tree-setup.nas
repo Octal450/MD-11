@@ -185,6 +185,7 @@ var Instrumentation = {
 	},
 	Ead: {
 		checklist: props.globals.getNode("/instrumentation/ead/checklist"),
+		checklistRed: props.globals.getNode("/instrumentation/ead/checklist-red"),
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
 		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
 		eprLimit: props.globals.getNode("/instrumentation/ead/epr-limit"),
