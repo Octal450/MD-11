@@ -271,18 +271,18 @@
 					/fms/internal/takeoff-stab-error le -2.05
 				</test>
 			</test>
-			<test logic="AND" value="3"> <!-- Slats, Takeoff -->
+			<test logic="AND" value="3"> <!-- Slat, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1
 				fcs/slat-pos-deg lt 27.5
 			</test>
-			<test logic="AND" value="4"> <!-- Flaps, Takeoff -->
+			<test logic="AND" value="4"> <!-- Flap, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1
 				<test logic="OR">
 					/fms/internal/takeoff-flaps-error gt 3
 					/fms/internal/takeoff-flaps-error lt -3
 				</test>
 			</test>
-			<test logic="AND" value="4"> <!-- Flaps, Landing -->
+			<test logic="AND" value="4"> <!-- Flap, Landing -->
 				/instrumentation/ead/checklist-mode eq 2
 				fcs/flap-pos-deg lt 31.5
 			</test>
