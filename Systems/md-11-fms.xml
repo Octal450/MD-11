@@ -1479,6 +1479,21 @@
 				</difference>
 			</function>
 		</fcs_function>
+		
+		<!-- Takeoff Flap Error -->
+		<fcs_function name="/fms/internal/takeoff-flaps-error">
+			<function>
+				<difference>
+					<integer>
+						<sum>
+							<property>fcs/flap-pos-deg</property>
+							<value>0.5</value> <!-- Make the integer rounded correctly -->
+						</sum>
+					</integer>
+					<property>/fms/flight-data/to-flaps</property>
+				</difference>
+			</function>
+		</fcs_function>
 	
 	</channel>
 

@@ -218,9 +218,9 @@
 	
 	<channel name="Engine and Alert Display" execrate="2">
 		
-		<!-- Config Warning -->
-		<switch name="/instrumentation/ead/config-wow-latch"> <!-- This makes sure the landing config warning doesn't appear on takeoff -->
-			<default value="/instrumentation/ead/config-wow-latch"/>
+		<!-- Checklist Warning -->
+		<switch name="/instrumentation/ead/checklist-wow-latch"> <!-- This makes sure the landing checklist doesn't appear on takeoff -->
+			<default value="/instrumentation/ead/checklist-wow-latch"/>
 			<test value="1">
 				position/wow eq 1
 			</test>
@@ -235,48 +235,66 @@
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/ead/config-warn-mode">
+		<switch name="/instrumentation/ead/checklist-mode">
 			<default value="0"/>
 			<test logic="AND" value="2"> <!-- Landing -->
-				/instrumentation/ead/config-wow-latch eq 0
+				/instrumentation/ead/checklist-wow-latch eq 0
 				/position/gear-agl-ft lt 1500.5
-				/it-autoflight/output/vert ne 7
+				/fms/internal/phase gt 1
 			</test>
 			<test value="1"> <!-- Takeoff -->
-				/instrumentation/ead/config-wow-latch eq 1
+				/instrumentation/ead/checklist-wow-latch eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 79.5
-				/it-autoflight/output/vert eq 7
+				/fms/internal/phase le 1
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/ead/config-warn">
-			<default value="0"/>
-			<test logic="AND" value="1"> <!-- Landing -->
-				/instrumentation/ead/config-warn-mode eq 2
+		<switch name="/instrumentation/ead/checklist">
+			<default value="-1"/> <!-- Off -->
+			<test logic="AND" value="1"> <!-- Landing Gear, Landing -->
+				/instrumentation/ead/checklist-mode eq 2
 				<test logic="OR">
-					fcs/flap-pos-deg le 31.5
 					gear/unit[0]/status ne 2
 					gear/unit[1]/status ne 2
 					gear/unit[2]/status ne 2
-					/controls/flight/speedbrake-arm eq 0
-					/controls/gear/abs/knob lt 1
-					/controls/gear/brake-parking eq 1
+					<test logic="AND">
+						gear/unit[3]/status ne 2
+						/controls/gear/center-gear-up eq 0
+					</test>
 				</test>
 			</test>
-			<test value="1"> <!-- Takeoff --> <!-- Add flaps +/- 3 from FMS setting -->
-				/instrumentation/ead/config-warn-mode eq 1
-				<test logic="OR">
-					fcs/flap-pos-deg lt 6.5
-					fcs/flap-pos-deg ge 31.5
-					gear/unit[0]/status ne 2
-					gear/unit[1]/status ne 2
-					gear/unit[2]/status ne 2
-					/controls/flight/speedbrake-arm eq 0
-					/controls/gear/abs/knob gt -1
-					/controls/gear/brake-parking eq 1
+			<test logic="AND" value="2"> <!-- Stab Trim, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				<test logic="OR"> <!-- 2.05 instead of 2 in order to fix floating point error -->
 					/fms/internal/takeoff-stab-error ge 2.05
 					/fms/internal/takeoff-stab-error le -2.05
-				</test> <!-- 2.05 instead of 2 in order to fix floating point error -->
+				</test>
+			</test>
+			<test logic="AND" value="3"> <!-- Flaps, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				<test logic="OR">
+					/fms/internal/takeoff-flaps-error gt 3
+					/fms/internal/takeoff-flaps-error lt -3
+				</test>
+			</test>
+			<test logic="AND" value="3"> <!-- Flaps, Landing -->
+				/instrumentation/ead/checklist-mode eq 2
+				fcs/flap-pos-deg le 31.5
+			</test>
+			<test logic="AND" value="4"> <!-- Slats, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 2
+				fcs/slat-pos-deg lt 27.5
+			</test>
+			<test logic="AND" value="5"> <!-- Brakes, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				/controls/gear/brake-parking eq 1
+			</test>
+			<test logic="AND" value="6"> <!-- Spoilers, Both -->
+				/instrumentation/ead/checklist-mode ge 1
+				/controls/flight/speedbrake-arm eq 0
+			</test>
+			<test value="0"> <!-- Green Box -->
+				/instrumentation/ead/checklist-mode ge 1
 			</test>
 		</switch>
 	

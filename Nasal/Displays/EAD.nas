@@ -33,6 +33,8 @@ var Value = {
 	},
 	Misc: {
 		annunTestWow: 0,
+		checklist: 0,
+		checklistItems: ["", "LANDING GEAR", "STAB TRIM", "FLAPS", "SLATS", "BRAKES", "SPOILERS"],
 		wow: 0,
 	},
 	n1Limit: 0,
@@ -80,9 +82,13 @@ var canvasBase = {
 	setup: func() {
 		# Hide the pages by default
 		geDials.page.hide();
+		geDials.setup();
 		geTapes.page.hide();
+		geTapes.setup();
 		pwDials.page.hide();
+		pwDials.setup();
 		pwTapes.page.hide();
+		pwTapes.setup();
 		
 		Value.engType = pts.Options.eng.getValue();
 	},
@@ -215,11 +221,20 @@ var canvasBase = {
 			}
 		}
 		
-		# Lower Right Warnings
-		if (pts.Instrumentation.Ead.configWarn.getBoolValue()) {
-			me["Config"].show();
+		# Checklist
+		Value.Misc.checklist = pts.Instrumentation.Ead.checklist.getValue();
+		if (Value.Misc.checklist == -1) {
+			me["Checklist"].hide();
+			me["Checklist_box"].hide();
+		} else if (Value.Misc.checklist == 0) {
+			me["Checklist"].hide();
+			me["Checklist_box"].setColor(0, 1, 0);
+			me["Checklist_box"].show();
 		} else {
-			me["Config"].hide();
+			me["Checklist"].setText(Value.Misc.checklistItems[Value.Misc.checklist]);
+			me["Checklist"].show();
+			me["Checklist_box"].setColor(1, 1, 1);
+			me["Checklist_box"].show();
 		}
 	},
 	updateBaseDials: func() {
@@ -610,12 +625,16 @@ var canvasGeDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds",
-		"N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens", "N12_tens_zero", "N12_thr",
-		"N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21",
-		"N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt", "N23_decimal", "N23_error", "N23_needle",
-		"N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart",
+		"EGT2_yline", "EGT3", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt",
+		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens",
+		"N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox",
+		"N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt",
+		"N23_decimal", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+	},
+	setup: func() {
+		# Hide unimplemented objects
+		me["Config"].hide();
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -846,11 +865,15 @@ var canvasGeTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_decimal", "N11_error", "N11_group",
-		"N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim", "N13_redline", "N13_thr", "N1Lim", "N1Lim_decimal",
-		"N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23",
-		"N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline",
+		"EGT2_redstart", "EGT2_yline", "EGT3", "EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar",
+		"N11_decimal", "N11_error", "N11_group", "N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim",
+		"N13_redline", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal",
+		"N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+	},
+	setup: func() {
+		# Hide unimplemented objects
+		me["Config"].hide();
 	},
 	update: func() {
 		# Provide the value to here and the base
@@ -1035,13 +1058,17 @@ var canvasPwDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box",
-		"EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim",
-		"EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error", "N11_needle",
-		"N11_redline", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt", "N21_error",
-		"N21_needle", "N21_redline", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT",
-		"TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart",
+		"EGT2_yline", "EGT3", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr",
+		"EPR2_box", "EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr",
+		"EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error",
+		"N11_needle", "N11_redline", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt",
+		"N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3",
+		"TAT", "TAT_error"];
+	},
+	setup: func() {
+		# Hide unimplemented objects
+		me["Config"].hide();
 	},
 	setDials: func() {
 		if (pts.Systems.Acconfig.Options.n1BelowEpr.getBoolValue()) {
@@ -1349,12 +1376,16 @@ var canvasPwTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline", "EGT2_redstart", "EGT2_yline", "EGT3",
-		"EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_error", "EPR2_group",
-		"EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2",
-		"FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21", "N21_bar", "N21_cline",
-		"N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3",
-		"TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline",
+		"EGT2_redstart", "EGT2_yline", "EGT3", "EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar",
+		"EPR2_decimal", "EPR2_error", "EPR2_group", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode",
+		"EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group",
+		"N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error",
+		"N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+	},
+	setup: func() {
+		# Hide unimplemented objects
+		me["Config"].hide();
 	},
 	update: func() {
 		# Provide the value to here and the base
