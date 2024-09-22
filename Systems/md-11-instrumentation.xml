@@ -246,6 +246,7 @@
 				/instrumentation/ead/checklist-wow-latch eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 79.5
 				/fms/internal/phase le 1
+				/fms/flight-data/v2 gt 0
 			</test>
 		</switch>
 		
@@ -270,20 +271,20 @@
 					/fms/internal/takeoff-stab-error le -2.05
 				</test>
 			</test>
-			<test logic="AND" value="3"> <!-- Flaps, Takeoff -->
+			<test logic="AND" value="3"> <!-- Slats, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				fcs/slat-pos-deg lt 27.5
+			</test>
+			<test logic="AND" value="4"> <!-- Flaps, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1
 				<test logic="OR">
 					/fms/internal/takeoff-flaps-error gt 3
 					/fms/internal/takeoff-flaps-error lt -3
 				</test>
 			</test>
-			<test logic="AND" value="3"> <!-- Flaps, Landing -->
+			<test logic="AND" value="4"> <!-- Flaps, Landing -->
 				/instrumentation/ead/checklist-mode eq 2
 				fcs/flap-pos-deg lt 31.5
-			</test>
-			<test logic="AND" value="4"> <!-- Slats, Takeoff -->
-				/instrumentation/ead/checklist-mode eq 2
-				fcs/slat-pos-deg lt 27.5
 			</test>
 			<test logic="AND" value="5"> <!-- Brakes, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1

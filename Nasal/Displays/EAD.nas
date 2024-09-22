@@ -34,7 +34,7 @@ var Value = {
 	Misc: {
 		annunTestWow: 0,
 		checklist: 0,
-		checklistItems: ["", "LANDING GEAR", "STAB TRIM", "FLAPS", "SLATS", "BRAKES", "SPOILERS"],
+		checklistItems: ["", "LANDING GEAR", "STAB TRIM", "SLAT", "FLAP", "BRAKES", "SPOILERS"],
 		wow: 0,
 	},
 	n1Limit: 0,
