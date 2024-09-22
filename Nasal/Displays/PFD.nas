@@ -388,7 +388,7 @@ var canvasBase = {
 			me["HDG_group2"].show();
 			me["VSI_group"].show();
 			
-			Value.Ai.pliAnimate[1] = 1;
+			Value.Ai.pliAnimate[n] = 1;
 		} else if (Value.Iru.aligning[Value.Iru.source[n]]) {
 			if (Value.Misc.annunTestWow) {
 				me["AI_error"].show();
@@ -412,7 +412,7 @@ var canvasBase = {
 					me["AI_scale"].hide();
 				}
 				
-				Value.Ai.pliAnimate[1] = 1;
+				Value.Ai.pliAnimate[n] = 1;
 			} else {
 				me["AI_group"].hide();
 				me["AI_group2"].hide();
@@ -420,7 +420,7 @@ var canvasBase = {
 				me["AI_group4"].hide();
 				me["AI_scale"].hide();
 				
-				Value.Ai.pliAnimate[1] = 0;
+				Value.Ai.pliAnimate[n] = 0;
 			}
 			
 			if (Value.Iru.mainAvail[Value.Iru.source[n]]) {
@@ -451,7 +451,7 @@ var canvasBase = {
 			me["VSI_error"].show();
 			me["VSI_group"].hide();
 			
-			Value.Ai.pliAnimate[1] = 0;
+			Value.Ai.pliAnimate[n] = 0;
 		}
 		
 		# ASI
