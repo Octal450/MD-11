@@ -279,7 +279,7 @@
 			</test>
 			<test logic="AND" value="3"> <!-- Flaps, Landing -->
 				/instrumentation/ead/checklist-mode eq 2
-				fcs/flap-pos-deg le 31.5
+				fcs/flap-pos-deg lt 31.5
 			</test>
 			<test logic="AND" value="4"> <!-- Slats, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 2
