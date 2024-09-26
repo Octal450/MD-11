@@ -728,17 +728,14 @@
 			</test>
 		</switch>
 		
-		<aerosurface_scale name="hydraulics/stabilizer/cmd-deg">
+		<pure_gain name="hydraulics/stabilizer/cmd-deg">
 			<input>/controls/flight/elevator-trim</input>
-			<domain>
-				<min>-1.0</min>
-				<max>0.064516</max>
-			</domain>
-			<range>
+			<gain>15.5</gain>
+			<clipto>
 				<min>-15.5</min>
 				<max>1.0</max>
-			</range>
-		</aerosurface_scale>
+			</clipto>
+		</pure_gain>
 		
 		<actuator name="hydraulics/stabilizer/final-actuator">
 			<input>hydraulics/stabilizer/cmd-deg</input>
