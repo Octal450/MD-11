@@ -1,0 +1,150 @@
+<!-- Code inspired by: https://github.com/legoboyvdlp/A320-family/blob/dev/WebPanel/WebPanel1/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mcdu.css">
+    <title>MD-11 MCDU</title>
+</head>
+<body style="width: 100%" oncontextmenu="return false;">
+    
+	<table class="enter" style="width: 100%">
+        <tr>
+            <td>
+                <br/>
+            </td>
+            <td rowspan="8">
+                <img id="mcduimg" width="100%"  src="/screenshot?canvasindex=8&type=jpg"/>
+            </td>
+            <td>
+                <br/>
+            </td>            
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l1">-</td>
+            <td data-buttoncode="softKey:r1">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l2">-</td>
+            <td data-buttoncode="softKey:r2">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l3">-</td>
+            <td data-buttoncode="softKey:r3">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l4">-</td>
+            <td data-buttoncode="softKey:r4">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l5">-</td>
+            <td data-buttoncode="softKey:r5">-</td>
+        </tr>
+        <tr>
+            <td data-buttoncode="softKey:l6">-</td>
+            <td data-buttoncode="softKey:r6">-</td>
+        </tr>
+        <tr>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+    </table>
+    <table class="menu" style="width: 100%">
+		<tr>
+			<td data-buttoncode="pageKey:dir" class="dir">DIR<br/>INTC</td>
+			<td data-buttoncode="pageKey:navRadio" class="navRadio">NAV<br/>RAD</td>
+			<td data-buttoncode="pageKey:perf" class="perf">PERF</td>
+			<td data-buttoncode="pageKey:init" class="init">INIT</td>
+			<td data-buttoncode="pageKey:toAppr" class="data">TO/<br/>APPR</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td data-buttoncode="pageKey:fpln" class="fpln">F-PLN</td>
+			<td data-buttoncode="pageKey:prog" class="prog">PROG</td>
+			<td data-buttoncode="pageKey:fix" class="fix">FIX</td>
+			<td data-buttoncode="pageKey:secFpln" class="secFpln">SEC<br>F-PLN</td>
+			<td data-buttoncode="pageKey:ref"  class="ref">REF</td>
+			<td data-buttoncode="pageKey:engOut" class="engOut">ENG<br>OUT</td>
+		</tr>
+	</table>
+    <table class="input" style="float: right; width: 62.5%">
+		<tr>
+			<td data-buttoncode="alphaNumKey:A">A</td>
+			<td data-buttoncode="alphaNumKey:B">B</td>
+			<td data-buttoncode="alphaNumKey:C">C</td>
+			<td data-buttoncode="alphaNumKey:D">D</td>
+			<td data-buttoncode="alphaNumKey:E">E</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:F">F</td>
+			<td data-buttoncode="alphaNumKey:G">G</td>
+			<td data-buttoncode="alphaNumKey:H">H</td>
+			<td data-buttoncode="alphaNumKey:I">I</td>
+			<td data-buttoncode="alphaNumKey:J">J</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:K">K</td>
+			<td data-buttoncode="alphaNumKey:L">L</td>
+			<td data-buttoncode="alphaNumKey:M">M</td>
+			<td data-buttoncode="alphaNumKey:N">N</td>
+			<td data-buttoncode="alphaNumKey:O">O</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:P">P</td>
+			<td data-buttoncode="alphaNumKey:Q">Q</td>
+			<td data-buttoncode="alphaNumKey:R">R</td>
+			<td data-buttoncode="alphaNumKey:S">S</td>
+			<td data-buttoncode="alphaNumKey:T">T</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:U">U</td>
+			<td data-buttoncode="alphaNumKey:V">V</td>
+			<td data-buttoncode="alphaNumKey:W">W</td>
+			<td data-buttoncode="alphaNumKey:X">X</td>
+			<td data-buttoncode="alphaNumKey:Y">Y</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:Z">Z</td>
+			<td data-buttoncode="alphaNumKey:-">-</td>
+			<td data-buttoncode="alphaNumKey:+">+</td>
+			<td style="font-size: 33%" data-buttoncode="alphaNumKey: ">SP</td>
+			<td style="font-size: 33%" data-buttoncode="alphaNumKey:CLR">CLR</td>
+		</tr>
+	</table>
+	<table class="arrows" style="width: 29.5%">
+		<tr>
+			<td style="font-size: 30%" data-buttoncode="pageKey:menu" class="menu">MENU</td>
+			<td data-buttoncode="arrowKey:1" class="up">↑</td>
+		</tr>
+		<tr>
+			<td style="font-size: 30%" data-buttoncode="nextPage:" class="nextpage">→<br/>PAGE</td>
+			<td data-buttoncode="arrowKey:-1" class="down">↓</td>
+		</tr>
+	</table>
+	<table class="input" style="width: 30%">
+		<tr>
+			<td data-buttoncode="alphaNumKey:1">1</td>
+			<td data-buttoncode="alphaNumKey:2">2</td>
+			<td data-buttoncode="alphaNumKey:3">3</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:4">4</td>
+			<td data-buttoncode="alphaNumKey:5">5</td>
+			<td data-buttoncode="alphaNumKey:6">6</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:7">7</td>
+			<td data-buttoncode="alphaNumKey:8">8</td>
+			<td data-buttoncode="alphaNumKey:9">9</td>
+		</tr>
+		<tr>
+			<td data-buttoncode="alphaNumKey:/">/</td>
+			<td data-buttoncode="alphaNumKey:0">0</td>
+			<td data-buttoncode="alphaNumKey:.">.</td>
+		</tr>
+	</table>
+    <script src="mcdu.js"></script>
+</body>
+</html>
