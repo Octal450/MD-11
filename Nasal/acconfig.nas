@@ -21,6 +21,7 @@ var SYSTEM = {
 	revisionTemp: 0,
 	spinner: "\\",
 	simInit: func() {
+		print("System: Initializing " ~ getprop("/sim/aircraft"));
 		PANEL.stop = 1;
 		me.autoConfigRunning.setBoolValue(0);
 		spinningT.start();
