@@ -2,16 +2,16 @@
 
 <!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
 
-<fdm_config name="MD-11" version="2.0" release="BETA">
+<fdm_config name="MD-11-GE" version="2.0" release="BETA">
 	
 	<fileheader>
 		<author>Josh Davidson (Octal450)</author>
-		<description>MD-11 FDE</description>
+		<description>MD-11 FDE with CF6-80C2D1F Engines</description>
 	</fileheader>
 	
-	<metrics file="Systems/md-11-metrics"/>
-	<mass_balance file="Systems/md-11-mass-balance"/>
-	<ground_reactions file="Systems/md-11-ground-reactions"/>
+	<metrics file="FDE/Config/md-11-metrics"/>
+	<mass_balance file="FDE/Config/md-11-mass-balance"/>
+	<ground_reactions file="FDE/Config/md-11-ground-reactions"/>
 	
 	<propulsion>
 		<engine file="cf6-80c2d1f_1">
@@ -247,7 +247,7 @@
 	<system file="md-11-instrumentation"/>
 	
 	<flight_control name="none"/>
-	<aerodynamics file="Systems/md-11-aerodynamics.xml"/>
-	<external_reactions file="Systems/md-11-external-reactions"/>
+	<aerodynamics file="FDE/Config/md-11-aerodynamics.xml"/>
+	<external_reactions file="FDE/Config/md-11-external-reactions"/>
 
 </fdm_config>
