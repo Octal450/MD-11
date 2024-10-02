@@ -2002,7 +2002,7 @@ var canvasBase = {
 			me["FMA_roll_arm"].setColor(1, 1, 1);
 		}
 		
-		if (Value.Afs.land != "OFF") {
+		if (Value.Afs.land != "OFF" and (Value.Afs.ap1 or Value.Afs.ap2 or Value.Afs.fd[n])) {
 			if (Value.Afs.land == "DUAL") {
 				me["FMA_land"].setColor(0, 1, 0);
 				me["FMA_land"].setText("DUAL LAND");
