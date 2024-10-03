@@ -69,10 +69,10 @@
 		<fcs_function name="fcc/stall-alpha-deg">
 			<function>
 				<table>
-					<independentVar lookup="row">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="row">velocities/mach</independentVar>
 					<tableData>
-						    0  15.5
-						45000   8.3
+						0.2  15.5
+						0.9   8.3
 					</tableData>
 				</table>
 			</function>
