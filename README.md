@@ -1,4 +1,4 @@
-# MD-11
+# McDonnell Douglas MD-11
 A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear.
 
 Present pack includes the following McDonnell Douglas MD-11 variants:
