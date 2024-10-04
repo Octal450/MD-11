@@ -1040,28 +1040,30 @@ var ITAF = {
 	},
 	setBasicMode: func(t) {
 		if (t != 1) {
-			if (Output.lat.getValue() != 0) { # Sync and blink
+			if (Output.lat.getValue() == 0) { # Just sync
+				me.syncHdg();
+			} else {# Sync and blink
 				me.setLatMode(3); # HDG HLD
 				Fma.startBlink(1);
-			} else { # Just sync
-				me.setLatMode(3); # HDG HLD
 			}
 		}
 		
 		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
 			Output.vertTemp = Output.vert.getValue();
-			if (Output.vertTemp != 1 and Output.vertTemp != 5) { # Sync and blink
+			if (Output.vertTemp == 1) { # Just sync
+				me.syncVs();
+			} else if (Output.vertTemp == 5) { # Just sync
+				me.syncFpa();
+			} else { # Sync and blink
 				me.setVertMode(1); # V/S or FPA
 				Fma.startBlink(2);
-			} else { # Just sync
-				me.setVertMode(1); # V/S or FPA
 			}
 		} else {
-			if (Output.vert.getValue() != 0) { # Sync and blink
+			if (Output.vert.getValue() == 0) { # Just sync
+				me.syncAlt();
+			} else { # Sync and blink
 				me.setVertMode(0); # ALT HLD
 				Fma.startBlink(2);
-			} else { # Just sync
-				me.setVertMode(0); # ALT HLD
 			}
 		}
 	},
