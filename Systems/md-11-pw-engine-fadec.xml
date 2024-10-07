@@ -255,7 +255,7 @@
 		<fcs_function name="fadec/limit/go-around">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/go-around-ref</property>
@@ -263,7 +263,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -400,7 +400,7 @@
 		<fcs_function name="fadec/limit/takeoff-no-flex">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/takeoff-no-flex-ref</property>
@@ -408,7 +408,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -554,7 +554,7 @@
 		<fcs_function name="fadec/limit/takeoff-flex">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/takeoff-flex-ref</property>
@@ -562,7 +562,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -614,7 +614,7 @@
 		<fcs_function name="fadec/limit/mct">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/mct-ref</property>
@@ -622,7 +622,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -667,7 +667,7 @@
 		<fcs_function name="fadec/limit/climb">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/climb-ref</property>
@@ -675,7 +675,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -720,7 +720,7 @@
 		<fcs_function name="fadec/limit/cruise">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/cruise-ref</property>
@@ -728,7 +728,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>1000</value>
 				</quotient>
 			</function>
@@ -893,7 +893,7 @@
 		<fcs_function name="fadec/limit/idle">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>fadec/limit/idle-ref</property>
@@ -901,7 +901,7 @@
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<value>10</value>
 				</quotient>
 			</function>

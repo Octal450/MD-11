@@ -33,12 +33,12 @@
 							<value>0</value>
 						</eq>
 						<property>/fms/flight-data/v2-plus-10</property>
-						<integer>
+						<floor>
 							<sum>
 								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 								<value>0.5</value>
 							</sum>
-						</integer>
+						</floor>
 					</ifthen>
 					<value>0</value>
 				</ifthen>
@@ -1446,7 +1446,7 @@
 		<fcs_function name="/fms/internal/takeoff-stab-deg">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
 								<property>/fms/internal/takeoff-stab-deg-calc</property>
@@ -1454,7 +1454,7 @@
 							</product>
 							<value>0.5</value>
 						</sum>
-					</integer>
+					</floor>
 					<value>10</value>
 				</quotient>
 			</function>
@@ -1464,7 +1464,7 @@
 			<function>
 				<difference>
 					<quotient>
-						<integer>
+						<floor>
 							<sum>
 								<product>
 									<property>hydraulics/stabilizer/final-deg</property>
@@ -1472,7 +1472,7 @@
 								</product>
 								<value>0.5</value> <!-- Make the integer rounded correctly -->
 							</sum>
-						</integer>
+						</floor>
 						<value>10</value>
 					</quotient>
 					<property>/fms/internal/takeoff-stab-deg</property>
@@ -1484,12 +1484,12 @@
 		<fcs_function name="/fms/internal/takeoff-flaps-error">
 			<function>
 				<difference>
-					<integer>
+					<floor>
 						<sum>
 							<property>fcs/flap-pos-deg</property>
 							<value>0.5</value> <!-- Make the integer rounded correctly -->
 						</sum>
-					</integer>
+					</floor>
 					<property>/fms/flight-data/to-flaps</property>
 				</difference>
 			</function>

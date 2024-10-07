@@ -448,12 +448,12 @@
 						<value>1000</value>
 					</quotient>
 					<product>
-						<integer>
+						<floor>
 							<quotient>
 								<property>/instrumentation/stby-combo/altitude-ft</property>
 								<value>10000</value>
 							</quotient>
-						</integer>
+						</floor>
 						<value>10000</value>
 					</product>
 				</difference>
@@ -463,12 +463,12 @@
 		<fcs_function name="/instrumentation/stby-combo/altitude-ft-tenthousands">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 							<value>10000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -477,12 +477,12 @@
 									<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 									<value>10000</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 										<value>10000</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.99</value>
 							</difference>
 							<value>100</value>
@@ -514,12 +514,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tenths">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>10</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -528,12 +528,12 @@
 									<property>/instrumentation/stby-combo/setting-inhg-text</property>
 									<value>10</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.9</value>
 							</difference>
 							<value>10</value>
@@ -546,12 +546,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-ones">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>100</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -561,12 +561,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>100</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>100</value>
 										</quotient>
-									</integer>
+									</floor>
 								</difference>
 								<value>0.9</value>
 							</lt>
@@ -577,12 +577,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -596,12 +596,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tens">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>1000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -612,12 +612,12 @@
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>100</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-inhg-text</property>
 												<value>100</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -627,12 +627,12 @@
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>1000</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-inhg-text</property>
 												<value>1000</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -644,12 +644,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -679,12 +679,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-tens">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>10</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -693,12 +693,12 @@
 									<property>/instrumentation/stby-combo/setting-hpa-text</property>
 									<value>10</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.9</value>
 							</difference>
 							<value>10</value>
@@ -711,12 +711,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-hundreds">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>100</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -726,12 +726,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>100</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>100</value>
 										</quotient>
-									</integer>
+									</floor>
 								</difference>
 								<value>0.9</value>
 							</lt>
@@ -742,12 +742,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -761,12 +761,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-thousands">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>1000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -777,12 +777,12 @@
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>100</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-hpa-text</property>
 												<value>100</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -792,12 +792,12 @@
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>1000</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-hpa-text</property>
 												<value>1000</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -809,12 +809,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
