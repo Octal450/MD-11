@@ -54,7 +54,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/gear/abs/knob</property>
+				<property>controls/abs/knob</property>
 				<factor>1</factor>
 				<min>-1</min>
 				<max>3</max>
@@ -116,7 +116,7 @@
 			<button>3</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/gear/abs/knob</property>
+				<property>controls/abs/knob</property>
 				<step>1</step>
 				<min>-1</min>
 				<max>3</max>
@@ -131,7 +131,7 @@
 			<button>4</button>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/gear/abs/knob</property>
+				<property>controls/abs/knob</property>
 				<step>-1</step>
 				<min>-1</min>
 				<max>3</max>

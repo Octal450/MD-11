@@ -106,18 +106,18 @@ var onLightt = maketimer(0.4, APU, APU.onLight);
 # Brakes
 var BRAKES = {
 	Abs: {
-		armed: props.globals.getNode("/gear/abs/armed"),
-		disarm: props.globals.getNode("/gear/abs/disarm"),
-		mode: props.globals.getNode("/gear/abs/mode"), # -2: RTO MAX, -1: RTO MIN, 0: OFF, 1: MIN, 2: MED, 3: MAX
+		armed: props.globals.getNode("/systems/abs/armed"),
+		disarm: props.globals.getNode("/systems/abs/disarm"),
+		mode: props.globals.getNode("/systems/abs/mode"), # -2: RTO MAX, -1: RTO MIN, 0: OFF, 1: MIN, 2: MED, 3: MAX
 	},
 	Fail: {
 		abs: props.globals.getNode("/systems/failures/brakes/abs"),
 	},
 	Light: {
-		absDisarm: props.globals.initNode("/gear/abs/lights/disarm", 0, "BOOL"),
+		absDisarm: props.globals.initNode("/systems/abs/lights/disarm", 0, "BOOL"),
 	},
 	Switch: {
-		abs: props.globals.getNode("/controls/gear/abs/knob"), # -1: RTO, 0: OFF, 1: MIN, 2: MED, 3: MAX
+		abs: props.globals.getNode("/controls/abs/knob"), # -1: RTO, 0: OFF, 1: MIN, 2: MED, 3: MAX
 	},
 	init: func() {
 		me.Switch.abs.setValue(0);
@@ -168,11 +168,11 @@ var BRAKES = {
 	},
 };
 
-setlistener("/gear/abs/knob-input", func() {
+setlistener("/systems/abs/knob-input", func() {
 	BRAKES.absSetUpdate(BRAKES.Switch.abs.getValue());
 }, 0, 0);
 
-setlistener("/gear/abs/disarm", func() {
+setlistener("/systems/abs/disarm", func() {
 	BRAKES.absSetOff(1);
 }, 0, 0);
 

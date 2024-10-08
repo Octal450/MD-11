@@ -1549,7 +1549,7 @@
 				<max>
 					<property>/controls/gear/brake-left</property>
 					<property>/controls/gear/brake-parking</property>
-					<property>/gear/abs/brake-output</property>
+					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
 			<output>fcs/left-brake-input-feedback</output>
@@ -1578,7 +1578,7 @@
 				<max>
 					<property>/controls/gear/brake-right</property>
 					<property>/controls/gear/brake-parking</property>
-					<property>/gear/abs/brake-output</property>
+					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
 			<output>fcs/right-brake-input-feedback</output>
@@ -1616,7 +1616,7 @@
 						</product>
 					</sum>
 					<property>/controls/gear/brake-parking</property>
-					<property>/gear/abs/brake-output</property>
+					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
 			<output>fcs/center-brake-input-feedback</output>

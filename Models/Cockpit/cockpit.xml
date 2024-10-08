@@ -981,7 +981,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>gear/abs/lights/disarm</property>
+					<property>systems/abs/lights/disarm</property>
 					<value>1</value>
 				</equals>
 				<equals>

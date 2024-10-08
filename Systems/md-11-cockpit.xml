@@ -115,7 +115,7 @@
 		
 		<!-- Pedestal -->
 		<lag_filter name="/controls/cockpit/abs-knob">
-			<input>/controls/gear/abs/knob</input>
+			<input>/controls/abs/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -235,7 +235,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/spoilers-lever-rotate">
-			<input>spoilers/lever-cmd</input>
+			<input>/systems/spoilers/lever-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		
