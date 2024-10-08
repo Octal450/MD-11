@@ -842,25 +842,6 @@
 					<y alias="/sim/model/autopush/force-y"/>
 				</tractor>
 			</external_reactions>
-			<fadec n="0">
-				<ats-cmd-1 type="double">0</ats-cmd-1>
-				<ats-cmd-2 type="double">0</ats-cmd-2>
-				<ats-cmd-3 type="double">0</ats-cmd-3>
-				<epr n="0">
-					<c1 type="double">1</c1>
-					<c2 type="double">1</c2>
-				</epr>
-				<limit n="0">
-					<active-mode type="string">T/O</active-mode>
-					<active-mode-int type="int">0</active-mode-int>
-					<auto type="bool">1</auto>
-					<pw-derate type="bool">1</pw-derate>
-				</limit>
-				<throttle-compare-max type="double">0</throttle-compare-max>
-				<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>
-				<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
-				<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
-			</fadec>
 			<fcs n="0">
 				<slat-pos-deg type="double">0</slat-pos-deg>
 			</fcs>
@@ -1767,6 +1748,25 @@
 				<avail-lwr type="bool">0</avail-lwr>
 			</yaw>
 		</fcc>
+		<fadec n="0">
+			<ats-cmd-1 type="double">0</ats-cmd-1>
+			<ats-cmd-2 type="double">0</ats-cmd-2>
+			<ats-cmd-3 type="double">0</ats-cmd-3>
+			<epr n="0">
+				<c1 type="double">1</c1>
+				<c2 type="double">1</c2>
+			</epr>
+			<limit n="0">
+				<active-mode type="string">T/O</active-mode>
+				<active-mode-int type="int">0</active-mode-int>
+				<auto type="bool">1</auto>
+				<pw-derate type="bool">1</pw-derate>
+			</limit>
+			<throttle-compare-max type="double">0</throttle-compare-max>
+			<throttle-lever-feedback n="0" type="double">0</throttle-lever-feedback>
+			<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
+			<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
+		</fadec>
 		<fms n="0">
 			<flight-data n="0">
 				<airport-from-alt type="int">-1000</airport-from-alt>

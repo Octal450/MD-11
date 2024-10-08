@@ -1030,7 +1030,7 @@
 					<sum>
 						<property>/systems/fms/speeds/vmo-mmo</property>
 						<table>
-							<independentVar lookup="row">fadec/throttle-compare-max</independentVar> <!-- afs-thrust.xml -->
+							<independentVar lookup="row">/systems/fadec/throttle-compare-max</independentVar> <!-- afs-thrust.xml -->
 							<tableData>
 								0  0
 								1  6
@@ -1758,8 +1758,8 @@
 				/gear/abs/active ne 1
 			</test>
 			<test logic="AND" value="1">
-				fadec/throttle-lever-feedback[0] lt 0.05
-				fadec/throttle-lever-feedback[2] lt 0.05
+				/systems/fadec/throttle-lever-feedback[0] lt 0.05
+				/systems/fadec/throttle-lever-feedback[2] lt 0.05
 			</test>
 		</switch>
 		
@@ -1767,11 +1767,11 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/gear/abs/throttle-can-disarm eq 1
-				fadec/throttle-lever-feedback[0] ge 0.05
+				/systems/fadec/throttle-lever-feedback[0] ge 0.05
 			</test>
 			<test logic="AND" value="1">
 				/gear/abs/throttle-can-disarm eq 1
-				fadec/throttle-lever-feedback[2] ge 0.05
+				/systems/fadec/throttle-lever-feedback[2] ge 0.05
 			</test>
 		</switch>
 		

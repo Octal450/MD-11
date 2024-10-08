@@ -283,8 +283,8 @@
 					fcs/slat-pos-deg ge 0.1
 				</test>
 				<test logic="OR">
-					fadec/throttle-lever-feedback[0] ge 0.7
-					fadec/throttle-lever-feedback[1] ge 0.7
+					/systems/fadec/throttle-lever-feedback[0] ge 0.7
+					/systems/fadec/throttle-lever-feedback[1] ge 0.7
 				</test>
 			</test>
 			<test logic="AND" value="1">

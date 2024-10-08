@@ -214,9 +214,9 @@
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 210
 				/position/gear-agl-ft le 1200
 				<test logic="OR">
-					fadec/control-1/throttle-pos lt 0.01
-					fadec/control-2/throttle-pos lt 0.01
-					fadec/control-3/throttle-pos lt 0.01
+					/systems/fadec/control-1/throttle-pos lt 0.01
+					/systems/fadec/control-2/throttle-pos lt 0.01
+					/systems/fadec/control-3/throttle-pos lt 0.01
 				</test>
 			</test>
 		</switch>

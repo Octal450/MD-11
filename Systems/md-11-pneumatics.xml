@@ -135,18 +135,18 @@
 			<test logic="OR" value="0">
 				/position/gear-agl-ft ge 4500
 				/systems/fms/flight-data/to-packs eq 1
-				fadec/limit/active-mode-int ne 0
+				/systems/fadec/limit/active-mode-int ne 0
 			</test>
 			<test logic="AND" value="0">
 				position/wow eq 1
-				fadec/throttle-lever-feedback[0] lt 0.7
-				fadec/throttle-lever-feedback[1] lt 0.7
+				/systems/fadec/throttle-lever-feedback[0] lt 0.7
+				/systems/fadec/throttle-lever-feedback[1] lt 0.7
 			</test>
 			<test logic="AND" value="1">
 				position/wow eq 1
 				<test logic="OR">
-					fadec/throttle-lever-feedback[0] ge 0.7
-					fadec/throttle-lever-feedback[1] ge 0.7
+					/systems/fadec/throttle-lever-feedback[0] ge 0.7
+					/systems/fadec/throttle-lever-feedback[1] ge 0.7
 				</test>
 			</test>
 		</switch>

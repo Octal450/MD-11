@@ -25,7 +25,7 @@
 				</table>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fadec/epr/c1</output>
+		<output>/systems/fadec/epr/c1</output>
 	</filter>
 	
 	<filter>
@@ -56,14 +56,14 @@
 				</difference>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fadec/epr/c2-raw</output>
+		<output>/systems/fadec/epr/c2-raw</output>
 	</filter>
 	
 	<filter>
 		<name>EPR C2 Lag</name>
 		<type>exponential</type>
-		<input>/fdm/jsbsim/fadec/epr/c2-raw</input>
-		<output>/fdm/jsbsim/fadec/epr/c2</output>
+		<input>/systems/fadec/epr/c2-raw</input>
+		<output>/systems/fadec/epr/c2</output>
 		<filter-time>0.32</filter-time>
 	</filter>
 	

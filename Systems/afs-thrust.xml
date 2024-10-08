@@ -155,13 +155,13 @@
 		</enable>
 		<input>/it-autoflight/internal/athr-kts-input-lag</input>
 		<reference>/it-autoflight/internal/athr-kts</reference>
-		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
+		<output>/systems/fadec/ats-cmd-raw</output>
 		<config>
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
 			<Td>0.00001</Td>
-			<u_min>/fdm/jsbsim/fadec/limit/idle-norm</u_min>
-			<u_max>/fdm/jsbsim/fadec/limit/active-norm</u_max>
+			<u_min>/systems/fadec/limit/idle-norm</u_min>
+			<u_max>/systems/fadec/limit/active-norm</u_max>
 		</config>
 	</pid-controller>
 	
@@ -190,13 +190,13 @@
 			<property>/it-autoflight/internal/athr-mach</property>
 			<scale>1000</scale>
 		</reference>
-		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
+		<output>/systems/fadec/ats-cmd-raw</output>
 		<config>
 			<Kp>0.055</Kp>
 			<Ti>9.0</Ti>
 			<Td>0.00001</Td>
-			<u_min>/fdm/jsbsim/fadec/limit/idle-norm</u_min>
-			<u_max>/fdm/jsbsim/fadec/limit/active-norm</u_max>
+			<u_min>/systems/fadec/limit/idle-norm</u_min>
+			<u_max>/systems/fadec/limit/active-norm</u_max>
 		</config>
 	</pid-controller>
 	
@@ -216,7 +216,7 @@
 			</condition>
 		</enable>
 		<input>0</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
+		<output>/systems/fadec/ats-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -234,8 +234,8 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/limit/active-norm</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-raw</output>
+		<input>/systems/fadec/limit/active-norm</input>
+		<output>/systems/fadec/ats-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -247,11 +247,11 @@
 				<greater-than-equals>
 					<expression>
 						<sum>
-							<property>/fdm/jsbsim/fadec/ats-cmd-raw</property>
+							<property>/systems/fadec/ats-cmd-raw</property>
 							<value>0.01</value>
 						</sum>
 					</expression>
-					<property>/fdm/jsbsim/fadec/limit/active-norm</property>
+					<property>/systems/fadec/limit/active-norm</property>
 				</greater-than-equals>
 			</condition>
 			<value>2</value>
@@ -261,11 +261,11 @@
 				<less-than-equals>
 					<expression>
 						<difference>
-							<property>/fdm/jsbsim/fadec/ats-cmd-raw</property>
+							<property>/systems/fadec/ats-cmd-raw</property>
 							<value>0.01</value>
 						</difference>
 					</expression>
-					<property>/fdm/jsbsim/fadec/limit/idle-norm</property>
+					<property>/systems/fadec/limit/idle-norm</property>
 				</less-than-equals>
 			</condition>
 			<value>1</value>
@@ -284,8 +284,8 @@
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd-raw</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<input>/systems/fadec/ats-cmd-raw</input>
+		<output>/systems/fadec/ats-cmd</output>
 		<min>
 			<condition>
 				<equals>
@@ -295,8 +295,8 @@
 			</condition>
 			<value>0</value>
 		</min>
-		<min>/fdm/jsbsim/fadec/limit/idle-norm</min>
-		<max>/fdm/jsbsim/fadec/limit/max-norm</max>
+		<min>/systems/fadec/limit/idle-norm</min>
+		<max>/systems/fadec/limit/max-norm</max>
 		<max-rate-of-change>
 			<condition>
 				<or>
@@ -355,8 +355,8 @@
 				<not><property>/it-autoflight/output/athr-on</property></not>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/throttle-compare-max</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd</output>
+		<input>/systems/fadec/throttle-compare-max</input>
+		<output>/systems/fadec/ats-cmd</output>
 	</filter>
 	
 	<!-- Engine 1 -->
@@ -368,10 +368,10 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+			<property>/systems/fadec/ats-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[0]</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-1</output>
+		<output>/systems/fadec/ats-cmd-1</output>
 		<max-rate-of-change>
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
@@ -390,7 +390,7 @@
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd-1</input>
+		<input>/systems/fadec/ats-cmd-1</input>
 		<output>/controls/engines/engine[0]/throttle</output>
 	</filter>
 	
@@ -403,10 +403,10 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+			<property>/systems/fadec/ats-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[1]</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-2</output>
+		<output>/systems/fadec/ats-cmd-2</output>
 		<max-rate-of-change>
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
@@ -425,7 +425,7 @@
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd-2</input>
+		<input>/systems/fadec/ats-cmd-2</input>
 		<output>/controls/engines/engine[1]/throttle</output>
 	</filter>
 	
@@ -438,10 +438,10 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/fdm/jsbsim/fadec/ats-cmd</property>
+			<property>/systems/fadec/ats-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[2]</input>
-		<output>/fdm/jsbsim/fadec/ats-cmd-3</output>
+		<output>/systems/fadec/ats-cmd-3</output>
 		<max-rate-of-change>
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
@@ -460,7 +460,7 @@
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
-		<input>/fdm/jsbsim/fadec/ats-cmd-3</input>
+		<input>/systems/fadec/ats-cmd-3</input>
 		<output>/controls/engines/engine[2]/throttle</output>
 	</filter>
 

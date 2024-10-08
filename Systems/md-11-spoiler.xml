@@ -130,16 +130,16 @@
 		<switch name="spoilers/multi-idle">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fadec/throttle-lever-feedback[0] lt 0.05
-				fadec/throttle-lever-feedback[1] lt 0.05
+				/systems/fadec/throttle-lever-feedback[0] lt 0.05
+				/systems/fadec/throttle-lever-feedback[1] lt 0.05
 			</test>
 			<test logic="AND" value="1">
-				fadec/throttle-lever-feedback[0] lt 0.05
-				fadec/throttle-lever-feedback[2] lt 0.05
+				/systems/fadec/throttle-lever-feedback[0] lt 0.05
+				/systems/fadec/throttle-lever-feedback[2] lt 0.05
 			</test>
 			<test logic="AND" value="1">
-				fadec/throttle-lever-feedback[1] lt 0.05
-				fadec/throttle-lever-feedback[2] lt 0.05
+				/systems/fadec/throttle-lever-feedback[1] lt 0.05
+				/systems/fadec/throttle-lever-feedback[2] lt 0.05
 			</test>
 		</switch>
 		
@@ -150,11 +150,11 @@
 				/systems/electrical/bus/ac-1 lt 112
 			</test>
 			<test logic="OR" value="0"> <!-- Reset -->
-				fadec/throttle-lever-feedback[1] ge 0.05
+				/systems/fadec/throttle-lever-feedback[1] ge 0.05
 				spoilers/auto-speedbrake-arm-cmd eq 0
 			</test>
 			<test logic="AND" value="4"> <!-- Set --> <!-- Landing -->
-				fadec/throttle-lever-feedback[1] lt 0.05
+				/systems/fadec/throttle-lever-feedback[1] lt 0.05
 				spoilers/auto-speedbrake-arm-cmd eq 1
 				spoilers/main-gear-or eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
