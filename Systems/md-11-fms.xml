@@ -1467,7 +1467,7 @@
 						<floor>
 							<sum>
 								<product>
-									<property>hydraulics/stabilizer/final-deg</property>
+									<property>/systems/fcs/stabilizer/final-deg</property>
 									<value>-10</value> <!-- Because ANU = negative -->
 								</product>
 								<value>0.5</value> <!-- Make the integer rounded correctly -->

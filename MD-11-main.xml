@@ -240,7 +240,7 @@
 					<show type="bool"/>
 					<show-wingtip type="bool"/>
 				</route>
-				<steer-cmd-norm alias="/fdm/jsbsim/hydraulics/tiller/autopush-cmd"/>
+				<steer-cmd-norm alias="/systems/fcs/tiller/autopush-cmd"/>
 				<stopping-distance-m type="float">5.0</stopping-distance-m>
 				<target-speed-km_h type="float">0.0</target-speed-km_h>
 				<yaw alias="/fdm/jsbsim/fcs/steer-deg"/>
@@ -258,8 +258,8 @@
 				<float n="1" alias="/gear/gear[1]/rollspeed-ms"/>
 				<float n="2" alias="/gear/gear[2]/rollspeed-ms"/>
 				<float n="3" alias="/gear/gear[3]/rollspeed-ms"/>
-				<float n="4" alias="/gear/gear[1]/angle-deg"/>
-				<float n="5" alias="/gear/gear[2]/angle-deg"/>
+				<float n="4" alias="/systems/gear/unit[1]/angle-deg"/>
+				<float n="5" alias="/systems/gear/unit[2]/angle-deg"/>
 				<float n="7" alias="/engines/engine[0]/reverser-pos-norm"/>
 				<float n="8" alias="/engines/engine[1]/reverser-pos-norm"/>
 				<float n="9" alias="/engines/engine[2]/reverser-pos-norm"/>
@@ -845,28 +845,6 @@
 			<fcs n="0">
 				<slat-pos-deg type="double">0</slat-pos-deg>
 			</fcs>
-			<gear n="0">
-				<unit n="0">
-					<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
-				</unit>
-				<unit n="1">
-					<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
-					<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
-				</unit>
-				<unit n="2">
-					<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
-					<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
-				</unit>
-				<unit n="3">
-					<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
-					<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
-				</unit>
-			</gear>
 			<zero type="int">0</zero>
 		</jsbsim>
 	</fdm>
@@ -1799,6 +1777,28 @@
 				<phase type="int">0</phase>
 			</internal>
 		</fms>
+		<gear n="0">
+			<unit n="0">
+				<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
+			</unit>
+			<unit n="1">
+				<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
+				<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
+			</unit>
+			<unit n="2">
+				<tire-l-aft-psi-input type="double">210</tire-l-aft-psi-input> <!-- Randomized later in sim init -->
+				<tire-l-fwd-psi-input type="double">210</tire-l-fwd-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-aft-psi-input type="double">210</tire-r-aft-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-fwd-psi-input type="double">210</tire-r-fwd-psi-input> <!-- Randomized later in sim init -->
+			</unit>
+			<unit n="3">
+				<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
+				<tire-r-psi-input type="double">170</tire-r-psi-input> <!-- Randomized later in sim init -->
+			</unit>
+		</gear>
 		<hydraulics n="0">
 			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
 			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->

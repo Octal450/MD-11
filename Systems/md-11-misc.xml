@@ -233,15 +233,15 @@
 			<default value="0"/>
 			<test logic="AND" value="0"> <!-- Ignore center main gear if up is selected for it -->
 				/controls/gear/center-gear-up eq 1
-				gear/unit[0]/status eq 2
-				gear/unit[1]/status eq 2
-				gear/unit[2]/status eq 2
+				/systems/gear/unit[0]/status eq 2
+				/systems/gear/unit[1]/status eq 2
+				/systems/gear/unit[2]/status eq 2
 			</test>
 			<test logic="AND" value="0">
-				gear/unit[0]/status eq 2
-				gear/unit[1]/status eq 2
-				gear/unit[2]/status eq 2
-				gear/unit[3]/status eq 2
+				/systems/gear/unit[0]/status eq 2
+				/systems/gear/unit[1]/status eq 2
+				/systems/gear/unit[2]/status eq 2
+				/systems/gear/unit[3]/status eq 2
 			</test>
 			<test logic="OR" value="1">
 				<test logic="AND">
@@ -273,7 +273,7 @@
 		
 		<!-- Stabilizer Motion -->
 		<pid name="/systems/caws/logic/stabilizer-rate">
-			<input>hydraulics/stabilizer/final-deg</input>
+			<input>/systems/fcs/stabilizer/final-deg</input>
 			<kp>0.0</kp>
 			<ki>0.0</ki>
 			<kd>1.0</kd>
@@ -300,14 +300,14 @@
 		</switch>
 		
 		<switch name="/systems/caws/logic/stabilizer-stored-up">
-			<default value="hydraulics/stabilizer/final-deg"/>
+			<default value="/systems/fcs/stabilizer/final-deg"/>
 			<test value="/systems/caws/logic/stabilizer-stored-up">
 				/systems/caws/logic/stabilizer-moving eq -1
 			</test>
 		</switch>
 		
 		<switch name="/systems/caws/logic/stabilizer-stored-dn">
-			<default value="hydraulics/stabilizer/final-deg"/>
+			<default value="/systems/fcs/stabilizer/final-deg"/>
 			<test value="/systems/caws/logic/stabilizer-stored-dn">
 				/systems/caws/logic/stabilizer-moving eq 1
 			</test>
@@ -321,7 +321,7 @@
 		</switch>
 		
 		<summer name="/systems/caws/logic/stabilizer-stored-error">
-			<input>hydraulics/stabilizer/final-deg</input>
+			<input>/systems/fcs/stabilizer/final-deg</input>
 			<input>-/systems/caws/logic/stabilizer-stored</input>
 		</summer>
 		

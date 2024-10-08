@@ -35,11 +35,11 @@
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/gear/gear[1]/angle-deg</property>
+				<property>/systems/gear/unit[1]/angle-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/gear/gear[2]/angle-deg</property>
+				<property>/systems/gear/unit[2]/angle-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
@@ -99,87 +99,87 @@
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/aileron-out-l/final-deg</property>
+				<property>/systems/fcs/aileron-out-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/aileron-in-l/final-deg</property>
+				<property>/systems/fcs/aileron-in-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/aileron-in-r/final-deg</property>
+				<property>/systems/fcs/aileron-in-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/aileron-out-r/final-deg</property>
+				<property>/systems/fcs/aileron-out-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/elevator-out-l/final-deg</property>
+				<property>/systems/fcs/elevator-out-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/elevator-in-l/final-deg</property>
+				<property>/systems/fcs/elevator-in-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/elevator-in-r/final-deg</property>
+				<property>/systems/fcs/elevator-in-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/elevator-out-r/final-deg</property>
+				<property>/systems/fcs/elevator-out-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/stabilizer/final-deg</property>
+				<property>/systems/fcs/stabilizer/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
+				<property>/systems/fcs/rudder-upper/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
+				<property>/systems/fcs/rudder-lower/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-l1/final-deg</property>
+				<property>/systems/fcs/spoiler-l1/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-l2/final-deg</property>
+				<property>/systems/fcs/spoiler-l2/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-l3/final-deg</property>
+				<property>/systems/fcs/spoiler-l3/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-l4/final-deg</property>
+				<property>/systems/fcs/spoiler-l4/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-l5/final-deg</property>
+				<property>/systems/fcs/spoiler-l5/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-r1/final-deg</property>
+				<property>/systems/fcs/spoiler-r1/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-r2/final-deg</property>
+				<property>/systems/fcs/spoiler-r2/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-r3/final-deg</property>
+				<property>/systems/fcs/spoiler-r3/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-r4/final-deg</property>
+				<property>/systems/fcs/spoiler-r4/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/fdm/jsbsim/hydraulics/spoiler-r5/final-deg</property>
+				<property>/systems/fcs/spoiler-r5/final-deg</property>
 			</signal>
 		</signals>
 	</config>

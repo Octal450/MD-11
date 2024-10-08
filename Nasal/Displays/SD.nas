@@ -187,7 +187,7 @@ var canvasConfig = {
 		}
 		
 		# Stab
-		Value.Fctl.stab = pts.Fdm.JSBSim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stab = systems.FCS.Stabilizer.finalDeg.getValue();
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
@@ -231,7 +231,7 @@ var canvasConfig = {
 		}
 		
 		# Ailerons
-		if (pts.Fdm.JSBSim.Hydraulics.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
+		if (systems.FCS.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
 			Value.Fctl.aileronDeflGreen = -8.6;
 		} else {
 			Value.Fctl.aileronDeflGreen = -19.8;
@@ -287,8 +287,8 @@ var canvasConfig = {
 		}
 		
 		# Spoilers
-		Value.Fctl.spoilerL = pts.Fdm.JSBSim.Fcs.spoilerL.getValue();
-		Value.Fctl.spoilerR = pts.Fdm.JSBSim.Fcs.spoilerR.getValue();
+		Value.Fctl.spoilerL = systems.FCS.spoilerL.getValue();
+		Value.Fctl.spoilerR = systems.FCS.spoilerR.getValue();
 		
 		if (Value.Fctl.spoilerL >= 1.5) {
 			if (Value.Fctl.spoilerL >= 59.4) {
@@ -365,8 +365,8 @@ var canvasConfig = {
 		}
 		
 		# Rudders
-		Value.Fctl.rudderUpper = pts.Fdm.JSBSim.Hydraulics.RudderUpper.finalDeg.getValue();
-		Value.Fctl.rudderLower = pts.Fdm.JSBSim.Hydraulics.RudderLower.finalDeg.getValue();
+		Value.Fctl.rudderUpper = systems.FCS.RudderUpper.finalDeg.getValue();
+		Value.Fctl.rudderLower = systems.FCS.RudderLower.finalDeg.getValue();
 		
 		if (Value.Fctl.rudderUpper <= -0.8) {
 			me["RudderUpperRight"].hide();
@@ -415,7 +415,7 @@ var canvasConfig = {
 		}
 		
 		# Flaps and Slats
-		Value.Fctl.flapDeg = math.round(pts.Fdm.JSBSim.Fcs.flapPosDeg.getValue());
+		Value.Fctl.flapDeg = math.round(systems.FCS.flapPosDeg.getValue());
 		if (Value.Fctl.flapDeg >= 0.1) {
 			me["Flap1"].setText(sprintf("%d", Value.Fctl.flapDeg));
 			me["Flap2"].setText(sprintf("%d", Value.Fctl.flapDeg));
@@ -430,7 +430,7 @@ var canvasConfig = {
 			me["FlapBox"].hide();
 		}
 		
-		if (pts.Fdm.JSBSim.Fcs.slatPosDeg.getValue() >= 0.1) {
+		if (systems.FCS.slatPosDeg.getValue() >= 0.1) {
 			me["SlatExt"].show();
 		} else {
 			me["SlatExt"].hide();
@@ -623,7 +623,7 @@ var canvasEngBase = {
 		}
 		
 		# Stab
-		Value.Fctl.stab = pts.Fdm.JSBSim.Hydraulics.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stab = systems.FCS.Stabilizer.finalDeg.getValue();
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));

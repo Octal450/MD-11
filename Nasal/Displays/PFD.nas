@@ -330,11 +330,11 @@ var canvasBase = {
 		Value.Misc.blinkMed2 = pts.Fdm.JSBSim.Libraries.blinkMed2.getBoolValue();
 		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
-		Value.Misc.flapsPos = pts.Fdm.JSBSim.Fcs.flapPosDeg.getValue();
+		Value.Misc.flapsPos = systems.FCS.flapPosDeg.getValue();
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
-		Value.Misc.gearOut = pts.Fdm.JSBSim.Gear.gearAllNorm.getValue() > 0;
+		Value.Misc.gearOut = systems.GEAR.allNorm.getValue() > 0;
 		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
-		Value.Misc.slatsPos = pts.Fdm.JSBSim.Fcs.slatPosDeg.getValue();
+		Value.Misc.slatsPos = systems.FCS.slatPosDeg.getValue();
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
 		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();

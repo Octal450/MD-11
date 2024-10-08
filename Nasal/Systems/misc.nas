@@ -482,15 +482,36 @@ var FCC = {
 	},
 };
 
+# Flight Control System
+var FCS = {
+	DeflectedAileron: {
+		active: props.globals.getNode("/systems/fcs/deflected-aileron/active"),
+	},
+	flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"), # Must use this prop
+	RudderLower: {
+		finalDeg: props.globals.getNode("/systems/fcs/rudder-lower/final-deg"),
+	},
+	RudderUpper: {
+		finalDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
+	},
+	slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"), # Must use this prop
+	spoilerL: props.globals.getNode("/systems/fcs/spoiler-left-deg"),
+	spoilerR: props.globals.getNode("/systems/fcs/spoiler-right-deg"),
+	Stabilizer: {
+		finalDeg: props.globals.getNode("/systems/fcs/stabilizer/final-deg"),
+	},
+};
+
 # Landing Gear
 var GEAR = {
+	allNorm: props.globals.getNode("/systems/gear/all-norm"),
 	Fail: {
 		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
 		leftActuator: props.globals.getNode("/systems/failures/gear/left-actuator"),
 		noseActuator: props.globals.getNode("/systems/failures/gear/nose-actuator"),
 		rightActuator: props.globals.getNode("/systems/failures/gear/right-actuator"),
 	},
-	status: [props.globals.getNode("/fdm/jsbsim/gear/unit[0]/status"), props.globals.getNode("/fdm/jsbsim/gear/unit[1]/status"), props.globals.getNode("/fdm/jsbsim/gear/unit[2]/status"), props.globals.getNode("/fdm/jsbsim/gear/unit[3]/status")],
+	status: [props.globals.getNode("/systems/gear/unit[0]/status"), props.globals.getNode("/systems/gear/unit[1]/status"), props.globals.getNode("/systems/gear/unit[2]/status"), props.globals.getNode("/systems/gear/unit[3]/status")],
 	Switch: {
 		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
@@ -500,30 +521,30 @@ var GEAR = {
 		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	TirePressurePsi: {
-		centerL: props.globals.getNode("/fdm/jsbsim/gear/unit[3]/tire-l-psi"),
-		centerLInput: props.globals.getNode("/fdm/jsbsim/gear/unit[3]/tire-l-psi-input"),
-		centerR: props.globals.getNode("/fdm/jsbsim/gear/unit[3]/tire-r-psi"),
-		centerRInput: props.globals.getNode("/fdm/jsbsim/gear/unit[3]/tire-r-psi-input"),
-		leftLAft: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-l-aft-psi"),
-		leftLAftInput: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-l-aft-psi-input"),
-		leftRAft: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-r-aft-psi"),
-		leftRAftInput: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-r-aft-psi-input"),
-		leftLFwd: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-l-fwd-psi"),
-		leftLFwdInput: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-l-fwd-psi-input"),
-		leftRFwd: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-r-fwd-psi"),
-		leftRFwdInput: props.globals.getNode("/fdm/jsbsim/gear/unit[1]/tire-r-fwd-psi-input"),
-		noseL: props.globals.getNode("/fdm/jsbsim/gear/unit[0]/tire-l-psi"),
-		noseLInput: props.globals.getNode("/fdm/jsbsim/gear/unit[0]/tire-l-psi-input"),
-		noseR: props.globals.getNode("/fdm/jsbsim/gear/unit[0]/tire-r-psi"),
-		noseRInput: props.globals.getNode("/fdm/jsbsim/gear/unit[0]/tire-r-psi-input"),
-		rightLAft: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-l-aft-psi"),
-		rightLAftInput: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-l-aft-psi-input"),
-		rightRAft: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-r-aft-psi"),
-		rightRAftInput: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-r-aft-psi-input"),
-		rightLFwd: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-l-fwd-psi"),
-		rightLFwdInput: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-l-fwd-psi-input"),
-		rightRFwd: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-r-fwd-psi"),
-		rightRFwdInput: props.globals.getNode("/fdm/jsbsim/gear/unit[2]/tire-r-fwd-psi-input"),
+		centerL: props.globals.getNode("/systems/gear/unit[3]/tire-l-psi"),
+		centerLInput: props.globals.getNode("/systems/gear/unit[3]/tire-l-psi-input"),
+		centerR: props.globals.getNode("/systems/gear/unit[3]/tire-r-psi"),
+		centerRInput: props.globals.getNode("/systems/gear/unit[3]/tire-r-psi-input"),
+		leftLAft: props.globals.getNode("/systems/gear/unit[1]/tire-l-aft-psi"),
+		leftLAftInput: props.globals.getNode("/systems/gear/unit[1]/tire-l-aft-psi-input"),
+		leftRAft: props.globals.getNode("/systems/gear/unit[1]/tire-r-aft-psi"),
+		leftRAftInput: props.globals.getNode("/systems/gear/unit[1]/tire-r-aft-psi-input"),
+		leftLFwd: props.globals.getNode("/systems/gear/unit[1]/tire-l-fwd-psi"),
+		leftLFwdInput: props.globals.getNode("/systems/gear/unit[1]/tire-l-fwd-psi-input"),
+		leftRFwd: props.globals.getNode("/systems/gear/unit[1]/tire-r-fwd-psi"),
+		leftRFwdInput: props.globals.getNode("/systems/gear/unit[1]/tire-r-fwd-psi-input"),
+		noseL: props.globals.getNode("/systems/gear/unit[0]/tire-l-psi"),
+		noseLInput: props.globals.getNode("/systems/gear/unit[0]/tire-l-psi-input"),
+		noseR: props.globals.getNode("/systems/gear/unit[0]/tire-r-psi"),
+		noseRInput: props.globals.getNode("/systems/gear/unit[0]/tire-r-psi-input"),
+		rightLAft: props.globals.getNode("/systems/gear/unit[2]/tire-l-aft-psi"),
+		rightLAftInput: props.globals.getNode("/systems/gear/unit[2]/tire-l-aft-psi-input"),
+		rightRAft: props.globals.getNode("/systems/gear/unit[2]/tire-r-aft-psi"),
+		rightRAftInput: props.globals.getNode("/systems/gear/unit[2]/tire-r-aft-psi-input"),
+		rightLFwd: props.globals.getNode("/systems/gear/unit[2]/tire-l-fwd-psi"),
+		rightLFwdInput: props.globals.getNode("/systems/gear/unit[2]/tire-l-fwd-psi-input"),
+		rightRFwd: props.globals.getNode("/systems/gear/unit[2]/tire-r-fwd-psi"),
+		rightRFwdInput: props.globals.getNode("/systems/gear/unit[2]/tire-r-fwd-psi-input"),
 	},
 	init: func() {
 		me.resetFailures();

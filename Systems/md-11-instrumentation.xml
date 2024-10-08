@@ -255,11 +255,11 @@
 			<test logic="AND" value="1"> <!-- Landing Gear, Landing -->
 				/instrumentation/ead/checklist-mode eq 2
 				<test logic="OR">
-					gear/unit[0]/status ne 2
-					gear/unit[1]/status ne 2
-					gear/unit[2]/status ne 2
+					/systems/gear/unit[0]/status ne 2
+					/systems/gear/unit[1]/status ne 2
+					/systems/gear/unit[2]/status ne 2
 					<test logic="AND">
-						gear/unit[3]/status ne 2
+						/systems/gear/unit[3]/status ne 2
 						/controls/gear/center-gear-up eq 0
 					</test>
 				</test>
@@ -316,9 +316,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-l">
 			<function>
 				<avg>
-					<property>hydraulics/aileron-in-l/final-deg</property>
+					<property>/systems/fcs/aileron-in-l/final-deg</property>
 					<table>
-						<independentVar lookup="row">hydraulics/aileron-out-l/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-l/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
@@ -341,9 +341,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-r">
 			<function>
 				<avg>
-					<property>hydraulics/aileron-in-r/final-deg</property>
+					<property>/systems/fcs/aileron-in-r/final-deg</property>
 					<table>
-						<independentVar lookup="row">hydraulics/aileron-out-r/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-r/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
@@ -366,8 +366,8 @@
 		<fcs_function name="/instrumentation/sd/config/elevator-l">
 			<function>
 				<avg>
-					<property>hydraulics/elevator-in-l/final-deg</property>
-					<property>hydraulics/elevator-out-l/final-deg</property>
+					<property>/systems/fcs/elevator-in-l/final-deg</property>
+					<property>/systems/fcs/elevator-out-l/final-deg</property>
 				</avg>
 			</function>
 		</fcs_function>
@@ -375,8 +375,8 @@
 		<fcs_function name="/instrumentation/sd/config/elevator-r">
 			<function>
 				<avg>
-					<property>hydraulics/elevator-in-r/final-deg</property>
-					<property>hydraulics/elevator-out-r/final-deg</property>
+					<property>/systems/fcs/elevator-in-r/final-deg</property>
+					<property>/systems/fcs/elevator-out-r/final-deg</property>
 				</avg>
 			</function>
 		</fcs_function>

@@ -76,29 +76,6 @@ var Fdm = {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},
-		Fcs: {
-			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
-			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
-			spoilerL: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-left-deg"),
-			spoilerR: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-right-deg"),
-		},
-		Gear: {
-			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),
-		},
-		Hydraulics: {
-			DeflectedAileron: {
-				active: props.globals.getNode("/fdm/jsbsim/hydraulics/deflected-aileron/active"),
-			},
-			RudderLower: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-lower/final-deg"),
-			},
-			RudderUpper: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-upper/final-deg"),
-			},
-			Stabilizer: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/stabilizer/final-deg"),
-			},
-		},
 		Inertia: {
 			cgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/cg-percent-mac"),
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),

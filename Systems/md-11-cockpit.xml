@@ -9,7 +9,7 @@
 		
 		<!-- General -->
 		<lag_filter name="/controls/cockpit/aileron-yoke">
-			<input>hydraulics/aileron-yoke-sum</input>
+			<input>/systems/fcs/aileron-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -53,7 +53,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/elevator-yoke">
-			<input>hydraulics/elevator-yoke-switch</input>
+			<input>/systems/fcs/elevator-yoke-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -94,7 +94,7 @@
 		</actuator>
 		
 		<lag_filter name="/controls/cockpit/rudder-pedal">
-			<input>hydraulics/rudder/pedal-sum</input>
+			<input>/systems/fcs/rudder/pedal-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -109,7 +109,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/tiller-handle">
-			<input>hydraulics/tiller/handle</input>
+			<input>/systems/fcs/tiller/handle</input>
 			<c1>20</c1>
 		</lag_filter>
 		

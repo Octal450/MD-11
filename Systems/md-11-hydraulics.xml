@@ -206,7 +206,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/instrumentation/altimeter/indicated-altitude-ft le 17750
-				gear/unit[1]/pos-norm ge 0.01
+				/systems/gear/unit[1]/pos-actuator ge 0.01
 				position/wow eq 0
 			</test>
 		</switch>
@@ -220,7 +220,7 @@
 			<test logic="AND" value="1">
 				fcs/slat-pos-deg lt 1
 				fcs/flap-pos-deg lt 1
-				gear/unit[1]/pos-norm lt 0.01
+				/systems/gear/unit[1]/pos-actuator lt 0.01
 				position/wow eq 0
 			</test>
 		</switch>
