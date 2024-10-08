@@ -1234,7 +1234,7 @@
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fadec/reverse-1/active eq 1
-				/controls/fadec/switches/altn-1 eq 1
+				/controls/fadec/altn-1 eq 1
 			</test>
 		</switch>
 		
@@ -1248,7 +1248,7 @@
 		<switch name="fadec/control-1/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/switches/altn-1 eq 1
+				/controls/fadec/altn-1 eq 1
 			</test>
 		</switch>
 		
@@ -1348,7 +1348,7 @@
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fadec/reverse-2/active eq 1
-				/controls/fadec/switches/altn-2 eq 1
+				/controls/fadec/altn-2 eq 1
 			</test>
 		</switch>
 		
@@ -1362,7 +1362,7 @@
 		<switch name="fadec/control-2/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/switches/altn-2 eq 1
+				/controls/fadec/altn-2 eq 1
 			</test>
 		</switch>
 		
@@ -1462,7 +1462,7 @@
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fadec/reverse-3/active eq 1
-				/controls/fadec/switches/altn-3 eq 1
+				/controls/fadec/altn-3 eq 1
 			</test>
 		</switch>
 		
@@ -1476,7 +1476,7 @@
 		<switch name="fadec/control-3/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/switches/altn-3 eq 1
+				/controls/fadec/altn-3 eq 1
 			</test>
 		</switch>
 		

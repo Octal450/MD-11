@@ -540,12 +540,7 @@
 	
 	<controls n="0">
 		<apu n="0">
-			<lights n="0">
-				<avail-flash type="bool">0</avail-flash>
-			</lights>
-			<switches n="0">
-				<start type="bool">0</start>
-			</switches>
+			<start type="bool">0</start>
 		</apu>
 		<autobrake n="0">
 			<active type="bool">0</active>
@@ -573,32 +568,30 @@
 			<shade-right-cmd type="double">0</shade-right-cmd>
 		</cockpit>
 		<electrical n="0">
-			<switches n="0">
-				<ac-tie-1 type="bool">1</ac-tie-1>
-				<ac-tie-2 type="bool">1</ac-tie-2>
-				<ac-tie-3 type="bool">1</ac-tie-3>
-				<adg-elec type="bool">0</adg-elec>
-				<apu-pwr type="bool">0</apu-pwr>
-				<battery type="bool">0</battery>
-				<cab-bus type="bool">1</cab-bus>
-				<dc-tie-1 type="bool">1</dc-tie-1>
-				<dc-tie-3 type="bool">1</dc-tie-3>
-				<emer-pwr type="int">0</emer-pwr>
-				<ext-pwr type="bool">0</ext-pwr>
-				<extg-pwr type="bool">0</extg-pwr>
-				<galley-1 type="bool">1</galley-1>
-				<galley-2 type="bool">1</galley-2>
-				<galley-3 type="bool">1</galley-3>
-				<gen-1 type="bool">1</gen-1>
-				<gen-2 type="bool">1</gen-2>
-				<gen-3 type="bool">1</gen-3>
-				<gen-drive-1 type="bool">1</gen-drive-1>
-				<gen-drive-2 type="bool">1</gen-drive-2>
-				<gen-drive-3 type="bool">1</gen-drive-3>
-				<ground-cart type="bool">0</ground-cart>
-				<smoke-elec-air type="int">0</smoke-elec-air>
-				<system type="bool">1</system>
-			</switches>
+			<ac-tie-1 type="bool">1</ac-tie-1>
+			<ac-tie-2 type="bool">1</ac-tie-2>
+			<ac-tie-3 type="bool">1</ac-tie-3>
+			<adg-elec type="bool">0</adg-elec>
+			<apu-pwr type="bool">0</apu-pwr>
+			<battery type="bool">0</battery>
+			<cab-bus type="bool">1</cab-bus>
+			<dc-tie-1 type="bool">1</dc-tie-1>
+			<dc-tie-3 type="bool">1</dc-tie-3>
+			<emer-pwr type="int">0</emer-pwr>
+			<ext-pwr type="bool">0</ext-pwr>
+			<extg-pwr type="bool">0</extg-pwr>
+			<galley-1 type="bool">1</galley-1>
+			<galley-2 type="bool">1</galley-2>
+			<galley-3 type="bool">1</galley-3>
+			<gen-1 type="bool">1</gen-1>
+			<gen-2 type="bool">1</gen-2>
+			<gen-3 type="bool">1</gen-3>
+			<gen-drive-1 type="bool">1</gen-drive-1>
+			<gen-drive-2 type="bool">1</gen-drive-2>
+			<gen-drive-3 type="bool">1</gen-drive-3>
+			<ground-cart type="bool">0</ground-cart>
+			<smoke-elec-air type="int">0</smoke-elec-air>
+			<system type="bool">1</system>
 		</electrical>
 		<engines n="0">
 			<engine n="0">
@@ -634,26 +627,22 @@
 			<throttle-max type="double">0</throttle-max>
 		</engines>
 		<fadec n="0">
-			<switches n="0">
-				<altn-1 type="bool">0</altn-1>
-				<altn-2 type="bool">0</altn-2>
-				<altn-3 type="bool">0</altn-3>
-			</switches>
+			<altn-1 type="bool">0</altn-1>
+			<altn-2 type="bool">0</altn-2>
+			<altn-3 type="bool">0</altn-3>
 		</fadec>
 		<fcc n="0">
-			<switches n="0">
-				<flap-limit type="int">0</flap-limit>
-				<elevator-feel type="int">0</elevator-feel>
-				<elevator-feel-man type="bool">0</elevator-feel-man>
-				<lsas-left-in type="bool">1</lsas-left-in>
-				<lsas-left-out type="bool">1</lsas-left-out>
-				<lsas-right-in type="bool">1</lsas-right-in>
-				<lsas-right-out type="bool">1</lsas-right-out>
-				<yd-lower-a type="bool">1</yd-lower-a>
-				<yd-lower-b type="bool">1</yd-lower-b>
-				<yd-upper-a type="bool">1</yd-upper-a>
-				<yd-upper-b type="bool">1</yd-upper-b>
-			</switches>
+			<flap-limit type="int">0</flap-limit>
+			<elevator-feel type="int">0</elevator-feel>
+			<elevator-feel-man type="bool">0</elevator-feel-man>
+			<lsas-left-in type="bool">1</lsas-left-in>
+			<lsas-left-out type="bool">1</lsas-left-out>
+			<lsas-right-in type="bool">1</lsas-right-in>
+			<lsas-right-out type="bool">1</lsas-right-out>
+			<yd-lower-a type="bool">1</yd-lower-a>
+			<yd-lower-b type="bool">1</yd-lower-b>
+			<yd-upper-a type="bool">1</yd-upper-a>
+			<yd-upper-b type="bool">1</yd-upper-b>
 		</fcc>
 		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
@@ -665,25 +654,23 @@
 			<wingflex-enable type="bool">0</wingflex-enable>
 		</flight>
 		<fuel n="0">
-			<switches n="0">
-				<alt-pump type="bool">0</alt-pump>
-				<fill-1 type="bool">0</fill-1>
-				<fill-2 type="bool">0</fill-2>
-				<fill-3 type="bool">0</fill-3>
-				<pumps-1 type="bool">0</pumps-1>
-				<pumps-2 type="bool">0</pumps-2>
-				<pumps-3 type="bool">0</pumps-3>
-				<system type="bool">1</system>
-				<trans-aux-l type="bool">0</trans-aux-l>
-				<trans-aux-r type="bool">0</trans-aux-r>
-				<trans-tail type="bool">0</trans-tail>
-				<trans-1 type="bool">0</trans-1>
-				<trans-2 type="bool">0</trans-2>
-				<trans-3 type="bool">0</trans-3>
-				<x-feed-1 type="bool">0</x-feed-1>
-				<x-feed-2 type="bool">0</x-feed-2>
-				<x-feed-3 type="bool">0</x-feed-3>
-			</switches>
+			<alt-pump type="bool">0</alt-pump>
+			<fill-1 type="bool">0</fill-1>
+			<fill-2 type="bool">0</fill-2>
+			<fill-3 type="bool">0</fill-3>
+			<pumps-1 type="bool">0</pumps-1>
+			<pumps-2 type="bool">0</pumps-2>
+			<pumps-3 type="bool">0</pumps-3>
+			<system type="bool">1</system>
+			<trans-aux-l type="bool">0</trans-aux-l>
+			<trans-aux-r type="bool">0</trans-aux-r>
+			<trans-tail type="bool">0</trans-tail>
+			<trans-1 type="bool">0</trans-1>
+			<trans-2 type="bool">0</trans-2>
+			<trans-3 type="bool">0</trans-3>
+			<x-feed-1 type="bool">0</x-feed-1>
+			<x-feed-2 type="bool">0</x-feed-2>
+			<x-feed-3 type="bool">0</x-feed-3>
 		</fuel>
 		<gear n="0">
 			<abs n="0">
@@ -694,44 +681,34 @@
 			<lever-cockpit type="int">3</lever-cockpit>
 		</gear>
 		<hydraulics n="0">
+			<aux-pump-1 type="bool">0</aux-pump-1>
+			<aux-pump-2 type="bool">0</aux-pump-2>
 			<deflected-aileron type="bool">0</deflected-aileron>
-			<switches n="0">
-				<aux-pump-1 type="bool">0</aux-pump-1>
-				<aux-pump-2 type="bool">0</aux-pump-2>
-				<gear-gravity-ext type="bool">0</gear-gravity-ext>
-				<l-pump-1 type="bool">1</l-pump-1>
-				<l-pump-2 type="bool">1</l-pump-2>
-				<l-pump-3 type="bool">1</l-pump-3>
-				<press-test type="bool">0</press-test>
-				<r-pump-1 type="bool">1</r-pump-1>
-				<r-pump-2 type="bool">1</r-pump-2>
-				<r-pump-3 type="bool">1</r-pump-3>
-				<rmp-1-3 type="bool">0</rmp-1-3>
-				<rmp-2-3 type="bool">0</rmp-2-3>
-				<system type="bool">1</system>
-			</switches>
+			<gear-gravity-ext type="bool">0</gear-gravity-ext>
+			<l-pump-1 type="bool">1</l-pump-1>
+			<l-pump-2 type="bool">1</l-pump-2>
+			<l-pump-3 type="bool">1</l-pump-3>
+			<press-test type="bool">0</press-test>
+			<r-pump-1 type="bool">1</r-pump-1>
+			<r-pump-2 type="bool">1</r-pump-2>
+			<r-pump-3 type="bool">1</r-pump-3>
+			<rmp-1-3 type="bool">0</rmp-1-3>
+			<rmp-2-3 type="bool">0</rmp-2-3>
+			<system type="bool">1</system>
 		</hydraulics>
 		<ignition n="0">
-			<switches n="0">
-				<ign-a type="bool">0</ign-a>
-				<ign-b type="bool">0</ign-b>
-				<ign-ovrd type="bool">0</ign-ovrd>
-			</switches>
+			<ign-a type="bool">0</ign-a>
+			<ign-b type="bool">0</ign-b>
+			<ign-ovrd type="bool">0</ign-ovrd>
 		</ignition>
 		<iru n="0">
-			<switches n="0">
-				<knob type="bool">0</knob>
-			</switches>
+			<knob type="bool">0</knob>
 		</iru>
 		<iru n="1">
-			<switches n="0">
-				<knob type="bool">0</knob>
-			</switches>
+			<knob type="bool">0</knob>
 		</iru>
 		<iru n="2">
-			<switches n="0">
-				<knob type="bool">0</knob>
-			</switches>
+			<knob type="bool">0</knob>
 		</iru>
 		<iru-common n="0">
 			<mcdu-btn type="bool">0</mcdu-btn>
@@ -758,28 +735,26 @@
 			<thunderstorm type="bool">0</thunderstorm>
 		</lighting>
 		<pneumatics n="0">
-			<switches n="0">
-				<aft-temp type="double">0.45</aft-temp>
-				<avionics-fan type="bool">1</avionics-fan>
-				<bleed-apu type="bool">0</bleed-apu>
-				<bleed-1 type="bool">1</bleed-1>
-				<bleed-2 type="bool">1</bleed-2>
-				<bleed-3 type="bool">1</bleed-3>
-				<cargo-aft-temp type="double">0.4</cargo-aft-temp>
-				<cargo-fwd-temp type="double">0.5</cargo-fwd-temp>
-				<cockpit-temp type="double">0.45</cockpit-temp>
-				<econ type="bool">1</econ>
-				<fwd-temp type="double">0.5</fwd-temp>
-				<ground-air type="bool">0</ground-air>
-				<isol-1-2 type="bool">0</isol-1-2>
-				<isol-1-3 type="bool">0</isol-1-3>
-				<mid-temp type="double">0.45</mid-temp>
-				<pack-1 type="bool">1</pack-1>
-				<pack-2 type="bool">1</pack-2>
-				<pack-3 type="bool">1</pack-3>
-				<system type="bool">1</system>
-				<trim-air type="bool">1</trim-air>
-			</switches>
+			<aft-temp type="double">0.45</aft-temp>
+			<avionics-fan type="bool">1</avionics-fan>
+			<bleed-apu type="bool">0</bleed-apu>
+			<bleed-1 type="bool">1</bleed-1>
+			<bleed-2 type="bool">1</bleed-2>
+			<bleed-3 type="bool">1</bleed-3>
+			<cargo-aft-temp type="double">0.4</cargo-aft-temp>
+			<cargo-fwd-temp type="double">0.5</cargo-fwd-temp>
+			<cockpit-temp type="double">0.45</cockpit-temp>
+			<econ type="bool">1</econ>
+			<fwd-temp type="double">0.5</fwd-temp>
+			<ground-air type="bool">0</ground-air>
+			<isol-1-2 type="bool">0</isol-1-2>
+			<isol-1-3 type="bool">0</isol-1-3>
+			<mid-temp type="double">0.45</mid-temp>
+			<pack-1 type="bool">1</pack-1>
+			<pack-2 type="bool">1</pack-2>
+			<pack-3 type="bool">1</pack-3>
+			<system type="bool">1</system>
+			<trim-air type="bool">1</trim-air>
 		</pneumatics>
 		<switches n="0">
 			<adg-handle type="double">0</adg-handle>
@@ -1725,6 +1700,9 @@
 			</options>
 		</acconfig>
 		<apu n="0">
+			<lights n="0">
+				<avail-flash type="bool">0</avail-flash>
+			</lights>
 			<state type="int">0</state>
 		</apu>
 		<caws n="0">

@@ -176,7 +176,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/aux-pump-1</property>
+				<property>controls/hydraulics/aux-pump-1</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -215,7 +215,7 @@
 			<and>
 				<or>
 					<equals>
-						<property>controls/hydraulics/switches/aux-pump-1</property>
+						<property>controls/hydraulics/aux-pump-1</property>
 						<value>1</value>
 					</equals>
 					<equals>

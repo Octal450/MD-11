@@ -813,14 +813,14 @@
 		<switch name="fadec/control-1/max">
 			<default value="fadec/limit/max-norm"/>
 			<test value="1">
-				/controls/fadec/switches/altn-1 eq 1
+				/controls/fadec/altn-1 eq 1
 			</test>
 		</switch>
 		
 		<switch name="fadec/control-1/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0">
-				/controls/fadec/switches/altn-1 eq 1
+				/controls/fadec/altn-1 eq 1
 			</test>
 		</switch>
 		
@@ -898,14 +898,14 @@
 		<switch name="fadec/control-2/max">
 			<default value="fadec/limit/max-norm"/>
 			<test value="1">
-				/controls/fadec/switches/altn-2 eq 1
+				/controls/fadec/altn-2 eq 1
 			</test>
 		</switch>
 		
 		<switch name="fadec/control-2/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0">
-				/controls/fadec/switches/altn-2 eq 1
+				/controls/fadec/altn-2 eq 1
 			</test>
 		</switch>
 		
@@ -983,14 +983,14 @@
 		<switch name="fadec/control-3/max">
 			<default value="fadec/limit/max-norm"/>
 			<test value="1">
-				/controls/fadec/switches/altn-3 eq 1
+				/controls/fadec/altn-3 eq 1
 			</test>
 		</switch>
 		
 		<switch name="fadec/control-3/min">
 			<default value="fadec/limit/idle-norm"/>
 			<test value="0">
-				/controls/fadec/switches/altn-3 eq 1
+				/controls/fadec/altn-3 eq 1
 			</test>
 		</switch>
 		

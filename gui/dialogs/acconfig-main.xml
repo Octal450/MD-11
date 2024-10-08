@@ -282,15 +282,15 @@
 						</less-than>
 					</and>
 				</enable>
-				<property>/controls/electrical/switches/ground-cart</property>
+				<property>/controls/electrical/ground-cart</property>
 				<binding>
 					<command>property-assign</command>
-					<property>/controls/electrical/switches/ext-pwr</property>
+					<property>/controls/electrical/ext-pwr</property>
 					<value>0</value>
 				</binding>
 				<binding>
 					<command>property-assign</command>
-					<property>/controls/electrical/switches/extg-pwr</property>
+					<property>/controls/electrical/extg-pwr</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -320,7 +320,7 @@
 						</less-than>
 					</and>
 				</enable>
-				<property>/controls/pneumatics/switches/ground-air</property>
+				<property>/controls/pneumatics/ground-air</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

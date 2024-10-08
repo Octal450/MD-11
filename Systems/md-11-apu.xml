@@ -38,7 +38,7 @@
 		<switch name="/systems/apu/throttle-cmd-norm">
 			<default value="0"/> <!-- 63% N1 -->
 			<test value="0"> <!-- Force 63% N1 -->
-				/controls/apu/switches/start ne 1
+				/controls/apu/start ne 1
 			</test>
 			<test logic="AND" value="1"> <!-- 100% N1 -->
 				/systems/ignition/ign-avail eq 1
@@ -85,11 +85,11 @@
 			<default value="/systems/apu/bleed-timer-cmd"/>
 			<test logic="OR" value="0">
 				/engines/engine[3]/state ne 3
-				/controls/pneumatics/switches/bleed-apu eq 0
+				/controls/pneumatics/bleed-apu eq 0
 			</test>
 			<test logic="AND" value="1">
 				/engines/engine[3]/state eq 3
-				/controls/pneumatics/switches/bleed-apu eq 1
+				/controls/pneumatics/bleed-apu eq 1
 				/systems/acconfig/autoconfig-running ne 1
 			</test>
 		</switch>
@@ -113,7 +113,7 @@
 				/systems/electrical/bus/dc-bat lt 24
 			</test>
 			<test logic="OR" value="1">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/engines/engine[3]/n2-actual ge 2
 			</test>
 		</switch>
@@ -126,7 +126,7 @@
 		<switch name="/systems/apu/cutoff-cmd">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/engines/engine[3]/n2-actual ge 10
 			</test>
 			<test logic="AND" value="0"> <!-- Timer for shutdown -->
@@ -138,7 +138,7 @@
 		<switch name="/systems/apu/cutoff">
 			<default value="1"/>
 			<test logic="AND" value="0">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
 			<test logic="AND" value="0">
@@ -152,7 +152,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-bat ge 24
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				propulsion/tank[11]/contents-lbs ge 1
 				/systems/apu/door-norm eq 1
 			</test>
@@ -161,18 +161,18 @@
 		<switch name="/systems/apu/state">
 			<default value="0"/>
 			<test logic="AND" value="3">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/systems/apu/cutoff eq 0
 				/engines/engine[3]/n2-actual ge 95
 			</test>
 			<test logic="AND" value="2">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/engines/engine[3]/n2-actual ge 16
 				/systems/apu/cutoff eq 0
 				/systems/apu/starter eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/systems/apu/starter eq 1
 			</test>
 			<output>/engines/engine[3]/state</output>
@@ -181,18 +181,18 @@
 		<switch name="/systems/apu/dc-fuel-pump">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/apu/switches/start eq 1
+				/controls/apu/start eq 1
 				/systems/apu/cutoff eq 0
 			</test>
 		</switch>
 		
-		<switch name="/controls/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
+		<switch name="/systems/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
 			<default value="0"/>
 			<test value="1">
-				/controls/apu/lights/avail-flash eq 1
+				/systems/apu/lights/avail-flash eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/apu/lights/avail-flash eq 0
+				/systems/apu/lights/avail-flash eq 0
 				/systems/apu/n2-actual ge 95
 			</test>
 		</switch>

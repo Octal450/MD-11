@@ -12,12 +12,12 @@ var APU = {
 	oilQtyInput: props.globals.getNode("/engines/engine[3]/oil-qty-input"),
 	state: props.globals.getNode("/engines/engine[3]/state"),
 	Light: {
-		avail: props.globals.getNode("/controls/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
-		on: props.globals.initNode("/controls/apu/lights/on", 0, "BOOL"),
+		avail: props.globals.getNode("/systems/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
+		on: props.globals.initNode("/systems/apu/lights/on", 0, "BOOL"),
 		onTemp: 0,
 	},
 	Switch: {
-		start: props.globals.getNode("/controls/apu/switches/start"),
+		start: props.globals.getNode("/controls/apu/start"),
 	},
 	init: func() {
 		me.oilQtyInput.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
@@ -338,9 +338,9 @@ var FADEC = {
 		takeoffNoFlex: props.globals.getNode("/fdm/jsbsim/fadec/limit/takeoff-no-flex"),
 	},
 	Switch: {
-		altn1: props.globals.getNode("/controls/fadec/switches/altn-1"),
-		altn2: props.globals.getNode("/controls/fadec/switches/altn-2"),
-		altn3: props.globals.getNode("/controls/fadec/switches/altn-3"),
+		altn1: props.globals.getNode("/controls/fadec/altn-1"),
+		altn2: props.globals.getNode("/controls/fadec/altn-2"),
+		altn3: props.globals.getNode("/controls/fadec/altn-3"),
 	},
 	init: func() {
 		me.Switch.altn1.setBoolValue(0);
@@ -435,17 +435,17 @@ var FCC = {
 		RightOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-out-active"),
 	},
 	Switch: {
-		elevatorFeelKnob: props.globals.getNode("/controls/fcc/switches/elevator-feel"),
-		elevatorFeelMan: props.globals.getNode("/controls/fcc/switches/elevator-feel-man"),
-		flapLimit: props.globals.getNode("/controls/fcc/switches/flap-limit"),
-		lsasLeftIn: props.globals.getNode("/controls/fcc/switches/lsas-left-in"),
-		lsasLeftOut: props.globals.getNode("/controls/fcc/switches/lsas-left-out"),
-		lsasRightIn: props.globals.getNode("/controls/fcc/switches/lsas-right-in"),
-		lsasRightOut: props.globals.getNode("/controls/fcc/switches/lsas-right-out"),
-		ydLowerA: props.globals.getNode("/controls/fcc/switches/yd-lower-a"),
-		ydLowerB: props.globals.getNode("/controls/fcc/switches/yd-lower-b"),
-		ydUpperA: props.globals.getNode("/controls/fcc/switches/yd-upper-a"),
-		ydUpperB: props.globals.getNode("/controls/fcc/switches/yd-upper-b"),
+		elevatorFeelKnob: props.globals.getNode("/controls/fcc/elevator-feel"),
+		elevatorFeelMan: props.globals.getNode("/controls/fcc/elevator-feel-man"),
+		flapLimit: props.globals.getNode("/controls/fcc/flap-limit"),
+		lsasLeftIn: props.globals.getNode("/controls/fcc/lsas-left-in"),
+		lsasLeftOut: props.globals.getNode("/controls/fcc/lsas-left-out"),
+		lsasRightIn: props.globals.getNode("/controls/fcc/lsas-right-in"),
+		lsasRightOut: props.globals.getNode("/controls/fcc/lsas-right-out"),
+		ydLowerA: props.globals.getNode("/controls/fcc/yd-lower-a"),
+		ydLowerB: props.globals.getNode("/controls/fcc/yd-lower-b"),
+		ydUpperA: props.globals.getNode("/controls/fcc/yd-upper-a"),
+		ydUpperB: props.globals.getNode("/controls/fcc/yd-upper-b"),
 	},
 	init: func() {
 		me.resetFailures();
@@ -556,9 +556,9 @@ var IGNITION = {
 	starter2: props.globals.getNode("/systems/ignition/starter-2"),
 	starter3: props.globals.getNode("/systems/ignition/starter-3"),
 	Switch: {
-		ignA: props.globals.getNode("/controls/ignition/switches/ign-a"),
-		ignB: props.globals.getNode("/controls/ignition/switches/ign-b"),
-		ignOvrd: props.globals.getNode("/controls/ignition/switches/ign-ovrd"),
+		ignA: props.globals.getNode("/controls/ignition/ign-a"),
+		ignB: props.globals.getNode("/controls/ignition/ign-b"),
+		ignOvrd: props.globals.getNode("/controls/ignition/ign-ovrd"),
 	},
 	init: func() {
 		me.Switch.ignA.setBoolValue(0);
@@ -595,7 +595,7 @@ var IRS = {
 		mainAvail: [props.globals.getNode("/systems/iru[0]/main-avail"), props.globals.getNode("/systems/iru[1]/main-avail"), props.globals.getNode("/systems/iru[2]/main-avail")],
 	},
 	Switch: {
-		knob: [props.globals.getNode("/controls/iru[0]/switches/knob"), props.globals.getNode("/controls/iru[1]/switches/knob"), props.globals.getNode("/controls/iru[2]/switches/knob")],
+		knob: [props.globals.getNode("/controls/iru[0]/knob"), props.globals.getNode("/controls/iru[1]/knob"), props.globals.getNode("/controls/iru[2]/knob")],
 		mcduBtn: props.globals.getNode("/controls/iru-common/mcdu-btn"),
 	},
 	init: func() {
