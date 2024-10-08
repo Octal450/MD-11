@@ -436,7 +436,7 @@
 		<switch name="/systems/fcc/lights/elevator-feel-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/elevator-feel/auto ne 1
+				/systems/fcc/elevator-feel/auto ne 1
 				/systems/failures/fcc/elevator-feel eq 1
 			</test>
 		</switch>

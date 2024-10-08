@@ -861,28 +861,6 @@
 				<throttle-lever-feedback n="1" type="double">0</throttle-lever-feedback>
 				<throttle-lever-feedback n="2" type="double">0</throttle-lever-feedback>
 			</fadec>
-			<fcc n="0">
-				<afs n="0">
-					<pitch-cmd type="double">0</pitch-cmd>
-					<roll-cmd type="double">0</roll-cmd>
-					<yaw-cmd type="double">0</yaw-cmd>
-				</afs>
-				<elevator-feel n="0">
-					<auto type="bool">1</auto>
-				</elevator-feel>
-				<lsas n="0">
-					<left-in-active type="bool">0</left-in-active>
-					<left-out-active type="bool">0</left-out-active>
-					<right-in-active type="bool">0</right-in-active>
-					<right-out-active type="bool">0</right-out-active>
-				</lsas>
-				<manual type="bool">0</manual>
-				<speed type="double">0</speed>
-				<yaw n="0">
-					<avail-upr type="bool">0</avail-upr>
-					<avail-lwr type="bool">0</avail-lwr>
-				</yaw>
-			</fcc>
 			<fcs n="0">
 				<slat-pos-deg type="double">0</slat-pos-deg>
 			</fcs>
@@ -911,39 +889,6 @@
 			<zero type="int">0</zero>
 		</jsbsim>
 	</fdm>
-	
-	<fms n="0">
-		<flight-data n="0">
-			<airport-from-alt type="int">-1000</airport-from-alt>
-			<airport-to-alt type="int">-1000</airport-to-alt>
-			<can-calc-vspeeds type="bool">0</can-calc-vspeeds>
-			<flex-active type="bool">0</flex-active>
-			<flex-temp type="int">0</flex-temp>
-			<gw-lbs type="double">0</gw-lbs>
-			<land-flaps type="int">35</land-flaps>
-			<oat-c type="int">-100</oat-c>
-			<tocg type="double">0</tocg>
-			<to-flaps type="double">0</to-flaps>
-			<to-packs type="bool">0</to-packs>
-			<to-slope type="int">-100</to-slope>
-			<to-wind type="int">-100</to-wind>
-			<togw-lbs type="double">0</togw-lbs>
-			<v1 type="int">0</v1>
-			<v2 type="int">0</v2>
-			<vr type="int">0</vr>
-			<zfwcg type="double">0</zfwcg>
-			<zfw-lbs type="double">0</zfw-lbs>
-		</flight-data>
-		<fms-spd n="0">
-			<active type="bool">0</active>
-			<kts type="int">0</kts>
-			<kts-mach type="bool">0</kts-mach>
-			<mach type="double">0</mach>
-		</fms-spd>
-		<internal n="0">
-			<phase type="int">0</phase>
-		</internal>
-	</fms>
 	
 	<gear n="0">
 		<abs n="0">
@@ -1800,6 +1745,60 @@
 				<system type="bool">0</system>
 			</pneumatics>
 		</failures>
+		<fcc n="0">
+			<afs n="0">
+				<pitch-cmd type="double">0</pitch-cmd>
+				<roll-cmd type="double">0</roll-cmd>
+				<yaw-cmd type="double">0</yaw-cmd>
+			</afs>
+			<elevator-feel n="0">
+				<auto type="bool">1</auto>
+			</elevator-feel>
+			<lsas n="0">
+				<left-in-active type="bool">0</left-in-active>
+				<left-out-active type="bool">0</left-out-active>
+				<right-in-active type="bool">0</right-in-active>
+				<right-out-active type="bool">0</right-out-active>
+			</lsas>
+			<manual type="bool">0</manual>
+			<speed type="double">0</speed>
+			<yaw n="0">
+				<avail-upr type="bool">0</avail-upr>
+				<avail-lwr type="bool">0</avail-lwr>
+			</yaw>
+		</fcc>
+		<fms n="0">
+			<flight-data n="0">
+				<airport-from-alt type="int">-1000</airport-from-alt>
+				<airport-to-alt type="int">-1000</airport-to-alt>
+				<can-calc-vspeeds type="bool">0</can-calc-vspeeds>
+				<flex-active type="bool">0</flex-active>
+				<flex-temp type="int">0</flex-temp>
+				<gw-lbs type="double">0</gw-lbs>
+				<land-flaps type="int">35</land-flaps>
+				<oat-c type="int">-100</oat-c>
+				<tocg type="double">0</tocg>
+				<to-flaps type="double">0</to-flaps>
+				<to-packs type="bool">0</to-packs>
+				<to-slope type="int">-100</to-slope>
+				<to-wind type="int">-100</to-wind>
+				<togw-lbs type="double">0</togw-lbs>
+				<v1 type="int">0</v1>
+				<v2 type="int">0</v2>
+				<vr type="int">0</vr>
+				<zfwcg type="double">0</zfwcg>
+				<zfw-lbs type="double">0</zfw-lbs>
+			</flight-data>
+			<fms-spd n="0">
+				<active type="bool">0</active>
+				<kts type="int">0</kts>
+				<kts-mach type="bool">0</kts-mach>
+				<mach type="double">0</mach>
+			</fms-spd>
+			<internal n="0">
+				<phase type="int">0</phase>
+			</internal>
+		</fms>
 		<hydraulics n="0">
 			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
 			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->

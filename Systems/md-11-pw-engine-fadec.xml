@@ -367,7 +367,7 @@
 							<property>fadec/limit/takeoff-table</property>
 						</ifthen>
 						<table>
-							<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
+							<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
 							<tableData>
 								0  0.0
 								1 -0.4
@@ -416,7 +416,7 @@
 		
 		<summer name="fadec/limit/flex-temp-input"> <!-- (Rated - Flex) + TAT -->
 			<input>fadec/limit/rated-temp</input>
-			<input>-/fms/flight-data/flex-temp</input>
+			<input>-/systems/fms/flight-data/flex-temp</input>
 			<input>propulsion/tat-c</input>
 		</summer>
 		
@@ -520,7 +520,7 @@
 								<property>fadec/limit/takeoff-flex-table</property>
 							</ifthen>
 							<table>
-								<independentVar lookup="row">/fms/flight-data/to-packs</independentVar>
+								<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
 								<tableData>
 									0  0.0
 									1 -0.4
@@ -571,7 +571,7 @@
 		<switch name="fadec/limit/takeoff">
 			<default value="fadec/limit/takeoff-no-flex"/>
 			<test value="fadec/limit/takeoff-flex">
-				/fms/flight-data/flex-active eq 1
+				/systems/fms/flight-data/flex-active eq 1
 			</test>
 		</switch>
 		

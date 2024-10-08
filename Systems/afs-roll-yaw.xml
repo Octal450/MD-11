@@ -257,7 +257,7 @@
 			</condition>
 		</enable>
 		<input>/controls/flight/aileron</input>
-		<output>/fdm/jsbsim/fcc/afs/roll-cmd</output>
+		<output>/systems/fcc/afs/roll-cmd</output>
 	</filter>
 	
 	<filter>
@@ -285,7 +285,7 @@
 			<property>/it-autoflight/internal/aileron-cmd</property>
 		</input>
 		<input>/it-autoflight/internal/aileron-rollout</input>
-		<output>/fdm/jsbsim/fcc/afs/roll-cmd</output>
+		<output>/systems/fcc/afs/roll-cmd</output>
 		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
@@ -450,7 +450,7 @@
 			<property>/it-autoflight/internal/rudder-cmd</property>
 		</input>
 		<input>0</input>
-		<output>/fdm/jsbsim/fcc/afs/yaw-cmd</output>
+		<output>/systems/fcc/afs/yaw-cmd</output>
 		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 

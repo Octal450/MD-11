@@ -13,7 +13,7 @@
 				fcs/slat-pos-deg ge 2
 				position/wow eq 1
 			</test>
-			<output>fcc/aileron-out-enable</output>
+			<output>/systems/fcc/aileron-out-enable</output>
 		</switch>
 		
 		<!-- Deflected Aileron System -->
@@ -49,8 +49,8 @@
 			<test logic="AND" value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
 				/it-autoflight/internal/active-fms eq 1
 				<test logic="OR">
-					fcc/rcws/active-no-wow eq 1
-					fcc/afs/enabled eq 1
+					/systems/fcc/rcws/active-no-wow eq 1
+					/systems/fcc/afs/enabled eq 1
 				</test>
 			</test>
 		</switch>
@@ -63,8 +63,8 @@
 			<test logic="AND" value="0.55"> <!-- Slightly slower when deflectioned electronically instead of ADA -->
 				/it-autoflight/internal/active-fms eq 2
 				<test logic="OR">
-					fcc/rcws/active-no-wow eq 1
-					fcc/afs/enabled eq 1
+					/systems/fcc/rcws/active-no-wow eq 1
+					/systems/fcc/afs/enabled eq 1
 				</test>
 			</test>
 		</switch>
@@ -124,11 +124,11 @@
 		<switch name="hydraulics/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
 			<test logic="AND" value="hydraulics/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
-				fcc/rcws/active eq 1
-				fcc/rcws/in-detent eq 1
+				/systems/fcc/rcws/active eq 1
+				/systems/fcc/rcws/in-detent eq 1
 			</test>
-			<test value="fcc/afs/roll-cmd">
-				fcc/afs/enabled eq 1
+			<test value="/systems/fcc/afs/roll-cmd">
+				/systems/fcc/afs/enabled eq 1
 			</test>
 		</switch>
 		
@@ -191,7 +191,7 @@
 		</summer>
 		
 		<summer name="hydraulics/aileron/output">
-			<input>fcc/roll-output</input>
+			<input>/systems/fcc/roll-output</input>
 			<input>hydraulics/aileron/trim-overall</input>
 			<clipto>
 				<min>-1.0</min>
@@ -510,10 +510,10 @@
 		<switch name="hydraulics/elevator-yoke-switch">
 			<default value="/controls/flight/elevator"/>
 			<test value="hydraulics/elevator-small"> <!-- While in detent and LSAS active, more force needed to break out -->
-				fcc/lsas/pah/active eq 1
+				/systems/fcc/lsas/pah/active eq 1
 			</test>
-			<test value="fcc/afs/pitch-cmd">
-				fcc/afs/enabled eq 1
+			<test value="/systems/fcc/afs/pitch-cmd">
+				/systems/fcc/afs/enabled eq 1
 			</test>
 		</switch>
 		
@@ -559,7 +559,7 @@
 		
 		<switch name="hydraulics/elevator-out-l/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-o-l-output">
+			<test logic="OR" value="/systems/fcc/elevator-o-l-output">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
@@ -599,7 +599,7 @@
 		
 		<switch name="hydraulics/elevator-in-l/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-i-l-output">
+			<test logic="OR" value="/systems/fcc/elevator-i-l-output">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
@@ -639,7 +639,7 @@
 		
 		<switch name="hydraulics/elevator-in-r/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-i-r-output">
+			<test logic="OR" value="/systems/fcc/elevator-i-r-output">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
@@ -679,7 +679,7 @@
 		
 		<switch name="hydraulics/elevator-out-r/switch">
 			<default value="hydraulics/elevator-droop"/>
-			<test logic="OR" value="fcc/elevator-o-r-output">
+			<test logic="OR" value="/systems/fcc/elevator-o-r-output">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
@@ -722,7 +722,7 @@
 			<test value="20">
 				/systems/acconfig/autoconfig-running eq 1
 			</test>
-			<test logic="OR" value="fcc/pitch-trim-speed">
+			<test logic="OR" value="/systems/fcc/pitch-trim-speed">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -754,7 +754,7 @@
 		</pure_gain>
 		
 		<summer name="hydraulics/rudder/upper-sum">
-			<input>fcc/rudder-upper-output</input>
+			<input>/systems/fcc/rudder-upper-output</input>
 			<input>hydraulics/rudder/trim</input>
 			<clipto>
 				<min>-1.0</min>
@@ -763,7 +763,7 @@
 		</summer>
 		
 		<summer name="hydraulics/rudder/lower-sum">
-			<input>fcc/rudder-lower-output</input>
+			<input>/systems/fcc/rudder-lower-output</input>
 			<input>hydraulics/rudder/trim</input>
 			<clipto>
 				<min>-1.0</min>
@@ -772,9 +772,9 @@
 		</summer>
 		
 		<switch name="hydraulics/rudder/pedal-switch">
-			<default value="fcc/yaw/rudder-nul"/>
-			<test value="fcc/yaw/output-and-rudder"> <!-- Parallel Rudder -->
-				fcc/yaw/parallel-rudder-active eq 1
+			<default value="/systems/fcc/yaw/rudder-nul"/>
+			<test value="/systems/fcc/yaw/output-and-rudder"> <!-- Parallel Rudder -->
+				/systems/fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		
@@ -887,7 +887,7 @@
 		</switch>
 		
 		<actuator name="rubbish/flap-pos-deg">
-			<input>fcc/flap/cmd-deg</input>
+			<input>/systems/fcc/flap/cmd-deg</input>
 			<rate_limit>fcs/flap-pos-rate</rate_limit>
 			<output>fcs/flap-pos-deg</output>
 		</actuator>
@@ -921,7 +921,7 @@
 		</switch>
 		
 		<actuator name="rubbish/slat-pos-deg">
-			<input>fcc/slat/cmd-deg</input>
+			<input>/systems/fcc/slat/cmd-deg</input>
 			<rate_limit>fcs/slat-pos-rate</rate_limit>
 			<output>fcs/slat-pos-deg</output>
 		</actuator>
@@ -1364,7 +1364,7 @@
 		</pure_gain>
 		
 		<summer name="hydraulics/tiller/afs-cmd-input">
-			<input>fcc/afs/yaw-cmd</input>
+			<input>/systems/fcc/afs/yaw-cmd</input>
 			<input>hydraulics/rudder/trim</input> <!-- 13 of 30 -->
 			<clipto>
 				<min>-1.0</min>
@@ -1484,7 +1484,7 @@
 				/sim/model/autopush/connected eq 1
 			</test>
 			<test value="hydraulics/tiller/afs-cmd-deg">
-				fcc/afs/enabled eq 1
+				/systems/fcc/afs/enabled eq 1
 			</test>
 			<test value="hydraulics/tiller/tiller-cmd-deg">
 				/systems/acconfig/options/separate-tiller-axis eq 1

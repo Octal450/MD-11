@@ -411,8 +411,8 @@ var FADEC = {
 # Flight Control Computers
 var FCC = {
 	ElevatorFeel: {
-		auto: props.globals.getNode("/fdm/jsbsim/fcc/elevator-feel/auto"),
-		speed: props.globals.getNode("/fdm/jsbsim/fcc/elevator-feel/speed"),
+		auto: props.globals.getNode("/systems/fcc/elevator-feel/auto"),
+		speed: props.globals.getNode("/systems/fcc/elevator-feel/speed"),
 	},
 	Fail: {
 		elevatorFeel: props.globals.getNode("/systems/failures/fcc/elevator-feel"),
@@ -426,14 +426,21 @@ var FCC = {
 		ydUpperA: props.globals.getNode("/systems/failures/fcc/yd-upper-a"),
 		ydUpperB: props.globals.getNode("/systems/failures/fcc/yd-upper-b"),
 	},
-	fcc1Power: props.globals.getNode("/fdm/jsbsim/fcc/fcc1-power"),
-	fcc2Power: props.globals.getNode("/fdm/jsbsim/fcc/fcc2-power"),
+	fcc1Power: props.globals.getNode("/systems/fcc/fcc1-power"),
+	fcc2Power: props.globals.getNode("/systems/fcc/fcc2-power"),
+	flapMaxDeg: props.globals.getNode("/systems/fcc/flap/max-deg"),
 	Lsas: {
-		leftInActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/left-in-active"),
-		leftOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/left-out-active"),
-		RightInActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-in-active"),
-		RightOutActive: props.globals.getNode("/fdm/jsbsim/fcc/lsas/right-out-active"),
+		autotrimInhibit: props.globals.getNode("/systems/fcc/lsas/autotrim-inhibit"),
+		leftInActive: props.globals.getNode("/systems/fcc/lsas/left-in-active"),
+		leftOutActive: props.globals.getNode("/systems/fcc/lsas/left-out-active"),
+		RightInActive: props.globals.getNode("/systems/fcc/lsas/right-in-active"),
+		RightOutActive: props.globals.getNode("/systems/fcc/lsas/right-out-active"),
 	},
+	pitchTrimSpeed: props.globals.getNode("/systems/fcc/pitch-trim-speed"),
+	powerAvail: props.globals.getNode("/systems/fcc/power-avail"),
+	powerAvailTemp: 0,
+	stallAlphaDeg: props.globals.getNode("/systems/fcc/stall-alpha-deg"),
+	stallWarnAlphaDeg: props.globals.getNode("/systems/fcc/stall-warn-alpha-deg"),
 	Switch: {
 		elevatorFeelKnob: props.globals.getNode("/controls/fcc/elevator-feel"),
 		elevatorFeelMan: props.globals.getNode("/controls/fcc/elevator-feel-man"),

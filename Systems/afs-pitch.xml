@@ -642,7 +642,7 @@
 							<entry><ind>140</ind><dep>-0.14</dep></entry>
 							<entry><ind>360</ind><dep>-0.07</dep></entry>
 						</table>
-						<property>/fdm/jsbsim/fcc/elevator-feel/gain</property> <!-- Compensate for scheduled AFS command -->
+						<property>/systems/fcc/elevator-feel/gain</property> <!-- Compensate for scheduled AFS command -->
 					</div>
 				</expression>
 			</Kp>
@@ -663,7 +663,7 @@
 			</condition>
 		</enable>
 		<input>/controls/flight/elevator</input>
-		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
+		<output>/systems/fcc/afs/pitch-cmd</output>
 	</filter>
 	
 	<filter>
@@ -685,7 +685,7 @@
 			<property>/it-autoflight/internal/elevator-cmd</property>
 		</input>
 		<input>0.05</input>
-		<output>/fdm/jsbsim/fcc/afs/pitch-cmd</output>
+		<output>/systems/fcc/afs/pitch-cmd</output>
 		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
@@ -704,12 +704,12 @@
 				<greater-than-equals>
 					<expression>
 						<abs>
-							<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+							<property>/systems/fcc/afs/pitch-cmd</property>
 						</abs>
 					</expression>
 					<expression>
 						<max>
-							<property>/fdm/jsbsim/fcc/lsas/out-of-trim-threshold</property>
+							<property>/systems/fcc/lsas/out-of-trim-threshold</property>
 							<value>0.02</value>
 						</max>
 					</expression>
@@ -722,7 +722,7 @@
 				<less-than>
 					<expression>
 						<abs>
-							<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+							<property>/systems/fcc/afs/pitch-cmd</property>
 						</abs>
 					</expression>
 					<value>0.01</value>
@@ -764,7 +764,7 @@
 		<input>
 			<condition>
 				<greater-than>
-					<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+					<property>/systems/fcc/afs/pitch-cmd</property>
 					<value>0.001</value>
 				</greater-than>
 			</condition>
@@ -773,7 +773,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/fdm/jsbsim/fcc/afs/pitch-cmd</property>
+					<property>/systems/fcc/afs/pitch-cmd</property>
 					<value>-0.001</value>
 				</less-than>
 			</condition>
@@ -785,7 +785,7 @@
 		<max-rate-of-change>
 			<expression>
 				<table>
-					<abs><property>/fdm/jsbsim/fcc/afs/pitch-cmd</property></abs>
+					<abs><property>/systems/fcc/afs/pitch-cmd</property></abs>
 					<entry><ind>0.01</ind><dep>0.002</dep></entry>
 					<entry><ind>0.10</ind><dep>0.010</dep></entry>
 				</table>

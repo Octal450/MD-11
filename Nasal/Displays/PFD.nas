@@ -302,8 +302,8 @@ var canvasBase = {
 		Value.Afs.vert = afs.Output.vert.getValue();
 		Value.Afs.vertText = afs.Text.vert.getValue();
 		Value.Ai.alpha = pts.Fdm.JSBSim.Aero.alphaDegDamped.getValue();
-		Value.Ai.stallAlphaDeg = pts.Fdm.JSBSim.Fcc.stallAlphaDeg.getValue();
-		Value.Ai.stallWarnAlphaDeg = pts.Fdm.JSBSim.Fcc.stallWarnAlphaDeg.getValue();
+		Value.Ai.stallAlphaDeg = systems.FCC.stallAlphaDeg.getValue();
+		Value.Ai.stallWarnAlphaDeg = systems.FCC.stallWarnAlphaDeg.getValue();
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.fms = pts.Instrumentation.Pfd.spdFms.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
@@ -2257,7 +2257,7 @@ var canvasBase = {
 			me["Slats_no"].hide();
 		}
 		
-		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= pts.Fdm.JSBSim.Fcc.Flap.maxDeg.getValue()) {
+		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= systems.FCC.flapMaxDeg.getValue()) {
 			me["Flaps_dn"].hide();
 			me["Flaps_up"].hide();
 			me["Flaps_num"].setColor(0.9647, 0.8196, 0.0784);

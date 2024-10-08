@@ -56,7 +56,7 @@
 		<switch name="/systems/fuel/fsc/phase-6-timer-cmd">
 			<default value="0"/>
 			<test value="1">
-				/fms/internal/phase eq 6
+				/systems/fms/internal/phase eq 6
 			</test>
 		</switch>
 		
@@ -69,12 +69,12 @@
 		<switch name="/systems/fuel/fsc/fwd-pumps-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Turn off one minute after entering phase 6 -->
-				/fms/internal/phase eq 6
+				/systems/fms/internal/phase eq 6
 				/systems/fuel/fsc/phase-6-timer lt 1
 			</test>
 			<test logic="OR" value="1">
-				/fms/internal/phase eq 1
-				/fms/internal/phase eq 5
+				/systems/fms/internal/phase eq 1
+				/systems/fms/internal/phase eq 5
 			</test>
 		</switch>
 		
@@ -105,9 +105,9 @@
 		<switch name="/systems/fuel/fsc/aux-pumps-cmd">
 			<default value="1"/>
 			<test logic="OR" value="0">
-				/fms/internal/phase eq 1
-				/fms/internal/phase eq 5
-				/fms/internal/phase eq 6
+				/systems/fms/internal/phase eq 1
+				/systems/fms/internal/phase eq 5
+				/systems/fms/internal/phase eq 6
 			</test>
 		</switch>
 		

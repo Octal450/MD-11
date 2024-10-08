@@ -9,7 +9,7 @@
 		<input>
 			<and>
 				<equals>
-					<property>/fdm/jsbsim/fcc/fcc1-power</property>
+					<property>/systems/fcc/fcc1-power</property>
 					<value>1</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd1</property></not>
@@ -27,11 +27,11 @@
 				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/left-in-active</property>
+						<property>/systems/fcc/lsas/left-in-active</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/right-out-active</property>
+						<property>/systems/fcc/lsas/right-out-active</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -48,7 +48,7 @@
 		<input>
 			<and>
 				<equals>
-					<property>/fdm/jsbsim/fcc/fcc2-power</property>
+					<property>/systems/fcc/fcc2-power</property>
 					<value>1</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd2</property></not>
@@ -62,11 +62,11 @@
 				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/left-out-active</property>
+						<property>/systems/fcc/lsas/left-out-active</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/fdm/jsbsim/fcc/lsas/right-in-active</property>
+						<property>/systems/fcc/lsas/right-in-active</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -84,11 +84,11 @@
 			<and>
 				<or>
 					<equals>
-						<property>/fdm/jsbsim/fcc/fcc1-power</property>
+						<property>/systems/fcc/fcc1-power</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/fdm/jsbsim/fcc/fcc2-power</property>
+						<property>/systems/fcc/fcc2-power</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -1157,12 +1157,12 @@
 						<value>T/O CLB</value>
 					</equals>
 					<greater-than> <!-- 0 means no Vr set -->
-						<property>/fms/flight-data/vr</property>
+						<property>/systems/fms/flight-data/vr</property>
 						<value>0</value>
 					</greater-than>
 					<greater-than-equals>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-						<property>/fms/flight-data/vr</property>
+						<property>/systems/fms/flight-data/vr</property>
 					</greater-than-equals>
 				</and>
 			</condition>

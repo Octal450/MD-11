@@ -51,17 +51,17 @@
 				<ifthen>
 					<and> <!-- Both must be valid -->
 						<gt>
-							<property>/fms/fms-spd/kts</property>
+							<property>/systems/fms/fms-spd/kts</property>
 							<value>0</value>
 						</gt>
 						<gt>
-							<property>/fms/fms-spd/mach</property>
+							<property>/systems/fms/fms-spd/mach</property>
 							<value>0</value>
 						</gt>
 					</and>
 					<ifthen>
 						<eq>
-							<property>/fms/fms-spd/kts-mach</property>
+							<property>/systems/fms/fms-spd/kts-mach</property>
 							<value>1</value>
 						</eq>
 						<product>
@@ -69,9 +69,9 @@
 								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
 							</quotient>
-							<property>/fms/fms-spd/mach</property>
+							<property>/systems/fms/fms-spd/mach</property>
 						</product>
-						<property>/fms/fms-spd/kts</property>
+						<property>/systems/fms/fms-spd/kts</property>
 					</ifthen>
 					<value>0</value>
 				</ifthen>
@@ -240,13 +240,13 @@
 			<test logic="AND" value="2"> <!-- Landing -->
 				/instrumentation/ead/checklist-wow-latch eq 0
 				/position/gear-agl-ft lt 1500.5
-				/fms/internal/phase gt 1
+				/systems/fms/internal/phase gt 1
 			</test>
 			<test logic="AND" value="1"> <!-- Takeoff -->
 				/instrumentation/ead/checklist-wow-latch eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 79.5
-				/fms/internal/phase le 1
-				/fms/flight-data/v2 gt 0
+				/systems/fms/internal/phase le 1
+				/systems/fms/flight-data/v2 gt 0
 			</test>
 		</switch>
 		
@@ -267,8 +267,8 @@
 			<test logic="AND" value="2"> <!-- Stab Trim, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1
 				<test logic="OR"> <!-- 2.05 instead of 2 in order to fix floating point error -->
-					/fms/internal/takeoff-stab-error ge 2.05
-					/fms/internal/takeoff-stab-error le -2.05
+					/systems/fms/internal/takeoff-stab-error ge 2.05
+					/systems/fms/internal/takeoff-stab-error le -2.05
 				</test>
 			</test>
 			<test logic="AND" value="3"> <!-- Slat, Takeoff -->
@@ -278,8 +278,8 @@
 			<test logic="AND" value="4"> <!-- Flap, Takeoff -->
 				/instrumentation/ead/checklist-mode eq 1
 				<test logic="OR">
-					/fms/internal/takeoff-flaps-error gt 3
-					/fms/internal/takeoff-flaps-error lt -3
+					/systems/fms/internal/takeoff-flaps-error gt 3
+					/systems/fms/internal/takeoff-flaps-error lt -3
 				</test>
 			</test>
 			<test logic="AND" value="4"> <!-- Flap, Landing -->
@@ -304,7 +304,7 @@
 			<test logic="AND" value="1">
 				/instrumentation/ead/checklist gt 0
 				/instrumentation/ead/checklist-mode eq 1
-				/fms/internal/phase eq 1
+				/systems/fms/internal/phase eq 1
 			</test>
 		</switch>
 	

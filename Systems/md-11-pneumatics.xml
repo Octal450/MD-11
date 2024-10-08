@@ -134,7 +134,7 @@
 			<default value="/systems/pneumatics/esc/toga-packs-off"/> <!-- Flip flop -->
 			<test logic="OR" value="0">
 				/position/gear-agl-ft ge 4500
-				/fms/flight-data/to-packs eq 1
+				/systems/fms/flight-data/to-packs eq 1
 				fadec/limit/active-mode-int ne 0
 			</test>
 			<test logic="AND" value="0">

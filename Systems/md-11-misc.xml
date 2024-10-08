@@ -256,7 +256,7 @@
 		<switch name="/systems/caws/logic/overspeed">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/vmo-mmo
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/vmo-mmo
 				/controls/switches/annun-test eq 1
 			</test>
 		</switch>
@@ -267,7 +267,7 @@
 			<test logic="AND" value="1">
 				/systems/caws/logic/overspeed eq 0
 				fcs/slat-pos-deg ge 1
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/slat-max-kts
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/slat-max-kts
 			</test>
 		</switch>
 		

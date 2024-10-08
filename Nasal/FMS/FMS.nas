@@ -3,20 +3,20 @@
 
 # Properties and Data
 var Internal = {
-	bankAngle1: props.globals.initNode("/fms/internal/bank-limit-1"),
-	bankAngle2: props.globals.initNode("/fms/internal/bank-limit-2"),
-	bankAngleVss: props.globals.initNode("/fms/internal/bank-limit-vss"),
-	cgPercentMac: props.globals.initNode("/fms/internal/cg-percent-mac"),
+	bankAngle1: props.globals.initNode("/systems/fms/internal/bank-limit-1"),
+	bankAngle2: props.globals.initNode("/systems/fms/internal/bank-limit-2"),
+	bankAngleVss: props.globals.initNode("/systems/fms/internal/bank-limit-vss"),
+	cgPercentMac: props.globals.initNode("/systems/fms/internal/cg-percent-mac"),
 	engOn: 0,
 	Messages: {
 		vspeeds: 0,
 	},
 	phase: 0, # 0: Preflight, 1: Takeoff, 2: Climb, 3: Cruise, 4: Descent, 5: Approach, 6: Rollout
 	phaseNew: 0,
-	phaseOut: props.globals.getNode("/fms/internal/phase"),
+	phaseOut: props.globals.getNode("/systems/fms/internal/phase"),
 	request: [1, 1, 0],
 	resetToggle: 0,
-	takeoffStabDeg: props.globals.initNode("/fms/internal/takeoff-stab-deg"),
+	takeoffStabDeg: props.globals.initNode("/systems/fms/internal/takeoff-stab-deg"),
 };
 
 var Value = { # Local store of commonly accessed values

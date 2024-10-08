@@ -76,19 +76,6 @@ var Fdm = {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},
-		Fcc: {
-			Flap: {
-				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
-			},
-			Lsas: {
-				autotrimInhibit: props.globals.getNode("/fdm/jsbsim/fcc/lsas/autotrim-inhibit"),
-			},
-			powerAvail: props.globals.getNode("/fdm/jsbsim/fcc/power-avail"),
-			powerAvailTemp: 0,
-			pitchTrimSpeed: props.globals.getNode("/fdm/jsbsim/fcc/pitch-trim-speed"),
-			stallAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-alpha-deg"),
-			stallWarnAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-warn-alpha-deg"),
-		},
 		Fcs: {
 			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
 			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
