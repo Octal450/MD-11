@@ -187,7 +187,7 @@ var canvasConfig = {
 		}
 		
 		# Stab
-		Value.Fctl.stab = systems.FCS.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stab = systems.FCS.stabilizerDeg.getValue();
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
@@ -231,7 +231,7 @@ var canvasConfig = {
 		}
 		
 		# Ailerons
-		if (systems.FCS.DeflectedAileron.active.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
+		if (systems.FCS.deflectedAileronActive.getBoolValue()) { # When ailerons are deflected, the green box occurs earlier
 			Value.Fctl.aileronDeflGreen = -8.6;
 		} else {
 			Value.Fctl.aileronDeflGreen = -19.8;
@@ -365,8 +365,8 @@ var canvasConfig = {
 		}
 		
 		# Rudders
-		Value.Fctl.rudderUpper = systems.FCS.RudderUpper.finalDeg.getValue();
-		Value.Fctl.rudderLower = systems.FCS.RudderLower.finalDeg.getValue();
+		Value.Fctl.rudderUpper = systems.FCS.rudderUpperDeg.getValue();
+		Value.Fctl.rudderLower = systems.FCS.rudderLowerDeg.getValue();
 		
 		if (Value.Fctl.rudderUpper <= -0.8) {
 			me["RudderUpperRight"].hide();
@@ -623,7 +623,7 @@ var canvasEngBase = {
 		}
 		
 		# Stab
-		Value.Fctl.stab = systems.FCS.Stabilizer.finalDeg.getValue();
+		Value.Fctl.stab = systems.FCS.stabilizerDeg.getValue();
 		Value.Fctl.stabComp = fms.Internal.takeoffStabDeg.getValue();
 		Value.Fctl.stabRound = math.round(Value.Fctl.stab, 0.1);
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));

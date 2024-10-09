@@ -484,22 +484,14 @@ var FCC = {
 
 # Flight Control System
 var FCS = {
-	DeflectedAileron: {
-		active: props.globals.getNode("/systems/fcs/deflected-aileron/active"),
-	},
+	deflectedAileronActive: props.globals.getNode("/systems/fcs/deflected-aileron/active"),
 	flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"), # Must use this prop
-	RudderLower: {
-		finalDeg: props.globals.getNode("/systems/fcs/rudder-lower/final-deg"),
-	},
-	RudderUpper: {
-		finalDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
-	},
+	rudderLowerDeg: props.globals.getNode("/systems/fcs/rudder-lower/final-deg"),
+	rudderUpperDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
 	slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"), # Must use this prop
 	spoilerL: props.globals.getNode("/systems/fcs/spoiler-left-deg"),
 	spoilerR: props.globals.getNode("/systems/fcs/spoiler-right-deg"),
-	Stabilizer: {
-		finalDeg: props.globals.getNode("/systems/fcs/stabilizer/final-deg"),
-	},
+	stabilizerDeg: props.globals.getNode("/systems/fcs/stabilizer/final-deg"),
 };
 
 # Landing Gear
