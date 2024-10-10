@@ -11,13 +11,13 @@
 	<property value="0">/systems/abs/disarm</property>
 	<property value="0">/systems/abs/spoilers-cmd-deg</property>
 	<property value="0">/systems/fcc/aileron-out-enable</property>
-	<property value="0">/systems/fcc/flap/cmd-deg</property>
+	<property value="0">/systems/fcs/flaps/cmd-deg</property>
 	<property value="0">/systems/fcc/lsas/autotrim-inhibit</property>
 	<property value="0">/systems/fcc/lsas/pah/pid</property>
 	<property value="0">/systems/fcc/lsas/spd-prot/output</property>
 	<property value="0">/systems/fcc/rcws/input</property>
 	<property value="0">/systems/fcc/rcws/pid</property>
-	<property value="0">/systems/fcc/slat/cmd-deg</property>
+	<property value="0">/systems/fcs/slats/cmd-deg</property>
 	<property value="0">/systems/spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Properties for tuning -->
@@ -1529,167 +1529,6 @@
 				<max>1.0</max>
 			</clipto>
 		</summer>
-	
-	</channel>
-	
-	<channel name="Flap Lever">
-		
-		<fcs_function name="/controls/flight/flaps-fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
-			<function>
-				<quotient>
-					<floor>
-						<sum>
-							<product>
-								<property>/controls/flight/flaps</property>
-								<value>10000</value>
-							</product>
-							<value>0.5</value> <!-- Make it round correctly -->
-						</sum>
-					</floor>
-					<value>10000</value>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/flight/flaps-input">
-			<default value="0"/> <!-- UP/RET -->
-			<test logic="AND" value="1"> <!-- UP/EXT -->
-				/controls/flight/flaps-fixed ge 0.20
-				/controls/flight/flaps-fixed lt 0.36
-			</test>
-			<test logic="AND" value="2"> <!-- 10-25/EXT -->
-				/controls/flight/flaps-fixed ge 0.36
-				/controls/flight/flaps-fixed lt 0.52
-			</test>
-			<test logic="AND" value="3"> <!-- 28/EXT -->
-				/controls/flight/flaps-fixed ge 0.52
-				/controls/flight/flaps-fixed lt 0.68
-			</test>
-			<test logic="AND" value="4"> <!-- 35/EXT -->
-				/controls/flight/flaps-fixed ge 0.68
-				/controls/flight/flaps-fixed lt 0.84
-			</test>
-			<test value="5"> <!-- 50/EXT -->
-				/controls/flight/flaps-fixed ge 0.84
-			</test>
-			<output>/systems/fms/speeds/flaps-input-feedback</output>
-		</switch>
-		
-		<fcs_function name="/controls/flight/dial-a-flap-int">
-			<function>
-				<floor>
-					<sum>
-						<property>/controls/flight/dial-a-flap</property>
-						<value>0.5</value> <!-- Make the integer rounded correctly -->
-					</sum>
-				</floor>
-			</function>
-			<clipto>
-				<min>10</min>
-				<max>25</max>
-			</clipto>
-		</fcs_function>
-		
-		<switch name="/controls/flight/flaps-cmd">
-			<default value="0"/>
-			<test value="/controls/flight/dial-a-flap-int">
-				/controls/flight/flaps-input eq 2
-			</test>
-			<test value="28">
-				/controls/flight/flaps-input eq 3
-			</test>
-			<test value="35">
-				/controls/flight/flaps-input eq 4
-			</test>
-			<test value="50">
-				/controls/flight/flaps-input eq 5
-			</test>
-		</switch>
-		
-		<switch name="/controls/flight/slats-cmd">
-			<default value="0"/>
-			<test logic="AND" value="31">
-				/controls/flight/flaps-input ge 1
-				/controls/flight/slat-stow eq 0
-			</test>
-		</switch>
-		
-		<switch name="/controls/flight/auto-slat-cmd">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				aero/alpha-deg-damped ge /systems/fcc/stall-alpha-deg
-				position/wow eq 0
-				/controls/flight/flaps-input eq 0
-			</test>
-		</switch>
-		
-		<actuator name="/controls/flight/auto-slat-timer">
-			<input>/controls/flight/auto-slat-cmd</input>
-			<rate_limit sense="incr">1000</rate_limit> <!-- Instant -->
-			<rate_limit sense="decr">0.2</rate_limit> <!-- 5 seconds -->
-			<output>/controls/flight/auto-slat-timer-out</output>
-		</actuator>
-		
-		<switch name="/controls/flight/slats-cmd-limited">
-			<default value="/controls/flight/slats-cmd"/>
-			<test logic="AND" value="31"> <!-- Auto Slat Extend -->
-				/systems/electrical/bus/ac-3 ge 112
-				/instrumentation/airspeed-indicator/indicated-mach le 0.55
-				/controls/flight/auto-slat-timer gt 0
-				position/wow eq 0
-				/controls/flight/flaps-input eq 0
-			</test>
-			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
-				/controls/flight/flaps-input eq 1
-				/instrumentation/airspeed-indicator/indicated-speed-kt ge 280
-			</test>
-			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
-				/controls/flight/flaps-input eq 1
-				/instrumentation/airspeed-indicator/indicated-mach ge 0.55
-			</test>
-		</switch>
-	
-	</channel>
-	
-	<channel name="FCC: Flaps/Slats">
-		
-		<switch name="/systems/fcc/flap/max-deg">
-			<default value="50"/>
-			<test logic="AND" value="22">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-20-25-max-kts
-				/controls/fcc/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="25">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-28-max-kts
-				/controls/fcc/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="28">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-35-max-kts
-				/controls/fcc/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="35">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-50-max-kts
-				/controls/fcc/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-		</switch>
-		
-		<pure_gain name="/systems/fcc/flap/cmd-deg">
-			<input>/controls/flight/flaps-cmd</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>0</min>
-				<max>/systems/fcc/flap/max-deg</max>
-			</clipto>
-		</pure_gain>
-		
-		<pure_gain name="/systems/fcc/slat/cmd-deg">
-			<input>/controls/flight/slats-cmd-limited</input>
-			<gain>1.0</gain>
-		</pure_gain>
 	
 	</channel>
 	

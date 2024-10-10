@@ -863,7 +863,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				position/wow eq 0
-				/controls/flight/flaps-input ge 1
+				/systems/fcs/flaps/input ge 1
 			</test>
 		</switch>
 		

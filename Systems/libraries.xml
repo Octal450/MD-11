@@ -277,7 +277,7 @@
 		<!-- True when flaps are NOT in landing config -->
 		<input>
 			<less-than>
-				<property>/controls/flight/flaps-input</property>
+				<property>/systems/fcs/flaps/input</property>
 				<value>4</value>
 			</less-than>
 		</input>

@@ -160,7 +160,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/flaps-lever-rotate">
-			<input>/controls/flight/flaps-input</input>
+			<input>/systems/fcs/flaps/input</input>
 			<c1>20</c1>
 		</lag_filter>
 		

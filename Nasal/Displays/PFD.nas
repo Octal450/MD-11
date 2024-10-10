@@ -329,12 +329,12 @@ var canvasBase = {
 		Value.Misc.blinkMed = pts.Fdm.JSBSim.Libraries.blinkMed.getBoolValue();
 		Value.Misc.blinkMed2 = pts.Fdm.JSBSim.Libraries.blinkMed2.getBoolValue();
 		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
-		Value.Misc.flapsCmd = pts.Controls.Flight.flapsCmd.getValue();
-		Value.Misc.flapsPos = systems.FCS.flapPosDeg.getValue();
+		Value.Misc.flapsCmd = systems.FCS.flapsCmd.getValue();
+		Value.Misc.flapsPos = systems.FCS.flapsDeg.getValue();
 		Value.Misc.flapsOut = Value.Misc.flapsCmd >= 0.1 or Value.Misc.flapsPos >= 0.1;
 		Value.Misc.gearOut = systems.GEAR.allNorm.getValue() > 0;
-		Value.Misc.slatsCmd = pts.Controls.Flight.slatsCmd.getValue();
-		Value.Misc.slatsPos = systems.FCS.slatPosDeg.getValue();
+		Value.Misc.slatsCmd = systems.FCS.slatsCmd.getValue();
+		Value.Misc.slatsPos = systems.FCS.slatsDeg.getValue();
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
 		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
 		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
@@ -2251,13 +2251,13 @@ var canvasBase = {
 			me["Flaps_num"].hide();
 		}
 		
-		if (!Value.Misc.slatsOut and pts.Controls.Flight.slatStow.getBoolValue() and pts.Controls.Flight.flapsInput.getValue() >= 1) {
+		if (!Value.Misc.slatsOut and pts.Controls.Flight.slatStow.getBoolValue() and systems.FCS.flapsInput.getValue() >= 1) {
 			me["Slats_no"].show();
 		} else {
 			me["Slats_no"].hide();
 		}
 		
-		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= systems.FCC.flapMaxDeg.getValue()) {
+		if (Value.Misc.flapsOut and Value.Misc.flapsCmd - 0.1 >= systems.FCS.flapsMaxDeg.getValue()) {
 			me["Flaps_dn"].hide();
 			me["Flaps_up"].hide();
 			me["Flaps_num"].setColor(0.9647, 0.8196, 0.0784);

@@ -362,7 +362,7 @@ var FADEC = {
 				me.setMode(0, 1); # T/O
 			} else if (afs.Output.spdProt.getValue() == 1) {
 				me.setMode(2, 1); # MCT
-			} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or pts.Controls.Flight.flapsInput.getValue() >= 2) {
+			} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or systems.FCS.flapsInput.getValue() >= 2) {
 				if (me.anyEngineOut) {
 					me.setMode(2, 1); # MCT
 				} else {
@@ -428,7 +428,6 @@ var FCC = {
 	},
 	fcc1Power: props.globals.getNode("/systems/fcc/fcc1-power"),
 	fcc2Power: props.globals.getNode("/systems/fcc/fcc2-power"),
-	flapMaxDeg: props.globals.getNode("/systems/fcc/flap/max-deg"),
 	Lsas: {
 		autotrimInhibit: props.globals.getNode("/systems/fcc/lsas/autotrim-inhibit"),
 		leftInActive: props.globals.getNode("/systems/fcc/lsas/left-in-active"),
@@ -485,10 +484,15 @@ var FCC = {
 # Flight Control System
 var FCS = {
 	deflectedAileronActive: props.globals.getNode("/systems/fcs/deflected-aileron/active"),
-	flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"), # Must use this prop
+	flapsCmd: props.globals.getNode("/systems/fcs/flaps/cmd"),
+	flapsInput: props.globals.getNode("/systems/fcs/flaps/input"),
+	flapsMaxDeg: props.globals.getNode("/systems/fcs/flaps/max-deg"),
+	flapsDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"), # Must use this prop
+	flapsTemp: 0,
 	rudderLowerDeg: props.globals.getNode("/systems/fcs/rudder-lower/final-deg"),
 	rudderUpperDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
-	slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"), # Must use this prop
+	slatsCmd: props.globals.getNode("/systems/fcs/slats/cmd"),
+	slatsDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"), # Must use this prop
 	spoilerL: props.globals.getNode("/systems/fcs/spoiler-left-deg"),
 	spoilerR: props.globals.getNode("/systems/fcs/spoiler-right-deg"),
 	stabilizerDeg: props.globals.getNode("/systems/fcs/stabilizer/final-deg"),

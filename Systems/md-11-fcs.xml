@@ -20,8 +20,8 @@
 		<switch name="/systems/fcs/deflected-aileron/flaps">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/flight/flaps-input eq 2
-				/controls/flight/flaps-input eq 3
+				/systems/fcs/flaps/input eq 2
+				/systems/fcs/flaps/input eq 3
 			</test>
 		</switch>
 		
@@ -873,6 +873,163 @@
 	
 	</channel>
 	
+	<channel name="Flaps/Slats Control">
+		
+		<fcs_function name="/systems/fcs/flaps/fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
+			<function>
+				<quotient>
+					<floor>
+						<sum>
+							<product>
+								<property>/controls/flight/flaps</property>
+								<value>10000</value>
+							</product>
+							<value>0.5</value> <!-- Make it round correctly -->
+						</sum>
+					</floor>
+					<value>10000</value>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/fcs/flaps/input">
+			<default value="0"/> <!-- UP/RET -->
+			<test logic="AND" value="1"> <!-- UP/EXT -->
+				/systems/fcs/flaps/fixed ge 0.20
+				/systems/fcs/flaps/fixed lt 0.36
+			</test>
+			<test logic="AND" value="2"> <!-- 10-25/EXT -->
+				/systems/fcs/flaps/fixed ge 0.36
+				/systems/fcs/flaps/fixed lt 0.52
+			</test>
+			<test logic="AND" value="3"> <!-- 28/EXT -->
+				/systems/fcs/flaps/fixed ge 0.52
+				/systems/fcs/flaps/fixed lt 0.68
+			</test>
+			<test logic="AND" value="4"> <!-- 35/EXT -->
+				/systems/fcs/flaps/fixed ge 0.68
+				/systems/fcs/flaps/fixed lt 0.84
+			</test>
+			<test value="5"> <!-- 50/EXT -->
+				/systems/fcs/flaps/fixed ge 0.84
+			</test>
+			<output>/systems/fms/speeds/flaps-input-feedback</output>
+		</switch>
+		
+		<fcs_function name="/systems/fcs/flaps/dial-a-flap-cmd">
+			<function>
+				<floor>
+					<sum>
+						<property>/controls/flight/dial-a-flap</property>
+						<value>0.5</value> <!-- Make the integer rounded correctly -->
+					</sum>
+				</floor>
+			</function>
+			<clipto>
+				<min>10</min>
+				<max>25</max>
+			</clipto>
+		</fcs_function>
+		
+		<switch name="/systems/fcs/flaps/cmd">
+			<default value="0"/>
+			<test value="/systems/fcs/flaps/dial-a-flap-cmd">
+				/systems/fcs/flaps/input eq 2
+			</test>
+			<test value="28">
+				/systems/fcs/flaps/input eq 3
+			</test>
+			<test value="35">
+				/systems/fcs/flaps/input eq 4
+			</test>
+			<test value="50">
+				/systems/fcs/flaps/input eq 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcs/slats/cmd">
+			<default value="0"/>
+			<test logic="AND" value="31">
+				/systems/fcs/flaps/input ge 1
+				/controls/flight/slat-stow eq 0
+			</test>
+		</switch>
+		
+		<switch name="/controls/flight/auto-slat-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				aero/alpha-deg-damped ge /systems/fcc/stall-alpha-deg
+				position/wow eq 0
+				/systems/fcs/flaps/input eq 0
+			</test>
+		</switch>
+		
+		<actuator name="/controls/flight/auto-slat-timer">
+			<input>/controls/flight/auto-slat-cmd</input>
+			<rate_limit sense="incr">1000</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">0.2</rate_limit> <!-- 5 seconds -->
+			<output>/controls/flight/auto-slat-timer-out</output>
+		</actuator>
+		
+		<switch name="/systems/fcs/slats/cmd-final">
+			<default value="/systems/fcs/slats/cmd"/>
+			<test logic="AND" value="31"> <!-- Auto Slat Extend -->
+				/systems/electrical/bus/ac-3 ge 112
+				/instrumentation/airspeed-indicator/indicated-mach le 0.55
+				/controls/flight/auto-slat-timer gt 0
+				position/wow eq 0
+				/systems/fcs/flaps/input eq 0
+			</test>
+			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
+				/systems/fcs/flaps/input eq 1
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 280
+			</test>
+			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
+				/systems/fcs/flaps/input eq 1
+				/instrumentation/airspeed-indicator/indicated-mach ge 0.55
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcs/flaps/max-deg">
+			<default value="50"/>
+			<test logic="AND" value="22">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-20-25-max-kts
+				/controls/fcc/flap-limit eq 0
+				/systems/failures/fcc/flap-limit ne 1
+			</test>
+			<test logic="AND" value="25">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-28-max-kts
+				/controls/fcc/flap-limit eq 0
+				/systems/failures/fcc/flap-limit ne 1
+			</test>
+			<test logic="AND" value="28">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-35-max-kts
+				/controls/fcc/flap-limit eq 0
+				/systems/failures/fcc/flap-limit ne 1
+			</test>
+			<test logic="AND" value="35">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/flap-50-max-kts
+				/controls/fcc/flap-limit eq 0
+				/systems/failures/fcc/flap-limit ne 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/fcs/flaps/cmd-deg">
+			<input>/systems/fcs/flaps/cmd</input>
+			<gain>1.0</gain>
+			<clipto>
+				<min>0</min>
+				<max>/systems/fcs/flaps/max-deg</max>
+			</clipto>
+		</pure_gain>
+		
+		<pure_gain name="/systems/fcs/slats/cmd-deg">
+			<input>/systems/fcs/slats/cmd-final</input>
+			<gain>1.0</gain>
+		</pure_gain>
+	
+	</channel>
+	
 	<channel name="Flaps">
 		
 		<switch name="/systems/fcs/flaps/rate">
@@ -887,7 +1044,7 @@
 		</switch>
 		
 		<actuator name="/systems/fcs/flaps/final-actuator">
-			<input>/systems/fcc/flap/cmd-deg</input>
+			<input>/systems/fcs/flaps/cmd-deg</input>
 			<rate_limit>/systems/fcs/flaps/rate</rate_limit>
 			<output>fcs/flap-pos-deg</output>
 		</actuator>
@@ -921,7 +1078,7 @@
 		</switch>
 		
 		<actuator name="/systems/fcs/slats/final-actuator">
-			<input>/systems/fcc/slat/cmd-deg</input>
+			<input>/systems/fcs/slats/cmd-deg</input>
 			<rate_limit>/systems/fcs/slats/rate</rate_limit>
 			<output>fcs/slat-pos-deg</output>
 		</actuator>

@@ -15,7 +15,7 @@
 			<test logic="AND" value="1">
 				/controls/switches/seatbelt-sign eq 0.5
 				<test logic="OR">
-					/controls/flight/flaps-input ne 0
+					/systems/fcs/flaps/input ne 0
 					/controls/gear/lever eq 1
 				</test>
 			</test>

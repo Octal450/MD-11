@@ -415,7 +415,7 @@ var canvasConfig = {
 		}
 		
 		# Flaps and Slats
-		Value.Fctl.flapDeg = math.round(systems.FCS.flapPosDeg.getValue());
+		Value.Fctl.flapDeg = math.round(systems.FCS.flapsDeg.getValue());
 		if (Value.Fctl.flapDeg >= 0.1) {
 			me["Flap1"].setText(sprintf("%d", Value.Fctl.flapDeg));
 			me["Flap2"].setText(sprintf("%d", Value.Fctl.flapDeg));
@@ -430,7 +430,7 @@ var canvasConfig = {
 			me["FlapBox"].hide();
 		}
 		
-		if (systems.FCS.slatPosDeg.getValue() >= 0.1) {
+		if (systems.FCS.slatsDeg.getValue() >= 0.1) {
 			me["SlatExt"].show();
 		} else {
 			me["SlatExt"].hide();

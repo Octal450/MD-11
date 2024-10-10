@@ -409,7 +409,7 @@ var ITAF = {
 		}
 		
 		# Takeoff Lateral Reversion
-		if (Output.latTemp == 5 and (Output.vertTemp != 7 or (pts.Controls.Flight.flapsInput.getValue() == 0 and !Gear.wow1Temp and !Gear.wow2Temp))) {
+		if (Output.latTemp == 5 and (Output.vertTemp != 7 or (systems.FCS.flapsInput.getValue() == 0 and !Gear.wow1Temp and !Gear.wow2Temp))) {
 			if (!Internal.takeoffLvl.getBoolValue()) { # Don't sync or blink if it's captured heading (T/O mode)
 				me.setLatMode(3);
 			} else { # Sync and blink
