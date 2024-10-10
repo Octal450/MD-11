@@ -1482,7 +1482,7 @@
 	
 	<channel name="Tiller">
 		
-		<switch name="/controls/gear/steering-switched">
+		<switch name="/systems/fcs/tiller/input-switched">
 			<default value="/controls/flight/rudder"/>
 			<test value="0">
 				/gear/gear[0]/wow ne 1
@@ -1496,7 +1496,7 @@
 		</switch>
 		
 		<scheduled_gain name="/systems/fcs/tiller/handle-scheduled">
-			<input>/controls/gear/steering-switched</input>
+			<input>/systems/fcs/tiller/input-switched</input>
 			<table>
 				<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
 				<independentVar lookup="column">/systems/acconfig/options/separate-tiller-axis</independentVar>
