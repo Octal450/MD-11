@@ -149,29 +149,29 @@ controls.reverserTogglePosition = func() {
 }
 
 controls.flapsDown = func(step) {
-	systems.FCS.flapsTemp = pts.Controls.Flight.flaps.getValue();
+	pts.Controls.Flight.flapsTemp = pts.Controls.Flight.flaps.getValue();
 	if (step == 1) {
-		if (systems.FCS.flapsTemp < 0.2) {
+		if (pts.Controls.Flight.flapsTemp < 0.2) {
 			pts.Controls.Flight.flaps.setValue(0.2);
-		} else if (systems.FCS.flapsTemp < 0.36) {
+		} else if (pts.Controls.Flight.flapsTemp < 0.36) {
 			pts.Controls.Flight.flaps.setValue(0.36);
-		} else if (systems.FCS.flapsTemp < 0.52) {
+		} else if (pts.Controls.Flight.flapsTemp < 0.52) {
 			pts.Controls.Flight.flaps.setValue(0.52);
-		} else if (systems.FCS.flapsTemp < 0.68) {
+		} else if (pts.Controls.Flight.flapsTemp < 0.68) {
 			pts.Controls.Flight.flaps.setValue(0.68);
-		} else if (systems.FCS.flapsTemp < 0.84) {
+		} else if (pts.Controls.Flight.flapsTemp < 0.84) {
 			pts.Controls.Flight.flaps.setValue(0.84);
 		}
 	} else if (step == -1) {
-		if (systems.FCS.flapsTemp > 0.68) {
+		if (pts.Controls.Flight.flapsTemp > 0.68) {
 			pts.Controls.Flight.flaps.setValue(0.68);
-		} else if (systems.FCS.flapsTemp > 0.52) {
+		} else if (pts.Controls.Flight.flapsTemp > 0.52) {
 			pts.Controls.Flight.flaps.setValue(0.52);
-		} else if (systems.FCS.flapsTemp > 0.36) {
+		} else if (pts.Controls.Flight.flapsTemp > 0.36) {
 			pts.Controls.Flight.flaps.setValue(0.36);
-		} else if (systems.FCS.flapsTemp > 0.2) {
+		} else if (pts.Controls.Flight.flapsTemp > 0.2) {
 			pts.Controls.Flight.flaps.setValue(0.2);
-		} else if (systems.FCS.flapsTemp > 0) {
+		} else if (pts.Controls.Flight.flapsTemp > 0) {
 			pts.Controls.Flight.flaps.setValue(0);
 		}
 	}

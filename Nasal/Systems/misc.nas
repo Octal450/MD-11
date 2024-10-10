@@ -488,7 +488,6 @@ var FCS = {
 	flapsInput: props.globals.getNode("/systems/fcs/flaps/input"),
 	flapsMaxDeg: props.globals.getNode("/systems/fcs/flaps/max-deg"),
 	flapsDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"), # Must use this prop
-	flapsTemp: 0,
 	rudderLowerDeg: props.globals.getNode("/systems/fcs/rudder-lower/final-deg"),
 	rudderUpperDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
 	slatsCmd: props.globals.getNode("/systems/fcs/slats/cmd"),
