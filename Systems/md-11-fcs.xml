@@ -1100,17 +1100,10 @@
 	
 	<channel name="Gear Common">
 		
-		<switch name="/controls/gear/lever">
+		<switch name="/systems/gear/cmd">
 			<default value="1"/>
 			<test value="0">
-				/controls/gear/lever-cockpit le 1
-			</test>
-		</switch>
-		
-		<switch name="/controls/gear/lever">
-			<default value="/controls/gear/lever"/>
-			<test value="/controls/gear/lever">
-				position/wow eq 0
+				/controls/gear/lever le 1
 			</test>
 		</switch>
 		
@@ -1120,15 +1113,15 @@
 				/controls/gear/center-gear-up eq 0
 			</test>
 			<test logic="AND" value="1">
-				/controls/gear/lever-cockpit le 1
+				/controls/gear/lever le 1
 				/controls/gear/center-gear-up eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/gear/lever-center">
+		<switch name="/systems/gear/cmd-center">
 			<default value="1"/>
 			<test logic="OR" value="0">
-				/controls/gear/lever-cockpit le 1
+				/controls/gear/lever le 1
 				gear/center-gear-latch eq 1
 			</test>
 		</switch>
@@ -1170,7 +1163,7 @@
 		</switch>
 		
 		<actuator name="/systems/gear/unit[0]/pos-actuator">
-			<input>/controls/gear/lever</input>
+			<input>/systems/gear/cmd</input>
 			<rate_limit sense="incr">/systems/gear/unit[0]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[0]/rate-decr</rate_limit>
 			<output>gear/unit[0]/pos-norm</output>
@@ -1213,7 +1206,7 @@
 		</switch>
 		
 		<actuator name="/systems/gear/unit[1]/pos-actuator">
-			<input>/controls/gear/lever</input>
+			<input>/systems/gear/cmd</input>
 			<rate_limit sense="incr">/systems/gear/unit[1]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[1]/rate-decr</rate_limit>
 			<output>gear/unit[1]/pos-norm</output>
@@ -1272,7 +1265,7 @@
 		</switch>
 		
 		<actuator name="/systems/gear/unit[2]/pos-actuator">
-			<input>/controls/gear/lever</input>
+			<input>/systems/gear/cmd</input>
 			<rate_limit sense="incr">/systems/gear/unit[2]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[2]/rate-decr</rate_limit>
 			<output>gear/unit[2]/pos-norm</output>
@@ -1331,7 +1324,7 @@
 		</switch>
 		
 		<actuator name="/systems/gear/unit[3]/pos-actuator">
-			<input>/controls/gear/lever-center</input>
+			<input>/systems/gear/cmd-center</input>
 			<rate_limit sense="incr">/systems/gear/unit[3]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[3]/rate-decr</rate_limit>
 			<output>gear/unit[3]/pos-norm</output>
@@ -1356,11 +1349,11 @@
 		<switch name="/systems/gear/unit[0]/status">
 			<default value="1"/> <!-- In transit -->
 			<test logic="AND" value="0"> <!-- Up -->
-				/controls/gear/lever-cockpit eq 0
+				/controls/gear/lever eq 0
 				/systems/gear/unit[0]/pos-actuator lt 0.01
 			</test>
 			<test logic="AND" value="2"> <!-- Down -->
-				/controls/gear/lever-cockpit eq 3
+				/controls/gear/lever eq 3
 				/systems/gear/unit[0]/pos-actuator gt 0.99
 			</test>
 		</switch>
@@ -1368,11 +1361,11 @@
 		<switch name="/systems/gear/unit[1]/status">
 			<default value="1"/> <!-- In transit -->
 			<test logic="AND" value="0"> <!-- Up -->
-				/controls/gear/lever-cockpit eq 0
+				/controls/gear/lever eq 0
 				/systems/gear/unit[1]/pos-actuator lt 0.01
 			</test>
 			<test logic="AND" value="2"> <!-- Down -->
-				/controls/gear/lever-cockpit eq 3
+				/controls/gear/lever eq 3
 				/systems/gear/unit[1]/pos-actuator gt 0.99
 			</test>
 		</switch>
@@ -1380,11 +1373,11 @@
 		<switch name="/systems/gear/unit[2]/status">
 			<default value="1"/> <!-- In transit -->
 			<test logic="AND" value="0"> <!-- Up -->
-				/controls/gear/lever-cockpit eq 0
+				/controls/gear/lever eq 0
 				/systems/gear/unit[2]/pos-actuator lt 0.01
 			</test>
 			<test logic="AND" value="2"> <!-- Down -->
-				/controls/gear/lever-cockpit eq 3
+				/controls/gear/lever eq 3
 				/systems/gear/unit[2]/pos-actuator gt 0.99
 			</test>
 		</switch>
@@ -1396,11 +1389,11 @@
 				/systems/gear/unit[3]/pos-actuator lt 0.01
 			</test>
 			<test logic="AND" value="0"> <!-- Up -->
-				/controls/gear/lever-cockpit eq 0
+				/controls/gear/lever eq 0
 				/systems/gear/unit[3]/pos-actuator lt 0.01
 			</test>
 			<test logic="AND" value="2"> <!-- Down -->
-				/controls/gear/lever-cockpit eq 3
+				/controls/gear/lever eq 3
 				/systems/gear/unit[3]/pos-actuator gt 0.99
 			</test>
 		</switch>

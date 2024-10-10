@@ -386,7 +386,7 @@
 				fcs/flap-pos-deg ge 21
 			</test>
 			<test logic="AND" value="/systems/fms/speeds/gear-ret-max-kts">
-				/controls/gear/lever eq 0
+				/systems/gear/cmd eq 0
 				/gear/gear[1]/position-norm gt 0.01
 			</test>
 			<test value="/systems/fms/speeds/flap-15-20-max-kts">
@@ -396,7 +396,7 @@
 				fcs/flap-pos-deg ge 1
 			</test>
 			<test logic="AND" value="/systems/fms/speeds/gear-ext-max-kts">
-				/controls/gear/lever eq 1
+				/systems/gear/cmd eq 1
 				/gear/gear[1]/position-norm lt 0.99
 			</test>
 			<test logic="AND" value="/systems/fms/speeds/slat-max-kts">
@@ -404,7 +404,7 @@
 				fcs/flap-pos-deg lt 1
 			</test>
 			<test value="/systems/fms/speeds/gear-max-kts">
-				/controls/gear/lever eq 1
+				/systems/gear/cmd eq 1
 				/gear/gear[1]/position-norm ge 0.99
 			</test>
 		</switch>

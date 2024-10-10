@@ -88,7 +88,7 @@
 		</lag_filter>
 		
 		<actuator name="/controls/cockpit/gear-lever">
-			<input>/controls/gear/lever-cockpit</input>
+			<input>/controls/gear/lever</input>
 			<rate_limit>4.5</rate_limit>
 			<lag>20</lag>
 		</actuator>

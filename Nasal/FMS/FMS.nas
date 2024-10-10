@@ -56,7 +56,7 @@ var CORE = {
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
 		Value.flapLever = systems.FCS.flapsInput.getValue();
 		Value.gearAglFt = pts.Position.gearAglFt.getValue();
-		Value.gearLever = systems.GEAR.Switch.lever.getBoolValue();
+		Value.gearLever = systems.GEAR.cmd.getBoolValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		

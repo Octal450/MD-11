@@ -500,6 +500,7 @@ var FCS = {
 # Landing Gear
 var GEAR = {
 	allNorm: props.globals.getNode("/systems/gear/all-norm"),
+	cmd: props.globals.getNode("/systems/gear/cmd"),
 	Fail: {
 		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
 		leftActuator: props.globals.getNode("/systems/failures/gear/left-actuator"),
@@ -513,7 +514,6 @@ var GEAR = {
 		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
 		centerGearUp: props.globals.getNode("/controls/gear/center-gear-up"),
 		lever: props.globals.getNode("/controls/gear/lever"),
-		leverCockpit: props.globals.getNode("/controls/gear/lever-cockpit"),
 	},
 	TirePressurePsi: {
 		centerL: props.globals.getNode("/systems/gear/unit[3]/tire-l-psi"),

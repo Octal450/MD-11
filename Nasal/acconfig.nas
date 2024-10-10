@@ -285,7 +285,7 @@ var PANEL = {
 			pts.Controls.Flight.flaps.setValue(0);
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(0);
 		}
-		systems.GEAR.Switch.leverCockpit.setValue(3);
+		systems.GEAR.Switch.lever.setValue(3);
 	},
 	coldDark: func(s = 0) {
 		me.panelBase(0);

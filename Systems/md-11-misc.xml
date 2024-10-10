@@ -16,7 +16,7 @@
 				/controls/switches/seatbelt-sign eq 0.5
 				<test logic="OR">
 					/systems/fcs/flaps/input ne 0
-					/controls/gear/lever eq 1
+					/systems/gear/cmd eq 1
 				</test>
 			</test>
 			<!--test logic="AND" value="1">
@@ -31,7 +31,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/switches/no-smoking-sign eq 0.5
-				/controls/gear/lever eq 1
+				/systems/gear/cmd eq 1
 			</test>
 			<!--test logic="AND" value="1">
 				/cabin/alt/prop gt 10000
