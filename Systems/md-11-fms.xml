@@ -415,6 +415,10 @@
 			<test value="/systems/fms/speeds/flap-gear-max">
 				/systems/fms/speeds/flap-gear-max gt 0
 			</test>
+			<clipto>
+				<min>100</min>
+				<max>100000</max>
+			</clipto>
 		</switch>
 		
 		<fcs_function name="/systems/fms/speeds/athr-max">
@@ -596,7 +600,7 @@
 			</function>
 			<clipto>
 				<min>/systems/fms/speeds/vss</min>
-				<max>100000</max>
+				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</fcs_function>
 		
@@ -618,7 +622,7 @@
 			</function>
 			<clipto>
 				<min>100</min>
-				<max>100000</max>
+				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</fcs_function>
 		
