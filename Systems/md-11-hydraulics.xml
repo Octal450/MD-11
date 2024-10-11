@@ -5,12 +5,12 @@
 
 <system name="MD-11: Hydraulics">
 	
-	<property value="0">fcs/left-brake-actuator-feedback</property>
-	<property value="0">fcs/left-brake-input-feedback</property>
-	<property value="0">fcs/center-brake-actuator-feedback</property>
-	<property value="0">fcs/center-brake-input-feedback</property>
-	<property value="0">fcs/right-brake-actuator-feedback</property>
-	<property value="0">fcs/right-brake-input-feedback</property>
+	<property value="0">/systems/fcs/brakes/left-actuator-feedback</property>
+	<property value="0">/systems/fcs/brakes/left-input-feedback</property>
+	<property value="0">/systems/fcs/brakes/center-actuator-feedback</property>
+	<property value="0">/systems/fcs/brakes/center-input-feedback</property>
+	<property value="0">/systems/fcs/brakes/right-actuator-feedback</property>
+	<property value="0">/systems/fcs/brakes/right-input-feedback</property>
 	<property value="2990">/systems/hydraulics/brakes/sys-1-psi</property>
 	<property value="2980">/systems/hydraulics/brakes/sys-2-psi</property>
 	<property value="0">/systems/hydraulics/l-eng-1-pump-psi</property>
@@ -934,8 +934,8 @@
 			<function>
 				<abs>
 					<difference>
-						<property>fcs/left-brake-actuator-feedback</property>
-						<property>fcs/left-brake-input-feedback</property>
+						<property>/systems/fcs/brakes/left-actuator-feedback</property>
+						<property>/systems/fcs/brakes/left-input-feedback</property>
 					</difference>
 				</abs>
 			</function>
@@ -945,8 +945,8 @@
 			<function>
 				<abs>
 					<difference>
-						<property>fcs/center-brake-actuator-feedback</property>
-						<property>fcs/center-brake-input-feedback</property>
+						<property>/systems/fcs/brakes/center-actuator-feedback</property>
+						<property>/systems/fcs/brakes/center-input-feedback</property>
 					</difference>
 				</abs>
 			</function>
@@ -956,8 +956,8 @@
 			<function>
 				<abs>
 					<difference>
-						<property>fcs/right-brake-actuator-feedback</property>
-						<property>fcs/right-brake-input-feedback</property>
+						<property>/systems/fcs/brakes/right-actuator-feedback</property>
+						<property>/systems/fcs/brakes/right-input-feedback</property>
 					</difference>
 				</abs>
 			</function>
@@ -996,15 +996,15 @@
 				<difference>
 					<property>/systems/hydraulics/sys-1-psi</property>
 					<product>
-						<property>fcs/left-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/left-actuator-feedback</property>
 						<value>35</value>
 					</product>
 					<product>
-						<property>fcs/center-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/center-actuator-feedback</property>
 						<value>20</value>
 					</product>
 					<product>
-						<property>fcs/right-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/right-actuator-feedback</property>
 						<value>40</value>
 					</product>
 				</difference>
@@ -1031,15 +1031,15 @@
 				<difference>
 					<property>/systems/hydraulics/sys-3-psi</property> <!-- Not a typo Brake System 2 is powered by Hydraulic System 3 -->
 					<product>
-						<property>fcs/left-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/left-actuator-feedback</property>
 						<value>40</value>
 					</product>
 					<product>
-						<property>fcs/center-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/center-actuator-feedback</property>
 						<value>20</value>
 					</product>
 					<product>
-						<property>fcs/right-brake-actuator-feedback</property>
+						<property>/systems/fcs/brakes/right-actuator-feedback</property>
 						<value>45</value>
 					</product>
 				</difference>

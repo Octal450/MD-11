@@ -1673,7 +1673,7 @@
 	
 	<channel name="Brakes">
 		
-		<fcs_function name="fcs/brake-rate">
+		<fcs_function name="/systems/fcs/brakes/rate">
 			<function>
 				<sum>
 					<table>
@@ -1694,7 +1694,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcs/left-brake-input">
+		<fcs_function name="/systems/fcs/brakes/left-input">
 			<function>
 				<max>
 					<property>/controls/gear/brake-left</property>
@@ -1702,28 +1702,28 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>fcs/left-brake-input-feedback</output>
+			<output>/systems/fcs/brakes/left-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</fcs_function>
 		
-		<actuator name="fcs/left-brake-actuator">
-			<input>fcs/left-brake-input</input>
-			<rate_limit>fcs/brake-rate</rate_limit>
-			<output>fcs/left-brake-actuator-feedback</output>
+		<actuator name="/systems/fcs/brakes/left-actuator">
+			<input>/systems/fcs/brakes/left-input</input>
+			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
+			<output>/systems/fcs/brakes/left-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/left-brake-cmd-norm">
-			<default value="fcs/left-brake-actuator"/>
+			<default value="/systems/fcs/brakes/left-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
 				/services/chocks/enable eq 1
 			</test>
 		</switch>
 		
-		<fcs_function name="fcs/right-brake-input">
+		<fcs_function name="/systems/fcs/brakes/right-input">
 			<function>
 				<max>
 					<property>/controls/gear/brake-right</property>
@@ -1731,28 +1731,28 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>fcs/right-brake-input-feedback</output>
+			<output>/systems/fcs/brakes/right-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</fcs_function>
 		
-		<actuator name="fcs/right-brake-actuator">
-			<input>fcs/right-brake-input</input>
-			<rate_limit>fcs/brake-rate</rate_limit>
-			<output>fcs/right-brake-actuator-feedback</output>
+		<actuator name="/systems/fcs/brakes/right-actuator">
+			<input>/systems/fcs/brakes/right-input</input>
+			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
+			<output>/systems/fcs/brakes/right-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/right-brake-cmd-norm">
-			<default value="fcs/right-brake-actuator"/>
+			<default value="/systems/fcs/brakes/right-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
 				/services/chocks/enable eq 1
 			</test>
 		</switch>
 		
-		<fcs_function name="fcs/center-brake-input">
+		<fcs_function name="/systems/fcs/brakes/center-input">
 			<function>
 				<max>
 					<sum>
@@ -1769,21 +1769,21 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>fcs/center-brake-input-feedback</output>
+			<output>/systems/fcs/brakes/center-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</fcs_function>
 		
-		<actuator name="fcs/center-brake-actuator">
-			<input>fcs/center-brake-input</input>
-			<rate_limit>fcs/brake-rate</rate_limit>
-			<output>fcs/center-brake-actuator-feedback</output>
+		<actuator name="/systems/fcs/brakes/center-actuator">
+			<input>/systems/fcs/brakes/center-input</input>
+			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
+			<output>/systems/fcs/brakes/center-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/center-brake-cmd-norm">
-			<default value="fcs/center-brake-actuator"/>
+			<default value="/systems/fcs/brakes/center-actuator"/>
 			<test logic="OR" value="1">
 				/systems/acconfig/autoconfig-running eq 1
 				/services/chocks/enable eq 1
