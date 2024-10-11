@@ -2,7 +2,7 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var HYD = {
-	Fail: {
+	Failures: {
 		auxPump1: props.globals.getNode("/systems/failures/hydraulics/aux-pump-1"),
 		auxPump2: props.globals.getNode("/systems/failures/hydraulics/aux-pump-2"),
 		catastrophicAft: props.globals.getNode("/systems/failures/hydraulics/catastrophic-aft"),
@@ -21,7 +21,7 @@ var HYD = {
 		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
 		system: props.globals.getNode("/systems/failures/hydraulics/system"),
 	},
-	Light: {
+	Lights: {
 		manualFlash: props.globals.initNode("/systems/hydraulics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
@@ -48,7 +48,7 @@ var HYD = {
 		sys3Input: props.globals.getNode("/systems/hydraulics/sys-3-qty-input"),
 		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-qty"),
 	},
-	Switch: {
+	Controls: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/aux-pump-1"),
 		auxPump2: props.globals.getNode("/controls/hydraulics/aux-pump-2"),
 		gearGravityExt: props.globals.getNode("/controls/hydraulics/gear-gravity-ext"),
@@ -69,65 +69,65 @@ var HYD = {
 		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
 		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Switch.auxPump1.setBoolValue(0);
-		me.Switch.auxPump2.setBoolValue(0);
-		me.Switch.gearGravityExt.setBoolValue(0);
-		me.Switch.lPump1.setBoolValue(1);
-		me.Switch.lPump2.setBoolValue(1);
-		me.Switch.lPump3.setBoolValue(1);
-		me.Switch.pressTest.setBoolValue(0);
-		me.Switch.rPump1.setBoolValue(1);
-		me.Switch.rPump2.setBoolValue(1);
-		me.Switch.rPump3.setBoolValue(1);
-		me.Switch.rmp13.setBoolValue(0);
-		me.Switch.rmp23.setBoolValue(0);
-		me.Switch.system.setBoolValue(1);
+		me.Controls.auxPump1.setBoolValue(0);
+		me.Controls.auxPump2.setBoolValue(0);
+		me.Controls.gearGravityExt.setBoolValue(0);
+		me.Controls.lPump1.setBoolValue(1);
+		me.Controls.lPump2.setBoolValue(1);
+		me.Controls.lPump3.setBoolValue(1);
+		me.Controls.pressTest.setBoolValue(0);
+		me.Controls.rPump1.setBoolValue(1);
+		me.Controls.rPump2.setBoolValue(1);
+		me.Controls.rPump3.setBoolValue(1);
+		me.Controls.rmp13.setBoolValue(0);
+		me.Controls.rmp23.setBoolValue(0);
+		me.Controls.system.setBoolValue(1);
 		manualHydLightt.stop();
-		me.Light.manualFlash.setValue(0);
+		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Fail.auxPump1.setBoolValue(0);
-		me.Fail.auxPump2.setBoolValue(0);
-		me.Fail.catastrophicAft.setBoolValue(0);
-		me.Fail.lPump1.setBoolValue(0);
-		me.Fail.lPump2.setBoolValue(0);
-		me.Fail.lPump3.setBoolValue(0);
-		me.Fail.nrmp21.setBoolValue(0);
-		me.Fail.nrmp32.setBoolValue(0);
-		me.Fail.rPump1.setBoolValue(0);
-		me.Fail.rPump2.setBoolValue(0);
-		me.Fail.rPump3.setBoolValue(0);
-		me.Fail.rmp13.setBoolValue(0);
-		me.Fail.rmp23.setBoolValue(0);
-		me.Fail.sys1Leak.setBoolValue(0);
-		me.Fail.sys2Leak.setBoolValue(0);
-		me.Fail.sys3Leak.setBoolValue(0);
-		me.Fail.system.setBoolValue(0);
+		me.Failures.auxPump1.setBoolValue(0);
+		me.Failures.auxPump2.setBoolValue(0);
+		me.Failures.catastrophicAft.setBoolValue(0);
+		me.Failures.lPump1.setBoolValue(0);
+		me.Failures.lPump2.setBoolValue(0);
+		me.Failures.lPump3.setBoolValue(0);
+		me.Failures.nrmp21.setBoolValue(0);
+		me.Failures.nrmp32.setBoolValue(0);
+		me.Failures.rPump1.setBoolValue(0);
+		me.Failures.rPump2.setBoolValue(0);
+		me.Failures.rPump3.setBoolValue(0);
+		me.Failures.rmp13.setBoolValue(0);
+		me.Failures.rmp23.setBoolValue(0);
+		me.Failures.sys1Leak.setBoolValue(0);
+		me.Failures.sys2Leak.setBoolValue(0);
+		me.Failures.sys3Leak.setBoolValue(0);
+		me.Failures.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.Switch.system.getBoolValue()) {
-			me.Switch.system.setBoolValue(0);
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.system.setBoolValue(0);
 			manualHydLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 			# Apparently this happens when turning to MANUAL
-			me.Switch.rmp13.setBoolValue(1);
-			me.Switch.rmp23.setBoolValue(1);
+			me.Controls.rmp13.setBoolValue(1);
+			me.Controls.rmp23.setBoolValue(1);
 		} else {
-			me.Switch.system.setBoolValue(1);
+			me.Controls.system.setBoolValue(1);
 			manualHydLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 			# Apparently this happens when turning to AUTO
-			me.Switch.auxPump1.setBoolValue(0);
-			me.Switch.auxPump2.setBoolValue(0);
+			me.Controls.auxPump1.setBoolValue(0);
+			me.Controls.auxPump2.setBoolValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
 			manualHydLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };

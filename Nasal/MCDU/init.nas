@@ -175,7 +175,7 @@ var Init = {
 			me.Display.R2 = "-----";
 		}
 		
-		if (systems.IRS.Switch.mcduBtn.getBoolValue()) {
+		if (systems.IRS.Controls.mcduBtn.getBoolValue()) {
 			me.Display.R4 = "POS REF>";
 		} else {
 			me.Display.R4 = "INITIALIZE IRS*";
@@ -319,11 +319,11 @@ var Init = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r4") {
-			if (systems.IRS.Switch.mcduBtn.getBoolValue()) {
+			if (systems.IRS.Controls.mcduBtn.getBoolValue()) {
 				mcdu.unit[me.id].setPage("posRef");
 			} else {
-				if ((systems.IRS.Switch.knob[0].getBoolValue() or systems.IRS.Switch.knob[1].getBoolValue() or systems.IRS.Switch.knob[2].getBoolValue()) and me.scratchpadState == 1) {
-					systems.IRS.Switch.mcduBtn.setBoolValue(1);
+				if ((systems.IRS.Controls.knob[0].getBoolValue() or systems.IRS.Controls.knob[1].getBoolValue() or systems.IRS.Controls.knob[2].getBoolValue()) and me.scratchpadState == 1) {
+					systems.IRS.Controls.mcduBtn.setBoolValue(1);
 				} else {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}

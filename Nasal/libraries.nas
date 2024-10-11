@@ -84,14 +84,14 @@ var systemsLoop = maketimer(0.1, func() {
 		pts.Services.Chocks.enable.setBoolValue(0);
 	}
 	
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Switch.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-		if (systems.ELEC.Switch.groundCart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
-			systems.ELEC.Switch.groundCart.setBoolValue(0);
-			systems.ELEC.Switch.extPwr.setBoolValue(0);
-			systems.ELEC.Switch.extGPwr.setBoolValue(0);
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Controls.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
+		if (systems.ELEC.Controls.groundCart.getBoolValue() or systems.ELEC.Controls.extPwr.getBoolValue() or systems.ELEC.Controls.extGPwr.getBoolValue()) {
+			systems.ELEC.Controls.groundCart.setBoolValue(0);
+			systems.ELEC.Controls.extPwr.setBoolValue(0);
+			systems.ELEC.Controls.extGPwr.setBoolValue(0);
 		}
-		if (systems.PNEU.Switch.groundAir.getBoolValue()) {
-			systems.PNEU.Switch.groundAir.setBoolValue(0);
+		if (systems.PNEU.Controls.groundAir.getBoolValue()) {
+			systems.PNEU.Controls.groundAir.setBoolValue(0);
 		}
 	}
 });
@@ -185,39 +185,39 @@ controls.flapsDown = func(step) {
 var leverCockpit = 3;
 controls.gearDown = func(d) { # Requires a mod-up
 	pts.Fdm.JSBSim.Position.wowTemp = pts.Fdm.JSBSim.Position.wow.getBoolValue();
-	leverCockpit = systems.GEAR.Switch.lever.getValue();
+	leverCockpit = systems.GEAR.Controls.lever.getValue();
 	if (d < 0) {
 		if (pts.Fdm.JSBSim.Position.wowTemp) {
 			if (leverCockpit == 3) {
-				systems.GEAR.Switch.lever.setValue(2);
+				systems.GEAR.Controls.lever.setValue(2);
 			} else if (leverCockpit == 0) {
-				systems.GEAR.Switch.lever.setValue(1);
+				systems.GEAR.Controls.lever.setValue(1);
 			}
 		} else {
-			systems.GEAR.Switch.lever.setValue(0);
+			systems.GEAR.Controls.lever.setValue(0);
 		}
 	} else if (d > 0) {
 		if (pts.Fdm.JSBSim.Position.wowTemp) {
 			if (leverCockpit == 3) {
-				systems.GEAR.Switch.lever.setValue(2);
+				systems.GEAR.Controls.lever.setValue(2);
 			} else if (leverCockpit == 0) {
-				systems.GEAR.Switch.lever.setValue(1);
+				systems.GEAR.Controls.lever.setValue(1);
 			}
 		} else {
-			systems.GEAR.Switch.lever.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		}
 	} else {
 		if (leverCockpit == 2) {
-			systems.GEAR.Switch.lever.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		} else if (leverCockpit == 1) {
-			systems.GEAR.Switch.lever.setValue(0);
+			systems.GEAR.Controls.lever.setValue(0);
 		}
 	}
 }
 
 controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
 	if (d) {
-		if (systems.GEAR.Switch.lever.getValue() >= 2) {
+		if (systems.GEAR.Controls.lever.getValue() >= 2) {
 			controls.gearDown(-1);
 		} else {
 			controls.gearDown(1);
@@ -229,13 +229,13 @@ controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
 
 controls.gearToggle = func() {
 	if (!pts.Fdm.JSBSim.Position.wow.getBoolValue()) {
-		if (systems.GEAR.Switch.lever.getValue() >= 2) {
-			systems.GEAR.Switch.lever.setValue(0);
+		if (systems.GEAR.Controls.lever.getValue() >= 2) {
+			systems.GEAR.Controls.lever.setValue(0);
 		} else {
-			systems.GEAR.Switch.lever.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		}
 	} else {
-		systems.GEAR.Switch.lever.setValue(3);
+		systems.GEAR.Controls.lever.setValue(3);
 	}
 }
 
@@ -364,10 +364,10 @@ setlistener("/controls/flight/elevator-trim", func() {
 # Override FG's generic brake
 controls.applyBrakes = func(v, which = 0) { # No interpolate, that's bad, we will apply rate-limit in JSBSim
 	if (which <= 0) {
-		systems.GEAR.Switch.brakeLeft.setValue(v);
+		systems.GEAR.Controls.brakeLeft.setValue(v);
 	}
 	if (which >= 0) {
-		systems.GEAR.Switch.brakeRight.setValue(v);
+		systems.GEAR.Controls.brakeRight.setValue(v);
 	}
 }
 

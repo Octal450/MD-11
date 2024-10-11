@@ -11,25 +11,25 @@ var APU = {
 	oilQty: props.globals.getNode("/engines/engine[3]/oil-qty"),
 	oilQtyInput: props.globals.getNode("/engines/engine[3]/oil-qty-input"),
 	state: props.globals.getNode("/engines/engine[3]/state"),
-	Light: {
+	Controls: {
+		start: props.globals.getNode("/controls/apu/start"),
+	},
+	Lights: {
 		avail: props.globals.getNode("/systems/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
 		on: props.globals.initNode("/systems/apu/lights/on", 0, "BOOL"),
 		onTemp: 0,
 	},
-	Switch: {
-		start: props.globals.getNode("/controls/apu/start"),
-	},
 	init: func() {
 		me.oilQtyInput.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
-		me.Switch.start.setBoolValue(0);
-		me.Light.avail.setBoolValue(0);
-		me.Light.on.setBoolValue(0);
+		me.Controls.start.setBoolValue(0);
+		me.Lights.avail.setBoolValue(0);
+		me.Lights.on.setBoolValue(0);
 		me.autoConnect = 0;
 	},
 	fastStart: func() {
-		me.Switch.start.setBoolValue(1);
-		me.Light.avail.setValue(1);
-		me.Light.on.setValue(1);
+		me.Controls.start.setBoolValue(1);
+		me.Lights.avail.setValue(1);
+		me.Lights.on.setValue(1);
 		me.autoConnect = 0;
 		settimer(func() { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBSim.Propulsion.setRunning.setValue(3);
@@ -44,51 +44,51 @@ var APU = {
 		}, 0.1);
 	},
 	onLight: func() {
-		me.Light.onTemp = me.Light.on.getValue();
-		if (!me.Switch.start.getBoolValue()) {
+		me.Lights.onTemp = me.Lights.on.getValue();
+		if (!me.Controls.start.getBoolValue()) {
 			onLightt.stop();
-			me.Light.avail.setValue(0);
-			me.Light.on.setValue(0);
-		} else if (me.Switch.start.getBoolValue() and me.n2.getValue() >= 95) {
+			me.Lights.avail.setValue(0);
+			me.Lights.on.setValue(0);
+		} else if (me.Controls.start.getBoolValue() and me.n2.getValue() >= 95) {
 			onLightt.stop();
-			me.Light.avail.setValue(1);
-			me.Light.on.setValue(1);
+			me.Lights.avail.setValue(1);
+			me.Lights.on.setValue(1);
 			if (me.autoConnect) {
 				if (ELEC.Epcu.allowApu.getBoolValue()) {
-					ELEC.Switch.apuPwr.setBoolValue(1);
+					ELEC.Controls.apuPwr.setBoolValue(1);
 				}
 			}
 		} else {
 			if (me.autoConnect) {
-				me.Light.avail.setValue(!me.Light.onTemp); 
+				me.Lights.avail.setValue(!me.Lights.onTemp); 
 			} else {
-				me.Light.avail.setValue(0);
+				me.Lights.avail.setValue(0);
 			}
-			me.Light.on.setValue(!me.Light.onTemp);
+			me.Lights.on.setValue(!me.Lights.onTemp);
 		}
 	},
 	startStop: func(t) {
 		if (ELEC.Bus.dcBat.getValue() >= 24) {
-			if (!me.Switch.start.getBoolValue() and me.n2.getValue() < 1.8) {
+			if (!me.Controls.start.getBoolValue() and me.n2.getValue() < 1.8) {
 				me.autoConnect = t;
-				me.Switch.start.setBoolValue(1);
+				me.Controls.start.setBoolValue(1);
 				onLightt.start();
 			} else if (!acconfig.SYSTEM.autoConfigRunning.getBoolValue() and t != 1) { # Do nothing if autoconfig is running, cause it'll break it, or if ELEC panel switch was used
 				onLightt.stop();
-				me.Switch.start.setBoolValue(0);
-				me.Light.avail.setValue(0);
-				me.Light.on.setValue(0);
-				PNEU.Switch.bleedApu.setBoolValue(0);
+				me.Controls.start.setBoolValue(0);
+				me.Lights.avail.setValue(0);
+				me.Lights.on.setValue(0);
+				PNEU.Controls.bleedApu.setBoolValue(0);
 				me.autoConnect = 0;
 			}
 		}
 	},
 	stop: func() {
 		onLightt.stop();
-		me.Switch.start.setBoolValue(0);
-		me.Light.avail.setValue(0);
-		me.Light.on.setValue(0);
-		PNEU.Switch.bleedApu.setBoolValue(0);
+		me.Controls.start.setBoolValue(0);
+		me.Lights.avail.setValue(0);
+		me.Lights.on.setValue(0);
+		PNEU.Controls.bleedApu.setBoolValue(0);
 		me.autoConnect = 0;
 	},
 };
@@ -96,7 +96,7 @@ var APU = {
 setlistener("/systems/electrical/epcu/allow-apu-out", func() {
 	if (APU.autoConnect) {
 		if (ELEC.Epcu.allowApu.getBoolValue() and APU.state.getValue() == 3) {
-			ELEC.Switch.apuPwr.setBoolValue(1);
+			ELEC.Controls.apuPwr.setBoolValue(1);
 		}
 	}
 }, 0, 0);
@@ -110,25 +110,25 @@ var BRAKES = {
 		disarm: props.globals.getNode("/systems/abs/disarm"),
 		mode: props.globals.getNode("/systems/abs/mode"), # -2: RTO MAX, -1: RTO MIN, 0: OFF, 1: MIN, 2: MED, 3: MAX
 	},
-	Fail: {
-		abs: props.globals.getNode("/systems/failures/brakes/abs"),
-	},
-	Light: {
-		absDisarm: props.globals.initNode("/systems/abs/lights/disarm", 0, "BOOL"),
-	},
-	Switch: {
+	Controls: {
 		abs: props.globals.getNode("/controls/abs/knob"), # -1: RTO, 0: OFF, 1: MIN, 2: MED, 3: MAX
 	},
+	Failures: {
+		abs: props.globals.getNode("/systems/failures/brakes/abs"),
+	},
+	Lights: {
+		absDisarm: props.globals.initNode("/systems/abs/lights/disarm", 0, "BOOL"),
+	},
 	init: func() {
-		me.Switch.abs.setValue(0);
+		me.Controls.abs.setValue(0);
 		me.absSetUpdate(0);
 	},
 	absSetOff: func(t) {
 		me.Abs.armed.setBoolValue(0);
 		if (t == 1) {
-			me.Light.absDisarm.setBoolValue(1);
+			me.Lights.absDisarm.setBoolValue(1);
 		} else {
-			me.Light.absDisarm.setBoolValue(0);
+			me.Lights.absDisarm.setBoolValue(0);
 		}
 		me.Abs.mode.setValue(0);
 	},
@@ -169,7 +169,7 @@ var BRAKES = {
 };
 
 setlistener("/systems/abs/knob-input", func() {
-	BRAKES.absSetUpdate(BRAKES.Switch.abs.getValue());
+	BRAKES.absSetUpdate(BRAKES.Controls.abs.getValue());
 }, 0, 0);
 
 setlistener("/systems/abs/disarm", func() {
@@ -178,22 +178,24 @@ setlistener("/systems/abs/disarm", func() {
 
 # Engine Control
 var ENGINE = {
-	cutoffSwitch: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
-	reverseEngage: [props.globals.getNode("/controls/engines/engine[0]/reverse-engage"), props.globals.getNode("/controls/engines/engine[1]/reverse-engage"), props.globals.getNode("/controls/engines/engine[2]/reverse-engage")],
-	startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
-	startSwitch: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
-	throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
-	throttleTemp: [0, 0, 0],
+	Controls: {
+		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
+		reverseEngage: [props.globals.getNode("/controls/engines/engine[0]/reverse-engage"), props.globals.getNode("/controls/engines/engine[1]/reverse-engage"), props.globals.getNode("/controls/engines/engine[2]/reverse-engage")],
+		startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
+		start: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
+		throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
+		throttleTemp: [0, 0, 0],
+	},
 	init: func() {
-		me.reverseEngage[0].setBoolValue(0);
-		me.reverseEngage[1].setBoolValue(0);
-		me.reverseEngage[2].setBoolValue(0);
-		me.startCmd[0].setBoolValue(0);
-		me.startCmd[1].setBoolValue(0);
-		me.startCmd[2].setBoolValue(0);
-		me.startSwitch[0].setBoolValue(0);
-		me.startSwitch[1].setBoolValue(0);
-		me.startSwitch[2].setBoolValue(0);
+		me.Controls.reverseEngage[0].setBoolValue(0);
+		me.Controls.reverseEngage[1].setBoolValue(0);
+		me.Controls.reverseEngage[2].setBoolValue(0);
+		me.Controls.start[0].setBoolValue(0);
+		me.Controls.start[1].setBoolValue(0);
+		me.Controls.start[2].setBoolValue(0);
+		me.Controls.startCmd[0].setBoolValue(0);
+		me.Controls.startCmd[1].setBoolValue(0);
+		me.Controls.startCmd[2].setBoolValue(0);
 		pts.Engines.Engine.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		pts.Engines.Engine.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		pts.Engines.Engine.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
@@ -203,113 +205,113 @@ var ENGINE = {
 # Base off Engine 2
 var doRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
-		if (!ENGINE.reverseEngage[0].getBoolValue() or !ENGINE.reverseEngage[1].getBoolValue() or !ENGINE.reverseEngage[2].getBoolValue()) {
-			ENGINE.reverseEngage[0].setBoolValue(1);
-			ENGINE.reverseEngage[1].setBoolValue(1);
-			ENGINE.reverseEngage[2].setBoolValue(1);
-			ENGINE.throttle[0].setValue(0);
-			ENGINE.throttle[1].setValue(0);
-			ENGINE.throttle[2].setValue(0);
-		} else if (ENGINE.throttleTemp[1] < 0.4) {
-			ENGINE.throttle[0].setValue(0.4);
-			ENGINE.throttle[1].setValue(0.4);
-			ENGINE.throttle[2].setValue(0.4);
-		} else if (ENGINE.throttleTemp[1] < 0.7) {
-			ENGINE.throttle[0].setValue(0.7);
-			ENGINE.throttle[1].setValue(0.7);
-			ENGINE.throttle[2].setValue(0.7);
-		} else if (ENGINE.throttleTemp[1] < 1) {
-			ENGINE.throttle[0].setValue(1);
-			ENGINE.throttle[1].setValue(1);
-			ENGINE.throttle[2].setValue(1);
+		ENGINE.Controls.throttleTemp[1] = ENGINE.Controls.throttle[1].getValue();
+		if (!ENGINE.Controls.reverseEngage[0].getBoolValue() or !ENGINE.Controls.reverseEngage[1].getBoolValue() or !ENGINE.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINE.Controls.reverseEngage[0].setBoolValue(1);
+			ENGINE.Controls.reverseEngage[1].setBoolValue(1);
+			ENGINE.Controls.reverseEngage[2].setBoolValue(1);
+			ENGINE.Controls.throttle[0].setValue(0);
+			ENGINE.Controls.throttle[1].setValue(0);
+			ENGINE.Controls.throttle[2].setValue(0);
+		} else if (ENGINE.Controls.throttleTemp[1] < 0.4) {
+			ENGINE.Controls.throttle[0].setValue(0.4);
+			ENGINE.Controls.throttle[1].setValue(0.4);
+			ENGINE.Controls.throttle[2].setValue(0.4);
+		} else if (ENGINE.Controls.throttleTemp[1] < 0.7) {
+			ENGINE.Controls.throttle[0].setValue(0.7);
+			ENGINE.Controls.throttle[1].setValue(0.7);
+			ENGINE.Controls.throttle[2].setValue(0.7);
+		} else if (ENGINE.Controls.throttleTemp[1] < 1) {
+			ENGINE.Controls.throttle[0].setValue(1);
+			ENGINE.Controls.throttle[1].setValue(1);
+			ENGINE.Controls.throttle[2].setValue(1);
 		}
 	} else {
-		ENGINE.throttle[0].setValue(0);
-		ENGINE.throttle[1].setValue(0);
-		ENGINE.throttle[2].setValue(0);
-		ENGINE.reverseEngage[0].setBoolValue(0);
-		ENGINE.reverseEngage[1].setBoolValue(0);
-		ENGINE.reverseEngage[2].setBoolValue(0);
+		ENGINE.Controls.throttle[0].setValue(0);
+		ENGINE.Controls.throttle[1].setValue(0);
+		ENGINE.Controls.throttle[2].setValue(0);
+		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var unRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
-			ENGINE.throttleTemp[1] = ENGINE.throttle[1].getValue();
-			if (ENGINE.throttleTemp[1] > 0.7) {
-				ENGINE.throttle[0].setValue(0.7);
-				ENGINE.throttle[1].setValue(0.7);
-				ENGINE.throttle[2].setValue(0.7);
-			} else if (ENGINE.throttleTemp[1] > 0.4) {
-				ENGINE.throttle[0].setValue(0.4);
-				ENGINE.throttle[1].setValue(0.4);
-				ENGINE.throttle[2].setValue(0.4);
-			} else if (ENGINE.throttleTemp[1] > 0.05) {
-				ENGINE.throttle[0].setValue(0);
-				ENGINE.throttle[1].setValue(0);
-				ENGINE.throttle[2].setValue(0);
+		if (ENGINE.Controls.reverseEngage[0].getBoolValue() or ENGINE.Controls.reverseEngage[1].getBoolValue() or ENGINE.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINE.Controls.throttleTemp[1] = ENGINE.Controls.throttle[1].getValue();
+			if (ENGINE.Controls.throttleTemp[1] > 0.7) {
+				ENGINE.Controls.throttle[0].setValue(0.7);
+				ENGINE.Controls.throttle[1].setValue(0.7);
+				ENGINE.Controls.throttle[2].setValue(0.7);
+			} else if (ENGINE.Controls.throttleTemp[1] > 0.4) {
+				ENGINE.Controls.throttle[0].setValue(0.4);
+				ENGINE.Controls.throttle[1].setValue(0.4);
+				ENGINE.Controls.throttle[2].setValue(0.4);
+			} else if (ENGINE.Controls.throttleTemp[1] > 0.05) {
+				ENGINE.Controls.throttle[0].setValue(0);
+				ENGINE.Controls.throttle[1].setValue(0);
+				ENGINE.Controls.throttle[2].setValue(0);
 			} else {
-				ENGINE.throttle[0].setValue(0);
-				ENGINE.throttle[1].setValue(0);
-				ENGINE.throttle[2].setValue(0);
-				ENGINE.reverseEngage[0].setBoolValue(0);
-				ENGINE.reverseEngage[1].setBoolValue(0);
-				ENGINE.reverseEngage[2].setBoolValue(0);
+				ENGINE.Controls.throttle[0].setValue(0);
+				ENGINE.Controls.throttle[1].setValue(0);
+				ENGINE.Controls.throttle[2].setValue(0);
+				ENGINE.Controls.reverseEngage[0].setBoolValue(0);
+				ENGINE.Controls.reverseEngage[1].setBoolValue(0);
+				ENGINE.Controls.reverseEngage[2].setBoolValue(0);
 			}
 		}
 	} else {
-		ENGINE.throttle[0].setValue(0);
-		ENGINE.throttle[1].setValue(0);
-		ENGINE.throttle[2].setValue(0);
-		ENGINE.reverseEngage[0].setBoolValue(0);
-		ENGINE.reverseEngage[1].setBoolValue(0);
-		ENGINE.reverseEngage[2].setBoolValue(0);
+		ENGINE.Controls.throttle[0].setValue(0);
+		ENGINE.Controls.throttle[1].setValue(0);
+		ENGINE.Controls.throttle[2].setValue(0);
+		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var toggleRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.reverseEngage[0].getBoolValue() or ENGINE.reverseEngage[1].getBoolValue() or ENGINE.reverseEngage[2].getBoolValue()) {
-			ENGINE.throttle[0].setValue(0);
-			ENGINE.throttle[1].setValue(0);
-			ENGINE.throttle[2].setValue(0);
-			ENGINE.reverseEngage[0].setBoolValue(0);
-			ENGINE.reverseEngage[1].setBoolValue(0);
-			ENGINE.reverseEngage[2].setBoolValue(0);
+		if (ENGINE.Controls.reverseEngage[0].getBoolValue() or ENGINE.Controls.reverseEngage[1].getBoolValue() or ENGINE.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINE.Controls.throttle[0].setValue(0);
+			ENGINE.Controls.throttle[1].setValue(0);
+			ENGINE.Controls.throttle[2].setValue(0);
+			ENGINE.Controls.reverseEngage[0].setBoolValue(0);
+			ENGINE.Controls.reverseEngage[1].setBoolValue(0);
+			ENGINE.Controls.reverseEngage[2].setBoolValue(0);
 		} else {
-			ENGINE.reverseEngage[0].setBoolValue(1);
-			ENGINE.reverseEngage[1].setBoolValue(1);
-			ENGINE.reverseEngage[2].setBoolValue(1);
+			ENGINE.Controls.reverseEngage[0].setBoolValue(1);
+			ENGINE.Controls.reverseEngage[1].setBoolValue(1);
+			ENGINE.Controls.reverseEngage[2].setBoolValue(1);
 		}
 	} else {
-		ENGINE.throttle[0].setValue(0);
-		ENGINE.throttle[1].setValue(0);
-		ENGINE.throttle[2].setValue(0);
-		ENGINE.reverseEngage[0].setBoolValue(0);
-		ENGINE.reverseEngage[1].setBoolValue(0);
-		ENGINE.reverseEngage[2].setBoolValue(0);
+		ENGINE.Controls.throttle[0].setValue(0);
+		ENGINE.Controls.throttle[1].setValue(0);
+		ENGINE.Controls.throttle[2].setValue(0);
+		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var doIdleThrust = func() {
-	ENGINE.throttle[0].setValue(0);
-	ENGINE.throttle[1].setValue(0);
-	ENGINE.throttle[2].setValue(0);
+	ENGINE.Controls.throttle[0].setValue(0);
+	ENGINE.Controls.throttle[1].setValue(0);
+	ENGINE.Controls.throttle[2].setValue(0);
 }
 
 var doLimitThrust = func() {
 	var active = FADEC.Limit.activeNorm.getValue();
-	ENGINE.throttle[0].setValue(active);
-	ENGINE.throttle[1].setValue(active);
-	ENGINE.throttle[2].setValue(active);
+	ENGINE.Controls.throttle[0].setValue(active);
+	ENGINE.Controls.throttle[1].setValue(active);
+	ENGINE.Controls.throttle[2].setValue(active);
 }
 
 var doFullThrust = func() {
-	ENGINE.throttle[0].setValue(1);
-	ENGINE.throttle[1].setValue(1);
-	ENGINE.throttle[2].setValue(1);
+	ENGINE.Controls.throttle[0].setValue(1);
+	ENGINE.Controls.throttle[1].setValue(1);
+	ENGINE.Controls.throttle[2].setValue(1);
 }
 
 # FADEC
@@ -337,15 +339,15 @@ var FADEC = {
 		takeoffFlex: props.globals.getNode("/systems/fadec/limit/takeoff-flex"),
 		takeoffNoFlex: props.globals.getNode("/systems/fadec/limit/takeoff-no-flex"),
 	},
-	Switch: {
-		altn1: props.globals.getNode("/controls//systems/fadec/altn-1"),
-		altn2: props.globals.getNode("/controls//systems/fadec/altn-2"),
-		altn3: props.globals.getNode("/controls//systems/fadec/altn-3"),
+	Controls: {
+		altn1: props.globals.getNode("/controls/fadec/altn-1"),
+		altn2: props.globals.getNode("/controls/fadec/altn-2"),
+		altn3: props.globals.getNode("/controls/fadec/altn-3"),
 	},
 	init: func() {
-		me.Switch.altn1.setBoolValue(0);
-		me.Switch.altn2.setBoolValue(0);
-		me.Switch.altn3.setBoolValue(0);
+		me.Controls.altn1.setBoolValue(0);
+		me.Controls.altn2.setBoolValue(0);
+		me.Controls.altn3.setBoolValue(0);
 		me.Limit.activeModeInt.setValue(0);
 		me.Limit.activeMode.setValue("T/O");
 		me.Limit.auto.setBoolValue(1);
@@ -414,18 +416,6 @@ var FCC = {
 		auto: props.globals.getNode("/systems/fcc/elevator-feel/auto"),
 		speed: props.globals.getNode("/systems/fcc/elevator-feel/speed"),
 	},
-	Fail: {
-		elevatorFeel: props.globals.getNode("/systems/failures/fcc/elevator-feel"),
-		flapLimit: props.globals.getNode("/systems/failures/fcc/flap-limit"),
-		lsasLeftIn: props.globals.getNode("/systems/failures/fcc/lsas-left-in"),
-		lsasLeftOut: props.globals.getNode("/systems/failures/fcc/lsas-left-out"),
-		lsasRightIn: props.globals.getNode("/systems/failures/fcc/lsas-right-in"),
-		lsasRightOut: props.globals.getNode("/systems/failures/fcc/lsas-right-out"),
-		ydLowerA: props.globals.getNode("/systems/failures/fcc/yd-lower-a"),
-		ydLowerB: props.globals.getNode("/systems/failures/fcc/yd-lower-b"),
-		ydUpperA: props.globals.getNode("/systems/failures/fcc/yd-upper-a"),
-		ydUpperB: props.globals.getNode("/systems/failures/fcc/yd-upper-b"),
-	},
 	fcc1Power: props.globals.getNode("/systems/fcc/fcc1-power"),
 	fcc2Power: props.globals.getNode("/systems/fcc/fcc2-power"),
 	Lsas: {
@@ -440,7 +430,7 @@ var FCC = {
 	powerAvailTemp: 0,
 	stallAlphaDeg: props.globals.getNode("/systems/fcc/stall-alpha-deg"),
 	stallWarnAlphaDeg: props.globals.getNode("/systems/fcc/stall-warn-alpha-deg"),
-	Switch: {
+	Controls: {
 		elevatorFeelKnob: props.globals.getNode("/controls/fcc/elevator-feel"),
 		elevatorFeelMan: props.globals.getNode("/controls/fcc/elevator-feel-man"),
 		flapLimit: props.globals.getNode("/controls/fcc/flap-limit"),
@@ -453,31 +443,43 @@ var FCC = {
 		ydUpperA: props.globals.getNode("/controls/fcc/yd-upper-a"),
 		ydUpperB: props.globals.getNode("/controls/fcc/yd-upper-b"),
 	},
+	Failures: {
+		elevatorFeel: props.globals.getNode("/systems/failures/fcc/elevator-feel"),
+		flapLimit: props.globals.getNode("/systems/failures/fcc/flap-limit"),
+		lsasLeftIn: props.globals.getNode("/systems/failures/fcc/lsas-left-in"),
+		lsasLeftOut: props.globals.getNode("/systems/failures/fcc/lsas-left-out"),
+		lsasRightIn: props.globals.getNode("/systems/failures/fcc/lsas-right-in"),
+		lsasRightOut: props.globals.getNode("/systems/failures/fcc/lsas-right-out"),
+		ydLowerA: props.globals.getNode("/systems/failures/fcc/yd-lower-a"),
+		ydLowerB: props.globals.getNode("/systems/failures/fcc/yd-lower-b"),
+		ydUpperA: props.globals.getNode("/systems/failures/fcc/yd-upper-a"),
+		ydUpperB: props.globals.getNode("/systems/failures/fcc/yd-upper-b"),
+	},
 	init: func() {
 		me.resetFailures();
-		me.Switch.elevatorFeelKnob.setValue(0);
-		me.Switch.elevatorFeelMan.setBoolValue(0);
-		me.Switch.flapLimit.setValue(0);
-		me.Switch.lsasLeftIn.setBoolValue(1);
-		me.Switch.lsasLeftOut.setBoolValue(1);
-		me.Switch.lsasRightIn.setBoolValue(1);
-		me.Switch.lsasRightOut.setBoolValue(1);
-		me.Switch.ydLowerA.setBoolValue(1);
-		me.Switch.ydLowerB.setBoolValue(1);
-		me.Switch.ydUpperA.setBoolValue(1);
-		me.Switch.ydUpperB.setBoolValue(1);	
+		me.Controls.elevatorFeelKnob.setValue(0);
+		me.Controls.elevatorFeelMan.setBoolValue(0);
+		me.Controls.flapLimit.setValue(0);
+		me.Controls.lsasLeftIn.setBoolValue(1);
+		me.Controls.lsasLeftOut.setBoolValue(1);
+		me.Controls.lsasRightIn.setBoolValue(1);
+		me.Controls.lsasRightOut.setBoolValue(1);
+		me.Controls.ydLowerA.setBoolValue(1);
+		me.Controls.ydLowerB.setBoolValue(1);
+		me.Controls.ydUpperA.setBoolValue(1);
+		me.Controls.ydUpperB.setBoolValue(1);	
 	},
 	resetFailures: func() {
-		me.Fail.elevatorFeel.setBoolValue(0);
-		me.Fail.flapLimit.setBoolValue(0);
-		me.Fail.lsasLeftIn.setBoolValue(0);
-		me.Fail.lsasLeftOut.setBoolValue(0);
-		me.Fail.lsasRightIn.setBoolValue(0);
-		me.Fail.lsasRightOut.setBoolValue(0);
-		me.Fail.ydLowerA.setBoolValue(0);
-		me.Fail.ydLowerB.setBoolValue(0);
-		me.Fail.ydUpperA.setBoolValue(0);
-		me.Fail.ydUpperB.setBoolValue(0);
+		me.Failures.elevatorFeel.setBoolValue(0);
+		me.Failures.flapLimit.setBoolValue(0);
+		me.Failures.lsasLeftIn.setBoolValue(0);
+		me.Failures.lsasLeftOut.setBoolValue(0);
+		me.Failures.lsasRightIn.setBoolValue(0);
+		me.Failures.lsasRightOut.setBoolValue(0);
+		me.Failures.ydLowerA.setBoolValue(0);
+		me.Failures.ydLowerB.setBoolValue(0);
+		me.Failures.ydUpperA.setBoolValue(0);
+		me.Failures.ydUpperB.setBoolValue(0);
 	},
 };
 
@@ -501,20 +503,7 @@ var FCS = {
 var GEAR = {
 	allNorm: props.globals.getNode("/systems/gear/all-norm"),
 	cmd: props.globals.getNode("/systems/gear/cmd"),
-	Fail: {
-		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
-		leftActuator: props.globals.getNode("/systems/failures/gear/left-actuator"),
-		noseActuator: props.globals.getNode("/systems/failures/gear/nose-actuator"),
-		rightActuator: props.globals.getNode("/systems/failures/gear/right-actuator"),
-	},
 	status: [props.globals.getNode("/systems/gear/unit[0]/status"), props.globals.getNode("/systems/gear/unit[1]/status"), props.globals.getNode("/systems/gear/unit[2]/status"), props.globals.getNode("/systems/gear/unit[3]/status")],
-	Switch: {
-		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
-		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
-		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
-		centerGearUp: props.globals.getNode("/controls/gear/center-gear-up"),
-		lever: props.globals.getNode("/controls/gear/lever"),
-	},
 	TirePressurePsi: {
 		centerL: props.globals.getNode("/systems/gear/unit[3]/tire-l-psi"),
 		centerLInput: props.globals.getNode("/systems/gear/unit[3]/tire-l-psi-input"),
@@ -541,10 +530,23 @@ var GEAR = {
 		rightRFwd: props.globals.getNode("/systems/gear/unit[2]/tire-r-fwd-psi"),
 		rightRFwdInput: props.globals.getNode("/systems/gear/unit[2]/tire-r-fwd-psi-input"),
 	},
+	Controls: {
+		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
+		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
+		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
+		centerGearUp: props.globals.getNode("/controls/gear/center-gear-up"),
+		lever: props.globals.getNode("/controls/gear/lever"),
+	},
+	Failures: {
+		centerActuator: props.globals.getNode("/systems/failures/gear/center-actuator"),
+		leftActuator: props.globals.getNode("/systems/failures/gear/left-actuator"),
+		noseActuator: props.globals.getNode("/systems/failures/gear/nose-actuator"),
+		rightActuator: props.globals.getNode("/systems/failures/gear/right-actuator"),
+	},
 	init: func() {
 		me.resetFailures();
-		me.Switch.brakeParking.setBoolValue(0);
-		me.Switch.centerGearUp.setBoolValue(0);
+		me.Controls.brakeParking.setBoolValue(0);
+		me.Controls.centerGearUp.setBoolValue(0);
 		me.TirePressurePsi.centerLInput.setValue(math.round((rand() * 6) + 167 , 0.1)); # Random between 167 and 163
 		me.TirePressurePsi.centerRInput.setValue(math.round((rand() * 6) + 167 , 0.1)); # Random between 167 and 163
 		me.TirePressurePsi.leftLAftInput.setValue(math.round((rand() * 6) + 207 , 0.1)); # Random between 207 and 213
@@ -559,10 +561,10 @@ var GEAR = {
 		me.TirePressurePsi.rightRFwdInput.setValue(math.round((rand() * 6) + 207 , 0.1)); # Random between 207 and 213
 	},
 	resetFailures: func() {
-		me.Fail.centerActuator.setBoolValue(0);
-		me.Fail.leftActuator.setBoolValue(0);
-		me.Fail.noseActuator.setBoolValue(0);
-		me.Fail.rightActuator.setBoolValue(0);
+		me.Failures.centerActuator.setBoolValue(0);
+		me.Failures.leftActuator.setBoolValue(0);
+		me.Failures.noseActuator.setBoolValue(0);
+		me.Failures.rightActuator.setBoolValue(0);
 	},
 };
 
@@ -578,22 +580,22 @@ var IGNITION = {
 	starter1: props.globals.getNode("/systems/ignition/starter-1"),
 	starter2: props.globals.getNode("/systems/ignition/starter-2"),
 	starter3: props.globals.getNode("/systems/ignition/starter-3"),
-	Switch: {
+	Controls: {
 		ignA: props.globals.getNode("/controls/ignition/ign-a"),
 		ignB: props.globals.getNode("/controls/ignition/ign-b"),
 		ignOvrd: props.globals.getNode("/controls/ignition/ign-ovrd"),
 	},
 	init: func() {
-		me.Switch.ignA.setBoolValue(0);
-		me.Switch.ignB.setBoolValue(0);
-		me.Switch.ignOvrd.setBoolValue(0);
+		me.Controls.ignA.setBoolValue(0);
+		me.Controls.ignB.setBoolValue(0);
+		me.Controls.ignOvrd.setBoolValue(0);
 	},
 	fastStart: func(n) {
-		ENGINE.cutoffSwitch[n].setBoolValue(0);
+		ENGINE.Controls.cutoff[n].setBoolValue(0);
 		pts.Fdm.JSBSim.Propulsion.setRunning.setValue(n);
 	},
 	fastStop: func(n) {
-		ENGINE.cutoffSwitch[n].setBoolValue(1);
+		ENGINE.Controls.cutoff[n].setBoolValue(1);
 		settimer(func() { # Required delay
 			if (pts.Engines.Engine.n2Actual[n].getValue() > 1) {
 				pts.Fdm.JSBSim.Propulsion.Engine.n1[n].setValue(0.1);
@@ -617,15 +619,15 @@ var IRS = {
 		attAvail: [props.globals.getNode("/systems/iru[0]/att-avail"), props.globals.getNode("/systems/iru[1]/att-avail"), props.globals.getNode("/systems/iru[2]/att-avail")],
 		mainAvail: [props.globals.getNode("/systems/iru[0]/main-avail"), props.globals.getNode("/systems/iru[1]/main-avail"), props.globals.getNode("/systems/iru[2]/main-avail")],
 	},
-	Switch: {
+	Controls: {
 		knob: [props.globals.getNode("/controls/iru[0]/knob"), props.globals.getNode("/controls/iru[1]/knob"), props.globals.getNode("/controls/iru[2]/knob")],
 		mcduBtn: props.globals.getNode("/controls/iru-common/mcdu-btn"),
 	},
 	init: func() {
-		me.Switch.knob[0].setBoolValue(0);
-		me.Switch.knob[1].setBoolValue(0);
-		me.Switch.knob[2].setBoolValue(0);
-		me.Switch.mcduBtn.setBoolValue(0);
+		me.Controls.knob[0].setBoolValue(0);
+		me.Controls.knob[1].setBoolValue(0);
+		me.Controls.knob[2].setBoolValue(0);
+		me.Controls.mcduBtn.setBoolValue(0);
 	},
 	anyAlignedUpdate: func() { # Called when the logical OR of the 3 aligned changes
 		if (!me.Iru.aligned[0].getBoolValue() and !me.Iru.aligned[1].getBoolValue() and !me.Iru.aligned[2].getBoolValue()) {
@@ -638,7 +640,7 @@ var IRS = {
 	},
 	mcduMsgUpdate: func() {
 		if (me.Iru.alignMcduMsgOut[0].getBoolValue() or me.Iru.alignMcduMsgOut[1].getBoolValue() or me.Iru.alignMcduMsgOut[2].getBoolValue()) {
-			if (IRS.Switch.mcduBtn.getBoolValue()) {
+			if (IRS.Controls.mcduBtn.getBoolValue()) {
 				mcdu.BASE.removeGlobalMessage("ALIGN IRS");
 			} else {
 				mcdu.BASE.setGlobalMessage("ALIGN IRS");

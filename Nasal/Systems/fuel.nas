@@ -2,7 +2,7 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var FUEL = {
-	Fail: {
+	Failures: {
 		pumpsAuxL: props.globals.getNode("/systems/failures/fuel/pumps-aux-l"),
 		pumpsAuxR: props.globals.getNode("/systems/failures/fuel/pumps-aux-r"),
 		pumpsTail: props.globals.getNode("/systems/failures/fuel/pumps-tail"),
@@ -11,11 +11,11 @@ var FUEL = {
 		pumps3: props.globals.getNode("/systems/failures/fuel/pumps-3"),
 		system: props.globals.getNode("/systems/failures/fuel/system"),
 	},
-	Light: {
+	Lights: {
 		manualFlash: props.globals.initNode("/systems/fuel/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
-	Switch: {
+	Controls: {
 		altPump: props.globals.getNode("/controls/fuel/alt-pump"),
 		fill1: props.globals.getNode("/controls/fuel/fill-1"),
 		fill2: props.globals.getNode("/controls/fuel/fill-2"),
@@ -37,66 +37,66 @@ var FUEL = {
 	system: props.globals.getNode("/systems/fuel/system"),
 	init: func() {
 		me.resetFailures();
-		me.Switch.altPump.setBoolValue(0);
-		me.Switch.fill1.setBoolValue(0);
-		me.Switch.fill2.setBoolValue(0);
-		me.Switch.fill3.setBoolValue(0);
-		me.Switch.pumps1.setBoolValue(0);
-		me.Switch.pumps2.setBoolValue(0);
-		me.Switch.pumps3.setBoolValue(0);
-		me.Switch.system.setBoolValue(1);
-		me.Switch.transAuxL.setBoolValue(0);
-		me.Switch.transAuxR.setBoolValue(0);
-		me.Switch.transTail.setBoolValue(0);
-		me.Switch.trans1.setBoolValue(0);
-		me.Switch.trans2.setBoolValue(0);
-		me.Switch.trans3.setBoolValue(0);
-		me.Switch.xFeed1.setBoolValue(0);
-		me.Switch.xFeed2.setBoolValue(0);
-		me.Switch.xFeed3.setBoolValue(0);
+		me.Controls.altPump.setBoolValue(0);
+		me.Controls.fill1.setBoolValue(0);
+		me.Controls.fill2.setBoolValue(0);
+		me.Controls.fill3.setBoolValue(0);
+		me.Controls.pumps1.setBoolValue(0);
+		me.Controls.pumps2.setBoolValue(0);
+		me.Controls.pumps3.setBoolValue(0);
+		me.Controls.system.setBoolValue(1);
+		me.Controls.transAuxL.setBoolValue(0);
+		me.Controls.transAuxR.setBoolValue(0);
+		me.Controls.transTail.setBoolValue(0);
+		me.Controls.trans1.setBoolValue(0);
+		me.Controls.trans2.setBoolValue(0);
+		me.Controls.trans3.setBoolValue(0);
+		me.Controls.xFeed1.setBoolValue(0);
+		me.Controls.xFeed2.setBoolValue(0);
+		me.Controls.xFeed3.setBoolValue(0);
 		manualFuelLightt.stop();
-		me.Light.manualFlash.setValue(0);
+		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Fail.pumpsAuxL.setBoolValue(0);
-		me.Fail.pumpsAuxR.setBoolValue(0);
-		me.Fail.pumpsTail.setBoolValue(0);
-		me.Fail.pumps1.setBoolValue(0);
-		me.Fail.pumps2.setBoolValue(0);
-		me.Fail.pumps3.setBoolValue(0);
-		me.Fail.system.setBoolValue(0);
+		me.Failures.pumpsAuxL.setBoolValue(0);
+		me.Failures.pumpsAuxR.setBoolValue(0);
+		me.Failures.pumpsTail.setBoolValue(0);
+		me.Failures.pumps1.setBoolValue(0);
+		me.Failures.pumps2.setBoolValue(0);
+		me.Failures.pumps3.setBoolValue(0);
+		me.Failures.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.Switch.system.getBoolValue()) {
-			me.Switch.system.setBoolValue(0);
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.system.setBoolValue(0);
 			manualFuelLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 			# Sets this config when put in manual
-			me.Switch.altPump.setBoolValue(0);
-			me.Switch.pumps1.setBoolValue(1);
-			me.Switch.pumps2.setBoolValue(1);
-			me.Switch.pumps3.setBoolValue(1);
-			me.Switch.transAuxL.setBoolValue(1);
-			me.Switch.transAuxR.setBoolValue(1);
-			me.Switch.transTail.setBoolValue(1);
-			me.Switch.trans1.setBoolValue(0);
-			me.Switch.trans3.setBoolValue(0);
-			me.Switch.xFeed1.setBoolValue(0);
-			me.Switch.xFeed2.setBoolValue(0);
-			me.Switch.xFeed3.setBoolValue(0);
+			me.Controls.altPump.setBoolValue(0);
+			me.Controls.pumps1.setBoolValue(1);
+			me.Controls.pumps2.setBoolValue(1);
+			me.Controls.pumps3.setBoolValue(1);
+			me.Controls.transAuxL.setBoolValue(1);
+			me.Controls.transAuxR.setBoolValue(1);
+			me.Controls.transTail.setBoolValue(1);
+			me.Controls.trans1.setBoolValue(0);
+			me.Controls.trans3.setBoolValue(0);
+			me.Controls.xFeed1.setBoolValue(0);
+			me.Controls.xFeed2.setBoolValue(0);
+			me.Controls.xFeed3.setBoolValue(0);
 		} else {
-			me.Switch.system.setBoolValue(1);
+			me.Controls.system.setBoolValue(1);
 			manualFuelLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
 			manualFuelLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };

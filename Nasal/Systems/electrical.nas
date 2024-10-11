@@ -39,7 +39,7 @@ var ELEC = {
 	Epcu: {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
 	},
-	Fail: {
+	Failures: {
 		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
 		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
 		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
@@ -56,7 +56,7 @@ var ELEC = {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
 		fcp: props.globals.initNode("/systems/electrical/outputs/fcp", 0, "DOUBLE"),
 	},
-	Light: {
+	Lights: {
 		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
@@ -126,7 +126,7 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/tr-3/output-volt"),
 		},
 	},
-	Switch: {
+	Controls: {
 		acTie1: props.globals.getNode("/controls/electrical/ac-tie-1"),
 		acTie2: props.globals.getNode("/controls/electrical/ac-tie-2"),
 		acTie3: props.globals.getNode("/controls/electrical/ac-tie-3"),
@@ -155,69 +155,69 @@ var ELEC = {
 	system: props.globals.getNode("/systems/electrical/system"),
 	init: func() {
 		me.resetFailures();
-		me.Switch.acTie1.setBoolValue(1);
-		me.Switch.acTie2.setBoolValue(1);
-		me.Switch.acTie3.setBoolValue(1);
-		me.Switch.adgElec.setBoolValue(0);
-		me.Switch.apuPwr.setBoolValue(0);
-		me.Switch.battery.setBoolValue(0);
-		me.Switch.cabBus.setBoolValue(1);
-		me.Switch.dcTie1.setBoolValue(1);
-		me.Switch.dcTie3.setBoolValue(1);
-		me.Switch.emerPwr.setValue(0);
-		me.Switch.extPwr.setBoolValue(0);
-		me.Switch.extGPwr.setBoolValue(0);
-		me.Switch.galley1.setBoolValue(1);
-		me.Switch.galley2.setBoolValue(1);
-		me.Switch.galley3.setBoolValue(1);
-		me.Switch.gen1.setBoolValue(1);
-		me.Switch.gen2.setBoolValue(1);
-		me.Switch.gen3.setBoolValue(1);
-		me.Switch.genDrive1.setBoolValue(1);
-		me.Switch.genDrive2.setBoolValue(1);
-		me.Switch.genDrive3.setBoolValue(1);
-		me.Switch.groundCart.setBoolValue(0);
-		me.Switch.smokeElecAir.setValue(0);
-		me.Switch.system.setBoolValue(1);
+		me.Controls.acTie1.setBoolValue(1);
+		me.Controls.acTie2.setBoolValue(1);
+		me.Controls.acTie3.setBoolValue(1);
+		me.Controls.adgElec.setBoolValue(0);
+		me.Controls.apuPwr.setBoolValue(0);
+		me.Controls.battery.setBoolValue(0);
+		me.Controls.cabBus.setBoolValue(1);
+		me.Controls.dcTie1.setBoolValue(1);
+		me.Controls.dcTie3.setBoolValue(1);
+		me.Controls.emerPwr.setValue(0);
+		me.Controls.extPwr.setBoolValue(0);
+		me.Controls.extGPwr.setBoolValue(0);
+		me.Controls.galley1.setBoolValue(1);
+		me.Controls.galley2.setBoolValue(1);
+		me.Controls.galley3.setBoolValue(1);
+		me.Controls.gen1.setBoolValue(1);
+		me.Controls.gen2.setBoolValue(1);
+		me.Controls.gen3.setBoolValue(1);
+		me.Controls.genDrive1.setBoolValue(1);
+		me.Controls.genDrive2.setBoolValue(1);
+		me.Controls.genDrive3.setBoolValue(1);
+		me.Controls.groundCart.setBoolValue(0);
+		me.Controls.smokeElecAir.setValue(0);
+		me.Controls.system.setBoolValue(1);
 		me.Source.Bat1.percent.setValue(99.9);
 		me.Source.Bat2.percent.setValue(99.9);
 		manualElecLightt.stop();
-		me.Light.manualFlash.setValue(0);
+		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Switch.genDrive1.setBoolValue(1);
-		me.Switch.genDrive2.setBoolValue(1);
-		me.Switch.genDrive3.setBoolValue(1);
-		me.Fail.acTie1.setBoolValue(0);
-		me.Fail.acTie2.setBoolValue(0);
-		me.Fail.acTie3.setBoolValue(0);
-		me.Fail.apu.setBoolValue(0);
-		me.Fail.battery.setBoolValue(0);
-		me.Fail.dcTie1.setBoolValue(0);
-		me.Fail.dcTie3.setBoolValue(0);
-		me.Fail.gen1.setBoolValue(0);
-		me.Fail.gen2.setBoolValue(0);
-		me.Fail.gen3.setBoolValue(0);
-		me.Fail.system.setBoolValue(0);
+		me.Controls.genDrive1.setBoolValue(1);
+		me.Controls.genDrive2.setBoolValue(1);
+		me.Controls.genDrive3.setBoolValue(1);
+		me.Failures.acTie1.setBoolValue(0);
+		me.Failures.acTie2.setBoolValue(0);
+		me.Failures.acTie3.setBoolValue(0);
+		me.Failures.apu.setBoolValue(0);
+		me.Failures.battery.setBoolValue(0);
+		me.Failures.dcTie1.setBoolValue(0);
+		me.Failures.dcTie3.setBoolValue(0);
+		me.Failures.gen1.setBoolValue(0);
+		me.Failures.gen2.setBoolValue(0);
+		me.Failures.gen3.setBoolValue(0);
+		me.Failures.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.Switch.system.getBoolValue()) {
-			me.Switch.system.setBoolValue(0);
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.system.setBoolValue(0);
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Switch.system.setBoolValue(1);
+			me.Controls.system.setBoolValue(1);
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };

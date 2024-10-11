@@ -2,7 +2,7 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var PNEU = {
-	Fail: {
+	Failures: {
 		bleedApu: props.globals.getNode("/systems/failures/pneumatics/bleed-apu"),
 		bleed1: props.globals.getNode("/systems/failures/pneumatics/bleed-1"),
 		bleed2: props.globals.getNode("/systems/failures/pneumatics/bleed-2"),
@@ -17,7 +17,7 @@ var PNEU = {
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),
 		pack3: props.globals.getNode("/systems/pneumatics/pack-3-flow"),
 	},
-	Light: {
+	Lights: {
 		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
@@ -31,7 +31,7 @@ var PNEU = {
 		eng3: props.globals.getNode("/systems/pneumatics/eng-3-psi"),
 		ground: props.globals.getNode("/systems/pneumatics/ground-psi"),
 	},
-	Switch: {
+	Controls: {
 		aftTemp: props.globals.getNode("/controls/pneumatics/aft-temp"),
 		avionicsFan: props.globals.getNode("/controls/pneumatics/avionics-fan"),
 		bleedApu: props.globals.getNode("/controls/pneumatics/bleed-apu"),
@@ -56,57 +56,57 @@ var PNEU = {
 	system: props.globals.getNode("/systems/pneumatics/system"),
 	init: func() {
 		me.resetFailures();
-		me.Switch.aftTemp.setValue(0.45);
-		me.Switch.avionicsFan.setBoolValue(1);
-		me.Switch.bleedApu.setBoolValue(0);
-		me.Switch.bleed1.setBoolValue(1);
-		me.Switch.bleed2.setBoolValue(1);
-		me.Switch.bleed3.setBoolValue(1);
-		me.Switch.cargoFwdTemp.setValue(0.5);
-		me.Switch.cargoAftTemp.setValue(0.4);
-		me.Switch.cockpitTemp.setValue(0.45);
-		me.Switch.econ.setBoolValue(1);
-		me.Switch.fwdTemp.setValue(0.45);
-		me.Switch.groundAir.setBoolValue(0);
-		me.Switch.isol12.setBoolValue(0);
-		me.Switch.isol13.setBoolValue(0);
-		me.Switch.midTemp.setValue(0.45);
-		me.Switch.pack1.setBoolValue(1);
-		me.Switch.pack2.setBoolValue(1);
-		me.Switch.pack3.setBoolValue(1);
-		me.Switch.system.setBoolValue(1);
-		me.Switch.trimAir.setBoolValue(1);
+		me.Controls.aftTemp.setValue(0.45);
+		me.Controls.avionicsFan.setBoolValue(1);
+		me.Controls.bleedApu.setBoolValue(0);
+		me.Controls.bleed1.setBoolValue(1);
+		me.Controls.bleed2.setBoolValue(1);
+		me.Controls.bleed3.setBoolValue(1);
+		me.Controls.cargoFwdTemp.setValue(0.5);
+		me.Controls.cargoAftTemp.setValue(0.4);
+		me.Controls.cockpitTemp.setValue(0.45);
+		me.Controls.econ.setBoolValue(1);
+		me.Controls.fwdTemp.setValue(0.45);
+		me.Controls.groundAir.setBoolValue(0);
+		me.Controls.isol12.setBoolValue(0);
+		me.Controls.isol13.setBoolValue(0);
+		me.Controls.midTemp.setValue(0.45);
+		me.Controls.pack1.setBoolValue(1);
+		me.Controls.pack2.setBoolValue(1);
+		me.Controls.pack3.setBoolValue(1);
+		me.Controls.system.setBoolValue(1);
+		me.Controls.trimAir.setBoolValue(1);
 		manualPneuLightt.stop();
-		me.Light.manualFlash.setValue(0);
+		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Fail.bleedApu.setBoolValue(0);
-		me.Fail.bleed1.setBoolValue(0);
-		me.Fail.bleed2.setBoolValue(0);
-		me.Fail.bleed3.setBoolValue(0);
-		me.Fail.pack1.setBoolValue(0);
-		me.Fail.pack2.setBoolValue(0);
-		me.Fail.pack3.setBoolValue(0);
-		me.Fail.system.setBoolValue(0);
+		me.Failures.bleedApu.setBoolValue(0);
+		me.Failures.bleed1.setBoolValue(0);
+		me.Failures.bleed2.setBoolValue(0);
+		me.Failures.bleed3.setBoolValue(0);
+		me.Failures.pack1.setBoolValue(0);
+		me.Failures.pack2.setBoolValue(0);
+		me.Failures.pack3.setBoolValue(0);
+		me.Failures.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.Switch.system.getBoolValue()) {
-			me.Switch.system.setBoolValue(0);
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.system.setBoolValue(0);
 			manualPneuLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Switch.system.setBoolValue(1);
+			me.Controls.system.setBoolValue(1);
 			manualPneuLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
 			manualPneuLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };
