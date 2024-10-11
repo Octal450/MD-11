@@ -1069,7 +1069,7 @@ var canvasStatus = {
 	},
 };
 
-var init = func() {
+var setup = func() {
 	display = canvas.new({
 		"name": "SD",
 		"size": [1024, 1024],

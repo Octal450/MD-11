@@ -330,7 +330,7 @@ var canvasIesi = {
 	},
 };
 
-var init = func() {
+var setup = func() {
 	display = canvas.new({
 		"name": "IESI",
 		"size": [512, 439],

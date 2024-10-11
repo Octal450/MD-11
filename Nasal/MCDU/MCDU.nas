@@ -364,7 +364,7 @@ var BASE = {
 		maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
 		maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	},
-	init: func() {
+	setup: func() {
 		unit[0] = MCDU.new(0, 0, systems.ELEC.Bus.lEmerAc);
 		unit[1] = MCDU.new(1, 0, systems.ELEC.Bus.rEmerAc);
 		unit[2] = MCDU.new(2, 1, systems.ELEC.Bus.ac1);

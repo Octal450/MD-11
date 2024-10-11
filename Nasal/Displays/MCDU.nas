@@ -374,7 +374,7 @@ var canvasMcdu3 = {
 	},
 };
 
-var init = func() {
+var setup = func() {
 	mcdu1Display = canvas.new({
 		"name": "MCDU1",
 		"size": [512, 432],

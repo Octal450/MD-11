@@ -2391,7 +2391,7 @@ var canvasPfd2Error = {
 	},
 };
 
-var init = func() {
+var setup = func() {
 	pfd1Display = canvas.new({
 		"name": "PFD1",
 		"size": [1024, 1024],

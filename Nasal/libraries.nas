@@ -18,6 +18,7 @@ setprop("/sim/multiplay/visibility-range-nm", 130);
 
 var initDone = 0;
 var systemsInit = func() {
+	# Standard modules
 	systems.APU.init();
 	systems.BRAKES.init();
 	systems.ELEC.init();
@@ -32,15 +33,19 @@ var systemsInit = func() {
 	systems.PNEU.init();
 	afs.ITAF.init();
 	fms.CORE.init();
+	instruments.EFIS.init();
+	instruments.XPDR.init();
+	
+	# Object orientated modules
 	if (initDone) { # Anytime after sim init
 		instruments.RADIOS.reset();
 		mcdu.BASE.reset();
 	} else { # Sim init
-		instruments.RADIOS.init();
-		mcdu.BASE.init();
+		instruments.RADIOS.setup();
+		mcdu.BASE.setup();
 	}
-	instruments.EFIS.init();
-	instruments.XPDR.init();
+	
+	# Other switches
 	cockpit.variousReset();
 }
 
@@ -50,11 +55,11 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	systemsLoop.start();
 	slowLoop.start();
 	lightsLoop.start();
-	canvas_pfd.init();
-	canvas_ead.init();
-	canvas_sd.init();
-	canvas_iesi.init();
-	canvas_mcdu.init();
+	canvas_pfd.setup();
+	canvas_ead.setup();
+	canvas_sd.setup();
+	canvas_iesi.setup();
+	canvas_mcdu.setup();
 	removelistener(fdmInit);
 	initDone = 1;
 	acconfig.SYSTEM.finalInit();

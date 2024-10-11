@@ -1658,7 +1658,7 @@ var canvasPwTapes = {
 	},
 };
 
-var init = func() {
+var setup = func() {
 	display = canvas.new({
 		"name": "EAD",
 		"size": [1024, 1024],
