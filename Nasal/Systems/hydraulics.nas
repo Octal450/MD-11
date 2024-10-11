@@ -2,29 +2,6 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var HYD = {
-	Failures: {
-		auxPump1: props.globals.getNode("/systems/failures/hydraulics/aux-pump-1"),
-		auxPump2: props.globals.getNode("/systems/failures/hydraulics/aux-pump-2"),
-		catastrophicAft: props.globals.getNode("/systems/failures/hydraulics/catastrophic-aft"),
-		lPump1: props.globals.getNode("/systems/failures/hydraulics/l-pump-1"),
-		lPump2: props.globals.getNode("/systems/failures/hydraulics/l-pump-2"),
-		lPump3: props.globals.getNode("/systems/failures/hydraulics/l-pump-3"),
-		nrmp21: props.globals.getNode("/systems/failures/hydraulics/nrmp-2-1"),
-		nrmp32: props.globals.getNode("/systems/failures/hydraulics/nrmp-3-2"),
-		rPump1: props.globals.getNode("/systems/failures/hydraulics/r-pump-1"),
-		rPump2: props.globals.getNode("/systems/failures/hydraulics/r-pump-2"),
-		rPump3: props.globals.getNode("/systems/failures/hydraulics/r-pump-3"),
-		rmp13: props.globals.getNode("/systems/failures/hydraulics/rmp-1-3"),
-		rmp23: props.globals.getNode("/systems/failures/hydraulics/rmp-2-3"),
-		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
-		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
-		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
-		system: props.globals.getNode("/systems/failures/hydraulics/system"),
-	},
-	Lights: {
-		manualFlash: props.globals.initNode("/systems/hydraulics/lights/manual-flash", 0, "INT"),
-		manualFlashTemp: 0,
-	},
 	Psi: {
 		auxPump1: props.globals.getNode("/systems/hydraulics/aux-pump-1-psi"),
 		auxPump2: props.globals.getNode("/systems/hydraulics/aux-pump-2-psi"),
@@ -48,6 +25,7 @@ var HYD = {
 		sys3Input: props.globals.getNode("/systems/hydraulics/sys-3-qty-input"),
 		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-qty"),
 	},
+	system: props.globals.getNode("/systems/hydraulics/system"),
 	Controls: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/aux-pump-1"),
 		auxPump2: props.globals.getNode("/controls/hydraulics/aux-pump-2"),
@@ -63,7 +41,29 @@ var HYD = {
 		rmp23: props.globals.getNode("/controls/hydraulics/rmp-2-3"),
 		system: props.globals.getNode("/controls/hydraulics/system"),
 	},
-	system: props.globals.getNode("/systems/hydraulics/system"),
+	Failures: {
+		auxPump1: props.globals.getNode("/systems/failures/hydraulics/aux-pump-1"),
+		auxPump2: props.globals.getNode("/systems/failures/hydraulics/aux-pump-2"),
+		catastrophicAft: props.globals.getNode("/systems/failures/hydraulics/catastrophic-aft"),
+		lPump1: props.globals.getNode("/systems/failures/hydraulics/l-pump-1"),
+		lPump2: props.globals.getNode("/systems/failures/hydraulics/l-pump-2"),
+		lPump3: props.globals.getNode("/systems/failures/hydraulics/l-pump-3"),
+		nrmp21: props.globals.getNode("/systems/failures/hydraulics/nrmp-2-1"),
+		nrmp32: props.globals.getNode("/systems/failures/hydraulics/nrmp-3-2"),
+		rPump1: props.globals.getNode("/systems/failures/hydraulics/r-pump-1"),
+		rPump2: props.globals.getNode("/systems/failures/hydraulics/r-pump-2"),
+		rPump3: props.globals.getNode("/systems/failures/hydraulics/r-pump-3"),
+		rmp13: props.globals.getNode("/systems/failures/hydraulics/rmp-1-3"),
+		rmp23: props.globals.getNode("/systems/failures/hydraulics/rmp-2-3"),
+		sys1Leak: props.globals.getNode("/systems/failures/hydraulics/sys-1-leak"),
+		sys2Leak: props.globals.getNode("/systems/failures/hydraulics/sys-2-leak"),
+		sys3Leak: props.globals.getNode("/systems/failures/hydraulics/sys-3-leak"),
+		system: props.globals.getNode("/systems/failures/hydraulics/system"),
+	},
+	Lights: {
+		manualFlash: props.globals.initNode("/systems/hydraulics/lights/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
+	},
 	init: func() {
 		me.resetFailures();
 		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12

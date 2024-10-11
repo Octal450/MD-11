@@ -39,26 +39,9 @@ var ELEC = {
 	Epcu: {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
 	},
-	Failures: {
-		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
-		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
-		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
-		apu: props.globals.getNode("/systems/failures/electrical/apu"),
-		battery: props.globals.getNode("/systems/failures/electrical/battery"),
-		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
-		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
-		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
-		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
-		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
-		system: props.globals.getNode("/systems/failures/electrical/system"),
-	},
 	Generic: {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
 		fcp: props.globals.initNode("/systems/electrical/outputs/fcp", 0, "DOUBLE"),
-	},
-	Lights: {
-		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
-		manualFlashTemp: 0,
 	},
 	Source: {
 		Adg: {
@@ -126,6 +109,7 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/tr-3/output-volt"),
 		},
 	},
+	system: props.globals.getNode("/systems/electrical/system"),
 	Controls: {
 		acTie1: props.globals.getNode("/controls/electrical/ac-tie-1"),
 		acTie2: props.globals.getNode("/controls/electrical/ac-tie-2"),
@@ -152,7 +136,23 @@ var ELEC = {
 		smokeElecAir: props.globals.getNode("/controls/electrical/smoke-elec-air"),
 		system: props.globals.getNode("/controls/electrical/system"),
 	},
-	system: props.globals.getNode("/systems/electrical/system"),
+	Failures: {
+		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
+		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
+		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
+		apu: props.globals.getNode("/systems/failures/electrical/apu"),
+		battery: props.globals.getNode("/systems/failures/electrical/battery"),
+		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
+		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
+		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
+		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
+		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
+		system: props.globals.getNode("/systems/failures/electrical/system"),
+	},
+	Lights: {
+		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
+	},
 	init: func() {
 		me.resetFailures();
 		me.Controls.acTie1.setBoolValue(1);

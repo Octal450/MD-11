@@ -2,24 +2,10 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var PNEU = {
-	Failures: {
-		bleedApu: props.globals.getNode("/systems/failures/pneumatics/bleed-apu"),
-		bleed1: props.globals.getNode("/systems/failures/pneumatics/bleed-1"),
-		bleed2: props.globals.getNode("/systems/failures/pneumatics/bleed-2"),
-		bleed3: props.globals.getNode("/systems/failures/pneumatics/bleed-3"),
-		pack1: props.globals.getNode("/systems/failures/pneumatics/pack-1"),
-		pack2: props.globals.getNode("/systems/failures/pneumatics/pack-2"),
-		pack3: props.globals.getNode("/systems/failures/pneumatics/pack-3"),
-		system: props.globals.getNode("/systems/failures/pneumatics/system"),
-	},
 	Flow: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-flow"),
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),
 		pack3: props.globals.getNode("/systems/pneumatics/pack-3-flow"),
-	},
-	Lights: {
-		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
-		manualFlashTemp: 0,
 	},
 	Psi: {
 		apu: props.globals.getNode("/systems/pneumatics/apu-psi"),
@@ -31,6 +17,7 @@ var PNEU = {
 		eng3: props.globals.getNode("/systems/pneumatics/eng-3-psi"),
 		ground: props.globals.getNode("/systems/pneumatics/ground-psi"),
 	},
+	system: props.globals.getNode("/systems/pneumatics/system"),
 	Controls: {
 		aftTemp: props.globals.getNode("/controls/pneumatics/aft-temp"),
 		avionicsFan: props.globals.getNode("/controls/pneumatics/avionics-fan"),
@@ -53,7 +40,20 @@ var PNEU = {
 		system: props.globals.getNode("/controls/pneumatics/system"),
 		trimAir: props.globals.getNode("/controls/pneumatics/trim-air"),
 	},
-	system: props.globals.getNode("/systems/pneumatics/system"),
+	Failures: {
+		bleedApu: props.globals.getNode("/systems/failures/pneumatics/bleed-apu"),
+		bleed1: props.globals.getNode("/systems/failures/pneumatics/bleed-1"),
+		bleed2: props.globals.getNode("/systems/failures/pneumatics/bleed-2"),
+		bleed3: props.globals.getNode("/systems/failures/pneumatics/bleed-3"),
+		pack1: props.globals.getNode("/systems/failures/pneumatics/pack-1"),
+		pack2: props.globals.getNode("/systems/failures/pneumatics/pack-2"),
+		pack3: props.globals.getNode("/systems/failures/pneumatics/pack-3"),
+		system: props.globals.getNode("/systems/failures/pneumatics/system"),
+	},
+	Lights: {
+		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
+	},
 	init: func() {
 		me.resetFailures();
 		me.Controls.aftTemp.setValue(0.45);
