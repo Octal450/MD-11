@@ -1702,7 +1702,7 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>/systems/fcs/brakes/left-input-feedback</output>
+			<output>/systems/hydraulics/brakes/left-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
@@ -1712,7 +1712,7 @@
 		<actuator name="/systems/fcs/brakes/left-actuator">
 			<input>/systems/fcs/brakes/left-input</input>
 			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
-			<output>/systems/fcs/brakes/left-actuator-feedback</output>
+			<output>/systems/hydraulics/brakes/left-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/left-brake-cmd-norm">
@@ -1731,7 +1731,7 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>/systems/fcs/brakes/right-input-feedback</output>
+			<output>/systems/hydraulics/brakes/right-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
@@ -1741,7 +1741,7 @@
 		<actuator name="/systems/fcs/brakes/right-actuator">
 			<input>/systems/fcs/brakes/right-input</input>
 			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
-			<output>/systems/fcs/brakes/right-actuator-feedback</output>
+			<output>/systems/hydraulics/brakes/right-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/right-brake-cmd-norm">
@@ -1769,7 +1769,7 @@
 					<property>/systems/abs/brake-output</property>
 				</max>
 			</function>
-			<output>/systems/fcs/brakes/center-input-feedback</output>
+			<output>/systems/hydraulics/brakes/center-input-feedback</output>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
@@ -1779,7 +1779,7 @@
 		<actuator name="/systems/fcs/brakes/center-actuator">
 			<input>/systems/fcs/brakes/center-input</input>
 			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
-			<output>/systems/fcs/brakes/center-actuator-feedback</output>
+			<output>/systems/hydraulics/brakes/center-actuator-feedback</output>
 		</actuator>
 		
 		<switch name="fcs/center-brake-cmd-norm">
