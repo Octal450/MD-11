@@ -361,7 +361,7 @@ var PANEL = {
 		systems.IGNITION.Controls.ignA.setBoolValue(1);
 		systems.APU.stopRpm();
 		
-		if (pts.Engines.Engine.state[0].getValue() != 3 or pts.Engines.Engine.state[1].getValue() != 3 or pts.Engines.Engine.state[2].getValue() != 3) {
+		if (systems.ENGINE.state[0].getValue() != 3 or systems.ENGINE.state[1].getValue() != 3 or systems.ENGINE.state[2].getValue() != 3) {
 			engTimer = 3;
 			settimer(func() {
 				if (!me.stop) {
@@ -375,7 +375,7 @@ var PANEL = {
 		}
 		
 		me.l1 = setlistener("/engines/engine[1]/state", func() {
-			if (pts.Engines.Engine.state[1].getValue() == 3) {
+			if (systems.ENGINE.state[1].getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
 				systems.ELEC.Controls.groundCart.setBoolValue(0);

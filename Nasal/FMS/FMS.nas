@@ -60,7 +60,7 @@ var CORE = {
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
 		
-		if (pts.Engines.Engine.state[0].getValue() == 3 or pts.Engines.Engine.state[1].getValue() == 3 or pts.Engines.Engine.state[2].getValue() == 3) {
+		if (systems.ENGINE.state[0].getValue() == 3 or systems.ENGINE.state[1].getValue() == 3 or systems.ENGINE.state[2].getValue() == 3) {
 			Internal.engOn = 1;
 		} else {
 			Internal.engOn = 0;
