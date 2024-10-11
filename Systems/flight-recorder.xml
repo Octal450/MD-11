@@ -99,19 +99,19 @@
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/aileron-out-l/final-deg</property>
+				<property>/systems/fcs/ailerons-out-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/aileron-in-l/final-deg</property>
+				<property>/systems/fcs/ailerons-in-l/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/aileron-in-r/final-deg</property>
+				<property>/systems/fcs/ailerons-in-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/aileron-out-r/final-deg</property>
+				<property>/systems/fcs/ailerons-out-r/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
@@ -135,51 +135,51 @@
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/rudder-upper/final-deg</property>
+				<property>/systems/fcs/rudders-upper/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/rudder-lower/final-deg</property>
+				<property>/systems/fcs/rudders-lower/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-l1/final-deg</property>
+				<property>/systems/fcs/spoilers-l1/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-l2/final-deg</property>
+				<property>/systems/fcs/spoilers-l2/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-l3/final-deg</property>
+				<property>/systems/fcs/spoilers-l3/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-l4/final-deg</property>
+				<property>/systems/fcs/spoilers-l4/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-l5/final-deg</property>
+				<property>/systems/fcs/spoilers-l5/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-r1/final-deg</property>
+				<property>/systems/fcs/spoilers-r1/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-r2/final-deg</property>
+				<property>/systems/fcs/spoilers-r2/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-r3/final-deg</property>
+				<property>/systems/fcs/spoilers-r3/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-r4/final-deg</property>
+				<property>/systems/fcs/spoilers-r4/final-deg</property>
 			</signal>
 			<signal>
 				<type>float</type>
-				<property>/systems/fcs/spoiler-r5/final-deg</property>
+				<property>/systems/fcs/spoilers-r5/final-deg</property>
 			</signal>
 		</signals>
 	</config>

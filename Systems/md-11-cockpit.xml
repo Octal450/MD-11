@@ -9,7 +9,7 @@
 		
 		<!-- General -->
 		<lag_filter name="/controls/cockpit/aileron-yoke">
-			<input>/systems/fcs/aileron-yoke-sum</input>
+			<input>/systems/fcs/ailerons-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -94,7 +94,7 @@
 		</actuator>
 		
 		<lag_filter name="/controls/cockpit/rudder-pedal">
-			<input>/systems/fcs/rudder/pedal-sum</input>
+			<input>/systems/fcs/rudders/pedal-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -235,7 +235,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/spoilers-lever-rotate">
-			<input>/systems/spoilers/lever-cmd</input>
+			<input>/systems/fcs/spoilers/lever-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		

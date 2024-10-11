@@ -219,7 +219,7 @@
 							<entry><ind>360</ind><dep>0.07</dep></entry>
 						</table>
 						<table> <!-- Reduce deflection if outer ailerons are not locked -->
-							<property>/systems/fcs/aileron-out-enable</property>
+							<property>/systems/fcs/ailerons-out-enable</property>
 							<entry><ind>0</ind><dep>1.00</dep></entry>
 							<entry><ind>1</ind><dep>0.72</dep></entry> <!-- Calculated based on Cl moment -->
 						</table>

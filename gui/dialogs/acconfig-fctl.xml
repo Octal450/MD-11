@@ -65,7 +65,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/aileron-out-l/final-deg</property>
+					<property>/systems/fcs/ailerons-out-l/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -82,7 +82,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/aileron-in-l/final-deg</property>
+					<property>/systems/fcs/ailerons-in-l/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -99,7 +99,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/aileron-in-r/final-deg</property>
+					<property>/systems/fcs/ailerons-in-r/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -116,7 +116,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/aileron-out-r/final-deg</property>
+					<property>/systems/fcs/ailerons-out-r/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -151,7 +151,7 @@
 				<slider>
 					<pref-height>100</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/spoiler-left-deg</property>
+					<property>/systems/fcs/spoilers-left-deg</property>
 					<min>0</min>
 					<max>60</max>
 					<step>0.006</step>
@@ -168,7 +168,7 @@
 				<slider>
 					<pref-height>100</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/spoiler-right-deg</property>
+					<property>/systems/fcs/spoilers-right-deg</property>
 					<min>0</min>
 					<max>60</max>
 					<step>0.006</step>
@@ -302,7 +302,7 @@
 				
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/systems/fcs/rudder-upper/final-deg</property>
+					<property>/systems/fcs/rudders-upper/final-deg</property>
 					<min>-30</min>
 					<max>30</max>
 					<step>0.003</step>
@@ -333,7 +333,7 @@
 				
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/systems/fcs/rudder-lower/final-deg</property>
+					<property>/systems/fcs/rudders-lower/final-deg</property>
 					<min>-30</min>
 					<max>30</max>
 					<step>0.003</step>

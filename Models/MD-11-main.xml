@@ -709,7 +709,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL2</object-name>
-		<property>systems/fcs/aileron-out-l/final-deg</property>
+		<property>systems/fcs/ailerons-out-l/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -724,7 +724,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-		<property>systems/fcs/aileron-in-l/final-deg</property>
+		<property>systems/fcs/ailerons-in-l/final-deg</property>
 		<factor>-1</factor>		
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -739,7 +739,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-		<property>systems/fcs/aileron-in-r/final-deg</property>
+		<property>systems/fcs/ailerons-in-r/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -754,7 +754,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-		<property>systems/fcs/aileron-out-r/final-deg</property>
+		<property>systems/fcs/ailerons-out-r/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -854,7 +854,7 @@
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
 		<object-name>rudder_trailing.u</object-name>
-		<property>systems/fcs/rudder-upper/final-deg</property>
+		<property>systems/fcs/rudders-upper/final-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -869,7 +869,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.u</object-name>
-		<property>systems/fcs/rudder-upper/final-deg</property>
+		<property>systems/fcs/rudders-upper/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>30.0511</x1-m>
@@ -885,7 +885,7 @@
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
 		<object-name>rudder_trailing.l</object-name>
-		<property>systems/fcs/rudder-lower/final-deg</property>
+		<property>systems/fcs/rudders-lower/final-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -900,7 +900,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.l</object-name>
-		<property>systems/fcs/rudder-lower/final-deg</property>
+		<property>systems/fcs/rudders-lower/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.4977</x1-m>
@@ -916,7 +916,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.1</object-name>
-		<property>systems/fcs/spoiler-l1/final-deg</property>
+		<property>systems/fcs/spoilers-l1/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -931,7 +931,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.2</object-name>
-		<property>systems/fcs/spoiler-l2/final-deg</property>
+		<property>systems/fcs/spoilers-l2/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -946,7 +946,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.3</object-name>
-		<property>systems/fcs/spoiler-l3/final-deg</property>
+		<property>systems/fcs/spoilers-l3/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -961,7 +961,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.4</object-name>
-		<property>systems/fcs/spoiler-l4/final-deg</property>
+		<property>systems/fcs/spoilers-l4/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -976,7 +976,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.5</object-name>
-		<property>systems/fcs/spoiler-l5/final-deg</property>
+		<property>systems/fcs/spoilers-l5/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
@@ -991,7 +991,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.1</object-name>
-		<property>systems/fcs/spoiler-r1/final-deg</property>
+		<property>systems/fcs/spoilers-r1/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1006,7 +1006,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.2</object-name>
-		<property>systems/fcs/spoiler-r2/final-deg</property>
+		<property>systems/fcs/spoilers-r2/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1021,7 +1021,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.3</object-name>
-		<property>systems/fcs/spoiler-r3/final-deg</property>
+		<property>systems/fcs/spoilers-r3/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1036,7 +1036,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.4</object-name>
-		<property>systems/fcs/spoiler-r4/final-deg</property>
+		<property>systems/fcs/spoilers-r4/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1051,7 +1051,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.5</object-name>
-		<property>systems/fcs/spoiler-r5/final-deg</property>
+		<property>systems/fcs/spoilers-r5/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>

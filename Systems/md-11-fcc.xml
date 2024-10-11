@@ -16,7 +16,7 @@
 	<property value="0">/systems/fcc/lsas/spd-prot/output</property>
 	<property value="0">/systems/fcc/rcws/input</property>
 	<property value="0">/systems/fcc/rcws/pid</property>
-	<property value="0">/systems/spoilers/auto-speedbrake-feedback</property>
+	<property value="0">/systems/fcs/spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Properties for tuning -->
 	<property value="0">/systems/fcc/rcws/p-gain-tune</property>
@@ -336,7 +336,7 @@
 				/systems/fcc/afs/enabled eq 0
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
-				/systems/spoilers/auto-speedbrake-feedback gt 0
+				/systems/fcs/spoilers/auto-speedbrake-feedback gt 0
 			</test>
 		</switch>
 	
