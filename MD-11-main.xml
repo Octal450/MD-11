@@ -243,7 +243,7 @@
 				<steer-cmd-norm alias="/systems/fcs/tiller/autopush-cmd"/>
 				<stopping-distance-m type="float">5.0</stopping-distance-m>
 				<target-speed-km_h type="float">0.0</target-speed-km_h>
-				<yaw alias="/fdm/jsbsim/fcs/steer-deg"/>
+				<yaw alias="/systems/fcs/tiller/actuator"/>
 				<yaw-mult type="float">1.0</yaw-mult>
 			</autopush>
 			<lights>
