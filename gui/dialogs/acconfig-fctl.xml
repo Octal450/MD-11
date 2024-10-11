@@ -65,7 +65,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/ailerons-out-l/final-deg</property>
+					<property>/systems/fcs/aileron-out-l/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -82,7 +82,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/ailerons-in-l/final-deg</property>
+					<property>/systems/fcs/aileron-in-l/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -99,7 +99,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/ailerons-in-r/final-deg</property>
+					<property>/systems/fcs/aileron-in-r/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>
@@ -116,7 +116,7 @@
 				<slider>
 					<pref-height>125</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/ailerons-out-r/final-deg</property>
+					<property>/systems/fcs/aileron-out-r/final-deg</property>
 					<min>20</min>
 					<max>-20</max>
 					<step>0.002</step>

@@ -7,7 +7,7 @@
 	
 	<channel name="Libraries">
 		
-		<switch name="/systems/fcs/ailerons-out-enable">
+		<switch name="/systems/fcs/aileron-out-enable">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				fcs/slat-pos-deg ge 2
@@ -111,7 +111,7 @@
 	
 	<channel name="Aileron General">
 		
-		<pure_gain name="/systems/fcs/ailerons-small">
+		<pure_gain name="/systems/fcs/aileron-small">
 			<input>/controls/flight/aileron</input>
 			<gain>0.25</gain>
 		</pure_gain>
@@ -121,9 +121,9 @@
 			<gain>0.25</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/ailerons-yoke-switch">
+		<switch name="/systems/fcs/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
-			<test logic="AND" value="/systems/fcs/ailerons-small"> <!-- While in detent and RCWS active, more force needed to break out -->
+			<test logic="AND" value="/systems/fcs/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
 				/systems/fcc/rcws/active eq 1
 				/systems/fcc/rcws/in-detent eq 1
 			</test>
@@ -180,8 +180,8 @@
 		</actuator>
 		<!-- End RCWS + Aileron Droop Wheel Backdrive -->
 		
-		<summer name="/systems/fcs/ailerons-yoke-sum">
-			<input>/systems/fcs/ailerons-yoke-switch</input>
+		<summer name="/systems/fcs/aileron-yoke-sum">
+			<input>/systems/fcs/aileron-yoke-switch</input>
 			<input>/systems/fcs/ailerons/trim-overall</input>
 			<input>/systems/fcs/ailerons/backdrive/output</input>
 			<clipto>
@@ -240,7 +240,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fcs/ailerons-droop">
+		<fcs_function name="/systems/fcs/aileron-droop">
 			<function>
 				<table>
 					<independentVar lookup="row">aero/qbar-psf</independentVar>
@@ -252,7 +252,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fcs/ailerons-in-droop-rate">
+		<fcs_function name="/systems/fcs/aileron-in-droop-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">aero/qbar-psf</independentVar>
@@ -264,7 +264,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fcs/ailerons-out-droop-rate">
+		<fcs_function name="/systems/fcs/aileron-out-droop-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">aero/qbar-psf</independentVar>
@@ -280,7 +280,7 @@
 	
 	<channel name="Aileron L Outer">
 		
-		<fcs_function name="/systems/fcs/ailerons-out-l/function">
+		<fcs_function name="/systems/fcs/aileron-out-l/function">
 			<function>
 				<sum>
 					<product>
@@ -295,16 +295,16 @@
 							</table>
 							<property>/systems/fcs/ailerons/trim-left</property> <!-- Slew neutral point -->
 						</sum>
-						<property>/systems/fcs/ailerons-out-enable</property>
+						<property>/systems/fcs/aileron-out-enable</property>
 					</product>
 					<property>/systems/fcs/deflected-aileron/out</property>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/fcs/ailerons-out-l/switch">
-			<default value="/systems/fcs/ailerons-droop"/>
-			<test logic="OR" value="/systems/fcs/ailerons-out-l/function">
+		<switch name="/systems/fcs/aileron-out-l/switch">
+			<default value="/systems/fcs/aileron-droop"/>
+			<test logic="OR" value="/systems/fcs/aileron-out-l/function">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -314,31 +314,31 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/ailerons-out-l/cmd-deg">
-			<input>/systems/fcs/ailerons-out-l/switch</input>
+		<pure_gain name="/systems/fcs/aileron-out-l/cmd-deg">
+			<input>/systems/fcs/aileron-out-l/switch</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/ailerons-out-l/rate">
-			<default value="/systems/fcs/ailerons-out-droop-rate"/>
+		<switch name="/systems/fcs/aileron-out-l/rate">
+			<default value="/systems/fcs/aileron-out-droop-rate"/>
 			<test logic="OR" value="80">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/ailerons-out-l/final-actuator">
-			<input>/systems/fcs/ailerons-out-l/cmd-deg</input>
-			<rate_limit>/systems/fcs/ailerons-out-l/rate</rate_limit>
+		<actuator name="/systems/fcs/aileron-out-l/final-actuator">
+			<input>/systems/fcs/aileron-out-l/cmd-deg</input>
+			<rate_limit>/systems/fcs/aileron-out-l/rate</rate_limit>
 			<lag>26.5</lag>
-			<output>/systems/fcs/ailerons-out-l/final-deg</output>
+			<output>/systems/fcs/aileron-out-l/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Aileron L Inner">
 		
-		<fcs_function name="/systems/fcs/ailerons-in-l/function">
+		<fcs_function name="/systems/fcs/aileron-in-l/function">
 			<function>
 				<sum>
 					<table>
@@ -355,9 +355,9 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/fcs/ailerons-in-l/switch">
-			<default value="/systems/fcs/ailerons-droop"/>
-			<test logic="OR" value="/systems/fcs/ailerons-in-l/function">
+		<switch name="/systems/fcs/aileron-in-l/switch">
+			<default value="/systems/fcs/aileron-droop"/>
+			<test logic="OR" value="/systems/fcs/aileron-in-l/function">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -367,31 +367,31 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/ailerons-in-l/cmd-deg">
-			<input>/systems/fcs/ailerons-in-l/switch</input>
+		<pure_gain name="/systems/fcs/aileron-in-l/cmd-deg">
+			<input>/systems/fcs/aileron-in-l/switch</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/ailerons-in-l/rate">
-			<default value="/systems/fcs/ailerons-in-droop-rate"/>
+		<switch name="/systems/fcs/aileron-in-l/rate">
+			<default value="/systems/fcs/aileron-in-droop-rate"/>
 			<test logic="OR" value="80">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/ailerons-in-l/final-actuator">
-			<input>/systems/fcs/ailerons-in-l/cmd-deg</input>
-			<rate_limit>/systems/fcs/ailerons-in-l/rate</rate_limit>
+		<actuator name="/systems/fcs/aileron-in-l/final-actuator">
+			<input>/systems/fcs/aileron-in-l/cmd-deg</input>
+			<rate_limit>/systems/fcs/aileron-in-l/rate</rate_limit>
 			<lag>26.5</lag>
-			<output>/systems/fcs/ailerons-in-l/final-deg</output>
+			<output>/systems/fcs/aileron-in-l/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Aileron R Inner">
 		
-		<fcs_function name="/systems/fcs/ailerons-in-r/function">
+		<fcs_function name="/systems/fcs/aileron-in-r/function">
 			<function>
 				<sum>
 					<table>
@@ -408,9 +408,9 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/fcs/ailerons-in-r/switch">
-			<default value="/systems/fcs/ailerons-droop"/>
-			<test logic="OR" value="/systems/fcs/ailerons-in-r/function">
+		<switch name="/systems/fcs/aileron-in-r/switch">
+			<default value="/systems/fcs/aileron-droop"/>
+			<test logic="OR" value="/systems/fcs/aileron-in-r/function">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -420,31 +420,31 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/ailerons-in-r/cmd-deg">
-			<input>/systems/fcs/ailerons-in-r/switch</input>
+		<pure_gain name="/systems/fcs/aileron-in-r/cmd-deg">
+			<input>/systems/fcs/aileron-in-r/switch</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/ailerons-in-r/rate">
-			<default value="/systems/fcs/ailerons-in-droop-rate"/>
+		<switch name="/systems/fcs/aileron-in-r/rate">
+			<default value="/systems/fcs/aileron-in-droop-rate"/>
 			<test logic="OR" value="80">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/ailerons-in-r/final-actuator">
-			<input>/systems/fcs/ailerons-in-r/cmd-deg</input>
-			<rate_limit>/systems/fcs/ailerons-in-r/rate</rate_limit>
+		<actuator name="/systems/fcs/aileron-in-r/final-actuator">
+			<input>/systems/fcs/aileron-in-r/cmd-deg</input>
+			<rate_limit>/systems/fcs/aileron-in-r/rate</rate_limit>
 			<lag>26.5</lag>
-			<output>/systems/fcs/ailerons-in-r/final-deg</output>
+			<output>/systems/fcs/aileron-in-r/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Aileron R Outer">
 		
-		<fcs_function name="/systems/fcs/ailerons-out-r/function">
+		<fcs_function name="/systems/fcs/aileron-out-r/function">
 			<function>
 				<sum>
 					<product>
@@ -459,16 +459,16 @@
 							</table>
 							<property>/systems/fcs/ailerons/trim-right</property> <!-- Slew neutral point -->
 						</sum>
-						<property>/systems/fcs/ailerons-out-enable</property>
+						<property>/systems/fcs/aileron-out-enable</property>
 					</product>
 					<property>/systems/fcs/deflected-aileron/out</property>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/fcs/ailerons-out-r/switch">
-			<default value="/systems/fcs/ailerons-droop"/>
-			<test logic="OR" value="/systems/fcs/ailerons-out-r/function">
+		<switch name="/systems/fcs/aileron-out-r/switch">
+			<default value="/systems/fcs/aileron-droop"/>
+			<test logic="OR" value="/systems/fcs/aileron-out-r/function">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -478,24 +478,24 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/ailerons-out-r/cmd-deg">
-			<input>/systems/fcs/ailerons-out-r/switch</input>
+		<pure_gain name="/systems/fcs/aileron-out-r/cmd-deg">
+			<input>/systems/fcs/aileron-out-r/switch</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/ailerons-out-r/rate">
-			<default value="/systems/fcs/ailerons-out-droop-rate"/>
+		<switch name="/systems/fcs/aileron-out-r/rate">
+			<default value="/systems/fcs/aileron-out-droop-rate"/>
 			<test logic="OR" value="80">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/ailerons-out-r/final-actuator">
-			<input>/systems/fcs/ailerons-out-r/cmd-deg</input>
-			<rate_limit>/systems/fcs/ailerons-out-r/rate</rate_limit>
+		<actuator name="/systems/fcs/aileron-out-r/final-actuator">
+			<input>/systems/fcs/aileron-out-r/cmd-deg</input>
+			<rate_limit>/systems/fcs/aileron-out-r/rate</rate_limit>
 			<lag>26.5</lag>
-			<output>/systems/fcs/ailerons-out-r/final-deg</output>
+			<output>/systems/fcs/aileron-out-r/final-deg</output>
 		</actuator>
 	
 	</channel>

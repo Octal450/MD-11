@@ -9,7 +9,7 @@
 		
 		<!-- General -->
 		<lag_filter name="/controls/cockpit/aileron-yoke">
-			<input>/systems/fcs/ailerons-yoke-sum</input>
+			<input>/systems/fcs/aileron-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		

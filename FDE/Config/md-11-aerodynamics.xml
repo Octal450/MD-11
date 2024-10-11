@@ -190,7 +190,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/ailerons-out-l/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-out-l/final-deg</property></toradians>
 				<value>0.018246</value>
 			</product>
 		</function>
@@ -200,7 +200,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/ailerons-in-l/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-in-l/final-deg</property></toradians>
 				<value>0.018246</value>
 			</product>
 		</function>
@@ -210,7 +210,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/ailerons-in-r/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-in-r/final-deg</property></toradians>
 				<value>0.018246</value>
 			</product>
 		</function>
@@ -220,7 +220,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/ailerons-out-r/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-out-r/final-deg</property></toradians>
 				<value>0.018246</value>
 			</product>
 		</function>
@@ -412,7 +412,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>/systems/fcs/ailerons-out-l/final-deg</property></toradians></abs>
+				<abs><toradians><property>/systems/fcs/aileron-out-l/final-deg</property></toradians></abs>
 				<value>0.0023456688</value>
 			</product>
 		</function>
@@ -422,7 +422,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>/systems/fcs/ailerons-in-l/final-deg</property></toradians></abs>
+				<abs><toradians><property>/systems/fcs/aileron-in-l/final-deg</property></toradians></abs>
 				<value>0.0023456688</value>
 			</product>
 		</function>
@@ -432,7 +432,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>/systems/fcs/ailerons-in-r/final-deg</property></toradians></abs>
+				<abs><toradians><property>/systems/fcs/aileron-in-r/final-deg</property></toradians></abs>
 				<value>0.0023456688</value>
 			</product>
 		</function>
@@ -442,7 +442,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<abs><toradians><property>/systems/fcs/ailerons-out-r/final-deg</property></toradians></abs>
+				<abs><toradians><property>/systems/fcs/aileron-out-r/final-deg</property></toradians></abs>
 				<value>0.0023456688</value>
 			</product>
 		</function>
@@ -586,7 +586,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/ailerons-out-l/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-out-l/final-deg</property></toradians>
 				<value>0.0184579</value>
 			</product>
 		</function>
@@ -597,7 +597,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/ailerons-in-l/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-in-l/final-deg</property></toradians>
 				<value>0.0314954</value>
 			</product>
 		</function>
@@ -608,7 +608,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/ailerons-in-r/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-in-r/final-deg</property></toradians>
 				<value>-0.0314954</value>
 			</product>
 		</function>
@@ -619,7 +619,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/ailerons-out-r/final-deg</property></toradians>
+				<toradians><property>/systems/fcs/aileron-out-r/final-deg</property></toradians>
 				<value>-0.0184579</value>
 			</product>
 		</function>

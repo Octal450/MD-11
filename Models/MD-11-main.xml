@@ -709,7 +709,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL2</object-name>
-		<property>systems/fcs/ailerons-out-l/final-deg</property>
+		<property>systems/fcs/aileron-out-l/final-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -724,7 +724,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-		<property>systems/fcs/ailerons-in-l/final-deg</property>
+		<property>systems/fcs/aileron-in-l/final-deg</property>
 		<factor>-1</factor>		
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -739,7 +739,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-		<property>systems/fcs/ailerons-in-r/final-deg</property>
+		<property>systems/fcs/aileron-in-r/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -754,7 +754,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-		<property>systems/fcs/ailerons-out-r/final-deg</property>
+		<property>systems/fcs/aileron-out-r/final-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>

@@ -316,9 +316,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-l">
 			<function>
 				<avg>
-					<property>/systems/fcs/ailerons-in-l/final-deg</property>
+					<property>/systems/fcs/aileron-in-l/final-deg</property>
 					<table>
-						<independentVar lookup="row">/systems/fcs/ailerons-out-l/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-l/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
@@ -341,9 +341,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-r">
 			<function>
 				<avg>
-					<property>/systems/fcs/ailerons-in-r/final-deg</property>
+					<property>/systems/fcs/aileron-in-r/final-deg</property>
 					<table>
-						<independentVar lookup="row">/systems/fcs/ailerons-out-r/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-r/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
