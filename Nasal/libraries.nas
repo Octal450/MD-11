@@ -73,9 +73,9 @@ var systemsLoop = maketimer(0.1, func() {
 	SHAKE.loop();
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
+		pts.Sim.Model.wingflexEnable.setBoolValue(0);
 	} else {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
+		pts.Sim.Model.wingflexEnable.setBoolValue(1);
 	}
 	
 	pts.Services.Chocks.enableTemp = pts.Services.Chocks.enable.getBoolValue();

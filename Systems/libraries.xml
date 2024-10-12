@@ -130,7 +130,7 @@
 		<enable>
 			<condition>
 				<equals>
-					<property>/controls/flight/wingflex-enable</property>
+					<property>/sim/model/wingflex-enable</property>
 					<value>1</value>
 				</equals>
 			</condition>
