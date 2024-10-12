@@ -54,8 +54,8 @@ var APU = {
 			me.Lights.avail.setValue(1);
 			me.Lights.on.setValue(1);
 			if (me.autoConnect) {
-				if (ELEC.Epcu.allowApu.getBoolValue()) {
-					ELEC.Controls.apuPwr.setBoolValue(1);
+				if (ELECTRICAL.Epcu.allowApu.getBoolValue()) {
+					ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 				}
 			}
 		} else {
@@ -68,7 +68,7 @@ var APU = {
 		}
 	},
 	startStop: func(t) {
-		if (ELEC.Bus.dcBat.getValue() >= 24) {
+		if (ELECTRICAL.Bus.dcBat.getValue() >= 24) {
 			if (!me.Controls.start.getBoolValue() and me.n2.getValue() < 1.8) {
 				me.autoConnect = t;
 				me.Controls.start.setBoolValue(1);
@@ -78,7 +78,7 @@ var APU = {
 				me.Controls.start.setBoolValue(0);
 				me.Lights.avail.setValue(0);
 				me.Lights.on.setValue(0);
-				PNEU.Controls.bleedApu.setBoolValue(0);
+				PNEUMATICS.Controls.bleedApu.setBoolValue(0);
 				me.autoConnect = 0;
 			}
 		}
@@ -88,15 +88,15 @@ var APU = {
 		me.Controls.start.setBoolValue(0);
 		me.Lights.avail.setValue(0);
 		me.Lights.on.setValue(0);
-		PNEU.Controls.bleedApu.setBoolValue(0);
+		PNEUMATICS.Controls.bleedApu.setBoolValue(0);
 		me.autoConnect = 0;
 	},
 };
 
 setlistener("/systems/electrical/epcu/allow-apu-out", func() {
 	if (APU.autoConnect) {
-		if (ELEC.Epcu.allowApu.getBoolValue() and APU.state.getValue() == 3) {
-			ELEC.Controls.apuPwr.setBoolValue(1);
+		if (ELECTRICAL.Epcu.allowApu.getBoolValue() and APU.state.getValue() == 3) {
+			ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 		}
 	}
 }, 0, 0);
