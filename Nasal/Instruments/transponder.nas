@@ -26,7 +26,7 @@ var XPDR = {
 	},
 	getOnMode: func() {
 		if (me.altReport.getBoolValue()) {
-			if (!pts.Fdm.JSBSim.Position.wow.getBoolValue()) {
+			if (!pts.Position.wow.getBoolValue()) {
 				return 5; # Altitude
 			} else {
 				return 3; # Ground

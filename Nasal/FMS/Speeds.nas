@@ -143,7 +143,7 @@ var FmsSpd = {
 		
 		if (fms.FlightData.v2 > 0) {
 			if (!Value.wow) {
-				if (pts.Fdm.JSBSim.Libraries.anyEngineOut.getBoolValue()) {
+				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
 					if (!me.v2Toggle) { # Only set the speed once
 						me.v2Toggle = 1;
 						me.toKts = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);

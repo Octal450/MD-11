@@ -384,7 +384,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/hydraulics/system eq 1
-				libraries/multi-engine-out eq 1
+				/systems/engines/multi-engine-out eq 1
 				/systems/hydraulics/hsc/config-active eq 4
 			</test>
 			<test value="0">
@@ -433,7 +433,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/hydraulics/system eq 1
-				libraries/multi-engine-out eq 1
+				/systems/engines/multi-engine-out eq 1
 				/systems/hydraulics/hsc/config-active eq 4
 			</test>
 			<test value="0">

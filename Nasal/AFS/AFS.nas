@@ -40,7 +40,7 @@ var FPLN = {
 
 var Gear = {
 	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
-	wow0Timer: props.globals.getNode("/gear/gear[0]/wow-timer", 1),
+	
 	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
 	wow1Temp: 1,
 	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
@@ -1508,7 +1508,7 @@ var ITAF = {
 	},
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
-		if (Gear.wow0Timer.getValue() < 1 and Output.vertTemp != 7 and Position.gearAglFt.getValue() < 2500) {
+		if (systems.FCC.nlgWowTimer20.getValue() < 1 and Output.vertTemp != 7 and Position.gearAglFt.getValue() < 2500) {
 			if (!Output.fd1.getBoolValue()) {
 				me.fd1Master(1);
 			}

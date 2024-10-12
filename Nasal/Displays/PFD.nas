@@ -325,9 +325,9 @@ var canvasBase = {
 		Value.Iru.mainAvail[0] = systems.IRS.Iru.mainAvail[0].getBoolValue();
 		Value.Iru.mainAvail[1] = systems.IRS.Iru.mainAvail[1].getBoolValue();
 		Value.Iru.mainAvail[2] = systems.IRS.Iru.mainAvail[2].getBoolValue();
-		Value.Misc.blinkFast = pts.Fdm.JSBSim.Libraries.blinkFast.getBoolValue();
-		Value.Misc.blinkMed = pts.Fdm.JSBSim.Libraries.blinkMed.getBoolValue();
-		Value.Misc.blinkMed2 = pts.Fdm.JSBSim.Libraries.blinkMed2.getBoolValue();
+		Value.Misc.blinkFast = pts.Systems.Libraries.blinkFast.getBoolValue();
+		Value.Misc.blinkMed = pts.Systems.Libraries.blinkMed.getBoolValue();
+		Value.Misc.blinkMed2 = pts.Systems.Libraries.blinkMed2.getBoolValue();
 		Value.Misc.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		Value.Misc.flapsCmd = systems.FCS.flapsCmd.getValue();
 		Value.Misc.flapsPos = systems.FCS.flapsDeg.getValue();
@@ -336,8 +336,8 @@ var canvasBase = {
 		Value.Misc.slatsCmd = systems.FCS.slatsCmd.getValue();
 		Value.Misc.slatsPos = systems.FCS.slatsDeg.getValue();
 		Value.Misc.slatsOut = Value.Misc.slatsCmd >= 0.1 or Value.Misc.slatsPos >= 0.1;
-		Value.Misc.twoEngineOn = pts.Fdm.JSBSim.Libraries.twoEngineOn.getBoolValue();
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.twoEngineOn = systems.ENGINES.twoEngineOn.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.

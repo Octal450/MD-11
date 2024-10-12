@@ -133,9 +133,9 @@ var BRAKES = {
 		me.Abs.mode.setValue(0);
 	},
 	absSetUpdate: func(n) {
-		pts.Fdm.JSBSim.Position.wowTemp = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		pts.Position.wowTemp = pts.Position.wow.getBoolValue();
 		if (n == -1) {
-			if (pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (pts.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(-1);
 				me.Abs.armed.setBoolValue(1);
 			} else {
@@ -144,21 +144,21 @@ var BRAKES = {
 		} else if (n == 0) {
 			me.absSetOff(0);
 		} else if (n == 1) {
-			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(1);
 				me.Abs.armed.setBoolValue(1);
 			} else {
 				me.absSetOff(1);
 			}
 		} else if (n == 2) {
-			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(2);
 				me.Abs.armed.setBoolValue(1);
 			} else {
 				me.absSetOff(1);
 			}
 		} else if (n == 3) {
-			if (!pts.Fdm.JSBSim.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
+			if (!pts.Position.wowTemp and !me.Abs.disarm.getBoolValue()) { # Disarm is cleared at OFF position
 				me.Abs.mode.setValue(3);
 				me.Abs.armed.setBoolValue(1);
 			} else {
@@ -178,9 +178,12 @@ setlistener("/systems/abs/disarm", func() {
 
 # Engine Control
 var ENGINES = {
+	anyEngineOn: props.globals.getNode("/systems/engines/any-engine-on"),
+	anyEngineOut: props.globals.getNode("/systems/engines/any-engine-out"),
 	egt: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual")],
 	epr: [props.globals.getNode("/engines/engine[0]/epr-actual"), props.globals.getNode("/engines/engine[1]/epr-actual"), props.globals.getNode("/engines/engine[2]/epr-actual")],
 	ff: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual")],
+	multiEngineOut: props.globals.getNode("/systems/engines/multi-engine-out"),
 	n1: [props.globals.getNode("/engines/engine[0]/n1-actual"), props.globals.getNode("/engines/engine[1]/n1-actual"), props.globals.getNode("/engines/engine[2]/n1-actual")],
 	n2: [props.globals.getNode("/engines/engine[0]/n2-actual"), props.globals.getNode("/engines/engine[1]/n2-actual"), props.globals.getNode("/engines/engine[2]/n2-actual")],
 	nacelleTemp: [props.globals.getNode("/engines/engine[0]/nacelle-temp"), props.globals.getNode("/engines/engine[1]/nacelle-temp"), props.globals.getNode("/engines/engine[2]/nacelle-temp")],
@@ -189,6 +192,7 @@ var ENGINES = {
 	oilQtyInput: [props.globals.getNode("/engines/engine[0]/oil-qty-input"), props.globals.getNode("/engines/engine[1]/oil-qty-input"), props.globals.getNode("/engines/engine[2]/oil-qty-input")],
 	oilTemp: [props.globals.getNode("/engines/engine[0]/oil-temp"), props.globals.getNode("/engines/engine[1]/oil-temp"), props.globals.getNode("/engines/engine[2]/oil-temp")],
 	state: [props.globals.getNode("/engines/engine[0]/state"), props.globals.getNode("/engines/engine[1]/state"), props.globals.getNode("/engines/engine[2]/state")],
+	twoEngineOn: props.globals.getNode("/systems/engines/two-engine-on"),
 	Controls: {
 		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
 		reverseEngage: [props.globals.getNode("/controls/engines/engine[0]/reverse-engage"), props.globals.getNode("/controls/engines/engine[1]/reverse-engage"), props.globals.getNode("/controls/engines/engine[2]/reverse-engage")],
@@ -216,113 +220,113 @@ var ENGINES = {
 # Base off Engine 2
 var doRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		ENGINE.Controls.throttleTemp[1] = ENGINE.Controls.throttle[1].getValue();
-		if (!ENGINE.Controls.reverseEngage[0].getBoolValue() or !ENGINE.Controls.reverseEngage[1].getBoolValue() or !ENGINE.Controls.reverseEngage[2].getBoolValue()) {
-			ENGINE.Controls.reverseEngage[0].setBoolValue(1);
-			ENGINE.Controls.reverseEngage[1].setBoolValue(1);
-			ENGINE.Controls.reverseEngage[2].setBoolValue(1);
-			ENGINE.Controls.throttle[0].setValue(0);
-			ENGINE.Controls.throttle[1].setValue(0);
-			ENGINE.Controls.throttle[2].setValue(0);
-		} else if (ENGINE.Controls.throttleTemp[1] < 0.4) {
-			ENGINE.Controls.throttle[0].setValue(0.4);
-			ENGINE.Controls.throttle[1].setValue(0.4);
-			ENGINE.Controls.throttle[2].setValue(0.4);
-		} else if (ENGINE.Controls.throttleTemp[1] < 0.7) {
-			ENGINE.Controls.throttle[0].setValue(0.7);
-			ENGINE.Controls.throttle[1].setValue(0.7);
-			ENGINE.Controls.throttle[2].setValue(0.7);
-		} else if (ENGINE.Controls.throttleTemp[1] < 1) {
-			ENGINE.Controls.throttle[0].setValue(1);
-			ENGINE.Controls.throttle[1].setValue(1);
-			ENGINE.Controls.throttle[2].setValue(1);
+		ENGINES.Controls.throttleTemp[1] = ENGINES.Controls.throttle[1].getValue();
+		if (!ENGINES.Controls.reverseEngage[0].getBoolValue() or !ENGINES.Controls.reverseEngage[1].getBoolValue() or !ENGINES.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINES.Controls.reverseEngage[0].setBoolValue(1);
+			ENGINES.Controls.reverseEngage[1].setBoolValue(1);
+			ENGINES.Controls.reverseEngage[2].setBoolValue(1);
+			ENGINES.Controls.throttle[0].setValue(0);
+			ENGINES.Controls.throttle[1].setValue(0);
+			ENGINES.Controls.throttle[2].setValue(0);
+		} else if (ENGINES.Controls.throttleTemp[1] < 0.4) {
+			ENGINES.Controls.throttle[0].setValue(0.4);
+			ENGINES.Controls.throttle[1].setValue(0.4);
+			ENGINES.Controls.throttle[2].setValue(0.4);
+		} else if (ENGINES.Controls.throttleTemp[1] < 0.7) {
+			ENGINES.Controls.throttle[0].setValue(0.7);
+			ENGINES.Controls.throttle[1].setValue(0.7);
+			ENGINES.Controls.throttle[2].setValue(0.7);
+		} else if (ENGINES.Controls.throttleTemp[1] < 1) {
+			ENGINES.Controls.throttle[0].setValue(1);
+			ENGINES.Controls.throttle[1].setValue(1);
+			ENGINES.Controls.throttle[2].setValue(1);
 		}
 	} else {
-		ENGINE.Controls.throttle[0].setValue(0);
-		ENGINE.Controls.throttle[1].setValue(0);
-		ENGINE.Controls.throttle[2].setValue(0);
-		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
+		ENGINES.Controls.throttle[0].setValue(0);
+		ENGINES.Controls.throttle[1].setValue(0);
+		ENGINES.Controls.throttle[2].setValue(0);
+		ENGINES.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var unRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.Controls.reverseEngage[0].getBoolValue() or ENGINE.Controls.reverseEngage[1].getBoolValue() or ENGINE.Controls.reverseEngage[2].getBoolValue()) {
-			ENGINE.Controls.throttleTemp[1] = ENGINE.Controls.throttle[1].getValue();
-			if (ENGINE.Controls.throttleTemp[1] > 0.7) {
-				ENGINE.Controls.throttle[0].setValue(0.7);
-				ENGINE.Controls.throttle[1].setValue(0.7);
-				ENGINE.Controls.throttle[2].setValue(0.7);
-			} else if (ENGINE.Controls.throttleTemp[1] > 0.4) {
-				ENGINE.Controls.throttle[0].setValue(0.4);
-				ENGINE.Controls.throttle[1].setValue(0.4);
-				ENGINE.Controls.throttle[2].setValue(0.4);
-			} else if (ENGINE.Controls.throttleTemp[1] > 0.05) {
-				ENGINE.Controls.throttle[0].setValue(0);
-				ENGINE.Controls.throttle[1].setValue(0);
-				ENGINE.Controls.throttle[2].setValue(0);
+		if (ENGINES.Controls.reverseEngage[0].getBoolValue() or ENGINES.Controls.reverseEngage[1].getBoolValue() or ENGINES.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINES.Controls.throttleTemp[1] = ENGINES.Controls.throttle[1].getValue();
+			if (ENGINES.Controls.throttleTemp[1] > 0.7) {
+				ENGINES.Controls.throttle[0].setValue(0.7);
+				ENGINES.Controls.throttle[1].setValue(0.7);
+				ENGINES.Controls.throttle[2].setValue(0.7);
+			} else if (ENGINES.Controls.throttleTemp[1] > 0.4) {
+				ENGINES.Controls.throttle[0].setValue(0.4);
+				ENGINES.Controls.throttle[1].setValue(0.4);
+				ENGINES.Controls.throttle[2].setValue(0.4);
+			} else if (ENGINES.Controls.throttleTemp[1] > 0.05) {
+				ENGINES.Controls.throttle[0].setValue(0);
+				ENGINES.Controls.throttle[1].setValue(0);
+				ENGINES.Controls.throttle[2].setValue(0);
 			} else {
-				ENGINE.Controls.throttle[0].setValue(0);
-				ENGINE.Controls.throttle[1].setValue(0);
-				ENGINE.Controls.throttle[2].setValue(0);
-				ENGINE.Controls.reverseEngage[0].setBoolValue(0);
-				ENGINE.Controls.reverseEngage[1].setBoolValue(0);
-				ENGINE.Controls.reverseEngage[2].setBoolValue(0);
+				ENGINES.Controls.throttle[0].setValue(0);
+				ENGINES.Controls.throttle[1].setValue(0);
+				ENGINES.Controls.throttle[2].setValue(0);
+				ENGINES.Controls.reverseEngage[0].setBoolValue(0);
+				ENGINES.Controls.reverseEngage[1].setBoolValue(0);
+				ENGINES.Controls.reverseEngage[2].setBoolValue(0);
 			}
 		}
 	} else {
-		ENGINE.Controls.throttle[0].setValue(0);
-		ENGINE.Controls.throttle[1].setValue(0);
-		ENGINE.Controls.throttle[2].setValue(0);
-		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
+		ENGINES.Controls.throttle[0].setValue(0);
+		ENGINES.Controls.throttle[1].setValue(0);
+		ENGINES.Controls.throttle[2].setValue(0);
+		ENGINES.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var toggleRevThrust = func() {
 	if ((pts.Gear.wow[1].getBoolValue() or pts.Gear.wow[2].getBoolValue()) and FADEC.throttleCompareMax.getValue() <= 0.05) {
-		if (ENGINE.Controls.reverseEngage[0].getBoolValue() or ENGINE.Controls.reverseEngage[1].getBoolValue() or ENGINE.Controls.reverseEngage[2].getBoolValue()) {
-			ENGINE.Controls.throttle[0].setValue(0);
-			ENGINE.Controls.throttle[1].setValue(0);
-			ENGINE.Controls.throttle[2].setValue(0);
-			ENGINE.Controls.reverseEngage[0].setBoolValue(0);
-			ENGINE.Controls.reverseEngage[1].setBoolValue(0);
-			ENGINE.Controls.reverseEngage[2].setBoolValue(0);
+		if (ENGINES.Controls.reverseEngage[0].getBoolValue() or ENGINES.Controls.reverseEngage[1].getBoolValue() or ENGINES.Controls.reverseEngage[2].getBoolValue()) {
+			ENGINES.Controls.throttle[0].setValue(0);
+			ENGINES.Controls.throttle[1].setValue(0);
+			ENGINES.Controls.throttle[2].setValue(0);
+			ENGINES.Controls.reverseEngage[0].setBoolValue(0);
+			ENGINES.Controls.reverseEngage[1].setBoolValue(0);
+			ENGINES.Controls.reverseEngage[2].setBoolValue(0);
 		} else {
-			ENGINE.Controls.reverseEngage[0].setBoolValue(1);
-			ENGINE.Controls.reverseEngage[1].setBoolValue(1);
-			ENGINE.Controls.reverseEngage[2].setBoolValue(1);
+			ENGINES.Controls.reverseEngage[0].setBoolValue(1);
+			ENGINES.Controls.reverseEngage[1].setBoolValue(1);
+			ENGINES.Controls.reverseEngage[2].setBoolValue(1);
 		}
 	} else {
-		ENGINE.Controls.throttle[0].setValue(0);
-		ENGINE.Controls.throttle[1].setValue(0);
-		ENGINE.Controls.throttle[2].setValue(0);
-		ENGINE.Controls.reverseEngage[0].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[1].setBoolValue(0);
-		ENGINE.Controls.reverseEngage[2].setBoolValue(0);
+		ENGINES.Controls.throttle[0].setValue(0);
+		ENGINES.Controls.throttle[1].setValue(0);
+		ENGINES.Controls.throttle[2].setValue(0);
+		ENGINES.Controls.reverseEngage[0].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[1].setBoolValue(0);
+		ENGINES.Controls.reverseEngage[2].setBoolValue(0);
 	}
 }
 
 var doIdleThrust = func() {
-	ENGINE.Controls.throttle[0].setValue(0);
-	ENGINE.Controls.throttle[1].setValue(0);
-	ENGINE.Controls.throttle[2].setValue(0);
+	ENGINES.Controls.throttle[0].setValue(0);
+	ENGINES.Controls.throttle[1].setValue(0);
+	ENGINES.Controls.throttle[2].setValue(0);
 }
 
 var doLimitThrust = func() {
 	var active = FADEC.Limit.activeNorm.getValue();
-	ENGINE.Controls.throttle[0].setValue(active);
-	ENGINE.Controls.throttle[1].setValue(active);
-	ENGINE.Controls.throttle[2].setValue(active);
+	ENGINES.Controls.throttle[0].setValue(active);
+	ENGINES.Controls.throttle[1].setValue(active);
+	ENGINES.Controls.throttle[2].setValue(active);
 }
 
 var doFullThrust = func() {
-	ENGINE.Controls.throttle[0].setValue(1);
-	ENGINE.Controls.throttle[1].setValue(1);
-	ENGINE.Controls.throttle[2].setValue(1);
+	ENGINES.Controls.throttle[0].setValue(1);
+	ENGINES.Controls.throttle[1].setValue(1);
+	ENGINES.Controls.throttle[2].setValue(1);
 }
 
 # FADEC
@@ -365,7 +369,7 @@ var FADEC = {
 		me.Limit.pwDerate.setBoolValue(1);
 	},
 	loop: func() {
-		me.anyEngineOut = pts.Fdm.JSBSim.Libraries.anyEngineOut.getBoolValue();
+		me.anyEngineOut = systems.ENGINES.anyEngineOut.getBoolValue();
 		me.pitchMode = afs.Text.vert.getValue();
 		
 		if (me.Limit.auto.getBoolValue()) {
@@ -436,6 +440,7 @@ var FCC = {
 		RightInActive: props.globals.getNode("/systems/fcc/lsas/right-in-active"),
 		RightOutActive: props.globals.getNode("/systems/fcc/lsas/right-out-active"),
 	},
+	nlgWowTimer20: props.globals.getNode("/systems/fcc/nlg-wow-timer-20", 1),
 	pitchTrimSpeed: props.globals.getNode("/systems/fcc/pitch-trim-speed"),
 	powerAvail: props.globals.getNode("/systems/fcc/power-avail"),
 	powerAvailTemp: 0,
@@ -602,11 +607,11 @@ var IGNITION = {
 		me.Controls.ignOvrd.setBoolValue(0);
 	},
 	fastStart: func(n) {
-		ENGINE.Controls.cutoff[n].setBoolValue(0);
+		ENGINES.Controls.cutoff[n].setBoolValue(0);
 		pts.Fdm.JSBSim.Propulsion.setRunning.setValue(n);
 	},
 	fastStop: func(n) {
-		ENGINE.Controls.cutoff[n].setBoolValue(1);
+		ENGINES.Controls.cutoff[n].setBoolValue(1);
 		settimer(func() { # Required delay
 			if (systems.ENGINES.n2[n].getValue() > 1) {
 				pts.Fdm.JSBSim.Propulsion.ENGINES.n1[n].setValue(0.1);

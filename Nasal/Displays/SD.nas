@@ -140,7 +140,7 @@ var canvasConfig = {
 	setup: func() {
 	},
 	update: func() {
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -516,7 +516,7 @@ var canvasConseq = {
 		return ["Error"];
 	},
 	update: func() {
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -530,7 +530,7 @@ var canvasConseq = {
 
 var canvasEngBase = {
 	updateEngBase: func() {
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -1034,7 +1034,7 @@ var canvasMisc = {
 		return ["Error"];
 	},
 	update: func() {
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.
@@ -1057,7 +1057,7 @@ var canvasStatus = {
 		return ["Error"];
 	},
 	update: func() {
-		Value.Misc.wow = pts.Fdm.JSBSim.Position.wow.getBoolValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
 		# Errors, these don't have separate logic yet.

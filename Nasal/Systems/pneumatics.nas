@@ -111,4 +111,4 @@ var PNEUMATICS = {
 	},
 };
 
-var manualPneuLightt = maketimer(0.4, PNEU, PNEU.manualLight);
+var manualPneuLightt = maketimer(0.4, PNEUMATICS, PNEUMATICS.manualLight);

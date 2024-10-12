@@ -5,9 +5,6 @@
 
 <system name="MD-11: Libraries">
 	
-	<property value="0">/systems/iru-common/any-aligned-out</property>
-	<property value="0">/systems/iru-common/all-aligned-out</property>
-	
 	<channel name="FDM Rate Libraries">
 		
 		<switch name="position/wow">
@@ -17,7 +14,7 @@
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
 			</test>
-			<output>position/wow-out</output>
+			<output>/position/wow</output> <!-- Copy to local tree -->
 		</switch>
 		
 		<switch name="aero/alpha-deg-fixed">
@@ -145,11 +142,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/gear/gear[0]/wow-timer">
+		<actuator name="/systems/fcc/nlg-wow-timer-20">
 			<input>/gear/gear[0]/wow</input>
 			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
 			<rate_limit sense="decr">1000</rate_limit>
-			<output>/gear/gear[0]/wow-timer-out</output>
 		</actuator>
 		
 		<switch name="/orientation/track-magnetic-deg-switched">
@@ -170,7 +166,7 @@
 	
 	<channel name="Execrate 8 Libraries" execrate="8">
 		
-		<switch name="libraries/any-engine-on">
+		<switch name="/systems/engines/any-engine-on">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/engines/engine[0]/state eq 3
@@ -179,7 +175,7 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/any-engine-out">
+		<switch name="/systems/engines/any-engine-out">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/engines/engine[0]/state ne 3
@@ -188,7 +184,7 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/multi-engine-out">
+		<switch name="/systems/engines/multi-engine-out">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/engines/engine[0]/state ne 3
@@ -204,7 +200,7 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/two-engine-on">
+		<switch name="/systems/engines/two-engine-on">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/engines/engine[0]/state eq 3
@@ -220,7 +216,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="libraries/blink-fast">
+		<fcs_function name="/systems/libraries/blink-fast">
 			<function>
 				<floor>
 					<mod>
@@ -234,7 +230,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="libraries/blink-med">
+		<fcs_function name="/systems/libraries/blink-med">
 			<function>
 				<floor>
 					<mod>
@@ -248,7 +244,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="libraries/blink-med-2">
+		<fcs_function name="/systems/libraries/blink-med-2">
 			<function>
 				<floor>
 					<mod>

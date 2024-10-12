@@ -132,4 +132,4 @@ var HYDRAULICS = {
 	},
 };
 
-var manualHydLightt = maketimer(0.4, HYD, HYD.manualLight);
+var manualHydLightt = maketimer(0.4, HYDRAULICS, HYDRAULICS.manualLight);

@@ -222,4 +222,4 @@ var ELECTRICAL = {
 	},
 };
 
-var manualElecLightt = maketimer(0.4, ELEC, ELEC.manualLight);
+var manualElecLightt = maketimer(0.4, ELECTRICAL, ELECTRICAL.manualLight);

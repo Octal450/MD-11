@@ -62,19 +62,6 @@ var Fdm = {
 			zfwLbs: props.globals.getNode("/fdm/jsbsim/inertia/zfw-lbs"),
 			zfwcgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/zfwcg-percent-mac"),
 		},
-		Libraries: {
-			anyEngineOn: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-on"),
-			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
-			blinkFast: props.globals.getNode("/fdm/jsbsim/libraries/blink-fast"),
-			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),
-			blinkMed2: props.globals.getNode("/fdm/jsbsim/libraries/blink-med-2"),
-			multiEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/multi-engine-out"),
-			twoEngineOn: props.globals.getNode("/fdm/jsbsim/libraries/two-engine-on"),
-		},
-		Position: {
-			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
-			wowTemp: 0,
-		},
 		Propulsion: {
 			Engine: {
 				n1: [props.globals.getNode("/fdm/jsbsim/propulsion/engine[0]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[1]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[2]/n1"), props.globals.getNode("/fdm/jsbsim/propulsion/engine[3]/n1")],
@@ -236,6 +223,8 @@ var Orientation = {
 var Position = {
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 	node: props.globals.getNode("/position"),
+	wow: props.globals.getNode("/position/wow"),
+	wowTemp: 0,
 };
 
 var Services = {
@@ -312,6 +301,11 @@ var Systems = {
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
+	},
+	Libraries: {
+		blinkFast: props.globals.getNode("/systems/libraries/blink-fast"),
+		blinkMed: props.globals.getNode("/systems/libraries/blink-med"),
+		blinkMed2: props.globals.getNode("/systems/libraries/blink-med-2"),
 	},
 	Shake: {
 		shaking: props.globals.getNode("/systems/shake/shaking"),
