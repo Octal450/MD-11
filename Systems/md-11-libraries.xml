@@ -142,12 +142,6 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/systems/fcc/nlg-wow-timer-20">
-			<input>/gear/gear[0]/wow</input>
-			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
-			<rate_limit sense="decr">1000</rate_limit>
-		</actuator>
-		
 		<switch name="/orientation/track-magnetic-deg-switched">
 			<default value="/orientation/heading-magnetic-deg"/>
 			<test logic="AND" value="/orientation/track-magnetic-deg">
