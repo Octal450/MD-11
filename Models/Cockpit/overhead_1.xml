@@ -885,7 +885,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>systems.HYD.systemMode();</script>
+				<script>systems.HYDRAULICS.systemMode();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -2002,7 +2002,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>systems.ELEC.systemMode();</script>
+				<script>systems.ELECTRICAL.systemMode();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -4007,7 +4007,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>nasal</command>
-				<script>systems.PNEU.systemMode();</script>
+				<script>systems.PNEUMATICS.systemMode();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>

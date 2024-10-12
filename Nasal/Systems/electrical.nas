@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 Electrical System
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
-var ELEC = {
+var ELECTRICAL = {
 	Bus: {
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
 		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),

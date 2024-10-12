@@ -91,12 +91,12 @@ var SYSTEM = {
 		}
 	},
 	resetFailures: func() {
-		systems.ELEC.resetFailures();
+		systems.ELECTRICAL.resetFailures();
 		systems.FCC.resetFailures();
 		systems.FUEL.resetFailures();
 		systems.GEAR.resetFailures();
-		systems.HYD.resetFailures();
-		systems.PNEU.resetFailures();
+		systems.HYDRAULICS.resetFailures();
+		systems.PNEUMATICS.resetFailures();
 	},
 	showError: func() {
 		libraries.systemsLoop.stop();
@@ -310,8 +310,8 @@ var PANEL = {
 		me.panelBase(0);
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
-		systems.ELEC.Controls.battery.setBoolValue(1);
-		systems.ELEC.Controls.emerPwr.setValue(1);
+		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
+		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
 		systems.APU.fastStart();
 		systems.IRS.Controls.knob[0].setBoolValue(1);
@@ -330,8 +330,8 @@ var PANEL = {
 			if (systems.APU.state.getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
-				systems.ELEC.Controls.apuPwr.setBoolValue(1);
-				systems.PNEU.Controls.bleedApu.setBoolValue(1);
+				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
+				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
 				
 				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 				spinningT.stop();
@@ -345,12 +345,12 @@ var PANEL = {
 		me.panelBase(t);
 		
 		pts.Services.Chocks.enable.setBoolValue(0);
-		systems.ELEC.Controls.battery.setBoolValue(1);
-		systems.ELEC.Controls.emerPwr.setValue(1);
+		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
+		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
-		systems.ELEC.Controls.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
-		systems.ELEC.Controls.extPwr.setBoolValue(1);
-		systems.ELEC.Controls.extGPwr.setBoolValue(1);
+		systems.ELECTRICAL.Controls.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
+		systems.ELECTRICAL.Controls.extPwr.setBoolValue(1);
+		systems.ELECTRICAL.Controls.extGPwr.setBoolValue(1);
 		systems.IRS.Controls.knob[0].setBoolValue(1);
 		systems.IRS.Controls.knob[1].setBoolValue(1);
 		systems.IRS.Controls.knob[2].setBoolValue(1);
@@ -361,7 +361,7 @@ var PANEL = {
 		systems.IGNITION.Controls.ignA.setBoolValue(1);
 		systems.APU.stopRpm();
 		
-		if (systems.ENGINE.state[0].getValue() != 3 or systems.ENGINE.state[1].getValue() != 3 or systems.ENGINE.state[2].getValue() != 3) {
+		if (systems.ENGINES.state[0].getValue() != 3 or systems.ENGINES.state[1].getValue() != 3 or systems.ENGINES.state[2].getValue() != 3) {
 			engTimer = 3;
 			settimer(func() {
 				if (!me.stop) {
@@ -375,12 +375,12 @@ var PANEL = {
 		}
 		
 		me.l1 = setlistener("/engines/engine[1]/state", func() {
-			if (systems.ENGINE.state[1].getValue() == 3) {
+			if (systems.ENGINES.state[1].getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
-				systems.ELEC.Controls.groundCart.setBoolValue(0);
-				systems.ELEC.Controls.extPwr.setBoolValue(0);
-				systems.ELEC.Controls.extGPwr.setBoolValue(0);
+				systems.ELECTRICAL.Controls.groundCart.setBoolValue(0);
+				systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
+				systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
 				fms.EditFlightData.setAcconfigWeightBalanceData();
 				

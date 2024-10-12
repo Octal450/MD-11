@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 Pneumatic System
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
-var PNEU = {
+var PNEUMATICS = {
 	Flow: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-flow"),
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),

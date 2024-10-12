@@ -667,9 +667,9 @@ var canvasEngBase = {
 		}
 		
 		# Nacelle Temp
-		me["NacelleTemp1"].setText(sprintf("%d", math.round(systems.ENGINE.nacelleTemp[0].getValue())));
-		me["NacelleTemp2"].setText(sprintf("%d", math.round(systems.ENGINE.nacelleTemp[1].getValue())));
-		me["NacelleTemp3"].setText(sprintf("%d", math.round(systems.ENGINE.nacelleTemp[2].getValue())));
+		me["NacelleTemp1"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[0].getValue())));
+		me["NacelleTemp2"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[1].getValue())));
+		me["NacelleTemp3"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[2].getValue())));
 		
 		# APU
 		Value.Apu.n2 = systems.APU.n2.getValue();
@@ -721,19 +721,19 @@ var canvasEngDials = {
 		me.updateEngBase();
 		
 		# Oil Psi
-		me["OilPsi1"].setText(sprintf("%d", systems.ENGINE.oilPsi[0].getValue()));
+		me["OilPsi1"].setText(sprintf("%d", systems.ENGINES.oilPsi[0].getValue()));
 		me["OilPsi1_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[0].getValue() * D2R);
 		
-		me["OilPsi2"].setText(sprintf("%d", systems.ENGINE.oilPsi[1].getValue()));
+		me["OilPsi2"].setText(sprintf("%d", systems.ENGINES.oilPsi[1].getValue()));
 		me["OilPsi2_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[1].getValue() * D2R);
 		
-		me["OilPsi3"].setText(sprintf("%d", systems.ENGINE.oilPsi[2].getValue()));
+		me["OilPsi3"].setText(sprintf("%d", systems.ENGINES.oilPsi[2].getValue()));
 		me["OilPsi3_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilPsi[2].getValue() * D2R);
 		
 		# Oil Temp
-		Value.Eng.oilTemp[0] = math.round(systems.ENGINE.oilTemp[0].getValue());
-		Value.Eng.oilTemp[1] = math.round(systems.ENGINE.oilTemp[1].getValue());
-		Value.Eng.oilTemp[2] = math.round(systems.ENGINE.oilTemp[2].getValue());
+		Value.Eng.oilTemp[0] = math.round(systems.ENGINES.oilTemp[0].getValue());
+		Value.Eng.oilTemp[1] = math.round(systems.ENGINES.oilTemp[1].getValue());
+		Value.Eng.oilTemp[2] = math.round(systems.ENGINES.oilTemp[2].getValue());
 		
 		me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
 		me["OilTemp1_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilTemp[0].getValue() * D2R);
@@ -781,9 +781,9 @@ var canvasEngDials = {
 		}
 		
 		# Oil Qty
-		Value.Eng.oilQty[0] = systems.ENGINE.oilQty[0].getValue();
-		Value.Eng.oilQty[1] = systems.ENGINE.oilQty[1].getValue();
-		Value.Eng.oilQty[2] = systems.ENGINE.oilQty[2].getValue();
+		Value.Eng.oilQty[0] = systems.ENGINES.oilQty[0].getValue();
+		Value.Eng.oilQty[1] = systems.ENGINES.oilQty[1].getValue();
+		Value.Eng.oilQty[2] = systems.ENGINES.oilQty[2].getValue();
 		
 		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
 		me["OilQty1_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[0].getValue() * D2R);
@@ -891,23 +891,23 @@ var canvasEngTapes = {
 		}
 		
 		# Oil Psi
-		Value.Eng.oilPsi[0] = systems.ENGINE.oilPsi[0].getValue();
-		Value.Eng.oilPsi[1] = systems.ENGINE.oilPsi[1].getValue();
-		Value.Eng.oilPsi[2] = systems.ENGINE.oilPsi[2].getValue();
+		Value.Eng.oilPsi[0] = systems.ENGINES.oilPsi[0].getValue();
+		Value.Eng.oilPsi[1] = systems.ENGINES.oilPsi[1].getValue();
+		Value.Eng.oilPsi[2] = systems.ENGINES.oilPsi[2].getValue();
 		
 		me["OilPsi1"].setText(sprintf("%d", Value.Eng.oilPsi[0]));
 		me["OilPsi1_bar"].setTranslation(0, Value.Eng.oilPsi[0] / Value.Eng.oilPsiScale * -251);
 		
-		me["OilPsi2"].setText(sprintf("%d", systems.ENGINE.oilPsi[1].getValue()));
+		me["OilPsi2"].setText(sprintf("%d", systems.ENGINES.oilPsi[1].getValue()));
 		me["OilPsi2_bar"].setTranslation(0, Value.Eng.oilPsi[1] / Value.Eng.oilPsiScale * -251);
 		
-		me["OilPsi3"].setText(sprintf("%d", systems.ENGINE.oilPsi[2].getValue()));
+		me["OilPsi3"].setText(sprintf("%d", systems.ENGINES.oilPsi[2].getValue()));
 		me["OilPsi3_bar"].setTranslation(0, Value.Eng.oilPsi[2] / Value.Eng.oilPsiScale * -251);
 		
 		# Oil Temp
-		Value.Eng.oilTemp[0] = math.round(systems.ENGINE.oilTemp[0].getValue());
-		Value.Eng.oilTemp[1] = math.round(systems.ENGINE.oilTemp[1].getValue());
-		Value.Eng.oilTemp[2] = math.round(systems.ENGINE.oilTemp[2].getValue());
+		Value.Eng.oilTemp[0] = math.round(systems.ENGINES.oilTemp[0].getValue());
+		Value.Eng.oilTemp[1] = math.round(systems.ENGINES.oilTemp[1].getValue());
+		Value.Eng.oilTemp[2] = math.round(systems.ENGINES.oilTemp[2].getValue());
 		
 		me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
 		me["OilTemp1_bar"].setTranslation(0, Value.Eng.oilTemp[0] / 190 * -251);
@@ -955,9 +955,9 @@ var canvasEngTapes = {
 		}
 		
 		# Oil Qty
-		Value.Eng.oilQty[0] = systems.ENGINE.oilQty[0].getValue();
-		Value.Eng.oilQty[1] = systems.ENGINE.oilQty[1].getValue();
-		Value.Eng.oilQty[2] = systems.ENGINE.oilQty[2].getValue();
+		Value.Eng.oilQty[0] = systems.ENGINES.oilQty[0].getValue();
+		Value.Eng.oilQty[1] = systems.ENGINES.oilQty[1].getValue();
+		Value.Eng.oilQty[2] = systems.ENGINES.oilQty[2].getValue();
 		
 		me["OilQty1"].setText(sprintf("%d", math.round(Value.Eng.oilQty[0])));
 		me["OilQty1_bar"].setTranslation(0, Value.Eng.oilQty[0] / 30 * -251);

@@ -21,16 +21,16 @@ var systemsInit = func() {
 	# Standard modules
 	systems.APU.init();
 	systems.BRAKES.init();
-	systems.ELEC.init();
-	systems.ENGINE.init();
+	systems.ELECTRICAL.init();
+	systems.ENGINES.init();
 	systems.FADEC.init();
 	systems.FCC.init();
 	systems.FUEL.init();
 	systems.GEAR.init();
-	systems.HYD.init();
+	systems.HYDRAULICS.init();
 	systems.IGNITION.init();
 	systems.IRS.init();
-	systems.PNEU.init();
+	systems.PNEUMATICS.init();
 	afs.ITAF.init();
 	fms.CORE.init();
 	instruments.EFIS.init();
@@ -85,13 +85,13 @@ var systemsLoop = maketimer(0.1, func() {
 	}
 	
 	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Controls.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-		if (systems.ELEC.Controls.groundCart.getBoolValue() or systems.ELEC.Controls.extPwr.getBoolValue() or systems.ELEC.Controls.extGPwr.getBoolValue()) {
-			systems.ELEC.Controls.groundCart.setBoolValue(0);
-			systems.ELEC.Controls.extPwr.setBoolValue(0);
-			systems.ELEC.Controls.extGPwr.setBoolValue(0);
+		if (systems.ELECTRICAL.Controls.groundCart.getBoolValue() or systems.ELECTRICAL.Controls.extPwr.getBoolValue() or systems.ELECTRICAL.Controls.extGPwr.getBoolValue()) {
+			systems.ELECTRICAL.Controls.groundCart.setBoolValue(0);
+			systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
+			systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 		}
-		if (systems.PNEU.Controls.groundAir.getBoolValue()) {
-			systems.PNEU.Controls.groundAir.setBoolValue(0);
+		if (systems.PNEUMATICS.Controls.groundAir.getBoolValue()) {
+			systems.PNEUMATICS.Controls.groundAir.setBoolValue(0);
 		}
 	}
 });
@@ -349,7 +349,7 @@ controls.elevatorTrim = func(d) {
 	if (afs.Output.ap2.getBoolValue()) {
 		afs.ITAF.ap2Master(0);
 	}
-	if (systems.HYD.Psi.sys1.getValue() >= 2200 or systems.HYD.Psi.sys3.getValue() >= 2200) {
+	if (systems.HYDRAULICS.Psi.sys1.getValue() >= 2200 or systems.HYDRAULICS.Psi.sys3.getValue() >= 2200) {
 		slewProp("/controls/flight/elevator-trim", d * (systems.FCC.pitchTrimSpeed.getValue() / 15.5)); # Rate normalized by max degrees (rate / 15.5)
 		systems.FCC.Lsas.autotrimInhibit.setValue(1); # Inhibit autotrim for a few seconds
 	}
@@ -497,7 +497,7 @@ setlistener("/controls/switches/seatbelt-sign-status", func() {
 	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;
 	}
-	if (systems.ELEC.Generic.efis.getValue() >= 24) {
+	if (systems.ELECTRICAL.Generic.efis.getValue() >= 24) {
 		pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(1); # Prevent no smoking sound from playing at same time
 		pts.Sim.Sound.seatbeltSign.setBoolValue(1);
 		settimer(func() {
@@ -511,7 +511,7 @@ setlistener("/controls/switches/no-smoking-sign-status", func() {
 	if (pts.Sim.Sound.noSmokingSign.getBoolValue()) {
 		return;
 	}
-	if (systems.ELEC.Generic.efis.getValue() >= 24 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
+	if (systems.ELECTRICAL.Generic.efis.getValue() >= 24 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
 		pts.Sim.Sound.noSmokingSign.setBoolValue(1);
 		settimer(func() {
 			pts.Sim.Sound.noSmokingSign.setBoolValue(0);
@@ -520,13 +520,13 @@ setlistener("/controls/switches/no-smoking-sign-status", func() {
 }, 0, 0);
 
 setlistener("/engines/engine[0]/state", func() {
-	setprop("/sim/sound/shutdown[0]", systems.ENGINE.state[0].getValue());
+	setprop("/sim/sound/shutdown[0]", systems.ENGINES.state[0].getValue());
 }, 0, 0);
 
 setlistener("/engines/engine[1]/state", func() {
-	setprop("/sim/sound/shutdown[1]", systems.ENGINE.state[1].getValue());
+	setprop("/sim/sound/shutdown[1]", systems.ENGINES.state[1].getValue());
 }, 0, 0);
 
 setlistener("/engines/engine[2]/state", func() {
-	setprop("/sim/sound/shutdown[2]", systems.ENGINE.state[2].getValue());
+	setprop("/sim/sound/shutdown[2]", systems.ENGINES.state[2].getValue());
 }, 0, 0);

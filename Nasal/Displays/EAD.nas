@@ -118,11 +118,11 @@ var canvasBase = {
 		}
 		
 		# FF
-		me["FF1"].setText(sprintf("%d", math.round(systems.ENGINE.ff[0].getValue(), 10)));
-		me["FF2"].setText(sprintf("%d", math.round(systems.ENGINE.ff[1].getValue(), 10)));
-		me["FF3"].setText(sprintf("%d", math.round(systems.ENGINE.ff[2].getValue(), 10)));
+		me["FF1"].setText(sprintf("%d", math.round(systems.ENGINES.ff[0].getValue(), 10)));
+		me["FF2"].setText(sprintf("%d", math.round(systems.ENGINES.ff[1].getValue(), 10)));
+		me["FF3"].setText(sprintf("%d", math.round(systems.ENGINES.ff[2].getValue(), 10)));
 		
-		if (systems.ENGINE.Controls.cutoff[0].getBoolValue()) {
+		if (systems.ENGINES.Controls.cutoff[0].getBoolValue()) {
 			me["FF1"].hide();
 			me["FFOff1"].show();
 		} else {
@@ -130,7 +130,7 @@ var canvasBase = {
 			me["FF1"].show();
 		}
 		
-		if (systems.ENGINE.Controls.cutoff[1].getBoolValue()) {
+		if (systems.ENGINES.Controls.cutoff[1].getBoolValue()) {
 			me["FF2"].hide();
 			me["FFOff2"].show();
 		} else {
@@ -138,7 +138,7 @@ var canvasBase = {
 			me["FF2"].show();
 		}
 		
-		if (systems.ENGINE.Controls.cutoff[2].getBoolValue()) {
+		if (systems.ENGINES.Controls.cutoff[2].getBoolValue()) {
 			me["FF3"].hide();
 			me["FFOff3"].show();
 		} else {
@@ -247,7 +247,7 @@ var canvasBase = {
 	updateBaseDials: func() {
 		# EGT
 		if (Value.Fadec.powered[0]) {
-			me["EGT1"].setText(sprintf("%d", systems.ENGINE.egt[0].getValue()));
+			me["EGT1"].setText(sprintf("%d", systems.ENGINES.egt[0].getValue()));
 			me["EGT1_needle"].setRotation(pts.Instrumentation.Ead.egt[0].getValue() * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
@@ -276,7 +276,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			me["EGT2"].setText(sprintf("%d", systems.ENGINE.egt[1].getValue()));
+			me["EGT2"].setText(sprintf("%d", systems.ENGINES.egt[1].getValue()));
 			me["EGT2_needle"].setRotation(pts.Instrumentation.Ead.egt[1].getValue() * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
@@ -305,7 +305,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			me["EGT3"].setText(sprintf("%d", systems.ENGINE.egt[2].getValue()));
+			me["EGT3"].setText(sprintf("%d", systems.ENGINES.egt[2].getValue()));
 			me["EGT3_needle"].setRotation(pts.Instrumentation.Ead.egt[2].getValue() * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
@@ -335,7 +335,7 @@ var canvasBase = {
 		
 		# N2
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n2[0] = systems.ENGINE.n2[0].getValue();
+			Value.Fadec.n2[0] = systems.ENGINES.n2[0].getValue();
 			
 			if (Value.Fadec.n2[0] < 1.8) {
 				Value.Fadec.n2[0] = 0;
@@ -368,7 +368,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n2[1] = systems.ENGINE.n2[1].getValue();
+			Value.Fadec.n2[1] = systems.ENGINES.n2[1].getValue();
 			
 			if (Value.Fadec.n2[1] < 1.8) {
 				Value.Fadec.n2[1] = 0;
@@ -401,7 +401,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n2[2] = systems.ENGINE.n2[2].getValue();
+			Value.Fadec.n2[2] = systems.ENGINES.n2[2].getValue();
 			
 			if (Value.Fadec.n2[2] < 1.8) {
 				Value.Fadec.n2[2] = 0;
@@ -442,7 +442,7 @@ var canvasBase = {
 		
 		# EGT
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.egt[0] = systems.ENGINE.egt[0].getValue();
+			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", Value.Fadec.egt[0]));
 			me["EGT1_bar"].setTranslation(0, Value.Fadec.egt[0] / Value.egtScale * -293);
@@ -473,7 +473,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.egt[1] = systems.ENGINE.egt[1].getValue();
+			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", Value.Fadec.egt[1]));
 			me["EGT2_bar"].setTranslation(0, Value.Fadec.egt[1] / Value.egtScale * -293);
@@ -504,7 +504,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.egt[2] = systems.ENGINE.egt[2].getValue();
+			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", Value.Fadec.egt[2]));
 			me["EGT3_bar"].setTranslation(0, Value.Fadec.egt[2] / Value.egtScale * -293);
@@ -536,7 +536,7 @@ var canvasBase = {
 		
 		# N2
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n2[0] = systems.ENGINE.n2[0].getValue();
+			Value.Fadec.n2[0] = systems.ENGINES.n2[0].getValue();
 			
 			if (Value.Fadec.n2[0] < 1.8) {
 				Value.Fadec.n2[0] = 0;
@@ -565,7 +565,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n2[1] = systems.ENGINE.n2[1].getValue();
+			Value.Fadec.n2[1] = systems.ENGINES.n2[1].getValue();
 			
 			if (Value.Fadec.n2[1] < 1.8) {
 				Value.Fadec.n2[1] = 0;
@@ -594,7 +594,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n2[2] = systems.ENGINE.n2[2].getValue();
+			Value.Fadec.n2[2] = systems.ENGINES.n2[2].getValue();
 			
 			if (Value.Fadec.n2[2] < 1.8) {
 				Value.Fadec.n2[2] = 0;
@@ -729,7 +729,7 @@ var canvasGeDials = {
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINE.n1[0].getValue();
+			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
@@ -773,7 +773,7 @@ var canvasGeDials = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINE.n1[1].getValue();
+			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
@@ -817,7 +817,7 @@ var canvasGeDials = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINE.n1[2].getValue();
+			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
@@ -967,7 +967,7 @@ var canvasGeTapes = {
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINE.n1[0].getValue();
+			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
@@ -996,7 +996,7 @@ var canvasGeTapes = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINE.n1[1].getValue();
+			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
@@ -1025,7 +1025,7 @@ var canvasGeTapes = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINE.n1[2].getValue();
+			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
@@ -1200,7 +1200,7 @@ var canvasPwDials = {
 		
 		# EPR
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.epr[0] = systems.ENGINE.epr[0].getValue();
+			Value.Fadec.epr[0] = systems.ENGINES.epr[0].getValue();
 			
 			me["EPR1_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[0] * 10), 6))) * 34);
 			me["EPR1_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[0] * 10), 5))) * 34);
@@ -1231,7 +1231,7 @@ var canvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.epr[1] = systems.ENGINE.epr[1].getValue();
+			Value.Fadec.epr[1] = systems.ENGINES.epr[1].getValue();
 			
 			me["EPR2_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[1] * 10), 6))) * 34);
 			me["EPR2_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[1] * 10), 5))) * 34);
@@ -1262,7 +1262,7 @@ var canvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.epr[2] = systems.ENGINE.epr[2].getValue();
+			Value.Fadec.epr[2] = systems.ENGINES.epr[2].getValue();
 			
 			me["EPR3_ones"].setTranslation(0, genevaEprOnes(num(right(sprintf("%06.3f", Value.Fadec.epr[2] * 10), 6))) * 34);
 			me["EPR3_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.epr[2] * 10), 5))) * 34);
@@ -1294,7 +1294,7 @@ var canvasPwDials = {
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINE.n1[0].getValue();
+			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
@@ -1320,7 +1320,7 @@ var canvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINE.n1[1].getValue();
+			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
@@ -1346,7 +1346,7 @@ var canvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINE.n1[2].getValue();
+			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;
@@ -1507,8 +1507,8 @@ var canvasPwTapes = {
 		
 		# EPR
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.epr[0] = systems.ENGINE.epr[0].getValue();
-			Value.Fadec.eprFixed[0] = systems.ENGINE.epr[0].getValue() + 0.005;
+			Value.Fadec.epr[0] = systems.ENGINES.epr[0].getValue();
+			Value.Fadec.eprFixed[0] = systems.ENGINES.epr[0].getValue() + 0.005;
 			
 			if (Value.Fadec.revState[0] != 0) {
 				me["EPR1_group"].hide();
@@ -1534,8 +1534,8 @@ var canvasPwTapes = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.epr[1] = systems.ENGINE.epr[1].getValue();
-			Value.Fadec.eprFixed[1] = systems.ENGINE.epr[1].getValue() + 0.005;
+			Value.Fadec.epr[1] = systems.ENGINES.epr[1].getValue();
+			Value.Fadec.eprFixed[1] = systems.ENGINES.epr[1].getValue() + 0.005;
 			
 			if (Value.Fadec.revState[1] != 0) {
 				me["EPR2_group"].hide();
@@ -1561,8 +1561,8 @@ var canvasPwTapes = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.epr[2] = systems.ENGINE.epr[2].getValue();
-			Value.Fadec.eprFixed[2] = systems.ENGINE.epr[2].getValue() + 0.005;
+			Value.Fadec.epr[2] = systems.ENGINES.epr[2].getValue();
+			Value.Fadec.eprFixed[2] = systems.ENGINES.epr[2].getValue() + 0.005;
 			
 			if (Value.Fadec.revState[2] != 0) {
 				me["EPR3_group"].hide();
@@ -1589,7 +1589,7 @@ var canvasPwTapes = {
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINE.n1[0].getValue();
+			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
 			if (Value.Fadec.n1[0] < 1.8) {
 				Value.Fadec.n1[0] = 0;
@@ -1611,7 +1611,7 @@ var canvasPwTapes = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINE.n1[1].getValue();
+			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
 			if (Value.Fadec.n1[1] < 1.8) {
 				Value.Fadec.n1[1] = 0;
@@ -1633,7 +1633,7 @@ var canvasPwTapes = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINE.n1[2].getValue();
+			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
 			if (Value.Fadec.n1[2] < 1.8) {
 				Value.Fadec.n1[2] = 0;

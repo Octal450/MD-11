@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 Hydraulic System
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
-var HYD = {
+var HYDRAULICS = {
 	Psi: {
 		auxPump1: props.globals.getNode("/systems/hydraulics/aux-pump-1-psi"),
 		auxPump2: props.globals.getNode("/systems/hydraulics/aux-pump-2-psi"),

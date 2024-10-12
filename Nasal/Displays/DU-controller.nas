@@ -88,11 +88,11 @@ var DUController = {
 		}
 		
 		if (!me.errorActive) {
-			me.PwrSource.ac1 = systems.ELEC.Bus.ac1.getValue();
-			me.PwrSource.ac3 = systems.ELEC.Bus.ac3.getValue();
-			me.PwrSource.dcBat = systems.ELEC.Bus.dcBat.getValue();
-			me.PwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
-			me.PwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
+			me.PwrSource.ac1 = systems.ELECTRICAL.Bus.ac1.getValue();
+			me.PwrSource.ac3 = systems.ELECTRICAL.Bus.ac3.getValue();
+			me.PwrSource.dcBat = systems.ELECTRICAL.Bus.dcBat.getValue();
+			me.PwrSource.lEmerAc = systems.ELECTRICAL.Bus.lEmerAc.getValue();
+			me.PwrSource.rEmerAc = systems.ELECTRICAL.Bus.rEmerAc.getValue();
 			
 			# L Emer AC
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {

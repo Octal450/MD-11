@@ -38,8 +38,8 @@ var APU = {
 	stopRpm: func() {
 		settimer(func() { # Required delay
 			if (me.n2.getValue() >= 1) {
-				pts.Fdm.JSBSim.Propulsion.Engine.n1[3].setValue(0.1);
-				pts.Fdm.JSBSim.Propulsion.Engine.n2[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.ENGINES.n1[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.ENGINES.n2[3].setValue(0.1);
 			}
 		}, 0.1);
 	},
@@ -177,7 +177,7 @@ setlistener("/systems/abs/disarm", func() {
 }, 0, 0);
 
 # Engine Control
-var ENGINE = {
+var ENGINES = {
 	egt: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual")],
 	epr: [props.globals.getNode("/engines/engine[0]/epr-actual"), props.globals.getNode("/engines/engine[1]/epr-actual"), props.globals.getNode("/engines/engine[2]/epr-actual")],
 	ff: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual")],
@@ -608,9 +608,9 @@ var IGNITION = {
 	fastStop: func(n) {
 		ENGINE.Controls.cutoff[n].setBoolValue(1);
 		settimer(func() { # Required delay
-			if (systems.ENGINE.n2[n].getValue() > 1) {
-				pts.Fdm.JSBSim.Propulsion.Engine.n1[n].setValue(0.1);
-				pts.Fdm.JSBSim.Propulsion.Engine.n2[n].setValue(0.1);
+			if (systems.ENGINES.n2[n].getValue() > 1) {
+				pts.Fdm.JSBSim.Propulsion.ENGINES.n1[n].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.ENGINES.n2[n].setValue(0.1);
 			}
 		}, 0.1);
 	},
