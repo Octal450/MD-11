@@ -89,7 +89,7 @@
 				</difference>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-minus-50</output>
+		<output>/systems/misc/minimums-minus-50</output>
 	</filter>
 	
 	<filter>
@@ -105,7 +105,7 @@
 				</sum>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-plus-50</output>
+		<output>/systems/misc/minimums-plus-50</output>
 	</filter>
 	
 	<filter>
@@ -121,7 +121,7 @@
 				</sum>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-plus-100</output>
+		<output>/systems/misc/minimums-plus-100</output>
 	</filter>
 
 	<filter>

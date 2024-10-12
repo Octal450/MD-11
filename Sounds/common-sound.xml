@@ -785,11 +785,11 @@
 				<and>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
-						<property>/controls/switches/minimums-plus-100</property>
+						<property>/systems/misc/minimums-plus-100</property>
 					</less-than-equals>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
-						<property>/controls/switches/minimums-plus-50</property>
+						<property>/systems/misc/minimums-plus-50</property>
 					</greater-than>
 					<less-than>
 						<property>/position/gear-agl-ft-2-sec</property>
@@ -815,7 +815,7 @@
 					</less-than-equals>
 					<greater-than>
 						<property>/position/gear-agl-ft</property>
-						<property>/controls/switches/minimums-minus-50</property>
+						<property>/systems/misc/minimums-minus-50</property>
 					</greater-than>
 					<less-than>
 						<property>/position/gear-agl-ft-2-sec</property>
