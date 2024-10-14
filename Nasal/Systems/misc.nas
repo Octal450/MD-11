@@ -38,8 +38,8 @@ var APU = {
 	stopRpm: func() {
 		settimer(func() { # Required delay
 			if (me.n2.getValue() >= 1) {
-				pts.Fdm.JSBSim.Propulsion.ENGINES.n1[3].setValue(0.1);
-				pts.Fdm.JSBSim.Propulsion.ENGINES.n2[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n1[3].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n2[3].setValue(0.1);
 			}
 		}, 0.1);
 	},
@@ -614,8 +614,8 @@ var IGNITION = {
 		ENGINES.Controls.cutoff[n].setBoolValue(1);
 		settimer(func() { # Required delay
 			if (systems.ENGINES.n2[n].getValue() > 1) {
-				pts.Fdm.JSBSim.Propulsion.ENGINES.n1[n].setValue(0.1);
-				pts.Fdm.JSBSim.Propulsion.ENGINES.n2[n].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n1[n].setValue(0.1);
+				pts.Fdm.JSBSim.Propulsion.Engine.n2[n].setValue(0.1);
 			}
 		}, 0.1);
 	},
