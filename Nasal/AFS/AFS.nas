@@ -40,7 +40,6 @@ var FPLN = {
 
 var Gear = {
 	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
-	
 	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
 	wow1Temp: 1,
 	wow2: props.globals.getNode("/gear/gear[2]/wow", 1),
