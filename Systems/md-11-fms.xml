@@ -1498,6 +1498,53 @@
 				</difference>
 			</function>
 		</fcs_function>
+		
+		<!-- PERF Calculations -->
+		<fcs_function name="/systems/fms/speeds/max-climb">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<product>
+						<table> <!-- FAA Stall -->
+							<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
+							<tableData>
+								140000  134.22
+								160000  143.53
+								180000  152.38
+								200000  160.63
+								220000  168.56
+								240000  175.73
+								260000  183.14
+								280000  189.93
+							</tableData>
+						</table>
+						<sum>
+							<value>1.4</value>
+							<table>
+								<independentVar lookup="row">atmosphere/density-altitude</independentVar>
+								<tableData>
+										0  0.0000
+									45000  0.2302
+								</tableData>
+							</table>
+						</sum>
+					</product>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/max-descent">
+			<function>
+				<difference>
+					<property>/systems/fms/speeds/vmo-mmo</property>
+					<value>5</value>
+				</difference>
+			</function>
+		</fcs_function>
 	
 	</channel>
 

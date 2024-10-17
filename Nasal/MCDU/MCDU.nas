@@ -31,6 +31,7 @@ var MCDU = {
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
 			navRadio: NavRadio.new(n),
+			perfClb: PerfClb.new(n),
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
@@ -149,9 +150,11 @@ var MCDU = {
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			
-			if (me.page.nextPage != "none") {
+			if (me.page.nextPage == "handled") { # Page handles it
+				me.page.nextPage(); 
+			} else if (me.page.nextPage != "none") { # Has next page
 				me.setPage(me.page.nextPage);
-			} else {
+			} else { # No next page
 				me.setMessage("NOT ALLOWED");
 			}
 		} else {
@@ -225,6 +228,16 @@ var MCDU = {
 		
 		if (me.message.size() > 0) {
 			me.clearMessage(2);
+		}
+		
+		if (p == "perf") { # PERF page logic
+			#if (fms.Internal.phase <= 2) {
+				p = "perfClb";
+			#} else if (fms.Internal.phase == 3) {
+			#	p = "perfCrz";
+			#} else {
+			#	p = "perfDes";
+			#}
 		}
 		
 		if (p == "toAppr") { # TO/APPR page logic

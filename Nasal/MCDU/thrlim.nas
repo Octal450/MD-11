@@ -106,7 +106,7 @@ var ThrLim = {
 			me.fromPage = "takeoff";
 			me.Display.R6 = "TAKEOFF>";
 		} else {
-			me.fromPage = "perf"; # This will need splitting to the different perf pages
+			me.fromPage = "perf"; # Which page is handled by MCDU.nas
 			me.Display.R6 = "PERF MODE>";
 		}
 		if (pts.Options.eng.getValue() == "PW") {
@@ -360,11 +360,7 @@ var ThrLim = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			if (me.fromPage == "takeoff") {
-				mcdu.unit[me.id].setPage("takeoff");
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED"); # Fix when perf added
-			}
+			mcdu.unit[me.id].setPage(me.fromPage);
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}

@@ -16,6 +16,8 @@ var Speeds = {
 	flapGearMax: props.globals.getNode("/systems/fms/speeds/flap-gear-max"),
 	gearExtMax: props.globals.getNode("/systems/fms/speeds/gear-ext-max-kts"),
 	gearRetMax: props.globals.getNode("/systems/fms/speeds/gear-ret-max-kts"),
+	maxClimb: props.globals.getNode("/systems/fms/speeds/max-climb"),
+	maxDescent: props.globals.getNode("/systems/fms/speeds/max-descent"),
 	slatMin: props.globals.getNode("/systems/fms/speeds/slat-min"),
 	slatMax: props.globals.getNode("/systems/fms/speeds/slat-max-kts"),
 	v1: props.globals.getNode("/systems/fms/speeds/v1"),
@@ -47,6 +49,8 @@ var FmsSpd = {
 	ktsMachOut: props.globals.getNode("/systems/fms/fms-spd/kts-mach"),
 	mach: 0,
 	machOut: props.globals.getNode("/systems/fms/fms-spd/mach"),
+	maxClimb: 0,
+	maxDescent: 0,
 	toDriving: 0,
 	toKts: 0,
 	v2Toggle: 0,
@@ -77,6 +81,8 @@ var FmsSpd = {
 		me.machOut.setValue(me.mach);
 	},
 	loop: func() {
+		me.getSpeeds();
+		
 		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
 		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
 		
@@ -129,6 +135,10 @@ var FmsSpd = {
 		}
 		
 		me.writeOut();
+	},
+	getSpeeds: func() {
+		me.maxClimb = math.round(Speeds.maxClimb.getValue());
+		me.maxDescent = math.round(Speeds.maxDescent.getValue());
 	},
 	setConvertKts: func(kts, mach) {
 		me.kts = math.round(me.mach * (kts / mach));
