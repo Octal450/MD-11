@@ -705,11 +705,12 @@
 		</axis>
 	</animation>
 	
+	<!-- Rotors node is used as a hack to bring properties over MP without using up floats -->
 	<!-- Ailerons -->
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL2</object-name>
-		<property>systems/fcs/aileron-out-l/final-deg</property>
+		<property>rotors/main/blade[0]/flap-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -724,7 +725,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-		<property>systems/fcs/aileron-in-l/final-deg</property>
+		<property>rotors/main/blade[1]/flap-deg</property>
 		<factor>-1</factor>		
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -739,7 +740,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-		<property>systems/fcs/aileron-in-r/final-deg</property>
+		<property>rotors/main/blade[2]/flap-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -754,7 +755,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-		<property>systems/fcs/aileron-out-r/final-deg</property>
+		<property>rotors/main/blade[3]/flap-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -775,7 +776,7 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
-		<property>systems/fcs/stabilizer/final-deg</property>
+		<property>sim/multiplay/generic/float[24]</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -792,7 +793,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1o</object-name>
-		<property>systems/fcs/elevator-out-l/final-deg</property>
+		<property>rotors/main/blade[0]/position-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -807,7 +808,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1i</object-name>
-		<property>systems/fcs/elevator-in-l/final-deg</property>
+		<property>rotors/main/blade[1]/position-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -822,7 +823,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2i</object-name>
-		<property>systems/fcs/elevator-in-r/final-deg</property>
+		<property>rotors/main/blade[2]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -837,7 +838,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2o</object-name>
-		<property>systems/fcs/elevator-out-r/final-deg</property>
+		<property>rotors/main/blade[3]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -854,7 +855,7 @@
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
 		<object-name>rudder_trailing.u</object-name>
-		<property>systems/fcs/rudders-upper/final-deg</property>
+		<property>rotors/tail/blade[0]/position-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -869,7 +870,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.u</object-name>
-		<property>systems/fcs/rudders-upper/final-deg</property>
+		<property>rotors/tail/blade[0]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>30.0511</x1-m>
@@ -885,7 +886,7 @@
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
 		<object-name>rudder_trailing.l</object-name>
-		<property>systems/fcs/rudders-lower/final-deg</property>
+		<property>rotors/tail/blade[1]/position-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -900,7 +901,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.l</object-name>
-		<property>systems/fcs/rudders-lower/final-deg</property>
+		<property>rotors/tail/blade[1]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.4977</x1-m>
@@ -916,7 +917,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.1</object-name>
-		<property>systems/fcs/spoilers-l1/final-deg</property>
+		<property>sim/multiplay/generic/float[14]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -931,7 +932,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.2</object-name>
-		<property>systems/fcs/spoilers-l2/final-deg</property>
+		<property>sim/multiplay/generic/float[15]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -946,7 +947,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.3</object-name>
-		<property>systems/fcs/spoilers-l3/final-deg</property>
+		<property>sim/multiplay/generic/float[16]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -961,7 +962,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.4</object-name>
-		<property>systems/fcs/spoilers-l4/final-deg</property>
+		<property>sim/multiplay/generic/float[17]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -976,7 +977,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.5</object-name>
-		<property>systems/fcs/spoilers-l5/final-deg</property>
+		<property>sim/multiplay/generic/float[18]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
@@ -991,7 +992,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.1</object-name>
-		<property>systems/fcs/spoilers-r1/final-deg</property>
+		<property>sim/multiplay/generic/float[19]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1006,7 +1007,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.2</object-name>
-		<property>systems/fcs/spoilers-r2/final-deg</property>
+		<property>sim/multiplay/generic/float[20]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1021,7 +1022,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.3</object-name>
-		<property>systems/fcs/spoilers-r3/final-deg</property>
+		<property>sim/multiplay/generic/float[21]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1036,7 +1037,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.4</object-name>
-		<property>systems/fcs/spoilers-r4/final-deg</property>
+		<property>sim/multiplay/generic/float[22]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1051,7 +1052,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.5</object-name>
-		<property>systems/fcs/spoilers-r5/final-deg</property>
+		<property>sim/multiplay/generic/float[23]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
