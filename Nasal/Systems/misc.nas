@@ -510,8 +510,8 @@ var FCS = {
 	rudderUpperDeg: props.globals.getNode("/systems/fcs/rudder-upper/final-deg"),
 	slatsCmd: props.globals.getNode("/systems/fcs/slats/cmd"),
 	slatsDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"), # Must use this prop
-	spoilerL: props.globals.getNode("/systems/fcs/spoilers-left-deg"),
-	spoilerR: props.globals.getNode("/systems/fcs/spoilers-right-deg"),
+	spoilerL: props.globals.getNode("/systems/fcs/spoiler-left-deg"),
+	spoilerR: props.globals.getNode("/systems/fcs/spoiler-right-deg"),
 	stabilizerDeg: props.globals.getNode("/systems/fcs/stabilizer/final-deg"),
 };
 

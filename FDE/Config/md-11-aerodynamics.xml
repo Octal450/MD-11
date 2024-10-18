@@ -230,7 +230,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/spoilers-left-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-left-deg</property></toradians>
 				<value>-0.0261</value>
 			</product>
 		</function>
@@ -240,7 +240,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/spoilers-right-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-right-deg</property></toradians>
 				<value>-0.0261</value>
 			</product>
 		</function>
@@ -452,7 +452,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/spoilers-left-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-left-deg</property></toradians>
 				<value>0.0200716020249513</value>
 			</product>
 		</function>
@@ -462,7 +462,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<toradians><property>/systems/fcs/spoilers-right-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-right-deg</property></toradians>
 				<value>0.0200716020249513</value>
 			</product>
 		</function>
@@ -630,7 +630,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/spoilers-left-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-left-deg</property></toradians>
 				<value>-0.0155</value>
 			</product>
 		</function>
@@ -641,7 +641,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>/systems/fcs/spoilers-right-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-right-deg</property></toradians>
 				<value>0.0155</value>
 			</product>
 		</function>
@@ -796,7 +796,7 @@
 						1  1.0
 					</tableData>
 				</table>
-				<toradians><property>/systems/fcs/spoilers-symmetrical-deg</property></toradians>
+				<toradians><property>/systems/fcs/spoiler-symmetrical-deg</property></toradians>
 				<value>0.0125</value>
 			</product>
 		</function>

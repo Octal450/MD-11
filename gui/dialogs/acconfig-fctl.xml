@@ -151,7 +151,7 @@
 				<slider>
 					<pref-height>100</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/spoilers-left-deg</property>
+					<property>/systems/fcs/spoiler-left-deg</property>
 					<min>0</min>
 					<max>60</max>
 					<step>0.006</step>
@@ -168,7 +168,7 @@
 				<slider>
 					<pref-height>100</pref-height>
 					<vertical>true</vertical>
-					<property>/systems/fcs/spoilers-right-deg</property>
+					<property>/systems/fcs/spoiler-right-deg</property>
 					<min>0</min>
 					<max>60</max>
 					<step>0.006</step>
