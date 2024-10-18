@@ -60,7 +60,7 @@ var PerfClb = {
 			R4L: "",
 			R4: "",
 			R5L: "CLIMB ",
-			R5: "FORCAST>",
+			R5: "FORECAST>",
 			R6L: "THRUST ",
 			R6: "LIMITS>",
 			
