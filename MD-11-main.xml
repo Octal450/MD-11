@@ -161,6 +161,17 @@
 							<script>canvas_mcdu.showMcdu3();</script>
 						</binding>
 					</item>
+					<item>
+						<label>Web Panels:</label>
+						<enabled type="bool">false</enabled>
+					</item>
+					<item>
+						<label>WebPanel MCDU</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>mcdu-web</dialog-name>
+						</binding>
+					</item>
 				</menu>
 				<menu n="104">
 					<label>Utilities</label>
