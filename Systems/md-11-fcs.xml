@@ -787,7 +787,7 @@
 			</clipto>
 		</summer>
 		
-		<fcs_function name="/systems/fcs/rudders-droop-rate">
+		<fcs_function name="/systems/fcs/rudder-droop-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">aero/qbar-psf</independentVar>
@@ -803,7 +803,7 @@
 	
 	<channel name="Rudder Upper">
 		
-		<switch name="/systems/fcs/rudders-upper/switch">
+		<switch name="/systems/fcs/rudder-upper/switch">
 			<default value="0"/>
 			<test logic="OR" value="/systems/fcs/rudders/upper-sum">
 				/systems/hydraulics/sys-1-psi ge 2200
@@ -815,31 +815,31 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/rudders-upper/cmd-deg">
-			<input>/systems/fcs/rudders-upper/switch</input>
+		<pure_gain name="/systems/fcs/rudder-upper/cmd-deg">
+			<input>/systems/fcs/rudder-upper/switch</input>
 			<gain>30</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/rudders-upper/rate">
-			<default value="/systems/fcs/rudders-droop-rate"/>
+		<switch name="/systems/fcs/rudder-upper/rate">
+			<default value="/systems/fcs/rudder-droop-rate"/>
 			<test logic="OR" value="75">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/rudders-upper/final-actuator">
-			<input>/systems/fcs/rudders-upper/cmd-deg</input>
-			<rate_limit>/systems/fcs/rudders-upper/rate</rate_limit>
+		<actuator name="/systems/fcs/rudder-upper/final-actuator">
+			<input>/systems/fcs/rudder-upper/cmd-deg</input>
+			<rate_limit>/systems/fcs/rudder-upper/rate</rate_limit>
 			<lag>25.5</lag>
-			<output>/systems/fcs/rudders-upper/final-deg</output>
+			<output>/systems/fcs/rudder-upper/final-deg</output>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Rudder Lower">
 		
-		<switch name="/systems/fcs/rudders-lower/switch">
+		<switch name="/systems/fcs/rudder-lower/switch">
 			<default value="0"/>
 			<test logic="OR" value="/systems/fcs/rudders/lower-sum">
 				/systems/hydraulics/sys-2-psi ge 2200
@@ -851,24 +851,24 @@
 			</clipto>
 		</switch>
 		
-		<pure_gain name="/systems/fcs/rudders-lower/cmd-deg">
-			<input>/systems/fcs/rudders-lower/switch</input>
+		<pure_gain name="/systems/fcs/rudder-lower/cmd-deg">
+			<input>/systems/fcs/rudder-lower/switch</input>
 			<gain>30</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fcs/rudders-lower/rate">
-			<default value="/systems/fcs/rudders-droop-rate"/>
+		<switch name="/systems/fcs/rudder-lower/rate">
+			<default value="/systems/fcs/rudder-droop-rate"/>
 			<test logic="OR" value="75">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 			</test>
 		</switch>
 		
-		<actuator name="/systems/fcs/rudders-lower/final-actuator">
-			<input>/systems/fcs/rudders-lower/cmd-deg</input>
-			<rate_limit>/systems/fcs/rudders-lower/rate</rate_limit>
+		<actuator name="/systems/fcs/rudder-lower/final-actuator">
+			<input>/systems/fcs/rudder-lower/cmd-deg</input>
+			<rate_limit>/systems/fcs/rudder-lower/rate</rate_limit>
 			<lag>25.5</lag>
-			<output>/systems/fcs/rudders-lower/final-deg</output>
+			<output>/systems/fcs/rudder-lower/final-deg</output>
 		</actuator>
 	
 	</channel>

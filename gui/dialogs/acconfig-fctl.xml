@@ -302,7 +302,7 @@
 				
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/systems/fcs/rudders-upper/final-deg</property>
+					<property>/systems/fcs/rudder-upper/final-deg</property>
 					<min>-30</min>
 					<max>30</max>
 					<step>0.003</step>
@@ -333,7 +333,7 @@
 				
 				<slider>
 					<pref-width>150</pref-width>
-					<property>/systems/fcs/rudders-lower/final-deg</property>
+					<property>/systems/fcs/rudder-lower/final-deg</property>
 					<min>-30</min>
 					<max>30</max>
 					<step>0.003</step>

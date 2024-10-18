@@ -1601,10 +1601,10 @@
 		</main>
 		<tail n="0">
 			<blade n="0">
-				<position-deg alias="/systems/fcs/rudders-upper/final-deg"/>
+				<position-deg alias="/systems/fcs/rudder-upper/final-deg"/>
 			</blade>
 			<blade n="1">
-				<position-deg alias="/systems/fcs/rudders-lower/final-deg"/>
+				<position-deg alias="/systems/fcs/rudder-lower/final-deg"/>
 			</blade>
 		</tail>
 	</rotors>
