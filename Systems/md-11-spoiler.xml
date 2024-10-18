@@ -765,7 +765,7 @@
 					<value>5</value>
 				</quotient>
 			</function>
-			<output>fcs/spoiler-left-feedback</output>
+			<output>/systems/fcc/spoiler-left-feedback</output>
 		</fcs_function>
 		
 		<summer name="/systems/fcs/spoiler-right-sum">
@@ -783,7 +783,7 @@
 					<value>5</value>
 				</quotient>
 			</function>
-			<output>fcs/spoiler-right-feedback</output>
+			<output>/systems/fcc/spoiler-right-feedback</output>
 		</fcs_function>
 		
 		<fcs_function name="/systems/fcs/spoiler-symmetrical-deg">

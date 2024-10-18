@@ -5,11 +5,11 @@
 
 <system name="MD-11: FCC">
 	
-	<property value="0">fcs/spoiler-left-feedback</property>
-	<property value="0">fcs/spoiler-right-feedback</property>
 	<property value="0">/systems/abs/brake-cmd</property>
 	<property value="0">/systems/abs/disarm</property>
 	<property value="0">/systems/abs/spoilers-cmd-deg</property>
+	<property value="0">/systems/fcc/spoiler-left-feedback</property>
+	<property value="0">/systems/fcc/spoiler-right-feedback</property>
 	<property value="0">/systems/fcc/aileron-out-enable</property>
 	<property value="0">/systems/fcc/lsas/autotrim-inhibit</property>
 	<property value="0">/systems/fcc/lsas/pah/pid</property>
@@ -1006,8 +1006,8 @@
 			<default value="0"/>
 			<test logic="AND" value="0.23256"> <!-- About 4 degrees -->
 				/systems/fcc/lsas/pnl/active eq 1
-				fcs/spoiler-left-feedback gt 10
-				fcs/spoiler-right-feedback gt 10
+				/systems/fcc/spoiler-left-feedback gt 10
+				/systems/fcc/spoiler-right-feedback gt 10
 			</test>
 			<test value="0.17442"> <!-- About 3 degrees -->
 				/systems/fcc/lsas/pnl/active eq 1
