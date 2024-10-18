@@ -30,7 +30,7 @@ var PerfClb = {
 			L1L: "",
 			L1: "",
 			L2L: " ECON",
-			L2: "---",
+			L2: "",
 			L3L: " MAX CLB",
 			L3: "",
 			L4L: " EDIT",
@@ -100,6 +100,14 @@ var PerfClb = {
 		
 		# Fix title for ECON/MAX/EDIT
 		me.Display.title = "ECON CLB";
+		
+		if (fms.FmsSpd.econKts > 0 and fms.FmsSpd.econMach > 0) {
+			me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+			me.Display.LFont[1] = FONT.normal;
+		} else {
+			me.Display.L2 = "---";
+			me.Display.LFont[1] = FONT.small;
+		}
 		
 		if (fms.FmsSpd.maxClimb > 0) {
 			me.Display.L3 = sprintf("%d", fms.FmsSpd.maxClimb);

@@ -60,6 +60,11 @@
 			<gain>1000</gain>
 		</pure_gain>
 		
+		<pure_gain name="/systems/fms/flight-data/gw-kg">
+			<input>/systems/fms/flight-data/gw-lbs</input>
+			<gain>0.45359237</gain>
+		</pure_gain>
+		
 		<pure_gain name="/systems/fms/flight-data/gw-full-kg">
 			<input>/systems/fms/flight-data/gw-full-lbs</input>
 			<gain>0.45359237</gain>
@@ -1525,6 +1530,88 @@
 					<property>/systems/fms/speeds/vmo-mmo</property>
 					<value>5</value>
 				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/econ-kts">
+			<function>
+				<ifthen>
+					<and>
+						<gt>
+							<property>/systems/fms/flight-data/cruise-fl</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/cost-index</property>
+							<value>-1</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/gw-kg</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<table>
+						<independentVar lookup="row">/systems/fms/flight-data/cost-index</independentVar>
+						<independentVar lookup="column">/systems/fms/flight-data/gw-kg</independentVar>
+						<tableData>
+							     140  280
+							  0  296  318
+							 80  323  350
+							160  350  350
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/econ-mach">
+			<function>
+				<ifthen>
+					<and>
+						<gt>
+							<property>/systems/fms/flight-data/cruise-fl</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/cost-index</property>
+							<value>-1</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/gw-kg</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<sum>
+						<value>0.82</value> <!-- Basic mach number -->
+						<table> <!-- CI and GW modifier -->
+							<independentVar lookup="row">/systems/fms/flight-data/cost-index</independentVar>
+							<independentVar lookup="column">/systems/fms/flight-data/gw-kg</independentVar>
+							<tableData>
+									 140    280
+								  0 -0.029 -0.016
+								 80  0.002  0.013
+								160  0.013  0.026
+							</tableData>
+						</table>
+						<table> <!-- Cruise level modifier -->
+							<independentVar lookup="row">/systems/fms/flight-data/cruise-fl</independentVar>
+							<tableData>
+								    -0.349
+								 50 -0.282
+								100 -0.215
+								150 -0.148
+								200 -0.081
+								250 -0.024
+								300  0.000
+								350  0.006
+								400  0.007
+								450  0.008
+							</tableData>
+						</table>
+					</sum>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 	

@@ -181,7 +181,7 @@ var Init = {
 			me.Display.R4 = "INITIALIZE IRS*";
 		}
 		
-		if (fms.FlightData.costIndex != 0) {
+		if (fms.FlightData.costIndex > -1) {
 			me.Display.R6 = sprintf("%3.0f", fms.FlightData.costIndex);;
 		} else if (fms.FlightData.airportTo != "") {
 			me.Display.R6 = "___";
@@ -331,7 +331,7 @@ var Init = {
 		} else if (k == "r6") {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
-					if (me.scratchpad >= 1) {
+					if (me.scratchpad >= 0) {
 						fms.FlightData.costIndex = int(me.scratchpad);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {

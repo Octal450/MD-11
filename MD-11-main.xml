@@ -1754,6 +1754,8 @@
 				<airport-from-alt type="int">-1000</airport-from-alt>
 				<airport-to-alt type="int">-1000</airport-to-alt>
 				<can-calc-vspeeds type="bool">0</can-calc-vspeeds>
+				<cruise-fl type="int">0</cruise-fl>
+				<cost-index type="int">-1</cost-index>
 				<flex-active type="bool">0</flex-active>
 				<flex-temp type="int">0</flex-temp>
 				<gw-lbs type="double">0</gw-lbs>

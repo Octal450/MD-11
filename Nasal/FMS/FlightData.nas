@@ -18,7 +18,7 @@ var FlightData = {
 	climbThrustAlt: -1000,
 	climbThrustAltSet: 0,
 	climbTransAlt: 18000,
-	costIndex: 0,
+	costIndex: -1,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
 	cruiseFl: 0,
@@ -62,6 +62,8 @@ var FlightDataOut = {
 	airportFromAlt: props.globals.getNode("/systems/fms/flight-data/airport-from-alt"),
 	airportToAlt: props.globals.getNode("/systems/fms/flight-data/airport-to-alt"),
 	canCalcVspeeds: props.globals.getNode("/systems/fms/flight-data/can-calc-vspeeds"),
+	costIndex: props.globals.getNode("/systems/fms/flight-data/cost-index"),
+	cruiseFl: props.globals.getNode("/systems/fms/flight-data/cruise-fl"),
 	flexActive: props.globals.getNode("/systems/fms/flight-data/flex-active"),
 	flexTemp: props.globals.getNode("/systems/fms/flight-data/flex-temp"),
 	gwLbs: props.globals.getNode("/systems/fms/flight-data/gw-lbs"),
@@ -185,7 +187,7 @@ var EditFlightData = {
 		FlightData.climbThrustAlt = -1000;
 		FlightData.climbThrustAltSet = 0;
 		FlightData.climbTransAlt = 18000;
-		FlightData.costIndex = 0;
+		FlightData.costIndex = -1;
 		FlightData.cruiseAlt = 0;
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseFl = 0;
@@ -223,6 +225,8 @@ var EditFlightData = {
 		FlightDataOut.airportFromAlt.setValue(FlightData.airportFromAlt);
 		FlightDataOut.airportToAlt.setValue(FlightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(FlightData.canCalcVspeeds);
+		FlightDataOut.costIndex.setValue(FlightData.costIndex);
+		FlightDataOut.cruiseFl.setValue(FlightData.cruiseFl);
 		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
 		FlightDataOut.gwLbs.setValue(FlightData.gwLbs);

@@ -8,6 +8,8 @@ var Speeds = {
 	athrMin: props.globals.getNode("/systems/fms/speeds/athr-min"),
 	athrMinMach: props.globals.getNode("/systems/fms/speeds/athr-min-mach"),
 	cleanMin: props.globals.getNode("/systems/fms/speeds/clean-min"),
+	econKts: props.globals.getNode("/systems/fms/speeds/econ-kts"),
+	econMach: props.globals.getNode("/systems/fms/speeds/econ-mach"),
 	flap15Max: props.globals.getNode("/systems/fms/speeds/flap-0-15-max-kts"),
 	flap28Max: props.globals.getNode("/systems/fms/speeds/flap-28-max-kts"),
 	flap28Min: props.globals.getNode("/systems/fms/speeds/flap-28-min"),
@@ -43,6 +45,8 @@ var FmsSpd = {
 	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
 	activeOrTo: 0,
 	activeOrToDriving: 0,
+	econKts: 0,
+	econMach: 0,
 	kts: 0,
 	ktsOut: props.globals.getNode("/systems/fms/fms-spd/kts"),
 	ktsMach: 0,
@@ -137,6 +141,8 @@ var FmsSpd = {
 		me.writeOut();
 	},
 	getSpeeds: func() {
+		me.econKts = math.round(Speeds.econKts.getValue());
+		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
 		me.maxClimb = math.round(Speeds.maxClimb.getValue());
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
 	},
