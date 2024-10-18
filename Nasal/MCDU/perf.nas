@@ -110,7 +110,7 @@ var PerfClb = {
 		}
 		
 		if (fms.FmsSpd.maxClimb > 0) {
-			me.Display.L3 = sprintf("%d", fms.FmsSpd.maxClimb);
+			me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
 		} else {
 			me.Display.L3 = "---";
 		}
