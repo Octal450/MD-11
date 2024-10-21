@@ -507,13 +507,13 @@
 		<switch name="/systems/fadec/reverse-1/position-cmd">
 			<default value="0"/>
 			<test value="1">
-				/controls/engines/engine[0]/reverse-engage eq 1
+				/systems/fadec/reverse-1/engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[0]/n1-actual ge 40
 				/systems/fadec/reverse-1/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[0]/reverse-cmd</output>
+			<output>/systems/fadec/reverse-1/position-cmd-out</output>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-1/position-rate">
@@ -564,10 +564,10 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/controls/engines/engine[0]/reverse-lever">
+		<fcs_function name="/systems/fadec/reverse-1/throttle-lever">
 			<function>
 				<product>
-					<property>/controls/engines/engine[0]/reverse-engage</property>
+					<property>/systems/fadec/reverse-1/engage</property>
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-1/throttle-rev-cmd</independentVar>
 						<tableData>
@@ -585,7 +585,7 @@
 				/systems/fadec/reverse-1/interlock eq 1
 			</test>
 			<test value="/systems/fadec/reverse-1/throttle-rev-cmd">
-				/controls/engines/engine[0]/reverse-engage eq 1
+				/systems/fadec/reverse-1/engage eq 1
 			</test>
 			<clipto>
 				<min>0.05</min>
@@ -605,13 +605,13 @@
 		<switch name="/systems/fadec/reverse-2/position-cmd">
 			<default value="0"/>
 			<test value="1">
-				/controls/engines/engine[1]/reverse-engage eq 1
+				/systems/fadec/reverse-2/engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[1]/n1-actual ge 40
 				/systems/fadec/reverse-2/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[1]/reverse-cmd</output>
+			<output>/systems/fadec/reverse-2/position-cmd-out</output>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-2/position-cmd-wow">
@@ -670,10 +670,10 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/controls/engines/engine[1]/reverse-lever">
+		<fcs_function name="/systems/fadec/reverse-2/throttle-lever">
 			<function>
 				<product>
-					<property>/controls/engines/engine[1]/reverse-engage</property>
+					<property>/systems/fadec/reverse-2/engage</property>
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-2/throttle-rev-cmd</independentVar>
 						<tableData>
@@ -691,7 +691,7 @@
 				/systems/fadec/reverse-2/interlock eq 1
 			</test>
 			<test value="/systems/fadec/reverse-2/throttle-rev-cmd">
-				/controls/engines/engine[1]/reverse-engage eq 1
+				/systems/fadec/reverse-2/engage eq 1
 			</test>
 			<clipto>
 				<min>0.05</min>
@@ -711,13 +711,13 @@
 		<switch name="/systems/fadec/reverse-3/position-cmd">
 			<default value="0"/>
 			<test value="1">
-				/controls/engines/engine[2]/reverse-engage eq 1
+				/systems/fadec/reverse-3/engage eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Don't stow until thrust is reduced enough -->
 				/engines/engine[2]/n1-actual ge 40
 				/systems/fadec/reverse-3/position-cmd eq 1
 			</test>
-			<output>/controls/engines/engine[2]/reverse-cmd</output>
+			<output>/systems/fadec/reverse-3/position-cmd-out</output>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-3/position-rate">
@@ -768,10 +768,10 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/controls/engines/engine[2]/reverse-lever">
+		<fcs_function name="/systems/fadec/reverse-3/throttle-lever">
 			<function>
 				<product>
-					<property>/controls/engines/engine[2]/reverse-engage</property>
+					<property>/systems/fadec/reverse-3/engage</property>
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-3/throttle-rev-cmd</independentVar>
 						<tableData>
@@ -789,7 +789,7 @@
 				/systems/fadec/reverse-3/interlock eq 1
 			</test>
 			<test value="/systems/fadec/reverse-3/throttle-rev-cmd">
-				/controls/engines/engine[2]/reverse-engage eq 1
+				/systems/fadec/reverse-3/engage eq 1
 			</test>
 			<clipto>
 				<min>0.05</min>
@@ -1618,7 +1618,7 @@
 				/systems/fadec/reverse-1/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[0]/reverse-engage eq 1
+				/systems/fadec/reverse-1/engage eq 1
 				/systems/fadec/reverse-1/position-norm gt 0
 			</test>
 		</switch>
@@ -1629,7 +1629,7 @@
 				/systems/fadec/reverse-2/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[1]/reverse-engage eq 1
+				/systems/fadec/reverse-2/engage eq 1
 				/systems/fadec/reverse-2/position-norm gt 0
 			</test>
 		</switch>
@@ -1640,7 +1640,7 @@
 				/systems/fadec/reverse-3/position-norm eq 1
 			</test>
 			<test logic="OR" value="1"> <!-- U/L -->
-				/controls/engines/engine[2]/reverse-engage eq 1
+				/systems/fadec/reverse-3/engage eq 1
 				/systems/fadec/reverse-3/position-norm gt 0
 			</test>
 		</switch>
