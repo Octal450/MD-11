@@ -61,4 +61,4 @@ var someOtherThing = func() {
 ```
 
 ## Forks, Branches, and Merging
-Please fork the repository and commit your changes there. Branches are optional. When you are ready for us to look over your work, submit a pull request following our pull request template, and we will look over it. If there is an issue that needs to be resolved before merging, then we will leave a comment on the pull request.
+Please fork the repository on [GitHub](https://github.com/Octal450/MD-11) (not FGAddon) and commit your changes there. Branches are optional. When you are ready for us to look over your work, submit a pull request following our pull request template, and we will look over it. If there is an issue that needs to be resolved before merging, then we will leave a comment on the pull request.
