@@ -722,8 +722,8 @@
 		<lighting n="0">
 			<beacon type="bool">0</beacon>
 			<emer-lt type="double">0</emer-lt>
-			<fcp-integ-knb type="double">0</fcp-integ-knb>
-			<fcp-flood-knb type="double">0</fcp-flood-knb>
+			<fcp-flood type="double">0</fcp-flood>
+			<fcp-integ type="double">0</fcp-integ>
 			<landing-light-l type="double">0</landing-light-l>
 			<landing-light-n type="double">0</landing-light-n>
 			<landing-light-r type="double">0</landing-light-r>
@@ -732,11 +732,11 @@
 			<land-on-l type="double">0</land-on-l>
 			<land-on-r type="double">0</land-on-r>
 			<logo-lights type="bool">0</logo-lights>
-			<main-integ-knb type="double">0</main-integ-knb>
-			<main-flood-knb type="double">0</main-flood-knb>
+			<main-flood type="double">0</main-flood>
+			<main-integ type="double">0</main-integ>
 			<nav-lights type="bool">0</nav-lights>
-			<overhead-integ-knb type="double">0</overhead-integ-knb>
-			<overhead-flood-knb type="double">0</overhead-flood-knb>
+			<overhead-flood type="double">0</overhead-flood>
+			<overhead-integ type="double">0</overhead-integ>
 			<strobe type="bool">0</strobe>
 			<thunderstorm type="bool">0</thunderstorm>
 		</lighting>

@@ -78,7 +78,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/fcp-integ</factor-prop>
 		</emission>
 	</animation>
 	
@@ -93,7 +93,7 @@
 		<type>knob</type>
 		<object-name>integlight.indicator</object-name>
 		<object-name>integlight.knob</object-name>
-		<property>controls/cockpit/fcp/integ-knb</property>
+		<property>controls/cockpit/fcp/integ</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -108,7 +108,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/fcp-integ-knb</property>
+				<property>controls/lighting/fcp-integ</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -121,7 +121,7 @@
 		<type>knob</type>
 		<object-name>floodlight.indicator</object-name>
 		<object-name>floodlight.knob</object-name>
-		<property>controls/cockpit/fcp/flood-knb</property>
+		<property>controls/cockpit/fcp/flood</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -136,7 +136,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/fcp-flood-knb</property>
+				<property>controls/lighting/fcp-flood</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -1640,7 +1640,7 @@
 			<red>1.0</red>
 			<green>0.5</green>
 			<blue>0.4</blue>
-			<factor-prop>controls/lighting/fcp-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/fcp-integ</factor-prop>
 		</emission>
 	</animation>
 	

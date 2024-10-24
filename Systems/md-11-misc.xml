@@ -45,7 +45,7 @@
 		<fcs_function name="/controls/lighting/fcp-osg-red">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/fcp-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  1.0
@@ -57,7 +57,7 @@
 		<fcs_function name="/controls/lighting/fcp-osg-green">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/fcp-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.9
@@ -69,7 +69,7 @@
 		<fcs_function name="/controls/lighting/fcp-osg-blue">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/fcp-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.7
@@ -81,7 +81,7 @@
 		<fcs_function name="/controls/lighting/main-osg-red">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/main-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  1.0
@@ -93,7 +93,7 @@
 		<fcs_function name="/controls/lighting/main-osg-green">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/main-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.9
@@ -105,7 +105,7 @@
 		<fcs_function name="/controls/lighting/main-osg-blue">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/main-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.7
@@ -117,7 +117,7 @@
 		<fcs_function name="/controls/lighting/overhead-osg-red">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/overhead-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  1.0
@@ -129,7 +129,7 @@
 		<fcs_function name="/controls/lighting/overhead-osg-green">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/overhead-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.9
@@ -141,7 +141,7 @@
 		<fcs_function name="/controls/lighting/overhead-osg-blue">
 			<function>
 				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
+					<independentVar lookup="row">/systems/lighting/overhead-integ</independentVar>
 					<tableData>
 						0  0.1
 						1  0.7

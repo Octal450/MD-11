@@ -41,7 +41,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
 	
@@ -52,7 +52,7 @@
 			<red>1.0</red>
 			<green>0.5</green>
 			<blue>0.4</blue>
-			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
 
@@ -60,7 +60,7 @@
 		<type>knob</type>
 		<object-name>ovhdinteg.knob</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
-		<property>controls/cockpit/overhead/overhead-integ-knb</property>
+		<property>controls/cockpit/overhead/overhead-integ</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -75,7 +75,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-integ-knb</property>
+				<property>controls/lighting/overhead-integ</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -88,7 +88,7 @@
 		<type>knob</type>
 		<object-name>maininteg.knob</object-name>
 		<object-name>maininteg.indicator</object-name>
-		<property>controls/cockpit/overhead/main-integ-knb</property>
+		<property>controls/cockpit/overhead/main-integ</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -103,7 +103,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-integ-knb</property>
+				<property>controls/lighting/main-integ</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -116,7 +116,7 @@
 		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
 		<object-name>ovhdflood.indicator</object-name>
-		<property>controls/cockpit/overhead/overhead-flood-knb</property>
+		<property>controls/cockpit/overhead/overhead-flood</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -131,7 +131,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-flood-knb</property>
+				<property>controls/lighting/overhead-flood</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -144,7 +144,7 @@
 		<type>knob</type>
 		<object-name>mainflood.knob</object-name>
 		<object-name>mainflood.indicator</object-name>
-		<property>controls/cockpit/overhead/main-flood-knb</property>
+		<property>controls/cockpit/overhead/main-flood</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -159,7 +159,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-flood-knb</property>
+				<property>controls/lighting/main-flood</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>

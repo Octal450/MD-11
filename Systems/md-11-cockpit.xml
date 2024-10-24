@@ -77,13 +77,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp/flood-knb">
-			<input>/controls/lighting/fcp-flood-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/flood">
+			<input>/controls/lighting/fcp-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp/integ-knb">
-			<input>/controls/lighting/fcp-integ-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/integ">
+			<input>/controls/lighting/fcp-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -378,13 +378,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-flood-knb">
-			<input>/controls/lighting/main-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-flood">
+			<input>/controls/lighting/main-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-integ-knb">
-			<input>/controls/lighting/main-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-integ">
+			<input>/controls/lighting/main-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -398,13 +398,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-flood-knb">
-			<input>/controls/lighting/overhead-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-flood">
+			<input>/controls/lighting/overhead-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-integ-knb">
-			<input>/controls/lighting/overhead-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-integ">
+			<input>/controls/lighting/overhead-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -517,68 +517,68 @@
 	
 	<channel name="Cockpit Lighting" execrate="8">
 		
-		<switch name="/controls/lighting/fcp-flood-norm">
+		<switch name="/systems/lighting/fcp-flood">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/fcp-flood-knb">
+			<test value="/controls/lighting/fcp-flood">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/controls/lighting/fcp-integ-norm">
+		<switch name="/systems/lighting/fcp-integ">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/fcp-integ-knb">
+			<test value="/controls/lighting/fcp-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/controls/lighting/main-flood-norm">
+		<switch name="/systems/lighting/main-flood">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/main-flood-knb">
+			<test value="/controls/lighting/main-flood">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/controls/lighting/main-integ-norm">
+		<switch name="/systems/lighting/main-integ">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/main-integ-knb">
+			<test value="/controls/lighting/main-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/controls/lighting/overhead-flood-norm">
+		<switch name="/systems/lighting/overhead-flood">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/overhead-flood-knb">
+			<test value="/controls/lighting/overhead-flood">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/controls/lighting/overhead-integ-norm">
+		<switch name="/systems/lighting/overhead-integ">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test value="/controls/lighting/overhead-integ-knb">
+			<test value="/controls/lighting/overhead-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
