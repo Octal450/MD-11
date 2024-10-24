@@ -515,6 +515,76 @@
 	
 	</channel>
 	
+	<channel name="Cockpit Lighting" execrate="8">
+		
+		<switch name="/controls/lighting/fcp-flood-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/fcp-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/fcp-integ-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/fcp-integ-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/main-flood-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/main-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/main-integ-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/main-integ-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/overhead-flood-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/overhead-flood-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/controls/lighting/overhead-integ-norm">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/overhead-integ-knb">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="Glass Effects">
 		
 		<fcs_function name="glass-effects/airspeed-clamped-sqrt">
