@@ -1597,7 +1597,7 @@
 						<table> <!-- Cruise level modifier -->
 							<independentVar lookup="row">/systems/fms/flight-data/cruise-fl</independentVar>
 							<tableData>
-								    -0.349
+								  0 -0.349
 								 50 -0.282
 								100 -0.215
 								150 -0.148
