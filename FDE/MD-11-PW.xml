@@ -9,9 +9,28 @@
 		<description>MD-11 FDE with PW4462 Engines</description>
 	</fileheader>
 	
-	<metrics file="FDE/Config/md-11-metrics"/>
-	<mass_balance file="FDE/Config/md-11-mass-balance"/>
+	<aerodynamics file="FDE/Config/md-11-aerodynamics.xml"/>
+	<external_reactions file="FDE/Config/md-11-external-reactions"/>
 	<ground_reactions file="FDE/Config/md-11-ground-reactions"/>
+	<mass_balance file="FDE/Config/md-11-mass-balance"/>
+	<metrics file="FDE/Config/md-11-metrics"/>
+	
+	<system file="md-11-libraries"/>
+	<system file="md-11-electrical"/>
+	<system file="md-11-fuel"/>
+	<system file="md-11-hydraulics"/>
+	<system file="md-11-irs"/>
+	<system file="md-11-pneumatics"/>
+	<system file="md-11-fms"/>
+	<system file="md-11-fcc"/>
+	<system file="md-11-fcs"/>
+	<system file="md-11-spoiler"/>
+	<system file="md-11-ignition"/>
+	<system file="md-11-pw-engine-fadec"/>
+	<system file="md-11-apu"/>
+	<system file="md-11-misc"/>
+	<system file="md-11-cockpit"/>
+	<system file="md-11-instrumentation"/>
 	
 	<propulsion>
 		<engine file="pw4462_1">
@@ -228,26 +247,5 @@
 			<type>JET-A1</type>
 		</tank>
 	</propulsion>
-	
-	<system file="md-11-libraries"/>
-	<system file="md-11-electrical"/>
-	<system file="md-11-fuel"/>
-	<system file="md-11-hydraulics"/>
-	<system file="md-11-irs"/>
-	<system file="md-11-pneumatics"/>
-	<system file="md-11-fms"/>
-	<system file="md-11-fcc"/>
-	<system file="md-11-fcs"/>
-	<system file="md-11-spoiler"/>
-	<system file="md-11-ignition"/>
-	<system file="md-11-pw-engine-fadec"/>
-	<system file="md-11-apu"/>
-	<system file="md-11-misc"/>
-	<system file="md-11-cockpit"/>
-	<system file="md-11-instrumentation"/>
-	
-	<flight_control name="none"/>
-	<aerodynamics file="FDE/Config/md-11-aerodynamics.xml"/>
-	<external_reactions file="FDE/Config/md-11-external-reactions"/>
 
 </fdm_config>
