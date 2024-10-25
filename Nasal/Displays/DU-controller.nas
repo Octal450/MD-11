@@ -326,6 +326,7 @@ var DUController = {
 			canvas_sd.conseq.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.config.update();
@@ -334,6 +335,7 @@ var DUController = {
 			canvas_sd.config.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
@@ -343,6 +345,7 @@ var DUController = {
 				canvas_sd.config.page.hide();
 				canvas_sd.conseq.page.hide();
 				canvas_sd.engDials.page.hide();
+				canvas_sd.hyd.page.hide();
 				canvas_sd.misc.page.hide();
 				canvas_sd.status.page.hide();
 				canvas_sd.engTapes.update();
@@ -352,15 +355,26 @@ var DUController = {
 				canvas_sd.conseq.page.hide();
 				canvas_sd.engTapes.page.hide();
 				canvas_sd.misc.page.hide();
+				canvas_sd.hyd.page.hide();
 				canvas_sd.status.page.hide();
 				canvas_sd.engDials.update();
 				canvas_sd.engDials.page.show();
 			}
+		} else if (p == "HYD") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.update();
+			canvas_sd.hyd.page.show();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
 			canvas_sd.status.page.hide();
@@ -369,6 +383,7 @@ var DUController = {
 			canvas_sd.conseq.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
@@ -377,6 +392,7 @@ var DUController = {
 			canvas_sd.conseq.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 		}

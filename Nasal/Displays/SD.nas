@@ -6,6 +6,7 @@ var config = nil;
 var conseq = nil;
 var engDials = nil;
 var engTapes = nil;
+var hyd = nil;
 var misc = nil;
 var status = nil;
 
@@ -23,6 +24,7 @@ var Value = {
 		oilQtyCline: [0, 0, 0],
 		oilQtyClineQt: [0, 0, 0],
 		oilTemp: [0, 0, 0],
+		state: [0, 0, 0],
 		type: "GE",
 	},
 	Fctl: {
@@ -40,11 +42,17 @@ var Value = {
 		stabComp: 0,
 		stabRound: 0,
 	},
+	Hyd: {
+		psi: [0, 0, 0],
+		qty: [0, 0, 0],
+		qtyLow: [0, 0, 0],
+	},
 	Misc: {
 		annunTestWow: 0,
 		cg: 0,
 		fuel: 0,
 		gw: 0,
+		tat: 0,
 		wow: 0,
 	},
 };
@@ -98,6 +106,7 @@ var canvasBase = {
 		conseq.page.hide();
 		engDials.page.hide();
 		engTapes.page.hide();
+		hyd.page.hide();
 		misc.page.hide();
 		status.page.hide();
 	},
@@ -115,6 +124,8 @@ var canvasBase = {
 				} else {
 					engDials.update();
 				}
+			} else if (systems.DUController.sdPage == "HYD") {
+				hyd.update();
 			} else if (systems.DUController.sdPage == "MISC") {
 				misc.update();
 			} else if (systems.DUController.sdPage == "STATUS") {
@@ -1023,6 +1034,181 @@ var canvasEngTapes = {
 	},
 };
 
+var canvasHyd = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasHyd, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["Alert_error", "Rmp13_disag", "Rmp23_disag", "Sys1_psi", "Sys1_psi_box", "Sys1_psi_error", "Sys1_qty", "Sys1_qty_error", "Sys1_qty_bar", "Sys1_qty_bar_box", "Sys1_qty_box", "Sys1_qty_line", "Sys1_temp", "Sys1_temp_error", "Sys2_psi",
+		"Sys2_psi_box", "Sys2_psi_error", "Sys2_qty", "Sys2_qty_bar", "Sys2_qty_bar_box", "Sys2_qty_box", "Sys2_qty_error", "Sys2_qty_line", "Sys2_temp", "Sys2_temp_error", "Sys3_psi", "Sys3_psi_box", "Sys3_psi_error", "Sys3_qty", "Sys3_qty_bar",
+		"Sys3_qty_bar_box", "Sys3_qty_box", "Sys3_qty_error", "Sys3_qty_line", "Sys3_temp", "Sys3_temp_error"];
+	},
+	update: func() {
+		Value.Misc.tat = pts.Fdm.JSBSim.Propulsion.tatC.getValue();
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Alert_error"].show();
+			me["Sys1_psi_error"].show();
+			me["Sys1_qty_error"].show();
+			me["Sys1_temp_error"].show();
+			me["Sys2_psi_error"].show();
+			me["Sys2_qty_error"].show();
+			me["Sys2_temp_error"].show();
+			me["Sys3_psi_error"].show();
+			me["Sys3_qty_error"].show();
+			me["Sys3_temp_error"].show();
+		} else {
+			me["Alert_error"].hide();
+			me["Sys1_psi_error"].hide();
+			me["Sys1_qty_error"].hide();
+			me["Sys1_temp_error"].hide();
+			me["Sys2_psi_error"].hide();
+			me["Sys2_qty_error"].hide();
+			me["Sys2_temp_error"].hide();
+			me["Sys3_psi_error"].hide();
+			me["Sys3_qty_error"].hide();
+			me["Sys3_temp_error"].hide();
+		}
+		
+		# PSI
+		Value.Hyd.psi[0] = math.round(systems.HYDRAULICS.Psi.sys1.getValue(), 10);
+		Value.Hyd.psi[1] = math.round(systems.HYDRAULICS.Psi.sys2.getValue(), 10);
+		Value.Hyd.psi[2] = math.round(systems.HYDRAULICS.Psi.sys3.getValue(), 10);
+		
+		me["Sys1_psi"].setText(sprintf("%d", Value.Hyd.psi[0], 10));
+		me["Sys2_psi"].setText(sprintf("%d", Value.Hyd.psi[1], 10));
+		me["Sys3_psi"].setText(sprintf("%d", Value.Hyd.psi[2], 10));
+		
+		if (Value.Hyd.psi[0] < 2400 or Value.Hyd.psi[0] > 3500) {
+			me["Sys1_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys1_psi_box"].show();
+		} else {
+			me["Sys1_psi"].setColor(1, 1, 1);
+			me["Sys1_psi_box"].hide();
+		}
+		
+		if (Value.Hyd.psi[1] < 2400 or Value.Hyd.psi[1] > 3500) {
+			me["Sys2_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys2_psi_box"].show();
+		} else {
+			me["Sys2_psi"].setColor(1, 1, 1);
+			me["Sys2_psi_box"].hide();
+		}
+		
+		if (Value.Hyd.psi[2] < 2400 or Value.Hyd.psi[2] > 3500) {
+			me["Sys3_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys3_psi_box"].show();
+		} else {
+			me["Sys3_psi"].setColor(1, 1, 1);
+			me["Sys3_psi_box"].hide();
+		}
+		
+		# Temp
+		me["Sys1_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
+		me["Sys2_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
+		me["Sys3_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
+		
+		# QTY
+		Value.Hyd.qty[0] = math.round(systems.HYDRAULICS.Qty.sys1.getValue(), 0.1);
+		Value.Hyd.qty[1] = math.round(systems.HYDRAULICS.Qty.sys2.getValue(), 0.1);
+		Value.Hyd.qty[2] = math.round(systems.HYDRAULICS.Qty.sys3.getValue(), 0.1);
+		
+		me["Sys1_qty"].setText(sprintf("%4.1f", Value.Hyd.qty[0]));
+		me["Sys2_qty"].setText(sprintf("%4.1f", Value.Hyd.qty[1]));
+		me["Sys3_qty"].setText(sprintf("%4.1f", Value.Hyd.qty[2]));
+		
+		Value.Eng.state[0] = systems.ENGINES.state[0].getValue();
+		Value.Eng.state[1] = systems.ENGINES.state[1].getValue();
+		Value.Eng.state[2] = systems.ENGINES.state[2].getValue();
+		
+		if (Value.Eng.state[0] < 3) Value.Hyd.qtyLow[0] = 3.8;
+		else Value.Hyd.qtyLow[0] = 2.5;
+		if (Value.Eng.state[1] < 3) Value.Hyd.qtyLow[1] = 3.8;
+		else Value.Hyd.qtyLow[1] = 2.5;
+		if (Value.Eng.state[2] < 3) Value.Hyd.qtyLow[2] = 3.8;
+		else Value.Hyd.qtyLow[2] = 2.5;
+		
+		if (Value.Hyd.qty[0] < Value.Hyd.qtyLow[0]) {
+			me["Sys1_qty"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys1_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["Sys1_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys1_qty_box"].show();
+		} else {
+			me["Sys1_qty"].setColor(1, 1, 1);
+			me["Sys1_qty_bar"].setColorFill(0.4706, 0.4706, 0.4706);
+			me["Sys1_qty_bar_box"].setColor(1, 1, 1);
+			me["Sys1_qty_box"].hide();
+		}
+		
+		if (Value.Hyd.qty[1] < Value.Hyd.qtyLow[1]) {
+			me["Sys2_qty"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys2_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["Sys2_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys2_qty_box"].show();
+		} else {
+			me["Sys2_qty"].setColor(1, 1, 1);
+			me["Sys2_qty_bar"].setColorFill(0.4706, 0.4706, 0.4706);
+			me["Sys2_qty_bar_box"].setColor(1, 1, 1);
+			me["Sys2_qty_box"].hide();
+		}
+		
+		if (Value.Hyd.qty[2] < Value.Hyd.qtyLow[2]) {
+			me["Sys3_qty"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys3_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["Sys3_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys3_qty_box"].show();
+		} else {
+			me["Sys3_qty"].setColor(1, 1, 1);
+			me["Sys3_qty_bar"].setColorFill(0.4706, 0.4706, 0.4706);
+			me["Sys3_qty_bar_box"].setColor(1, 1, 1);
+			me["Sys3_qty_box"].hide();
+		}
+		
+		me["Sys1_qty_bar"].setTranslation(0, Value.Hyd.qty[0] * -6.3333);
+		if (Value.Eng.state[0] == 3) {
+			me["Sys1_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys1Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys1_qty_line"].show();
+		} else {
+			me["Sys1_qty_line"].hide();
+		}
+		
+		me["Sys2_qty_bar"].setTranslation(0, Value.Hyd.qty[1] * -6.3333);
+		if (Value.Eng.state[1] == 3) {
+			me["Sys2_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys2Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys2_qty_line"].show();
+		} else {
+			me["Sys2_qty_line"].hide();
+		}
+		
+		me["Sys3_qty_bar"].setTranslation(0, Value.Hyd.qty[2] * -6.3333);
+		if (Value.Eng.state[2] == 3) {
+			me["Sys3_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys3Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys3_qty_line"].show();
+		} else {
+			me["Sys3_qty_line"].hide();
+		}
+		
+		# RMPs
+		if (systems.HYDRAULICS.Lights.rmp13Disag.getBoolValue()) {
+			me["Rmp13_disag"].show();
+		} else {
+			me["Rmp13_disag"].hide();
+		}
+		
+		if (systems.HYDRAULICS.Lights.rmp23Disag.getBoolValue()) {
+			me["Rmp23_disag"].show();
+		} else {
+			me["Rmp23_disag"].hide();
+		}
+	},
+};
+
 var canvasMisc = {
 	new: func(canvasGroup, file) {
 		var m = {parents: [canvasMisc, canvasBase]};
@@ -1083,6 +1269,7 @@ var setup = func() {
 	var conseqGroup = display.createGroup();
 	var engDialsGroup = display.createGroup();
 	var engTapesGroup = display.createGroup();
+	var hydGroup = display.createGroup();
 	var miscGroup = display.createGroup();
 	var statusGroup = display.createGroup();
 	
@@ -1090,7 +1277,8 @@ var setup = func() {
 	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
 	engDials = canvasEngDials.new(engDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Dials.svg");
 	engTapes = canvasEngTapes.new(engTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Tapes.svg");
-	misc = canvasStatus.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
+	hyd = canvasHyd.new(hydGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-HYD.svg");
+	misc = canvasMisc.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
 	status = canvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");
 	
 	canvasBase.setup();

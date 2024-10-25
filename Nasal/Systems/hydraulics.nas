@@ -19,11 +19,14 @@ var HYDRAULICS = {
 	Qty: {
 		sys1: props.globals.getNode("/systems/hydraulics/sys-1-qty"),
 		sys1Input: props.globals.getNode("/systems/hydraulics/sys-1-qty-input"),
+		sys1Preflight: props.globals.getNode("/systems/hydraulics/sys-1-preflight-qty"),
 		sys2: props.globals.getNode("/systems/hydraulics/sys-2-qty"),
 		sys2Input: props.globals.getNode("/systems/hydraulics/sys-2-qty-input"),
+		sys2Preflight: props.globals.getNode("/systems/hydraulics/sys-2-preflight-qty"),
 		sys3: props.globals.getNode("/systems/hydraulics/sys-3-qty"),
 		sys3Input: props.globals.getNode("/systems/hydraulics/sys-3-qty-input"),
 		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-qty"),
+		sys3Preflight: props.globals.getNode("/systems/hydraulics/sys-3-preflight-qty"),
 	},
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	Controls: {
@@ -63,12 +66,14 @@ var HYDRAULICS = {
 	Lights: {
 		manualFlash: props.globals.initNode("/systems/hydraulics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
+		rmp13Disag: props.globals.initNode("/systems/hydraulics/lights/rmp-1-3-disag"),
+		rmp23Disag: props.globals.initNode("/systems/hydraulics/lights/rmp-2-3-disag"),
 	},
 	init: func() {
 		me.resetFailures();
-		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
-		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 8 , 0.1)); # Random between 8 and 12
+		me.Qty.sys1Input.setValue(math.round((rand() * 4) + 6 , 0.1)); # Random between 6 and 10
+		me.Qty.sys2Input.setValue(math.round((rand() * 4) + 6 , 0.1)); # Random between 6 and 10
+		me.Qty.sys3Input.setValue(math.round((rand() * 4) + 6 , 0.1)); # Random between 6 and 10
 		me.Controls.auxPump1.setBoolValue(0);
 		me.Controls.auxPump2.setBoolValue(0);
 		me.Controls.gearGravityExt.setBoolValue(0);

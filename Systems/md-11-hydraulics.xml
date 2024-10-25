@@ -51,6 +51,13 @@
 			<rate_limit sense="decr">/systems/hydraulics/sys-1-qty-decr-rate</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/hydraulics/sys-1-preflight-qty">
+			<default value="/systems/hydraulics/sys-1-preflight-qty"/>
+			<test logic="AND" value="/systems/hydraulics/sys-1-qty">
+				/engines/engine[0]/state lt 3
+			</test>
+		</switch>
+		
 		<!-- SYS 2 -->
 		<switch name="/systems/hydraulics/sys-2-qty-cmd">
 			<default value="/systems/hydraulics/sys-2-qty-input"/>
@@ -73,6 +80,13 @@
 			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
 			<rate_limit sense="decr">/systems/hydraulics/sys-2-qty-decr-rate</rate_limit>
 		</actuator>
+		
+		<switch name="/systems/hydraulics/sys-2-preflight-qty">
+			<default value="/systems/hydraulics/sys-2-preflight-qty"/>
+			<test logic="AND" value="/systems/hydraulics/sys-2-qty">
+				/engines/engine[1]/state lt 3
+			</test>
+		</switch>
 		
 		<!-- SYS 3 -->
 		<switch name="/systems/hydraulics/sys-3-isol-valve">
@@ -117,6 +131,13 @@
 			<rate_limit sense="incr">100</rate_limit> <!-- Instant -->
 			<rate_limit sense="decr">/systems/hydraulics/sys-3-qty-decr-rate</rate_limit>
 		</actuator>
+		
+		<switch name="/systems/hydraulics/sys-3-preflight-qty">
+			<default value="/systems/hydraulics/sys-3-preflight-qty"/>
+			<test logic="AND" value="/systems/hydraulics/sys-3-qty">
+				/engines/engine[2]/state lt 3
+			</test>
+		</switch>
 		
 		<!-- SYS 3 Aft --> <!-- If SYS 3 is lost, SYS 3 Aft is lost also, but not the other way around -->
 		<switch name="/systems/hydraulics/sys-3-aft-qty-cmd">
