@@ -56,9 +56,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="752.14016"
-     inkscape:cy="760.22028"
+     inkscape:zoom="0.50000001"
+     inkscape:cx="680.26745"
+     inkscape:cy="883.75675"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -883,16 +883,24 @@
        y="250"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;font-family:DULarge;-inkscape-font-specification:DULarge;text-align:center;text-anchor:middle;fill:#f0b900;fill-opacity:1">DISAG</tspan></text>
   <path
-     id="Rmp13_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 232,277.9995 113,278 m 315,-5e-4 -105,0 m 133,0 315,5e-4"
+     d="M 232,277.9995 117,278"
+     id="Rmp13_line"
+     inkscape:label="#path4289"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cccccc" />
+     sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 285,277.9995 -15,0"
-     id="Rmp13_line2"
+     id="Rmp13_mc"
      inkscape:label="#path4367" />
+  <path
+     id="Rmp13_line2"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 456,277.9995 767,278 m -339,-5e-4 -105,0"
+     inkscape:label="#Rmp13_line"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc" />
   <path
      id="Rmp13_m1"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -921,16 +929,24 @@
        id="tspan4270"
        sodipodi:role="line">DISAG</tspan></text>
   <path
-     id="Rmp23_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 561,350 -119,0 m 329,0 -119,0"
+     d="m 561,350 -115,0"
+     id="Rmp23_line"
+     inkscape:label="#path4295"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cccc" />
+     sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 614,350 -15,0"
-     id="Rmp23_line2"
+     id="Rmp23_mc"
      inkscape:label="#path4376"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 767,350 -115,0"
+     id="Rmp23_line2"
+     inkscape:label="#Rmp23_line"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cc" />
   <path
@@ -966,7 +982,7 @@
      sodipodi:nodetypes="cc"
      inkscape:connector-curvature="0"
      id="Aux_line"
-     d="m 771,311.9995 97,0"
+     d="m 775,311.9995 89,0"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <g
      id="g4266">

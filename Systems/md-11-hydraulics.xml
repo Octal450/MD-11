@@ -959,6 +959,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-1-pre-psi-cmd">
 				/systems/hydraulics/rmp/rmp-1-3-valve eq 1
 				/systems/failures/hydraulics/rmp-1-3 ne 1
+				/systems/hydraulics/sys-3-qty ge 1
 			</test>
 		</switch>
 		
@@ -967,6 +968,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
 				/systems/hydraulics/rmp/rmp-1-3-valve eq 1
 				/systems/failures/hydraulics/rmp-1-3 ne 1
+				/systems/hydraulics/sys-1-qty ge 1
 			</test>
 		</switch>
 		
@@ -988,6 +990,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-2-pre-psi-cmd">
 				/systems/hydraulics/rmp/rmp-2-3-valve eq 1
 				/systems/failures/hydraulics/rmp-2-3 ne 1
+				/systems/hydraulics/sys-3-qty ge 1
 			</test>
 		</switch>
 		
@@ -996,6 +999,7 @@
 			<test logic="AND" value="/systems/hydraulics/sys-3-pre-psi-cmd">
 				/systems/hydraulics/rmp/rmp-2-3-valve eq 1
 				/systems/failures/hydraulics/rmp-2-3 ne 1
+				/systems/hydraulics/sys-2-qty ge 1
 			</test>
 		</switch>
 		
