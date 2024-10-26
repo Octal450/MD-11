@@ -40,6 +40,10 @@ var HYDRAULICS = {
 		sys3Aft: props.globals.getNode("/systems/hydraulics/sys-3-aft-qty"),
 		sys3Preflight: props.globals.getNode("/systems/hydraulics/sys-3-preflight-qty"),
 	},
+	Valve: {
+		rmp13: props.globals.getNode("/systems/hydraulics/rmp/rmp-1-3-valve"),
+		rmp23: props.globals.getNode("/systems/hydraulics/rmp/rmp-2-3-valve"),
+	},
 	system: props.globals.getNode("/systems/hydraulics/system"),
 	Controls: {
 		auxPump1: props.globals.getNode("/controls/hydraulics/aux-pump-1"),
