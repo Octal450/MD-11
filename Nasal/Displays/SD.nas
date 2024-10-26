@@ -221,17 +221,17 @@ var canvasConfig = {
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
 				} else {
-					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+					me["Stab"].setColor(0.9412, 0.7255, 0);
 					me["Stab_box"].show();
-					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
-					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
+					me["StabNeedle"].setColorFill(0.9412, 0.7255, 0);
+					me["StabUnit"].setColor(0.9412, 0.7255, 0);
 				}
 			} else {
-				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+				me["Stab"].setColor(0.9412, 0.7255, 0);
 				me["Stab_box"].show();
 				me["StabGreen"].hide();
-				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
-				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
+				me["StabNeedle"].setColorFill(0.9412, 0.7255, 0);
+				me["StabUnit"].setColor(0.9412, 0.7255, 0);
 			}
 		}
 		
@@ -657,17 +657,17 @@ var canvasEngBase = {
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
 				} else {
-					me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+					me["Stab"].setColor(0.9412, 0.7255, 0);
 					me["Stab_box"].show();
-					me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
-					me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
+					me["StabNeedle"].setColorFill(0.9412, 0.7255, 0);
+					me["StabUnit"].setColor(0.9412, 0.7255, 0);
 				}
 			} else {
-				me["Stab"].setColor(0.9647, 0.8196, 0.0784);
+				me["Stab"].setColor(0.9412, 0.7255, 0);
 				me["Stab_box"].show();
 				me["StabGreen"].hide();
-				me["StabNeedle"].setColorFill(0.9647, 0.8196, 0.0784);
-				me["StabUnit"].setColor(0.9647, 0.8196, 0.0784);
+				me["StabNeedle"].setColorFill(0.9412, 0.7255, 0);
+				me["StabUnit"].setColor(0.9412, 0.7255, 0);
 			}
 		}
 		
@@ -757,9 +757,9 @@ var canvasEngDials = {
 		
 		if (Value.Eng.type == "PW") {
 			if (Value.Eng.oilTemp[0] <= 50) {
-				me["OilTemp1"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp1"].setColor(0.9412, 0.7255, 0);
 				me["OilTemp1_box"].show();
-				me["OilTemp1_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp1_needle"].setColorFill(0.9412, 0.7255, 0);
 			} else {
 				me["OilTemp1"].setColor(1, 1, 1);
 				me["OilTemp1_box"].hide();
@@ -767,9 +767,9 @@ var canvasEngDials = {
 			}
 			
 			if (Value.Eng.oilTemp[1] <= 50) {
-				me["OilTemp2"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp2"].setColor(0.9412, 0.7255, 0);
 				me["OilTemp2_box"].show();
-				me["OilTemp2_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp2_needle"].setColorFill(0.9412, 0.7255, 0);
 			} else {
 				me["OilTemp2"].setColor(1, 1, 1);
 				me["OilTemp2_box"].hide();
@@ -777,9 +777,9 @@ var canvasEngDials = {
 			}
 			
 			if (Value.Eng.oilTemp[2] <= 50) {
-				me["OilTemp3"].setColor(0.9647, 0.8196, 0.0784);
+				me["OilTemp3"].setColor(0.9412, 0.7255, 0);
 				me["OilTemp3_box"].show();
-				me["OilTemp3_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp3_needle"].setColorFill(0.9412, 0.7255, 0);
 			} else {
 				me["OilTemp3"].setColor(1, 1, 1);
 				me["OilTemp3_box"].hide();
@@ -806,9 +806,9 @@ var canvasEngDials = {
 		me["OilQty3_needle"].setRotation(pts.Instrumentation.Sd.Eng.oilQty[2].getValue() * D2R);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
-			me["OilQty1"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty1"].setColor(0.9412, 0.7255, 0);
 			me["OilQty1_box"].show();
-			me["OilQty1_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty1_needle"].setColorFill(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty1"].setColor(1, 1, 1);
 			me["OilQty1_box"].hide();
@@ -816,9 +816,9 @@ var canvasEngDials = {
 		}
 		
 		if (Value.Eng.oilQty[1] <= 4) {
-			me["OilQty2"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty2"].setColor(0.9412, 0.7255, 0);
 			me["OilQty2_box"].show();
-			me["OilQty2_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty2_needle"].setColorFill(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty2"].setColor(1, 1, 1);
 			me["OilQty2_box"].hide();
@@ -826,9 +826,9 @@ var canvasEngDials = {
 		}
 		
 		if (Value.Eng.oilQty[2] <= 4) {
-			me["OilQty3"].setColor(0.9647, 0.8196, 0.0784);
+			me["OilQty3"].setColor(0.9412, 0.7255, 0);
 			me["OilQty3_box"].show();
-			me["OilQty3_needle"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty3_needle"].setColorFill(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty3"].setColor(1, 1, 1);
 			me["OilQty3_box"].hide();
@@ -931,8 +931,8 @@ var canvasEngTapes = {
 		
 		if (Value.Eng.type == "PW") {
 			if (Value.Eng.oilTemp[0] <= 50) {
-				me["OilTemp1"].setColor(0.9647, 0.8196, 0.0784);
-				me["OilTemp1_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp1"].setColor(0.9412, 0.7255, 0);
+				me["OilTemp1_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["OilTemp1_box"].show();
 			} else {
 				me["OilTemp1"].setColor(1, 1, 1);
@@ -941,8 +941,8 @@ var canvasEngTapes = {
 			}
 			
 			if (Value.Eng.oilTemp[1] <= 50) {
-				me["OilTemp2"].setColor(0.9647, 0.8196, 0.0784);
-				me["OilTemp2_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp2"].setColor(0.9412, 0.7255, 0);
+				me["OilTemp2_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["OilTemp2_box"].show();
 			} else {
 				me["OilTemp2"].setColor(1, 1, 1);
@@ -951,8 +951,8 @@ var canvasEngTapes = {
 			}
 			
 			if (Value.Eng.oilTemp[2] <= 50) {
-				me["OilTemp3"].setColor(0.9647, 0.8196, 0.0784);
-				me["OilTemp3_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["OilTemp3"].setColor(0.9412, 0.7255, 0);
+				me["OilTemp3_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["OilTemp3_box"].show();
 			} else {
 				me["OilTemp3"].setColor(1, 1, 1);
@@ -980,8 +980,8 @@ var canvasEngTapes = {
 		me["OilQty3_bar"].setTranslation(0, Value.Eng.oilQty[2] / 30 * -251);
 		
 		if (Value.Eng.oilQty[0] <= 4) {
-			me["OilQty1"].setColor(0.9647, 0.8196, 0.0784);
-			me["OilQty1_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty1"].setColor(0.9412, 0.7255, 0);
+			me["OilQty1_bar"].setColorFill(0.9412, 0.7255, 0);
 			me["OilQty1_box"].show();
 		} else {
 			me["OilQty1"].setColor(1, 1, 1);
@@ -990,8 +990,8 @@ var canvasEngTapes = {
 		}
 		
 		if (Value.Eng.oilQty[1] <= 4) {
-			me["OilQty2"].setColor(0.9647, 0.8196, 0.0784);
-			me["OilQty2_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty2"].setColor(0.9412, 0.7255, 0);
+			me["OilQty2_bar"].setColorFill(0.9412, 0.7255, 0);
 			me["OilQty2_box"].show();
 		} else {
 			me["OilQty2"].setColor(1, 1, 1);
@@ -1000,8 +1000,8 @@ var canvasEngTapes = {
 		}
 		
 		if (Value.Eng.oilQty[2] <= 4) {
-			me["OilQty3"].setColor(0.9647, 0.8196, 0.0784);
-			me["OilQty3_bar"].setColorFill(0.9647, 0.8196, 0.0784);
+			me["OilQty3"].setColor(0.9412, 0.7255, 0);
+			me["OilQty3_bar"].setColorFill(0.9412, 0.7255, 0);
 			me["OilQty3_box"].show();
 		} else {
 			me["OilQty3"].setColor(1, 1, 1);
@@ -1042,9 +1042,11 @@ var canvasHyd = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Rmp13_disag", "Rmp23_disag", "Sys1_psi", "Sys1_psi_box", "Sys1_psi_error", "Sys1_qty", "Sys1_qty_error", "Sys1_qty_bar", "Sys1_qty_bar_box", "Sys1_qty_box", "Sys1_qty_line", "Sys1_temp", "Sys1_temp_error", "Sys2_psi",
-		"Sys2_psi_box", "Sys2_psi_error", "Sys2_qty", "Sys2_qty_bar", "Sys2_qty_bar_box", "Sys2_qty_box", "Sys2_qty_error", "Sys2_qty_line", "Sys2_temp", "Sys2_temp_error", "Sys3_psi", "Sys3_psi_box", "Sys3_psi_error", "Sys3_qty", "Sys3_qty_bar",
-		"Sys3_qty_bar_box", "Sys3_qty_box", "Sys3_qty_error", "Sys3_qty_line", "Sys3_temp", "Sys3_temp_error"];
+		return ["Alert_error", "Aux1_circle", "Aux1_imp", "Aux2_circle", "Aux2_imp", "Rmp13_disag", "Rmp13_m1", "Rmp13_m2", "Rmp13_line", "Rmp13_line2", "Rmp23_disag", "Rmp23_m1", "Rmp23_m2", "Rmp23_line", "Rmp23_line2", "Sys1_psi", "Sys1_psi_box",
+		"Sys1_psi_error", "Sys1_qty", "Sys1_qty_error", "Sys1_qty_bar", "Sys1_qty_bar_box", "Sys1_qty_box", "Sys1_qty_line", "Sys1_temp", "Sys1_temp_error", "Sys1PumpL_circle", "Sys1PumpL_imp", "Sys1PumpL_p", "Sys1PumpR_auto", "Sys1PumpR_circle",
+		"Sys1PumpR_imp", "Sys1PumpR_p", "Sys2_psi", "Sys2_psi_box", "Sys2_psi_error", "Sys2_qty", "Sys2_qty_bar", "Sys2_qty_bar_box", "Sys2_qty_box", "Sys2_qty_error", "Sys2_qty_line", "Sys2_temp", "Sys2_temp_error", "Sys2PumpL_circle", "Sys2PumpL_imp",
+		"Sys2PumpL_p", "Sys2PumpR_auto", "Sys2PumpR_circle", "Sys2PumpR_imp", "Sys2PumpR_p", "Sys3_psi", "Sys3_psi_box", "Sys3_psi_error", "Sys3_qty", "Sys3_qty_bar", "Sys3_qty_bar_box", "Sys3_qty_box", "Sys3_qty_error", "Sys3_qty_line", "Sys3_temp",
+		"Sys3_temp_error", "Sys3PumpL_circle", "Sys3PumpL_imp", "Sys3PumpL_p", "Sys3PumpR_auto", "Sys3PumpR_circle", "Sys3PumpR_imp", "Sys3PumpR_p"];
 	},
 	update: func() {
 		Value.Misc.tat = pts.Fdm.JSBSim.Propulsion.tatC.getValue();
@@ -1086,7 +1088,7 @@ var canvasHyd = {
 		me["Sys3_psi"].setText(sprintf("%d", Value.Hyd.psi[2], 10));
 		
 		if (Value.Hyd.psi[0] < 2400 or Value.Hyd.psi[0] > 3500) {
-			me["Sys1_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys1_psi"].setColor(0.9412, 0.7255, 0);
 			me["Sys1_psi_box"].show();
 		} else {
 			me["Sys1_psi"].setColor(1, 1, 1);
@@ -1094,7 +1096,7 @@ var canvasHyd = {
 		}
 		
 		if (Value.Hyd.psi[1] < 2400 or Value.Hyd.psi[1] > 3500) {
-			me["Sys2_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys2_psi"].setColor(0.9412, 0.7255, 0);
 			me["Sys2_psi_box"].show();
 		} else {
 			me["Sys2_psi"].setColor(1, 1, 1);
@@ -1102,7 +1104,7 @@ var canvasHyd = {
 		}
 		
 		if (Value.Hyd.psi[2] < 2400 or Value.Hyd.psi[2] > 3500) {
-			me["Sys3_psi"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys3_psi"].setColor(0.9412, 0.7255, 0);
 			me["Sys3_psi_box"].show();
 		} else {
 			me["Sys3_psi"].setColor(1, 1, 1);
@@ -1114,7 +1116,7 @@ var canvasHyd = {
 		me["Sys2_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
 		me["Sys3_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
 		
-		# QTY
+		# Qty
 		Value.Hyd.qty[0] = math.round(systems.HYDRAULICS.Qty.sys1.getValue(), 0.1);
 		Value.Hyd.qty[1] = math.round(systems.HYDRAULICS.Qty.sys2.getValue(), 0.1);
 		Value.Hyd.qty[2] = math.round(systems.HYDRAULICS.Qty.sys3.getValue(), 0.1);
@@ -1135,9 +1137,9 @@ var canvasHyd = {
 		else Value.Hyd.qtyLow[2] = 2.5;
 		
 		if (Value.Hyd.qty[0] < Value.Hyd.qtyLow[0]) {
-			me["Sys1_qty"].setColor(0.9647, 0.8196, 0.0784);
-			me["Sys1_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
-			me["Sys1_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys1_qty"].setColor(0.9412, 0.7255, 0);
+			me["Sys1_qty_bar"].setColorFill(0.9412, 0.7255, 0);
+			me["Sys1_qty_bar_box"].setColor(0.9412, 0.7255, 0);
 			me["Sys1_qty_box"].show();
 		} else {
 			me["Sys1_qty"].setColor(1, 1, 1);
@@ -1147,9 +1149,9 @@ var canvasHyd = {
 		}
 		
 		if (Value.Hyd.qty[1] < Value.Hyd.qtyLow[1]) {
-			me["Sys2_qty"].setColor(0.9647, 0.8196, 0.0784);
-			me["Sys2_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
-			me["Sys2_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys2_qty"].setColor(0.9412, 0.7255, 0);
+			me["Sys2_qty_bar"].setColorFill(0.9412, 0.7255, 0);
+			me["Sys2_qty_bar_box"].setColor(0.9412, 0.7255, 0);
 			me["Sys2_qty_box"].show();
 		} else {
 			me["Sys2_qty"].setColor(1, 1, 1);
@@ -1159,9 +1161,9 @@ var canvasHyd = {
 		}
 		
 		if (Value.Hyd.qty[2] < Value.Hyd.qtyLow[2]) {
-			me["Sys3_qty"].setColor(0.9647, 0.8196, 0.0784);
-			me["Sys3_qty_bar"].setColorFill(0.9647, 0.8196, 0.0784);
-			me["Sys3_qty_bar_box"].setColor(0.9647, 0.8196, 0.0784);
+			me["Sys3_qty"].setColor(0.9412, 0.7255, 0);
+			me["Sys3_qty_bar"].setColorFill(0.9412, 0.7255, 0);
+			me["Sys3_qty_bar_box"].setColor(0.9412, 0.7255, 0);
 			me["Sys3_qty_box"].show();
 		} else {
 			me["Sys3_qty"].setColor(1, 1, 1);
@@ -1194,17 +1196,234 @@ var canvasHyd = {
 			me["Sys3_qty_line"].hide();
 		}
 		
-		# RMPs
-		if (systems.HYDRAULICS.Lights.rmp13Disag.getBoolValue()) {
-			me["Rmp13_disag"].show();
+		# Pumps 1
+		if (systems.HYDRAULICS.PumpCmd.lPump1.getBoolValue()) {
+			if (systems.HYDRAULICS.Lights.lPump1Fault.getBoolValue()) {
+				me["Sys1PumpL_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpL_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpL_p"].show();
+			} else {
+				me["Sys1PumpL_circle"].setColor(0, 1, 0);
+				me["Sys1PumpL_imp"].setColor(0, 1, 0);
+				me["Sys1PumpL_p"].hide();
+			}
+			
+			me["Sys1PumpL_imp"].show();
 		} else {
-			me["Rmp13_disag"].hide();
+			me["Sys1PumpL_circle"].setColor(1, 1, 1);
+			me["Sys1PumpL_imp"].hide();
+			me["Sys1PumpL_p"].hide();
 		}
 		
-		if (systems.HYDRAULICS.Lights.rmp23Disag.getBoolValue()) {
-			me["Rmp23_disag"].show();
+		if (systems.HYDRAULICS.PumpCmd.rPump1.getValue() == 1) {
+			if (systems.HYDRAULICS.Lights.rPump1Fault.getBoolValue()) {
+				me["Sys1PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpR_p"].show();
+			} else {
+				me["Sys1PumpR_circle"].setColor(0, 1, 0);
+				me["Sys1PumpR_imp"].setColor(0, 1, 0);
+				me["Sys1PumpR_p"].hide();
+			}
+			
+			me["Sys1PumpR_auto"].hide();
+			me["Sys1PumpR_imp"].show();
+		} else if (systems.HYDRAULICS.PumpCmd.rPump1.getValue() == -1) {
+			if (systems.HYDRAULICS.Lights.rPump1Fault.getBoolValue()) {
+				me["Sys1PumpR_auto"].hide();
+				me["Sys1PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys1PumpR_imp"].show();
+				me["Sys1PumpR_p"].show();
+			} else {
+				me["Sys1PumpR_auto"].show();
+				me["Sys1PumpR_circle"].setColor(1, 1, 1);
+				me["Sys1PumpR_imp"].hide();
+				me["Sys1PumpR_p"].hide();
+			}
 		} else {
-			me["Rmp23_disag"].hide();
+			me["Sys1PumpR_auto"].hide();
+			me["Sys1PumpR_circle"].setColor(1, 1, 1);
+			me["Sys1PumpR_imp"].hide();
+			me["Sys1PumpR_p"].hide();
+		}
+		
+		# Pumps 2
+		if (systems.HYDRAULICS.PumpCmd.lPump2.getBoolValue()) {
+			if (systems.HYDRAULICS.Lights.lPump2Fault.getBoolValue()) {
+				me["Sys2PumpL_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpL_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpL_p"].show();
+			} else {
+				me["Sys2PumpL_circle"].setColor(0, 1, 0);
+				me["Sys2PumpL_imp"].setColor(0, 1, 0);
+				me["Sys2PumpL_p"].hide();
+			}
+			
+			me["Sys2PumpL_imp"].show();
+		} else {
+			me["Sys2PumpL_circle"].setColor(1, 1, 1);
+			me["Sys2PumpL_imp"].hide();
+			me["Sys2PumpL_p"].hide();
+		}
+		
+		if (systems.HYDRAULICS.PumpCmd.rPump2.getValue() == 1) {
+			if (systems.HYDRAULICS.Lights.rPump2Fault.getBoolValue()) {
+				me["Sys2PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpR_p"].show();
+			} else {
+				me["Sys2PumpR_circle"].setColor(0, 1, 0);
+				me["Sys2PumpR_imp"].setColor(0, 1, 0);
+				me["Sys2PumpR_p"].hide();
+			}
+			
+			me["Sys2PumpR_auto"].hide();
+			me["Sys2PumpR_imp"].show();
+		} else if (systems.HYDRAULICS.PumpCmd.rPump2.getValue() == -1) {
+			if (systems.HYDRAULICS.Lights.rPump2Fault.getBoolValue()) {
+				me["Sys2PumpR_auto"].hide();
+				me["Sys2PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys2PumpR_imp"].show();
+				me["Sys2PumpR_p"].show();
+			} else {
+				me["Sys2PumpR_auto"].show();
+				me["Sys2PumpR_circle"].setColor(1, 1, 1);
+				me["Sys2PumpR_imp"].hide();
+				me["Sys2PumpR_p"].hide();
+			}
+		} else {
+			me["Sys2PumpR_auto"].hide();
+			me["Sys2PumpR_circle"].setColor(1, 1, 1);
+			me["Sys2PumpR_imp"].hide();
+			me["Sys2PumpR_p"].hide();
+		}
+		
+		# Pumps 3
+		if (systems.HYDRAULICS.PumpCmd.lPump3.getBoolValue()) {
+			if (systems.HYDRAULICS.Lights.lPump3Fault.getBoolValue()) {
+				me["Sys3PumpL_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpL_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpL_p"].show();
+			} else {
+				me["Sys3PumpL_circle"].setColor(0, 1, 0);
+				me["Sys3PumpL_imp"].setColor(0, 1, 0);
+				me["Sys3PumpL_p"].hide();
+			}
+			
+			me["Sys3PumpL_imp"].show();
+		} else {
+			me["Sys3PumpL_circle"].setColor(1, 1, 1);
+			me["Sys3PumpL_imp"].hide();
+			me["Sys3PumpL_p"].hide();
+		}
+		
+		if (systems.HYDRAULICS.PumpCmd.rPump3.getValue() == 1) {
+			if (systems.HYDRAULICS.Lights.rPump3Fault.getBoolValue()) {
+				me["Sys3PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpR_p"].show();
+			} else {
+				me["Sys3PumpR_circle"].setColor(0, 1, 0);
+				me["Sys3PumpR_imp"].setColor(0, 1, 0);
+				me["Sys3PumpR_p"].hide();
+			}
+			
+			me["Sys3PumpR_auto"].hide();
+			me["Sys3PumpR_imp"].show();
+		} else if (systems.HYDRAULICS.PumpCmd.rPump3.getValue() == -1) {
+			if (systems.HYDRAULICS.Lights.rPump3Fault.getBoolValue()) {
+				me["Sys3PumpR_auto"].hide();
+				me["Sys3PumpR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Sys3PumpR_imp"].show();
+				me["Sys3PumpR_p"].show();
+			} else {
+				me["Sys3PumpR_auto"].show();
+				me["Sys3PumpR_circle"].setColor(1, 1, 1);
+				me["Sys3PumpR_imp"].hide();
+				me["Sys3PumpR_p"].hide();
+			}
+		} else {
+			me["Sys3PumpR_auto"].hide();
+			me["Sys3PumpR_circle"].setColor(1, 1, 1);
+			me["Sys3PumpR_imp"].hide();
+			me["Sys3PumpR_p"].hide();
+		}
+		
+		# Aux Pumps
+		if (systems.HYDRAULICS.PumpCmd.auxPump1.getBoolValue()) {
+			me["Aux1_circle"].setColor(0, 1, 0);
+			me["Aux1_imp"].show();
+		} else {
+			me["Aux1_circle"].setColor(1, 1, 1);
+			me["Aux1_imp"].hide();
+		}
+		
+		if (systems.HYDRAULICS.PumpCmd.auxPump2.getBoolValue()) {
+			me["Aux2_circle"].setColor(0, 1, 0);
+			me["Aux2_imp"].show();
+		} else {
+			me["Aux2_circle"].setColor(1, 1, 1);
+			me["Aux2_imp"].hide();
+		}
+		
+		# RMPs
+		if (systems.HYDRAULICS.PumpCmd.rmp13.getBoolValue()) {
+			me["Rmp13_m1"].setRotation(90 * D2R);
+			me["Rmp13_m2"].setRotation(90 * D2R);
+			
+			if (systems.HYDRAULICS.Lights.rmp13Disag.getBoolValue()) {
+				me["Rmp13_disag"].show();
+				me["Rmp13_m1"].setColor(0.9412, 0.7255, 0);
+				me["Rmp13_m2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Rmp13_disag"].hide();
+				me["Rmp13_m1"].setColor(0, 1, 0);
+				me["Rmp13_m2"].setColor(0, 1, 0);
+			}
+		} else {
+			me["Rmp13_m1"].setRotation(0);
+			me["Rmp13_m2"].setRotation(0);
+			
+			if (systems.HYDRAULICS.Lights.rmp13Disag.getBoolValue()) {
+				me["Rmp13_disag"].show();
+				me["Rmp13_m1"].setColor(0.9412, 0.7255, 0);
+				me["Rmp13_m2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Rmp13_disag"].hide();
+				me["Rmp13_m1"].setColor(1, 1, 1);
+				me["Rmp13_m2"].setColor(1, 1, 1);
+			}
+		}
+		
+		if (systems.HYDRAULICS.PumpCmd.rmp23.getBoolValue()) {
+			me["Rmp23_m1"].setRotation(90 * D2R);
+			me["Rmp23_m2"].setRotation(90 * D2R);
+			
+			if (systems.HYDRAULICS.Lights.rmp23Disag.getBoolValue()) {
+				me["Rmp23_disag"].show();
+				me["Rmp23_m1"].setColor(0.9412, 0.7255, 0);
+				me["Rmp23_m2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Rmp23_disag"].hide();
+				me["Rmp23_m1"].setColor(0, 1, 0);
+				me["Rmp23_m2"].setColor(0, 1, 0);
+			}
+		} else {
+			me["Rmp23_m1"].setRotation(0);
+			me["Rmp23_m2"].setRotation(0);
+			
+			if (systems.HYDRAULICS.Lights.rmp23Disag.getBoolValue()) {
+				me["Rmp23_disag"].show();
+				me["Rmp23_m1"].setColor(0.9412, 0.7255, 0);
+				me["Rmp23_m2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Rmp23_disag"].hide();
+				me["Rmp23_m1"].setColor(1, 1, 1);
+				me["Rmp23_m2"].setColor(1, 1, 1);
+			}
 		}
 	},
 };

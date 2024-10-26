@@ -181,7 +181,7 @@ var canvasIesi = {
 			
 			Value.Ai.slipSkid = pts.Instrumentation.Iesi.slipSkid.getValue() * 4.235;
 			if (abs(Value.Ai.slipSkid) >= 16.268) {
-				me["AI_slipskid"].setColorFill(0.9647, 0.8196, 0.0784);
+				me["AI_slipskid"].setColorFill(0.9412, 0.7255, 0);
 			} else {
 				me["AI_slipskid"].setColorFill(1, 1, 1);
 			}

@@ -502,10 +502,17 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/hydraulics/l-eng-1-pump-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/hydraulics/l-pump-1 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/hydraulics/l-eng-1-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/l-eng-1-pump-psi-input">
-				/controls/hydraulics/l-pump-1 eq 1
+				/systems/hydraulics/l-eng-1-pump-cmd eq 1
 			</test>
 		</switch>
 		
@@ -606,10 +613,17 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/hydraulics/l-eng-2-pump-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/hydraulics/l-pump-2 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/hydraulics/l-eng-2-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/l-eng-2-pump-psi-input">
-				/controls/hydraulics/l-pump-2 eq 1
+				/systems/hydraulics/l-eng-2-pump-cmd eq 1
 			</test>
 		</switch>
 		
@@ -710,10 +724,17 @@
 			</function>
 		</fcs_function>
 		
+		<switch name="/systems/hydraulics/l-eng-3-pump-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/hydraulics/l-pump-3 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/hydraulics/l-eng-3-pump-psi">
 			<default value="40"/>
 			<test value="/systems/hydraulics/l-eng-3-pump-psi-input">
-				/controls/hydraulics/l-pump-3 eq 1
+				/systems/hydraulics/l-eng-3-pump-cmd eq 1
 			</test>
 		</switch>
 		
@@ -755,7 +776,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/hydraulics/aux-pump-1-psi">
+		<switch name="/systems/hydraulics/aux-pump-1-cmd">
 			<default value="0"/>
 			<test logic="OR" value="0">
 				/controls/hydraulics/aux-pump-1 ne 1
@@ -765,12 +786,19 @@
 				/controls/electrical/adg-elec eq 1
 				/systems/electrical/sources/adg/output-volt ge 112
 			</test>
-			<test logic="OR" value="2960"> <!-- I know it is powered by an AC bus, but I don't know which one, so these are educated guesses -->
+			<test logic="OR" value="1"> <!-- I know it is powered by an AC bus, but I don't know which one, so these are educated guesses -->
 				/systems/electrical/bus/ac-1 ge 112
 				/systems/electrical/bus/ac-2 ge 112
 				/systems/electrical/bus/ac-3 ge 112
 				/systems/electrical/bus/l-emer-ac ge 112
 				/systems/electrical/bus/r-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/aux-pump-1-psi">
+			<default value="0"/>
+			<test value="2960">
+				/systems/hydraulics/aux-pump-1-cmd eq 1
 			</test>
 		</switch>
 		
@@ -784,6 +812,26 @@
 				/systems/electrical/bus/ac-1 ge 112
 				/systems/electrical/bus/ac-2 ge 112
 				/systems/electrical/bus/ac-3 ge 112
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/aux-pump-2-cmd">
+			<default value="0"/>
+			<test logic="OR" value="0">
+				/controls/hydraulics/aux-pump-2 ne 1
+				/systems/failures/hydraulics/aux-pump-2 eq 1
+			</test>
+			<test logic="OR" value="1"> <!-- I know it is powered by an AC bus, but I don't know which one, so guesses -->
+				/systems/electrical/bus/ac-1 ge 112
+				/systems/electrical/bus/ac-2 ge 112
+				/systems/electrical/bus/ac-3 ge 112
+			</test>
+		</switch>
+		
+		<switch name="/systems/hydraulics/aux-pump-2-psi">
+			<default value="0"/>
+			<test value="2950">
+				/systems/hydraulics/aux-pump-2-cmd eq 1
 			</test>
 		</switch>
 		
@@ -856,8 +904,15 @@
 		</actuator>
 		
 		<!-- Reversible Motor Pump 1-3 -->
+		<switch name="/systems/hydraulics/rmp/rmp-1-3-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/hydraulics/rmp-1-3 eq 1
+			</test>
+		</switch>
+		
 		<actuator name="/systems/hydraulics/rmp/rmp-1-3-valve">
-			<input>/controls/hydraulics/rmp-1-3</input>
+			<input>/systems/hydraulics/rmp/rmp-1-3-cmd</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
 		
@@ -878,8 +933,15 @@
 		</switch>
 		
 		<!-- Reversible Motor Pump 2-3 -->
+		<switch name="/systems/hydraulics/rmp/rmp-2-3-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/hydraulics/rmp-2-3 eq 1
+			</test>
+		</switch>
+		
 		<actuator name="/systems/hydraulics/rmp/rmp-2-3-valve">
-			<input>/controls/hydraulics/rmp-2-3</input>
+			<input>/systems/hydraulics/rmp/rmp-2-3-cmd</input>
 			<rate_limit>0.25</rate_limit> <!-- 4 seconds -->
 		</actuator>
 		
