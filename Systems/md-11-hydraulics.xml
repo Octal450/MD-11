@@ -486,10 +486,16 @@
 		<fcs_function name="/systems/hydraulics/l-eng-1-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/l-pump-1</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/l-pump-1</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-1-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
@@ -519,10 +525,16 @@
 		<fcs_function name="/systems/hydraulics/r-eng-1-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/r-pump-1</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/r-pump-1</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-1-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 						<tableData>
@@ -597,10 +609,16 @@
 		<fcs_function name="/systems/hydraulics/l-eng-2-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/l-pump-2</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/l-pump-2</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-2-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 						<tableData>
@@ -630,10 +648,16 @@
 		<fcs_function name="/systems/hydraulics/r-eng-2-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/r-pump-2</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/r-pump-2</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-2-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 						<tableData>
@@ -708,10 +732,16 @@
 		<fcs_function name="/systems/hydraulics/l-eng-3-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/l-pump-3</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/l-pump-3</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-3-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 						<tableData>
@@ -741,10 +771,16 @@
 		<fcs_function name="/systems/hydraulics/r-eng-3-pump-psi-input">
 			<function>
 				<ifthen>
-					<nq>
-						<property>/systems/failures/hydraulics/r-pump-3</property>
-						<value>1</value>
-					</nq>
+					<and>
+						<nq>
+							<property>/systems/failures/hydraulics/r-pump-3</property>
+							<value>1</value>
+						</nq>
+						<ge>
+							<property>/systems/hydraulics/sys-3-qty</property>
+							<value>1</value>
+						</ge>
+					</and>
 					<table>
 						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 						<tableData>
@@ -781,6 +817,7 @@
 			<test logic="OR" value="0">
 				/controls/hydraulics/aux-pump-1 ne 1
 				/systems/failures/hydraulics/aux-pump-1 eq 1
+				/systems/hydraulics/sys-3-qty lt 1
 			</test>
 			<test logic="AND" value="0"> <!-- ADG can't do both ELEC and HYD -->
 				/controls/electrical/adg-elec eq 1
@@ -807,6 +844,7 @@
 			<test logic="OR" value="0">
 				/controls/hydraulics/aux-pump-2 ne 1
 				/systems/failures/hydraulics/aux-pump-2 eq 1
+				/systems/hydraulics/sys-3-qty lt 1
 			</test>
 			<test logic="OR" value="2950"> <!-- I know it is powered by an AC bus, but I don't know which one, so guesses -->
 				/systems/electrical/bus/ac-1 ge 112
