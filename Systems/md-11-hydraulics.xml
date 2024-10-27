@@ -53,8 +53,9 @@
 		
 		<switch name="/systems/hydraulics/sys-1-preflight-qty">
 			<default value="/systems/hydraulics/sys-1-preflight-qty"/>
-			<test logic="AND" value="/systems/hydraulics/sys-1-qty">
+			<test logic="OR" value="/systems/hydraulics/sys-1-qty">
 				/engines/engine[0]/state lt 3
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
@@ -83,8 +84,9 @@
 		
 		<switch name="/systems/hydraulics/sys-2-preflight-qty">
 			<default value="/systems/hydraulics/sys-2-preflight-qty"/>
-			<test logic="AND" value="/systems/hydraulics/sys-2-qty">
+			<test logic="OR" value="/systems/hydraulics/sys-2-qty">
 				/engines/engine[1]/state lt 3
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
@@ -134,8 +136,9 @@
 		
 		<switch name="/systems/hydraulics/sys-3-preflight-qty">
 			<default value="/systems/hydraulics/sys-3-preflight-qty"/>
-			<test logic="AND" value="/systems/hydraulics/sys-3-qty">
+			<test logic="OR" value="/systems/hydraulics/sys-3-qty">
 				/engines/engine[2]/state lt 3
+				/systems/acconfig/autoconfig-running eq 1
 			</test>
 		</switch>
 		
