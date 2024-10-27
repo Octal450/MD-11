@@ -12,6 +12,8 @@ var HYDRAULICS = {
 		rmp2To3: props.globals.getNode("/systems/hydraulics/rmp/sys-2-to-sys-3"),
 		rmp3To1: props.globals.getNode("/systems/hydraulics/rmp/sys-3-to-sys-1"),
 		rmp3To2: props.globals.getNode("/systems/hydraulics/rmp/sys-3-to-sys-2"),
+		rmp1Thru3To2: props.globals.getNode("/systems/hydraulics/rmp/sys-1-thru-sys-3-to-sys-2"),
+		rmp2Thru3To1: props.globals.getNode("/systems/hydraulics/rmp/sys-2-thru-sys-3-to-sys-1"),
 		rPump1: props.globals.getNode("/systems/hydraulics/r-eng-1-pump-psi"),
 		rPump2: props.globals.getNode("/systems/hydraulics/r-eng-2-pump-psi"),
 		rPump3: props.globals.getNode("/systems/hydraulics/r-eng-3-pump-psi"),

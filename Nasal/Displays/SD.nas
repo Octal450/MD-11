@@ -46,12 +46,15 @@ var Value = {
 		psi: [0, 0, 0],
 		qty: [0, 0, 0],
 		qtyLow: [0, 0, 0],
+		rmp13Valve: 0,
+		rmp23Valve: 0,
 		Schematic: {
 			auxLine: 0,
 			aux1Line: 0,
 			aux2Line: 0,
 			rmp13Line: 0,
 			rmp13Line2: 0,
+			rmp13Line2Thru: 0,
 			rmp23Line: 0,
 			rmp23Line2: 0,
 			sys1Line: 0,
@@ -1470,18 +1473,22 @@ var canvasHyd = {
 		Value.Hyd.Schematic.sys2Line2 = Value.Hyd.Schematic.sys2PumpLLine or Value.Hyd.Schematic.sys2PumpRLine;
 		Value.Hyd.Schematic.sys3Line4 = Value.Hyd.Schematic.sys3PumpLLine or Value.Hyd.Schematic.sys3PumpRLine;
 		
-		Value.Hyd.Schematic.rmp23Line = systems.HYDRAULICS.Valve.rmp23.getValue() == 1 and (Value.Hyd.Schematic.sys2Line2 or systems.HYDRAULICS.Psi.rmp3To2.getValue() >= 2400);
-		Value.Hyd.Schematic.rmp23Line2 = systems.HYDRAULICS.Valve.rmp23.getValue() == 1 and (Value.Hyd.Schematic.sys3Line4 or systems.HYDRAULICS.Psi.rmp2To3.getValue() >= 2400);
-		
 		Value.Hyd.Schematic.aux1Line = systems.HYDRAULICS.Psi.auxPump1.getValue() >= 2400;
 		Value.Hyd.Schematic.aux2Line = systems.HYDRAULICS.Psi.auxPump2.getValue() >= 2400;
 		Value.Hyd.Schematic.auxLine = Value.Hyd.Schematic.aux1Line or Value.Hyd.Schematic.aux2Line;
 		
+		Value.Hyd.rmp13Valve = systems.HYDRAULICS.Valve.rmp13.getValue();
+		Value.Hyd.rmp23Valve = systems.HYDRAULICS.Valve.rmp23.getValue();
+		
+		Value.Hyd.Schematic.rmp13Line2Thru = Value.Hyd.rmp13Valve == 1 and systems.HYDRAULICS.Psi.rmp1To3.getValue() >= 2400; # This is required so that SYS 1 powering SYS 2 thru SYS 3 shows properly
+		Value.Hyd.Schematic.rmp23Line = Value.Hyd.rmp23Valve == 1 and (Value.Hyd.Schematic.sys2Line2 or systems.HYDRAULICS.Psi.rmp3To2.getValue() >= 2400 or systems.HYDRAULICS.Psi.rmp1Thru3To2.getValue() >= 2400);
+		Value.Hyd.Schematic.rmp23Line2 = Value.Hyd.rmp23Valve == 1 and (Value.Hyd.Schematic.sys3Line4 or Value.Hyd.Schematic.rmp13Line2Thru or Value.Hyd.Schematic.auxLine or systems.HYDRAULICS.Psi.rmp2To3.getValue() >= 2400);
+		
 		Value.Hyd.Schematic.sys3Line3 = Value.Hyd.Schematic.sys3Line4 or Value.Hyd.Schematic.rmp23Line2;
 		Value.Hyd.Schematic.sys3Line2 = Value.Hyd.Schematic.sys3Line3 or Value.Hyd.Schematic.auxLine;
 		
-		Value.Hyd.Schematic.rmp13Line = systems.HYDRAULICS.Valve.rmp13.getValue() == 1 and (Value.Hyd.Schematic.sys1Line2 or systems.HYDRAULICS.Psi.rmp3To1.getValue() >= 2400);
-		Value.Hyd.Schematic.rmp13Line2 = systems.HYDRAULICS.Valve.rmp13.getValue() == 1 and (Value.Hyd.Schematic.sys3Line2 or systems.HYDRAULICS.Psi.rmp1To3.getValue() >= 2400);
+		Value.Hyd.Schematic.rmp13Line = Value.Hyd.rmp13Valve == 1 and (Value.Hyd.Schematic.sys1Line2 or systems.HYDRAULICS.Psi.rmp3To1.getValue() >= 2400 or systems.HYDRAULICS.Psi.rmp2Thru3To1.getValue() >= 2400);
+		Value.Hyd.Schematic.rmp13Line2 = Value.Hyd.rmp13Valve == 1 and (Value.Hyd.Schematic.sys3Line2 or systems.HYDRAULICS.Psi.rmp1To3.getValue() >= 2400);
 		
 		Value.Hyd.Schematic.sys1Line = Value.Hyd.Schematic.sys1Line2 or Value.Hyd.Schematic.rmp13Line;
 		Value.Hyd.Schematic.sys2Line = Value.Hyd.Schematic.sys2Line2 or Value.Hyd.Schematic.rmp23Line;
