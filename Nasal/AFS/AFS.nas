@@ -107,9 +107,11 @@ var Input = {
 	altTemp: 1000,
 	ap1: props.globals.initNode("/it-autoflight/input/ap1", 0, "BOOL"),
 	ap1Avail: props.globals.initNode("/it-autoflight/input/ap1-avail", 1, "BOOL"),
+	ap1AvailTemp: 0,
 	ap1Temp: 0,
 	ap2: props.globals.initNode("/it-autoflight/input/ap2", 0, "BOOL"),
 	ap2Avail: props.globals.initNode("/it-autoflight/input/ap2-avail", 1, "BOOL"),
+	ap2AvailTemp: 0,
 	ap2Temp: 0,
 	athr: props.globals.initNode("/it-autoflight/input/athr", 0, "BOOL"),
 	athrAvail: props.globals.initNode("/it-autoflight/input/athr-avail", 1, "BOOL"),
@@ -354,6 +356,8 @@ var ITAF = {
 	loop: func() {
 		Gear.wow1Temp = Gear.wow1.getBoolValue();
 		Gear.wow2Temp = Gear.wow2.getBoolValue();
+		Input.ap1AvailTemp = Input.ap1Avail.getBoolValue();
+		Input.ap2AvailTemp = Input.ap2Avail.getBoolValue();
 		Output.ap1Temp = Output.ap1.getBoolValue();
 		Output.ap2Temp = Output.ap2.getBoolValue();
 		Output.latTemp = Output.lat.getValue();
@@ -366,10 +370,12 @@ var ITAF = {
 				me.ap2Master(0);
 			}
 		}
-		if (!Input.ap1Avail.getBoolValue() and Output.ap1Temp) {
+		if (!Input.ap1AvailTemp and Output.ap1Temp) {
+			if (Internal.landCondition == "DUAL" and Input.ap2AvailTemp) me.ap2Master(1); # If we're in DUAL, the other AP takes over
 			me.ap1Master(0);
 		}
-		if (!Input.ap2Avail.getBoolValue() and Output.ap2Temp) {
+		if (!Input.ap2AvailTemp and Output.ap2Temp) {
+			if (Internal.landCondition == "DUAL" and Input.ap1AvailTemp) me.ap1Master(1); # If we're in DUAL, the other AP takes over
 			me.ap2Master(0);
 		}
 		if (!Input.athrAvail.getBoolValue() and Output.athr.getBoolValue()) {
@@ -503,10 +509,23 @@ var ITAF = {
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2 and Position.gearAglFtTemp <= 1500) {
 			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.spd.getValue() == "RETARD")) {
+				if (Internal.landCondition == "SINGLE" or Internal.landCondition == "APPR" or Internal.landCondition == "OFF") {
+					Fma.stopBlink(2);
+				}
 				Internal.landCondition = "DUAL";
 			} else if (Output.ap1Temp or Output.ap2Temp) {
+				if (Internal.landCondition == "DUAL") {
+					Fma.startBlink(2);
+				} else if (Internal.landCondition == "APPR" or Internal.landCondition == "OFF") {
+					Fma.stopBlink(2);
+				}
 				Internal.landCondition = "SINGLE";
 			} else if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
+				if (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE") {
+					Fma.startBlink(2);
+				} else if (Internal.landCondition == "OFF") {
+					Fma.stopBlink(2);
+				}
 				Internal.landCondition = "APPR";
 			} else {
 				Internal.landCondition = "OFF";
@@ -516,6 +535,11 @@ var ITAF = {
 			}
 		} else if (!Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2 and Position.gearAglFtTemp <= 1500) {
 			if (Output.fd1.getBoolValue() or Output.fd2.getBoolValue()) {
+				if (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE") {
+					Fma.startBlink(2);
+				} else if (Internal.landCondition == "OFF") {
+					Fma.stopBlink(2);
+				}
 				Internal.landCondition = "APPR";
 			} else {
 				Internal.landCondition = "OFF";
