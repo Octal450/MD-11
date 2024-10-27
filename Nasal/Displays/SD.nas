@@ -1065,8 +1065,8 @@ var canvasHyd = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Aux_line", "Aux1_circle", "Aux1_imp", "Aux1_line", "Aux2_circle", "Aux2_imp", "Aux2_line", "Rmp13_disag", "Rmp13_m1", "Rmp13_m2", "Rmp13_mc", "Rmp13_line", "Rmp13_line2", "Rmp23_disag", "Rmp23_m1", "Rmp23_m2", "Rmp23_mc",
-		"Rmp23_line", "Rmp23_line2", "Sys1_line", "Sys1_line2", "Sys1_psi", "Sys1_psi_box", "Sys1_psi_error", "Sys1_qty", "Sys1_qty_error", "Sys1_qty_bar", "Sys1_qty_bar_box", "Sys1_qty_box", "Sys1_qty_line", "Sys1_temp", "Sys1_temp_error", "Sys1PumpL_circle",
+		return ["Alert_error", "Aux_line", "Aux1_circle", "Aux1_imp", "Aux1_line", "Aux2_circle", "Aux2_imp", "Aux2_line", "Rmp13_disag", "Rmp13_line", "Rmp13_line2", "Rmp13_m1", "Rmp13_m2", "Rmp13_mc", "Rmp23_disag", "Rmp23_line", "Rmp23_line2", "Rmp23_m1",
+		"Rmp23_m2", "Rmp23_mc", "Sys1_line", "Sys1_line2", "Sys1_psi", "Sys1_psi_box", "Sys1_psi_error", "Sys1_qty", "Sys1_qty_error", "Sys1_qty_bar", "Sys1_qty_bar_box", "Sys1_qty_box", "Sys1_qty_line", "Sys1_temp", "Sys1_temp_error", "Sys1PumpL_circle",
 		"Sys1PumpL_imp", "Sys1PumpL_line", "Sys1PumpL_p", "Sys1PumpR_auto", "Sys1PumpR_circle", "Sys1PumpR_imp", "Sys1PumpR_line", "Sys1PumpR_p", "Sys2_line", "Sys2_line2", "Sys2_psi", "Sys2_psi_box", "Sys2_psi_error", "Sys2_qty", "Sys2_qty_bar",
 		"Sys2_qty_bar_box", "Sys2_qty_box", "Sys2_qty_error", "Sys2_qty_line", "Sys2_temp", "Sys2_temp_error", "Sys2PumpL_circle", "Sys2PumpL_imp", "Sys2PumpL_line", "Sys2PumpL_p", "Sys2PumpR_auto", "Sys2PumpR_circle", "Sys2PumpR_imp", "Sys2PumpR_line",
 		"Sys2PumpR_p", "Sys3_line", "Sys3_line2", "Sys3_line3", "Sys3_line4", "Sys3_psi", "Sys3_psi_box", "Sys3_psi_error", "Sys3_qty", "Sys3_qty_bar", "Sys3_qty_bar_box", "Sys3_qty_box", "Sys3_qty_error", "Sys3_qty_line", "Sys3_temp", "Sys3_temp_error",
