@@ -1473,12 +1473,11 @@ var canvasHyd = {
 		Value.Hyd.Schematic.rmp23Line = systems.HYDRAULICS.Valve.rmp23.getValue() == 1 and (Value.Hyd.Schematic.sys2Line2 or systems.HYDRAULICS.Psi.rmp3To2.getValue() >= 2400);
 		Value.Hyd.Schematic.rmp23Line2 = systems.HYDRAULICS.Valve.rmp23.getValue() == 1 and (Value.Hyd.Schematic.sys3Line4 or systems.HYDRAULICS.Psi.rmp2To3.getValue() >= 2400);
 		
-		Value.Hyd.Schematic.sys3Line3 = Value.Hyd.Schematic.sys3Line4 or Value.Hyd.Schematic.rmp23Line2;
-		
 		Value.Hyd.Schematic.aux1Line = systems.HYDRAULICS.Psi.auxPump1.getValue() >= 2400;
 		Value.Hyd.Schematic.aux2Line = systems.HYDRAULICS.Psi.auxPump2.getValue() >= 2400;
 		Value.Hyd.Schematic.auxLine = Value.Hyd.Schematic.aux1Line or Value.Hyd.Schematic.aux2Line;
 		
+		Value.Hyd.Schematic.sys3Line3 = Value.Hyd.Schematic.sys3Line4 or Value.Hyd.Schematic.rmp23Line2;
 		Value.Hyd.Schematic.sys3Line2 = Value.Hyd.Schematic.sys3Line3 or Value.Hyd.Schematic.auxLine;
 		
 		Value.Hyd.Schematic.rmp13Line = systems.HYDRAULICS.Valve.rmp13.getValue() == 1 and (Value.Hyd.Schematic.sys1Line2 or systems.HYDRAULICS.Psi.rmp3To1.getValue() >= 2400);
