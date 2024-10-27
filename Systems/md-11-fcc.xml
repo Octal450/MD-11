@@ -741,7 +741,7 @@
 				<independentVar lookup="row">velocities/vc-kts</independentVar>
 				<tableData>
 					140  0.75
-					360  1.00
+					200  1.00
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -751,10 +751,22 @@
 			<c1>3.5</c1>
 		</lag_filter>
 		
-		<pure_gain name="/systems/fcc/rcws/rate-demand">
+		<scheduled_gain name="/systems/fcc/rcws/rate-demand">
 			<input>/systems/fcc/rcws/input-demand</input>
-			<gain>0.383972</gain>
-		</pure_gain>
+			<table> <!-- Prevent too lathargic roll control -->
+				<independentVar lookup="row">/systems/fcc/rcws/input-demand</independentVar>
+				<tableData>
+					-1.0  0.261799
+					-0.4  0.349066
+					 0.4  0.349066
+					 1.0  0.261799
+				</tableData>
+			</table>
+			<clipto> <!-- +/- 15 deg/sec -->
+				<min>-0.261799</min>
+				<max>0.261799</max>
+			</clipto>
+		</scheduled_gain>
 		
 		<summer name="/systems/fcc/rcws/rate-error">
 			<input>/systems/fcc/rcws/p-leadlag</input>
