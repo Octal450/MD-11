@@ -1,9 +1,9 @@
 # McDonnell Douglas MD-11 MCDU
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
-var PerfClb = {
-	new: func(n) {
-		var m = {parents: [PerfClb]};
+var Perf = {
+	new: func(n, t) {
+		var m = {parents: [Perf]};
 		
 		m.id = n;
 		
@@ -15,10 +15,10 @@ var PerfClb = {
 			CTranslate: [0, 1, 1, 0, 0, -3],
 			C1L: "",
 			C1: "",
-			C2L: "TIME",
-			C2: "----",
+			C2L: "",
+			C2: "",
 			C3L: "",
-			C3: "----",
+			C3: "",
 			C4L: "",
 			C4: "",
 			C5L: "",
@@ -31,13 +31,13 @@ var PerfClb = {
 			L1: "",
 			L2L: " ECON",
 			L2: "",
-			L3L: " MAX CLB",
+			L3L: "",
 			L3: "",
 			L4L: " EDIT",
 			L4: "[ ]",
 			L5L: "",
 			L5: "",
-			L6L: "TRANS",
+			L6L: "",
 			L6: "",
 			
 			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
@@ -48,19 +48,19 @@ var PerfClb = {
 			L5B: "",
 			L6B: "",
 			
-			pageNum: "1/3",
+			pageNum: "",
 			
 			RFont: [FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
-			R1L: "PRED TO",
-			R1: "10000",
-			R2L: "DIST",
-			R2: "----",
+			R1L: "",
+			R1: "",
+			R2L: "",
+			R2: "",
 			R3L: "",
-			R3: "----",
+			R3: "",
 			R4L: "",
 			R4: "",
-			R5L: "CLIMB ",
-			R5: "FORECAST>",
+			R5L: "",
+			R5: "",
 			R6L: "THRUST ",
 			R6: "LIMITS>",
 			
@@ -76,12 +76,59 @@ var PerfClb = {
 			titleTranslate: 0,
 		};
 		
+		if (t == 0) {
+			m.Display.C2L = "TIME";
+			m.Display.C2 = "----";
+			m.Display.C3 = "----";
+			
+			m.Display.L3L = " MAX CLB";
+			m.Display.L6L = "TRANS";
+			
+			m.Display.pageNum = "1/3";
+			
+			m.Display.R1L = "PRED TO";
+			m.Display.R1 = "10000";
+			m.Display.R2L = "DIST";
+			m.Display.R2 = "----";
+			m.Display.R3 = "----";
+			m.Display.R5L = "CLIMB ";
+			m.Display.R5 = "FORECAST>";
+		} else if (t == 1) {
+			m.Display.L3L = " MAX END";
+			
+			m.Display.pageNum = "2/3";
+			
+			m.Display.R1L = "TO T/D";
+			m.Display.R1 = "----/---";
+		} else if (t == 2) {
+			m.Display.C1 = "0LONG";
+			m.Display.C2L = "UTC";
+			m.Display.C2 = "----";
+			m.Display.C3 = "----";
+			
+			m.Display.L1L = "PATH ERROR";
+			m.Display.L1 = " 0HI";
+			m.Display.L3L = " MAX DES";
+			m.Display.L6L = "TRANS";
+			
+			m.Display.pageNum = "3/3";
+			
+			m.Display.R1L = "PRED TO";
+			m.Display.R1 = "10000";
+			m.Display.R2L = "DIST";
+			m.Display.R2 = "----";
+			m.Display.R3 = "----";
+			m.Display.R5L = "DESCENT ";
+			m.Display.R5 = "FORECAST>";
+		}
+		
 		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "perf";
 		m.nextPage = "preSelCrz";
 		m.scratchpad = "";
 		m.scratchpadState = 0;
+		m.type = t; # 0 = CLB, 1 = CRZ, 2 = DES
 		
 		m.Value = {
 		};
@@ -89,17 +136,29 @@ var PerfClb = {
 		return m;
 	},
 	setup: func() {
-		
 	},
 	loop: func() {
-		#if (fms.Internal.phase == 3) {
-		#	mcdu.unit[me.id].setPage("perfCrz");
-		#} else if (fms.Internal.phase >= 4) {
-		#	mcdu.unit[me.id].setPage("perfDes");
-		#}
+		# Page advance logic
+		if (me.type == 0) {
+			if (fms.Internal.phase == 3) {
+				mcdu.unit[me.id].setPage("perfCrz");
+			} else if (fms.Internal.phase >= 4) {
+				mcdu.unit[me.id].setPage("perfDes");
+			}
+		} else if (me.type == 1) {
+			if (fms.Internal.phase >= 4) {
+				mcdu.unit[me.id].setPage("perfDes");
+			}
+		}
 		
 		# Fix title for ECON/MAX/EDIT
-		me.Display.title = "ECON CLB";
+		if (me.type == 2) {
+			me.Display.title = "ECON DES";
+		} else if (me.type == 1) {
+			me.Display.title = "ECON CRZ";
+		} else {
+			me.Display.title = "ECON CLB";
+		}
 		
 		if (fms.FmsSpd.econKts > 0 and fms.FmsSpd.econMach > 0) {
 			me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
@@ -110,19 +169,29 @@ var PerfClb = {
 		}
 		
 		if (fms.FmsSpd.maxClimb > 0) {
-			me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
+			if (me.type == 2) {
+				me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxDescent);
+			} else if (me.type == 1) {
+				me.Display.L3 = "---"; # Not yet computed
+			} else {
+				me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
+			}
 		} else {
 			me.Display.L3 = "---";
 		}
 		
-		me.Display.L6 = sprintf("%d", fms.FlightData.climbTransAlt);
+		if (me.type != 1) {
+			me.Display.L6 = sprintf("%d", fms.FlightData.climbTransAlt);
+		} else {
+			me.Display.L6 = "";
+		}
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
 		if (k == "l6") {
-			if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2 and me.type != 1) {
 				if (mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 1000 and me.scratchpad <= 18000) {
 						fms.FlightData.climbTransAlt = math.round(me.scratchpad, 1000);

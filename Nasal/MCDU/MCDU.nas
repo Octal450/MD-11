@@ -31,7 +31,9 @@ var MCDU = {
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
 			navRadio: NavRadio.new(n),
-			perfClb: PerfClb.new(n),
+			perfClb: Perf.new(n, 0),
+			perfCrz: Perf.new(n, 1),
+			perfDes: Perf.new(n, 2),
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
@@ -231,13 +233,13 @@ var MCDU = {
 		}
 		
 		if (p == "perf") { # PERF page logic
-			#if (fms.Internal.phase <= 2) {
+			if (fms.Internal.phase <= 2) {
 				p = "perfClb";
-			#} else if (fms.Internal.phase == 3) {
-			#	p = "perfCrz";
-			#} else {
-			#	p = "perfDes";
-			#}
+			} else if (fms.Internal.phase == 3) {
+				p = "perfCrz";
+			} else {
+				p = "perfDes";
+			}
 		}
 		
 		if (p == "toAppr") { # TO/APPR page logic
