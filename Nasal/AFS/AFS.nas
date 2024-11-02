@@ -157,6 +157,7 @@ var Internal = {
 	altDiff: 0,
 	altPredicted: props.globals.initNode("/it-autoflight/internal/altitude-predicted", 0, "DOUBLE"),
 	altTemp: 10000,
+	athrLatch: 0,
 	bankLimit: props.globals.initNode("/it-autoflight/internal/bank-limit", 0, "DOUBLE"),
 	bankLimitAuto: 0,
 	bankLimitCalc: 0,
@@ -507,8 +508,12 @@ var ITAF = {
 			Internal.selfCheckTime = Misc.elapsedSec.getValue();
 		}
 		
+		if (Text.spd.getValue() != "RETARD") { # No longer considered
+			Internal.athrLatch = Output.athrTemp;
+		}
+		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2 and Position.gearAglFtTemp <= 1500) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and (Output.athr.getBoolValue() or Text.spd.getValue() == "RETARD")) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and Internal.athrLatch) {
 				if (Internal.landCondition == "SINGLE" or Internal.landCondition == "APPR" or Internal.landCondition == "OFF") {
 					Fma.stopBlink(2);
 				}
