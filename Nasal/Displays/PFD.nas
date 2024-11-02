@@ -1298,6 +1298,7 @@ var canvasBase = {
 			Value.Alt.Tape.middleOffset = -Value.Alt.Tape.offset * 254.51;
 		}
 		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
+		me["ALT_scale"].update();
 		
 		Value.Alt.Tape.fiveI = (Value.Alt.Tape.middleText + 1000) * 0.001;
 		Value.Alt.Tape.five = int(Value.Alt.Tape.fiveI);

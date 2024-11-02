@@ -227,6 +227,7 @@ var canvasIesi = {
 			Value.Alt.Tape.middleOffset = -Value.Alt.Tape.offset * 83.3;
 		}
 		me["ALT_scale"].setTranslation(0, -Value.Alt.Tape.middleOffset);
+		me["ALT_scale"].update();
 		
 		Value.Alt.Tape.eight = Value.Alt.Tape.middleText + 600;
 		me["ALT_eight"].setText(right(sprintf("%03d", abs(Value.Alt.Tape.eight)), 3));
@@ -310,6 +311,7 @@ var canvasIesi = {
 				Value.Hdg.middleOffset = -Value.Hdg.offset * 60.5;
 			}
 			me["HDG_scale"].setTranslation(Value.Hdg.middleOffset, 0);
+			me["HDG_scale"].update();
 			
 			me["HDG_five"].setText(hdgText(Value.Hdg.middleText));
 			me["HDG_six"].setText(hdgText(Value.Hdg.rightText1));
