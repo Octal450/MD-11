@@ -302,7 +302,7 @@
 				<or>
 					<and>
 						<equals>
-							<property>/it-autoflight/mode/spd</property>
+							<property>/it-autoflight/text/spd</property>
 							<value>RETARD</value>
 						</equals>
 						<or>

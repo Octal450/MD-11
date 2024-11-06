@@ -251,11 +251,11 @@ var Sound = {
 };
 
 var Text = {
-	land: props.globals.initNode("/it-autoflight/mode/land", "OFF", "STRING"),
-	lat: props.globals.initNode("/it-autoflight/mode/lat", "T/O", "STRING"),
+	land: props.globals.initNode("/it-autoflight/text/land", "OFF", "STRING"),
+	lat: props.globals.initNode("/it-autoflight/text/lat", "T/O", "STRING"),
 	latTemp: "T/O",
-	spd: props.globals.initNode("/it-autoflight/mode/spd", "PITCH", "STRING"),
-	vert: props.globals.initNode("/it-autoflight/mode/vert", "T/O CLB", "STRING"),
+	spd: props.globals.initNode("/it-autoflight/text/spd", "PITCH", "STRING"),
+	vert: props.globals.initNode("/it-autoflight/text/vert", "T/O CLB", "STRING"),
 	vertTemp: "T/O CLB",
 };
 

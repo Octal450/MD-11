@@ -1253,7 +1253,7 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/mode/vert</property>
+						<property>/it-autoflight/text/vert</property>
 						<value>T/O CLB</value>
 					</equals>
 					<greater-than> <!-- 0 means no Vr set -->
@@ -1277,7 +1277,7 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/mode/vert</property>
+						<property>/it-autoflight/text/vert</property>
 						<value>T/O CLB</value>
 					</equals>
 					<greater-than-equals>
@@ -1376,7 +1376,7 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/mode/vert</property>
+					<property>/it-autoflight/text/vert</property>
 					<value>T/O CLB</value>
 				</equals>
 			</condition>
