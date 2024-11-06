@@ -473,13 +473,22 @@
 		<reference>/it-autoflight/internal/target-fpm</reference>
 		<output>/it-autoflight/internal/target-pitch-deg</output>
 		<config>
-			<Kp>
+			<Kp> <!-- Flare Mode -->
 				<condition>
-					<not-equals>
+					<equals>
 						<property>/it-autoflight/output/vert</property>
 						<value>6</value>
-					</not-equals>
+					</equals>
 				</condition>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>0.0049</dep></entry>
+						<entry><ind>200</ind><dep>0.0041</dep></entry>
+					</table>
+				</expression>
+			</Kp>
+			<Kp>
 				<expression>
 					<product>
 						<table>
@@ -494,15 +503,6 @@
 						</table>
 					</product>
 				</expression>
-			</Kp>
-			<Kp>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/vert</property>
-						<value>6</value>
-					</equals>
-				</condition>
-				<value>0.0047</value>
 			</Kp>
 			<Ti>2.5</Ti>
 			<Td>0.0001</Td>
@@ -566,7 +566,7 @@
 		<min>-10</min>
 		<max>25</max>
 	</filter>
-
+	
 	<filter>
 		<name>System Command: Pitch Rate Target</name>
 		<type>gain</type>
