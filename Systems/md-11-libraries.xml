@@ -29,26 +29,15 @@
 			<c1>10</c1>
 		</lag_filter>
 		
-		<fcs_function name="position/gear-agl-ft-raw">
+		<fcs_function name="position/gear-agl-ft">
 			<function>
 				<difference>
 					<property>/position/altitude-agl-ft</property>
 					<value>17.1</value>
 				</difference>
 			</function>
+			<output>/position/gear-agl-ft</output> <!-- Copy to local tree and so flight recorder can override it -->
 		</fcs_function>
-		
-		<lag_filter name="position/gear-agl-ft">
-			<input>position/gear-agl-ft-raw</input>
-			<c1>20</c1>
-			<output>/position/gear-agl-ft</output> <!-- So flight recorder can override it -->
-		</lag_filter>
-		
-		<pure_gain name="position/gear-agl-m">
-			<input>position/gear-agl-ft</input>
-			<gain>0.3048</gain>
-			<output>/position/gear-agl-m</output> <!-- So flight recorder can override it -->
-		</pure_gain>
 		
 		<summer name="inertia/zfw-lbs">
 			<input>inertia/weight-lbs</input>
