@@ -303,7 +303,7 @@ var canvasIesi = {
 			Value.Hdg.leftText3 = Value.Hdg.leftText2 == 0 ? 35 : Value.Hdg.leftText2 - 1;
 			Value.Hdg.rightText3 = Value.Hdg.rightText2 == 35 ? 0 : Value.Hdg.rightText2 + 1;
 			Value.Hdg.leftText4 = Value.Hdg.leftText3 == 0 ? 35 : Value.Hdg.leftText3 - 1;
-			Value.Hdg.rightText4 = Value.Hdg.rightText3 == 35 ? 0 :Value.Hdg.rightText3 + 1;
+			Value.Hdg.rightText4 = Value.Hdg.rightText3 == 35 ? 0 : Value.Hdg.rightText3 + 1;
 			
 			if (Value.Hdg.offset > 0.5) {
 				Value.Hdg.middleOffset = -(Value.Hdg.offset - 1) * 60.5;
