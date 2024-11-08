@@ -47,7 +47,7 @@ var MCDU = {
 		m.scratchpadDecimal = nil;
 		m.scratchpadOld = "";
 		m.scratchpadSize = 0;
-		m.type = t;
+		m.type = t; # 0 = Standard, 1 = Standby
 		
 		return m;
 	},
@@ -223,6 +223,12 @@ var MCDU = {
 	},
 	setPage: func(p) {
 		if (me.page.group == "fmc") {
+			if (me.type) {
+				me.blinkScreen();
+				me.setMessage("NOT ALLOWED");
+				return;
+			}
+			
 			me.lastFmcPage = me.page.name;
 		}
 		
