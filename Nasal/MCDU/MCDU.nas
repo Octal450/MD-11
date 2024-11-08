@@ -14,7 +14,7 @@ var MCDU = {
 		
 		m.clear = 0;
 		m.id = n;
-		m.lastFmcPage = "acStatus";
+		m.lastFmcPage = "none";
 		m.message = std.Vector.new();
 		
 		m.PageList = {
@@ -54,7 +54,7 @@ var MCDU = {
 	reset: func() {
 		me.blinkScreen();
 		me.clear = 0;
-		me.lastFmcPage = "acStatus";
+		me.lastFmcPage = "none";
 		me.message.clear();
 		me.page = me.PageList.menu;
 		
@@ -223,7 +223,7 @@ var MCDU = {
 	},
 	setPage: func(p) {
 		if (me.page.group == "fmc") {
-			if (me.type) {
+			if (me.type) { # Standby MCDU
 				me.blinkScreen();
 				me.setMessage("NOT ALLOWED");
 				return;

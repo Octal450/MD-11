@@ -77,7 +77,7 @@ var Menu = {
 		};
 		
 		if (t) {
-			m.Display.L1 = "";
+			m.Display.L2 = "<ACARS";
 			m.Display.R1 = "F-PLN*";
 		} else {
 			m.Display.L1 = "<FMC-" ~ sprintf("%s", n + 1);
@@ -101,19 +101,35 @@ var Menu = {
 		} else {
 			me.Display.C1 = "<ACT>";
 		}
+		
+		if (!me.type) {
+			if (mcdu.unit[me.id].lastFmcPage == "none") {
+				me.Display.R6 = "";
+			} else {
+				me.Display.R6 = "RETURN>";
+			}
+		}
 	},
 	softKey: func(k) {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (me.scratchpadState == 1) {
-			if (k == "l1" and !me.type) {
+		if (k == "l1" and !me.type) {
+			if (me.scratchpadState == 1) {
 				if (fms.Internal.request[me.id]) {
 					fms.Internal.request[me.id] = 0;
+				} else if (mcdu.unit[me.id].lastFmcPage == "none") {
+					mcdu.unit[me.id].setPage("acStatus");
 				} else {
 					mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r6" and !me.type) {
+			if (mcdu.unit[me.id].lastFmcPage == "none") {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			} else {
+				mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
 			}
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
