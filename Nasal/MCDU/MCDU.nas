@@ -34,6 +34,8 @@ var MCDU = {
 			perfClb: Perf.new(n, 0),
 			perfCrz: Perf.new(n, 1),
 			perfDes: Perf.new(n, 2),
+			preSelCrz: PreSel.new(n, 1),
+			preSelDes: PreSel.new(n, 2),
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
