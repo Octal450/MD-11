@@ -89,7 +89,7 @@
 	</model>
 
 	<model>
-		<name>brakes</name>
+		<name>Brakes</name>
 		<path>Aircraft/MD-11/Models/Instruments/Pedestal/brakes.xml</path>
 		<offsets>
 			<x-m>-27.2957</x-m>
@@ -179,36 +179,34 @@
 	</model>
 	
 	<model>
-		<name>CDU1</name>
+		<name>MCDU1</name>
 		<path>Aircraft/MD-11/Models/Instruments/MCDU/MCDU1.xml</path>
 		<offsets>
-			<x-m>-27.044</x-m>
-			<y-m>0.001664</y-m>
-			<z-m>6.75931</z-m>
-			<pitch-deg>20.8</pitch-deg>
-			<yaw-deg>-0.0453</yaw-deg>
+			<x-m>-27.395</x-m>
+			<y-m>-0.16525</y-m>
+			<z-m>6.757</z-m>
+			<pitch-deg>21.2</pitch-deg>
 		</offsets>
 	</model>
 	
 	<model>
-		<name>CDU2</name>
+		<name>MCDU2</name>
 		<path>Aircraft/MD-11/Models/Instruments/MCDU/MCDU2.xml</path>
 		<offsets>
-			<x-m>-27.044</x-m>
-			<y-m>0.333051</y-m>
-			<z-m>6.75931</z-m>
-			<pitch-deg>20.8</pitch-deg>
-			<yaw-deg>-0.0453</yaw-deg>
+			<x-m>-27.395</x-m>
+			<y-m>0.16525</y-m>
+			<z-m>6.757</z-m>
+			<pitch-deg>21.2</pitch-deg>
 		</offsets>
 	</model>
 	
 	<model>
-		<name>CDU3</name>
+		<name>MCDU3</name>
 		<path>Aircraft/MD-11/Models/Instruments/MCDU/MCDU3.xml</path>
 		<offsets>
-			<x-m>-26.5067</x-m>
-			<y-m>0.166557</y-m>
-			<z-m>6.82741</z-m>
+			<x-m>-26.83292</x-m>
+			<y-m>0</y-m>
+			<z-m>6.7</z-m>
 		</offsets>
 	</model>
 	

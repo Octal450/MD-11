@@ -5,7 +5,7 @@ OBJECT world
 kids 74
 OBJECT poly
 name "mcdu2.screen"
-loc -0.0652143 -0.11874 0.00363477
+loc 0.26101 0.00596108 -0.16391
 data 21
 mcdu1.screen.mesh.002
 texture "screen.png"
@@ -58,6 +58,7 @@ refs 20
 kids 0
 OBJECT poly
 name "."
+loc 0.326224 0.124701 -0.167545
 data 12
 +/-.mesh.000
 texture "MCDU.jpg"
@@ -502,6 +503,7 @@ refs 24
 kids 0
 OBJECT poly
 name "/"
+loc 0.326224 0.124701 -0.167545
 data 10
 ..mesh.001
 texture "MCDU.jpg"
@@ -946,6 +948,7 @@ refs 24
 kids 0
 OBJECT poly
 name "+"
+loc 0.326224 0.124701 -0.167545
 data 11
 sp.mesh.000
 texture "MCDU.jpg"
@@ -1246,6 +1249,7 @@ refs 16
 kids 0
 OBJECT poly
 name "-"
+loc 0.326224 0.124701 -0.167545
 data 10
 /.mesh.000
 texture "MCDU.jpg"
@@ -1546,6 +1550,7 @@ refs 16
 kids 0
 OBJECT poly
 name "0"
+loc 0.326224 0.124701 -0.167545
 data 10
 0.mesh.000
 texture "MCDU.jpg"
@@ -1990,6 +1995,7 @@ refs 24
 kids 0
 OBJECT poly
 name "1"
+loc 0.326224 0.124701 -0.167545
 data 10
 1.mesh.000
 texture "MCDU.jpg"
@@ -2434,6 +2440,7 @@ refs 24
 kids 0
 OBJECT poly
 name "2"
+loc 0.326224 0.124701 -0.167545
 data 10
 2.mesh.000
 texture "MCDU.jpg"
@@ -2878,6 +2885,7 @@ refs 24
 kids 0
 OBJECT poly
 name "3"
+loc 0.326224 0.124701 -0.167545
 data 10
 3.mesh.000
 texture "MCDU.jpg"
@@ -3322,6 +3330,7 @@ refs 24
 kids 0
 OBJECT poly
 name "4"
+loc 0.326224 0.124701 -0.167545
 data 10
 4.mesh.000
 texture "MCDU.jpg"
@@ -3766,6 +3775,7 @@ refs 24
 kids 0
 OBJECT poly
 name "5"
+loc 0.326224 0.124701 -0.167545
 data 10
 5.mesh.000
 texture "MCDU.jpg"
@@ -4210,6 +4220,7 @@ refs 24
 kids 0
 OBJECT poly
 name "6"
+loc 0.326224 0.124701 -0.167545
 data 10
 6.mesh.000
 texture "MCDU.jpg"
@@ -4654,6 +4665,7 @@ refs 24
 kids 0
 OBJECT poly
 name "7"
+loc 0.326224 0.124701 -0.167545
 data 10
 7.mesh.000
 texture "MCDU.jpg"
@@ -5098,6 +5110,7 @@ refs 24
 kids 0
 OBJECT poly
 name "8"
+loc 0.326224 0.124701 -0.167545
 data 10
 8.mesh.000
 texture "MCDU.jpg"
@@ -5542,6 +5555,7 @@ refs 24
 kids 0
 OBJECT poly
 name "9"
+loc 0.326224 0.124701 -0.167545
 data 10
 9.mesh.000
 texture "MCDU.jpg"
@@ -5986,6 +6000,7 @@ refs 24
 kids 0
 OBJECT poly
 name "a"
+loc 0.326224 0.124701 -0.167545
 data 10
 a.mesh.000
 texture "MCDU.jpg"
@@ -6286,6 +6301,7 @@ refs 16
 kids 0
 OBJECT poly
 name "b"
+loc 0.326224 0.124701 -0.167545
 data 10
 b.mesh.000
 texture "MCDU.jpg"
@@ -6586,6 +6602,7 @@ refs 16
 kids 0
 OBJECT poly
 name "c"
+loc 0.326224 0.124701 -0.167545
 data 10
 c.mesh.000
 texture "MCDU.jpg"
@@ -6886,6 +6903,7 @@ refs 16
 kids 0
 OBJECT poly
 name "clr"
+loc 0.326224 0.124701 -0.167545
 data 12
 clr.mesh.000
 texture "MCDU.jpg"
@@ -7186,6 +7204,7 @@ refs 16
 kids 0
 OBJECT poly
 name "d"
+loc 0.326224 0.124701 -0.167545
 data 10
 d.mesh.000
 texture "MCDU.jpg"
@@ -7486,6 +7505,7 @@ refs 16
 kids 0
 OBJECT poly
 name "dir"
+loc 0.326224 0.124701 -0.167545
 data 12
 dir.mesh.000
 texture "MCDU.jpg"
@@ -7805,6 +7825,7 @@ refs 16
 kids 0
 OBJECT poly
 name "down"
+loc 0.326224 0.124701 -0.167545
 data 13
 down.mesh.001
 texture "MCDU.jpg"
@@ -8105,6 +8126,7 @@ refs 16
 kids 0
 OBJECT poly
 name "e"
+loc 0.326224 0.124701 -0.167545
 data 10
 e.mesh.000
 texture "MCDU.jpg"
@@ -8405,6 +8427,7 @@ refs 16
 kids 0
 OBJECT poly
 name "engout"
+loc 0.326224 0.124701 -0.167545
 data 13
 mcdu.mesh.000
 texture "MCDU.jpg"
@@ -8724,6 +8747,7 @@ refs 16
 kids 0
 OBJECT poly
 name "f"
+loc 0.326224 0.124701 -0.167545
 data 10
 f.mesh.000
 texture "MCDU.jpg"
@@ -9024,6 +9048,7 @@ refs 16
 kids 0
 OBJECT poly
 name "fpln"
+loc 0.326224 0.124701 -0.167545
 data 14
 f-pln.mesh.000
 texture "MCDU.jpg"
@@ -9343,6 +9368,7 @@ refs 16
 kids 0
 OBJECT poly
 name "fix"
+loc 0.326224 0.124701 -0.167545
 data 18
 fuel-pred.mesh.000
 texture "MCDU.jpg"
@@ -9662,6 +9688,7 @@ refs 16
 kids 0
 OBJECT poly
 name "g"
+loc 0.326224 0.124701 -0.167545
 data 10
 g.mesh.000
 texture "MCDU.jpg"
@@ -9962,6 +9989,7 @@ refs 16
 kids 0
 OBJECT poly
 name "h"
+loc 0.326224 0.124701 -0.167545
 data 10
 h.mesh.000
 texture "MCDU.jpg"
@@ -10262,6 +10290,7 @@ refs 16
 kids 0
 OBJECT poly
 name "i"
+loc 0.326224 0.124701 -0.167545
 data 10
 i.mesh.000
 texture "MCDU.jpg"
@@ -10562,6 +10591,7 @@ refs 16
 kids 0
 OBJECT poly
 name "init"
+loc 0.326224 0.124701 -0.167545
 data 13
 init.mesh.000
 texture "MCDU.jpg"
@@ -10881,6 +10911,7 @@ refs 16
 kids 0
 OBJECT poly
 name "j"
+loc 0.326224 0.124701 -0.167545
 data 10
 j.mesh.000
 texture "MCDU.jpg"
@@ -11181,6 +11212,7 @@ refs 16
 kids 0
 OBJECT poly
 name "k"
+loc 0.326224 0.124701 -0.167545
 data 10
 k.mesh.000
 texture "MCDU.jpg"
@@ -11481,6 +11513,7 @@ refs 16
 kids 0
 OBJECT poly
 name "knob"
+loc 0.326224 0.124701 -0.167545
 data 18
 mcdu_body.mesh.002
 texture "MCDU.jpg"
@@ -11851,6 +11884,7 @@ refs 4
 kids 0
 OBJECT poly
 name "l"
+loc 0.326224 0.124701 -0.167545
 data 10
 l.mesh.000
 texture "MCDU.jpg"
@@ -12151,6 +12185,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L1"
+loc 0.326224 0.124701 -0.167545
 data 11
 L1.mesh.001
 texture "MCDU.jpg"
@@ -12451,6 +12486,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L2"
+loc 0.326224 0.124701 -0.167545
 data 11
 L2.mesh.001
 texture "MCDU.jpg"
@@ -12751,6 +12787,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L3"
+loc 0.326224 0.124701 -0.167545
 data 11
 L3.mesh.001
 texture "MCDU.jpg"
@@ -13051,6 +13088,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L4"
+loc 0.326224 0.124701 -0.167545
 data 11
 L4.mesh.001
 texture "MCDU.jpg"
@@ -13351,6 +13389,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L5"
+loc 0.326224 0.124701 -0.167545
 data 11
 L5.mesh.001
 texture "MCDU.jpg"
@@ -13651,6 +13690,7 @@ refs 16
 kids 0
 OBJECT poly
 name "L6"
+loc 0.326224 0.124701 -0.167545
 data 11
 L6.mesh.001
 texture "MCDU.jpg"
@@ -13951,6 +13991,7 @@ refs 16
 kids 0
 OBJECT poly
 name "m"
+loc 0.326224 0.124701 -0.167545
 data 10
 m.mesh.000
 texture "MCDU.jpg"
@@ -14251,6 +14292,7 @@ refs 16
 kids 0
 OBJECT poly
 name "mcdu_body"
+loc 0.326224 0.124701 -0.167545
 data 18
 mcdu_body.mesh.002
 texture "MCDU.jpg"
@@ -27816,6 +27858,7 @@ refs 3
 kids 0
 OBJECT poly
 name "mcdu_body.001"
+loc 0.326224 0.124701 -0.167545
 data 18
 mcdu_body.mesh.003
 texture "MCDU.jpg"
@@ -32244,6 +32287,7 @@ refs 31
 kids 0
 OBJECT poly
 name "menu"
+loc 0.326224 0.124701 -0.167545
 data 13
 left.mesh.001
 texture "MCDU.jpg"
@@ -32563,6 +32607,7 @@ refs 16
 kids 0
 OBJECT poly
 name "n"
+loc 0.326224 0.124701 -0.167545
 data 10
 n.mesh.000
 texture "MCDU.jpg"
@@ -32863,6 +32908,7 @@ refs 16
 kids 0
 OBJECT poly
 name "navrad"
+loc 0.326224 0.124701 -0.167545
 data 13
 prog.mesh.000
 texture "MCDU.jpg"
@@ -33182,6 +33228,7 @@ refs 16
 kids 0
 OBJECT poly
 name "nextpage"
+loc 0.326224 0.124701 -0.167545
 data 14
 right.mesh.001
 texture "MCDU.jpg"
@@ -33501,6 +33548,7 @@ refs 16
 kids 0
 OBJECT poly
 name "o"
+loc 0.326224 0.124701 -0.167545
 data 10
 o.mesh.000
 texture "MCDU.jpg"
@@ -33801,6 +33849,7 @@ refs 16
 kids 0
 OBJECT poly
 name "p"
+loc 0.326224 0.124701 -0.167545
 data 10
 p.mesh.001
 texture "MCDU.jpg"
@@ -34101,6 +34150,7 @@ refs 16
 kids 0
 OBJECT poly
 name "perf"
+loc 0.326224 0.124701 -0.167545
 data 13
 perf.mesh.000
 texture "MCDU.jpg"
@@ -34420,6 +34470,7 @@ refs 16
 kids 0
 OBJECT poly
 name "q"
+loc 0.326224 0.124701 -0.167545
 data 10
 q.mesh.000
 texture "MCDU.jpg"
@@ -34720,6 +34771,7 @@ refs 16
 kids 0
 OBJECT poly
 name "prog"
+loc 0.326224 0.124701 -0.167545
 data 15
 radnav.mesh.001
 texture "MCDU.jpg"
@@ -35039,6 +35091,7 @@ refs 16
 kids 0
 OBJECT poly
 name "r"
+loc 0.326224 0.124701 -0.167545
 data 10
 r.mesh.000
 texture "MCDU.jpg"
@@ -35339,6 +35392,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R1"
+loc 0.326224 0.124701 -0.167545
 data 11
 R1.mesh.001
 texture "MCDU.jpg"
@@ -35639,6 +35693,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R2"
+loc 0.326224 0.124701 -0.167545
 data 11
 R2.mesh.001
 texture "MCDU.jpg"
@@ -35939,6 +35994,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R3"
+loc 0.326224 0.124701 -0.167545
 data 11
 R3.mesh.001
 texture "MCDU.jpg"
@@ -36239,6 +36295,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R4"
+loc 0.326224 0.124701 -0.167545
 data 11
 R4.mesh.001
 texture "MCDU.jpg"
@@ -36539,6 +36596,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R5"
+loc 0.326224 0.124701 -0.167545
 data 11
 R5.mesh.001
 texture "MCDU.jpg"
@@ -36839,6 +36897,7 @@ refs 16
 kids 0
 OBJECT poly
 name "R6"
+loc 0.326224 0.124701 -0.167545
 data 11
 R6.mesh.001
 texture "MCDU.jpg"
@@ -37139,6 +37198,7 @@ refs 16
 kids 0
 OBJECT poly
 name "ref"
+loc 0.326224 0.124701 -0.167545
 data 17
 atc_comm.mesh.001
 texture "MCDU.jpg"
@@ -37458,6 +37518,7 @@ refs 16
 kids 0
 OBJECT poly
 name "s"
+loc 0.326224 0.124701 -0.167545
 data 10
 s.mesh.000
 texture "MCDU.jpg"
@@ -37758,6 +37819,7 @@ refs 16
 kids 0
 OBJECT poly
 name "secfpln"
+loc 0.326224 0.124701 -0.167545
 data 15
 f-pln2.mesh.000
 texture "MCDU.jpg"
@@ -38077,6 +38139,7 @@ refs 16
 kids 0
 OBJECT poly
 name "sp"
+loc 0.326224 0.124701 -0.167545
 data 16
 overfly.mesh.000
 texture "MCDU.jpg"
@@ -38377,6 +38440,7 @@ refs 16
 kids 0
 OBJECT poly
 name "t"
+loc 0.326224 0.124701 -0.167545
 data 10
 t.mesh.000
 texture "MCDU.jpg"
@@ -38677,6 +38741,7 @@ refs 16
 kids 0
 OBJECT poly
 name "toappr"
+loc 0.326224 0.124701 -0.167545
 data 13
 data.mesh.000
 texture "MCDU.jpg"
@@ -38996,6 +39061,7 @@ refs 16
 kids 0
 OBJECT poly
 name "u"
+loc 0.326224 0.124701 -0.167545
 data 10
 u.mesh.000
 texture "MCDU.jpg"
@@ -39296,6 +39362,7 @@ refs 16
 kids 0
 OBJECT poly
 name "up"
+loc 0.326224 0.124701 -0.167545
 data 11
 up.mesh.001
 texture "MCDU.jpg"
@@ -39596,6 +39663,7 @@ refs 16
 kids 0
 OBJECT poly
 name "v"
+loc 0.326224 0.124701 -0.167545
 data 10
 v.mesh.000
 texture "MCDU.jpg"
@@ -39896,6 +39964,7 @@ refs 16
 kids 0
 OBJECT poly
 name "w"
+loc 0.326224 0.124701 -0.167545
 data 10
 w.mesh.000
 texture "MCDU.jpg"
@@ -40196,6 +40265,7 @@ refs 16
 kids 0
 OBJECT poly
 name "x"
+loc 0.326224 0.124701 -0.167545
 data 10
 x.mesh.000
 texture "MCDU.jpg"
@@ -40496,6 +40566,7 @@ refs 16
 kids 0
 OBJECT poly
 name "y"
+loc 0.326224 0.124701 -0.167545
 data 10
 y.mesh.000
 texture "MCDU.jpg"
@@ -40796,6 +40867,7 @@ refs 16
 kids 0
 OBJECT poly
 name "z"
+loc 0.326224 0.124701 -0.167545
 data 10
 z.mesh.000
 texture "MCDU.jpg"
@@ -41096,7 +41168,7 @@ refs 16
 kids 0
 OBJECT group
 name "mcdu_glare"
-loc -0.317209 -0.11489 0.1679
+loc 0.00901499 0.00981107 0.00035499
 kids 69
 OBJECT poly
 name ".g"
