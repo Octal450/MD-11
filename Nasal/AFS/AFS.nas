@@ -572,7 +572,7 @@ var ITAF = {
 				}
 			} else if (Output.vertTemp == 6) {
 				if (Gear.wow1Temp and Gear.wow2Temp and Text.vert.getValue() != "ROLLOUT") {
-					me.updateLatText("RLOU");
+					me.updateLatText("ROLLOUT");
 					me.updateVertText("ROLLOUT");
 				}
 			}
@@ -1142,7 +1142,7 @@ var ITAF = {
 			Output.lat.setValue(4);
 			me.bankLimit();
 			Output.showHdg.setBoolValue(0);
-			me.updateLatText("ALGN");
+			me.updateLatText("ALIGN");
 		} else if (n == 5) { # T/O
 			me.updateLnavArm(0);
 			me.updateLocArm(0);

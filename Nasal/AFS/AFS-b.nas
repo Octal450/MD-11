@@ -66,11 +66,11 @@ var UpdateFma = {
 			} else {
 				Fma.roll.setValue("LOC");
 			}
-		} else if (me.latText == "ALGN") {
+		} else if (me.latText == "ALIGN") {
 			Fma.roll.setValue("ALIGN");
 		} else if (me.latText == "T/O") {
 			Fma.roll.setValue("TAKEOFF");
-		} else if (me.latText == "RLOU") {
+		} else if (me.latText == "ROLLOUT") {
 			Fma.roll.setValue("ROLLOUT");
 		}
 	},
