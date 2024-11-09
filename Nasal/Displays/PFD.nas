@@ -163,7 +163,10 @@ var Value = {
 		flapsOut: 0,
 		flapsPos: 0,
 		gearOut: 0,
+		innerMarker: 0,
+		middleMarker: 0,
 		minimums: 0,
+		outerMarker: 0,
 		risingRunwayTBar: 0,
 		slatsCmd: 0,
 		slatsOut: 0,
@@ -1419,8 +1422,17 @@ var canvasBase = {
 		}
 		
 		Value.Alt.alert = systems.WARNINGS.altitudeAlert.getValue();
+		Value.Misc.innerMarker = pts.Instrumentation.MarkerBeacon.inner.getBoolValue();
+		Value.Misc.middleMarker = pts.Instrumentation.MarkerBeacon.middle.getBoolValue();
+		Value.Misc.outerMarker = pts.Instrumentation.MarkerBeacon.outer.getBoolValue();
 		if (Value.Alt.alert == 1 or (Value.Alt.alert == 2 and Value.Misc.blinkMed)) {
 			me["ALT_bowtie"].setColor(0.9412, 0.7255, 0);
+		} else if (Value.Misc.innerMarker) {
+			me["ALT_bowtie"].setColor(0, 0, 0);
+		} else if (Value.Misc.middleMarker) {
+			me["ALT_bowtie"].setColor(0.9412, 0.7255, 0);
+		} else if (Value.Misc.outerMarker) {
+			me["ALT_bowtie"].setColor(0.3412, 0.7882, 0.9922);
 		} else {
 			me["ALT_bowtie"].setColor(1, 1, 1);
 		}
@@ -1720,15 +1732,15 @@ var canvasBase = {
 		}
 		
 		# Marker Beacons
-		if (pts.Instrumentation.MarkerBeacon.inner.getBoolValue()) {
+		if (Value.Misc.innerMarker) {
 			me["Inner_marker"].show();
 			me["Middle_marker"].hide();
 			me["Outer_marker"].hide();
-		} else if (pts.Instrumentation.MarkerBeacon.middle.getBoolValue()) {
+		} else if (Value.Misc.middleMarker) {
 			me["Inner_marker"].hide();
 			me["Middle_marker"].show();
 			me["Outer_marker"].hide();
-		} else if (pts.Instrumentation.MarkerBeacon.outer.getBoolValue()) {
+		} else if (Value.Misc.outerMarker) {
 			me["Inner_marker"].hide();
 			me["Middle_marker"].hide();
 			me["Outer_marker"].show();
@@ -2030,18 +2042,24 @@ var canvasBase = {
 				me["FMA_pitch_land"].show();
 			}
 		} else {
-			if (Value.Afs.alt == 0) {
-				me["FMA_altitude"].setText("0");
+			if (Value.Afs.pitch != "G/S" and Value.Afs.pitch != "FLARE" and Value.Afs.pitch != "ROLLOUT") { # FLARE and ROLLOUT should never happen with LAND OFF, but just in case
+				if (Value.Afs.alt == 0) {
+					me["FMA_altitude"].setText("0");
+				} else {
+					me["FMA_altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
+				}
+				me["FMA_altitude"].show();
+				if (Value.Afs.alt < 1000) {
+					me["FMA_altitude_T"].hide();
+				} else {
+					me["FMA_altitude_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
+					me["FMA_altitude_T"].show();
+				}
 			} else {
-				me["FMA_altitude"].setText(right(sprintf("%03d", Value.Afs.alt), 3));
-			}
-			me["FMA_altitude"].show();
-			if (Value.Afs.alt < 1000) {
+				me["FMA_altitude"].hide();
 				me["FMA_altitude_T"].hide();
-			} else {
-				me["FMA_altitude_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.alt / 1000)));
-				me["FMA_altitude_T"].show();
 			}
+			
 			me["FMA_land"].hide();
 			me["FMA_pitch_land"].hide();
 		}

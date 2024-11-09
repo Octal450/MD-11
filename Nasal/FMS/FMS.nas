@@ -84,23 +84,23 @@ var CORE = {
 				}
 			}
 		} else if (Internal.phase == 2) { # Climb
-			if (FlightData.cruiseAltAll[0] > 0) {
+			if (Value.flapLever >= 4 and Value.gearLever) {
+				Internal.phaseNew = 5; # Approach
+			} else if (Value.wow) {
+				Internal.phaseNew = 6; # Rollout
+			} else if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 3; # Cruise
-				} else if (Value.flapLever >= 4 and Value.gearLever) {
-					Internal.phaseNew = 5; # Approach
-				} else if (Value.wow) {
-					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
-			if (FlightData.cruiseAltAll[0] > 0) {
+			if (Value.flapLever >= 4 and Value.gearLever) {
+				Internal.phaseNew = 5; # Approach
+			} else if (Value.wow) {
+				Internal.phaseNew = 6; # Rollout
+			} else if (FlightData.cruiseAltAll[0] > 0) {
 				if (Value.afsAlt < FlightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 4; # Descent
-				} else if (Value.flapLever >= 4 and Value.gearLever) {
-					Internal.phaseNew = 5; # Approach
-				} else if (Value.wow) {
-					Internal.phaseNew = 6; # Rollout
 				}
 			}
 		} else if (Internal.phase == 4) { # Descent
