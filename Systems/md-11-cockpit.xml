@@ -582,6 +582,14 @@
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
+		
+		<switch name="/systems/lighting/stby-compass">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/stby-compass eq 1
+			</test>
+		</switch>
 	
 	</channel>
 	

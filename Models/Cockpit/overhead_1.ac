@@ -7,7 +7,26 @@ MATERIAL "DefaultWhite.003" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.0125 0.0125
 MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 64  trans 0
 OBJECT world
-kids 366
+kids 367
+OBJECT poly
+name "StbyCompass.on"
+loc -21.7927 -17.9741 -0.000875246
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.110628 0.0726467
+0 -0.106726 0.0726467
+0 -0.106726 0.0788392
+0 -0.110628 0.0788392
+numsurf 1
+SURF 0x30
+mat 5
+refs 4
+1 0.158709 0.0183337
+2 0.129617 0.0183337
+3 0.129617 0
+0 0.158709 0
+kids 0
 OBJECT poly
 name "wiper.knob2"
 loc 2.47955e-05 9.53674e-06 -0.44859
@@ -33382,7 +33401,7 @@ refs 4
 10 0.124381 0.061869
 kids 0
 OBJECT poly
-name "Cube.022"
+name "StbyCompass"
 loc -21.8029 -18.0828 0.0748677
 data 13
 Cube.022.mesh

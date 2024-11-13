@@ -320,6 +320,7 @@
 		<object-name>RPump3.off</object-name>
 		<object-name>RTrans.low</object-name>
 		<object-name>RTrans.on</object-name>
+		<object-name>StbyCompass.on</object-name>
 		<object-name>StrobeLt.off</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
@@ -878,31 +879,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>systems.HYDRAULICS.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-hyd</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-hyd</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -910,8 +893,11 @@
 		<object-name>SystemHyd</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<object-name>SystemHyd.select</object-name>
-		<property>controls/cockpit/overhead/system-hyd</property>
-		<factor>-0.001</factor>
+		<property>systems/hydraulics/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -1995,31 +1981,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>systems.ELECTRICAL.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-elec</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-elec</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -2027,8 +1995,11 @@
 		<object-name>SystemElec</object-name>
 		<object-name>SystemElec.manual</object-name>
 		<object-name>SystemElec.select</object-name>
-		<property>controls/cockpit/overhead/system-elec</property>
-		<factor>-0.001</factor>
+		<property>systems/electrical/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -2093,28 +2064,16 @@
 				<property>controls/electrical/battery</property>
 			</binding>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/battery</property>
-				<value>1</value>
-			</binding>
-			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/battery</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
 		<type>translate</type>
 		<object-name>Battery</object-name>
 		<object-name>Battery.off</object-name>
-		<property>controls/cockpit/overhead/battery</property>
+		<property>controls/electrical/battery</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>1</x>
@@ -4000,31 +3959,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>systems.PNEUMATICS.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-pneu</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-pneu</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -4032,8 +3973,11 @@
 		<object-name>SystemPneu</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
-		<property>controls/cockpit/overhead/system-pneu</property>
-		<factor>-0.001</factor>
+		<property>systems/pneumatics/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5280,31 +5224,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>systems.FUEL.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-fuel</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-fuel</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -5312,8 +5238,11 @@
 		<object-name>SystemFuel</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
-		<property>controls/cockpit/overhead/system-fuel</property>
-		<factor>-0.001</factor>
+		<property>systems/fuel/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -8964,7 +8893,53 @@
 			</or>
 		</condition>
 	</animation>
-		
+	
+	<animation>
+		<type>pick</type>
+		<object-name>StbyCompass</object-name>
+		<object-name>StbyCompass.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/stby-compass</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>StbyCompass</object-name>
+		<object-name>StbyCompass.on</object-name>
+		<property>controls/lighting/stby-compass</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>StbyCompass.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/stby-compass</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>L-Lnd.toggle</object-name>
