@@ -329,7 +329,7 @@ var Init = {
 				}
 			}
 		} else if (k == "r6") {
-			if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2 and fms.FlightData.airportTo != "") {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 0) {
 						fms.FlightData.costIndex = int(me.scratchpad);
