@@ -26,7 +26,7 @@ var Perf = {
 			C6L: "OPT/MAXFL",
 			C6: "---/---",
 			
-			LFont: [FONT.normal, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			L1L: "",
 			L1: "",
 			L2L: " ECON",
@@ -136,6 +136,7 @@ var Perf = {
 		m.type = t; # 0 = CLB, 1 = CRZ, 2 = DES
 		
 		m.Value = {
+			speedMode: 0,
 		};
 		
 		return m;
@@ -164,18 +165,64 @@ var Perf = {
 			}
 		}
 		
-		# Fix title for ECON/MAX/EDIT
 		if (me.type == 2) {
-			me.Display.title = "ECON DES";
+			me.Value.speedMode = fms.FlightData.descentSpeedMode;
+			
+			if (me.Value.speedMode == 2) {
+				me.Display.title = "EDIT DES";
+			} else if (me.Value.speedMode == 1) {
+				me.Display.title = "MAX DES";
+			} else {
+				me.Display.title = "ECON DES";
+			}
 		} else if (me.type == 1) {
-			me.Display.title = "ECON CRZ";
+			me.Value.speedMode = fms.FlightData.cruiseSpeedMode;
+			
+			if (me.Value.speedMode == 2) {
+				me.Display.title = "EDIT CRZ";
+			} else if (me.Value.speedMode == 1) {
+				me.Display.title = "MAX CRZ";
+			} else {
+				me.Display.title = "ECON CRZ";
+			}
 		} else {
-			me.Display.title = "ECON CLB";
+			me.Value.speedMode = fms.FlightData.climbSpeedMode;
+			
+			if (me.Value.speedMode == 2) {
+				me.Display.title = "EDIT CLB";
+			} else if (me.Value.speedMode == 1) {
+				me.Display.title = "MAX CLB";
+			} else {
+				me.Display.title = "ECON CLB";
+			}
 		}
 		
 		if (fms.FmsSpd.econKts > 0 and fms.FmsSpd.econMach > 0) {
-			me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
-			me.Display.LFont[1] = FONT.normal;
+			if (me.type == 2) {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			} else if (me.type == 1) {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			} else {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*" ~ sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			}
 		} else {
 			me.Display.L2 = "---";
 			me.Display.LFont[1] = FONT.small;
@@ -184,14 +231,25 @@ var Perf = {
 		if (me.type != 1) {
 			if (fms.FmsSpd.maxClimb > 0) {
 				if (me.type == 2) {
-					me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxDescent);
-				} else if (me.type == 1) {
-					me.Display.L3 = "---"; # Not yet computed
+					if (me.Value.speedMode != 1) {
+						me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxDescent);
+						me.Display.LFont[2] = FONT.small;
+					} else {
+						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxDescent);
+						me.Display.LFont[2] = FONT.normal;
+					}
 				} else {
-					me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
+					if (me.Value.speedMode != 1) {
+						me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
+						me.Display.LFont[2] = FONT.small;
+					} else {
+						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxClimb);
+						me.Display.LFont[2] = FONT.normal;
+					}
 				}
 			} else {
 				me.Display.L3 = "---";
+				me.Display.LFont[2] = FONT.small;
 			}
 		}
 		
@@ -207,7 +265,31 @@ var Perf = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l6") {
+		if (k == "l2") {
+			if (me.scratchpadState == 1) {
+				if (me.type == 2) {
+					fms.FlightData.descentSpeedMode = 0;
+				} else if (me.type == 1) {
+					fms.FlightData.cruiseSpeedMode = 0;
+				} else {
+					fms.FlightData.climbSpeedMode = 0;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
+			if (me.scratchpadState == 1) {
+				if (me.type == 2) {
+					fms.FlightData.descentSpeedMode = 1;
+				} else if (me.type == 1) {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				} else {
+					fms.FlightData.climbSpeedMode = 1;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type != 1) {
 				if (mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 1000 and me.scratchpad <= 18000) {
@@ -315,6 +397,7 @@ var PreSel = {
 			
 			m.nextPage = "preSelDes";
 		} else if (t == 2) {
+			m.Display.L3L = " MAX DES";
 			m.Display.L6L = "TRANS";
 			
 			m.Display.title = "PRESELECT DES";
@@ -331,6 +414,7 @@ var PreSel = {
 		m.type = t; # 0 = Unused so numbers match Perf class, 1 = CRZ, 2 = DES
 		
 		m.Value = {
+			speedMode: 0,
 		};
 		
 		return m;
@@ -338,13 +422,9 @@ var PreSel = {
 	setup: func() {
 	},
 	loop: func() {
-		if (me.type == 1) {
-			if (fms.Internal.phase >= 4) {
-				mcdu.unit[me.id].setPage("perfDes");
-			} else if (fms.Internal.phase == 3) {
-				mcdu.unit[me.id].setPage("perfCrz");
-			}
-		} else if (me.type == 2) {
+		if (me.type == 2) {
+			me.Value.speedMode = fms.FlightData.descentSpeedMode;
+			
 			if (fms.Internal.phase >= 4) {
 				mcdu.unit[me.id].setPage("perfDes");
 			} else if (fms.Internal.phase == 3) {
@@ -354,14 +434,70 @@ var PreSel = {
 				me.Display.pageNum = "3/3";
 				me.nextPage = "perfClb";
 			}
+		} else if (me.type == 1) {
+			me.Value.speedMode = fms.FlightData.cruiseSpeedMode;
+			
+			if (fms.Internal.phase >= 4) {
+				mcdu.unit[me.id].setPage("perfDes");
+			} else if (fms.Internal.phase == 3) {
+				mcdu.unit[me.id].setPage("perfCrz");
+			}
 		}
 		
 		if (fms.FmsSpd.econKts > 0 and fms.FmsSpd.econMach > 0) {
-			me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
-			me.Display.LFont[1] = FONT.normal;
+			if (me.type == 2) {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			} else if (me.type == 1) {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			} else {
+				if (me.Value.speedMode != 0) {
+					me.Display.L2 = "*" ~ sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.small;
+				} else {
+					me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
+					me.Display.LFont[1] = FONT.normal;
+				}
+			}
 		} else {
 			me.Display.L2 = "---";
 			me.Display.LFont[1] = FONT.small;
+		}
+		
+		if (me.type != 1) {
+			if (fms.FmsSpd.maxClimb > 0) {
+				if (me.type == 2) {
+					if (me.Value.speedMode != 1) {
+						me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxDescent);
+						me.Display.LFont[2] = FONT.small;
+					} else {
+						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxDescent);
+						me.Display.LFont[2] = FONT.normal;
+					}
+				} else {
+					if (me.Value.speedMode != 1) {
+						me.Display.L3 = "*" ~ sprintf("%d", fms.FmsSpd.maxClimb);
+						me.Display.LFont[2] = FONT.small;
+					} else {
+						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxClimb);
+						me.Display.LFont[2] = FONT.normal;
+					}
+				}
+			} else {
+				me.Display.L3 = "---";
+				me.Display.LFont[2] = FONT.small;
+			}
 		}
 		
 		if (me.type == 0) {
@@ -376,7 +512,31 @@ var PreSel = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l6") {
+		if (k == "l2") {
+			if (me.scratchpadState == 1) {
+				if (me.type == 2) {
+					fms.FlightData.descentSpeedMode = 0;
+				} else if (me.type == 1) {
+					fms.FlightData.cruiseSpeedMode = 0;
+				} else {
+					fms.FlightData.climbSpeedMode = 0;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
+			if (me.scratchpadState == 1) {
+				if (me.type == 2) {
+					fms.FlightData.descentSpeedMode = 1;
+				} else if (me.type == 1) {
+					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				} else {
+					fms.FlightData.climbSpeedMode = 1;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type == 2) {
 				if (mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 1000 and me.scratchpad <= 18000) {

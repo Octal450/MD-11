@@ -15,6 +15,7 @@ var FlightData = {
 	airportToAlt: -1000,
 	blockFuelLbs: 0,
 	canCalcVspeeds: 0,
+	climbSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
 	climbThrustAlt: -1000,
 	climbThrustAltSet: 0,
 	climbTransAlt: 18000,
@@ -23,7 +24,9 @@ var FlightData = {
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
+	cruiseSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
 	cruiseTemp: nil,
+	descentSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
 	descentTransAlt: 18000,
 	flexActive: 0,
 	flexTemp: 0,
@@ -184,6 +187,7 @@ var EditFlightData = {
 		FlightData.airportToAlt = -1000;
 		FlightData.blockFuelLbs = 0;
 		FlightData.canCalcVspeeds = 0;
+		FlightData.climbSpeedMode = 0;
 		FlightData.climbThrustAlt = -1000;
 		FlightData.climbThrustAltSet = 0;
 		FlightData.climbTransAlt = 18000;
@@ -192,7 +196,9 @@ var EditFlightData = {
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
+		FlightData.cruiseSpeedMode = 0;
 		FlightData.cruiseTemp = nil;
+		FlightData.descentSpeedMode = 0;
 		FlightData.descentTransAlt = 18000;
 		FlightData.flexActive = 0;
 		FlightData.flexTemp = 0;
