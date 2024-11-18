@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 AFS Interface
+# McDonnell Douglas MD-11 AFS
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var Fma = {
@@ -7,9 +7,39 @@ var Fma = {
 	pitchArm: props.globals.initNode("/instrumentation/pfd/fma/pitch-mode-armed", "", "STRING"),
 	roll: props.globals.initNode("/instrumentation/pfd/fma/roll-mode", "TAKEOFF", "STRING"),
 	rollArm: props.globals.initNode("/instrumentation/pfd/fma/roll-mode-armed", "", "STRING"),
+	Blink: {
+		active: [0, 0, 0],
+		count: [0, 0, 0],
+		diff: [0, 0, 0],
+		elapsed: 0,
+		hide: [0, 0, 0],
+		time: [-5, -5, -5],
+	},
+	loop: func() {
+		me.Blink.elapsed = pts.Sim.Time.elapsedSec.getValue();
+		
+		for (var i = 0; i < 3; i = i + 1) {
+			if (me.Blink.elapsed < me.Blink.time[i] + 5) {
+				me.Blink.active[i] = 1;
+				me.Blink.count[i] = math.floor(math.max(me.Blink.elapsed - me.Blink.time[i], 0) * 2);
+				me.Blink.hide[i] = !math.mod(me.Blink.count[i], 2);
+			} else {
+				me.Blink.active[i] = 0;
+				me.Blink.count[i] = 0;
+				me.Blink.hide[i] = 0;
+			}
+		}
+	},
+	startBlink: func(window) { # 0 Speed, 1 Roll, 2 Pitch
+		me.Blink.time[window] = pts.Sim.Time.elapsedSec.getValue();
+		me.loop(); # Force update
+	},
+	stopBlink: func(window) {
+		me.Blink.time[window] = -5;
+	},
 };
 
-var updateFma = {
+var UpdateFma = {
 	ap1: 0,
 	ap2: 0,
 	InternalRadioSel: 2,
@@ -36,11 +66,11 @@ var updateFma = {
 			} else {
 				Fma.roll.setValue("LOC");
 			}
-		} else if (me.latText == "ALGN") {
+		} else if (me.latText == "ALIGN") {
 			Fma.roll.setValue("ALIGN");
 		} else if (me.latText == "T/O") {
 			Fma.roll.setValue("TAKEOFF");
-		} else if (me.latText == "RLOU") {
+		} else if (me.latText == "ROLLOUT") {
 			Fma.roll.setValue("ROLLOUT");
 		}
 	},
@@ -82,7 +112,7 @@ var updateFma = {
 		} else {
 			Fma.rollArm.setValue("");
 		}
-		if ((Output.apprArm.getBoolValue() or Output.landArm.getBoolValue()) and !Output.locArm.getBoolValue()) {
+		if ((Output.gsArm.getBoolValue() or Output.landArm.getBoolValue()) and !Output.locArm.getBoolValue()) {
 			Fma.pitchArm.setValue("LAND ARMED");
 		} else {
 			Fma.pitchArm.setValue("");
@@ -126,14 +156,8 @@ var Clamp = {
 			me.active = 0;
 		}
 		
-		if (pts.Systems.Acconfig.Options.throttleOverride.getValue() == "Never") {
-			if (Output.clamp.getBoolValue() != 0) {
-				Output.clamp.setBoolValue(0);
-			}
-		} else {
-			if (Output.clamp.getBoolValue() != me.active) {
-				Output.clamp.setBoolValue(me.active);
-			}
+		if (Output.clamp.getBoolValue() != me.active) {
+			Output.clamp.setBoolValue(me.active);
 		}
 		
 		if (me.vertText == "T/O CLB") {

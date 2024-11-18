@@ -3,9 +3,14 @@
 <!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
 
 <PropertyList>
-
+	
 	<path>greennav.ac</path>
-
+	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Light</object-name>
+	</effect>
+	
 	<!-- ANIMATIONS -->
 	<!-- On/off -->
 	<animation>
@@ -19,7 +24,7 @@
 			</greater-than>
 		</condition>
 	</animation>
-
+	
 	<!-- Billboard animation -->
 	<animation>
 		<name>Billboard</name>

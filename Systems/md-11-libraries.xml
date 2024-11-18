@@ -5,9 +5,6 @@
 
 <system name="MD-11: Libraries">
 	
-	<property value="0">/systems/iru-common/any-aligned-out</property>
-	<property value="0">/systems/iru-common/all-aligned-out</property>
-	
 	<channel name="FDM Rate Libraries">
 		
 		<switch name="position/wow">
@@ -17,7 +14,7 @@
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
 			</test>
-			<output>position/wow-out</output>
+			<output>/position/wow</output> <!-- Copy to local tree -->
 		</switch>
 		
 		<switch name="aero/alpha-deg-fixed">
@@ -32,26 +29,15 @@
 			<c1>10</c1>
 		</lag_filter>
 		
-		<fcs_function name="position/gear-agl-ft-raw">
+		<fcs_function name="position/gear-agl-ft">
 			<function>
 				<difference>
 					<property>/position/altitude-agl-ft</property>
 					<value>17.1</value>
 				</difference>
 			</function>
+			<output>/position/gear-agl-ft</output> <!-- Copy to local tree and so flight recorder can override it -->
 		</fcs_function>
-		
-		<lag_filter name="position/gear-agl-ft">
-			<input>position/gear-agl-ft-raw</input>
-			<c1>20</c1>
-			<output>/position/gear-agl-ft</output> <!-- So flight recorder can override it -->
-		</lag_filter>
-		
-		<pure_gain name="position/gear-agl-m">
-			<input>position/gear-agl-ft</input>
-			<gain>0.3048</gain>
-			<output>/position/gear-agl-m</output> <!-- So flight recorder can override it -->
-		</pure_gain>
 		
 		<summer name="inertia/zfw-lbs">
 			<input>inertia/weight-lbs</input>
@@ -145,13 +131,6 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/gear/gear[0]/wow-timer">
-			<input>/gear/gear[0]/wow</input>
-			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
-			<rate_limit sense="decr">1000</rate_limit>
-			<output>/gear/gear[0]/wow-timer-out</output>
-		</actuator>
-		
 		<switch name="/orientation/track-magnetic-deg-switched">
 			<default value="/orientation/heading-magnetic-deg"/>
 			<test logic="AND" value="/orientation/track-magnetic-deg">
@@ -170,7 +149,7 @@
 	
 	<channel name="Execrate 8 Libraries" execrate="8">
 		
-		<switch name="libraries/any-engine-on">
+		<switch name="/systems/engines/any-engine-on">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/engines/engine[0]/state eq 3
@@ -179,7 +158,7 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/any-engine-out">
+		<switch name="/systems/engines/any-engine-out">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/engines/engine[0]/state ne 3
@@ -188,7 +167,7 @@
 			</test>
 		</switch>
 		
-		<switch name="libraries/multi-engine-out">
+		<switch name="/systems/engines/multi-engine-out">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/engines/engine[0]/state ne 3
@@ -204,9 +183,25 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="libraries/blink-fast">
+		<switch name="/systems/engines/two-engine-on">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state eq 3
+				/engines/engine[1]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state eq 3
+				/engines/engine[2]/state eq 3
+			</test>
+			<test logic="AND" value="1">
+				/engines/engine[1]/state eq 3
+				/engines/engine[2]/state eq 3
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/libraries/blink-fast">
 			<function>
-				<integer>
+				<floor>
 					<mod>
 						<product>
 							<property>sim-time-sec</property>
@@ -214,13 +209,13 @@
 						</product>
 						<value>2</value>
 					</mod>
-				</integer>
+				</floor>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="libraries/blink-med">
+		<fcs_function name="/systems/libraries/blink-med">
 			<function>
-				<integer>
+				<floor>
 					<mod>
 						<product>
 							<property>sim-time-sec</property>
@@ -228,13 +223,13 @@
 						</product>
 						<value>2</value>
 					</mod>
-				</integer>
+				</floor>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="libraries/blink-med-2">
+		<fcs_function name="/systems/libraries/blink-med-2">
 			<function>
-				<integer>
+				<floor>
 					<mod>
 						<product>
 							<sum>
@@ -245,7 +240,7 @@
 						</product>
 						<value>2</value>
 					</mod>
-				</integer>
+				</floor>
 			</function>
 		</fcs_function>
 	

@@ -6,6 +6,11 @@
 
 	<path>overhead_1.ac</path>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>overhead.text</object-name>
+	</effect>
+	
 	<animation>
 		<type>material</type>
 		<object-name>AftTemp.light</object-name>
@@ -36,7 +41,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
 	
@@ -47,7 +52,7 @@
 			<red>1.0</red>
 			<green>0.5</green>
 			<blue>0.4</blue>
-			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
 
@@ -55,7 +60,7 @@
 		<type>knob</type>
 		<object-name>ovhdinteg.knob</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
-		<property>controls/cockpit/overhead/overhead-integ-knb</property>
+		<property>controls/cockpit/overhead/overhead-integ</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -70,7 +75,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-integ-knb</property>
+				<property>controls/lighting/overhead-integ</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -83,7 +88,7 @@
 		<type>knob</type>
 		<object-name>maininteg.knob</object-name>
 		<object-name>maininteg.indicator</object-name>
-		<property>controls/cockpit/overhead/main-integ-knb</property>
+		<property>controls/cockpit/overhead/main-integ</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -98,7 +103,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-integ-knb</property>
+				<property>controls/lighting/main-integ</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -111,7 +116,7 @@
 		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
 		<object-name>ovhdflood.indicator</object-name>
-		<property>controls/cockpit/overhead/overhead-flood-knb</property>
+		<property>controls/cockpit/overhead/overhead-flood</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -126,7 +131,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/overhead-flood-knb</property>
+				<property>controls/lighting/overhead-flood</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -139,7 +144,7 @@
 		<type>knob</type>
 		<object-name>mainflood.knob</object-name>
 		<object-name>mainflood.indicator</object-name>
-		<property>controls/cockpit/overhead/main-flood-knb</property>
+		<property>controls/cockpit/overhead/main-flood</property>
 		<factor>-329</factor>
 		<axis>
 			<x>1</x>
@@ -154,7 +159,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/lighting/main-flood-knb</property>
+				<property>controls/lighting/main-flood</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>1</max>
@@ -315,6 +320,7 @@
 		<object-name>RPump3.off</object-name>
 		<object-name>RTrans.low</object-name>
 		<object-name>RTrans.on</object-name>
+		<object-name>StbyCompass.on</object-name>
 		<object-name>StrobeLt.off</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
@@ -424,7 +430,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/iru[0]/switches/knob</property>
+				<property>controls/iru[0]/knob</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>1</max>
@@ -476,7 +482,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/iru[2]/switches/knob</property>
+				<property>controls/iru[2]/knob</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>1</max>
@@ -528,7 +534,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/iru[1]/switches/knob</property>
+				<property>controls/iru[1]/knob</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>1</max>
@@ -576,7 +582,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/galley-1</property>
+				<property>controls/electrical/galley-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -627,7 +633,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/galley-1</property>
+					<property>systems/electrical/lights/galley-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -656,7 +662,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/galley-2</property>
+				<property>controls/electrical/galley-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -707,7 +713,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/galley-2</property>
+					<property>systems/electrical/lights/galley-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -736,7 +742,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/galley-3</property>
+				<property>controls/electrical/galley-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -787,7 +793,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/galley-3</property>
+					<property>systems/electrical/lights/galley-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -823,7 +829,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/cargo-fwd-temp</property>
+				<property>controls/pneumatics/cargo-fwd-temp</property>
 				<factor>0.5</factor>
 				<min>0</min>
 				<max>1</max>
@@ -854,7 +860,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/cargo-aft-temp</property>
+				<property>controls/pneumatics/cargo-aft-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -873,31 +879,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
-				<script>systems.HYD.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-hyd</property>
-				<value>1</value>
+				<script>systems.HYDRAULICS.systemMode();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-hyd</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -905,8 +893,11 @@
 		<object-name>SystemHyd</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<object-name>SystemHyd.select</object-name>
-		<property>controls/cockpit/overhead/system-hyd</property>
-		<factor>-0.001</factor>
+		<property>systems/hydraulics/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -919,7 +910,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/lights/select-manual</property>
+					<property>systems/hydraulics/lights/select-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -939,15 +930,15 @@
 					<value>0</value>
 				</equals>
 				<equals>
-					<property>controls/hydraulics/lights/manual-flash</property>
+					<property>systems/hydraulics/lights/manual-flash</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>controls/hydraulics/lights/manual-flash</property>
+					<property>systems/hydraulics/lights/manual-flash</property>
 					<value>3</value>
 				</equals>
 				<equals>
-					<property>controls/hydraulics/lights/manual-flash</property>
+					<property>systems/hydraulics/lights/manual-flash</property>
 					<value>5</value>
 				</equals>
 				<equals>
@@ -974,7 +965,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/aux-pump-1</property>
+				<property>controls/hydraulics/aux-pump-1</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -1012,7 +1003,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/aux-pump-1</property>
+					<property>controls/hydraulics/aux-pump-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1038,7 +1029,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/aux-pump-2</property>
+				<property>controls/hydraulics/aux-pump-2</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -1076,7 +1067,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/aux-pump-2</property>
+					<property>controls/hydraulics/aux-pump-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1107,7 +1098,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/l-pump-1</property>
+				<property>controls/hydraulics/l-pump-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1160,11 +1151,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/l-pump-1</property>
+						<property>controls/hydraulics/l-pump-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/l-pump-1-fault</property>
+						<property>systems/hydraulics/lights/l-pump-1-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1181,7 +1172,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/l-pump-1</property>
+					<property>controls/hydraulics/l-pump-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1211,7 +1202,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/r-pump-1</property>
+				<property>controls/hydraulics/r-pump-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1264,11 +1255,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/r-pump-1</property>
+						<property>controls/hydraulics/r-pump-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/r-pump-1-fault</property>
+						<property>systems/hydraulics/lights/r-pump-1-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1285,7 +1276,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/r-pump-1</property>
+					<property>controls/hydraulics/r-pump-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1315,7 +1306,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/l-pump-2</property>
+				<property>controls/hydraulics/l-pump-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1368,11 +1359,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/l-pump-2</property>
+						<property>controls/hydraulics/l-pump-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/l-pump-2-fault</property>
+						<property>systems/hydraulics/lights/l-pump-2-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1389,7 +1380,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/l-pump-2</property>
+					<property>controls/hydraulics/l-pump-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1419,7 +1410,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/r-pump-2</property>
+				<property>controls/hydraulics/r-pump-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1472,11 +1463,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/r-pump-2</property>
+						<property>controls/hydraulics/r-pump-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/r-pump-2-fault</property>
+						<property>systems/hydraulics/lights/r-pump-2-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1493,7 +1484,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/r-pump-2</property>
+					<property>controls/hydraulics/r-pump-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1523,7 +1514,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/l-pump-3</property>
+				<property>controls/hydraulics/l-pump-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1576,11 +1567,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/l-pump-3</property>
+						<property>controls/hydraulics/l-pump-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/l-pump-3-fault</property>
+						<property>systems/hydraulics/lights/l-pump-3-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1597,7 +1588,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/l-pump-3</property>
+					<property>controls/hydraulics/l-pump-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1627,7 +1618,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/r-pump-3</property>
+				<property>controls/hydraulics/r-pump-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1680,11 +1671,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/hydraulics/switches/r-pump-3</property>
+						<property>controls/hydraulics/r-pump-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/hydraulics/lights/r-pump-3-fault</property>
+						<property>systems/hydraulics/lights/r-pump-3-fault</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -1701,7 +1692,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/r-pump-3</property>
+					<property>controls/hydraulics/r-pump-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -1732,7 +1723,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/rmp-1-3</property>
+				<property>controls/hydraulics/rmp-1-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1784,7 +1775,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/rmp-1-3</property>
+					<property>controls/hydraulics/rmp-1-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1800,7 +1791,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/lights/rmp-1-3-disag</property>
+					<property>systems/hydraulics/lights/rmp-1-3-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1830,7 +1821,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/hydraulics/switches/rmp-2-3</property>
+				<property>controls/hydraulics/rmp-2-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -1882,7 +1873,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/switches/rmp-2-3</property>
+					<property>controls/hydraulics/rmp-2-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1898,7 +1889,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/hydraulics/lights/rmp-2-3-disag</property>
+					<property>systems/hydraulics/lights/rmp-2-3-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -1990,31 +1981,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
-				<script>systems.ELEC.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-elec</property>
-				<value>1</value>
+				<script>systems.ELECTRICAL.systemMode();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-elec</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -2022,8 +1995,11 @@
 		<object-name>SystemElec</object-name>
 		<object-name>SystemElec.manual</object-name>
 		<object-name>SystemElec.select</object-name>
-		<property>controls/cockpit/overhead/system-elec</property>
-		<factor>-0.001</factor>
+		<property>systems/electrical/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -2036,7 +2012,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/select-manual</property>
+					<property>systems/electrical/lights/select-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2056,15 +2032,15 @@
 					<value>0</value>
 				</equals>
 				<equals>
-					<property>controls/electrical/lights/manual-flash</property>
+					<property>systems/electrical/lights/manual-flash</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>controls/electrical/lights/manual-flash</property>
+					<property>systems/electrical/lights/manual-flash</property>
 					<value>3</value>
 				</equals>
 				<equals>
-					<property>controls/electrical/lights/manual-flash</property>
+					<property>systems/electrical/lights/manual-flash</property>
 					<value>5</value>
 				</equals>
 				<equals>
@@ -2085,31 +2061,19 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/battery</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/battery</property>
-				<value>1</value>
+				<property>controls/electrical/battery</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/battery</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
 		<type>translate</type>
 		<object-name>Battery</object-name>
 		<object-name>Battery.off</object-name>
-		<property>controls/cockpit/overhead/battery</property>
+		<property>controls/electrical/battery</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>1</x>
@@ -2123,7 +2087,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/battery</property>
+					<property>controls/electrical/battery</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2140,7 +2104,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/bat-bus</property>
+					<property>systems/electrical/lights/bat-bus</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2170,7 +2134,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/dc-tie-1</property>
+				<property>controls/electrical/dc-tie-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2221,7 +2185,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/dc-tie-1</property>
+					<property>controls/electrical/dc-tie-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2250,7 +2214,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/dc-tie-3</property>
+				<property>controls/electrical/dc-tie-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2301,7 +2265,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/dc-tie-3</property>
+					<property>controls/electrical/dc-tie-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2329,7 +2293,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/ext-pwr</property>
+				<property>controls/electrical/ext-pwr</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -2368,7 +2332,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/ground-cart</property>
+					<property>controls/electrical/ground-cart</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2384,7 +2348,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/ext-pwr-on</property>
+					<property>systems/electrical/lights/ext-pwr-on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2411,7 +2375,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/extg-pwr</property>
+				<property>controls/electrical/extg-pwr</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -2450,7 +2414,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/ground-cart</property>
+					<property>controls/electrical/ground-cart</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2466,7 +2430,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/extg-pwr-on</property>
+					<property>systems/electrical/lights/extg-pwr-on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -2504,7 +2468,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/apu-pwr</property>
+				<property>controls/electrical/apu-pwr</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2560,7 +2524,7 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/apu/lights/avail</property>
+						<property>systems/apu/lights/avail</property>
 						<value>1</value>
 					</equals>
 					<not-equals>
@@ -2586,7 +2550,7 @@
 						<value>3</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/switches/apu-pwr</property>
+						<property>controls/electrical/apu-pwr</property>
 						<value>1</value>
 					</equals>
 					<not-equals>
@@ -2626,7 +2590,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/ac-tie-1</property>
+				<property>controls/electrical/ac-tie-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2679,11 +2643,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/ac-tie-1</property>
+						<property>controls/electrical/ac-tie-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/ac-tie-1-arm</property>
+						<property>systems/electrical/lights/ac-tie-1-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -2700,7 +2664,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/ac-tie-1</property>
+					<property>controls/electrical/ac-tie-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2734,7 +2698,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/ac-tie-2</property>
+				<property>controls/electrical/ac-tie-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2787,11 +2751,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/ac-tie-2</property>
+						<property>controls/electrical/ac-tie-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/ac-tie-2-arm</property>
+						<property>systems/electrical/lights/ac-tie-2-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -2808,7 +2772,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/ac-tie-2</property>
+					<property>controls/electrical/ac-tie-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2842,7 +2806,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/ac-tie-3</property>
+				<property>controls/electrical/ac-tie-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -2895,11 +2859,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/ac-tie-3</property>
+						<property>controls/electrical/ac-tie-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/ac-tie-3-arm</property>
+						<property>systems/electrical/lights/ac-tie-3-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -2916,7 +2880,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/ac-tie-3</property>
+					<property>controls/electrical/ac-tie-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -2947,7 +2911,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen-1</property>
+				<property>controls/electrical/gen-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -3000,11 +2964,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/gen-1</property>
+						<property>controls/electrical/gen-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/gen-1-arm</property>
+						<property>systems/electrical/lights/gen-1-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3021,7 +2985,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-1</property>
+					<property>controls/electrical/gen-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3058,7 +3022,7 @@
 					</and>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/electrical/switches/gen-drive-1</property>
+				<property>controls/electrical/gen-drive-1</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -3104,7 +3068,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-drive-1</property>
+					<property>controls/electrical/gen-drive-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3150,7 +3114,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen-2</property>
+				<property>controls/electrical/gen-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -3203,11 +3167,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/gen-2</property>
+						<property>controls/electrical/gen-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/gen-2-arm</property>
+						<property>systems/electrical/lights/gen-2-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3224,7 +3188,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-2</property>
+					<property>controls/electrical/gen-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3261,7 +3225,7 @@
 					</and>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/electrical/switches/gen-drive-2</property>
+				<property>controls/electrical/gen-drive-2</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -3307,7 +3271,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-drive-2</property>
+					<property>controls/electrical/gen-drive-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3353,7 +3317,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/gen-3</property>
+				<property>controls/electrical/gen-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -3406,11 +3370,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/electrical/switches/gen-3</property>
+						<property>controls/electrical/gen-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/electrical/lights/gen-3-arm</property>
+						<property>systems/electrical/lights/gen-3-arm</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -3427,7 +3391,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-3</property>
+					<property>controls/electrical/gen-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3464,7 +3428,7 @@
 					</and>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/electrical/switches/gen-drive-3</property>
+				<property>controls/electrical/gen-drive-3</property>
 				<value>0</value>
 			</binding>
 			<binding>
@@ -3510,7 +3474,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/gen-drive-3</property>
+					<property>controls/electrical/gen-drive-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3562,7 +3526,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/electrical/switches/emer-pwr</property>
+				<property>controls/electrical/emer-pwr</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>2</max>
@@ -3581,7 +3545,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/emer-pwr-off</property>
+					<property>systems/electrical/lights/emer-pwr-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3598,7 +3562,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/emer-pwr-on</property>
+					<property>systems/electrical/lights/emer-pwr-on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3625,7 +3589,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/adg-elec</property>
+				<property>controls/electrical/adg-elec</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -3663,7 +3627,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/adg-elec</property>
+					<property>controls/electrical/adg-elec</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3694,7 +3658,7 @@
 		<increase>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/electrical/switches/smoke-elec-air</property>
+				<property>controls/electrical/smoke-elec-air</property>
 				<step>1</step>
 				<min>0</min>
 				<max>4</max>
@@ -3728,7 +3692,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/electrical/switches/cab-bus</property>
+				<property>controls/electrical/cab-bus</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -3766,7 +3730,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/switches/cab-bus</property>
+					<property>controls/electrical/cab-bus</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -3784,7 +3748,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/l-emer-ac</property>
+					<property>systems/electrical/lights/l-emer-ac</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3801,7 +3765,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/l-emer-dc</property>
+					<property>systems/electrical/lights/l-emer-dc</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3818,7 +3782,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/r-emer-ac</property>
+					<property>systems/electrical/lights/r-emer-ac</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3835,7 +3799,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/r-emer-dc</property>
+					<property>systems/electrical/lights/r-emer-dc</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3853,7 +3817,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/ac-1</property>
+					<property>systems/electrical/lights/ac-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3870,7 +3834,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/ac-2</property>
+					<property>systems/electrical/lights/ac-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3887,7 +3851,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/ac-gnd</property>
+					<property>systems/electrical/lights/ac-gnd</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3904,7 +3868,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/ac-3</property>
+					<property>systems/electrical/lights/ac-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3922,7 +3886,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/dc-1</property>
+					<property>systems/electrical/lights/dc-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3939,7 +3903,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/dc-2</property>
+					<property>systems/electrical/lights/dc-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3956,7 +3920,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/dc-gnd</property>
+					<property>systems/electrical/lights/dc-gnd</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3973,7 +3937,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/electrical/lights/dc-3</property>
+					<property>systems/electrical/lights/dc-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3995,31 +3959,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
-				<script>systems.PNEU.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-pneu</property>
-				<value>1</value>
+				<script>systems.PNEUMATICS.systemMode();</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-pneu</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -4027,8 +3973,11 @@
 		<object-name>SystemPneu</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
-		<property>controls/cockpit/overhead/system-pneu</property>
-		<factor>-0.001</factor>
+		<property>systems/pneumatics/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -4041,7 +3990,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/select-manual</property>
+					<property>systems/pneumatics/lights/select-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4061,15 +4010,15 @@
 					<value>0</value>
 				</equals>
 				<equals>
-					<property>controls/pneumatics/lights/manual-flash</property>
+					<property>systems/pneumatics/lights/manual-flash</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>controls/pneumatics/lights/manual-flash</property>
+					<property>systems/pneumatics/lights/manual-flash</property>
 					<value>3</value>
 				</equals>
 				<equals>
-					<property>controls/pneumatics/lights/manual-flash</property>
+					<property>systems/pneumatics/lights/manual-flash</property>
 					<value>5</value>
 				</equals>
 				<equals>
@@ -4104,7 +4053,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/cockpit-temp</property>
+				<property>controls/pneumatics/cockpit-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4135,7 +4084,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/fwd-temp</property>
+				<property>controls/pneumatics/fwd-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4166,7 +4115,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/mid-temp</property>
+				<property>controls/pneumatics/mid-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4197,7 +4146,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/switches/aft-temp</property>
+				<property>controls/pneumatics/aft-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4225,7 +4174,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/pack-1</property>
+				<property>controls/pneumatics/pack-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4277,7 +4226,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-1-flow</property>
+					<property>systems/pneumatics/lights/pack-1-flow</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4293,7 +4242,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-1-off</property>
+					<property>systems/pneumatics/lights/pack-1-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4323,7 +4272,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/pack-2</property>
+				<property>controls/pneumatics/pack-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4375,7 +4324,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-2-flow</property>
+					<property>systems/pneumatics/lights/pack-2-flow</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4391,7 +4340,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-2-off</property>
+					<property>systems/pneumatics/lights/pack-2-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4421,7 +4370,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/pack-3</property>
+				<property>controls/pneumatics/pack-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4473,7 +4422,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-3-flow</property>
+					<property>systems/pneumatics/lights/pack-3-flow</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4489,7 +4438,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/pack-3-off</property>
+					<property>systems/pneumatics/lights/pack-3-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4520,7 +4469,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/isol-1-2</property>
+				<property>controls/pneumatics/isol-1-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4572,7 +4521,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/isol-1-2</property>
+					<property>controls/pneumatics/isol-1-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4588,7 +4537,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/isol-1-2-disag</property>
+					<property>systems/pneumatics/lights/isol-1-2-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4618,7 +4567,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/isol-1-3</property>
+				<property>controls/pneumatics/isol-1-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4670,7 +4619,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/isol-1-3</property>
+					<property>controls/pneumatics/isol-1-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4686,7 +4635,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/isol-1-3-disag</property>
+					<property>systems/pneumatics/lights/isol-1-3-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4717,7 +4666,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/bleed-1</property>
+				<property>controls/pneumatics/bleed-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4769,7 +4718,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-1-press</property>
+					<property>systems/pneumatics/lights/bleed-1-press</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4785,7 +4734,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-1-off</property>
+					<property>systems/pneumatics/lights/bleed-1-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4815,7 +4764,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/bleed-2</property>
+				<property>controls/pneumatics/bleed-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -4867,7 +4816,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-2-press</property>
+					<property>systems/pneumatics/lights/bleed-2-press</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4883,7 +4832,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-2-off</property>
+					<property>systems/pneumatics/lights/bleed-2-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4909,7 +4858,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/bleed-apu</property>
+				<property>controls/pneumatics/bleed-apu</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -4947,7 +4896,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/bleed-apu</property>
+					<property>controls/pneumatics/bleed-apu</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -4977,7 +4926,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/bleed-3</property>
+				<property>controls/pneumatics/bleed-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5029,7 +4978,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-3-press</property>
+					<property>systems/pneumatics/lights/bleed-3-press</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5045,7 +4994,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/lights/bleed-3-off</property>
+					<property>systems/pneumatics/lights/bleed-3-off</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5074,7 +5023,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/trim-air</property>
+				<property>controls/pneumatics/trim-air</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5125,7 +5074,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/trim-air</property>
+					<property>controls/pneumatics/trim-air</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5151,7 +5100,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/avionics-fan</property>
+				<property>controls/pneumatics/avionics-fan</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -5189,7 +5138,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/avionics-fan</property>
+					<property>controls/pneumatics/avionics-fan</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5215,7 +5164,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/pneumatics/switches/econ</property>
+				<property>controls/pneumatics/econ</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -5253,7 +5202,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/pneumatics/switches/econ</property>
+					<property>controls/pneumatics/econ</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5275,31 +5224,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>systems.FUEL.systemMode();</script>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/overhead/system-fuel</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/overhead/system-fuel</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -5307,8 +5238,11 @@
 		<object-name>SystemFuel</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
-		<property>controls/cockpit/overhead/system-fuel</property>
-		<factor>-0.001</factor>
+		<property>systems/fuel/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -5321,7 +5255,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/lights/select-manual</property>
+					<property>systems/fuel/lights/select-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5341,15 +5275,15 @@
 					<value>0</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/lights/manual-flash</property>
+					<property>systems/fuel/lights/manual-flash</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/lights/manual-flash</property>
+					<property>systems/fuel/lights/manual-flash</property>
 					<value>3</value>
 				</equals>
 				<equals>
-					<property>controls/fuel/lights/manual-flash</property>
+					<property>systems/fuel/lights/manual-flash</property>
 					<value>5</value>
 				</equals>
 				<equals>
@@ -5380,7 +5314,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/fill-1</property>
+				<property>controls/fuel/fill-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5433,11 +5367,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-1</property>
+						<property>controls/fuel/fill-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-1</property>
+						<property>systems/fuel/lights/fill-arm-1</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5455,11 +5389,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-1</property>
+						<property>controls/fuel/fill-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-1</property>
+						<property>systems/fuel/lights/fill-arm-1</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -5490,7 +5424,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/pumps-1</property>
+				<property>controls/fuel/pumps-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5543,11 +5477,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/pumps-1</property>
+						<property>controls/fuel/pumps-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-1-low</property>
+						<property>systems/fuel/lights/pumps-trans-1-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5564,7 +5498,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/pumps-1</property>
+					<property>controls/fuel/pumps-1</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -5594,7 +5528,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/x-feed-1</property>
+				<property>controls/fuel/x-feed-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5646,7 +5580,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/x-feed-1</property>
+					<property>controls/fuel/x-feed-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5662,7 +5596,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/lights/x-feed-1-disag</property>
+					<property>systems/fuel/lights/x-feed-1-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5692,7 +5626,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-1</property>
+				<property>controls/fuel/trans-1</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5744,7 +5678,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-1</property>
+					<property>controls/fuel/trans-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -5761,11 +5695,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-1</property>
+						<property>controls/fuel/trans-1</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-1-low</property>
+						<property>systems/fuel/lights/pumps-trans-1-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5797,7 +5731,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/fill-2</property>
+				<property>controls/fuel/fill-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5850,11 +5784,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-2</property>
+						<property>controls/fuel/fill-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-2</property>
+						<property>systems/fuel/lights/fill-arm-2</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5872,11 +5806,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-2</property>
+						<property>controls/fuel/fill-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-2</property>
+						<property>systems/fuel/lights/fill-arm-2</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -5907,7 +5841,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/pumps-2</property>
+				<property>controls/fuel/pumps-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -5960,11 +5894,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/pumps-2</property>
+						<property>controls/fuel/pumps-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-2-low</property>
+						<property>systems/fuel/lights/pumps-trans-2-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5981,7 +5915,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/pumps-2</property>
+					<property>controls/fuel/pumps-2</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6011,7 +5945,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/x-feed-2</property>
+				<property>controls/fuel/x-feed-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6063,7 +5997,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/x-feed-2</property>
+					<property>controls/fuel/x-feed-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6079,7 +6013,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/lights/x-feed-2-disag</property>
+					<property>systems/fuel/lights/x-feed-2-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6109,7 +6043,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-2</property>
+				<property>controls/fuel/trans-2</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6161,7 +6095,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-2</property>
+					<property>controls/fuel/trans-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6178,11 +6112,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-2</property>
+						<property>controls/fuel/trans-2</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-2-low</property>
+						<property>systems/fuel/lights/pumps-trans-2-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6214,7 +6148,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/fill-3</property>
+				<property>controls/fuel/fill-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6267,11 +6201,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-3</property>
+						<property>controls/fuel/fill-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-3</property>
+						<property>systems/fuel/lights/fill-arm-3</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6289,11 +6223,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/fill-3</property>
+						<property>controls/fuel/fill-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/fill-arm-3</property>
+						<property>systems/fuel/lights/fill-arm-3</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -6324,7 +6258,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/pumps-3</property>
+				<property>controls/fuel/pumps-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6377,11 +6311,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/pumps-3</property>
+						<property>controls/fuel/pumps-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-3-low</property>
+						<property>systems/fuel/lights/pumps-trans-3-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6398,7 +6332,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/pumps-3</property>
+					<property>controls/fuel/pumps-3</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -6428,7 +6362,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/x-feed-3</property>
+				<property>controls/fuel/x-feed-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6480,7 +6414,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/x-feed-3</property>
+					<property>controls/fuel/x-feed-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6496,7 +6430,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/lights/x-feed-3-disag</property>
+					<property>systems/fuel/lights/x-feed-3-disag</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6526,7 +6460,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-3</property>
+				<property>controls/fuel/trans-3</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6578,7 +6512,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-3</property>
+					<property>controls/fuel/trans-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6595,11 +6529,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-3</property>
+						<property>controls/fuel/trans-3</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/pumps-trans-3-low</property>
+						<property>systems/fuel/lights/pumps-trans-3-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6631,7 +6565,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-aux-l</property>
+				<property>controls/fuel/trans-aux-l</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6683,7 +6617,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-aux-l</property>
+					<property>controls/fuel/trans-aux-l</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6700,11 +6634,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-aux-l</property>
+						<property>controls/fuel/trans-aux-l</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/trans-aux-l-low</property>
+						<property>systems/fuel/lights/trans-aux-l-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6735,7 +6669,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-aux-r</property>
+				<property>controls/fuel/trans-aux-r</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6787,7 +6721,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-aux-r</property>
+					<property>controls/fuel/trans-aux-r</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6804,11 +6738,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-aux-r</property>
+						<property>controls/fuel/trans-aux-r</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/trans-aux-r-low</property>
+						<property>systems/fuel/lights/trans-aux-r-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6839,7 +6773,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/trans-tail</property>
+				<property>controls/fuel/trans-tail</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6891,7 +6825,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/trans-tail</property>
+					<property>controls/fuel/trans-tail</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -6908,11 +6842,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/trans-tail</property>
+						<property>controls/fuel/trans-tail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/tail-low</property>
+						<property>systems/fuel/lights/tail-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6943,7 +6877,7 @@
 					</and>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fuel/switches/alt-pump</property>
+				<property>controls/fuel/alt-pump</property>
 			</binding>
 			<binding>
 				<condition>
@@ -6995,7 +6929,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fuel/switches/alt-pump</property>
+					<property>controls/fuel/alt-pump</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7012,11 +6946,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fuel/switches/alt-pump</property>
+						<property>controls/fuel/alt-pump</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fuel/lights/tail-low</property>
+						<property>systems/fuel/lights/tail-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -7194,7 +7128,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-1-altn</property>
+				<property>controls/fadec/altn-1</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7233,7 +7167,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-1-altn</property>
+					<property>controls/fadec/altn-1</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7260,7 +7194,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-2-altn</property>
+				<property>controls/fadec/altn-2</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7299,7 +7233,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-2-altn</property>
+					<property>controls/fadec/altn-2</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7326,7 +7260,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fadec/eng-3-altn</property>
+				<property>controls/fadec/altn-3</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7365,7 +7299,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fadec/eng-3-altn</property>
+					<property>controls/fadec/altn-3</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7383,11 +7317,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/ignition/switches/ign-a</property>
+						<property>controls/ignition/ign-a</property>
 						<value>0</value>
 					</equals>
 					<equals>
-						<property>controls/ignition/switches/ign-b</property>
+						<property>controls/ignition/ign-b</property>
 						<value>0</value>
 					</equals>
 				</and>
@@ -7415,7 +7349,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/ignition/switches/ign-a</property>
+				<property>controls/ignition/ign-a</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7454,7 +7388,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/ignition/switches/ign-a</property>
+					<property>controls/ignition/ign-a</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7481,7 +7415,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/ignition/switches/ign-b</property>
+				<property>controls/ignition/ign-b</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7520,7 +7454,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/ignition/switches/ign-b</property>
+					<property>controls/ignition/ign-b</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7546,7 +7480,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/ignition/switches/ign-ovrd</property>
+				<property>controls/ignition/ign-ovrd</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7584,7 +7518,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/ignition/switches/ign-ovrd</property>
+					<property>controls/ignition/ign-ovrd</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7621,7 +7555,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/lights/flap-limit-manual</property>
+					<property>systems/fcc/lights/flap-limit-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7651,7 +7585,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/fcc/switches/flap-limit</property>
+				<property>controls/fcc/flap-limit</property>
 				<factor>-1</factor>
 				<min>0</min>
 				<max>2</max>
@@ -7666,7 +7600,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/lights/elevator-feel-manual</property>
+					<property>systems/fcc/lights/elevator-feel-manual</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -7687,12 +7621,12 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fcc/switches/elevator-feel</property>
+				<property>controls/fcc/elevator-feel</property>
 				<value>0</value>
 			</binding>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/elevator-feel-man</property>
+				<property>controls/fcc/elevator-feel-man</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -7710,8 +7644,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-						setprop("/controls/fcc/switches/elevator-feel", -2);
+					if (getprop("/controls/fcc/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/elevator-feel", -2);
 						libraries.Sound.knb1();
 					}
 				</script>
@@ -7720,7 +7654,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/fcc/switches/elevator-feel", 0);
+						setprop("/controls/fcc/elevator-feel", 0);
 						libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -7737,8 +7671,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-						setprop("/controls/fcc/switches/elevator-feel", -1);
+					if (getprop("/controls/fcc/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/elevator-feel", -1);
 						libraries.Sound.knb1();
 					}
 				</script>
@@ -7747,7 +7681,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/fcc/switches/elevator-feel", 0);
+						setprop("/controls/fcc/elevator-feel", 0);
 						libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -7764,8 +7698,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-						setprop("/controls/fcc/switches/elevator-feel", 1);
+					if (getprop("/controls/fcc/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/elevator-feel", 1);
 						libraries.Sound.knb1();
 					}
 				</script>
@@ -7774,7 +7708,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/fcc/switches/elevator-feel", 0);
+						setprop("/controls/fcc/elevator-feel", 0);
 						libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -7791,8 +7725,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/controls/fcc/switches/elevator-feel-man") == 1) {
-						setprop("/controls/fcc/switches/elevator-feel", 2);
+					if (getprop("/controls/fcc/elevator-feel-man") == 1) {
+						setprop("/controls/fcc/elevator-feel", 2);
 						libraries.Sound.knb1();
 					}
 				</script>
@@ -7801,7 +7735,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						setprop("/controls/fcc/switches/elevator-feel", 0);
+						setprop("/controls/fcc/elevator-feel", 0);
 						libraries.Sound.knb1();
 					</script>
 				</binding>
@@ -7813,7 +7747,7 @@
 		<object-name>ElevFeel.knob</object-name>
 		<object-name>ElevFeel.light</object-name>
 		<object-name>ElevFeel.toggle</object-name>
-		<property>controls/fcc/switches/elevator-feel-man</property>
+		<property>controls/fcc/elevator-feel-man</property>
 		<factor>0.003</factor>
 		<axis>
 			<x>1</x>
@@ -7862,7 +7796,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/lsas-left-out</property>
+				<property>controls/fcc/lsas-left-out</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7902,11 +7836,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/lsas-left-out</property>
+						<property>controls/fcc/lsas-left-out</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/lsas-left-out-fail</property>
+						<property>systems/fcc/lights/lsas-left-out-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -7923,7 +7857,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/lsas-left-out</property>
+					<property>controls/fcc/lsas-left-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -7950,7 +7884,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/lsas-left-in</property>
+				<property>controls/fcc/lsas-left-in</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -7990,11 +7924,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/lsas-left-in</property>
+						<property>controls/fcc/lsas-left-in</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/lsas-left-in-fail</property>
+						<property>systems/fcc/lights/lsas-left-in-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8011,7 +7945,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/lsas-left-in</property>
+					<property>controls/fcc/lsas-left-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8038,7 +7972,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/lsas-right-in</property>
+				<property>controls/fcc/lsas-right-in</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8078,11 +8012,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/lsas-right-in</property>
+						<property>controls/fcc/lsas-right-in</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/lsas-right-in-fail</property>
+						<property>systems/fcc/lights/lsas-right-in-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8099,7 +8033,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/lsas-right-in</property>
+					<property>controls/fcc/lsas-right-in</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8126,7 +8060,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/lsas-right-out</property>
+				<property>controls/fcc/lsas-right-out</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8166,11 +8100,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/lsas-right-out</property>
+						<property>controls/fcc/lsas-right-out</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/lsas-right-out-fail</property>
+						<property>systems/fcc/lights/lsas-right-out-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8187,7 +8121,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/lsas-right-out</property>
+					<property>controls/fcc/lsas-right-out</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8214,7 +8148,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/yd-upper-a</property>
+				<property>controls/fcc/yd-upper-a</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8254,11 +8188,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/yd-upper-a</property>
+						<property>controls/fcc/yd-upper-a</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/yd-upper-a-fail</property>
+						<property>systems/fcc/lights/yd-upper-a-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8275,7 +8209,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/yd-upper-a</property>
+					<property>controls/fcc/yd-upper-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8302,7 +8236,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/yd-upper-b</property>
+				<property>controls/fcc/yd-upper-b</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8342,11 +8276,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/yd-upper-b</property>
+						<property>controls/fcc/yd-upper-b</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/yd-upper-b-fail</property>
+						<property>systems/fcc/lights/yd-upper-b-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8363,7 +8297,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/yd-upper-b</property>
+					<property>controls/fcc/yd-upper-b</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8390,7 +8324,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/yd-lower-a</property>
+				<property>controls/fcc/yd-lower-a</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8430,11 +8364,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/yd-lower-a</property>
+						<property>controls/fcc/yd-lower-a</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/yd-lower-a-fail</property>
+						<property>systems/fcc/lights/yd-lower-a-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8451,7 +8385,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/yd-lower-a</property>
+					<property>controls/fcc/yd-lower-a</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8478,7 +8412,7 @@
 					</greater-than-equals>
 				</condition>
 				<command>property-toggle</command>
-				<property>controls/fcc/switches/yd-lower-b</property>
+				<property>controls/fcc/yd-lower-b</property>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -8518,11 +8452,11 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/fcc/switches/yd-lower-b</property>
+						<property>controls/fcc/yd-lower-b</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>controls/fcc/lights/yd-lower-b-fail</property>
+						<property>systems/fcc/lights/yd-lower-b-fail</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -8539,7 +8473,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/fcc/switches/yd-lower-b</property>
+					<property>controls/fcc/yd-lower-b</property>
 					<value>0</value>
 				</equals>
 				<equals>
@@ -8959,7 +8893,53 @@
 			</or>
 		</condition>
 	</animation>
-		
+	
+	<animation>
+		<type>pick</type>
+		<object-name>StbyCompass</object-name>
+		<object-name>StbyCompass.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/stby-compass</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>StbyCompass</object-name>
+		<object-name>StbyCompass.on</object-name>
+		<property>controls/lighting/stby-compass</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>StbyCompass.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/stby-compass</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>L-Lnd.toggle</object-name>

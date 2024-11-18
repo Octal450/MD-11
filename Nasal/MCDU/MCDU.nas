@@ -14,7 +14,7 @@ var MCDU = {
 		
 		m.clear = 0;
 		m.id = n;
-		m.lastFmcPage = "acStatus";
+		m.lastFmcPage = "none";
 		m.message = std.Vector.new();
 		
 		m.PageList = {
@@ -31,9 +31,15 @@ var MCDU = {
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
 			navRadio: NavRadio.new(n),
+			perfClb: Perf.new(n, 0),
+			perfCrz: Perf.new(n, 1),
+			perfDes: Perf.new(n, 2),
+			preSelCrz: PreSel.new(n, 1),
+			preSelDes: PreSel.new(n, 2),
 			posRef: PosRef.new(n),
 			ref: Ref.new(n),
 			sensorStatus: SensorStatus.new(n),
+			thrLim: ThrLim.new(n),
 			takeoff: Takeoff.new(n),
 		};
 		
@@ -43,14 +49,14 @@ var MCDU = {
 		m.scratchpadDecimal = nil;
 		m.scratchpadOld = "";
 		m.scratchpadSize = 0;
-		m.type = t;
+		m.type = t; # 0 = Standard, 1 = Standby
 		
 		return m;
 	},
 	reset: func() {
 		me.blinkScreen();
 		me.clear = 0;
-		me.lastFmcPage = "acStatus";
+		me.lastFmcPage = "none";
 		me.message.clear();
 		me.page = me.PageList.menu;
 		
@@ -148,9 +154,11 @@ var MCDU = {
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			
-			if (me.page.nextPage != "none") {
+			if (me.page.nextPage == "handled") { # Page handles it
+				me.page.nextPage(); 
+			} else if (me.page.nextPage != "none") { # Has next page
 				me.setPage(me.page.nextPage);
-			} else {
+			} else { # No next page
 				me.setMessage("NOT ALLOWED");
 			}
 		} else {
@@ -216,7 +224,13 @@ var MCDU = {
 		}
 	},
 	setPage: func(p) {
-		if (p == "menu" and me.page.group == "fmc") {
+		if (me.page.group == "fmc") {
+			if (me.type) { # Standby MCDU
+				me.blinkScreen();
+				me.setMessage("NOT ALLOWED");
+				return;
+			}
+			
 			me.lastFmcPage = me.page.name;
 		}
 		
@@ -224,6 +238,16 @@ var MCDU = {
 		
 		if (me.message.size() > 0) {
 			me.clearMessage(2);
+		}
+		
+		if (p == "perf") { # PERF page logic
+			if (fms.Internal.phase <= 2) {
+				p = "perfClb";
+			} else if (fms.Internal.phase == 3) {
+				p = "perfCrz";
+			} else {
+				p = "perfDes";
+			}
 		}
 		
 		if (p == "toAppr") { # TO/APPR page logic
@@ -363,10 +387,10 @@ var BASE = {
 		maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
 		maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	},
-	init: func() {
-		unit[0] = MCDU.new(0, 0, systems.ELEC.Bus.lEmerAc);
-		unit[1] = MCDU.new(1, 0, systems.ELEC.Bus.rEmerAc);
-		unit[2] = MCDU.new(2, 1, systems.ELEC.Bus.ac1);
+	setup: func() {
+		unit[0] = MCDU.new(0, 0, systems.ELECTRICAL.Bus.lEmerAc);
+		unit[1] = MCDU.new(1, 0, systems.ELECTRICAL.Bus.rEmerAc);
+		unit[2] = MCDU.new(2, 1, systems.ELECTRICAL.Bus.ac1);
 	},
 	loop: func() {
 		unit[0].loop();
@@ -392,10 +416,9 @@ var BASE = {
 	},
 };
 
-var FONT = {
-	default: "MCDULarge.ttf",
-	normal: 65,
-	small: 54,
+var FONT = { # Letter separation in Canvas: 38.77
+	normal: "MCDULarge.ttf",
+	small: "MCDUSmall.ttf",
 };
 
 var dms = nil;

@@ -121,7 +121,7 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 };
 
 var RADIOS = {
-	init: func() {
+	setup: func() {
 		crp[0] = CRP.new(0, 0);
 		crp[1] = CRP.new(1, 0);
 		crp[2] = CRP.new(2, 1);

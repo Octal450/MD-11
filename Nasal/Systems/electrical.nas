@@ -1,7 +1,7 @@
 # McDonnell Douglas MD-11 Electrical System
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
-var ELEC = {
+var ELECTRICAL = {
 	Bus: {
 		ac1: props.globals.getNode("/systems/electrical/bus/ac-1"),
 		ac2: props.globals.getNode("/systems/electrical/bus/ac-2"),
@@ -39,26 +39,9 @@ var ELEC = {
 	Epcu: {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
 	},
-	Fail: {
-		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
-		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
-		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
-		apu: props.globals.getNode("/systems/failures/electrical/apu"),
-		battery: props.globals.getNode("/systems/failures/electrical/battery"),
-		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
-		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
-		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
-		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
-		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
-		system: props.globals.getNode("/systems/failures/electrical/system"),
-	},
 	Generic: {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
 		fcp: props.globals.initNode("/systems/electrical/outputs/fcp", 0, "DOUBLE"),
-	},
-	Light: {
-		manualFlash: props.globals.initNode("/controls/electrical/lights/manual-flash", 0, "INT"),
-		manualFlashTemp: 0,
 	},
 	Source: {
 		Adg: {
@@ -126,100 +109,117 @@ var ELEC = {
 			volt: props.globals.getNode("/systems/electrical/sources/tr-3/output-volt"),
 		},
 	},
-	Switch: {
-		acTie1: props.globals.getNode("/controls/electrical/switches/ac-tie-1"),
-		acTie2: props.globals.getNode("/controls/electrical/switches/ac-tie-2"),
-		acTie3: props.globals.getNode("/controls/electrical/switches/ac-tie-3"),
-		adgElec: props.globals.getNode("/controls/electrical/switches/adg-elec"),
-		apuPwr: props.globals.getNode("/controls/electrical/switches/apu-pwr"),
-		battery: props.globals.getNode("/controls/electrical/switches/battery"),
-		cabBus: props.globals.getNode("/controls/electrical/switches/cab-bus"),
-		dcTie1: props.globals.getNode("/controls/electrical/switches/dc-tie-1"),
-		dcTie3: props.globals.getNode("/controls/electrical/switches/dc-tie-3"),
-		emerPwr: props.globals.getNode("/controls/electrical/switches/emer-pwr"),
-		extPwr: props.globals.getNode("/controls/electrical/switches/ext-pwr"),
-		extGPwr: props.globals.getNode("/controls/electrical/switches/extg-pwr"),
-		galley1: props.globals.getNode("/controls/electrical/switches/galley-1"),
-		galley2: props.globals.getNode("/controls/electrical/switches/galley-2"),
-		galley3: props.globals.getNode("/controls/electrical/switches/galley-3"),
-		gen1: props.globals.getNode("/controls/electrical/switches/gen-1"),
-		gen2: props.globals.getNode("/controls/electrical/switches/gen-2"),
-		gen3: props.globals.getNode("/controls/electrical/switches/gen-3"),
-		genDrive1: props.globals.getNode("/controls/electrical/switches/gen-drive-1"),
-		genDrive2: props.globals.getNode("/controls/electrical/switches/gen-drive-2"),
-		genDrive3: props.globals.getNode("/controls/electrical/switches/gen-drive-3"),
-		groundCart: props.globals.getNode("/controls/electrical/switches/ground-cart"),
-		smokeElecAir: props.globals.getNode("/controls/electrical/switches/smoke-elec-air"),
-		system: props.globals.getNode("/controls/electrical/switches/system"),
-	},
 	system: props.globals.getNode("/systems/electrical/system"),
+	Controls: {
+		acTie1: props.globals.getNode("/controls/electrical/ac-tie-1"),
+		acTie2: props.globals.getNode("/controls/electrical/ac-tie-2"),
+		acTie3: props.globals.getNode("/controls/electrical/ac-tie-3"),
+		adgElec: props.globals.getNode("/controls/electrical/adg-elec"),
+		apuPwr: props.globals.getNode("/controls/electrical/apu-pwr"),
+		battery: props.globals.getNode("/controls/electrical/battery"),
+		cabBus: props.globals.getNode("/controls/electrical/cab-bus"),
+		dcTie1: props.globals.getNode("/controls/electrical/dc-tie-1"),
+		dcTie3: props.globals.getNode("/controls/electrical/dc-tie-3"),
+		emerPwr: props.globals.getNode("/controls/electrical/emer-pwr"),
+		extPwr: props.globals.getNode("/controls/electrical/ext-pwr"),
+		extGPwr: props.globals.getNode("/controls/electrical/extg-pwr"),
+		galley1: props.globals.getNode("/controls/electrical/galley-1"),
+		galley2: props.globals.getNode("/controls/electrical/galley-2"),
+		galley3: props.globals.getNode("/controls/electrical/galley-3"),
+		gen1: props.globals.getNode("/controls/electrical/gen-1"),
+		gen2: props.globals.getNode("/controls/electrical/gen-2"),
+		gen3: props.globals.getNode("/controls/electrical/gen-3"),
+		genDrive1: props.globals.getNode("/controls/electrical/gen-drive-1"),
+		genDrive2: props.globals.getNode("/controls/electrical/gen-drive-2"),
+		genDrive3: props.globals.getNode("/controls/electrical/gen-drive-3"),
+		groundCart: props.globals.getNode("/controls/electrical/ground-cart"),
+		smokeElecAir: props.globals.getNode("/controls/electrical/smoke-elec-air"),
+		system: props.globals.getNode("/controls/electrical/system"),
+	},
+	Failures: {
+		acTie1: props.globals.getNode("/systems/failures/electrical/ac-tie-1"),
+		acTie2: props.globals.getNode("/systems/failures/electrical/ac-tie-2"),
+		acTie3: props.globals.getNode("/systems/failures/electrical/ac-tie-3"),
+		apu: props.globals.getNode("/systems/failures/electrical/apu"),
+		battery: props.globals.getNode("/systems/failures/electrical/battery"),
+		dcTie1: props.globals.getNode("/systems/failures/electrical/dc-tie-1"),
+		dcTie3: props.globals.getNode("/systems/failures/electrical/dc-tie-3"),
+		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
+		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
+		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
+		system: props.globals.getNode("/systems/failures/electrical/system"),
+	},
+	Lights: {
+		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
+		manualFlashTemp: 0,
+	},
 	init: func() {
 		me.resetFailures();
-		me.Switch.acTie1.setBoolValue(1);
-		me.Switch.acTie2.setBoolValue(1);
-		me.Switch.acTie3.setBoolValue(1);
-		me.Switch.adgElec.setBoolValue(0);
-		me.Switch.apuPwr.setBoolValue(0);
-		me.Switch.battery.setBoolValue(0);
-		me.Switch.cabBus.setBoolValue(1);
-		me.Switch.dcTie1.setBoolValue(1);
-		me.Switch.dcTie3.setBoolValue(1);
-		me.Switch.emerPwr.setValue(0);
-		me.Switch.extPwr.setBoolValue(0);
-		me.Switch.extGPwr.setBoolValue(0);
-		me.Switch.galley1.setBoolValue(1);
-		me.Switch.galley2.setBoolValue(1);
-		me.Switch.galley3.setBoolValue(1);
-		me.Switch.gen1.setBoolValue(1);
-		me.Switch.gen2.setBoolValue(1);
-		me.Switch.gen3.setBoolValue(1);
-		me.Switch.genDrive1.setBoolValue(1);
-		me.Switch.genDrive2.setBoolValue(1);
-		me.Switch.genDrive3.setBoolValue(1);
-		me.Switch.groundCart.setBoolValue(0);
-		me.Switch.smokeElecAir.setValue(0);
-		me.Switch.system.setBoolValue(1);
+		me.Controls.acTie1.setBoolValue(1);
+		me.Controls.acTie2.setBoolValue(1);
+		me.Controls.acTie3.setBoolValue(1);
+		me.Controls.adgElec.setBoolValue(0);
+		me.Controls.apuPwr.setBoolValue(0);
+		me.Controls.battery.setBoolValue(0);
+		me.Controls.cabBus.setBoolValue(1);
+		me.Controls.dcTie1.setBoolValue(1);
+		me.Controls.dcTie3.setBoolValue(1);
+		me.Controls.emerPwr.setValue(0);
+		me.Controls.extPwr.setBoolValue(0);
+		me.Controls.extGPwr.setBoolValue(0);
+		me.Controls.galley1.setBoolValue(1);
+		me.Controls.galley2.setBoolValue(1);
+		me.Controls.galley3.setBoolValue(1);
+		me.Controls.gen1.setBoolValue(1);
+		me.Controls.gen2.setBoolValue(1);
+		me.Controls.gen3.setBoolValue(1);
+		me.Controls.genDrive1.setBoolValue(1);
+		me.Controls.genDrive2.setBoolValue(1);
+		me.Controls.genDrive3.setBoolValue(1);
+		me.Controls.groundCart.setBoolValue(0);
+		me.Controls.smokeElecAir.setValue(0);
+		me.Controls.system.setBoolValue(1);
 		me.Source.Bat1.percent.setValue(99.9);
 		me.Source.Bat2.percent.setValue(99.9);
 		manualElecLightt.stop();
-		me.Light.manualFlash.setValue(0);
+		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Switch.genDrive1.setBoolValue(1);
-		me.Switch.genDrive2.setBoolValue(1);
-		me.Switch.genDrive3.setBoolValue(1);
-		me.Fail.acTie1.setBoolValue(0);
-		me.Fail.acTie2.setBoolValue(0);
-		me.Fail.acTie3.setBoolValue(0);
-		me.Fail.apu.setBoolValue(0);
-		me.Fail.battery.setBoolValue(0);
-		me.Fail.dcTie1.setBoolValue(0);
-		me.Fail.dcTie3.setBoolValue(0);
-		me.Fail.gen1.setBoolValue(0);
-		me.Fail.gen2.setBoolValue(0);
-		me.Fail.gen3.setBoolValue(0);
-		me.Fail.system.setBoolValue(0);
+		me.Controls.genDrive1.setBoolValue(1);
+		me.Controls.genDrive2.setBoolValue(1);
+		me.Controls.genDrive3.setBoolValue(1);
+		me.Failures.acTie1.setBoolValue(0);
+		me.Failures.acTie2.setBoolValue(0);
+		me.Failures.acTie3.setBoolValue(0);
+		me.Failures.apu.setBoolValue(0);
+		me.Failures.battery.setBoolValue(0);
+		me.Failures.dcTie1.setBoolValue(0);
+		me.Failures.dcTie3.setBoolValue(0);
+		me.Failures.gen1.setBoolValue(0);
+		me.Failures.gen2.setBoolValue(0);
+		me.Failures.gen3.setBoolValue(0);
+		me.Failures.system.setBoolValue(0);
 	},
 	systemMode: func() {
-		if (me.Switch.system.getBoolValue()) {
-			me.Switch.system.setBoolValue(0);
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.system.setBoolValue(0);
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Switch.system.setBoolValue(1);
+			me.Controls.system.setBoolValue(1);
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		}
 	},
 	manualLight: func() {
-		me.Light.manualFlashTemp = me.Light.manualFlash.getValue();
-		if (me.Light.manualFlashTemp >= 5 or !me.Switch.system.getBoolValue()) {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
 			manualElecLightt.stop();
-			me.Light.manualFlash.setValue(0);
+			me.Lights.manualFlash.setValue(0);
 		} else {
-			me.Light.manualFlash.setValue(me.Light.manualFlashTemp + 1);
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };
 
-var manualElecLightt = maketimer(0.4, ELEC, ELEC.manualLight);
+var manualElecLightt = maketimer(0.4, ELECTRICAL, ELECTRICAL.manualLight);

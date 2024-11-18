@@ -11,7 +11,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/l-emer-ac ge 112
-				/controls/ignition/switches/ign-a eq 1
+				/controls/ignition/ign-a eq 1
 			</test>
 		</switch>
 		
@@ -19,7 +19,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/r-emer-ac ge 112
-				/controls/ignition/switches/ign-b eq 1
+				/controls/ignition/ign-b eq 1
 			</test>
 		</switch>
 		
@@ -91,7 +91,7 @@
 		
 		<switch name="/systems/ignition/starter-jsb-1">
 			<default value="/systems/ignition/starter-1"/>
-			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+			<test logic="AND" value="1"> <!-- Because JSBSim will kill the engine if we cut out early -->
 				/engines/engine[0]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-1 eq 0
 				/systems/ignition/can-run-1 eq 1
@@ -169,7 +169,7 @@
 		
 		<switch name="/systems/ignition/starter-jsb-2">
 			<default value="/systems/ignition/starter-2"/>
-			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+			<test logic="AND" value="1"> <!-- Because JSBSim will kill the engine if we cut out early -->
 				/engines/engine[1]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-2 eq 0
 				/systems/ignition/can-run-2 eq 1
@@ -247,7 +247,7 @@
 		
 		<switch name="/systems/ignition/starter-jsb-3">
 			<default value="/systems/ignition/starter-3"/>
-			<test logic="AND" value="1"> <!-- Because JSBsim will kill the engine if we cut out early -->
+			<test logic="AND" value="1"> <!-- Because JSBSim will kill the engine if we cut out early -->
 				/engines/engine[2]/n2-actual ge /systems/ignition/starter-cutoff-n2
 				/systems/ignition/cutoff-3 eq 0
 				/systems/ignition/can-run-3 eq 1
@@ -274,15 +274,25 @@
 	
 	<channel name="Ignition 2" execrate="8">
 		
-		<switch name="/systems/ignition/toga-ign">
+		<switch name="/systems/ignition/cont-ign">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/fdm/jsbsim/fadec/limit/active-mode-int lt 2
-				/controls/engines/engine[0]/throttle ge 0.7
+				/instrumentation/airspeed-indicator/indicated-speed-kt lt 53
+				<test logic="OR">
+					fcs/flap-pos-deg ge 0.1
+					fcs/slat-pos-deg ge 0.1
+				</test>
+				<test logic="OR">
+					/systems/fadec/throttle-lever-feedback[0] ge 0.7
+					/systems/fadec/throttle-lever-feedback[1] ge 0.7
+				</test>
 			</test>
 			<test logic="AND" value="1">
-				/fdm/jsbsim/fadec/limit/active-mode-int lt 2
-				/controls/engines/engine[1]/throttle ge 0.7
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
+				<test logic="OR">
+					fcs/flap-pos-deg ge 9.9
+					fcs/slat-pos-deg ge 30.9
+				</test>
 			</test>
 		</switch>
 		
@@ -296,8 +306,8 @@
 				/systems/ignition/starter-1 eq 1
 			</test>
 			<test logic="OR" value="1">
-				/controls/ignition/switches/ign-ovrd eq 1
-				/systems/ignition/toga-ign eq 1
+				/controls/ignition/ign-ovrd eq 1
+				/systems/ignition/cont-ign eq 1
 			</test>
 		</switch>
 		
@@ -311,8 +321,8 @@
 				/systems/ignition/starter-2 eq 1
 			</test>
 			<test logic="OR" value="1">
-				/controls/ignition/switches/ign-ovrd eq 1
-				/systems/ignition/toga-ign eq 1
+				/controls/ignition/ign-ovrd eq 1
+				/systems/ignition/cont-ign eq 1
 			</test>
 		</switch>
 		
@@ -326,8 +336,8 @@
 				/systems/ignition/starter-3 eq 1
 			</test>
 			<test logic="OR" value="1">
-				/controls/ignition/switches/ign-ovrd eq 1
-				/systems/ignition/toga-ign eq 1
+				/controls/ignition/ign-ovrd eq 1
+				/systems/ignition/cont-ign eq 1
 			</test>
 		</switch>
 	

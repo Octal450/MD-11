@@ -6,6 +6,11 @@
 	
 	<path>overhead_2.ac</path>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>overhead.text.2</object-name>
+	</effect>
+	
 	<animation>
 		<type>shader</type>
 		<shader>chrome</shader>
@@ -28,7 +33,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/overhead-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
 	
@@ -115,7 +120,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/apu/lights/on</property>
+					<property>systems/apu/lights/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -132,7 +137,7 @@
 			<or>
 				<and>
 					<equals>
-						<property>controls/apu/switches/start</property>
+						<property>controls/apu/start</property>
 						<value>0</value>
 					</equals>
 					<greater-than-equals>

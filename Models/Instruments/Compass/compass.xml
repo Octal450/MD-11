@@ -1,0 +1,98 @@
+﻿<?xml version="1.0"?>
+
+<!-- Copyright (c) 2024 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<path>compass.ac</path>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Cylinder.028</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/cockpit/compass-cmd</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Main</object-name>
+		<property>controls/cockpit/compass</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>90</dep></entry>
+			<entry><ind>1</ind><dep> 0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>7.50627</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Tube</object-name>
+		<property>controls/cockpit/compass</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>21.6</dep></entry>
+			<entry><ind>1</ind><dep> 0.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0773</y-m>
+			<z-m>7.54941</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Ring</object-name>
+		<property>instrumentation/magnetic-compass/indicated-heading-deg</property>
+		<center>
+			<x-m>-27.4984</x-m>
+			<y-m>0.000039</y-m>
+			<z-m>0.0241</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Panel lighting</name>
+		<type>material</type>
+		<object-name>Ring</object-name>
+		<object-name>compass.needle</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>systems/lighting/stby-compass</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Aircraft/MD-11/Models/Cockpit/chrome_cockpit.png</texture>
+		<object-name>compass.glass</object-name>
+	</animation>
+
+</PropertyList>

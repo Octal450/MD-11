@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<!-- Not in JSBsim, cause then it takes too long to tune -->
+	<!-- Not in JSBSim, cause then it takes too long to tune -->
 	<filter>
 		<name>EPR C1</name>
 		<type>gain</type>
@@ -20,12 +20,12 @@
 							<entry><ind>0.15</ind><dep>1.0</dep></entry>
 						</table>
 					</product>
-					<entry><ind>    0</ind><dep>0.82</dep></entry>
-					<entry><ind>45000</ind><dep>1.26</dep></entry>
+					<entry><ind>    0</ind><dep>0.822</dep></entry>
+					<entry><ind>45000</ind><dep>1.261</dep></entry>
 				</table>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fadec/epr/c1</output>
+		<output>/systems/fadec/epr/c1</output>
 	</filter>
 	
 	<filter>
@@ -44,33 +44,26 @@
 								<entry><ind>0.15</ind><dep>1.0</dep></entry>
 							</table>
 						</product>
-						<entry><ind>    0</ind><dep>0.983</dep></entry>
-						<entry><ind>45000</ind><dep>0.767</dep></entry>
+						<entry><ind>    0</ind><dep>0.9836</dep></entry>
+						<entry><ind>45000</ind><dep>0.7667</dep></entry>
 					</table>
 					<table>
 						<property>/fdm/jsbsim/velocities/mach</property>
 						<entry><ind>0.09</ind><dep>0.000</dep></entry>
 						<entry><ind>0.15</ind><dep>0.017</dep></entry>
 						<entry><ind>0.22</ind><dep>0.023</dep></entry>
-						<entry><ind>1.00</ind><dep>0.015</dep></entry>
-					</table>
-					<table>
-						<property>/fdm/jsbsim/aero/alpha-deg-fixed</property>
-						<entry><ind> 0.0</ind><dep>0.00</dep></entry>
-						<entry><ind> 7.5</ind><dep>0.01</dep></entry>
-						<entry><ind>17.0</ind><dep>0.03</dep></entry>
 					</table>
 				</difference>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fadec/epr/c2-raw</output>
+		<output>/systems/fadec/epr/c2-raw</output>
 	</filter>
 	
 	<filter>
 		<name>EPR C2 Lag</name>
 		<type>exponential</type>
-		<input>/fdm/jsbsim/fadec/epr/c2-raw</input>
-		<output>/fdm/jsbsim/fadec/epr/c2</output>
+		<input>/systems/fadec/epr/c2-raw</input>
+		<output>/systems/fadec/epr/c2</output>
 		<filter-time>0.32</filter-time>
 	</filter>
 	
@@ -96,7 +89,7 @@
 				</difference>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-minus-50</output>
+		<output>/systems/misc/minimums-minus-50</output>
 	</filter>
 	
 	<filter>
@@ -112,7 +105,7 @@
 				</sum>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-plus-50</output>
+		<output>/systems/misc/minimums-plus-50</output>
 	</filter>
 	
 	<filter>
@@ -128,7 +121,7 @@
 				</sum>
 			</expression>
 		</input>
-		<output>/controls/switches/minimums-plus-100</output>
+		<output>/systems/misc/minimums-plus-100</output>
 	</filter>
 
 	<filter>
@@ -137,7 +130,7 @@
 		<enable>
 			<condition>
 				<equals>
-					<property>/controls/flight/wingflex-enable</property>
+					<property>/sim/model/wingflex-enable</property>
 					<value>1</value>
 				</equals>
 			</condition>
@@ -172,7 +165,7 @@
 		<output>/it-autoflight/input/spd-common</output>
 	</filter>
 	
-	<filter> <!-- Don't put in JSBsim! Its here for a reason! -->
+	<filter> <!-- Don't put in JSBSim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>
 		<type>gain</type>
@@ -183,11 +176,11 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/fdm/jsbsim/fcc/elevator-feel/power</property>
+						<property>/systems/fcc/elevator-feel/power</property>
 						<value>1</value>
 					</equals>
 					<not-equals>
-						<property>/fdm/jsbsim/fcc/elevator-feel/auto</property>
+						<property>/systems/fcc/elevator-feel/auto</property>
 						<value>1</value>
 					</not-equals>
 				</and>
@@ -197,18 +190,18 @@
 			<expression>
 				<floor>
 					<sum>
-						<property>/fdm/jsbsim/fcc/elevator-feel/speed</property>
-						<property>/controls/fcc/switches/elevator-feel</property>
+						<property>/systems/fcc/elevator-feel/speed</property>
+						<property>/controls/fcc/elevator-feel</property>
 					</sum>
 				</floor>
 			</expression>
 		</input>
-		<output>/fdm/jsbsim/fcc/elevator-feel/speed</output>
+		<output>/systems/fcc/elevator-feel/speed</output>
 		<min>120</min>
 		<max>300</max>
 	</filter>
 	
-	<!-- Because overwriting from JSBsim doesn't work -->
+	<!-- Because overwriting from JSBSim doesn't work -->
 	<filter>
 		<name>Engine 1 Cutoff</name>
 		<type>gain</type>
@@ -284,7 +277,7 @@
 		<!-- True when flaps are NOT in landing config -->
 		<input>
 			<less-than>
-				<property>/controls/flight/flaps-input</property>
+				<property>/systems/fcs/flaps/input</property>
 				<value>4</value>
 			</less-than>
 		</input>

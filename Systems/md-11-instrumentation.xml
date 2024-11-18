@@ -5,7 +5,7 @@
 
 <system name="MD-11: Instrumentation">
 	
-	<channel name="Primary Flight Displays" execrate="2"> <!-- No more than 2 -->
+	<channel name="Primary Flight Displays" execrate="2">
 		
 		<!-- Speed Bugs -->
 		<fcs_function name="/instrumentation/pfd/spd-pre-sel">
@@ -46,35 +46,37 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Bank Limit -->
-		<fcs_function name="/instrumentation/pfd/bank-limit-cmd">
+		<fcs_function name="/instrumentation/pfd/spd-fms">
 			<function>
-				<table>
-					<independentVar lookup="row">/it-autoflight/internal/bank-limit</independentVar>
-					<tableData>
-						 0 -25
-						25   0
-						30   5
-					</tableData>
-				</table>
+				<ifthen>
+					<and> <!-- Both must be valid -->
+						<gt>
+							<property>/systems/fms/fms-spd/kts</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/fms-spd/mach</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<ifthen>
+						<eq>
+							<property>/systems/fms/fms-spd/kts-mach</property>
+							<value>1</value>
+						</eq>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<property>/systems/fms/fms-spd/mach</property>
+						</product>
+						<property>/systems/fms/fms-spd/kts</property>
+					</ifthen>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
-		
-		<lag_filter name="/instrumentation/pfd/bank-limit">
-			<input>/instrumentation/pfd/bank-limit-cmd</input>
-			<c1>10</c1>
-		</lag_filter>
-		
-		<!-- Altitude Bugs -->
-		<summer name="/instrumentation/pfd/alt-pre-sel">
-			<input>/it-autoflight/input/alt</input>
-			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
-		</summer>
-		
-		<summer name="/instrumentation/pfd/alt-sel">
-			<input>/it-autoflight/internal/alt</input>
-			<input>-/instrumentation/altimeter/indicated-altitude-ft</input>
-		</summer>
 		
 		<!-- Slip Skid -->
 		<pure_gain name="/instrumentation/pfd/slip-skid-Ny">
@@ -216,9 +218,9 @@
 	
 	<channel name="Engine and Alert Display" execrate="2">
 		
-		<!-- Config Warning -->
-		<switch name="/instrumentation/ead/config-wow-latch"> <!-- This makes sure the landing config warning doesn't appear on takeoff -->
-			<default value="/instrumentation/ead/config-wow-latch"/>
+		<!-- Checklist Warning -->
+		<switch name="/instrumentation/ead/checklist-wow-latch"> <!-- This makes sure the landing checklist doesn't appear on takeoff -->
+			<default value="/instrumentation/ead/checklist-wow-latch"/>
 			<test value="1">
 				position/wow eq 1
 			</test>
@@ -226,54 +228,83 @@
 				position/wow eq 0
 				<test logic="OR">
 					/position/gear-agl-ft ge 1500.5
-					/controls/flight/flaps-input ge 4
+					/systems/fcs/flaps/input ge 4
 					/it-autoflight/output/vert eq 2
 					/it-autoflight/output/vert eq 6
 				</test>
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/ead/config-warn-mode">
+		<switch name="/instrumentation/ead/checklist-mode">
 			<default value="0"/>
 			<test logic="AND" value="2"> <!-- Landing -->
-				/instrumentation/ead/config-wow-latch eq 0
+				/instrumentation/ead/checklist-wow-latch eq 0
 				/position/gear-agl-ft lt 1500.5
-				/it-autoflight/output/vert ne 7
+				/systems/fms/internal/phase gt 1
 			</test>
-			<test value="1"> <!-- Takeoff -->
-				/instrumentation/ead/config-wow-latch eq 1
+			<test logic="AND" value="1"> <!-- Takeoff -->
+				/instrumentation/ead/checklist-wow-latch eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 79.5
-				/it-autoflight/output/vert eq 7
+				/systems/fms/internal/phase le 1
+				/systems/fms/flight-data/v2 gt 0
 			</test>
 		</switch>
 		
-		<switch name="/instrumentation/ead/config-warn">
-			<default value="0"/>
-			<test logic="AND" value="1"> <!-- Landing -->
-				/instrumentation/ead/config-warn-mode eq 2
+		<switch name="/instrumentation/ead/checklist">
+			<default value="-1"/> <!-- Off -->
+			<test logic="AND" value="1"> <!-- Landing Gear, Landing -->
+				/instrumentation/ead/checklist-mode eq 2
 				<test logic="OR">
-					fcs/flap-pos-deg le 31.5
-					gear/unit[0]/status ne 2
-					gear/unit[1]/status ne 2
-					gear/unit[2]/status ne 2
-					/controls/flight/speedbrake-arm eq 0
-					/controls/gear/abs/knob lt 1
-					/controls/gear/brake-parking eq 1
+					/systems/gear/unit[0]/status ne 2
+					/systems/gear/unit[1]/status ne 2
+					/systems/gear/unit[2]/status ne 2
+					<test logic="AND">
+						/systems/gear/unit[3]/status ne 2
+						/controls/gear/center-gear-up eq 0
+					</test>
 				</test>
 			</test>
-			<test value="1"> <!-- Takeoff --> <!-- Add flaps +/- 3 from FMS setting -->
-				/instrumentation/ead/config-warn-mode eq 1
-				<test logic="OR">
-					fcs/flap-pos-deg lt 6.5
-					fcs/flap-pos-deg ge 31.5
-					gear/unit[0]/status ne 2
-					gear/unit[1]/status ne 2
-					gear/unit[2]/status ne 2
-					/controls/flight/speedbrake-arm eq 0
-					/controls/gear/abs/knob gt -1
-					/controls/gear/brake-parking eq 1
-					hydraulics/stabilizer/final-deg ge 0.05
+			<test logic="AND" value="2"> <!-- Stab Trim, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				<test logic="OR"> <!-- 2.05 instead of 2 in order to fix floating point error -->
+					/systems/fms/internal/takeoff-stab-error ge 2.05
+					/systems/fms/internal/takeoff-stab-error le -2.05
 				</test>
+			</test>
+			<test logic="AND" value="3"> <!-- Slat, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				fcs/slat-pos-deg lt 27.5
+			</test>
+			<test logic="AND" value="4"> <!-- Flap, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				<test logic="OR">
+					/systems/fms/internal/takeoff-flaps-error gt 3
+					/systems/fms/internal/takeoff-flaps-error lt -3
+				</test>
+			</test>
+			<test logic="AND" value="4"> <!-- Flap, Landing -->
+				/instrumentation/ead/checklist-mode eq 2
+				fcs/flap-pos-deg lt 31.5
+			</test>
+			<test logic="AND" value="5"> <!-- Brakes, Takeoff -->
+				/instrumentation/ead/checklist-mode eq 1
+				/controls/gear/brake-parking eq 1
+			</test>
+			<test logic="AND" value="6"> <!-- Spoilers, Both -->
+				/instrumentation/ead/checklist-mode ge 1
+				/controls/flight/speedbrake-arm eq 0
+			</test>
+			<test value="0"> <!-- Green Box -->
+				/instrumentation/ead/checklist-mode ge 1
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/ead/checklist-red">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/instrumentation/ead/checklist gt 0
+				/instrumentation/ead/checklist-mode eq 1
+				/systems/fms/internal/phase eq 1
 			</test>
 		</switch>
 	
@@ -285,9 +316,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-l">
 			<function>
 				<avg>
-					<property>hydraulics/aileron-in-l/final-deg</property>
+					<property>/systems/fcs/aileron-in-l/final-deg</property>
 					<table>
-						<independentVar lookup="row">hydraulics/aileron-out-l/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-l/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
@@ -310,9 +341,9 @@
 		<fcs_function name="/instrumentation/sd/config/aileron-r">
 			<function>
 				<avg>
-					<property>hydraulics/aileron-in-r/final-deg</property>
+					<property>/systems/fcs/aileron-in-r/final-deg</property>
 					<table>
-						<independentVar lookup="row">hydraulics/aileron-out-r/final-deg</independentVar>
+						<independentVar lookup="row">/systems/fcs/aileron-out-r/final-deg</independentVar>
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron-equipped</independentVar>
 						<tableData breakPoint="0">
@@ -335,8 +366,8 @@
 		<fcs_function name="/instrumentation/sd/config/elevator-l">
 			<function>
 				<avg>
-					<property>hydraulics/elevator-in-l/final-deg</property>
-					<property>hydraulics/elevator-out-l/final-deg</property>
+					<property>/systems/fcs/elevator-in-l/final-deg</property>
+					<property>/systems/fcs/elevator-out-l/final-deg</property>
 				</avg>
 			</function>
 		</fcs_function>
@@ -344,29 +375,37 @@
 		<fcs_function name="/instrumentation/sd/config/elevator-r">
 			<function>
 				<avg>
-					<property>hydraulics/elevator-in-r/final-deg</property>
-					<property>hydraulics/elevator-out-r/final-deg</property>
+					<property>/systems/fcs/elevator-in-r/final-deg</property>
+					<property>/systems/fcs/elevator-out-r/final-deg</property>
 				</avg>
 			</function>
 		</fcs_function>
 	
 	</channel>
 	
+	<channel name="IESI" execrate="2">
+		
+		<!-- Slip Skid -->
+		<pure_gain name="/instrumentation/iesi/slip-skid-cmd">
+			<input>/instrumentation/pfd/slip-skid-cmd</input> <!-- Take from PFD -->
+			<gain>1.0</gain>
+			<clipto>
+				<min>-12</min>
+				<max>12</max>
+			</clipto>
+		</pure_gain>
+		
+		<lag_filter name="/instrumentation/iesi/slip-skid">
+			<input>/instrumentation/iesi/slip-skid-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+	
+	</channel>
+	
 	<channel name="Standby Airspeed/Altimeter" execrate="2">
 		
-		<switch name="/instrumentation/stby-combo/power-avail">
-			<default value="1"/>
-		</switch>
-		
-		<switch name="/instrumentation/stby-combo/speed-kt-input">
-			<default value="/instrumentation/stby-combo/speed-kt-input"/>
-			<test value="/instrumentation/airspeed-indicator/indicated-speed-kt">
-				/instrumentation/stby-combo/power-avail eq 1
-			</test>
-		</switch>
-		
 		<actuator name="/instrumentation/stby-combo/speed-kt-actuator">
-			<input>/instrumentation/stby-combo/speed-kt-input</input>
+			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
 			<rate_limit>100</rate_limit>
 		</actuator>
 		
@@ -375,19 +414,8 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<switch name="/instrumentation/stby-combo/power-avail">
-			<default value="1"/>
-		</switch>
-		
-		<switch name="/instrumentation/stby-combo/altitude-ft-input">
-			<default value="/instrumentation/stby-combo/altitude-ft-input"/>
-			<test value="/instrumentation/altimeter[0]/indicated-altitude-ft"> <!-- Fix me when they are seperate -->
-				/instrumentation/stby-combo/power-avail eq 1
-			</test>
-		</switch>
-		
 		<actuator name="/instrumentation/stby-combo/altitude-ft-actuator">
-			<input>/instrumentation/stby-combo/altitude-ft-input</input>
+			<input>/instrumentation/altimeter[0]/indicated-altitude-ft</input> <!-- Fix me when they are seperate -->
 			<rate_limit>1500</rate_limit>
 		</actuator>
 		
@@ -420,12 +448,12 @@
 						<value>1000</value>
 					</quotient>
 					<product>
-						<integer>
+						<floor>
 							<quotient>
 								<property>/instrumentation/stby-combo/altitude-ft</property>
 								<value>10000</value>
 							</quotient>
-						</integer>
+						</floor>
 						<value>10000</value>
 					</product>
 				</difference>
@@ -435,12 +463,12 @@
 		<fcs_function name="/instrumentation/stby-combo/altitude-ft-tenthousands">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 							<value>10000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -449,12 +477,12 @@
 									<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 									<value>10000</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/altitude-ft-geneva</property>
 										<value>10000</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.99</value>
 							</difference>
 							<value>100</value>
@@ -486,12 +514,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tenths">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>10</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -500,12 +528,12 @@
 									<property>/instrumentation/stby-combo/setting-inhg-text</property>
 									<value>10</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.9</value>
 							</difference>
 							<value>10</value>
@@ -518,12 +546,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-ones">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>100</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -533,12 +561,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>100</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>100</value>
 										</quotient>
-									</integer>
+									</floor>
 								</difference>
 								<value>0.9</value>
 							</lt>
@@ -549,12 +577,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -568,12 +596,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-inhg-tens">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-inhg-text</property>
 							<value>1000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -584,12 +612,12 @@
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>100</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-inhg-text</property>
 												<value>100</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -599,12 +627,12 @@
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>1000</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-inhg-text</property>
 												<value>1000</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -616,12 +644,12 @@
 										<property>/instrumentation/stby-combo/setting-inhg-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-inhg-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -651,12 +679,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-tens">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>10</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<product>
@@ -665,12 +693,12 @@
 									<property>/instrumentation/stby-combo/setting-hpa-text</property>
 									<value>10</value>
 								</quotient>
-								<integer>
+								<floor>
 									<quotient>
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-								</integer>
+								</floor>
 								<value>0.9</value>
 							</difference>
 							<value>10</value>
@@ -683,12 +711,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-hundreds">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>100</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -698,12 +726,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>100</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>100</value>
 										</quotient>
-									</integer>
+									</floor>
 								</difference>
 								<value>0.9</value>
 							</lt>
@@ -714,12 +742,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>
@@ -733,12 +761,12 @@
 		<fcs_function name="/instrumentation/stby-combo/setting-hpa-thousands">
 			<function> <!-- Geneva drive -->
 				<sum>
-					<integer> <!-- M -->
+					<floor> <!-- M -->
 						<quotient>
 							<property>/instrumentation/stby-combo/setting-hpa-text</property>
 							<value>1000</value>
 						</quotient>
-					</integer>
+					</floor>
 					<max> <!-- S -->
 						<value>0</value>
 						<ifthen> <!-- Stops it from animating for the wrong digit place -->
@@ -749,12 +777,12 @@
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>100</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-hpa-text</property>
 												<value>100</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -764,12 +792,12 @@
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>1000</value>
 										</quotient>
-										<integer>
+										<floor>
 											<quotient>
 												<property>/instrumentation/stby-combo/setting-hpa-text</property>
 												<value>1000</value>
 											</quotient>
-										</integer>
+										</floor>
 									</difference>
 									<value>0.9</value>
 								</lt>
@@ -781,12 +809,12 @@
 										<property>/instrumentation/stby-combo/setting-hpa-text</property>
 										<value>10</value>
 									</quotient>
-									<integer>
+									<floor>
 										<quotient>
 											<property>/instrumentation/stby-combo/setting-hpa-text</property>
 											<value>10</value>
 										</quotient>
-									</integer>
+									</floor>
 									<value>0.9</value>
 								</difference>
 								<value>10</value>

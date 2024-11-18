@@ -23,15 +23,11 @@ var Controls = {
 		dialAFlap: props.globals.getNode("/controls/flight/dial-a-flap"),
 		elevatorTrim: props.globals.getNode("/controls/flight/elevator-trim"),
 		flaps: props.globals.getNode("/controls/flight/flaps"),
-		flapsCmd: props.globals.getNode("/controls/flight/flaps-cmd"),
 		flapsTemp: 0,
-		flapsInput: props.globals.getNode("/controls/flight/flaps-input"),
 		slatStow: props.globals.getNode("/controls/flight/slat-stow"),
 		speedbrake: props.globals.getNode("/controls/flight/speedbrake"),
 		speedbrakeArm: props.globals.getNode("/controls/flight/speedbrake-arm"),
 		speedbrakeTemp: 0,
-		slatsCmd: props.globals.getNode("/controls/flight/slats-cmd"),
-		wingflexEnable: props.globals.getNode("/controls/flight/wingflex-enable"),
 	},
 	Lighting: {
 		beacon: props.globals.getNode("/controls/lighting/beacon"),
@@ -55,83 +51,16 @@ var Controls = {
 	},
 };
 
-var Engines = {
-	Engine: {
-		egtActual: [props.globals.getNode("/engines/engine[0]/egt-actual"), props.globals.getNode("/engines/engine[1]/egt-actual"), props.globals.getNode("/engines/engine[2]/egt-actual")],
-		eprActual: [props.globals.getNode("/engines/engine[0]/epr-actual"), props.globals.getNode("/engines/engine[1]/epr-actual"), props.globals.getNode("/engines/engine[2]/epr-actual")],
-		ffActual: [props.globals.getNode("/engines/engine[0]/ff-actual"), props.globals.getNode("/engines/engine[1]/ff-actual"), props.globals.getNode("/engines/engine[2]/ff-actual")],
-		n1Actual: [props.globals.getNode("/engines/engine[0]/n1-actual"), props.globals.getNode("/engines/engine[1]/n1-actual"), props.globals.getNode("/engines/engine[2]/n1-actual")],
-		n2Actual: [props.globals.getNode("/engines/engine[0]/n2-actual"), props.globals.getNode("/engines/engine[1]/n2-actual"), props.globals.getNode("/engines/engine[2]/n2-actual")],
-		nacelleTemp: [props.globals.getNode("/engines/engine[0]/nacelle-temp"), props.globals.getNode("/engines/engine[1]/nacelle-temp"), props.globals.getNode("/engines/engine[2]/nacelle-temp")],
-		oilPsi: [props.globals.getNode("/engines/engine[0]/oil-psi"), props.globals.getNode("/engines/engine[1]/oil-psi"), props.globals.getNode("/engines/engine[2]/oil-psi")],
-		oilQty: [props.globals.getNode("/engines/engine[0]/oil-qty"), props.globals.getNode("/engines/engine[1]/oil-qty"), props.globals.getNode("/engines/engine[2]/oil-qty")],
-		oilQtyInput: [props.globals.getNode("/engines/engine[0]/oil-qty-input"), props.globals.getNode("/engines/engine[1]/oil-qty-input"), props.globals.getNode("/engines/engine[2]/oil-qty-input")],
-		oilTemp: [props.globals.getNode("/engines/engine[0]/oil-temp"), props.globals.getNode("/engines/engine[1]/oil-temp"), props.globals.getNode("/engines/engine[2]/oil-temp")],
-		state: [props.globals.getNode("/engines/engine[0]/state"), props.globals.getNode("/engines/engine[1]/state"), props.globals.getNode("/engines/engine[2]/state")],
-	},
-};
-
 var Fdm = {
-	JSBsim: {
+	JSBSim: {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
-		},
-		Fadec: {
-			throttleLever: [props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[0]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[1]"), props.globals.getNode("/fdm/jsbsim/fadec/throttle-lever[2]")],
-		},
-		Fcc: {
-			Flap: {
-				maxDeg: props.globals.getNode("/fdm/jsbsim/fcc/flap/max-deg"),
-			},
-			Lsas: {
-				autotrimInhibit: props.globals.getNode("/fdm/jsbsim/fcc/lsas/autotrim-inhibit"),
-			},
-			powerAvail: props.globals.getNode("/fdm/jsbsim/fcc/power-avail"),
-			powerAvailTemp: 0,
-			pitchTrimSpeed: props.globals.getNode("/fdm/jsbsim/fcc/pitch-trim-speed"),
-			stallAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-alpha-deg"),
-			stallWarnAlphaDeg: props.globals.getNode("/fdm/jsbsim/fcc/stall-warn-alpha-deg"),
-		},
-		Fcs: {
-			flapPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/flap-pos-deg"),
-			slatPosDeg: props.globals.getNode("/fdm/jsbsim/fcs/slat-pos-deg"),
-			spoilerL: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-left-deg"),
-			spoilerR: props.globals.getNode("/fdm/jsbsim/fcs/spoiler-right-deg"),
-		},
-		Gear: {
-			gearAllNorm: props.globals.getNode("/fdm/jsbsim/gear/gear-all-norm"),
-		},
-		Hydraulics: {
-			DeflectedAileron: {
-				active: props.globals.getNode("/fdm/jsbsim/hydraulics/deflected-aileron/active"),
-			},
-			RudderLower: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-lower/final-deg"),
-			},
-			RudderUpper: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/rudder-upper/final-deg"),
-			},
-			Stabilizer: {
-				finalDeg: props.globals.getNode("/fdm/jsbsim/hydraulics/stabilizer/final-deg"),
-			},
 		},
 		Inertia: {
 			cgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/cg-percent-mac"),
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
 			zfwLbs: props.globals.getNode("/fdm/jsbsim/inertia/zfw-lbs"),
 			zfwcgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/zfwcg-percent-mac"),
-		},
-		Libraries: {
-			anyEngineOn: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-on"),
-			anyEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/any-engine-out"),
-			blinkFast: props.globals.getNode("/fdm/jsbsim/libraries/blink-fast"),
-			blinkMed: props.globals.getNode("/fdm/jsbsim/libraries/blink-med"),
-			blinkMed2: props.globals.getNode("/fdm/jsbsim/libraries/blink-med-2"),
-			multiEngineOut: props.globals.getNode("/fdm/jsbsim/libraries/multi-engine-out"),
-		},
-		Position: {
-			wow: props.globals.getNode("/fdm/jsbsim/position/wow"),
-			wowTemp: 0,
 		},
 		Propulsion: {
 			Engine: {
@@ -186,7 +115,8 @@ var Instrumentation = {
 		mcduDimmer: [props.globals.getNode("/instrumentation/du/mcdu1-dimmer"), props.globals.getNode("/instrumentation/du/mcdu2-dimmer"), props.globals.getNode("/instrumentation/du/mcdu3-dimmer")],
 	},
 	Ead: {
-		configWarn: props.globals.getNode("/instrumentation/ead/config-warn"),
+		checklist: props.globals.getNode("/instrumentation/ead/checklist"),
+		checklistRed: props.globals.getNode("/instrumentation/ead/checklist-red"),
 		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
 		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
 		eprLimit: props.globals.getNode("/instrumentation/ead/epr-limit"),
@@ -213,6 +143,9 @@ var Instrumentation = {
 			displayMode: [props.globals.initNode("/instrumentation/efis[0]/mfd/display-mode", "MAP", "STRING"), props.globals.initNode("/instrumentation/efis[1]/mfd/display-mode", "MAP", "STRING")],
 			trueNorth: [props.globals.initNode("/instrumentation/efis[0]/mfd/true-north", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/mfd/true-north", 0, "BOOL")],
 		},
+	},
+	Iesi: {
+		slipSkid: props.globals.initNode("/instrumentation/iesi/slip-skid", 0, "DOUBLE"),
 	},
 	MarkerBeacon: {
 		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
@@ -244,22 +177,20 @@ var Instrumentation = {
 		signalQualityNorm: [props.globals.getNode("/instrumentation/nav[0]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[1]/signal-quality-norm"), props.globals.getNode("/instrumentation/nav[2]/signal-quality-norm")],
 	},
 	Pfd: {
-		altPreSel: props.globals.initNode("/instrumentation/pfd/alt-pre-sel", 0, "DOUBLE"),
-		altSel: props.globals.initNode("/instrumentation/pfd/alt-sel", 0, "DOUBLE"),
-		bankLimit: props.globals.initNode("/instrumentation/pfd/bank-limit", 0, "DOUBLE"),
 		hdgPreSel: props.globals.initNode("/instrumentation/pfd/heading-pre-sel", 0, "DOUBLE"),
 		hdgSel: props.globals.initNode("/instrumentation/pfd/heading-sel", 0, "DOUBLE"),
 		hdgDeg: [props.globals.initNode("/instrumentation/pfd/heading-deg[0]", 0, "DOUBLE"), props.globals.initNode("/instrumentation/pfd/heading-deg[1]", 0, "DOUBLE")],
-		slipSkid: props.globals.initNode("/instrumentation/pfd/slip-skid", 0, "DOUBLE"),
-		spdPreSel: props.globals.initNode("/instrumentation/pfd/spd-pre-sel", 0, "DOUBLE"),
-		spdSel: props.globals.initNode("/instrumentation/pfd/spd-sel", 0, "DOUBLE"),
+		slipSkid: props.globals.getNode("/instrumentation/pfd/slip-skid"),
+		spdFms: props.globals.getNode("/instrumentation/pfd/spd-fms"),
+		spdPreSel: props.globals.getNode("/instrumentation/pfd/spd-pre-sel"),
+		spdSel: props.globals.getNode("/instrumentation/pfd/spd-sel"),
 		speedTrend: props.globals.initNode("/instrumentation/pfd/speed-trend", 0, "DOUBLE"),
 		trackBug: [props.globals.initNode("/instrumentation/pfd/track-bug[0]", 0, "DOUBLE"), props.globals.initNode("/instrumentation/pfd/track-bug[1]", 0, "DOUBLE")],
-		vsBugDn: props.globals.initNode("/instrumentation/pfd/vs-bug-dn", 0, "DOUBLE"),
-		vsBugUp: props.globals.initNode("/instrumentation/pfd/vs-bug-up", 0, "DOUBLE"),
-		vsNeedleDn: props.globals.initNode("/instrumentation/pfd/vs-needle-dn", 0, "DOUBLE"),
-		vsNeedleUp: props.globals.initNode("/instrumentation/pfd/vs-needle-up", 0, "DOUBLE"),
-		vsDigit: props.globals.initNode("/instrumentation/pfd/vs-digit", 0, "DOUBLE"),
+		vsBugDn: props.globals.getNode("/instrumentation/pfd/vs-bug-dn"),
+		vsBugUp: props.globals.getNode("/instrumentation/pfd/vs-bug-up"),
+		vsNeedleDn: props.globals.getNode("/instrumentation/pfd/vs-needle-dn"),
+		vsNeedleUp: props.globals.getNode("/instrumentation/pfd/vs-needle-up"),
+		vsDigit: props.globals.getNode("/instrumentation/pfd/vs-digit"),
 	},
 	Sd: {
 		Config: {
@@ -272,6 +203,7 @@ var Instrumentation = {
 			oilPsi: [props.globals.getNode("/instrumentation/sd/eng/oil-psi[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-psi[2]")],
 			oilQty: [props.globals.getNode("/instrumentation/sd/eng/oil-qty[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty[2]")],
 			oilQtyCline: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[2]")],
+			oilQtyClineQt: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[2]")],
 			oilTemp: [props.globals.getNode("/instrumentation/sd/eng/oil-temp[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[2]")],
 		},
 	},
@@ -291,6 +223,8 @@ var Orientation = {
 var Position = {
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 	node: props.globals.getNode("/position"),
+	wow: props.globals.getNode("/position/wow"),
+	wowTemp: 0,
 };
 
 var Services = {
@@ -315,6 +249,9 @@ var Sim = {
 		zOffsetM: props.globals.getNode("/sim/current-view/z-offset-m", 1),
 		zOffsetMaxM: props.globals.getNode("/sim/current-view/z-offset-max-m", 1),
 		zOffsetMinM: props.globals.getNode("/sim/current-view/z-offset-min-m", 1),
+	},
+	Model: {
+		wingflexEnable: props.globals.getNode("/sim/model/wingflex-enable"),
 	},
 	Rendering: {
 		Headshake: {
@@ -358,14 +295,19 @@ var Systems = {
 				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
-			egtAboveN1: props.globals.getNode("/systems/acconfig/options/egt-above-n1"),
+			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
 			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
+			n1BelowEpr: props.globals.getNode("/systems/acconfig/options/n1-below-epr"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
-			throttleOverride: props.globals.getNode("/systems/acconfig/options/throttle-override"),
+			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
 	},
+	Libraries: {
+		blinkFast: props.globals.getNode("/systems/libraries/blink-fast"),
+		blinkMed: props.globals.getNode("/systems/libraries/blink-med"),
+		blinkMed2: props.globals.getNode("/systems/libraries/blink-med-2"),
+	},
 	Shake: {
-		effect: props.globals.getNode("/systems/shake/effect"),
 		shaking: props.globals.getNode("/systems/shake/shaking"),
 	},
 };

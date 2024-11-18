@@ -48,12 +48,12 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1057"
+     inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="478.41606"
-     inkscape:cy="304.94594"
+     inkscape:zoom="0.70710682"
+     inkscape:cx="385.14645"
+     inkscape:cy="458.39223"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -73,12 +73,21 @@
        originy="0" />
   </sodipodi:namedview>
   <rect
+     transform="scale(1,-1)"
+     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="AI_horizon_clip"
+     width="362"
+     height="340.81378"
+     x="75"
+     y="-371.62274"
+     inkscape:label="#rect9211" />
+  <rect
      inkscape:label="#rect9211"
      y="-371.62274"
      x="75"
      height="340.81378"
      width="362"
-     id="AI_bank_mask_clip"
+     id="AI_mask_clip"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      transform="scale(1,-1)" />
   <g
@@ -891,6 +900,13 @@
          y="765.75995" />
     </g>
   </g>
+  <path
+     id="AI_mask"
+     style="fill:#284cd3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.49000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 380.966,129.35605 C 355.24847,84.631957 307.59071,57.061203 255.99962,57.061203 c -51.59109,0 -99.24909,27.570644 -124.96662,72.294797 L 70,94.11858 70,0 l 372,0 0,94.11858 z"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cscccccc"
+     inkscape:label="#path4580" />
   <rect
      transform="scale(1,-1)"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -900,38 +916,6 @@
      x="75"
      y="-439"
      inkscape:label="#rect9211" />
-  <g
-     id="AI_bank_mask"
-     inkscape:label="#g4352"
-     inkscape:transform-center-y="-339.6375">
-    <rect
-       inkscape:transform-center-y="-381.21027"
-       inkscape:label="#rect4297"
-       y="-439.82904"
-       x="-128"
-       height="521.27911"
-       width="768"
-       id="rect4297"
-       style="fill:#284cd3;fill-opacity:1;stroke:none;stroke-width:4.80000019;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       inkscape:label="#rect4297"
-       y="-538.93359"
-       x="179.57278"
-       height="423.39822"
-       width="267.38373"
-       id="rect4317"
-       style="fill:#284cd3;fill-opacity:1;stroke:none;stroke-width:4.80000019;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.81746473,0.57597865,-0.57597865,0.81746473,0,0)" />
-    <rect
-       transform="matrix(-0.81746473,0.57597865,0.57597865,0.81746473,0,0)"
-       style="fill:#284cd3;fill-opacity:1;stroke:none;stroke-width:4.80000019;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4350"
-       width="267.38373"
-       height="423.39822"
-       x="-238.96951"
-       y="-244.03227"
-       inkscape:label="#rect4297" />
-  </g>
   <g
      id="g4166"
      transform="matrix(1,0,0,0.96275076,0,-0.01444488)">
@@ -1131,15 +1115,6 @@
        x="439.99667"
        y="-92.834999" />
   </g>
-  <rect
-     transform="scale(1,-1)"
-     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="AI_horizon_clip"
-     width="362"
-     height="340.81378"
-     x="75"
-     y="-371.62274"
-     inkscape:label="#rect9211" />
   <g
      id="AI_init"
      inkscape:label="#g4664">

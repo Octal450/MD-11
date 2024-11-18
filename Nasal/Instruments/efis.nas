@@ -1,4 +1,4 @@
-# MD-11 EFIS Controller
+# McDonnell Douglas MD-11 EFIS Controller
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var EFIS = {

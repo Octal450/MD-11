@@ -18,45 +18,51 @@ setprop("/sim/multiplay/visibility-range-nm", 130);
 
 var initDone = 0;
 var systemsInit = func() {
+	# Standard modules
 	systems.APU.init();
 	systems.BRAKES.init();
-	systems.ELEC.init();
-	systems.ENGINE.init();
+	systems.ELECTRICAL.init();
+	systems.ENGINES.init();
 	systems.FADEC.init();
 	systems.FCC.init();
 	systems.FUEL.init();
 	systems.GEAR.init();
-	systems.HYD.init();
+	systems.HYDRAULICS.init();
 	systems.IGNITION.init();
 	systems.IRS.init();
-	systems.PNEU.init();
+	systems.PNEUMATICS.init();
 	afs.ITAF.init();
 	fms.CORE.init();
+	instruments.EFIS.init();
+	instruments.XPDR.init();
+	
+	# Object orientated modules
 	if (initDone) { # Anytime after sim init
 		instruments.RADIOS.reset();
 		mcdu.BASE.reset();
 	} else { # Sim init
-		instruments.RADIOS.init();
-		mcdu.BASE.init();
+		instruments.RADIOS.setup();
+		mcdu.BASE.setup();
 	}
-	instruments.EFIS.init();
-	instruments.XPDR.init();
-	libraries.variousReset();
+	
+	# Other switches
+	cockpit.variousReset();
 }
 
 var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	acconfig.SYSTEM.fdmInit();
 	systemsInit();
 	systemsLoop.start();
+	slowLoop.start();
 	lightsLoop.start();
-	canvas_pfd.init();
-	canvas_ead.init();
-	canvas_sd.init();
-	canvas_iesi.init();
-	canvas_mcdu.init();
-	acconfig.SYSTEM.finalInit();
+	canvas_pfd.setup();
+	canvas_ead.setup();
+	canvas_sd.setup();
+	canvas_iesi.setup();
+	canvas_mcdu.setup();
 	removelistener(fdmInit);
 	initDone = 1;
+	acconfig.SYSTEM.finalInit();
 });
 
 var systemsLoop = maketimer(0.1, func() {
@@ -64,73 +70,43 @@ var systemsLoop = maketimer(0.1, func() {
 	mcdu.BASE.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
-	
-	if (pts.Velocities.groundspeedKt.getValue() >= 15) {
-		pts.Systems.Shake.effect.setBoolValue(1);
-	} else {
-		pts.Systems.Shake.effect.setBoolValue(0);
-	}
+	SHAKE.loop();
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(0);
+		pts.Sim.Model.wingflexEnable.setBoolValue(0);
 	} else {
-		pts.Controls.Flight.wingflexEnable.setBoolValue(1);
+		pts.Sim.Model.wingflexEnable.setBoolValue(1);
 	}
 	
 	pts.Services.Chocks.enableTemp = pts.Services.Chocks.enable.getBoolValue();
 	pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Fdm.JSBsim.Position.wow.getBoolValue()) and pts.Services.Chocks.enableTemp) {
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or !pts.Position.wow.getBoolValue()) and pts.Services.Chocks.enableTemp) {
 		pts.Services.Chocks.enable.setBoolValue(0);
 	}
 	
-	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Switch.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-		if (systems.ELEC.Switch.groundCart.getBoolValue() or systems.ELEC.Switch.extPwr.getBoolValue() or systems.ELEC.Switch.extGPwr.getBoolValue()) {
-			systems.ELEC.Switch.groundCart.setBoolValue(0);
-			systems.ELEC.Switch.extPwr.setBoolValue(0);
-			systems.ELEC.Switch.extGPwr.setBoolValue(0);
+	if ((pts.Velocities.groundspeedKtTemp >= 2 or (!systems.GEAR.Controls.brakeParking.getBoolValue() and !pts.Services.Chocks.enableTemp)) and !acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
+		if (systems.ELECTRICAL.Controls.groundCart.getBoolValue() or systems.ELECTRICAL.Controls.extPwr.getBoolValue() or systems.ELECTRICAL.Controls.extGPwr.getBoolValue()) {
+			systems.ELECTRICAL.Controls.groundCart.setBoolValue(0);
+			systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
+			systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 		}
-		if (systems.PNEU.Switch.groundAir.getBoolValue()) {
-			systems.PNEU.Switch.groundAir.setBoolValue(0);
+		if (systems.PNEUMATICS.Controls.groundAir.getBoolValue()) {
+			systems.PNEUMATICS.Controls.groundAir.setBoolValue(0);
 		}
 	}
 });
 
-setlistener("/fdm/jsbsim/position/wow", func() {
+var slowLoop = maketimer(1, func() {
+	if (acconfig.SYSTEM.Error.active.getBoolValue()) {
+		systemsInit();
+	}
+});
+
+setlistener("/position/wow", func() {
 	if (initDone) {
 		instruments.XPDR.airGround();
 	}
 }, 0, 0);
-
-canvas.Text._lastText = canvas.Text["_lastText"];
-canvas.Text.setText = func(text) {
-	if (text == me._lastText and text != nil and size(text) == size(me._lastText)) {
-		return me;
-	}
-	me._lastText = text;
-	me.set("text", typeof(text) == "scalar" ? text : "");
-};
-canvas.Element._lastVisible = nil;
-canvas.Element.show = func() {
-	if (1 == me._lastVisible) {
-		return me;
-	}
-	me._lastVisible = 1;
-	me.setBool("visible", 1);
-};
-canvas.Element.hide = func() {
-	if (0 == me._lastVisible) {
-		return me;
-	}
-	me._lastVisible = 0;
-	me.setBool("visible", 0);
-};
-canvas.Element.setVisible = func(vis) {
-	if (vis == me._lastVisible) {
-		return me;
-	}
-	me._lastVisible = vis;
-	me.setBool("visible", vis);
-};
 
 var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
 var setting = getprop("/controls/lighting/nav-lights");
@@ -152,9 +128,25 @@ var lightsLoop = maketimer(0.2, func() {
 	}
 });
 
-# Custom controls.nas overwrites
+# Backwards compatibility, removed soon
+var ApPanel = {
+	apDisc: func() {
+		cockpit.ApPanel.apDisc();
+		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
+	},
+	atDisc: func() {
+		cockpit.ApPanel.atDisc();
+		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
+	},
+	toga: func() {
+		cockpit.ApPanel.toga();
+		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
+	},
+};
+
+# Custom controls.nas overrides
 controls.autopilotDisconnect = func() {
-	libraries.ApPanel.apDisc();
+	cockpit.ApPanel.apDisc();
 }
 
 controls.reverserTogglePosition = func() {
@@ -192,40 +184,40 @@ controls.flapsDown = func(step) {
 
 var leverCockpit = 3;
 controls.gearDown = func(d) { # Requires a mod-up
-	pts.Fdm.JSBsim.Position.wowTemp = pts.Fdm.JSBsim.Position.wow.getBoolValue();
-	leverCockpit = systems.GEAR.Switch.leverCockpit.getValue();
+	pts.Position.wowTemp = pts.Position.wow.getBoolValue();
+	leverCockpit = systems.GEAR.Controls.lever.getValue();
 	if (d < 0) {
-		if (pts.Fdm.JSBsim.Position.wowTemp) {
+		if (pts.Position.wowTemp) {
 			if (leverCockpit == 3) {
-				systems.GEAR.Switch.leverCockpit.setValue(2);
+				systems.GEAR.Controls.lever.setValue(2);
 			} else if (leverCockpit == 0) {
-				systems.GEAR.Switch.leverCockpit.setValue(1);
+				systems.GEAR.Controls.lever.setValue(1);
 			}
 		} else {
-			systems.GEAR.Switch.leverCockpit.setValue(0);
+			systems.GEAR.Controls.lever.setValue(0);
 		}
 	} else if (d > 0) {
-		if (pts.Fdm.JSBsim.Position.wowTemp) {
+		if (pts.Position.wowTemp) {
 			if (leverCockpit == 3) {
-				systems.GEAR.Switch.leverCockpit.setValue(2);
+				systems.GEAR.Controls.lever.setValue(2);
 			} else if (leverCockpit == 0) {
-				systems.GEAR.Switch.leverCockpit.setValue(1);
+				systems.GEAR.Controls.lever.setValue(1);
 			}
 		} else {
-			systems.GEAR.Switch.leverCockpit.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		}
 	} else {
 		if (leverCockpit == 2) {
-			systems.GEAR.Switch.leverCockpit.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		} else if (leverCockpit == 1) {
-			systems.GEAR.Switch.leverCockpit.setValue(0);
+			systems.GEAR.Controls.lever.setValue(0);
 		}
 	}
 }
 
 controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
 	if (d) {
-		if (systems.GEAR.Switch.leverCockpit.getValue() >= 2) {
+		if (systems.GEAR.Controls.lever.getValue() >= 2) {
 			controls.gearDown(-1);
 		} else {
 			controls.gearDown(1);
@@ -236,14 +228,14 @@ controls.gearDownSmart = func(d) { # Used by cockpit, requires a mod-up
 }
 
 controls.gearToggle = func() {
-	if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
-		if (systems.GEAR.Switch.leverCockpit.getValue() >= 2) {
-			systems.GEAR.Switch.leverCockpit.setValue(0);
+	if (!pts.Position.wow.getBoolValue()) {
+		if (systems.GEAR.Controls.lever.getValue() >= 2) {
+			systems.GEAR.Controls.lever.setValue(0);
 		} else {
-			systems.GEAR.Switch.leverCockpit.setValue(3);
+			systems.GEAR.Controls.lever.setValue(3);
 		}
 	} else {
-		systems.GEAR.Switch.leverCockpit.setValue(3);
+		systems.GEAR.Controls.lever.setValue(3);
 	}
 }
 
@@ -357,9 +349,9 @@ controls.elevatorTrim = func(d) {
 	if (afs.Output.ap2.getBoolValue()) {
 		afs.ITAF.ap2Master(0);
 	}
-	if (systems.HYD.Psi.sys1.getValue() >= 2200 or systems.HYD.Psi.sys3.getValue() >= 2200) {
-		slewProp("/controls/flight/elevator-trim", d * (pts.Fdm.JSBsim.Fcc.pitchTrimSpeed.getValue() / 15.5)); # Rate normalized by max degrees (rate / 15.5)
-		pts.Fdm.JSBsim.Fcc.Lsas.autotrimInhibit.setValue(1); # Inhibit autotrim for a few seconds
+	if (systems.HYDRAULICS.Psi.sys1.getValue() >= 2200 or systems.HYDRAULICS.Psi.sys3.getValue() >= 2200) {
+		slewProp("/controls/flight/elevator-trim", d * (systems.FCC.pitchTrimSpeed.getValue() / 15.5)); # Rate normalized by max degrees (rate / 15.5)
+		systems.FCC.Lsas.autotrimInhibit.setValue(1); # Inhibit autotrim for a few seconds
 	}
 }
 
@@ -370,12 +362,12 @@ setlistener("/controls/flight/elevator-trim", func() {
 }, 0, 0);
 
 # Override FG's generic brake
-controls.applyBrakes = func(v, which = 0) { # No interpolate, that's bad, we will apply rate-limit in JSBsim
+controls.applyBrakes = func(v, which = 0) { # No interpolate, that's bad, we will apply rate-limit in JSBSim
 	if (which <= 0) {
-		systems.GEAR.Switch.brakeLeft.setValue(v);
+		systems.GEAR.Controls.brakeLeft.setValue(v);
 	}
 	if (which >= 0) {
-		systems.GEAR.Switch.brakeRight.setValue(v);
+		systems.GEAR.Controls.brakeRight.setValue(v);
 	}
 }
 
@@ -400,7 +392,7 @@ var Doors = {
 			gui.popupTip("Closing: " ~ doorDesc ~ " Door");
 			door.toggle();
 		} else {
-			if (!pts.Fdm.JSBsim.Position.wow.getBoolValue()) {
+			if (!pts.Position.wow.getBoolValue()) {
 				gui.popupTip("Doors can not open while the aircraft is airborne");
 			} else if (pts.Velocities.groundspeedKt.getValue() >= 2) {
 				gui.popupTip("Doors can not open while the aircraft is moving");
@@ -409,6 +401,36 @@ var Doors = {
 				door.toggle();
 			}
 		}
+	},
+};
+
+# Shaking Logic
+var SHAKE = {
+	force: 0,
+	rollspeedMs: [0, 0, 0],
+	wow: [0, 0, 0],
+	loop: func() {
+		me.rollspeedMs[0] = pts.Gear.rollspeedMs[0].getValue();
+		me.rollspeedMs[1] = pts.Gear.rollspeedMs[1].getValue();
+		me.rollspeedMs[2] = pts.Gear.rollspeedMs[2].getValue();
+		me.wow[0] = pts.Gear.wow[0].getBoolValue();
+		me.wow[1] = pts.Gear.wow[1].getBoolValue();
+		me.wow[2] = pts.Gear.wow[2].getBoolValue();
+		
+		if (pts.Velocities.groundspeedKt.getValue() >= 1 and (me.wow[0] or me.wow[1] or me.wow[2])) {
+			if (me.wow[0]) {
+				me.force = me.rollspeedMs[0] / 94000;
+			} else {
+				me.force = math.max(me.rollspeedMs[1], me.rollspeedMs[2]) / 188000;
+			}
+			
+			interpolate(pts.Systems.Shake.shaking, 0, 0.03);
+			settimer(func() {
+				interpolate(pts.Systems.Shake.shaking, me.force * 1.5, 0.03); 
+			}, 0.5);
+		} else {
+			pts.Systems.Shake.shaking.setBoolValue(0);
+		}	    
 	},
 };
 
@@ -461,7 +483,7 @@ var Sound = {
 	},
 };
 
-setlistener("/controls/flight/flaps-input", func() {
+setlistener("/systems/fcs/flaps/input", func() {
 	if (pts.Sim.Sound.flapsClick.getBoolValue()) {
 		return;
 	}
@@ -475,7 +497,7 @@ setlistener("/controls/switches/seatbelt-sign-status", func() {
 	if (pts.Sim.Sound.seatbeltSign.getBoolValue()) {
 		return;
 	}
-	if (systems.ELEC.Generic.efis.getValue() >= 24) {
+	if (systems.ELECTRICAL.Generic.efis.getValue() >= 24) {
 		pts.Sim.Sound.noSmokingSignInhibit.setBoolValue(1); # Prevent no smoking sound from playing at same time
 		pts.Sim.Sound.seatbeltSign.setBoolValue(1);
 		settimer(func() {
@@ -489,10 +511,22 @@ setlistener("/controls/switches/no-smoking-sign-status", func() {
 	if (pts.Sim.Sound.noSmokingSign.getBoolValue()) {
 		return;
 	}
-	if (systems.ELEC.Generic.efis.getValue() >= 24 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
+	if (systems.ELECTRICAL.Generic.efis.getValue() >= 24 and !pts.Sim.Sound.noSmokingSignInhibit.getBoolValue()) {
 		pts.Sim.Sound.noSmokingSign.setBoolValue(1);
 		settimer(func() {
 			pts.Sim.Sound.noSmokingSign.setBoolValue(0);
 		}, 1);
 	}
+}, 0, 0);
+
+setlistener("/engines/engine[0]/state", func() {
+	setprop("/sim/sound/shutdown[0]", systems.ENGINES.state[0].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[1]/state", func() {
+	setprop("/sim/sound/shutdown[1]", systems.ENGINES.state[1].getValue());
+}, 0, 0);
+
+setlistener("/engines/engine[2]/state", func() {
+	setprop("/sim/sound/shutdown[2]", systems.ENGINES.state[2].getValue());
 }, 0, 0);

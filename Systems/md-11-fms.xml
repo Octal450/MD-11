@@ -5,38 +5,88 @@
 
 <system name="MD-11: FMS">
 	
-	<property value="0">/fms/speeds/flaps-input-feedback</property>
+	<property value="0">/systems/fms/speeds/flaps-input-feedback</property>
+	
+	<channel name="Fast Logic">
+		
+		<!-- V2 Target Logic -->
+		<!-- This is used only to make the loop update when the speed changes between V2 and V2 + 10 -->
+		<fcs_function name="/systems/fms/flight-data/v2-plus-10">
+			<function>
+				<sum>
+					<property>/systems/fms/flight-data/v2</property>
+					<value>10</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/internal/ias-v2-clamp">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/systems/fms/flight-data/v2</property>
+						<value>0</value>
+					</gt>
+					<ifthen>
+						<eq>
+							<property>position/wow</property>
+							<value>0</value>
+						</eq>
+						<property>/systems/fms/flight-data/v2-plus-10</property>
+						<floor>
+							<sum>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<value>0.5</value>
+							</sum>
+						</floor>
+					</ifthen>
+					<value>0</value>
+				</ifthen>
+			</function>
+			<output>/systems/fms/internal/ias-v2-clamp-out</output>
+			<clipto>
+				<min>/systems/fms/flight-data/v2</min>
+				<max>/systems/fms/flight-data/v2-plus-10</max>
+			</clipto>
+		</fcs_function>
+	
+	</channel>
 	
 	<channel name="Flight Data" execrate="8">
 		
 		<!-- Weight Inputs -->
-		<pure_gain name="/fms/flight-data/gw-full-lbs">
-			<input>/fms/flight-data/gw-lbs</input>
+		<pure_gain name="/systems/fms/flight-data/gw-full-lbs">
+			<input>/systems/fms/flight-data/gw-lbs</input>
 			<gain>1000</gain>
 		</pure_gain>
 		
-		<pure_gain name="/fms/flight-data/gw-full-kg">
-			<input>/fms/flight-data/gw-full-lbs</input>
+		<pure_gain name="/systems/fms/flight-data/gw-kg">
+			<input>/systems/fms/flight-data/gw-lbs</input>
 			<gain>0.45359237</gain>
 		</pure_gain>
 		
-		<pure_gain name="/fms/flight-data/togw-full-lbs">
-			<input>/fms/flight-data/togw-lbs</input>
-			<gain>1000</gain>
-		</pure_gain>
-		
-		<pure_gain name="/fms/flight-data/togw-full-kg">
-			<input>/fms/flight-data/togw-full-lbs</input>
+		<pure_gain name="/systems/fms/flight-data/gw-full-kg">
+			<input>/systems/fms/flight-data/gw-full-lbs</input>
 			<gain>0.45359237</gain>
 		</pure_gain>
 		
-		<pure_gain name="/fms/flight-data/zfw-full-lbs">
-			<input>/fms/flight-data/zfw-lbs</input>
+		<pure_gain name="/systems/fms/flight-data/togw-full-lbs">
+			<input>/systems/fms/flight-data/togw-lbs</input>
 			<gain>1000</gain>
 		</pure_gain>
 		
-		<pure_gain name="/fms/flight-data/zfw-full-kg">
-			<input>/fms/flight-data/zfw-full-lbs</input>
+		<pure_gain name="/systems/fms/flight-data/togw-full-kg">
+			<input>/systems/fms/flight-data/togw-full-lbs</input>
+			<gain>0.45359237</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/fms/flight-data/zfw-full-lbs">
+			<input>/systems/fms/flight-data/zfw-lbs</input>
+			<gain>1000</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/fms/flight-data/zfw-full-kg">
+			<input>/systems/fms/flight-data/zfw-full-lbs</input>
 			<gain>0.45359237</gain>
 		</pure_gain>
 	
@@ -45,13 +95,13 @@
 	<channel name="FMS Calculations" execrate="8">
 		
 		<!-- FMS CG Calculation -->
-		<fcs_function name="/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-libraries.xml -->
+		<fcs_function name="/systems/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-libraries.xml -->
 			<function>
 				<quotient>
 					<sum>
 						<product>
 							<quotient>
-								<property>/fms/flight-data/zfwcg</property> <!-- MCDU value -->
+								<property>/systems/fms/flight-data/zfwcg</property> <!-- MCDU value -->
 								<value>100</value>
 							</quotient>
 							<value>7.68</value> <!-- MAC length -->
@@ -63,24 +113,24 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/internal/cg-x-in"> <!-- Uses MCDU ZFWCG/ZFW and fuel sensors to calculate real CG -->
+		<fcs_function name="/systems/fms/internal/cg-x-in"> <!-- Uses MCDU ZFWCG/ZFW and fuel sensors to calculate real CG -->
 			<function>
 				<ifthen>
 					<and>
 						<gt>
-							<property>/fms/flight-data/zfwcg</property>
+							<property>/systems/fms/flight-data/zfwcg</property>
 							<value>0</value>
 						</gt>
 						<gt>
-							<property>/fms/flight-data/zfw-lbs</property>
+							<property>/systems/fms/flight-data/zfw-lbs</property>
 							<value>0</value>
 						</gt>
 					</and>
 					<quotient> <!-- Weighted average -->
 						<sum>
 							<product> <!-- Undo the quotient done to get ZFWCG position but with MCDU value -->
-								<property>/fms/internal/zfwcg-x-in</property>
-								<property>/fms/flight-data/zfw-full-lbs</property>
+								<property>/systems/fms/internal/zfwcg-x-in</property>
+								<property>/systems/fms/flight-data/zfw-full-lbs</property>
 							</product>
 							<product>
 								<property>propulsion/tank[0]/contents-lbs</property>
@@ -116,7 +166,7 @@
 							</product>
 						</sum>
 						<sum>
-							<property>/fms/flight-data/zfw-full-lbs</property>
+							<property>/systems/fms/flight-data/zfw-full-lbs</property>
 							<property>propulsion/tank[0]/contents-lbs</property>
 							<property>propulsion/tank[1]/contents-lbs</property>
 							<property>propulsion/tank[2]/contents-lbs</property>
@@ -132,13 +182,13 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/internal/cg-percent-mac"> <!-- From md-11-libraries.xml -->
+		<fcs_function name="/systems/fms/internal/cg-percent-mac"> <!-- From md-11-libraries.xml -->
 			<function>
 				<product>
 					<quotient>
 						<difference>
 							<product>
-								<property>/fms/internal/cg-x-in</property>
+								<property>/systems/fms/internal/cg-x-in</property>
 								<value>0.0254</value> <!-- Inches to meters -->
 							</product>
 							<value>0.24116</value> <!-- Offset -->
@@ -151,7 +201,7 @@
 		</fcs_function>
 		
 		<!-- Vmo/Mmo -->
-		<fcs_function name="/fms/speeds/vmo-kts"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/speeds/vmo-kts"> <!-- From FCOM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
@@ -163,7 +213,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/mmo-kts">
+		<fcs_function name="/systems/fms/speeds/mmo-kts">
 			<function>
 				<product>
 					<quotient>
@@ -178,16 +228,17 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/vmo-mmo">
-			<default value="/fms/speeds/vmo-kts"/>
-			<test logic="AND" value="/fms/speeds/mmo-kts">
-				/fms/speeds/mmo-kts lt /fms/speeds/vmo-kts
+		<switch name="/systems/fms/speeds/vmo-mmo">
+			<default value="/systems/fms/speeds/vmo-kts"/>
+			<test logic="AND" value="/systems/fms/speeds/mmo-kts">
+				/systems/fms/speeds/mmo-kts lt /systems/fms/speeds/vmo-kts
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
 		<!-- Gear Max -->
-		<fcs_function name="/fms/speeds/gear-max-mach-kts">
+		<fcs_function name="/systems/fms/speeds/gear-max-mach-kts">
 			<function>
 				<product>
 					<quotient>
@@ -202,32 +253,35 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/gear-max-kts">
+		<switch name="/systems/fms/speeds/gear-max-kts">
 			<default value="300"/>
-			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
-				/fms/speeds/gear-max-mach-kts lt 300
+			<test logic="AND" value="/systems/fms/speeds/gear-max-mach-kts">
+				/systems/fms/speeds/gear-max-mach-kts lt 300
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/gear-ext-max-kts">
+		<switch name="/systems/fms/speeds/gear-ext-max-kts">
 			<default value="260"/>
-			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
-				/fms/speeds/gear-max-mach-kts lt 260
+			<test logic="AND" value="/systems/fms/speeds/gear-max-mach-kts">
+				/systems/fms/speeds/gear-max-mach-kts lt 260
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/gear-ret-max-kts">
+		<switch name="/systems/fms/speeds/gear-ret-max-kts">
 			<default value="230"/>
-			<test logic="AND" value="/fms/speeds/gear-max-mach-kts">
-				/fms/speeds/gear-max-mach-kts lt 230
+			<test logic="AND" value="/systems/fms/speeds/gear-max-mach-kts">
+				/systems/fms/speeds/gear-max-mach-kts lt 230
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
 		<!-- Slat Max -->
-		<fcs_function name="/fms/speeds/slat-max-mach-kts">
+		<fcs_function name="/systems/fms/speeds/slat-max-mach-kts">
 			<function>
 				<product>
 					<quotient>
@@ -242,16 +296,17 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/slat-max-kts">
+		<switch name="/systems/fms/speeds/slat-max-kts">
 			<default value="280"/>
-			<test logic="AND" value="/fms/speeds/slat-max-mach-kts">
-				/fms/speeds/slat-max-mach-kts lt 280
+			<test logic="AND" value="/systems/fms/speeds/slat-max-mach-kts">
+				/systems/fms/speeds/slat-max-mach-kts lt 280
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
 		<!-- Flap Max -->
-		<fcs_function name="/fms/speeds/flap-max-mach-kts">
+		<fcs_function name="/systems/fms/speeds/flap-max-mach-kts">
 			<function>
 				<product>
 					<quotient>
@@ -266,105 +321,115 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/flap-0-15-max-kts">
+		<switch name="/systems/fms/speeds/flap-0-15-max-kts">
 			<default value="255"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 255
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 255
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/flap-15-20-max-kts">
+		<switch name="/systems/fms/speeds/flap-15-20-max-kts">
 			<default value="240"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 240
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 240
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/flap-20-25-max-kts">
+		<switch name="/systems/fms/speeds/flap-20-25-max-kts">
 			<default value="220"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 220
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 220
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/flap-28-max-kts">
+		<switch name="/systems/fms/speeds/flap-28-max-kts">
 			<default value="210"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 210
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 210
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/flap-35-max-kts">
+		<switch name="/systems/fms/speeds/flap-35-max-kts">
 			<default value="190"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 190
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 190
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/flap-50-max-kts">
+		<switch name="/systems/fms/speeds/flap-50-max-kts">
 			<default value="175"/>
-			<test logic="AND" value="/fms/speeds/flap-max-mach-kts">
-				/fms/speeds/flap-max-mach-kts lt 175
+			<test logic="AND" value="/systems/fms/speeds/flap-max-mach-kts">
+				/systems/fms/speeds/flap-max-mach-kts lt 175
 				position/wow eq 0
+				/sim/time/elapsed-sec gt 0
 			</test>
 		</switch>
 		
 		<!-- Flap/Slat/Gear Max -->
-		<switch name="/fms/speeds/flap-gear-max">
+		<switch name="/systems/fms/speeds/flap-gear-max">
 			<default value="0"/> <!-- Hide the tape -->
-			<test value="/fms/speeds/flap-50-max-kts">
+			<test value="/systems/fms/speeds/flap-50-max-kts">
 				fcs/flap-pos-deg ge 36
 			</test>
-			<test value="/fms/speeds/flap-35-max-kts">
+			<test value="/systems/fms/speeds/flap-35-max-kts">
 				fcs/flap-pos-deg ge 29
 			</test>
-			<test value="/fms/speeds/flap-28-max-kts">
+			<test value="/systems/fms/speeds/flap-28-max-kts">
 				fcs/flap-pos-deg ge 26
 			</test>
-			<test value="/fms/speeds/flap-20-25-max-kts">
+			<test value="/systems/fms/speeds/flap-20-25-max-kts">
 				fcs/flap-pos-deg ge 21
 			</test>
-			<test logic="AND" value="/fms/speeds/gear-ret-max-kts">
-				/controls/gear/lever eq 0
+			<test logic="AND" value="/systems/fms/speeds/gear-ret-max-kts">
+				/systems/gear/cmd eq 0
 				/gear/gear[1]/position-norm gt 0.01
 			</test>
-			<test value="/fms/speeds/flap-15-20-max-kts">
+			<test value="/systems/fms/speeds/flap-15-20-max-kts">
 				fcs/flap-pos-deg ge 16
 			</test>
-			<test value="/fms/speeds/flap-0-15-max-kts">
+			<test value="/systems/fms/speeds/flap-0-15-max-kts">
 				fcs/flap-pos-deg ge 1
 			</test>
-			<test logic="AND" value="/fms/speeds/gear-ext-max-kts">
-				/controls/gear/lever eq 1
+			<test logic="AND" value="/systems/fms/speeds/gear-ext-max-kts">
+				/systems/gear/cmd eq 1
 				/gear/gear[1]/position-norm lt 0.99
 			</test>
-			<test logic="AND" value="/fms/speeds/slat-max-kts">
+			<test logic="AND" value="/systems/fms/speeds/slat-max-kts">
 				fcs/slat-pos-deg ge 1
 				fcs/flap-pos-deg lt 1
 			</test>
-			<test value="/fms/speeds/gear-max-kts">
-				/controls/gear/lever eq 1
+			<test value="/systems/fms/speeds/gear-max-kts">
+				/systems/gear/cmd eq 1
 				/gear/gear[1]/position-norm ge 0.99
 			</test>
 		</switch>
 		
 		<!-- Vmax -->
-		<switch name="/fms/speeds/vmax">
-			<default value="/fms/speeds/vmo-mmo"/>
-			<test value="/fms/speeds/flap-gear-max">
-				/fms/speeds/flap-gear-max gt 0
+		<switch name="/systems/fms/speeds/vmax">
+			<default value="/systems/fms/speeds/vmo-mmo"/>
+			<test value="/systems/fms/speeds/flap-gear-max">
+				/systems/fms/speeds/flap-gear-max gt 0
 			</test>
+			<clipto>
+				<min>100</min>
+				<max>100000</max>
+			</clipto>
 		</switch>
 		
-		<fcs_function name="/fms/speeds/athr-max">
+		<fcs_function name="/systems/fms/speeds/athr-max">
 			<function>
 				<difference>
-					<property>/fms/speeds/vmax</property>
+					<property>/systems/fms/speeds/vmax</property>
 					<value>5</value>
 				</difference>
 			</function>
@@ -374,7 +439,7 @@
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/athr-max-mach">
+		<fcs_function name="/systems/fms/speeds/athr-max-mach">
 			<function>
 				<difference>
 					<product>
@@ -385,7 +450,7 @@
 								<value>0.0001</value>
 							</max>
 						</quotient>
-						<property>/fms/speeds/vmax</property>
+						<property>/systems/fms/speeds/vmax</property>
 					</product>
 					<value>0.005</value>
 				</difference>
@@ -397,15 +462,15 @@
 		</fcs_function>
 		
 		<!-- Vstall -->
-		<fcs_function name="/fms/speeds/vss-kts">
+		<fcs_function name="/systems/fms/speeds/vss-kts">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<table> <!-- +15 FAA Stall -->
-						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 						<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 						<independentVar lookup="table">fcs/slat-pos-deg</independentVar>
 						<tableData breakPoint="0"> <!-- Values clipped and rounded down so Vmin (FAA Stall * 1.3) won't exceed flap max (as per manual) -->
@@ -436,27 +501,27 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/v2-latch-speed">
+		<fcs_function name="/systems/fms/speeds/v2-latch-speed">
 			<function>
 				<sum>
-					<property>/fms/speeds/v2</property>
+					<property>/systems/fms/speeds/v2</property>
 					<value>8</value> <!-- V2 + 10kts, 2 kt buffer -->
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/v2-latch">
-			<default value="/fms/speeds/v2-latch"/>
+		<switch name="/systems/fms/speeds/v2-latch">
+			<default value="/systems/fms/speeds/v2-latch"/>
 			<test value="0">
 				position/wow eq 1
 			</test>	
 			<test logic="OR" value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/v2-latch-speed
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/v2-latch-speed
 				position/gear-agl-ft ge 100
 			</test>
 		</switch>
 		
-		<fcs_function name="/fms/speeds/vss-roll-factor">
+		<fcs_function name="/systems/fms/speeds/vss-roll-factor">
 			<function>
 				<sqrt> <!-- Take the square root to get the factor -->
 					<quotient> <!-- Calculate neutral load factor from bank -->
@@ -476,58 +541,58 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/fms/speeds/vss">
-			<input>/fms/speeds/vss-kts</input>
-			<gain>/fms/speeds/vss-roll-factor</gain>
+		<pure_gain name="/systems/fms/speeds/vss">
+			<input>/systems/fms/speeds/vss-kts</input>
+			<gain>/systems/fms/speeds/vss-roll-factor</gain>
 			<clipto>
 				<min>0</min>
-				<max>/fms/speeds/vmax</max>
+				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</pure_gain>
 		
-		<switch name="/fms/speeds/vss-tape">
-			<default value="/fms/speeds/vss"/>
+		<switch name="/systems/fms/speeds/vss-tape">
+			<default value="/systems/fms/speeds/vss"/>
 			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone -->
 				position/wow eq 1
-				/fms/speeds/v2-latch ne 1
+				/systems/fms/speeds/v2-latch ne 1
 			</test>
 		</switch>
 		
 		<!-- Vmin -->
-		<switch name="/fms/speeds/vmin-latch">
-			<default value="/fms/speeds/vmin-latch"/>
+		<switch name="/systems/fms/speeds/vmin-latch">
+			<default value="/systems/fms/speeds/vmin-latch"/>
 			<test value="0">
 				position/wow eq 1
 			</test>	
-			<test logic="OR" value="1"> <!-- Should be accel alt -->
-				/position/gear-agl-ft ge 1250
-				/fms/speeds/flaps-input-feedback ge 4
+			<test logic="OR" value="1">
+				/systems/fms/internal/phase ge 2
+				/systems/fms/speeds/flaps-input-feedback ge 4
 			</test>
 		</switch>
 		
-		<switch name="/fms/speeds/vmin-factor">
+		<switch name="/systems/fms/speeds/vmin-factor">
 			<default value="1.3"/> <!-- 1.3 Vstall -->
 			<test logic="AND" value="1.2"> <!-- 1.2 Vstall -->
 				fcs/flap-pos-deg ge 0.1
 				fcs/slat-pos-deg ge 0.1
-				/fms/speeds/vmin-latch ne 1
+				/systems/fms/speeds/vmin-latch ne 1
 			</test>
 			<test logic="AND" value="1.25"> <!-- 1.25 Vstall -->
 				fcs/flap-pos-deg ge 0.1
 				fcs/slat-pos-deg lt 0.1
-				/fms/speeds/vmin-latch ne 1
+				/systems/fms/speeds/vmin-latch ne 1
 			</test>
 		</switch>
 		
-		<fcs_function name="/fms/speeds/vmin">
+		<fcs_function name="/systems/fms/speeds/vmin">
 			<function>
 				<product>
 					<difference>
-						<property>/fms/speeds/vss-kts</property>
+						<property>/systems/fms/speeds/vss-kts</property>
 						<value>15</value> <!-- FAA Stall -->
 					</difference>
 					<sum>
-						<property>/fms/speeds/vmin-factor</property>
+						<property>/systems/fms/speeds/vmin-factor</property>
 						<table>
 							<independentVar lookup="row">atmosphere/density-altitude</independentVar>
 							<tableData>
@@ -539,34 +604,34 @@
 				</product>
 			</function>
 			<clipto>
-				<min>/fms/speeds/vss</min>
-				<max>100000</max>
+				<min>/systems/fms/speeds/vss</min>
+				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</fcs_function>
 		
-		<switch name="/fms/speeds/vmin-tape">
-			<default value="/fms/speeds/vmin"/>
+		<switch name="/systems/fms/speeds/vmin-tape">
+			<default value="/systems/fms/speeds/vmin"/>
 			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if Vstall is invalid -->
 				position/wow eq 1
-				/fms/speeds/v2-latch ne 1
-				/fms/speeds/vss-tape eq 0
+				/systems/fms/speeds/v2-latch ne 1
+				/systems/fms/speeds/vss-tape eq 0
 			</test>
 		</switch>
 		
-		<fcs_function name="/fms/speeds/athr-min">
+		<fcs_function name="/systems/fms/speeds/athr-min">
 			<function>
 				<sum>
-					<property>/fms/speeds/vmin-tape</property>
+					<property>/systems/fms/speeds/vmin-tape</property>
 					<value>5</value>
 				</sum>
 			</function>
 			<clipto>
 				<min>100</min>
-				<max>100000</max>
+				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/athr-min-mach">
+		<fcs_function name="/systems/fms/speeds/athr-min-mach">
 			<function>
 				<sum>
 					<product>
@@ -577,7 +642,7 @@
 								<value>0.0001</value>
 							</max>
 						</quotient>
-						<property>/fms/speeds/vmin-tape</property>
+						<property>/systems/fms/speeds/vmin-tape</property>
 					</product>
 					<value>0.005</value>
 				</sum>
@@ -585,17 +650,17 @@
 		</fcs_function>
 		
 		<!-- Clean Min -->
-		<fcs_function name="/fms/speeds/clean-min">
+		<fcs_function name="/systems/fms/speeds/clean-min">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<product>
 						<difference>
 							<table>
-								<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+								<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 								<tableData>
 									140000  149.22
 									160000  158.53
@@ -626,17 +691,17 @@
 		</fcs_function>
 		
 		<!-- Slat Min -->
-		<fcs_function name="/fms/speeds/slat-min">
+		<fcs_function name="/systems/fms/speeds/slat-min">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<product>
 						<difference>
 							<table>
-								<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+								<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 								<tableData>
 									140000  124.19
 									160000  131.75
@@ -667,17 +732,17 @@
 		</fcs_function>
 		
 		<!-- Flap 28 Min -->
-		<fcs_function name="/fms/speeds/flap-28-min">
+		<fcs_function name="/systems/fms/speeds/flap-28-min">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<product>
 						<difference>
 							<table>
-								<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+								<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 								<tableData>
 									140000  115.89
 									160000  122.69
@@ -708,18 +773,18 @@
 		</fcs_function>
 		
 		<!-- Vref -->
-		<fcs_function name="/fms/speeds/vref">
+		<fcs_function name="/systems/fms/speeds/vref">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<product>
 						<difference>
 							<table>
-								<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
-								<independentVar lookup="column">/fms/flight-data/land-flaps</independentVar>
+								<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
+								<independentVar lookup="column">/systems/fms/flight-data/land-flaps</independentVar>
 								<tableData>
 									        35      50
 									140000  114.48  113.07
@@ -751,15 +816,15 @@
 		</fcs_function>
 		
 		<!-- Vapp -->
-		<fcs_function name="/fms/speeds/vapp">
+		<fcs_function name="/systems/fms/speeds/vapp">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<sum>
-						<property>/fms/speeds/vref</property>
+						<property>/systems/fms/speeds/vref</property>
 						<value>5</value>
 					</sum>
 					<value>0</value>
@@ -768,7 +833,7 @@
 		</fcs_function>
 		
 		<!-- Vmcg -->
-		<fcs_function name="/fms/speeds/vmcg"> <!-- From FCOM + Correction -->
+		<fcs_function name="/systems/fms/speeds/vmcg"> <!-- From FCOM + Correction -->
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -791,22 +856,22 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vmcg-to"> <!-- From FCOM + Correction -->
+		<fcs_function name="/systems/fms/speeds/vmcg-to"> <!-- From FCOM + Correction -->
 			<function>
 				<ifthen>
 					<and>
 						<gt>
-							<property>/fms/flight-data/airport-from-alt</property>
+							<property>/systems/fms/flight-data/airport-from-alt</property>
 							<value>-1000</value>
 						</gt>
 						<gt>
-							<property>/fms/flight-data/oat-c</property>
+							<property>/systems/fms/flight-data/oat-c</property>
 							<value>-100</value>
 						</gt>
 					</and>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/airport-from-alt</independentVar>
-						<independentVar lookup="column">/fms/flight-data/oat-c</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/airport-from-alt</independentVar>
+						<independentVar lookup="column">/systems/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							       15   20   25   30   35   40   45   50
 							    0  137  136  136  136  134  131  129  126
@@ -828,11 +893,11 @@
 		</fcs_function>
 		
 		<!-- V1 -->
-		<fcs_function name="/fms/speeds/v1-table"> <!-- From FCOM + Correction -->
+		<fcs_function name="/systems/fms/speeds/v1-table"> <!-- From FCOM + Correction -->
 			<function>
 				<table>
-					<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
-					<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
+					<independentVar lookup="row">/systems/fms/flight-data/togw-full-kg</independentVar>
+					<independentVar lookup="column">/systems/fms/flight-data/to-flaps</independentVar>
 					<tableData>
 						        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 						160000  100  100   98   98   97   97   96   96   96   96   95   95   94   94   94   94   93
@@ -867,18 +932,18 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/v1-delta">
+		<fcs_function name="/systems/fms/speeds/v1-delta">
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/airport-from-alt</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/airport-from-alt</independentVar>
 						<tableData>
 							    0   0
 							10000  14
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25   0
 							60  10
@@ -892,15 +957,15 @@
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/v1-slope-wind-delta">
+		<fcs_function name="/systems/fms/speeds/v1-slope-wind-delta">
 			<function>
 				<sum>
 					<product>
-						<property>/fms/flight-data/to-slope</property> <!-- -2 to 2 -->
+						<property>/systems/fms/flight-data/to-slope</property> <!-- -2 to 2 -->
 						<value>3</value>
 					</product>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/to-wind</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/to-wind</independentVar>
 						<tableData>
 							-50 -10
 							 50   5
@@ -910,20 +975,20 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/v1">
+		<fcs_function name="/systems/fms/speeds/v1">
 			<function>
 				<ifthen>
 					<eq>
-						<property>/fms/flight-data/can-calc-vspeeds</property>
+						<property>/systems/fms/flight-data/can-calc-vspeeds</property>
 						<value>1</value>
 					</eq>
 					<max>
 						<sum>
-							<property>/fms/speeds/v1-table</property>
-							<property>/fms/speeds/v1-delta</property>
-							<property>/fms/speeds/v1-slope-wind-delta</property>
+							<property>/systems/fms/speeds/v1-table</property>
+							<property>/systems/fms/speeds/v1-delta</property>
+							<property>/systems/fms/speeds/v1-slope-wind-delta</property>
 						</sum>
-						<property>/fms/speeds/vmcg-to</property>
+						<property>/systems/fms/speeds/vmcg-to</property>
 					</max>
 					<value>0</value>
 				</ifthen>
@@ -931,11 +996,11 @@
 		</fcs_function>
 		
 		<!-- Vr -->
-		<fcs_function name="/fms/speeds/vr-table"> <!-- From FCOM + Correction -->
+		<fcs_function name="/systems/fms/speeds/vr-table"> <!-- From FCOM + Correction -->
 			<function>
 				<table>
-					<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
-					<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
+					<independentVar lookup="row">/systems/fms/flight-data/togw-full-kg</independentVar>
+					<independentVar lookup="column">/systems/fms/flight-data/to-flaps</independentVar>
 					<tableData>
 						        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 						160000  126  126  125  125  123  123  122  122  121  121  120  120  119  119  119  119  117
@@ -970,18 +1035,18 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vr-delta">
+		<fcs_function name="/systems/fms/speeds/vr-delta">
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/airport-from-alt</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/airport-from-alt</independentVar>
 						<tableData>
 							    0  0
 							10000  7
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25  0
 							60  5
@@ -995,26 +1060,26 @@
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vr-calc">
+		<fcs_function name="/systems/fms/speeds/vr-calc">
 			<function>
 				<sum>
-					<property>/fms/speeds/vr-table</property>
-					<property>/fms/speeds/vr-delta</property>
+					<property>/systems/fms/speeds/vr-table</property>
+					<property>/systems/fms/speeds/vr-delta</property>
 				</sum>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vr">
+		<fcs_function name="/systems/fms/speeds/vr">
 			<function>
 				<ifthen>
 					<eq>
-						<property>/fms/flight-data/can-calc-vspeeds</property>
+						<property>/systems/fms/flight-data/can-calc-vspeeds</property>
 						<value>1</value>
 					</eq>
 					<max>
-						<property>/fms/speeds/vr-calc</property>
-						<property>/fms/speeds/v1</property>
-						<property>/fms/speeds/vmcg-to</property>
+						<property>/systems/fms/speeds/vr-calc</property>
+						<property>/systems/fms/speeds/v1</property>
+						<property>/systems/fms/speeds/vmcg-to</property>
 					</max>
 					<value>0</value>
 				</ifthen>
@@ -1022,11 +1087,11 @@
 		</fcs_function>
 		
 		<!-- V2 -->
-		<fcs_function name="/fms/speeds/v2-table"> <!-- From FCOM + Correction -->
+		<fcs_function name="/systems/fms/speeds/v2-table"> <!-- From FCOM + Correction -->
 			<function>
 				<table>
-					<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
-					<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
+					<independentVar lookup="row">/systems/fms/flight-data/togw-full-kg</independentVar>
+					<independentVar lookup="column">/systems/fms/flight-data/to-flaps</independentVar>
 					<tableData>
 						        10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   28
 						160000  149  149  148  148  146  146  145  145  143  143  142  142  142  142  141  141  138
@@ -1061,18 +1126,18 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vr-to-v2-delta">
+		<fcs_function name="/systems/fms/speeds/vr-to-v2-delta">
 			<function>
 				<sum>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/airport-from-alt</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/airport-from-alt</independentVar>
 						<tableData>
 							    0  21
 							10000  13
 						</tableData>
 					</table>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/oat-c</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/oat-c</independentVar>
 						<tableData>
 							25  0
 							60 -5
@@ -1086,23 +1151,23 @@
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/v2">
+		<fcs_function name="/systems/fms/speeds/v2">
 			<function>
 				<ifthen>
 					<eq>
-						<property>/fms/flight-data/can-calc-vspeeds</property>
+						<property>/systems/fms/flight-data/can-calc-vspeeds</property>
 						<value>1</value>
 					</eq>
 					<ifthen>
 						<lt>
-							<property>/fms/speeds/vr-calc</property>
-							<property>/fms/speeds/vmcg-to</property>
+							<property>/systems/fms/speeds/vr-calc</property>
+							<property>/systems/fms/speeds/vmcg-to</property>
 						</lt>
 						<sum>
-							<property>/fms/speeds/vmcg-to</property>
-							<property>/fms/speeds/vr-to-v2-delta</property>
+							<property>/systems/fms/speeds/vmcg-to</property>
+							<property>/systems/fms/speeds/vr-to-v2-delta</property>
 						</sum>
-						<property>/fms/speeds/v2-table</property>
+						<property>/systems/fms/speeds/v2-table</property>
 					</ifthen>
 					<value>0</value>
 				</ifthen>
@@ -1110,15 +1175,15 @@
 		</fcs_function>
 		
 		<!-- Vfr -->
-		<fcs_function name="/fms/speeds/vfr">
+		<fcs_function name="/systems/fms/speeds/vfr">
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/speeds/v2</property>
+						<property>/systems/fms/speeds/v2</property>
 						<value>0</value>
 					</gt>
 					<sum> <!-- Does not change if pilot overrides V2 -->
-						<property>/fms/speeds/v2</property>
+						<property>/systems/fms/speeds/v2</property>
 						<value>10</value>
 					</sum>
 					<value>0</value>
@@ -1127,15 +1192,15 @@
 		</fcs_function>
 		
 		<!-- Vsr -->
-		<fcs_function name="/fms/speeds/vsr"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/speeds/vsr"> <!-- From FCOM -->
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 						<tableData>
 							160000  190
 							165000  193
@@ -1171,15 +1236,15 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vsr-to"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/speeds/vsr-to"> <!-- From FCOM -->
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/togw-full-kg</property>
+						<property>/systems/fms/flight-data/togw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/togw-full-kg</independentVar>
 						<tableData>
 							160000  190
 							165000  193
@@ -1216,15 +1281,15 @@
 		</fcs_function>
 		
 		<!-- Vcl -->
-		<fcs_function name="/fms/speeds/vcl"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/speeds/vcl"> <!-- From FCOM -->
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/gw-full-kg</property>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/gw-full-kg</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
 						<tableData>
 							160000  214
 							165000  217
@@ -1260,15 +1325,15 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/speeds/vcl-to"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/speeds/vcl-to"> <!-- From FCOM -->
 			<function>
 				<ifthen>
 					<gt>
-						<property>/fms/flight-data/togw-full-kg</property>
+						<property>/systems/fms/flight-data/togw-full-kg</property>
 						<value>0</value>
 					</gt>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/togw-full-kg</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/togw-full-kg</independentVar>
 						<tableData>
 							160000  214
 							165000  217
@@ -1305,15 +1370,15 @@
 		</fcs_function>
 		
 		<!-- Bank Limit -->
-		<summer name="/fms/speeds/vss-error">
+		<summer name="/systems/fms/speeds/vss-error">
 			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-			<input>-/fms/speeds/vss</input>
+			<input>-/systems/fms/speeds/vss</input>
 		</summer>
 		
-		<fcs_function name="/fms/internal/bank-limit-vss">
+		<fcs_function name="/systems/fms/internal/bank-limit-vss">
 			<function>
 				<table>
-					<independentVar lookup="row">/fms/speeds/vss-error</independentVar>
+					<independentVar lookup="row">/systems/fms/speeds/vss-error</independentVar>
 					<tableData>
 						 0.0   5
 						12.5  30
@@ -1322,7 +1387,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/internal/bank-limit-1"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/internal/bank-limit-1"> <!-- From FCOM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
@@ -1338,7 +1403,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/internal/bank-limit-2"> <!-- From FCOM -->
+		<fcs_function name="/systems/fms/internal/bank-limit-2"> <!-- From FCOM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-mach</independentVar>
@@ -1356,30 +1421,30 @@
 		</fcs_function>
 		
 		<!-- Stabilizer Computer -->
-		<fcs_function name="/fms/internal/takeoff-stab-deg-calc">
+		<fcs_function name="/systems/fms/internal/takeoff-stab-deg-calc">
 			<function>
 				<ifthen>
 					<and>
 						<gt>
-							<property>/fms/flight-data/tocg</property>
+							<property>/systems/fms/flight-data/tocg</property>
 							<value>0</value>
 						</gt>
 						<gt>
-							<property>/fms/flight-data/to-flaps</property>
+							<property>/systems/fms/flight-data/to-flaps</property>
 							<value>0</value>
 						</gt>
 					</and>
 					<table>
-						<independentVar lookup="row">/fms/flight-data/tocg</independentVar>
-						<independentVar lookup="column">/fms/flight-data/to-flaps</independentVar>
+						<independentVar lookup="row">/systems/fms/flight-data/tocg</independentVar>
+						<independentVar lookup="column">/systems/fms/flight-data/to-flaps</independentVar>
 						<tableData>
-							      10    15    20    25    28
-							12.0  10.1  10.5  10.9  11.1  11.2
-							15.0   9.1   9.5   9.8  10.0  10.1
-							20.0   7.4   7.8   8.0   8.2   8.3
-							25.0   5.7   6.0   6.2   6.3   6.4
-							30.0   4.0   4.3   4.4   4.5   4.6
-							34.0   2.6   2.9   3.0   3.0   3.0
+							    10    15    20    25    28
+							12  10.1  10.5  10.9  11.1  11.2
+							15   9.1   9.5   9.8  10.0  10.1
+							20   7.4   7.8   8.0   8.2   8.3
+							25   5.7   6.0   6.2   6.3   6.4
+							30   4.0   4.3   4.4   4.5   4.6
+							34   2.6   2.9   3.0   3.0   3.0
 						</tableData>
 					</table>
 					<value>0</value>
@@ -1387,20 +1452,166 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/fms/internal/takeoff-stab-deg">
+		<fcs_function name="/systems/fms/internal/takeoff-stab-deg">
 			<function>
 				<quotient>
-					<integer>
+					<floor>
 						<sum>
 							<product>
-								<property>/fms/internal/takeoff-stab-deg-calc</property>
+								<property>/systems/fms/internal/takeoff-stab-deg-calc</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value>
 						</sum>
-					</integer>
+					</floor>
 					<value>10</value>
 				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/internal/takeoff-stab-error">
+			<function>
+				<difference>
+					<quotient>
+						<floor>
+							<sum>
+								<product>
+									<property>/systems/fcs/stabilizer/final-deg</property>
+									<value>-10</value> <!-- Because ANU = negative -->
+								</product>
+								<value>0.5</value> <!-- Make the integer rounded correctly -->
+							</sum>
+						</floor>
+						<value>10</value>
+					</quotient>
+					<property>/systems/fms/internal/takeoff-stab-deg</property>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<!-- Takeoff Flap Error -->
+		<fcs_function name="/systems/fms/internal/takeoff-flaps-error">
+			<function>
+				<difference>
+					<floor>
+						<sum>
+							<property>fcs/flap-pos-deg</property>
+							<value>0.5</value> <!-- Make the integer rounded correctly -->
+						</sum>
+					</floor>
+					<property>/systems/fms/flight-data/to-flaps</property>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<!-- PERF Calculations -->
+		<fcs_function name="/systems/fms/speeds/max-climb">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-full-kg</independentVar>
+						<tableData>
+							140000  219
+							280000  306
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/max-descent">
+			<function>
+				<difference>
+					<property>/systems/fms/speeds/vmo-mmo</property>
+					<value>5</value>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/econ-kts">
+			<function>
+				<ifthen>
+					<and>
+						<gt>
+							<property>/systems/fms/flight-data/cruise-fl</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/cost-index</property>
+							<value>-1</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/gw-kg</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<table>
+						<independentVar lookup="row">/systems/fms/flight-data/cost-index</independentVar>
+						<independentVar lookup="column">/systems/fms/flight-data/gw-kg</independentVar>
+						<tableData>
+							     140  280
+							  0  296  318
+							 80  323  350
+							160  350  350
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/econ-mach">
+			<function>
+				<ifthen>
+					<and>
+						<gt>
+							<property>/systems/fms/flight-data/cruise-fl</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/cost-index</property>
+							<value>-1</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/flight-data/gw-kg</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<sum>
+						<value>0.82</value> <!-- Basic mach number -->
+						<table> <!-- CI and GW modifier -->
+							<independentVar lookup="row">/systems/fms/flight-data/cost-index</independentVar>
+							<independentVar lookup="column">/systems/fms/flight-data/gw-kg</independentVar>
+							<tableData>
+									 140    280
+								  0 -0.029 -0.016
+								 80  0.002  0.013
+								160  0.013  0.026
+							</tableData>
+						</table>
+						<table> <!-- Cruise level modifier -->
+							<independentVar lookup="row">/systems/fms/flight-data/cruise-fl</independentVar>
+							<tableData>
+								  0 -0.349
+								 50 -0.282
+								100 -0.215
+								150 -0.148
+								200 -0.081
+								250 -0.024
+								300  0.000
+								350  0.006
+								400  0.007
+								450  0.008
+							</tableData>
+						</table>
+					</sum>
+					<value>0</value>
+				</ifthen>
 			</function>
 		</fcs_function>
 	

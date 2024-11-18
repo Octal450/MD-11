@@ -4,7 +4,7 @@
 var CONFIG = {
 	minFgfs: split(".", getprop("/sim/minimum-fg-version")),
 	minFgfsString: getprop("/sim/minimum-fg-version"),
-	minOptionsRevision: 1282, # Minimum revision of supported options
+	minOptionsRevision: 1586, # Minimum revision of supported options
 	noUpdateCheck: 0, # Disable ACCONFIG update checks
 };
 
@@ -21,6 +21,7 @@ var SYSTEM = {
 	revisionTemp: 0,
 	spinner: "\\",
 	simInit: func() {
+		print("System: Initializing " ~ getprop("/sim/aircraft"));
 		PANEL.stop = 1;
 		me.autoConfigRunning.setBoolValue(0);
 		spinningT.start();
@@ -29,7 +30,7 @@ var SYSTEM = {
 			http.load("https://raw.githubusercontent.com/Octal450/MD-11/master/revision.txt").done(func(r) me.newRevision.setValue(r.response));
 		}
 		me.revision.setValue(io.readfile(getprop("/sim/aircraft-dir") ~ "/revision.txt"));
-		print("System: MD-11 Revision " ~ me.revision.getValue());
+		print("System: Version " ~ me.revision.getValue());
 	},
 	fdmInit: func() {
 		me.revisionTemp = me.revision.getValue();
@@ -86,16 +87,16 @@ var SYSTEM = {
 			me.Error.active.setBoolValue(1);
 			me.Error.reason.setValue("FGFS version is too old. Please update FlightGear to at least " ~ CONFIG.minFgfsString ~ ".");
 			me.showError();
-			print("System: FGFS Version Error");
+			print("System: FGFS version error");
 		}
 	},
 	resetFailures: func() {
-		systems.ELEC.resetFailures();
+		systems.ELECTRICAL.resetFailures();
 		systems.FCC.resetFailures();
 		systems.FUEL.resetFailures();
 		systems.GEAR.resetFailures();
-		systems.HYD.resetFailures();
-		systems.PNEU.resetFailures();
+		systems.HYDRAULICS.resetFailures();
+		systems.PNEUMATICS.resetFailures();
 	},
 	showError: func() {
 		libraries.systemsLoop.stop();
@@ -278,13 +279,13 @@ var PANEL = {
 		if (t == 1) {
 			pts.Controls.Flight.flaps.setValue(0.36); # 10-25/EXT
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(1);
-			systems.BRAKES.Switch.abs.setValue(-1); # T/O
+			systems.BRAKES.Controls.abs.setValue(-1); # T/O
 		} else {
 			pts.Controls.Flight.elevatorTrim.setValue(-0.193548); # About 3ANU
 			pts.Controls.Flight.flaps.setValue(0);
 			pts.Controls.Flight.speedbrakeArm.setBoolValue(0);
 		}
-		systems.GEAR.Switch.leverCockpit.setValue(3);
+		systems.GEAR.Controls.lever.setValue(3);
 	},
 	coldDark: func(s = 0) {
 		me.panelBase(0);
@@ -309,14 +310,14 @@ var PANEL = {
 		me.panelBase(0);
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
-		systems.ELEC.Switch.battery.setBoolValue(1);
-		systems.ELEC.Switch.emerPwr.setValue(1);
+		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
+		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
 		systems.APU.fastStart();
-		systems.IRS.Switch.knob[0].setBoolValue(1);
-		systems.IRS.Switch.knob[1].setBoolValue(1);
-		systems.IRS.Switch.knob[2].setBoolValue(1);
-		systems.IRS.Switch.mcduBtn.setBoolValue(1);
+		systems.IRS.Controls.knob[0].setBoolValue(1);
+		systems.IRS.Controls.knob[1].setBoolValue(1);
+		systems.IRS.Controls.knob[2].setBoolValue(1);
+		systems.IRS.Controls.mcduBtn.setBoolValue(1);
 		pts.Controls.Lighting.beacon.setBoolValue(1);
 		pts.Controls.Lighting.navLights.setBoolValue(1);
 		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
@@ -329,8 +330,8 @@ var PANEL = {
 			if (systems.APU.state.getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
-				systems.ELEC.Switch.apuPwr.setBoolValue(1);
-				systems.PNEU.Switch.bleedApu.setBoolValue(1);
+				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
+				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
 				
 				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 				spinningT.stop();
@@ -344,23 +345,23 @@ var PANEL = {
 		me.panelBase(t);
 		
 		pts.Services.Chocks.enable.setBoolValue(0);
-		systems.ELEC.Switch.battery.setBoolValue(1);
-		systems.ELEC.Switch.emerPwr.setValue(1);
+		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
+		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
-		systems.ELEC.Switch.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
-		systems.ELEC.Switch.extPwr.setBoolValue(1);
-		systems.ELEC.Switch.extGPwr.setBoolValue(1);
-		systems.IRS.Switch.knob[0].setBoolValue(1);
-		systems.IRS.Switch.knob[1].setBoolValue(1);
-		systems.IRS.Switch.knob[2].setBoolValue(1);
-		systems.IRS.Switch.mcduBtn.setBoolValue(1);
+		systems.ELECTRICAL.Controls.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
+		systems.ELECTRICAL.Controls.extPwr.setBoolValue(1);
+		systems.ELECTRICAL.Controls.extGPwr.setBoolValue(1);
+		systems.IRS.Controls.knob[0].setBoolValue(1);
+		systems.IRS.Controls.knob[1].setBoolValue(1);
+		systems.IRS.Controls.knob[2].setBoolValue(1);
+		systems.IRS.Controls.mcduBtn.setBoolValue(1);
 		pts.Controls.Lighting.beacon.setBoolValue(1);
 		pts.Controls.Lighting.navLights.setBoolValue(1);
 		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
-		systems.IGNITION.Switch.ignA.setBoolValue(1);
+		systems.IGNITION.Controls.ignA.setBoolValue(1);
 		systems.APU.stopRpm();
 		
-		if (pts.Engines.Engine.state[0].getValue() != 3 or pts.Engines.Engine.state[1].getValue() != 3 or pts.Engines.Engine.state[2].getValue() != 3) {
+		if (systems.ENGINES.state[0].getValue() != 3 or systems.ENGINES.state[1].getValue() != 3 or systems.ENGINES.state[2].getValue() != 3) {
 			engTimer = 3;
 			settimer(func() {
 				if (!me.stop) {
@@ -374,12 +375,12 @@ var PANEL = {
 		}
 		
 		me.l1 = setlistener("/engines/engine[1]/state", func() {
-			if (pts.Engines.Engine.state[1].getValue() == 3) {
+			if (systems.ENGINES.state[1].getValue() == 3) {
 				removelistener(me.l1);
 				me.l1 = nil; # Important
-				systems.ELEC.Switch.groundCart.setBoolValue(0);
-				systems.ELEC.Switch.extPwr.setBoolValue(0);
-				systems.ELEC.Switch.extGPwr.setBoolValue(0);
+				systems.ELECTRICAL.Controls.groundCart.setBoolValue(0);
+				systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
+				systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
 				fms.EditFlightData.setAcconfigWeightBalanceData();
 				

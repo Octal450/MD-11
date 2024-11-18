@@ -18,7 +18,7 @@
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>Something Happened!</label>
+			<label>Critical Error</label>
 		</text>
 	</group>
 	
@@ -36,11 +36,11 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>Something happened and an internal error has occurred. The aircraft has been disabled.</label>
+			<label>A critical internal error has occurred. The aircraft has been disabled.</label>
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>The cause of the error is listed below. Please include this information if reporting this error.</label>
+			<label>The error cause is listed below. Please include this information if reporting this error.</label>
 		</text>
 		
 		<hrule>

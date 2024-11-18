@@ -15,14 +15,22 @@ var FlightData = {
 	airportToAlt: -1000,
 	blockFuelLbs: 0,
 	canCalcVspeeds: 0,
+	climbSpeedEdit: 0,
+	climbSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
 	climbThrustAlt: -1000,
 	climbThrustAltSet: 0,
-	costIndex: 0,
+	climbTransAlt: 18000,
+	costIndex: -1,
 	cruiseAlt: 0,
 	cruiseAltAll: [0, 0, 0, 0, 0, 0],
 	cruiseFl: 0,
 	cruiseFlAll: [0, 0, 0, 0, 0, 0],
+	cruiseSpeedEdit: 0,
+	cruiseSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
 	cruiseTemp: nil,
+	descentSpeedEdit: 0,
+	descentSpeedMode: 0, # 0 = ECON, 1 = MAX, 2 = EDIT
+	descentTransAlt: 18000,
 	flexActive: 0,
 	flexTemp: 0,
 	flightNumber: "",
@@ -57,30 +65,49 @@ var FlightData = {
 };
 
 var FlightDataOut = {
-	airportFromAlt: props.globals.getNode("/fms/flight-data/airport-from-alt"),
-	airportToAlt: props.globals.getNode("/fms/flight-data/airport-to-alt"),
-	canCalcVspeeds: props.globals.getNode("/fms/flight-data/can-calc-vspeeds"),
-	flexActive: props.globals.getNode("/fms/flight-data/flex-active"),
-	flexTemp: props.globals.getNode("/fms/flight-data/flex-temp"),
-	gwLbs: props.globals.getNode("/fms/flight-data/gw-lbs"),
-	landFlaps: props.globals.getNode("/fms/flight-data/land-flaps"),
-	oatC: props.globals.getNode("/fms/flight-data/oat-c"),
-	toFlaps: props.globals.getNode("/fms/flight-data/to-flaps"),
-	tocg: props.globals.getNode("/fms/flight-data/tocg"),
-	toPacks: props.globals.getNode("/fms/flight-data/to-packs"),
-	toSlope: props.globals.getNode("/fms/flight-data/to-slope"),
-	toWind: props.globals.getNode("/fms/flight-data/to-wind"),
-	togw: props.globals.getNode("/fms/flight-data/togw-lbs"),
-	v1: props.globals.getNode("/fms/flight-data/v1"),
-	v2: props.globals.getNode("/fms/flight-data/v2"),
-	vr: props.globals.getNode("/fms/flight-data/vr"),
-	zfwcg: props.globals.getNode("/fms/flight-data/zfwcg"),
-	zfwLbs: props.globals.getNode("/fms/flight-data/zfw-lbs"),
+	airportFromAlt: props.globals.getNode("/systems/fms/flight-data/airport-from-alt"),
+	airportToAlt: props.globals.getNode("/systems/fms/flight-data/airport-to-alt"),
+	canCalcVspeeds: props.globals.getNode("/systems/fms/flight-data/can-calc-vspeeds"),
+	costIndex: props.globals.getNode("/systems/fms/flight-data/cost-index"),
+	cruiseFl: props.globals.getNode("/systems/fms/flight-data/cruise-fl"),
+	flexActive: props.globals.getNode("/systems/fms/flight-data/flex-active"),
+	flexTemp: props.globals.getNode("/systems/fms/flight-data/flex-temp"),
+	gwLbs: props.globals.getNode("/systems/fms/flight-data/gw-lbs"),
+	landFlaps: props.globals.getNode("/systems/fms/flight-data/land-flaps"),
+	oatC: props.globals.getNode("/systems/fms/flight-data/oat-c"),
+	toFlaps: props.globals.getNode("/systems/fms/flight-data/to-flaps"),
+	tocg: props.globals.getNode("/systems/fms/flight-data/tocg"),
+	toPacks: props.globals.getNode("/systems/fms/flight-data/to-packs"),
+	toSlope: props.globals.getNode("/systems/fms/flight-data/to-slope"),
+	toWind: props.globals.getNode("/systems/fms/flight-data/to-wind"),
+	togw: props.globals.getNode("/systems/fms/flight-data/togw-lbs"),
+	v1: props.globals.getNode("/systems/fms/flight-data/v1"),
+	v2: props.globals.getNode("/systems/fms/flight-data/v2"),
+	vr: props.globals.getNode("/systems/fms/flight-data/vr"),
+	zfwcg: props.globals.getNode("/systems/fms/flight-data/zfwcg"),
+	zfwLbs: props.globals.getNode("/systems/fms/flight-data/zfw-lbs"),
+};
+
+var RouteManager = {
+	active: props.globals.getNode("/autopilot/route-manager/active"),
+	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
+	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
+	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
+	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
+	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
+	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
 };
 
 # Logic
 var EditFlightData = {
 	loop: func() {
+		# Force 60K for FLEX
+		if (FlightData.flexActive) {
+			if (!systems.FADEC.Limit.pwDerate.getBoolValue()) {
+				systems.FADEC.Limit.pwDerate.setBoolValue(1);
+			}
+		}
+		
 		# Calculate UFOB
 		FlightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
 		
@@ -99,7 +126,7 @@ var EditFlightData = {
 		# Calculate speeds
 		me.calcSpeeds();
 		
-		# Write out values for JSBsim to use
+		# Write out values for JSBSim to use
 		me.writeOut();
 		
 		# After write out
@@ -112,21 +139,23 @@ var EditFlightData = {
 		}
 		
 		# Check if V speeds still valid
-		#if (FlightData.v1State == 1) {
-		#	if (abs(FlightData.v1 - math.round(Speeds.v1.getValue())) > 2) {
-		#		me.resetVspeeds(1);
-		#	}
-		#}
-		#if (FlightData.vrState == 1) {
-		#	if (abs(FlightData.vr - math.round(Speeds.vr.getValue())) > 2) {
-		#		me.resetVspeeds(2);
-		#	}
-		#}
-		#if (FlightData.v2State == 1) {
-		#	if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
-		#		me.resetVspeeds(3);
-		#	}
-		#}
+		if (Internal.phase == 0) {
+			if (FlightData.v1State == 1) {
+				if (abs(FlightData.v1 - math.round(Speeds.v1.getValue())) > 2) {
+					me.resetVspeeds(1);
+				}
+			}
+			if (FlightData.vrState == 1) {
+				if (abs(FlightData.vr - math.round(Speeds.vr.getValue())) > 2) {
+					me.resetVspeeds(2);
+				}
+			}
+			if (FlightData.v2State == 1) {
+				if (abs(FlightData.v2 - math.round(Speeds.v2.getValue())) > 2) {
+					me.resetVspeeds(3);
+				}
+			}
+		}
 		
 		# V speeds MCDU message
 		if ((FlightData.v1State == 0 and fms.Speeds.v1.getValue() > 0) or (FlightData.vrState == 0 and fms.Speeds.vr.getValue() > 0) or (FlightData.v2State == 0 and fms.Speeds.v2.getValue() > 0)) {
@@ -161,14 +190,22 @@ var EditFlightData = {
 		FlightData.airportToAlt = -1000;
 		FlightData.blockFuelLbs = 0;
 		FlightData.canCalcVspeeds = 0;
+		FlightData.climbSpeedEdit = 0;
+		FlightData.climbSpeedMode = 0;
 		FlightData.climbThrustAlt = -1000;
 		FlightData.climbThrustAltSet = 0;
-		FlightData.costIndex = 0;
+		FlightData.climbTransAlt = 18000;
+		FlightData.costIndex = -1;
 		FlightData.cruiseAlt = 0;
 		FlightData.cruiseAltAll = [0, 0, 0, 0, 0, 0];
 		FlightData.cruiseFl = 0;
 		FlightData.cruiseFlAll = [0, 0, 0, 0, 0, 0];
+		FlightData.cruiseSpeedEdit = 0;
+		FlightData.cruiseSpeedMode = 0;
 		FlightData.cruiseTemp = nil;
+		FlightData.descentSpeedEdit = 0;
+		FlightData.descentSpeedMode = 0;
+		FlightData.descentTransAlt = 18000;
 		FlightData.flexActive = 0;
 		FlightData.flexTemp = 0;
 		FlightData.flightNumber = "";
@@ -196,10 +233,12 @@ var EditFlightData = {
 		FlightData.zfwLbs = 0;
 		me.writeOut();
 	},
-	writeOut: func() { # Write out FlightData to property tree as required so that JSBsim can access it
-		FlightDataOut.airportFromAlt.setBoolValue(FlightData.airportFromAlt);
-		FlightDataOut.airportToAlt.setBoolValue(FlightData.airportToAlt);
+	writeOut: func() { # Write out FlightData to property tree as required so that JSBSim can access it
+		FlightDataOut.airportFromAlt.setValue(FlightData.airportFromAlt);
+		FlightDataOut.airportToAlt.setValue(FlightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(FlightData.canCalcVspeeds);
+		FlightDataOut.costIndex.setValue(FlightData.costIndex);
+		FlightDataOut.cruiseFl.setValue(FlightData.cruiseFl);
 		FlightDataOut.flexActive.setBoolValue(FlightData.flexActive);
 		FlightDataOut.flexTemp.setValue(FlightData.flexTemp);
 		FlightDataOut.gwLbs.setValue(FlightData.gwLbs);
@@ -374,6 +413,8 @@ var EditFlightData = {
 		FlightData.toWind = -100;
 	},
 	resetVspeeds: func(t = 0) {
+		if (Internal.phase > 0) return;
+		
 		if (FlightData.v1State == 1 and (t == 0 or t == 1)) {
 			FlightData.v1 = 0;
 			FlightData.v1State = 0;
@@ -393,11 +434,11 @@ var EditFlightData = {
 		Internal.request[2] = 0;
 		mcdu.unit[0].setPage("acStatus");
 		mcdu.unit[1].setPage("acStatus");
-		FlightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.weightLbs.getValue() / 1000, 0.1));
-		FlightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.cgPercentMac.getValue(), 0.1));
+		FlightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1));
+		FlightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1));
 		FlightData.togwLbs = FlightData.gwLbs - FlightData.taxiFuel;
 		FlightData.toFlaps = 15;
-		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwcgPercentMac.getValue(), 0.1));
-		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBsim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1));
+		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1));
 	},
 };

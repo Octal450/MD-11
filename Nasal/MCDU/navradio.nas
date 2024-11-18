@@ -11,58 +11,77 @@ var NavRadio = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CSTranslate: [0, 0, 0, 0, 0, -70],
+			CLTranslate: [0, 0, 0, 0, 0, -3],
 			CTranslate: [0, 0, 0, 0, 0, 0],
-			C1S: "",
+			C1L: "",
 			C1: "",
-			C2S: "",
+			C2L: "",
 			C2: "",
-			C3S: "",
+			C3L: "",
 			C3: "",
-			C4S: "",
+			C4L: "",
 			C4: "",
-			C5S: "",
+			C5L: "",
 			C5: "",
-			C6S: "PRESELECT",
+			C6L: "PRESELECT",
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1S: "VOR1/CRS",
+			L1L: "VOR1/CRS",
 			L1: "",
-			L2S: "",
+			L2L: "",
 			L2: "",
-			L3S: "ADF1",
+			L3L: "ADF1",
 			L3: "",
-			L4S: "ILS/CRS",
+			L4L: "ILS/CRS",
 			L4: "",
-			L5S: "",
+			L5L: "",
 			L5: "",
-			L6S: "",
+			L6L: "",
 			L6: "[   ]/[   ]",
+			
+			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1S: "VOR2/CRS",
+			R1L: "VOR2/CRS",
 			R1: "",
-			R2S: "",
+			R2L: "",
 			R2: "",
-			R3S: "ADF2",
+			R3L: "ADF2",
 			R3: "",
-			R4S: "",
+			R4L: "",
 			R4: "",
-			R5S: "",
+			R5L: "",
 			R5: "",
-			R6S: "",
+			R6L: "",
 			R6: "[   ]/[   ]",
 			
+			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
 			title: "NAV RADIO",
+			titleTranslate: 0,
 		};
 		
 		m.Value = {
 			adfKhz: [0, 0],
+			lat: 0,
 			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
 			navMhz: [0, 0, 0],
+			vert: 0,
 		};
 		
 		m.group = "fmc";
@@ -297,7 +316,12 @@ var NavRadio = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
-			if (me.scratchpadState == 2) {
+			me.Value.lat = afs.Output.lat.getValue();
+			me.Value.vert = afs.Output.vert.getValue();
+			
+			if ((me.Value.lat == 2 or me.Value.lat == 4 or me.Value.vert == 2 or me.Value.vert == 6) and afs.Input.radioSel.getValue() == 2) {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			} else if (me.scratchpadState == 2) {
 				me.insertNav(2);
 			} else if (me.scratchpadState == 0) {
 				if (pts.Instrumentation.Nav.Frequencies.selectedMhz[2].getValue() > 0) {

@@ -159,50 +159,13 @@
 	</model>
 	
 	<model>
-		<name>tyre-smoke-0</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-0.xml</path>
-		<offsets>
-			<x-m>-20.6516</x-m>
-			<y-m>0</y-m>
-			<z-m>1.2853</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-1</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-1.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>-5.31</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-2</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-2.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>5.31</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	<model>
-		<name>tyre-smoke-3</name>
-		<path>Aircraft/MD-11/Models/Effects/tyre-smoke-3.xml</path>
-		<offsets>
-			<x-m>4.7549</x-m>
-			<y-m>0</y-m>
-			<z-m>1.2231</z-m>
-		</offsets>
-	</model>
-	
-	<model>
 		<name>NoseChock</name>
 		<path>Aircraft/MD-11/Models/Services/Chocks/chock_nose.ac</path>
 		<condition>
 			<property>sim/multiplay/generic/bool[0]</property>
 		</condition>
 		<offsets>
-			<x-m>-20.6520</x-m>
+			<x-m>-20.652</x-m>
 			<y-m>0</y-m>
 			<z-m>0.8</z-m>
 		</offsets>
@@ -742,11 +705,12 @@
 		</axis>
 	</animation>
 	
+	<!-- Rotors node is used as a hack to bring properties over MP without using up floats -->
 	<!-- Ailerons -->
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL2</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-out-l/final-deg</property>
+		<property>rotors/main/blade[0]/flap-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -761,7 +725,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronL1</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-in-l/final-deg</property>
+		<property>rotors/main/blade[1]/flap-deg</property>
 		<factor>-1</factor>		
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -776,7 +740,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR1</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-in-r/final-deg</property>
+		<property>rotors/main/blade[2]/flap-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>5.69263</x1-m>
@@ -791,7 +755,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AileronR2</object-name>
-		<property>fdm/jsbsim/hydraulics/aileron-out-r/final-deg</property>
+		<property>rotors/main/blade[3]/flap-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>10.7182</x1-m>
@@ -812,7 +776,7 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
-		<property>fdm/jsbsim/hydraulics/stabilizer/final-deg</property>
+		<property>sim/multiplay/generic/float[24]</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -829,7 +793,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1o</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-out-l/final-deg</property>
+		<property>rotors/main/blade[0]/position-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -844,7 +808,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.1i</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-in-l/final-deg</property>
+		<property>rotors/main/blade[1]/position-deg</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -859,7 +823,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2i</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-in-r/final-deg</property>
+		<property>rotors/main/blade[2]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -874,7 +838,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator.2o</object-name>
-		<property>fdm/jsbsim/hydraulics/elevator-out-r/final-deg</property>
+		<property>rotors/main/blade[3]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.6007</x1-m>
@@ -891,7 +855,7 @@
 		<type>rotate</type>
 		<object-name>rudder.u</object-name>
 		<object-name>rudder_trailing.u</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
+		<property>rotors/tail/blade[0]/position-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -906,7 +870,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.u</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-upper/final-deg</property>
+		<property>rotors/tail/blade[0]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>30.0511</x1-m>
@@ -922,7 +886,7 @@
 		<type>rotate</type>
 		<object-name>rudder.l</object-name>
 		<object-name>rudder_trailing.l</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
+		<property>rotors/tail/blade[1]/position-deg</property>
 		<factor>-0.5</factor>
 		<axis>
 			<x1-m>29.4514</x1-m>
@@ -937,7 +901,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder_trailing.l</object-name>
-		<property>fdm/jsbsim/hydraulics/rudder-lower/final-deg</property>
+		<property>rotors/tail/blade[1]/position-deg</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>28.4977</x1-m>
@@ -953,7 +917,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.1</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-l1/final-deg</property>
+		<property>sim/multiplay/generic/float[14]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -968,7 +932,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.2</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-l2/final-deg</property>
+		<property>sim/multiplay/generic/float[15]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -983,7 +947,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.3</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-l3/final-deg</property>
+		<property>sim/multiplay/generic/float[16]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -998,7 +962,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.4</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-l4/final-deg</property>
+		<property>sim/multiplay/generic/float[17]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1013,7 +977,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.left.5</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-l5/final-deg</property>
+		<property>sim/multiplay/generic/float[18]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>
@@ -1028,7 +992,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.1</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-r1/final-deg</property>
+		<property>sim/multiplay/generic/float[19]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1043,7 +1007,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.2</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-r2/final-deg</property>
+		<property>sim/multiplay/generic/float[20]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1058,7 +1022,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.3</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-r3/final-deg</property>
+		<property>sim/multiplay/generic/float[21]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1073,7 +1037,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.4</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-r4/final-deg</property>
+		<property>sim/multiplay/generic/float[22]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>6.1986</x1-m>
@@ -1088,7 +1052,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>sp.brake.right.5</object-name>
-		<property>fdm/jsbsim/hydraulics/spoiler-r5/final-deg</property>
+		<property>sim/multiplay/generic/float[23]</property>
 		<factor>-1</factor>
 		<axis>
 			<x1-m>4.6240</x1-m>

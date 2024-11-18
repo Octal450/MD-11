@@ -5,7 +5,7 @@
 <PropertyList include="MD-11-main.xml">
 	
     <sim>
-		<aero>MD-11F-GE</aero>
+		<aero>FDE/MD-11F-GE</aero>
 		<description>McDonnell Douglas MD-11F (CF6-80C2D1F)</description>
 		<flight-model>jsb</flight-model>
 		<model n="0">
@@ -48,8 +48,8 @@
 	
 	<limits>
 		<mass-and-balance> <!-- Data source: TCDS -->
-			<maximum-takeoff-mass-lbs>633000</maximum-takeoff-mass-lbs>
 			<maximum-landing-mass-lbs>491500</maximum-landing-mass-lbs>
+			<maximum-takeoff-mass-lbs>633000</maximum-takeoff-mass-lbs>
 			<maximum-zero-fuel-mass-lbs>461300</maximum-zero-fuel-mass-lbs>
 		</mass-and-balance>
 	</limits>
@@ -104,10 +104,10 @@
 		</ignition>
 	</systems>
 	
-    <nasal n="0">
+	<nasal n="0">
 		<setup>
 			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/MD-11F/GE");</script>
 		</setup>
-    </nasal>
+	</nasal>
 
 </PropertyList>

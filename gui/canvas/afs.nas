@@ -18,8 +18,9 @@ var afsCanvas = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Click", "AfsOvrd2Click", "AltKnob", "Alt_7seg", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1", "Fd2", "FeetInd",
-		"FeetMeter", "FmsSpd", "FpaInd", "Ga", "HdgInd", "HdgKnob", "HdgTrk", "Hdg_7seg", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "SpdKnob", "Spd_7seg", "TrkInd", "VsFpa", "VsInd", "VsKnob", "Vs_7seg"];
+		return ["AfsDisc", "AfsOvrd1", "AfsOvrd2", "AfsOvrd1Click", "AfsOvrd2Click", "AltKnob", "AltMinus", "AltPlus", "Alt_7seg", "ApprLand", "AtsDisc", "Autoflight", "BankAuto", "BankLimit", "Bank5", "Bank10", "Bank15", "Bank20", "Bank25", "Display", "Fd1",
+		"Fd2", "FeetInd", "FeetMeter", "FmsSpd", "FpaInd", "Ga", "HdgInd", "HdgKnob", "HdgMinus", "HdgPlus", "HdgTrk", "Hdg_7seg", "IasInd", "IasMach", "MachInd", "MeterInd", "Nav", "Prof", "SpdKnob", "SpdMinus", "SpdPlus", "Spd_7seg", "TrkInd", "VsFpa",
+		"VsInd", "VsKnob", "VsMinus", "VsPlus", "Vs_7seg"];
 	},
 	close: func() {
 		me._dialogUpdate.stop();
@@ -27,7 +28,7 @@ var afsCanvas = {
 		me._dialog = nil;
 	},
 	open: func() {
-		if (me._dialog != nil) return; # Prevent more than one open
+		if (me._dialog != nil and singleInstance) return; # Prevent more than one open
 		
 		me._dialog = canvas.Window.new([599, 200], "dialog", nil, 0);
 		me._dialog.set("title", me._title);
@@ -47,26 +48,26 @@ var afsCanvas = {
 		# Set up clickspots
 		# Center Buttons
 		me["Autoflight"].addEventListener("click", func(e) {
-			libraries.ApPanel.autoflight();
+			cockpit.ApPanel.autoflight();
 		});
 		me["ApprLand"].addEventListener("click", func(e) {
-			libraries.ApPanel.appr();
+			cockpit.ApPanel.appr();
 		});
 		
 		me["AfsDisc"].addEventListener("click", func(e) {
-			libraries.ApPanel.apDisc();
+			cockpit.ApPanel.apDisc();
 		});
 		me["AtsDisc"].addEventListener("click", func(e) {
-			libraries.ApPanel.atDisc();
+			cockpit.ApPanel.atDisc();
 		});
 		me["Fd1"].addEventListener("click", func(e) {
-			libraries.ApPanel.fd1();
+			cockpit.ApPanel.fd1();
 		});
 		me["Ga"].addEventListener("click", func(e) {
-			libraries.ApPanel.toga();
+			cockpit.ApPanel.toga();
 		});
 		me["Fd2"].addEventListener("click", func(e) {
-			libraries.ApPanel.fd2();
+			cockpit.ApPanel.fd2();
 		});
 		
 		me["AfsOvrd1Click"].addEventListener("click", func(e) {
@@ -92,45 +93,73 @@ var afsCanvas = {
 		# Speed
 		me["SpdKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.ApPanel.spdPull();
+				cockpit.ApPanel.spdPull();
 			} else if (e.button == 0) {
-				libraries.ApPanel.spdPush();
+				cockpit.ApPanel.spdPush();
 			}
 		});
 		me["SpdKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.ApPanel.spdAdjust(10 * e.deltaY);
+				cockpit.ApPanel.spdAdjust(10 * e.deltaY);
 			} else {
-				libraries.ApPanel.spdAdjust(e.deltaY);
+				cockpit.ApPanel.spdAdjust(e.deltaY);
+			}
+		});
+		me["SpdMinus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.spdAdjust(-10);
+			} else {
+				cockpit.ApPanel.spdAdjust(-1);
+			}
+		});
+		me["SpdPlus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.spdAdjust(10);
+			} else {
+				cockpit.ApPanel.spdAdjust(1);
 			}
 		});
 		
 		me["IasMach"].addEventListener("click", func(e) {
-			libraries.ApPanel.ktsMach();
+			cockpit.ApPanel.ktsMach();
 		});
 		
 		# Heading
 		me["HdgKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.ApPanel.hdgPull();
+				cockpit.ApPanel.hdgPull();
 			} else if (e.button == 0) {
-				libraries.ApPanel.hdgPush();
+				cockpit.ApPanel.hdgPush();
 			}
 		});
 		me["HdgKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.ApPanel.hdgAdjust(10 * e.deltaY);
+				cockpit.ApPanel.hdgAdjust(10 * e.deltaY);
 			} else {
-				libraries.ApPanel.hdgAdjust(e.deltaY);
+				cockpit.ApPanel.hdgAdjust(e.deltaY);
+			}
+		});
+		me["HdgMinus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.hdgAdjust(-10);
+			} else {
+				cockpit.ApPanel.hdgAdjust(-1);
+			}
+		});
+		me["HdgPlus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.hdgAdjust(10);
+			} else {
+				cockpit.ApPanel.hdgAdjust(1);
 			}
 		});
 		
 		me["HdgTrk"].addEventListener("click", func(e) {
-			libraries.ApPanel.hdgTrk();
+			cockpit.ApPanel.hdgTrk();
 		});
 		
 		me["Nav"].addEventListener("click", func(e) {
-			libraries.ApPanel.nav();
+			cockpit.ApPanel.nav();
 		});
 		
 		# Bank Limit
@@ -156,30 +185,58 @@ var afsCanvas = {
 		# Altitude
 		me["AltKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
-				libraries.ApPanel.altPull();
+				cockpit.ApPanel.altPull();
 			} else if (e.button == 0) {
-				libraries.ApPanel.altPush();
+				cockpit.ApPanel.altPush();
 			}
 		});
 		me["AltKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.ApPanel.altAdjust(10 * e.deltaY);
+				cockpit.ApPanel.altAdjust(10 * e.deltaY);
 			} else {
-				libraries.ApPanel.altAdjust(e.deltaY);
+				cockpit.ApPanel.altAdjust(e.deltaY);
+			}
+		});
+		me["AltMinus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.altAdjust(-10);
+			} else {
+				cockpit.ApPanel.altAdjust(-1);
+			}
+		});
+		me["AltPlus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.altAdjust(10);
+			} else {
+				cockpit.ApPanel.altAdjust(1);
 			}
 		});
 		
 		# Vertical Speed
 		me["VsKnob"].addEventListener("wheel", func(e) {
 			if (e.shiftKey) {
-				libraries.ApPanel.vsAdjust(-10 * e.deltaY); # Inverted
+				cockpit.ApPanel.vsAdjust(-10 * e.deltaY); # Inverted
 			} else {
-				libraries.ApPanel.vsAdjust(-1 * e.deltaY); # Inverted
+				cockpit.ApPanel.vsAdjust(-1 * e.deltaY); # Inverted
+			}
+		});
+		me["VsMinus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.vsAdjust(-10);
+			} else {
+				cockpit.ApPanel.vsAdjust(-1);
+			}
+		});
+		me["VsPlus"].addEventListener("click", func(e) {
+			if (e.shiftKey) {
+				cockpit.ApPanel.vsAdjust(10);
+			} else {
+				cockpit.ApPanel.vsAdjust(1);
 			}
 		});
 		
 		me["VsFpa"].addEventListener("click", func(e) {
-			libraries.ApPanel.vsFpa();
+			cockpit.ApPanel.vsFpa();
 		});
 		
 		me._update();
@@ -187,7 +244,7 @@ var afsCanvas = {
 	},
 	_update: func() {
 		# Display
-		if (systems.ELEC.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
 			if (pts.Controls.Switches.annunTest.getBoolValue()) {
 				me["FeetInd"].show();
 				me["FpaInd"].show();

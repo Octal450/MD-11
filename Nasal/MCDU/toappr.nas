@@ -12,56 +12,74 @@ var Takeoff = {
 			arrow: 0,
 			
 			CFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
-			CSTranslate: [-120, -120, -120, -120, -120, -120],
-			CTranslate: [-120, -120, -120, -120, -120, -120],
-			C1S: "TOCG/TOGW",
+			CLTranslate: [-4, -4, -4, -4, -4, -4],
+			CTranslate: [-4, -4, -4, -4, -4, -4],
+			C1L: "TOCG/TOGW",
 			C1: "",
-			C2S: "",
+			C2L: "",
 			C2: "",
-			C3S: "STAB",
+			C3L: "STAB",
 			C3: "",
-			C4S: "VFR",
+			C4L: "VFR",
 			C4: "---",
-			C5S: "VSR/V3",
+			C5L: "VSR/V3",
 			C5: "",
-			C6S: "VCL",
+			C6L: "VCL",
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1S: "FLEX",
+			L1L: "FLEX",
 			L1: "",
-			L2S: "PACKS",
+			L2L: "PACKS",
 			L2: "OFF",
-			L3S: "FLAP",
+			L3L: "FLAP",
 			L3: "",
-			L4S: "V1",
+			L4L: "V1",
 			L4: "",
-			L5S: "VR",
+			L5L: "VR",
 			L5: "",
-			L6S: "V2",
+			L6L: "V2",
 			L6: "",
+			
+			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1S: "THRUST ",
+			R1L: "THRUST ",
 			R1: "LIMITS>",
-			R2S: "SLOPE/WIND",
+			R2L: "SLOPE/WIND",
 			R2: "",
-			R3S: "OAT",
+			R3L: "OAT",
 			R3: "",
-			R4S: "CLB THRUST",
+			R4L: "CLB THRUST",
 			R4: "",
-			R5S: "ACCEL",
+			R5L: "ACCEL",
 			R5: "",
-			R6S: "EO ACCEL",
+			R6L: "EO ACCEL",
 			R6: "",
 			
+			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
 			title: "",
+			titleTranslate: 0,
 		};
 		
 		m.Value = {
 			oatCEntry: 0,
+			pw: 0,
 			takeoffStabDeg: 0,
 			tocg: "",
 			togw: "",
@@ -90,9 +108,11 @@ var Takeoff = {
 	},
 	setup: func() {
 		if (pts.Options.eng.getValue() == "PW") {
-			me.Display.C2S = "EPR";
+			me.Display.C2L = "EPR";
+			me.Value.pw = 1;
 		} else {
-			me.Display.C2S = "N1";
+			me.Display.C2L = "N1";
+			me.Value.pw = 0;
 		}
 	},
 	loop: func() {
@@ -174,8 +194,8 @@ var Takeoff = {
 		}
 		me.Display.C1 = me.Value.tocg ~ "/" ~ me.Value.togw;
 		
-		if (pts.Options.eng.getValue() == "PW") {
-			me.Display.C2 = sprintf("%4.2f", systems.FADEC.Limit.takeoff.getValue()); # EPR
+		if (me.Value.pw) {
+			me.Display.C2 = sprintf("%4.2f", math.round(systems.FADEC.Limit.takeoff.getValue(), 0.01)); # EPR
 		} else {
 			me.Display.C2 = sprintf("%5.1f", systems.FADEC.Limit.takeoff.getValue()); # N1
 		}
@@ -276,12 +296,19 @@ var Takeoff = {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (k == "l1") {
+		if (k == "l1") { # Also in thrlim.nas
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
-					if (me.scratchpad >= math.round(pts.Fdm.JSBsim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+					if (me.scratchpad >= math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
+						if (systems.FADEC.Limit.activeModeInt.getValue() != 0) {
+							if (!systems.FADEC.Limit.auto.getBoolValue()) {
+								systems.FADEC.setMode(0);
+							}
+						}
+						
 						fms.FlightData.flexActive = 1;
 						fms.FlightData.flexTemp = int(me.scratchpad);
+						systems.FADEC.Limit.pwDerate.setBoolValue(1);
 						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
@@ -410,6 +437,8 @@ var Takeoff = {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
 				}
 			}
+		} else if (k == "r1") {
+			mcdu.unit[me.id].setPage("thrLim");
 		} else if (k == "r2") {
 			if (me.scratchpadState == 2) {
 				me.scratchpad = string.replace(me.scratchpad, "+", "");
@@ -593,52 +622,69 @@ var Approach = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CSTranslate: [0, 0, 0, 0, -120, 0],
-			CTranslate: [0, 0, 0, 0, -120, 0],
-			C1S: "",
+			CLTranslate: [0, 0, 0, 0, -3, 0],
+			CTranslate: [0, 0, 0, 0, -3, 0],
+			C1L: "",
 			C1: "",
-			C2S: "",
+			C2L: "",
 			C2: "",
-			C3S: "",
+			C3L: "",
 			C3: "",
-			C4S: "",
+			C4L: "",
 			C4: "",
-			C5S: "VREF",
+			C5L: "VREF",
 			C5: "",
-			C6S: "",
+			C6L: "",
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1S: "CLEAN MIN",
+			L1L: "CLEAN MIN",
 			L1: "",
-			L2S: "SLAT EXT MIN",
+			L2L: "SLAT EXT MIN",
 			L2: "",
-			L3S: "FLAP 28g MIN",
+			L3L: "FLAP 28g MIN",
 			L3: "",
-			L4S: "",
+			L4L: "",
 			L4: "",
-			L5S: "VAPP",
+			L5L: "VAPP",
 			L5: "",
-			L6S: "",
+			L6L: "",
 			L6: "",
+			
+			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1S: "LW",
+			R1L: "LW",
 			R1: "---.-",
-			R2S: "LENGTH",
+			R2L: "LENGTH",
 			R2: "-----",
-			R3S: "ELEV",
+			R3L: "ELEV",
 			R3: "",
-			R4S: "TIMER MMSS",
+			R4L: "TIMER MMSS",
 			R4: "[  ]",
-			R5S: "",
+			R5L: "",
 			R5: "",
-			R6S: "",
+			R6L: "",
 			R6: "GO AROUND>",
 			
+			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
 			title: "",
+			titleTranslate: 0,
 		};
 		
 		m.Value = {

@@ -9,7 +9,7 @@
 		
 		<!-- General -->
 		<lag_filter name="/controls/cockpit/aileron-yoke">
-			<input>hydraulics/aileron-yoke-sum</input>
+			<input>/systems/fcs/aileron-yoke-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -53,7 +53,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/elevator-yoke">
-			<input>hydraulics/elevator-yoke-switch</input>
+			<input>/systems/fcs/elevator-yoke-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -77,24 +77,24 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp/flood-knb">
-			<input>/controls/lighting/fcp-flood-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/flood">
+			<input>/controls/lighting/fcp-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/fcp/integ-knb">
-			<input>/controls/lighting/fcp-integ-knb</input>
+		<lag_filter name="/controls/cockpit/fcp/integ">
+			<input>/controls/lighting/fcp-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<actuator name="/controls/cockpit/gear-lever">
-			<input>/controls/gear/lever-cockpit</input>
+			<input>/controls/gear/lever</input>
 			<rate_limit>4.5</rate_limit>
 			<lag>20</lag>
 		</actuator>
 		
 		<lag_filter name="/controls/cockpit/rudder-pedal">
-			<input>hydraulics/rudder/pedal-sum</input>
+			<input>/systems/fcs/rudders/pedal-sum</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -109,13 +109,13 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/tiller-handle">
-			<input>hydraulics/tiller/handle</input>
+			<input>/systems/fcs/tiller/handle</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<!-- Pedestal -->
 		<lag_filter name="/controls/cockpit/abs-knob">
-			<input>/controls/gear/abs/knob</input>
+			<input>/controls/abs/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -160,7 +160,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/flaps-lever-rotate">
-			<input>/controls/flight/flaps-input</input>
+			<input>/systems/fcs/flaps/input</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -169,18 +169,33 @@
 			<c1>30</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/mcdu[0]/dimmer">
+			<input>/instrumentation/du/mcdu1-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/mcdu[1]/dimmer">
+			<input>/instrumentation/du/mcdu2-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/mcdu[2]/dimmer">
+			<input>/instrumentation/du/mcdu3-dimmer</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/reverse-lever[0]">
-			<input>/controls/engines/engine[0]/reverse-lever</input>
+			<input>/systems/fadec/reverse-1/throttle-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/reverse-lever[1]">
-			<input>/controls/engines/engine[1]/reverse-lever</input>
+			<input>/systems/fadec/reverse-2/throttle-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/reverse-lever[2]">
-			<input>/controls/engines/engine[2]/reverse-lever</input>
+			<input>/systems/fadec/reverse-3/throttle-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -220,7 +235,7 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/spoilers-lever-rotate">
-			<input>spoilers/lever-cmd</input>
+			<input>/systems/fcs/spoilers/lever-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -245,21 +260,21 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[0]">
-			<input>fadec/control-1/throttle-pos</input>
+			<input>/systems/fadec/control-1/throttle-pos</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[0]</output>
+			<output>/systems/fadec/throttle-lever-feedback[0]</output>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[1]">
-			<input>fadec/control-2/throttle-pos</input>
+			<input>/systems/fadec/control-2/throttle-pos</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[1]</output>
+			<output>/systems/fadec/throttle-lever-feedback[1]</output>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[2]">
-			<input>fadec/control-3/throttle-pos</input>
+			<input>/systems/fadec/control-3/throttle-pos</input>
 			<c1>20</c1>
-			<output>fadec/throttle-lever-feedback[2]</output>
+			<output>/systems/fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/xpdr-alt">
@@ -279,27 +294,27 @@
 		
 		<!-- Overhead -->
 		<lag_filter name="/controls/cockpit/overhead/aft-temp">
-			<input>/controls/pneumatics/switches/aft-temp</input>
+			<input>/controls/pneumatics/aft-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/cargo-aft-temp">
-			<input>/controls/pneumatics/switches/cargo-aft-temp</input>
+			<input>/controls/pneumatics/cargo-aft-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/cargo-fwd-temp">
-			<input>/controls/pneumatics/switches/cargo-fwd-temp</input>
+			<input>/controls/pneumatics/cargo-fwd-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/cockpit-temp">
-			<input>/controls/pneumatics/switches/cockpit-temp</input>
+			<input>/controls/pneumatics/cockpit-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/elevator-feel">
-			<input>/controls/fcc/switches/elevator-feel</input>
+			<input>/controls/fcc/elevator-feel</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -309,17 +324,17 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/emer-pwr">
-			<input>/controls/electrical/switches/emer-pwr</input>
+			<input>/controls/electrical/emer-pwr</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/fwd-temp">
-			<input>/controls/pneumatics/switches/fwd-temp</input>
+			<input>/controls/pneumatics/fwd-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/flap-limit">
-			<input>/controls/fcc/switches/flap-limit</input>
+			<input>/controls/fcc/flap-limit</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -334,17 +349,17 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/iru-knob[0]">
-			<input>/controls/iru[0]/switches/knob</input>
+			<input>/controls/iru[0]/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/iru-knob[1]">
-			<input>/controls/iru[1]/switches/knob</input>
+			<input>/controls/iru[1]/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/iru-knob[2]">
-			<input>/controls/iru[2]/switches/knob</input>
+			<input>/controls/iru[2]/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -363,18 +378,18 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-flood-knb">
-			<input>/controls/lighting/main-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-flood">
+			<input>/controls/lighting/main-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/main-integ-knb">
-			<input>/controls/lighting/main-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/main-integ">
+			<input>/controls/lighting/main-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/overhead/mid-temp">
-			<input>/controls/pneumatics/switches/mid-temp</input>
+			<input>/controls/pneumatics/mid-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -383,13 +398,13 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-flood-knb">
-			<input>/controls/lighting/overhead-flood-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-flood">
+			<input>/controls/lighting/overhead-flood</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/overhead-integ-knb">
-			<input>/controls/lighting/overhead-integ-knb</input>
+		<lag_filter name="/controls/cockpit/overhead/overhead-integ">
+			<input>/controls/lighting/overhead-integ</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -399,7 +414,7 @@
 		</lag_filter>
 		
 		<linear_actuator name="/controls/cockpit/overhead/smoke-elec-air-cmd">
-			<input>/controls/electrical/switches/smoke-elec-air</input>
+			<input>/controls/electrical/smoke-elec-air</input>
 			<module>4</module>
 			<rate>0.5</rate>
 		</linear_actuator>
@@ -418,23 +433,23 @@
 	
 	<channel name="Lights" execrate="8">
 		
-		<switch name="/controls/fcc/lights/elevator-feel-manual">
+		<switch name="/systems/fcc/lights/elevator-feel-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/elevator-feel/auto ne 1
+				/systems/fcc/elevator-feel/auto ne 1
 				/systems/failures/fcc/elevator-feel eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/flap-limit-manual">
+		<switch name="/systems/fcc/lights/flap-limit-manual">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/fcc/switches/flap-limit gt 0
+				/controls/fcc/flap-limit gt 0
 				/systems/failures/fcc/flap-limit eq 1
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/lsas-left-out-fail">
+		<switch name="/systems/fcc/lights/lsas-left-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -442,7 +457,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/lsas-left-in-fail">
+		<switch name="/systems/fcc/lights/lsas-left-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -450,7 +465,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/lsas-right-in-fail">
+		<switch name="/systems/fcc/lights/lsas-right-in-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -458,7 +473,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/lsas-right-out-fail">
+		<switch name="/systems/fcc/lights/lsas-right-out-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -466,7 +481,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/yd-upper-a-fail">
+		<switch name="/systems/fcc/lights/yd-upper-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -474,7 +489,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/yd-upper-b-fail">
+		<switch name="/systems/fcc/lights/yd-upper-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -482,7 +497,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/yd-lower-a-fail">
+		<switch name="/systems/fcc/lights/yd-lower-a-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -490,7 +505,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/controls/fcc/lights/yd-lower-b-fail">
+		<switch name="/systems/fcc/lights/yd-lower-b-fail">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/iru-common/any-aligned-out ne 1
@@ -500,471 +515,132 @@
 	
 	</channel>
 	
-	<channel name="Misc">
+	<channel name="Cockpit Lighting" execrate="8">
 		
-		<switch name="/controls/switches/seatbelt-sign-status">
-			<default value="0"/>
-			<test value="1">
-				/controls/switches/seatbelt-sign eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/switches/seatbelt-sign eq 0.5
-				<test logic="OR">
-					/controls/flight/flaps-input ne 0
-					/controls/gear/lever eq 1
-				</test>
-			</test>
-			<!--test logic="AND" value="1">
-				/cabin/alt/prop gt 10000
-			</test-->
-		</switch>
-		
-		<switch name="/controls/switches/no-smoking-sign-status">
-			<default value="0"/>
-			<test value="1">
-				/controls/switches/no-smoking-sign eq 1
-			</test>
-			<test logic="AND" value="1">
-				/controls/switches/no-smoking-sign eq 0.5
-				/controls/gear/lever eq 1
-			</test>
-			<!--test logic="AND" value="1">
-				/cabin/alt/prop gt 10000
-			</test-->
-		</switch>
-	
-	</channel>
-	
-	<channel name="OSG Text Emission" execrate="2"> <!-- Required or it will be badly lit, colors are intentially slightly tweaked due to rendering differences -->
-		
-		<fcs_function name="/controls/lighting/fcp-osg-red">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  1.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/fcp-osg-green">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.9
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/fcp-osg-blue">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/fcp-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.7
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/main-osg-red">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  1.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/main-osg-green">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.9
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/main-osg-blue">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/main-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.7
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/overhead-osg-red">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  1.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/overhead-osg-green">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.9
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/controls/lighting/overhead-osg-blue">
-			<function>
-				<table>
-					<independentVar lookup="row">/controls/lighting/overhead-integ-norm</independentVar>
-					<tableData>
-						0  0.1
-						1  0.7
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-	
-	</channel>
-	
-	<channel name="CAWS Logic" execrate="8">
-		
-		<!-- Altitude Alert -->
-		<switch name="/systems/caws/logic/altitude-alert-captured">
-			<default value="/systems/caws/logic/altitude-alert-captured"/>
-			<test value="0">
-				/it-autoflight/internal/alt-diff-abs ge 1050
-			</test>
-			<test value="1">
-				/it-autoflight/internal/alt-diff-abs le 150
-			</test>
-		</switch>
-		
-		<switch name="/systems/caws/logic/altitude-alert">
-			<default value="/systems/caws/logic/altitude-alert"/>
-			<test logic="OR" value="0"> <!-- Reset -->
-				/it-autoflight/internal/alt-diff-abs le 150
-				fcs/flap-pos-deg ge 31.5
-				/it-autoflight/output/vert eq 2
-				/it-autoflight/output/vert eq 6
-				<test logic="AND"> <!-- Approaching only -->
-					/systems/caws/logic/altitude-alert eq 1
-					/it-autoflight/internal/alt-diff-abs ge 1050
-				</test>
-				<test logic="AND">
-					/it-autoflight/output/vert eq 7
-					/position/gear-agl-ft lt 400
-				</test>
-				<test logic="AND">
-					/it-autoflight/output/vert ne 7
-					/position/gear-agl-ft lt 100
-				</test>
-			</test>
-			<test logic="AND" value="1"> <!-- Approaching -->
-				/systems/caws/logic/altitude-alert-captured eq 0
-				/it-autoflight/internal/alt-diff-abs gt 150
-				/it-autoflight/internal/alt-diff-abs le 1000
-			</test>
-			<test logic="AND" value="2"> <!-- Deviating -->
-				/systems/caws/logic/altitude-alert-captured eq 1
-				/it-autoflight/internal/alt-diff-abs gt 150
-			</test>
-		</switch>
-		
-		<switch name="/systems/caws/logic/altitude-alert-aural-1"> <!-- Prevent aural from playing if newly set altitude is inside the alert zone -->
-			<default value="/systems/caws/logic/altitude-alert-aural-1"/>
-			<test logic="AND" value="0">
-				/systems/caws/logic/altitude-alert eq 0
-				/it-autoflight/internal/alt-diff-abs le 950
-			</test>
-			<test value="1">
-				/it-autoflight/internal/alt-diff-abs ge 1050
-			</test>
-		</switch>
-		
-		<!-- Landing Gear -->
-		<switch name="/systems/caws/logic/landing-gear-idle">
+		<switch name="/systems/lighting/fcp-flood">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt lt 210
-				/position/gear-agl-ft le 1200
-				<test logic="OR">
-					fadec/control-1/throttle-pos lt 0.01
-					fadec/control-2/throttle-pos lt 0.01
-					fadec/control-3/throttle-pos lt 0.01
-				</test>
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/fcp-flood">
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/systems/caws/logic/landing-gear-inhibit">
-			<default value="0"/>
-			<test value="/controls/warnings/gear-warning-inhibit">
-				/systems/caws/logic/landing-gear-idle eq 1
-			</test>
-			<output>/controls/warnings/gear-warning-inhibit</output> <!-- So it resets properly -->
-		</switch>
-		
-		<switch name="/systems/caws/logic/landing-gear">
-			<default value="0"/>
-			<test logic="AND" value="0"> <!-- Ignore center main gear if up is selected for it -->
-				/controls/gear/center-gear-up eq 1
-				gear/unit[0]/status eq 2
-				gear/unit[1]/status eq 2
-				gear/unit[2]/status eq 2
-			</test>
-			<test logic="AND" value="0">
-				gear/unit[0]/status eq 2
-				gear/unit[1]/status eq 2
-				gear/unit[2]/status eq 2
-				gear/unit[3]/status eq 2
-			</test>
-			<test logic="OR" value="1">
-				<test logic="AND">
-					/systems/caws/logic/landing-gear-idle eq 1
-					/systems/caws/logic/landing-gear-inhibit eq 0
-				</test>
-				fcs/flap-pos-deg ge 31.5
-			</test>
-		</switch>
-		
-		<!-- Overspeed -->
-		<switch name="/systems/caws/logic/overspeed">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/vmo-mmo
-				/controls/switches/annun-test eq 1
-			</test>
-		</switch>
-		
-		<!-- Slat Overspeed -->
-		<switch name="/systems/caws/logic/slat-overspeed">
+		<switch name="/systems/lighting/fcp-integ">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/caws/logic/overspeed eq 0
-				fcs/slat-pos-deg ge 1
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/slat-max-kts
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/fcp-integ">
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<!-- Stabilizer Motion -->
-		<pid name="/systems/caws/logic/stabilizer-rate">
-			<input>hydraulics/stabilizer/final-deg</input>
-			<kp>0.0</kp>
-			<ki>0.0</ki>
-			<kd>1.0</kd>
-		</pid>
-		
-		<fcs_function name="/systems/caws/logic/stabilizer-rate-abs">
-			<function>
-				<abs>
-					<property>/systems/caws/logic/stabilizer-rate</property>
-				</abs>
-			</function>
-		</fcs_function>
-		
-		<switch name="/systems/caws/logic/stabilizer-moving">
+		<switch name="/systems/lighting/main-flood">
 			<default value="0"/>
-			<test logic="AND" value="-1"> <!-- Up -->
-				position/wow eq 0
-				/systems/caws/logic/stabilizer-rate lt -0.01
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
 			</test>
-			<test logic="AND" value="1"> <!-- Down -->
-				position/wow eq 0
-				/systems/caws/logic/stabilizer-rate gt 0.01
-			</test>
-		</switch>
-		
-		<switch name="/systems/caws/logic/stabilizer-stored-up">
-			<default value="hydraulics/stabilizer/final-deg"/>
-			<test value="/systems/caws/logic/stabilizer-stored-up">
-				/systems/caws/logic/stabilizer-moving eq -1
+			<test value="/controls/lighting/main-flood">
+				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/systems/caws/logic/stabilizer-stored-dn">
-			<default value="hydraulics/stabilizer/final-deg"/>
-			<test value="/systems/caws/logic/stabilizer-stored-dn">
-				/systems/caws/logic/stabilizer-moving eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/caws/logic/stabilizer-stored">
-			<default value="/systems/caws/logic/stabilizer-stored-up"/>
-			<test value="/systems/caws/logic/stabilizer-stored-dn">
-				/systems/caws/logic/stabilizer-moving eq 1
-			</test>
-		</switch>
-		
-		<summer name="/systems/caws/logic/stabilizer-stored-error">
-			<input>hydraulics/stabilizer/final-deg</input>
-			<input>-/systems/caws/logic/stabilizer-stored</input>
-		</summer>
-		
-		<switch name="/systems/caws/logic/stabilizer-motion">
+		<switch name="/systems/lighting/main-integ">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				<test logic="AND">
-					/systems/caws/logic/stabilizer-moving eq -1
-					/systems/caws/logic/stabilizer-stored-error lt -2
-				</test>
-				<test logic="AND">
-					/systems/caws/logic/stabilizer-moving eq 1
-					/systems/caws/logic/stabilizer-stored-error gt 2
-				</test>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/main-integ">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/systems/lighting/overhead-flood">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/overhead-flood">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/systems/lighting/overhead-integ">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/thunderstorm eq 1
+			</test>
+			<test value="/controls/lighting/overhead-integ">
+				/systems/electrical/generic/pwr ge 24
+			</test>
+		</switch>
+		
+		<switch name="/systems/lighting/stby-compass">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/generic/pwr ge 24
+				/controls/lighting/stby-compass eq 1
 			</test>
 		</switch>
 	
 	</channel>
 	
-	<channel name="CAWS Sound Controller" execrate="16">
+	<channel name="Glass Effects">
 		
-		<!-- Autopilot Horn -->
-		<switch name="/systems/caws/apoff/trigger">
-			<default value="/systems/caws/apoff/trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/apoff/out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/apoff/out eq 0
-				/it-autoflight/sound/apoff eq 1
-			</test>
-		</switch>
+		<fcs_function name="glass-effects/airspeed-clamped-sqrt">
+			<function>
+				<sqrt>
+					<quotient>
+						<min>
+							<property>velocities/vc-kts</property>
+							<value>40</value>
+						</min>
+						<value>40</value>
+					</quotient>
+				</sqrt>
+			</function>
+		</fcs_function>
 		
-		<actuator name="/systems/caws/apoff/actuator">
-			<input>/systems/caws/apoff/trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/apoff/out</output>
-		</actuator>
+		<fcs_function name="glass-effects/splash-x">
+			<function>
+				<difference>
+					<value>-0.1</value>
+					<product>
+						<value>2</value>
+						<property>glass-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
+			</function>
+			<output>/environment/aircraft-effects/splash-vector-x</output>
+		</fcs_function>
 		
-		<!-- Autopilot Horn Once -->
-		<switch name="/systems/caws/apoff/single-trigger">
-			<default value="/systems/caws/apoff/single-trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				<test logic="AND">
-					/it-autoflight/sound/apoff-single eq 0
-					/systems/caws/apoff/single-out eq 1
-				</test>
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/apoff/single-out eq 0
-				/it-autoflight/sound/apoff-single eq 1
-			</test>
-		</switch>
+		<fcs_function name="glass-effects/splash-y">
+			<function>
+				<value>0</value>
+			</function>
+			<output>/environment/aircraft-effects/splash-vector-y</output>
+		</fcs_function>
 		
-		<actuator name="/systems/caws/apoff/single-actuator">
-			<input>/systems/caws/apoff/single-trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/apoff/single-out</output>
-		</actuator>
-		
-		<!-- Landing Gear Horn -->
-		<switch name="/systems/caws/landing-gear/trigger">
-			<default value="/systems/caws/landing-gear/trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/landing-gear/out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/landing-gear/out eq 0
-				/systems/caws/logic/landing-gear eq 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/caws/landing-gear/actuator">
-			<input>/systems/caws/landing-gear/trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/landing-gear/out</output>
-		</actuator>
-		
-		<!-- Overspeed Horn -->
-		<switch name="/systems/caws/overspeed/trigger">
-			<default value="/systems/caws/overspeed/trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/overspeed/out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/overspeed/out eq 0
-				/systems/caws/logic/overspeed eq 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/caws/overspeed/actuator">
-			<input>/systems/caws/overspeed/trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/overspeed/out</output>
-		</actuator>
-		
-		<!-- Slat Overspeed Horn -->
-		<switch name="/systems/caws/slat-overspeed/trigger">
-			<default value="/systems/caws/slat-overspeed/trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/slat-overspeed/out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/slat-overspeed/out eq 0
-				/systems/caws/logic/slat-overspeed eq 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/caws/slat-overspeed/actuator">
-			<input>/systems/caws/slat-overspeed/trigger</input>
-			<rate_limit sense="incr">0.35</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/slat-overspeed/out</output>
-		</actuator>
-		
-		<!-- Stabilizer Motion Horn -->
-		<switch name="/systems/caws/stabilizer-motion/trigger">
-			<default value="/systems/caws/stabilizer-motion/trigger"/>
-			<test logic="OR" value="0">
-				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/stabilizer-motion/out eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/caws/stabilizer-motion/out eq 0
-				/systems/caws/logic/stabilizer-motion eq 1
-			</test>
-		</switch>
-		
-		<pure_gain name="/systems/caws/stabilizer-motion/rate"> <!-- So that it goes off roughly every 2 degrees -->
-			<input>/systems/caws/logic/stabilizer-rate-abs</input>
-			<gain>0.5</gain>
-		</pure_gain>
-		
-		<actuator name="/systems/caws/stabilizer-motion/actuator">
-			<input>/systems/caws/stabilizer-motion/trigger</input>
-			<rate_limit sense="incr">/systems/caws/stabilizer-motion/rate</rate_limit>
-			<rate_limit sense="decr">100</rate_limit>
-			<output>/systems/caws/stabilizer-motion/out</output>
-		</actuator>
+		<fcs_function name="glass-effects/splash-z">
+			<function>
+				<difference>
+					<value>1</value>
+					<product>
+						<value>1.35</value>
+						<property>glass-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
+			</function>
+			<output>/environment/aircraft-effects/splash-vector-z</output>
+		</fcs_function>
 	
 	</channel>
 

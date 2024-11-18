@@ -11,56 +11,73 @@ var Menu = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CSTranslate: [0, 0, 0, 0, 0, 0],
-			CTranslate: [-60, 0, 0, 0, 0, 0],
-			C1S: "",
+			CLTranslate: [0, 0, 0, 0, 0, 0],
+			CTranslate: [-2, 0, 0, 0, 0, 0],
+			C1L: "",
 			C1: "",
-			C2S: "",
+			C2L: "",
 			C2: "",
-			C3S: "",
+			C3L: "",
 			C3: "",
-			C4S: "",
+			C4L: "",
 			C4: "",
-			C5S: "",
+			C5L: "",
 			C5: "",
-			C6S: "",
+			C6L: "",
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1S: "",
+			L1L: "",
 			L1: "",
-			L2S: "",
+			L2L: "",
 			L2: "",
-			L3S: "",
+			L3L: "",
 			L3: "",
-			L4S: "",
+			L4L: "",
 			L4: "<CDFS",
-			L5S: "",
+			L5L: "",
 			L5: "",
-			L6S: "",
+			L6L: "",
 			L6: "",
+			
+			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1S: "STANDBY",
+			R1L: "STANDBY",
 			R1: "",
-			R2S: "",
+			R2L: "",
 			R2: "",
-			R3S: "",
+			R3L: "",
 			R3: "",
-			R4S: "",
+			R4L: "",
 			R4: "",
-			R5S: "",
+			R5L: "",
 			R5: "MAINT>",
-			R6S: "",
+			R6L: "",
 			R6: "",
 			
+			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
 			title: "MENU",
+			titleTranslate: 1,
 		};
 		
 		if (t) {
-			m.Display.L1 = "";
+			m.Display.L2 = "<ACARS";
 			m.Display.R1 = "F-PLN*";
 		} else {
 			m.Display.L1 = "<FMC-" ~ sprintf("%s", n + 1);
@@ -84,19 +101,35 @@ var Menu = {
 		} else {
 			me.Display.C1 = "<ACT>";
 		}
+		
+		if (!me.type) {
+			if (mcdu.unit[me.id].lastFmcPage == "none") {
+				me.Display.R6 = "";
+			} else {
+				me.Display.R6 = "RETURN>";
+			}
+		}
 	},
 	softKey: func(k) {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
-		if (me.scratchpadState == 1) {
-			if (k == "l1" and !me.type) {
+		if (k == "l1" and !me.type) {
+			if (me.scratchpadState == 1) {
 				if (fms.Internal.request[me.id]) {
 					fms.Internal.request[me.id] = 0;
+				} else if (mcdu.unit[me.id].lastFmcPage == "none") {
+					mcdu.unit[me.id].setPage("acStatus");
 				} else {
 					mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r6" and !me.type) {
+			if (mcdu.unit[me.id].lastFmcPage == "none") {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			} else {
+				mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
 			}
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -114,52 +147,69 @@ var Ref = {
 			arrow: 0,
 			
 			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			CSTranslate: [0, 0, 0, 0, 0, 0],
+			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
-			C1S: "",
+			C1L: "",
 			C1: "",
-			C2S: "",
+			C2L: "",
 			C2: "",
-			C3S: "",
+			C3L: "",
 			C3: "",
-			C4S: "",
+			C4L: "",
 			C4: "",
-			C5S: "",
+			C5L: "",
 			C5: "",
-			C6S: "",
+			C6L: "",
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1S: " DEFINED",
+			L1L: " DEFINED",
 			L1: "<WAYPOINT",
-			L2S: "",
+			L2L: "",
 			L2: "<WAYPOINT",
-			L3S: " CLOSEST",
+			L3L: " CLOSEST",
 			L3: "<AIRPORTS",
-			L4S: "",
+			L4L: "",
 			L4: "<POS REF",
-			L5S: "",
+			L5L: "",
 			L5: "<A/C STATUS",
-			L6S: "",
+			L6L: "",
 			L6: "<SENSOR STATUS",
+			
+			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
 			
 			pageNum: "",
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			R1S: "",
+			R1L: "",
 			R1: "",
-			R2S: "",
+			R2L: "",
 			R2: "NAVAID>",
-			R3S: "",
+			R3L: "",
 			R3: "ACARS>",
-			R4S: "",
+			R4L: "",
 			R4: "DOC DATA>",
-			R5S: "",
+			R5L: "",
 			R5: "MAINT>",
-			R6S: "MEMORY ",
+			R6L: "MEMORY ",
 			R6: "READOUT>",
 			
+			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
 			title: "REF INDEX",
+			titleTranslate: 0,
 		};
 		
 		m.group = "fmc";

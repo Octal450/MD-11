@@ -5,39 +5,34 @@
 
 <system name="MD-11: FCC">
 	
-	<property value="0">fadec/throttle-lever-feedback[0]</property>
-	<property value="0">fadec/throttle-lever-feedback[1]</property>
-	<property value="0">fadec/throttle-lever-feedback[2]</property>
-	<property value="0">fcc/aileron-out-enable</property>
-	<property value="0">fcc/flap/cmd-deg</property>
-	<property value="0">fcc/lsas/autotrim-inhibit</property>
-	<property value="0">fcc/lsas/pah/pid</property>
-	<property value="0">fcc/lsas/spd-prot/output</property>
-	<property value="0">fcc/rcws/input</property>
-	<property value="0">fcc/rcws/pid</property>
-	<property value="0">fcc/slat/cmd-deg</property>
-	<property value="0">fcs/spoiler-left-feedback</property>
-	<property value="0">fcs/spoiler-right-feedback</property>
-	<property value="0">spoilers/auto-speedbrake-feedback</property>
-	<property value="0">/gear/abs/brake-cmd</property>
-	<property value="0">/gear/abs/disarm</property>
-	<property value="0">/gear/abs/spoilers-cmd-deg</property>
+	<property value="0">/systems/abs/brake-cmd</property>
+	<property value="0">/systems/abs/disarm</property>
+	<property value="0">/systems/abs/spoilers-cmd-deg</property>
+	<property value="0">/systems/fcc/spoiler-left-feedback</property>
+	<property value="0">/systems/fcc/spoiler-right-feedback</property>
+	<property value="0">/systems/fcc/aileron-out-enable</property>
+	<property value="0">/systems/fcc/lsas/autotrim-inhibit</property>
+	<property value="0">/systems/fcc/lsas/pah/pid</property>
+	<property value="0">/systems/fcc/lsas/spd-prot/output</property>
+	<property value="0">/systems/fcc/rcws/input</property>
+	<property value="0">/systems/fcc/rcws/pid</property>
+	<property value="0">/systems/fcs/spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Properties for tuning -->
-	<property value="0">fcc/rcws/p-gain-tune</property>
-	<property value="0">fcc/rcws/i-gain-tune</property>
-	<property value="0">fcc/rcws/d-gain-tune</property>
-	<property value="0">fcc/lsas/pah/p-gain-tune</property>
-	<property value="0">fcc/lsas/pah/i-gain-tune</property>
-	<property value="0">fcc/lsas/pah/d-gain-tune</property>
-	<property value="0">fcc/lsas/prd/p-gain-tune</property>
-	<property value="0">fcc/yaw/yd-p-gain-tune</property>
-	<property value="0">fcc/yaw/tc-p-gain-tune</property>
-	<property value="0">fcc/yaw/tc-d-gain-tune</property>
+	<property value="0">/systems/fcc/rcws/p-gain-tune</property>
+	<property value="0">/systems/fcc/rcws/i-gain-tune</property>
+	<property value="0">/systems/fcc/rcws/d-gain-tune</property>
+	<property value="0">/systems/fcc/lsas/pah/p-gain-tune</property>
+	<property value="0">/systems/fcc/lsas/pah/i-gain-tune</property>
+	<property value="0">/systems/fcc/lsas/pah/d-gain-tune</property>
+	<property value="0">/systems/fcc/lsas/prd/p-gain-tune</property>
+	<property value="0">/systems/fcc/yaw/yd-p-gain-tune</property>
+	<property value="0">/systems/fcc/yaw/tc-p-gain-tune</property>
+	<property value="0">/systems/fcc/yaw/tc-d-gain-tune</property>
 	
 	<channel name="Libraries">
 		
-		<switch name="fcc/fcc1-power">
+		<switch name="/systems/fcc/fcc1-power">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/dc-1 ge 24
@@ -45,7 +40,7 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/fcc2-power">
+		<switch name="/systems/fcc/fcc2-power">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/dc-3 ge 24
@@ -53,15 +48,15 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/power-avail">
+		<switch name="/systems/fcc/power-avail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/fcc1-power eq 1
-				fcc/fcc2-power eq 1
+				/systems/fcc/fcc1-power eq 1
+				/systems/fcc/fcc2-power eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/afs/enabled">
+		<switch name="/systems/fcc/afs/enabled">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/it-autoflight/output/ap1 eq 1
@@ -69,29 +64,29 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/stall-alpha-deg">
+		<fcs_function name="/systems/fcc/stall-alpha-deg">
 			<function>
 				<table>
-					<independentVar lookup="row">atmosphere/density-altitude</independentVar>
+					<independentVar lookup="row">velocities/mach</independentVar>
 					<tableData>
-						    0  15.5
-						45000   8.3
+						0.2  15.5
+						0.9   8.3
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="fcc/stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input>
+		<pure_gain name="/systems/fcc/stall-warn-alpha-deg">
+			<input>/systems/fcc/stall-alpha-deg</input>
 			<gain>0.8</gain> <!-- 80% -->
 		</pure_gain>
 		
-		<pure_gain name="fcc/no-stall-warn-alpha-deg">
-			<input>fcc/stall-alpha-deg</input>
+		<pure_gain name="/systems/fcc/no-stall-warn-alpha-deg">
+			<input>/systems/fcc/stall-alpha-deg</input>
 			<gain>0.75</gain> <!-- 75% -->
 		</pure_gain>
 		
-		<switch name="fcc/pitch-trim-speed">
+		<switch name="/systems/fcc/pitch-trim-speed">
 			<default value="0.325"/>
 			<test logic="OR" value="0.175">
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 249.5
@@ -99,7 +94,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/rcws/p-rad_sec">
+		<fcs_function name="/systems/fcc/rcws/p-rad_sec">
 			<function>
 				<toradians>
 					<property>/orientation/roll-rate-degps</property>
@@ -107,7 +102,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/thetadot-rad_sec">
+		<fcs_function name="/systems/fcc/lsas/thetadot-rad_sec">
 			<function>
 				<toradians>
 					<property>/orientation/pitch-rate-degps</property>
@@ -127,94 +122,100 @@
 				</abs>
 			</function>
 		</fcs_function>
+		
+		<actuator name="/systems/fcc/nlg-wow-timer-20">
+			<input>/gear/gear[0]/wow</input>
+			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
+			<rate_limit sense="decr">1000</rate_limit>
+		</actuator>
 	
 	</channel>
 	
 	<channel name="LSAS Logic">
 		
-		<switch name="fcc/lsas/left-out-active">
+		<switch name="/systems/fcc/lsas/left-out-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-left-out eq 1
+				/controls/fcc/lsas-left-out eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-2-psi ge 2200
 				</test>
-				fcc/fcc2-power eq 1
+				/systems/fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/left-in-active">
+		<switch name="/systems/fcc/lsas/left-in-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-left-in eq 1
+				/controls/fcc/lsas-left-in eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				fcc/fcc1-power eq 1
+				/systems/fcc/fcc1-power eq 1
 				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/right-in-active">
+		<switch name="/systems/fcc/lsas/right-in-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-right-in eq 1
+				/controls/fcc/lsas-right-in eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				fcc/fcc2-power eq 1
+				/systems/fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/right-out-active">
+		<switch name="/systems/fcc/lsas/right-out-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
 				/controls/cockpit/ap-disc-2 eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/lsas-right-out eq 1
+				/controls/fcc/lsas-right-out eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-2-psi ge 2200
 				</test>
-				fcc/fcc1-power eq 1
+				/systems/fcc/fcc1-power eq 1
 				/systems/failures/fcc/lsas-right-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<summer name="fcc/lsas/channels-active">
-			<input>fcc/lsas/left-out-active</input>
-			<input>fcc/lsas/left-in-active</input>
-			<input>fcc/lsas/right-in-active</input>
-			<input>fcc/lsas/right-out-active</input>
+		<summer name="/systems/fcc/lsas/channels-active">
+			<input>/systems/fcc/lsas/left-out-active</input>
+			<input>/systems/fcc/lsas/left-in-active</input>
+			<input>/systems/fcc/lsas/right-in-active</input>
+			<input>/systems/fcc/lsas/right-out-active</input>
 		</summer>
 		
-		<fcs_function name="fcc/lsas/spd-prot/max">
+		<fcs_function name="/systems/fcc/lsas/spd-prot/max">
 			<function>
 				<sum>
-					<property>/fms/speeds/vmo-mmo</property>
+					<property>/systems/fms/speeds/vmo-mmo</property>
 					<ifthen>
 						<or>
 							<and>
@@ -239,42 +240,42 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/lsas/spd-prot/active">
-			<default value="fcc/lsas/spd-prot/active"/>
+		<switch name="/systems/fcc/lsas/spd-prot/active">
+			<default value="/systems/fcc/lsas/spd-prot/active"/>
 			<test logic="OR" value="0">
-				fcc/lsas/channels-active eq 0
-				fcc/afs/enabled eq 1
+				/systems/fcc/lsas/channels-active eq 0
+				/systems/fcc/afs/enabled eq 1
 				position/wow eq 1
 				attitude/pitch-rad gt 0.558505
 				attitude/pitch-rad lt -0.20944
 				attitude/roll-rad gt 0.558505
 				attitude/roll-rad lt -0.558505
-				/instrumentation/airspeed-indicator/indicated-speed-kt le /fms/speeds/vmo-mmo
+				/instrumentation/airspeed-indicator/indicated-speed-kt le /systems/fms/speeds/vmo-mmo
 			</test>
 			<test value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt ge fcc/lsas/spd-prot/max
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge /systems/fcc/lsas/spd-prot/max
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/alpha-prot/active">
-			<default value="fcc/lsas/alpha-prot/active"/>
+		<switch name="/systems/fcc/lsas/alpha-prot/active">
+			<default value="/systems/fcc/lsas/alpha-prot/active"/>
 			<test logic="OR" value="0">
-				fcc/lsas/channels-active eq 0
-				fcc/afs/enabled eq 1
+				/systems/fcc/lsas/channels-active eq 0
+				/systems/fcc/afs/enabled eq 1
 				position/wow eq 1
 				attitude/pitch-rad gt 0.558505
 				attitude/pitch-rad lt -0.20944
 				attitude/roll-rad gt 0.558505
 				attitude/roll-rad lt -0.558505
-				aero/alpha-deg-damped le fcc/no-stall-warn-alpha-deg
+				aero/alpha-deg-damped le /systems/fcc/no-stall-warn-alpha-deg
 			</test>
 			<test value="1">
-				aero/alpha-deg-damped ge fcc/stall-warn-alpha-deg
+				aero/alpha-deg-damped ge /systems/fcc/stall-warn-alpha-deg
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/in-detent">
-			<default value="fcc/lsas/in-detent"/>
+		<switch name="/systems/fcc/lsas/in-detent">
+			<default value="/systems/fcc/lsas/in-detent"/>
 			<test logic="AND" value="1">
 				/controls/flight/elevator lt 0.02
 				/controls/flight/elevator gt -0.02
@@ -285,33 +286,33 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/pah/active">
+		<switch name="/systems/fcc/lsas/pah/active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/lsas/channels-active gt 0
-				fcc/afs/enabled eq 0
-				fcc/lsas/spd-prot/active ne 1
-				fcc/lsas/alpha-prot/active ne 1
+				/systems/fcc/lsas/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
+				/systems/fcc/lsas/spd-prot/active ne 1
+				/systems/fcc/lsas/alpha-prot/active ne 1
 				attitude/pitch-rad le 0.523599
 				attitude/pitch-rad ge -0.174533
 				attitude/roll-rad le 0.558505
 				attitude/roll-rad ge -0.558505
-				fcc/lsas/in-detent eq 1
+				/systems/fcc/lsas/in-detent eq 1
 				position/wow eq 0
 				/position/gear-agl-ft ge 100
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/prd/active">
+		<switch name="/systems/fcc/lsas/prd/active">
 			<default value="0"/>
 			<test value="1">
-				fcc/lsas/spd-prot/active eq 1
+				/systems/fcc/lsas/spd-prot/active eq 1
 			</test>
 			<test logic="AND" value="1">
-				fcc/lsas/channels-active gt 0
-				fcc/afs/enabled eq 0
+				/systems/fcc/lsas/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
 				<test logic="OR">
-					fcc/lsas/in-detent eq 0
+					/systems/fcc/lsas/in-detent eq 0
 					attitude/roll-rad gt 0.558505
 					attitude/roll-rad lt -0.558505
 					/position/gear-agl-ft lt 100
@@ -320,28 +321,28 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/pap/active">
+		<switch name="/systems/fcc/lsas/pap/active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/lsas/channels-active gt 0
-				fcc/afs/enabled eq 0
+				/systems/fcc/lsas/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
 				position/wow eq 1
 			</test>
 			<test logic="AND" value="1">
-				fcc/lsas/channels-active gt 0
-				fcc/afs/enabled eq 0
+				/systems/fcc/lsas/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
 				/position/gear-agl-ft le 100
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/pnl/active">
+		<switch name="/systems/fcc/lsas/pnl/active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/lsas/channels-active gt 0
-				fcc/afs/enabled eq 0
+				/systems/fcc/lsas/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
 				gear/unit[1]/WOW eq 1
 				gear/unit[2]/WOW eq 1
-				spoilers/auto-speedbrake-feedback gt 0
+				/systems/fcs/spoilers/auto-speedbrake-feedback gt 0
 			</test>
 		</switch>
 	
@@ -349,10 +350,10 @@
 	
 	<channel name="Yaw Damper Logic">
 		
-		<switch name="fcc/yaw/avail-upper-a">
+		<switch name="/systems/fcc/yaw/avail-upper-a">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-upper-a eq 1
+				/controls/fcc/yd-upper-a eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
@@ -363,10 +364,10 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/avail-upper-b">
+		<switch name="/systems/fcc/yaw/avail-upper-b">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-upper-b eq 1
+				/controls/fcc/yd-upper-b eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
@@ -377,10 +378,10 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/avail-lower-a">
+		<switch name="/systems/fcc/yaw/avail-lower-a">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-lower-a eq 1
+				/controls/fcc/yd-lower-a eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
@@ -391,10 +392,10 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/avail-lower-b">
+		<switch name="/systems/fcc/yaw/avail-lower-b">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/yd-lower-b eq 1
+				/controls/fcc/yd-lower-b eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
@@ -405,46 +406,46 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/active">
+		<switch name="/systems/fcc/yaw/active">
 			<default value="0"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
 				/position/gear-agl-ft lt 50
 			</test>
 			<test logic="OR" value="1">
-				fcc/yaw/avail-upper-a eq 1
-				fcc/yaw/avail-upper-b eq 1
-				fcc/yaw/avail-lower-a eq 1
-				fcc/yaw/avail-lower-b eq 1
+				/systems/fcc/yaw/avail-upper-a eq 1
+				/systems/fcc/yaw/avail-upper-b eq 1
+				/systems/fcc/yaw/avail-lower-a eq 1
+				/systems/fcc/yaw/avail-lower-b eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/upper-active">
+		<switch name="/systems/fcc/yaw/upper-active">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/yaw/avail-upper-a eq 1
-				fcc/yaw/avail-upper-b eq 1
+				/systems/fcc/yaw/avail-upper-a eq 1
+				/systems/fcc/yaw/avail-upper-b eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/lower-active">
+		<switch name="/systems/fcc/yaw/lower-active">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				fcc/yaw/avail-lower-a eq 1
-				fcc/yaw/avail-lower-b eq 1
+				/systems/fcc/yaw/avail-lower-a eq 1
+				/systems/fcc/yaw/avail-lower-b eq 1
 			</test>
 		</switch>
 		
-		<summer name="fcc/yaw/channels-active">
-			<input>fcc/yaw/upper-active</input>
-			<input>fcc/yaw/lower-active</input>
+		<summer name="/systems/fcc/yaw/channels-active">
+			<input>/systems/fcc/yaw/upper-active</input>
+			<input>/systems/fcc/yaw/lower-active</input>
 		</summer>
 	
 	</channel>
 	
 	<channel name="RCWS Logic">
 		
-		<switch name="fcc/rcws/sys-1-active">
+		<switch name="/systems/fcc/rcws/sys-1-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -456,15 +457,15 @@
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				fcc/fcc1-power eq 1
+				/systems/fcc/fcc1-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
-				fcc/yaw/channels-active gt 0
+				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws-equipped eq 1
 				/position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/sys-2-active">
+		<switch name="/systems/fcc/rcws/sys-2-active">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills RCWS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -476,47 +477,47 @@
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				fcc/fcc2-power eq 1
+				/systems/fcc/fcc2-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
-				fcc/yaw/channels-active gt 0
+				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws-equipped eq 1
 				/position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
-		<summer name="fcc/rcws/channels-active">
-			<input>fcc/rcws/sys-1-active</input>
-			<input>fcc/rcws/sys-2-active</input>
+		<summer name="/systems/fcc/rcws/channels-active">
+			<input>/systems/fcc/rcws/sys-1-active</input>
+			<input>/systems/fcc/rcws/sys-2-active</input>
 		</summer>
 		
-		<switch name="fcc/rcws/in-detent">
-			<default value="fcc/rcws/in-detent"/>
+		<switch name="/systems/fcc/rcws/in-detent">
+			<default value="/systems/fcc/rcws/in-detent"/>
 			<test logic="AND" value="1">
 				/controls/flight/aileron lt 0.02
 				/controls/flight/aileron gt -0.02
-				fcc/rcws/input lt 0.02
-				fcc/rcws/input gt -0.02
+				/systems/fcc/rcws/input lt 0.02
+				/systems/fcc/rcws/input gt -0.02
 			</test>
 			<test logic="OR" value="0">
 				/controls/flight/aileron gt 0.045
 				/controls/flight/aileron lt -0.045
-				fcc/rcws/input gt 0.045
-				fcc/rcws/input lt -0.045
+				/systems/fcc/rcws/input gt 0.045
+				/systems/fcc/rcws/input lt -0.045
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/active-no-wow">
+		<switch name="/systems/fcc/rcws/active-no-wow">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/rcws/channels-active gt 0
-				fcc/afs/enabled eq 0
+				/systems/fcc/rcws/channels-active gt 0
+				/systems/fcc/afs/enabled eq 0
 			</test>
 		</switch>
 		
-		<switch name="fcc/rcws/active">
+		<switch name="/systems/fcc/rcws/active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/rcws/active-no-wow eq 1
+				/systems/fcc/rcws/active-no-wow eq 1
 				position/wow eq 0
 			</test>
 		</switch>
@@ -525,7 +526,7 @@
 	
 	<channel name="Gains">
 		
-		<fcs_function name="fcc/rcws/p-gain">
+		<fcs_function name="/systems/fcc/rcws/p-gain">
 			<function>
 				<product>
 					<table>
@@ -535,13 +536,13 @@
 							360  -7
 						</tableData>
 					</table>
-					<!--property>fcc/rcws/p-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/rcws/active</property>
+					<!--property>/systems/fcc/rcws/p-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/rcws/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/rcws/i-gain">
+		<fcs_function name="/systems/fcc/rcws/i-gain">
 			<function>
 				<product>
 					<table>
@@ -551,13 +552,13 @@
 							360 -14
 						</tableData>
 					</table>
-					<!--property>fcc/rcws/i-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/rcws/active</property>
+					<!--property>/systems/fcc/rcws/i-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/rcws/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/rcws/d-gain">
+		<fcs_function name="/systems/fcc/rcws/d-gain">
 			<function>
 				<product>
 					<table>
@@ -567,13 +568,13 @@
 							360 -0.7
 						</tableData>
 					</table>
-					<!--property>fcc/rcws/d-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/rcws/active</property>
+					<!--property>/systems/fcc/rcws/d-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/rcws/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/pah/p-gain">
+		<fcs_function name="/systems/fcc/lsas/pah/p-gain">
 			<function>
 				<product>
 					<table>
@@ -583,13 +584,13 @@
 							360  12
 						</tableData>
 					</table>
-					<!--property>fcc/lsas/pah/p-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/lsas/pah/active</property>
+					<!--property>/systems/fcc/lsas/pah/p-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/lsas/pah/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/pah/i-gain">
+		<fcs_function name="/systems/fcc/lsas/pah/i-gain">
 			<function>
 				<product>
 					<table>
@@ -599,13 +600,13 @@
 							360   7
 						</tableData>
 					</table>
-					<!--property>fcc/lsas/pah/i-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/lsas/pah/active</property>
+					<!--property>/systems/fcc/lsas/pah/i-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/lsas/pah/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/pah/d-gain">
+		<fcs_function name="/systems/fcc/lsas/pah/d-gain">
 			<function>
 				<product>
 					<table>
@@ -615,13 +616,13 @@
 							360  1.5
 						</tableData>
 					</table>
-					<!--property>fcc/lsas/pah/d-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/lsas/pah/active</property>
+					<!--property>/systems/fcc/lsas/pah/d-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/lsas/pah/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/prd/p-gain">
+		<fcs_function name="/systems/fcc/lsas/prd/p-gain">
 			<function>
 				<product>
 					<table>
@@ -631,7 +632,7 @@
 							360  6
 						</tableData>
 					</table>
-					<!--property>fcc/lsas/prd/p-gain-tune</property--> <!-- For tuning -->
+					<!--property>/systems/fcc/lsas/prd/p-gain-tune</property--> <!-- For tuning -->
 					<table>
 						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 						<tableData>
@@ -639,12 +640,12 @@
 							20000  1.0
 						</tableData>
 					</table>
-					<property>fcc/lsas/prd/active</property>
+					<property>/systems/fcc/lsas/prd/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/yaw/yd-p-gain">
+		<fcs_function name="/systems/fcc/yaw/yd-p-gain">
 			<function>
 				<product>
 					<table>
@@ -654,13 +655,13 @@
 							360 -1.0
 						</tableData>
 					</table>
-					<!--property>fcc/yaw/yd-p-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/yaw/active</property>
+					<!--property>/systems/fcc/yaw/yd-p-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/yaw/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/yaw/tc-p-gain">
+		<fcs_function name="/systems/fcc/yaw/tc-p-gain">
 			<function>
 				<product>
 					<table>
@@ -670,13 +671,13 @@
 							360  0.5
 						</tableData>
 					</table>
-					<!--property>fcc/yaw/tc-p-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/yaw/active</property>
+					<!--property>/systems/fcc/yaw/tc-p-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/yaw/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/yaw/tc-d-gain">
+		<fcs_function name="/systems/fcc/yaw/tc-d-gain">
 			<function>
 				<product>
 					<table>
@@ -686,8 +687,8 @@
 							360  1.0
 						</tableData>
 					</table>
-					<!--property>fcc/yaw/tc-d-gain-tune</property--> <!-- For tuning -->
-					<property>fcc/yaw/active</property>
+					<!--property>/systems/fcc/yaw/tc-d-gain-tune</property--> <!-- For tuning -->
+					<property>/systems/fcc/yaw/active</property>
 				</product>
 			</function>
 		</fcs_function>
@@ -696,22 +697,22 @@
 	
 	<channel name="FCC: Roll Axis and RCWS">
 		
-		<switch name="fcc/rcws/p-switched">
-			<default value="fcc/rcws/p-rad_sec"/>
+		<switch name="/systems/fcc/rcws/p-switched">
+			<default value="/systems/fcc/rcws/p-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
 		
-		<lead_lag_filter name="fcc/rcws/p-leadlag">
-			<input>fcc/rcws/p-switched</input>
+		<lead_lag_filter name="/systems/fcc/rcws/p-leadlag">
+			<input>/systems/fcc/rcws/p-switched</input>
 			<c1>1.05</c1>
 			<c2>1.0</c2>
 			<c3>0.97</c3>
 			<c4>1.0</c4>
 		</lead_lag_filter>
 		
-		<fcs_function name="fcc/rcws/input">
+		<fcs_function name="/systems/fcc/rcws/input">
 			<function>
 				<table>
 					<independentVar lookup="row">attitude/roll-rad</independentVar>
@@ -727,43 +728,55 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/rcws/input-switch">
-			<default value="fcc/rcws/input"/>
+		<switch name="/systems/fcc/rcws/input-switch">
+			<default value="/systems/fcc/rcws/input"/>
 			<test value="0">
-				fcc/rcws/in-detent eq 1
+				/systems/fcc/rcws/in-detent eq 1
 			</test>
 		</switch>
 		
-		<scheduled_gain name="fcc/rcws/input-gain">
-			<input>fcc/rcws/input-switch</input>
+		<scheduled_gain name="/systems/fcc/rcws/input-gain">
+			<input>/systems/fcc/rcws/input-switch</input>
 			<table>
 				<independentVar lookup="row">velocities/vc-kts</independentVar>
 				<tableData>
 					140  0.75
-					360  1.00
+					200  1.00
 				</tableData>
 			</table>
 		</scheduled_gain>
 		
-		<lag_filter name="fcc/rcws/input-demand">
-			<input>fcc/rcws/input-gain</input>
+		<lag_filter name="/systems/fcc/rcws/input-demand">
+			<input>/systems/fcc/rcws/input-gain</input>
 			<c1>3.5</c1>
 		</lag_filter>
 		
-		<pure_gain name="fcc/rcws/rate-demand">
-			<input>fcc/rcws/input-demand</input>
-			<gain>0.349066</gain>
-		</pure_gain>
+		<scheduled_gain name="/systems/fcc/rcws/rate-demand">
+			<input>/systems/fcc/rcws/input-demand</input>
+			<table> <!-- Prevent too lathargic roll control -->
+				<independentVar lookup="row">/systems/fcc/rcws/input-demand</independentVar>
+				<tableData>
+					-1.0  0.261799
+					-0.4  0.349066
+					 0.4  0.349066
+					 1.0  0.261799
+				</tableData>
+			</table>
+			<clipto> <!-- +/- 15 deg/sec -->
+				<min>-0.261799</min>
+				<max>0.261799</max>
+			</clipto>
+		</scheduled_gain>
 		
-		<summer name="fcc/rcws/rate-error">
-			<input>fcc/rcws/p-leadlag</input>
-			<input>-fcc/rcws/rate-demand</input>
+		<summer name="/systems/fcc/rcws/rate-error">
+			<input>/systems/fcc/rcws/p-leadlag</input>
+			<input>-/systems/fcc/rcws/rate-demand</input>
 		</summer>
 		
-		<scheduled_gain name="fcc/rcws/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
-			<input>fcc/rcws/p-gain</input>
+		<scheduled_gain name="/systems/fcc/rcws/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>/systems/fcc/rcws/p-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<independentVar lookup="row">/systems/fcc/aileron-out-enable</independentVar>
 				<tableData>
 					0  1.00
 					1  0.72
@@ -771,10 +784,10 @@
 			</table>
 		</scheduled_gain>
 		
-		<scheduled_gain name="fcc/rcws/i-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
-			<input>fcc/rcws/i-gain</input>
+		<scheduled_gain name="/systems/fcc/rcws/i-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>/systems/fcc/rcws/i-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<independentVar lookup="row">/systems/fcc/aileron-out-enable</independentVar>
 				<tableData>
 					0  1.00
 					1  0.72
@@ -782,10 +795,10 @@
 			</table>
 		</scheduled_gain>
 		
-		<scheduled_gain name="fcc/rcws/d-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
-			<input>fcc/rcws/d-gain</input>
+		<scheduled_gain name="/systems/fcc/rcws/d-gain-scheduled"> <!-- Schedule gain to compensate for inactive ailerons -->
+			<input>/systems/fcc/rcws/d-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/aileron-out-enable</independentVar>
+				<independentVar lookup="row">/systems/fcc/aileron-out-enable</independentVar>
 				<tableData>
 					0  1.00
 					1  0.72
@@ -793,41 +806,41 @@
 			</table>
 		</scheduled_gain>
 		
-		<switch name="fcc/rcws/trigger">
+		<switch name="/systems/fcc/rcws/trigger">
 			<default value="0"/>
 			<test value="-1">
-				fcc/rcws/active ne 1
+				/systems/fcc/rcws/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				fcc/rcws/pid le -0.999
-				fcc/rcws/pid ge 0.999
+				/systems/fcc/rcws/pid le -0.999
+				/systems/fcc/rcws/pid ge 0.999
 			</test>
 		</switch>
 		
-		<pid name="fcc/rcws/pid">
-			<input>fcc/rcws/rate-error</input>
-			<kp>fcc/rcws/p-gain-scheduled</kp>
-			<ki>fcc/rcws/i-gain-scheduled</ki>
-			<kd>fcc/rcws/d-gain-scheduled</kd>
-			<trigger>fcc/rcws/trigger</trigger>
+		<pid name="/systems/fcc/rcws/pid">
+			<input>/systems/fcc/rcws/rate-error</input>
+			<kp>/systems/fcc/rcws/p-gain-scheduled</kp>
+			<ki>/systems/fcc/rcws/i-gain-scheduled</ki>
+			<kd>/systems/fcc/rcws/d-gain-scheduled</kd>
+			<trigger>/systems/fcc/rcws/trigger</trigger>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</pid>
 		
-		<lag_filter name="fcc/rcws/output">
-			<input>fcc/rcws/pid</input>
+		<lag_filter name="/systems/fcc/rcws/output">
+			<input>/systems/fcc/rcws/pid</input>
 			<c1>10</c1>
 		</lag_filter>
 		
-		<switch name="fcc/roll-output">
+		<switch name="/systems/fcc/roll-output">
 			<default value="/controls/flight/aileron"/>
-			<test value="fcc/rcws/output">
-				fcc/rcws/active eq 1
+			<test value="/systems/fcc/rcws/output">
+				/systems/fcc/rcws/active eq 1
 			</test>
-			<test value="fcc/afs/roll-cmd">
-				fcc/afs/enabled eq 1
+			<test value="/systems/fcc/afs/roll-cmd">
+				/systems/fcc/afs/enabled eq 1
 			</test>
 		</switch>
 	
@@ -835,25 +848,25 @@
 	
 	<channel name="FCC: Pitch Axis and LSAS">
 		
-		<switch name="fcc/lsas/thetadot-switched">
-			<default value="fcc/lsas/thetadot-rad_sec"/>
+		<switch name="/systems/fcc/lsas/thetadot-switched">
+			<default value="/systems/fcc/lsas/thetadot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
 		
-		<lead_lag_filter name="fcc/lsas/pah/thetadot-leadlag">
-			<input>fcc/lsas/thetadot-switched</input>
+		<lead_lag_filter name="/systems/fcc/lsas/pah/thetadot-leadlag">
+			<input>/systems/fcc/lsas/thetadot-switched</input>
 			<c1>1.5</c1>
 			<c2>1.0</c2>
 			<c3>0.9</c3>
 			<c4>1.0</c4>
 		</lead_lag_filter>
 		
-		<scheduled_gain name="fcc/lsas/pah/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/lsas/pah/p-gain</input>
+		<scheduled_gain name="/systems/fcc/lsas/pah/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/lsas/pah/p-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/lsas/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/lsas/channels-active</independentVar>
 				<tableData>
 					0  1.000
 					1  4.000
@@ -864,10 +877,10 @@
 			</table>
 		</scheduled_gain>
 		
-		<scheduled_gain name="fcc/lsas/pah/i-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/lsas/pah/i-gain</input>
+		<scheduled_gain name="/systems/fcc/lsas/pah/i-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/lsas/pah/i-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/lsas/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/lsas/channels-active</independentVar>
 				<tableData>
 					0  1.000
 					1  4.000
@@ -878,10 +891,10 @@
 			</table>
 		</scheduled_gain>
 		
-		<scheduled_gain name="fcc/lsas/pah/d-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/lsas/pah/d-gain</input>
+		<scheduled_gain name="/systems/fcc/lsas/pah/d-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/lsas/pah/d-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/lsas/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/lsas/channels-active</independentVar>
 				<tableData>
 					0  1.000
 					1  4.000
@@ -892,35 +905,35 @@
 			</table>
 		</scheduled_gain>
 		
-		<switch name="fcc/lsas/pah/trigger">
+		<switch name="/systems/fcc/lsas/pah/trigger">
 			<default value="0"/>
 			<test value="-1">
-				fcc/lsas/pah/active ne 1
+				/systems/fcc/lsas/pah/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				fcc/lsas/pah/pid le -0.2263
-				fcc/lsas/pah/pid ge 0.2263
+				/systems/fcc/lsas/pah/pid le -0.2263
+				/systems/fcc/lsas/pah/pid ge 0.2263
 			</test>
 		</switch>
 		
-		<pid name="fcc/lsas/pah/pid">
-			<input>fcc/lsas/pah/thetadot-leadlag</input>
-			<kp>fcc/lsas/pah/p-gain-scheduled</kp>
-			<ki>fcc/lsas/pah/i-gain-scheduled</ki>
-			<kd>fcc/lsas/pah/d-gain-scheduled</kd>
-			<trigger>fcc/lsas/pah/trigger</trigger>
+		<pid name="/systems/fcc/lsas/pah/pid">
+			<input>/systems/fcc/lsas/pah/thetadot-leadlag</input>
+			<kp>/systems/fcc/lsas/pah/p-gain-scheduled</kp>
+			<ki>/systems/fcc/lsas/pah/i-gain-scheduled</ki>
+			<kd>/systems/fcc/lsas/pah/d-gain-scheduled</kd>
+			<trigger>/systems/fcc/lsas/pah/trigger</trigger>
 			<clipto>
 				<min>-0.2273</min>
 				<max>0.2273</max>
 			</clipto>
 		</pid>
 		
-		<lag_filter name="fcc/lsas/pah/output">
-			<input>fcc/lsas/pah/pid</input>
+		<lag_filter name="/systems/fcc/lsas/pah/output">
+			<input>/systems/fcc/lsas/pah/pid</input>
 			<c1>10</c1>
 		</lag_filter>
 		
-		<fcs_function name="fcc/lsas/pal/output">
+		<fcs_function name="/systems/fcc/lsas/pal/output">
 			<function>
 				<table>
 					<independentVar lookup="row">attitude/pitch-rad</independentVar>
@@ -934,22 +947,22 @@
 			</function>
 		</fcs_function>
 		
-		<washout_filter name="fcc/lsas/q-washout">
+		<washout_filter name="/systems/fcc/lsas/q-washout">
 			<input>velocities/q-rad_sec</input>
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="fcc/lsas/q-washout-s">
-			<default value="fcc/lsas/q-washout"/>
+		<switch name="/systems/fcc/lsas/q-washout-s">
+			<default value="/systems/fcc/lsas/q-washout"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
 		
-		<scheduled_gain name="fcc/lsas/prd/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/lsas/prd/p-gain</input>
+		<scheduled_gain name="/systems/fcc/lsas/prd/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/lsas/prd/p-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/lsas/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/lsas/channels-active</independentVar>
 				<tableData>
 					0  1.000
 					1  4.000
@@ -960,16 +973,16 @@
 			</table>
 		</scheduled_gain>
 		
-		<pure_gain name="fcc/lsas/prd/output">
-			<input>fcc/lsas/q-washout-s</input>
-			<gain>fcc/lsas/prd/p-gain-scheduled</gain>
+		<pure_gain name="/systems/fcc/lsas/prd/output">
+			<input>/systems/fcc/lsas/q-washout-s</input>
+			<gain>/systems/fcc/lsas/prd/p-gain-scheduled</gain>
 			<clipto>
 				<min>-0.2273</min>
 				<max>0.2273</max>
 			</clipto>
 		</pure_gain>
 		
-		<fcs_function name="fcc/lsas/pap/max-pitch">
+		<fcs_function name="/systems/fcc/lsas/pap/max-pitch">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/gear-agl-ft</independentVar>
@@ -981,39 +994,39 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="fcc/lsas/pap/max-error">
+		<summer name="/systems/fcc/lsas/pap/max-error">
 			<input>attitude/pitch-rad</input>
-			<input>-fcc/lsas/pap/max-pitch</input>
+			<input>-/systems/fcc/lsas/pap/max-pitch</input>
 		</summer>
 		
-		<fcs_function name="fcc/lsas/pap/output"> <!-- Limit upwards elevator -->
+		<fcs_function name="/systems/fcc/lsas/pap/output"> <!-- Limit upwards elevator -->
 			<function>
 				<product>
 					<table>
-						<independentVar lookup="row">fcc/lsas/pap/max-error</independentVar>
+						<independentVar lookup="row">/systems/fcc/lsas/pap/max-error</independentVar>
 						<tableData>
 							-0.0174533  0.0000
 							 0.0000000  0.2273
 						</tableData>
 					</table>
-					<property>fcc/lsas/pap/active</property>
+					<property>/systems/fcc/lsas/pap/active</property>
 				</product>
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/lsas/pnl/output">
+		<switch name="/systems/fcc/lsas/pnl/output">
 			<default value="0"/>
 			<test logic="AND" value="0.23256"> <!-- About 4 degrees -->
-				fcc/lsas/pnl/active eq 1
-				fcs/spoiler-left-feedback gt 10
-				fcs/spoiler-right-feedback gt 10
+				/systems/fcc/lsas/pnl/active eq 1
+				/systems/fcc/spoiler-left-feedback gt 10
+				/systems/fcc/spoiler-right-feedback gt 10
 			</test>
 			<test value="0.17442"> <!-- About 3 degrees -->
-				fcc/lsas/pnl/active eq 1
+				/systems/fcc/lsas/pnl/active eq 1
 			</test>
 		</switch>
 		
-		<pid name="fcc/lsas/spd-prot/vc-kts-rate">
+		<pid name="/systems/fcc/lsas/spd-prot/vc-kts-rate">
 			<descripton>Use D only to calculate rate of IAS</descripton>
 			<input>velocities/vc-kts</input>
 			<kp>0.0</kp>
@@ -1021,19 +1034,19 @@
 			<kd>1.0</kd>
 		</pid>
 		
-		<lag_filter name="fcc/lsas/spd-prot/vc-kts-rate-lag">
-			<input>fcc/lsas/spd-prot/vc-kts-rate</input>
+		<lag_filter name="/systems/fcc/lsas/spd-prot/vc-kts-rate-lag">
+			<input>/systems/fcc/lsas/spd-prot/vc-kts-rate</input>
 			<c1>2.0</c1>
 		</lag_filter>
 		
-		<fcs_function name="fcc/lsas/spd-prot/kts-error">
+		<fcs_function name="/systems/fcc/lsas/spd-prot/kts-error">
 			<function>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 					<sum>
-						<property>/fms/speeds/vmo-mmo</property>
+						<property>/systems/fms/speeds/vmo-mmo</property>
 						<table>
-							<independentVar lookup="row">fadec/throttle-compare-max</independentVar> <!-- afs-thrust.xml -->
+							<independentVar lookup="row">/systems/fadec/throttle-compare-max</independentVar> <!-- afs-thrust.xml -->
 							<tableData>
 								0  0
 								1  6
@@ -1044,10 +1057,10 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/spd-prot/rate-demand">
+		<fcs_function name="/systems/fcc/lsas/spd-prot/rate-demand">
 			<function>
 				<table>
-					<independentVar lookup="row">fcc/lsas/spd-prot/kts-error</independentVar>
+					<independentVar lookup="row">/systems/fcc/lsas/spd-prot/kts-error</independentVar>
 					<tableData>
 						 0 -1
 						20 -3
@@ -1056,17 +1069,17 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="fcc/lsas/spd-prot/error">
-			<input>fcc/lsas/spd-prot/vc-kts-rate-lag</input>
-			<input>-fcc/lsas/spd-prot/rate-demand</input>
+		<summer name="/systems/fcc/lsas/spd-prot/error">
+			<input>/systems/fcc/lsas/spd-prot/vc-kts-rate-lag</input>
+			<input>-/systems/fcc/lsas/spd-prot/rate-demand</input>
 		</summer>
 		
-		<fcs_function name="fcc/lsas/spd-prot/output">
+		<fcs_function name="/systems/fcc/lsas/spd-prot/output">
 			<function>
 				<product>
-					<property>fcc/lsas/spd-prot/active</property>
+					<property>/systems/fcc/lsas/spd-prot/active</property>
 					<table>
-						<independentVar lookup="row">fcc/lsas/spd-prot/error</independentVar>
+						<independentVar lookup="row">/systems/fcc/lsas/spd-prot/error</independentVar>
 						<tableData>
 							0  0.0000
 							1 -0.2273
@@ -1076,17 +1089,17 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="fcc/lsas/alpha-prot/error">
+		<summer name="/systems/fcc/lsas/alpha-prot/error">
 			<input>aero/alpha-deg-damped</input>
-			<input>-fcc/stall-warn-alpha-deg</input>
+			<input>-/systems/fcc/stall-warn-alpha-deg</input>
 		</summer>
 		
-		<fcs_function name="fcc/lsas/alpha-prot/output">
+		<fcs_function name="/systems/fcc/lsas/alpha-prot/output">
 			<function>
 				<product>
-					<property>fcc/lsas/alpha-prot/active</property>
+					<property>/systems/fcc/lsas/alpha-prot/active</property>
 					<table>
-						<independentVar lookup="row">fcc/lsas/alpha-prot/error</independentVar>
+						<independentVar lookup="row">/systems/fcc/lsas/alpha-prot/error</independentVar>
 						<tableData>
 							0.0  0.0000
 							1.5  0.2273
@@ -1096,21 +1109,21 @@
 			</function>
 		</fcs_function>
 		
-		<summer name="fcc/lsas/output-sum">
-			<input>fcc/lsas/pah/output</input> <!-- Pitch Attitude Hold -->
-			<input>fcc/lsas/pal/output</input> <!-- Pitch Attitude Limiting -->
-			<input>fcc/lsas/prd/output</input> <!-- Pitch Rate Damping -->
-			<input>fcc/lsas/pap/output</input> <!-- Pitch Attitude Protection -->
-			<input>fcc/lsas/pnl/output</input> <!-- Positive Nose Lowering -->
-			<input>fcc/lsas/spd-prot/output</input> <!-- Overspeed Protection -->
-			<input>fcc/lsas/alpha-prot/output</input> <!-- Stall Protection -->
+		<summer name="/systems/fcc/lsas/output-sum">
+			<input>/systems/fcc/lsas/pah/output</input> <!-- Pitch Attitude Hold -->
+			<input>/systems/fcc/lsas/pal/output</input> <!-- Pitch Attitude Limiting -->
+			<input>/systems/fcc/lsas/prd/output</input> <!-- Pitch Rate Damping -->
+			<input>/systems/fcc/lsas/pap/output</input> <!-- Pitch Attitude Protection -->
+			<input>/systems/fcc/lsas/pnl/output</input> <!-- Positive Nose Lowering -->
+			<input>/systems/fcc/lsas/spd-prot/output</input> <!-- Overspeed Protection -->
+			<input>/systems/fcc/lsas/alpha-prot/output</input> <!-- Stall Protection -->
 			<clipto> <!-- +/- 5 degrees -->
 				<min>-0.2273</min>
 				<max>0.2273</max>
 			</clipto>
 		</summer>
 		
-		<switch name="fcc/elevator-feel/power">
+		<switch name="/systems/fcc/elevator-feel/power">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/dc-1 ge 24
@@ -1121,31 +1134,36 @@
 			</test>
 		</switch>
 		
-		<switch name="fcc/elevator-feel/auto">
+		<switch name="/systems/fcc/elevator-feel/auto">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/fcc/switches/elevator-feel-man ne 1
-				fcc/elevator-feel/power eq 1
+				/controls/fcc/elevator-feel-man ne 1
+				/systems/fcc/elevator-feel/power eq 1
 				/systems/failures/fcc/elevator-feel ne 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/elevator-feel/switch"> <!-- Manual knob control is in libraries.xml -->
-			<default value="fcc/elevator-feel/speed"/>
-			<test value="velocities/vc-kts">
-				fcc/elevator-feel/auto eq 1
+		<lag_filter name="/systems/fcc/elevator-feel/kts-lag">
+			<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/fcc/elevator-feel/switch"> <!-- Manual knob control is in libraries.xml -->
+			<default value="/systems/fcc/elevator-feel/speed"/>
+			<test value="/systems/fcc/elevator-feel/kts-lag">
+				/systems/fcc/elevator-feel/auto eq 1
 			</test>
-			<output>fcc/elevator-feel/speed</output>
+			<output>/systems/fcc/elevator-feel/speed</output>
 			<clipto>
 				<min>120</min>
 				<max>300</max>
 			</clipto>
 		</switch>
 		
-		<fcs_function name="fcc/elevator-feel/gain">
+		<fcs_function name="/systems/fcc/elevator-feel/gain">
 			<function>
 				<table>
-					<independentVar lookup="row">fcc/elevator-feel/speed</independentVar>
+					<independentVar lookup="row">/systems/fcc/elevator-feel/speed</independentVar>
 					<tableData>
 						120  1.000
 						140  0.975
@@ -1156,102 +1174,102 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="fcc/elevator-feel/output">
+		<pure_gain name="/systems/fcc/elevator-feel/output">
 			<input>/controls/flight/elevator</input>
-			<gain>fcc/elevator-feel/gain</gain>
+			<gain>/systems/fcc/elevator-feel/gain</gain>
 		</pure_gain>
 		
-		<pure_gain name="fcc/elevator-feel/afs-output">
+		<pure_gain name="/systems/fcc/elevator-feel/afs-output">
 			<description>Schedule the AFS the same as yoke for when AFS is disconnected with yoke movement</description>
-			<input>fcc/afs/pitch-cmd</input>
-			<gain>fcc/elevator-feel/gain</gain>
+			<input>/systems/fcc/afs/pitch-cmd</input>
+			<gain>/systems/fcc/elevator-feel/gain</gain>
 		</pure_gain>
 		
-		<switch name="fcc/elevator-feel/output-no-pah">
-			<default value="fcc/elevator-feel/output"/>
+		<switch name="/systems/fcc/elevator-feel/output-no-pah">
+			<default value="/systems/fcc/elevator-feel/output"/>
 			<test value="0">
-				fcc/lsas/pah/active eq 1
+				/systems/fcc/lsas/pah/active eq 1
 			</test>
 		</switch>
 		
-		<summer name="fcc/lsas/elevator-output">
-			<input>fcc/elevator-feel/output-no-pah</input>
-			<input>fcc/lsas/output-sum</input>
+		<summer name="/systems/fcc/lsas/elevator-output">
+			<input>/systems/fcc/elevator-feel/output-no-pah</input>
+			<input>/systems/fcc/lsas/output-sum</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
 		
-		<switch name="fcc/elevator-o-l-output">
-			<default value="fcc/elevator-feel/output"/>
-			<test logic="AND" value="fcc/lsas/elevator-output">
-				fcc/lsas/left-out-active eq 1
-				fcc/afs/enabled ne 1
+		<switch name="/systems/fcc/elevator-o-l-output">
+			<default value="/systems/fcc/elevator-feel/output"/>
+			<test logic="AND" value="/systems/fcc/lsas/elevator-output">
+				/systems/fcc/lsas/left-out-active eq 1
+				/systems/fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/elevator-feel/afs-output">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
-		
-		<switch name="fcc/elevator-i-l-output">
-			<default value="fcc/elevator-feel/output"/>
-			<test logic="AND" value="fcc/lsas/elevator-output">
-				fcc/lsas/left-in-active eq 1
-				fcc/afs/enabled ne 1
-			</test>
-			<test value="fcc/elevator-feel/afs-output">
-				fcc/afs/enabled eq 1
+			<test value="/systems/fcc/elevator-feel/afs-output">
+				/systems/fcc/afs/enabled eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/elevator-i-r-output">
-			<default value="fcc/elevator-feel/output"/>
-			<test logic="AND" value="fcc/lsas/elevator-output">
-				fcc/lsas/right-in-active eq 1
-				fcc/afs/enabled ne 1
+		<switch name="/systems/fcc/elevator-i-l-output">
+			<default value="/systems/fcc/elevator-feel/output"/>
+			<test logic="AND" value="/systems/fcc/lsas/elevator-output">
+				/systems/fcc/lsas/left-in-active eq 1
+				/systems/fcc/afs/enabled ne 1
 			</test>
-			<test value="fcc/elevator-feel/afs-output">
-				fcc/afs/enabled eq 1
-			</test>
-		</switch>
-		
-		<switch name="fcc/elevator-o-r-output">
-			<default value="fcc/elevator-feel/output"/>
-			<test logic="AND" value="fcc/lsas/elevator-output">
-				fcc/lsas/right-out-active eq 1
-				fcc/afs/enabled ne 1
-			</test>
-			<test value="fcc/elevator-feel/afs-output">
-				fcc/afs/enabled eq 1
+			<test value="/systems/fcc/elevator-feel/afs-output">
+				/systems/fcc/afs/enabled eq 1
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/lsas/autotrim-inhibit-tie"> <!-- Resettable timer -->
+		<switch name="/systems/fcc/elevator-i-r-output">
+			<default value="/systems/fcc/elevator-feel/output"/>
+			<test logic="AND" value="/systems/fcc/lsas/elevator-output">
+				/systems/fcc/lsas/right-in-active eq 1
+				/systems/fcc/afs/enabled ne 1
+			</test>
+			<test value="/systems/fcc/elevator-feel/afs-output">
+				/systems/fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcc/elevator-o-r-output">
+			<default value="/systems/fcc/elevator-feel/output"/>
+			<test logic="AND" value="/systems/fcc/lsas/elevator-output">
+				/systems/fcc/lsas/right-out-active eq 1
+				/systems/fcc/afs/enabled ne 1
+			</test>
+			<test value="/systems/fcc/elevator-feel/afs-output">
+				/systems/fcc/afs/enabled eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/fcc/lsas/autotrim-inhibit-tie"> <!-- Resettable timer -->
 			<function>
 				<ifthen>
 					<gt>
-						<property>fcc/lsas/autotrim-inhibit</property>
+						<property>/systems/fcc/lsas/autotrim-inhibit</property>
 						<value>0</value>
 					</gt>
 					<difference>
-						<property>fcc/lsas/autotrim-inhibit</property>
+						<property>/systems/fcc/lsas/autotrim-inhibit</property>
 						<product>
 							<property>simulation/channel-dt</property>
 							<value>0.75</value>
 						</product>
 					</difference>
-					<property>fcc/lsas/autotrim-inhibit</property>
+					<property>/systems/fcc/lsas/autotrim-inhibit</property>
 				</ifthen>
 			</function>
-			<output>fcc/lsas/autotrim-inhibit</output>
+			<output>/systems/fcc/lsas/autotrim-inhibit</output>
 			<clipto>
 				<min>0</min>
 				<max>1</max>
 			</clipto>
 		</fcs_function>
 		
-		<fcs_function name="fcc/lsas/out-of-trim-threshold">
+		<fcs_function name="/systems/fcc/lsas/out-of-trim-threshold">
 			<function>
 				<table>
 					<independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-speed-kt</independentVar>
@@ -1269,53 +1287,53 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="fcc/lsas/out-of-trim">
-			<default value="fcc/lsas/out-of-trim"/>
+		<switch name="/systems/fcc/lsas/out-of-trim">
+			<default value="/systems/fcc/lsas/out-of-trim"/>
 			<test value="0">
-				fcc/lsas/pah/active eq 0
+				/systems/fcc/lsas/pah/active eq 0
 			</test>
 			<test logic="OR" value="1">
-				fcc/lsas/pah/output ge fcc/lsas/out-of-trim-threshold
-				fcc/lsas/pah/output le -fcc/lsas/out-of-trim-threshold
+				/systems/fcc/lsas/pah/output ge /systems/fcc/lsas/out-of-trim-threshold
+				/systems/fcc/lsas/pah/output le -/systems/fcc/lsas/out-of-trim-threshold
 			</test>
 			<test logic="AND" value="0">
-				fcc/lsas/pah/output lt 0.01
-				fcc/lsas/pah/output gt -0.01
+				/systems/fcc/lsas/pah/output lt 0.01
+				/systems/fcc/lsas/pah/output gt -0.01
 			</test>
 		</switch>
 		
-		<switch name="fcc/lsas/autotrim-switch">
+		<switch name="/systems/fcc/lsas/autotrim-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/lsas/autotrim-inhibit eq 0
-				fcc/lsas/pah/active eq 1
-				fcc/lsas/out-of-trim eq 1
-				fcc/lsas/pah/output gt 0.001
+				/systems/fcc/lsas/autotrim-inhibit eq 0
+				/systems/fcc/lsas/pah/active eq 1
+				/systems/fcc/lsas/out-of-trim eq 1
+				/systems/fcc/lsas/pah/output gt 0.001
 				/controls/flight/elevator-trim le 0.064516
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
 			</test>
 			<test logic="AND" value="2">
-				fcc/lsas/autotrim-inhibit eq 0
-				fcc/lsas/pah/active eq 1
-				fcc/lsas/out-of-trim eq 1
-				fcc/lsas/pah/output lt -0.001
+				/systems/fcc/lsas/autotrim-inhibit eq 0
+				/systems/fcc/lsas/pah/active eq 1
+				/systems/fcc/lsas/out-of-trim eq 1
+				/systems/fcc/lsas/pah/output lt -0.001
 				/controls/flight/elevator-trim ge -1.0
 				attitude/roll-rad ge -0.0890118
 				attitude/roll-rad le 0.0890118
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/lsas/autotrim-offset">
+		<fcs_function name="/systems/fcc/lsas/autotrim-offset">
 			<function>
 				<sum>
 					<ifthen>
 						<eq>
-							<property>fcc/lsas/autotrim-switch</property>
+							<property>/systems/fcc/lsas/autotrim-switch</property>
 							<value>1</value>
 						</eq>
 						<table>
-							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
+							<independentVar lookup="row">/systems/fcc/lsas/pah/output</independentVar>
 							<tableData>
 								0.0100  0.00002
 								0.2273  0.00010
@@ -1325,11 +1343,11 @@
 					</ifthen>
 					<ifthen>
 						<eq>
-							<property>fcc/lsas/autotrim-switch</property>
+							<property>/systems/fcc/lsas/autotrim-switch</property>
 							<value>2</value>
 						</eq>
 						<table>
-							<independentVar lookup="row">fcc/lsas/pah/output</independentVar>
+							<independentVar lookup="row">/systems/fcc/lsas/pah/output</independentVar>
 							<tableData>
 								-0.2273 -0.00010
 								-0.0100 -0.00002
@@ -1341,11 +1359,11 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="fcc/elevator-trim-output">
+		<fcs_function name="/systems/fcc/elevator-trim-output">
 			<function>
 				<sum>
 					<property>/controls/flight/elevator-trim</property>
-					<property>fcc/lsas/autotrim-offset</property>
+					<property>/systems/fcc/lsas/autotrim-offset</property>
 				</sum>
 			</function>
 			<output>/controls/flight/elevator-trim</output>
@@ -1359,19 +1377,22 @@
 	
 	<channel name="FCC: Yaw Axis and Yaw Damper">
 		
-		<switch name="fcc/yaw/autoland-switch">
+		<switch name="/systems/fcc/yaw/parallel-rudder-active">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				fcc/afs/enabled eq 1
-				/it-autoflight/output/lat eq 4
+				/systems/fcc/afs/enabled eq 1
+				<test logic="OR">
+					/it-autoflight/output/lat eq 4
+					/it-autoflight/output/lat eq 5
+				</test>
 			</test>
 		</switch>
 		
-		<fcs_function name="fcc/yaw/rudder-nul">
+		<fcs_function name="/systems/fcc/yaw/rudder-nul">
 			<function>
 				<table>
 					<independentVar lookup="row">/controls/flight/rudder</independentVar>
-					<independentVar lookup="column">fcc/yaw/autoland-switch</independentVar>
+					<independentVar lookup="column">/systems/fcc/yaw/parallel-rudder-active</independentVar>
 					<tableData>
 						       0  1
 						-1.00 -1  0
@@ -1383,22 +1404,22 @@
 			</function>
 		</fcs_function>
 		
-		<washout_filter name="fcc/yaw/r-washout">
+		<washout_filter name="/systems/fcc/yaw/r-washout">
 			<input>velocities/r-rad_sec</input>
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="fcc/yaw/r-switched">
-			<default value="fcc/yaw/r-washout"/>
+		<switch name="/systems/fcc/yaw/r-switched">
+			<default value="/systems/fcc/yaw/r-washout"/>
 			<test value="0">
-				fcc/yaw/active ne 1
+				/systems/fcc/yaw/active ne 1
 			</test>
 		</switch>
 		
-		<scheduled_gain name="fcc/yaw/yd-p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/yaw/yd-p-gain</input>
+		<scheduled_gain name="/systems/fcc/yaw/yd-p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/yaw/yd-p-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/yaw/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/yaw/channels-active</independentVar>
 				<tableData>
 					0  1
 					1  2
@@ -1407,31 +1428,31 @@
 			</table>
 		</scheduled_gain>
 		
-		<pure_gain name="fcc/yaw/yd-f">
-			<input>fcc/yaw/r-switched</input>
-			<gain>fcc/yaw/yd-p-gain-scheduled</gain>
+		<pure_gain name="/systems/fcc/yaw/yd-f">
+			<input>/systems/fcc/yaw/r-switched</input>
+			<gain>/systems/fcc/yaw/yd-p-gain-scheduled</gain>
 			<clipto>
 				<min>-0.5</min>
 				<max>0.5</max>
 			</clipto>
 		</pure_gain>
 		
-		<switch name="fcc/yaw/slip-skid-raw">
+		<switch name="/systems/fcc/yaw/slip-skid-raw">
 			<default value="aero/beta-rad"/>
 			<test value="0">
 				position/wow eq 1
 			</test>
 		</switch>
 		
-		<lag_filter name="fcc/yaw/slip-skid">
-			<input>fcc/yaw/slip-skid-raw</input>
+		<lag_filter name="/systems/fcc/yaw/slip-skid">
+			<input>/systems/fcc/yaw/slip-skid-raw</input>
 			<c1>2.5</c1>
 		</lag_filter>
 		
-		<scheduled_gain name="fcc/yaw/tc-p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/yaw/tc-p-gain</input>
+		<scheduled_gain name="/systems/fcc/yaw/tc-p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/yaw/tc-p-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/yaw/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/yaw/channels-active</independentVar>
 				<tableData>
 					0  1
 					1  2
@@ -1440,10 +1461,10 @@
 			</table>
 		</scheduled_gain>
 		
-		<scheduled_gain name="fcc/yaw/tc-d-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
-			<input>fcc/yaw/tc-d-gain</input>
+		<scheduled_gain name="/systems/fcc/yaw/tc-d-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
+			<input>/systems/fcc/yaw/tc-d-gain</input>
 			<table>
-				<independentVar lookup="row">fcc/yaw/channels-active</independentVar>
+				<independentVar lookup="row">/systems/fcc/yaw/channels-active</independentVar>
 				<tableData>
 					0  1
 					1  2
@@ -1452,403 +1473,242 @@
 			</table>
 		</scheduled_gain>
 		
-		<pid name="fcc/yaw/tc-pd">
-			<input>fcc/yaw/slip-skid</input>
-			<kp>fcc/yaw/tc-p-gain-scheduled</kp>
+		<pid name="/systems/fcc/yaw/tc-pd">
+			<input>/systems/fcc/yaw/slip-skid</input>
+			<kp>/systems/fcc/yaw/tc-p-gain-scheduled</kp>
 			<ki>0.0</ki>
-			<kd>fcc/yaw/tc-d-gain-scheduled</kd>
+			<kd>/systems/fcc/yaw/tc-d-gain-scheduled</kd>
 			<clipto>
 				<min>-0.2</min>
 				<max>0.2</max>
 			</clipto>
 		</pid>
 		
-		<switch name="fcc/yaw/tc-pd-s">
-			<default value="fcc/yaw/tc-pd"/>
+		<switch name="/systems/fcc/yaw/tc-pd-s">
+			<default value="/systems/fcc/yaw/tc-pd"/>
 			<test logic="OR" value="0">
-				fcc/yaw/active ne 1
-				fcc/yaw/autoland-switch eq 1
+				/systems/fcc/yaw/active ne 1
+				/systems/fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/afs-cmd">
+		<switch name="/systems/fcc/yaw/afs-cmd">
 			<default value="0"/>
-			<test value="fcc/afs/yaw-cmd">
-				fcc/yaw/autoland-switch eq 1
+			<test value="/systems/fcc/afs/yaw-cmd">
+				/systems/fcc/yaw/parallel-rudder-active eq 1
 			</test>
 		</switch>
 		
-		<summer name="fcc/yaw/output-sum">
-			<input>fcc/yaw/yd-f</input>
-			<input>fcc/yaw/tc-pd-s</input>
-			<input>fcc/yaw/afs-cmd</input>
+		<summer name="/systems/fcc/yaw/output-sum">
+			<input>/systems/fcc/yaw/yd-f</input>
+			<input>/systems/fcc/yaw/tc-pd-s</input>
+			<input>/systems/fcc/yaw/afs-cmd</input>
 		</summer>
 		
-		<summer name="fcc/yaw/output-and-rudder">
-			<input>fcc/yaw/rudder-nul</input>
-			<input>fcc/yaw/upper-output</input>
+		<summer name="/systems/fcc/yaw/output-and-rudder">
+			<input>/systems/fcc/yaw/rudder-nul</input>
+			<input>/systems/fcc/yaw/upper-output</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
 		
-		<switch name="fcc/yaw/upper-output">
-			<default value="fcc/yaw/afs-cmd"/> <!-- AFS keeps working even if YD is unavail -->
-			<test value="fcc/yaw/output-sum">
-				fcc/yaw/upper-active eq 1
+		<switch name="/systems/fcc/yaw/upper-output">
+			<default value="/systems/fcc/yaw/afs-cmd"/> <!-- AFS keeps working even if YD is unavail -->
+			<test value="/systems/fcc/yaw/output-sum">
+				/systems/fcc/yaw/upper-active eq 1
 			</test>
 		</switch>
 		
-		<switch name="fcc/yaw/lower-output">
-			<default value="fcc/yaw/afs-cmd"/> <!-- AFS keeps working even if YD is unavail -->
-			<test value="fcc/yaw/output-sum">
-				fcc/yaw/lower-active eq 1
+		<switch name="/systems/fcc/yaw/lower-output">
+			<default value="/systems/fcc/yaw/afs-cmd"/> <!-- AFS keeps working even if YD is unavail -->
+			<test value="/systems/fcc/yaw/output-sum">
+				/systems/fcc/yaw/lower-active eq 1
 			</test>
 		</switch>
 		
-		<summer name="fcc/rudder-upper-output">
-			<input>fcc/yaw/rudder-nul</input>
-			<input>fcc/yaw/upper-output</input>
+		<summer name="/systems/fcc/rudder-upper-output">
+			<input>/systems/fcc/yaw/rudder-nul</input>
+			<input>/systems/fcc/yaw/upper-output</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
 		
-		<summer name="fcc/rudder-lower-output">
-			<input>fcc/yaw/rudder-nul</input>
-			<input>fcc/yaw/lower-output</input>
+		<summer name="/systems/fcc/rudder-lower-output">
+			<input>/systems/fcc/yaw/rudder-nul</input>
+			<input>/systems/fcc/yaw/lower-output</input>
 			<clipto>
 				<min>-1.0</min>
 				<max>1.0</max>
 			</clipto>
 		</summer>
-	
-	</channel>
-	
-	<channel name="Flap Lever">
-		
-		<fcs_function name="/controls/flight/flaps-fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
-			<function>
-				<quotient>
-					<integer>
-						<sum>
-							<product>
-								<property>/controls/flight/flaps</property>
-								<value>10000</value>
-							</product>
-							<value>0.5</value> <!-- Make it round correctly -->
-						</sum>
-					</integer>
-					<value>10000</value>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<switch name="/controls/flight/flaps-input">
-			<default value="0"/> <!-- UP/RET -->
-			<test logic="AND" value="1"> <!-- UP/EXT -->
-				/controls/flight/flaps-fixed ge 0.20
-				/controls/flight/flaps-fixed lt 0.36
-			</test>
-			<test logic="AND" value="2"> <!-- 10-25/EXT -->
-				/controls/flight/flaps-fixed ge 0.36
-				/controls/flight/flaps-fixed lt 0.52
-			</test>
-			<test logic="AND" value="3"> <!-- 28/EXT -->
-				/controls/flight/flaps-fixed ge 0.52
-				/controls/flight/flaps-fixed lt 0.68
-			</test>
-			<test logic="AND" value="4"> <!-- 35/EXT -->
-				/controls/flight/flaps-fixed ge 0.68
-				/controls/flight/flaps-fixed lt 0.84
-			</test>
-			<test value="5"> <!-- 50/EXT -->
-				/controls/flight/flaps-fixed ge 0.84
-			</test>
-			<output>/fms/speeds/flaps-input-feedback</output>
-		</switch>
-		
-		<fcs_function name="/controls/flight/dial-a-flap-int">
-			<function>
-				<integer>
-					<sum>
-						<property>/controls/flight/dial-a-flap</property>
-						<value>0.5</value> <!-- Make the integer rounded correctly -->
-					</sum>
-				</integer>
-			</function>
-			<clipto>
-				<min>10</min>
-				<max>25</max>
-			</clipto>
-		</fcs_function>
-		
-		<switch name="/controls/flight/flaps-cmd">
-			<default value="0"/>
-			<test value="/controls/flight/dial-a-flap-int">
-				/controls/flight/flaps-input eq 2
-			</test>
-			<test value="28">
-				/controls/flight/flaps-input eq 3
-			</test>
-			<test value="35">
-				/controls/flight/flaps-input eq 4
-			</test>
-			<test value="50">
-				/controls/flight/flaps-input eq 5
-			</test>
-		</switch>
-		
-		<switch name="/controls/flight/slats-cmd">
-			<default value="0"/>
-			<test logic="AND" value="31">
-				/controls/flight/flaps-input ge 1
-				/controls/flight/slat-stow eq 0
-			</test>
-		</switch>
-		
-		<switch name="/controls/flight/auto-slat-cmd">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				aero/alpha-deg-damped ge fcc/stall-alpha-deg
-				position/wow eq 0
-				/controls/flight/flaps-input eq 0
-			</test>
-		</switch>
-		
-		<actuator name="/controls/flight/auto-slat-timer">
-			<input>/controls/flight/auto-slat-cmd</input>
-			<rate_limit sense="incr">1000</rate_limit> <!-- Instant -->
-			<rate_limit sense="decr">0.2</rate_limit> <!-- 5 seconds -->
-			<output>/controls/flight/auto-slat-timer-out</output>
-		</actuator>
-		
-		<switch name="/controls/flight/slats-cmd-limited">
-			<default value="/controls/flight/slats-cmd"/>
-			<test logic="AND" value="31"> <!-- Auto Slat Extend -->
-				/systems/electrical/bus/ac-3 ge 112
-				/instrumentation/airspeed-indicator/indicated-mach le 0.55
-				/controls/flight/auto-slat-timer gt 0
-				position/wow eq 0
-				/controls/flight/flaps-input eq 0
-			</test>
-			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
-				/controls/flight/flaps-input eq 1
-				/instrumentation/airspeed-indicator/indicated-speed-kt ge 280
-			</test>
-			<test logic="AND" value="0"> <!-- System prevents UP/EXT position -->
-				/controls/flight/flaps-input eq 1
-				/instrumentation/airspeed-indicator/indicated-mach ge 0.55
-			</test>
-		</switch>
-	
-	</channel>
-	
-	<channel name="FCC: Flaps/Slats">
-		
-		<switch name="fcc/flap/max-deg">
-			<default value="50"/>
-			<test logic="AND" value="22">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-20-25-max-kts
-				/controls/fcc/switches/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="25">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-28-max-kts
-				/controls/fcc/switches/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="28">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-35-max-kts
-				/controls/fcc/switches/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-			<test logic="AND" value="35">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /fms/speeds/flap-50-max-kts
-				/controls/fcc/switches/flap-limit eq 0
-				/systems/failures/fcc/flap-limit ne 1
-			</test>
-		</switch>
-		
-		<pure_gain name="fcc/flap/cmd-deg">
-			<input>/controls/flight/flaps-cmd</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>0</min>
-				<max>fcc/flap/max-deg</max>
-			</clipto>
-		</pure_gain>
-		
-		<pure_gain name="fcc/slat/cmd-deg">
-			<input>/controls/flight/slats-cmd-limited</input>
-			<gain>1.0</gain>
-		</pure_gain>
 	
 	</channel>
 	
 	<channel name="FCC: Autobrake">
 		
 		<!-- Logic -->
-		<switch name="/gear/abs/knob-input">
+		<switch name="/systems/abs/knob-input">
 			<default value="0"/>
-			<test value="/controls/gear/abs/knob">
+			<test value="/controls/abs/knob">
 				/systems/electrical/outputs/idk ge 24
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/armed-avail">
+		<switch name="/systems/abs/armed-avail">
 			<default value="0"/>
-			<test logic="AND" value="/gear/abs/armed">
-				/gear/abs/mode gt 0
+			<test logic="AND" value="/systems/abs/armed">
+				/systems/abs/mode gt 0
 				fcs/flap-pos-deg gt 28
 				/systems/iru[0]/aligned eq 1
 				/systems/iru[1]/aligned eq 1
 			</test>
-			<test logic="AND" value="/gear/abs/armed">
-				/gear/abs/mode lt 0
+			<test logic="AND" value="/systems/abs/armed">
+				/systems/abs/mode lt 0
 				/systems/iru[0]/aligned eq 1
 				/systems/iru[1]/aligned eq 1
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/active">
+		<switch name="/systems/abs/active">
 			<description>Flip flop for autobrake engage</description>
-			<default value="/gear/abs/active"/>
+			<default value="/systems/abs/active"/>
 			<test logic="OR" value="0"> <!-- Reset -->
-				/gear/abs/armed-avail ne 1
+				/systems/abs/armed-avail ne 1
 			</test>
 			<test logic="AND" value="1"> <!-- Set -->
-				/gear/abs/armed-avail eq 1
-				/gear/abs/mode ne 0
-				/gear/abs/spoilers-cmd-deg gt 0
+				/systems/abs/armed-avail eq 1
+				/systems/abs/mode ne 0
+				/systems/abs/spoilers-cmd-deg gt 0
 				position/wow eq 1
 				/instrumentation/airspeed-indicator/indicated-speed-kt ge 53
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/rto-input-kts"> <!-- Latching Switch -->
+		<switch name="/systems/abs/rto-input-kts"> <!-- Latching Switch -->
 			<default value="/instrumentation/airspeed-indicator/indicated-speed-kt"/>
-			<test logic="AND" value="/gear/abs/rto-input-kts">
-				/gear/abs/active eq 1
-				/gear/abs/mode eq -1
+			<test logic="AND" value="/systems/abs/rto-input-kts">
+				/systems/abs/active eq 1
+				/systems/abs/mode eq -1
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/disarm-brake">
+		<switch name="/systems/abs/disarm-brake">
 			<default value="0.4"/>
 			<test logic="OR" value="0.9">
-				/gear/abs/mode eq -1
-				/gear/abs/rto-input-kts gt 100
+				/systems/abs/mode eq -1
+				/systems/abs/rto-input-kts gt 100
 			</test>
 			<test value="0.9">
-				/gear/abs/mode eq 3
+				/systems/abs/mode eq 3
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/throttle-can-disarm"> <!-- That way it won't trigger if you don't happen to be perfectly idled at touchdown -->
-			<default value="/gear/abs/throttle-can-disarm"/>
+		<switch name="/systems/abs/throttle-can-disarm"> <!-- That way it won't trigger if you don't happen to be perfectly idled at touchdown -->
+			<default value="/systems/abs/throttle-can-disarm"/>
 			<test value="0">
-				/gear/abs/active ne 1
+				/systems/abs/active ne 1
 			</test>
 			<test logic="AND" value="1">
-				fadec/throttle-lever-feedback[0] lt 0.05
-				fadec/throttle-lever-feedback[2] lt 0.05
+				/systems/fadec/throttle-lever-feedback[0] lt 0.05
+				/systems/fadec/throttle-lever-feedback[2] lt 0.05
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/throttle-disarm">
+		<switch name="/systems/abs/throttle-disarm">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/gear/abs/throttle-can-disarm eq 1
-				fadec/throttle-lever-feedback[0] ge 0.05
+				/systems/abs/throttle-can-disarm eq 1
+				/systems/fadec/throttle-lever-feedback[0] ge 0.05
 			</test>
 			<test logic="AND" value="1">
-				/gear/abs/throttle-can-disarm eq 1
-				fadec/throttle-lever-feedback[2] ge 0.05
+				/systems/abs/throttle-can-disarm eq 1
+				/systems/fadec/throttle-lever-feedback[2] ge 0.05
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/to-flip-flop">
-			<default value="/gear/abs/to-flip-flop"/>
+		<switch name="/systems/abs/to-flip-flop">
+			<default value="/systems/abs/to-flip-flop"/>
 			<test value="0">
-				/gear/abs/mode ge 0
+				/systems/abs/mode ge 0
 			</test>
 			<test value="1">
 				position/wow ne 1
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/to-wow-disarm"> <!-- Disarms if you left T/O on throughout full flight -->
+		<switch name="/systems/abs/to-wow-disarm"> <!-- Disarms if you left T/O on throughout full flight -->
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/gear/abs/to-flip-flop eq 1
+				/systems/abs/to-flip-flop eq 1
 				position/wow eq 1
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/disarm">
+		<switch name="/systems/abs/disarm">
 			<default value="0"/>
 			<test value="0">
-				/gear/abs/active ne 1
+				/systems/abs/active ne 1
 			</test>
 			<test logic="OR" value="1">
-				/gear/abs/throttle-disarm eq 1
-				/controls/gear/brake-left gt /gear/abs/disarm-brake
-				/controls/gear/brake-right gt /gear/abs/disarm-brake
-				/gear/abs/to-wow-disarm eq 1
+				/systems/abs/throttle-disarm eq 1
+				/controls/gear/brake-left gt /systems/abs/disarm-brake
+				/controls/gear/brake-right gt /systems/abs/disarm-brake
+				/systems/abs/to-wow-disarm eq 1
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/active-rate">
+		<switch name="/systems/abs/active-rate">
 			<default value="1000"/> <!-- Instant -->
 			<test logic="OR" value="0.33333333333"> <!-- 3 Seconds -->
-				/gear/abs/mode eq 1
-				/gear/abs/mode eq 2
+				/systems/abs/mode eq 1
+				/systems/abs/mode eq 2
 			</test>
 			<test value="1"> <!-- 1 Second -->
-				/gear/abs/mode eq 3
+				/systems/abs/mode eq 3
 			</test>
 		</switch>
 		
-		<actuator name="/gear/abs/active-slow">
-			<input>/gear/abs/active</input>
-			<rate_limit sense="incr">/gear/abs/active-rate</rate_limit>
+		<actuator name="/systems/abs/active-slow">
+			<input>/systems/abs/active</input>
+			<rate_limit sense="incr">/systems/abs/active-rate</rate_limit>
 			<rate_limit sense="decr">1000</rate_limit> <!-- Instant -->
-			<output>/gear/abs/active-slow-out</output>
+			<output>/systems/abs/active-slow-out</output>
 		</actuator>
 		
-		<switch name="/gear/abs/active-final"> <!-- Spoilers going in will temporarily remove ABS, until they put back without disarming -->
+		<switch name="/systems/abs/active-final"> <!-- Spoilers going in will temporarily remove ABS, until they put back without disarming -->
 			<default value="0"/>
-			<test logic="OR" value="/gear/abs/active-slow">
-				/gear/abs/spoilers-cmd-deg gt 0
+			<test logic="OR" value="/systems/abs/active-slow">
+				/systems/abs/spoilers-cmd-deg gt 0
 			</test>
 		</switch>
 		
-		<switch name="/gear/abs/decel-rate-cmd">
+		<switch name="/systems/abs/decel-rate-cmd">
 			<default value="0"/>
 			<test value="-6.5"> <!-- MIN -->
-				/gear/abs/mode eq 1
+				/systems/abs/mode eq 1
 			</test>
 			<test value="-9.0"> <!-- MED -->
-				/gear/abs/mode eq 2
+				/systems/abs/mode eq 2
 			</test>
 			<test value="-50"> <!-- MAX -->
-				/gear/abs/mode eq 3
+				/systems/abs/mode eq 3
 			</test>
 			<test logic="AND" value="-6.5"> <!-- RTO MIN -->
-				/gear/abs/mode eq -1
-				/gear/abs/rto-input-kts le 100
+				/systems/abs/mode eq -1
+				/systems/abs/rto-input-kts le 100
 			</test>
 			<test logic="AND" value="-50"> <!-- RTO MAX -->
-				/gear/abs/mode eq -1
-				/gear/abs/rto-input-kts gt 100
+				/systems/abs/mode eq -1
+				/systems/abs/rto-input-kts gt 100
 			</test>
 		</switch>
 		
 		<!-- Controller -->
-		<pid name="/gear/abs/decel-rate-kts">
+		<pid name="/systems/abs/decel-rate-kts">
 			<descripton>Use D only to calculate rate of decel</descripton>
 			<input>/velocities/groundspeed-kt</input>
 			<kp>0.0</kp>
@@ -1856,48 +1716,48 @@
 			<kd>1.0</kd>
 		</pid>
 		
-		<lag_filter name="/gear/abs/decel-rate-kts-lag">
-			<input>/gear/abs/decel-rate-kts</input>
+		<lag_filter name="/systems/abs/decel-rate-kts-lag">
+			<input>/systems/abs/decel-rate-kts</input>
 			<c1>1.0</c1>
 		</lag_filter>
 		
-		<pure_gain name="/gear/abs/decel-rate-fps2">
-			<input>/gear/abs/decel-rate-kts-lag</input>
+		<pure_gain name="/systems/abs/decel-rate-fps2">
+			<input>/systems/abs/decel-rate-kts-lag</input>
 			<gain>1.687809857099737</gain> <!-- Knots to FPS squared -->
 		</pure_gain>
 		
-		<summer name="/gear/abs/decel-error">
-			<input>/gear/abs/decel-rate-fps2</input>
-			<input>-/gear/abs/decel-rate-cmd</input>
+		<summer name="/systems/abs/decel-error">
+			<input>/systems/abs/decel-rate-fps2</input>
+			<input>-/systems/abs/decel-rate-cmd</input>
 		</summer>
 		
-		<switch name="/gear/abs/brake-cmd-trigger">
+		<switch name="/systems/abs/brake-cmd-trigger">
 			<default value="0"/>
 			<test value="-1">
-				/gear/abs/active-final ne 1
+				/systems/abs/active-final ne 1
 			</test>
 			<test logic="OR" value="1">
-				/gear/abs/brake-cmd le 0.001
-				/gear/abs/brake-cmd ge 0.999
+				/systems/abs/brake-cmd le 0.001
+				/systems/abs/brake-cmd ge 0.999
 			</test>
 		</switch>
 		
-		<pid name="/gear/abs/brake-cmd">
-			<input>/gear/abs/decel-error</input>
+		<pid name="/systems/abs/brake-cmd">
+			<input>/systems/abs/decel-error</input>
 			<kp>0.45</kp>
 			<ki>0.25</ki>
 			<kd>0.0</kd>
-			<trigger>/gear/abs/brake-cmd-trigger</trigger>
+			<trigger>/systems/abs/brake-cmd-trigger</trigger>
 			<clipto>
 				<min>0.0</min>
 				<max>1.0</max>
 			</clipto>
 		</pid>
 		
-		<switch name="/gear/abs/brake-output">
+		<switch name="/systems/abs/brake-output">
 			<default value="0"/>
-			<test value="/gear/abs/brake-cmd">
-				/gear/abs/active-final eq 1
+			<test value="/systems/abs/brake-cmd">
+				/systems/abs/active-final eq 1
 			</test>
 		</switch>
 	

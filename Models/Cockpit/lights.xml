@@ -44,7 +44,7 @@
         <spot-cutoff>30</spot-cutoff>
         <range-m>2</range-m>
         <dim-factor>
-            <property>controls/lighting/overhead-flood-norm</property>
+            <property>systems/lighting/overhead-flood</property>
         </dim-factor>
     </light>
 
@@ -89,7 +89,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -139,7 +139,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -189,7 +189,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
 
@@ -240,7 +240,7 @@
         <spot-cutoff>80</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
 
@@ -291,7 +291,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -341,7 +341,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -391,7 +391,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
 
@@ -442,7 +442,7 @@
         <spot-cutoff>20</spot-cutoff>
         <range-m>4</range-m>
         <dim-factor>
-            <property>controls/lighting/main-flood-norm</property>
+            <property>systems/lighting/main-flood</property>
         </dim-factor>
     </light>
 
@@ -493,7 +493,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/fcp-flood-norm</property>
+            <property>systems/lighting/fcp-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -543,7 +543,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/fcp-flood-norm</property>
+            <property>systems/lighting/fcp-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -593,7 +593,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/fcp-flood-norm</property>
+            <property>systems/lighting/fcp-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -643,7 +643,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/fcp-flood-norm</property>
+            <property>systems/lighting/fcp-flood</property>
         </dim-factor>
     </light>
     <light>
@@ -693,7 +693,7 @@
         <spot-cutoff>50</spot-cutoff>
         <range-m>1</range-m>
         <dim-factor>
-            <property>controls/lighting/fcp-flood-norm</property>
+            <property>systems/lighting/fcp-flood</property>
         </dim-factor>
     </light>
 

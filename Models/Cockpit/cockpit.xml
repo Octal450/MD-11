@@ -29,6 +29,15 @@
 		<object-name>Windshield.inner</object-name>
 	</effect>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>dashboard.text</object-name>
+		<object-name>gearlever.glass</object-name>
+		<object-name>lightshade.left</object-name>
+		<object-name>lightshade.right</object-name>
+		<object-name>sidepanel.text</object-name>
+	</effect>
+	
 	<animation>
 		<type>shader</type>
 		<shader>chrome</shader>
@@ -51,7 +60,7 @@
 			<red>1.0</red>
 			<green>0.85</green>
 			<blue>0.6</blue>
-			<factor-prop>controls/lighting/main-integ-norm</factor-prop>
+			<factor-prop>systems/lighting/main-integ</factor-prop>
 		</emission>
 	</animation>
 	
@@ -59,7 +68,7 @@
 		<name>Cockpit Lights</name>
 		<path>Aircraft/MD-11/Models/Cockpit/lights.xml</path>
 	</model>
-
+	
 	<model>
 		<name>Overhead 1</name>
 		<path>Aircraft/MD-11/Models/Cockpit/overhead_1.xml</path>
@@ -70,7 +79,7 @@
 	
 	<model>
 		<name>Compass</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/compass/compass.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/Compass/compass.xml</path>
 		<offsets>
 			<x-m>0.095</x-m>
 			<y-m>-0.025</y-m>
@@ -87,7 +96,7 @@
 	
 	<model>
 		<name>FCP</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/FCP/FCP.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/FCP/FCP.xml</path>
 		<offsets>
 			<pitch-deg>-10</pitch-deg>
 		</offsets>
@@ -130,8 +139,8 @@
 	</model>
 	
 	<model>
-		<name>3. Audio selector</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/audioselector/audioselector.xml</path>
+		<name>Audio Selector 3</name>
+		<path>Aircraft/MD-11/Models/Instruments/Pedestal/audioselector.xml</path>
 		<offsets>
 			<pitch-deg>90</pitch-deg>
 			<heading-deg>-90</heading-deg>
@@ -143,7 +152,7 @@
 	
 	<model>
 		<name>PFD1</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD1.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/PFD/PFD1.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.55437</y-m>
@@ -154,7 +163,7 @@
 	
 	<model>
 		<name>ND1</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND1.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/ND/ND1.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.35225</y-m>
@@ -165,7 +174,7 @@
 	
 	<model>
 		<name>EAD</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/EAD/EAD.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/EAD/EAD.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>-0.15089</y-m>
@@ -176,7 +185,7 @@
 	
 	<model>
 		<name>SD</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/SD/SD.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/SD/SD.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.14961</y-m>
@@ -187,7 +196,7 @@
 	
 	<model>
 		<name>ND2</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/ND/ND2.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/ND/ND2.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.35172</y-m>
@@ -198,7 +207,7 @@
 	
 	<model>
 		<name>PFD2</name>
-		<path>Aircraft/MD-11/Models/Cockpit/Instruments/PFD/PFD2.xml</path>
+		<path>Aircraft/MD-11/Models/Instruments/PFD/PFD2.xml</path>
 		<offsets>
 			<x-m>-27.512</x-m>
 			<y-m>0.55309</y-m>
@@ -447,7 +456,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.ApPanel.apDisc();</script>
+				<script>cockpit.ApPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -541,7 +550,7 @@
 			</mod-up>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.ApPanel.apDisc();</script>
+				<script>cockpit.ApPanel.apDisc();</script>
 			</binding>
 		</action>
 	</animation>
@@ -774,14 +783,14 @@
 	<animation>
 		<type>select</type>
 		<object-name>CenterGearUp.up</object-name>
-		<object-name>lg.nose.green</object-name>
-		<object-name>lg.nose.red</object-name>
-		<object-name>lg.left.green</object-name>
-		<object-name>lg.left.red</object-name>
-		<object-name>lg.right.green</object-name>
-		<object-name>lg.right.red</object-name>
 		<object-name>lg.ctr.green</object-name>
 		<object-name>lg.ctr.red</object-name>
+		<object-name>lg.left.green</object-name>
+		<object-name>lg.left.red</object-name>
+		<object-name>lg.nose.green</object-name>
+		<object-name>lg.nose.red</object-name>
+		<object-name>lg.right.green</object-name>
+		<object-name>lg.right.red</object-name>
 		<object-name>master_warning_light_on</object-name>
 		<object-name>master_caution_light_on</object-name>
 		<condition>
@@ -841,7 +850,7 @@
 		<object-name>lg.nose.green</object-name>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[0]/status</property>
+				<property>systems/gear/unit[0]/status</property>
 				<value>2</value>
 			</equals>
 		</condition>
@@ -853,7 +862,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[0]/status</property>
+					<property>systems/gear/unit[0]/status</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -870,7 +879,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[1]/status</property>
+					<property>systems/gear/unit[1]/status</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -887,7 +896,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[1]/status</property>
+					<property>systems/gear/unit[1]/status</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -904,7 +913,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[2]/status</property>
+					<property>systems/gear/unit[2]/status</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -921,7 +930,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[2]/status</property>
+					<property>systems/gear/unit[2]/status</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -938,7 +947,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[3]/status</property>
+					<property>systems/gear/unit[3]/status</property>
 					<value>2</value>
 				</equals>
 				<equals>
@@ -955,7 +964,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>fdm/jsbsim/gear/unit[3]/status</property>
+					<property>systems/gear/unit[3]/status</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -972,7 +981,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>gear/abs/lights/disarm</property>
+					<property>systems/abs/lights/disarm</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -991,31 +1000,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>property-toggle</command>
 				<property>it-autoflight/input/fd1</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/fd1</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/fd1</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1038,8 +1029,11 @@
 		<type>translate</type>
 		<object-name>FD1</object-name>
 		<object-name>FD1.off</object-name>
-		<property>controls/cockpit/fd1</property>
-		<factor>-0.001</factor>
+		<property>it-autoflight/input/fd1</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x1-m>-27.5133</x1-m>
 			<y1-m>-0.79274</y1-m>
@@ -1058,31 +1052,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>property-toggle</command>
 				<property>it-autoflight/input/fd2</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/fd2</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/fd2</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1105,8 +1081,11 @@
 		<type>translate</type>
 		<object-name>FD2</object-name>
 		<object-name>FD2.off</object-name>
-		<property>controls/cockpit/fd2</property>
-		<factor>-0.001</factor>
+		<property>it-autoflight/input/fd2</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
 		<axis>
 			<x1-m>-27.5133</x1-m>
 			<y1-m>0.79274</y1-m>
@@ -1126,31 +1105,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/dc-bat</property>
-						<value>24</value>
-					</greater-than-equals>
-				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/du/irs-capt</property>
-			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/irs-capt</property>
-				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/irs-capt</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1175,7 +1136,7 @@
 		<object-name>IRS.capt</object-name>
 		<object-name>IRS.captaux</object-name>
 		<object-name>IRS.foaux</object-name>
-		<property>controls/cockpit/irs-capt</property>
+		<property>instrumentation/du/irs-capt</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x1-m>-27.5133</x1-m>
@@ -1206,21 +1167,9 @@
 				<property>instrumentation/du/irs-fo</property>
 			</binding>
 			<binding>
-				<command>property-assign</command>
-				<property>controls/cockpit/irs-fo</property>
-				<value>1</value>
-			</binding>
-			<binding>
 				<command>nasal</command>
 				<script>libraries.Sound.btn2();</script>
 			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>controls/cockpit/irs-fo</property>
-					<value>0</value>
-				</binding>
-			</mod-up>
 		</action>
 	</animation>
 	<animation>
@@ -1245,7 +1194,7 @@
 		<object-name>IRS.captaux2</object-name>
 		<object-name>IRS.fo</object-name>
 		<object-name>IRS.foaux2</object-name>
-		<property>controls/cockpit/irs-fo</property>
+		<property>instrumentation/du/irs-fo</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x1-m>-27.5133</x1-m>

@@ -1,6 +1,6 @@
 # McDonnell Douglas MD-11 DU Controller
 # Copyright (c) 2024 Josh Davidson (Octal450)
-# This file manages the DU Canvas hide/showing in an efficient and synchronized way
+# This controls the DU's in an efficient and synchronized way
 
 var DUController = {
 	BlinkSd: {
@@ -11,7 +11,8 @@ var DUController = {
 		secs: 180,
 		time: 0,
 	},
-	eadType: pts.Options.eng.getValue(),
+	eadType: "GE-Dials",
+	eng: pts.Options.eng.getValue(),
 	elapsedSec: 0,
 	errorActive: 0,
 	iesiLcdOn: props.globals.initNode("/instrumentation/iesi/lcd-on", 0, "BOOL"),
@@ -25,6 +26,7 @@ var DUController = {
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
+	singleCueFd: 0,
 	updateEad: 0,
 	updateIesi: 0,
 	updateMcdu1: 0,
@@ -53,9 +55,11 @@ var DUController = {
 		canvas_pfd.pfd2.page.hide();
 		me.showNd1.setBoolValue(0); # Temporary
 		me.showNd2.setBoolValue(0); # Temporary
-		canvas_ead.ge.page.hide();
-		canvas_ead.pw.page.hide();
-		canvas_sd.eng.page.hide();
+		canvas_ead.geDials.page.hide();
+		canvas_ead.geTapes.page.hide();
+		canvas_ead.pwDials.page.hide();
+		canvas_ead.pwTapes.page.hide();
+		me.showSdPage("NONE");
 		canvas_iesi.iesi.page.hide();
 		canvas_mcdu.mcdu1.page.hide();
 		canvas_mcdu.mcdu2.page.hide();
@@ -67,17 +71,28 @@ var DUController = {
 		canvas_pfd.pfd2Error.page.show();
 	},
 	loop: func() {
-		if (!me.errorActive) {
-			me.PwrSource.ac1 = systems.ELEC.Bus.ac1.getValue();
-			me.PwrSource.ac3 = systems.ELEC.Bus.ac3.getValue();
-			me.PwrSource.dcBat = systems.ELEC.Bus.dcBat.getValue();
-			me.PwrSource.lEmerAc = systems.ELEC.Bus.lEmerAc.getValue();
-			me.PwrSource.rEmerAc = systems.ELEC.Bus.rEmerAc.getValue();
-			
-			# Set up PW dial location
-			if (me.eadType == "PW") {
-				canvas_ead.pw.setDials();
+		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
+		
+		if (me.eng == "PW") {
+			if (pts.Systems.Acconfig.Options.engTapes.getBoolValue()) {
+				me.eadType = "PW-Tapes";
+			} else {
+				me.eadType = "PW-Dials";
 			}
+		} else {
+			if (pts.Systems.Acconfig.Options.engTapes.getBoolValue()) {
+				me.eadType = "GE-Tapes";
+			} else {
+				me.eadType = "GE-Dials";
+			}
+		}
+		
+		if (!me.errorActive) {
+			me.PwrSource.ac1 = systems.ELECTRICAL.Bus.ac1.getValue();
+			me.PwrSource.ac3 = systems.ELECTRICAL.Bus.ac3.getValue();
+			me.PwrSource.dcBat = systems.ELECTRICAL.Bus.dcBat.getValue();
+			me.PwrSource.lEmerAc = systems.ELECTRICAL.Bus.lEmerAc.getValue();
+			me.PwrSource.rEmerAc = systems.ELECTRICAL.Bus.rEmerAc.getValue();
 			
 			# L Emer AC
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
@@ -96,19 +111,40 @@ var DUController = {
 			if (me.PwrSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
-					if (me.eadType == "PW") {
-						canvas_ead.pw.update();
-						canvas_ead.pw.page.show();
+					if (me.eadType == "PW-Tapes") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.update();
+						canvas_ead.pwTapes.page.show();
+					} else if (me.eadType == "GE-Tapes") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.geTapes.update();
+						canvas_ead.geTapes.page.show();
+					} else if (me.eadType == "PW-Dials") {
+						canvas_ead.geDials.page.hide();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.pwDials.setDials();
+						canvas_ead.pwDials.update();
+						canvas_ead.pwDials.page.show();
 					} else {
-						canvas_ead.ge.update();
-						canvas_ead.ge.page.show();
+						canvas_ead.geTapes.page.hide();
+						canvas_ead.pwDials.page.hide();
+						canvas_ead.pwTapes.page.hide();
+						canvas_ead.geDials.update();
+						canvas_ead.geDials.page.show();
 					}
 				}
 			} else {
 				if (me.updateEad) {
 					me.updateEad = 0;
-					canvas_ead.ge.page.hide();
-					canvas_ead.pw.page.hide();
+					canvas_ead.geDials.page.hide();
+					canvas_ead.geTapes.page.hide();
+					canvas_ead.pwDials.page.hide();
+					canvas_ead.pwTapes.page.hide();
 				}
 			}
 			
@@ -281,52 +317,98 @@ var DUController = {
 			canvas_mcdu.mcdu3.page.hide();
 		}
 	},
-	setSdPage: func(p) {
+	setSdPage: func(page) {
 		me.blinkSd();
-		me.sdPage = p;
+		me.sdPage = page;
 	},
 	showSdPage: func(p) {
 		if (p == "CONFIG") {
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.config.update();
 			canvas_sd.config.page.show();
 		} else if (p == "CONSEQ") {
 			canvas_sd.config.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
 		} else if (p == "ENG") {
+			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.engDials.page.hide();
+				canvas_sd.hyd.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engTapes.update();
+				canvas_sd.engTapes.page.show();
+			} else {
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.engTapes.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.hyd.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engDials.update();
+				canvas_sd.engDials.page.show();
+			}
+		} else if (p == "HYD") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.update();
+			canvas_sd.hyd.page.show();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
-			canvas_sd.eng.update();
-			canvas_sd.eng.page.show();
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
 			canvas_sd.status.page.hide();
 		} else if (p == "STATUS") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
 		} else {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.eng.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
 		}
 	},
 };
+
+# Update PW Dial Positions
+setlistener("/systems/acconfig/options/n1-below-epr", func() {
+	if (DUController.eadType == "PW-Dials") {
+		canvas_ead.pwDials.setDials();
+	}
+}, 0, 0);
+
+# Update Dials vs Tapes
+setlistener("/systems/acconfig/options/eng-tapes", func() {
+	# This forces them to show the appropriate page
+	DUController.updateEad = 0;
+	DUController.updateSd = 0;
+}, 0, 0);
