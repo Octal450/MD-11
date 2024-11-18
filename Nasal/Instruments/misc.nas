@@ -2,12 +2,29 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var Baro = {
+	calc: 0,
 	adjust: func(d) {
 		if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
 			if (pts.Instrumentation.Altimeter.inhg.getBoolValue()) {
-				pts.Instrumentation.Altimeter.settingInhg.setValue(pts.Instrumentation.Altimeter.settingInhg.getValue() + (0.01 * d));
+				me.calc = pts.Instrumentation.Altimeter.settingInhg.getValue() + (0.01 * d);
+				
+				if (me.calc < 22) {
+					pts.Instrumentation.Altimeter.settingInhg.setValue(22);
+				} else if (me.calc > 32) {
+					pts.Instrumentation.Altimeter.settingInhg.setValue(32);
+				} else {
+					pts.Instrumentation.Altimeter.settingInhg.setValue(me.calc);
+				}
 			} else {
-				pts.Instrumentation.Altimeter.settingHpa.setValue(pts.Instrumentation.Altimeter.settingHpa.getValue() + d);
+				me.calc = pts.Instrumentation.Altimeter.settingHpa.getValue() + d;
+				
+				if (me.calc < 745) {
+					pts.Instrumentation.Altimeter.settingHpa.setValue(745);
+				} else if (me.calc > 1100) {
+					pts.Instrumentation.Altimeter.settingHpa.setValue(1100);
+				} else {
+					pts.Instrumentation.Altimeter.settingHpa.setValue(me.calc);
+				}
 			}
 		} else {
 			me.unStd();
