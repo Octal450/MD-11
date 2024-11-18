@@ -101,6 +101,14 @@ var RouteManager = {
 # Logic
 var EditFlightData = {
 	loop: func() {
+		# Status Sync
+		if (FlightData.airportTo == "") {
+			if (RouteManager.active.getBoolValue()) {
+				flightplan().cleanPlan();
+				gui.popupTip("You need to initialize the MCDU before a route can be activated");
+			}
+		}
+		
 		# Force 60K for FLEX
 		if (FlightData.flexActive) {
 			if (!systems.FADEC.Limit.pwDerate.getBoolValue()) {

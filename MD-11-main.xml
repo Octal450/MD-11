@@ -55,33 +55,65 @@
 					<enabled type="bool">false</enabled>
 				</menu>
 				<menu n="101">
-					<label>System</label>
+					<label>Aircraft</label>
 					<item>
-						<label>Aircraft Config Center</label>
+						<label>Configuration Center</label>
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>acconfig-main</dialog-name>
 						</binding>
 					</item>
 					<item>
-						<label>Aircraft Help</label>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>aircraft.livery.dialog.toggle();</script>
+						</binding>
+					</item>
+					<item>
+						<label>Help and Shortcuts</label>
 						<binding>
 							<command>nasal</command>
 							<script>gui.showHelpDialog("/sim/help");</script>
 						</binding>
 					</item>
-				</menu>
-				<menu n="102">
-					<label>FMS</label>
 					<item>
-						<label>Route Manager</label>
+						<label>Checklists</label>
 						<binding>
 							<command>dialog-show</command>
-							<dialog-name>route-manager</dialog-name>
+							<dialog-name>checklist</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>System Failures</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-failures</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Flight Control Monitor</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>acconfig-fctl</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>CG Applet</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>cg</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Pushback</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>autopush</dialog-name>
 						</binding>
 					</item>
 				</menu>
-				<menu n="103">
+				<menu n="102">
 					<label>2D Panels</label>
 					<item>
 						<label>DUs:</label>
@@ -173,45 +205,31 @@
 						</binding>
 					</item>
 				</menu>
-				<menu n="104">
-					<label>Utilities</label>
+				<menu n="103">
+					<label>Navigation</label>
 					<item>
-						<label>Select Livery</label>
+						<label>Route Manager</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>route-manager</dialog-name>
+						</binding>
+					</item>
+					<item>
+						<label>Previous Waypoint</label>
 						<binding>
 							<command>nasal</command>
-							<script>aircraft.livery.dialog.toggle();</script>
+							<script>setprop("/autopilot/route-manager/input", "@previous")</script>
 						</binding>
 					</item>
 					<item>
-						<label>Pushback</label>
+						<label>Next Waypoint</label>
 						<binding>
-							<command>dialog-show</command>
-							<dialog-name>autopush</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>System Failures</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>acconfig-failures</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>CG Applet</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>cg</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Flight Control Monitor</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>acconfig-fctl</dialog-name>
+							<command>nasal</command>
+							<script>setprop("/autopilot/route-manager/input", "@next")</script>
 						</binding>
 					</item>
 				</menu>
-				<menu n="105">
+				<menu n="104">
 					<label>Documentation</label>
 					<item>
 						<label>Autoflight and FCC</label>

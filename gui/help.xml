@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<title>McDonnell Douglas MD-11 Help</title>
+	<title>Help and Shortcuts</title>
 	
 	<key>
 		<name>1</name>
@@ -92,13 +92,13 @@
 
 2D versions of certain cockpit panels are included to make certain tasks easier. These can be opened from the "2D Panels" menu.
 
-Aircraft Config Center:
+Aircraft Configuration Center:
 Can be used to load panel states and set ground equipment, as well as configure simulation and aircraft options.
 
 Simulation:
 * IRS Aligns Instantly: Skips the ~10 minute alignment process of the IRS.
 * Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortcuts.
-* Open When FlightGear Starts: Opens the Aircraft Config Center automatically when FlightGear starts.
+* Open When FlightGear Starts: Opens the Aircraft Configuration Center automatically when FlightGear starts.
 * Separate Tiller Axis: Separates the tiller from the rudder and maps it to /controls/gear/steering.
 
 Aircraft:
