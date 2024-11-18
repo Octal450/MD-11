@@ -166,7 +166,7 @@
 						<enabled type="bool">false</enabled>
 					</item>
 					<item>
-						<label>WebPanel MCDU</label>
+						<label>Remote MCDU</label>
 						<binding>
 							<command>dialog-show</command>
 							<dialog-name>mcdu-web</dialog-name>
