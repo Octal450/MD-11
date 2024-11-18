@@ -77,7 +77,7 @@
 		
 		<button>
 			<halign>center</halign>
-			<legend>Launch WebPanel MCDU</legend>
+			<legend>Launch Remote MCDU</legend>
 			<visible>
 				<equals>
 					<property>/sim/http/running</property>
