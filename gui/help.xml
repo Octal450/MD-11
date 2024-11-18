@@ -97,7 +97,8 @@ Can be used to load panel states and set ground equipment, as well as configure 
 
 Simulation:
 * IRS Aligns Instantly: Skips the ~10 minute alignment process of the IRS.
-* Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortucts.
+* Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortcuts.
+* Open When FlightGear Starts: Opens the Aircraft Config Center automatically when FlightGear starts.
 * Separate Tiller Axis: Separates the tiller from the rudder and maps it to /controls/gear/steering.
 
 Aircraft:

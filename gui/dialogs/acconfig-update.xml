@@ -157,10 +157,10 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					if (getprop("/systems/acconfig/error-active") == 0) {
-						if (getprop("/systems/acconfig/options/welcome-skip") != 1) {
-							fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-welcome"}));
-						}
+					if (!acconfig.SYSTEM.Error.active.getBoolValue()) {
+						if (acconfig.OPTIONS.openOnLaunch.getBoolValue()) {
+							fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-main"}));
+ 						}
 					} else {
 						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
 					}

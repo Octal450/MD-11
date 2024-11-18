@@ -31,16 +31,6 @@
 			<halign>right</halign>
 			<pref-width>20</pref-width>
 			<pref-height>20</pref-height>
-			<legend>W</legend>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>acconfig-welcome</dialog-name>
-			</binding>
-		</button>
-		<button>
-			<halign>right</halign>
-			<pref-width>20</pref-width>
-			<pref-height>20</pref-height>
 			<legend>X</legend>
 			<key>Esc</key>
 			<binding>
@@ -359,6 +349,20 @@
 				<label>Keyboard Mode</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/keyboard-mode</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Open When FlightGear Starts</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/open-on-launch</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
