@@ -1076,8 +1076,8 @@ var ITAF = {
 			}
 		}
 		
-		if (abs(Internal.vs.getValue()) > 300 or t == 1) {
-			Output.vertTemp = Output.vert.getValue();
+		Output.vertTemp = Output.vert.getValue();
+		if (abs(Internal.vs.getValue()) > 300 or t == 1 or Output.vertTemp == 7) {
 			if (Output.vertTemp == 1) { # Just sync
 				me.syncVs();
 			} else if (Output.vertTemp == 5) { # Just sync
@@ -1537,17 +1537,17 @@ var ITAF = {
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
 		if (systems.FCC.nlgWowTimer20.getValue() < 1 and Output.vertTemp != 7 and Position.gearAglFt.getValue() < 2500) {
-			if (!Output.fd1.getBoolValue()) {
-				me.fd1Master(1);
-			}
-			if (!Output.fd2.getBoolValue()) {
-				me.fd2Master(1);
-			}
 			me.setLatMode(3, 1);
 			me.setVertMode(7, 1);
 			me.updateVertText("G/A CLB");
 			if (!Output.athr.getBoolValue()) {
 				me.athrMaster(1);
+			}
+			if (!Output.fd1.getBoolValue()) {
+				me.fd1Master(1);
+			}
+			if (!Output.fd2.getBoolValue()) {
+				me.fd2Master(1);
 			}
 			Internal.ktsMach.setBoolValue(0);
 			me.syncKtsGa();
