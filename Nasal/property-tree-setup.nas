@@ -45,7 +45,9 @@ var Controls = {
 		annunTest: props.globals.getNode("/controls/switches/annun-test"),
 		gpwsOvrd: props.globals.getNode("/controls/switches/gpws-ovrd"),
 		gpwsOvrdCover: props.globals.getNode("/controls/switches/gpws-ovrd-cover"),
-		minimums: props.globals.getNode("/controls/switches/minimums"),
+		minimumsBaro: props.globals.getNode("/controls/switches/minimums-baro"),
+		minimumsMode: props.globals.getNode("/controls/switches/minimums-mode"),
+		minimumsRa: props.globals.getNode("/controls/switches/minimums-ra"),
 		noSmokingSign: props.globals.getNode("/controls/switches/no-smoking-sign"),
 		seatbeltSign: props.globals.getNode("/controls/switches/seatbelt-sign"),
 	},
@@ -306,6 +308,11 @@ var Systems = {
 		blinkFast: props.globals.getNode("/systems/libraries/blink-fast"),
 		blinkMed: props.globals.getNode("/systems/libraries/blink-med"),
 		blinkMed2: props.globals.getNode("/systems/libraries/blink-med-2"),
+	},
+	Misc: {
+		minimums: props.globals.getNode("/systems/misc/minimums"),
+		minimumsMode: props.globals.getNode("/systems/misc/minimums-mode"),
+		minimumsRefAlt: props.globals.getNode("/systems/misc/minimums-ref-alt"),
 	},
 	Shake: {
 		shaking: props.globals.getNode("/systems/shake/shaking"),

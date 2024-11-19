@@ -39,7 +39,7 @@ var ELECTRICAL = {
 	Epcu: {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
 	},
-	Generic: {
+	Outputs: {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
 		fcp: props.globals.initNode("/systems/electrical/outputs/fcp", 0, "DOUBLE"),
 	},

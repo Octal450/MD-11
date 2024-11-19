@@ -87,6 +87,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/fcp/minimums-mode">
+			<input>/controls/switches/minimums-mode</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<actuator name="/controls/cockpit/gear-lever">
 			<input>/controls/gear/lever</input>
 			<rate_limit>4.5</rate_limit>

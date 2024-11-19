@@ -5,6 +5,64 @@
 
 <system name="MD-11: Misc"> <!-- Everything here is after all systems -->
 	
+	<channel name="Misc Logic Fast" execrate="2">
+		
+		<!-- Minimums Logic -->
+		<pure_gain name="/systems/misc/minimums-mode"> <!-- Synchronized DU updating -->
+			<input>/controls/switches/minimums-mode</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<switch name="/systems/misc/minimums">
+			<default value="/controls/switches/minimums-ra"/>
+			<test value="/controls/switches/minimums-baro">
+				/controls/switches/minimums-mode eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/misc/minimums-ref-alt">
+			<default value="/position/gear-agl-ft"/>
+			<test value="/instrumentation/altimeter/indicated-altitude-ft">
+				/controls/switches/minimums-mode eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/misc/minimums-ref-2-sec">
+			<default value="/position/gear-agl-ft-2-sec"/>
+			<test value="/instrumentation/altimeter/indicated-altitude-ft-2-sec">
+				/controls/switches/minimums-mode eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/misc/minimums-minus-50">
+			<function>
+				<difference>
+					<property>/systems/misc/minimums</property>
+					<value>50</value>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/misc/minimums-plus-50">
+			<function>
+				<sum>
+					<property>/systems/misc/minimums</property>
+					<value>50</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/misc/minimums-plus-100">
+			<function>
+				<sum>
+					<property>/systems/misc/minimums</property>
+					<value>100</value>
+				</sum>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Misc Logic" execrate="8">
 		
 		<switch name="/controls/switches/seatbelt-sign-status">

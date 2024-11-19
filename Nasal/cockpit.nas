@@ -17,7 +17,9 @@ var variousReset = func() {
 	pts.Controls.Switches.adgHandle.setValue(0);
 	pts.Controls.Switches.gpwsOvrd.setValue(0);
 	pts.Controls.Switches.gpwsOvrdCover.setBoolValue(0);
-	pts.Controls.Switches.minimums.setValue(200);
+	pts.Controls.Switches.minimumsMode.setBoolValue(0);
+	pts.Controls.Switches.minimumsBaro.setValue(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200);
+	pts.Controls.Switches.minimumsRa.setValue(200);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
 	pts.Instrumentation.Du.duDimmer[0].setValue(1);
@@ -36,6 +38,7 @@ var variousReset = func() {
 	systems.DUController.sdPage = "ENG";
 }
 
+# FCP AFS
 var ApPanel = {
 	altTemp: 0,
 	fpaTemp: 0,
@@ -45,17 +48,17 @@ var ApPanel = {
 	vertTemp: 0,
 	vsTemp: 0,
 	autoflight: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.ITAF.autoflight();
 		}
 	},
 	fd1: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.ITAF.fd1Master(!afs.Output.fd1.getBoolValue());
 		}
 	},
 	fd2: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.ITAF.fd2Master(!afs.Output.fd2.getBoolValue());
 		}
 	},
@@ -75,22 +78,22 @@ var ApPanel = {
 		}
 	},
 	ktsMach: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
 	spdPush: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.ITAF.spdPush();
 		}
 	},
 	spdPull: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.ITAF.spdPull();
 		}
 	},
 	spdAdjust: func(d) {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			if (afs.Input.ktsMach.getBoolValue()) {
 				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
@@ -113,18 +116,18 @@ var ApPanel = {
 		}
 	},
 	hdgPush: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.lat.setValue(3);
 		}
 	},
 	hdgPull: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Internal.hdg.setValue(afs.Input.hdg.getValue());
 			afs.Input.lat.setValue(0);
 		}
 	},
 	hdgAdjust: func(d) {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Output.showHdg.setBoolValue(1);
 			me.hdgTemp = afs.Input.hdg.getValue() + d;
 			if (me.hdgTemp < -0.5) {
@@ -137,27 +140,27 @@ var ApPanel = {
 		}
 	},
 	hdgTrk: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.trk.setValue(!afs.Input.trk.getBoolValue());
 		}
 	},
 	nav: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.lat.setValue(1);
 		}
 	},
 	altPush: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.vert.setValue(0);
 		}
 	},
 	altPull: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.vert.setValue(4);
 		}
 	},
 	altAdjust: func(d) {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			me.altTemp = afs.Input.alt.getValue();
 			if (d == 1) {
 				if (me.altTemp >= 10000) {
@@ -187,7 +190,7 @@ var ApPanel = {
 		}
 	},
 	vsAdjust: func(d) {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
 				me.vsTemp = afs.Input.vs.getValue() + (d * 100);
@@ -218,23 +221,23 @@ var ApPanel = {
 		}
 	},
 	vsFpa: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.vsFpa.setBoolValue(!afs.Input.vsFpa.getBoolValue());
 		}
 	},
 	appr: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			afs.Input.radioSel.setValue(2);
 			afs.Input.vert.setValue(2);
 		}
 	},
 	prof: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			# Nothing yet
 		}
 	},
 	toga: func() {
-		if (systems.ELECTRICAL.Generic.fcp.getValue() >= 24) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			fms.FlightData.flexActive = 0; # Cancels FLEX if active
 			if (systems.FADEC.Limit.activeMode.getValue() == "T/O" and fms.Internal.phase == 1 and pts.Position.wow.getBoolValue()) {
 				systems.FADEC.Limit.pwDerate.setBoolValue(0);
@@ -244,6 +247,103 @@ var ApPanel = {
 	},
 };
 
+# FCP Baro
+var Baro = {
+	calc: 0,
+	adjust: func(d) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
+			if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
+				if (pts.Instrumentation.Altimeter.inhg.getBoolValue()) {
+					me.calc = pts.Instrumentation.Altimeter.settingInhg.getValue() + (0.01 * d);
+					
+					if (me.calc < 22) {
+						pts.Instrumentation.Altimeter.settingInhg.setValue(22);
+					} else if (me.calc > 32) {
+						pts.Instrumentation.Altimeter.settingInhg.setValue(32);
+					} else {
+						pts.Instrumentation.Altimeter.settingInhg.setValue(me.calc);
+					}
+				} else {
+					me.calc = pts.Instrumentation.Altimeter.settingHpa.getValue() + d;
+					
+					if (me.calc < 745) {
+						pts.Instrumentation.Altimeter.settingHpa.setValue(745);
+					} else if (me.calc > 1100) {
+						pts.Instrumentation.Altimeter.settingHpa.setValue(1100);
+					} else {
+						pts.Instrumentation.Altimeter.settingHpa.setValue(me.calc);
+					}
+				}
+			} else {
+				me.unStd();
+			}
+		}
+	},
+	std: func() {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
+			if (!pts.Instrumentation.Altimeter.std.getBoolValue()) {
+				pts.Instrumentation.Altimeter.oldQnh.setValue(pts.Instrumentation.Altimeter.settingInhg.getValue());
+				pts.Instrumentation.Altimeter.settingInhg.setValue(29.92);
+				pts.Instrumentation.Altimeter.std.setBoolValue(1);
+			}
+		}
+	},
+	unStd: func() {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
+			if (pts.Instrumentation.Altimeter.std.getBoolValue()) {
+				pts.Instrumentation.Altimeter.settingInhg.setValue(pts.Instrumentation.Altimeter.oldQnh.getValue());
+				pts.Instrumentation.Altimeter.std.setBoolValue(0);
+			}
+		}
+	},
+};
+
+# FCP Minimums
+var Mins = {
+	calc: 0,
+	inactive: 0,
+	adjust: func(d) {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
+			if (pts.Controls.Switches.minimumsMode.getBoolValue()) {
+				me.calc = pts.Controls.Switches.minimumsBaro.getValue() + d;
+				
+				if (me.calc < 0) {
+					pts.Controls.Switches.minimumsBaro.setValue(0);
+				} else if (me.calc > 50000) {
+					pts.Controls.Switches.minimumsBaro.setValue(50000);
+				} else {
+					pts.Controls.Switches.minimumsBaro.setValue(me.calc);
+				}
+			} else {
+				me.calc = pts.Controls.Switches.minimumsRa.getValue() + d;
+				
+				if (me.calc < 0) {
+					pts.Controls.Switches.minimumsRa.setValue(0);
+				} else if (me.calc > 2500) {
+					pts.Controls.Switches.minimumsRa.setValue(2500);
+				} else {
+					pts.Controls.Switches.minimumsRa.setValue(me.calc);
+				}
+			}
+		}
+	},
+	reset: func() {
+		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
+			if (canvas_pfd.Value.Ra.time != -10) {
+				canvas_pfd.Value.Ra.time = -10 # Stop blinking
+			}
+		}
+	},
+};
+
+setlistener("/systems/electrical/outputs/fcp", func() {
+	if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 0) { # Reset the values
+		pts.Controls.Switches.minimumsBaro.setValue(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200);
+		pts.Controls.Switches.minimumsRa.setValue(200);
+	}
+}, 0, 0);
+
+# Overhead GPWS
 var gpwsOvrd = 0;
 setlistener("/controls/switches/gpws-ovrd", func() {
 	gpwsOvrd = pts.Controls.Switches.gpwsOvrd.getValue();

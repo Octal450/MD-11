@@ -407,10 +407,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>2500</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>2400</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>2500</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>2500</value>
@@ -437,10 +449,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>1000</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>900</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>1000</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>1000</value>
@@ -467,14 +491,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>400</value>
-					</not-equals>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>500</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>400</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>500</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>500</value>
@@ -501,14 +533,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>300</value>
-					</not-equals>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>400</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>300</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>400</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>400</value>
@@ -535,14 +575,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>200</value>
-					</not-equals>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>300</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>200</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>300</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>300</value>
@@ -569,14 +617,22 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>100</value>
-					</not-equals>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>200</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<and>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>100</value>
+							</not-equals>
+							<not-equals>
+								<property>/systems/misc/minimums</property>
+								<value>200</value>
+							</not-equals>
+						</and>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>200</value>
@@ -603,10 +659,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>100</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>100</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>100</value>
@@ -633,10 +695,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>50</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>50</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>50</value>
@@ -663,10 +731,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>40</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>40</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>40</value>
@@ -693,10 +767,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>30</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>30</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>30</value>
@@ -723,10 +803,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>20</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>20</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>20</value>
@@ -753,10 +839,16 @@
 			<mode>once</mode>
 			<condition>
 				<and>
-					<not-equals>
-						<property>/controls/switches/minimums</property>
-						<value>10</value>
-					</not-equals>
+					<or>
+						<equals>
+							<property>/systems/misc/minimums-mode</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
+							<value>10</value>
+						</not-equals>
+					</or>
 					<less-than-equals>
 						<property>/position/gear-agl-ft</property>
 						<value>10</value>
@@ -784,16 +876,16 @@
 			<condition>
 				<and>
 					<less-than-equals>
-						<property>/position/gear-agl-ft</property>
+						<property>/systems/misc/minimums-ref-alt</property>
 						<property>/systems/misc/minimums-plus-100</property>
 					</less-than-equals>
 					<greater-than>
-						<property>/position/gear-agl-ft</property>
+						<property>/systems/misc/minimums-ref-alt</property>
 						<property>/systems/misc/minimums-plus-50</property>
 					</greater-than>
 					<less-than>
-						<property>/position/gear-agl-ft-2-sec</property>
-						<property>/position/gear-agl-ft</property>
+						<property>/systems/misc/minimums-ref-2-sec</property>
+						<property>/systems/misc/minimums-ref-alt</property>
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
@@ -810,16 +902,16 @@
 			<condition>
 				<and>
 					<less-than-equals>
-						<property>/position/gear-agl-ft</property>
-						<property>/controls/switches/minimums</property>
+						<property>/systems/misc/minimums-ref-alt</property>
+						<property>/systems/misc/minimums</property>
 					</less-than-equals>
 					<greater-than>
-						<property>/position/gear-agl-ft</property>
+						<property>/systems/misc/minimums-ref-alt</property>
 						<property>/systems/misc/minimums-minus-50</property>
 					</greater-than>
 					<less-than>
-						<property>/position/gear-agl-ft-2-sec</property>
-						<property>/position/gear-agl-ft</property>
+						<property>/systems/misc/minimums-ref-2-sec</property>
+						<property>/systems/misc/minimums-ref-alt</property>
 					</less-than>
 					<greater-than-equals>
 						<property>/systems/electrical/outputs/mk-viii</property>
