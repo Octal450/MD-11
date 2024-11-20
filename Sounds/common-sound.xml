@@ -666,6 +666,10 @@
 						</equals>
 						<not-equals>
 							<property>/systems/misc/minimums</property>
+							<value>0</value>
+						</not-equals>
+						<not-equals>
+							<property>/systems/misc/minimums</property>
 							<value>100</value>
 						</not-equals>
 					</or>
