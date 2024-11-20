@@ -1838,6 +1838,35 @@
 	</animation>
 	
 	<animation>
+		<type>knob</type>
+		<object-name>BaroSet2.L</object-name>
+		<drag-scale-px>15</drag-scale-px>
+		<property>controls/cockpit/fcp/qfe</property>
+		<factor>120</factor>
+		<offset-deg>-60</offset-deg>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.22571</y-m>
+			<z-m>11.7911</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter/qfe</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>BaroSet.R</object-name>
 		<action>
@@ -1941,6 +1970,35 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>BaroSet2.R</object-name>
+		<drag-scale-px>15</drag-scale-px>
+		<property>controls/cockpit/fcp/qfe</property>
+		<factor>120</factor>
+		<offset-deg>-60</offset-deg>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2248</y-m>
+			<z-m>11.7911</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter/qfe</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<animation>

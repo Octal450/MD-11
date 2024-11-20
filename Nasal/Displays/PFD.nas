@@ -262,8 +262,8 @@ var canvasBase = {
 		"FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off",
 		"FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust",
 		"FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text",
-		"ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn",
-		"Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker", "QFE_disab", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto",
+		"Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -1531,13 +1531,13 @@ var canvasBase = {
 			me["ALT_sel_dn_text_T"].hide();
 		}
 		
-		# ALT AGL
+		Value.Ra.agl = pts.Position.gearAglFt.getValue();
+		me["ALT_agl"].setTranslation(0, (math.clamp(Value.Ra.agl, -700, 700) / 100) * 50.9016);
+		
 		Value.Misc.minimums = pts.Systems.Misc.minimums.getValue();
 		Value.Misc.minimumsMode = pts.Systems.Misc.minimumsMode.getBoolValue();
 		Value.Misc.minimumsRefAlt = pts.Systems.Misc.minimumsRefAlt.getValue();
-		Value.Ra.agl = pts.Position.gearAglFt.getValue();
 		
-		me["ALT_agl"].setTranslation(0, (math.clamp(Value.Ra.agl, -700, 700) / 100) * 50.9016);
 		me["ALT_minimums"].setRotation(Value.Misc.minimumsMode * 180 * D2R);
 		me["ALT_minimums"].setTranslation(Value.Misc.minimumsMode * 16.451, (math.clamp(Value.Misc.minimumsRefAlt - Value.Misc.minimums, -700, 700) / 100) * 50.9016);
 		
@@ -1545,6 +1545,12 @@ var canvasBase = {
 			me["ALT_minimums"].setColorFill(0.9412, 0.7255, 0);
 		} else {
 			me["ALT_minimums"].setColorFill(1, 1, 1);
+		}
+		
+		if (pts.Instrumentation.Altimeter.qfe.getBoolValue()) {
+			me["QFE_disab"].show();
+		} else {
+			me["QFE_disab"].hide();
 		}
 		
 		# VS
