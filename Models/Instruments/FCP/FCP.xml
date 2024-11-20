@@ -1652,11 +1652,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/fcp</property>
-				</condition>
-				<command>property-toggle</command>
-				<property>instrumentation/altimeter/inhg</property>
+				<command>nasal</command>
+				<script>cockpit.Baro.inHg();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -1695,11 +1692,8 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition>
-					<property>systems/electrical/outputs/fcp</property>
-				</condition>
-				<command>property-toggle</command>
-				<property>instrumentation/altimeter/inhg</property>
+				<command>nasal</command>
+				<script>cockpit.Baro.inHg();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -2280,20 +2274,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/mfd/true-north</property>
@@ -2336,20 +2317,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/mfd/true-north</property>
@@ -2393,20 +2361,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/inputs/tfc</property>
@@ -2450,20 +2405,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/inputs/data</property>
@@ -2507,20 +2449,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/inputs/wpt</property>
@@ -2564,20 +2493,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/inputs/sta</property>
@@ -2621,20 +2537,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[0]/inputs/arpt</property>
@@ -2678,20 +2581,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(0, "MAP");</script>
@@ -2735,20 +2625,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(0, "VOR");</script>
@@ -2792,20 +2669,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(0, "PLAN");</script>
@@ -2849,20 +2713,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRange(0, 1);</script>
@@ -2906,20 +2757,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRange(0, -1);</script>
@@ -2963,20 +2801,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(0, "VOR1");</script>
@@ -3020,20 +2845,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(0, "VOR2");</script>
@@ -3077,20 +2889,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(0, "ADF1");</script>
@@ -3134,20 +2933,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(0, "ADF2");</script>
@@ -3192,20 +2978,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/inputs/tfc</property>
@@ -3249,20 +3022,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/inputs/data</property>
@@ -3306,20 +3066,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/inputs/wpt</property>
@@ -3363,20 +3110,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/inputs/sta</property>
@@ -3420,20 +3154,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/efis[1]/inputs/arpt</property>
@@ -3477,20 +3198,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(1, "MAP");</script>
@@ -3534,20 +3242,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(1, "VOR");</script>
@@ -3591,20 +3286,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setMode(1, "PLAN");</script>
@@ -3648,20 +3330,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRange(1, 1);</script>
@@ -3705,20 +3374,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRange(1, -1);</script>
@@ -3762,20 +3418,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(1, "VOR1");</script>
@@ -3819,20 +3462,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(1, "VOR2");</script>
@@ -3876,20 +3506,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(1, "ADF1");</script>
@@ -3933,20 +3550,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<or>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-1</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-2</property>
-							<value>24</value>
-						</greater-than-equals>
-						<greater-than-equals>
-							<property>systems/electrical/bus/dc-3</property>
-							<value>24</value>
-						</greater-than-equals>
-					</or>
+					<property>systems/electrical/outputs/fcp</property>
 				</condition>
 				<command>nasal</command>
 				<script>instruments.EFIS.setRadio(1, "ADF2");</script>
