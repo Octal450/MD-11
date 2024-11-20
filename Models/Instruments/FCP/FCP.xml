@@ -1653,7 +1653,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>cockpit.Baro.inHg();</script>
+				<script>cockpit.Baro.inHpa();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>
@@ -1693,7 +1693,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>cockpit.Baro.inHg();</script>
+				<script>cockpit.Baro.inHpa();</script>
 			</binding>
 			<binding>
 				<command>property-assign</command>

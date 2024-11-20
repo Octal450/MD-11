@@ -280,7 +280,7 @@ var Baro = {
 			}
 		}
 	},
-	inHg: func() {
+	inHpa: func() {
 		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			if (pts.Instrumentation.Altimeter.inhg.getBoolValue()) {
 				pts.Instrumentation.Altimeter.inhg.setBoolValue(0);
