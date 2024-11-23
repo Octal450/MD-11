@@ -238,6 +238,13 @@
 							<path>Aircraft/MD-11/Docs/Autoflight_and_FCC.pdf</path>
 						</binding>
 					</item>
+					<item>
+						<label>FMS and MCDU</label>
+						<binding>
+							<command>open-browser</command>
+							<path>Aircraft/MD-11/Docs/FMS_and_MCDU.pdf</path>
+						</binding>
+					</item>
 				</menu>
 			</default>
 		</menubar>

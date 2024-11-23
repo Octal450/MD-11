@@ -3,10 +3,8 @@
 
 var pfd1 = nil;
 var pfd1Display = nil;
-var pfd1Error = nil;
 var pfd2 = nil;
 var pfd2Display = nil;
-var pfd2Error = nil;
 
 var Value = {
 	Afs: {
@@ -269,10 +267,8 @@ var canvasBase = {
 		# Hide the pages by default
 		pfd1.page.hide();
 		pfd1.setup();
-		pfd1Error.page.hide();
 		pfd2.page.hide();
 		pfd2.setup();
-		pfd2Error.page.hide();
 	},
 	update: func() {
 		if (systems.DUController.updatePfd1) {
@@ -2392,44 +2388,6 @@ var canvasPfd2 = {
 	},
 };
 
-var canvasPfd1Error = {
-	init: func(canvasGroup, file) {
-		var font_mapper = func(family, weight) {
-			return "LiberationFonts/LiberationSans-Regular.ttf";
-		};
-		
-		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
-		me.page = canvasGroup;
-		
-		return me;
-	},
-	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPfd1Error]};
-		m.init(canvasGroup, file);
-		
-		return m;
-	},
-};
-
-var canvasPfd2Error = {
-	init: func(canvasGroup, file) {
-		var font_mapper = func(family, weight) {
-			return "LiberationFonts/LiberationSans-Regular.ttf";
-		};
-		
-		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
-		me.page = canvasGroup;
-		
-		return me;
-	},
-	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPfd2Error]};
-		m.init(canvasGroup, file);
-		
-		return m;
-	},
-};
-
 var setup = func() {
 	pfd1Display = canvas.new({
 		"name": "PFD1",
@@ -2448,14 +2406,10 @@ var setup = func() {
 	pfd2Display.addPlacement({"node": "pfd2.screen"});
 	
 	var pfd1Group = pfd1Display.createGroup();
-	var pfd1ErrorGroup = pfd1Display.createGroup();
 	var pfd2Group = pfd2Display.createGroup();
-	var pfd2ErrorGroup = pfd2Display.createGroup();
 	
 	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
-	pfd1Error = canvasPfd1Error.new(pfd1ErrorGroup, "Aircraft/MD-11/Nasal/Displays/res/Error.svg");
 	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
-	pfd2Error = canvasPfd2Error.new(pfd2ErrorGroup, "Aircraft/MD-11/Nasal/Displays/res/Error.svg");
 	
 	canvasBase.setup();
 	update.start();

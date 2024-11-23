@@ -65,10 +65,6 @@ var DUController = {
 		canvas_mcdu.mcdu2.page.hide();
 		canvas_mcdu.mcdu3.page.hide();
 		me.iesiLcdOn.setBoolValue(0);
-		
-		# Now show the error
-		canvas_pfd.pfd1Error.page.show();
-		canvas_pfd.pfd2Error.page.show();
 	},
 	loop: func() {
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
