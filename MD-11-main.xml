@@ -1204,6 +1204,14 @@
 					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
+			<key n="80">
+				<name>P</name>
+				<desc>Open CG dialog</desc>
+				<binding>
+					<command>dialog-show</command>
+					<dialog-name>cg</dialog-name>
+				</binding>
+			</key>
 			<key n="88">
 				<name>X</name>
 				<desc>Increase field of view</desc>
