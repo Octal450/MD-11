@@ -89,16 +89,20 @@ var MCDU = {
 		me.page.loop();
 	},
 	alphaNumKey: func(k) {
+		if (me.powerSource.getValue() < 112) {
+			return;
+		}
+		
 		if (k == "CLR") {
-			if (me.message.size() > 0) {
+			if (me.message.size() > 0) { # Clear message
 				me.clear = 0;
 				me.clearMessage(0);
-			} else if (size(me.scratchpad) > 0) {
+			} else if (size(me.scratchpad) > 0) { # Clear letter
 				me.clear = 0;
 				me.scratchpad = left(me.scratchpad, size(me.scratchpad) - 1);
-			} else if (me.clear) {
+			} else if (me.clear) { # Clear CLR character
 				me.clear = 0;
-			} else {
+			} else { # Set CLR character
 				me.clear = 1;
 			}
 		} else {
@@ -112,6 +116,10 @@ var MCDU = {
 		}
 	},
 	arrowKey: func(d) {
+		if (me.powerSource.getValue() < 112) {
+			return;
+		}
+		
 		if (!me.Blink.active) {
 			# Do cool up/down stuff here
 		} else {
@@ -126,17 +134,17 @@ var MCDU = {
 	clearMessage: func(a) {
 		me.clear = 0;
 		
-		if (a == 2) {
+		if (a == 2) { # Clear all and set scratchpad to stored value
 			me.message.clear();
 			if (size(me.scratchpadOld) > 0) {
 				me.scratchpad = me.scratchpadOld;
 			} else {
 				me.scratchpad = "";
 			}
-		} else if (a == 1) {
+		} else if (a == 1) { # Clear all and blank scratchpad
 			me.message.clear();
 			me.scratchpad = "";
-		} else {
+		} else { # Clear single message
 			if (me.message.size() > 1) {
 				me.message.pop(0);
 				me.scratchpad = me.message.vector[0];
@@ -150,11 +158,15 @@ var MCDU = {
 			}
 		}
 	},
-	nextPage: func() {
+	nextPageKey: func() {
+		if (me.powerSource.getValue() < 112) {
+			return;
+		}
+		
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			
-			if (me.page.nextPage == "handled") { # Page handles it
+			if (me.page.nextPage == "handled") { # Page handles it itself
 				me.page.nextPage(); 
 			} else if (me.page.nextPage != "none") { # Has next page
 				me.setPage(me.page.nextPage);
@@ -166,6 +178,10 @@ var MCDU = {
 		}
 	},
 	pageKey: func(p) {
+		if (me.powerSource.getValue() < 112) {
+			return;
+		}
+		
 		if (!me.Blink.active) {
 			if (p == "menu" or !fms.Internal.request[me.id]) {
 				me.setPage(p);
@@ -200,7 +216,7 @@ var MCDU = {
 		me.scratchpadOld = "";
 	},
 	scratchpadState: func() {
-		if (me.clear) { # CLR
+		if (me.clear) { # CLR character
 			return 0;
 		} else if (size(me.scratchpad) > 0 and me.message.size() == 0) { # Entry
 			return 2;
@@ -224,22 +240,6 @@ var MCDU = {
 		}
 	},
 	setPage: func(p) {
-		if (me.page.group == "fmc") {
-			if (me.type) { # Standby MCDU
-				me.blinkScreen();
-				me.setMessage("NOT ALLOWED");
-				return;
-			}
-			
-			me.lastFmcPage = me.page.name;
-		}
-		
-		me.blinkScreen();
-		
-		if (me.message.size() > 0) {
-			me.clearMessage(2);
-		}
-		
 		if (p == "perf") { # PERF page logic
 			if (fms.Internal.phase <= 2) {
 				p = "perfClb";
@@ -258,14 +258,31 @@ var MCDU = {
 			}
 		}
 		
-		if (contains(me.PageList, p)) {
-			me.page = me.PageList[p];
-		} else {
-			me.page = me.PageList.fallback;
+		if (!contains(me.PageList, p)) { # Fallback logic
+			p = "fallback";
 		}
 		
-		# Setup page
-		me.page.setup(); 
+		if (me.PageList[p].group == "fmc") { # Standby MCDU special logic
+			if (me.type) {
+				me.blinkScreen();
+				me.setMessage("NOT ALLOWED");
+				return;
+			}
+		}
+		
+		if (me.page.group == "fmc") { # Store last FMC group page
+			me.lastFmcPage = me.page.name;
+		}
+		
+		me.blinkScreen();
+		
+		if (me.message.size() > 0) { # Clear messages
+			me.clearMessage(2);
+		}
+		
+		me.page = me.PageList[p]; # Set page
+		
+		me.page.setup();
 		
 		# Update everything now to make sure it all transitions at once
 		me.page.loop(); 
@@ -277,6 +294,10 @@ var MCDU = {
 		}
 	},
 	softKey: func(k) {
+		if (me.powerSource.getValue() < 112) {
+			return;
+		}
+		
 		if (!me.Blink.active) {
 			me.blinkScreen();
 			me.page.softKey(k);
@@ -285,7 +306,7 @@ var MCDU = {
 		}
 	},
 	# String checking functions - if no test string is provided, they will check the scratchpad
-	stringContains: func(c, test = nil) {
+	stringContains: func(c, test = nil) { # Checks if the test contains the string provided
 		if (test == nil) {
 			test = me.scratchpad;
 		}
@@ -296,7 +317,7 @@ var MCDU = {
 			return 0;
 		}
 	},
-	stringDecimalLengthInRange: func(min, max, test = nil) {
+	stringDecimalLengthInRange: func(min, max, test = nil) { # Checks if the test is a decimal number with place length in the range provided
 		if (test == nil) {
 			test = me.scratchpad;
 		}
@@ -324,7 +345,7 @@ var MCDU = {
 			return 0;
 		}
 	},
-	stringIsInt: func(test = nil) {
+	stringIsInt: func(test = nil) { # Checks if the test is an integer number
 		if (test == nil) {
 			test = me.scratchpad;
 		}
@@ -339,7 +360,7 @@ var MCDU = {
 			return 0;
 		}
 	},
-	stringIsNumber: func(test = nil) {
+	stringIsNumber: func(test = nil) { # Checks if the test is a number, integer or decimal
 		if (test == nil) {
 			test = me.scratchpad;
 		}
@@ -350,7 +371,7 @@ var MCDU = {
 			return 0;
 		}
 	},
-	stringLengthInRange: func(min, max, test = nil) {
+	stringLengthInRange: func(min, max, test = nil) { # Checks if the test string length is in the range provided
 		if (test == nil) {
 			test = me.scratchpad;
 		}

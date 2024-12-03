@@ -54,12 +54,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l1");</script>
 				</binding>
@@ -70,12 +64,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l2");</script>
 				</binding>
@@ -86,12 +74,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l3");</script>
 				</binding>
@@ -102,12 +84,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l4");</script>
 				</binding>
@@ -118,12 +94,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l5");</script>
 				</binding>
@@ -134,12 +104,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("l6");</script>
 				</binding>
@@ -189,12 +153,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r1");</script>
 				</binding>
@@ -205,12 +163,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r2");</script>
 				</binding>
@@ -221,12 +173,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r3");</script>
 				</binding>
@@ -237,12 +183,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r4");</script>
 				</binding>
@@ -253,12 +193,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r5");</script>
 				</binding>
@@ -269,12 +203,6 @@
 				<pref-height>21</pref-height>
 				<pref-width>30</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].softKey("r6");</script>
 				</binding>
@@ -296,12 +224,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("dir");</script>
 			</binding>
@@ -312,12 +234,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("navRadio");</script>
 			</binding>
@@ -328,12 +244,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("perf");</script>
 			</binding>
@@ -344,12 +254,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("init");</script>
 			</binding>
@@ -360,12 +264,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("toAppr");</script>
 			</binding>
@@ -388,12 +286,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("fpln");</script>
 			</binding>
@@ -404,12 +296,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("prog");</script>
 			</binding>
@@ -420,12 +306,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("fix");</script>
 			</binding>
@@ -436,12 +316,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("secFpln");</script>
 			</binding>
@@ -452,12 +326,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("ref");</script>
 			</binding>
@@ -468,12 +336,6 @@
 			<pref-height>25</pref-height>
 			<pref-width>50</pref-width>
 			<binding>
-				<condition>
-					<greater-than-equals>
-						<property>systems/electrical/bus/ac-1</property>
-						<value>112</value>
-					</greater-than-equals>
-				</condition>
 				<command>nasal</command>
 				<script>mcdu.unit[2].pageKey("engOut");</script>
 			</binding>
@@ -498,12 +360,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>50</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].pageKey("menu");</script>
 					</binding>
@@ -516,12 +372,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>50</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].nextPage();</script>
 					</binding>
@@ -534,12 +384,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>50</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].arrowKey(1);</script>
 					</binding>
@@ -552,12 +396,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>50</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].arrowKey(-1);</script>
 					</binding>
@@ -574,12 +412,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("1");</script>
 					</binding>
@@ -592,12 +424,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("4");</script>
 					</binding>
@@ -610,12 +436,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("7");</script>
 					</binding>
@@ -628,12 +448,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("/");</script>
 					</binding>
@@ -646,12 +460,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("2");</script>
 					</binding>
@@ -664,12 +472,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("5");</script>
 					</binding>
@@ -682,12 +484,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("8");</script>
 					</binding>
@@ -700,12 +496,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("0");</script>
 					</binding>
@@ -718,12 +508,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("3");</script>
 					</binding>
@@ -736,12 +520,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("6");</script>
 					</binding>
@@ -754,12 +532,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey("9");</script>
 					</binding>
@@ -772,12 +544,6 @@
 					<pref-height>25</pref-height>
 					<pref-width>25</pref-width>
 					<binding>
-						<condition>
-							<greater-than-equals>
-								<property>systems/electrical/bus/ac-1</property>
-								<value>112</value>
-							</greater-than-equals>
-						</condition>
 						<command>nasal</command>
 						<script>mcdu.unit[2].alphaNumKey(".");</script>
 					</binding>
@@ -795,12 +561,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("A");</script>
 				</binding>
@@ -813,12 +573,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("F");</script>
 				</binding>
@@ -831,12 +585,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("K");</script>
 				</binding>
@@ -849,12 +597,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("P");</script>
 				</binding>
@@ -867,12 +609,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("U");</script>
 				</binding>
@@ -885,12 +621,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("Z");</script>
 				</binding>
@@ -903,12 +633,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("B");</script>
 				</binding>
@@ -921,12 +645,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("G");</script>
 				</binding>
@@ -939,12 +657,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("L");</script>
 				</binding>
@@ -957,12 +669,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("Q");</script>
 				</binding>
@@ -975,12 +681,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("V");</script>
 				</binding>
@@ -993,12 +693,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("-");</script>
 				</binding>
@@ -1011,12 +705,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("C");</script>
 				</binding>
@@ -1029,12 +717,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("H");</script>
 				</binding>
@@ -1047,12 +729,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("M");</script>
 				</binding>
@@ -1065,12 +741,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("R");</script>
 				</binding>
@@ -1083,12 +753,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("W");</script>
 				</binding>
@@ -1101,12 +765,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("+");</script>
 				</binding>
@@ -1119,12 +777,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("D");</script>
 				</binding>
@@ -1137,12 +789,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("I");</script>
 				</binding>
@@ -1155,12 +801,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("N");</script>
 				</binding>
@@ -1173,12 +813,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("S");</script>
 				</binding>
@@ -1191,12 +825,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("X");</script>
 				</binding>
@@ -1209,12 +837,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey(" ");</script>
 				</binding>
@@ -1227,12 +849,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("E");</script>
 				</binding>
@@ -1245,12 +861,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("J");</script>
 				</binding>
@@ -1263,12 +873,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("O");</script>
 				</binding>
@@ -1281,12 +885,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("T");</script>
 				</binding>
@@ -1299,12 +897,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("Y");</script>
 				</binding>
@@ -1317,12 +909,6 @@
 				<pref-height>25</pref-height>
 				<pref-width>25</pref-width>
 				<binding>
-					<condition>
-						<greater-than-equals>
-							<property>systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</greater-than-equals>
-					</condition>
 					<command>nasal</command>
 					<script>mcdu.unit[2].alphaNumKey("CLR");</script>
 				</binding>
