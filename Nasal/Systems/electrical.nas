@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 Electrical System
+# McDonnell Douglas MD-11 Electrical
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var ELECTRICAL = {

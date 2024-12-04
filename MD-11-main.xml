@@ -1928,11 +1928,20 @@
 			<file>Aircraft/MD-11/Nasal/acconfig.nas</file>
 		</acconfig>
 		<systems>
+			<file>Aircraft/MD-11/Nasal/Systems/apu.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/brakes.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/electrical.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/engines.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/fadec.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/fcc.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/fcs.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/fuel.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/gear.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/hydraulics.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/ignition.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/irs.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/pneumatics.nas</file>
-			<file>Aircraft/MD-11/Nasal/Systems/misc.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/warnings.nas</file>
 			<file>Aircraft/MD-11/Nasal/Displays/DU-controller.nas</file>
 		</systems>
 		<afs>

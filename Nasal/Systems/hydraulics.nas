@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 Hydraulic System
+# McDonnell Douglas MD-11 Hydraulics
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var HYDRAULICS = {
