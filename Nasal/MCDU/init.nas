@@ -556,6 +556,12 @@ var Init2 = {
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
+			} else if (me.scratchpadState == 1) {
+				if (fms.EditFlightData.insertBlockFuel(fms.FlightData.ufobLbs)) {
+					mcdu.unit[me.id].scratchpadClear();
+				} else {
+					mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
