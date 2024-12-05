@@ -517,7 +517,7 @@
 			</test>	
 			<test logic="OR" value="1">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/v2-latch-speed
-				position/gear-agl-ft ge 100
+				/position/gear-agl-ft ge 100
 			</test>
 		</switch>
 		
