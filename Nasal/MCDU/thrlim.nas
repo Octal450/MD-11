@@ -180,7 +180,7 @@ var ThrLim = {
 			if (fms.FlightData.flexActive) {
 				me.Display.R1 = sprintf("%d", fms.FlightData.flexTemp) ~ "g";
 			} else {
-				me.Display.R1 = "*[ ]";
+				me.Display.R1 = "[ ]*";
 			}
 			me.Display.R1L = "TAT   FLEX ";
 		} else {
@@ -296,7 +296,14 @@ var ThrLim = {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
-			systems.FADEC.Limit.auto.setBoolValue(0);
+			if (fms.FlightData.flexActive) {
+				fms.FlightData.flexActive = 0;
+				fms.FlightData.flexTemp = 0;
+				fms.EditFlightData.resetVspeeds();
+			} else {
+				systems.FADEC.Limit.auto.setBoolValue(0);
+			}
+			
 			if (me.Value.toPhase == 1) {
 				systems.FADEC.setMode(0);
 			} else {
