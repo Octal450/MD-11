@@ -398,11 +398,11 @@ var BASE = {
 		program: "PS4070541-924", # -924 software load
 	},
 	acStatus2: {
-		amiPn: "1234DAC123456789",
+		amiPn: "3412-HNP-08J-01",
 		dataLink: "003FFC00",
-		fidoPn: "ABC1234DAC456789",
-		opcPn: "1234DAC567891234",
-		perfDbPn: "ABC1234567867789",
+		fidoPn: "341B-HNP-05M-02",
+		opcPn: "3476-BCG-00T-U6",
+		perfDbPn: "3401-HNP-05T-01",
 	},
 	initPage2: {
 		maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,

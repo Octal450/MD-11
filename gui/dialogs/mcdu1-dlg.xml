@@ -373,7 +373,7 @@
 					<pref-width>50</pref-width>
 					<binding>
 						<command>nasal</command>
-						<script>mcdu.unit[0].nextPage();</script>
+						<script>mcdu.unit[0].nextPageKey();</script>
 					</binding>
 				</button>
 				
