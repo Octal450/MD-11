@@ -89,6 +89,8 @@ var NavRadio = {
 		m.nextPage = "none";
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize0 = 0;
+		m.scratchpadSplitSize1 = 0;
 		m.scratchpadState = 0;
 		
 		return m;
@@ -216,7 +218,10 @@ var NavRadio = {
 			return;
 		}
 		
-		if (size(me.scratchpadSplit[0]) > 0) { # Frequency
+		me.scratchpadSplitSize0 = size(me.scratchpadSplit[0]);
+		me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
+		
+		if (me.scratchpadSplitSize0 > 0) { # Frequency
 			if (mcdu.unit[me.id].stringLengthInRange(3, 6, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 2, me.scratchpadSplit[0])) {
 				if (n == 2) { # ILS
 					if (me.scratchpadSplit[0] < 108 or me.scratchpadSplit[0] > 111.95) {
@@ -235,7 +240,7 @@ var NavRadio = {
 			}
 		}
 		
-		if (size(me.scratchpadSplit[1]) > 0) { # Course
+		if (me.scratchpadSplitSize1 > 0) { # Course
 			if (mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[1]) and mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
 				if (me.scratchpadSplit[1] == 0) { # Evaluate as integer so all forms of 0 work
 					me.scratchpadSplit[1] = "360"; # Must be string
@@ -251,10 +256,10 @@ var NavRadio = {
 			}
 		}
 		
-		if (size(me.scratchpadSplit[0]) > 0) {
+		if (me.scratchpadSplitSize0 > 0) {
 			pts.Instrumentation.Nav.Frequencies.selectedMhz[n].setValue(me.scratchpadSplit[0]);
 		}
-		if (size(me.scratchpadSplit[1]) > 0) {
+		if (me.scratchpadSplitSize1 > 0) {
 			if (pts.Instrumentation.Nav.Frequencies.selectedMhz[n].getValue()) {
 				pts.Instrumentation.Nav.Radials.selectedDeg[n].setValue(me.scratchpadSplit[1]);
 			} else {

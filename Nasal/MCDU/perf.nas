@@ -133,12 +133,16 @@ var Perf = {
 		m.group = "fmc";
 		m.name = "perf";
 		m.scratchpad = "";
+		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize = 0;
 		m.scratchpadState = 0;
 		m.type = t; # 0 = CLB, 1 = CRZ, 2 = DES
 		
 		m.Value = {
 			speedEdit: 0,
-			speedEditIsMach: 0,
+			speedEditFmt: 0,
+			speedEditMach: 0,
+			speedEditMachFmt: 0,
 			speedMode: 0,
 		};
 		
@@ -169,7 +173,8 @@ var Perf = {
 		}
 		
 		if (me.type == 2) {
-			me.Value.speedEdit = fms.FlightData.descentSpeedEdit;
+			me.Value.speedEdit = fms.FlightData.descentSpeedEditKts;
+			me.Value.speedEditMach = fms.FlightData.descentSpeedEditMach;
 			me.Value.speedMode = fms.FlightData.descentSpeedMode;
 			
 			if (me.Value.speedMode == 2) {
@@ -191,7 +196,8 @@ var Perf = {
 				me.Display.title = "ECON CRZ";
 			}
 		} else {
-			me.Value.speedEdit = fms.FlightData.climbSpeedEdit;
+			me.Value.speedEdit = fms.FlightData.climbSpeedEditKts;
+			me.Value.speedEditMach = fms.FlightData.climbSpeedEditMach;
 			me.Value.speedMode = fms.FlightData.climbSpeedMode;
 			
 			if (me.Value.speedMode == 2) {
@@ -259,65 +265,59 @@ var Perf = {
 			}
 		}
 		
-		if (me.Value.speedEdit > 0 and me.Value.speedEdit < 1) {
-			me.Value.speedEditIsMach = 1;
-		} else {
-			me.Value.speedEditIsMach = 0;
-		}
-		
 		if (me.Value.speedEdit > 0) {
 			if (me.type == 2) {
+				if (me.Value.speedEdit == 1) {
+					me.Value.speedEditFmt = "VMO";
+				} else {
+					me.Value.speedEditFmt = sprintf("%d", me.Value.speedEdit);
+				}
+				
+				if (me.Value.speedEditMach == 1) {
+					me.Value.speedEditMachFmt = "MMO";
+				} else {
+					me.Value.speedEditMachFmt = "." ~ sprintf("%d", me.Value.speedEditMach * 1000);
+				}
+				
 				if (me.Value.speedMode != 2) {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "*." ~ sprintf("%d", me.Value.speedEdit * 1000) ~ "/VMO";
-					} else {
-						me.Display.L4 = "*MMO/" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = "*" ~ me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.small;
 				} else {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "." ~ sprintf("%d", me.Value.speedEdit * 1000) ~ "/VMO";
-					} else {
-						me.Display.L4 = "MMO/" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.normal;
 				}
 			} else if (me.type == 1) {
+				if (me.Value.speedEdit < 1) {
+					me.Value.speedEditFmt = "." ~ sprintf("%d", me.Value.speedEdit * 1000);
+				} else {
+					me.Value.speedEditFmt = sprintf("%d", me.Value.speedEdit);
+				}
+				
 				if (me.Value.speedMode != 2) {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "*." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = "*" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = "*" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.small;
 				} else {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.normal;
 				}
 			} else {
+				if (me.Value.speedEdit == 1) {
+					me.Value.speedEditFmt = "VMO";
+				} else {
+					me.Value.speedEditFmt = sprintf("%d", me.Value.speedEdit);
+				}
+				
+				if (me.Value.speedEditMach == 1) {
+					me.Value.speedEditMachFmt = "MMO";
+				} else {
+					me.Value.speedEditMachFmt = "." ~ sprintf("%d", me.Value.speedEditMach * 1000);
+				}
+				
 				if (me.Value.speedMode != 2) {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "*VMO/." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = "*" ~ sprintf("%d", me.Value.speedEdit) ~ "/MMO";
-					}
-					
+					me.Display.L4 = "*" ~ me.Value.speedEditFmt ~ "/" ~ me.Value.speedEditMachFmt;
 					me.Display.LFont[3] = FONT.small;
 				} else {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "VMO/." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = sprintf("%d", me.Value.speedEdit) ~ "/MMO";
-					}
-					
+					me.Display.L4 = me.Value.speedEditFmt ~ "/" ~ me.Value.speedEditMachFmt;
 					me.Display.LFont[3] = FONT.normal;
 				}
 			}
@@ -332,6 +332,161 @@ var Perf = {
 			me.Display.L6 = sprintf("%d", fms.FlightData.descentTransAlt);
 		} else {
 			me.Display.L6 = "";
+		}
+	},
+	insertEditSpeed: func() {
+		if (me.scratchpadState == 2) {
+			if (me.type == 1) { # CRZ: Only one entry
+				if (mcdu.unit[me.id].stringIsNumber()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+						fms.FlightData.cruiseSpeedEdit = int(me.scratchpad);
+						mcdu.unit[me.id].scratchpadClear();
+					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+						if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+							fms.FlightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else { # CLB/DES: One or two entries
+				me.scratchpadSplit = split("/", me.scratchpad);
+				me.scratchpadSplitSize = size(me.scratchpadSplit);
+				
+				if (me.scratchpadSplitSize == 2) {
+					me.scratchpadSplitSize0 = size(me.scratchpadSplit[0]);
+					me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
+					
+					if (me.type == 2) {
+						if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						
+						# Check Mach
+						if (me.scratchpadSplitSize0 > 0) {
+							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
+								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								return;
+							}
+							
+							if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+						}
+						
+						# Check Kts
+						if (me.scratchpadSplitSize1 > 0) {
+							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								return;
+							}
+						}
+						
+						fms.FlightData.descentSpeedEditMach = math.round(me.scratchpadSplit[0], 0.001);
+						fms.FlightData.descentSpeedEditKts = int(me.scratchpadSplit[1]);
+						mcdu.unit[me.id].scratchpadClear();
+					} else {
+						if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						
+						# Check Kts
+						if (me.scratchpadSplitSize0 > 0) {
+							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							if (me.scratchpadSplit[0] < 100 or me.scratchpadSplit[0] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[0])) {
+								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								return;
+							}
+						}
+						
+						# Check Mach
+						if (me.scratchpadSplitSize1 > 0) {
+							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+							
+							if (me.scratchpadSplit[1] < 0.5 or me.scratchpadSplit[1] > 0.9) {
+								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								return;
+							}
+							
+							if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[1])) {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								return;
+							}
+						}
+						
+						fms.FlightData.climbSpeedEditKts = int(me.scratchpadSplit[0]);
+						fms.FlightData.climbSpeedEditMach = math.round(me.scratchpadSplit[1], 0.001);
+						mcdu.unit[me.id].scratchpadClear();
+					}
+				} else if (me.scratchpadSplitSize == 1) {
+					if (mcdu.unit[me.id].stringIsNumber()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+							if (me.type == 2) {
+								fms.FlightData.descentSpeedEditKts = int(me.scratchpad);
+								fms.FlightData.descentSpeedEditMach = 1;
+							} else {
+								fms.FlightData.climbSpeedEditKts = int(me.scratchpad);
+								fms.FlightData.climbSpeedEditMach = 1;
+							}
+							mcdu.unit[me.id].scratchpadClear();
+						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+							if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+								if (me.type == 2) {
+									fms.FlightData.descentSpeedEditKts = 1;
+									fms.FlightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
+								} else {
+									fms.FlightData.climbSpeedEditKts = 1;
+									fms.FlightData.climbSpeedEditMach = math.round(me.scratchpad, 0.001);
+								}
+								mcdu.unit[me.id].scratchpadClear();
+							} else {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							}
+						} else {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			}
+		} else if (me.scratchpadState == 1) {
+			if (me.type == 2) {
+				fms.FlightData.descentSpeedMode = 2;
+			} else if (me.type == 1) {
+				fms.FlightData.cruiseSpeedMode = 2;
+			} else {
+				fms.FlightData.climbSpeedMode = 2;
+			}
+		} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 	softKey: func(k) {
@@ -363,43 +518,7 @@ var Perf = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
-			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
-						if (me.type == 2) {
-							fms.FlightData.descentSpeedEdit = int(me.scratchpad);
-						} else if (me.type == 1) {
-							fms.FlightData.cruiseSpeedEdit = int(me.scratchpad);
-						} else {
-							fms.FlightData.climbSpeedEdit = int(me.scratchpad);
-						}
-						mcdu.unit[me.id].scratchpadClear();
-					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9 and mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
-						if (me.type == 2) {
-							fms.FlightData.descentSpeedEdit = math.round(me.scratchpad, 0.001);
-						} else if (me.type == 1) {
-							fms.FlightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
-						} else {
-							fms.FlightData.climbSpeedEdit = math.round(me.scratchpad, 0.001);
-						}
-						mcdu.unit[me.id].scratchpadClear();
-					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-					}
-				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
-				}
-			} else if (me.scratchpadState == 1) {
-				if (me.type == 2) {
-					fms.FlightData.descentSpeedMode = 2;
-				} else if (me.type == 1) {
-					fms.FlightData.cruiseSpeedMode = 2;
-				} else {
-					fms.FlightData.climbSpeedMode = 2;
-				}
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
+			me.insertEditSpeed();
 		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type != 1) {
 				if (mcdu.unit[me.id].stringIsInt()) {
@@ -526,7 +645,9 @@ var PreSel = {
 		
 		m.Value = {
 			speedEdit: 0,
-			speedEditIsMach: 0,
+			speedEditFmt: 0,
+			speedEditMach: 0,
+			speedEditMachFmt: 0,
 			speedMode: 0,
 		};
 		
@@ -537,7 +658,8 @@ var PreSel = {
 	loop: func() {
 		# Page advance logic
 		if (me.type == 2) {
-			me.Value.speedEdit = fms.FlightData.descentSpeedEdit;
+			me.Value.speedEdit = fms.FlightData.descentSpeedEditKts;
+			me.Value.speedEditMach = fms.FlightData.descentSpeedEditMach;
 			me.Value.speedMode = fms.FlightData.descentSpeedMode;
 			
 			if (fms.Internal.phase >= 4) {
@@ -600,47 +722,39 @@ var PreSel = {
 			}
 		}
 		
-		if (me.Value.speedEdit > 0 and me.Value.speedEdit < 1) {
-			me.Value.speedEditIsMach = 1;
-		} else {
-			me.Value.speedEditIsMach = 0;
-		}
-		
 		if (me.Value.speedEdit > 0) {
 			if (me.type == 2) {
+				if (me.Value.speedEdit == 1) {
+					me.Value.speedEditFmt = "VMO";
+				} else {
+					me.Value.speedEditFmt = sprintf("%d", me.Value.speedEdit);
+				}
+				
+				if (me.Value.speedEditMach == 1) {
+					me.Value.speedEditMachFmt = "MMO";
+				} else {
+					me.Value.speedEditMachFmt = "." ~ sprintf("%d", me.Value.speedEditMach * 1000);
+				}
+				
 				if (me.Value.speedMode != 2) {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "*." ~ sprintf("%d", me.Value.speedEdit * 1000) ~ "/VMO";
-					} else {
-						me.Display.L4 = "*MMO/" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = "*" ~ me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.small;
 				} else {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "." ~ sprintf("%d", me.Value.speedEdit * 1000) ~ "/VMO";
-					} else {
-						me.Display.L4 = "MMO/" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.normal;
 				}
 			} else if (me.type == 1) {
+				if (me.Value.speedEdit < 1) {
+					me.Value.speedEditFmt = "." ~ sprintf("%d", me.Value.speedEdit * 1000);
+				} else {
+					me.Value.speedEditFmt = sprintf("%d", me.Value.speedEdit);
+				}
+				
 				if (me.Value.speedMode != 2) {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "*." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = "*" ~ sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = "*" ~ me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.small;
 				} else {
-					if (me.Value.speedEditIsMach) {
-						me.Display.L4 = "." ~ sprintf("%d", me.Value.speedEdit * 1000);
-					} else {
-						me.Display.L4 = sprintf("%d", me.Value.speedEdit);
-					}
-					
+					me.Display.L4 = me.Value.speedEditFmt;
 					me.Display.LFont[3] = FONT.normal;
 				}
 			}
@@ -657,6 +771,107 @@ var PreSel = {
 			me.Display.L6 = "";
 		}
 	},
+	insertEditSpeed: func() {
+		if (me.scratchpadState == 2) {
+			if (me.type == 1) { # CRZ: Only one entry
+				if (mcdu.unit[me.id].stringIsNumber()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+						fms.FlightData.cruiseSpeedEdit = int(me.scratchpad);
+						mcdu.unit[me.id].scratchpadClear();
+					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+						if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+							fms.FlightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
+							mcdu.unit[me.id].scratchpadClear();
+						} else {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else { # DES: One or two entries
+				me.scratchpadSplit = split("/", me.scratchpad);
+				me.scratchpadSplitSize = size(me.scratchpadSplit);
+				
+				if (me.scratchpadSplitSize == 2) {
+					me.scratchpadSplitSize0 = size(me.scratchpadSplit[0]);
+					me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
+					
+					if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						return;
+					}
+					
+					# Check Mach
+					if (me.scratchpadSplitSize0 > 0) {
+						if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						
+						if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							return;
+						}
+						
+						if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+					}
+					
+					# Check Kts
+					if (me.scratchpadSplitSize1 > 0) {
+						if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}
+						
+						if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							return;
+						}
+					}
+					
+					fms.FlightData.descentSpeedEditMach = math.round(me.scratchpadSplit[0], 0.001);
+					fms.FlightData.descentSpeedEditKts = int(me.scratchpadSplit[1]);
+					mcdu.unit[me.id].scratchpadClear();
+				} else if (me.scratchpadSplitSize == 1) {
+					if (mcdu.unit[me.id].stringIsNumber()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+							fms.FlightData.descentSpeedEditKts = int(me.scratchpad);
+							fms.FlightData.descentSpeedEditMach = 1;
+							mcdu.unit[me.id].scratchpadClear();
+						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+							if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+								fms.FlightData.descentSpeedEditKts = 1;
+								fms.FlightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
+								mcdu.unit[me.id].scratchpadClear();
+							} else {
+								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							}
+						} else {
+							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						}
+					} else {
+						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					}
+				} else {
+					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				}
+			}
+		} else if (me.scratchpadState == 1) {
+			if (me.type == 2) {
+				fms.FlightData.descentSpeedMode = 2;
+			} else if (me.type == 1) {
+				fms.FlightData.cruiseSpeedMode = 2;
+			}
+		} else {
+			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
@@ -667,8 +882,6 @@ var PreSel = {
 					fms.FlightData.descentSpeedMode = 0;
 				} else if (me.type == 1) {
 					fms.FlightData.cruiseSpeedMode = 0;
-				} else {
-					fms.FlightData.climbSpeedMode = 0;
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -679,50 +892,12 @@ var PreSel = {
 					fms.FlightData.descentSpeedMode = 1;
 				} else if (me.type == 1) {
 					mcdu.unit[me.id].setMessage("NOT ALLOWED");
-				} else {
-					fms.FlightData.climbSpeedMode = 1;
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
-			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
-						if (me.type == 2) {
-							fms.FlightData.descentSpeedEdit = int(me.scratchpad);
-						} else if (me.type == 1) {
-							fms.FlightData.cruiseSpeedEdit = int(me.scratchpad);
-						} else {
-							fms.FlightData.climbSpeedEdit = int(me.scratchpad);
-						}
-						mcdu.unit[me.id].scratchpadClear();
-					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9 and mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
-						if (me.type == 2) {
-							fms.FlightData.descentSpeedEdit = math.round(me.scratchpad, 0.001);
-						} else if (me.type == 1) {
-							fms.FlightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
-						} else {
-							fms.FlightData.climbSpeedEdit = math.round(me.scratchpad, 0.001);
-						}
-						mcdu.unit[me.id].scratchpadClear();
-					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-					}
-				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
-				}
-			} else if (me.scratchpadState == 1) {
-				if (me.type == 2) {
-					fms.FlightData.descentSpeedMode = 2;
-				} else if (me.type == 1) {
-					fms.FlightData.cruiseSpeedMode = 2;
-				} else {
-					fms.FlightData.climbSpeedMode = 2;
-				}
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-			}
+			me.insertEditSpeed();
 		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type == 2) {
 				if (mcdu.unit[me.id].stringIsInt()) {

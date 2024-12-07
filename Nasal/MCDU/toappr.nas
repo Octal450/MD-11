@@ -98,7 +98,6 @@ var Takeoff = {
 		m.nextPage = "none";
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
-		m.scratchpadSplitSize = 0;
 		m.scratchpadState = 0;
 		
 		return m;
@@ -465,8 +464,6 @@ var Takeoff = {
 							return;
 						}
 						
-						fms.FlightData.toSlope = me.scratchpadSplit[0] + 0;
-						
 						# Check Wind
 						if ((find("H", me.scratchpadSplit[1]) == 0 and find("T", me.scratchpadSplit[1]) == -1) or (find("T", me.scratchpadSplit[1]) == 0 and find("H", me.scratchpadSplit[1]) == -1)) {
 							if (mcdu.unit[me.id].stringContains("+", me.scratchpadSplit[1]) or mcdu.unit[me.id].stringContains("-", me.scratchpadSplit[1])) {
@@ -487,6 +484,8 @@ var Takeoff = {
 							return;
 						}
 						
+						# Enter Data
+						fms.FlightData.toSlope = me.scratchpadSplit[0] + 0;
 						fms.FlightData.toWind = int(me.scratchpadSplit[1]);
 						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
@@ -699,8 +698,6 @@ var Approach = {
 		m.name = "approach";
 		m.nextPage = "none";
 		m.scratchpad = "";
-		m.scratchpadSplit = nil;
-		m.scratchpadSplitSize = 0;
 		m.scratchpadState = 0;
 		
 		return m;
