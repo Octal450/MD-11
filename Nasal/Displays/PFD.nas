@@ -100,6 +100,7 @@ var Value = {
 		mach: 0,
 		preSel: 0,
 		sel: 0,
+		showPreSel: 0,
 		showTaxi: 0,
 		trend: 0,
 		vfr: 0,
@@ -1007,13 +1008,15 @@ var canvasBase = {
 		}
 		
 		# ASI Pre-Sel/Sel
+		Value.Asi.showPreSel = afs.Output.showSpdPreSel.getBoolValue();
+		
 		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdActive) {
 			Value.Afs.fmsSpdDriving = 1;
 		} else {
 			Value.Afs.fmsSpdDriving = 0;
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or fms.FmsSpd.active) {
+		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
 			me["ASI_presel"].hide();
 		} else {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
@@ -1050,7 +1053,7 @@ var canvasBase = {
 			me["ASI_fms"].show();
 		}
 		
-		if ((Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi) and !afs.Internal.syncedSpd and !fms.FmsSpd.active) {
+		if ((Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi) and !afs.Internal.syncedSpd and Value.Asi.showPreSel) {
 			me["ASI_fms_up"].hide();
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_up"].setColor(1, 0, 0);
@@ -1112,7 +1115,7 @@ var canvasBase = {
 			me["ASI_sel_up_text"].hide();
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 and !Value.Asi.showTaxi and !afs.Internal.syncedSpd and !fms.FmsSpd.active) {
+		if (Value.Asi.Tape.preSel < -60 and !Value.Asi.showTaxi and !afs.Internal.syncedSpd and Value.Asi.showPreSel) {
 			me["ASI_fms_dn"].hide();
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
 				me["ASI_sel_dn"].setColor(1, 0, 0);

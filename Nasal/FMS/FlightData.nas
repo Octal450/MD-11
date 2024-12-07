@@ -461,7 +461,7 @@ var EditFlightData = {
 	setNpsPhnlTest: func() { # For developer use/testing ONLY!
 		me.newFlightplan("NPS", "PHNL");
 		me.insertCruiseFl(100);
-		FlightData.costIndex = 50;
+		FlightData.costIndex = 30;
 		FlightData.oatC = 20;
 		FlightData.toSlope = 0;
 		FlightData.toWind = 0;

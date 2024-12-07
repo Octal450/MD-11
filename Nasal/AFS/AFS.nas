@@ -238,7 +238,7 @@ var Output = {
 	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-arm", 0, "BOOL"),
 	locArm: props.globals.initNode("/it-autoflight/output/loc-arm", 0, "BOOL"),
 	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
-	showSpd: props.globals.initNode("/it-autoflight/output/show-spd", 1, "BOOL"),
+	showSpdPreSel: props.globals.initNode("/it-autoflight/output/show-spd", 1, "BOOL"),
 	spdCaptured: 1,
 	spdProt: props.globals.initNode("/it-autoflight/output/spd-prot", 0, "INT"),
 	spdProtTemp: 0,
@@ -340,7 +340,7 @@ var ITAF = {
 		Output.spdCaptured = 1;
 		Output.hdgCaptured = 1;
 		Output.showHdg.setBoolValue(1);
-		Output.showSpd.setBoolValue(1);
+		Output.showSpdPreSel.setBoolValue(1);
 		if (t != 1) {
 			Sound.apOff.setBoolValue(0);
 			Warning.ap.setBoolValue(0);
@@ -675,7 +675,7 @@ var ITAF = {
 				}
 				Internal.mach.setValue(fms.FmsSpd.mach);
 				
-				if (!Output.showSpd.getBoolValue()) {
+				if (!Output.showSpdPreSel.getBoolValue()) {
 					if (!Input.ktsMachTemp) {
 						Input.ktsMach.setBoolValue(1);
 					}
@@ -687,7 +687,7 @@ var ITAF = {
 				}
 				Internal.kts.setValue(fms.FmsSpd.kts);
 				
-				if (!Output.showSpd.getBoolValue()) { # Also in takeoffSpdLogic
+				if (!Output.showSpdPreSel.getBoolValue()) { # Also in takeoffSpdLogic
 					if (Input.ktsMachTemp) {
 						Input.ktsMach.setBoolValue(0);
 					}
@@ -1579,7 +1579,7 @@ var ITAF = {
 			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
 				Internal.kts.setValue(fms.FmsSpd.toKts);
 				
-				if (!Output.showSpd.getBoolValue()) { # Also in FMS SPD Logic
+				if (!Output.showSpdPreSel.getBoolValue()) { # Also in FMS SPD Logic
 					if (Input.ktsMachTemp) {
 						Input.ktsMach.setBoolValue(0);
 					}

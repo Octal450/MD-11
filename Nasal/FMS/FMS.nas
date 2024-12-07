@@ -52,6 +52,8 @@ var CORE = {
 	loop: func() {
 		Value.active = RouteManager.active.getBoolValue();
 		Value.afsAlt = afs.Internal.alt.getValue();
+		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
+		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
 		Value.altitude = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
 		Value.flapLever = systems.FCS.flapsInput.getValue();

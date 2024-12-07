@@ -44,6 +44,7 @@ var FmsSpd = {
 	active: 0,
 	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
 	activeTo: 0,
+	alt10kToggle: 0,
 	econKts: 0,
 	econMach: 0,
 	kts: 0,
@@ -54,6 +55,7 @@ var FmsSpd = {
 	mach: 0,
 	machCmd: 0,
 	machOut: props.globals.getNode("/systems/fms/fms-spd/mach"),
+	machToggle: 0,
 	maxClimb: 0,
 	maxDescent: 0,
 	maxKts: 365,
@@ -64,14 +66,17 @@ var FmsSpd = {
 	toDriving: 0,
 	toKts: 0,
 	v2Toggle: 0,
+	vcl: 0,
 	init: func() {
 		me.active = 0;
 		me.activeTo = 0;
+		me.alt10kToggle = 0;
 		me.kts = 0;
 		me.ktsCmd = 0;
 		me.ktsMach = 0;
 		me.mach = 0;
 		me.machCmd = 0;
+		me.machToggle = 0;
 		me.pfdActive = 0;
 		me.toKts = 0;
 		me.v2Toggle = 0;
@@ -80,10 +85,17 @@ var FmsSpd = {
 		me.active = 0;
 		me.toDriving = 0; # Cancels FMS SPD and Takeoff Guidance
 		me.loop(); # Update immediately
-		afs.Output.showSpd.setBoolValue(1);
+		afs.Output.showSpdPreSel.setBoolValue(1);
+	},
+	cancelAndZero: func() {
+		if (me.active) {
+			me.cancel();
+		}
+		me.ktsMach = 0;
+		me.ktsCmd = 0;
 	},
 	engage: func() {
-		afs.Output.showSpd.setBoolValue(0);
+		afs.Output.showSpdPreSel.setBoolValue(0);
 		
 		if (me.active) {
 			fms.EditFlightData.returnToEcon();
@@ -96,7 +108,7 @@ var FmsSpd = {
 		}
 	},
 	engageAllowed: func() {
-		if (pts.Position.gearAglFt.getValue() >= 400 and !pts.Gear.wow[1].getBoolValue() and !pts.Gear.wow[2].getBoolValue() and (me.toKts > 0 or (me.kts > 0 and me.mach > 0))) {
+		if (pts.Position.gearAglFt.getValue() >= 400 and !pts.Gear.wow[1].getBoolValue() and !pts.Gear.wow[2].getBoolValue() and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
 			return 1;
 		} else {
 			return 0;
@@ -117,9 +129,6 @@ var FmsSpd = {
 		
 		me.getSpeeds();
 		
-		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
-		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
-		
 		# Takeoff Guidance Logic
 		me.takeoffLogic();
 		
@@ -130,13 +139,51 @@ var FmsSpd = {
 		} else {
 			me.activeTo = 0;
 		}
-		# End Special Takeoff Guidance Logic
 		
 		# Main FMS SPD Logic
-		if (Internal.phase == 2) {
-			me.ktsMach = 0;
-			me.ktsCmd = 250;
-		} else if (Internal.phase <= 1) {
+		# ktsMach determins which is active, the other is handled in Inactive Value Sync
+		if (Internal.phase == 2) { # Climb
+			if (me.vcl > 0 and me.econKts > 0 and me.econMach > 0) {
+				# Prevent flickering by using a latch
+				if (Value.altitude >= 9995) {
+					me.alt10kToggle = 1;
+					
+					if (Value.asiMach + 0.0005 >= me.econMach) {
+						me.machToggle = 1;
+					}
+				} else if (Value.altitude < 9950) {
+					me.alt10kToggle = 0;
+					me.machToggle = 0;
+				}
+				
+				if (me.alt10kToggle) {
+					# TODO: EDIT mode
+					if (FlightData.climbSpeedMode == 1) {
+						me.ktsMach = 0;
+						me.ktsCmd = math.max(me.maxClimb, me.vcl);
+					} else {
+						if (me.machToggle) {
+							me.ktsMach = 1;
+							me.machCmd = me.econMach;
+						} else {
+							me.ktsMach = 0;
+							me.ktsCmd = math.max(me.econKts, me.vcl);
+						}
+					}
+				} else {
+					# TODO: EDIT mode
+					if (FlightData.climbSpeedMode == 1) {
+						me.ktsMach = 0;
+						me.ktsCmd = math.max(me.maxClimb, me.vcl);
+					} else {
+						me.ktsMach = 0;
+						me.ktsCmd = math.max(250, me.vcl);
+					}
+				}
+			} else {
+				me.cancelAndZero();
+			}
+		} else if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
 				me.toDriving = 1;
 			}
@@ -145,12 +192,10 @@ var FmsSpd = {
 				me.ktsMach = 0;
 				me.ktsCmd = me.toKts;
 			} else {
-				me.ktsMach = 0;
-				me.ktsCmd = 0;
+				me.cancelAndZero();
 			}
 		} else {
-			me.ktsMach = 0;
-			me.ktsCmd = 0;
+			me.cancelAndZero();
 		}
 		
 		# Inactive Value Sync
@@ -218,6 +263,7 @@ var FmsSpd = {
 		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
 		me.maxClimb = math.round(Speeds.maxClimb.getValue());
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
+		me.vcl = math.round(Speeds.vcl.getValue());
 	},
 	setConvertKts: func(ktsCurrent, machCurrent) {
 		me.ktsCmd = math.max(math.round(me.machCmd * (ktsCurrent / machCurrent)), 1); # 0 is disallowed
