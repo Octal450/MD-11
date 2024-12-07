@@ -65,6 +65,7 @@ var FmsSpd = {
 	pfdActive: 0,
 	toDriving: 0,
 	toKts: 0,
+	toKtsCmd: 0,
 	v2Toggle: 0,
 	vcl: 0,
 	init: func() {
@@ -79,6 +80,7 @@ var FmsSpd = {
 		me.machToggle = 0;
 		me.pfdActive = 0;
 		me.toKts = 0;
+		me.toKtsCmd = 0;
 		me.v2Toggle = 0;
 	},
 	cancel: func() {
@@ -121,13 +123,21 @@ var FmsSpd = {
 		me.machOut.setValue(me.mach);
 	},
 	loop: func() {
+		# Disengage if unavailable
 		if (me.active) {
 			if (!me.engageAllowed()) {
 				me.cancel();
 			}
 		}
 		
+		# Pull target speeds
 		me.getSpeeds();
+		
+		# Pull min/max speeds, 0 is disallowed as it indicates invalid speed
+		me.maxKts = math.max(Speeds.athrMax.getValue(), 1);
+		me.maxMach = math.max(Speeds.athrMaxMach.getValue(), 0.001);
+		me.minKts = math.max(Speeds.athrMin.getValue(), 1);
+		me.minMach = math.max(Speeds.athrMinMach.getValue(), 0.001);
 		
 		# Takeoff Guidance Logic
 		me.takeoffLogic();
@@ -214,12 +224,6 @@ var FmsSpd = {
 		}
 		
 		# Speed Limiting Logic
-		# 0 is disallowed as it indicates invalid speed
-		me.maxKts = math.max(Speeds.athrMax.getValue(), 1);
-		me.maxMach = math.max(Speeds.athrMaxMach.getValue(), 0.001);
-		me.minKts = math.max(Speeds.athrMin.getValue(), 1);
-		me.minMach = math.max(Speeds.athrMinMach.getValue(), 0.001);
-		
 		if (me.ktsCmd > 0) {
 			if (me.minKts > me.maxKts) { # Max takes priority
 				me.kts = me.maxKts;
@@ -274,7 +278,7 @@ var FmsSpd = {
 	takeoffLogic: func() {
 		if (Internal.phase >= 2) {
 			me.toDriving = 0;
-			me.toKts = 0;
+			me.toKtsCmd = 0;
 			me.v2Toggle = 0;
 			return;
 		}
@@ -284,21 +288,36 @@ var FmsSpd = {
 				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
 					if (!me.v2Toggle) { # Only set the speed once
 						me.v2Toggle = 1;
-						me.toKts = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);
+						me.toKtsCmd = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);
 					}
 				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
 					me.toDriving = 1;
-					me.toKts = fms.FlightData.v2 + 10;
+					me.toKtsCmd = fms.FlightData.v2 + 10;
 				}
 			} else {
 				me.toDriving = 1;
-				me.toKts = math.clamp(math.max(FlightData.v2, math.round(Value.asiKts)), FlightData.v2, FlightData.v2 + 10);
+				me.toKtsCmd = math.clamp(math.max(FlightData.v2, math.round(Value.asiKts)), FlightData.v2, FlightData.v2 + 10);
 				me.v2Toggle = 0;
 			}
 		} else {
 			me.toDriving = 0;
-			me.toKts = 0;
+			me.toKtsCmd = 0;
 			me.v2Toggle = 0;
+		}
+		
+		# Limiting logic
+		if (me.toKtsCmd > 0) {
+			if (me.minKts > me.maxKts) { # Max takes priority
+				me.toKts = me.maxKts;
+			} else if (me.toKtsCmd > me.maxKts) {
+				me.toKts = me.maxKts;
+			} else if (me.toKtsCmd < me.minKts) {
+				me.toKts = me.minKts;
+			} else {
+				me.toKts = me.toKtsCmd;
+			}
+		} else {
+			me.toKts = 0;
 		}
 	},
 };
