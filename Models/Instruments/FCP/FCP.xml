@@ -9,12 +9,13 @@
 	<animation>
 		<name>Digits</name>
 		<object-name>Digits.Alt</object-name>
-		<object-name>Digits.VsBlank</object-name>
+		<object-name>Digits.VsDash</object-name>
 		<object-name>Digits.Fpa</object-name>
 		<object-name>Digits.Hdg</object-name>
-		<object-name>Digits.HdgBlank</object-name>
+		<object-name>Digits.HdgDash</object-name>
 		<object-name>Digits.Ias</object-name>
 		<object-name>Digits.Mach</object-name>
+		<object-name>Digits.SpdDash</object-name>
 		<object-name>Digits.Vs</object-name>
 	</animation>
 	
@@ -327,6 +328,47 @@
 		</center>
 		<axis>
 			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FmsSpd</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>cockpit.ApPanel.fmsSpd();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/fcp/fms-spd</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/fcp/fms-spd</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>FmsSpd</object-name>
+		<object-name>FmsSpd.Text</object-name>
+		<property>controls/cockpit/fcp/fms-spd</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>
@@ -1059,6 +1101,27 @@
 		</font-resolution>
 	</text>
 	<text>
+		<name>Digits.SpdDash</name>
+		<offsets>
+			<x-m>-25.7247</x-m>
+			<y-m>-0.07908</y-m>
+			<z-m>11.7893</z-m>
+		</offsets>
+		<alignment>right-bottom</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>---</text>
+		<font>Std7SegCustom.ttf</font>
+		<draw-text>true</draw-text>
+		<draw-alignment>false</draw-alignment>
+		<draw-boundingbox>false</draw-boundingbox>
+		<character-size>0.006</character-size>
+		<font-resolution>
+			<width>30</width>
+			<height>32</height>
+		</font-resolution>
+	</text>
+	<text>
 		<name>Digits.Test</name>
 		<offsets>
 			<x-m>-25.7247</x-m>
@@ -1128,7 +1191,7 @@
 		<condition>
 			<and>
 				<not><property>it-autoflight/input/kts-mach</property></not>
-				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+				<property>it-autoflight/output/show-spd</property>
 			</and>
 		</condition>
 	</animation>
@@ -1138,8 +1201,15 @@
 		<condition>
 			<and>
 				<property>it-autoflight/input/kts-mach</property>
-				<!-- Will add FMS spd = 0 condition here, when implemented in ITAF -->
+				<property>it-autoflight/output/show-spd</property>
 			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>Digits.SpdDash</object-name>
+		<condition>
+			<not><property>it-autoflight/output/show-spd</property></not>
 		</condition>
 	</animation>
 	<animation>
@@ -1188,7 +1258,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>Digits.HdgBlank</name>
+		<name>Digits.HdgDash</name>
 		<offsets>
 			<x-m>-25.7247</x-m>
 			<y-m>-0.03514</y-m>
@@ -1281,7 +1351,7 @@
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Digits.HdgBlank</object-name>
+		<object-name>Digits.HdgDash</object-name>
 		<condition>
 			<not><property>it-autoflight/output/show-hdg</property></not>
 		</condition>
@@ -1464,7 +1534,7 @@
 		</font-resolution>
 	</text>
 	<text>
-		<name>Digits.VsBlank</name>
+		<name>Digits.VsDash</name>
 		<offsets>
 			<x-m>-25.7247</x-m>
 			<y-m>0.10633</y-m>
@@ -1560,7 +1630,7 @@
 	</animation>
 	<animation>
 		<type>select</type>
-		<object-name>Digits.VsBlank</object-name>
+		<object-name>Digits.VsDash</object-name>
 		<condition>
 			<and>
 				<not-equals>

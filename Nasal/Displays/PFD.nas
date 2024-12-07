@@ -1007,7 +1007,7 @@ var canvasBase = {
 		}
 		
 		# ASI Pre-Sel/Sel
-		if (Value.Asi.fms > 0 and fms.FmsSpd.activeOrToDriving) {
+		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdActive) {
 			Value.Afs.fmsSpdDriving = 1;
 		} else {
 			Value.Afs.fmsSpdDriving = 0;

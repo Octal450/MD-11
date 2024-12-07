@@ -124,6 +124,10 @@ var afsCanvas = {
 			cockpit.ApPanel.ktsMach();
 		});
 		
+		me["FmsSpd"].addEventListener("click", func(e) {
+			cockpit.ApPanel.fmsSpd();
+		});
+		
 		# Heading
 		me["HdgKnob"].addEventListener("click", func(e) {
 			if (e.shiftKey or e.button == 1) {
@@ -260,14 +264,18 @@ var afsCanvas = {
 				me["Vs_7seg"].setText("-888.8");
 			} else {
 				# Speed
-				if (afs.Input.ktsMach.getBoolValue()) {
-					me["IasInd"].hide();
-					me["MachInd"].show();
-					me["Spd_7seg"].setText("." ~ sprintf("%03d", afs.Input.mach.getValue() * 1000));
+				if (afs.Output.showHdg.getBoolValue()) {
+					if (afs.Input.ktsMach.getBoolValue()) {
+						me["IasInd"].hide();
+						me["MachInd"].show();
+						me["Spd_7seg"].setText("." ~ sprintf("%03d", afs.Input.mach.getValue() * 1000));
+					} else {
+						me["IasInd"].show();
+						me["MachInd"].hide();
+						me["Spd_7seg"].setText(sprintf("%03d", afs.Input.kts.getValue()));
+					}
 				} else {
-					me["IasInd"].show();
-					me["MachInd"].hide();
-					me["Spd_7seg"].setText(sprintf("%03d", afs.Input.kts.getValue()));
+					me["Spd_7seg"].setText("---");
 				}
 				
 				# Heading

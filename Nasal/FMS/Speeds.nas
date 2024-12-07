@@ -43,40 +43,64 @@ var Speeds = {
 var FmsSpd = {
 	active: 0,
 	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
-	activeOrTo: 0,
-	activeOrToDriving: 0,
+	activeTo: 0,
 	econKts: 0,
 	econMach: 0,
 	kts: 0,
+	ktsCmd: 0,
 	ktsOut: props.globals.getNode("/systems/fms/fms-spd/kts"),
 	ktsMach: 0,
 	ktsMachOut: props.globals.getNode("/systems/fms/fms-spd/kts-mach"),
 	mach: 0,
+	machCmd: 0,
 	machOut: props.globals.getNode("/systems/fms/fms-spd/mach"),
 	maxClimb: 0,
 	maxDescent: 0,
+	maxKts: 365,
+	maxMach: 0.87,
+	minKts: 0,
+	minMach: 0,
+	pfdActive: 0,
 	toDriving: 0,
 	toKts: 0,
 	v2Toggle: 0,
 	init: func() {
 		me.active = 0;
-		me.activeOrTo = 0;
-		me.activeOrToDriving = 0;
+		me.activeTo = 0;
 		me.kts = 0;
+		me.ktsCmd = 0;
 		me.ktsMach = 0;
 		me.mach = 0;
+		me.machCmd = 0;
+		me.pfdActive = 0;
 		me.toKts = 0;
 		me.v2Toggle = 0;
 	},
 	cancel: func() {
 		me.active = 0;
-		me.toDriving = 0;
+		me.toDriving = 0; # Cancels FMS SPD and Takeoff Guidance
 		me.loop(); # Update immediately
+		afs.Output.showSpd.setBoolValue(1);
 	},
 	engage: func() {
-		me.active = 1;
-		me.toDriving = 0; # Ensure it doesn't interfere with FMS SPD
-		me.loop(); # Update immediately
+		afs.Output.showSpd.setBoolValue(0);
+		
+		if (me.active) {
+			fms.EditFlightData.returnToEcon();
+			return;
+		}
+		
+		if (me.engageAllowed) {
+			me.active = 1;
+			me.loop(); # Update immediately
+		}
+	},
+	engageAllowed: func() {
+		if (pts.Position.gearAglFt.getValue() >= 400 and !pts.Gear.wow[1].getBoolValue() and !pts.Gear.wow[2].getBoolValue() and (me.toKts > 0 or (me.kts > 0 and me.mach > 0))) {
+			return 1;
+		} else {
+			return 0;
+		}
 	},
 	writeOut: func() {
 		me.activeOut.setBoolValue(me.active);
@@ -85,59 +109,108 @@ var FmsSpd = {
 		me.machOut.setValue(me.mach);
 	},
 	loop: func() {
+		if (me.active) {
+			if (!me.engageAllowed()) {
+				me.cancel();
+			}
+		}
+		
 		me.getSpeeds();
 		
 		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
 		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
 		
-		# Sync the inactive value
-		if (me.ktsMach) {
-			if (me.mach > 0) {
-				me.setConvertKts(Value.asiKts, Value.asiMach);
-			} else {
-				me.kts = 0;
-			}
-		} else {
-			if (me.kts > 0) {
-				me.setConvertMach(Value.asiKts, Value.asiMach);
-			} else {
-				me.mach = 0;
-			}
-		}
-		
 		# Takeoff Guidance Logic
 		me.takeoffLogic();
 		
 		# Special Takeoff Guidance Logic
-		# Only when FMS SPD is active, or non-overridden V2 is set
+		# Only when FMS SPD is active, or takeoff speed is available and non-overridden V2 is set
 		if (me.active or (me.toKts > 0 and FlightData.v2State == 1)) {
-			me.activeOrTo = 1;
+			me.activeTo = 1;
 		} else {
-			me.activeOrTo = 0;
-		}
-		
-		# Only when FMS SPD is active, or non-overridden V2 is set and driven
-		if (me.active or (me.toDriving and me.toKts > 0 and FlightData.v2State == 1)) {
-			me.activeOrToDriving = 1;
-		} else {
-			me.activeOrToDriving = 0;
+			me.activeTo = 0;
 		}
 		# End Special Takeoff Guidance Logic
 		
 		# Main FMS SPD Logic
-		if (Internal.phase <= 1) {
-			if (me.activeOrTo) {
+		if (Internal.phase == 2) {
+			me.ktsMach = 0;
+			me.ktsCmd = 250;
+		} else if (Internal.phase <= 1) {
+			if (me.active) { # Re-enable driving if overriden
+				me.toDriving = 1;
+			}
+			
+			if (me.activeTo) {
 				me.ktsMach = 0;
-				me.kts = me.toKts;
+				me.ktsCmd = me.toKts;
 			} else {
 				me.ktsMach = 0;
-				me.kts = 0;
+				me.ktsCmd = 0;
 			}
 		} else {
 			me.ktsMach = 0;
+			me.ktsCmd = 0;
+		}
+		
+		# Inactive Value Sync
+		if (me.ktsMach) {
+			if (me.machCmd > 0) {
+				me.setConvertKts(Value.asiKts, Value.asiMach);
+			} else {
+				me.ktsCmd = 0;
+			}
+		} else {
+			if (me.ktsCmd > 0) {
+				me.setConvertMach(Value.asiKts, Value.asiMach);
+			} else {
+				me.machCmd = 0;
+			}
+		}
+		
+		# Speed Limiting Logic
+		# 0 is disallowed as it indicates invalid speed
+		me.maxKts = math.max(Speeds.athrMax.getValue(), 1);
+		me.maxMach = math.max(Speeds.athrMaxMach.getValue(), 0.001);
+		me.minKts = math.max(Speeds.athrMin.getValue(), 1);
+		me.minMach = math.max(Speeds.athrMinMach.getValue(), 0.001);
+		
+		if (me.ktsCmd > 0) {
+			if (me.minKts > me.maxKts) { # Max takes priority
+				me.kts = me.maxKts;
+			} else if (me.ktsCmd > me.maxKts) {
+				me.kts = me.maxKts;
+			} else if (me.ktsCmd < me.minKts) {
+				me.kts = me.minKts;
+			} else {
+				me.kts = me.ktsCmd;
+			}
+		} else {
 			me.kts = 0;
 		}
 		
+		if (me.machCmd > 0) {
+			if (me.minMach > me.maxMach) { # Max takes priority
+				me.mach = me.maxMach;
+			} else if (me.machCmd > me.maxMach) {
+				me.mach = me.maxMach;
+			} else if (me.machCmd < me.minMach) {
+				me.mach = me.minMach;
+			} else {
+				me.mach = me.machCmd;
+			}
+		} else {
+			me.mach = 0;
+		}
+		
+		# PFD Magenta Bug: Shown only when FMS SPD is active, or non-overridden V2 is set and driven
+		if (me.active or (me.toDriving and me.toKts > 0 and FlightData.v2State == 1)) {
+			me.pfdActive = 1;
+		} else {
+			me.pfdActive = 0;
+		}
+		
+		# Write to Property Tree
 		me.writeOut();
 	},
 	getSpeeds: func() {
@@ -146,15 +219,18 @@ var FmsSpd = {
 		me.maxClimb = math.round(Speeds.maxClimb.getValue());
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
 	},
-	setConvertKts: func(kts, mach) {
-		me.kts = math.round(me.mach * (kts / mach));
+	setConvertKts: func(ktsCurrent, machCurrent) {
+		me.ktsCmd = math.max(math.round(me.machCmd * (ktsCurrent / machCurrent)), 1); # 0 is disallowed
 	},
-	setConvertMach: func(kts, mach) {
-		me.mach = math.round(me.kts * (mach / kts), 0.001);
+	setConvertMach: func(ktsCurrent, machCurrent) {
+		me.machCmd = math.max(math.round(me.ktsCmd * (machCurrent / ktsCurrent), 0.001), 0.001); # 0 is disallowed
 	},
 	takeoffLogic: func() {
-		if (fms.FmsSpd.active) {
-			me.toDriving = 0; # Ensure it doesn't interfere with FMS SPD
+		if (Internal.phase >= 2) {
+			me.toDriving = 0;
+			me.toKts = 0;
+			me.v2Toggle = 0;
+			return;
 		}
 		
 		if (fms.FlightData.v2 > 0) {
@@ -174,7 +250,7 @@ var FmsSpd = {
 				me.v2Toggle = 0;
 			}
 		} else {
-			me.toDriving = 1;
+			me.toDriving = 0;
 			me.toKts = 0;
 			me.v2Toggle = 0;
 		}

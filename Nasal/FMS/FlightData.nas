@@ -436,6 +436,15 @@ var EditFlightData = {
 			FlightData.v2State = 0;
 		}
 	},
+	returnToEcon: func() {
+		if (Internal.phase <= 2) {
+			FlightData.climbSpeedMode = 0;
+		} else if (Internal.phase == 3) {
+			FlightData.cruiseSpeedMode = 0;
+		} else {
+			FlightData.descentSpeedMode = 0;
+		}
+	},
 	setAcconfigWeightBalanceData: func() {
 		Internal.request[0] = 0;
 		Internal.request[1] = 0;
@@ -448,5 +457,14 @@ var EditFlightData = {
 		FlightData.toFlaps = 15;
 		FlightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1));
 		FlightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+	},
+	setNpsPhnlTest: func() { # For developer use/testing ONLY!
+		me.newFlightplan("NPS", "PHNL");
+		me.insertCruiseFl(100);
+		FlightData.costIndex = 50;
+		FlightData.oatC = 20;
+		FlightData.toSlope = 0;
+		FlightData.toWind = 0;
+		me.setAcconfigWeightBalanceData();
 	},
 };

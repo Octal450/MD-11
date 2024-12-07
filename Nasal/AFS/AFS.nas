@@ -82,7 +82,7 @@ var Velocities = {
 	athrMax: 365,
 	athrMaxMach: 0.87,
 	athrMin: 0,
-	athrMinMach: 0.5,
+	athrMinMach: 0,
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
 	groundspeedMps: 0,
 	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
@@ -169,6 +169,7 @@ var Internal = {
 	driftAngleTemp: 0,
 	enableAthrOff: 0,
 	flchActive: 0,
+	fmsSpdDriving: 0,
 	fpa: props.globals.initNode("/it-autoflight/internal/fpa", 0, "DOUBLE"),
 	fpaTemp: 0,
 	hdg: props.globals.initNode("/it-autoflight/internal/hdg", 0, "INT"),
@@ -178,6 +179,7 @@ var Internal = {
 	hdgTrk: props.globals.initNode("/it-autoflight/internal/heading", 0, "DOUBLE"),
 	kts: props.globals.initNode("/it-autoflight/internal/kts", 250, "INT"),
 	ktsMach: props.globals.initNode("/it-autoflight/internal/kts-mach", 0, "BOOL"),
+	ktsMachTemp: 0,
 	ktsTemp: 250,
 	landCondition: 0,
 	landModeActive: 0,
@@ -206,6 +208,7 @@ var Internal = {
 	takeoffHdgCalc: 0,
 	takeoffHdgNew: 0,
 	takeoffLvl: props.globals.initNode("/it-autoflight/internal/takeoff-lvl", 1, "BOOL"),
+	takeoffSpdDriving: 0,
 	targetHdgError: 0,
 	targetKts: 0,
 	targetKtsError: 0,
@@ -235,6 +238,7 @@ var Output = {
 	lnavArm: props.globals.initNode("/it-autoflight/output/lnav-arm", 0, "BOOL"),
 	locArm: props.globals.initNode("/it-autoflight/output/loc-arm", 0, "BOOL"),
 	showHdg: props.globals.initNode("/it-autoflight/output/show-hdg", 1, "BOOL"),
+	showSpd: props.globals.initNode("/it-autoflight/output/show-spd", 1, "BOOL"),
 	spdCaptured: 1,
 	spdProt: props.globals.initNode("/it-autoflight/output/spd-prot", 0, "INT"),
 	spdProtTemp: 0,
@@ -329,11 +333,14 @@ var ITAF = {
 		UpdateFma.arm();
 		me.updateLatText("T/O");
 		me.updateVertText("T/O CLB");
+		Internal.fmsSpdDriving = 0;
+		Internal.takeoffSpdDriving = 0;
 		Internal.retardLock = 0;
 		Text.land.setValue("OFF");
 		Output.spdCaptured = 1;
 		Output.hdgCaptured = 1;
 		Output.showHdg.setBoolValue(1);
+		Output.showSpd.setBoolValue(1);
 		if (t != 1) {
 			Sound.apOff.setBoolValue(0);
 			Warning.ap.setBoolValue(0);
@@ -649,12 +656,44 @@ var ITAF = {
 		Internal.spdPitchAvailTemp = Internal.spdPitchAvail.getBoolValue();
 		
 		# Takeoff Speed Guidance
-		me.takeoffSpdLogic();
+		Internal.takeoffSpdDriving = me.takeoffSpdLogic();
 		
-		# FMS SPD
-		if (fms.FmsSpd.active) { # Separate from Takeoff Speed Guidance
-			Output.spdCaptured = 1; # Always captured when driven
-			Internal.kts.setValue(fms.FmsSpd.toKts);
+		# FMS SPD Logic
+		Input.ktsMachTemp = Input.ktsMach.getBoolValue();
+		Internal.ktsMachTemp = Internal.ktsMach.getBoolValue();
+		
+		if (fms.FmsSpd.active and fms.Internal.phase >= 2) { # Don't drive before climb phase
+			Internal.fmsSpdDriving = 1;
+		} else {
+			Internal.fmsSpdDriving = 0;
+		}
+		
+		if (Internal.fmsSpdDriving) {
+			if (fms.FmsSpd.ktsMach) {
+				if (!Internal.ktsMachTemp) {
+					Internal.ktsMach.setBoolValue(1);
+				}
+				Internal.mach.setValue(fms.FmsSpd.mach);
+				
+				if (!Output.showSpd.getBoolValue()) {
+					if (!Input.ktsMachTemp) {
+						Input.ktsMach.setBoolValue(1);
+					}
+					Input.mach.setValue(fms.FmsSpd.mach);
+				}
+			} else {
+				if (Internal.ktsMachTemp) {
+					Internal.ktsMach.setBoolValue(0);
+				}
+				Internal.kts.setValue(fms.FmsSpd.kts);
+				
+				if (!Output.showSpd.getBoolValue()) { # Also in takeoffSpdLogic
+					if (Input.ktsMachTemp) {
+						Input.ktsMach.setBoolValue(0);
+					}
+					Input.kts.setValue(fms.FmsSpd.kts);
+				}
+			}
 		}
 		
 		# Speed Capture + ATS Speed Limits
@@ -662,18 +701,37 @@ var ITAF = {
 		Velocities.athrMaxMach = fms.Speeds.athrMaxMach.getValue();
 		Velocities.athrMin = fms.Speeds.athrMin.getValue();
 		Velocities.athrMinMach = fms.Speeds.athrMinMach.getValue();
-		Input.ktsMachTemp = Input.ktsMach.getBoolValue();
 		Input.ktsTemp = Input.kts.getValue();
 		Input.machTemp = Input.mach.getValue();
 		Internal.ktsTemp = Internal.kts.getValue();
 		Internal.machTemp = Internal.mach.getValue();
 		
-		if (!Output.spdCaptured or !Internal.spdPitchAvailTemp) { # If takeoff speed target is not available (spdPitchAvail = false), then force sync to FCP value
+		if (Internal.takeoffSpdDriving or Internal.fmsSpdDriving) { # Takeoff Guidance and FMS SPD have their own limiting logic, and always stay captured
+			Output.spdCaptured = 1;
+		} else if (!Output.spdCaptured or !Internal.spdPitchAvailTemp) { # If takeoff speed target is not available (spdPitchAvail = false), then force sync to FCP value
 			if (Input.ktsMachTemp) {
-				Internal.mach.setValue(math.clamp(Input.machTemp, Velocities.athrMinMach, Velocities.athrMaxMach));
+				if (Velocities.athrMinMach > Velocities.athrMaxMach) { # Max takes priority
+					Internal.mach.setValue(Velocities.athrMaxMach);
+				} else if (Input.machTemp > Velocities.athrMaxMach) {
+					Internal.mach.setValue(Velocities.athrMaxMach);
+				} else if (Input.machTemp < Velocities.athrMinMach) {
+					Internal.mach.setValue(Velocities.athrMinMach);
+				} else {
+					Internal.mach.setValue(Input.machTemp);
+				}
+				
 				Internal.targetKts = Internal.mach.getValue() * (Velocities.indicatedAirspeedKt.getValue() / Velocities.indicatedMach.getValue()); # Convert to Knots
 			} else {
-				Internal.kts.setValue(math.clamp(Input.ktsTemp, Velocities.athrMin, Velocities.athrMax));
+				if (Velocities.athrMin > Velocities.athrMax) { # Max takes priority
+					Internal.kts.setValue(Velocities.athrMax);
+				} else if (Input.ktsTemp > Velocities.athrMax) {
+					Internal.kts.setValue(Velocities.athrMax);
+				} else if (Input.ktsTemp < Velocities.athrMin) {
+					Internal.kts.setValue(Velocities.athrMin);
+				} else {
+					Internal.kts.setValue(Input.ktsTemp);
+				}
+				
 				Internal.targetKts = Internal.kts.getValue();
 			}
 			
@@ -685,26 +743,22 @@ var ITAF = {
 			} else {
 				Output.spdCaptured = 0;
 			}
-		} else if (!Gear.wow1Temp and !Gear.wow2Temp) {
-			if (Internal.ktsMach.getBoolValue()) {
-				if (Velocities.athrMinMach > Velocities.athrMaxMach) { # For extreme bank, max takes priority
+		} else if (!Gear.wow1Temp and !Gear.wow2Temp and !Internal.fmsSpdDriving) {
+			if (Internal.ktsMachTemp) {
+				if (Velocities.athrMinMach > Velocities.athrMaxMach) { # Max takes priority
 					Internal.mach.setValue(Velocities.athrMaxMach);
-				} else {
-					if (Internal.machTemp > Velocities.athrMaxMach) {
-						Internal.mach.setValue(Velocities.athrMaxMach);
-					} else if (Internal.machTemp < Velocities.athrMinMach) {
-						Internal.mach.setValue(Velocities.athrMinMach);
-					}
+				} else if (Internal.machTemp > Velocities.athrMaxMach) {
+					Internal.mach.setValue(Velocities.athrMaxMach);
+				} else if (Internal.machTemp < Velocities.athrMinMach) {
+					Internal.mach.setValue(Velocities.athrMinMach);
 				}
 			} else {
-				if (Velocities.athrMin > Velocities.athrMax) { # For extreme bank, max takes priority
+				if (Velocities.athrMin > Velocities.athrMax) { # Max takes priority
 					Internal.kts.setValue(Velocities.athrMax);
-				} else {
-					if (Internal.ktsTemp > Velocities.athrMax) {
-						Internal.kts.setValue(Velocities.athrMax);
-					} else if (Internal.ktsTemp < Velocities.athrMin) {
-						Internal.kts.setValue(Velocities.athrMin);
-					}
+				} else if (Internal.ktsTemp > Velocities.athrMax) {
+					Internal.kts.setValue(Velocities.athrMax);
+				} else if (Internal.ktsTemp < Velocities.athrMin) {
+					Internal.kts.setValue(Velocities.athrMin);
 				}
 			}
 		} # Refresh Internal.ktsTemp and Internal.machTemp if using past this point
@@ -857,7 +911,7 @@ var ITAF = {
 		}
 		
 		# Mach Switchover
-		if (!fms.FmsSpd.active) {
+		if (!fms.FmsSpd.active) { # When FMS SPD is active, it handles switchover automatically
 			if (Internal.machSwitchover) {
 				if (Position.indicatedAltitudeFt.getValue() < 25990) {
 					Internal.machSwitchover = 0;
@@ -1520,6 +1574,26 @@ var ITAF = {
 			}
 		}
 	},
+	takeoffSpdLogic: func() {
+		if (fms.Internal.phase <= 1 and Internal.spdPitchAvail.getBoolValue() and fms.FmsSpd.toKts > 0) {
+			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
+				Internal.kts.setValue(fms.FmsSpd.toKts);
+				
+				if (!Output.showSpd.getBoolValue()) { # Also in FMS SPD Logic
+					if (Input.ktsMachTemp) {
+						Input.ktsMach.setBoolValue(0);
+					}
+					Input.kts.setValue(fms.FmsSpd.toKts);
+				}
+				
+				return 1;
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	},
 	setClimbRateLim: func() {
 		Internal.vsTemp = Internal.vs.getValue();
 		if (Internal.alt.getValue() >= Position.indicatedAltitudeFt.getValue()) {
@@ -1632,14 +1706,6 @@ var ITAF = {
 				Internal.kts.setValue(math.clamp(Input.kts.getValue(), fms.Speeds.athrMin.getValue(), fms.Speeds.athrMax.getValue()));
 			}
 			Output.spdCaptured = 0;
-		}
-	},
-	takeoffSpdLogic: func() {
-		if (Text.vert.getValue() == "T/O CLB" and Internal.spdPitchAvail.getBoolValue() and fms.FmsSpd.toKts > 0) {
-			if (Gear.wow1Temp or Gear.wow2Temp or Position.gearAglFtTemp < 400 or fms.FmsSpd.toDriving) {
-				Output.spdCaptured = 1; # Always captured when driven
-				Internal.kts.setValue(fms.FmsSpd.toKts);
-			}
 		}
 	},
 	autoflight: func() {
