@@ -250,6 +250,51 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			}
+		} else if (Internal.phase == 4) { # Descent
+			if (FlightData.descentSpeedMode == 2) { # EDIT
+				if (me.editDescentKts > 0 and me.editDescentMach > 0) {
+					me.checkMachToggleEdit(2, 0);
+					
+					if (me.machToggleEditDescent) {
+						me.ktsMach = 1;
+						me.machCmd = me.editDescentMach;
+					} else {
+						me.ktsMach = 0;
+						me.ktsCmd = me.editDescentKts;
+					}
+				} else {
+					me.cancelAndZero();
+				}
+			} else if (FlightData.descentSpeedMode == 1) { # MAX
+				if (me.maxDescent > 0) {
+					me.ktsMach = 0;
+					me.ktsCmd = me.maxDescent;
+				} else {
+					me.cancelAndZero();
+				}
+			} else { # ECON
+				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
+					if (me.alt10kToggle) {
+						if (me.convertKts(me.econMach) + 0.5 >= me.econKts) {
+							me.machToggleEcon = 0;
+						}
+						
+						if (me.machToggleEcon) {
+							me.ktsMach = 1;
+							me.machCmd = me.econMach;
+						} else {
+							me.ktsMach = 0;
+							me.ktsCmd = me.econKts;
+						}
+					} else {
+						me.machToggleEcon = 0;
+						me.ktsMach = 0;
+						me.ktsCmd = 245;
+					}
+				} else {
+					me.cancelAndZero();
+				}
+			}
 		} else {
 			me.cancelAndZero();
 		}
@@ -311,9 +356,13 @@ var FmsSpd = {
 	checkMachToggleEdit: func(type, rst) { # Reset is not allowed when calling from the loop
 		if (type == 2) { # Descent
 			if (Internal.phase >= 4) {
-				
-			} else { # This is required to ensure it does not flip to 1 early
-				me.machToggleEditDescent = 0;
+				if (me.convertKts(me.editDescentMach) + 0.5 >= me.editDescentKts) {
+					me.machToggleEditDescent = 0;
+				} else if (rst) {
+					me.machToggleEditDescent = 1;
+				}
+			} else { # This is required to ensure it does not flip to 0 early
+				me.machToggleEditDescent = 1;
 			}
 		} else { # Climb
 			if (me.convertMach(me.editClimbKts) + 0.0005 >= me.editClimbMach) {
@@ -341,6 +390,12 @@ var FmsSpd = {
 		
 		if (fms.FlightData.climbSpeedEditMach == 1) me.editClimbMach = me.maxMach;
 		else me.editClimbMach = fms.FlightData.climbSpeedEditMach;
+		
+		if (fms.FlightData.descentSpeedEditKts == 1) me.editDescentKts = me.maxKts;
+		else me.editDescentKts = fms.FlightData.descentSpeedEditKts;
+		
+		if (fms.FlightData.descentSpeedEditMach == 1) me.editDescentMach = me.maxMach;
+		else me.editDescentMach = fms.FlightData.descentSpeedEditMach;
 	},
 	takeoffLogic: func() {
 		if (Internal.phase >= 2) {
