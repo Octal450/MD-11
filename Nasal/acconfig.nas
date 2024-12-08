@@ -287,7 +287,7 @@ var PANEL = {
 		}
 		systems.GEAR.Controls.lever.setValue(3);
 	},
-	coldDark: func(s = 0) {
+	coldDark: func(reinit = 0) {
 		me.panelBase(0);
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
@@ -299,8 +299,10 @@ var PANEL = {
 		settimer(func() { # Give things a moment to settle
 			fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 			spinningT.stop();
-			if (!s) {
+			if (!reinit) {
 				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
+			} else if (OPTIONS.openOnLaunch.getBoolValue()) {
+				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-main"}));
 			}
 			SYSTEM.autoConfigRunning.setBoolValue(0);
 			me.stop = 1;
