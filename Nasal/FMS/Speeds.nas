@@ -45,6 +45,7 @@ var FmsSpd = {
 	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
 	activeOrFmsVspeed: 0,
 	alt10kToggle: 0,
+	alt11kToggle: 0,
 	econKts: 0,
 	econMach: 0,
 	editClimbKts: 0,
@@ -78,6 +79,7 @@ var FmsSpd = {
 		me.active = 0;
 		me.activeOrFmsVspeed = 0;
 		me.alt10kToggle = 0;
+		me.alt11kToggle = 0;
 		me.kts = 0;
 		me.ktsCmd = 0;
 		me.ktsMach = 0;
@@ -160,11 +162,18 @@ var FmsSpd = {
 			me.activeOrFmsVspeed = 0;
 		}
 		
-		# 10K Altitude Latch: Prevent flickering
+		# 10K Altitude Latch (Climb/Cruise)
 		if (Value.altitude >= 9995) {
 			me.alt10kToggle = 1;
-		} else if (Value.altitude < 9950) {
+		} else if (Value.altitude < 9945) {
 			me.alt10kToggle = 0;
+		}
+		
+		# 11K Altitude Latch (Descent)
+		if (Value.altitude >= 11045) {
+			me.alt11kToggle = 1;
+		} else if (Value.altitude < 10995) {
+			me.alt11kToggle = 0;
 		}
 		
 		# Main FMS SPD Logic
@@ -274,7 +283,7 @@ var FmsSpd = {
 				}
 			} else { # ECON
 				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
-					if (me.alt10kToggle) {
+					if (me.alt11kToggle) {
 						if (me.convertKts(me.econMach) + 0.5 >= me.econKts) {
 							me.machToggleEcon = 0;
 						}
