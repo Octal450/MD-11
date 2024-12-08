@@ -401,6 +401,7 @@ var Perf = {
 						
 						fms.FlightData.descentSpeedEditMach = math.round(me.scratchpadSplit[0], 0.001);
 						fms.FlightData.descentSpeedEditKts = int(me.scratchpadSplit[1]);
+						fms.FmsSpd.updateEditSpeeds(2);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
@@ -441,6 +442,7 @@ var Perf = {
 						
 						fms.FlightData.climbSpeedEditKts = int(me.scratchpadSplit[0]);
 						fms.FlightData.climbSpeedEditMach = math.round(me.scratchpadSplit[1], 0.001);
+						fms.FmsSpd.updateEditSpeeds(0);
 						mcdu.unit[me.id].scratchpadClear();
 					}
 				} else if (me.scratchpadSplitSize == 1) {
@@ -449,9 +451,11 @@ var Perf = {
 							if (me.type == 2) {
 								fms.FlightData.descentSpeedEditKts = int(me.scratchpad);
 								fms.FlightData.descentSpeedEditMach = 1;
+								fms.FmsSpd.updateEditSpeeds(2);
 							} else {
 								fms.FlightData.climbSpeedEditKts = int(me.scratchpad);
 								fms.FlightData.climbSpeedEditMach = 1;
+								fms.FmsSpd.updateEditSpeeds(0);
 							}
 							mcdu.unit[me.id].scratchpadClear();
 						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
@@ -459,9 +463,11 @@ var Perf = {
 								if (me.type == 2) {
 									fms.FlightData.descentSpeedEditKts = 1;
 									fms.FlightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
+									fms.FmsSpd.updateEditSpeeds(2);
 								} else {
 									fms.FlightData.climbSpeedEditKts = 1;
 									fms.FlightData.climbSpeedEditMach = math.round(me.scratchpad, 0.001);
+									fms.FmsSpd.updateEditSpeeds(0);
 								}
 								mcdu.unit[me.id].scratchpadClear();
 							} else {

@@ -43,10 +43,15 @@ var Speeds = {
 var FmsSpd = {
 	active: 0,
 	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
-	activeTo: 0,
+	activeOrFmsVspeed: 0,
 	alt10kToggle: 0,
 	econKts: 0,
 	econMach: 0,
+	editClimbKts: 0,
+	editClimbMach: 0,
+	editCruise: 0,
+	editDescentKts: 0,
+	editDescentMach: 0,
 	kts: 0,
 	ktsCmd: 0,
 	ktsOut: props.globals.getNode("/systems/fms/fms-spd/kts"),
@@ -55,7 +60,9 @@ var FmsSpd = {
 	mach: 0,
 	machCmd: 0,
 	machOut: props.globals.getNode("/systems/fms/fms-spd/mach"),
-	machToggle: 0,
+	machToggleEcon: 0,
+	machToggleEditClimb: 0,
+	machToggleEditDescent: 0,
 	maxClimb: 0,
 	maxDescent: 0,
 	maxKts: 365,
@@ -70,14 +77,16 @@ var FmsSpd = {
 	vcl: 0,
 	init: func() {
 		me.active = 0;
-		me.activeTo = 0;
+		me.activeOrFmsVspeed = 0;
 		me.alt10kToggle = 0;
 		me.kts = 0;
 		me.ktsCmd = 0;
 		me.ktsMach = 0;
 		me.mach = 0;
 		me.machCmd = 0;
-		me.machToggle = 0;
+		me.machToggleEcon = 0;
+		me.machToggleEditClimb = 0;
+		me.machToggleEditDescent = 0;
 		me.pfdActive = 0;
 		me.toKts = 0;
 		me.toKtsCmd = 0;
@@ -110,6 +119,8 @@ var FmsSpd = {
 		}
 	},
 	engageAllowed: func() {
+		# In order to engage correctly during takeoff with manually set Vspeeds, toKts must be checked as the other variables are 0, this is required to prevent incorrect display of the hollow magenta bug on the PFD
+		# Sequencing when leaving phase 1 is not a concern as the bug is displayed when FMS SPD is active, meaning that the kts and mach variables will be populated, thus this will not return 0
 		if (pts.Position.gearAglFt.getValue() >= 400 and !pts.Gear.wow[1].getBoolValue() and !pts.Gear.wow[2].getBoolValue() and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
 			return 1;
 		} else {
@@ -134,71 +145,82 @@ var FmsSpd = {
 		me.getSpeeds();
 		
 		# Pull min/max speeds, 0 is disallowed as it indicates invalid speed
-		me.maxKts = math.max(Speeds.athrMax.getValue(), 1);
-		me.maxMach = math.max(Speeds.athrMaxMach.getValue(), 0.001);
-		me.minKts = math.max(Speeds.athrMin.getValue(), 1);
-		me.minMach = math.max(Speeds.athrMinMach.getValue(), 0.001);
+		me.maxKts = math.max(math.round(Speeds.athrMax.getValue()), 1);
+		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
+		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
+		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
 		
 		# Takeoff Guidance Logic
 		me.takeoffLogic();
 		
 		# Special Takeoff Guidance Logic
 		# Only when FMS SPD is active, or takeoff speed is available and non-overridden V2 is set
-		if (me.active or (me.toKts > 0 and FlightData.v2State == 1)) {
-			me.activeTo = 1;
+		if (me.active or (Internal.phase <= 1 and me.toKts > 0 and FlightData.v2State == 1)) {
+			me.activeOrFmsVspeed = 1;
 		} else {
-			me.activeTo = 0;
+			me.activeOrFmsVspeed = 0;
+		}
+		
+		# 10K Altitude Latch: Prevent flickering
+		if (Value.altitude >= 9995) {
+			me.alt10kToggle = 1;
+		} else if (Value.altitude < 9950) {
+			me.alt10kToggle = 0;
 		}
 		
 		# Main FMS SPD Logic
 		# ktsMach determins which is active, the other is handled in Inactive Value Sync
 		if (Internal.phase == 2) { # Climb
-			if (me.vcl > 0 and me.econKts > 0 and me.econMach > 0) {
-				# Prevent flickering by using a latch
-				if (Value.altitude >= 9995) {
-					me.alt10kToggle = 1;
+			if (FlightData.climbSpeedMode == 2) { # EDIT
+				if (fms.FlightData.climbSpeedEditKts > 0 and fms.FlightData.climbSpeedEditMach > 0) {
+					me.checkMachToggleEdit(0, 0);
 					
-					if (Value.asiMach + 0.0005 >= me.econMach) {
-						me.machToggle = 1;
-					}
-				} else if (Value.altitude < 9950) {
-					me.alt10kToggle = 0;
-					me.machToggle = 0;
-				}
-				
-				if (me.alt10kToggle) {
-					# TODO: EDIT mode
-					if (FlightData.climbSpeedMode == 1) {
-						me.ktsMach = 0;
-						me.ktsCmd = math.max(me.maxClimb, me.vcl);
+					if (me.machToggleEditClimb) {
+						me.ktsMach = 1;
+						me.machCmd = me.editClimbMach;
 					} else {
-						if (me.machToggle) {
+						me.ktsMach = 0;
+						me.ktsCmd = me.editClimbKts;
+					}
+				} else {
+					me.cancelAndZero();
+				}
+			} else if (FlightData.climbSpeedMode == 1) { # MAX
+				if (me.maxClimb > 0 and me.vcl > 0) {
+					me.ktsMach = 0;
+					me.ktsCmd = math.max(me.maxClimb, me.vcl);
+				} else {
+					me.cancelAndZero();
+				}
+			} else { # ECON
+				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
+					if (me.alt10kToggle) {						
+						if (me.convertMach(me.econKts) + 0.0005 >= me.econMach) {
+							me.machToggleEcon = 1;
+						}
+						
+						if (me.machToggleEcon) {
 							me.ktsMach = 1;
 							me.machCmd = me.econMach;
 						} else {
 							me.ktsMach = 0;
 							me.ktsCmd = math.max(me.econKts, me.vcl);
 						}
-					}
-				} else {
-					# TODO: EDIT mode
-					if (FlightData.climbSpeedMode == 1) {
-						me.ktsMach = 0;
-						me.ktsCmd = math.max(me.maxClimb, me.vcl);
 					} else {
+						me.machToggleEcon = 0;
 						me.ktsMach = 0;
 						me.ktsCmd = math.max(250, me.vcl);
 					}
+				} else {
+					me.cancelAndZero();
 				}
-			} else {
-				me.cancelAndZero();
 			}
 		} else if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
 				me.toDriving = 1;
 			}
 			
-			if (me.activeTo) {
+			if (me.activeOrFmsVspeed) {
 				me.ktsMach = 0;
 				me.ktsCmd = me.toKts;
 			} else {
@@ -211,13 +233,13 @@ var FmsSpd = {
 		# Inactive Value Sync
 		if (me.ktsMach) {
 			if (me.machCmd > 0) {
-				me.setConvertKts(Value.asiKts, Value.asiMach);
+				me.ktsCmd = me.convertKts(me.machCmd);
 			} else {
 				me.ktsCmd = 0;
 			}
 		} else {
 			if (me.ktsCmd > 0) {
-				me.setConvertMach(Value.asiKts, Value.asiMach);
+				me.machCmd = me.convertMach(me.ktsCmd);
 			} else {
 				me.machCmd = 0;
 			}
@@ -262,18 +284,39 @@ var FmsSpd = {
 		# Write to Property Tree
 		me.writeOut();
 	},
+	checkMachToggleEdit: func(type, rst) { # Reset is not allowed when calling from the loop
+		if (type == 2) { # Descent
+			if (Internal.phase >= 4) {
+				
+			} else { # This is required to ensure it does not flip to 1 early
+				me.machToggleEditDescent = 0;
+			}
+		} else { # Climb
+			if (me.convertMach(me.editClimbKts) + 0.0005 >= me.editClimbMach) {
+				me.machToggleEditClimb = 1;
+			} else if (rst) {
+				me.machToggleEditClimb = 0;
+			}
+		}
+	},
+	convertKts: func(input) {
+		return math.max(math.round(input * (Value.asiKts / Value.asiMach)), 1); # 0 is disallowed
+	},
+	convertMach: func(input) {
+		return math.max(math.round(input * (Value.asiMach / Value.asiKts), 0.001), 0.001); # 0 is disallowed
+	},
 	getSpeeds: func() {
 		me.econKts = math.round(Speeds.econKts.getValue());
 		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
 		me.maxClimb = math.round(Speeds.maxClimb.getValue());
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
 		me.vcl = math.round(Speeds.vcl.getValue());
-	},
-	setConvertKts: func(ktsCurrent, machCurrent) {
-		me.ktsCmd = math.max(math.round(me.machCmd * (ktsCurrent / machCurrent)), 1); # 0 is disallowed
-	},
-	setConvertMach: func(ktsCurrent, machCurrent) {
-		me.machCmd = math.max(math.round(me.ktsCmd * (machCurrent / ktsCurrent), 0.001), 0.001); # 0 is disallowed
+		
+		if (fms.FlightData.climbSpeedEditKts == 1) me.editClimbKts = me.maxKts;
+		else me.editClimbKts = fms.FlightData.climbSpeedEditKts;
+		
+		if (fms.FlightData.climbSpeedEditMach == 1) me.editClimbMach = me.maxMach;
+		else me.editClimbMach = fms.FlightData.climbSpeedEditMach;
 	},
 	takeoffLogic: func() {
 		if (Internal.phase >= 2) {
@@ -319,6 +362,10 @@ var FmsSpd = {
 		} else {
 			me.toKts = 0;
 		}
+	},
+	updateEditSpeeds: func(type) {
+		me.getSpeeds();
+		me.checkMachToggleEdit(type, 1); # Allow reset to 0
 	},
 };
 

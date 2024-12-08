@@ -797,7 +797,7 @@ var ITAF = {
 		} else {
 			Internal.syncedHdg = 0;
 		}
-		if (Input.ktsMachTemp == Internal.ktsMach.getBoolValue() and Internal.spdPitchAvailTemp) {
+		if (Input.ktsMachTemp == Internal.ktsMach.getBoolValue() and Internal.spdPitchAvailTemp and !fms.FmsSpd.activeOrFmsVspeed) { # Keep preSel unsynced when FMS V-speed Takeoff or FMS Speed is active
 			if (Input.ktsMachTemp) {
 				if (Input.machTemp == Internal.mach.getValue()) {
 					Internal.syncedSpd = 1;

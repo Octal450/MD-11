@@ -722,8 +722,6 @@ var canvasBase = {
 				me["ASI_taxi"].setColor(1, 1, 1);
 			}
 			
-			me["ASI_sel_up"].setColor(1, 1, 1);
-			me["ASI_sel_dn"].setColor(1, 1, 1);
 			me["ASI_bowtie"].hide();
 			me["ASI_ias_group"].hide();
 			me["ASI_taxi_group"].show();
@@ -1082,7 +1080,7 @@ var canvasBase = {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
 			}
 			me["ASI_sel_up_text"].show();
-		} else if ((Value.Asi.Tape.sel > 60 or Value.Asi.showTaxi) and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.sel > 60 and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
 			me["ASI_fms_up"].hide();
 			me["ASI_sel_up"].setColor(1, 1, 1);
 			me["ASI_sel_up"].setColorFill(1, 1, 1);
@@ -1094,7 +1092,7 @@ var canvasBase = {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 			}
 			me["ASI_sel_up_text"].show();
-		} else if ((Value.Asi.Tape.fms > 60 or Value.Asi.showTaxi) and Value.Asi.fms != 0) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.fms > 60 and Value.Asi.fms != 0) { # It will never go outside envelope
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_up"].setColorFill(0.9607, 0, 0.7764, 1);
 			} else {
