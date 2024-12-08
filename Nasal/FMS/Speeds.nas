@@ -49,7 +49,6 @@ var FmsSpd = {
 	econMach: 0,
 	editClimbKts: 0,
 	editClimbMach: 0,
-	editCruise: 0,
 	editDescentKts: 0,
 	editDescentMach: 0,
 	kts: 0,
@@ -170,9 +169,21 @@ var FmsSpd = {
 		
 		# Main FMS SPD Logic
 		# ktsMach determins which is active, the other is handled in Inactive Value Sync
-		if (Internal.phase == 2) { # Climb
+		
+		if (Internal.phase <= 1) { # Preflight/Takeoff
+			if (me.active) { # Re-enable driving if overriden
+				me.toDriving = 1;
+			}
+			
+			if (me.activeOrFmsVspeed) {
+				me.ktsMach = 0;
+				me.ktsCmd = me.toKts;
+			} else {
+				me.cancelAndZero();
+			}
+		} else if (Internal.phase == 2) { # Climb
 			if (FlightData.climbSpeedMode == 2) { # EDIT
-				if (fms.FlightData.climbSpeedEditKts > 0 and fms.FlightData.climbSpeedEditMach > 0) {
+				if (me.editClimbKts > 0 and me.editClimbMach > 0) {
 					me.checkMachToggleEdit(0, 0);
 					
 					if (me.machToggleEditClimb) {
@@ -194,7 +205,7 @@ var FmsSpd = {
 				}
 			} else { # ECON
 				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
-					if (me.alt10kToggle) {						
+					if (me.alt10kToggle) {
 						if (me.convertMach(me.econKts) + 0.0005 >= me.econMach) {
 							me.machToggleEcon = 1;
 						}
@@ -215,16 +226,29 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			}
-		} else if (Internal.phase <= 1) { # Preflight/Takeoff
-			if (me.active) { # Re-enable driving if overriden
-				me.toDriving = 1;
-			}
-			
-			if (me.activeOrFmsVspeed) {
-				me.ktsMach = 0;
-				me.ktsCmd = me.toKts;
-			} else {
-				me.cancelAndZero();
+		} else if (Internal.phase == 3) { # Cruise
+			if (FlightData.cruiseSpeedMode == 2) { # EDIT
+				if (fms.FlightData.cruiseSpeedEdit > 0 and fms.FlightData.cruiseSpeedEdit < 1) {
+					me.ktsMach = 1;
+					me.machCmd = fms.FlightData.cruiseSpeedEdit;
+				} else if (fms.FlightData.cruiseSpeedEdit > 1) {
+					me.ktsMach = 0;
+					me.ktsCmd = fms.FlightData.cruiseSpeedEdit;
+				} else {
+					me.cancelAndZero();
+				}
+			} else { # ECON
+				if (me.econMach > 0 and me.vcl > 0) {
+					if (me.alt10kToggle) {
+						me.ktsMach = 1;
+						me.machCmd = me.econMach;
+					} else {
+						me.ktsMach = 0;
+						me.ktsCmd = math.max(250, me.vcl);
+					}
+				} else {
+					me.cancelAndZero();
+				}
 			}
 		} else {
 			me.cancelAndZero();
