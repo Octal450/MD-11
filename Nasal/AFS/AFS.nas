@@ -1328,6 +1328,9 @@ var ITAF = {
 		}
 		
 		if (Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5 and Output.spdProtTemp == 0) {
+			if (fms.FmsSpd.active) {
+				fms.FmsSpd.cancel();
+			}
 			Output.thrMode.setValue(1);
 			Text.spd.setValue("RETARD");
 			Internal.retardLock = 1;
