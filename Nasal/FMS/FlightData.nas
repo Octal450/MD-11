@@ -98,6 +98,7 @@ var RouteManager = {
 	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
 	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
 	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
+	num: props.globals.getNode("/autopilot/route-manager/route/num"),
 };
 
 # Logic
@@ -105,7 +106,7 @@ var EditFlightData = {
 	loop: func() {
 		# Status Sync
 		if (FlightData.airportTo == "") {
-			if (RouteManager.active.getBoolValue()) {
+			if (Value.active) {
 				flightplan().cleanPlan();
 				gui.popupTip("You need to initialize the MCDU before a route can be activated");
 			}

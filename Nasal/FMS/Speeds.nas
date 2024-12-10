@@ -46,6 +46,8 @@ var FmsSpd = {
 	activeOrFmsVspeed: 0,
 	alt10kToggle: 0,
 	alt11kToggle: 0,
+	apprKts: 0,
+	decel: 0,
 	econKts: 0,
 	econMach: 0,
 	editClimbKts: 0,
@@ -80,6 +82,8 @@ var FmsSpd = {
 		me.activeOrFmsVspeed = 0;
 		me.alt10kToggle = 0;
 		me.alt11kToggle = 0;
+		me.apprKts = 0;
+		me.decel = 0;
 		me.kts = 0;
 		me.ktsCmd = 0;
 		me.ktsMach = 0;
@@ -93,15 +97,16 @@ var FmsSpd = {
 		me.toKtsCmd = 0;
 		me.v2Toggle = 0;
 	},
-	cancel: func() {
+	cancel: func(b = 0) {
 		me.active = 0;
 		me.toDriving = 0; # Cancels FMS SPD and Takeoff Guidance
 		me.loop(); # Update immediately
 		afs.Output.showSpdPreSel.setBoolValue(1);
+		if (b) afs.Fma.startBlink(0);
 	},
 	cancelAndZero: func() {
 		if (me.active) {
-			me.cancel();
+			me.cancel(1);
 		}
 		me.ktsMach = 0;
 		me.ktsCmd = 0;
@@ -122,7 +127,7 @@ var FmsSpd = {
 	engageAllowed: func() {
 		# In order to engage correctly during takeoff with manually set Vspeeds, toKts must be checked as the other variables are 0, this is required to prevent incorrect display of the hollow magenta bug on the PFD
 		# Sequencing when leaving phase 1 is not a concern as the bug is displayed when FMS SPD is active, meaning that the kts and mach variables will be populated, thus this will not return 0
-		if (pts.Position.gearAglFt.getValue() >= 400 and !pts.Gear.wow[1].getBoolValue() and !pts.Gear.wow[2].getBoolValue() and afs.Text.spd.getValue() != "RETARD" and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
+		if ((pts.Position.gearAglFt.getValue() >= 400 or Internal.phase > 1) and !pts.Gear.wow[0].getBoolValue() and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
 			return 1;
 		} else {
 			return 0;
@@ -138,7 +143,7 @@ var FmsSpd = {
 		# Disengage if unavailable
 		if (me.active) {
 			if (!me.engageAllowed()) {
-				me.cancel();
+				me.cancel(1);
 			}
 		}
 		
@@ -179,6 +184,16 @@ var FmsSpd = {
 		# Main FMS SPD Logic
 		# ktsMach determins which is active, the other is handled in Inactive Value Sync
 		
+		if (Internal.phase >= 4) {
+			if (Value.active and Value.wpNum > 0 and Value.distanceRemainingNm < 15) {
+				me.decel = 1;
+			} else {
+				me.decel = 0;
+			}
+		} else {
+			me.decel = 0;
+		}
+		
 		if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
 				me.toDriving = 1;
@@ -190,6 +205,8 @@ var FmsSpd = {
 			} else {
 				me.cancelAndZero();
 			}
+		} else if (Value.wow0) { # After takeoff, cancel on NLG WoW
+			me.cancelAndZero();
 		} else if (Internal.phase == 2) { # Climb
 			if (FlightData.climbSpeedMode == 2) { # EDIT
 				if (me.editClimbKts > 0 and me.editClimbMach > 0) {
@@ -259,7 +276,21 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			}
-		} else if (Internal.phase == 4) { # Descent
+		} else if (Internal.phase >= 4) { # Descent/Approach/Rollout
+			if (me.decel) {
+				if (Value.flapLever >= 4) {
+					me.apprKts = FlightData.vapp;
+				} else if (Value.flapLever == 3) {
+					me.apprKts = math.max(math.round(Speeds.flap28Min.getValue()) + 5, FlightData.vapp);
+				} else if (Value.flapLever >= 1) {
+					me.apprKts = math.max(math.round(Speeds.slatMin.getValue()) + 20, FlightData.vapp);
+				} else {
+					me.apprKts = math.max(math.round(Speeds.cleanMin.getValue()) + 20, FlightData.vapp);
+				}
+			} else {
+				me.apprKts = 0;
+			}
+			
 			if (FlightData.descentSpeedMode == 2) { # EDIT
 				if (me.editDescentKts > 0 and me.editDescentMach > 0) {
 					me.checkMachToggleEdit(2, 0);
@@ -274,6 +305,9 @@ var FmsSpd = {
 				} else {
 					me.cancelAndZero();
 				}
+			} else if (me.apprKts > 0) {
+				me.ktsMach = 0;
+				me.ktsCmd = me.apprKts;
 			} else if (FlightData.descentSpeedMode == 1) { # MAX
 				if (me.maxDescent > 0) {
 					me.ktsMach = 0;

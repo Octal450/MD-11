@@ -1997,7 +1997,7 @@ var canvasBase = {
 			}
 		}
 		
-		if (fms.FmsSpd.active) { # Only if the actual FMS SPD mode is active, this excludes takeoff speed guidance
+		if (fms.FmsSpd.active and Value.Afs.thrust != "RETARD") { # Only if the actual FMS SPD mode is active and not in RETARD, this excludes takeoff speed guidance
 			me["FMA_thrust"].setColor(0.9608, 0, 0.7765);
 		} else {
 			me["FMA_thrust"].setColor(1, 1, 1);

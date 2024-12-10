@@ -30,6 +30,8 @@ var Value = { # Local store of commonly accessed values
 	gearLever: 0,
 	vertText: 0,
 	wow: 0,
+	wow0: 0,
+	wpNum: 0,
 };
 
 # Logic
@@ -61,6 +63,8 @@ var CORE = {
 		Value.gearLever = systems.GEAR.cmd.getBoolValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Position.wow.getBoolValue();
+		Value.wow0 = pts.Gear.wow[0].getBoolValue();
+		Value.wpNum = RouteManager.num.getValue();
 		
 		if (systems.ENGINES.state[0].getValue() == 3 or systems.ENGINES.state[1].getValue() == 3 or systems.ENGINES.state[2].getValue() == 3) {
 			Internal.engOn = 1;
