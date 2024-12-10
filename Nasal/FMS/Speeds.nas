@@ -119,8 +119,9 @@ var FmsSpd = {
 			return;
 		}
 		
-		if (me.engageAllowed) {
+		if (me.engageAllowed()) {
 			me.active = 1;
+			afs.Fma.stopBlink(0);
 			me.loop(); # Update immediately
 		}
 	},
