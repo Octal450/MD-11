@@ -26,8 +26,10 @@ var Value = { # Local store of commonly accessed values
 	asiKts: 0,
 	asiMach: 0,
 	distanceRemainingNm: 0,
-	flapLever: 0,
+	flapsLever: 0,
+	flapsPos: 0,
 	gearLever: 0,
+	slatsPos: 0,
 	vertText: 0,
 	wow: 0,
 	wow0: 0,
@@ -58,9 +60,11 @@ var CORE = {
 		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
 		Value.altitude = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.distanceRemainingNm = RouteManager.distanceRemainingNm.getValue();
-		Value.flapLever = systems.FCS.flapsInput.getValue();
+		Value.flapsLever = systems.FCS.flapsInput.getValue();
+		Value.flapsPos = systems.FCS.flapsDeg.getValue();
 		Value.gearAglFt = pts.Position.gearAglFt.getValue();
 		Value.gearLever = systems.GEAR.cmd.getBoolValue();
+		Value.slatsPos = systems.FCS.slatsDeg.getValue();
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Position.wow.getBoolValue();
 		Value.wow0 = pts.Gear.wow[0].getBoolValue();
@@ -90,7 +94,7 @@ var CORE = {
 				}
 			}
 		} else if (Internal.phase == 2) { # Climb
-			if (Value.flapLever >= 4 and Value.gearLever) {
+			if (Value.flapsLever >= 4 and Value.gearLever) {
 				Internal.phaseNew = 5; # Approach
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
@@ -100,7 +104,7 @@ var CORE = {
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
-			if (Value.flapLever >= 4 and Value.gearLever) {
+			if (Value.flapsLever >= 4 and Value.gearLever) {
 				Internal.phaseNew = 5; # Approach
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
@@ -110,13 +114,13 @@ var CORE = {
 				}
 			}
 		} else if (Internal.phase == 4) { # Descent
-			if (Value.flapLever > 0) {
+			if (Value.flapsLever > 0) {
 				Internal.phaseNew = 5; # Approach
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
 			}
 		} else if (Internal.phase == 5) { # Approach
-			if (Value.flapLever == 0) {
+			if (Value.flapsLever == 0) {
 				Internal.phaseNew = 4; # Descent
 			} else if (Value.wow and Value.vertText != "G/A CLB") {
 				Internal.phaseNew = 6; # Rollout

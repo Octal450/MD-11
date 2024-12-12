@@ -279,14 +279,14 @@ var FmsSpd = {
 			}
 		} else if (Internal.phase >= 4) { # Descent/Approach/Rollout
 			if (me.decel) {
-				if (Value.flapLever >= 4) {
+				if (Value.flapsPos >= 34) {
 					me.apprKts = FlightData.vapp;
-				} else if (Value.flapLever == 3) {
-					me.apprKts = math.max(math.round(Speeds.flap28Min.getValue()) + 5, FlightData.vapp);
-				} else if (Value.flapLever >= 1) {
-					me.apprKts = math.max(math.round(Speeds.slatMin.getValue()) + 20, FlightData.vapp);
+				} else if (Value.flapsPos >= 27) {
+					me.apprKts = math.max(me.minKts, FlightData.vapp); # minKts = Vmin + 5
+				} else if (Value.slatsPos >= 30) {
+					me.apprKts = math.max(me.minKts + 15, FlightData.vapp); # Vmin + 20
 				} else {
-					me.apprKts = math.max(math.round(Speeds.cleanMin.getValue()) + 20, FlightData.vapp);
+					me.apprKts = math.max(me.minKts + 15, FlightData.vapp); # Vmin + 20
 				}
 			} else {
 				me.apprKts = 0;
