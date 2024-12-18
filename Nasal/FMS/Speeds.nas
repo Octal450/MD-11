@@ -101,7 +101,7 @@ var FmsSpd = {
 		me.active = 0;
 		me.toDriving = 0; # Cancels FMS SPD and Takeoff Guidance
 		me.loop(); # Update immediately
-		afs.Output.showSpdPreSel.setBoolValue(1);
+		afs.Output.showSpd.setBoolValue(1);
 		if (b) afs.Fma.startBlink(0);
 	},
 	cancelAndZero: func() {
@@ -112,7 +112,6 @@ var FmsSpd = {
 		me.ktsCmd = 0;
 	},
 	engage: func() {
-		afs.Output.showSpdPreSel.setBoolValue(0);
 		
 		if (me.active) {
 			fms.EditFlightData.returnToEcon();
@@ -122,6 +121,7 @@ var FmsSpd = {
 		if (me.engageAllowed()) {
 			me.active = 1;
 			afs.Fma.stopBlink(0);
+			afs.Output.showSpd.setBoolValue(0);
 			me.loop(); # Update immediately
 		}
 	},

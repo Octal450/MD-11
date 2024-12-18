@@ -1006,7 +1006,7 @@ var canvasBase = {
 		}
 		
 		# ASI Pre-Sel/Sel
-		Value.Asi.showPreSel = afs.Output.showSpdPreSel.getBoolValue();
+		Value.Asi.showPreSel = afs.Output.showSpd.getBoolValue();
 		
 		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdActive) {
 			Value.Afs.fmsSpdDriving = 1;

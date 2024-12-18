@@ -80,7 +80,7 @@ var ApPanel = {
 	},
 	ktsMach: func() {
 		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
-			afs.Output.showSpdPreSel.setBoolValue(1);
+			afs.Output.showSpd.setBoolValue(1);
 			afs.Input.ktsMach.setBoolValue(!afs.Input.ktsMach.getBoolValue());
 		}
 	},
@@ -96,7 +96,7 @@ var ApPanel = {
 	},
 	spdAdjust: func(d) {
 		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
-			afs.Output.showSpdPreSel.setBoolValue(1);
+			afs.Output.showSpd.setBoolValue(1);
 			if (afs.Input.ktsMach.getBoolValue()) {
 				me.machTemp = math.round(afs.Input.mach.getValue() + (d * 0.001), (abs(d * 0.001))); # Kill floating point error
 				if (me.machTemp < 0.50) {
