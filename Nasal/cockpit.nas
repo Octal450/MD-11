@@ -18,7 +18,7 @@ var variousReset = func() {
 	pts.Controls.Switches.gpwsOvrd.setValue(0);
 	pts.Controls.Switches.gpwsOvrdCover.setBoolValue(0);
 	pts.Controls.Switches.minimumsMode.setBoolValue(0);
-	pts.Controls.Switches.minimumsBaro.setValue(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200);
+	pts.Controls.Switches.minimumsBaro.setValue(math.max(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200, 0));
 	pts.Controls.Switches.minimumsRa.setValue(200);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
