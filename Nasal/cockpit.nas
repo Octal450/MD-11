@@ -355,7 +355,7 @@ var Mins = {
 
 setlistener("/systems/electrical/outputs/fcp", func() {
 	if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 0) { # Reset the values
-		pts.Controls.Switches.minimumsBaro.setValue(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200);
+		pts.Controls.Switches.minimumsBaro.setValue(math.max(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200, 0));
 		pts.Controls.Switches.minimumsRa.setValue(200);
 	}
 }, 0, 0);
