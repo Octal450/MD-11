@@ -1579,8 +1579,35 @@
 	
 	<channel name="Status" execrate="8">
 		
+		<switch name="/systems/fadec/eng-powered-timer-decr">
+			<default value="0.00333333333333333333"/> <!-- About 5 minutes -->
+			<test value="1000">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fadec/eng-1-powered-timer-cmd">
+			<default value="1"/>
+			<test value="0">
+				/engines/engine[0]/state eq 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fadec/eng-1-powered-timer">
+			<input>/systems/fadec/eng-1-powered-timer-cmd</input>
+			<rate_limit sense="incr">1000</rate_limit>
+			<rate_limit sense="decr">/systems/fadec/eng-powered-timer-decr</rate_limit>
+		</actuator>
+		
 		<switch name="/systems/fadec/eng-1-powered">
 			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[0]/state eq 0
+				<test logic="OR">
+					position/wow eq 0
+					/systems/fadec/eng-1-powered-timer gt 0
+				</test>
+			</test>
 			<test value="1">
 				/engines/engine[0]/state eq 3
 			</test>
@@ -1590,8 +1617,28 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/fadec/eng-2-powered-timer-cmd">
+			<default value="1"/>
+			<test value="0">
+				/engines/engine[1]/state eq 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fadec/eng-2-powered-timer">
+			<input>/systems/fadec/eng-2-powered-timer-cmd</input>
+			<rate_limit sense="incr">1000</rate_limit>
+			<rate_limit sense="decr">/systems/fadec/eng-powered-timer-decr</rate_limit>
+		</actuator>
+		
 		<switch name="/systems/fadec/eng-2-powered">
 			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[1]/state eq 0
+				<test logic="OR">
+					position/wow eq 0
+					/systems/fadec/eng-2-powered-timer gt 0
+				</test>
+			</test>
 			<test value="1">
 				/engines/engine[1]/state eq 3
 			</test>
@@ -1601,8 +1648,28 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/fadec/eng-3-powered-timer-cmd">
+			<default value="1"/>
+			<test value="0">
+				/engines/engine[2]/state eq 0
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fadec/eng-3-powered-timer">
+			<input>/systems/fadec/eng-3-powered-timer-cmd</input>
+			<rate_limit sense="incr">1000</rate_limit>
+			<rate_limit sense="decr">/systems/fadec/eng-powered-timer-decr</rate_limit>
+		</actuator>
+		
 		<switch name="/systems/fadec/eng-3-powered">
 			<default value="0"/>
+			<test logic="AND" value="1">
+				/engines/engine[2]/state eq 0
+				<test logic="OR">
+					position/wow eq 0
+					/systems/fadec/eng-3-powered-timer gt 0
+				</test>
+			</test>
 			<test value="1">
 				/engines/engine[2]/state eq 3
 			</test>
