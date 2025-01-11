@@ -354,7 +354,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/takeoff-input">
+		<fcs_function name="/systems/fadec/limit/takeoff-no-flex-input">
 			<function>
 				<pow>
 					<sum>
@@ -384,7 +384,7 @@
 				<sum>
 					<product>
 						<table>
-							<independentVar lookup="row">/systems/fadec/limit/takeoff-input</independentVar>
+							<independentVar lookup="row">/systems/fadec/limit/takeoff-no-flex-input</independentVar>
 							<tableData>
 								   65768.7  0.03
 								14591440.5  1.00
@@ -508,7 +508,7 @@
 		<fcs_function name="/systems/fadec/limit/takeoff-flex-input">
 			<function>
 				<min> <!-- FLEX can not increase thrust past T/O -->
-					<property>/systems/fadec/limit/takeoff-input</property>
+					<property>/systems/fadec/limit/takeoff-no-flex-input</property>
 					<pow>
 						<sum>
 							<ifthen> <!-- FLEX is disallowed in 62K mode, but I'm leaving the code in here anyway since removing it would only remove this ifthen, all the other above code is still required to compute 60K FLEX -->
