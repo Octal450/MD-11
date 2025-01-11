@@ -805,7 +805,7 @@
 						<property>/systems/fadec/limit/active-mode-int</property>
 						<value>0</value>
 					</eq>
-					<property>/systems/fadec/limit/takeoff</property>
+					<property>/systems/fadec/limit/takeoff-no-flex</property>
 					<max> <!-- MCT is always higher than CLB or CRZ, so we don't need to check them -->
 						<property>/systems/fadec/limit/go-around</property>
 						<property>/systems/fadec/limit/mct</property>
