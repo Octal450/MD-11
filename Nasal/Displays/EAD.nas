@@ -264,15 +264,11 @@ var canvasBase = {
 			
 			me["EGT1"].show();
 			me["EGT1_needle"].show();
-			me["EGT1_redline"].show();
-			me["EGT1_yline"].show();
 		} else {
 			me["EGT1"].hide();
 			me["EGT1_ignition"].hide();
 			me["EGT1_needle"].hide();
-			me["EGT1_redline"].hide();
 			me["EGT1_redstart"].hide();
-			me["EGT1_yline"].hide();
 		}
 		
 		if (Value.Fadec.powered[1]) {
@@ -293,15 +289,11 @@ var canvasBase = {
 			
 			me["EGT2"].show();
 			me["EGT2_needle"].show();
-			me["EGT2_redline"].show();
-			me["EGT2_yline"].show();
 		} else {
 			me["EGT2"].hide();
 			me["EGT2_ignition"].hide();
 			me["EGT2_needle"].hide();
-			me["EGT2_redline"].hide();
 			me["EGT2_redstart"].hide();
-			me["EGT2_yline"].hide();
 		}
 		
 		if (Value.Fadec.powered[2]) {
@@ -322,15 +314,11 @@ var canvasBase = {
 			
 			me["EGT3"].show();
 			me["EGT3_needle"].show();
-			me["EGT3_redline"].show();
-			me["EGT3_yline"].show();
 		} else {
 			me["EGT3"].hide();
 			me["EGT3_ignition"].hide();
 			me["EGT3_needle"].hide();
-			me["EGT3_redline"].hide();
 			me["EGT3_redstart"].hide();
-			me["EGT3_yline"].hide();
 		}
 		
 		# N2
@@ -357,14 +345,12 @@ var canvasBase = {
 			me["N21_decpnt"].show();
 			me["N21_decimal"].show();
 			me["N21_needle"].show();
-			me["N21_redline"].show();
 		} else {
 			me["N21"].hide();
 			me["N21_cline"].hide();
 			me["N21_decpnt"].hide();
 			me["N21_decimal"].hide();
 			me["N21_needle"].hide();
-			me["N21_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[1]) {
@@ -390,14 +376,12 @@ var canvasBase = {
 			me["N22_decpnt"].show();
 			me["N22_decimal"].show();
 			me["N22_needle"].show();
-			me["N22_redline"].show();
 		} else {
 			me["N22"].hide();
 			me["N22_cline"].hide();
 			me["N22_decpnt"].hide();
 			me["N22_decimal"].hide();
 			me["N22_needle"].hide();
-			me["N22_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[2]) {
@@ -423,14 +407,12 @@ var canvasBase = {
 			me["N23_decpnt"].show();
 			me["N23_decimal"].show();
 			me["N23_needle"].show();
-			me["N23_redline"].show();
 		} else {
 			me["N23"].hide();
 			me["N23_cline"].hide();
 			me["N23_decpnt"].hide();
 			me["N23_decimal"].hide();
 			me["N23_needle"].hide();
-			me["N23_redline"].hide();
 		}
 	},
 	updateBaseTapes: func() {
@@ -461,15 +443,11 @@ var canvasBase = {
 			
 			me["EGT1"].show();
 			me["EGT1_bar"].show();
-			me["EGT1_redline"].show();
-			me["EGT1_yline"].show();
 		} else {
 			me["EGT1"].hide();
 			me["EGT1_bar"].hide();
 			me["EGT1_ignition"].hide();
-			me["EGT1_redline"].hide();
 			me["EGT1_redstart"].hide();
-			me["EGT1_yline"].hide();
 		}
 		
 		if (Value.Fadec.powered[1]) {
@@ -492,15 +470,11 @@ var canvasBase = {
 			
 			me["EGT2"].show();
 			me["EGT2_bar"].show();
-			me["EGT2_redline"].show();
-			me["EGT2_yline"].show();
 		} else {
 			me["EGT2"].hide();
 			me["EGT2_bar"].hide();
 			me["EGT2_ignition"].hide();
-			me["EGT2_redline"].hide();
 			me["EGT2_redstart"].hide();
-			me["EGT2_yline"].hide();
 		}
 		
 		if (Value.Fadec.powered[2]) {
@@ -523,15 +497,11 @@ var canvasBase = {
 			
 			me["EGT3"].show();
 			me["EGT3_bar"].show();
-			me["EGT3_redline"].show();
-			me["EGT3_yline"].show();
 		} else {
 			me["EGT3"].hide();
 			me["EGT3_bar"].hide();
 			me["EGT3_ignition"].hide();
-			me["EGT3_redline"].hide();
 			me["EGT3_redstart"].hide();
-			me["EGT3_yline"].hide();
 		}
 		
 		# N2
@@ -556,12 +526,10 @@ var canvasBase = {
 			
 			me["N21_bar"].show();
 			me["N21_group"].show();
-			me["N21_redline"].show();
 		} else {
 			me["N21_bar"].hide();
 			me["N21_cline"].hide();
 			me["N21_group"].hide();
-			me["N21_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[1]) {
@@ -585,12 +553,10 @@ var canvasBase = {
 			
 			me["N22_bar"].show();
 			me["N22_group"].show();
-			me["N22_redline"].show();
 		} else {
 			me["N22_bar"].hide();
 			me["N22_cline"].hide();
 			me["N22_group"].hide();
-			me["N22_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[2]) {
@@ -614,12 +580,10 @@ var canvasBase = {
 			
 			me["N23_bar"].show();
 			me["N23_group"].show();
-			me["N23_redline"].show();
 		} else {
 			me["N23_bar"].hide();
 			me["N23_cline"].hide();
 			me["N23_group"].hide();
-			me["N23_redline"].hide();
 		}
 	},
 };
@@ -632,12 +596,11 @@ var canvasGeDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart",
-		"EGT2_yline", "EGT3", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt",
-		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_redline", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_redline", "N12_tens",
-		"N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_redline", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox",
-		"N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decpnt",
-		"N23_decimal", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_error", "EGT3_ignition",
+		"EGT3_needle", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_tens",
+		"N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_tens", "N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim",
+		"N13_needle", "N13_ones", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_decpnt", "N21_decimal", "N21_error", "N21_needle", "N22", "N22_cline",
+		"N22_decpnt", "N22_decimal", "N22_error", "N22_needle", "N23", "N23_cline", "N23_decpnt", "N23_decimal", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -757,7 +720,6 @@ var canvasGeDials = {
 			me["N11_hundreds"].show();
 			me["N11_needle"].show();
 			me["N11_ones"].show();
-			me["N11_redline"].show();
 			me["N11_tens"].show();
 			me["N11_thr"].show();
 		} else {
@@ -767,7 +729,6 @@ var canvasGeDials = {
 			me["N11_hundreds"].hide();
 			me["N11_needle"].hide();
 			me["N11_ones"].hide();
-			me["N11_redline"].hide();
 			me["N11_tens"].hide();
 			me["N11_thr"].hide();
 		}
@@ -801,7 +762,6 @@ var canvasGeDials = {
 			me["N12_hundreds"].show();
 			me["N12_needle"].show();
 			me["N12_ones"].show();
-			me["N12_redline"].show();
 			me["N12_tens"].show();
 			me["N12_thr"].show();
 		} else {
@@ -811,7 +771,6 @@ var canvasGeDials = {
 			me["N12_hundreds"].hide();
 			me["N12_needle"].hide();
 			me["N12_ones"].hide();
-			me["N12_redline"].hide();
 			me["N12_tens"].hide();
 			me["N12_thr"].hide();
 		}
@@ -845,7 +804,6 @@ var canvasGeDials = {
 			me["N13_hundreds"].show();
 			me["N13_needle"].show();
 			me["N13_ones"].show();
-			me["N13_redline"].show();
 			me["N13_tens"].show();
 			me["N13_thr"].show();
 		} else {
@@ -855,7 +813,6 @@ var canvasGeDials = {
 			me["N13_hundreds"].hide();
 			me["N13_needle"].hide();
 			me["N13_ones"].hide();
-			me["N13_redline"].hide();
 			me["N13_tens"].hide();
 			me["N13_thr"].hide();
 		}
@@ -872,11 +829,10 @@ var canvasGeTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline",
-		"EGT2_redstart", "EGT2_yline", "EGT3", "EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar",
-		"N11_decimal", "N11_error", "N11_group", "N11_lim", "N11_redline", "N11_thr", "N12", "N12_bar", "N12_decimal", "N12_error", "N12_group", "N12_lim", "N12_redline", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim",
-		"N13_redline", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal",
-		"N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_error",
+		"EGT3_ignition", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_decimal", "N11_error", "N11_group", "N11_lim", "N11_thr", "N12", "N12_bar", "N12_decimal",
+		"N12_error", "N12_group", "N12_lim", "N12_thr", "N13", "N13_bar", "N13_decimal", "N13_error", "N13_group", "N13_lim", "N13_thr", "N1Lim", "N1Lim_decimal", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline",
+		"N21_decimal", "N21_error", "N21_group", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -986,12 +942,10 @@ var canvasGeTapes = {
 			}
 			
 			me["N11_bar"].show();
-			me["N11_redline"].show();
 			me["N11_thr"].show();
 		} else {
 			me["N11_bar"].hide();
 			me["N11_group"].hide();
-			me["N11_redline"].hide();
 			me["N11_thr"].hide();
 		}
 		
@@ -1015,12 +969,10 @@ var canvasGeTapes = {
 			}
 			
 			me["N12_bar"].show();
-			me["N12_redline"].show();
 			me["N12_thr"].show();
 		} else {
 			me["N12_bar"].hide();
 			me["N12_group"].hide();
-			me["N12_redline"].hide();
 			me["N12_thr"].hide();
 		}
 		
@@ -1044,12 +996,10 @@ var canvasGeTapes = {
 			}
 			
 			me["N13_bar"].show();
-			me["N13_redline"].show();
 			me["N13_thr"].show();
 		} else {
 			me["N13_bar"].hide();
 			me["N13_group"].hide();
-			me["N13_redline"].hide();
 			me["N13_thr"].hide();
 		}
 		
@@ -1065,13 +1015,12 @@ var canvasPwDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redline", "EGT2_redstart",
-		"EGT2_yline", "EGT3", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr",
-		"EPR2_box", "EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr",
-		"EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error",
-		"N11_needle", "N11_redline", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N12_redline", "N13", "N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N13_redline", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt",
-		"N21_error", "N21_needle", "N21_redline", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N22_redline", "N23", "N23_cline", "N23_decimal", "N23_decpnt", "N23_error", "N23_needle", "N23_redline", "REV1", "REV2", "REV3",
-		"TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_error", "EGT3_ignition",
+		"EGT3_needle", "EGT3_redstart", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box", "EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim",
+		"EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox",
+		"EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_decpnt", "N11_error", "N11_needle", "N12", "N12_decimal", "N12_decpnt", "N12_error", "N12_needle", "N13",
+		"N13_decimal", "N13_decpnt", "N13_error", "N13_needle", "N1_group", "N21", "N21_cline", "N21_decimal", "N21_decpnt", "N21_error", "N21_needle", "N22", "N22_cline", "N22_decimal", "N22_decpnt", "N22_error", "N22_needle", "N23", "N23_cline", "N23_decimal",
+		"N23_decpnt", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1310,13 +1259,11 @@ var canvasPwDials = {
 			me["N11_decimal"].show();
 			me["N11_decpnt"].show();
 			me["N11_needle"].show();
-			me["N11_redline"].show();
 		} else {
 			me["N11"].hide();
 			me["N11_decimal"].hide();
 			me["N11_decpnt"].hide();
 			me["N11_needle"].hide();
-			me["N11_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[1]) {
@@ -1336,13 +1283,11 @@ var canvasPwDials = {
 			me["N12_decimal"].show();
 			me["N12_decpnt"].show();
 			me["N12_needle"].show();
-			me["N12_redline"].show();
 		} else {
 			me["N12"].hide();
 			me["N12_decimal"].hide();
 			me["N12_decpnt"].hide();
 			me["N12_needle"].hide();
-			me["N12_redline"].hide();
 		}
 		
 		if (Value.Fadec.powered[2]) {
@@ -1362,13 +1307,11 @@ var canvasPwDials = {
 			me["N13_decimal"].show();
 			me["N13_decpnt"].show();
 			me["N13_needle"].show();
-			me["N13_redline"].show();
 		} else {
 			me["N13"].hide();
 			me["N13_decimal"].hide();
 			me["N13_decpnt"].hide();
 			me["N13_needle"].hide();
-			me["N13_redline"].hide();
 		}
 		
 		me.updateBase();
@@ -1383,12 +1326,11 @@ var canvasPwTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redline", "EGT1_redstart", "EGT1_yline", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redline",
-		"EGT2_redstart", "EGT2_yline", "EGT3", "EGT3_bar", "EGT3_error", "EGT3_ignition", "EGT3_redline", "EGT3_redstart", "EGT3_yline", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar",
-		"EPR2_decimal", "EPR2_error", "EPR2_group", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode",
-		"EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group",
-		"N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N21_redline", "N22", "N22_bar", "N22_cline", "N22_decimal", "N22_error", "N22_group", "N22_redline", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error",
-		"N23_group", "N23_redline", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_error",
+		"EGT3_ignition", "EGT3_redstart", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_decimal", "EPR1_error", "EPR1_group", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_decimal", "EPR2_error", "EPR2_group", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar",
+		"EPR3_decimal", "EPR3_error", "EPR3_group", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_decimal", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2",
+		"FFOff3", "N11", "N11_decimal", "N11_error", "N11_group", "N12", "N12_decimal", "N12_error", "N12_group", "N13", "N13_decimal", "N13_error", "N13_group", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_decimal", "N21_error", "N21_group", "N22", "N22_bar",
+		"N22_cline", "N22_decimal", "N22_error", "N22_group", "N23", "N23_bar", "N23_cline", "N23_decimal", "N23_error", "N23_group", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1414,13 +1356,13 @@ var canvasPwTapes = {
 			me["EPR1_error"].show();
 			me["EPR2_error"].show();
 			me["EPR3_error"].show();
+			me["EPRLim_error"].show();
 			me["FF1_error"].show();
 			me["FF2_error"].show();
 			me["FF3_error"].show();
 			me["N11_error"].show();
 			me["N12_error"].show();
 			me["N13_error"].show();
-			me["EPRLim_error"].show();
 			me["N21_error"].show();
 			me["N22_error"].show();
 			me["N23_error"].show();
@@ -1433,13 +1375,13 @@ var canvasPwTapes = {
 			me["EPR1_error"].hide();
 			me["EPR2_error"].hide();
 			me["EPR3_error"].hide();
+			me["EPRLim_error"].hide();
 			me["FF1_error"].hide();
 			me["FF2_error"].hide();
 			me["FF3_error"].hide();
 			me["N11_error"].hide();
 			me["N12_error"].hide();
 			me["N13_error"].hide();
-			me["EPRLim_error"].hide();
 			me["N21_error"].hide();
 			me["N22_error"].hide();
 			me["N23_error"].hide();
