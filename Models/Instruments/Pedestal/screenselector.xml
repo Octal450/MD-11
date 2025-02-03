@@ -9,6 +9,12 @@
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
+		<object-name>brt.1.integ</object-name>
+		<object-name>brt.2.integ</object-name>
+		<object-name>brt.3.integ</object-name>
+		<object-name>brt.4.integ</object-name>
+		<object-name>brt.5.integ</object-name>
+		<object-name>brt.6.integ</object-name>
 		<object-name>Labels</object-name>
 		<object-name>Labels.btn</object-name>
 		<emission>
@@ -27,18 +33,19 @@
 	<!-- Right now, only 0 and 1 are supported due to the display shaders -->
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.1.knob</object-name>
+		<object-name>brt.1.integ</object-name>
+		<object-name>brt.1.knob</object-name>
 		<property>controls/cockpit/screensel/du1-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.0182</x-m>
-			<y-m>-0.0336</y-m>
-			<z-m>0.0053</z-m>
+			<x-m>-0.01819</x-m>
+			<y-m>-0.03374</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
@@ -54,18 +61,19 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.2.knob</object-name>
+		<object-name>brt.2.integ</object-name>
+		<object-name>brt.2.knob</object-name>
 		<property>controls/cockpit/screensel/du2-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.0182</x-m>
-			<y-m>-0.0199</y-m>
-			<z-m>0.0053</z-m>
+			<x-m>-0.01819</x-m>
+			<y-m>-0.02011</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
@@ -81,18 +89,19 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.3.knob</object-name>
+		<object-name>brt.3.integ</object-name>
+		<object-name>brt.3.knob</object-name>
 		<property>controls/cockpit/screensel/du3-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.0182</x-m>
-			<y-m>-0.0058</y-m>
-			<z-m>0.0053</z-m>
+			<x-m>-0.01819</x-m>
+			<y-m>-0.00616</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
@@ -108,18 +117,19 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.4.knob</object-name>
+		<object-name>brt.4.integ</object-name>
+		<object-name>brt.4.knob</object-name>
 		<property>controls/cockpit/screensel/du4-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.0182</x-m>
-			<y-m>0.0077</y-m>
-			<z-m>0.0053</z-m>
+			<x-m>-0.01819</x-m>
+			<y-m>0.00759</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
@@ -135,18 +145,19 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.5.knob</object-name>
+		<object-name>brt.5.integ</object-name>
+		<object-name>brt.5.knob</object-name>
 		<property>controls/cockpit/screensel/du5-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
-		<center>  
-			<x-m>-0.0182</x-m>
-			<y-m>0.0221</y-m>
-			<z-m>0.0053</z-m>
+		<center>
+			<x-m>-0.01819</x-m>
+			<y-m>0.02241</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
@@ -162,18 +173,19 @@
 	
 	<animation>
 		<type>knob</type>
-		<object-name>scrn.6.knob</object-name>
+		<object-name>brt.6.integ</object-name>
+		<object-name>brt.6.knob</object-name>
 		<property>controls/cockpit/screensel/du6-dimmer</property>
-		<factor>-275</factor>
+		<factor>-320</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
 			<z>1</z>
 		</axis>
 		<center>
-			<x-m>-0.0182</x-m>
-			<y-m>0.037</y-m>
-			<z-m>0.0053</z-m>
+			<x-m>-0.01819</x-m>
+			<y-m>0.0365</y-m>
+			<z-m>0.01089</z-m>
 		</center>
 		<action>
 			<binding>
