@@ -1621,14 +1621,16 @@ var canvasBase = {
 					if (Value.Misc.blinkMed) {
 						if (Value.Misc.risingRunwayTBar) {
 							if (systems.DUController.singleCueFd) {
-								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, (math.clamp(Value.Ra.agl, 0, 200) * 1.11) + 12); # Laterally aligned to edge of AI sphere
+								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, (math.clamp(Value.Ra.agl, 0, 200) * 0.677455) + 11.893);
 							} else {
-								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+								me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, math.clamp(Value.Ra.agl, 0, 200) * 0.73767);
 							}
-							me["AI_rising_runway"].show();
-							if (Value.Ra.agl <= 200) {
+							
+							if (Value.Ra.agl <= 2500) {
+								me["AI_rising_runway"].show();
 								me["AI_rising_runway_E"].show();
 							} else {
+								me["AI_rising_runway"].hide();
 								me["AI_rising_runway_E"].hide();
 							}
 						} else {
@@ -1644,14 +1646,16 @@ var canvasBase = {
 				} else {
 					if (Value.Misc.risingRunwayTBar) {
 						if (systems.DUController.singleCueFd) {
-							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, (math.clamp(Value.Ra.agl, 0, 200) * 1.11) + 12); # Laterally aligned to edge of AI sphere
+							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, (math.clamp(Value.Ra.agl, 0, 200) * 0.677455) + 11.893);
 						} else {
-							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 105, math.clamp(Value.Ra.agl, 0, 200) * 1.17); # Laterally aligned to edge of AI sphere
+							me["AI_rising_runway"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, math.clamp(Value.Ra.agl, 0, 200) * 0.73767);
 						}
-						me["AI_rising_runway"].show();
-						if (Value.Ra.agl <= 200) {
+						
+						if (Value.Ra.agl <= 2500) {
+							me["AI_rising_runway"].show();
 							me["AI_rising_runway_E"].show();
 						} else {
+							me["AI_rising_runway"].hide();
 							me["AI_rising_runway_E"].hide();
 						}
 					} else {
