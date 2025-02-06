@@ -421,7 +421,7 @@
 			<checkbox>
 				<label>Deflected Ailerons Equipped (PIP)</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/deflected-aileron-equipped</property>
+				<property>/systems/acconfig/options/deflected-aileron</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -449,7 +449,7 @@
 			<checkbox>
 				<label>IESI Equipped</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/iesi-equipped</property>
+				<property>/systems/acconfig/options/iesi</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -486,7 +486,7 @@
 			<checkbox>
 				<label>RCWS Equipped</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/rcws-equipped</property>
+				<property>/systems/acconfig/options/rcws</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

@@ -38,7 +38,7 @@
 		
 		<pure_gain name="/systems/fcs/deflected-aileron/active">
 			<input>/systems/fcs/deflected-aileron/cmd</input>
-			<gain>/systems/acconfig/options/deflected-aileron-equipped</gain>
+			<gain>/systems/acconfig/options/deflected-aileron</gain>
 		</pure_gain>
 		
 		<switch name="/systems/fcs/deflected-aileron/in-l-rate">
@@ -94,11 +94,11 @@
 		<switch name="/systems/fcs/deflected-aileron/out-cmd">
 			<default value="0"/>
 			<test logic="AND" value="0.75"> <!-- 15 degrees drooped -->
-				/systems/acconfig/options/deflected-aileron-equipped eq 1
+				/systems/acconfig/options/deflected-aileron eq 1
 				/systems/fcs/deflected-aileron/active eq 1
 			</test>
 			<test value="0.2"> <!-- 4 degrees normal -->
-				/systems/acconfig/options/deflected-aileron-equipped eq 1
+				/systems/acconfig/options/deflected-aileron eq 1
 			</test>
 		</switch>
 		
@@ -164,8 +164,8 @@
 		<fcs_function name="/systems/fcs/ailerons/backdrive/cmd">
 			<function>
 				<product>
-					<property>/systems/acconfig/options/deflected-aileron-equipped</property>
-					<property>/systems/acconfig/options/rcws-equipped</property>
+					<property>/systems/acconfig/options/deflected-aileron</property>
+					<property>/systems/acconfig/options/rcws</property>
 					<property>/systems/fcs/ailerons/backdrive/active</property>
 					<property>/systems/fcs/ailerons/backdrive/direction-1</property>
 					<property>/systems/fcs/ailerons/backdrive/direction-2</property>

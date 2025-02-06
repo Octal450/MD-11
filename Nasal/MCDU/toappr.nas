@@ -333,7 +333,7 @@ var Takeoff = {
 		} else if (k == "l3") {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
-					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue())) {
+					if ((me.scratchpad >= 10 and me.scratchpad <= 25) or (me.scratchpad == 28 and pts.Systems.Acconfig.Options.deflectedAileron.getBoolValue())) {
 						fms.FlightData.toFlaps = me.scratchpad + 0;
 						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();

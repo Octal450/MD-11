@@ -96,7 +96,7 @@ var AcStatus = {
 		me.Display.R4 = "";
 	},
 	loop: func() {
-		if (pts.Systems.Acconfig.Options.deflectedAileronEquipped.getBoolValue()) {
+		if (pts.Systems.Acconfig.Options.deflectedAileron.getBoolValue()) {
 			me.Display.L1 = "MD-11 DEF AIL";
 		} else {
 			me.Display.L1 = "MD-11";

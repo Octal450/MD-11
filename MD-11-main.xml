@@ -1670,7 +1670,7 @@
 					<show-route type="bool">1</show-route>
 					<show-wingtip type="bool">1</show-wingtip>
 				</autopush>
-				<deflected-aileron-equipped type="bool">1</deflected-aileron-equipped>
+				<deflected-aileron type="bool">1</deflected-aileron>
 				<du n="0">
 					<ead-fps type="double">20</ead-fps>
 					<iesi-fps type="double">20</iesi-fps>
@@ -1681,11 +1681,11 @@
 				</du>
 				<eight-three-three-radios type="bool">0</eight-three-three-radios>
 				<eng-tapes type="bool">0</eng-tapes>
-				<iesi-equipped type="bool">0</iesi-equipped>
+				<iesi type="bool">0</iesi>
 				<irs-aligns-instantly type="bool">0</irs-aligns-instantly>
 				<keyboard-mode type="bool">0</keyboard-mode>
 				<n1-below-epr type="bool">0</n1-below-epr>
-				<rcws-equipped type="bool">0</rcws-equipped>
+				<rcws type="bool">0</rcws>
 				<rising-runway-t-bar type="bool">1</rising-runway-t-bar>
 				<separate-tiller-axis type="bool">0</separate-tiller-axis>
 				<single-cue-fd type="bool">0</single-cue-fd>

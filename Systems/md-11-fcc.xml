@@ -460,7 +460,7 @@
 				/systems/fcc/fcc1-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
-				/systems/acconfig/options/rcws-equipped eq 1
+				/systems/acconfig/options/rcws eq 1
 				/position/gear-agl-ft ge 500
 			</test>
 		</switch>
@@ -480,7 +480,7 @@
 				/systems/fcc/fcc2-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
-				/systems/acconfig/options/rcws-equipped eq 1
+				/systems/acconfig/options/rcws eq 1
 				/position/gear-agl-ft ge 500
 			</test>
 		</switch>

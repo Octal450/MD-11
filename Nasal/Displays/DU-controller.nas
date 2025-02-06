@@ -222,7 +222,7 @@ var DUController = {
 					me.CounterIesi.secs = 0;
 				}
 				
-				if (pts.Systems.Acconfig.Options.iesiEquipped.getBoolValue()) { # Equipped
+				if (pts.Systems.Acconfig.Options.iesi.getBoolValue()) {
 					if (!me.updateIesi) {
 						me.updateIesi = 1;
 						canvas_iesi.iesi.update();

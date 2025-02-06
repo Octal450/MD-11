@@ -72,7 +72,7 @@
 			<pitch-deg>-20.12</pitch-deg>
 		</offsets>
 		<condition>
-			<not><property>systems/acconfig/options/iesi-equipped</property></not>
+			<not><property>systems/acconfig/options/iesi</property></not>
 		</condition>
 	</model>
 	
@@ -84,7 +84,7 @@
 			<z-m>0.002</z-m>
 		</offsets>
 		<condition>
-			<property>systems/acconfig/options/iesi-equipped</property>
+			<property>systems/acconfig/options/iesi</property>
 		</condition>
 	</model>
 

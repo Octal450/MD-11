@@ -289,7 +289,7 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		Options: {
-			deflectedAileronEquipped: props.globals.getNode("/systems/acconfig/options/deflected-aileron-equipped"),
+			deflectedAileron: props.globals.getNode("/systems/acconfig/options/deflected-aileron"),
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
 				iesiFps: props.globals.getNode("/systems/acconfig/options/du/iesi-fps"),
@@ -299,7 +299,7 @@ var Systems = {
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
 			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
-			iesiEquipped: props.globals.getNode("/systems/acconfig/options/iesi-equipped"),
+			iesi: props.globals.getNode("/systems/acconfig/options/iesi"),
 			n1BelowEpr: props.globals.getNode("/systems/acconfig/options/n1-below-epr"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
