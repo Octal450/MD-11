@@ -504,6 +504,10 @@
 							<property>/it-autoflight/output/vert</property>
 							<value>7</value>
 						</equals>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>8</value>
+						</equals>
 					</or>
 					<property>/it-autoflight/output/apfd-on</property>
 					<equals>
@@ -1253,8 +1257,8 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/text/vert</property>
-						<value>T/O CLB</value>
+						<property>/it-autoflight/output/vert</property>
+						<value>7</value>
 					</equals>
 					<greater-than> <!-- 0 means no Vr set -->
 						<property>/systems/fms/flight-data/vr</property>
@@ -1277,8 +1281,8 @@
 			<condition>
 				<and>
 					<equals>
-						<property>/it-autoflight/text/vert</property>
-						<value>T/O CLB</value>
+						<property>/it-autoflight/output/vert</property>
+						<value>7</value>
 					</equals>
 					<greater-than-equals>
 						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
@@ -1333,20 +1337,6 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/output/vert</property>
-					<value>8</value>
-				</equals>
-			</condition>
-			<expression>
-				<difference>
-					<property>/it-autoflight/input/pitch</property>
-					<property>/orientation/pitch-deg</property>
-				</difference>
-			</expression>
-		</input>
-		<input>
 			<expression>
 				<rad2deg>
 					<asin>
@@ -1376,8 +1366,8 @@
 		<input>
 			<condition>
 				<equals>
-					<property>/it-autoflight/text/vert</property>
-					<value>T/O CLB</value>
+					<property>/it-autoflight/output/vert</property>
+					<value>7</value>
 				</equals>
 			</condition>
 			<expression>

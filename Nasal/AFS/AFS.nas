@@ -1308,12 +1308,21 @@ var ITAF = {
 			Output.vert.setValue(6);
 			me.updateVertText("FLARE");
 			me.updateThrustMode();
-		} else if (n == 7) { # T/O CLB or G/A CLB, text is set by TOGA selector
+		} else if (n == 7) { # T/O CLB
 			Internal.retardLock = 0;
 			Internal.flchActive = 0;
 			Internal.altCaptureActive = 0;
 			me.updateGsArm(0);
 			Output.vert.setValue(7);
+			me.updateVertText("T/O CLB");
+			me.updateThrustMode();
+		} else if (n == 8) { # G/A CLB
+			Internal.retardLock = 0;
+			Internal.flchActive = 0;
+			Internal.altCaptureActive = 0;
+			me.updateGsArm(0);
+			Output.vert.setValue(8);
+			me.updateVertText("G/A CLB");
 			me.updateThrustMode();
 		}
 		Fma.stopBlink(2);
@@ -1360,7 +1369,7 @@ var ITAF = {
 						}
 					}
 				}
-			} else if (Output.vertTemp == 7) {
+			} else if (Output.vertTemp == 7 or Output.vertTemp == 8) {
 				Output.thrMode.setValue(2);
 				Text.spd.setValue("PITCH");
 			} else {
@@ -1610,10 +1619,9 @@ var ITAF = {
 	},
 	takeoffGoAround: func() {
 		Output.vertTemp = Output.vert.getValue();
-		if (systems.FCC.nlgWowTimer20.getValue() < 1 and Output.vertTemp != 7 and Position.gearAglFt.getValue() < 2500) {
+		if (systems.FCC.nlgWowTimer20.getValue() < 1 and Output.vertTemp != 7 and Output.vertTemp != 8 and Position.gearAglFt.getValue() < 2500) {
 			me.setLatMode(3, 1);
-			me.setVertMode(7, 1);
-			me.updateVertText("G/A CLB");
+			me.setVertMode(8, 1);
 			if (!Output.athr.getBoolValue()) {
 				me.athrMaster(1);
 			}
