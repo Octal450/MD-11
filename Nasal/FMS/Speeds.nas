@@ -333,7 +333,7 @@ var FmsSpd = {
 					} else {
 						me.machToggleEcon = 0;
 						me.ktsMach = 0;
-						me.ktsCmd = 245;
+						me.ktsCmd = math.max(245, me.vcl);
 					}
 				} else {
 					me.cancelAndZero();
