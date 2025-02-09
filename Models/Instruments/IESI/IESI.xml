@@ -196,7 +196,7 @@
 	</animation>
 	
 	<effect>
-		<inherits-from>Aircraft/MD-11/Models/Effects/displays/lcd</inherits-from>
+		<inherits-from>Aircraft/MD-11/Models/Effects/DU/lcd</inherits-from>
 		<parameters>
 			<inner-angle>90</inner-angle> <!-- 0-90, use 90 for LED or plasma display-->
 			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
