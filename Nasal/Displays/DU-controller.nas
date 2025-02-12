@@ -41,15 +41,15 @@ var DUController = {
 		me.errorActive = 1;
 		
 		# Hide the pages
-		me.updateMcdu1 = 0;
-		me.updateMcdu2 = 0;
-		me.updateMcdu3 = 0;
 		me.updatePfd1 = 0;
 		me.updatePfd2 = 0;
 		me.updateNd1 = 0;
 		me.updateNd2 = 0;
 		me.updateEad = 0;
 		me.updateSd = 0;
+		me.updateMcdu1 = 0;
+		me.updateMcdu2 = 0;
+		me.updateMcdu3 = 0;
 		me.updateIesi = 0;
 		canvas_pfd.pfd1.page.hide();
 		canvas_pfd.pfd2.page.hide();
