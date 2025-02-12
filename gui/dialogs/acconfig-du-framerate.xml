@@ -274,7 +274,7 @@
 					pts.Systems.Acconfig.Options.Du.iesiFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.ndFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.pfdFps.setValue(20);
-					pts.Systems.Acconfig.Options.Du.sdFps.setValue(10);
+					pts.Systems.Acconfig.Options.Du.sdFps.setValue(20);
 					pts.Systems.Acconfig.Options.Du.mcduFps.setValue(10);
 					acconfig.OPTIONS.write();
 					canvas_pfd.rateApply();
