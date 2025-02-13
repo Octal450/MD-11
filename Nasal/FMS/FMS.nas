@@ -8,6 +8,8 @@ var Internal = {
 	bankAngleVss: props.globals.initNode("/systems/fms/internal/bank-limit-vss"),
 	cgPercentMac: props.globals.initNode("/systems/fms/internal/cg-percent-mac"),
 	engOn: 0,
+	maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
+	maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	Messages: {
 		vspeeds: 0,
 	},

@@ -2,6 +2,16 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 
 var AcStatus = {
+	Common: {
+		database: "01JAN-28JAN",
+		database2: "29JAN-26FEB",
+		databaseCode: "MD11605001",
+		databaseCode2: "MD11605002",
+		databaseSelected: 1,
+		eng: props.globals.getNode("/options/eng-string").getValue(),
+		perfFactor: 0,
+		program: "PS4070541-924", # -924 software load
+	},
 	new: func(n) {
 		var m = {parents: [AcStatus]};
 		
@@ -30,7 +40,7 @@ var AcStatus = {
 			L1L: " MODEL",
 			L1: "",
 			L2L: " OP PROGRAM",
-			L2: BASE.acStatus.program,
+			L2: me.Common.program,
 			L3L: " ACTIVE DATA BASE",
 			L3: "",
 			L4L: " SECOND DATA BASE",
@@ -52,7 +62,7 @@ var AcStatus = {
 			
 			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
 			R1L: "ENGINE ",
-			R1: BASE.acStatus.eng,
+			R1: me.Common.eng,
 			R2L: "",
 			R2: "",
 			R3L: "",
@@ -92,6 +102,8 @@ var AcStatus = {
 		me.setup();
 	},
 	setup: func() {
+		me.Common.databaseSelected = 1;
+		me.Common.perfFactor = 0;
 		me.Value.databaseConfirm = 0;
 		me.Display.R4 = "";
 	},
@@ -102,17 +114,17 @@ var AcStatus = {
 			me.Display.L1 = "MD-11";
 		}
 		
-		if (BASE.acStatus.databaseSelected) {
-			me.Display.L3 = BASE.acStatus.database2;
-			me.Display.L4 = BASE.acStatus.database;
-			me.Display.R3 = BASE.acStatus.databaseCode2;
+		if (me.Common.databaseSelected) {
+			me.Display.L3 = me.Common.database2;
+			me.Display.L4 = me.Common.database;
+			me.Display.R3 = me.Common.databaseCode2;
 		} else {
-			me.Display.L3 = BASE.acStatus.database;
-			me.Display.L4 = BASE.acStatus.database2;
-			me.Display.R3 = BASE.acStatus.databaseCode;
+			me.Display.L3 = me.Common.database;
+			me.Display.L4 = me.Common.database2;
+			me.Display.R3 = me.Common.databaseCode;
 		}
 		
-		me.Display.L6 = sprintf("%+2.1f", BASE.acStatus.perfFactor);
+		me.Display.L6 = sprintf("%+2.1f", me.Common.perfFactor);
 	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
@@ -131,7 +143,7 @@ var AcStatus = {
 					if (abs(me.scratchpad) > 9.9) {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else {
-						BASE.acStatus.perfFactor = me.scratchpad;
+						me.Common.perfFactor = me.scratchpad;
 						mcdu.unit[me.id].scratchpadClear();
 					}
 				} else {
@@ -142,7 +154,7 @@ var AcStatus = {
 			}
 		} else if (k == "r4") {
 			if (me.Value.databaseConfirm) {
-				BASE.acStatus.databaseSelected = !BASE.acStatus.databaseSelected;
+				me.Common.databaseSelected = !me.Common.databaseSelected;
 				me.Value.databaseConfirm = 0;
 				me.Display.R4 = "";
 			} else {
@@ -157,6 +169,13 @@ var AcStatus = {
 };
 
 var AcStatus2 = {
+	Common: {
+		amiPn: "3412-HNP-08J-01",
+		dataLink: "003FFC00",
+		fidoPn: "341B-HNP-05M-02",
+		opcPn: "3476-BCG-00T-U6",
+		perfDbPn: "3401-HNP-05T-01",
+	},
 	new: func(n) {
 		var m = {parents: [AcStatus2]};
 		
@@ -182,15 +201,15 @@ var AcStatus2 = {
 			C6: "",
 			
 			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
-			L1: BASE.acStatus2.perfDbPn,
+			L1: me.Common.perfDbPn,
 			L1L: " PERF DATABASE",
-			L2: BASE.acStatus2.opcPn,
+			L2: me.Common.opcPn,
 			L2L: " OPC P/N",
-			L3: BASE.acStatus2.amiPn,
+			L3: me.Common.amiPn,
 			L3L: " AMI P/N",
-			L4: BASE.acStatus2.fidoPn,
+			L4: me.Common.fidoPn,
 			L4L: " FIDO P/N",
-			L5: BASE.acStatus2.dataLink,
+			L5: me.Common.dataLink,
 			L5L: " DATA LINK",
 			L6: "",
 			L6L: "",

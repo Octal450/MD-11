@@ -601,7 +601,7 @@ var Init2 = {
 		} else if (k == "r3") {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
-					if (me.scratchpad >= 1 and me.scratchpad <= BASE.initPage2.maxZfw) {
+					if (me.scratchpad >= 1 and me.scratchpad <= fms.Internal.maxZfw) {
 						if (fms.EditFlightData.insertZfw(me.scratchpad)) {
 							mcdu.unit[me.id].scratchpadClear();
 						} else {

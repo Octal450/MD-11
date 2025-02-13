@@ -387,27 +387,6 @@ var MCDU = {
 };
 
 var BASE = {
-	acStatus: {
-		database: "01JAN-28JAN",
-		database2: "29JAN-26FEB",
-		databaseCode: "MD11605001",
-		databaseCode2: "MD11605002",
-		databaseSelected: 1,
-		eng: props.globals.getNode("/options/eng-string").getValue(),
-		perfFactor: 0,
-		program: "PS4070541-924", # -924 software load
-	},
-	acStatus2: {
-		amiPn: "3412-HNP-08J-01",
-		dataLink: "003FFC00",
-		fidoPn: "341B-HNP-05M-02",
-		opcPn: "3476-BCG-00T-U6",
-		perfDbPn: "3401-HNP-05T-01",
-	},
-	initPage2: {
-		maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
-		maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
-	},
 	setup: func() {
 		unit[0] = MCDU.new(0, 0, systems.ELECTRICAL.Bus.lEmerAc);
 		unit[1] = MCDU.new(1, 0, systems.ELECTRICAL.Bus.rEmerAc);
@@ -419,7 +398,6 @@ var BASE = {
 		unit[2].loop();
 	},
 	reset: func() {
-		me.acStatus.databaseSelected = 1;
 		fms.CORE.resetRadio();
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].reset();
