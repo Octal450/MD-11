@@ -285,7 +285,7 @@ var EditFlightData = {
 	insertBlockFuel: func(block) { # Recalculate TOGW
 		if (FlightData.zfwLbs > 0) {
 			FlightData.Temp.togw = block + FlightData.zfwLbs - FlightData.taxiFuel;
-			if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
+			if (FlightData.Temp.togw <= fms.Internal.maxTocg) {
 				FlightData.blockFuelLbs = block + 0;
 				FlightData.togwLbs = FlightData.Temp.togw;
 				FlightData.lastGwZfw = 1;
@@ -316,7 +316,7 @@ var EditFlightData = {
 	},
 	insertGw: func(gw) { # Recalculate TOGW and ZFW, let GW calculate on it's own, block synced with ufob
 		FlightData.Temp.zfw = gw - FlightData.ufobLbs;
-		if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
+		if (FlightData.Temp.zfw <= fms.Internal.maxZfw) {
 			FlightData.togwLbs = gw - FlightData.taxiFuel;
 			FlightData.zfwLbs = FlightData.Temp.zfw;
 			FlightData.lastGwZfw = 0;
@@ -330,7 +330,7 @@ var EditFlightData = {
 		if (FlightData.togwLbs > 0 and FlightData.zfwLbs > 0) {
 			if (FlightData.lastGwZfw) { # TOGW
 				FlightData.Temp.togw = FlightData.blockFuelLbs + FlightData.zfwLbs - taxi;
-				if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
+				if (FlightData.Temp.togw <= fms.Internal.maxTocg) {
 					FlightData.taxiFuel = taxi + 0;
 					FlightData.togwLbs = FlightData.Temp.togw;
 					me.resetVspeeds();
@@ -340,7 +340,7 @@ var EditFlightData = {
 				}
 			} else { # ZFW
 				FlightData.Temp.zfw = FlightData.togwLbs + taxi - FlightData.blockFuelLbs;
-				if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
+				if (FlightData.Temp.zfw <= fms.Internal.maxZfw) {
 					FlightData.taxiFuel = taxi;
 					FlightData.zfwLbs = FlightData.Temp.zfw;
 					me.resetVspeeds();
@@ -372,7 +372,7 @@ var EditFlightData = {
 	insertTogw: func(togw) { # Recalculate ZFW
 		if (FlightData.blockFuelLbs > 0) {
 			FlightData.Temp.zfw = togw + FlightData.taxiFuel - FlightData.blockFuelLbs;
-			if (FlightData.Temp.zfw <= mcdu.BASE.initPage2.maxZfw) {
+			if (FlightData.Temp.zfw <= fms.Internal.maxZfw) {
 				FlightData.togwLbs = togw + 0;
 				FlightData.zfwLbs = FlightData.Temp.zfw;
 				FlightData.lastGwZfw = 0;
@@ -389,7 +389,7 @@ var EditFlightData = {
 	insertZfw: func(zfw) { # Recalculate TOGW
 		if (FlightData.blockFuelLbs > 0) {
 			FlightData.Temp.togw = zfw + FlightData.blockFuelLbs - FlightData.taxiFuel;
-			if (FlightData.Temp.togw <= mcdu.BASE.initPage2.maxTocg) {
+			if (FlightData.Temp.togw <= fms.Internal.maxTocg) {
 				FlightData.zfwLbs = zfw + 0;
 				FlightData.togwLbs = FlightData.Temp.togw;
 				FlightData.lastGwZfw = 1;
