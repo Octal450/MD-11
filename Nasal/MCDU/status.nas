@@ -99,11 +99,11 @@ var AcStatus = {
 		return m;
 	},
 	reset: func() {
+		me.Common.databaseSelected = 1;
+		me.Common.perfFactor = 0;
 		me.setup();
 	},
 	setup: func() {
-		me.Common.databaseSelected = 1;
-		me.Common.perfFactor = 0;
 		me.Value.databaseConfirm = 0;
 		me.Display.R4 = "";
 	},
