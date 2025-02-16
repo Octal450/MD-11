@@ -248,7 +248,7 @@ var DUController = {
 			}
 			
 			# MCDUs
-			if (mcdu.unit[0].powerSource.getValue() >= 112 and pts.Instrumentation.Du.mcduDimmer[0].getValue() > 0.01) {
+			if (mcdu.unit[0].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[0].getValue() > 0.01) {
 				if (!mcdu.unit[0].Blink.active) {
 					if (!me.updateMcdu1) {
 						me.updateMcdu1 = 1;
@@ -263,7 +263,7 @@ var DUController = {
 				}
 			}
 			
-			if (mcdu.unit[1].powerSource.getValue() >= 112 and pts.Instrumentation.Du.mcduDimmer[1].getValue() > 0.01) {
+			if (mcdu.unit[1].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[1].getValue() > 0.01) {
 				if (!mcdu.unit[1].Blink.active) {
 					if (!me.updateMcdu2) {
 						me.updateMcdu2 = 1;
@@ -278,7 +278,7 @@ var DUController = {
 				}
 			}
 			
-			if (mcdu.unit[2].powerSource.getValue() >= 112 and pts.Instrumentation.Du.mcduDimmer[2].getValue() > 0.01) {
+			if (mcdu.unit[2].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[2].getValue() > 0.01) {
 				if (!mcdu.unit[2].Blink.active) {
 					if (!me.updateMcdu3) {
 						me.updateMcdu3 = 1;

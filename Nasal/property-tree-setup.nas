@@ -115,8 +115,7 @@ var Instrumentation = {
 		duDimmer: [props.globals.getNode("/instrumentation/du/du1-dimmer"), props.globals.getNode("/instrumentation/du/du2-dimmer"), props.globals.getNode("/instrumentation/du/du3-dimmer"), props.globals.getNode("/instrumentation/du/du4-dimmer"), props.globals.getNode("/instrumentation/du/du5-dimmer"), props.globals.getNode("/instrumentation/du/du6-dimmer")],
 		irsCapt: props.globals.getNode("/instrumentation/du/irs-capt"),
 		irsFo: props.globals.getNode("/instrumentation/du/irs-fo"),
-		mcduDimmer: [props.globals.getNode("/instrumentation/du/mcdu1-dimmer"), props.globals.getNode("/instrumentation/du/mcdu2-dimmer"), props.globals.getNode("/instrumentation/du/mcdu3-dimmer")],
-	},
+		},
 	Ead: {
 		checklist: props.globals.getNode("/instrumentation/ead/checklist"),
 		checklistRed: props.globals.getNode("/instrumentation/ead/checklist-red"),
@@ -154,6 +153,9 @@ var Instrumentation = {
 		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
 		middle: props.globals.getNode("/instrumentation/marker-beacon/middle"),
 		outer: props.globals.getNode("/instrumentation/marker-beacon/outer"),
+	},
+	Mcdu: {
+		dimmer: [props.globals.getNode("/instrumentation/mcdu[0]/dimmer"), props.globals.getNode("/instrumentation/mcdu[1]/dimmer"), props.globals.getNode("/instrumentation/mcdu[2]/dimmer")],
 	},
 	MkViii: {
 		Inputs: {
