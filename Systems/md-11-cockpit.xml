@@ -180,17 +180,17 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/mcdu[0]/dimmer">
-			<input>/instrumentation/du/mcdu1-dimmer</input>
+			<input>/instrumentation/mcdu[0]/dimmer</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/mcdu[1]/dimmer">
-			<input>/instrumentation/du/mcdu2-dimmer</input>
+			<input>/instrumentation/mcdu[1]/dimmer</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/mcdu[2]/dimmer">
-			<input>/instrumentation/du/mcdu3-dimmer</input>
+			<input>/instrumentation/mcdu[2]/dimmer</input>
 			<c1>20</c1>
 		</lag_filter>
 		

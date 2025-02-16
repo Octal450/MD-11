@@ -1466,9 +1466,6 @@
 			<du6-dimmer type="double">1</du6-dimmer>
 			<irs-capt type="bool">0</irs-capt>
 			<irs-fo type="bool">0</irs-fo>
-			<mcdu1-dimmer type="double">1</mcdu1-dimmer>
-			<mcdu2-dimmer type="double">1</mcdu2-dimmer>
-			<mcdu3-dimmer type="double">1</mcdu3-dimmer>
 		</du>
 		<efis n="0">
 			<mfd n="0">
@@ -1480,6 +1477,15 @@
 				<true-north type="bool">0</true-north>
 			</mfd>
 		</efis>
+		<mcdu n="0">
+			<dimmer type="double">1</dimmer>
+		</mcdu>
+		<mcdu n="1">
+			<dimmer type="double">1</dimmer>
+		</mcdu>
+		<mcdu n="2">
+			<dimmer type="double">1</dimmer>
+		</mcdu>
 		<mk-viii n="0"> <!-- See http://wiki.flightgear.org/index.php/GPWS -->
 			<serviceable type="bool">true</serviceable>
 			<configuration-module n="0">

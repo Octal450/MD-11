@@ -29,9 +29,9 @@ var variousReset = func() {
 	pts.Instrumentation.Du.duDimmer[3].setValue(1);
 	pts.Instrumentation.Du.duDimmer[4].setValue(1);
 	pts.Instrumentation.Du.duDimmer[5].setValue(1);
-	pts.Instrumentation.Du.mcduDimmer[0].setValue(1);
-	pts.Instrumentation.Du.mcduDimmer[1].setValue(1);
-	pts.Instrumentation.Du.mcduDimmer[2].setValue(1);
+	pts.Instrumentation.Mcdu.dimmer[0].setValue(1);
+	pts.Instrumentation.Mcdu.dimmer[1].setValue(1);
+	pts.Instrumentation.Mcdu.dimmer[2].setValue(1);
 	pts.Instrumentation.Du.irsCapt.setBoolValue(0);
 	pts.Instrumentation.Du.irsFo.setBoolValue(0);
 	pts.Instrumentation.Efis.Mfd.trueNorth[0].setBoolValue(0);

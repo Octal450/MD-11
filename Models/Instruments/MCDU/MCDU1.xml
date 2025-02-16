@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<path>res/MCDU1.ac</path>
+	<path>MCDU1.ac</path>
 	
 	<animation>
 		<type>pick</type>
@@ -32,24 +32,35 @@
 	</effect>
 	
 	<animation>
+		<type>material</type>
+		<object-name>LightingGroup</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>systems/lighting/main-integ</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
 		<type>knob</type>
-		<object-name>knob</object-name>
+		<object-name>BrtKnob</object-name>
 		<property>controls/cockpit/mcdu[0]/dimmer</property>
 		<factor>-275</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 		<center>
-			<x-m>0.00295</x-m>
-			<y-m>0.03752</y-m>
-			<z-m>0</z-m>
+			<x-m>0</x-m>
+			<y-m>0.04212</y-m>
+			<z-m>-0.0035</z-m>
 		</center>
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/du/mcdu1-dimmer</property>
+				<property>instrumentation/mcdu[0]/dimmer</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>1</max>
@@ -90,13 +101,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L1</object-name>
-		<object-name>L1.g</object-name>
+		<object-name>L1.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l1</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -131,13 +142,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L2</object-name>
-		<object-name>L2.g</object-name>
+		<object-name>L2.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l2</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -172,13 +183,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L3</object-name>
-		<object-name>L3.g</object-name>
+		<object-name>L3.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l3</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -213,13 +224,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L4</object-name>
-		<object-name>L4.g</object-name>
+		<object-name>L4.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l4</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -254,13 +265,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L5</object-name>
-		<object-name>L5.g</object-name>
+		<object-name>L5.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l5</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -295,13 +306,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>L6</object-name>
-		<object-name>L6.g</object-name>
+		<object-name>L6.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l6</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -336,13 +347,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R1</object-name>
-		<object-name>R1.g</object-name>
+		<object-name>R1.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r1</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -377,13 +388,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R2</object-name>
-		<object-name>R2.g</object-name>
+		<object-name>R2.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r2</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -418,13 +429,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R3</object-name>
-		<object-name>R3.g</object-name>
+		<object-name>R3.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r3</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -459,13 +470,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R4</object-name>
-		<object-name>R4.g</object-name>
+		<object-name>R4.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r4</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -500,13 +511,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R5</object-name>
-		<object-name>R5.g</object-name>
+		<object-name>R5.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r5</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -541,26 +552,26 @@
 	<animation>
 		<type>translate</type>
 		<object-name>R6</object-name>
-		<object-name>R6.g</object-name>
+		<object-name>R6.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r6</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<!-- Page Keys -->
 	<animation>
 		<type>pick</type>
-		<object-name>dir</object-name>
+		<object-name>DirIntc</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("dir");</script>
+				<script>mcdu.unit[0].pageKey("dirIntc");</script>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -568,13 +579,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/dir</property>
+				<property>controls/cockpit/mcdu[0]/dir-intc</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/dir</property>
+					<property>controls/cockpit/mcdu[0]/dir-intc</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -582,20 +593,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>dir</object-name>
-		<object-name>dir.g</object-name>
-		<property>controls/cockpit/mcdu[0]/dir</property>
+		<object-name>DirIntc</object-name>
+		<object-name>DirIntc.text</object-name>
+		<property>controls/cockpit/mcdu[0]/dir-intc</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>navrad</object-name>
+		<object-name>NavRad</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -609,13 +620,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/navrad</property>
+				<property>controls/cockpit/mcdu[0]/nav-rad</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/navrad</property>
+					<property>controls/cockpit/mcdu[0]/nav-rad</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -623,20 +634,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>navrad</object-name>
-		<object-name>navrad.g</object-name>
-		<property>controls/cockpit/mcdu[0]/navrad</property>
+		<object-name>NavRad</object-name>
+		<object-name>NavRad.text</object-name>
+		<property>controls/cockpit/mcdu[0]/nav-rad</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>perf</object-name>
+		<object-name>Perf</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -664,20 +675,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>perf</object-name>
-		<object-name>perf.g</object-name>
+		<object-name>Perf</object-name>
+		<object-name>Perf.text</object-name>
 		<property>controls/cockpit/mcdu[0]/perf</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>init</object-name>
+		<object-name>Init</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -705,20 +716,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>init</object-name>
-		<object-name>init.g</object-name>
+		<object-name>Init</object-name>
+		<object-name>Init.text</object-name>
 		<property>controls/cockpit/mcdu[0]/init</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>toappr</object-name>
+		<object-name>ToAppr</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -732,13 +743,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/toappr</property>
+				<property>controls/cockpit/mcdu[0]/to-appr</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/toappr</property>
+					<property>controls/cockpit/mcdu[0]/to-appr</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -746,20 +757,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>toappr</object-name>
-		<object-name>toappr.g</object-name>
-		<property>controls/cockpit/mcdu[0]/toappr</property>
+		<object-name>ToAppr</object-name>
+		<object-name>ToAppr.text</object-name>
+		<property>controls/cockpit/mcdu[0]/to-appr</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>fpln</object-name>
+		<object-name>Fpln</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -787,20 +798,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>fpln</object-name>
-		<object-name>fpln.g</object-name>
+		<object-name>Fpln</object-name>
+		<object-name>Fpln.text</object-name>
 		<property>controls/cockpit/mcdu[0]/fpln</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>prog</object-name>
+		<object-name>Prog</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -828,20 +839,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>prog</object-name>
-		<object-name>prog.g</object-name>
+		<object-name>Prog</object-name>
+		<object-name>Prog.text</object-name>
 		<property>controls/cockpit/mcdu[0]/prog</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>fix</object-name>
+		<object-name>Fix</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -869,20 +880,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>fix</object-name>
-		<object-name>fix.g</object-name>
+		<object-name>Fix</object-name>
+		<object-name>Fix.text</object-name>
 		<property>controls/cockpit/mcdu[0]/fix</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>secfpln</object-name>
+		<object-name>SecFpln</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -896,13 +907,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/secfpln</property>
+				<property>controls/cockpit/mcdu[0]/sec-fpln</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/secpln</property>
+					<property>controls/cockpit/mcdu[0]/sec-fpln</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -910,20 +921,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>secfpln</object-name>
-		<object-name>secfpln.g</object-name>
-		<property>controls/cockpit/mcdu[0]/secfpln</property>
+		<object-name>SecFpln</object-name>
+		<object-name>SecFpln.text</object-name>
+		<property>controls/cockpit/mcdu[0]/sec-fpln</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>ref</object-name>
+		<object-name>Ref</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -951,20 +962,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>ref</object-name>
-		<object-name>ref.g</object-name>
+		<object-name>Ref</object-name>
+		<object-name>Ref.text</object-name>
 		<property>controls/cockpit/mcdu[0]/ref</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>engout</object-name>
+		<object-name>EngOut</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -978,13 +989,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/engout</property>
+				<property>controls/cockpit/mcdu[0]/eng-out</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/engout</property>
+					<property>controls/cockpit/mcdu[0]/eng-out</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -992,20 +1003,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>engout</object-name>
-		<object-name>engout.g</object-name>
-		<property>controls/cockpit/mcdu[0]/engout</property>
+		<object-name>EngOut</object-name>
+		<object-name>EngOut.text</object-name>
+		<property>controls/cockpit/mcdu[0]/eng-out</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>menu</object-name>
+		<object-name>Menu</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1033,20 +1044,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>menu</object-name>
-		<object-name>menu.g</object-name>
+		<object-name>Menu</object-name>
+		<object-name>Menu.text</object-name>
 		<property>controls/cockpit/mcdu[0]/menu</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>nextpage</object-name>
+		<object-name>NextPage</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1060,13 +1071,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/nextpage</property>
+				<property>controls/cockpit/mcdu[0]/next-page</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/nextpage</property>
+					<property>controls/cockpit/mcdu[0]/next-page</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -1074,20 +1085,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>nextpage</object-name>
-		<object-name>nextpage.g</object-name>
-		<property>controls/cockpit/mcdu[0]/nextpage</property>
+		<object-name>NextPage</object-name>
+		<object-name>NextPage.text</object-name>
+		<property>controls/cockpit/mcdu[0]/next-page</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>up</object-name>
+		<object-name>Up</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1115,20 +1126,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>up</object-name>
-		<object-name>up.g</object-name>
+		<object-name>Up</object-name>
+		<object-name>Up.text</object-name>
 		<property>controls/cockpit/mcdu[0]/up</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>down</object-name>
+		<object-name>Down</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1156,21 +1167,21 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>down</object-name>
-		<object-name>down.g</object-name>
+		<object-name>Down</object-name>
+		<object-name>Down.text</object-name>
 		<property>controls/cockpit/mcdu[0]/down</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<!-- Alpha Numeric Keys -->
 	<animation>
 		<type>pick</type>
-		<object-name>a</object-name>
+		<object-name>A</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1198,20 +1209,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>a</object-name>
-		<object-name>a.g</object-name>
+		<object-name>A</object-name>
+		<object-name>A.text</object-name>
 		<property>controls/cockpit/mcdu[0]/a</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>b</object-name>
+		<object-name>B</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1239,20 +1250,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>b</object-name>
-		<object-name>b.g</object-name>
+		<object-name>B</object-name>
+		<object-name>B.text</object-name>
 		<property>controls/cockpit/mcdu[0]/b</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>c</object-name>
+		<object-name>C</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1280,20 +1291,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>c</object-name>
-		<object-name>c.g</object-name>
+		<object-name>C</object-name>
+		<object-name>C.text</object-name>
 		<property>controls/cockpit/mcdu[0]/c</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>d</object-name>
+		<object-name>D</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1321,20 +1332,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>d</object-name>
-		<object-name>d.g</object-name>
+		<object-name>D</object-name>
+		<object-name>D.text</object-name>
 		<property>controls/cockpit/mcdu[0]/d</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>e</object-name>
+		<object-name>E</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1362,20 +1373,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>e</object-name>
-		<object-name>e.g</object-name>
+		<object-name>E</object-name>
+		<object-name>E.text</object-name>
 		<property>controls/cockpit/mcdu[0]/e</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>f</object-name>
+		<object-name>F</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1403,20 +1414,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>f</object-name>
-		<object-name>f.g</object-name>
+		<object-name>F</object-name>
+		<object-name>F.text</object-name>
 		<property>controls/cockpit/mcdu[0]/f</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>g</object-name>
+		<object-name>G</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1444,20 +1455,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>g</object-name>
-		<object-name>g.g</object-name>
+		<object-name>G</object-name>
+		<object-name>G.text</object-name>
 		<property>controls/cockpit/mcdu[0]/g</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>h</object-name>
+		<object-name>H</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1485,20 +1496,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>h</object-name>
-		<object-name>h.g</object-name>
+		<object-name>H</object-name>
+		<object-name>H.text</object-name>
 		<property>controls/cockpit/mcdu[0]/h</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>i</object-name>
+		<object-name>I</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1526,20 +1537,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>i</object-name>
-		<object-name>i.g</object-name>
+		<object-name>I</object-name>
+		<object-name>I.text</object-name>
 		<property>controls/cockpit/mcdu[0]/i</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>j</object-name>
+		<object-name>J</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1567,20 +1578,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>j</object-name>
-		<object-name>j.g</object-name>
+		<object-name>J</object-name>
+		<object-name>J.text</object-name>
 		<property>controls/cockpit/mcdu[0]/j</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>k</object-name>
+		<object-name>K</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1608,20 +1619,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>k</object-name>
-		<object-name>k.g</object-name>
+		<object-name>K</object-name>
+		<object-name>K.text</object-name>
 		<property>controls/cockpit/mcdu[0]/k</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>l</object-name>
+		<object-name>L</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1649,20 +1660,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>l</object-name>
-		<object-name>l.g</object-name>
+		<object-name>L</object-name>
+		<object-name>L.text</object-name>
 		<property>controls/cockpit/mcdu[0]/l</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>m</object-name>
+		<object-name>M</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1690,20 +1701,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>m</object-name>
-		<object-name>m.g</object-name>
+		<object-name>M</object-name>
+		<object-name>M.text</object-name>
 		<property>controls/cockpit/mcdu[0]/m</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>n</object-name>
+		<object-name>N</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1731,20 +1742,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>n</object-name>
-		<object-name>n.g</object-name>
+		<object-name>N</object-name>
+		<object-name>N.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>o</object-name>
+		<object-name>O</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1772,20 +1783,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>o</object-name>
-		<object-name>o.g</object-name>
+		<object-name>O</object-name>
+		<object-name>O.text</object-name>
 		<property>controls/cockpit/mcdu[0]/o</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>p</object-name>
+		<object-name>P</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1813,20 +1824,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>p</object-name>
-		<object-name>p.g</object-name>
+		<object-name>P</object-name>
+		<object-name>P.text</object-name>
 		<property>controls/cockpit/mcdu[0]/p</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>q</object-name>
+		<object-name>Q</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1854,20 +1865,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>q</object-name>
-		<object-name>q.g</object-name>
+		<object-name>Q</object-name>
+		<object-name>Q.text</object-name>
 		<property>controls/cockpit/mcdu[0]/q</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>r</object-name>
+		<object-name>R</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1895,20 +1906,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>r</object-name>
-		<object-name>r.g</object-name>
+		<object-name>R</object-name>
+		<object-name>R.text</object-name>
 		<property>controls/cockpit/mcdu[0]/r</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>s</object-name>
+		<object-name>S</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1936,20 +1947,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>s</object-name>
-		<object-name>s.g</object-name>
+		<object-name>S</object-name>
+		<object-name>S.text</object-name>
 		<property>controls/cockpit/mcdu[0]/s</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>t</object-name>
+		<object-name>T</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1977,20 +1988,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>t</object-name>
-		<object-name>t.g</object-name>
+		<object-name>T</object-name>
+		<object-name>T.text</object-name>
 		<property>controls/cockpit/mcdu[0]/t</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>u</object-name>
+		<object-name>U</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2018,20 +2029,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>u</object-name>
-		<object-name>u.g</object-name>
+		<object-name>U</object-name>
+		<object-name>U.text</object-name>
 		<property>controls/cockpit/mcdu[0]/u</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>v</object-name>
+		<object-name>V</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2059,20 +2070,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>v</object-name>
-		<object-name>v.g</object-name>
+		<object-name>V</object-name>
+		<object-name>V.text</object-name>
 		<property>controls/cockpit/mcdu[0]/v</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>w</object-name>
+		<object-name>W</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2100,20 +2111,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>w</object-name>
-		<object-name>w.g</object-name>
+		<object-name>W</object-name>
+		<object-name>W.text</object-name>
 		<property>controls/cockpit/mcdu[0]/w</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>x</object-name>
+		<object-name>X</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2141,20 +2152,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>x</object-name>
-		<object-name>x.g</object-name>
+		<object-name>X</object-name>
+		<object-name>X.text</object-name>
 		<property>controls/cockpit/mcdu[0]/x</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>y</object-name>
+		<object-name>Y</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2182,20 +2193,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>y</object-name>
-		<object-name>y.g</object-name>
+		<object-name>Y</object-name>
+		<object-name>Y.text</object-name>
 		<property>controls/cockpit/mcdu[0]/y</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>z</object-name>
+		<object-name>Z</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2223,20 +2234,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>z</object-name>
-		<object-name>z.g</object-name>
+		<object-name>Z</object-name>
+		<object-name>Z.text</object-name>
 		<property>controls/cockpit/mcdu[0]/z</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>-</object-name>
+		<object-name>Minus</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2250,13 +2261,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/dash</property>
+				<property>controls/cockpit/mcdu[0]/minus</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/dash</property>
+					<property>controls/cockpit/mcdu[0]/minus</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -2264,20 +2275,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>-</object-name>
-		<object-name>-.g</object-name>
-		<property>controls/cockpit/mcdu[0]/dash</property>
+		<object-name>Minus</object-name>
+		<object-name>Minus.text</object-name>
+		<property>controls/cockpit/mcdu[0]/minus</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>+</object-name>
+		<object-name>Plus</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2305,20 +2316,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>+</object-name>
-		<object-name>+.g</object-name>
+		<object-name>Plus</object-name>
+		<object-name>Plus.text</object-name>
 		<property>controls/cockpit/mcdu[0]/plus</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>sp</object-name>
+		<object-name>Space</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2332,13 +2343,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/sp</property>
+				<property>controls/cockpit/mcdu[0]/space</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/sp</property>
+					<property>controls/cockpit/mcdu[0]/space</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -2346,20 +2357,20 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>sp</object-name>
-		<object-name>sp.g</object-name>
-		<property>controls/cockpit/mcdu[0]/sp</property>
+		<object-name>Space</object-name>
+		<object-name>Space.text</object-name>
+		<property>controls/cockpit/mcdu[0]/space</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>clr</object-name>
+		<object-name>Clear</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2373,13 +2384,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/mcdu[0]/clr</property>
+				<property>controls/cockpit/mcdu[0]/clear</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/mcdu[0]/clr</property>
+					<property>controls/cockpit/mcdu[0]/clear</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -2387,14 +2398,14 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>clr</object-name>
-		<object-name>clr.g</object-name>
-		<property>controls/cockpit/mcdu[0]/clr</property>
+		<object-name>Clear</object-name>
+		<object-name>Clear.text</object-name>
+		<property>controls/cockpit/mcdu[0]/clear</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2429,13 +2440,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>1</object-name>
-		<object-name>1.g</object-name>
+		<object-name>1.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n1</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2470,13 +2481,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>2</object-name>
-		<object-name>2.g</object-name>
+		<object-name>2.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n2</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2511,13 +2522,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>3</object-name>
-		<object-name>3.g</object-name>
+		<object-name>3.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n3</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2552,13 +2563,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>4</object-name>
-		<object-name>4.g</object-name>
+		<object-name>4.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n4</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2593,13 +2604,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>5</object-name>
-		<object-name>5.g</object-name>
+		<object-name>5.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n5</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2634,13 +2645,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>6</object-name>
-		<object-name>6.g</object-name>
+		<object-name>6.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n6</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2675,13 +2686,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>7</object-name>
-		<object-name>7.g</object-name>
+		<object-name>7.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n7</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2716,13 +2727,13 @@
 	<animation>
 		<type>translate</type>
 		<object-name>8</object-name>
-		<object-name>8.g</object-name>
+		<object-name>8.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n8</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2757,19 +2768,19 @@
 	<animation>
 		<type>translate</type>
 		<object-name>9</object-name>
-		<object-name>9.g</object-name>
+		<object-name>9.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n9</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>/</object-name>
+		<object-name>Slash</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2797,14 +2808,14 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>/</object-name>
-		<object-name>/.g</object-name>
+		<object-name>Slash</object-name>
+		<object-name>Slash.text</object-name>
 		<property>controls/cockpit/mcdu[0]/slash</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -2839,19 +2850,19 @@
 	<animation>
 		<type>translate</type>
 		<object-name>0</object-name>
-		<object-name>0.g</object-name>
+		<object-name>0.text</object-name>
 		<property>controls/cockpit/mcdu[0]/n0</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>.</object-name>
+		<object-name>Point</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -2879,14 +2890,14 @@
 	</animation>
 	<animation>
 		<type>translate</type>
-		<object-name>.</object-name>
-		<object-name>.g</object-name>
+		<object-name>Point</object-name>
+		<object-name>Point.text</object-name>
 		<property>controls/cockpit/mcdu[0]/dot</property>
 		<factor>-0.0006</factor>
 		<axis>
-			<x>0</x>
+			<x>1</x>
 			<y>0</y>
-			<z>1</z>
+			<z>0</z>
 		</axis>
 	</animation>
 
