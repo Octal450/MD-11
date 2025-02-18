@@ -408,9 +408,9 @@ var BASE = {
 			unit[i].removeMessage(m);
 		}
 	},
-	setGlobalMessage: func(m) {
+	setGlobalMessage: func(m, t = 0) {
 		for (var i = 0; i < 3; i = i + 1) {
-			unit[i].setMessage(m);
+			if (t or !unit[i].type) unit[i].setMessage(m);
 		}
 	},
 };
