@@ -8,6 +8,10 @@ var mcdu2Display = nil;
 var mcdu3 = nil;
 var mcdu3Display = nil;
 
+var Io = {
+	msgLight: [props.globals.initNode("/instrumentation/mcdu[0]/msg-light", 0, "BOOL"), props.globals.initNode("/instrumentation/mcdu[1]/msg-light", 0, "BOOL"), props.globals.initNode("/instrumentation/mcdu[2]/msg-light", 0, "BOOL")],
+};
+
 var Value = {
 	CFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	CTranslate: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
@@ -68,15 +72,29 @@ var canvasBase = {
 	update: func() {
 		if (systems.DUController.updateMcdu1) {
 			mcdu1.update();
+		} else {
+			Io.msgLight[0].setBoolValue(0);
 		}
+		
 		if (systems.DUController.updateMcdu2) {
 			mcdu2.update();
+		} else {
+			Io.msgLight[1].setBoolValue(0);
 		}
+		
 		if (systems.DUController.updateMcdu3) {
 			mcdu3.update();
+		} else {
+			Io.msgLight[2].setBoolValue(0);
 		}
 	},
 	updateBase: func(n) {
+		if (mcdu.unit[n].message.size() > 0 or pts.Controls.Switches.annunTest.getBoolValue()) {
+			Io.msgLight[n].setBoolValue(1);
+		} else {
+			Io.msgLight[n].setBoolValue(0);
+		}
+		
 		if (mcdu.unit[n].clear) {
 			me["Clr"].show();
 		} else {

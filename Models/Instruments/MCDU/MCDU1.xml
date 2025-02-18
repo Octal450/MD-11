@@ -43,6 +43,14 @@
 	</animation>
 	
 	<animation>
+		<type>select</type>
+		<object-name>Msg</object-name>
+		<condition>
+			<property>instrumentation/mcdu[0]/msg-light</property>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>knob</type>
 		<object-name>BrtKnob</object-name>
 		<property>controls/cockpit/mcdu[0]/dimmer</property>
