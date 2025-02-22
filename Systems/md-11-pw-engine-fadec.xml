@@ -6,7 +6,6 @@
 <system name="MD-11: PW Engine/FADEC">
 	
 	<property value="30">/systems/fadec/limit/rated-temp</property>
-	<property value="106">/systems/fadec/limit/rated-temp-n1-epr-cal</property>
 	<property value="62000">/systems/fadec/limit/rated-thrust</property> <!-- 62K mode -->
 	<property value="60000">/systems/fadec/limit/derated-thrust</property> <!-- 60K mode -->
 	
