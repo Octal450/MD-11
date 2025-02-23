@@ -378,7 +378,7 @@
 		<!-- Flap/Slat/Gear Max -->
 		<switch name="/systems/fms/speeds/flap-gear-max">
 			<default value="0"/> <!-- Hide the tape -->
-			<test value="0">
+			<test value="0"> <!-- Hide the tape -->
 				gear/unit[0]/WOW eq 1
 			</test>
 			<test value="/systems/fms/speeds/flap-50-max-kts">
