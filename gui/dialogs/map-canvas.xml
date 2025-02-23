@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>map-canvas</name>
-	<layout>vbox</layout>
-	<resizable>true</resizable>
-	<default-padding>3</default-padding>
+    <name>map-canvas</name>
+    <layout>vbox</layout>
+    <resizable>true</resizable>
+    <default-padding>3</default-padding>
 
 	<color>
 		<alpha type="float">0.8</alpha>
@@ -38,599 +38,585 @@
 		]]></close>
 	</nasal>
 
-	<group>
-		<layout>hbox</layout>
-		<default-padding>1</default-padding>
+    <group>
+        <layout>hbox</layout>
+        <default-padding>1</default-padding>
 
-		<text>
-			<label>Map (Canvas)</label>
-		</text>
+        <text>
+            <label>Map (Canvas)</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty><stretch>1</stretch></empty>
 
-		<button>
-			<pref-width>20</pref-width>
-			<pref-height>20</pref-height>
-			<legend>X</legend>
-			<key>Esc</key>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-	</group>
+        <button>
+            <legend>X</legend>
+            <key>Esc</key>
+            <pref-width>20</pref-width>
+            <pref-height>20</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
-		<stretch>true</stretch>
-		<halign>fill</halign>
+    <group>
+        <layout>hbox</layout>
+        <stretch>true</stretch>
+        <halign>fill</halign>
 
-		<!-- sidebar -->
-		<group>
-			<layout>vbox</layout>
-			<halign>left</halign>
+        <!-- sidebar -->
+        <group>
+            <layout>vbox</layout>
+            <halign>left</halign>
 
-			<text>
-				<label>Display:</label>
-			</text>
+            <text>
+                <label>Display:</label>
+            </text>
 
-			<checkbox>
-				<label>Airports</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-APT</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Airports</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-APT</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Fixes</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-FIX</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Fixes</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-FIX</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>VORs</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-VOR</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>VORs</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-VOR</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>DMEs</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-DME</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>DMEs</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-DME</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>NDBs</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-NDB</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>NDBs</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-NDB</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Route</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-RTE</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Route</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-RTE</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Waypoints</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-WPT</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Waypoints</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-WPT</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>APS</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-APS</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>APS</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-APS</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
 
 <!--
-			<button>
-				<legend>Airways</legend>
-				<pref-width>100</pref-width>
-			</button>
+            <button>
+                <legend>Airways</legend>
+                <pref-width>100</pref-width>
+            </button>
 -->
 
-			<checkbox>
-				<label>Traffic</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-TFC</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Traffic</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-TFC</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
 <!--
-			<button>
-				<legend>Obstacles</legend>
-				<pref-width>100</pref-width>
-			</button>
+            <button>
+                <legend>Obstacles</legend>
+                <pref-width>100</pref-width>
+            </button>
 -->
 
-			<checkbox>
-				<label>Data</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-data</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Data</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-data</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Flight History</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/draw-FLT</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Flight History</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/draw-FLT</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Weather</label>
-				<halign>left</halign>
+            <checkbox>
+                <label>Weather</label>
+                <halign>left</halign>
 
-				<!-- layer only supported if LW/AW is active -->
-					<enable>
-				   <property>/sim/gui/dialogs/metar/mode/local-weather</property>
-				   <value>1</value>
-				</enable>
+                <!-- layer only supported if LW/AW is active -->
+		            <enable>
+                   <property>/sim/gui/dialogs/metar/mode/local-weather</property>
+                   <value>1</value>
+                </enable>
 
-				<property>/sim/gui/dialogs/map-canvas/draw-WXR</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+                <property>/sim/gui/dialogs/map-canvas/draw-WXR</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>OSM</label>
-				<halign>left</halign>
+            <checkbox>
+                <label>OSM</label>
+                <halign>left</halign>
 
-				<property>/sim/gui/dialogs/map-canvas/draw-OSM</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+                <property>/sim/gui/dialogs/map-canvas/draw-OSM</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>VFRChart</label>
-				<halign>left</halign>
+            <checkbox>
+                <label>VFRChart</label>
+                <halign>left</halign>
 
-				<property>/sim/gui/dialogs/map-canvas/draw-VFRChart</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+                <property>/sim/gui/dialogs/map-canvas/draw-VFRChart</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>OpenAIP</label>
-				<halign>left</halign>
+            <checkbox>
+                <label>STAMEN</label>
+                <halign>left</halign>
 
-				<property>/sim/gui/dialogs/map-canvas/draw-OpenAIP</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
-
-			<checkbox>
-				<label>STAMEN</label>
-				<halign>left</halign>
-
-				<property>/sim/gui/dialogs/map-canvas/draw-STAMEN</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+                <property>/sim/gui/dialogs/map-canvas/draw-STAMEN</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
 
-			<!-- layer only supported if tutorial system is active and targets specified-->
+            <!-- layer only supported if tutorial system is active and targets specified-->
 	 <!--
-			<checkbox>
-				  <enable>
-				   <property>/sim/gui/dialogs/metar/mode/local-weather</property>
-				   <value>1</value>
-				</enable>
-				<label>Tutorial Goals</label>
-				<label>Weather</label>
-				<halign>left</halign>
-				<pref-width>100</pref-width>
-				<property>/sim/gui/dialogs/map-canvas/draw-TUT</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+	              <enable>
+                   <property>/sim/gui/dialogs/metar/mode/local-weather</property>
+                   <value>1</value>
+                </enable>
+                <label>Tutorial Goals</label>
+                <label>Weather</label>
+                <halign>left</halign>
+                <pref-width>100</pref-width>
+                <property>/sim/gui/dialogs/map-canvas/draw-TUT</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 		-->
 
-			<empty><stretch>true</stretch></empty>
+            <empty><stretch>true</stretch></empty>
 
-			<checkbox>
-				<label>Magnetic Hdgs</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/magnetic-headings</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Magnetic Hdgs</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/magnetic-headings</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Center on Acft</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/centre-on-aircraft</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Center on Acft</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/centre-on-aircraft</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Aircraft Hdg Up</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/aircraft-heading-up</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Aircraft Hdg Up</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/aircraft-heading-up</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+            </checkbox>
 
-			<checkbox>
-				<label>Transparent</label>
-				<halign>left</halign>
-				<property>/sim/gui/dialogs/map-canvas/transparent</property>
-				<live>true</live>
-				<binding>
-				  <command>dialog-apply</command>
-				</binding>
-				<binding>
-				  <command>property-toggle</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>setTransparency(1);</script>
-				</binding>
-			</checkbox>
+            <checkbox>
+                <label>Transparent</label>
+                <halign>left</halign>
+                <property>/sim/gui/dialogs/map-canvas/transparent</property>
+                <live>true</live>
+                <binding>
+                  <command>dialog-apply</command>
+                </binding>
+                <binding>
+                  <command>property-toggle</command>
+                </binding>
+                <binding>
+                    <command>nasal</command>
+                    <script>setTransparency(1);</script>
+                </binding>
+            </checkbox>
 
-			<empty><stretch>true</stretch></empty>
+            <empty><stretch>true</stretch></empty>
 
-			<button>
-				<name>close</name>
-				<legend>Close</legend>
-				<default>true</default>
-				<binding>
-				  <command>dialog-close</command>
-				</binding>
-			</button>
+            <button>
+                <name>close</name>
+                <legend>Close</legend>
+                <default>true</default>
+                <binding>
+                  <command>dialog-close</command>
+                </binding>
+            </button>
 
-		</group>
+        </group>
 
-		<vrule/>
+        <vrule/>
 
-		<group>
-			<layout>vbox</layout>
-			<stretch>true</stretch>
+        <group>
+            <layout>vbox</layout>
+            <stretch>true</stretch>
 
-			<group>
-				<canvas>
-					<name>canvas-map</name>
-					<valign>fill</valign>
-					<halign>fill</halign>
-					<stretch>true</stretch>
-					<pref-width>600</pref-width>
-					<pref-height>400</pref-height>
-					<nasal><load><![CDATA[
-
-
+            <group>
+                <canvas>
+                    <name>canvas-map</name>
+                    <valign>fill</valign>
+                    <halign>fill</halign>
+                    <stretch>true</stretch>
+                    <pref-width>600</pref-width>
+                    <pref-height>400</pref-height>
+                    <nasal><load><![CDATA[
 
 
-						var myCanvas = canvas.get( cmdarg() );
-						myCanvas.setColorBackground(0,0,0,0.5); # transparent
-						var TestMap = myCanvas.createGroup().createChild("map");
 
-						# Initialize the controller:
-						var ctrl_ns = canvas.Map.Controller.get("Aircraft position");
-						var source = ctrl_ns.SOURCES["map-dialog"];
-						if (source == nil) {
-							# TODO: amend
-							var source = ctrl_ns.SOURCES["map-dialog"] = {
-								getPosition: func subvec(geo.aircraft_position().latlon(), 0, 2),
-								getAltitude: func getprop('/position/altitude-ft'),
-								getHeading:  func {
-									if (me.aircraft_heading)
-										getprop('/orientation/heading-deg')
-									else 0
-								},
-								aircraft_heading: 1,
-							};
-						}
-						setlistener("/sim/gui/dialogs/map-canvas/aircraft-heading-up", func(n) {
-							source.aircraft_heading = n.getBoolValue();
-						}, 1);
-						# Make it move with our aircraft:
-						TestMap.setController("Aircraft position", "map-dialog"); # from aircraftpos.controller
 
-						# Initialize a range:
-						TestMap.setRange(60);
-						TestMap.setScreenRange(200);
+                        var myCanvas = canvas.get( cmdarg() );
+                        myCanvas.setColorBackground(0,0,0,0.5); # transparent
+                        var TestMap = myCanvas.createGroup().createChild("map");
 
-						var range_step = math.log10(TestMap.getRange());
+                        # Initialize the controller:
+                        var ctrl_ns = canvas.Map.Controller.get("Aircraft position");
+                        var source = ctrl_ns.SOURCES["map-dialog"];
+                        if (source == nil) {
+                            # TODO: amend
+                            var source = ctrl_ns.SOURCES["map-dialog"] = {
+                                getPosition: func subvec(geo.aircraft_position().latlon(), 0, 2),
+                                getAltitude: func getprop('/position/altitude-ft'),
+                                getHeading:  func {
+                                    if (me.aircraft_heading)
+                                        getprop('/orientation/heading-deg')
+                                    else 0
+                                },
+                                aircraft_heading: 1,
+                            };
+                        }
+                        setlistener("/sim/gui/dialogs/map-canvas/aircraft-heading-up", func(n) {
+                            source.aircraft_heading = n.getBoolValue();
+                        }, 1);
+                        # Make it move with our aircraft:
+                        TestMap.setController("Aircraft position", "map-dialog"); # from aircraftpos.controller
+
+                        # Initialize a range:
+                        TestMap.setRange(60);
+                        TestMap.setScreenRange(200);
+
+                        var range_step = math.log10(TestMap.getRange());
 			# TODO: check if this is valid, IIRC DOM manipulation was fragile when done inside canvas/Nasal region (?)
-						gui.findElementByName(self, "zoomdisplay").setValue("property", TestMap._node.getNode("range").getPath());
+                        gui.findElementByName(self, "zoomdisplay").setValue("property", TestMap._node.getNode("range").getPath());
 
-						# Center the map's origin: FIXME: move to api.nas, i.e. allow maps to have a size/view that differs from the actual canvas ??
-						TestMap.setTranslation(
-							myCanvas.get("view[0]")/2,
-							myCanvas.get("view[1]")/2
-						);
+                        # Center the map's origin: FIXME: move to api.nas, i.e. allow maps to have a size/view that differs from the actual canvas ??
+                        TestMap.setTranslation(
+                            myCanvas.get("view[0]")/2,
+                            myCanvas.get("view[1]")/2
+                        );
 
-						##
-						# Styling: This is a bit crude at the moment, i.e. no dedicated APIs yet - but it's
-						# just there to prototype things for now
-						var Styles = {};
-						Styles.get = func(type) return Styles[type];
-						var Options = {};
-						Options.get = func(type) return Options[type];
+                        ##
+                        # Styling: This is a bit crude at the moment, i.e. no dedicated APIs yet - but it's
+                        # just there to prototype things for now
+                        var Styles = {};
+                        Styles.get = func(type) return Styles[type];
+                        var Options = {};
+                        Options.get = func(type) return Options[type];
 
-						## set up a few keys supported by the DME.symbol file to customize appearance:
-						Styles.DME = {};
-						Styles.DME.debug = 1; # HACK for benchmarking/debugging purposes
-						Styles.DME.animation_test = 0; # for prototyping animated symbols
+                        ## set up a few keys supported by the DME.symbol file to customize appearance:
+                        Styles.DME = {};
+                        Styles.DME.debug = 1; # HACK for benchmarking/debugging purposes
+                        Styles.DME.animation_test = 0; # for prototyping animated symbols
 
-						Styles.DME.scale_factor = 0.4; # 40% (applied to whole group)
-						Styles.DME.line_width = 3.0;
-						Styles.DME.color_tuned = [0,1,0]; #rgb
-						Styles.DME.color_default = [1,1,0];  #rgb
+                        Styles.DME.scale_factor = 0.4; # 40% (applied to whole group)
+                        Styles.DME.line_width = 3.0;
+                        Styles.DME.color_tuned = [0,1,0]; #rgb
+                        Styles.DME.color_default = [1,1,0];  #rgb
 
-						Styles.APT = {};
-						Styles.APT.scale_factor = 0.4; # 40% (applied to whole group)
-						Styles.APT.line_width = 3.0;
-						Styles.APT.color_default = [0,0.6,0.85];  #rgb
-						Styles.APT.label_font_color = Styles.APT.color_default;
-						Styles.APT.label_font_size=28;
+                        Styles.APT = {};
+                        Styles.APT.scale_factor = 0.4; # 40% (applied to whole group)
+                        Styles.APT.line_width = 3.0;
+                        Styles.APT.color_default = [0,0.6,0.85];  #rgb
+                        Styles.APT.label_font_color = Styles.APT.color_default;
+                        Styles.APT.label_font_size=28;
 
-						Styles.TFC = {};
-						Styles.TFC.scale_factor = 0.4; # 40% (applied to whole group)
+                        Styles.TFC = {};
+                        Styles.TFC.scale_factor = 0.4; # 40% (applied to whole group)
 
-						Styles.WPT = {};
-						Styles.WPT.scale_factor = 0.5; # 50% (applied to whole group)
+                        Styles.WPT = {};
+                        Styles.WPT.scale_factor = 0.5; # 50% (applied to whole group)
 
-						Styles.RTE = {};
-						Styles.RTE.line_width = 2;
+                        Styles.RTE = {};
+                        Styles.RTE.line_width = 2;
 
-						Styles.FLT = {};
-						Styles.FLT.line_width = 3;
+                        Styles.FLT = {};
+                        Styles.FLT.line_width = 3;
 
-						Styles.FIX = {};
-						Styles.FIX.color = [1,0,0];
-						Styles.FIX.scale_factor = 0.4; # 40%
+                        Styles.FIX = {};
+                        Styles.FIX.color = [1,0,0];
+                        Styles.FIX.scale_factor = 0.4; # 40%
 
-						Styles.VOR = {};
-						Styles.VOR.range_line_width = 2;
-						Styles.VOR.radial_line_width = 1;
-						Styles.VOR.scale_factor = 0.6; # 60%
+                        Styles.VOR = {};
+                        Styles.VOR.range_line_width = 2;
+                        Styles.VOR.radial_line_width = 1;
+                        Styles.VOR.scale_factor = 0.6; # 60%
 
-						Options.FLT = {};
-						var make_update_wrapper = func(name) {
-							if (!contains(Options, name)) Options[name] = {};
-							Options[name].update_wrapper = func(layer, fn) {
-								var t = systime();
-								fn();
-								t = systime() - t;
-								printlog(canvas._MP_dbg_lvl, name~" took "~(t*1000)~"ms")
-							}
-						}
+                        Options.FLT = {};
+                        var make_update_wrapper = func(name) {
+                            if (!contains(Options, name)) Options[name] = {};
+                            Options[name].update_wrapper = func(layer, fn) {
+                                var t = systime();
+                                fn();
+                                t = systime() - t;
+                                printlog(canvas._MP_dbg_lvl, name~" took "~(t*1000)~"ms")
+                            }
+                        }
 
-						var ToggleLayerVisible = func(name) {
-							(var l = TestMap.getLayer(name)).setVisible(l.getVisible());
-						};
-						var SetLayerVisible = func(name,n=1) {
-							TestMap.getLayer(name).setVisible(n);
-						};
+                        var ToggleLayerVisible = func(name) {
+                            (var l = TestMap.getLayer(name)).setVisible(l.getVisible());
+                        };
+                        var SetLayerVisible = func(name,n=1) {
+                            TestMap.getLayer(name).setVisible(n);
+                        };
 
-						var SetProjection = func(projection) {
-						  TestMap._node.setValue("projection", projection);
-						};
+                        var SetProjection = func(projection) {
+                          TestMap._node.setValue("projection", projection);
+                        };
 
-						setlistener("/sim/gui/dialogs/map-canvas/projection",
-						  func(n) SetProjection(n.getValue());
-						);
+                        setlistener("/sim/gui/dialogs/map-canvas/projection",
+                          func(n) SetProjection(n.getValue());
+                        );
 
 
 			Styles.APS = {};
 			Styles.APS.scale_factor = 0.25;
 
 			# TODO: introduce some meta NAV layer that handles both VORs and NDBs, can we instantiate those layers directly ?
-						var r = func(name,vis=1,zindex=nil) return caller(0)[0];
-						# TODO: we'll need some z-indexing here, right now it's just random
-						foreach(var type; [r('TFC',0),r('APT'),r('DME'),r('VOR'),r('NDB'),r('FIX',0),r('RTE'),r('WPT'),r('FLT'),r('WXR',0),r('APS')] ) {
-							if (1 and type.name != 'APS' and type.name != 'FLT') make_update_wrapper(type.name);
-							TestMap.addLayer(factory: canvas.SymbolLayer, type_arg: type.name,
-											 visible: type.vis, priority: 4,
-											 style: Styles.get(type.name),
-											 options: Options.get(type.name) );
-							(func {
-								# Notify MapStructure about layer visibility changes:
-								var name = type.name;
-								props.globals.initNode("/sim/gui/dialogs/map-canvas/draw-"~name, type.vis, "BOOL");
-								append(listeners,
-									setlistener("/sim/gui/dialogs/map-canvas/draw-"~name,
-										func(n) SetLayerVisible(name,n.getValue()))
-								);
+                        var r = func(name,vis=1,zindex=nil) return caller(0)[0];
+                        # TODO: we'll need some z-indexing here, right now it's just random
+                        foreach(var type; [r('TFC',0),r('APT'),r('DME'),r('VOR'),r('NDB'),r('FIX',0),r('RTE'),r('WPT'),r('FLT'),r('WXR',0),r('APS')] ) {
+                            if (1 and type.name != 'APS' and type.name != 'FLT') make_update_wrapper(type.name);
+                            TestMap.addLayer(factory: canvas.SymbolLayer, type_arg: type.name,
+                                             visible: type.vis, priority: 4,
+                                             style: Styles.get(type.name),
+                                             options: Options.get(type.name) );
+                            (func {
+                                # Notify MapStructure about layer visibility changes:
+                                var name = type.name;
+                                props.globals.initNode("/sim/gui/dialogs/map-canvas/draw-"~name, type.vis, "BOOL");
+                                append(listeners,
+                                    setlistener("/sim/gui/dialogs/map-canvas/draw-"~name,
+                                        func(n) SetLayerVisible(name,n.getValue()))
+                                );
 
 
-							})();
-						}
+                            })();
+                        }
 
-						foreach(var type; [ r('OSM'), r('VFRChart'), r('OpenAIP'), r('STAMEN') ]) {
-							TestMap.addLayer(factory: canvas.OverlayLayer, type_arg: type.name,
-											 visible: 0, priority: 1,
-											 style: Styles.get(type.name),
-											 options: Options.get(type.name) );
-							(func {
-								# Notify MapStructure about layer visibility changes:
-								var name = type.name;
-								props.globals.initNode("/sim/gui/dialogs/map-canvas/draw-"~name, 0, "BOOL");
-								append(listeners,
-									setlistener("/sim/gui/dialogs/map-canvas/draw-"~name,
-										func(n) SetLayerVisible(name,n.getValue()))
-								);
-							})();
-						}
+                        foreach(var type; [ r('OSM'), r('VFRChart'), r('STAMEN') ]) {
+                            TestMap.addLayer(factory: canvas.OverlayLayer, type_arg: type.name,
+                                             visible: 0, priority: 1,
+                                             style: Styles.get(type.name),
+                                             options: Options.get(type.name) );
+                            (func {
+                                # Notify MapStructure about layer visibility changes:
+                                var name = type.name;
+                                props.globals.initNode("/sim/gui/dialogs/map-canvas/draw-"~name, 0, "BOOL");
+                                append(listeners,
+                                    setlistener("/sim/gui/dialogs/map-canvas/draw-"~name,
+                                        func(n) SetLayerVisible(name,n.getValue()))
+                                );
+                            })();
+                        }
 
 
-					]]></load></nasal>
-				</canvas>
-				<layout>hbox</layout>
-				<stretch>true</stretch>
-				<halign>fill</halign>
-				<valign>fill</valign>
-			</group>
+                    ]]></load></nasal>
+                </canvas>
+                <layout>hbox</layout>
+                <stretch>true</stretch>
+                <halign>fill</halign>
+                <valign>fill</valign>
+            </group>
 
-			<hrule/>
+            <hrule/>
 
-			<group>
-				<layout>hbox</layout>
+            <group>
+                <layout>hbox</layout>
 
-				<button>
-					<name>zoomout</name>
-					<legend>-</legend>
-					<pref-width>52</pref-width>
-					<pref-height>22</pref-height>
+                <button>
+                    <name>zoomout</name>
+                    <legend>-</legend>
+                    <pref-width>52</pref-width>
+                    <pref-height>22</pref-height>
 
-					<binding>
-						<command>nasal</command>
-						<script>
-							var range = TestMap.getRange();
-							if (range &lt; 40)
-								TestMap.setRange(range*range_step);
-						</script>
-					</binding>
-				</button>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            var range = TestMap.getRange();
+                            if (range &lt; 40)
+                                TestMap.setRange(range*range_step);
+                        </script>
+                    </binding>
+                </button>
 
-				<text>
-					<name>zoomdisplay</name>
-					<label>MMM</label>
-					<format>Zoom %0.1f NM</format>
-					<property>/gui/radar-mapstructure/zoom</property>
-					<live>true</live>
-				</text>
+                <text>
+                    <name>zoomdisplay</name>
+                    <label>MMM</label>
+                    <format>Zoom %0.1f NM</format>
+                    <property>/gui/radar-mapstructure/zoom</property>
+                    <live>true</live>
+                </text>
 
-				<button>
-					<name>zoomin</name>
-					<legend>+</legend>
-					<pref-width>52</pref-width>
-					<pref-height>22</pref-height>
+                <button>
+                    <name>zoomin</name>
+                    <legend>+</legend>
+                    <pref-width>52</pref-width>
+                    <pref-height>22</pref-height>
 
-					<binding>
-						<command>nasal</command>
-						<script>
-							var range = TestMap.getRange();
-							if (range &gt; 1)
-								TestMap.setRange(range/range_step);
-						</script>
-					</binding>
-				</button>
-			</group>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            var range = TestMap.getRange();
+                            if (range &gt; 1)
+                                TestMap.setRange(range/range_step);
+                        </script>
+                    </binding>
+                </button>
+            </group>
 
-		</group>
-	</group>
+        </group>
+    </group>
 </PropertyList>
