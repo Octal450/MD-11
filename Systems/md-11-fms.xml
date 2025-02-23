@@ -378,6 +378,9 @@
 		<!-- Flap/Slat/Gear Max -->
 		<switch name="/systems/fms/speeds/flap-gear-max">
 			<default value="0"/> <!-- Hide the tape -->
+			<test value="0">
+				gear/unit[0]/WOW eq 1
+			</test>
 			<test value="/systems/fms/speeds/flap-50-max-kts">
 				fcs/flap-pos-deg ge 36
 			</test>
@@ -513,7 +516,7 @@
 		<switch name="/systems/fms/speeds/v2-latch">
 			<default value="/systems/fms/speeds/v2-latch"/>
 			<test value="0">
-				position/wow eq 1
+				gear/unit[0]/WOW eq 1
 			</test>	
 			<test logic="OR" value="1">
 				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/v2-latch-speed
@@ -553,7 +556,7 @@
 		<switch name="/systems/fms/speeds/vss-tape">
 			<default value="/systems/fms/speeds/vss"/>
 			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone -->
-				position/wow eq 1
+				gear/unit[0]/WOW eq 1
 				/systems/fms/speeds/v2-latch ne 1
 			</test>
 		</switch>
@@ -562,7 +565,7 @@
 		<switch name="/systems/fms/speeds/vmin-latch">
 			<default value="/systems/fms/speeds/vmin-latch"/>
 			<test value="0">
-				position/wow eq 1
+				gear/unit[0]/WOW eq 1
 			</test>	
 			<test logic="OR" value="1">
 				/systems/fms/internal/phase ge 2
@@ -614,7 +617,7 @@
 		<switch name="/systems/fms/speeds/vmin-tape">
 			<default value="/systems/fms/speeds/vmin"/>
 			<test logic="OR" value="0"> <!-- Hide the tape until we pass speed and airbone or if Vstall is invalid -->
-				position/wow eq 1
+				gear/unit[0]/WOW eq 1
 				/systems/fms/speeds/v2-latch ne 1
 				/systems/fms/speeds/vss-tape eq 0
 			</test>
