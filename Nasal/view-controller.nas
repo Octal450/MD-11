@@ -2,7 +2,6 @@
 # Copyright (c) 2024 Josh Davidson (Octal450)
 # FovZoom based on work by onox
 
-var fgfsVersion = split(".", getprop("/sim/version/flightgear"));
 var distance = 0;
 var min_dist = 0;
 var max_dist = 0;
@@ -10,12 +9,8 @@ var canChangeZOffset = 0;
 var decStep = -5;
 var incStep = 5;
 var shakeFlag = 0;
-var useNewViews = (fgfsVersion[0] == 2020 and fgfsVersion[1] >= 4) or fgfsVersion[0] > 2020;
 var viewNumberRaw = 0;
 var views = [0, 9, 10, 11, 12, 13, 14];
-var viewsOld = [0, 8, 9, 10, 11, 12, 13];
-
-props.globals.initNode("/sim/use-new-views", useNewViews, "BOOL");
 
 var resetView = func() {
 	viewNumberRaw = pts.Sim.CurrentView.viewNumberRaw.getValue();
@@ -42,11 +37,7 @@ var resetView = func() {
 }
 
 var setView = func(n) {
-	if (useNewViews) {
-		pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
-	} else {
-		pts.Sim.CurrentView.viewNumber.setValue(viewsOld[n - 1]);
-	}
+	pts.Sim.CurrentView.viewNumber.setValue(views[n - 1]);
 }
 
 var fovZoom = func(d) {

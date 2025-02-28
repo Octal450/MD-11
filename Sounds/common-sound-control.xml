@@ -11,21 +11,6 @@
 			<or>
 				<equals>
 					<property>/sim/current-view/view-number</property>
-					<value>14</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>15</value>
-				</equals>
-			</or>
-		</input>
-		<output>/sim/sound/wingview-fwd-old</output>
-	</logic>
-	<logic>
-		<input>
-			<or>
-				<equals>
-					<property>/sim/current-view/view-number</property>
 					<value>15</value>
 				</equals>
 				<equals>
@@ -36,30 +21,7 @@
 		</input>
 		<output>/sim/sound/wingview-fwd</output>
 	</logic>
-
-	<logic>
-		<input>
-			<or>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>16</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>17</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>18</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>19</value>
-				</equals>
-			</or>
-		</input>
-		<output>/sim/sound/wingview-aft-old</output>
-	</logic>
+	
 	<logic>
 		<input>
 			<or>
@@ -87,26 +49,11 @@
 	<logic>
 		<input>
 			<or>
-				<and>
-					<not><property>/sim/use-new-views</property></not>
-					<or>
-						<equals>
-							<property>/sim/current-view/internal</property>
-							<value>1</value>
-						</equals>
-						<property>/sim/sound/wingview-fwd-old</property>
-					</or>
-				</and>
-				<and>
-					<property>/sim/use-new-views</property>
-					<or>
-						<equals>
-							<property>/sim/current-view/internal</property>
-							<value>1</value>
-						</equals>
-						<property>/sim/sound/wingview-fwd</property>
-					</or>
-				</and>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>1</value>
+				</equals>
+				<property>/sim/sound/wingview-fwd</property>
 			</or>
 		</input>
 		<output>/sim/sound/internal</output>
@@ -115,28 +62,12 @@
 	<logic>
 		<input>
 			<or>
-				<and>
-					<not><property>/sim/use-new-views</property></not>
-					<or>
-						<equals>
-							<property>/sim/current-view/internal</property>
-							<value>1</value>
-						</equals>
-						<property>/sim/sound/wingview-fwd-old</property>
-						<property>/sim/sound/wingview-aft-old</property>
-					</or>
-				</and>
-				<and>
-					<property>/sim/use-new-views</property>
-					<or>
-						<equals>
-							<property>/sim/current-view/internal</property>
-							<value>1</value>
-						</equals>
-						<property>/sim/sound/wingview-fwd</property>
-						<property>/sim/sound/wingview-aft</property>
-					</or>
-				</and>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>1</value>
+				</equals>
+				<property>/sim/sound/wingview-fwd</property>
+				<property>/sim/sound/wingview-aft</property>
 			</or>
 		</input>
 		<output>/sim/sound/internal-custom</output>

@@ -146,14 +146,12 @@ var SYSTEM = {
 var RENDERING = {
 	als: props.globals.getNode("/sim/rendering/shaders/skydome"),
 	alsMode: props.globals.getNode("/sim/gui/dialogs/advanced/mode/als-mode", 1),
-	customSettings: props.globals.getNode("/sim/rendering/shaders/custom-settings"),
 	landmass: props.globals.getNode("/sim/rendering/shaders/landmass"),
 	landmassSet: 0,
 	lowSpecMode: props.globals.getNode("/sim/gui/dialogs/advanced/mode/low-spec-mode", 1),
 	model: props.globals.getNode("/sim/rendering/shaders/model"),
 	modelEffects: props.globals.getNode("/sim/gui/dialogs/advanced/model-effects", 1),
 	modelSet: 0,
-	rembrandt: props.globals.getNode("/sim/rendering/rembrandt/enabled", 1),
 	check: func() {
 		if (OPTIONS.noRenderingWarn.getBoolValue()) {
 			return;
@@ -162,41 +160,27 @@ var RENDERING = {
 		me.landmassSet = me.landmass.getValue() >= 4;
 		me.modelSet = me.model.getValue() >= 3;
 		
-		if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
-			if (!me.rembrandt.getBoolValue() and (!me.als.getBoolValue() or !me.landmassSet or !me.modelSet)) {
-				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-rendering"}));
-			}
-		} else {
-			if (!me.rembrandt.getBoolValue() and (!me.als.getBoolValue() or !me.customSettings.getBoolValue() or !me.landmassSet or !me.modelSet)) {
-				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-rendering"}));
-			}
+		if (!me.als.getBoolValue() or !me.landmassSet or !me.modelSet) {
+			fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-rendering"}));
 		}
 	},
 	fixAll: func() {
 		# Don't override higher settings
 		if (me.landmass.getValue() < 4) {
 			me.landmass.setValue(4);
-			if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
-				me.modelEffects.setValue("Medium");
-			}
+			me.modelEffects.setValue("Medium");
 		}
 		if (me.model.getValue() < 3) {
 			me.model.setValue(3);
-			if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
-				me.modelEffects.setValue("Enabled");
-			}
+			me.modelEffects.setValue("Enabled");
 		}
 		
 		me.fixCore();
 	},
 	fixCore: func() {
 		me.als.setBoolValue(1); # ALS on
-		if ((SYSTEM.fgfs[0] == 2020 and SYSTEM.fgfs[1] >= 4) or SYSTEM.fgfs[0] > 2020) {
-			me.alsMode.setBoolValue(1);
-			me.lowSpecMode.setBoolValue(0);
-		} else {
-			me.customSettings.setBoolValue(1);
-		}
+		me.alsMode.setBoolValue(1);
+		me.lowSpecMode.setBoolValue(0);
 		
 		print("System: Rendering Settings updated!");
 		gui.popupTip("System: Rendering settings updated!");
