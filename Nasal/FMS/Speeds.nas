@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 FMS
-# Copyright (c) 2024 Josh Davidson (Octal450)
+# Copyright (c) 2025 Josh Davidson (Octal450)
 
 # Properties and Data
 var Speeds = {

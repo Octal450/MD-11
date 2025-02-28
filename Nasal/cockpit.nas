@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Cockpit Controls
-# Copyright (c) 2024 Josh Davidson (Octal450)
+# Copyright (c) 2025 Josh Davidson (Octal450)
 
 # Resets buttons to the default values
 var variousReset = func() {
