@@ -1,6 +1,6 @@
 # McDonnell Douglas MD-11 AFS
 # Based off IT Autoflight System Controller V4.1.X
-# Copyright (c) 2024 Josh Davidson (Octal450)
+# Copyright (c) 2025 Josh Davidson (Octal450)
 # This file DOES NOT integrate with Property Tree Setup
 # That way, we can update it from IT Autoflight Core easily
 

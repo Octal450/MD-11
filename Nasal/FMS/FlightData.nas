@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 FMS
-# Copyright (c) 2024 Josh Davidson (Octal450)
+# Copyright (c) 2025 Josh Davidson (Octal450)
 # Where needed + 0 is used to force a string to a number
 
 # Properties and Data

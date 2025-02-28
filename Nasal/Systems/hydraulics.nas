@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Hydraulics
-# Copyright (c) 2024 Josh Davidson (Octal450)
+# Copyright (c) 2025 Josh Davidson (Octal450)
 
 var HYDRAULICS = {
 	Psi: {
