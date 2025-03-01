@@ -27,7 +27,7 @@ var Value = {
 var canvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
-			return mcdu.FONT.normal;
+			return mcdu.FONT.large;
 		};
 		
 		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
@@ -35,7 +35,7 @@ var canvasBase = {
 		var svgKeys = me.getKeys();
 		foreach(var key; svgKeys) {
 			me[key] = canvasGroup.getElementById(key);
-			if (find("_L", key) != -1 or key == "Arrow" or key == "PageNum") me[key].setFont("MCDUSmall.ttf");
+			if (find("_L", key) != -1 or key == "Arrow" or key == "PageNum") me[key].setFont(mcdu.FONT.small);
 			
 			var clip_el = canvasGroup.getElementById(key ~ "_clip");
 			if (clip_el != nil) {

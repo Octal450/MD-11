@@ -10,7 +10,7 @@ var PosRef = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -26,7 +26,7 @@ var PosRef = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "",
 			L2L: " IRS (MIX)",
@@ -40,7 +40,7 @@ var PosRef = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -50,7 +50,7 @@ var PosRef = {
 			
 			pageNum: "1/3",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -64,7 +64,7 @@ var PosRef = {
 			R6L: "RETURN TO ",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -169,7 +169,7 @@ var IrsGnsPos = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -185,7 +185,7 @@ var IrsGnsPos = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "",
 			L2L: "",
@@ -199,7 +199,7 @@ var IrsGnsPos = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -209,7 +209,7 @@ var IrsGnsPos = {
 			
 			pageNum: "2/3",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -223,7 +223,7 @@ var IrsGnsPos = {
 			R6L: "RETURN TO ",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -335,7 +335,7 @@ var IrsStatus = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [-4, 0, 0, 0, 0, 0],
 			CTranslate: [4, 4, 4, 0, 0, 0],
 			C1L: "DRIFT RATE",
@@ -351,7 +351,7 @@ var IrsStatus = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.small],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.small, FONT.small],
 			L1L: "",
 			L1: "IRU1",
 			L2L: "",
@@ -365,7 +365,7 @@ var IrsStatus = {
 			L6L: "IRU2     00",
 			L6: "IRU3     00",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -375,7 +375,7 @@ var IrsStatus = {
 			
 			pageNum: "3/3",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "GS ",
 			R1: "",
 			R2L: "",
@@ -389,7 +389,7 @@ var IrsStatus = {
 			R6L: "RETURN TO ",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",

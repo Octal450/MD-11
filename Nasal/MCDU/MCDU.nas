@@ -416,8 +416,8 @@ var BASE = {
 };
 
 var FONT = { # Letter separation in Canvas: 38.77
-	normal: "MCDULarge.ttf",
-	small: "MCDUSmall.ttf",
+	large: "MD11MCDULarge.ttf",
+	small: "MD11MCDUSmall.ttf",
 };
 
 var dms = nil;

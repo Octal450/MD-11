@@ -11,7 +11,7 @@ var Perf = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 1, 1, 0, 0, -3],
 			CTranslate: [0, 1, 1, 0, 0, -3],
 			C1L: "",
@@ -27,7 +27,7 @@ var Perf = {
 			C6L: "OPT/MAXFL",
 			C6: "---/---",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "",
 			L2L: " ECON",
@@ -41,7 +41,7 @@ var Perf = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -51,7 +51,7 @@ var Perf = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.small, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -65,7 +65,7 @@ var Perf = {
 			R6L: "THRUST ",
 			R6: "LIMITS>",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -216,7 +216,7 @@ var Perf = {
 					me.Display.LFont[1] = FONT.small;
 				} else {
 					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
-					me.Display.LFont[1] = FONT.normal;
+					me.Display.LFont[1] = FONT.large;
 				}
 			} else if (me.type == 1) {
 				if (me.Value.speedMode != 0) {
@@ -224,7 +224,7 @@ var Perf = {
 					me.Display.LFont[1] = FONT.small;
 				} else {
 					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
-					me.Display.LFont[1] = FONT.normal;
+					me.Display.LFont[1] = FONT.large;
 				}
 			} else {
 				if (me.Value.speedMode != 0) {
@@ -232,7 +232,7 @@ var Perf = {
 					me.Display.LFont[1] = FONT.small;
 				} else {
 					me.Display.L2 = sprintf("%d", fms.FmsSpd.econKts) ~ "/." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
-					me.Display.LFont[1] = FONT.normal;
+					me.Display.LFont[1] = FONT.large;
 				}
 			}
 		} else {
@@ -248,7 +248,7 @@ var Perf = {
 						me.Display.LFont[2] = FONT.small;
 					} else {
 						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxDescent);
-						me.Display.LFont[2] = FONT.normal;
+						me.Display.LFont[2] = FONT.large;
 					}
 				} else {
 					if (me.Value.speedMode != 1) {
@@ -256,7 +256,7 @@ var Perf = {
 						me.Display.LFont[2] = FONT.small;
 					} else {
 						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxClimb);
-						me.Display.LFont[2] = FONT.normal;
+						me.Display.LFont[2] = FONT.large;
 					}
 				}
 			} else {
@@ -284,7 +284,7 @@ var Perf = {
 					me.Display.LFont[3] = FONT.small;
 				} else {
 					me.Display.L4 = me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
-					me.Display.LFont[3] = FONT.normal;
+					me.Display.LFont[3] = FONT.large;
 				}
 			} else if (me.type == 1) {
 				if (me.Value.speedEdit < 1) {
@@ -298,7 +298,7 @@ var Perf = {
 					me.Display.LFont[3] = FONT.small;
 				} else {
 					me.Display.L4 = me.Value.speedEditFmt;
-					me.Display.LFont[3] = FONT.normal;
+					me.Display.LFont[3] = FONT.large;
 				}
 			} else {
 				if (me.Value.speedEdit == 1) {
@@ -318,12 +318,12 @@ var Perf = {
 					me.Display.LFont[3] = FONT.small;
 				} else {
 					me.Display.L4 = me.Value.speedEditFmt ~ "/" ~ me.Value.speedEditMachFmt;
-					me.Display.LFont[3] = FONT.normal;
+					me.Display.LFont[3] = FONT.large;
 				}
 			}
 		} else {
 			me.Display.L4 = "[ ]";
-			me.Display.LFont[3] = FONT.normal;
+			me.Display.LFont[3] = FONT.large;
 		}
 		
 		if (me.type == 0) {
@@ -561,7 +561,7 @@ var PreSel = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 1, 1, 0, 0, -3],
 			CTranslate: [0, 1, 1, 0, 0, -3],
 			C1L: "",
@@ -577,7 +577,7 @@ var PreSel = {
 			C6L: "OPT/MAXFL",
 			C6: "---/---",
 			
-			LFont: [FONT.normal, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "",
 			L2L: " ECON",
@@ -591,7 +591,7 @@ var PreSel = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -601,7 +601,7 @@ var PreSel = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.small, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -615,7 +615,7 @@ var PreSel = {
 			R6L: "",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -695,7 +695,7 @@ var PreSel = {
 					me.Display.LFont[1] = FONT.small;
 				} else {
 					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000) ~ "/" ~ sprintf("%d", fms.FmsSpd.econKts);
-					me.Display.LFont[1] = FONT.normal;
+					me.Display.LFont[1] = FONT.large;
 				}
 			} else if (me.type == 1) {
 				if (me.Value.speedMode != 0) {
@@ -703,7 +703,7 @@ var PreSel = {
 					me.Display.LFont[1] = FONT.small;
 				} else {
 					me.Display.L2 = "." ~ sprintf("%d", fms.FmsSpd.econMach * 1000);
-					me.Display.LFont[1] = FONT.normal;
+					me.Display.LFont[1] = FONT.large;
 				}
 			}
 		} else {
@@ -719,7 +719,7 @@ var PreSel = {
 						me.Display.LFont[2] = FONT.small;
 					} else {
 						me.Display.L3 = sprintf("%d", fms.FmsSpd.maxDescent);
-						me.Display.LFont[2] = FONT.normal;
+						me.Display.LFont[2] = FONT.large;
 					}
 				}
 			} else {
@@ -747,7 +747,7 @@ var PreSel = {
 					me.Display.LFont[3] = FONT.small;
 				} else {
 					me.Display.L4 = me.Value.speedEditMachFmt ~ "/" ~ me.Value.speedEditFmt;
-					me.Display.LFont[3] = FONT.normal;
+					me.Display.LFont[3] = FONT.large;
 				}
 			} else if (me.type == 1) {
 				if (me.Value.speedEdit < 1) {
@@ -761,12 +761,12 @@ var PreSel = {
 					me.Display.LFont[3] = FONT.small;
 				} else {
 					me.Display.L4 = me.Value.speedEditFmt;
-					me.Display.LFont[3] = FONT.normal;
+					me.Display.LFont[3] = FONT.large;
 				}
 			}
 		} else {
 			me.Display.L4 = "[ ]";
-			me.Display.LFont[3] = FONT.normal;
+			me.Display.LFont[3] = FONT.large;
 		}
 		
 		if (me.type == 0) {
