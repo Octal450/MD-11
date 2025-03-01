@@ -10,7 +10,7 @@ var ThrLim = {
 		m.Display = {
 			arrow: 0,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [-4, -4, -4, -4, -4, -4],
 			CTranslate: [-4, -4, -4, -4, -4, -4],
 			C1L: "",
@@ -26,7 +26,7 @@ var ThrLim = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "",
 			L2L: "",
@@ -40,7 +40,7 @@ var ThrLim = {
 			L6L: "",
 			L6: " CRZ",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -50,7 +50,7 @@ var ThrLim = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -64,7 +64,7 @@ var ThrLim = {
 			R6L: "RETURN TO ",
 			R6: "",
 			
-			RBFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -241,35 +241,35 @@ var ThrLim = {
 		}
 		
 		if (me.Value.Limit.mode == 0 or me.Value.Limit.mode == 1) {
-			me.Display.CFont = [FONT.normal, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small];
+			me.Display.CFont = [FONT.large, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small];
 			me.Display.L1B = "a";
 			me.Display.L2B = "";
 			me.Display.L3B = "";
 			me.Display.L4B = "";
 			me.Display.L6B = "";
 		} else if (me.Value.Limit.mode == 5) {
-			me.Display.CFont = [FONT.small, FONT.normal, FONT.small, FONT.small, FONT.small, FONT.small];
+			me.Display.CFont = [FONT.small, FONT.large, FONT.small, FONT.small, FONT.small, FONT.small];
 			me.Display.L1B = "*";
 			me.Display.L2B = "a";
 			me.Display.L3B = "";
 			me.Display.L4B = "";
 			me.Display.L6B = "";
 		} else if (me.Value.Limit.mode == 2) {
-			me.Display.CFont = [FONT.small, FONT.small, FONT.normal, FONT.small, FONT.small, FONT.small];
+			me.Display.CFont = [FONT.small, FONT.small, FONT.large, FONT.small, FONT.small, FONT.small];
 			me.Display.L1B = "";
 			me.Display.L2B = "";
 			me.Display.L3B = "a";
 			me.Display.L4B = "";
 			me.Display.L6B = "";
 		} else if (me.Value.Limit.mode == 3) {
-			me.Display.CFont = [FONT.small, FONT.small, FONT.small, FONT.normal, FONT.small, FONT.small];
+			me.Display.CFont = [FONT.small, FONT.small, FONT.small, FONT.large, FONT.small, FONT.small];
 			me.Display.L1B = "";
 			me.Display.L2B = "";
 			me.Display.L3B = "";
 			me.Display.L4B = "a";
 			me.Display.L6B = "";
 		} else if (me.Value.Limit.mode == 4) {
-			me.Display.CFont = [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.normal];
+			me.Display.CFont = [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.large];
 			me.Display.L1B = "";
 			me.Display.L2B = "";
 			me.Display.L3B = "";

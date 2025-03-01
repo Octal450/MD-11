@@ -45,7 +45,7 @@ var nd_display = {};
 # entry point, this will set up all ND instances
 
 canvas.NDStyles["Boeing"].font_mapper = func(family, weight) { # This overrides the ND font mapper with our own
-	return "DULarge.ttf";
+	return "MD11DU.ttf";
 }
 
 var _list = setlistener("sim/signals/fdm-initialized", func() {

@@ -10,7 +10,7 @@ var NavRadio = {
 		m.Display = {
 			arrow: 0,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, -3],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -26,7 +26,7 @@ var NavRadio = {
 			C6L: "PRESELECT",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "VOR1/CRS",
 			L1: "",
 			L2L: "",
@@ -40,7 +40,7 @@ var NavRadio = {
 			L6L: "",
 			L6: "[   ]/[   ]",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -50,7 +50,7 @@ var NavRadio = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "VOR2/CRS",
 			R1: "",
 			R2L: "",
@@ -64,7 +64,7 @@ var NavRadio = {
 			R6L: "",
 			R6: "[   ]/[   ]",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -151,10 +151,10 @@ var NavRadio = {
 		
 		if (me.Value.navMhz[0] > 0 and me.Value.navCrs[0] > -1) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 0) {
-				me.Display.LFont[1] = FONT.normal;
+				me.Display.LFont[1] = FONT.large;
 				me.Display.L2 = "VOR TRACK";
 			} else if (afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 0) {
-				me.Display.LFont[1] = FONT.normal;
+				me.Display.LFont[1] = FONT.large;
 				me.Display.L2 = "VOR ARMED";
 			} else {
 				me.Display.LFont[1] = FONT.small;
@@ -166,10 +166,10 @@ var NavRadio = {
 		
 		if (me.Value.navMhz[1] > 0 and me.Value.navCrs[1] > -1) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 1) {
-				me.Display.RFont[1] = FONT.normal;
+				me.Display.RFont[1] = FONT.large;
 				me.Display.R2 = "VOR TRACK";
 			} else if (afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 1) {
-				me.Display.RFont[1] = FONT.normal;
+				me.Display.RFont[1] = FONT.large;
 				me.Display.R2 = "VOR ARMED";
 			} else {
 				me.Display.RFont[1] = FONT.small;
@@ -181,10 +181,10 @@ var NavRadio = {
 		
 		if (me.Value.navMhz[2] > 0 and me.Value.navCrs[2] > -1) {
 			if (afs.Internal.locOnly and afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 2) {
-				me.Display.LFont[4] = FONT.normal;
+				me.Display.LFont[4] = FONT.large;
 				me.Display.L5 = "LOC ONLY";
 			} else if (afs.Internal.locOnly and afs.Output.locArm.getBoolValue() and afs.Input.radioSel.getValue() == 2) {
-				me.Display.LFont[4] = FONT.normal;
+				me.Display.LFont[4] = FONT.large;
 				me.Display.L5 = "LOC ONLY";
 			} else {
 				me.Display.LFont[4] = FONT.small;

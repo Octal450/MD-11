@@ -10,7 +10,7 @@ var Init = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, -1, 0, 0, 1],
 			CTranslate: [0, 0, 0, 0, 0, 1],
 			C1L: "",
@@ -26,7 +26,7 @@ var Init = {
 			C6L: "OPT/MAXFL",
 			C6: "---/---",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "CO ROUTE",
 			L1: "",
 			L2L: "ALTN ROUTE",
@@ -40,7 +40,7 @@ var Init = {
 			L6L: "TEMP/WIND",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -50,7 +50,7 @@ var Init = {
 			
 			pageNum: "1/3",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "FROM/ TO  ",
 			R1: "",
 			R2L: "ALTN",
@@ -64,7 +64,7 @@ var Init = {
 			R6L: "CI",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -158,7 +158,7 @@ var Init = {
 			me.Display.LFont[5] = FONT.small;
 		} else {
 			me.Display.L6 = "---g/-----";
-			me.Display.LFont[5] = FONT.normal;
+			me.Display.LFont[5] = FONT.large;
 		}
 		
 		if (fms.FlightData.airportTo != "") {
@@ -358,7 +358,7 @@ var Init2 = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.small, FONT.large, FONT.small, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -388,7 +388,7 @@ var Init2 = {
 			L6L: "EXTRA/TIME",
 			L6: "---.-/----",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "    /05.0",
@@ -398,7 +398,7 @@ var Init2 = {
 			
 			pageNum: "2/3",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.small, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -412,7 +412,7 @@ var Init2 = {
 			R6L: "ZFWCG",
 			R6: "",
 			
-			RBFont: [FONT.small, FONT.normal, FONT.small, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.small, FONT.large, FONT.small, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "0.0       ",
@@ -449,7 +449,7 @@ var Init2 = {
 			me.Display.L1L = "TAXI";
 			me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
 			if (fms.FlightData.taxiFuelSet) {
-				me.Display.LFont[0] = FONT.normal;
+				me.Display.LFont[0] = FONT.large;
 			} else {
 				me.Display.LFont[0] = FONT.small;
 			}
@@ -470,11 +470,11 @@ var Init2 = {
 				if (fms.FlightData.lastGwZfw) {
 					me.Display.RFont[1] = FONT.small;
 				} else {
-					me.Display.RFont[1] = FONT.normal;
+					me.Display.RFont[1] = FONT.large;
 				}
 			} else {
 				me.Display.R2 = "___._";
-				me.Display.RFont[1] = FONT.normal;
+				me.Display.RFont[1] = FONT.large;
 			}
 		} else {
 			me.Display.R2L = "TOGW";
@@ -483,11 +483,11 @@ var Init2 = {
 				if (fms.FlightData.lastGwZfw) {
 					me.Display.RFont[1] = FONT.small;
 				} else {
-					me.Display.RFont[1] = FONT.normal;
+					me.Display.RFont[1] = FONT.large;
 				}
 			} else {
 				me.Display.R2 = "___._";
-				me.Display.RFont[1] = FONT.normal;
+				me.Display.RFont[1] = FONT.large;
 			}
 		}
 		
@@ -496,11 +496,11 @@ var Init2 = {
 			if (!fms.FlightData.lastGwZfw) {
 				me.Display.RFont[2] = FONT.small;
 			} else {
-				me.Display.RFont[2] = FONT.normal;
+				me.Display.RFont[2] = FONT.large;
 			}
 		} else {
 			me.Display.R3 = "___._";
-			me.Display.RFont[2] = FONT.normal;
+			me.Display.RFont[2] = FONT.large;
 		}
 		
 		if (fms.FlightData.tocg > 0) {
@@ -670,7 +670,7 @@ var Init3 = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -686,7 +686,7 @@ var Init3 = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "REFUEL QTY",
 			L1: "[  .]",
 			L2L: "BLST FUEL",
@@ -700,7 +700,7 @@ var Init3 = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -710,7 +710,7 @@ var Init3 = {
 			
 			pageNum: "3/3",
 			
-			RFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.normal, FONT.normal],
+			RFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.large, FONT.large],
 			R1L: "DUMP TO GW",
 			R1: "---.-",
 			R2L: "DUMP TIME",
@@ -724,7 +724,7 @@ var Init3 = {
 			R6L: "",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -770,7 +770,7 @@ var CompRte = {
 		m.Display = {
 			arrow: 0,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -786,7 +786,7 @@ var CompRte = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
 			L1: "NONE",
 			L2L: "",
@@ -800,7 +800,7 @@ var CompRte = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -810,7 +810,7 @@ var CompRte = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -824,7 +824,7 @@ var CompRte = {
 			R6L: "RETURN TO ",
 			R6: "F-PLN INIT>",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",

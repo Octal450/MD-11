@@ -27,7 +27,7 @@ var Takeoff = {
 			C6L: "VCL",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "FLEX",
 			L1: "",
 			L2L: "PACKS",
@@ -41,7 +41,7 @@ var Takeoff = {
 			L6L: "V2",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -51,7 +51,7 @@ var Takeoff = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "THRUST ",
 			R1: "LIMITS>",
 			R2L: "SLOPE/WIND",
@@ -65,7 +65,7 @@ var Takeoff = {
 			R6L: "EO ACCEL",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -133,7 +133,7 @@ var Takeoff = {
 		
 		if (fms.FlightData.toPacks) {
 			me.Display.L2 = "ON";
-			me.Display.LFont[1] = FONT.normal;
+			me.Display.LFont[1] = FONT.large;
 		} else {
 			me.Display.L2 = "OFF";
 			me.Display.LFont[1] = FONT.small;
@@ -148,7 +148,7 @@ var Takeoff = {
 		me.Value.v1Calc = math.round(fms.Speeds.v1.getValue());
 		if (fms.FlightData.v1State > 0) {
 			me.Display.L4 = sprintf("%d", fms.FlightData.v1);
-			me.Display.LFont[3] = FONT.normal;
+			me.Display.LFont[3] = FONT.large;
 		} else if (fms.FlightData.v1State == 0 and me.Value.v1Calc > 0) {
 			me.Display.L4 = "*" ~ sprintf("%d", me.Value.v1Calc);
 			me.Display.LFont[3] = FONT.small;
@@ -160,7 +160,7 @@ var Takeoff = {
 		me.Value.vrCalc = math.round(fms.Speeds.vr.getValue());
 		if (fms.FlightData.vrState > 0) {
 			me.Display.L5 = sprintf("%d", fms.FlightData.vr);
-			me.Display.LFont[4] = FONT.normal;
+			me.Display.LFont[4] = FONT.large;
 		} else if (fms.FlightData.vrState == 0 and me.Value.vrCalc > 0) {
 			me.Display.L5 = "*" ~ sprintf("%d", me.Value.vrCalc);
 			me.Display.LFont[4] = FONT.small;
@@ -172,7 +172,7 @@ var Takeoff = {
 		me.Value.v2Calc = math.round(fms.Speeds.v2.getValue());
 		if (fms.FlightData.v2State > 0) {
 			me.Display.L6 = sprintf("%d", fms.FlightData.v2);
-			me.Display.LFont[5] = FONT.normal;
+			me.Display.LFont[5] = FONT.large;
 		} else if (fms.FlightData.v2State == 0 and me.Value.v2Calc > 0) {
 			me.Display.L6 = "*" ~ sprintf("%d", me.Value.v2Calc);
 			me.Display.LFont[5] = FONT.small;
@@ -258,7 +258,7 @@ var Takeoff = {
 		if (fms.FlightData.climbThrustAlt > -1000) {
 			me.Display.R4 = sprintf("%d", fms.FlightData.climbThrustAlt);
 			if (fms.FlightData.climbThrustAltSet) {
-				me.Display.RFont[3] = FONT.normal;
+				me.Display.RFont[3] = FONT.large;
 			} else {
 				me.Display.RFont[3] = FONT.small;
 			}
@@ -270,7 +270,7 @@ var Takeoff = {
 		if (fms.FlightData.accelAlt > -1000) {
 			me.Display.R5 = sprintf("%d", fms.FlightData.accelAlt);
 			if (fms.FlightData.accelAltSet) {
-				me.Display.RFont[4] = FONT.normal;
+				me.Display.RFont[4] = FONT.large;
 			} else {
 				me.Display.RFont[4] = FONT.small;
 			}
@@ -282,7 +282,7 @@ var Takeoff = {
 		if (fms.FlightData.accelAltEo > -1000) {
 			me.Display.R6 = sprintf("%d", fms.FlightData.accelAltEo);
 			if (fms.FlightData.accelAltEoSet) {
-				me.Display.RFont[5] = FONT.normal;
+				me.Display.RFont[5] = FONT.large;
 			} else {
 				me.Display.RFont[5] = FONT.small;
 			}
@@ -620,7 +620,7 @@ var Approach = {
 		m.Display = {
 			arrow: 0,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, -3, 0],
 			CTranslate: [0, 0, 0, 0, -3, 0],
 			C1L: "",
@@ -636,7 +636,7 @@ var Approach = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "CLEAN MIN",
 			L1: "",
 			L2L: "SLAT EXT MIN",
@@ -650,7 +650,7 @@ var Approach = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -660,7 +660,7 @@ var Approach = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "LW",
 			R1: "---.-",
 			R2L: "LENGTH",
@@ -674,7 +674,7 @@ var Approach = {
 			R6L: "",
 			R6: "GO AROUND>",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",

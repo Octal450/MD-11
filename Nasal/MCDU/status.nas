@@ -20,7 +20,7 @@ var AcStatus = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -36,7 +36,7 @@ var AcStatus = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.small, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.small, FONT.large, FONT.large],
 			L1L: " MODEL",
 			L1: "",
 			L2L: " OP PROGRAM",
@@ -50,7 +50,7 @@ var AcStatus = {
 			L6L: " PERF FACTOR",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -60,7 +60,7 @@ var AcStatus = {
 			
 			pageNum: "1/2",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "ENGINE ",
 			R1: me.Common.eng,
 			R2L: "",
@@ -74,7 +74,7 @@ var AcStatus = {
 			R6L: "",
 			R6: "F-PLN INIT>",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -184,7 +184,7 @@ var AcStatus2 = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "",
@@ -200,7 +200,7 @@ var AcStatus2 = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1: me.Common.perfDbPn,
 			L1L: " PERF DATABASE",
 			L2: me.Common.opcPn,
@@ -214,7 +214,7 @@ var AcStatus2 = {
 			L6: "",
 			L6L: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -224,7 +224,7 @@ var AcStatus2 = {
 			
 			pageNum: "2/2",
 			
-			RFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "",
 			R1: "",
 			R2L: "",
@@ -238,7 +238,7 @@ var AcStatus2 = {
 			R6L: "",
 			R6: "F-PLN INIT>",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -278,7 +278,7 @@ var SensorStatus = {
 		m.Display = {
 			arrow: 0,
 			
-			CFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			CFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [0, 0, 0, 0, 0, 0],
 			CTranslate: [0, 0, 0, 0, 0, 0],
 			C1L: "  3/AUX",
@@ -294,7 +294,7 @@ var SensorStatus = {
 			C6L: "",
 			C6: "",
 			
-			LFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "        1",
 			L1: "",
 			L2L: "",
@@ -308,7 +308,7 @@ var SensorStatus = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -318,7 +318,7 @@ var SensorStatus = {
 			
 			pageNum: "",
 			
-			RFont: [FONT.small, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1L: "2   ",
 			R1: "",
 			R2L: "",
@@ -332,7 +332,7 @@ var SensorStatus = {
 			R6L: "",
 			R6: "",
 			
-			RBFont: [FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal, FONT.normal],
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
 			R2B: "",
 			R3B: "",
