@@ -112,13 +112,11 @@ var FmsSpd = {
 		me.ktsCmd = 0;
 	},
 	engage: func() {
-		
 		if (me.active) {
+			afs.Fma.stopBlink(0);
+			afs.Output.showSpd.setBoolValue(0);
 			fms.EditFlightData.returnToEcon();
-			return;
-		}
-		
-		if (me.engageAllowed()) {
+		} else if (me.engageAllowed()) {
 			me.active = 1;
 			afs.Fma.stopBlink(0);
 			afs.Output.showSpd.setBoolValue(0);
