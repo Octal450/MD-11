@@ -2094,18 +2094,22 @@ var canvasBase = {
 			me["FMA_pitch_land"].setTranslation(0, 0);
 		}
 		
-		if (fms.FmsSpd.ktsMach) {
-			if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.001 or Value.Afs.fmsSpdDriving) {
-				me["FMA_speed"].setColor(0.9608, 0, 0.7765);
+		if (Value.Afs.ktsMach == fms.FmsSpd.ktsMach) {
+			if (fms.FmsSpd.ktsMach) {
+				if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.00105 or Value.Afs.fmsSpdDriving) { # 0.00105 to fix floating point error issue
+					me["FMA_speed"].setColor(0.9608, 0, 0.7765);
+				} else {
+					me["FMA_speed"].setColor(1, 1, 1);
+				}
 			} else {
-				me["FMA_speed"].setColor(1, 1, 1);
+				if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1 or Value.Afs.fmsSpdDriving) {
+					me["FMA_speed"].setColor(0.9608, 0, 0.7765);
+				} else {
+					me["FMA_speed"].setColor(1, 1, 1);
+				}
 			}
 		} else {
-			if (abs(Value.Afs.kts - fms.FmsSpd.kts) <= 1 or Value.Afs.fmsSpdDriving) {
-				me["FMA_speed"].setColor(0.9608, 0, 0.7765);
-			} else {
-				me["FMA_speed"].setColor(1, 1, 1);
-			}
+			me["FMA_speed"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Afs.thrust == "RETARD" or !Value.Afs.spdPitchAvail) {
