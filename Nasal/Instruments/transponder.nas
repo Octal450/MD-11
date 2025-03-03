@@ -24,6 +24,9 @@ var XPDR = {
 		me.setMode(0);
 		me.xpdr.setBoolValue(0);
 	},
+	airGround: func() {
+		me.setMode(me.knob.getValue());
+	},
 	getOnMode: func() {
 		if (me.altReport.getBoolValue()) {
 			if (!pts.Position.wow.getBoolValue()) {
@@ -34,37 +37,6 @@ var XPDR = {
 		} else {
 			return 4; # On
 		}
-	},
-	modeKnob: func(d) {
-		me.setMode(math.clamp(me.knob.getValue() + d, 0, 3));
-	},
-	setMode: func(m) {
-		me.knob.setValue(m);
-		me.onMode = me.getOnMode();
-		if (m == 0) { # STBY
-			me.fgKnob.setValue(1); # Standby
-			me.fgMode.setValue("STANDBY");
-			me.tcasMode.setValue(0); # OFF
-		} else if (m == 1) { # XPDR
-			me.fgKnob.setValue(me.onMode);
-			me.fgMode.setValue(me.fgModeList[me.onMode]);
-			me.tcasMode.setValue(0); # OFF
-		} else if (m == 2) { # TA
-			me.fgKnob.setValue(me.onMode);
-			me.fgMode.setValue(me.fgModeList[me.onMode]);
-			me.tcasMode.setValue(2); # TA Only
-		} else if (m == 3) { # TA/RA
-			me.fgKnob.setValue(me.onMode);
-			me.fgMode.setValue(me.fgModeList[me.onMode]);
-			me.tcasMode.setValue(3); # TA/RA
-		}
-	},
-	airGround: func() {
-		me.setMode(me.knob.getValue());
-	},
-	toggleAltReport: func() {
-		me.altReport.setBoolValue(!me.altReport.getBoolValue());
-		me.setMode(me.knob.getValue());
 	},
 	input: func(n) {
 		if (me.power.getValue() >= 24) {
@@ -94,6 +66,44 @@ var XPDR = {
 			}
 		}
 	},
+	modeKnob: func(d) {
+		me.setMode(math.clamp(me.knob.getValue() + d, 0, 3));
+	},
+	setCode: func() {
+		if (me.fgCode.getValue() != me.code) {
+			me.fgCode.setValue(me.code);
+		}
+	},
+	setIdent: func() {
+		me.ident.setBoolValue(1);
+		me.identTime = pts.Sim.Time.elapsedSec.getValue();
+		identChk.start();
+	},
+	setMode: func(m) {
+		me.knob.setValue(m);
+		me.onMode = me.getOnMode();
+		if (m == 0) { # STBY
+			me.fgKnob.setValue(1); # Standby
+			me.fgMode.setValue("STANDBY");
+			me.tcasMode.setValue(0); # OFF
+		} else if (m == 1) { # XPDR
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
+			me.tcasMode.setValue(0); # OFF
+		} else if (m == 2) { # TA
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
+			me.tcasMode.setValue(2); # TA Only
+		} else if (m == 3) { # TA/RA
+			me.fgKnob.setValue(me.onMode);
+			me.fgMode.setValue(me.fgModeList[me.onMode]);
+			me.tcasMode.setValue(3); # TA/RA
+		}
+	},
+	toggleAltReport: func() {
+		me.altReport.setBoolValue(!me.altReport.getBoolValue());
+		me.setMode(me.knob.getValue());
+	},
 	updateDisplay: func() {
 		if (size(me.code) == 0) {
 			me.digit[0].setValue("-"); # Hidden
@@ -106,16 +116,6 @@ var XPDR = {
 			me.digit[2].setValue(sprintf("%1d", math.mod(me.code / 10, 10)));
 			me.digit[3].setValue(sprintf("%1d", math.mod(me.code, 10)));
 		}
-	},
-	setCode: func() {
-		if (me.fgCode.getValue() != me.code) {
-			me.fgCode.setValue(me.code);
-		}
-	},
-	setIdent: func() {
-		me.ident.setBoolValue(1);
-		me.identTime = pts.Sim.Time.elapsedSec.getValue();
-		identChk.start();
 	},
 };
 
