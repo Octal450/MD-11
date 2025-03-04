@@ -8857,7 +8857,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/lighting/strobe</property>
+				<property>controls/lighting/strobe-lights</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -8869,7 +8869,7 @@
 		<type>translate</type>
 		<object-name>StrobeLt</object-name>
 		<object-name>StrobeLt.off</object-name>
-		<property>controls/lighting/strobe</property>
+		<property>controls/lighting/strobe-lights</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>1</x>
@@ -8883,7 +8883,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/lighting/strobe</property>
+					<property>controls/lighting/strobe-lights</property>
 					<value>0</value>
 				</equals>
 				<equals>

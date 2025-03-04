@@ -53,7 +53,6 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	systemsInit();
 	systemsLoop.start();
 	slowLoop.start();
-	lightsLoop.start();
 	canvas_pfd.setup();
 	canvas_ead.setup();
 	canvas_sd.setup();
@@ -107,25 +106,8 @@ setlistener("/position/wow", func() {
 	}
 }, 0, 0);
 
-var nav_lights = props.globals.getNode("/sim/model/lights/nav-lights");
-var setting = getprop("/controls/lighting/nav-lights");
-
-var strobe_switch = props.globals.getNode("/controls/lighting/strobe", 2);
-var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/controls/lighting/strobe");
-
-var beacon_switch = props.globals.getNode("/controls/lighting/beacon", 2);
-var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
-
-var lightsLoop = maketimer(0.2, func() {
-	# Logo and navigation lights
-	setting = getprop("/controls/lighting/nav-lights");
-	
-	if (setting == 1) {
-		nav_lights.setBoolValue(1);
-	} else {
-		nav_lights.setBoolValue(0);
-	}
-});
+var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/systems/exterior-lights/beacon");
+var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/systems/exterior-lights/strobe-lights");
 
 # Backwards compatibility, removed soon
 var ApPanel = {

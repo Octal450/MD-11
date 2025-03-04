@@ -210,6 +210,137 @@
 	
 	</channel>
 	
+	<channel name="Exterior Lights" execrate="2">
+		
+		<switch name="/systems/exterior-lights/nose-landing-light-cmd">
+			<default value="0"/>
+			<test logic="AND" value="0.6">
+				/controls/lighting/landing-light-n eq 0.5
+				/systems/gear/cmd eq 1
+				/gear/gear[0]/position-norm ge 0.99
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+			<test logic="AND" value="1">
+				/controls/lighting/landing-light-n eq 1.0
+				/systems/gear/cmd eq 1
+				/gear/gear[0]/position-norm ge 0.99
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/exterior-lights/nose-landing-light">
+			<input>/systems/exterior-lights/nose-landing-light-cmd</input>
+			<c1>7.5</c1>
+		</lag_filter>
+		
+		<switch name="/systems/exterior-lights/left-landing-light-ext-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/lighting/landing-light-l ge 0.5
+			</test>
+		</switch>
+		
+		<switch name="/systems/exterior-lights/left-landing-light-ext-rate">
+			<default value="0"/>
+			<test value="0.14285714285"> <!-- 7 seconds -->
+				/systems/electrical/bus/l-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/exterior-lights/left-landing-light-ext">
+			<input>/systems/exterior-lights/left-landing-light-ext-cmd</input>
+			<rate_limit>/systems/exterior-lights/left-landing-light-ext-rate</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/exterior-lights/left-landing-light-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/landing-light-l eq 1
+				/systems/exterior-lights/left-landing-light-ext eq 1
+				/systems/electrical/bus/l-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/exterior-lights/left-landing-light">
+			<input>/systems/exterior-lights/left-landing-light-cmd</input>
+			<c1>7.5</c1>
+		</lag_filter>
+		
+		<switch name="/systems/exterior-lights/right-landing-light-ext-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/lighting/landing-light-r ge 0.5
+			</test>
+		</switch>
+		
+		<switch name="/systems/exterior-lights/right-landing-light-ext-rate">
+			<default value="0"/>
+			<test value="0.14285714285"> <!-- 7 seconds -->
+				/systems/electrical/bus/r-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/exterior-lights/right-landing-light-ext">
+			<input>/systems/exterior-lights/right-landing-light-ext-cmd</input>
+			<rate_limit>/systems/exterior-lights/right-landing-light-ext-rate</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/exterior-lights/right-landing-light-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/landing-light-r eq 1
+				/systems/exterior-lights/right-landing-light-ext eq 1
+				/systems/electrical/bus/r-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/exterior-lights/right-landing-light">
+			<input>/systems/exterior-lights/right-landing-light-cmd</input>
+			<c1>7.5</c1>
+		</lag_filter>
+		
+		<switch name="/systems/exterior-lights/nav-lights">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/nav-lights eq 1
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/exterior-lights/strobe-lights">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/strobe-lights eq 1
+				/gear/gear[0]/wow ne 1
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/exterior-lights/beacon">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/beacon eq 1
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="CAWS Logic" execrate="8">
 		
 		<!-- Altitude Alert -->

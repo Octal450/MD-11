@@ -775,7 +775,7 @@
 			<overhead-flood type="double">0</overhead-flood>
 			<overhead-integ type="double">0</overhead-integ>
 			<stby-compass type="bool">0</stby-compass>
-			<strobe type="bool">0</strobe>
+			<strobe-lights type="bool">0</strobe-lights>
 			<thunderstorm type="bool">0</thunderstorm>
 		</lighting>
 		<pneumatics n="0">
@@ -2013,9 +2013,6 @@
 			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
 			<file>Aircraft/MD-11/gui/canvas/engine-start.nas</file>
 		</panel2d>
-		<lightmanager>
-			<file>Aircraft/MD-11/Nasal/light-manager.nas</file>
-		</lightmanager>
 	</nasal>
 
 </PropertyList>
