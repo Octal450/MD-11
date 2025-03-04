@@ -338,6 +338,17 @@
 				</test>
 			</test>
 		</switch>
+		
+		<switch name="/systems/exterior-lights/logo-lights">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/logo-lights eq 1
+				<test logic="OR">
+					/systems/electrical/bus/l-emer-ac ge 112
+					/systems/electrical/bus/r-emer-ac ge 112
+				</test>
+			</test>
+		</switch>
 	
 	</channel>
 	

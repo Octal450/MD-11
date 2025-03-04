@@ -870,6 +870,17 @@
 		<range-m>10</range-m>
 	</light>
 	
+	<!-- Logo Lights -->
+	<!--model>
+		<name>LogoLightL</name>
+		<path>Aircraft/MD-11/Models/Effects/Lights/logo-left.xml</path>
+		<offsets>
+			<x-m>26.035</x-m>
+			<y-m>-4.226</y-m>
+			<z-m>7.4684</z-m>
+		</offsets>
+	</model-->
+	
 	<!-- Effects -->
 	<animation>
 		<type>shader</type>
@@ -1447,6 +1458,8 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
+		<object-name>LogoLightL</object-name>
+		<object-name>LogoLightR</object-name>
 		<property>sim/multiplay/generic/float[24]</property>
 		<factor>1</factor>
 		<axis>
