@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2025 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<path>beacon.ac</path>
+	<nopreview/>
+	
+	<animation>
+		<type>noshadow</type>
+		<object-name>beaconals</object-name>
+	</animation>
+	
+	<effect>
+		<inherits-from>Aircraft/MD-11/Models/Effects/Lights/beacon</inherits-from>
+		<object-name>beaconals</object-name>
+	</effect>
+	
+	<animation>
+		<type>dist-scale</type>
+		<object-name>beaconals</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>1</dep>
+			</entry>
+			<entry>
+				<ind>300</ind>
+				<dep>4</dep>
+			</entry>
+			<entry>
+				<ind>1500</ind>
+				<dep>8</dep>
+			</entry>
+		</interpolation>
+	</animation>
+
+</PropertyList>
