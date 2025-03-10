@@ -125,7 +125,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/go-around-ref">
+		<fcs_function name="/systems/fadec/limit/go-around-table">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -160,7 +160,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/go-around-ref</property>
+								<property>/systems/fadec/limit/go-around-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -171,7 +171,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/takeoff-ref">
+		<fcs_function name="/systems/fadec/limit/takeoff-table">
 			<function>
 				<sum>
 					<table>
@@ -232,7 +232,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/takeoff-ref</property>
+								<property>/systems/fadec/limit/takeoff-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -249,10 +249,10 @@
 			<input>propulsion/tat-c</input>
 		</summer>
 		
-		<fcs_function name="/systems/fadec/limit/takeoff-flex-ref">
+		<fcs_function name="/systems/fadec/limit/takeoff-flex-table">
 			<function>
 				<min> <!-- FLEX can not increase thrust past T/O -->
-					<property>/systems/fadec/limit/takeoff-ref</property>
+					<property>/systems/fadec/limit/takeoff-table</property>
 					<sum>
 						<table>
 							<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -313,7 +313,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/takeoff-flex-ref</property>
+								<property>/systems/fadec/limit/takeoff-flex-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -331,7 +331,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fadec/limit/mct-ref">
+		<fcs_function name="/systems/fadec/limit/mct-table">
 			<function>
 				<min>
 					<table>
@@ -363,12 +363,12 @@
 							25000  101.9  107.8  108.9  108.5  113.1
 						</tableData>
 						<tableData breakPoint="0.6">
-							      -60    -30     0      30     60
-							 5000   89.5   95.2  100.6  105.7  103.1
-							10000   93.7   99.5  104.9  108.1  104.1
-							15000   96.9  102.6  107.9  107.7  108.1
-							20000   99.1  105.1  108.7  107.6  109.5
-							25000   99.5  105.4  108.2  106.0  110.6
+							      -60   -30     0      30     60
+							 5000  89.5   95.2  100.6  105.7  103.1
+							10000  93.7   99.5  104.9  108.1  104.1
+							15000  96.9  102.6  107.9  107.7  108.1
+							20000  99.1  105.1  108.7  107.6  109.5
+							25000  99.5  105.4  108.2  106.0  110.6
 						</tableData>
 						<tableData breakPoint="0.7">
 							      -60    -30     0      30     60
@@ -408,7 +408,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/mct-ref</property>
+								<property>/systems/fadec/limit/mct-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -419,7 +419,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/climb-ref">
+		<fcs_function name="/systems/fadec/limit/climb-table">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -465,7 +465,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/climb-ref</property>
+								<property>/systems/fadec/limit/climb-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -476,7 +476,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/cruise-ref">
+		<fcs_function name="/systems/fadec/limit/cruise-table">
 			<function>
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
@@ -523,7 +523,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/cruise-ref</property>
+								<property>/systems/fadec/limit/cruise-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
@@ -601,7 +601,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fadec/limit/idle-ref">
+		<fcs_function name="/systems/fadec/limit/idle-table">
 			<function>
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
@@ -630,7 +630,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/idle-ref</property>
+								<property>/systems/fadec/limit/idle-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
