@@ -504,10 +504,10 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fms/speeds/v2-latch-speed">
+		<fcs_function name="/systems/fms/speeds/v2-latch-speed"> <!-- Based off speed in FlightData -->
 			<function>
 				<sum>
-					<property>/systems/fms/speeds/v2</property>
+					<property>/systems/fms/flight-data/v2</property>
 					<value>8</value> <!-- V2 + 10kts, 2 kt buffer -->
 				</sum>
 			</function>
@@ -517,10 +517,13 @@
 			<default value="/systems/fms/speeds/v2-latch"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
-			</test>	
-			<test logic="OR" value="1">
-				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/v2-latch-speed
+			</test>
+			<test value="1">
 				/position/gear-agl-ft ge 100
+			</test>
+			<test logic="AND" value="1">
+				/instrumentation/airspeed-indicator/indicated-speed-kt gt /systems/fms/speeds/v2-latch-speed
+				/systems/fms/flight-data/v2 ne 0
 			</test>
 		</switch>
 		
