@@ -18,13 +18,42 @@
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
 						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  111.0
-						10000  96.4  100.2  105.6  107.1  112.3
+						-2000  87.3   92.6   97.7  102.6  107.6
+						    0  90.3   95.8  100.9  106.0  111.0
+						10000  96.7  100.2  105.6  107.1  112.3
 						45000  96.4   96.7  102.1  107.4  112.7
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
+		
+		<!-- Begin EPR temperature compensation -->
+		<fcs_function name="/systems/fadec/limit/n1-epr-temp-factor-ref">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<tableData> <!-- Rated N1 @ 30C -->
+						-2000  102.6
+						    0  106.0
+						10000  107.1
+						45000  107.4
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/n1-epr-temp-factor">
+			<function>
+				<max>
+					<quotient>
+						<property>/systems/fadec/limit/n1-epr-temp-factor-ref</property>
+						<property>/systems/fadec/limit/rated-thrust-n1</property>
+					</quotient>
+					<value>0.000001</value> <!-- Prevent divide by 0 further on - shouldn't happen as this should be around 1 -->
+				</max>
+			</function>
+		</fcs_function>
+		<!-- End EPR temperature compensation -->
 		
 		<fcs_function name="/systems/fadec/limit/milthrust-unmodified"> <!-- Copy of MilThrust table in engines file -->
 			<function>
@@ -126,9 +155,9 @@
 		</fcs_function>
 		
 		<!-- 
-		Thrust limits on the PW are kinda hard to do because of EPR - and we don't have a linear way to control throttle
-		The GE's just use N1, which is linear so it works well to make the FADEC, but as stated primary param is EPR
-		So we have our thrust limits basic in N1 because its easier to calculate, then we calculate corrected EPR
+		Thrust limits on the PW are tricky because of the EPR model not being 100% accurate, so instead I computed N1s.
+		The GE's just use N1, which is linear so it works well to make the FADEC, but as stated primary param is EPR.
+		So we have our basic thrust limits in N1 created from tables and other factors, then we calculate them to EPR.
 		After we round the EPR, in order to correctly control/limit thrust, we will convert it BACK to N1... annoying right?
 		Well the advantage is the plane is actually targetting EPR, so its more realistic to do this way even if its more steps
 		I think that's better than just pretending to use EPR, and actually using N1 - if you look close enough, you can tell!
@@ -138,11 +167,25 @@
 				<table>
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
-					<tableData>
-						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  100.8
-						10000  96.4  100.2  105.6  107.1  102.6
-						45000  96.4   96.7  102.1  107.4  105.1
+					<tableData> <!-- Takeoff - AC Low -->
+						      -60   -50    -40    -30    -20    -10     0      10     20     30     40     50     60
+						-2000  86.9   88.7   90.5   92.2   94.0   95.7   97.3   99.0  100.5  102.2  102.2  100.7   99.6
+						-1000  88.4   90.3   92.0   93.8   95.6   97.3   99.0  100.6  102.2  103.9  103.1  101.5  100.0
+						    0  89.9   91.8   93.6   95.4   97.2   98.9  100.5  102.2  103.9  105.6  103.8  102.1  100.4
+						 1000  90.5   92.5   94.3   96.2   97.9   99.6  101.3  103.0  104.6  105.6  103.9  101.9  100.5
+						 2000  91.3   93.2   95.0   96.8   98.6  100.3  102.0  103.6  105.4  105.6  103.8  101.8  100.6
+						 3000  91.9   93.9   95.7   97.6   99.3  101.0  102.7  104.4  106.1  105.6  103.6  101.8  100.7
+						 4000  92.7   94.6   96.4   98.2  100.0  101.7  103.3  105.0  106.7  105.6  103.4  102.0  100.8
+						 5000  93.4   95.3   97.2   99.0  100.6  102.4  104.0  105.7  107.4  105.5  103.2  102.0  100.8
+						 6000  94.0   95.9   97.7   99.5  101.3  103.0  104.6  106.2  107.4  105.5  103.2  102.0  100.7
+						 7000  94.8   96.7   98.5  100.4  102.1  103.9  105.5  107.2  107.5  105.3  103.2  102.1  101.2
+						 8000  95.5   97.5   99.3  101.2  103.0  104.7  106.4  108.1  107.3  105.1  103.3  102.1  102.1
+						 9000  96.0   97.9   99.8  101.7  103.4  105.2  106.9  108.6  107.2  105.1  103.4  102.3  102.3
+						10000  96.3   98.3  100.3  102.1  103.9  105.7  107.4  108.9  107.0  105.1  103.6  102.4  102.4
+						11000  97.1   99.0  100.9  102.8  104.6  106.4  108.1  109.1  106.9  105.0  103.8  103.8  103.8
+						12000  97.7   99.7  101.7  103.5  105.4  107.2  108.9  109.0  106.8  105.0  104.0  104.0  104.0
+						13000  98.1  100.2  102.1  104.0  105.9  107.6  109.3  108.9  106.8  105.1  104.1  104.1  104.1
+						14000  98.6  100.6  102.5  104.5  106.3  108.1  109.8  108.7  106.8  105.2  104.2  104.2  104.2
 					</tableData>
 				</table>
 			</function>
@@ -221,14 +264,17 @@
 		<fcs_function name="/systems/fadec/limit/go-around-input">
 			<function>
 				<pow>
-					<ifthen>
-						<eq>
-							<property>/systems/fadec/limit/pw-derate</property>
-							<value>1</value>
-						</eq>
-						<property>/systems/fadec/limit/go-around-derate</property>
-						<property>/systems/fadec/limit/go-around-table</property>
-					</ifthen>
+					<product>
+						<ifthen>
+							<eq>
+								<property>/systems/fadec/limit/pw-derate</property>
+								<value>1</value>
+							</eq>
+							<property>/systems/fadec/limit/go-around-derate</property>
+							<property>/systems/fadec/limit/go-around-table</property>
+						</ifthen>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -275,10 +321,24 @@
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
 					<independentVar lookup="column">propulsion/tat-c</independentVar>
 					<tableData>
-						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  100.8
-						10000  96.4  100.2  105.6  107.1  102.6
-						45000  96.4   96.7  102.1  107.4  105.1
+						      -60   -50    -40    -30    -20    -10     0      10     20     30     40     50     60
+						-2000  87.3   89.1   90.9   92.6   94.4   96.1   97.7   99.4  100.9  102.6  102.6  101.1  100.0
+						-1000  88.8   90.7   92.4   94.2   96.0   97.7   99.4  101.0  102.6  104.3  103.5  101.9  100.4
+						    0  90.3   92.2   94.0   95.8   97.6   99.3  100.9  102.6  104.3  106.0  104.2  102.5  100.8
+						 1000  90.9   92.9   94.7   96.6   98.3  100.0  101.7  103.4  105.0  106.0  104.3  102.3  100.9
+						 2000  91.7   93.6   95.4   97.2   99.0  100.7  102.4  104.0  105.8  106.0  104.2  102.2  101.0
+						 3000  92.3   94.3   96.1   98.0   99.7  101.4  103.1  104.8  106.5  106.0  104.0  102.2  101.1
+						 4000  93.1   95.0   96.8   98.6  100.4  102.1  103.7  105.4  107.1  106.0  103.8  102.4  101.2
+						 5000  93.8   95.7   97.6   99.4  101.0  102.8  104.4  106.1  107.8  105.9  103.6  102.4  101.2
+						 6000  94.4   96.3   98.1   99.9  101.7  103.4  105.0  106.6  107.8  105.9  103.6  102.4  101.1
+						 7000  95.2   97.1   98.9  100.8  102.5  104.3  105.9  107.6  107.9  105.7  103.6  102.5  101.6
+						 8000  95.9   97.9   99.7  101.6  103.4  105.1  106.8  108.5  107.7  105.5  103.7  102.5  102.5
+						 9000  96.4   98.3  100.2  102.1  103.8  105.6  107.3  109.0  107.6  105.5  103.8  102.7  102.7
+						10000  96.7   98.7  100.7  102.5  104.3  106.1  107.8  109.3  107.4  105.5  104.0  102.8  102.8
+						11000  97.5   99.4  101.3  103.2  105.0  106.8  108.5  109.5  107.3  105.4  104.2  104.2  104.2
+						12000  98.1  100.1  102.1  103.9  105.8  107.6  109.3  109.4  107.2  105.4  104.4  104.4  104.4
+						13000  98.5  100.6  102.5  104.4  106.3  108.0  109.7  109.3  107.2  105.5  104.5  104.5  104.5
+						14000  99.0  101.0  102.9  104.9  106.7  108.5  110.2  109.1  107.2  105.6  104.6  104.6  104.6
 					</tableData>
 				</table>
 			</function>
@@ -357,23 +417,26 @@
 		<fcs_function name="/systems/fadec/limit/takeoff-no-flex-input">
 			<function>
 				<pow>
-					<sum>
-						<ifthen>
-							<eq>
-								<property>/systems/fadec/limit/pw-derate</property>
-								<value>1</value>
-							</eq>
-							<property>/systems/fadec/limit/takeoff-derate</property>
-							<property>/systems/fadec/limit/takeoff-table</property>
-						</ifthen>
-						<table>
-							<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
-							<tableData>
-								0  0.0
-								1 -0.4
-							</tableData>
-						</table>
-					</sum>
+					<product>
+						<sum>
+							<ifthen>
+								<eq>
+									<property>/systems/fadec/limit/pw-derate</property>
+									<value>1</value>
+								</eq>
+								<property>/systems/fadec/limit/takeoff-derate</property>
+								<property>/systems/fadec/limit/takeoff-table</property>
+							</ifthen>
+							<table>
+								<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
+								<tableData>
+									0  0.0
+									1 -0.4
+								</tableData>
+							</table>
+						</sum>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -426,10 +489,24 @@
 					<independentVar lookup="row">/position/altitude-ft</independentVar>
 					<independentVar lookup="column">/systems/fadec/limit/flex-temp-input</independentVar>
 					<tableData>
-						      -60   -30     0      30     60
-						    0  90.3   95.9  101.0  106.0  100.8
-						10000  96.4  100.2  105.6  107.1  102.6
-						45000  96.4   96.7  102.1  107.4  105.1
+						      -60   -50    -40    -30    -20    -10     0      10     20     30     40     50     60
+						-2000  87.3   89.1   90.9   92.6   94.4   96.1   97.7   99.4  100.9  102.6  102.6  101.1  100.0
+						-1000  88.8   90.7   92.4   94.2   96.0   97.7   99.4  101.0  102.6  104.3  103.5  101.9  100.4
+						    0  90.3   92.2   94.0   95.8   97.6   99.3  100.9  102.6  104.3  106.0  104.2  102.5  100.8
+						 1000  90.9   92.9   94.7   96.6   98.3  100.0  101.7  103.4  105.0  106.0  104.3  102.3  100.9
+						 2000  91.7   93.6   95.4   97.2   99.0  100.7  102.4  104.0  105.8  106.0  104.2  102.2  101.0
+						 3000  92.3   94.3   96.1   98.0   99.7  101.4  103.1  104.8  106.5  106.0  104.0  102.2  101.1
+						 4000  93.1   95.0   96.8   98.6  100.4  102.1  103.7  105.4  107.1  106.0  103.8  102.4  101.2
+						 5000  93.8   95.7   97.6   99.4  101.0  102.8  104.4  106.1  107.8  105.9  103.6  102.4  101.2
+						 6000  94.4   96.3   98.1   99.9  101.7  103.4  105.0  106.6  107.8  105.9  103.6  102.4  101.1
+						 7000  95.2   97.1   98.9  100.8  102.5  104.3  105.9  107.6  107.9  105.7  103.6  102.5  101.6
+						 8000  95.9   97.9   99.7  101.6  103.4  105.1  106.8  108.5  107.7  105.5  103.7  102.5  102.5
+						 9000  96.4   98.3  100.2  102.1  103.8  105.6  107.3  109.0  107.6  105.5  103.8  102.7  102.7
+						10000  96.7   98.7  100.7  102.5  104.3  106.1  107.8  109.3  107.4  105.5  104.0  102.8  102.8
+						11000  97.5   99.4  101.3  103.2  105.0  106.8  108.5  109.5  107.3  105.4  104.2  104.2  104.2
+						12000  98.1  100.1  102.1  103.9  105.8  107.6  109.3  109.4  107.2  105.4  104.4  104.4  104.4
+						13000  98.5  100.6  102.5  104.4  106.3  108.0  109.7  109.3  107.2  105.5  104.5  104.5  104.5
+						14000  99.0  101.0  102.9  104.9  106.7  108.5  110.2  109.1  107.2  105.6  104.6  104.6  104.6
 					</tableData>
 				</table>
 			</function>
@@ -510,23 +587,26 @@
 				<min> <!-- FLEX can not increase thrust past T/O -->
 					<property>/systems/fadec/limit/takeoff-no-flex-input</property>
 					<pow>
-						<sum>
-							<ifthen> <!-- FLEX is disallowed in 62K mode, but I'm leaving the code in here anyway since removing it would only remove this ifthen, all the other above code is still required to compute 60K FLEX -->
-								<eq>
-									<property>/systems/fadec/limit/pw-derate</property>
-									<value>1</value>
-								</eq>
-								<property>/systems/fadec/limit/takeoff-flex-derate</property>
-								<property>/systems/fadec/limit/takeoff-flex-table</property>
-							</ifthen>
-							<table>
-								<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
-								<tableData>
-									0  0.0
-									1 -0.4
-								</tableData>
-							</table>
-						</sum>
+						<product>
+							<sum>
+								<ifthen> <!-- FLEX is disallowed in 62K mode, but I'm leaving the code in here anyway since removing it would only remove this ifthen, all the other above code is still required to compute 60K FLEX -->
+									<eq>
+										<property>/systems/fadec/limit/pw-derate</property>
+										<value>1</value>
+									</eq>
+									<property>/systems/fadec/limit/takeoff-flex-derate</property>
+									<property>/systems/fadec/limit/takeoff-flex-table</property>
+								</ifthen>
+								<table>
+									<independentVar lookup="row">/systems/fms/flight-data/to-packs</independentVar>
+									<tableData>
+										0  0.0
+										1 -0.4
+									</tableData>
+								</table>
+							</sum>
+							<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+						</product>
 						<value>3.5</value>
 					</pow>
 				</min>
@@ -575,19 +655,84 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fadec/limit/mct-input">
+		<fcs_function name="/systems/fadec/limit/mct-table">
 			<function>
-				<pow>
+				<min>
 					<table>
 						<independentVar lookup="row">/position/altitude-ft</independentVar>
 						<independentVar lookup="column">propulsion/tat-c</independentVar>
-						<tableData>
-							      -60    -30     0     30     60
-							    0   87.6   87.6  92.6   97.3   99.4
-							10000   94.6   94.6  99.6  102.6   99.5
-							45000  100.6  101.5  99.4  103.6  104.7
+						<independentVar lookup="table">velocities/mach</independentVar>
+						<tableData breakPoint="0.3">
+							      -60   -30     0      30     60
+							    0  84.7   90.1   95.2  100.2   96.8
+							 5000  88.1   93.7   98.7  100.6   99.4
+							10000  92.8   98.3  103.5  101.8  102.8
+							15000  95.6  101.0  106.1  101.2  105.5
+						</tableData>
+						<tableData breakPoint="0.4">
+							      -60   -30     0      30     60
+							    0  84.1   89.5   94.5   99.4   97.1
+							 5000  87.4   92.8   97.9  100.9   98.5
+							10000  91.8   97.3  102.3  102.2  101.7
+							15000  96.1  101.5  105.5  102.6  105.8
+							20000  97.7  103.4  106.5  103.2  105.8
+						</tableData>
+						<tableData breakPoint="0.5">
+							      -60   -30     0      30     60
+							    0  83.4   88.6   93.7   98.4   97.7
+							 5000  86.5   91.9   96.9  101.7   97.8
+							10000  90.9   96.3  101.4  102.6  100.7
+							15000  93.9   99.3  104.2  102.2  103.6
+							20000  95.1  100.8  104.5  100.8  105.1
+							25000  96.8  102.3  103.4  103.0  107.3
+						</tableData>
+						<tableData breakPoint="0.6">
+							      -60   -30     0      30     60
+							 5000  85.3   90.6   95.6  100.4   98.0
+							10000  89.2   94.6   99.6  102.6   98.9
+							15000  92.2   97.5  102.4  102.2  102.6
+							20000  94.2   99.8  103.2  102.2  103.9
+							25000  94.6  100.1  102.7  100.7  105.0
+						</tableData>
+						<tableData breakPoint="0.7">
+							      -60   -30     0      30     60
+							15000  89.6   94.9   99.7  101.8   98.9
+							20000  92.0   97.6  101.8  102.1  101.6
+							25000  92.1   97.5  102.4  101.4  102.2
+							35000  96.1  101.5   99.7  100.9  104.0
+							39000  96.0  101.3   98.7  100.8  103.8
+							45000  97.1  101.4   98.1  100.5  103.3
+						</tableData>
+						<tableData breakPoint="0.8">
+							      -60   -30    0      30     60
+							20000  89.5  95.1  100.1  100.7   99.0
+							25000  89.0  95.3   99.4   98.4   99.1
+							35000  93.0  98.4   99.4   97.8  102.1
+							39000  92.9  98.2   98.2   97.7  102.0
+							45000  94.0  99.4   97.3   97.1  101.4
 						</tableData>
 					</table>
+					<table> <!-- Max MCT N1 -->
+						<independentVar lookup="row">propulsion/tat-c</independentVar>
+						<tableData>
+							-60   95.3
+							-30  100.7
+							  0  105.6
+							 30  110.3
+							 40  111.4
+						</tableData>
+					</table>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/mct-input">
+			<function>
+				<pow>
+					<product>
+						<property>/systems/fadec/limit/mct-table</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -628,19 +773,53 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/fadec/limit/climb-table">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
+					<independentVar lookup="table">velocities/mach</independentVar>
+					<tableData breakPoint="0.4">
+							  -60   -30    0      30     60
+						 5000  83.8  89.2   94.2   97.5   95.2
+						 8000  86.3  91.7   96.7   98.1   97.5
+						10000  88.5  93.8   98.9   99.4   98.8
+						14000  91.6  97.0  102.2  100.2  100.8
+					</tableData>
+					<tableData breakPoint="0.6">
+							  -60   -30     0      30     60
+						 5000  81.7   86.9   91.9   96.6   94.6
+						10000  85.3   90.6   95.4   99.0   96.4
+						14000  87.5   92.9   98.0   99.0   98.3
+						20000  92.0   97.4  102.4   99.9  101.4
+						25000  94.6  100.1  102.7  100.8  103.1
+					</tableData>
+					<tableData breakPoint="0.8">
+							  -60   -30    0     30    60
+						20000  87.2  92.5  97.5  98.8   97.6
+						25000  89.0  94.4  99.4  97.5   99.1
+						35000  93.0  98.4  99.4  97.8  100.2
+						39000  92.9  98.2  98.2  97.7  100.1
+						45000  94.0  99.4  97.3  97.1   99.8
+					</tableData>
+					<tableData breakPoint="0.85">
+							  -60   -30    0     30    60
+						25000  88.1  93.4  98.3  97.5  98.0
+						35000  91.3  97.6  99.2  96.0  97.9
+						39000  91.1  97.5  98.0  95.9  97.8
+						45000  92.5  97.9  97.8  95.4  97.6
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/fadec/limit/climb-input">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/position/altitude-ft</independentVar>
-						<independentVar lookup="column">propulsion/tat-c</independentVar>
-						<tableData>
-							      -60   -30    0     30    60
-							    0  85.6  85.6  90.6  95.2  93.3
-							10000  93.1  93.1  98.0  99.3  93.3
-							45000  97.5  98.0  97.5  98.0  93.3
-						</tableData>
-					</table>
+					<product>
+						<property>/systems/fadec/limit/climb-table</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -681,19 +860,54 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/fadec/limit/cruise-table">
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">propulsion/tat-c</independentVar>
+					<independentVar lookup="table">velocities/mach</independentVar>
+					<tableData breakPoint="0.4">
+						      -60   -30    0     30    60
+						 5000  79.0  84.1  89.0  92.1  89.7
+						10000  82.8  88.1  93.0  93.5  93.8
+						14000  86.2  91.5  96.6  94.7  96.1
+						20000  90.9  96.4  99.2  97.4  99.5
+					</tableData>
+					<tableData breakPoint="0.6">
+						      -60   -30    0     30    60
+						 5000  76.8  81.8  86.6  91.1  89.2
+						10000  79.9  85.1  89.9  93.4  90.9
+						14000  82.3  87.5  92.4  93.5  93.0
+						20000  86.7  92.0  97.0  95.3  94.2
+						25000  90.4  95.9  98.2  95.6  94.1
+						30000  94.2  99.7  98.5  98.4  97.0
+					</tableData>
+					<tableData breakPoint="0.8">
+						      -60   -30    0     30    60
+						20000  81.9  87.1  92.0  93.1  92.0
+						25000  84.7  90.0  94.0  92.5  91.9
+						35000  88.8  94.1  95.0  93.0  91.5
+						39000  90.8  95.2  95.9  93.1  91.6
+						45000  92.3  96.6  96.6  93.3  92.7
+					</tableData>
+					<tableData breakPoint="0.85">
+						      -60   -30    0     30    60
+						25000  83.6  88.8  93.7  92.4  91.7
+						35000  87.3  93.5  94.0  91.4  90.9
+						39000  90.1  94.6  94.9  92.4  91.8
+						45000  91.8  95.5  95.6  92.7  92.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/fadec/limit/cruise-input">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/position/altitude-ft</independentVar>
-						<independentVar lookup="column">propulsion/tat-c</independentVar>
-						<tableData>
-							      -60   -30    0     30    60
-							    0  83.4  83.4  88.3  92.8  91.0
-							10000  90.8  90.8  95.6  96.8  91.0
-							45000  95.1  95.8  95.0  95.6  91.0
-						</tableData>
-					</table>
+					<product>
+						<property>/systems/fadec/limit/cruise-table</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -770,19 +984,22 @@
 		
 		<fcs_function name="/systems/fadec/limit/active-norm-input"> <!-- Opposite of EPR Calc -->
 			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">/systems/fadec/limit/active-norm-ref</independentVar>
-						<tableData>
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
+				<quotient>
+					<pow>
+						<table>
+							<independentVar lookup="row">/systems/fadec/limit/active-norm-ref</independentVar>
+							<tableData>
+								0.03     65768.7
+								1.00  14591440.5
+							</tableData>
+						</table>
+						<quotient>
+							<value>1</value>
+							<value>3.5</value>
+						</quotient>
+					</pow>
+					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+				</quotient>
 			</function>
 		</fcs_function>
 		
@@ -831,19 +1048,22 @@
 		
 		<fcs_function name="/systems/fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
 			<function>
-				<pow>
-					<table>
-						<independentVar lookup="row">/systems/fadec/limit/max-norm-ref</independentVar>
-						<tableData>
-							0.03     65768.7
-							1.00  14591440.5
-						</tableData>
-					</table>
-					<quotient>
-						<value>1</value>
-						<value>3.5</value>
-					</quotient>
-				</pow>
+				<quotient>
+					<pow>
+						<table>
+							<independentVar lookup="row">/systems/fadec/limit/max-norm-ref</independentVar>
+							<tableData>
+								0.03     65768.7
+								1.00  14591440.5
+							</tableData>
+						</table>
+						<quotient>
+							<value>1</value>
+							<value>3.5</value>
+						</quotient>
+					</pow>
+					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+				</quotient>
 			</function>
 		</fcs_function>
 		
@@ -1287,13 +1507,16 @@
 		<fcs_function name="/systems/fadec/control-1/throttle-ref">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/systems/fadec/control-1/throttle-lag</independentVar>
-						<tableData>
-							0   23.8
-							1  111.4
-						</tableData>
-					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-1/throttle-lag</independentVar>
+							<tableData>
+								0   23.8
+								1  111.4
+							</tableData>
+						</table>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -1401,13 +1624,16 @@
 		<fcs_function name="/systems/fadec/control-2/throttle-ref">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/systems/fadec/control-2/throttle-lag</independentVar>
-						<tableData>
-							0   23.8
-							1  111.4
-						</tableData>
-					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-2/throttle-lag</independentVar>
+							<tableData>
+								0   23.8
+								1  111.4
+							</tableData>
+						</table>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -1515,13 +1741,16 @@
 		<fcs_function name="/systems/fadec/control-3/throttle-ref">
 			<function>
 				<pow>
-					<table>
-						<independentVar lookup="row">/systems/fadec/control-3/throttle-lag</independentVar>
-						<tableData>
-							0   23.8
-							1  111.4
-						</tableData>
-					</table>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-3/throttle-lag</independentVar>
+							<tableData>
+								0   23.8
+								1  111.4
+							</tableData>
+						</table>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -1610,7 +1839,10 @@
 		<fcs_function name="/systems/fadec/epr-actual-1-ref">
 			<function>
 				<pow>
-					<property>/systems/fadec/n1-actual-1</property>
+					<product>
+						<property>/systems/fadec/n1-actual-1</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -1652,7 +1884,10 @@
 		<fcs_function name="/systems/fadec/epr-actual-2-ref">
 			<function>
 				<pow>
-					<property>/systems/fadec/n1-actual-2</property>
+					<product>
+						<property>/systems/fadec/n1-actual-2</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
@@ -1694,7 +1929,10 @@
 		<fcs_function name="/systems/fadec/epr-actual-3-ref">
 			<function>
 				<pow>
-					<property>/systems/fadec/n1-actual-3</property>
+					<product>
+						<property>/systems/fadec/n1-actual-3</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
 					<value>3.5</value>
 				</pow>
 			</function>
