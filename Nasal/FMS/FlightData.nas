@@ -404,6 +404,10 @@ var EditFlightData = {
 		}
 	},
 	newFlightplan: func(from, to) { # Assumes validation is already done
+		if (pts.Position.wow.getBoolValue()) {
+			CORE.resetPhase();
+		}
+		
 		flightplan().cleanPlan(); # Clear List function in Route Manager
 		FlightData.airportFrom = from;
 		FlightData.airportTo = to;

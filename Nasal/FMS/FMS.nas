@@ -42,9 +42,7 @@ var Value = { # Local store of commonly accessed values
 var CORE = {
 	init: func(t = 0) {
 		EditFlightData.reset();
-		Internal.phaseNew = 0;
-		Internal.phase = 0;
-		Internal.phaseOut.setValue(0);
+		me.resetPhase();
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
 		Internal.request[2] = 0;
@@ -54,6 +52,11 @@ var CORE = {
 		} else {
 			me.resetRadio();
 		}
+	},
+	resetPhase: func() {
+		Internal.phaseNew = 0;
+		Internal.phase = 0;
+		Internal.phaseOut.setValue(0);
 	},
 	loop: func() {
 		Value.active = RouteManager.active.getBoolValue();
