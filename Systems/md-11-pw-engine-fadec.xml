@@ -1177,13 +1177,13 @@
 			<gain>3.14</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fadec/reverse-1/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
+		<switch name="/systems/fadec/reverse-1/interlock"> <!-- Locked until 87% open, unlocked until 20% closed -->
 			<default value="/systems/fadec/reverse-1/interlock"/>
 			<test value="0">
-				/engines/engine[0]/reverser-pos-norm ge 0.87
+				/systems/fadec/reverse-1/position-norm ge 0.87
 			</test>
 			<test value="1">
-				/engines/engine[0]/reverser-pos-norm le 0.2
+				/systems/fadec/reverse-1/position-norm le 0.2
 			</test>
 		</switch>
 		
@@ -1191,8 +1191,8 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/systems/fadec/reverse-1/position-norm</property>
-						<value>1</value>
+						<property>/systems/fadec/reverse-1/interlock</property>
+						<value>0</value>
 					</eq>
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[0]/throttle</independentVar>
@@ -1223,9 +1223,6 @@
 		
 		<switch name="/systems/fadec/reverse-1/throttle-rev">
 			<default value="0"/>
-			<test value="0">
-				/systems/fadec/reverse-1/interlock eq 1
-			</test>
 			<test value="/systems/fadec/reverse-1/throttle-rev-cmd">
 				/systems/fadec/reverse-1/engage eq 1
 			</test>
@@ -1283,23 +1280,30 @@
 			<gain>3.14</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fadec/reverse-2/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
-			<default value="/systems/fadec/reverse-2/interlock"/>
+		<switch name="/systems/fadec/reverse-2/interlock"> <!-- Locked until 90% open -->
+			<default value="1"/>
 			<test value="0">
-				/engines/engine[1]/reverser-pos-norm ge 0.87
-			</test>
-			<test value="1">
-				/engines/engine[1]/reverser-pos-norm le 0.2
+				/systems/fadec/reverse-2/position-norm ge 0.9
 			</test>
 		</switch>
 		
 		<fcs_function name="/systems/fadec/reverse-2/throttle-rev-cmd">
 			<function>
 				<ifthen>
-					<eq>
-						<property>/systems/fadec/reverse-2/position-norm</property>
-						<value>1</value>
-					</eq>
+					<or> <!-- No physical interlock, so we pretend the pilot moves all levers together -->
+						<eq>
+							<property>/systems/fadec/reverse-1/interlock</property>
+							<value>0</value>
+						</eq>
+						<eq>
+							<property>/systems/fadec/reverse-2/interlock</property>
+							<value>0</value>
+						</eq>
+						<eq>
+							<property>/systems/fadec/reverse-3/interlock</property>
+							<value>0</value>
+						</eq>
+					</or>
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[1]/throttle</independentVar>
 						<tableData>
@@ -1329,7 +1333,7 @@
 		
 		<switch name="/systems/fadec/reverse-2/throttle-rev">
 			<default value="0"/>
-			<test value="0">
+			<test value="0"> <!-- Software interlock -->
 				/systems/fadec/reverse-2/interlock eq 1
 			</test>
 			<test value="/systems/fadec/reverse-2/throttle-rev-cmd">
@@ -1381,13 +1385,13 @@
 			<gain>3.14</gain>
 		</pure_gain>
 		
-		<switch name="/systems/fadec/reverse-3/interlock"> <!-- Locked until 60% open, unlocked until 20% closed -->
+		<switch name="/systems/fadec/reverse-3/interlock"> <!-- Locked until 87% open, unlocked until 20% closed -->
 			<default value="/systems/fadec/reverse-3/interlock"/>
 			<test value="0">
-				/engines/engine[2]/reverser-pos-norm ge 0.87
+				/systems/fadec/reverse-3/position-norm ge 0.87
 			</test>
 			<test value="1">
-				/engines/engine[2]/reverser-pos-norm le 0.2
+				/systems/fadec/reverse-3/position-norm le 0.2
 			</test>
 		</switch>
 		
@@ -1395,8 +1399,8 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/systems/fadec/reverse-3/position-norm</property>
-						<value>1</value>
+						<property>/systems/fadec/reverse-3/interlock</property>
+						<value>0</value>
 					</eq>
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[2]/throttle</independentVar>
@@ -1427,9 +1431,6 @@
 		
 		<switch name="/systems/fadec/reverse-3/throttle-rev">
 			<default value="0"/>
-			<test value="0">
-				/systems/fadec/reverse-3/interlock eq 1
-			</test>
 			<test value="/systems/fadec/reverse-3/throttle-rev-cmd">
 				/systems/fadec/reverse-3/engage eq 1
 			</test>
