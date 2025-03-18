@@ -201,13 +201,36 @@
 		</fcs_function>
 		
 		<!-- Vmo/Mmo -->
+		<fcs_function name="/systems/fms/speeds/vmo-mmo-sel"> <!-- 60% to 90% scale of tip tanks -->
+			<function>
+				<avg>
+					<table>
+						<independentVar lookup="row">propulsion/tank[0]/contents-lbs</independentVar>
+						<tableData>
+							3900  1
+							5850  0
+						</tableData>
+					</table>
+					<table>
+						<independentVar lookup="row">propulsion/tank[4]/contents-lbs</independentVar>
+						<tableData>
+							3900  1
+							5850  0
+						</tableData>
+					</table>
+				</avg>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/fms/speeds/vmo-kts"> <!-- From FCOM -->
 			<function>
 				<table>
 					<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
-					<tableData> <!-- I disregarded the data from 25700 and up because its just the MMO limit, which I do more accurately below -->
-						    0  350
-						10200  365
+					<independentVar lookup="column">/systems/fms/speeds/vmo-mmo-sel</independentVar>
+					<tableData> <!-- I disregarded the data from 25700/30700 and up because its just the MMO limit, which I do more accurately below -->
+						       0    1
+						    0  350  320
+						10200  365  320
 					</tableData>
 				</table>
 			</function>
@@ -223,7 +246,13 @@
 							<value>0.0001</value>
 						</max>
 					</quotient>
-					<value>0.87</value>
+					<table>
+						<independentVar lookup="row">/systems/fms/speeds/vmo-mmo-sel</independentVar>
+						<tableData>
+							0  0.87
+							1  0.85
+						</tableData>
+					</table>
 				</product>
 			</function>
 		</fcs_function>
