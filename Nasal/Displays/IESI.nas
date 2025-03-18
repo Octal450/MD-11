@@ -77,7 +77,7 @@ var Value = {
 var canvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
-			return "LiberationFonts/LiberationSans-Regular.ttf";
+			return "MD11IESI.ttf";
 		};
 		
 		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
