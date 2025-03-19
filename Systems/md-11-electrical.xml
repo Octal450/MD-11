@@ -1748,12 +1748,20 @@
 			</table>
 		</scheduled_gain>
 		
-		<fcs_function name="/systems/electrical/bus/dc-bat">
+		<fcs_function name="/systems/electrical/bus/dc-bat-pre">
 			<function>
 				<max>
 					<property>/systems/electrical/sources/tr-2a/output-volt</property>
 					<property>/systems/electrical/sources/tr-2b/output-volt</property>
 					<property>/systems/electrical/sources/tr-3/output-volt-adg-switched</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/electrical/bus/dc-bat">
+			<function>
+				<max>
+					<property>/systems/electrical/bus/dc-bat-pre</property>
 					<property>/systems/electrical/bus/dc-bat-direct-regulator</property>
 				</max>
 			</function>

@@ -108,14 +108,17 @@ var canvasBase = {
 		me.aiHorizonTrans = me["AI_horizon"].createTransform();
 		me.aiHorizonRot = me["AI_horizon"].createTransform();
 		
+		me.aiScaleTrans = me["AI_scale"].createTransform();
+		me.aiScaleRot = me["AI_scale"].createTransform();
+		
 		me.page = canvasGroup;
 		
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_mask", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
-		"ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_mach", "ASI_scale", "ASI_hundreds", "ASI_ones", "ASI_tens", "HDG_one", "HDG_two", "HDG_three", "HDG_four", "HDG_five", "HDG_six", "HDG_seven", "HDG_eight", "HDG_nine", "HDG_error",
-		"HDG_scale", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_mask", "AI_scale", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
+		"ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_hundreds", "ASI_mach", "ASI_ones", "ASI_scale", "ASI_tens", "BAT_flag", "HDG_eight", "HDG_error", "HDG_five", "HDG_four", "HDG_nine", "HDG_one", "HDG_pointer", "HDG_scale",
+		"HDG_seven", "HDG_six", "HDG_three", "HDG_two", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -136,8 +139,15 @@ var canvasIesi = {
 		return m;
 	},
 	update: func() {
+		# BAT Flag
+		if (systems.ELECTRICAL.Bus.dcBatPre.getValue() < 24) {
+			me["BAT_flag"].show();
+		} else {
+			me["BAT_flag"].hide();
+		}
+		
 		# ASI
-		Value.Asi.ias = math.clamp(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 40, 500);
+		Value.Asi.ias = math.clamp(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 40, 450);
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		
 		Value.Asi.Tape.ias = Value.Asi.ias - 40; # Subtract 40, since the scale starts at 40
@@ -145,13 +155,13 @@ var canvasIesi = {
 		
 		Value.Asi.Tape.hundreds = num(right(sprintf("%07.3f", Value.Asi.ias), 7)) / 10; # Unlikely it would be above 999 but lets account for it anyways
 		Value.Asi.Tape.hundredsGeneva = genevaAsiHundreds(Value.Asi.Tape.hundreds);
-		me["ASI_hundreds"].setTranslation(0, Value.Asi.Tape.hundredsGeneva * 57.47);
+		me["ASI_hundreds"].setTranslation(0, Value.Asi.Tape.hundredsGeneva * 57);
 		
 		Value.Asi.Tape.tens = num(right(sprintf("%06.3f", Value.Asi.ias), 6)) / 10;
 		Value.Asi.Tape.tensGeneva = genevaAsiTens(Value.Asi.Tape.tens);
-		me["ASI_tens"].setTranslation(0, Value.Asi.Tape.tensGeneva * 57.47);
+		me["ASI_tens"].setTranslation(0, Value.Asi.Tape.tensGeneva * 57);
 		
-		me["ASI_ones"].setTranslation(0, (10 * math.mod(Value.Asi.ias / 10, 1)) * 57.47);
+		me["ASI_ones"].setTranslation(0, (10 * math.mod(Value.Asi.ias / 10, 1)) * 57);
 		
 		if (Value.Asi.mach > 0.47) { # Match PFD logic
 			machLatch = 1;
@@ -173,11 +183,14 @@ var canvasIesi = {
 		
 		# AI
 		if (systems.DUController.CounterIesi.secs <= 0) {
-			Value.Ai.pitch = pts.Orientation.pitchDeg.getValue();
+			Value.Ai.pitch = math.clamp(pts.Orientation.pitchDeg.getValue(), -45, 45);
 			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 			
-			me.aiHorizonTrans.setTranslation(0, Value.Ai.pitch * 6.6644);
+			me.aiHorizonTrans.setTranslation(0, math.clamp(Value.Ai.pitch * 6.6644, -110, 135));
 			me.aiHorizonRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
+		
+			me.aiScaleTrans.setTranslation(0, Value.Ai.pitch * 6.6644);
+			me.aiScaleRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			
 			Value.Ai.slipSkid = pts.Instrumentation.Iesi.slipSkid.getValue() * 4.235;
 			if (abs(Value.Ai.slipSkid) >= 16.268) {
@@ -190,16 +203,19 @@ var canvasIesi = {
 			
 			me["AI_horizon"].show();
 			me["AI_init"].hide();
+			me["AI_scale"].show();
 		} else {
 			me["AI_horizon"].hide();
-			me["AI_init"].show();
+			me["AI_scale"].hide();
+			
 			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIesi.secs) ~ " SECS");
+			me["AI_init"].show();
 		}
 		
 		# ALT
 		if (Value.Alt.indicated < 0) {
 			if (Value.Alt.indicated >= -998) {
-				me["ALT_minus"].setTranslation(29.072, 0);
+				me["ALT_minus"].setTranslation(29, 0);
 				me["ALT_thousands"].hide();
 			} else {
 				me["ALT_minus"].setTranslation(0, 0);
@@ -255,18 +271,18 @@ var canvasIesi = {
 		
 		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
 		Value.Alt.Tape.tenThousandsGeneva = genevaAltTenThousands(Value.Alt.Tape.tenThousands);
-		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 57.47);
+		me["ALT_tenthousands"].setTranslation(0, Value.Alt.Tape.tenThousandsGeneva * 57);
 		
 		Value.Alt.Tape.thousands = num(right(sprintf("%04d", Value.Alt.indicatedAbs), 4)) / 100;
 		Value.Alt.Tape.thousandsGeneva = genevaAltThousands(Value.Alt.Tape.thousands);
-		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 57.47);
+		me["ALT_thousands"].setTranslation(0, Value.Alt.Tape.thousandsGeneva * 57);
 		
 		Value.Alt.Tape.hundreds = num(right(sprintf("%03d", Value.Alt.indicatedAbs), 3)) / 100;
 		Value.Alt.Tape.hundredsGeneva = genevaAltHundreds(Value.Alt.Tape.hundreds);
-		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 57.47);
+		me["ALT_hundreds"].setTranslation(0, Value.Alt.Tape.hundredsGeneva * 57);
 		
 		Value.Alt.Tape.tens = num(right(sprintf("%02d", Value.Alt.indicatedAbs), 2));
-		me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.392);
+		me["ALT_tens"].setTranslation(0, Value.Alt.Tape.tens * 2.05);
 		
 		me["ALT_meters"].setText(sprintf("%d", math.round(Value.Alt.indicated * FT2M)) ~ "M");
 		
@@ -324,9 +340,11 @@ var canvasIesi = {
 			me["HDG_one"].setText(hdgText(Value.Hdg.leftText4));
 			
 			me["HDG_error"].hide();
+			me["HDG_pointer"].show();
 			me["HDG_scale"].show();
 		} else {
 			me["HDG_error"].show();
+			me["HDG_pointer"].hide();
 			me["HDG_scale"].hide();
 		}
 	},

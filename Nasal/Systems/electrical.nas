@@ -21,6 +21,7 @@ var ELECTRICAL = {
 		dc3: props.globals.getNode("/systems/electrical/bus/dc-3"),
 		dcBat: props.globals.getNode("/systems/electrical/bus/dc-bat"),
 		dcBatDirect: props.globals.getNode("/systems/electrical/bus/dc-bat-direct"),
+		dcBatPre: props.globals.getNode("/systems/electrical/bus/dc-bat-pre"),
 		dcGndSvc: props.globals.getNode("/systems/electrical/bus/dc-gndsvc"),
 		dcTie: props.globals.getNode("/systems/electrical/bus/dc-tie"),
 		fltCompAcGndSvc: props.globals.getNode("/systems/electrical/bus/flt-comp-ac-gndsvc"),
