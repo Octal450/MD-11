@@ -222,7 +222,6 @@ var Ref = {
 	setup: func() {
 	},
 	loop: func() {
-		# Placeholder
 	},
 	softKey: func(k) {
 		if (k == "l3") {
