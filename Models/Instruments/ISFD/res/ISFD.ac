@@ -9,7 +9,7 @@ name "blankSTBY"
 loc -4.95911e-05 4.76837e-06 -0.00447
 data 8
 Cube.002
-texture "IESI.png"
+texture "ISFD.png"
 crease 40.000000
 numvert 70
 -27.4853 6.78492 0.04221
@@ -1080,7 +1080,7 @@ name "HpIn"
 loc -4.95911e-05 4.76837e-06 -0.00447
 data 9
 Plane.006
-texture "IESI.png"
+texture "ISFD.png"
 crease 40.000000
 numvert 64
 -27.4538 6.72442 -0.02684
@@ -1528,7 +1528,7 @@ name "BaroSet"
 loc -4.95911e-05 4.76837e-06 -0.00447
 data 8
 Cylinder
-texture "IESI.png"
+texture "ISFD.png"
 crease 40.000000
 numvert 64
 -27.4541 6.72179 -0.06479
@@ -1976,7 +1976,7 @@ name "ISFD"
 loc -4.95911e-05 4.76837e-06 -0.00447
 data 4
 Cube
-texture "IESI.png"
+texture "ISFD.png"
 crease 40.000000
 numvert 563
 -27.4538 6.72441 -0.01676
@@ -6126,7 +6126,7 @@ name "Test"
 loc -4.95911e-05 4.76837e-06 -0.00447
 data 9
 Plane.000
-texture "IESI.png"
+texture "ISFD.png"
 crease 40.000000
 numvert 64
 -27.4538 6.72442 -0.01684
@@ -6570,7 +6570,7 @@ refs 4
 23 0.271549 0.120369
 kids 0
 OBJECT poly
-name "iesi.screen"
+name "isfd.screen"
 loc -27.4725 6.75255 -0.04609
 texture "screen.png"
 crease 45.000000

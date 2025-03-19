@@ -22,13 +22,13 @@
 	</filter>
 	
 	<filter>
-		<name>IESI LCD Contrast</name>
+		<name>ISFD LCD Contrast</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<condition>
 				<not>
-					<property>/instrumentation/iesi/lcd-on</property>
+					<property>/instrumentation/isfd/lcd-on</property>
 				</not>
 			</condition>
 			<expression>
@@ -48,7 +48,7 @@
 				</table>
 			</expression>
 		</input>
-		<output>/instrumentation/iesi/lcd-contrast</output>
+		<output>/instrumentation/isfd/lcd-contrast</output>
 	</filter>
 	
 	<filter>

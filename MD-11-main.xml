@@ -151,7 +151,7 @@
 						<label>Integrated Electronic Standby</label>
 						<binding>
 							<command>nasal</command>
-							<script>canvas_iesi.showIesi();</script>
+							<script>canvas_isfd.showIsfd();</script>
 						</binding>
 					</item>
 					<item>
@@ -605,7 +605,7 @@
 			<ap-disc-2 type="bool">0</ap-disc-2>
 			<armrest type="double">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
-			<iesi-baro-rotate type="int">50016</iesi-baro-rotate>
+			<isfd-baro-rotate type="int">50016</isfd-baro-rotate>
 			<fcp n="0">
 				<alt-rotate type="int">50000</alt-rotate>
 				<baro-l-rotate type="int">50000</baro-l-rotate>
@@ -1679,7 +1679,7 @@
 				<deflected-aileron type="bool">1</deflected-aileron>
 				<du n="0">
 					<ead-fps type="double">20</ead-fps>
-					<iesi-fps type="double">20</iesi-fps>
+					<isfd-fps type="double">20</isfd-fps>
 					<mcdu-fps type="double">10</mcdu-fps>
 					<nd-fps type="double">20</nd-fps>
 					<pfd-fps type="double">20</pfd-fps>
@@ -1687,7 +1687,7 @@
 				</du>
 				<eight-three-three-radios type="bool">0</eight-three-three-radios>
 				<eng-tapes type="bool">0</eng-tapes>
-				<iesi type="bool">0</iesi>
+				<isfd type="bool">0</isfd>
 				<irs-aligns-instantly type="bool">0</irs-aligns-instantly>
 				<keyboard-mode type="bool">0</keyboard-mode>
 				<n1-below-epr type="bool">0</n1-below-epr>
@@ -1985,9 +1985,9 @@
 		<canvas_sd>
 			<file>Aircraft/MD-11/Nasal/Displays/SD.nas</file>
 		</canvas_sd>
-		<canvas_iesi>
-			<file>Aircraft/MD-11/Nasal/Displays/IESI.nas</file>
-		</canvas_iesi>
+		<canvas_isfd>
+			<file>Aircraft/MD-11/Nasal/Displays/ISFD.nas</file>
+		</canvas_isfd>
 		<canvas_mcdu>
 			<file>Aircraft/MD-11/Nasal/Displays/MCDU.nas</file>
 		</canvas_mcdu>

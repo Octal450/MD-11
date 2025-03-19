@@ -7,7 +7,7 @@ var DUController = {
 		active: 0,
 		time: -10,
 	},
-	CounterIesi: {
+	CounterIsfd: {
 		secs: 180,
 		time: 0,
 	},
@@ -15,7 +15,7 @@ var DUController = {
 	eng: pts.Options.eng.getValue(),
 	elapsedSec: 0,
 	errorActive: 0,
-	iesiLcdOn: props.globals.initNode("/instrumentation/iesi/lcd-on", 0, "BOOL"),
+	isfdLcdOn: props.globals.initNode("/instrumentation/isfd/lcd-on", 0, "BOOL"),
 	PowerSource: {
 		ac1: 0,
 		ac3: 0,
@@ -28,7 +28,7 @@ var DUController = {
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
 	singleCueFd: 0,
 	updateEad: 0,
-	updateIesi: 0,
+	updateIsfd: 0,
 	updateMcdu1: 0,
 	updateMcdu2: 0,
 	updateMcdu3: 0,
@@ -50,7 +50,7 @@ var DUController = {
 		me.updateMcdu1 = 0;
 		me.updateMcdu2 = 0;
 		me.updateMcdu3 = 0;
-		me.updateIesi = 0;
+		me.updateIsfd = 0;
 		canvas_pfd.pfd1.page.hide();
 		canvas_pfd.pfd2.page.hide();
 		me.showNd1.setBoolValue(0); # Temporary
@@ -60,11 +60,11 @@ var DUController = {
 		canvas_ead.pwDials.page.hide();
 		canvas_ead.pwTapes.page.hide();
 		me.showSdPage("NONE");
-		canvas_iesi.iesi.page.hide();
+		canvas_isfd.isfd.page.hide();
 		canvas_mcdu.mcdu1.page.hide();
 		canvas_mcdu.mcdu2.page.hide();
 		canvas_mcdu.mcdu3.page.hide();
-		me.iesiLcdOn.setBoolValue(0);
+		me.isfdLcdOn.setBoolValue(0);
 	},
 	loop: func() {
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
@@ -209,41 +209,41 @@ var DUController = {
 			# R Emer AC
 			if (me.PowerSource.dcBat >= 24) {
 				me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
-				if (me.CounterIesi.time == 0) {
+				if (me.CounterIsfd.time == 0) {
 					if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-						me.CounterIesi.time = me.elapsedSec - 178;
+						me.CounterIsfd.time = me.elapsedSec - 178;
 					} else {
-						me.CounterIesi.time = me.elapsedSec;
+						me.CounterIsfd.time = me.elapsedSec;
 					}
 				}
-				if (me.CounterIesi.secs > 0) {
-					me.CounterIesi.secs = math.round(me.CounterIesi.time + 180 - me.elapsedSec);
+				if (me.CounterIsfd.secs > 0) {
+					me.CounterIsfd.secs = math.round(me.CounterIsfd.time + 180 - me.elapsedSec);
 				} else {
-					me.CounterIesi.secs = 0;
+					me.CounterIsfd.secs = 0;
 				}
 				
-				if (pts.Systems.Acconfig.Options.iesi.getBoolValue()) {
-					if (!me.updateIesi) {
-						me.updateIesi = 1;
-						canvas_iesi.iesi.update();
-						me.iesiLcdOn.setBoolValue(1);
-						canvas_iesi.iesi.page.show();
+				if (pts.Systems.Acconfig.Options.isfd.getBoolValue()) {
+					if (!me.updateIsfd) {
+						me.updateIsfd = 1;
+						canvas_isfd.isfd.update();
+						me.isfdLcdOn.setBoolValue(1);
+						canvas_isfd.isfd.page.show();
 					}
 				} else { # Not equipped
-					if (me.updateIesi) {
-						me.updateIesi = 0;
-						canvas_iesi.iesi.page.hide();
-						me.iesiLcdOn.setBoolValue(0);
+					if (me.updateIsfd) {
+						me.updateIsfd = 0;
+						canvas_isfd.isfd.page.hide();
+						me.isfdLcdOn.setBoolValue(0);
 					}
 				}
 			} else {
-				me.CounterIesi.secs = 180;
-				me.CounterIesi.time = 0;
+				me.CounterIsfd.secs = 180;
+				me.CounterIsfd.time = 0;
 				
-				if (me.updateIesi) {
-					me.updateIesi = 0;
-					canvas_iesi.iesi.page.hide();
-					me.iesiLcdOn.setBoolValue(0);
+				if (me.updateIsfd) {
+					me.updateIsfd = 0;
+					canvas_isfd.isfd.page.hide();
+					me.isfdLcdOn.setBoolValue(0);
 				}
 			}
 			

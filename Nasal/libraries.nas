@@ -56,7 +56,7 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_pfd.setup();
 	canvas_ead.setup();
 	canvas_sd.setup();
-	canvas_iesi.setup();
+	canvas_isfd.setup();
 	canvas_mcdu.setup();
 	removelistener(fdmInit);
 	initDone = 1;

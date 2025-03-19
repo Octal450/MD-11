@@ -4,17 +4,17 @@
 
 <PropertyList>
 	
-	<path>res/IESI.ac</path>
+	<path>res/ISFD.ac</path>
 	
 	<animation>
 		<type>pick</type>
-		<object-name>iesi.screen</object-name>
+		<object-name>isfd.screen</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>canvas_iesi.showIesi();</script>
+				<script>canvas_isfd.showIsfd();</script>
 			</binding>
 		</action>
 	</animation>
@@ -34,13 +34,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/iesi-hpin</property>
+				<property>controls/cockpit/isfd-hpin</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/iesi-hpin</property>
+					<property>controls/cockpit/isfd-hpin</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -49,7 +49,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HpIn</object-name>
-		<property>controls/cockpit/iesi-hpin</property>
+		<property>controls/cockpit/isfd-hpin</property>
 		<factor>0.0005</factor>
 		<axis>
 			<x1-m>-27.4417</x1-m>
@@ -77,13 +77,13 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/iesi-baro-translate</property>
+				<property>controls/cockpit/isfd-baro-translate</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/iesi-baro-translate</property>
+					<property>controls/cockpit/isfd-baro-translate</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -119,7 +119,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/cockpit/iesi-baro-rotate</property>
+				<property>controls/cockpit/isfd-baro-rotate</property>
 				<step>1</step>
 				<min>0</min>
 				<max>100000</max>
@@ -157,7 +157,7 @@
 			</binding>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/cockpit/iesi-baro-rotate</property>
+				<property>controls/cockpit/isfd-baro-rotate</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>100000</max>
@@ -169,7 +169,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet</object-name>
-		<property>controls/cockpit/iesi-baro-translate</property>
+		<property>controls/cockpit/isfd-baro-translate</property>
 		<factor>0.002</factor>
 		<axis>
 			<x1-m>-27.4417</x1-m>
@@ -183,7 +183,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet</object-name>
-		<property>controls/cockpit/iesi-baro-rotate</property>
+		<property>controls/cockpit/isfd-baro-rotate</property>
 		<factor>11.25</factor>
 		<axis>
 			<x1-m>-27.4415</x1-m>
@@ -202,9 +202,9 @@
 			<outer-angle>90</outer-angle> <!-- 0-90, but greater than inner -->
 			<black-angle>90</black-angle> <!-- 0-90, but greater than outer -->
 			<dirt-factor>0</dirt-factor>
-			<contrast><use>instrumentation/iesi/lcd-contrast</use></contrast>
+			<contrast><use>instrumentation/isfd/lcd-contrast</use></contrast>
 		</parameters>
-		<object-name>iesi.screen</object-name>
+		<object-name>isfd.screen</object-name>
 	</effect>
 
 </PropertyList>

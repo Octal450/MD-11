@@ -72,19 +72,19 @@
 			<pitch-deg>-20.12</pitch-deg>
 		</offsets>
 		<condition>
-			<not><property>systems/acconfig/options/iesi</property></not>
+			<not><property>systems/acconfig/options/isfd</property></not>
 		</condition>
 	</model>
 	
 	<model>
-		<name>IESI</name>
-		<path>Aircraft/MD-11/Models/Instruments/IESI/IESI.xml</path>
+		<name>ISFD</name>
+		<path>Aircraft/MD-11/Models/Instruments/ISFD/ISFD.xml</path>
 		<offsets>
 			<y-m>-0.00238</y-m>
 			<z-m>0.002</z-m>
 		</offsets>
 		<condition>
-			<property>systems/acconfig/options/iesi</property>
+			<property>systems/acconfig/options/isfd</property>
 		</condition>
 	</model>
 

@@ -383,10 +383,10 @@
 	
 	</channel>
 	
-	<channel name="IESI" execrate="2">
+	<channel name="ISFD" execrate="2">
 		
 		<!-- Slip Skid -->
-		<pure_gain name="/instrumentation/iesi/slip-skid-cmd">
+		<pure_gain name="/instrumentation/isfd/slip-skid-cmd">
 			<input>/instrumentation/pfd/slip-skid-cmd</input> <!-- Take from PFD -->
 			<gain>1.0</gain>
 			<clipto>
@@ -395,8 +395,8 @@
 			</clipto>
 		</pure_gain>
 		
-		<lag_filter name="/instrumentation/iesi/slip-skid">
-			<input>/instrumentation/iesi/slip-skid-cmd</input>
+		<lag_filter name="/instrumentation/isfd/slip-skid">
+			<input>/instrumentation/isfd/slip-skid-cmd</input>
 			<c1>5.0</c1>
 		</lag_filter>
 	

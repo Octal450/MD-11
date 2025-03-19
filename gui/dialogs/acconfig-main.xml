@@ -447,9 +447,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>IESI Equipped</label>
+				<label>ISFD Equipped</label>
 				<halign>left</halign>
-				<property>/systems/acconfig/options/iesi</property>
+				<property>/systems/acconfig/options/isfd</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

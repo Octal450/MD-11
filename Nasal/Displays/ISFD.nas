@@ -1,8 +1,8 @@
-# McDonnell Douglas MD-11 IESI
+# McDonnell Douglas MD-11 ISFD
 # Copyright (c) 2025 Josh Davidson (Octal450)
 
 var display = nil;
-var iesi = nil;
+var isfd = nil;
 
 var Value = {
 	Ai: {
@@ -77,7 +77,7 @@ var Value = {
 var canvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
-			return "MD11IESI.ttf";
+			return "MD11ISFD.ttf";
 		};
 		
 		canvas.parsesvg(canvasGroup, file, {"font-mapper": font_mapper});
@@ -122,18 +122,18 @@ var canvasBase = {
 	},
 	setup: func() {
 		# Hide the pages by default
-		iesi.page.hide();
+		isfd.page.hide();
 	},
 	update: func() {
-		if (systems.DUController.updateIesi) {
-			iesi.update();
+		if (systems.DUController.updateIsfd) {
+			isfd.update();
 		}
 	},
 };
 
-var canvasIesi = {
+var canvasIsfd = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasIesi, canvasBase]};
+		var m = {parents: [canvasIsfd, canvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -182,7 +182,7 @@ var canvasIesi = {
 		}
 		
 		# AI
-		if (systems.DUController.CounterIesi.secs <= 0) {
+		if (systems.DUController.CounterIsfd.secs <= 0) {
 			Value.Ai.pitch = math.clamp(pts.Orientation.pitchDeg.getValue(), -45, 45);
 			Value.Ai.roll = pts.Orientation.rollDeg.getValue();
 			
@@ -192,7 +192,7 @@ var canvasIesi = {
 			me.aiScaleTrans.setTranslation(0, Value.Ai.pitch * 6.6644);
 			me.aiScaleRot.setRotation(-Value.Ai.roll * D2R, Value.Ai.center);
 			
-			Value.Ai.slipSkid = pts.Instrumentation.Iesi.slipSkid.getValue() * 4.235;
+			Value.Ai.slipSkid = pts.Instrumentation.Isfd.slipSkid.getValue() * 4.235;
 			if (abs(Value.Ai.slipSkid) >= 16.268) {
 				me["AI_slipskid"].setColorFill(0.9412, 0.7255, 0);
 			} else {
@@ -208,7 +208,7 @@ var canvasIesi = {
 			me["AI_horizon"].hide();
 			me["AI_scale"].hide();
 			
-			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIesi.secs) ~ " SECS");
+			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIsfd.secs) ~ " SECS");
 			me["AI_init"].show();
 		}
 		
@@ -352,38 +352,38 @@ var canvasIesi = {
 
 var setup = func() {
 	display = canvas.new({
-		"name": "IESI",
+		"name": "ISFD",
 		"size": [512, 439],
 		"view": [512, 439],
 		"mipmapping": 1
 	});
 	
-	display.addPlacement({"node": "iesi.screen"});
+	display.addPlacement({"node": "isfd.screen"});
 	
-	var iesiGroup = display.createGroup();
+	var isfdGroup = display.createGroup();
 	
-	iesi = canvasIesi.new(iesiGroup, "Aircraft/MD-11/Nasal/Displays/res/IESI.svg");
+	isfd = canvasIsfd.new(isfdGroup, "Aircraft/MD-11/Nasal/Displays/res/ISFD.svg");
 	
 	canvasBase.setup();
 	update.start();
 	
-	if (pts.Systems.Acconfig.Options.Du.iesiFps.getValue() != 20) {
+	if (pts.Systems.Acconfig.Options.Du.isfdFps.getValue() != 20) {
 		rateApply();
 	}
 }
 
 var rateApply = func() {
-	update.restart(1 / pts.Systems.Acconfig.Options.Du.iesiFps.getValue());
+	update.restart(1 / pts.Systems.Acconfig.Options.Du.isfdFps.getValue());
 }
 
 var update = maketimer(0.05, func() { # 20FPS
 	canvasBase.update();
 });
 
-var showIesi = func() {
+var showIsfd = func() {
 	var dlg = canvas.Window.new([256, 220], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(display);
-	dlg.set("title", "Integrated Electronic Standby");
+	dlg.set("title", "Integrated SFD");
 }
 
 var roundAbout = func(x) {

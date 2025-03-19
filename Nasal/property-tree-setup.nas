@@ -146,8 +146,8 @@ var Instrumentation = {
 			trueNorth: [props.globals.initNode("/instrumentation/efis[0]/mfd/true-north", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/mfd/true-north", 0, "BOOL")],
 		},
 	},
-	Iesi: {
-		slipSkid: props.globals.initNode("/instrumentation/iesi/slip-skid", 0, "DOUBLE"),
+	Isfd: {
+		slipSkid: props.globals.initNode("/instrumentation/isfd/slip-skid", 0, "DOUBLE"),
 	},
 	MarkerBeacon: {
 		inner: props.globals.getNode("/instrumentation/marker-beacon/inner"),
@@ -294,14 +294,14 @@ var Systems = {
 			deflectedAileron: props.globals.getNode("/systems/acconfig/options/deflected-aileron"),
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
-				iesiFps: props.globals.getNode("/systems/acconfig/options/du/iesi-fps"),
+				isfdFps: props.globals.getNode("/systems/acconfig/options/du/isfd-fps"),
 				mcduFps: props.globals.getNode("/systems/acconfig/options/du/mcdu-fps"),
 				ndFps: props.globals.getNode("/systems/acconfig/options/du/nd-fps"),
 				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
 				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
 			},
 			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
-			iesi: props.globals.getNode("/systems/acconfig/options/iesi"),
+			isfd: props.globals.getNode("/systems/acconfig/options/isfd"),
 			n1BelowEpr: props.globals.getNode("/systems/acconfig/options/n1-below-epr"),
 			risingRunwayTBar: props.globals.getNode("/systems/acconfig/options/rising-runway-t-bar"),
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
