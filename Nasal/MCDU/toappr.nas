@@ -305,9 +305,9 @@ var Takeoff = {
 							}
 						}
 						
+						systems.FADEC.Limit.pwDerate.setBoolValue(1);
 						fms.FlightData.flexActive = 1;
 						fms.FlightData.flexTemp = int(me.scratchpad);
-						systems.FADEC.Limit.pwDerate.setBoolValue(1);
 						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
