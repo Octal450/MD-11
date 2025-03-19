@@ -137,20 +137,20 @@ var ThrLim = {
 		
 		if (me.Value.Limit.auto) {
 			me.Display.title = "AUTO THRUST LIMITS";
-			me.Display.R5 = "";
 			me.Display.R5L = "";
+			me.Display.R5 = "";
 		} else {
 			me.Display.title = "MANUAL THRUST LIMITS";
-			me.Display.R5 = "AUTO*";
 			me.Display.R5L = "SELECT ";
+			me.Display.R5 = "AUTO*";
 		}
 		
 		if (me.Value.toPhase) {
 			me.Display.L1 = " T/O";
 			
 			if (fms.FlightData.flexActive) {
-				me.Display.L2 = " T/O";
 				me.Display.L2L = " FLX DERATE";
+				me.Display.L2 = " T/O";
 				
 				if (me.Value.pw) {
 					me.Display.C2 = " " ~ sprintf("%4.2f", math.round(me.Value.Limit.takeoffFlex, 0.01));
@@ -162,8 +162,8 @@ var ThrLim = {
 					}
 				}
 			} else {
-				me.Display.L2 = "";
 				me.Display.L2L = "";
+				me.Display.L2 = "";
 				me.Display.C2 = "";
 			}
 			
@@ -177,12 +177,12 @@ var ThrLim = {
 				}
 			}
 			
+			me.Display.R1L = "TAT   FLEX ";
 			if (fms.FlightData.flexActive) {
 				me.Display.R1 = sprintf("%d", fms.FlightData.flexTemp) ~ "g";
 			} else {
 				me.Display.R1 = "[ ]*";
 			}
-			me.Display.R1L = "TAT   FLEX ";
 		} else {
 			me.Display.L1 = " G/A";
 			
@@ -196,8 +196,8 @@ var ThrLim = {
 				}
 			}
 			
-			me.Display.R1 = "";
 			me.Display.R1L = "TAT        ";
+			me.Display.R1 = "";
 		}
 		
 		if (me.Value.pw) {
@@ -280,15 +280,16 @@ var ThrLim = {
 		me.Display.R1B = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) ~ "g        ";
 		
 		if (me.Value.pw and (me.Value.Limit.mode == 0 or me.Value.Limit.mode == 1)) {
+			me.Display.R3L = "SELECT ";
+			
 			if (me.Value.Limit.pwDerate) {
 				me.Display.R3 = "62K*";
 			} else {
 				me.Display.R3 = "60K*";
 			}
-			me.Display.R3L = "SELECT ";
 		} else {
-			me.Display.R3 = "";
 			me.Display.R3L = "";
+			me.Display.R3 = "";
 		}
 	},
 	softKey: func(k) {
