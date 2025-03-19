@@ -281,7 +281,6 @@ var ThrLim = {
 		
 		if (me.Value.pw and (me.Value.Limit.mode == 0 or me.Value.Limit.mode == 1)) {
 			me.Display.R3L = "SELECT ";
-			
 			if (me.Value.Limit.pwDerate) {
 				me.Display.R3 = "62K*";
 			} else {
