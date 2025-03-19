@@ -1103,6 +1103,7 @@ var canvasPwDials = {
 			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
 				me["EPRLimBox"].hide();
 				me["EPRLimToBox"].hide();
+				
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
 				
 				if (!Value.Fadec.auto) {
@@ -1115,19 +1116,21 @@ var canvasPwDials = {
 			} else {
 				me["EPRLimBox"].hide();
 				me["EPRLimFlexBox"].hide();
+				
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " " ~ Value.Fadec.activeMode ~ " LIM");
 				
 				if (!Value.Fadec.auto) {
-					me["EPRLimToBox"].show();
 					me["EPRLimMode"].setColor(1, 1, 1);
+					me["EPRLimToBox"].show();
 				} else {
-					me["EPRLimToBox"].hide();
 					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+					me["EPRLimToBox"].hide();
 				}
 			}
 		} else {
 			me["EPRLimFlexBox"].hide();
 			me["EPRLimToBox"].hide();
+			
 			me["EPRLimMode"].setText(Value.Fadec.activeMode ~ " LIM");
 				
 			if (!Value.Fadec.auto) {
@@ -1404,6 +1407,7 @@ var canvasPwTapes = {
 			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
 				me["EPRLimBox"].hide();
 				me["EPRLimToBox"].hide();
+				
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
 				
 				if (!Value.Fadec.auto) {
@@ -1416,19 +1420,21 @@ var canvasPwTapes = {
 			} else {
 				me["EPRLimBox"].hide();
 				me["EPRLimFlexBox"].hide();
+				
 				me["EPRLimMode"].setText(Value.Fadec.rating ~ " " ~ Value.Fadec.activeMode ~ " LIM");
 				
 				if (!Value.Fadec.auto) {
-					me["EPRLimToBox"].show();
 					me["EPRLimMode"].setColor(1, 1, 1);
+					me["EPRLimToBox"].show();
 				} else {
-					me["EPRLimToBox"].hide();
 					me["EPRLimMode"].setColor(0.9608, 0, 0.7765);
+					me["EPRLimToBox"].hide();
 				}
 			}
 		} else {
 			me["EPRLimFlexBox"].hide();
 			me["EPRLimToBox"].hide();
+			
 			me["EPRLimMode"].setText(Value.Fadec.activeMode ~ " LIM");
 				
 			if (!Value.Fadec.auto) {
