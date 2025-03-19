@@ -118,22 +118,22 @@ var ThrLim = {
 		}
 	},
 	loop: func() {
+		me.Value.Limit.auto = systems.FADEC.Limit.auto.getBoolValue();
+		me.Value.Limit.climb = systems.FADEC.Limit.climb.getValue();
+		me.Value.Limit.cruise = systems.FADEC.Limit.cruise.getValue();
+		me.Value.Limit.goAround = systems.FADEC.Limit.goAround.getValue();
+		me.Value.Limit.mct = systems.FADEC.Limit.mct.getValue();
 		me.Value.Limit.mode = systems.FADEC.Limit.activeModeInt.getValue();
+		me.Value.Limit.pwDerate = systems.FADEC.Limit.pwDerate.getBoolValue();
+		me.Value.Limit.takeoffFlex = systems.FADEC.Limit.takeoffFlex.getValue();
+		me.Value.Limit.takeoffNoFlex = systems.FADEC.Limit.takeoffNoFlex.getValue();
+		
 		if ((fms.Internal.phase >= 2 and me.Value.Limit.mode != 0) or me.Value.Limit.mode == 1) { # Before FLEX check below
 			me.Value.toPhase = 0;
 		} else {
 			me.Value.toPhase = 1;
 		}
 		if (me.Value.Limit.mode == 0 and fms.FlightData.flexActive) me.Value.Limit.mode = 5; # T/O FLEX mode
-		
-		me.Value.Limit.auto = systems.FADEC.Limit.auto.getBoolValue();
-		me.Value.Limit.climb = systems.FADEC.Limit.climb.getValue();
-		me.Value.Limit.cruise = systems.FADEC.Limit.cruise.getValue();
-		me.Value.Limit.goAround = systems.FADEC.Limit.goAround.getValue();
-		me.Value.Limit.mct = systems.FADEC.Limit.mct.getValue();
-		me.Value.Limit.pwDerate = systems.FADEC.Limit.pwDerate.getBoolValue();
-		me.Value.Limit.takeoffFlex = systems.FADEC.Limit.takeoffFlex.getValue();
-		me.Value.Limit.takeoffNoFlex = systems.FADEC.Limit.takeoffNoFlex.getValue();
 		
 		if (me.Value.Limit.auto) {
 			me.Display.title = "AUTO THRUST LIMITS";
