@@ -142,7 +142,7 @@ var EditFlightData = {
 		
 		# After write out
 		# Enable/Disable V speeds Calc
-		if (FlightData.airportFromAlt > -1000 and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.oatC > -100 and FlightData.gwLbs > 0) {
+		if (FlightData.toFlaps > 0 and FlightData.airportFromAlt > -1000 and FlightData.toSlope > -100 and FlightData.toWind > -100 and FlightData.oatC > -100 and FlightData.gwLbs > 0) {
 			FlightData.canCalcVspeeds = 1;
 		} else {
 			FlightData.canCalcVspeeds = 0;
