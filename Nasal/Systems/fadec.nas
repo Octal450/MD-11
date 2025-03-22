@@ -52,20 +52,12 @@ var FADEC = {
 				me.setMode(1, 1); # G/A
 			} else if (me.pitchMode == "T/O CLB") {
 				me.setMode(0, 1); # T/O
-			} else if (afs.Output.spdProt.getValue() == 1) {
+			} else if (afs.Output.spdProt.getValue() == 1 or me.anyEngineOut) {
 				me.setMode(2, 1); # MCT
 			} else if (me.pitchMode == "SPD CLB" or fms.Internal.phase < 3 or systems.FCS.flapsInput.getValue() >= 2) {
-				if (me.anyEngineOut) {
-					me.setMode(2, 1); # MCT
-				} else {
-					me.setMode(3, 1); # CLB
-				}
+				me.setMode(3, 1); # CLB
 			} else {
-				if (me.anyEngineOut) {
-					me.setMode(2, 1); # MCT
-				} else {
-					me.setMode(4, 1); # CRZ
-				}
+				me.setMode(4, 1); # CRZ
 			}
 		}
 	},
