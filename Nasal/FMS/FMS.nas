@@ -92,7 +92,7 @@ var CORE = {
 			if (!Value.wow and Value.vertText == "ALT HLD") {
 				Internal.phaseNew = 2; # Climb
 			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
-				Internal.phaseNew = 0;
+				Internal.phaseNew = 0; # Preflight
 			} else if (FlightData.accelAlt > -1000) {
 				if (Value.vertText != "T/O CLB" and Value.altitude >= FlightData.accelAlt) {
 					Internal.phaseNew = 2; # Climb
