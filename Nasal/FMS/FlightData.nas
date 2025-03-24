@@ -210,7 +210,7 @@ var EditFlightData = {
 		flightData.reset();
 		me.writeOut();
 	},
-	writeOut: func() { # Write out relevant parts of the main FlightData object to property tree as required so that JSBSim can access it
+	writeOut: func() { # Write out relevant parts of the FlightData object to property tree as required so that JSBSim can access it
 		FlightDataOut.airportFromAlt.setValue(flightData.airportFromAlt);
 		FlightDataOut.airportToAlt.setValue(flightData.airportToAlt);
 		FlightDataOut.canCalcVspeeds.setBoolValue(flightData.canCalcVspeeds);
