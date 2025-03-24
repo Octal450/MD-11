@@ -133,7 +133,7 @@ var ThrLim = {
 		} else {
 			me.Value.toPhase = 1;
 		}
-		if (me.Value.Limit.mode == 0 and fms.FlightData.flexActive) me.Value.Limit.mode = 5; # T/O FLEX mode
+		if (me.Value.Limit.mode == 0 and fms.flightData.flexActive) me.Value.Limit.mode = 5; # T/O FLEX mode
 		
 		if (me.Value.Limit.auto) {
 			me.Display.title = "AUTO THRUST LIMITS";
@@ -148,7 +148,7 @@ var ThrLim = {
 		if (me.Value.toPhase) {
 			me.Display.L1 = " T/O";
 			
-			if (fms.FlightData.flexActive) {
+			if (fms.flightData.flexActive) {
 				me.Display.L2L = " FLX DERATE";
 				me.Display.L2 = " T/O";
 				
@@ -178,8 +178,8 @@ var ThrLim = {
 			}
 			
 			me.Display.R1L = "TAT   FLEX ";
-			if (fms.FlightData.flexActive) {
-				me.Display.R1 = sprintf("%d", fms.FlightData.flexTemp) ~ "g";
+			if (fms.flightData.flexActive) {
+				me.Display.R1 = sprintf("%d", fms.flightData.flexTemp) ~ "g";
 			} else {
 				me.Display.R1 = "[ ]*";
 			}
@@ -296,9 +296,9 @@ var ThrLim = {
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
-			if (fms.FlightData.flexActive) {
-				fms.FlightData.flexActive = 0;
-				fms.FlightData.flexTemp = 0;
+			if (fms.flightData.flexActive) {
+				fms.flightData.flexActive = 0;
+				fms.flightData.flexTemp = 0;
 				fms.EditFlightData.resetVspeeds();
 			} else {
 				systems.FADEC.Limit.auto.setBoolValue(0);
@@ -336,8 +336,8 @@ var ThrLim = {
 						}
 						
 						systems.FADEC.Limit.pwDerate.setBoolValue(1);
-						fms.FlightData.flexActive = 1;
-						fms.FlightData.flexTemp = int(me.scratchpad);
+						fms.flightData.flexActive = 1;
+						fms.flightData.flexTemp = int(me.scratchpad);
 						fms.EditFlightData.resetVspeeds();
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
@@ -347,8 +347,8 @@ var ThrLim = {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 0) {
-				fms.FlightData.flexActive = 0;
-				fms.FlightData.flexTemp = 0;
+				fms.flightData.flexActive = 0;
+				fms.flightData.flexTemp = 0;
 				fms.EditFlightData.resetVspeeds();
 				mcdu.unit[me.id].scratchpadClear();
 			} else {

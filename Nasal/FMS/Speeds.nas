@@ -160,7 +160,7 @@ var FmsSpd = {
 		
 		# Special Takeoff Guidance Logic
 		# Only when FMS SPD is active, or takeoff speed is available and non-overridden V2 is set
-		if (me.active or (Internal.phase <= 1 and me.toKts > 0 and FlightData.v2State == 1)) {
+		if (me.active or (Internal.phase <= 1 and me.toKts > 0 and flightData.v2State == 1)) {
 			me.activeOrFmsVspeed = 1;
 		} else {
 			me.activeOrFmsVspeed = 0;
@@ -207,7 +207,7 @@ var FmsSpd = {
 		} else if (Value.wow0) { # After takeoff, cancel on NLG WoW
 			me.cancelAndZero();
 		} else if (Internal.phase == 2) { # Climb
-			if (FlightData.climbSpeedMode == 2) { # EDIT
+			if (flightData.climbSpeedMode == 2) { # EDIT
 				if (me.editClimbKts > 0 and me.editClimbMach > 0) {
 					me.checkMachToggleEdit(0, 0);
 					
@@ -221,7 +221,7 @@ var FmsSpd = {
 				} else {
 					me.cancelAndZero();
 				}
-			} else if (FlightData.climbSpeedMode == 1) { # MAX
+			} else if (flightData.climbSpeedMode == 1) { # MAX
 				if (me.maxClimb > 0 and me.vcl > 0) {
 					me.ktsMach = 0;
 					me.ktsCmd = math.max(me.maxClimb, me.vcl);
@@ -252,13 +252,13 @@ var FmsSpd = {
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
-			if (FlightData.cruiseSpeedMode == 2) { # EDIT
-				if (fms.FlightData.cruiseSpeedEdit > 0 and fms.FlightData.cruiseSpeedEdit < 1) {
+			if (flightData.cruiseSpeedMode == 2) { # EDIT
+				if (fms.flightData.cruiseSpeedEdit > 0 and fms.flightData.cruiseSpeedEdit < 1) {
 					me.ktsMach = 1;
-					me.machCmd = fms.FlightData.cruiseSpeedEdit;
-				} else if (fms.FlightData.cruiseSpeedEdit > 1) {
+					me.machCmd = fms.flightData.cruiseSpeedEdit;
+				} else if (fms.flightData.cruiseSpeedEdit > 1) {
 					me.ktsMach = 0;
-					me.ktsCmd = fms.FlightData.cruiseSpeedEdit;
+					me.ktsCmd = fms.flightData.cruiseSpeedEdit;
 				} else {
 					me.cancelAndZero();
 				}
@@ -278,19 +278,19 @@ var FmsSpd = {
 		} else if (Internal.phase >= 4) { # Descent/Approach/Rollout
 			if (me.decel) {
 				if (Value.flapsPos >= 34) {
-					me.apprKts = FlightData.vapp;
+					me.apprKts = flightData.vapp;
 				} else if (Value.flapsPos >= 27) {
-					me.apprKts = math.max(me.minKts, FlightData.vapp); # minKts = Vmin + 5
+					me.apprKts = math.max(me.minKts, flightData.vapp); # minKts = Vmin + 5
 				} else if (Value.slatsPos >= 30) {
-					me.apprKts = math.max(me.minKts + 15, FlightData.vapp); # Vmin + 20
+					me.apprKts = math.max(me.minKts + 15, flightData.vapp); # Vmin + 20
 				} else {
-					me.apprKts = math.max(me.minKts + 15, FlightData.vapp); # Vmin + 20
+					me.apprKts = math.max(me.minKts + 15, flightData.vapp); # Vmin + 20
 				}
 			} else {
 				me.apprKts = 0;
 			}
 			
-			if (FlightData.descentSpeedMode == 2) { # EDIT
+			if (flightData.descentSpeedMode == 2) { # EDIT
 				if (me.editDescentKts > 0 and me.editDescentMach > 0) {
 					me.checkMachToggleEdit(2, 0);
 					
@@ -307,7 +307,7 @@ var FmsSpd = {
 			} else if (me.apprKts > 0) {
 				me.ktsMach = 0;
 				me.ktsCmd = me.apprKts;
-			} else if (FlightData.descentSpeedMode == 1) { # MAX
+			} else if (flightData.descentSpeedMode == 1) { # MAX
 				if (me.maxDescent > 0) {
 					me.ktsMach = 0;
 					me.ktsCmd = me.maxDescent;
@@ -386,7 +386,7 @@ var FmsSpd = {
 		}
 		
 		# PFD Magenta Bug: Shown only when FMS SPD is active, or non-overridden V2 is set and driven
-		if (me.active or (me.toDriving and me.toKts > 0 and FlightData.v2State == 1)) {
+		if (me.active or (me.toDriving and me.toKts > 0 and flightData.v2State == 1)) {
 			me.pfdActive = 1;
 		} else {
 			me.pfdActive = 0;
@@ -427,17 +427,17 @@ var FmsSpd = {
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
 		me.vcl = math.round(Speeds.vcl.getValue());
 		
-		if (fms.FlightData.climbSpeedEditKts == 1) me.editClimbKts = me.maxKts;
-		else me.editClimbKts = fms.FlightData.climbSpeedEditKts;
+		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.maxKts;
+		else me.editClimbKts = fms.flightData.climbSpeedEditKts;
 		
-		if (fms.FlightData.climbSpeedEditMach == 1) me.editClimbMach = me.maxMach;
-		else me.editClimbMach = fms.FlightData.climbSpeedEditMach;
+		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.maxMach;
+		else me.editClimbMach = fms.flightData.climbSpeedEditMach;
 		
-		if (fms.FlightData.descentSpeedEditKts == 1) me.editDescentKts = me.maxKts;
-		else me.editDescentKts = fms.FlightData.descentSpeedEditKts;
+		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.maxKts;
+		else me.editDescentKts = fms.flightData.descentSpeedEditKts;
 		
-		if (fms.FlightData.descentSpeedEditMach == 1) me.editDescentMach = me.maxMach;
-		else me.editDescentMach = fms.FlightData.descentSpeedEditMach;
+		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.maxMach;
+		else me.editDescentMach = fms.flightData.descentSpeedEditMach;
 	},
 	takeoffLogic: func() {
 		if (Internal.phase >= 2) {
@@ -447,20 +447,20 @@ var FmsSpd = {
 			return;
 		}
 		
-		if (fms.FlightData.v2 > 0) {
+		if (fms.flightData.v2 > 0) {
 			if (!Value.wow) {
 				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
 					if (!me.v2Toggle) { # Only set the speed once
 						me.v2Toggle = 1;
-						me.toKtsCmd = math.clamp(math.round(Value.asiKts), FlightData.v2, FlightData.v2 + 10);
+						me.toKtsCmd = math.clamp(math.round(Value.asiKts), flightData.v2, flightData.v2 + 10);
 					}
 				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
 					me.toDriving = 1;
-					me.toKtsCmd = fms.FlightData.v2 + 10;
+					me.toKtsCmd = fms.flightData.v2 + 10;
 				}
 			} else {
 				me.toDriving = 1;
-				me.toKtsCmd = math.clamp(math.max(FlightData.v2, math.round(Value.asiKts)), FlightData.v2, FlightData.v2 + 10);
+				me.toKtsCmd = math.clamp(math.max(flightData.v2, math.round(Value.asiKts)), flightData.v2, flightData.v2 + 10);
 				me.v2Toggle = 0;
 			}
 		} else {

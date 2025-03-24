@@ -634,8 +634,8 @@ var canvasEngBase = {
 		}
 		
 		# GW, Fuel, CG
-		if (fms.FlightData.gwLbs > 0) {
-			Value.Misc.gw = math.round(fms.FlightData.gwLbs * 1000, 100);
+		if (fms.flightData.gwLbs > 0) {
+			Value.Misc.gw = math.round(fms.flightData.gwLbs * 1000, 100);
 			me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
 			me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
 			me["GW"].show();

@@ -633,9 +633,9 @@ var canvasGeDials = {
 		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.n1Limit = systems.FADEC.Limit.active.getValue();
 		
-		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+		if (Value.Fadec.activeMode == "T/O" and fms.flightData.flexActive) {
 			me["N1LimBox"].hide();
-			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.flightData.flexTemp) ~ "gC)");
 			
 			if (!Value.Fadec.auto) {
 				me["N1LimFlexBox"].show();
@@ -863,9 +863,9 @@ var canvasGeTapes = {
 		Value.Fadec.auto = systems.FADEC.Limit.auto.getBoolValue();
 		Value.Fadec.n1Limit = systems.FADEC.Limit.active.getValue();
 		
-		if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+		if (Value.Fadec.activeMode == "T/O" and fms.flightData.flexActive) {
 			me["N1LimBox"].hide();
-			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+			me["N1LimMode"].setText("T/O FLEX ( " ~ sprintf("%d", fms.flightData.flexTemp) ~ "gC)");
 			
 			if (!Value.Fadec.auto) {
 				me["N1LimFlexBox"].show();
@@ -1067,11 +1067,11 @@ var canvasPwDials = {
 				Value.Fadec.rating = "62K";
 			}
 			
-			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+			if (Value.Fadec.activeMode == "T/O" and fms.flightData.flexActive) {
 				me["EPRLimBox"].hide();
 				me["EPRLimToBox"].hide();
 				
-				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.flightData.flexTemp) ~ "gC)");
 				
 				if (!Value.Fadec.auto) {
 					me["EPRLimFlexBox"].show();
@@ -1350,11 +1350,11 @@ var canvasPwTapes = {
 				Value.Fadec.rating = "62K";
 			}
 			
-			if (Value.Fadec.activeMode == "T/O" and fms.FlightData.flexActive) {
+			if (Value.Fadec.activeMode == "T/O" and fms.flightData.flexActive) {
 				me["EPRLimBox"].hide();
 				me["EPRLimToBox"].hide();
 				
-				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.FlightData.flexTemp) ~ "gC)");
+				me["EPRLimMode"].setText(Value.Fadec.rating ~ " T/O FLEX ( " ~ sprintf("%d", fms.flightData.flexTemp) ~ "gC)");
 				
 				if (!Value.Fadec.auto) {
 					me["EPRLimFlexBox"].show();

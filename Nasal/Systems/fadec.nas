@@ -83,9 +83,9 @@ var FADEC = {
 		}
 		
 		if (m != 0 and !nfr) { # NFR = Don't reset while in auto mode
-			if (fms.FlightData.flexActive) {
-				fms.FlightData.flexActive = 0;
-				fms.FlightData.flexTemp = 0;
+			if (fms.flightData.flexActive) {
+				fms.flightData.flexActive = 0;
+				fms.flightData.flexTemp = 0;
 				fms.EditFlightData.resetVspeeds();
 			}
 		}

@@ -112,64 +112,64 @@ var Init = {
 			me.Display.R3L = "LONG";
 		}
 		
-		if (fms.FlightData.airportTo != "") {
+		if (fms.flightData.airportTo != "") {
 			me.Display.L1 = "";
 		} else {
 			me.Display.L1 = "__________";
 		}
 		
-		if (fms.FlightData.airportAltn != "") {
+		if (fms.flightData.airportAltn != "") {
 			me.Display.L2 = "";
-		} else if (fms.FlightData.airportTo != "") {
+		} else if (fms.flightData.airportTo != "") {
 			me.Display.L2 = "__________";
 		} else {
 			me.Display.L2 = "----------";
 		}
 		
-		if (fms.FlightData.flightNumber != "") {
-			me.Display.L4 = fms.FlightData.flightNumber;
+		if (fms.flightData.flightNumber != "") {
+			me.Display.L4 = fms.flightData.flightNumber;
 		} else {
 			me.Display.L4 = "________";
 		}
 		
-		if (fms.FlightData.cruiseFl > 0) {
-			me.Value.cruiseFlText[0] = sprintf("%03d", fms.FlightData.cruiseFlAll[0]);
+		if (fms.flightData.cruiseFl > 0) {
+			me.Value.cruiseFlText[0] = sprintf("%03d", fms.flightData.cruiseFlAll[0]);
 			
-			if (fms.FlightData.cruiseFlAll[1] > 0) me.Value.cruiseFlText[1] = sprintf("%03d", fms.FlightData.cruiseFlAll[1]);
+			if (fms.flightData.cruiseFlAll[1] > 0) me.Value.cruiseFlText[1] = sprintf("%03d", fms.flightData.cruiseFlAll[1]);
 			else me.Value.cruiseFlText[1] = "[ ]";
-			if (fms.FlightData.cruiseFlAll[2] > 0) me.Value.cruiseFlText[2] = sprintf("%03d", fms.FlightData.cruiseFlAll[2]);
+			if (fms.flightData.cruiseFlAll[2] > 0) me.Value.cruiseFlText[2] = sprintf("%03d", fms.flightData.cruiseFlAll[2]);
 			else me.Value.cruiseFlText[2] = "[ ]";
-			if (fms.FlightData.cruiseFlAll[3] > 0) me.Value.cruiseFlText[3] = sprintf("%03d", fms.FlightData.cruiseFlAll[3]);
+			if (fms.flightData.cruiseFlAll[3] > 0) me.Value.cruiseFlText[3] = sprintf("%03d", fms.flightData.cruiseFlAll[3]);
 			else me.Value.cruiseFlText[3] = "[ ]";
-			if (fms.FlightData.cruiseFlAll[4] > 0) me.Value.cruiseFlText[4] = sprintf("%03d", fms.FlightData.cruiseFlAll[4]);
+			if (fms.flightData.cruiseFlAll[4] > 0) me.Value.cruiseFlText[4] = sprintf("%03d", fms.flightData.cruiseFlAll[4]);
 			else me.Value.cruiseFlText[4] = "[ ]";
-			if (fms.FlightData.cruiseFlAll[5] > 0) me.Value.cruiseFlText[5] = sprintf("%03d", fms.FlightData.cruiseFlAll[5]);
+			if (fms.flightData.cruiseFlAll[5] > 0) me.Value.cruiseFlText[5] = sprintf("%03d", fms.flightData.cruiseFlAll[5]);
 			else me.Value.cruiseFlText[5] = "[ ]";
 			
 			me.Display.L5 = me.Value.cruiseFlText[0] ~ "/" ~ me.Value.cruiseFlText[1] ~ "/" ~ me.Value.cruiseFlText[2] ~ "/" ~ me.Value.cruiseFlText[3] ~ "/" ~ me.Value.cruiseFlText[4] ~ "/" ~ me.Value.cruiseFlText[5];
-		} else if (fms.FlightData.airportTo != "") {
+		} else if (fms.flightData.airportTo != "") {
 			me.Display.L5 = "___/[ ]/[ ]/[ ]/[ ]/[ ]";
 		} else {
 			me.Display.L5 = "---/---/---/---/---/---";
 		}
 		
-		if (fms.FlightData.cruiseTemp != nil) {
-			me.Display.L6 = fms.FlightData.cruiseTemp ~ "g/HD000";
+		if (fms.flightData.cruiseTemp != nil) {
+			me.Display.L6 = fms.flightData.cruiseTemp ~ "g/HD000";
 			me.Display.LFont[5] = FONT.small;
 		} else {
 			me.Display.L6 = "---g/-----";
 			me.Display.LFont[5] = FONT.large;
 		}
 		
-		if (fms.FlightData.airportTo != "") {
-			me.Display.R1 = fms.FlightData.airportFrom ~ "/" ~ fms.FlightData.airportTo;
+		if (fms.flightData.airportTo != "") {
+			me.Display.R1 = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
 		} else {
 			me.Display.R1 = "_____/_____";
 		}
 		
-		if (fms.FlightData.airportAltn != "") {
-			me.Display.R2 = fms.FlightData.airportAltn;
-		} else if (fms.FlightData.airportTo != "") {
+		if (fms.flightData.airportAltn != "") {
+			me.Display.R2 = fms.flightData.airportAltn;
+		} else if (fms.flightData.airportTo != "") {
 			me.Display.R2 = "_____";
 		} else {
 			me.Display.R2 = "-----";
@@ -181,9 +181,9 @@ var Init = {
 			me.Display.R4 = "INITIALIZE IRS*";
 		}
 		
-		if (fms.FlightData.costIndex > -1) {
-			me.Display.R6 = sprintf("%3.0f", fms.FlightData.costIndex);;
-		} else if (fms.FlightData.airportTo != "") {
+		if (fms.flightData.costIndex > -1) {
+			me.Display.R6 = sprintf("%3.0f", fms.flightData.costIndex);;
+		} else if (fms.flightData.airportTo != "") {
 			me.Display.R6 = "___";
 		} else {
 			me.Display.R6 = "---";
@@ -201,11 +201,11 @@ var Init = {
 			}
 		} else if (k == "l4") {
 			if (me.scratchpadState == 0) {
-				fms.FlightData.flightNumber = "";
+				fms.flightData.flightNumber = "";
 				mcdu.unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 8)) {
-					fms.FlightData.flightNumber = me.scratchpad;
+					fms.flightData.flightNumber = me.scratchpad;
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
@@ -297,7 +297,7 @@ var Init = {
 			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
-						if (fms.FlightData.airportTo != "") {
+						if (fms.flightData.airportTo != "") {
 							fms.EditFlightData.insertAlternate(me.scratchpad);
 							mcdu.unit[me.id].scratchpadClear();
 						} else {
@@ -329,10 +329,10 @@ var Init = {
 				}
 			}
 		} else if (k == "r6") {
-			if (me.scratchpadState == 2 and fms.FlightData.airportTo != "") {
+			if (me.scratchpadState == 2 and fms.flightData.airportTo != "") {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 0) {
-						fms.FlightData.costIndex = int(me.scratchpad);
+						fms.flightData.costIndex = int(me.scratchpad);
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -444,20 +444,20 @@ var Init2 = {
 			me.Display.L1 = "";
 			me.Display.C1 = "";
 			me.Display.R1L = "";
-			me.Display.R1 = sprintf("%5.1f", fms.FlightData.ufobLbs) ~ "/FF+FQ";
+			me.Display.R1 = sprintf("%5.1f", fms.flightData.ufobLbs) ~ "/FF+FQ";
 		} else {
 			me.Display.L1L = "TAXI";
-			me.Display.L1 = sprintf("%3.1f", fms.FlightData.taxiFuel);
-			if (fms.FlightData.taxiFuelSet) {
+			me.Display.L1 = sprintf("%3.1f", fms.flightData.taxiFuel);
+			if (fms.flightData.taxiFuelSet) {
 				me.Display.LFont[0] = FONT.large;
 			} else {
 				me.Display.LFont[0] = FONT.small;
 			}
 			
-			me.Display.R1B = sprintf("%5.1f", fms.FlightData.ufobLbs) ~ "      ";
+			me.Display.R1B = sprintf("%5.1f", fms.flightData.ufobLbs) ~ "      ";
 			me.Display.R1L = "UFOB  BLOCK";
-			if (fms.FlightData.blockFuelLbs != 0) {
-				me.Display.R1 = sprintf("%5.1f", fms.FlightData.blockFuelLbs);
+			if (fms.flightData.blockFuelLbs != 0) {
+				me.Display.R1 = sprintf("%5.1f", fms.flightData.blockFuelLbs);
 			} else {
 				me.Display.R1 = "___._";
 			}
@@ -465,9 +465,9 @@ var Init2 = {
 		
 		if (fms.Internal.engOn) {
 			me.Display.R2L = "GW";
-			if (fms.FlightData.gwLbs > 0) {
-				me.Display.R2 = sprintf("%5.1f", fms.FlightData.gwLbs);
-				if (fms.FlightData.lastGwZfw) {
+			if (fms.flightData.gwLbs > 0) {
+				me.Display.R2 = sprintf("%5.1f", fms.flightData.gwLbs);
+				if (fms.flightData.lastGwZfw) {
 					me.Display.RFont[1] = FONT.small;
 				} else {
 					me.Display.RFont[1] = FONT.large;
@@ -478,9 +478,9 @@ var Init2 = {
 			}
 		} else {
 			me.Display.R2L = "TOGW";
-			if (fms.FlightData.togwLbs > 0) {
-				me.Display.R2 = sprintf("%5.1f", fms.FlightData.togwLbs);
-				if (fms.FlightData.lastGwZfw) {
+			if (fms.flightData.togwLbs > 0) {
+				me.Display.R2 = sprintf("%5.1f", fms.flightData.togwLbs);
+				if (fms.flightData.lastGwZfw) {
 					me.Display.RFont[1] = FONT.small;
 				} else {
 					me.Display.RFont[1] = FONT.large;
@@ -491,9 +491,9 @@ var Init2 = {
 			}
 		}
 		
-		if (fms.FlightData.zfwLbs > 0) {
-			me.Display.R3 = sprintf("%5.1f", fms.FlightData.zfwLbs);
-			if (!fms.FlightData.lastGwZfw) {
+		if (fms.flightData.zfwLbs > 0) {
+			me.Display.R3 = sprintf("%5.1f", fms.flightData.zfwLbs);
+			if (!fms.flightData.lastGwZfw) {
 				me.Display.RFont[2] = FONT.small;
 			} else {
 				me.Display.RFont[2] = FONT.large;
@@ -503,14 +503,14 @@ var Init2 = {
 			me.Display.RFont[2] = FONT.large;
 		}
 		
-		if (fms.FlightData.tocg > 0) {
-			me.Display.R5 = sprintf("%4.1f", fms.FlightData.tocg);
+		if (fms.flightData.tocg > 0) {
+			me.Display.R5 = sprintf("%4.1f", fms.flightData.tocg);
 		} else {
 			me.Display.R5 = "__._";
 		}
 		
-		if (fms.FlightData.zfwcg > 0) {
-			me.Display.R6 = sprintf("%4.1f", fms.FlightData.zfwcg);
+		if (fms.flightData.zfwcg > 0) {
+			me.Display.R6 = sprintf("%4.1f", fms.flightData.zfwcg);
 		} else {
 			me.Display.R6 = "__._";
 		}
@@ -525,7 +525,7 @@ var Init2 = {
 					if (me.scratchpad >= 0 and me.scratchpad <= 9.9) {
 						me.Value.taxiInsertStatus = fms.EditFlightData.insertTaxiFuel(me.scratchpad);
 						if (me.Value.taxiInsertStatus == 0) {
-							fms.FlightData.taxiFuelSet = 1;
+							fms.flightData.taxiFuelSet = 1;
 							mcdu.unit[me.id].scratchpadClear();
 						} else if (me.Value.taxiInsertStatus == 1) {
 							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
@@ -557,7 +557,7 @@ var Init2 = {
 					mcdu.unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				if (fms.EditFlightData.insertBlockFuel(fms.FlightData.ufobLbs)) {
+				if (fms.EditFlightData.insertBlockFuel(fms.flightData.ufobLbs)) {
 					mcdu.unit[me.id].scratchpadClear();
 				} else {
 					mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
@@ -593,7 +593,7 @@ var Init2 = {
 				if (me.Display.R2L == "GW") {
 					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1));
 				} else {
-					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000) - fms.FlightData.taxiFuel, 0.1));
+					mcdu.unit[me.id].scratchpad = sprintf("%5.1f", math.round((pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000) - fms.flightData.taxiFuel, 0.1));
 				}
 			} else {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
@@ -623,7 +623,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 35) {
-						fms.FlightData.tocg = me.scratchpad;
+						fms.flightData.tocg = me.scratchpad;
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -641,7 +641,7 @@ var Init2 = {
 			if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 34) {
-						fms.FlightData.zfwcg = me.scratchpad;
+						fms.flightData.zfwcg = me.scratchpad;
 						mcdu.unit[me.id].scratchpadClear();
 					} else {
 						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
@@ -843,8 +843,8 @@ var CompRte = {
 		return m;
 	},
 	setup: func() {
-		if (fms.FlightData.airportTo != "") {
-			me.Display.title = fms.FlightData.airportFrom ~ "/" ~ fms.FlightData.airportTo;
+		if (fms.flightData.airportTo != "") {
+			me.Display.title = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
 		}
 	},
 	loop: func() {

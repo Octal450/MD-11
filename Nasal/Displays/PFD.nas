@@ -500,10 +500,10 @@ var canvasBase = {
 				me["ASI_v1_dash"].hide();
 				me["ASI_v1_text"].hide();
 			} else {
-				if (fms.FlightData.v1 > 0) {
-					Value.Asi.Tape.v1 = fms.FlightData.v1 - 50 - Value.Asi.Tape.ias;
+				if (fms.flightData.v1 > 0) {
+					Value.Asi.Tape.v1 = fms.flightData.v1 - 50 - Value.Asi.Tape.ias;
 					
-					if (fms.FlightData.v1State == 1) {
+					if (fms.flightData.v1State == 1) {
 						me["ASI_v1_bug_n"].setColor(0.9608, 0, 0.7765);
 						me["ASI_v1_bug_p"].setColor(0.9608, 0, 0.7765);
 						me["ASI_v1_bug_v"].setColor(0.9608, 0, 0.7765);
@@ -523,7 +523,7 @@ var canvasBase = {
 						me["ASI_v1_text"].hide();
 					} else {
 						me["ASI_v1_box"].show();
-						me["ASI_v1_text"].setText(sprintf("%03d", fms.FlightData.v1));
+						me["ASI_v1_text"].setText(sprintf("%03d", fms.flightData.v1));
 						me["ASI_v1_text"].show();
 					}
 					
@@ -560,10 +560,10 @@ var canvasBase = {
 				me["ASI_vr_dash"].hide();
 				me["ASI_vr_text"].hide();
 			} else {
-				if (fms.FlightData.vr > 0) {
-					Value.Asi.Tape.vr = fms.FlightData.vr - 50 - Value.Asi.Tape.ias;
+				if (fms.flightData.vr > 0) {
+					Value.Asi.Tape.vr = fms.flightData.vr - 50 - Value.Asi.Tape.ias;
 					
-					if (fms.FlightData.vrState == 1) {
+					if (fms.flightData.vrState == 1) {
 						me["ASI_vr_bug_n"].setColor(0.9608, 0, 0.7765);
 						me["ASI_vr_bug_p"].setColor(0.9608, 0, 0.7765);
 						me["ASI_vr_bug_v"].setColor(0.9608, 0, 0.7765);
@@ -583,7 +583,7 @@ var canvasBase = {
 						me["ASI_vr_text"].hide();
 					} else {
 						me["ASI_vr_box"].show();
-						me["ASI_vr_text"].setText(sprintf("%03d", fms.FlightData.vr));
+						me["ASI_vr_text"].setText(sprintf("%03d", fms.flightData.vr));
 						me["ASI_vr_text"].show();
 					}
 					
@@ -591,7 +591,7 @@ var canvasBase = {
 					me["ASI_vr_bug"].show();
 					me["ASI_vr_dash"].hide();
 					
-					if (Value.Asi.ias >= fms.FlightData.vr) {
+					if (Value.Asi.ias >= fms.flightData.vr) {
 						Value.Asi.hideV1 = 1;
 					}
 				} else {
@@ -621,10 +621,10 @@ var canvasBase = {
 				}
 			}
 			
-			if (fms.FlightData.v2 > 0) {
-				Value.Asi.Tape.v2 = fms.FlightData.v2 - 50 - Value.Asi.Tape.ias;
+			if (fms.flightData.v2 > 0) {
+				Value.Asi.Tape.v2 = fms.flightData.v2 - 50 - Value.Asi.Tape.ias;
 				
-				if (fms.FlightData.v2State == 1) {
+				if (fms.flightData.v2State == 1) {
 					me["ASI_v2_bug_n"].setColor(0.9608, 0, 0.7765);
 					me["ASI_v2_bug_p"].setColor(0.9608, 0, 0.7765);
 					me["ASI_v2_bug_v"].setColor(0.9608, 0, 0.7765);
@@ -652,7 +652,7 @@ var canvasBase = {
 					}
 					
 					me["ASI_v2_box"].show();
-					me["ASI_v2_text"].setText(sprintf("%03d", fms.FlightData.v2));
+					me["ASI_v2_text"].setText(sprintf("%03d", fms.flightData.v2));
 					me["ASI_v2_text"].show();
 				}
 				
@@ -660,7 +660,7 @@ var canvasBase = {
 				me["ASI_v2_bug"].show();
 				me["ASI_v2_dash"].hide();
 				
-				if (Value.Asi.ias >= fms.FlightData.v2) {
+				if (Value.Asi.ias >= fms.flightData.v2) {
 					Value.Asi.hideVr = 1;
 				}
 			} else {

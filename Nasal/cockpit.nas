@@ -246,7 +246,7 @@ var ApPanel = {
 	},
 	toga: func() {
 		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
-			fms.FlightData.flexActive = 0; # Cancels FLEX if active
+			fms.flightData.flexActive = 0; # Cancels FLEX if active
 			if (systems.FADEC.Limit.activeMode.getValue() == "T/O" and fms.Internal.phase == 1 and pts.Position.wow.getBoolValue()) {
 				systems.FADEC.Limit.pwDerate.setBoolValue(0);
 			}

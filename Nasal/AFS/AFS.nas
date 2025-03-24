@@ -610,7 +610,7 @@ var ITAF = {
 		
 		# FLCH Engagement
 		if (Text.vertTemp == "T/O CLB") {
-			me.checkFlch(fms.FlightData.climbThrustAlt);
+			me.checkFlch(fms.flightData.climbThrustAlt);
 		}
 		
 		# Altitude Capture/Sync Logic
@@ -648,7 +648,7 @@ var ITAF = {
 		
 		# Speed by Pitch Available Logic
 		Text.vertTemp = Text.vert.getValue();
-		if (Text.vertTemp == "T/O CLB" and (fms.FlightData.v2 == 0 or fms.FmsSpd.toKts == 0)) {
+		if (Text.vertTemp == "T/O CLB" and (fms.flightData.v2 == 0 or fms.FmsSpd.toKts == 0)) {
 			Internal.spdPitchAvail.setBoolValue(0);
 		} else {
 			Internal.spdPitchAvail.setBoolValue(1);

@@ -93,8 +93,8 @@ var CORE = {
 				Internal.phaseNew = 2; # Climb
 			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0; # Preflight
-			} else if (FlightData.accelAlt > -1000) {
-				if (Value.vertText != "T/O CLB" and Value.altitude >= FlightData.accelAlt) {
+			} else if (flightData.accelAlt > -1000) {
+				if (Value.vertText != "T/O CLB" and Value.altitude >= flightData.accelAlt) {
 					Internal.phaseNew = 2; # Climb
 				}
 			}
@@ -103,8 +103,8 @@ var CORE = {
 				Internal.phaseNew = 5; # Approach
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
-			} else if (FlightData.cruiseAltAll[0] > 0) {
-				if (Value.vertText == "ALT HLD" and Value.afsAlt >= FlightData.cruiseAltAll[0]) {
+			} else if (flightData.cruiseAltAll[0] > 0) {
+				if (Value.vertText == "ALT HLD" and Value.afsAlt >= flightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 3; # Cruise
 				}
 			}
@@ -113,8 +113,8 @@ var CORE = {
 				Internal.phaseNew = 5; # Approach
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
-			} else if (FlightData.cruiseAltAll[0] > 0) {
-				if (Value.afsAlt < FlightData.cruiseAltAll[0]) {
+			} else if (flightData.cruiseAltAll[0] > 0) {
+				if (Value.afsAlt < flightData.cruiseAltAll[0]) {
 					Internal.phaseNew = 4; # Descent
 				}
 			}
