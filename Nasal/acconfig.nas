@@ -20,6 +20,7 @@ var SYSTEM = {
 	revision: props.globals.initNode("/systems/acconfig/revision", 0, "INT"),
 	revisionTemp: 0,
 	spinner: "\\",
+	spinnerProp: props.globals.initNode("/systems/acconfig/spinner-prop", 0, "STRING"),
 	simInit: func() {
 		print("System: Initializing " ~ getprop("/sim/aircraft"));
 		PANEL.stop = 1;
@@ -120,7 +121,7 @@ var SYSTEM = {
 		} else if (me.spinner == "-") {
 			me.spinner = "\\";
 		}
-		props.globals.getNode("/systems/acconfig/spinner-prop").setValue(me.spinner);
+		me.spinnerProp.setValue(me.spinner);
 	},
 	versionCheck: func() {
 		if (SYSTEM.fgfs[0] > CONFIG.minFgfs[0]) {
