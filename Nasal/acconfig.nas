@@ -20,7 +20,7 @@ var SYSTEM = {
 	revision: props.globals.initNode("/systems/acconfig/revision", 0, "INT"),
 	revisionTemp: 0,
 	spinner: "\\",
-	spinnerProp: props.globals.initNode("/systems/acconfig/spinner-prop", 0, "STRING"),
+	spinnerProp: props.globals.initNode("/systems/acconfig/spinner-prop", "\\", "STRING"),
 	simInit: func() {
 		print("System: Initializing " ~ getprop("/sim/aircraft"));
 		PANEL.stop = 1;
