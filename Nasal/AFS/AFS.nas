@@ -503,8 +503,10 @@ var ITAF = {
 		
 		if (Position.gearAglFtTemp <= 1500 and Internal.landModeActive) {
 			Internal.selfCheckStatus = 1;
+			systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(1);
 		} else if (!Internal.landModeActive) {
 			Internal.selfCheckStatus = 0;
+			systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(0);
 		}
 		
 		if (Internal.selfCheckStatus == 1) {
@@ -520,7 +522,8 @@ var ITAF = {
 		}
 		
 		if (Internal.canAutoland and Internal.landModeActive and Internal.selfCheckStatus == 2 and Position.gearAglFtTemp <= 1500) {
-			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and Internal.athrLatch) {
+			if ((Output.ap1Temp or Output.ap2Temp) and Input.ap1Avail.getBoolValue() and Input.ap2Avail.getBoolValue() and Internal.athrLatch and !systems.ELECTRICAL.Controls.acTie1.getBoolValue() and !systems.ELECTRICAL.Controls.acTie2.getBoolValue()
+			and !systems.ELECTRICAL.Controls.acTie3.getBoolValue() and !systems.ELECTRICAL.Controls.dcTie1.getBoolValue() and !systems.ELECTRICAL.Controls.dcTie3.getBoolValue()) {
 				if (Internal.landCondition == "SINGLE" or Internal.landCondition == "APPR" or Internal.landCondition == "OFF") {
 					Fma.stopBlink(2);
 				}

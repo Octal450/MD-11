@@ -1724,6 +1724,11 @@
 				<out type="double">0</out>
 			</stabilizer-motion>
 		</caws>
+		<electrical n="0">
+			<epcu n="0">
+				<split-buses type="bool">0</split-buses>
+			</epcu>
+		</electrical>
 		<failures n="0">
 			<brakes n="0">
 				<abs type="bool">0</abs>

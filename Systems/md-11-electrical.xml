@@ -70,6 +70,10 @@
 		
 		<switch name="/systems/electrical/epcu/ac-tie-1">
 			<default value="/controls/electrical/ac-tie-1"/>
+			<test logic="AND" value="0">
+				/systems/electrical/system eq 1
+				/systems/electrical/epcu/split-buses eq 1
+			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -81,6 +85,10 @@
 		
 		<switch name="/systems/electrical/epcu/ac-tie-2">
 			<default value="/controls/electrical/ac-tie-2"/>
+			<test logic="AND" value="0">
+				/systems/electrical/system eq 1
+				/systems/electrical/epcu/split-buses eq 1
+			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -92,6 +100,10 @@
 		
 		<switch name="/systems/electrical/epcu/ac-tie-3">
 			<default value="/controls/electrical/ac-tie-3"/>
+			<test logic="AND" value="0">
+				/systems/electrical/system eq 1
+				/systems/electrical/epcu/split-buses eq 1
+			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -128,6 +140,10 @@
 		
 		<switch name="/systems/electrical/epcu/dc-tie-1">
 			<default value="/controls/electrical/dc-tie-1"/>
+			<test logic="AND" value="0">
+				/systems/electrical/system eq 1
+				/systems/electrical/epcu/split-buses eq 1
+			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>
@@ -136,6 +152,10 @@
 		
 		<switch name="/systems/electrical/epcu/dc-tie-3">
 			<default value="/controls/electrical/dc-tie-3"/>
+			<test logic="AND" value="0">
+				/systems/electrical/system eq 1
+				/systems/electrical/epcu/split-buses eq 1
+			</test>
 			<test value="1">
 				/systems/electrical/system eq 1
 			</test>

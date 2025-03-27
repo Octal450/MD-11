@@ -39,6 +39,7 @@ var ELECTRICAL = {
 	},
 	Epcu: {
 		allowApu: props.globals.getNode("/systems/electrical/epcu/allow-apu-out"),
+		splitBuses: props.globals.getNode("/systems/electrical/epcu/split-buses"),
 	},
 	Outputs: {
 		efis: props.globals.initNode("/systems/electrical/outputs/efis", 0, "DOUBLE"),
@@ -180,6 +181,7 @@ var ELECTRICAL = {
 		me.Controls.groundCart.setBoolValue(0);
 		me.Controls.smokeElecAir.setValue(0);
 		me.Controls.system.setBoolValue(1);
+		me.Epcu.splitBuses.setBoolValue(0);
 		me.Source.Bat1.percent.setValue(99.9);
 		me.Source.Bat2.percent.setValue(99.9);
 		manualElecLightt.stop();
