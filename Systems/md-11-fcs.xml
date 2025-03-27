@@ -111,21 +111,48 @@
 	
 	<channel name="Aileron General">
 		
-		<pure_gain name="/systems/fcs/aileron-small">
-			<input>/controls/flight/aileron</input>
-			<gain>0.25</gain>
-		</pure_gain>
-		
 		<pure_gain name="/systems/fcs/ailerons/trim-overall">
 			<input>/controls/flight/aileron-trim</input>
 			<gain>0.25</gain>
 		</pure_gain>
 		
+		<fcs_function name="/systems/fcs/aileron-rcws"> <!-- Pretends to be pilot force summed with RCWS -->
+			<function>
+				<sum>
+					<product>
+						<property>/controls/flight/aileron</property>
+						<table>
+							<independentVar lookup="row">/systems/fcc/rcws/in-detent</independentVar>
+							<tableData>
+								0  1.00
+								1  0.25
+							</tableData>
+						</table>
+					</product>
+					<product>
+						<difference>
+							<property>/systems/fcc/rcws/output</property>
+							<product>
+								<property>/controls/flight/aileron</property>
+								<table>
+									<independentVar lookup="row">/systems/fcc/rcws/in-detent</independentVar>
+									<tableData>
+										0  1
+										1  0
+									</tableData>
+								</table>
+							</product>
+						</difference>
+						<value>0.25</value>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/fcs/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
-			<test logic="AND" value="/systems/fcs/aileron-small"> <!-- While in detent and RCWS active, more force needed to break out -->
+			<test logic="AND" value="/systems/fcs/aileron-rcws"> <!-- RCWS is a parallel function, thus we sum pilot input and RCWS command -->
 				/systems/fcc/rcws/active eq 1
-				/systems/fcc/rcws/in-detent eq 1
 			</test>
 			<test value="/systems/fcc/afs/roll-cmd">
 				/systems/fcc/afs/enabled eq 1
