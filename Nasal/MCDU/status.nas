@@ -94,7 +94,7 @@ var AcStatus = {
 		
 		m.Value = {
 			databaseConfirm: 0,
-			type: "",
+			type: pts.Options.type.getValue(),
 		};
 		
 		return m;
@@ -109,7 +109,6 @@ var AcStatus = {
 		me.Display.R4 = "";
 	},
 	loop: func() {
-		me.Value.type = pts.Options.type.getValue();
 		if (pts.Systems.Acconfig.Options.deflectedAileron.getBoolValue()) {
 			me.Display.L1 = me.Value.type ~ " DEF AIL";
 		} else {
