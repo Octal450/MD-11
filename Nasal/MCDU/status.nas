@@ -94,7 +94,7 @@ var AcStatus = {
 		
 		m.Value = {
 			databaseConfirm: 0,
-			type: 0,
+			type: "",
 		};
 		
 		return m;
