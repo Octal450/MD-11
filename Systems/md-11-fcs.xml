@@ -151,7 +151,7 @@
 		
 		<switch name="/systems/fcs/aileron-yoke-switch">
 			<default value="/controls/flight/aileron"/>
-			<test logic="AND" value="/systems/fcs/aileron-rcws"> <!-- RCWS is a parallel function, thus we sum pilot input and RCWS command -->
+			<test value="/systems/fcs/aileron-rcws"> <!-- RCWS is a parallel function, thus we sum pilot input and RCWS command -->
 				/systems/fcc/rcws/active eq 1
 			</test>
 			<test value="/systems/fcc/afs/roll-cmd">
