@@ -420,14 +420,14 @@
 				fcs/flap-pos-deg ge 26
 			</test>
 			<test value="/systems/fms/speeds/flap-20-25-max-kts">
-				fcs/flap-pos-deg ge 21
+				fcs/flap-pos-deg ge 20.5
 			</test>
 			<test logic="AND" value="/systems/fms/speeds/gear-ret-max-kts">
 				/systems/gear/cmd eq 0
 				/gear/gear[1]/position-norm gt 0.01
 			</test>
 			<test value="/systems/fms/speeds/flap-15-20-max-kts">
-				fcs/flap-pos-deg ge 16
+				fcs/flap-pos-deg ge 15.5
 			</test>
 			<test value="/systems/fms/speeds/flap-0-15-max-kts">
 				fcs/flap-pos-deg ge 1
