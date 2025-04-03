@@ -91,11 +91,19 @@ var CORE = {
 		} else if (Internal.phase == 1) { # Takeoff
 			if (!Value.wow and Value.vertText == "ALT HLD") {
 				Internal.phaseNew = 2; # Climb
+				if (fms.flightData.flexActive) {
+					fms.flightData.flexActive = 0;
+					fms.flightData.flexTemp = 0;
+				}
 			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0; # Preflight
 			} else if (flightData.accelAlt > -1000) {
 				if (Value.vertText != "T/O CLB" and Value.altitude >= flightData.accelAlt) {
 					Internal.phaseNew = 2; # Climb
+					if (fms.flightData.flexActive) {
+						fms.flightData.flexActive = 0;
+						fms.flightData.flexTemp = 0;
+					}
 				}
 			}
 		} else if (Internal.phase == 2) { # Climb
