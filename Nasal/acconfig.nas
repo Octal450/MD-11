@@ -307,7 +307,7 @@ var PANEL = {
 		systems.IRS.Controls.mcduBtn.setBoolValue(1);
 		pts.Controls.Lighting.beacon.setBoolValue(1);
 		pts.Controls.Lighting.navLights.setBoolValue(1);
-		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
+		pts.Controls.Switches.seatbeltSign.setValue(1);
 		
 		systems.IGNITION.fastStop(0);
 		systems.IGNITION.fastStop(1);
@@ -344,7 +344,7 @@ var PANEL = {
 		systems.IRS.Controls.mcduBtn.setBoolValue(1);
 		pts.Controls.Lighting.beacon.setBoolValue(1);
 		pts.Controls.Lighting.navLights.setBoolValue(1);
-		pts.Controls.Switches.seatbeltSign.setBoolValue(1);
+		pts.Controls.Switches.seatbeltSign.setValue(1);
 		systems.IGNITION.Controls.ignA.setBoolValue(1);
 		systems.APU.stopRpm();
 		
