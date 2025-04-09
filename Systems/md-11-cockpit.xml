@@ -540,10 +540,6 @@
 		
 		<switch name="/systems/lighting/fcp-integ">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/electrical/generic/pwr ge 24
-				/controls/lighting/thunderstorm eq 1
-			</test>
 			<test value="/controls/lighting/fcp-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
@@ -562,10 +558,6 @@
 		
 		<switch name="/systems/lighting/main-integ">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/electrical/generic/pwr ge 24
-				/controls/lighting/thunderstorm eq 1
-			</test>
 			<test value="/controls/lighting/main-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
@@ -584,10 +576,6 @@
 		
 		<switch name="/systems/lighting/overhead-integ">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/electrical/generic/pwr ge 24
-				/controls/lighting/thunderstorm eq 1
-			</test>
 			<test value="/controls/lighting/overhead-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
