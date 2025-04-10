@@ -156,17 +156,17 @@
 		
 		<lag_filter name="/controls/cockpit/engine-cutoff[0]">
 			<input>/controls/engines/engine[0]/cutoff-switch</input>
-			<c1>50</c1>
+			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/engine-cutoff[1]">
 			<input>/controls/engines/engine[1]/cutoff-switch</input>
-			<c1>50</c1>
+			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/engine-cutoff[2]">
 			<input>/controls/engines/engine[2]/cutoff-switch</input>
-			<c1>50</c1>
+			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/flaps-lever-rotate">
@@ -256,17 +256,17 @@
 		
 		<lag_filter name="/controls/cockpit/start-switch-1">
 			<input>/systems/ignition/start-switch-1</input>
-			<c1>20</c1>
+			<c1>30</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/start-switch-2">
 			<input>/systems/ignition/start-switch-2</input>
-			<c1>20</c1>
+			<c1>30</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/start-switch-3">
 			<input>/systems/ignition/start-switch-3</input>
-			<c1>20</c1>
+			<c1>30</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[0]">
