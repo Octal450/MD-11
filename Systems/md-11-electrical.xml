@@ -704,7 +704,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- 96% -->
 				/systems/failures/electrical/apu ne 1
-				/systems/electrical/sources/apu/drive-rpm ge 15360
+				/engines/engine[3]/n2-actual ge 96
 			</test>
 		</switch>
 		
