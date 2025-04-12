@@ -33,6 +33,8 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>dashboard.text</object-name>
 		<object-name>gearlever.glass</object-name>
+		<object-name>LGLights</object-name>
+		<object-name>Lights</object-name>
 		<object-name>lightshade.left</object-name>
 		<object-name>lightshade.right</object-name>
 		<object-name>sidepanel.text</object-name>
@@ -803,7 +805,8 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AbsDisarm.light</object-name>
+		<object-name>AbsDisarmL.light</object-name>
+		<object-name>AbsDisarmR.light</object-name>
 		<object-name>FD1.off</object-name>
 		<object-name>FD2.off</object-name>
 		<object-name>IRS.captaux</object-name>
@@ -977,7 +980,8 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AbsDisarm.light</object-name>
+		<object-name>AbsDisarmL.light</object-name>
+		<object-name>AbsDisarmR.light</object-name>
 		<condition>
 			<or>
 				<equals>
