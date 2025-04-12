@@ -316,14 +316,6 @@
 				<float n="22" alias="/systems/fcs/spoiler-r4/final-deg"/>
 				<float n="23" alias="/systems/fcs/spoiler-r5/final-deg"/>
 				<float n="24" alias="/systems/fcs/stabilizer/final-deg"/>
-				<int n="0" alias="/sim/model/lights/strobe/state"/>
-				<int n="1" alias="/sim/model/lights/beacon/state"/>
-				<int n="2" alias="/controls/lighting/landing-light-n"/>
-				<int n="3" alias="/sim/model/lights/logo-lights"/>
-				<int n="5" alias="/controls/lighting/landing-light-l"/>
-				<int n="6" alias="/controls/lighting/landing-light-r"/>
-				<int n="7" alias="/sim/model/lights/nav-lights"/>
-				<int n="8" alias="/controls/lighting/wing-lights"/>
 			</generic>
 			<visibility-range-nm type="int">130</visibility-range-nm>
 		</multiplay>
