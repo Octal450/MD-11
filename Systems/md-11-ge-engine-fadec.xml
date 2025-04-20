@@ -68,7 +68,7 @@
 		
 		<!-- Following functions fix a FGTurbine inaccuracy... rated thrust N1% should be rated thrust lbs -->
 		<!-- These calculations change it so that the rated power at sea level is at the correct N1% value. It still changes with altitude and mach as it should -->
-		<fcs_function name="/systems/fadec/limit/fgturbine-thrust"> <!-- Thrust it should produce at the rated N1 -->
+		<fcs_function name="/systems/fadec/limit/rated-thrust-target"> <!-- Thrust it should produce at the rated N1 -->
 			<function>
 				<sum>
 					<product>
@@ -136,7 +136,7 @@
 							<value>0</value>
 						</nq>
 						<quotient>
-							<property>/systems/fadec/limit/fgturbine-thrust</property>
+							<property>/systems/fadec/limit/rated-thrust-target</property>
 							<property>/systems/fadec/limit/rated-thrust-actual</property>
 						</quotient>
 						<value>1</value>
