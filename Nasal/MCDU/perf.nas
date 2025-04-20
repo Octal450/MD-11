@@ -139,6 +139,8 @@ var Perf = {
 		m.type = t; # 0 = CLB, 1 = CRZ, 2 = DES
 		
 		m.Value = {
+			maxAlt: 0,
+			optAlt: 0,
 			speedEdit: 0,
 			speedEditFmt: 0,
 			speedEditMach: 0,
@@ -332,6 +334,14 @@ var Perf = {
 			me.Display.L6 = sprintf("%d", fms.flightData.descentTransAlt);
 		} else {
 			me.Display.L6 = "";
+		}
+		
+		me.Value.optAlt = fms.Internal.optAlt.getValue();
+		me.Value.maxAlt = fms.Internal.maxAlt.getValue();
+		if (me.Value.optAlt > 0 and me.Value.maxAlt > 0) {
+			me.Display.C6 = sprintf("%03d", math.round(me.Value.optAlt)) ~ "/" ~ sprintf("%03d", math.round(me.Value.maxAlt));
+		} else {
+			me.Display.C6 = "---/---";
 		}
 	},
 	insertEditSpeed: func() {
@@ -650,6 +660,8 @@ var PreSel = {
 		m.type = t; # 0 = Unused so numbers match Perf class, 1 = CRZ, 2 = DES
 		
 		m.Value = {
+			maxAlt: 0,
+			optAlt: 0,
 			speedEdit: 0,
 			speedEditFmt: 0,
 			speedEditMach: 0,
@@ -775,6 +787,14 @@ var PreSel = {
 			me.Display.L6 = sprintf("%d", fms.flightData.descentTransAlt);
 		} else {
 			me.Display.L6 = "";
+		}
+		
+		me.Value.optAlt = fms.Internal.optAlt.getValue();
+		me.Value.maxAlt = fms.Internal.maxAlt.getValue();
+		if (me.Value.optAlt > 0 and me.Value.maxAlt > 0) {
+			me.Display.C6 = sprintf("%03d", math.round(me.Value.optAlt)) ~ "/" ~ sprintf("%03d", math.round(me.Value.maxAlt));
+		} else {
+			me.Display.C6 = "---/---";
 		}
 	},
 	insertEditSpeed: func() {

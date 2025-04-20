@@ -113,7 +113,7 @@ var RouteManager = {
 	num: props.globals.getNode("/autopilot/route-manager/route/num"),
 };
 
-var Temp = { # Values used for internal checking, do not access elsewhere
+var Value = { # Values used for internal checking, do not access elsewhere
 	togw: 0,
 	zfw: 0,
 };
@@ -197,6 +197,19 @@ var EditFlightData = {
 				mcdu.BASE.removeGlobalMessage("CHECK/CONFIRM VSPDS");
 			}
 		}
+		
+		# Cruise above Max Level MCDU message
+		if (flightData.cruiseFl > math.round(Internal.maxAlt.getValue())) {
+			if (!Internal.Messages.maxAlt) {
+				Internal.Messages.maxAlt = 1;
+				mcdu.BASE.setGlobalMessage("CRZ FL ABOVE MAX FL");
+			}
+		} else {
+			if (Internal.Messages.maxAlt) {
+				Internal.Messages.maxAlt = 0;
+				mcdu.BASE.removeGlobalMessage("CRZ FL ABOVE MAX FL");
+			}
+		}
 	},
 	reset: func() {
 		# Reset Route Manager
@@ -247,10 +260,10 @@ var EditFlightData = {
 	},
 	insertBlockFuel: func(block) { # Recalculate TOGW
 		if (flightData.zfwLbs > 0) {
-			Temp.togw = block + flightData.zfwLbs - flightData.taxiFuel;
-			if (Temp.togw <= fms.Internal.maxTocg) {
+			Value.togw = block + flightData.zfwLbs - flightData.taxiFuel;
+			if (Value.togw <= fms.Internal.maxTocg) {
 				flightData.blockFuelLbs = block + 0;
-				flightData.togwLbs = Temp.togw;
+				flightData.togwLbs = Value.togw;
 				flightData.lastGwZfw = 1;
 				me.resetVspeeds();
 				return 1;
@@ -278,10 +291,10 @@ var EditFlightData = {
 		}
 	},
 	insertGw: func(gw) { # Recalculate TOGW and ZFW, let GW calculate on it's own, block synced with ufob
-		Temp.zfw = gw - flightData.ufobLbs;
-		if (Temp.zfw <= fms.Internal.maxZfw) {
+		Value.zfw = gw - flightData.ufobLbs;
+		if (Value.zfw <= fms.Internal.maxZfw) {
 			flightData.togwLbs = gw - flightData.taxiFuel;
-			flightData.zfwLbs = Temp.zfw;
+			flightData.zfwLbs = Value.zfw;
 			flightData.lastGwZfw = 0;
 			me.resetVspeeds();
 			return 1;
@@ -292,20 +305,20 @@ var EditFlightData = {
 	insertTaxiFuel: func(taxi) { # Recalculate TOGW or ZFW
 		if (flightData.togwLbs > 0 and flightData.zfwLbs > 0) {
 			if (flightData.lastGwZfw) { # TOGW
-				Temp.togw = flightData.blockFuelLbs + flightData.zfwLbs - taxi;
-				if (Temp.togw <= fms.Internal.maxTocg) {
+				Value.togw = flightData.blockFuelLbs + flightData.zfwLbs - taxi;
+				if (Value.togw <= fms.Internal.maxTocg) {
 					flightData.taxiFuel = taxi + 0;
-					flightData.togwLbs = Temp.togw;
+					flightData.togwLbs = Value.togw;
 					me.resetVspeeds();
 					return 0;
 				} else {
 					return 1;
 				}
 			} else { # ZFW
-				Temp.zfw = flightData.togwLbs + taxi - flightData.blockFuelLbs;
-				if (Temp.zfw <= fms.Internal.maxZfw) {
+				Value.zfw = flightData.togwLbs + taxi - flightData.blockFuelLbs;
+				if (Value.zfw <= fms.Internal.maxZfw) {
 					flightData.taxiFuel = taxi;
-					flightData.zfwLbs = Temp.zfw;
+					flightData.zfwLbs = Value.zfw;
 					me.resetVspeeds();
 					return 0;
 				} else {
@@ -334,10 +347,10 @@ var EditFlightData = {
 	},
 	insertTogw: func(togw) { # Recalculate ZFW
 		if (flightData.blockFuelLbs > 0) {
-			Temp.zfw = togw + flightData.taxiFuel - flightData.blockFuelLbs;
-			if (Temp.zfw <= fms.Internal.maxZfw) {
+			Value.zfw = togw + flightData.taxiFuel - flightData.blockFuelLbs;
+			if (Value.zfw <= fms.Internal.maxZfw) {
 				flightData.togwLbs = togw + 0;
-				flightData.zfwLbs = Temp.zfw;
+				flightData.zfwLbs = Value.zfw;
 				flightData.lastGwZfw = 0;
 				me.resetVspeeds();
 				return 1;
@@ -351,10 +364,10 @@ var EditFlightData = {
 	},
 	insertZfw: func(zfw) { # Recalculate TOGW
 		if (flightData.blockFuelLbs > 0) {
-			Temp.togw = zfw + flightData.blockFuelLbs - flightData.taxiFuel;
-			if (Temp.togw <= fms.Internal.maxTocg) {
+			Value.togw = zfw + flightData.blockFuelLbs - flightData.taxiFuel;
+			if (Value.togw <= fms.Internal.maxTocg) {
 				flightData.zfwLbs = zfw + 0;
-				flightData.togwLbs = Temp.togw;
+				flightData.togwLbs = Value.togw;
 				flightData.lastGwZfw = 1;
 				me.resetVspeeds();
 				return 1;

@@ -8,11 +8,14 @@ var Internal = {
 	bankAngleVss: props.globals.getNode("/systems/fms/internal/bank-limit-vss"),
 	cgPercentMac: props.globals.getNode("/systems/fms/internal/cg-percent-mac"),
 	engOn: 0,
+	maxAlt: props.globals.getNode("/systems/fms/internal/max-alt"),
 	maxTocg: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs").getValue() / 1000,
 	maxZfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs").getValue() / 1000,
 	Messages: {
+		maxAlt: 0,
 		vspeeds: 0,
 	},
+	optAlt: props.globals.getNode("/systems/fms/internal/opt-alt"),
 	phase: 0, # 0: Preflight, 1: Takeoff, 2: Climb, 3: Cruise, 4: Descent, 5: Approach, 6: Rollout
 	phaseNew: 0,
 	phaseOut: props.globals.getNode("/systems/fms/internal/phase"),

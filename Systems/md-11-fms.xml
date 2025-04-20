@@ -1541,6 +1541,92 @@
 			</function>
 		</fcs_function>
 		
+		<!-- Opt/Max Altitudes -->
+		<fcs_function name="/systems/fms/internal/opt-alt">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/systems/fms/flight-data/gw-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-kg</independentVar>
+						<tableData>
+							150.487  430.000
+							154.970  424.246
+							160.031  417.886
+							165.164  411.238
+							170.080  404.589
+							174.852  399.097
+							179.985  392.882
+							185.118  386.667
+							190.034  380.741
+							194.951  375.682
+							200.084  370.334
+							205.072  364.987
+							210.061  359.639
+							215.267  354.147
+							220.038  349.377
+							224.882  345.185
+							230.088  340.560
+							235.149  335.791
+							240.137  331.021
+							245.126  326.540
+							250.042  322.493
+							255.103  318.591
+							260.092  315.122
+							265.008  311.075
+							270.069  307.028
+							275.274  302.981
+							280.000  299.000
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/internal/max-alt">
+			<function>
+				<ifthen>
+					<gt>
+						<property>/systems/fms/flight-data/gw-kg</property>
+						<value>0</value>
+					</gt>
+					<table>
+						<independentVar lookup="row">/systems/fms/flight-data/gw-kg</independentVar>
+						<tableData>
+							167.639  430.000
+							170.163  426.877
+							174.936  421.138
+							179.997  414.634
+							185.118  408.347
+							190.034  402.566
+							194.951  396.784
+							200.084  391.003
+							205.072  385.800
+							210.061  380.741
+							215.267  375.538
+							220.038  371.057
+							225.027  366.143
+							230.088  360.073
+							235.149  357.037
+							240.137  352.990
+							245.126  348.510
+							250.042  344.318
+							255.175  340.127
+							260.092  336.080
+							265.008  332.033
+							270.069  327.986
+							275.202  324.083
+							280.000  320.000
+						</tableData>
+					</table>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<!-- PERF Calculations -->
 		<fcs_function name="/systems/fms/speeds/max-climb">
 			<function>

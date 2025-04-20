@@ -24,7 +24,7 @@ var Init = {
 			C5L: "",
 			C5: "",
 			C6L: "OPT/MAXFL",
-			C6: "---/---",
+			C6: "",
 			
 			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "CO ROUTE",
@@ -81,6 +81,8 @@ var Init = {
 			cruiseInput: 0,
 			cruiseInputVals: [0, 0, 0, 0, 0, 0],
 			gnsPosSide: 0,
+			maxAlt: 0,
+			optAlt: 0,
 			positionSplit: ["", ""],
 		};
 		
@@ -159,6 +161,14 @@ var Init = {
 		} else {
 			me.Display.L6 = "---g/-----";
 			me.Display.LFont[5] = FONT.large;
+		}
+		
+		me.Value.optAlt = fms.Internal.optAlt.getValue();
+		me.Value.maxAlt = fms.Internal.maxAlt.getValue();
+		if (me.Value.optAlt > 0 and me.Value.maxAlt > 0) {
+			me.Display.C6 = sprintf("%03d", math.round(me.Value.optAlt)) ~ "/" ~ sprintf("%03d", math.round(me.Value.maxAlt));
+		} else {
+			me.Display.C6 = "---/---";
 		}
 		
 		if (fms.flightData.airportTo != "") {
