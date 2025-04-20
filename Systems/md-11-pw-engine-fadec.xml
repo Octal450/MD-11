@@ -234,7 +234,7 @@
 															<property>/systems/fadec/limit/rated-thrust</property>
 														</product>
 													</difference>
-													<property>/systems/fadec/limit/milthrust-unmodified</property>
+													<property>/systems/fadec/limit/milthrust-no-density</property>
 												</product>
 												<pow>
 													<quotient>
@@ -268,7 +268,7 @@
 												<property>/systems/fadec/limit/rated-thrust</property>
 											</product>
 										</difference>
-										<property>/systems/fadec/limit/milthrust-unmodified</property>
+										<property>/systems/fadec/limit/milthrust-no-density</property>
 									</product>
 									<value>0.00001</value>
 								</max>
@@ -388,7 +388,7 @@
 															<property>/systems/fadec/limit/rated-thrust</property>
 														</product>
 													</difference>
-													<property>/systems/fadec/limit/milthrust-unmodified</property>
+													<property>/systems/fadec/limit/milthrust-no-density</property>
 												</product>
 												<pow>
 													<quotient>
@@ -422,7 +422,7 @@
 												<property>/systems/fadec/limit/rated-thrust</property>
 											</product>
 										</difference>
-										<property>/systems/fadec/limit/milthrust-unmodified</property>
+										<property>/systems/fadec/limit/milthrust-no-density</property>
 									</product>
 									<value>0.00001</value>
 								</max>
@@ -557,7 +557,7 @@
 															<property>/systems/fadec/limit/rated-thrust</property>
 														</product>
 													</difference>
-													<property>/systems/fadec/limit/milthrust-unmodified</property>
+													<property>/systems/fadec/limit/milthrust-no-density</property>
 												</product>
 												<pow>
 													<quotient>
@@ -591,7 +591,7 @@
 												<property>/systems/fadec/limit/rated-thrust</property>
 											</product>
 										</difference>
-										<property>/systems/fadec/limit/milthrust-unmodified</property>
+										<property>/systems/fadec/limit/milthrust-no-density</property>
 									</product>
 									<value>0.00001</value>
 								</max>
