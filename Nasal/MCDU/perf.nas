@@ -25,7 +25,7 @@ var Perf = {
 			C5L: "",
 			C5: "",
 			C6L: "OPT/MAXFL",
-			C6: "---/---",
+			C6: "",
 			
 			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			L1L: "",
@@ -585,7 +585,7 @@ var PreSel = {
 			C5L: "",
 			C5: "",
 			C6L: "OPT/MAXFL",
-			C6: "---/---",
+			C6: "",
 			
 			LFont: [FONT.large, FONT.small, FONT.small, FONT.large, FONT.large, FONT.large],
 			L1L: "",
