@@ -2094,7 +2094,9 @@ var canvasBase = {
 			me["FMA_pitch_land"].setTranslation(0, 0);
 		}
 		
-		if (Value.Afs.ktsMach == fms.FmsSpd.ktsMach) {
+		if (fms.FmsSpd.active) {
+			me["FMA_speed"].setColor(0.9608, 0, 0.7765);
+		} else if (Value.Afs.ktsMach == fms.FmsSpd.ktsMach) {
 			if (fms.FmsSpd.ktsMach) {
 				if (abs(Value.Afs.mach - fms.FmsSpd.mach) <= 0.00105 or Value.Afs.fmsSpdDriving) { # 0.00105 to fix floating point error issue
 					me["FMA_speed"].setColor(0.9608, 0, 0.7765);
