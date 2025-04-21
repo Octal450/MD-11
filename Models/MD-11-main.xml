@@ -225,8 +225,8 @@
 			<z-m>3.24137</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
-			<y>0</y>
+			<x>-1.0</x>
+			<y>0.0</y>
 			<z>-0.05</z>
 		</direction>
 		<ambient>
@@ -277,7 +277,7 @@
 			<z-m>4.9782</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
+			<x>-1.0</x>
 			<y>-0.15</y>
 			<z>-0.1</z>
 		</direction>
@@ -329,7 +329,7 @@
 			<z-m>4.9782</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
+			<x>-1.0</x>
 			<y>0.15</y>
 			<z>-0.1</z>
 		</direction>
@@ -382,8 +382,8 @@
 			<z-m>6.09037</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
-			<y>-1</y>
+			<x>-1.0</x>
+			<y>-1.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -434,8 +434,8 @@
 			<z-m>6.09036</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
-			<y>1</y>
+			<x>-1.0</x>
+			<y>1.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -486,8 +486,8 @@
 			<z-m>6.11199</z-m>
 		</position>
 		<direction>
-			<x>1</x>
-			<y>-0.0</y>
+			<x>1.0</x>
+			<y>0.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -538,8 +538,8 @@
 			<z-m>6.11199</z-m>
 		</position>
 		<direction>
-			<x>1</x>
-			<y>-0.0</y>
+			<x>1.0</x>
+			<y>0.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -591,8 +591,8 @@
 			<z-m>6.09036</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
-			<y>-1</y>
+			<x>-1.0</x>
+			<y>-1.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -643,8 +643,8 @@
 			<z-m>6.09037</z-m>
 		</position>
 		<direction>
-			<x>-1</x>
-			<y>1</y>
+			<x>-1.0</x>
+			<y>1.0</y>
 			<z>-0.25</z>
 		</direction>
 		<ambient>
@@ -695,7 +695,7 @@
 			<z-m>6.11199</z-m>
 		</position>
 		<direction>
-			<x>1</x>
+			<x>1.0</x>
 			<y>0.0</y>
 			<z>-0.25</z>
 		</direction>
@@ -747,7 +747,7 @@
 			<z-m>6.11199</z-m>
 		</position>
 		<direction>
-			<x>1</x>
+			<x>1.0</x>
 			<y>0.0</y>
 			<z>-0.25</z>
 		</direction>
@@ -801,20 +801,20 @@
 		</position>
 		<ambient>
 			<r>0.78</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</ambient>
 		<diffuse>
 			<r>0.78</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</diffuse>
 		<specular>
 			<r>0.98</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</specular>
 		<attenuation>
@@ -846,40 +846,114 @@
 		</position>
 		<ambient>
 			<r>0.78</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</ambient>
 		<diffuse>
 			<r>0.78</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</diffuse>
 		<specular>
 			<r>0.98</r>
-			<g>0.00</g>
-			<b>0.00</b>
+			<g>0.0</g>
+			<b>0.0</b>
 			<a>1.0</a>
 		</specular>
 		<attenuation>
 			<c>1.0</c>
-			<l>0.90</l>
-			<q>3.00</q>
+			<l>0.9</l>
+			<q>3.0</q>
 		</attenuation>
 		<range-m>10</range-m>
 	</light>
 	
 	<!-- Logo Lights -->
-	<!--model>
-		<name>LogoLightL</name>
-		<path>Aircraft/MD-11/Models/Effects/Lights/logo-left.xml</path>
-		<offsets>
+	<light>
+		<name>LogoLightLCompositor</name>
+		<type>spot</type>
+		<dim-factor><property>systems/exterior-lights/logo-lights</property></dim-factor>
+		<position>
 			<x-m>26.035</x-m>
 			<y-m>-4.226</y-m>
 			<z-m>7.4684</z-m>
-		</offsets>
-	</model-->
+		</position>
+		<direction>
+			<x>0.07</x>
+			<y>0.7</y>
+			<z>1.0</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1.0</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1.0</a>
+		</diffuse>
+		<specular>
+			<r>0.98</r>
+			<g>0.98</g>
+			<b>0.98</b>
+			<a>1.0</a>
+		</specular>
+	    <attenuation>
+			<c>1.0</c>
+			<l>0.09</l>
+			<q>0.03</q>
+		</attenuation>
+		<spot-exponent>25</spot-exponent>
+		<spot-cutoff>35</spot-cutoff>
+		<range-m>10</range-m>
+	</light>
+	
+	<light>
+		<name>LogoLightRCompositor</name>
+		<type>spot</type>
+		<dim-factor><property>systems/exterior-lights/logo-lights</property></dim-factor>
+		<position>
+			<x-m>26.035</x-m>
+			<y-m>4.226</y-m>
+			<z-m>7.4684</z-m>
+		</position>
+		<direction>
+			<x>0.07</x>
+			<y>-0.7</y>
+			<z>1.0</z>
+		</direction>
+		<ambient>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1.0</a>
+		</ambient>
+		<diffuse>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+			<a>1.0</a>
+		</diffuse>
+		<specular>
+			<r>0.98</r>
+			<g>0.98</g>
+			<b>0.98</b>
+			<a>1.0</a>
+		</specular>
+	    <attenuation>
+			<c>1.0</c>
+			<l>0.09</l>
+			<q>0.03</q>
+		</attenuation>
+		<spot-exponent>25</spot-exponent>
+		<spot-cutoff>35</spot-cutoff>
+		<range-m>10</range-m>
+	</light>
 	
 	<!-- Effects -->
 	<animation>
