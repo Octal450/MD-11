@@ -14,6 +14,8 @@ var variousReset = func() {
 	pts.Controls.Lighting.navLights.setBoolValue(0);
 	pts.Controls.Lighting.strobeLights.setBoolValue(0);
 	pts.Controls.Lighting.thunderstorm.setBoolValue(0);
+	pts.Controls.Lighting.turnoffL.setBoolValue(0);
+	pts.Controls.Lighting.turnoffR.setBoolValue(0);
 	pts.Controls.Switches.adgHandle.setValue(0);
 	pts.Controls.Switches.gpwsOvrd.setValue(0);
 	pts.Controls.Switches.gpwsOvrdCover.setBoolValue(0);

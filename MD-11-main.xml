@@ -769,6 +769,8 @@
 			<stby-compass type="bool">0</stby-compass>
 			<strobe-lights type="bool">0</strobe-lights>
 			<thunderstorm type="bool">0</thunderstorm>
+			<turnoff-l type="bool">0</turnoff-l>
+			<turnoff-r type="bool">0</turnoff-r>
 		</lighting>
 		<pneumatics n="0">
 			<aft-temp type="double">0.45</aft-temp>

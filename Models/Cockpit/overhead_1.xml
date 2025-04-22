@@ -356,6 +356,8 @@
 		<object-name>TailTrans.low</object-name>
 		<object-name>TailTrans.on</object-name>
 		<object-name>TrimAir.off</object-name>
+		<object-name>TurnoffLLt.on</object-name>
+		<object-name>TurnoffRLt.on</object-name>
 		<object-name>YD_upra.fail</object-name>
 		<object-name>YD_upra.off</object-name>
 		<object-name>YD_uprb.fail</object-name>
@@ -8691,6 +8693,98 @@
 				<script>libraries.Sound.switch1();</script>
 			</binding>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>TurnoffLLt</object-name>
+		<object-name>TurnoffLLt.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/turnoff-l</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>TurnoffLLt</object-name>
+		<object-name>TurnoffLLt.on</object-name>
+		<property>controls/lighting/turnoff-l</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TurnoffLLt.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/turnoff-l</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>TurnoffRLt</object-name>
+		<object-name>TurnoffRLt.on</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/lighting/turnoff-r</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>TurnoffRLt</object-name>
+		<object-name>TurnoffRLt.on</object-name>
+		<property>controls/lighting/turnoff-r</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>TurnoffRLt.on</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>controls/lighting/turnoff-r</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
 	</animation>
 	
 	<animation>

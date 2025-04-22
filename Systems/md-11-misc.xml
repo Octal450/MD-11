@@ -305,6 +305,32 @@
 			<c1>7.5</c1>
 		</lag_filter>
 		
+		<switch name="/systems/exterior-lights/left-turnoff-light-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/turnoff-l eq 1
+				/systems/electrical/bus/l-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/exterior-lights/left-turnoff-light">
+			<input>/systems/exterior-lights/left-turnoff-light-cmd</input>
+			<c1>7.5</c1>
+		</lag_filter>
+		
+		<switch name="/systems/exterior-lights/right-turnoff-light-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/lighting/turnoff-r eq 1
+				/systems/electrical/bus/r-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/exterior-lights/right-turnoff-light">
+			<input>/systems/exterior-lights/right-turnoff-light-cmd</input>
+			<c1>7.5</c1>
+		</lag_filter>
+		
 		<switch name="/systems/exterior-lights/nav-lights">
 			<default value="0"/>
 			<test logic="AND" value="1">

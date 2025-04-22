@@ -17,15 +17,15 @@
 		<light_color_center_g type="float">0.6</light_color_center_g>
 		<light_color_center_b type="float">0.4</light_color_center_b>
 		<intensity_scale type="float"><use>sim/model/lights/beacon/state</use></intensity_scale>
-		<pointing_x type="float">1.0</pointing_x>
-		<pointing_y type="float">0.0</pointing_y>
-		<pointing_z type="float">0.0</pointing_z>
+		<pointing_x type="float">1</pointing_x>
+		<pointing_y type="float">0</pointing_y>
+		<pointing_z type="float">0</pointing_z>
 		<is_directional type="bool">false</is_directional>
 		<is_strobe type="bool">false</is_strobe>
 		<inner_angle type="float">0</inner_angle>
 		<outer_angle type="float">0</outer_angle>
 		<zero_angle type="float">0</zero_angle>
-		<outer_gain type="float">0.0</outer_gain>
+		<outer_gain type="float">0</outer_gain>
 	</parameters>
 
 </PropertyList>

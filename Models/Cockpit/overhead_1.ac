@@ -4772,7 +4772,7 @@ refs 4
 3 0.125057 0.061585
 kids 0
 OBJECT poly
-name "TurnOffRLt"
+name "TurnoffRLt"
 loc -21.807 -18.0914 -0.0736674
 data 18
 turnoff.right.mesh
@@ -4857,7 +4857,7 @@ refs 4
 10 0.186302 0.061585
 kids 0
 OBJECT poly
-name "TurnOffLLt"
+name "TurnoffLLt"
 loc -21.807 -18.0914 -0.0556564
 data 18
 turnoff.right.mesh
@@ -150101,7 +150101,7 @@ kids 0
 OBJECT group
 name "Lights"
 loc -21.7944 -17.7202 -0.0627433
-kids 176
+kids 178
 OBJECT poly
 name "Galley1.off"
 loc -0.00330544 0.0308971 0.191798
@@ -153139,10 +153139,10 @@ numsurf 1
 SURF 0x30
 mat 4
 refs 4
-1 0.0558798 0.960178
-3 0.0558798 1
-2 0 1
-0 0 0.960178
+1 0.057636 0.958641
+3 0.057636 0.998463
+2 0.00175624 0.998463
+0 0.00175624 0.958641
 kids 0
 OBJECT poly
 name "FADEC_MODE1.altn"
@@ -153447,6 +153447,44 @@ refs 4
 0 0.120067 0.024875
 1 0.195074 0.024875
 2 0.195074 0.040628
+kids 0
+OBJECT poly
+name "TurnoffLLt.on"
+loc -0.00240135 -0.473436 -0.0773097
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 0.0979958 0.089388
+0 0.0979958 0.079398
+0 0.106476 0.089388
+0 0.106476 0.079398
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+1 0.432161 0.958639
+3 0.432161 0.998461
+2 0.385247 0.998461
+0 0.385247 0.958639
+kids 0
+OBJECT poly
+name "TurnoffRLt.on"
+loc -0.00240135 -0.473436 -0.124546
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 0.0979958 0.120347
+0 0.0979958 0.106897
+0 0.106476 0.120347
+0 0.106476 0.106897
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+1 0.502192 0.958639
+3 0.502192 0.998461
+2 0.439032 0.998461
+0 0.439032 0.958639
 kids 0
 OBJECT poly
 name "EngMaxPointerReset"
