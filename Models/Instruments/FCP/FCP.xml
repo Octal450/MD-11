@@ -1906,8 +1906,8 @@
 		<object-name>BaroSet2.L</object-name>
 		<drag-scale-px>15</drag-scale-px>
 		<property>controls/cockpit/fcp/qfe</property>
-		<factor>120</factor>
-		<offset-deg>-60</offset-deg>
+		<factor>110</factor>
+		<offset-deg>-55</offset-deg>
 		<center>
 			<x-m>0</x-m>
 			<y-m>-0.22571</y-m>
@@ -2041,8 +2041,8 @@
 		<object-name>BaroSet2.R</object-name>
 		<drag-scale-px>15</drag-scale-px>
 		<property>controls/cockpit/fcp/qfe</property>
-		<factor>120</factor>
-		<offset-deg>-60</offset-deg>
+		<factor>110</factor>
+		<offset-deg>-55</offset-deg>
 		<center>
 			<x-m>0</x-m>
 			<y-m>0.2248</y-m>
@@ -2176,8 +2176,8 @@
 		<object-name>Mins2.L</object-name>
 		<drag-scale-px>15</drag-scale-px>
 		<property>controls/cockpit/fcp/minimums-mode</property>
-		<factor>-120</factor>
-		<offset-deg>60</offset-deg>
+		<factor>-110</factor>
+		<offset-deg>55</offset-deg>
 		<center>
 			<x-m>0</x-m>
 			<y-m>-0.22571</y-m>
@@ -2311,8 +2311,8 @@
 		<object-name>Mins2.R</object-name>
 		<drag-scale-px>15</drag-scale-px>
 		<property>controls/cockpit/fcp/minimums-mode</property>
-		<factor>-120</factor>
-		<offset-deg>60</offset-deg>
+		<factor>-110</factor>
+		<offset-deg>55</offset-deg>
 		<center>
 			<x-m>0</x-m>
 			<y-m>0.2248</y-m>
