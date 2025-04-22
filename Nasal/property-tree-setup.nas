@@ -39,8 +39,8 @@ var Controls = {
 		navLights: props.globals.getNode("/controls/lighting/nav-lights"),
 		strobeLights: props.globals.getNode("/controls/lighting/strobe-lights"),
 		thunderstorm: props.globals.getNode("/controls/lighting/thunderstorm"),
-		turnoffL: props.globals.getNode("/controls/lighting/turnoff-l"),
-		turnoffR: props.globals.getNode("/controls/lighting/turnoff-r"),
+		turnoffLightL: props.globals.getNode("/controls/lighting/turnoff-light-l"),
+		turnoffLightR: props.globals.getNode("/controls/lighting/turnoff-light-r"),
 	},
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),

@@ -308,7 +308,7 @@
 		<switch name="/systems/exterior-lights/left-turnoff-light-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/lighting/turnoff-l eq 1
+				/controls/lighting/turnoff-light-l eq 1
 				/systems/electrical/bus/l-emer-ac ge 112
 			</test>
 		</switch>
@@ -321,7 +321,7 @@
 		<switch name="/systems/exterior-lights/right-turnoff-light-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/controls/lighting/turnoff-r eq 1
+				/controls/lighting/turnoff-light-r eq 1
 				/systems/electrical/bus/r-emer-ac ge 112
 			</test>
 		</switch>

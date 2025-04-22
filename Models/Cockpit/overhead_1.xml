@@ -8704,7 +8704,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/lighting/turnoff-l</property>
+				<property>controls/lighting/turnoff-light-l</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -8716,7 +8716,7 @@
 		<type>translate</type>
 		<object-name>TurnoffLLt</object-name>
 		<object-name>TurnoffLLt.on</object-name>
-		<property>controls/lighting/turnoff-l</property>
+		<property>controls/lighting/turnoff-light-l</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>1</x>
@@ -8730,7 +8730,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/lighting/turnoff-l</property>
+					<property>controls/lighting/turnoff-light-l</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -8750,7 +8750,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/lighting/turnoff-r</property>
+				<property>controls/lighting/turnoff-light-r</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -8762,7 +8762,7 @@
 		<type>translate</type>
 		<object-name>TurnoffRLt</object-name>
 		<object-name>TurnoffRLt.on</object-name>
-		<property>controls/lighting/turnoff-r</property>
+		<property>controls/lighting/turnoff-light-r</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>1</x>
@@ -8776,7 +8776,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>controls/lighting/turnoff-r</property>
+					<property>controls/lighting/turnoff-light-r</property>
 					<value>1</value>
 				</equals>
 				<equals>

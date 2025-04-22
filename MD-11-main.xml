@@ -756,10 +756,6 @@
 			<landing-light-l type="double">0</landing-light-l>
 			<landing-light-n type="double">0</landing-light-n>
 			<landing-light-r type="double">0</landing-light-r>
-			<land-ext-l type="double">0</land-ext-l>
-			<land-ext-r type="double">0</land-ext-r>
-			<land-on-l type="double">0</land-on-l>
-			<land-on-r type="double">0</land-on-r>
 			<logo-lights type="bool">0</logo-lights>
 			<main-flood type="double">0</main-flood>
 			<main-integ type="double">0</main-integ>
@@ -769,8 +765,8 @@
 			<stby-compass type="bool">0</stby-compass>
 			<strobe-lights type="bool">0</strobe-lights>
 			<thunderstorm type="bool">0</thunderstorm>
-			<turnoff-l type="bool">0</turnoff-l>
-			<turnoff-r type="bool">0</turnoff-r>
+			<turnoff-light-l type="bool">0</turnoff-light-l>
+			<turnoff-light-r type="bool">0</turnoff-light-r>
 		</lighting>
 		<pneumatics n="0">
 			<aft-temp type="double">0.45</aft-temp>
