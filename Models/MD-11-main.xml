@@ -405,13 +405,13 @@
 			<a>1.0</a>
 		</specular>
 		<attenuation>
-			<c>0.1</c>
-			<l>0.01</l>
-			<q>0.0</q>
+			<c>0.2</c>
+			<l>0.02</l>
+			<q>0</q>
 		</attenuation>
 		<spot-exponent>50</spot-exponent>
 		<spot-cutoff>25</spot-cutoff>
-		<range-m>2500</range-m>
+		<range-m>100</range-m>
 	</light>
 	
 	<model>
@@ -457,13 +457,13 @@
 			<a>1.0</a>
 		</specular>
 		<attenuation>
-			<c>0.1</c>
-			<l>0.01</l>
-			<q>0.0</q>
+			<c>0.2</c>
+			<l>0.02</l>
+			<q>0</q>
 		</attenuation>
 		<spot-exponent>50</spot-exponent>
 		<spot-cutoff>25</spot-cutoff>
-		<range-m>2500</range-m>
+		<range-m>100</range-m>
 	</light>
 	
 	<!-- Wing Lights -->
