@@ -42,26 +42,5 @@
 			</entry>
 		</interpolation>
 	</animation>
-	
-	<animation>
-		<type>flash</type>
-		<object-name>landinglightals</object-name>
-		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>0.0</z-m>
-		</center>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<power>8</power>
-		<factor>6</factor>
-		<offset>0</offset>
-		<two-sides>false</two-sides>
-		<min>0.1</min>
-		<max>1.5</max>
-	</animation>
 
 </PropertyList>
