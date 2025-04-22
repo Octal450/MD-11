@@ -1542,7 +1542,7 @@
 		</fcs_function>
 		
 		<!-- Opt/Max Altitudes -->
-		<fcs_function name="/systems/fms/internal/opt-alt">
+		<fcs_function name="/systems/fms/internal/opt-fl">
 			<function>
 				<ifthen>
 					<gt>
@@ -1586,7 +1586,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fms/internal/max-alt">
+		<fcs_function name="/systems/fms/internal/max-fl">
 			<function>
 				<ifthen>
 					<gt>

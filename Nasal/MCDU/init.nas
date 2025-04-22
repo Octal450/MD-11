@@ -163,8 +163,8 @@ var Init = {
 			me.Display.LFont[5] = FONT.large;
 		}
 		
-		me.Value.optAlt = fms.Internal.optAlt.getValue();
-		me.Value.maxAlt = fms.Internal.maxAlt.getValue();
+		me.Value.optAlt = fms.Internal.optFl.getValue();
+		me.Value.maxAlt = fms.Internal.maxFl.getValue();
 		if (me.Value.optAlt > 0 and me.Value.maxAlt > 0) {
 			me.Display.C6 = sprintf("%03d", math.round(me.Value.optAlt)) ~ "/" ~ sprintf("%03d", math.round(me.Value.maxAlt));
 		} else {

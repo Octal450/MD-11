@@ -199,14 +199,15 @@ var EditFlightData = {
 		}
 		
 		# Cruise above Max Level MCDU message
-		if (flightData.cruiseFl > math.round(Internal.maxAlt.getValue())) {
-			if (!Internal.Messages.maxAlt) {
-				Internal.Messages.maxAlt = 1;
+		Value.maxFl = math.round(Internal.maxFl.getValue());
+		if (Value.maxFl > 0 and flightData.cruiseFl > Value.maxFl) {
+			if (!Internal.Messages.maxFl) {
+				Internal.Messages.maxFl = 1;
 				mcdu.BASE.setGlobalMessage("CRZ FL ABOVE MAX FL");
 			}
 		} else {
-			if (Internal.Messages.maxAlt) {
-				Internal.Messages.maxAlt = 0;
+			if (Internal.Messages.maxFl) {
+				Internal.Messages.maxFl = 0;
 				mcdu.BASE.removeGlobalMessage("CRZ FL ABOVE MAX FL");
 			}
 		}
