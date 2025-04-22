@@ -362,17 +362,15 @@
 	</light>
 	
 	<!-- Runway Turnoff Lights -->
-	<!--model>
+	<model>
 		<name>TurnoffLightL</name>
 		<path>Aircraft/MD-11/Models/Effects/Lights/turnoff-light-l.xml</path>
 		<offsets>
 			<x-m>-8.53111</x-m>
 			<y-m>-2.762</y-m>
 			<z-m>5.15686</z-m>
-			<heading-deg>90</heading-deg>
-			<pitch-deg>10</pitch-deg>
 		</offsets>
-	</model-->
+	</model>
 	
 	<light>
 		<name>TurnoffLightLCompositor</name>
@@ -415,6 +413,16 @@
 		<spot-cutoff>25</spot-cutoff>
 		<range-m>2500</range-m>
 	</light>
+	
+	<model>
+		<name>TurnoffLightR</name>
+		<path>Aircraft/MD-11/Models/Effects/Lights/turnoff-light-r.xml</path>
+		<offsets>
+			<x-m>-8.53111</x-m>
+			<y-m>2.762</y-m>
+			<z-m>5.15686</z-m>
+		</offsets>
+	</model>
 	
 	<light>
 		<name>TurnoffLightRCompositor</name>
@@ -459,17 +467,15 @@
 	</light>
 	
 	<!-- Wing Lights -->
-	<!--model>
+	<model>
 		<name>WingLightL</name>
-		<path>Aircraft/MD-11/Models/Effects/Lights/turnoff-light-l.xml</path>
+		<path>Aircraft/MD-11/Models/Effects/Lights/wing-light-l.xml</path>
 		<offsets>
 			<x-m>-7.84234</x-m>
 			<y-m>-2.98</y-m>
 			<z-m>6.20383</z-m>
-			<heading-deg>90</heading-deg>
-			<pitch-deg>10</pitch-deg>
 		</offsets>
-	</model-->
+	</model>
 	
 	<light>
 		<name>WingLightLCompositor</name>
@@ -512,6 +518,16 @@
 		<spot-cutoff>75</spot-cutoff>
 		<range-m>25</range-m>
 	</light>
+	
+	<model>
+		<name>WingLightR</name>
+		<path>Aircraft/MD-11/Models/Effects/Lights/wing-light-r.xml</path>
+		<offsets>
+			<x-m>-7.84234</x-m>
+			<y-m>2.98</y-m>
+			<z-m>6.20383</z-m>
+		</offsets>
+	</model>
 	
 	<light>
 		<name>WingLightRCompositor</name>
