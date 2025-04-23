@@ -3124,7 +3124,10 @@
 		<object-name>tyres.central</object-name>
 		<object-name>central.scissor.down</object-name>
 		<property>gear/gear[3]/compression-norm</property>
-		<factor>-0.3</factor>
+		<interpolation> <!-- Workaround due to 3D gear being too high -->
+			<entry><ind>0.532867</ind><dep> 0.0</dep></entry>
+			<entry><ind>2.532867</ind><dep>-0.6</dep></entry>
+		</interpolation>
 		<axis>
 			<x>-0.32787</x>
 			<y> 0.00000</y>
@@ -3136,10 +3139,10 @@
 		<type>rotate</type>
 		<object-name>central.scissor.down</object-name>
 		<property>gear/gear[3]/compression-norm</property>
-		<interpolation>
-			<entry><ind>0.0</ind><dep>  0</dep></entry>
-			<entry><ind>1.0</ind><dep>-35</dep></entry>
-			<entry><ind>1.5</ind><dep>-53</dep></entry>
+		<interpolation> <!-- Workaround due to 3D gear being too high -->
+			<entry><ind>0.532867</ind><dep>  0</dep></entry>
+			<entry><ind>1.532867</ind><dep>-35</dep></entry>
+			<entry><ind>2.032867</ind><dep>-53</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>4.838</x-m>
@@ -3157,12 +3160,12 @@
 		<type>rotate</type>
 		<object-name>central.scissor.up</object-name>
 		<property>gear/gear[3]/compression-norm</property>
-		<interpolation>
-			<entry><ind>0.00</ind><dep> 0</dep></entry>
-			<entry><ind>0.50</ind><dep>13</dep></entry>
-			<entry><ind>1.00</ind><dep>18</dep></entry>
-			<entry><ind>1.25</ind><dep>20</dep></entry>
-			<entry><ind>1.50</ind><dep>19</dep></entry>
+		<interpolation> <!-- Workaround due to 3D gear being too high -->
+			<entry><ind>0.532867</ind><dep> 0</dep></entry>
+			<entry><ind>1.032867</ind><dep>13</dep></entry>
+			<entry><ind>1.532867</ind><dep>18</dep></entry>
+			<entry><ind>1.782867</ind><dep>20</dep></entry>
+			<entry><ind>2.032867</ind><dep>19</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>5.232</x-m>
