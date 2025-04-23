@@ -1091,7 +1091,7 @@
 			<z-m>7.4684</z-m>
 		</position>
 		<direction>
-			<x>0.07</x>
+			<x>0.08</x>
 			<y>0.7</y>
 			<z>1.0</z>
 		</direction>
@@ -1133,7 +1133,7 @@
 			<z-m>7.4684</z-m>
 		</position>
 		<direction>
-			<x>0.07</x>
+			<x>0.08</x>
 			<y>-0.7</y>
 			<z>1.0</z>
 		</direction>
@@ -1740,8 +1740,8 @@
 		<object-name>elevator.1i</object-name>
 		<object-name>elevator.2i</object-name>
 		<object-name>elevator.2o</object-name>
-		<object-name>LogoLightL</object-name>
-		<object-name>LogoLightR</object-name>
+		<object-name>LogoLightLCompositor</object-name>
+		<object-name>LogoLightRCompositor</object-name>
 		<property>sim/multiplay/generic/float[24]</property>
 		<factor>1</factor>
 		<axis>
