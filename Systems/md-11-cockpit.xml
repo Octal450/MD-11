@@ -527,7 +527,7 @@
 	
 	<channel name="Cockpit Lighting" execrate="8">
 		
-		<switch name="/systems/lighting/fcp-flood">
+		<switch name="/systems/lighting/fcp-flood-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
@@ -538,14 +538,24 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/fcp-integ">
+		<lag_filter name="/systems/lighting/fcp-flood">
+			<input>/systems/lighting/fcp-flood-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/fcp-integ-cmd">
 			<default value="0"/>
 			<test value="/controls/lighting/fcp-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/main-flood">
+		<lag_filter name="/systems/lighting/fcp-integ">
+			<input>/systems/lighting/fcp-integ-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/main-flood-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
@@ -556,14 +566,24 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/main-integ">
+		<lag_filter name="/systems/lighting/main-flood">
+			<input>/systems/lighting/main-flood-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/main-integ-cmd">
 			<default value="0"/>
 			<test value="/controls/lighting/main-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/overhead-flood">
+		<lag_filter name="/systems/lighting/main-integ">
+			<input>/systems/lighting/main-integ-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/overhead-flood-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
@@ -574,20 +594,35 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/overhead-integ">
+		<lag_filter name="/systems/lighting/overhead-flood">
+			<input>/systems/lighting/overhead-flood-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/overhead-integ-cmd">
 			<default value="0"/>
 			<test value="/controls/lighting/overhead-integ">
 				/systems/electrical/generic/pwr ge 24
 			</test>
 		</switch>
 		
-		<switch name="/systems/lighting/stby-compass">
+		<lag_filter name="/systems/lighting/overhead-integ">
+			<input>/systems/lighting/overhead-integ-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/lighting/stby-compass-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/generic/pwr ge 24
 				/controls/lighting/stby-compass eq 1
 			</test>
 		</switch>
+		
+		<lag_filter name="/systems/lighting/stby-compass">
+			<input>/systems/lighting/stby-compass-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
