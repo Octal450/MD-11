@@ -109,22 +109,6 @@ setlistener("/position/wow", func() {
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/systems/exterior-lights/beacon");
 var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/systems/exterior-lights/strobe-lights");
 
-# Backwards compatibility, removed soon
-var ApPanel = {
-	apDisc: func() {
-		cockpit.ApPanel.apDisc();
-		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
-	},
-	atDisc: func() {
-		cockpit.ApPanel.atDisc();
-		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
-	},
-	toga: func() {
-		cockpit.ApPanel.toga();
-		gui.popupTip("libraries.ApPanel is deprecated. Please switch to cockpit.ApPanel.");
-	},
-};
-
 # Custom controls.nas overrides
 controls.autopilotDisconnect = func() {
 	cockpit.ApPanel.apDisc();
