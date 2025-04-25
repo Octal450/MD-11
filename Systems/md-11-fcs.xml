@@ -1567,20 +1567,11 @@
 			</test>
 		</switch>
 		
-		<summer name="/systems/fcs/tiller/rudder-cmd-input">
-			<input>/systems/fcs/tiller/rudder-cmd-switch</input>
-			<input>/systems/fcs/rudders/trim</input> <!-- 13 of 30 -->
-			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
-			</clipto>
-		</summer>
-		
 		<fcs_function name="/systems/fcs/tiller/rudder-cmd-deg"> <!-- Combines rudder and tiller into just rudder -->
 			<function>
 				<table>
 					<independentVar lookup="row">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
-					<independentVar lookup="column">/systems/fcs/tiller/rudder-cmd-input</independentVar>
+					<independentVar lookup="column">/systems/fcs/tiller/rudder-cmd-switch</independentVar>
 					<independentVar lookup="table">/velocities/groundspeed-kt</independentVar>
 					<tableData breakPoint="0.5">
 						  -1.00 -0.01  0.01  1.00
@@ -1619,7 +1610,7 @@
 						</tableData>
 					</table>
 					<product>
-						<property>/systems/fcs/tiller/rudder-cmd-input</property>
+						<property>/systems/fcs/tiller/rudder-cmd-switch</property>
 						<table>
 							<independentVar lookup="row">/velocities/groundspeed-kt</independentVar>
 							<tableData>
