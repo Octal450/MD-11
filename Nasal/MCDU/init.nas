@@ -192,7 +192,7 @@ var Init = {
 		}
 		
 		if (fms.flightData.costIndex > -1) {
-			me.Display.R6 = sprintf("%3.0f", fms.flightData.costIndex);;
+			me.Display.R6 = sprintf("%d", fms.flightData.costIndex);
 		} else if (fms.flightData.airportTo != "") {
 			me.Display.R6 = "___";
 		} else {
