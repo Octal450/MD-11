@@ -45,7 +45,7 @@
 		</input>
 		<output>/sim/sound/wingview-aft</output>
 	</logic>
-
+	
 	<logic>
 		<input>
 			<or>
@@ -58,7 +58,7 @@
 		</input>
 		<output>/sim/sound/internal</output>
 	</logic>
-
+	
 	<logic>
 		<input>
 			<or>
@@ -72,7 +72,7 @@
 		</input>
 		<output>/sim/sound/internal-custom</output>
 	</logic>
-
+	
 	<logic>
 		<input>
 			<not-equals>
