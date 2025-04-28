@@ -60,6 +60,9 @@ var Fdm = {
 		Aero: {
 			alphaDegDamped: props.globals.getNode("/fdm/jsbsim/aero/alpha-deg-damped"),
 		},
+		Contact: {
+			anyWowOut: props.globals.getNode("/fdm/jsbsim/contact/any-wow-out"),
+		},
 		Inertia: {
 			cgPercentMac: props.globals.getNode("/fdm/jsbsim/inertia/cg-percent-mac"),
 			weightLbs: props.globals.getNode("/fdm/jsbsim/inertia/weight-lbs"),
