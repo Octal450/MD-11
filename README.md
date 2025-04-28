@@ -4,6 +4,7 @@ A very advanced simulation of the McDonnell Douglas MD-11 for FlightGear.
 Present pack includes the following McDonnell Douglas MD-11 variants:
 - MD-11 (GE CF6-80C2D1F and PW4462)
 - MD-11F (GE CF6-80C2D1F and PW4462)
+- Bonus KMD-11 (PW4462, Fictional)
 
 FlightGear 2024.1.1 or later is supported. For more info, please see the [project wiki page](https://wiki.flightgear.org/McDonnell_Douglas_MD-11).
 

@@ -292,6 +292,7 @@
 		<multiplay n="0">
 			<generic n="0">
 				<bool n="0" alias="/services/chocks/enable"/>
+				<bool n="1" alias="/options/drogues-shown"/>
 				<float n="0" alias="/gear/gear[0]/rollspeed-ms"/>
 				<float n="1" alias="/gear/gear[1]/rollspeed-ms"/>
 				<float n="2" alias="/gear/gear[2]/rollspeed-ms"/>
@@ -304,7 +305,7 @@
 				<float n="10" alias="/gear/gear[0]/steering-norm"/>
 				<float n="11" alias="/fdm/jsbsim/fcs/slat-pos-norm"/>
 				<float n="12" alias="/sim/model/wingflex"/>
-				<!-- 13 is reserved for future use -->
+				<float n="13" alias="/systems/fcs/boom-final"/>
 				<float n="14" alias="/systems/fcs/spoiler-l1/final-deg"/>
 				<float n="15" alias="/systems/fcs/spoiler-l2/final-deg"/>
 				<float n="16" alias="/systems/fcs/spoiler-l3/final-deg"/>
@@ -1614,6 +1615,12 @@
 			<apoff-single type="bool">0</apoff-single>
 		</sound>
 	</it-autoflight>
+	
+	<payload n="0">
+		<armament n="0">
+			<msg type="bool">0</msg>
+		</armament>
+	</payload>
 	
 	<position n="0">
 		<wow type="bool">1</wow>

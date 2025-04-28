@@ -149,6 +149,26 @@
 				/velocities/groundspeed-kt ge 1
 			</test>
 		</switch>
+		
+		<switch name="contact/any-wow"> <!-- For failure-bridge.nas -->
+			<default value="0"/>
+			<test logic="OR" value="1">
+				contact/unit[4]/WOW eq 1
+				contact/unit[5]/WOW eq 1
+				contact/unit[6]/WOW eq 1
+				contact/unit[7]/WOW eq 1
+				contact/unit[8]/WOW eq 1
+				contact/unit[9]/WOW eq 1
+				contact/unit[10]/WOW eq 1
+				contact/unit[11]/WOW eq 1
+				contact/unit[12]/WOW eq 1
+				contact/unit[13]/WOW eq 1
+				contact/unit[14]/WOW eq 1
+				contact/unit[15]/WOW eq 1
+				contact/unit[16]/WOW eq 1
+			</test>
+			<output>contact/any-wow-out</output>
+		</switch>
 	
 	</channel>
 	

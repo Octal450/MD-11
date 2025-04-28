@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 JSBSim -->
+<!-- Copyright (c) 2025 Josh Davidson (Octal450) -->
+
+<mass_balance>
+	
+	<ixx unit="SLUG*FT2">3461758</ixx>
+	<iyy unit="SLUG*FT2">8960967</iyy>
+	<izz unit="SLUG*FT2">6790549</izz>
+	<ixy unit="SLUG*FT2">0</ixy>
+	<ixz unit="SLUG*FT2">0</ixz>
+	<iyz unit="SLUG*FT2">0</iyz>
+	<emptywt unit="LBS">251150</emptywt> <!-- GE -->
+	
+	<location name="CG" unit="M">
+		<x>2.837</x> <!-- 33.8% MAC -->
+		<y>0</y>
+		<z>5.69282</z>
+	</location>
+	
+	<!-- All below positions fudged for CG accuracy -->
+	<pointmass name="Forward Fuel Tank">
+		<weight unit="LBS">27300</weight>
+		<location name="POINTMASS" unit="M"> 
+			<x>-5.6</x>
+			<y>0</y>
+			<z>6.8</z>
+		</location>
+	</pointmass>
+	<pointmass name="Aft Fuel Tank">
+		<weight unit="LBS">27300</weight>
+		<location name="POINTMASS" unit="M"> 
+			<x>5.4</x>
+			<y>0</y>
+			<z>6.8</z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Forward Lower Cargo">
+		<weight unit="LBS">13000</weight>
+		<location name="POINTMASS" unit="M">
+			<x>-8.2</x>
+			<y>0</y>
+			<z>5.0</z>
+		</location>
+	</pointmass>
+	<pointmass name="Aft Lower Cargo">
+		<weight unit="LBS">15000</weight>
+		<location name="POINTMASS" unit="M">
+			<x>10.1</x>
+			<y>0</y>
+			<z>5.0</z>
+		</location>
+	</pointmass>
+	<pointmass name="Aft Bulk Cargo">
+		<weight unit="LBS">1000</weight>
+		<location name="POINTMASS" unit="M">
+			<x>14.3</x>
+			<y>0</y>
+			<z>5.0</z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Nothing"> <!-- Various code expects 6 pointmasses -->
+		<weight unit="LBS">0</weight>
+		<location name="POINTMASS" unit="M">
+			<x>0</x>
+			<y>0</y>
+			<z>0</z>
+		</location>
+	</pointmass>
+
+</mass_balance>

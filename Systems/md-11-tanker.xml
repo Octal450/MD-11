@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Tanker -->
+<!-- Copyright (c) 2025 Josh Davidson (Octal450) -->
+
+<system name="MD-11: Tanker">
+	
+	<channel name="Refueling Logic">
+		
+		<switch name="/systems/fcs/boom-rate">
+			<default value="0"/>
+			<test logic="OR" value="0.2">
+				/systems/hydraulics/sys-1-psi ge 1500
+				/systems/hydraulics/sys-2-psi ge 1500
+				/systems/hydraulics/sys-3-psi ge 1500
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fcs/boom-pos">
+			<input>/options/boom-pos-cmd</input>
+			<rate_limit>/systems/fcs/boom-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/fcs/boom-lag">
+			<input>/systems/fcs/boom-pos</input>
+			<c1>5.0</c1>
+			<output>/systems/fcs/boom-final</output> <!-- So it can be overidden by flight recorder -->
+		</lag_filter>
+		
+		<switch name="/systems/fcs/tanker-active">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/fcs/boom-lag ge 0.95
+				/options/drogues-shown eq 1
+			</test>
+			<output>/tanker</output> <!-- Sets this property for MP -->
+		</switch>
+	
+	</channel>
+
+</system>

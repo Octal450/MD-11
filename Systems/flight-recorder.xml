@@ -181,6 +181,14 @@
 				<type>float</type>
 				<property>/systems/fcs/spoiler-r5/final-deg</property>
 			</signal>
+			<signal>
+				<type>float</type>
+				<property>/systems/fcs/boom-final</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/options/drogues-shown</property>
+			</signal>
 		</signals>
 	</config>
 

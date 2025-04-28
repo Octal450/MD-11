@@ -419,6 +419,29 @@
 			</checkbox>
 			
 			<checkbox>
+				<enable>
+					<and>
+						<equals>
+							<property>/position/wow</property>
+							<value>1</value>
+						</equals>
+						<less-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>2</value>
+						</less-than>
+						<property>/systems/acconfig/damage-installed</property>
+					</and>
+				</enable>
+				<label>Allow Damage</label>
+				<halign>left</halign>
+				<property>/payload/armament/msg</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>Deflected Ailerons Equipped (PIP)</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/deflected-aileron</property>

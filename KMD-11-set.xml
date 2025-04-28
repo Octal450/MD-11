@@ -1,0 +1,176 @@
+﻿<?xml version="1.0"?>
+
+<!-- Copyright (c) 2025 Josh Davidson (Octal450) -->
+
+<PropertyList include="MD-11-main.xml">
+	
+    <sim>
+		<aero>FDE/KMD-11</aero>
+		<description>McDonnell Douglas KMD-11 (PW4462, Fictional)</description>
+		<flight-model>jsb</flight-model>
+		<menubar>
+			<default>
+				<menu n="101">
+					<item n="8">
+						<label>Toggle Boom</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>/options/boom-pos-cmd</property>
+						</binding>
+					</item>
+					<item n="9">
+						<label>Toggle Drogue</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>/options/drogues-shown</property>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+		<model n="0">
+			<door n="0">
+				<jetway-hood-deg type="float">5</jetway-hood-deg>
+				<position-x-m type="float">-24.0</position-x-m>
+				<position-y-m type="float">-2.3</position-y-m>
+				<position-z-m type="float">6.0</position-z-m>
+			</door>
+			<livery>
+				<file type="string">USAF</file>
+			</livery>
+			<path>Aircraft/MD-11/Models/KMD-11.xml</path>
+		</model>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>gui/splash/md-11f-pw.png</path>
+			</preview>
+		</previews>
+		<sound n="0">
+			<path>Aircraft/MD-11/Sounds/cf680-sound.xml</path> <!-- Temporary -->
+		</sound>
+		<systems n="0">
+			<autopilot n="6">
+				<path>Aircraft/MD-11/Sounds/cf680-sound-control.xml</path> <!-- Temporary -->
+			</autopilot>
+		</systems>
+		<variant-of>MD-11F-GE</variant-of>
+	</sim>
+	
+	<fdm n="0">
+		<jsbsim n="0">
+			<inertia n="0">
+				<empty-weight-x-in type="double">111.692913</empty-weight-x-in> <!-- 2.837 meters, 33.8% MAC -->
+			</inertia>
+		</jsbsim>
+	</fdm>
+	
+	<limits>
+		<mass-and-balance> <!-- Data source: TCDS -->
+			<maximum-landing-mass-lbs>471500</maximum-landing-mass-lbs>
+			<maximum-takeoff-mass-lbs>618000</maximum-takeoff-mass-lbs>
+			<maximum-zero-fuel-mass-lbs>461300</maximum-zero-fuel-mass-lbs>
+		</mass-and-balance>
+	</limits>
+	
+	<options n="0">
+		<boom-pos-cmd type="bool">0</boom-pos-cmd>
+		<drogues-shown type="bool">0</drogues-shown>
+		<eng type="string">PW</eng>
+		<eng-string type="string">PW4462</eng-string>
+		<type type="string">KMD-11</type>
+	</options>
+	
+	<payload n="0">
+		<armament n="0">
+			<enable-craters type="bool">1</enable-craters>
+			<MAW-active type="bool">0</MAW-active>
+			<MAW-bearing type="double">0</MAW-bearing>
+			<MAW-semiactive type="bool">0</MAW-semiactive>
+			<MLW-bearing type="double">0</MLW-bearing>
+			<MLW-count type="int">0</MLW-count>
+			<MLW-launcher type="string"></MLW-launcher>
+			<models type="string">Aircraft/MD-11/Models/Damage/</models>
+			<!--msg type="bool">0</msg--> <!-- Moved to -main -->
+			<spike type="bool">0</spike>
+		</armament>
+		<d-config n="0">
+			<auto_flare_caller type="bool">0</auto_flare_caller>
+			<full_damage_dist_m type="double">3</full_damage_dist_m>
+			<hitable_by_air_munitions type="bool">1</hitable_by_air_munitions>
+			<hitable_by_cannon type="bool">1</hitable_by_cannon>
+			<hp_max type="double">80</hp_max>
+			<is_fleet type="bool">0</is_fleet>
+			<m28_auto type="bool">0</m28_auto>
+			<mlw_max type="double">0</mlw_max>
+			<rwr_audio_extended type="bool">0</rwr_audio_extended>
+			<rwr_to_screen type="bool">1</rwr_to_screen>
+			<tacview_supported type="bool">0</tacview_supported>
+			<use_hitpoints_instead_of_failure_modes_bool type="bool">0</use_hitpoints_instead_of_failure_modes_bool>
+		</d-config>
+		<weight n="0">
+			<name>Forward Fuel Tank</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">59508</max-lb>
+		</weight>
+		<weight n="1">
+			<name>Aft Fuel Tank</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">70349</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Forward Lower Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">25200</max-lb>
+		</weight>
+		<weight n="3">
+			<name>Aft Lower Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">33600</max-lb>
+		</weight>
+		<weight n="4">
+			<name>Aft Bulk Cargo</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">2000</max-lb>
+		</weight>
+	</payload>
+	
+	<systems n="0">
+		<ignition n="0">
+			<starter-cutoff-n2 type="double">47</starter-cutoff-n2>
+		</ignition>
+ 		<refuel n="0">
+ 			<max-fuel-transfer-lbs-min type="double">6000</max-fuel-transfer-lbs-min>
+ 			<serviceable type="bool">false</serviceable> <!-- Doesn't work properly yet -->
+ 			<type type="string">boom</type>
+ 		</refuel>
+	</systems>
+	
+	<tanker type="bool">0</tanker> <!-- Set by refueling logic -->
+    
+	<nasal n="0">
+		<setup>
+			<script>aircraft.livery.init("Aircraft/MD-11/Models/Liveries/KMD-11");</script>
+		</setup>
+		<failure-bridge>
+			<file>Aircraft/MD-11/Nasal/failure-bridge.nas</file>
+		</failure-bridge>
+		<notifications>
+			<file>Aircraft/MD-11/Nasal/Damage/ArmamentNotification.nas</file>
+			<file>Aircraft/MD-11/Nasal/Damage/GeoBridgedTransmitter.nas</file>
+		</notifications>
+		<damage>
+			<file>Aircraft/MD-11/Nasal/Damage/damage.nas</file>
+		</damage>
+		<aar>
+			<file>Aircraft/Generic/aar.nas</file>
+		</aar>
+	</nasal>
+
+</PropertyList>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0"?>
+
+<!-- Copyright (c) 2025 Josh Davidson (Octal450) -->
+
+<PropertyList>
+	
+	<path>KMD-11.ac</path>
+	
+	<main include="MD-11-main.xml" omit-node="y"/>
+	
+	<nasal>
+		<load>
+			var livery_update = aircraft.livery_update.new("Aircraft/MD-11/Models/Liveries/KMD-11");
+		</load>
+		<unload>
+			livery_update.stop();
+		</unload>
+	</nasal>
+	
+	<animation>
+		<type>material</type>
+		<object-name>fuselage</object-name>
+		<object-name>fuselage.cone</object-name>
+		<object-name>cargo.door</object-name>
+		<object-name>rudder.u</object-name>
+		<object-name>rudder_trailing.u</object-name>
+		<object-name>rudder.l</object-name>
+		<object-name>rudder_trailing.l</object-name>
+		<object-name>engines</object-name>
+		<object-name>right.reverser</object-name>
+		<object-name>left.reverser</object-name>
+		<object-name>center.reverser</object-name>
+		<object-name>main.left.door</object-name>
+		<object-name>central.back.left</object-name>
+		<object-name>central.front.left</object-name>
+		<object-name>central.front.right</object-name>
+		<object-name>central.back.right</object-name>
+		<object-name>main.right.door</object-name>
+		<object-name>lgdoor.right.front.2</object-name>
+		<object-name>lgdoor.right.front</object-name>
+		<object-name>lgdoor.left.front.2</object-name>
+		<object-name>lgdoor.left.front</object-name>
+		<object-name>winglet.left</object-name>
+		<object-name>winglet.right</object-name>
+		<object-name>cargo1</object-name>
+		<object-name>cargo2</object-name>
+		<object-name>cargo3</object-name>
+		<object-name>flap.3.part2</object-name>
+		<object-name>flap.5.part2</object-name>
+		<object-name>rdoor.1</object-name>
+		<object-name>ldoor.1</object-name>
+		<object-name>rdoor.2</object-name>
+		<object-name>ldoor.2</object-name>
+		<object-name>rdoor.3</object-name>
+		<object-name>ldoor.3</object-name>
+		<object-name>rdoor.4</object-name>
+		<object-name>ldoor.4</object-name>
+		<object-name>VHF.lowerF</object-name>
+		<object-name>VHF.lowerA</object-name>
+		<object-name>VHF.upper</object-name>
+		<property-base>sim/model/livery</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>USAF.png</texture>
+	</animation>
+	
+	<model>
+		<name>Cabin</name>
+		<path>Aircraft/MD-11/Models/Cabin/cargo.xml</path>
+	</model>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>cargo.door</object-name>
+		<object-name>cargo.door.inside</object-name>
+		<property>/sim/model/door-positions/cargo-upper/position-norm</property>
+		<factor>-110</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-1.7428</y-m>
+			<z-m>8.7132</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cargo.door</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<not><property>/sim/current-view/internal</property></not>
+				</condition>
+				<command>nasal</command>
+				<script>libraries.Doors.toggle(libraries.Doors.cargoUpper, "cargo-upper", "Upper Cargo");</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- Tanker stuff -->
+	<multiplay>
+		<refuel>
+			<type>boom</type>
+			<type>probe</type>
+		</refuel>
+	</multiplay>
+	
+	<animation>
+		<name>Boom rotate</name>
+		<type>rotate</type>
+		<object-name>BoomGroup</object-name>
+		<property>sim/multiplay/generic/float[13]</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep> 0</dep></entry>
+			<entry><ind>0.7</ind><dep>40</dep></entry>
+			<entry><ind>1.0</ind><dep>40</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>20.5819</x-m>
+			<y-m>0</y-m>
+			<z-m>4.19861</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Boom extend</name>
+		<type>translate</type>
+		<object-name>Hose</object-name>
+		<property>sim/multiplay/generic/float[13]</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.7</ind><dep>0.0</dep></entry>
+			<entry><ind>1.0</ind><dep>3.5</dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m>20.5819</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>4.19861</z1-m>
+			<x2-m>27.4522</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>5.76847</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>RefuelProbeLeft</object-name>
+		<object-name>RefuelProbeRight</object-name>
+		<condition>
+			<property>sim/multiplay/generic/bool[1]</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ProbeLeft</object-name>
+		<property>sim/multiplay/generic/float[12]</property>
+		<factor>-0.000005</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>3.7271</x-m>
+			<y-m>-9.4415</y-m>
+			<z-m>5.3725</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ProbeLeft</object-name>
+		<property>sim/multiplay/generic/float[12]</property>
+		<factor>-0.000005</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>8.7968</x-m>
+			<y-m>-17.6849</y-m>
+			<z-m>5.7059</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ProbeRight</object-name>
+		<property>sim/multiplay/generic/float[12]</property>
+		<factor>0.000005</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>3.7271</x-m>
+			<y-m>9.4415</y-m>
+			<z-m>5.3725</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>ProbeRight</object-name>
+		<property>sim/multiplay/generic/float[12]</property>
+		<factor>0.000005</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>8.7968</x-m>
+			<y-m>17.6849</y-m>
+			<z-m>5.7059</z-m>
+		</center>
+	</animation>
+
+</PropertyList>
