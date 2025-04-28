@@ -149,7 +149,12 @@ var ELECTRICAL = {
 		gen1: props.globals.getNode("/systems/failures/electrical/gen-1"),
 		gen2: props.globals.getNode("/systems/failures/electrical/gen-2"),
 		gen3: props.globals.getNode("/systems/failures/electrical/gen-3"),
+		si: props.globals.getNode("/systems/failures/electrical/si"),
 		system: props.globals.getNode("/systems/failures/electrical/system"),
+		tr1: props.globals.getNode("/systems/failures/electrical/tr-1"),
+		tr2a: props.globals.getNode("/systems/failures/electrical/tr-2a"),
+		tr2b: props.globals.getNode("/systems/failures/electrical/tr-2b"),
+		tr3: props.globals.getNode("/systems/failures/electrical/tr-3"),
 	},
 	Lights: {
 		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
@@ -201,7 +206,12 @@ var ELECTRICAL = {
 		me.Failures.gen1.setBoolValue(0);
 		me.Failures.gen2.setBoolValue(0);
 		me.Failures.gen3.setBoolValue(0);
+		me.Failures.si.setBoolValue(0);
 		me.Failures.system.setBoolValue(0);
+		me.Failures.tr1.setBoolValue(0);
+		me.Failures.tr2a.setBoolValue(0);
+		me.Failures.tr2b.setBoolValue(0);
+		me.Failures.tr3.setBoolValue(0);
 	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {

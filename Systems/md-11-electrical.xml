@@ -1396,10 +1396,12 @@
 			<input>/systems/electrical/relay/ac-gen-1-tr-1/output</input>
 			<table> <!-- AC to DC converter -->
 				<independentVar lookup="row">/systems/electrical/relay/ac-gen-1-tr-1/output</independentVar>
+				<independentVar lookup="column">/systems/failures/electrical/tr-1</independentVar>
 				<tableData>
-					112  0.21428571429
-					115  0.24347826087
-					118  0.24576271186
+					     0              1
+					112  0.21428571429  0
+					115  0.24347826087  0
+					118  0.24576271186  0
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -1420,10 +1422,12 @@
 			<input>/systems/electrical/relay/ac-gen-2-tr-2a/output</input>
 			<table> <!-- AC to DC converter -->
 				<independentVar lookup="row">/systems/electrical/relay/ac-gen-2-tr-2a/output</independentVar>
+				<independentVar lookup="column">/systems/failures/electrical/tr-2a</independentVar>
 				<tableData>
-					112  0.21428571429
-					115  0.24347826087
-					118  0.24576271186
+					     0              1
+					112  0.21428571429  0
+					115  0.24347826087  0
+					118  0.24576271186  0
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -1444,10 +1448,12 @@
 			<input>/systems/electrical/relay/ac-gndsvc-tr-2b/output</input>
 			<table> <!-- AC to DC converter -->
 				<independentVar lookup="row">/systems/electrical/relay/ac-gndsvc-tr-2b/output</independentVar>
+				<independentVar lookup="column">/systems/failures/electrical/tr-2b</independentVar>
 				<tableData>
-					112  0.21428571429
-					115  0.24347826087
-					118  0.24576271186
+					     0              1
+					112  0.21428571429  0
+					115  0.24347826087  0
+					118  0.24576271186  0
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -1468,10 +1474,12 @@
 			<input>/systems/electrical/relay/r-emer-ac-tr-3/output</input>
 			<table> <!-- AC to DC converter -->
 				<independentVar lookup="row">/systems/electrical/relay/r-emer-ac-tr-3/output</independentVar>
+				<independentVar lookup="column">/systems/failures/electrical/tr-3</independentVar>
 				<tableData>
-					112  0.21428571429
-					115  0.24347826087
-					118  0.24576271186
+					     0              1
+					112  0.21428571429  0
+					115  0.24347826087  0
+					118  0.24576271186  0
 				</tableData>
 			</table>
 		</scheduled_gain>
@@ -1844,11 +1852,12 @@
 			<function>
 				<table> <!-- DC to AC converter -->
 					<independentVar lookup="row">/systems/electrical/bus/l-emer-dc</independentVar>
+					<independentVar lookup="column">/systems/failures/electrical/si</independentVar>
 					<tableData>
-						 0    0
-						24  112
-						28  115
-						29  118
+						    0    1
+						24  112  0
+						28  115  0
+						29  118  0
 					</tableData>
 				</table>
 			</function>

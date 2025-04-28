@@ -177,6 +177,56 @@
 				<live>true</live>
 			</checkbox>
 			
+			<checkbox>
+				<label>Static Inverter</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/si</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Transformer Rectifier 1</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/tr-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Transformer Rectifier 2A</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/tr-2a</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Transformer Rectifier 2B</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/tr-2b</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Transformer Rectifier 3</label>
+				<halign>left</halign>
+				<property>/systems/failures/electrical/tr-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
 			<group>
 				<layout>hbox</layout>
 
@@ -184,7 +234,7 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
-					<label>Pneumatics</label>
+					<label>Landing Gear</label>
 				</text>
 				<hrule>
 					<stretch>true</stretch>
@@ -192,9 +242,9 @@
 			</group>
 			
 			<checkbox>
-				<label>System (ESC)</label>
+				<label>Nose Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/pneumatics/system</property>
+				<property>/systems/failures/gear/nose-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -202,9 +252,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed APU</label>
+				<label>Left Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/pneumatics/bleed-apu</property>
+				<property>/systems/failures/gear/left-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -212,9 +262,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed Eng 1</label>
+				<label>Center Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/pneumatics/bleed-1</property>
+				<property>/systems/failures/gear/center-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -222,49 +272,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Bleed Eng 2</label>
+				<label>Right Gear Actuator</label>
 				<halign>left</halign>
-				<property>/systems/failures/pneumatics/bleed-2</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Bleed Eng 3</label>
-				<halign>left</halign>
-				<property>/systems/failures/bleed-3</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Pack 1</label>
-				<halign>left</halign>
-				<property>/systems/failures/pack-1</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Pack 2</label>
-				<halign>left</halign>
-				<property>/systems/failures/pack-2</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Pack 3</label>
-				<halign>left</halign>
-				<property>/systems/failures/pack-3</property>
+				<property>/systems/failures/gear/right-actuator</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -469,7 +479,7 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
-					<label>Landing Gear</label>
+					<label>Fuel</label>
 				</text>
 				<hrule>
 					<stretch>true</stretch>
@@ -477,9 +487,9 @@
 			</group>
 			
 			<checkbox>
-				<label>Nose Gear Actuator</label>
+				<label>System (FSC)</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/nose-actuator</property>
+				<property>/systems/failures/fuel/system</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -487,9 +497,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Left Gear Actuator</label>
+				<label>Tank 1 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/left-actuator</property>
+				<property>/systems/failures/fuel/pumps-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -497,9 +507,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Center Gear Actuator</label>
+				<label>Tank 2 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/center-actuator</property>
+				<property>/systems/failures/fuel/pumps-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -507,9 +517,39 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Right Gear Actuator</label>
+				<label>Tank 3 Pumps</label>
 				<halign>left</halign>
-				<property>/systems/failures/gear/right-actuator</property>
+				<property>/systems/failures/fuel/pumps-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Aux Tank L Trans</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-aux-l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Aux Tank R Trans</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-aux-r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tail Trans and Alt Pumps</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/pumps-tail</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -644,7 +684,7 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
-					<label>Fuel</label>
+					<label>Pneumatics</label>
 				</text>
 				<hrule>
 					<stretch>true</stretch>
@@ -652,9 +692,9 @@
 			</group>
 			
 			<checkbox>
-				<label>System (FSC)</label>
+				<label>System (ESC)</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/system</property>
+				<property>/systems/failures/pneumatics/system</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -662,9 +702,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 1 Pumps</label>
+				<label>Bleed APU</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-1</property>
+				<property>/systems/failures/pneumatics/bleed-apu</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -672,9 +712,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 2 Pumps</label>
+				<label>Bleed Eng 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-2</property>
+				<property>/systems/failures/pneumatics/bleed-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -682,9 +722,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tank 3 Pumps</label>
+				<label>Bleed Eng 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-3</property>
+				<property>/systems/failures/pneumatics/bleed-2</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -692,9 +732,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Aux Tank L Trans</label>
+				<label>Bleed Eng 3</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-l</property>
+				<property>/systems/failures/bleed-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -702,9 +742,9 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Aux Tank R Trans</label>
+				<label>Pack 1</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-r</property>
+				<property>/systems/failures/pack-1</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
@@ -712,9 +752,19 @@
 			</checkbox>
 			
 			<checkbox>
-				<label>Tail Trans and Alt Pumps</label>
+				<label>Pack 2</label>
 				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-tail</property>
+				<property>/systems/failures/pack-2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Pack 3</label>
+				<halign>left</halign>
+				<property>/systems/failures/pack-3</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>
