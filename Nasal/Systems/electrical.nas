@@ -91,7 +91,7 @@ var ELECTRICAL = {
 			pmgHertz: props.globals.getNode("/systems/electrical/sources/idg-3/pmg-hertz"),
 			pmgVolt: props.globals.getNode("/systems/electrical/sources/idg-3/pmg-volt"),
 		},
-		Si1: {
+		Si: {
 			volt: props.globals.getNode("/systems/electrical/sources/si/output-volt"),
 		},
 		Tr1: {
