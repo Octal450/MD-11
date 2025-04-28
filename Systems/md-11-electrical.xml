@@ -1879,7 +1879,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/relay/si-1-l-emer-ac/command-pos">
+		<switch name="/systems/electrical/relay/si-l-emer-ac/command-pos">
 			<default value="0"/>
 			<test value="0">
 				/controls/electrical/smoke-elec-air eq 3
@@ -1893,18 +1893,18 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/relay/si-1-l-emer-ac/contact-pos">
+		<switch name="/systems/electrical/relay/si-l-emer-ac/contact-pos">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
+				/systems/electrical/relay/si-l-emer-ac/command-pos eq 1
 				/systems/electrical/sources/si/output-volt ge 112
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/relay/si-1-l-emer-ac/output">
+		<switch name="/systems/electrical/relay/si-l-emer-ac/output">
 			<default value="0"/>
 			<test value="/systems/electrical/sources/si/output-volt">
-				/systems/electrical/relay/si-1-l-emer-ac/contact-pos eq 1
+				/systems/electrical/relay/si-l-emer-ac/contact-pos eq 1
 			</test>
 		</switch>
 		
@@ -1913,7 +1913,7 @@
 			<function>
 				<max>
 					<property>/systems/electrical/relay/ac-gen-1-l-emer-ac/output</property>
-					<property>/systems/electrical/relay/si-1-l-emer-ac/output</property>
+					<property>/systems/electrical/relay/si-l-emer-ac/output</property>
 					<property>/systems/electrical/sources/adg/output-volt</property>
 				</max>
 			</function>
@@ -2222,7 +2222,7 @@
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos eq 1
-				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
+				/systems/electrical/relay/si-l-emer-ac/command-pos eq 1
 			</test>
 		</switch>
 		
