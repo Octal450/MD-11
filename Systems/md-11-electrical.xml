@@ -1848,7 +1848,7 @@
 		</fcs_function>
 		
 		<!-- Static Inverter -->
-		<fcs_function name="/systems/electrical/sources/si-1/output-volt">
+		<fcs_function name="/systems/electrical/sources/si/output-volt">
 			<function>
 				<table> <!-- DC to AC converter -->
 					<independentVar lookup="row">/systems/electrical/bus/l-emer-dc</independentVar>
@@ -1897,13 +1897,13 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/relay/si-1-l-emer-ac/command-pos eq 1
-				/systems/electrical/sources/si-1/output-volt ge 112
+				/systems/electrical/sources/si/output-volt ge 112
 			</test>
 		</switch>
 		
 		<switch name="/systems/electrical/relay/si-1-l-emer-ac/output">
 			<default value="0"/>
-			<test value="/systems/electrical/sources/si-1/output-volt">
+			<test value="/systems/electrical/sources/si/output-volt">
 				/systems/electrical/relay/si-1-l-emer-ac/contact-pos eq 1
 			</test>
 		</switch>
