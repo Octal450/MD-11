@@ -9227,10 +9227,6 @@
 					<property>controls/switches/annun-test</property>
 					<value>0</value>
 				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>libraries.Sound.btn1();</script>
-				</binding>
 			</mod-up>
 		</action>
 	</animation>
