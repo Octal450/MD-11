@@ -453,6 +453,7 @@ var Init2 = {
 			me.Display.L1L = "";
 			me.Display.L1 = "";
 			me.Display.C1 = "";
+			me.Display.R1B = "";
 			me.Display.R1L = "";
 			me.Display.R1 = sprintf("%5.1f", fms.flightData.ufobLbs) ~ "/FF+FQ";
 		} else {
@@ -552,7 +553,9 @@ var Init2 = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r1") {
-			if (me.scratchpadState == 2) {
+			if (me.Display.R1L == "") {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			} else if (me.scratchpadState == 2) {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
 						if (fms.EditFlightData.insertBlockFuel(me.scratchpad)) {
