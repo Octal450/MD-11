@@ -333,9 +333,9 @@ var EditFlightData = {
 	},
 	insertToAlts: func(t = 0) {
 		if (flightData.airportFromAlt > -1000) {
-			if (t == 0 or t == 1) flightData.climbThrustAlt = math.max(flightData.climbThrustAltCalc = flightData.airportFromAlt + 1500, 0);
-			if (t == 0 or t == 2) flightData.accelAlt = math.max(flightData.accelAltCalc = flightData.airportFromAlt + 3000, 0);
-			if (t == 0 or t == 3) flightData.accelAltEo = math.max(flightData.accelAltEoCalc = flightData.airportFromAlt + 800, 0);
+			if (t == 0 or t == 1) flightData.climbThrustAlt = math.max(flightData.airportFromAlt + 1500, 0);
+			if (t == 0 or t == 2) flightData.accelAlt = math.max(flightData.airportFromAlt + 3000, 0);
+			if (t == 0 or t == 3) flightData.accelAltEo = math.max(flightData.airportFromAlt + 800, 0);
 		} else {
 			if (t == 0 or t == 1) flightData.climbThrustAlt = -1000;
 			if (t == 0 or t == 2) flightData.accelAlt = -1000;
