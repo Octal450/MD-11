@@ -106,21 +106,6 @@ var PosRef = {
 		me.Value.frozen = 0;
 	},
 	loop: func() {
-		if (me.Value.positionMode != "(NO NAV)") {
-			me.Value.positionString = positionFormat(pts.Position.node);
-			me.Display.L1 = me.Value.positionString;
-			me.Display.L2 = me.Value.positionString;
-		} else {
-			me.Display.L1 = "-----.-/------.-";
-			me.Display.L2 = "-----.-/------.-";
-		}
-		
-		if (!me.Value.frozen) {
-			me.Display.L1L = " FMC LAT/LONG " ~ me.Value.positionMode;
-		} else {
-			me.Display.L1L = " POS FROZEN " ~ me.Value.positionMode
-		}
-		
 		if (me.Value.gpsEnable) {
 			me.Display.R5 = "INHIBIT*";
 			if (systems.IRS.Iru.anyAligned.getValue()) {
@@ -135,6 +120,21 @@ var PosRef = {
 			} else {
 				me.Value.positionMode = "(NO NAV)";
 			}
+		}
+		
+		if (me.Value.positionMode != "(NO NAV)") {
+			me.Value.positionString = positionFormat(pts.Position.node);
+			me.Display.L1 = me.Value.positionString;
+			me.Display.L2 = me.Value.positionString;
+		} else {
+			me.Display.L1 = "-----.-/------.-";
+			me.Display.L2 = "-----.-/------.-";
+		}
+		
+		if (!me.Value.frozen) {
+			me.Display.L1L = " FMC LAT/LONG " ~ me.Value.positionMode;
+		} else {
+			me.Display.L1L = " POS FROZEN " ~ me.Value.positionMode
 		}
 	},
 	softKey: func(k) {
