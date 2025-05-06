@@ -78,7 +78,7 @@ var Takeoff = {
 		};
 		
 		m.Value = {
-			oatCEntry: 0,
+			oatEntry: 0,
 			pw: 0,
 			takeoffStabDeg: 0,
 			tocg: "",
@@ -247,7 +247,7 @@ var Takeoff = {
 		
 		if (fms.flightData.oatC > -100) {
 			if (fms.flightData.oatUnit) {
-				me.Display.R3 = sprintf("%d", math.round((fms.flightData.oatC * 1.8) + 32)) ~ "F";
+				me.Display.R3 = sprintf("%d", fms.flightData.oatF) ~ "F";
 			} else {
 				me.Display.R3 = sprintf("%d", fms.flightData.oatC) ~ "C";
 			}
@@ -503,9 +503,10 @@ var Takeoff = {
 				if (mcdu.unit[me.id].stringLengthInRange(1, 5)) {
 					me.scratchpad = string.replace(me.scratchpad, "+", "");
 					if (mcdu.unit[me.id].stringContains("F")) {
-						me.Value.oatCEntry = math.round((string.replace(me.scratchpad, "F", "") - 32) / 1.8);
-						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
-							fms.flightData.oatC = me.Value.oatCEntry;
+						me.Value.oatEntry = int(string.replace(me.scratchpad, "F", ""));
+						if (me.Value.oatEntry >= -147 and me.Value.oatEntry <= 211) {
+							fms.flightData.oatC = math.round((string.replace(me.scratchpad, "F", "") - 32) / 1.8);
+							fms.flightData.oatF = me.Value.oatEntry;
 							fms.flightData.oatUnit = 1;
 							fms.EditFlightData.resetVspeeds();
 							mcdu.unit[me.id].scratchpadClear();
@@ -513,9 +514,10 @@ var Takeoff = {
 							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
 						}
 					} else if (mcdu.unit[me.id].stringContains("C")) {
-						me.Value.oatCEntry = int(string.replace(me.scratchpad, "C", ""));
-						if (me.Value.oatCEntry > -100 and me.Value.oatCEntry < 100) {
-							fms.flightData.oatC = me.Value.oatCEntry; 
+						me.Value.oatEntry = int(string.replace(me.scratchpad, "C", ""));
+						if (me.Value.oatEntry >= -99 and me.Value.oatEntry <= 99) {
+							fms.flightData.oatC = me.Value.oatEntry; 
+							fms.flightData.oatF = math.round((me.Value.oatEntry * 1.8) + 32); 
 							fms.flightData.oatUnit = 0;
 							fms.EditFlightData.resetVspeeds();
 							mcdu.unit[me.id].scratchpadClear();
@@ -805,4 +807,3 @@ var Approach = {
 		}
 	},
 };
-	

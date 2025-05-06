@@ -43,6 +43,7 @@ var FlightData = {
 		m.landFlaps = 35;
 		m.lastGwZfw = 1; # Which was entered last
 		m.oatC = -100;
+		m.oatF = -200;
 		m.oatUnit = 0;
 		m.taxiFuel = 1.5;
 		m.taxiFuelSet = 0;
