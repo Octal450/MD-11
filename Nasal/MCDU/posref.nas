@@ -78,7 +78,6 @@ var PosRef = {
 		
 		m.Value = {
 			frozen: 0,
-			gpsEnable: 1,
 			positionMode: "",
 			positionString: "",
 		};
@@ -93,7 +92,6 @@ var PosRef = {
 	},
 	reset: func() {
 		me.setup();
-		me.Value.gpsEnable = 1;
 	},
 	setup: func() {
 		if (mcdu.unit[me.id].lastFmcPage == "init") {
@@ -106,7 +104,7 @@ var PosRef = {
 		me.Value.frozen = 0;
 	},
 	loop: func() {
-		if (me.Value.gpsEnable) {
+		if (fms.flightData.gpsEnable) {
 			me.Display.R5 = "INHIBIT*";
 			if (systems.IRS.Iru.anyAligned.getValue()) {
 				me.Value.positionMode = "(G/I)";
@@ -147,7 +145,7 @@ var PosRef = {
 				mcdu.unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r5") {
-			me.Value.gpsEnable = !me.Value.gpsEnable;
+			fms.flightData.gpsEnable = !fms.flightData.gpsEnable;
 		} else if (k == "r6") {
 			if (me.fromPage == "init") {
 				mcdu.unit[me.id].setPage("init");

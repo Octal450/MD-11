@@ -39,6 +39,7 @@ var FlightData = {
 		m.flexActive = 0;
 		m.flexTemp = 0;
 		m.flightNumber = "";
+		m.gpsEnable = 1;
 		m.gwLbs = 0;
 		m.landFlaps = 35;
 		m.lastGwZfw = 1; # Which was entered last
