@@ -144,6 +144,7 @@ var MCDU = {
 		} else if (a == 1) { # Clear all and blank scratchpad
 			me.message.clear();
 			me.scratchpad = "";
+			me.scratchpadOld = "";
 		} else { # Clear single message
 			if (me.message.size() > 1) {
 				me.message.pop(0);
@@ -212,7 +213,6 @@ var MCDU = {
 	},
 	scratchpadClear: func() {
 		me.clearMessage(1); # Also clears scratchpad and clear
-		me.scratchpadOld = "";
 	},
 	scratchpadSet: func(t) {
 		me.clearMessage(1);
