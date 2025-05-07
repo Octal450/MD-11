@@ -194,81 +194,6 @@ var NavRadio = {
 			me.Display.L5 = "";
 		}
 	},
-	insertAdf: func(n) {
-		if (mcdu.unit[me.id].stringDecimalLengthInRange(0, 1) and mcdu.unit[me.id].stringLengthInRange(3, 6) and !mcdu.unit[me.id].stringContains("-")) {
-			if (me.scratchpad >= 190 and me.scratchpad <= 1750) {
-				pts.Instrumentation.Adf.Frequencies.selectedKhz[n].setValue(me.scratchpad);
-				mcdu.unit[me.id].scratchpadClear();
-			} else {
-				mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-			}
-		} else {
-			mcdu.unit[me.id].setMessage("FORMAT ERROR");
-		}
-	},
-	insertNav: func(n) {
-		if (find("/", me.scratchpad) != -1) {
-			me.scratchpadSplit = split("/", me.scratchpad);
-		} else {
-			me.scratchpadSplit = [me.scratchpad, ""];
-		}
-		
-		if (mcdu.unit[me.id].stringContains("-")) {
-			mcdu.unit[me.id].setMessage("FORMAT ERROR");
-			return;
-		}
-		
-		me.scratchpadSplitSize0 = size(me.scratchpadSplit[0]);
-		me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
-		
-		if (me.scratchpadSplitSize0 > 0) { # Frequency
-			if (mcdu.unit[me.id].stringLengthInRange(3, 6, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 2, me.scratchpadSplit[0])) {
-				if (n == 2) { # ILS
-					if (me.scratchpadSplit[0] < 108 or me.scratchpadSplit[0] > 111.95) {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-						return;
-					}
-				} else { # VOR
-					if (me.scratchpadSplit[0] < 108 or me.scratchpadSplit[0] > 117.95) {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-						return;
-					}
-				}
-			} else {
-				mcdu.unit[me.id].setMessage("FORMAT ERROR");
-				return;
-			}
-		}
-		
-		if (me.scratchpadSplitSize1 > 0) { # Course
-			if (mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[1]) and mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
-				if (me.scratchpadSplit[1] == 0) { # Evaluate as integer so all forms of 0 work
-					me.scratchpadSplit[1] = "360"; # Must be string
-				}
-				
-				if (me.scratchpadSplit[1] < 1 or me.scratchpadSplit[1] > 360) {
-					mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
-					return;
-				}
-			} else {
-				mcdu.unit[me.id].setMessage("FORMAT ERROR");
-				return;
-			}
-		}
-		
-		if (me.scratchpadSplitSize0 > 0) {
-			pts.Instrumentation.Nav.Frequencies.selectedMhz[n].setValue(me.scratchpadSplit[0]);
-		}
-		if (me.scratchpadSplitSize1 > 0) {
-			if (pts.Instrumentation.Nav.Frequencies.selectedMhz[n].getValue()) {
-				pts.Instrumentation.Nav.Radials.selectedDeg[n].setValue(me.scratchpadSplit[1]);
-			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
-				return;
-			}
-		}
-		mcdu.unit[me.id].scratchpadClear();
-	},
 	softKey: func(k) {
 		me.scratchpad = mcdu.unit[me.id].scratchpad;
 		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
@@ -410,5 +335,80 @@ var NavRadio = {
 		} else {
 			mcdu.unit[me.id].setMessage("NOT ALLOWED");
 		}
+	},
+	insertAdf: func(n) {
+		if (mcdu.unit[me.id].stringDecimalLengthInRange(0, 1) and mcdu.unit[me.id].stringLengthInRange(3, 6) and !mcdu.unit[me.id].stringContains("-")) {
+			if (me.scratchpad >= 190 and me.scratchpad <= 1750) {
+				pts.Instrumentation.Adf.Frequencies.selectedKhz[n].setValue(me.scratchpad);
+				mcdu.unit[me.id].scratchpadClear();
+			} else {
+				mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+			}
+		} else {
+			mcdu.unit[me.id].setMessage("FORMAT ERROR");
+		}
+	},
+	insertNav: func(n) {
+		if (find("/", me.scratchpad) != -1) {
+			me.scratchpadSplit = split("/", me.scratchpad);
+		} else {
+			me.scratchpadSplit = [me.scratchpad, ""];
+		}
+		
+		if (mcdu.unit[me.id].stringContains("-")) {
+			mcdu.unit[me.id].setMessage("FORMAT ERROR");
+			return;
+		}
+		
+		me.scratchpadSplitSize0 = size(me.scratchpadSplit[0]);
+		me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
+		
+		if (me.scratchpadSplitSize0 > 0) { # Frequency
+			if (mcdu.unit[me.id].stringLengthInRange(3, 6, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 2, me.scratchpadSplit[0])) {
+				if (n == 2) { # ILS
+					if (me.scratchpadSplit[0] < 108 or me.scratchpadSplit[0] > 111.95) {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						return;
+					}
+				} else { # VOR
+					if (me.scratchpadSplit[0] < 108 or me.scratchpadSplit[0] > 117.95) {
+						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						return;
+					}
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				return;
+			}
+		}
+		
+		if (me.scratchpadSplitSize1 > 0) { # Course
+			if (mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[1]) and mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+				if (me.scratchpadSplit[1] == 0) { # Evaluate as integer so all forms of 0 work
+					me.scratchpadSplit[1] = "360"; # Must be string
+				}
+				
+				if (me.scratchpadSplit[1] < 1 or me.scratchpadSplit[1] > 360) {
+					mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+					return;
+				}
+			} else {
+				mcdu.unit[me.id].setMessage("FORMAT ERROR");
+				return;
+			}
+		}
+		
+		if (me.scratchpadSplitSize0 > 0) {
+			pts.Instrumentation.Nav.Frequencies.selectedMhz[n].setValue(me.scratchpadSplit[0]);
+		}
+		if (me.scratchpadSplitSize1 > 0) {
+			if (pts.Instrumentation.Nav.Frequencies.selectedMhz[n].getValue()) {
+				pts.Instrumentation.Nav.Radials.selectedDeg[n].setValue(me.scratchpadSplit[1]);
+			} else {
+				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				return;
+			}
+		}
+		mcdu.unit[me.id].scratchpadClear();
 	},
 };
