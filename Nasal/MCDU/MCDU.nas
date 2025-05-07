@@ -420,19 +420,22 @@ var FONT = { # Letter separation in Canvas: 38.77
 	small: "MD11MCDUSmall.ttf",
 };
 
-var dms = nil;
-var degrees = [nil, nil];
-var minutes = [nil, nil];
-var sign = [nil, nil];
-
-var positionFormat = func(node) {
-	dms = node.getChild("latitude-deg").getValue();
-	degrees[0] = int(dms);
-	minutes[0] = sprintf("%.1f",abs((dms - degrees[0]) * 60));
-	sign[0] = degrees[0] >= 0 ? "N" : "S";
-	dms = node.getChild("longitude-deg").getValue();
-	degrees[1] = int(dms);
-	minutes[1] = sprintf("%.1f",abs((dms - degrees[1]) * 60));
-	sign[1] = degrees[1] >= 0 ? "E" : "W";
-	return sprintf("%s%02s%.1f/%s%03s%.1f", sign[0], abs(degrees[0]), minutes[0], sign[1], abs(degrees[1]), minutes[1]);
+var FORMAT = {
+	Position: {
+		degrees: [nil, nil],
+		dms: nil,
+		minutes: [nil, nil],
+		sign: [nil, nil],
+		formatNode: func(node) {
+			me.dms = node.getChild("latitude-deg").getValue();
+			me.degrees[0] = int(me.dms);
+			me.minutes[0] = sprintf("%.1f",abs((me.dms - me.degrees[0]) * 60));
+			me.sign[0] = me.degrees[0] >= 0 ? "N" : "S";
+			me.dms = node.getChild("longitude-deg").getValue();
+			me.degrees[1] = int(me.dms);
+			me.minutes[1] = sprintf("%.1f",abs((me.dms - me.degrees[1]) * 60));
+			me.sign[1] = me.degrees[1] >= 0 ? "E" : "W";
+			return sprintf("%s%02s%.1f/%s%03s%.1f", me.sign[0], abs(me.degrees[0]), me.minutes[0], me.sign[1], abs(me.degrees[1]), me.minutes[1]);
+		},
+	},
 };

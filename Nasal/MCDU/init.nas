@@ -101,7 +101,7 @@ var Init = {
 	},
 	setup: func() {
 		me.Value.gnsPosSide = 0;
-		me.Value.positionSplit = split("/", positionFormat(pts.Position.node));
+		me.Value.positionSplit = split("/", FORMAT.Position.formatNode(pts.Position.node));
 		me.Display.L3 = me.Value.positionSplit[0];
 		me.Display.R3 = me.Value.positionSplit[1];
 	},

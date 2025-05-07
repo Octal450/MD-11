@@ -121,7 +121,7 @@ var PosRef = {
 		}
 		
 		if (me.Value.positionMode != "(NO NAV)") {
-			me.Value.positionString = positionFormat(pts.Position.node);
+			me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
 			me.Display.L1 = me.Value.positionString;
 			me.Display.L2 = me.Value.positionString;
 		} else {
@@ -256,7 +256,7 @@ var IrsGnsPos = {
 		}
 	},
 	loop: func() {
-		me.Value.positionString = positionFormat(pts.Position.node);
+		me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
 		if (systems.IRS.Iru.aligned[0].getValue()) {
 			me.Display.L1 = me.Value.positionString;
 			me.Display.L1L = " IRU 1 - NAV";
