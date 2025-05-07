@@ -211,9 +211,12 @@ var MCDU = {
 		}
 	},
 	scratchpadClear: func() {
-		me.clear = 0;
-		me.scratchpad = "";
+		me.clearMessage(1); # Also clears scratchpad and clear
 		me.scratchpadOld = "";
+	},
+	scratchpadSet: func(t) {
+		me.clearMessage(1);
+		me.scratchpad = t;
 	},
 	scratchpadState: func() {
 		if (me.clear) { # CLR character
@@ -287,11 +290,6 @@ var MCDU = {
 		# Update everything now to make sure it all transitions at once
 		me.page.loop(); 
 		canvas_mcdu.updateMcdu(me.id);
-	},
-	setScratchpad: func(s) {
-		if (me.scratchpadState() == 1) {
-			me.scratchpad = s;
-		}
 	},
 	softKey: func(k) {
 		if (me.powerSource.getValue() < 112) {
