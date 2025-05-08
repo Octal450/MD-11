@@ -319,6 +319,7 @@ var PANEL = {
 				me.l1 = nil; # Important
 				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
+				fms.EditFlightData.setAcconfigData();
 				
 				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 				spinningT.stop();

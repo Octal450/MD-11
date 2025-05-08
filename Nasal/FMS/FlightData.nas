@@ -440,12 +440,13 @@ var EditFlightData = {
 		Internal.request[2] = 0;
 		mcdu.unit[0].setPage("acStatus");
 		mcdu.unit[1].setPage("acStatus");
-		flightData.gwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1));
-		flightData.tocg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1));
+		flightData.blockFuelLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		flightData.gwLbs = math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1);
+		flightData.tocg = math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1);
 		flightData.togwLbs = flightData.gwLbs - flightData.taxiFuel;
 		flightData.toFlaps = 15;
-		flightData.zfwcg = sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1));
-		flightData.zfwLbs = sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1));
+		flightData.zfwcg = math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1);
+		flightData.zfwLbs = math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1);
 	},
 	setNpsPhnlTest: func() { # For developer use/testing ONLY!
 		me.newFlightplan("NPS", "PHNL");
