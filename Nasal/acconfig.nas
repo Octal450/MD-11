@@ -369,7 +369,7 @@ var PANEL = {
 				systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
 				systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
-				fms.EditFlightData.setAcconfigWeightBalanceData();
+				fms.EditFlightData.setAcconfigData();
 				
 				if (t == 1) {
 					settimer(func() {

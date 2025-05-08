@@ -434,7 +434,7 @@ var EditFlightData = {
 			flightData.descentSpeedMode = 0;
 		}
 	},
-	setAcconfigWeightBalanceData: func() {
+	setAcconfigData: func() {
 		Internal.request[0] = 0;
 		Internal.request[1] = 0;
 		Internal.request[2] = 0;
@@ -454,6 +454,6 @@ var EditFlightData = {
 		flightData.oatC = 20;
 		flightData.toSlope = 0;
 		flightData.toWind = 0;
-		me.setAcconfigWeightBalanceData();
+		me.setAcconfigData();
 	},
 };
