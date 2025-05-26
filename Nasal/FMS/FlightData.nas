@@ -7,21 +7,21 @@ var FlightData = {
 	new: func() {
 		var m = {parents: [FlightData]};
 		
-		m.accelAlt = -1000;
+		m.accelAlt = -2000;
 		m.accelAltSet = 0;
-		m.accelAltEo = -1000;
+		m.accelAltEo = -2000;
 		m.accelAltEoSet = 0;
 		m.airportAltn = "";
 		m.airportFrom = "";
-		m.airportFromAlt = -1000;
+		m.airportFromAlt = -2000;
 		m.airportTo = "";
-		m.airportToAlt = -1000;
+		m.airportToAlt = -2000;
 		m.blockFuelLbs = 0;
 		m.canCalcVspeeds = 0;
 		m.climbSpeedEditKts = 0;
 		m.climbSpeedEditMach = 0;
 		m.climbSpeedMode = 0; # 0 = ECON; 1 = MAX; 2 = EDIT
-		m.climbThrustAlt = -1000;
+		m.climbThrustAlt = -2000;
 		m.climbThrustAltSet = 0;
 		m.climbTransAlt = 18000;
 		m.costIndex = -1;
@@ -161,7 +161,7 @@ var EditFlightData = {
 		
 		# After write out
 		# Enable/Disable V speeds Calc
-		if (flightData.toFlaps > 0 and flightData.airportFromAlt > -1000 and flightData.toSlope > -100 and flightData.toWind > -100 and flightData.oatC > -100 and flightData.gwLbs > 0) {
+		if (flightData.toFlaps > 0 and flightData.airportFromAlt > -2000 and flightData.toSlope > -100 and flightData.toWind > -100 and flightData.oatC > -100 and flightData.gwLbs > 0) {
 			flightData.canCalcVspeeds = 1;
 		} else {
 			flightData.canCalcVspeeds = 0;
@@ -334,14 +334,14 @@ var EditFlightData = {
 		}
 	},
 	insertToAlts: func(t = 0) {
-		if (flightData.airportFromAlt > -1000) {
+		if (flightData.airportFromAlt > -2000) {
 			if (t == 0 or t == 1) flightData.climbThrustAlt = math.max(flightData.airportFromAlt + 1500, 0);
 			if (t == 0 or t == 2) flightData.accelAlt = math.max(flightData.airportFromAlt + 3000, 0);
 			if (t == 0 or t == 3) flightData.accelAltEo = math.max(flightData.airportFromAlt + 800, 0);
 		} else {
-			if (t == 0 or t == 1) flightData.climbThrustAlt = -1000;
-			if (t == 0 or t == 2) flightData.accelAlt = -1000;
-			if (t == 0 or t == 3) flightData.accelAltEo = -1000;
+			if (t == 0 or t == 1) flightData.climbThrustAlt = -2000;
+			if (t == 0 or t == 2) flightData.accelAlt = -2000;
+			if (t == 0 or t == 3) flightData.accelAltEo = -2000;
 		}
 		
 		if (t == 0 or t == 1) flightData.climbThrustAltSet = 0;

@@ -255,7 +255,7 @@ var Takeoff = {
 			me.Display.R3 = "____";
 		}
 		
-		if (fms.flightData.climbThrustAlt > -1000) {
+		if (fms.flightData.climbThrustAlt > -2000) {
 			me.Display.R4 = sprintf("%d", fms.flightData.climbThrustAlt);
 			if (fms.flightData.climbThrustAltSet) {
 				me.Display.RFont[3] = FONT.large;
@@ -267,7 +267,7 @@ var Takeoff = {
 			me.Display.RFont[3] = FONT.small;
 		}
 		
-		if (fms.flightData.accelAlt > -1000) {
+		if (fms.flightData.accelAlt > -2000) {
 			me.Display.R5 = sprintf("%d", fms.flightData.accelAlt);
 			if (fms.flightData.accelAltSet) {
 				me.Display.RFont[4] = FONT.large;
@@ -279,7 +279,7 @@ var Takeoff = {
 			me.Display.RFont[4] = FONT.small;
 		}
 		
-		if (fms.flightData.accelAltEo > -1000) {
+		if (fms.flightData.accelAltEo > -2000) {
 			me.Display.R6 = sprintf("%d", fms.flightData.accelAltEo);
 			if (fms.flightData.accelAltEoSet) {
 				me.Display.RFont[5] = FONT.large;
@@ -747,7 +747,7 @@ var Approach = {
 			me.Display.C5 = "---";
 		}
 		
-		if (fms.flightData.airportToAlt > -1000) {
+		if (fms.flightData.airportToAlt > -2000) {
 			me.Display.R3 = sprintf("%d", math.round(fms.flightData.airportToAlt));
 		} else {
 			me.Display.R3 = "----";

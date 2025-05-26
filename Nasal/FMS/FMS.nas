@@ -101,7 +101,7 @@ var CORE = {
 				}
 			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0; # Preflight
-			} else if (flightData.accelAlt > -1000) {
+			} else if (flightData.accelAlt > -2000) {
 				if (Value.vertText != "T/O CLB" and Value.altitude >= flightData.accelAlt) {
 					Internal.phaseNew = 2; # Climb
 					if (fms.flightData.flexActive) {
