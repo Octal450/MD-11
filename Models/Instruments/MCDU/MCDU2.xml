@@ -44,7 +44,7 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>Msg</object-name>
+		<object-name>MsgLight</object-name>
 		<condition>
 			<property>instrumentation/mcdu[1]/msg-light</property>
 		</condition>
