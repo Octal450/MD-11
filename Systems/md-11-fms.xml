@@ -813,16 +813,10 @@
 		<fcs_function name="/systems/fms/speeds/vref">
 			<function>
 				<ifthen>
-					<and>
-						<gt>
-							<property>/systems/fms/flight-data/gw-full-kg</property>
-							<value>0</value>
-						</gt>
-						<gt>
-							<property>/systems/fms/flight-data/airport-to-alt</property>
-							<value>-2000</value>
-						</gt>
-					</and>
+					<gt>
+						<property>/systems/fms/flight-data/gw-full-kg</property>
+						<value>0</value>
+					</gt>
 					<product>
 						<difference>
 							<table>
