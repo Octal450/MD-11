@@ -462,7 +462,7 @@ var canvasBase = {
 		}
 		
 		# Subtract 50, since the scale starts at 50, but don't allow less than 0, or more than 450 situations
-		if (Value.Asi.ias <= 50) {
+		if (Value.Asi.ias < 50) {
 			Value.Asi.Tape.ias = 0;
 		} else if (Value.Asi.ias > 450) {
 			Value.Asi.Tape.ias = 400;
@@ -470,7 +470,7 @@ var canvasBase = {
 			Value.Asi.Tape.ias = Value.Asi.ias - 50;
 		}
 		
-		if (Value.Asi.preSel <= 50) {
+		if (Value.Asi.preSel < 50) {
 			Value.Asi.Tape.preSel = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.preSel > 450) {
 			Value.Asi.Tape.preSel = 400 - Value.Asi.Tape.ias;
@@ -479,7 +479,7 @@ var canvasBase = {
 		}
 		
 		# Sometimes clipped by V speed box code below
-		if (Value.Asi.sel <= 50) {
+		if (Value.Asi.sel < 50) {
 			Value.Asi.Tape.sel = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.sel > 450) {
 			Value.Asi.Tape.sel = 400 - Value.Asi.Tape.ias;
@@ -488,7 +488,7 @@ var canvasBase = {
 		}
 		
 		# Sometimes clipped by V speed box code below
-		if (Value.Asi.fms <= 50) {
+		if (Value.Asi.fms < 50) {
 			Value.Asi.Tape.fms = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.fms > 450) {
 			Value.Asi.Tape.fms = 400 - Value.Asi.Tape.ias;
