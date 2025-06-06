@@ -22,6 +22,18 @@ var IGNITION = {
 		me.Controls.ignB.setBoolValue(0);
 		me.Controls.ignOvrd.setBoolValue(0);
 	},
+	checkIgnition: func() {
+		if (!ENGINES.anyEngineOn.getBoolValue()) {
+			if (pts.Position.wow.getBoolValue()) {
+				if (me.Controls.ignA.getBoolValue()) {
+					me.Controls.ignA.setBoolValue(0);
+				}
+				if (me.Controls.ignB.getBoolValue()) {
+					me.Controls.ignB.setBoolValue(0);
+				}
+			}
+		}
+	},
 	fastStart: func(n) {
 		ENGINES.Controls.cutoff[n].setBoolValue(0);
 		pts.Fdm.JSBSim.Propulsion.setRunning.setValue(n);
@@ -36,3 +48,7 @@ var IGNITION = {
 		}, 0.1);
 	},
 };
+
+setlistener("/systems/engines/any-engine-on", func() {
+	IGNITION.checkIgnition();
+}, 0, 0);
