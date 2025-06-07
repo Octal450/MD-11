@@ -61,8 +61,8 @@ var Orientation = {
 };
 
 var Position = {
-	gearAglFtTemp: 0,
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft", 1),
+	gearAglFtTemp: 0,
 	indicatedAltitudeFt: props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft", 1),
 	indicatedAltitudeFtTemp: 0,
 };
