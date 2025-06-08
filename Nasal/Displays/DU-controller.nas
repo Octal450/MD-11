@@ -61,10 +61,10 @@ var DUController = {
 		canvas_ead.pwTapes.page.hide();
 		me.showSdPage("NONE");
 		canvas_isfd.isfd.page.hide();
+		me.isfdLcdOn.setBoolValue(0);
 		canvas_mcdu.mcdu1.page.hide();
 		canvas_mcdu.mcdu2.page.hide();
 		canvas_mcdu.mcdu3.page.hide();
-		me.isfdLcdOn.setBoolValue(0);
 	},
 	loop: func() {
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
