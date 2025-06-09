@@ -128,30 +128,30 @@ var AcStatus = {
 		me.Display.L6 = sprintf("%+2.1f", me.Common.perfFactor);
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l4") {
 			if (me.scratchpadState == 1) {
 				me.Value.databaseConfirm = 1;
 				me.Display.R4 = "CONFIRM*";
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l6") {
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringIsNumber() and mcdu.unit[me.id].stringLengthInRange(1, 3)) {
+				if (unit[me.id].stringIsNumber() and unit[me.id].stringLengthInRange(1, 3)) {
 					if (abs(me.scratchpad) > 9.9) {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else {
 						me.Common.perfFactor = me.scratchpad;
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r4") {
 			if (me.Value.databaseConfirm) {
@@ -159,12 +159,12 @@ var AcStatus = {
 				me.Value.databaseConfirm = 0;
 				me.Display.R4 = "";
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			mcdu.unit[me.id].setPage("init");
+			unit[me.id].setPage("init");
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -263,9 +263,9 @@ var AcStatus2 = {
 	},
 	softKey: func(k) {
 		if (k == "r6") {
-			mcdu.unit[me.id].setPage("init");
+			unit[me.id].setPage("init");
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -401,6 +401,6 @@ var SensorStatus = {
 		}
 	},
 	softKey: func(k) {
-		mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 };

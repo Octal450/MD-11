@@ -103,7 +103,7 @@ var Menu = {
 		}
 		
 		if (!me.type) {
-			if (mcdu.unit[me.id].lastFmcPage == "none") {
+			if (unit[me.id].lastFmcPage == "none") {
 				me.Display.R6 = "";
 			} else {
 				me.Display.R6 = "RETURN>";
@@ -111,28 +111,28 @@ var Menu = {
 		}
 	},
 	softKey: func(k) {
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1" and !me.type) {
 			if (me.scratchpadState == 1) {
 				if (fms.Internal.request[me.id]) {
 					fms.Internal.request[me.id] = 0;
-				} else if (mcdu.unit[me.id].lastFmcPage == "none") {
-					mcdu.unit[me.id].setPage("acStatus");
+				} else if (unit[me.id].lastFmcPage == "none") {
+					unit[me.id].setPage("acStatus");
 				} else {
-					mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
+					unit[me.id].setPage(unit[me.id].lastFmcPage);
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6" and !me.type) {
-			if (mcdu.unit[me.id].lastFmcPage == "none") {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			if (unit[me.id].lastFmcPage == "none") {
+				unit[me.id].setMessage("NOT ALLOWED");
 			} else {
-				mcdu.unit[me.id].setPage(mcdu.unit[me.id].lastFmcPage);
+				unit[me.id].setPage(unit[me.id].lastFmcPage);
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -225,15 +225,15 @@ var Ref = {
 	},
 	softKey: func(k) {
 		if (k == "l3") {
-			mcdu.unit[me.id].setPage("closestAirports");
+			unit[me.id].setPage("closestAirports");
 		} else if (k == "l4") {
-			mcdu.unit[me.id].setPage("posRef");
+			unit[me.id].setPage("posRef");
 		} else if (k == "l5") {
-			mcdu.unit[me.id].setPage("acStatus");
+			unit[me.id].setPage("acStatus");
 		} else if (k == "l6") {
-			mcdu.unit[me.id].setPage("sensorStatus");
+			unit[me.id].setPage("sensorStatus");
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };

@@ -88,6 +88,6 @@ var Fallback = {
 	loop: func() {
 	},
 	softKey: func(k) {
-		mcdu.unit[me.id].setMessage("NOT ALLOWED");
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 };

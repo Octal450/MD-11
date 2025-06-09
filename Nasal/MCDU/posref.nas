@@ -94,7 +94,7 @@ var PosRef = {
 		me.setup();
 	},
 	setup: func() {
-		if (mcdu.unit[me.id].lastFmcPage == "init") {
+		if (unit[me.id].lastFmcPage == "init") {
 			me.fromPage = "init";
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
@@ -136,24 +136,24 @@ var PosRef = {
 		}
 	},
 	softKey: func(k) {
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
 			if (me.scratchpadState == 1) {
 				me.Value.frozen = !me.Value.frozen;
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r5") {
 			fms.flightData.gpsEnable = !fms.flightData.gpsEnable;
 		} else if (k == "r6") {
 			if (me.fromPage == "init") {
-				mcdu.unit[me.id].setPage("init");
+				unit[me.id].setPage("init");
 			} else {
-				mcdu.unit[me.id].setPage("ref");
+				unit[me.id].setPage("ref");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -248,7 +248,7 @@ var IrsGnsPos = {
 		me.setup();
 	},
 	setup: func() {
-		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
+		me.fromPage = unit[me.id].PageList.posRef.fromPage;
 		if (me.fromPage == "init") {
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
@@ -314,12 +314,12 @@ var IrsGnsPos = {
 	softKey: func(k) {
 		if (k == "r6") {
 			if (me.fromPage == "init") {
-				mcdu.unit[me.id].setPage("init");
+				unit[me.id].setPage("init");
 			} else {
-				mcdu.unit[me.id].setPage("ref");
+				unit[me.id].setPage("ref");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -410,7 +410,7 @@ var IrsStatus = {
 		me.setup();
 	},
 	setup: func() {
-		me.fromPage = mcdu.unit[me.id].PageList.posRef.fromPage;
+		me.fromPage = unit[me.id].PageList.posRef.fromPage;
 		if (me.fromPage == "init") {
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
@@ -446,12 +446,12 @@ var IrsStatus = {
 	softKey: func(k) {
 		if (k == "r6") {
 			if (me.fromPage == "init") {
-				mcdu.unit[me.id].setPage("init");
+				unit[me.id].setPage("init");
 			} else {
-				mcdu.unit[me.id].setPage("ref");
+				unit[me.id].setPage("ref");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };

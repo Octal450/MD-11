@@ -102,7 +102,7 @@ var ThrLim = {
 		return m;
 	},
 	setup: func() {
-		if (mcdu.unit[me.id].lastFmcPage == "takeoff") {
+		if (unit[me.id].lastFmcPage == "takeoff") {
 			me.fromPage = "takeoff";
 			me.Display.R6 = "TAKEOFF>";
 		} else {
@@ -292,8 +292,8 @@ var ThrLim = {
 		}
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
 			if (fms.flightData.flexActive) {
@@ -314,7 +314,7 @@ var ThrLim = {
 				systems.FADEC.Limit.auto.setBoolValue(0);
 				systems.FADEC.setMode(0);
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l3") {
 			systems.FADEC.Limit.auto.setBoolValue(0);
@@ -327,7 +327,7 @@ var ThrLim = {
 			systems.FADEC.setMode(4);
 		} else if (k == "r1") { # Also in toappr.nas
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 2) and mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringLengthInRange(1, 2) and unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) and me.scratchpad <= 70) {
 						if (systems.FADEC.Limit.activeModeInt.getValue() != 0) {
 							if (!systems.FADEC.Limit.auto.getBoolValue()) {
@@ -339,37 +339,37 @@ var ThrLim = {
 						fms.flightData.flexActive = 1;
 						fms.flightData.flexTemp = int(me.scratchpad);
 						fms.EditFlightData.resetVspeeds();
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 0) {
 				fms.flightData.flexActive = 0;
 				fms.flightData.flexTemp = 0;
 				fms.EditFlightData.resetVspeeds();
-				mcdu.unit[me.id].scratchpadClear();
+				unit[me.id].scratchpadClear();
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r3") {
 			if (me.Display.R3 != "") {
 				systems.FADEC.Limit.pwDerate.setBoolValue(!systems.FADEC.Limit.pwDerate.getBoolValue());
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r5") {
 			if (me.Display.R5 != "") {
 				systems.FADEC.Limit.auto.setBoolValue(1);
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			mcdu.unit[me.id].setPage(me.fromPage);
+			unit[me.id].setPage(me.fromPage);
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };

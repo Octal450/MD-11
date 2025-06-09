@@ -156,21 +156,21 @@ var Perf = {
 		# Page advance logic
 		if (me.type == 2) {
 			if (fms.Internal.phase == 3) {
-				mcdu.unit[me.id].setPage("perfCrz");
+				unit[me.id].setPage("perfCrz");
 			} else if (fms.Internal.phase <= 2) {
-				mcdu.unit[me.id].setPage("perfClb");
+				unit[me.id].setPage("perfClb");
 			}
 		} else if (me.type == 1) {
 			if (fms.Internal.phase >= 4) {
-				mcdu.unit[me.id].setPage("perfDes");
+				unit[me.id].setPage("perfDes");
 			} else if (fms.Internal.phase <= 2) {
-				mcdu.unit[me.id].setPage("perfClb");
+				unit[me.id].setPage("perfClb");
 			}
 		} else {
 			if (fms.Internal.phase >= 4) {
-				mcdu.unit[me.id].setPage("perfDes");
+				unit[me.id].setPage("perfDes");
 			} else if (fms.Internal.phase == 3) {
-				mcdu.unit[me.id].setPage("perfCrz");
+				unit[me.id].setPage("perfCrz");
 			}
 		}
 		
@@ -347,22 +347,22 @@ var Perf = {
 	insertEditSpeed: func() {
 		if (me.scratchpadState == 2) {
 			if (me.type == 1) { # CRZ: Only one entry
-				if (mcdu.unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringIsNumber()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
 						fms.flightData.cruiseSpeedEdit = int(me.scratchpad);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
-						if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+						if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 							fms.flightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							unit[me.id].setMessage("FORMAT ERROR");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else { # CLB/DES: One or two entries
 				me.scratchpadSplit = split("/", me.scratchpad);
@@ -374,37 +374,37 @@ var Perf = {
 					
 					if (me.type == 2) {
 						if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
 						
 						# Check Mach
 						if (me.scratchpadSplitSize0 > 0) {
-							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 							
 							if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
-								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
 							
-							if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 						}
 						
 						# Check Kts
 						if (me.scratchpadSplitSize1 > 0) {
-							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 							
-							if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
-								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
 						}
@@ -412,40 +412,40 @@ var Perf = {
 						fms.flightData.descentSpeedEditMach = math.round(me.scratchpadSplit[0], 0.001);
 						fms.flightData.descentSpeedEditKts = int(me.scratchpadSplit[1]);
 						fms.FmsSpd.updateEditSpeeds(2);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
 						if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
 						
 						# Check Kts
 						if (me.scratchpadSplitSize0 > 0) {
-							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 							
-							if (me.scratchpadSplit[0] < 100 or me.scratchpadSplit[0] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[0])) {
-								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							if (me.scratchpadSplit[0] < 100 or me.scratchpadSplit[0] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[0])) {
+								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
 						}
 						
 						# Check Mach
 						if (me.scratchpadSplitSize1 > 0) {
-							if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 							
 							if (me.scratchpadSplit[1] < 0.5 or me.scratchpadSplit[1] > 0.9) {
-								mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
 							
-							if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[1])) {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							if (!unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[1])) {
+								unit[me.id].setMessage("FORMAT ERROR");
 								return;
 							}
 						}
@@ -453,11 +453,11 @@ var Perf = {
 						fms.flightData.climbSpeedEditKts = int(me.scratchpadSplit[0]);
 						fms.flightData.climbSpeedEditMach = math.round(me.scratchpadSplit[1], 0.001);
 						fms.FmsSpd.updateEditSpeeds(0);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					}
 				} else if (me.scratchpadSplitSize == 1) {
-					if (mcdu.unit[me.id].stringIsNumber()) {
-						if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+					if (unit[me.id].stringIsNumber()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
 							if (me.type == 2) {
 								fms.flightData.descentSpeedEditKts = int(me.scratchpad);
 								fms.flightData.descentSpeedEditMach = 1;
@@ -467,9 +467,9 @@ var Perf = {
 								fms.flightData.climbSpeedEditMach = 1;
 								fms.FmsSpd.updateEditSpeeds(0);
 							}
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
-							if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+							if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 								if (me.type == 2) {
 									fms.flightData.descentSpeedEditKts = 1;
 									fms.flightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
@@ -479,18 +479,18 @@ var Perf = {
 									fms.flightData.climbSpeedEditMach = math.round(me.scratchpad, 0.001);
 									fms.FmsSpd.updateEditSpeeds(0);
 								}
-								mcdu.unit[me.id].scratchpadClear();
+								unit[me.id].scratchpadClear();
 							} else {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								unit[me.id].setMessage("FORMAT ERROR");
 							}
 						} else {
-							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						unit[me.id].setMessage("FORMAT ERROR");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			}
 		} else if (me.scratchpadState == 1) {
@@ -502,12 +502,12 @@ var Perf = {
 				fms.flightData.climbSpeedMode = 2;
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l2") {
 			if (me.scratchpadState == 1) {
@@ -519,45 +519,45 @@ var Perf = {
 					fms.flightData.climbSpeedMode = 0;
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l3") {
 			if (me.scratchpadState == 1) {
 				if (me.type == 2) {
 					fms.flightData.descentSpeedMode = 1;
 				} else if (me.type == 1) {
-					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+					unit[me.id].setMessage("NOT ALLOWED");
 				} else {
 					fms.flightData.climbSpeedMode = 1;
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
 			me.insertEditSpeed();
 		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type != 1) {
-				if (mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 1000 and me.scratchpad <= 18000) {
 						if (me.type == 2) {
 							fms.flightData.descentTransAlt = math.round(me.scratchpad, 1000);
 						} else {
 							fms.flightData.climbTransAlt = math.round(me.scratchpad, 1000);
 						}
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			mcdu.unit[me.id].setPage("thrLim");
+			unit[me.id].setPage("thrLim");
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -681,7 +681,7 @@ var PreSel = {
 			me.Value.speedMode = fms.flightData.descentSpeedMode;
 			
 			if (fms.Internal.phase >= 4) {
-				mcdu.unit[me.id].setPage("perfDes");
+				unit[me.id].setPage("perfDes");
 			} else if (fms.Internal.phase == 3) {
 				me.Display.pageNum = "2/2";
 				me.nextPage = "perfCrz";
@@ -694,9 +694,9 @@ var PreSel = {
 			me.Value.speedMode = fms.flightData.cruiseSpeedMode;
 			
 			if (fms.Internal.phase >= 4) {
-				mcdu.unit[me.id].setPage("perfDes");
+				unit[me.id].setPage("perfDes");
 			} else if (fms.Internal.phase == 3) {
-				mcdu.unit[me.id].setPage("perfCrz");
+				unit[me.id].setPage("perfCrz");
 			}
 		}
 		
@@ -800,22 +800,22 @@ var PreSel = {
 	insertEditSpeed: func() {
 		if (me.scratchpadState == 2) {
 			if (me.type == 1) { # CRZ: Only one entry
-				if (mcdu.unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringIsNumber()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
 						fms.flightData.cruiseSpeedEdit = int(me.scratchpad);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
-						if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+						if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 							fms.flightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+							unit[me.id].setMessage("FORMAT ERROR");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else { # DES: One or two entries
 				me.scratchpadSplit = split("/", me.scratchpad);
@@ -826,66 +826,66 @@ var PreSel = {
 					me.scratchpadSplitSize1 = size(me.scratchpadSplit[1]);
 					
 					if (me.scratchpadSplitSize0 == 0 or me.scratchpadSplitSize1 == 0) {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						unit[me.id].setMessage("FORMAT ERROR");
 						return;
 					}
 					
 					# Check Mach
 					if (me.scratchpadSplitSize0 > 0) {
-						if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						if (!unit[me.id].stringIsNumber(me.scratchpadSplit[0])) {
+							unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
 						
 						if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
-							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 							return;
 						}
 						
-						if (!mcdu.unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						if (!unit[me.id].stringDecimalLengthInRange(1, 3, me.scratchpadSplit[0])) {
+							unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
 					}
 					
 					# Check Kts
 					if (me.scratchpadSplitSize1 > 0) {
-						if (!mcdu.unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
-							mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						if (!unit[me.id].stringIsNumber(me.scratchpadSplit[1])) {
+							unit[me.id].setMessage("FORMAT ERROR");
 							return;
 						}
 						
-						if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
-							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 							return;
 						}
 					}
 					
 					fms.flightData.descentSpeedEditMach = math.round(me.scratchpadSplit[0], 0.001);
 					fms.flightData.descentSpeedEditKts = int(me.scratchpadSplit[1]);
-					mcdu.unit[me.id].scratchpadClear();
+					unit[me.id].scratchpadClear();
 				} else if (me.scratchpadSplitSize == 1) {
-					if (mcdu.unit[me.id].stringIsNumber()) {
-						if (me.scratchpad >= 100 and me.scratchpad <= 375 and mcdu.unit[me.id].stringIsInt()) {
+					if (unit[me.id].stringIsNumber()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
 							fms.flightData.descentSpeedEditKts = int(me.scratchpad);
 							fms.flightData.descentSpeedEditMach = 1;
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
-							if (mcdu.unit[me.id].stringDecimalLengthInRange(1, 3)) {
+							if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 								fms.flightData.descentSpeedEditKts = 1;
 								fms.flightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
-								mcdu.unit[me.id].scratchpadClear();
+								unit[me.id].scratchpadClear();
 							} else {
-								mcdu.unit[me.id].setMessage("FORMAT ERROR");
+								unit[me.id].setMessage("FORMAT ERROR");
 							}
 						} else {
-							mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						unit[me.id].setMessage("FORMAT ERROR");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			}
 		} else if (me.scratchpadState == 1) {
@@ -895,12 +895,12 @@ var PreSel = {
 				fms.flightData.cruiseSpeedMode = 2;
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l2") {
 			if (me.scratchpadState == 1) {
@@ -910,37 +910,37 @@ var PreSel = {
 					fms.flightData.cruiseSpeedMode = 0;
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l3") {
 			if (me.scratchpadState == 1) {
 				if (me.type == 2) {
 					fms.flightData.descentSpeedMode = 1;
 				} else if (me.type == 1) {
-					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+					unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
 			me.insertEditSpeed();
 		} else if (k == "l6") {
 			if (me.scratchpadState == 2 and me.type == 2) {
-				if (mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 1000 and me.scratchpad <= 18000) {
 						fms.flightData.descentTransAlt = math.round(me.scratchpad, 1000);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };

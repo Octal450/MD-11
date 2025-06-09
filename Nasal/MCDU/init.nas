@@ -200,28 +200,28 @@ var Init = {
 		}
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l3") {
 			if (me.scratchpadState == 1) {
 				me.Value.gnsPosSide = 0;
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l4") {
 			if (me.scratchpadState == 0) {
 				fms.flightData.flightNumber = "";
-				mcdu.unit[me.id].scratchpadClear();
+				unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 8)) {
+				if (unit[me.id].stringLengthInRange(1, 8)) {
 					fms.flightData.flightNumber = me.scratchpad;
-					mcdu.unit[me.id].scratchpadClear();
+					unit[me.id].scratchpadClear();
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l5") {
 			if (me.scratchpadState == 2) {
@@ -231,13 +231,13 @@ var Init = {
 				
 				##### Temporarily disable step climb entry, since the FMS doesn't support that yet
 				if (me.scratchpadSplitSize > 1) {
-					mcdu.unit[me.id].setMessage("STEP CLIMB INOP");
+					unit[me.id].setMessage("STEP CLIMB INOP");
 				} else if (me.scratchpadSplitSize == 1) {
 				##### End step climb disable
 				
 				#if (me.scratchpadSplitSize >= 1 and me.scratchpadSplitSize <= 6) {
 					for (var i = 0; i < me.scratchpadSplitSize; i = i + 1) {
-						if (!mcdu.unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[i]) or !mcdu.unit[me.id].stringIsInt(me.scratchpadSplit[i])) {
+						if (!unit[me.id].stringLengthInRange(1, 3, me.scratchpadSplit[i]) or !unit[me.id].stringIsInt(me.scratchpadSplit[i])) {
 							me.Value.cruiseInput = 0;
 							break;
 						}
@@ -254,11 +254,11 @@ var Init = {
 					}
 					
 					if (me.Value.cruiseInput == 0) {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						unit[me.id].setMessage("FORMAT ERROR");
 					} else if (me.Value.cruiseInput == 1) {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					} else if (me.Value.cruiseInput == 2) {
-						mcdu.unit[me.id].setMessage("STEP DOWN INVALID");
+						unit[me.id].setMessage("STEP DOWN INVALID");
 					} else {
 						for (var i = 0; i < 6; i = i + 1) { # Set values so unused inputs go to 0
 							if (i < me.scratchpadSplitSize) {
@@ -268,93 +268,93 @@ var Init = {
 							}
 						}
 						fms.EditFlightData.insertCruiseFl(int(me.Value.cruiseInputVals[0]), int(me.Value.cruiseInputVals[1]), int(me.Value.cruiseInputVals[2]), int(me.Value.cruiseInputVals[3]), int(me.Value.cruiseInputVals[4]), int(me.Value.cruiseInputVals[5]));
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r1") {
 			if (me.scratchpadState == 0) {
 				fms.EditFlightData.reset();
-				mcdu.unit[me.id].scratchpadClear();
+				unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
 				me.scratchpadSplit = split("/", me.scratchpad);
 				if (size(me.scratchpadSplit) == 2) {
-					if (mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[0]) and mcdu.unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[1])) {
+					if (unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[0]) and unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[1])) {
 						if (size(findAirportsByICAO(me.scratchpadSplit[0])) == 1 and size(findAirportsByICAO(me.scratchpadSplit[1])) == 1) {
 							fms.EditFlightData.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
-							mcdu.unit[me.id].scratchpadClear();
-							mcdu.unit[me.id].setPage("compRte");
+							unit[me.id].scratchpadClear();
+							unit[me.id].setPage("compRte");
 						} else {
-							mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
+							unit[me.id].setMessage("NOT IN DATA BASE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("FORMAT ERROR");
+						unit[me.id].setMessage("FORMAT ERROR");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r2") {
 			if (me.scratchpadState == 0) {
 				fms.EditFlightData.insertAlternate("");
-				mcdu.unit[me.id].scratchpadClear();
+				unit[me.id].scratchpadClear();
 			} else if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(3, 4)) {
+				if (unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
 						if (fms.flightData.airportTo != "") {
 							fms.EditFlightData.insertAlternate(me.scratchpad);
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else {
-							mcdu.unit[me.id].setMessage("NOT ALLOWED");
+							unit[me.id].setMessage("NOT ALLOWED");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("NOT IN DATA BASE");
+						unit[me.id].setMessage("NOT IN DATA BASE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r3") {
 			if (me.scratchpadState == 1) {
 				me.Value.gnsPosSide = 1;
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r4") {
 			if (systems.IRS.Controls.mcduBtn.getBoolValue()) {
-				mcdu.unit[me.id].setPage("posRef");
+				unit[me.id].setPage("posRef");
 			} else {
 				if ((systems.IRS.Controls.knob[0].getBoolValue() or systems.IRS.Controls.knob[1].getBoolValue() or systems.IRS.Controls.knob[2].getBoolValue()) and me.scratchpadState == 1) {
 					systems.IRS.Controls.mcduBtn.setBoolValue(1);
 				} else {
-					mcdu.unit[me.id].setMessage("NOT ALLOWED");
+					unit[me.id].setMessage("NOT ALLOWED");
 				}
 			}
 		} else if (k == "r6") {
 			if (me.scratchpadState == 2 and fms.flightData.airportTo != "") {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringIsInt()) {
+				if (unit[me.id].stringLengthInRange(1, 3) and unit[me.id].stringIsInt()) {
 					if (me.scratchpad >= 0) {
 						fms.flightData.costIndex = int(me.scratchpad);
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -527,145 +527,145 @@ var Init2 = {
 		}
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
 			if (me.scratchpadState == 2 and me.Display.L1L == "TAXI") {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 3) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 3) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 0 and me.scratchpad <= 9.9) {
 						me.Value.taxiInsertStatus = fms.EditFlightData.insertTaxiFuel(me.scratchpad);
 						if (me.Value.taxiInsertStatus == 0) {
 							fms.flightData.taxiFuelSet = 1;
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else if (me.Value.taxiInsertStatus == 1) {
-							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+							unit[me.id].setMessage("TOGW OUT OF RANGE");
 						} else if (me.Value.taxiInsertStatus == 2) {
-							mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+							unit[me.id].setMessage("ZFW OUT OF RANGE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r1") {
 			if (me.Display.R1L == "") {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			} else if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 5) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 300) {
 						if (fms.EditFlightData.insertBlockFuel(me.scratchpad)) {
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else {
-							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+							unit[me.id].setMessage("TOGW OUT OF RANGE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
 				if (fms.EditFlightData.insertBlockFuel(fms.flightData.ufobLbs)) {
-					mcdu.unit[me.id].scratchpadClear();
+					unit[me.id].scratchpadClear();
 				} else {
-					mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+					unit[me.id].setMessage("TOGW OUT OF RANGE");
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r2") {
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 5) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 633) {
 						if (me.Display.R2L == "GW") {
 							if (fms.EditFlightData.insertGw(me.scratchpad)) {
-								mcdu.unit[me.id].scratchpadClear();
+								unit[me.id].scratchpadClear();
 							} else {
-								mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+								unit[me.id].setMessage("ZFW OUT OF RANGE");
 							}
 						} else {
 							if (fms.EditFlightData.insertTogw(me.scratchpad)) {
-								mcdu.unit[me.id].scratchpadClear();
+								unit[me.id].scratchpadClear();
 							} else {
-								mcdu.unit[me.id].setMessage("ZFW OUT OF RANGE");
+								unit[me.id].setMessage("ZFW OUT OF RANGE");
 							}
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
 				if (me.Display.R2L == "GW") {
-					mcdu.unit[me.id].scratchpadSet(sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1)));
+					unit[me.id].scratchpadSet(sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1)));
 				} else {
-					mcdu.unit[me.id].scratchpadSet(sprintf("%5.1f", math.round((pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000) - fms.flightData.taxiFuel, 0.1)));
+					unit[me.id].scratchpadSet(sprintf("%5.1f", math.round((pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000) - fms.flightData.taxiFuel, 0.1)));
 				}
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r3") {
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 5) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 5) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= fms.Internal.maxZfw) {
 						if (fms.EditFlightData.insertZfw(me.scratchpad)) {
-							mcdu.unit[me.id].scratchpadClear();
+							unit[me.id].scratchpadClear();
 						} else {
-							mcdu.unit[me.id].setMessage("TOGW OUT OF RANGE");
+							unit[me.id].setMessage("TOGW OUT OF RANGE");
 						}
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				mcdu.unit[me.id].scratchpadSet(sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1)));
+				unit[me.id].scratchpadSet(sprintf("%5.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1)));
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r5") {
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 4) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 35) {
 						fms.flightData.tocg = me.scratchpad;
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				mcdu.unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1)));
+				unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1)));
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
 			if (me.scratchpadState == 2) {
-				if (mcdu.unit[me.id].stringLengthInRange(1, 4) and mcdu.unit[me.id].stringDecimalLengthInRange(0, 1)) {
+				if (unit[me.id].stringLengthInRange(1, 4) and unit[me.id].stringDecimalLengthInRange(0, 1)) {
 					if (me.scratchpad >= 1 and me.scratchpad <= 34) {
 						fms.flightData.zfwcg = me.scratchpad;
-						mcdu.unit[me.id].scratchpadClear();
+						unit[me.id].scratchpadClear();
 					} else {
-						mcdu.unit[me.id].setMessage("ENTRY OUT OF RANGE");
+						unit[me.id].setMessage("ENTRY OUT OF RANGE");
 					}
 				} else {
-					mcdu.unit[me.id].setMessage("FORMAT ERROR");
+					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				mcdu.unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1)));
+				unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1)));
 			} else {
-				mcdu.unit[me.id].setMessage("NOT ALLOWED");
+				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
@@ -761,11 +761,11 @@ var Init3 = {
 	loop: func() {
 	},
 	softKey: func(k) {
-		me.scratchpad = mcdu.unit[me.id].scratchpad;
-		me.scratchpadState = mcdu.unit[me.id].scratchpadState();
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		#} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		#}
 	},
 };
@@ -860,9 +860,9 @@ var CompRte = {
 	},
 	softKey: func(k) {
 		if (k == "r6") {
-			mcdu.unit[me.id].setPage("init");
+			unit[me.id].setPage("init");
 		} else {
-			mcdu.unit[me.id].setMessage("NOT ALLOWED");
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
