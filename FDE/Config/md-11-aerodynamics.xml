@@ -748,6 +748,13 @@
 				<property>aero/ci2vel</property>
 				<property>aero/alphadot-rad_sec</property>
 				<value>-12.6734</value>
+				<table> <!-- Fixes a JSBSim issue -->
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
+					<tableData>
+						0  0
+						5  1
+					</tableData>
+				</table>
 			</product>
 		</function>
 		
