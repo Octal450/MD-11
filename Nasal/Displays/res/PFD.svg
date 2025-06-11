@@ -57,9 +57,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="607.83056"
-     inkscape:cy="811.13639"
+     inkscape:zoom="0.5"
+     inkscape:cx="1237.6462"
+     inkscape:cy="792.27084"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -791,16 +791,16 @@
        style="opacity:1;fill:none;fill-opacity:1;stroke:#0047a0;stroke-width:35;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="AI_bank_mask"
        inkscape:label="#path5207"
-       d="M 237.07339,311.04304 A 263.53409,263.53409 0 0 1 466.46896,177.23129 263.53409,263.53409 0 0 1 695.86453,311.04302"
+       inkscape:transform-center-y="-194.25698"
        sodipodi:type="arc"
-       sodipodi:open="true"
-       sodipodi:start="3.6562553"
-       sodipodi:end="5.7685226"
-       sodipodi:ry="263.53409"
-       sodipodi:rx="263.53409"
-       sodipodi:cy="440.76538"
        sodipodi:cx="466.46896"
-       inkscape:transform-center-y="-196.63174" />
+       sodipodi:cy="443.14014"
+       sodipodi:rx="260.35132"
+       sodipodi:ry="260.35132"
+       sodipodi:start="3.6638999"
+       sodipodi:end="5.7608781"
+       d="M 240.83017,313.25579 A 260.35132,260.35132 0 0 1 466.46897,182.78882 260.35132,260.35132 0 0 1 692.10776,313.2558"
+       sodipodi:open="true" />
     <path
        id="AI_banklimit_L"
        style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.80000019;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1135,7 +1135,8 @@
     <g
        id="AI_bank"
        inkscape:label="#g5210"
-       inkscape:transform-center-y="-249.84705">
+       inkscape:transform-center-y="-252.12735"
+       transform="matrix(1,0,0,0.87817334,0,20.977114)">
       <path
          style="fill:#0044a0;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 461.96115,181.90199 8.94491,0 0,12.88601 -8.94491,0 z"
