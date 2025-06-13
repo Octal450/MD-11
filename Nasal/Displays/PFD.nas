@@ -2132,8 +2132,8 @@ var canvasBase = {
 		
 		Value.Afs.apDisc[0] = pts.Controls.Cockpit.apDisc[0].getBoolValue();
 		Value.Afs.apDisc[1] = pts.Controls.Cockpit.apDisc[1].getBoolValue();
-		Value.Afs.ap1Avail = afs.Input.ap1Avail.getBoolValue();
-		Value.Afs.ap2Avail = afs.Input.ap2Avail.getBoolValue();
+		Value.Afs.ap1Avail = afs.Input.ap1AvailPfd.getBoolValue();
+		Value.Afs.ap2Avail = afs.Input.ap2AvailPfd.getBoolValue();
 		Value.Afs.apSound = afs.Sound.apOff.getBoolValue();
 		Value.Afs.apWarn = afs.Warning.ap.getBoolValue();
 		Value.Afs.atsFlash = afs.Warning.atsFlash.getBoolValue();

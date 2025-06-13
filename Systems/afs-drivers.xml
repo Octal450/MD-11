@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<!-- Logic -->
-	<logic>
+	<logic> <!-- Main requirements, for PFD avail box -->
 		<input>
 			<and>
 				<equals>
@@ -17,21 +17,13 @@
 					<property>/systems/iru[0]/main-avail</property>
 					<value>1</value>
 				</equals>
-				<greater-than-equals> <!-- Controls -->
-					<property>/systems/hydraulics/sys-2-psi</property>
-					<value>2200</value>
-				</greater-than-equals>
-				<greater-than-equals> <!-- Autotrim -->
-					<property>/systems/hydraulics/sys-3-psi</property>
-					<value>2200</value>
-				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/systems/fcc/lsas/left-in-active</property>
+						<property>/systems/fcc/lsas/left-in-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/fcc/lsas/right-out-active</property>
+						<property>/systems/fcc/lsas/right-out-avail</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -41,10 +33,30 @@
 				</equals>
 			</and>
 		</input>
+		<output>/it-autoflight/input/ap1-avail-pfd</output>
+	</logic>
+	
+	<logic> <!-- Trips with low hyd pressure due to surfaces not following command -->
+		<input>
+			<and>
+				<equals>
+					<property>/it-autoflight/input/ap1-avail-pfd</property>
+					<value>1</value>
+				</equals>
+				<greater-than-equals> <!-- Controls -->
+					<property>/systems/hydraulics/sys-2-psi</property>
+					<value>2200</value>
+				</greater-than-equals>
+				<greater-than-equals> <!-- Autotrim -->
+					<property>/systems/hydraulics/sys-3-psi</property>
+					<value>2200</value>
+				</greater-than-equals>
+			</and>
+		</input>
 		<output>/it-autoflight/input/ap1-avail</output>
 	</logic>
 	
-	<logic>
+	<logic> <!-- Main requirements, for PFD avail box -->
 		<input>
 			<and>
 				<equals>
@@ -56,17 +68,13 @@
 					<property>/systems/iru[1]/main-avail</property>
 					<value>1</value>
 				</equals>
-				<greater-than-equals>
-					<property>/systems/hydraulics/sys-1-psi</property>
-					<value>2200</value>
-				</greater-than-equals>
 				<or>
 					<equals>
-						<property>/systems/fcc/lsas/left-out-active</property>
+						<property>/systems/fcc/lsas/left-out-avail</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/systems/fcc/lsas/right-in-active</property>
+						<property>/systems/fcc/lsas/right-in-avail</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -74,6 +82,22 @@
 					<property>/it-autoflight/internal/spd-pitch-avail</property>
 					<value>1</value>
 				</equals>
+			</and>
+		</input>
+		<output>/it-autoflight/input/ap2-avail-pfd</output>
+	</logic>
+	
+	<logic> <!-- Trips with low hyd pressure due to surfaces not following command -->
+		<input>
+			<and>
+				<equals>
+					<property>/it-autoflight/input/ap2-avail-pfd</property>
+					<value>1</value>
+				</equals>
+				<greater-than-equals>
+					<property>/systems/hydraulics/sys-1-psi</property>
+					<value>2200</value>
+				</greater-than-equals>
 			</and>
 		</input>
 		<output>/it-autoflight/input/ap2-avail</output>

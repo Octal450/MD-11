@@ -135,7 +135,8 @@
 	
 	<channel name="LSAS Logic">
 		
-		<switch name="/systems/fcc/lsas/left-out-active">
+		<!-- Avail does not take hydraulics into account, active does -->
+		<switch name="/systems/fcc/lsas/left-out-avail">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -143,17 +144,13 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-left-out eq 1
-				<test logic="OR">
-					/systems/hydraulics/sys-1-psi ge 2200
-					/systems/hydraulics/sys-2-psi ge 2200
-				</test>
 				/systems/fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fcc/lsas/left-in-active">
+		<switch name="/systems/fcc/lsas/left-in-avail">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -161,17 +158,13 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-left-in eq 1
-				<test logic="OR">
-					/systems/hydraulics/sys-2-psi ge 2200
-					/systems/hydraulics/sys-3-psi ge 2200
-				</test>
 				/systems/fcc/fcc1-power eq 1
 				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fcc/lsas/right-in-active">
+		<switch name="/systems/fcc/lsas/right-in-avail">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -179,17 +172,13 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-right-in eq 1
-				<test logic="OR">
-					/systems/hydraulics/sys-1-psi ge 2200
-					/systems/hydraulics/sys-3-psi ge 2200
-				</test>
 				/systems/fcc/fcc2-power eq 1
 				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fcc/lsas/right-out-active">
+		<switch name="/systems/fcc/lsas/right-out-avail">
 			<default value="0"/>
 			<test logic="OR" value="0"> <!-- AP disc button kills LSAS -->
 				/controls/cockpit/ap-disc-1 eq 1
@@ -197,13 +186,53 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-right-out eq 1
+				/systems/fcc/fcc1-power eq 1
+				/systems/failures/fcc/lsas-right-out ne 1
+				/systems/iru-common/any-aligned-out eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcc/lsas/left-out-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fcc/lsas/left-out-avail eq 1
 				<test logic="OR">
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-2-psi ge 2200
 				</test>
-				/systems/fcc/fcc1-power eq 1
-				/systems/failures/fcc/lsas-right-out ne 1
-				/systems/iru-common/any-aligned-out eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcc/lsas/left-in-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fcc/lsas/left-in-avail eq 1
+				<test logic="OR">
+					/systems/hydraulics/sys-2-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcc/lsas/right-in-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fcc/lsas/right-in-avail eq 1
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-3-psi ge 2200
+				</test>
+			</test>
+		</switch>
+		
+		<switch name="/systems/fcc/lsas/right-out-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fcc/lsas/right-out-avail eq 1
+				<test logic="OR">
+					/systems/hydraulics/sys-1-psi ge 2200
+					/systems/hydraulics/sys-2-psi ge 2200
+				</test>
 			</test>
 		</switch>
 		

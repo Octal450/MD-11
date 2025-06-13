@@ -1845,18 +1845,8 @@
 			<elevator-feel n="0">
 				<auto type="bool">1</auto>
 			</elevator-feel>
-			<lsas n="0">
-				<left-in-active type="bool">0</left-in-active>
-				<left-out-active type="bool">0</left-out-active>
-				<right-in-active type="bool">0</right-in-active>
-				<right-out-active type="bool">0</right-out-active>
-			</lsas>
 			<manual type="bool">0</manual>
 			<speed type="double">0</speed>
-			<yaw n="0">
-				<avail-upr type="bool">0</avail-upr>
-				<avail-lwr type="bool">0</avail-lwr>
-			</yaw>
 		</fcc>
 		<fms n="0">
 			<flight-data n="0">
