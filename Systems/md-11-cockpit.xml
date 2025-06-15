@@ -642,6 +642,7 @@
 		<switch name="/systems/cockpit/wipers/wiper-l-cmd">
 			<default value="/systems/cockpit/wipers/wiper-l-cmd"/>
 			<test logic="OR" value="0">
+				/systems/acconfig/autoconfig-running eq 1
 				/systems/electrical/bus/l-emer-dc lt 24
 				/systems/cockpit/wipers/wiper-l-out eq 1
 			</test>
@@ -653,10 +654,13 @@
 		
 		<switch name="/systems/cockpit/wipers/wiper-l-rate">
 			<default value="1"/>
+			<test value="10">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
 			<test value="0">
 				/systems/electrical/bus/l-emer-dc lt 24
 			</test>
-			<test logic="OR" value="2">
+			<test value="2">
 				/controls/switches/wiper-l eq 2
 			</test>
 		</switch>
@@ -671,6 +675,7 @@
 		<switch name="/systems/cockpit/wipers/wiper-r-cmd">
 			<default value="/systems/cockpit/wipers/wiper-r-cmd"/>
 			<test logic="OR" value="0">
+				/systems/acconfig/autoconfig-running eq 1
 				/systems/electrical/bus/r-emer-dc lt 24
 				/systems/cockpit/wipers/wiper-r-out eq 1
 			</test>
@@ -682,10 +687,13 @@
 		
 		<switch name="/systems/cockpit/wipers/wiper-r-rate">
 			<default value="1"/>
+			<test value="10">
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
 			<test value="0">
 				/systems/electrical/bus/r-emer-dc lt 24
 			</test>
-			<test logic="OR" value="2">
+			<test value="2">
 				/controls/switches/wiper-r eq 2
 			</test>
 		</switch>
