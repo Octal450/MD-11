@@ -438,6 +438,16 @@
 			<input>/controls/lighting/thunderstorm</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/wiper-l">
+			<input>/controls/switches/wiper-l</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/wiper-r">
+			<input>/controls/switches/wiper-r</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
@@ -623,6 +633,68 @@
 			<input>/systems/lighting/stby-compass-cmd</input>
 			<c1>20</c1>
 		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Windshield Wipers" execrate="2">
+		
+		<!-- Wiper L -->
+		<switch name="/systems/cockpit/wipers/wiper-l-cmd">
+			<default value="/systems/cockpit/wipers/wiper-l-cmd"/>
+			<test logic="OR" value="0">
+				/systems/electrical/bus/l-emer-dc lt 24
+				/systems/cockpit/wipers/wiper-l-out eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/switches/wiper-l gt 0
+				/systems/cockpit/wipers/wiper-l-out eq 0
+			</test>
+		</switch>
+		
+		<switch name="/systems/cockpit/wipers/wiper-l-rate">
+			<default value="1"/>
+			<test value="0">
+				/systems/electrical/bus/l-emer-dc lt 24
+			</test>
+			<test logic="OR" value="2">
+				/controls/switches/wiper-l eq 2
+			</test>
+		</switch>
+		
+		<actuator name="/systems/cockpit/wipers/wiper-l">
+			<input>/systems/cockpit/wipers/wiper-l-cmd</input>
+			<rate_limit>/systems/cockpit/wipers/wiper-l-rate</rate_limit>
+			<output>/systems/cockpit/wipers/wiper-l-out</output>
+		</actuator>
+		
+		<!-- Wiper R -->
+		<switch name="/systems/cockpit/wipers/wiper-r-cmd">
+			<default value="/systems/cockpit/wipers/wiper-r-cmd"/>
+			<test logic="OR" value="0">
+				/systems/electrical/bus/r-emer-dc lt 24
+				/systems/cockpit/wipers/wiper-r-out eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/switches/wiper-r gt 0
+				/systems/cockpit/wipers/wiper-r-out eq 0
+			</test>
+		</switch>
+		
+		<switch name="/systems/cockpit/wipers/wiper-r-rate">
+			<default value="1"/>
+			<test value="0">
+				/systems/electrical/bus/r-emer-dc lt 24
+			</test>
+			<test logic="OR" value="2">
+				/controls/switches/wiper-r eq 2
+			</test>
+		</switch>
+		
+		<actuator name="/systems/cockpit/wipers/wiper-r">
+			<input>/systems/cockpit/wipers/wiper-r-cmd</input>
+			<rate_limit>/systems/cockpit/wipers/wiper-r-rate</rate_limit>
+			<output>/systems/cockpit/wipers/wiper-r-out</output>
+		</actuator>
 	
 	</channel>
 	

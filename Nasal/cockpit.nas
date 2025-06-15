@@ -24,6 +24,8 @@ var variousReset = func() {
 	pts.Controls.Switches.minimumsRa.setValue(200);
 	pts.Controls.Switches.noSmokingSign.setValue(1); # Smoking is bad!
 	pts.Controls.Switches.seatbeltSign.setValue(0);
+	pts.Controls.Switches.wiperL.setValue(0);
+	pts.Controls.Switches.wiperR.setValue(0);
 	pts.Instrumentation.Altimeter.qfe.setBoolValue(0);
 	pts.Instrumentation.Du.duDimmer[0].setValue(1);
 	pts.Instrumentation.Du.duDimmer[1].setValue(1);

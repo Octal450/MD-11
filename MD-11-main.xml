@@ -803,6 +803,8 @@
 			<no-smoking-sign-status type="bool">1</no-smoking-sign-status>
 			<seatbelt-sign type="double">0</seatbelt-sign>
 			<seatbelt-sign-status type="bool">0</seatbelt-sign-status>
+			<wiper-l type="int">0</wiper-l>
+			<wiper-r type="int">0</wiper-r>
 		</switches>
 		<warnings n="0">
 			<gear-warning-inhibit type="bool">0</gear-warning-inhibit>
@@ -1721,6 +1723,12 @@
 				<out type="double">0</out>
 			</stabilizer-motion>
 		</caws>
+		<cockpit n="0">
+			<wipers n="0">
+				<wiper-l-out type="double">0</wiper-l-out>
+				<wiper-r-out type="double">0</wiper-r-out>
+			</wipers>
+		</cockpit>
 		<electrical n="0">
 			<epcu n="0">
 				<split-buses type="bool">0</split-buses>

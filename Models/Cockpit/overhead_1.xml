@@ -36,8 +36,8 @@
 		<object-name>ovhdinteg.indicator</object-name>
 		<object-name>Plane.022</object-name>
 		<object-name>SmokeElecAir.light</object-name>
-		<object-name>wiper.knob1.light</object-name>
-		<object-name>wiper.knob2.light</object-name>
+		<object-name>WiperL.light</object-name>
+		<object-name>WiperR.light</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -9241,6 +9241,72 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>WiperL</object-name>
+		<object-name>WiperL.light</object-name>
+		<property>controls/cockpit/overhead/wiper-l</property>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>45</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.22423</y-m>
+			<z-m>-18.0505</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/wiper-l</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>2</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>WiperR</object-name>
+		<object-name>WiperR.light</object-name>
+		<property>controls/cockpit/overhead/wiper-r</property>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>45</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.22423</y-m>
+			<z-m>-18.0505</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/wiper-r</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>2</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>libraries.Sound.knb1();</script>
+			</binding>
+		</action>
 	</animation>
 	
 </PropertyList>

@@ -3649,10 +3649,10 @@
 	</animation-->
 	
 	<!-- Wipers -->
-	<!--animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>wiper.left</object-name>
-		<property>controls/electric/wiperl/position-norm</property>
+		<property>systems/cockpit/wipers/wiper-l-out</property>
 		<factor>-68</factor>
 		<axis>
 			<x1-m>-28.0978</x1-m>
@@ -3667,7 +3667,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>wiper.right</object-name>
-		<property>controls/electric/wiperr/position-norm</property>
+		<property>systems/cockpit/wipers/wiper-r-out</property>
 		<factor>68</factor>
 		<axis>
 			<x1-m>-28.0978</x1-m>
@@ -3677,6 +3677,6 @@
 			<y2-m>0.2905</y2-m>
 			<z2-m>6.938</z2-m>
 		</axis>
-	</animation-->
+	</animation>
 
 </PropertyList>
