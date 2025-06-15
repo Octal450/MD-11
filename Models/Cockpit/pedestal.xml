@@ -685,7 +685,7 @@
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<object-name>flaplever.3</object-name>
-		<property>/controls/cockpit/flaps-lever-rotate</property>
+		<property>controls/cockpit/flaps-lever-rotate</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-26</dep></entry>
 			<entry><ind>1</ind><dep>-13</dep></entry>
@@ -711,7 +711,7 @@
 		<object-name>flaplever</object-name>
 		<object-name>flaplever.2</object-name>
 		<object-name>flaplever.3</object-name>
-		<property>/controls/cockpit/flaps-lever-translate</property>
+		<property>controls/cockpit/flaps-lever-translate</property>
 		<factor>0.01</factor>
 		<axis>
 			<x>0</x>
@@ -734,7 +734,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<property>controls/cockpit/flaps-lever-translate-cmd</property>
 				<value>1</value>
 			</binding>
 		</increase>
@@ -745,14 +745,14 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<property>controls/cockpit/flaps-lever-translate-cmd</property>
 				<value>1</value>
 			</binding>
 		</decrease>
 		<release>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/cockpit/flaps-lever-translate-cmd</property>
+				<property>controls/cockpit/flaps-lever-translate-cmd</property>
 				<value>0</value>
 			</binding>
 		</release>
@@ -762,7 +762,7 @@
 		<type>knob</type>
 		<object-name>BrkLever</object-name>
 		<object-name>BrkLever2</object-name>
-		<property>/controls/cockpit/brake-lever</property>
+		<property>controls/cockpit/brake-lever</property>
 		<drag-direction>vertical</drag-direction>
 		<drag-scale-px>30</drag-scale-px>
 		<factor>71</factor>
