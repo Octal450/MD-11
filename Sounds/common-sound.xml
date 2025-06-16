@@ -367,39 +367,6 @@
 			</volume>
 		</touch>
 		
-		<touch>
-			<name>md11 xtouch n</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
-			<property>gear/gear[0]/wow</property>
-			<volume>
-				<property>/sim/sound/external-custom</property>
-				<factor>50</factor>
-			</volume>
-		</touch>
-		
-		<touch>
-			<name>md11 xtouch l</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
-			<property>gear/gear[1]/wow</property>
-			<volume>
-				<property>/sim/sound/external-custom</property>
-				<factor>50</factor>
-			</volume>
-		</touch>
-		
-		<touch>
-			<name>md11 xtouch r</name>
-			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/Effects/touch-external.wav</path>
-			<property>gear/gear[2]/wow</property>
-			<volume>
-				<property>/sim/sound/external-custom</property>
-				<factor>50</factor>
-			</volume>
-		</touch>
-		
 		<!-- Custom CAWS -->
 	    <caws>
 			<name>2500</name>
