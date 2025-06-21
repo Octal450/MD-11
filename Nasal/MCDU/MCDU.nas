@@ -433,7 +433,7 @@ var FORMAT = {
 			me.degrees[1] = int(me.dms);
 			me.minutes[1] = sprintf("%.1f",abs((me.dms - me.degrees[1]) * 60));
 			me.sign[1] = me.degrees[1] >= 0 ? "E" : "W";
-			return sprintf("%s%02s%.1f/%s%03s%.1f", me.sign[0], abs(me.degrees[0]), me.minutes[0], me.sign[1], abs(me.degrees[1]), me.minutes[1]);
+			return sprintf("%s%02s%04.1f/%s%03s%04.1f", me.sign[0], abs(me.degrees[0]), me.minutes[0], me.sign[1], abs(me.degrees[1]), me.minutes[1]);
 		},
 	},
 };
