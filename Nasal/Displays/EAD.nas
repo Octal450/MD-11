@@ -18,6 +18,7 @@ var Value = {
 		egt: [0, 0, 0],
 		epr: [0, 0, 0],
 		eprLimit: 0,
+		minN: 1.8,
 		n1: [0, 0, 0],
 		n1Limit: 0,
 		n2: [0, 0, 0],
@@ -103,7 +104,12 @@ var canvasBase = {
 		}
 	},
 	updateBase: func() {
-		# Dials vs Tapes Specific
+		if (Value.engType == "PW") {
+			Value.Fadec.minN = 6.3;
+		} else {
+			Value.Fadec.minN = 1.8;
+		}
+		
 		Value.Ignition.starter[0] = systems.IGNITION.starter1.getBoolValue();
 		Value.Ignition.starter[1] = systems.IGNITION.starter2.getBoolValue();
 		Value.Ignition.starter[2] = systems.IGNITION.starter3.getBoolValue();
@@ -322,7 +328,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.n2[0] = systems.ENGINES.n2[0].getValue();
 			
-			if (Value.Fadec.n2[0] < 1.8) {
+			if (Value.Fadec.n2[0] < Value.Fadec.minN) {
 				Value.Fadec.n2[0] = 0;
 				me["N21_needle"].setRotation(Value.needleRest);
 			} else {
@@ -348,7 +354,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[1]) {
 			Value.Fadec.n2[1] = systems.ENGINES.n2[1].getValue();
 			
-			if (Value.Fadec.n2[1] < 1.8) {
+			if (Value.Fadec.n2[1] < Value.Fadec.minN) {
 				Value.Fadec.n2[1] = 0;
 				me["N22_needle"].setRotation(Value.needleRest);
 			} else {
@@ -374,7 +380,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[2]) {
 			Value.Fadec.n2[2] = systems.ENGINES.n2[2].getValue();
 			
-			if (Value.Fadec.n2[2] < 1.8) {
+			if (Value.Fadec.n2[2] < Value.Fadec.minN) {
 				Value.Fadec.n2[2] = 0;
 				me["N23_needle"].setRotation(Value.needleRest);
 			} else {
@@ -490,7 +496,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.n2[0] = systems.ENGINES.n2[0].getValue();
 			
-			if (Value.Fadec.n2[0] < 1.8) {
+			if (Value.Fadec.n2[0] < Value.Fadec.minN) {
 				Value.Fadec.n2[0] = 0;
 				me["N21_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -515,7 +521,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[1]) {
 			Value.Fadec.n2[1] = systems.ENGINES.n2[1].getValue();
 			
-			if (Value.Fadec.n2[1] < 1.8) {
+			if (Value.Fadec.n2[1] < Value.Fadec.minN) {
 				Value.Fadec.n2[1] = 0;
 				me["N22_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -540,7 +546,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[2]) {
 			Value.Fadec.n2[2] = systems.ENGINES.n2[2].getValue();
 			
-			if (Value.Fadec.n2[2] < 1.8) {
+			if (Value.Fadec.n2[2] < Value.Fadec.minN) {
 				Value.Fadec.n2[2] = 0;
 				me["N23_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -668,7 +674,7 @@ var canvasGeDials = {
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
-			if (Value.Fadec.n1[0] < 1.8) {
+			if (Value.Fadec.n1[0] < Value.Fadec.minN) {
 				Value.Fadec.n1[0] = 0;
 				me["N11_needle"].setRotation(Value.needleRest);
 			} else {
@@ -710,7 +716,7 @@ var canvasGeDials = {
 		if (Value.Fadec.powered[1]) {
 			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
-			if (Value.Fadec.n1[1] < 1.8) {
+			if (Value.Fadec.n1[1] < Value.Fadec.minN) {
 				Value.Fadec.n1[1] = 0;
 				me["N12_needle"].setRotation(Value.needleRest);
 			} else {
@@ -752,7 +758,7 @@ var canvasGeDials = {
 		if (Value.Fadec.powered[2]) {
 			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
-			if (Value.Fadec.n1[2] < 1.8) {
+			if (Value.Fadec.n1[2] < Value.Fadec.minN) {
 				Value.Fadec.n1[2] = 0;
 				me["N13_needle"].setRotation(Value.needleRest);
 			} else {
@@ -897,7 +903,7 @@ var canvasGeTapes = {
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
 			
-			if (Value.Fadec.n1[0] < 1.8) {
+			if (Value.Fadec.n1[0] < Value.Fadec.minN) {
 				Value.Fadec.n1[0] = 0;
 				me["N11_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -923,7 +929,7 @@ var canvasGeTapes = {
 		if (Value.Fadec.powered[1]) {
 			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
 			
-			if (Value.Fadec.n1[1] < 1.8) {
+			if (Value.Fadec.n1[1] < Value.Fadec.minN) {
 				Value.Fadec.n1[1] = 0;
 				me["N12_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -949,7 +955,7 @@ var canvasGeTapes = {
 		if (Value.Fadec.powered[2]) {
 			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 			
-			if (Value.Fadec.n1[2] < 1.8) {
+			if (Value.Fadec.n1[2] < Value.Fadec.minN) {
 				Value.Fadec.n1[2] = 0;
 				me["N13_bar"].setTranslation(0, Value.barRest);
 			} else {
@@ -1211,16 +1217,12 @@ var canvasPwDials = {
 		}
 		
 		# N1
-		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
-			
-			if (Value.Fadec.n1[0] < 1.8) {
-				Value.Fadec.n1[0] = 0;
-				me["N11_needle"].setRotation(Value.needleRest);
-			} else {
-				me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
-			}
-			
+		Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
+		Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
+		Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
+		
+		if (Value.Fadec.powered[0] and Value.Fadec.n1[0] >= Value.Fadec.minN) {
+			me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
 			me["N11"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[0], 0.1)));
 			me["N11"].show();
 			me["N11_needle"].show();
@@ -1229,16 +1231,8 @@ var canvasPwDials = {
 			me["N11_needle"].hide();
 		}
 		
-		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
-			
-			if (Value.Fadec.n1[1] < 1.8) {
-				Value.Fadec.n1[1] = 0;
-				me["N12_needle"].setRotation(Value.needleRest);
-			} else {
-				me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
-			}
-			
+		if (Value.Fadec.powered[1] and Value.Fadec.n1[1] >= Value.Fadec.minN) {
+			me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
 			me["N12"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[1], 0.1)));
 			me["N12"].show();
 			me["N12_needle"].show();
@@ -1247,16 +1241,8 @@ var canvasPwDials = {
 			me["N12_needle"].hide();
 		}
 		
-		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
-			
-			if (Value.Fadec.n1[2] < 1.8) {
-				Value.Fadec.n1[2] = 0;
-				me["N13_needle"].setRotation(Value.needleRest);
-			} else {
-				me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
-			}
-			
+		if (Value.Fadec.powered[2] and Value.Fadec.n1[2] >= Value.Fadec.minN) {
+			me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
 			me["N13"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[2], 0.1)));
 			me["N13"].show();
 			me["N13_needle"].show();
@@ -1475,39 +1461,25 @@ var canvasPwTapes = {
 		}
 		
 		# N1
-		if (Value.Fadec.powered[0]) {
-			Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
-			
-			if (Value.Fadec.n1[0] < 1.8) {
-				Value.Fadec.n1[0] = 0;
-			}
-			
+		Value.Fadec.n1[0] = systems.ENGINES.n1[0].getValue();
+		Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
+		Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
+		
+		if (Value.Fadec.powered[0] and Value.Fadec.n1[0] >= Value.Fadec.minN) {
 			me["N11"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[0], 0.1)));
 			me["N11"].show();
 		} else {
 			me["N11"].hide();
 		}
 		
-		if (Value.Fadec.powered[1]) {
-			Value.Fadec.n1[1] = systems.ENGINES.n1[1].getValue();
-			
-			if (Value.Fadec.n1[1] < 1.8) {
-				Value.Fadec.n1[1] = 0;
-			}
-			
+		if (Value.Fadec.powered[1] and Value.Fadec.n1[1] >= Value.Fadec.minN) {
 			me["N12"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[1], 0.1)));
 			me["N12"].show();
 		} else {
 			me["N12"].hide();
 		}
 		
-		if (Value.Fadec.powered[2]) {
-			Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
-			
-			if (Value.Fadec.n1[2] < 1.8) {
-				Value.Fadec.n1[2] = 0;
-			}
-			
+		if (Value.Fadec.powered[2] and Value.Fadec.n1[2] >= Value.Fadec.minN) {
 			me["N13"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[2], 0.1)));
 			me["N13"].show();
 		} else {

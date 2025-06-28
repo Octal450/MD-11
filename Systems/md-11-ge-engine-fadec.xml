@@ -1769,7 +1769,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-1 ge 24
-				/engines/engine[0]/n2-actual ge 1.8
+				/engines/engine[0]/n2-actual ge 1
 			</test>
 		</switch>
 		
@@ -1800,7 +1800,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-2 ge 24
-				/engines/engine[1]/n2-actual ge 1.8
+				/engines/engine[1]/n2-actual ge 1
 			</test>
 		</switch>
 		
@@ -1831,7 +1831,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-3 ge 24
-				/engines/engine[2]/n2-actual ge 1.8
+				/engines/engine[2]/n2-actual ge 1
 			</test>
 		</switch>
 		
