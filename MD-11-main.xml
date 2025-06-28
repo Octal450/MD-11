@@ -920,7 +920,7 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/cockpit/at-disc-1", 1);
-						setprop("/controls/cockpit/at-disc-3", 1);
+						setprop("/controls/cockpit/at-disc-2", 1);
 						cockpit.ApPanel.atDisc();
 					</script>
 				</binding>
@@ -929,7 +929,7 @@
 						<command>nasal</command>
 						<script>
 							setprop("/controls/cockpit/at-disc-1", 0);
-							setprop("/controls/cockpit/at-disc-3", 0);
+							setprop("/controls/cockpit/at-disc-2", 0);
 						</script>
 					</binding>
 				</mod-up>
