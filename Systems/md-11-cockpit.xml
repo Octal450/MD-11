@@ -58,12 +58,12 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/fcp/afs-ovrd-1">
-			<input>/it-autoflight/input/ovrd1</input>
+			<input>/it-autoflight/input/ovrd-1</input>
 			<c1>20</c1>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/fcp/afs-ovrd-2">
-			<input>/it-autoflight/input/ovrd2</input>
+			<input>/it-autoflight/input/ovrd-2</input>
 			<c1>20</c1>
 		</lag_filter>
 		

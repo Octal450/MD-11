@@ -731,7 +731,7 @@
 				<condition>
 					<and>
 						<not><property>devices/status/keyboard/shift</property></not>
-						<not><property>it-autoflight/input/ovrd1</property></not>
+						<not><property>it-autoflight/input/ovrd-1</property></not>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -741,11 +741,11 @@
 				<condition>
 					<or>
 						<property>devices/status/keyboard/shift</property>
-						<property>it-autoflight/input/ovrd1</property>
+						<property>it-autoflight/input/ovrd-1</property>
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>it-autoflight/input/ovrd1</property>
+				<property>it-autoflight/input/ovrd-1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -780,7 +780,7 @@
 				<condition>
 					<and>
 						<not><property>devices/status/keyboard/shift</property></not>
-						<not><property>it-autoflight/input/ovrd2</property></not>
+						<not><property>it-autoflight/input/ovrd-2</property></not>
 					</and>
 				</condition>
 				<command>nasal</command>
@@ -790,11 +790,11 @@
 				<condition>
 					<or>
 						<property>devices/status/keyboard/shift</property>
-						<property>it-autoflight/input/ovrd2</property>
+						<property>it-autoflight/input/ovrd-2</property>
 					</or>
 				</condition>
 				<command>property-toggle</command>
-				<property>it-autoflight/input/ovrd2</property>
+				<property>it-autoflight/input/ovrd-2</property>
 			</binding>
 			<binding>
 				<command>nasal</command>

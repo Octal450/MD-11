@@ -12,7 +12,7 @@
 					<property>/systems/fcc/fcc1-power</property>
 					<value>1</value>
 				</equals>
-				<not><property>/it-autoflight/input/ovrd1</property></not>
+				<not><property>/it-autoflight/input/ovrd-1</property></not>
 				<equals> <!-- Basic modes except NAV work with only partial alignment -->
 					<property>/systems/iru[0]/main-avail</property>
 					<value>1</value>
@@ -63,7 +63,7 @@
 					<property>/systems/fcc/fcc2-power</property>
 					<value>1</value>
 				</equals>
-				<not><property>/it-autoflight/input/ovrd2</property></not>
+				<not><property>/it-autoflight/input/ovrd-2</property></not>
 				<equals> <!-- Basic modes except NAV work with only partial alignment -->
 					<property>/systems/iru[1]/main-avail</property>
 					<value>1</value>
@@ -117,8 +117,8 @@
 					</equals>
 				</or>
 				<or>
-					<not><property>/it-autoflight/input/ovrd1</property></not>
-					<not><property>/it-autoflight/input/ovrd2</property></not>
+					<not><property>/it-autoflight/input/ovrd-1</property></not>
+					<not><property>/it-autoflight/input/ovrd-2</property></not>
 				</or>
 				<or>
 					<equals>
