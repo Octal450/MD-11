@@ -1023,7 +1023,7 @@
 				/systems/fadec/reverse-1/active eq 1
 			</test>
 			<clipto>
-				<min>0</min> <!-- Intentional -->
+				<min>0.0</min> <!-- Intentional -->
 				<max>/systems/fadec/control-1/max</max>
 			</clipto>
 		</switch>
@@ -1108,7 +1108,7 @@
 				/systems/fadec/reverse-2/active eq 1
 			</test>
 			<clipto>
-				<min>0</min> <!-- Intentional -->
+				<min>0.0</min> <!-- Intentional -->
 				<max>/systems/fadec/control-2/max</max>
 			</clipto>
 		</switch>
@@ -1193,7 +1193,7 @@
 				/systems/fadec/reverse-3/active eq 1
 			</test>
 			<clipto>
-				<min>0</min> <!-- Intentional -->
+				<min>0.0</min> <!-- Intentional -->
 				<max>/systems/fadec/control-3/max</max>
 			</clipto>
 		</switch>
