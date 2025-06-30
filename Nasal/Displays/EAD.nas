@@ -259,7 +259,7 @@ var canvasBase = {
 				me["EGT1_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[0]) {
+			if (Value.Ignition.starter[0] or systems.ENGINES.state[0].getValue() == 2) {
 				me["EGT1_redstart"].show();
 			} else {
 				me["EGT1_redstart"].hide();
@@ -284,7 +284,7 @@ var canvasBase = {
 				me["EGT2_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[1]) {
+			if (Value.Ignition.starter[1] or systems.ENGINES.state[1].getValue() == 2) {
 				me["EGT2_redstart"].show();
 			} else {
 				me["EGT2_redstart"].hide();
@@ -309,7 +309,7 @@ var canvasBase = {
 				me["EGT3_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[2]) {
+			if (Value.Ignition.starter[2] or systems.ENGINES.state[2].getValue() == 2) {
 				me["EGT3_redstart"].show();
 			} else {
 				me["EGT3_redstart"].hide();
@@ -423,7 +423,7 @@ var canvasBase = {
 				me["EGT1_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[0]) {
+			if (Value.Ignition.starter[0] or systems.ENGINES.state[0].getValue() == 2) {
 				me["EGT1_redstart"].show();
 			} else {
 				me["EGT1_redstart"].hide();
@@ -450,7 +450,7 @@ var canvasBase = {
 				me["EGT2_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[1]) {
+			if (Value.Ignition.starter[1] or systems.ENGINES.state[1].getValue() == 2) {
 				me["EGT2_redstart"].show();
 			} else {
 				me["EGT2_redstart"].hide();
@@ -477,7 +477,7 @@ var canvasBase = {
 				me["EGT3_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[2]) {
+			if (Value.Ignition.starter[2] or systems.ENGINES.state[2].getValue() == 2) {
 				me["EGT3_redstart"].show();
 			} else {
 				me["EGT3_redstart"].hide();
