@@ -264,7 +264,7 @@ var afsCanvas = {
 				me["Vs_7seg"].setText("-888.8");
 			} else {
 				# Speed
-				if (afs.Output.showHdg.getBoolValue()) {
+				if (afs.Output.showSpd.getBoolValue()) {
 					if (afs.Input.ktsMach.getBoolValue()) {
 						me["IasInd"].hide();
 						me["MachInd"].show();
