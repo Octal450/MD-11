@@ -175,19 +175,19 @@
 			<expression>
 				<difference>
 					<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-					<value>50</value>
+					<value>53</value>
 				</difference>
 			</expression>
 		</input>
-		<output>/instrumentation/pfd/speed-minus-50</output>
+		<output>/instrumentation/pfd/speed-minus-53</output>
 		<min>0</min>
-		<max>450</max>
+		<max>397</max>
 	</filter>
 	
 	<predict-simple>
 		<name>Speed Predictor (Smoothed)</name>
 		<debug>false</debug>
-		<input>/instrumentation/pfd/speed-minus-50</input>
+		<input>/instrumentation/pfd/speed-minus-53</input>
 		<output>/instrumentation/pfd/speed-lookahead-cmd</output>
 		<seconds>10</seconds>
 		<filter-gain>0.01</filter-gain>
