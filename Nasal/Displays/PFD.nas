@@ -1642,6 +1642,7 @@ var canvasBase = {
 							me["AI_rising_runway"].hide();
 							me["AI_rising_runway_E"].hide();
 						}
+						
 						me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 						me["LOC_pointer"].show();
 					} else {
@@ -1667,6 +1668,7 @@ var canvasBase = {
 						me["AI_rising_runway"].hide();
 						me["AI_rising_runway_E"].hide();
 					}
+					
 					me["LOC_pointer"].setColor(0.9608, 0, 0.7765);
 					me["LOC_pointer"].setTranslation(Value.Nav.headingNeedleDeflectionNorm * 200, 0);
 					me["LOC_pointer"].show();
