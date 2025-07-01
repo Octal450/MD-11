@@ -6,7 +6,7 @@ var variousReset = func() {
 	pts.Controls.Flight.aileronTrim.setValue(0);
 	pts.Controls.Flight.dialAFlap.setValue(15); 
 	pts.Controls.Flight.rudderTrim.setValue(0);
-	pts.Controls.Flight.slatStow.setBoolValue(0); 
+	pts.Controls.Flight.slatStow.setBoolValue(0);
 	pts.Controls.Lighting.beacon.setBoolValue(0);
 	pts.Controls.Lighting.emerLt.setValue(0);
 	pts.Controls.Lighting.landingLightL.setValue(0);
