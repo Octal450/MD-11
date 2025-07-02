@@ -275,6 +275,13 @@ var afsCanvas = {
 						me["Spd_7seg"].setText(sprintf("%03d", afs.Input.kts.getValue()));
 					}
 				} else {
+					if (afs.Input.ktsMach.getBoolValue()) {
+						me["IasInd"].hide();
+						me["MachInd"].show();
+					} else {
+						me["IasInd"].show();
+						me["MachInd"].hide();
+					}
 					me["Spd_7seg"].setText("---");
 				}
 				
