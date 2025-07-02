@@ -231,7 +231,7 @@ var canvasConfig = {
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.62, 0);
 		
-		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
+		if (fms.Internal.phase >= 2) {
 			me["Stab"].setColor(1, 1, 1);
 			me["Stab_box"].hide();
 			me["StabGreen"].hide();
@@ -670,7 +670,7 @@ var canvasEngBase = {
 		me["Stab"].setText(sprintf("%4.1f", abs(Value.Fctl.stabRound)));
 		me["StabNeedle"].setTranslation(Value.Fctl.stab * -12.62, 0);
 		
-		if (fms.Internal.phase >= 2 or pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 80 or !Value.Misc.wow) {
+		if (fms.Internal.phase >= 2) {
 			me["Stab"].setColor(1, 1, 1);
 			me["Stab_box"].hide();
 			me["StabGreen"].hide();
