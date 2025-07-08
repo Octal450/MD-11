@@ -321,6 +321,7 @@ var DUController = {
 	showSdPage: func(p) {
 		if (p == "CONFIG") {
 			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.page.hide();
@@ -330,6 +331,7 @@ var DUController = {
 			canvas_sd.config.page.show();
 		} else if (p == "CONSEQ") {
 			canvas_sd.config.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.page.hide();
@@ -337,10 +339,21 @@ var DUController = {
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
+		} else if (p == "ELEC") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.update();
+			canvas_sd.elec.page.show();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
 		} else if (p == "ENG") {
 			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
 				canvas_sd.config.page.hide();
 				canvas_sd.conseq.page.hide();
+				canvas_sd.elec.page.hide();
 				canvas_sd.engDials.page.hide();
 				canvas_sd.hyd.page.hide();
 				canvas_sd.misc.page.hide();
@@ -350,6 +363,7 @@ var DUController = {
 			} else {
 				canvas_sd.config.page.hide();
 				canvas_sd.conseq.page.hide();
+				canvas_sd.elec.page.hide();
 				canvas_sd.engTapes.page.hide();
 				canvas_sd.misc.page.hide();
 				canvas_sd.hyd.page.hide();
@@ -360,6 +374,7 @@ var DUController = {
 		} else if (p == "HYD") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.update();
@@ -369,6 +384,7 @@ var DUController = {
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.page.hide();
@@ -378,6 +394,7 @@ var DUController = {
 		} else if (p == "STATUS") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.page.hide();
@@ -387,6 +404,7 @@ var DUController = {
 		} else {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.hyd.page.hide();

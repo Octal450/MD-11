@@ -4,6 +4,7 @@
 var display = nil;
 var config = nil;
 var conseq = nil;
+var elec = nil;
 var engDials = nil;
 var engTapes = nil;
 var hyd = nil;
@@ -131,6 +132,7 @@ var canvasBase = {
 	hidePages: func() {
 		config.page.hide();
 		conseq.page.hide();
+		elec.page.hide();
 		engDials.page.hide();
 		engTapes.page.hide();
 		hyd.page.hide();
@@ -143,6 +145,8 @@ var canvasBase = {
 				config.update();
 			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
+			} else if (systems.DUController.sdPage == "ELEC") {
+				elec.update();
 			} else if (systems.DUController.sdPage == "ENG") {
 				if (systems.DUController.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
 					engTapes.update();
@@ -562,6 +566,29 @@ var canvasConseq = {
 			me["Error"].show();
 		} else {
 			me["Error"].hide();
+		}
+	},
+};
+
+var canvasElec = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasElec, canvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["Alert_error"];
+	},
+	update: func() {
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Alert_error"].show();
+		} else {
+			me["Alert_error"].hide();
 		}
 	},
 };
@@ -1743,6 +1770,7 @@ var setup = func() {
 	
 	var configGroup = display.createGroup();
 	var conseqGroup = display.createGroup();
+	var elecGroup = display.createGroup();
 	var engDialsGroup = display.createGroup();
 	var engTapesGroup = display.createGroup();
 	var hydGroup = display.createGroup();
@@ -1751,6 +1779,7 @@ var setup = func() {
 	
 	config = canvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
+	elec = canvasElec.new(elecGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ELEC.svg");
 	engDials = canvasEngDials.new(engDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Dials.svg");
 	engTapes = canvasEngTapes.new(engTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Tapes.svg");
 	hyd = canvasHyd.new(hydGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-HYD.svg");
