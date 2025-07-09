@@ -3854,7 +3854,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/lights/ac-gnd</property>
+					<property>systems/electrical/lights/ac-gndsvc</property>
 					<value>1</value>
 				</equals>
 				<equals>
@@ -3923,7 +3923,7 @@
 		<condition>
 			<or>
 				<equals>
-					<property>systems/electrical/lights/dc-gnd</property>
+					<property>systems/electrical/lights/dc-gndsvc</property>
 					<value>1</value>
 				</equals>
 				<equals>

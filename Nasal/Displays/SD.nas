@@ -18,6 +18,17 @@ var Value = {
 	Config: {
 		gearStatus: [0, 0, 0, 0],
 	},
+	Elec: {
+		Bus: {
+			dcBatDirect: 0,
+		},
+		Rcb: {
+			dcBatLEmerDc: 0,
+		},
+		Relay: {
+			siLEmerAc: 0,
+		},
+	},
 	Eng: {
 		fadecPowered: [0, 0, 0],
 		oilPsi: [0, 0, 0],
@@ -126,6 +137,7 @@ var canvasBase = {
 		# Hide the pages by default
 		me.hidePages();
 		
+		elec.setup();
 		engDials.setup();
 		engTapes.setup();
 	},
@@ -578,7 +590,15 @@ var canvasElec = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error"];
+		return ["Ac1_box", "Ac1_off", "Ac2_box", "Ac2_off", "Ac3_box", "Ac3_off", "AcGndSvc_box", "AcGndSvc_off", "AcTie1", "AcTie2", "AcTie3", "Adg", "Adg_hz", "Adg_hz_error", "Adg_volt", "Adg_volt_error", "Alert_error", "Apu_hz", "Apu_hz_box", "Apu_hz_error",
+		"Apu_load", "Apu_load_box", "Apu_load_error", "Apu_volt", "Apu_volt_box", "Apu_volt_error", "ApuGroup", "ApuPwr1", "ApuPwr2", "ApuPwr3", "Bat", "Bat_amp", "Bat_amp_error", "Bat_volt", "Bat_volt_box", "Bat_volt_error", "Dc1_box", "Dc1_off", "Dc2_box",
+		"Dc2_off", "Dc3_box", "Dc3_off", "DcGndSvc_box", "DcGndSvc_off", "DcTie1", "DcTie3", "ExtPwr", "ExtPwr_hz", "ExtPwr_hz_box", "ExtPwr_hz_error", "ExtPwr_line", "ExtPwr_volt", "ExtPwr_volt_box", "ExtPwr_volt_error", "ExtPwrGroup", "ExtPwr_hz",
+		"ExtPwr_volt", "GenBus1", "GenBus2", "GenBus3", "GlyPwrGroup", "GlyPwr_hz", "GlyPwr_hz_error", "GlyPwr_volt", "GlyPwr_volt_error", "LEmerAc_box", "LEmerAc_off", "LEmerDc_box", "LEmerDc_off", "REmerAc_box", "REmerAc_off", "REmerDc_box", "REmerDc_off",
+		"Tr1_fill", "Tr1_load", "Tr1_load_error", "Tr1_stroke", "Tr1_volt", "Tr1_volt_error", "Tr2A_fill", "Tr2A_load", "Tr2A_load_error", "Tr2A_stroke", "Tr2A_volt", "Tr2A_volt_error", "Tr2B_fill", "Tr2B_load", "Tr2B_load_error", "Tr2B_stroke", "Tr2B_volt",
+		"Tr2B_volt_error", "Tr3_fill", "Tr3_load", "Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
+	},
+	setup: func() {
+		me["Apu_load_box"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -586,9 +606,280 @@ var canvasElec = {
 		
 		# Errors, these don't have separate logic yet.
 		if (Value.Misc.annunTestWow) {
+			me["Adg_hz_error"].show();
+			me["Adg_volt_error"].show();
 			me["Alert_error"].show();
+			me["Apu_hz_error"].show();
+			me["Apu_load_error"].show();
+			me["Apu_volt_error"].show();
+			me["Bat_amp_error"].show();
+			me["Bat_volt_error"].show();
+			me["ExtPwr_hz_error"].show();
+			me["ExtPwr_volt_error"].show();
+			me["GlyPwr_hz_error"].show();
+			me["GlyPwr_volt_error"].show();
+			me["Tr1_load_error"].show();
+			me["Tr2A_load_error"].show();
+			me["Tr2B_load_error"].show();
+			me["Tr3_load_error"].show();
+			me["Tr1_volt_error"].show();
+			me["Tr2A_volt_error"].show();
+			me["Tr2B_volt_error"].show();
+			me["Tr3_volt_error"].show();
 		} else {
+			me["Adg_hz_error"].hide();
+			me["Adg_volt_error"].hide();
 			me["Alert_error"].hide();
+			me["Apu_hz_error"].hide();
+			me["Apu_load_error"].hide();
+			me["Apu_volt_error"].hide();
+			me["Bat_amp_error"].hide();
+			me["Bat_volt_error"].hide();
+			me["ExtPwr_hz_error"].hide();
+			me["ExtPwr_volt_error"].hide();
+			me["GlyPwr_hz_error"].hide();
+			me["GlyPwr_volt_error"].hide();
+			me["Tr1_load_error"].hide();
+			me["Tr2A_load_error"].hide();
+			me["Tr2B_load_error"].hide();
+			me["Tr3_load_error"].hide();
+			me["Tr1_volt_error"].hide();
+			me["Tr2A_volt_error"].hide();
+			me["Tr2B_volt_error"].hide();
+			me["Tr3_volt_error"].hide();
+		}
+		
+		# Battery
+		Value.Elec.Bus.dcBatDirect = systems.ELECTRICAL.Bus.dcBatDirect.getValue();
+		Value.Elec.Rcb.dcBatLEmerDc = systems.ELECTRICAL.Rcb.dcBatLEmerDc.getBoolValue();
+		Value.Elec.Relay.siLEmerAc = systems.ELECTRICAL.Relay.siLEmerAc.getBoolValue();
+		
+		me["Bat_volt"].setText(sprintf("%d", math.round(Value.Elec.Bus.dcBatDirect)));
+		if (Value.Elec.Bus.dcBatDirect < 22) {
+			me["Bat"].setColor(0.9412, 0.7255, 0);
+			me["Bat_volt"].setColor(0.9412, 0.7255, 0);
+			me["Bat_volt_box"].show();
+		} else {
+			if (Value.Elec.Rcb.dcBatLEmerDc or Value.Elec.Relay.siLEmerAc) {
+				me["Bat"].setColor(0, 1, 0);
+				
+				me["Bat_amp"].setText(sprintf("%d", math.round(math.max(systems.ELECTRICAL.Source.Bat1.amp.getValue(), systems.ELECTRICAL.Source.Bat2.amp.getValue()))));
+				me["Bat_amp"].show();
+			} else {
+				me["Bat"].setColor(1, 1, 1);
+				me["Bat_amp"].hide();
+			}
+			
+			me["Bat_volt"].setColor(1, 1, 1);
+			me["Bat_volt_box"].hide();
+		}
+		
+		# Busses
+		if (systems.ELECTRICAL.Lights.lEmerDc.getBoolValue()) {
+			me["LEmerDc_box"].setColor(0.9412, 0.7255, 0);
+			me["LEmerDc_off"].show();
+		} else {
+			me["LEmerDc_box"].setColor(0, 1, 0);
+			me["LEmerDc_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.dc1.getBoolValue()) {
+			me["Dc1_box"].setColor(0.9412, 0.7255, 0);
+			me["Dc1_off"].show();
+		} else {
+			me["Dc1_box"].setColor(0, 1, 0);
+			me["Dc1_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.dc2.getBoolValue()) {
+			me["Dc2_box"].setColor(0.9412, 0.7255, 0);
+			me["Dc2_off"].show();
+		} else {
+			me["Dc2_box"].setColor(0, 1, 0);
+			me["Dc2_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.dcGndSvc.getBoolValue()) {
+			me["DcGndSvc_box"].setColor(0.9412, 0.7255, 0);
+			me["DcGndSvc_off"].show();
+		} else {
+			me["DcGndSvc_box"].setColor(0, 1, 0);
+			me["DcGndSvc_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.dc3.getBoolValue()) {
+			me["Dc3_box"].setColor(0.9412, 0.7255, 0);
+			me["Dc3_off"].show();
+		} else {
+			me["Dc3_box"].setColor(0, 1, 0);
+			me["Dc3_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.rEmerDc.getBoolValue()) {
+			me["REmerDc_box"].setColor(0.9412, 0.7255, 0);
+			me["REmerDc_off"].show();
+		} else {
+			me["REmerDc_box"].setColor(0, 1, 0);
+			me["REmerDc_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.lEmerAc.getBoolValue()) {
+			me["LEmerAc_box"].setColor(0.9412, 0.7255, 0);
+			me["LEmerAc_off"].show();
+		} else {
+			me["LEmerAc_box"].setColor(0, 1, 0);
+			me["LEmerAc_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.ac1.getBoolValue()) {
+			me["Ac1_box"].setColor(0.9412, 0.7255, 0);
+			me["Ac1_off"].show();
+		} else {
+			me["Ac1_box"].setColor(0, 1, 0);
+			me["Ac1_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.ac2.getBoolValue()) {
+			me["Ac2_box"].setColor(0.9412, 0.7255, 0);
+			me["Ac2_off"].show();
+		} else {
+			me["Ac2_box"].setColor(0, 1, 0);
+			me["Ac2_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.acGndSvc.getBoolValue()) {
+			me["AcGndSvc_box"].setColor(0.9412, 0.7255, 0);
+			me["AcGndSvc_off"].show();
+		} else {
+			me["AcGndSvc_box"].setColor(0, 1, 0);
+			me["AcGndSvc_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.ac3.getBoolValue()) {
+			me["Ac3_box"].setColor(0.9412, 0.7255, 0);
+			me["Ac3_off"].show();
+		} else {
+			me["Ac3_box"].setColor(0, 1, 0);
+			me["Ac3_off"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Lights.rEmerAc.getBoolValue()) {
+			me["REmerAc_box"].setColor(0.9412, 0.7255, 0);
+			me["REmerAc_off"].show();
+		} else {
+			me["REmerAc_box"].setColor(0, 1, 0);
+			me["REmerAc_off"].hide();
+		}
+		
+		# TR's
+		me["Tr1_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Tr1.volt.getValue())));
+		me["Tr2A_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Tr2a.volt.getValue())));
+		me["Tr2B_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Tr2b.volt.getValue())));
+		me["Tr3_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Tr3.volt.getValue())));
+		
+		if (systems.ELECTRICAL.Failures.tr1.getBoolValue()) {
+			me["Tr1_fill"].setColor(0.9412, 0.7255, 0);
+			me["Tr1_fill"].setColorFill(0.9412, 0.7255, 0);
+			me["Tr1_stroke"].setColor(0.9412, 0.7255, 0);
+		} else {
+			me["Tr1_fill"].setColor(1, 1, 1);
+			me["Tr1_fill"].setColorFill(1, 1, 1);
+			me["Tr1_stroke"].setColor(1, 1, 1);
+		}
+		
+		if (systems.ELECTRICAL.Failures.tr2a.getBoolValue()) {
+			me["Tr2A_fill"].setColor(0.9412, 0.7255, 0);
+			me["Tr2A_fill"].setColorFill(0.9412, 0.7255, 0);
+			me["Tr2A_stroke"].setColor(0.9412, 0.7255, 0);
+		} else {
+			me["Tr2A_fill"].setColor(1, 1, 1);
+			me["Tr2A_fill"].setColorFill(1, 1, 1);
+			me["Tr2A_stroke"].setColor(1, 1, 1);
+		}
+		
+		if (systems.ELECTRICAL.Failures.tr2b.getBoolValue()) {
+			me["Tr2B_fill"].setColor(0.9412, 0.7255, 0);
+			me["Tr2B_fill"].setColorFill(0.9412, 0.7255, 0);
+			me["Tr2B_stroke"].setColor(0.9412, 0.7255, 0);
+		} else {
+			me["Tr2B_fill"].setColor(1, 1, 1);
+			me["Tr2B_fill"].setColorFill(1, 1, 1);
+			me["Tr2B_stroke"].setColor(1, 1, 1);
+		}
+		
+		if (systems.ELECTRICAL.Failures.tr3.getBoolValue()) {
+			me["Tr3_fill"].setColor(0.9412, 0.7255, 0);
+			me["Tr3_fill"].setColorFill(0.9412, 0.7255, 0);
+			me["Tr3_stroke"].setColor(0.9412, 0.7255, 0);
+		} else {
+			me["Tr3_fill"].setColor(1, 1, 1);
+			me["Tr3_fill"].setColorFill(1, 1, 1);
+			me["Tr3_stroke"].setColor(1, 1, 1);
+		}
+		
+		# Relays/RCBs
+		if (systems.ELECTRICAL.Rcb.dcTieDc1.getBoolValue()) {
+			me["DcTie1"].setColor(0, 1, 0);
+			me["DcTie1"].setTranslation(0, 8);
+		} else {
+			me["DcTie1"].setColor(1, 1, 1);
+			me["DcTie1"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Rcb.dcTieDc3.getBoolValue()) {
+			me["DcTie3"].setColor(0, 1, 0);
+			me["DcTie3"].setTranslation(0, 8);
+		} else {
+			me["DcTie3"].setColor(1, 1, 1);
+			me["DcTie3"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.acTieAcGen1.getBoolValue()) {
+			me["AcTie1"].setColor(0, 1, 0);
+			me["AcTie1"].setTranslation(8, 0);
+		} else {
+			me["AcTie1"].setColor(1, 1, 1);
+			me["AcTie1"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.acTieAcGen2.getBoolValue()) {
+			me["AcTie2"].setColor(0, 1, 0);
+			me["AcTie2"].setTranslation(8, 0);
+		} else {
+			me["AcTie2"].setColor(1, 1, 1);
+			me["AcTie2"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.acTieAcGen3.getBoolValue()) {
+			me["AcTie3"].setColor(0, 1, 0);
+			me["AcTie3"].setTranslation(8, 0);
+		} else {
+			me["AcTie3"].setColor(1, 1, 1);
+			me["AcTie3"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.idgAcGen1.getBoolValue()) {
+			me["GenBus1"].setColor(0, 1, 0);
+			me["GenBus1"].setTranslation(8, 0);
+		} else {
+			me["GenBus1"].setColor(1, 1, 1);
+			me["GenBus1"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.idgAcGen2.getBoolValue()) {
+			me["GenBus2"].setColor(0, 1, 0);
+			me["GenBus2"].setTranslation(8, 0);
+		} else {
+			me["GenBus2"].setColor(1, 1, 1);
+			me["GenBus2"].setTranslation(0, 0);
+		}
+		
+		if (systems.ELECTRICAL.Relay.idgAcGen3.getBoolValue()) {
+			me["GenBus3"].setColor(0, 1, 0);
+			me["GenBus3"].setTranslation(8, 0);
+		} else {
+			me["GenBus3"].setColor(1, 1, 1);
+			me["GenBus3"].setTranslation(0, 0);
 		}
 	},
 };

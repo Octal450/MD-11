@@ -2256,7 +2256,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/lights/dc-gnd">
+		<switch name="/systems/electrical/lights/dc-gndsvc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/dc-gndsvc lt 24
@@ -2298,7 +2298,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/electrical/lights/ac-gnd">
+		<switch name="/systems/electrical/lights/ac-gndsvc">
 			<default value="0"/>
 			<test value="1">
 				/systems/electrical/bus/ac-gndsvc lt 112
