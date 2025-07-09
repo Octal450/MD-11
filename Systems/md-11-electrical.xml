@@ -325,7 +325,7 @@
 		
 		<switch name="/systems/electrical/sources/bat-1/amp">
 			<default value="0"/>
-			<test logic="AND" value="2">
+			<test logic="AND" value="50">
 				/controls/electrical/battery eq 1
 				/systems/electrical/sources/bat-1/volt ge 10
 			</test>
@@ -427,7 +427,7 @@
 		
 		<switch name="/systems/electrical/sources/bat-2/amp">
 			<default value="0"/>
-			<test logic="AND" value="2">
+			<test logic="AND" value="50">
 				/controls/electrical/battery eq 1
 				/systems/electrical/sources/bat-2/volt ge 10
 			</test>
@@ -1798,8 +1798,9 @@
 		<!-- Left Emergency DC Bus Remote Circuit Breaker -->
 		<switch name="/systems/electrical/rcb/dc-bat-l-emer-dc/command-pos">
 			<default value="0"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/controls/electrical/smoke-elec-air eq 3
+				/systems/electrical/bus/dc-bat-direct-regulator lt 24
 			</test>
 			<test value="1"> <!-- ON -->
 				/controls/electrical/emer-pwr eq 2
@@ -1881,8 +1882,9 @@
 		
 		<switch name="/systems/electrical/relay/si-l-emer-ac/command-pos">
 			<default value="0"/>
-			<test value="0">
+			<test logic="OR" value="0">
 				/controls/electrical/smoke-elec-air eq 3
+				/systems/electrical/bus/dc-bat-direct-regulator lt 24
 			</test>
 			<test value="1"> <!-- ON -->
 				/controls/electrical/emer-pwr eq 2
