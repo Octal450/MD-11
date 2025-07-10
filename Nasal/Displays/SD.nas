@@ -26,6 +26,9 @@ var Value = {
 			dcBatLEmerDc: 0,
 		},
 		Relay: {
+			idgAcGen1: 0,
+			idgAcGen2: 0,
+			idgAcGen3: 0,
 			siLEmerAc: 0,
 		},
 	},
@@ -592,13 +595,18 @@ var canvasElec = {
 	getKeys: func() {
 		return ["Ac1_box", "Ac1_off", "Ac2_box", "Ac2_off", "Ac3_box", "Ac3_off", "AcGndSvc_box", "AcGndSvc_off", "AcTie1", "AcTie2", "AcTie3", "Adg", "Adg_hz", "Adg_hz_error", "Adg_volt", "Adg_volt_error", "Alert_error", "Apu_hz", "Apu_hz_box", "Apu_hz_error",
 		"Apu_load", "Apu_load_box", "Apu_load_error", "Apu_volt", "Apu_volt_box", "Apu_volt_error", "ApuGroup", "ApuPwr1", "ApuPwr2", "ApuPwr3", "Bat", "Bat_amp", "Bat_amp_error", "Bat_volt", "Bat_volt_box", "Bat_volt_error", "Dc1_box", "Dc1_off", "Dc2_box",
-		"Dc2_off", "Dc3_box", "Dc3_off", "DcGndSvc_box", "DcGndSvc_off", "DcTie1", "DcTie3", "ExtPwr", "ExtPwr_hz", "ExtPwr_hz_box", "ExtPwr_hz_error", "ExtPwr_line", "ExtPwr_volt", "ExtPwr_volt_box", "ExtPwr_volt_error", "ExtPwrGroup", "ExtPwr_hz",
-		"ExtPwr_volt", "GenBus1", "GenBus2", "GenBus3", "GlyPwrGroup", "GlyPwr_hz", "GlyPwr_hz_error", "GlyPwr_volt", "GlyPwr_volt_error", "LEmerAc_box", "LEmerAc_off", "LEmerDc_box", "LEmerDc_off", "REmerAc_box", "REmerAc_off", "REmerDc_box", "REmerDc_off",
-		"Tr1_fill", "Tr1_load", "Tr1_load_error", "Tr1_stroke", "Tr1_volt", "Tr1_volt_error", "Tr2A_fill", "Tr2A_load", "Tr2A_load_error", "Tr2A_stroke", "Tr2A_volt", "Tr2A_volt_error", "Tr2B_fill", "Tr2B_load", "Tr2B_load_error", "Tr2B_stroke", "Tr2B_volt",
-		"Tr2B_volt_error", "Tr3_fill", "Tr3_load", "Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
+		"Dc2_off", "Dc3_box", "Dc3_off", "DcGndSvc_box", "DcGndSvc_off", "DcTie1", "DcTie3", "Disc1", "Disc2", "Disc3", "ExtPwr", "ExtPwr_hz", "ExtPwr_hz_box", "ExtPwr_hz_error", "ExtPwr_line", "ExtPwr_volt", "ExtPwr_volt_box", "ExtPwr_volt_error", "ExtPwrGroup",
+		"ExtPwr_hz", "ExtPwr_volt", "Gen1", "Gen1_hz", "Gen1_hz_box", "Gen1_hz_error", "Gen1_load", "Gen1_load_box", "Gen1_load_error", "Gen1_volt", "Gen1_volt_box", "Gen1_volt_error", "Gen2", "Gen2_hz", "Gen2_hz_box", "Gen2_hz_error", "Gen2_load",
+		"Gen2_load_box", "Gen2_load_error", "Gen2_volt", "Gen2_volt_box", "Gen2_volt_error", "Gen3", "Gen3_hz", "Gen3_hz_box", "Gen3_hz_error", "Gen3_load", "Gen3_load_box", "Gen3_load_error", "Gen3_volt", "Gen3_volt_box", "Gen3_volt_error", "GenBus1", "GenBus2",
+		"GenBus3", "GlyPwrGroup", "GlyPwr_hz", "GlyPwr_hz_error", "GlyPwr_volt", "GlyPwr_volt_error", "LEmerAc_box", "LEmerAc_off", "LEmerDc_box", "LEmerDc_off", "REmerAc_box", "REmerAc_off", "REmerDc_box", "REmerDc_off", "Tr1_fill", "Tr1_load", "Tr1_load_error",
+		"Tr1_stroke", "Tr1_volt", "Tr1_volt_error", "Tr2A_fill", "Tr2A_load", "Tr2A_load_error", "Tr2A_stroke", "Tr2A_volt", "Tr2A_volt_error", "Tr2B_fill", "Tr2B_load", "Tr2B_load_error", "Tr2B_stroke", "Tr2B_volt", "Tr2B_volt_error", "Tr3_fill", "Tr3_load",
+		"Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
 	},
 	setup: func() {
 		me["Apu_load_box"].hide();
+		me["Gen1_load_box"].hide();
+		me["Gen2_load_box"].hide();
+		me["Gen3_load_box"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -616,6 +624,15 @@ var canvasElec = {
 			me["Bat_volt_error"].show();
 			me["ExtPwr_hz_error"].show();
 			me["ExtPwr_volt_error"].show();
+			me["Gen1_hz_error"].show();
+			me["Gen1_load_error"].show();
+			me["Gen1_volt_error"].show();
+			me["Gen2_hz_error"].show();
+			me["Gen2_load_error"].show();
+			me["Gen2_volt_error"].show();
+			me["Gen3_hz_error"].show();
+			me["Gen3_load_error"].show();
+			me["Gen3_volt_error"].show();
 			me["GlyPwr_hz_error"].show();
 			me["GlyPwr_volt_error"].show();
 			me["Tr1_load_error"].show();
@@ -637,6 +654,15 @@ var canvasElec = {
 			me["Bat_volt_error"].hide();
 			me["ExtPwr_hz_error"].hide();
 			me["ExtPwr_volt_error"].hide();
+			me["Gen1_hz_error"].hide();
+			me["Gen1_load_error"].hide();
+			me["Gen1_volt_error"].hide();
+			me["Gen2_hz_error"].hide();
+			me["Gen2_load_error"].hide();
+			me["Gen2_volt_error"].hide();
+			me["Gen3_hz_error"].hide();
+			me["Gen3_load_error"].hide();
+			me["Gen3_volt_error"].hide();
 			me["GlyPwr_hz_error"].hide();
 			me["GlyPwr_volt_error"].hide();
 			me["Tr1_load_error"].hide();
@@ -818,6 +844,10 @@ var canvasElec = {
 		}
 		
 		# Relays/RCBs
+		Value.Elec.Relay.idgAcGen1 = systems.ELECTRICAL.Relay.idgAcGen1.getBoolValue();
+		Value.Elec.Relay.idgAcGen2 = systems.ELECTRICAL.Relay.idgAcGen2.getBoolValue();
+		Value.Elec.Relay.idgAcGen3 = systems.ELECTRICAL.Relay.idgAcGen3.getBoolValue();
+		
 		if (systems.ELECTRICAL.Rcb.dcTieDc1.getBoolValue()) {
 			me["DcTie1"].setColor(0, 1, 0);
 			me["DcTie1"].setTranslation(0, 8);
@@ -858,7 +888,7 @@ var canvasElec = {
 			me["AcTie3"].setTranslation(0, 0);
 		}
 		
-		if (systems.ELECTRICAL.Relay.idgAcGen1.getBoolValue()) {
+		if (Value.Elec.Relay.idgAcGen1) {
 			me["GenBus1"].setColor(0, 1, 0);
 			me["GenBus1"].setTranslation(8, 0);
 		} else {
@@ -866,7 +896,7 @@ var canvasElec = {
 			me["GenBus1"].setTranslation(0, 0);
 		}
 		
-		if (systems.ELECTRICAL.Relay.idgAcGen2.getBoolValue()) {
+		if (Value.Elec.Relay.idgAcGen2) {
 			me["GenBus2"].setColor(0, 1, 0);
 			me["GenBus2"].setTranslation(8, 0);
 		} else {
@@ -874,12 +904,109 @@ var canvasElec = {
 			me["GenBus2"].setTranslation(0, 0);
 		}
 		
-		if (systems.ELECTRICAL.Relay.idgAcGen3.getBoolValue()) {
+		if (Value.Elec.Relay.idgAcGen3) {
 			me["GenBus3"].setColor(0, 1, 0);
 			me["GenBus3"].setTranslation(8, 0);
 		} else {
 			me["GenBus3"].setColor(1, 1, 1);
 			me["GenBus3"].setTranslation(0, 0);
+		}
+		
+		# IDG's
+		me["Gen1_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg1.outputVolt.getValue())));
+		me["Gen1_hz"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg1.outputHertz.getValue())));
+		
+		me["Gen2_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg2.outputVolt.getValue())));
+		me["Gen2_hz"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg2.outputHertz.getValue())));
+		
+		me["Gen3_volt"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg3.outputVolt.getValue())));
+		me["Gen3_hz"].setText(sprintf("%d", math.round(systems.ELECTRICAL.Source.Idg3.outputHertz.getValue())));
+		
+		if (systems.ELECTRICAL.Failures.gen1.getBoolValue()) {
+			me["Disc1"].setText("FAULT");
+			me["Disc1"].show();
+			
+			me["Gen1"].setColor(0.9412, 0.7255, 0);
+			me["Gen1_hz"].setColor(0.9412, 0.7255, 0);
+			me["Gen1_hz_box"].show();
+			me["Gen1_volt"].setColor(0.9412, 0.7255, 0);
+			me["Gen1_volt_box"].show();
+		} else {
+			if (!systems.ELECTRICAL.Controls.genDrive1.getBoolValue()) {
+				me["Disc1"].setText("DISC");
+				me["Disc1"].show();
+			} else {
+				me["Disc1"].hide();
+			}
+			
+			if (Value.Elec.Relay.idgAcGen1) {
+				me["Gen1"].setColor(0, 1, 0);
+			} else {
+				me["Gen1"].setColor(1, 1, 1);
+			}
+			
+			me["Gen1_hz"].setColor(1, 1, 1);
+			me["Gen1_hz_box"].hide();
+			me["Gen1_volt"].setColor(1, 1, 1);
+			me["Gen1_volt_box"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Failures.gen2.getBoolValue()) {
+			me["Disc2"].setText("FAULT");
+			me["Disc2"].show();
+			
+			me["Gen2"].setColor(0.9412, 0.7255, 0);
+			me["Gen2_hz"].setColor(0.9412, 0.7255, 0);
+			me["Gen2_hz_box"].show();
+			me["Gen2_volt"].setColor(0.9412, 0.7255, 0);
+			me["Gen2_volt_box"].show();
+		} else {
+			if (!systems.ELECTRICAL.Controls.genDrive2.getBoolValue()) {
+				me["Disc2"].setText("DISC");
+				me["Disc2"].show();
+			} else {
+				me["Disc2"].hide();
+			}
+			
+			if (Value.Elec.Relay.idgAcGen2) {
+				me["Gen2"].setColor(0, 1, 0);
+			} else {
+				me["Gen2"].setColor(1, 1, 1);
+			}
+			
+			me["Gen2_hz"].setColor(1, 1, 1);
+			me["Gen2_hz_box"].hide();
+			me["Gen2_volt"].setColor(1, 1, 1);
+			me["Gen2_volt_box"].hide();
+		}
+		
+		if (systems.ELECTRICAL.Failures.gen3.getBoolValue()) {
+			me["Disc3"].setText("FAULT");
+			me["Disc3"].show();
+			
+			me["Gen3"].setColor(0.9412, 0.7255, 0);
+			me["Gen3_hz"].setColor(0.9412, 0.7255, 0);
+			me["Gen3_hz_box"].show();
+			me["Gen3_volt"].setColor(0.9412, 0.7255, 0);
+			me["Gen3_volt_box"].show();
+		} else {
+			if (!systems.ELECTRICAL.Controls.genDrive3.getBoolValue()) {
+				me["Disc3"].setText("DISC");
+				me["Disc3"].show();
+			} else {
+				me["Disc3"].hide();
+			}
+			
+			if (Value.Elec.Relay.idgAcGen3) {
+				me["Gen3"].setColor(0, 1, 0);
+			} else {
+				me["Gen3"].setColor(1, 1, 1);
+			}
+			
+			me["Gen3_hz"].setColor(1, 1, 1);
+			me["Gen3_hz_box"].hide();
+			me["Gen3_volt"].setColor(1, 1, 1);
+			me["Gen3_volt_box"].hide();
 		}
 	},
 };
