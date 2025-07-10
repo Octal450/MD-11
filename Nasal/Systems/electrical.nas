@@ -58,6 +58,7 @@ var ELECTRICAL = {
 		apuAcGen1: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-1/contact-pos"),
 		apuAcGen2: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-2/contact-pos"),
 		apuAcGen3: props.globals.getNode("/systems/electrical/relay/apu-ac-gen-3/contact-pos"),
+		extAcTie: props.globals.getNode("/systems/electrical/relay/ext-ac-tie/contact-pos"),
 		idgAcGen1: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-1/contact-pos"),
 		idgAcGen2: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-2/contact-pos"),
 		idgAcGen3: props.globals.getNode("/systems/electrical/relay/idg-ac-gen-3/contact-pos"),
@@ -69,10 +70,10 @@ var ELECTRICAL = {
 			volt: props.globals.getNode("/systems/electrical/sources/adg/output-volt"),
 		},
 		Apu: {
-			hertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
+			outputHertz: props.globals.getNode("/systems/electrical/sources/apu/output-hertz"),
+			outputVolt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 			pmgHertz: props.globals.getNode("/systems/electrical/sources/apu/pmg-hertz"),
 			pmgVolt: props.globals.getNode("/systems/electrical/sources/apu/pmg-volt"),
-			volt: props.globals.getNode("/systems/electrical/sources/apu/output-volt"),
 		},
 		Bat1: {
 			amp: props.globals.getNode("/systems/electrical/sources/bat-1/amp"),
