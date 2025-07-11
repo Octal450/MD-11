@@ -22,14 +22,10 @@ var Value = {
 		Bus: {
 			dcBatDirect: 0,
 		},
-		Rcb: {
-			dcBatLEmerDc: 0,
-		},
 		Relay: {
 			idgAcGen1: 0,
 			idgAcGen2: 0,
 			idgAcGen3: 0,
-			siLEmerAc: 0,
 		},
 		Source: {
 			adgHertz: 0,
@@ -685,8 +681,6 @@ var canvasElec = {
 		
 		# Battery
 		Value.Elec.Bus.dcBatDirect = math.round(systems.ELECTRICAL.Bus.dcBatDirect.getValue());
-		Value.Elec.Rcb.dcBatLEmerDc = systems.ELECTRICAL.Rcb.dcBatLEmerDc.getBoolValue();
-		Value.Elec.Relay.siLEmerAc = systems.ELECTRICAL.Relay.siLEmerAc.getBoolValue();
 		
 		me["Bat_volt"].setText(sprintf("%d", Value.Elec.Bus.dcBatDirect));
 		if (Value.Elec.Bus.dcBatDirect < 22) {
@@ -694,7 +688,7 @@ var canvasElec = {
 			me["Bat_volt"].setColor(0.9412, 0.7255, 0);
 			me["Bat_volt_box"].show();
 		} else {
-			if (Value.Elec.Rcb.dcBatLEmerDc or Value.Elec.Relay.siLEmerAc) {
+			if (systems.ELECTRICAL.Rcb.dcBatLEmerDc.getBoolValue() or systems.ELECTRICAL.Relay.siLEmerAc.getBoolValue()) {
 				me["Bat"].setColor(0, 1, 0);
 				
 				me["Bat_amp"].setText(sprintf("%d", math.round(math.max(systems.ELECTRICAL.Source.Bat1.amp.getValue(), systems.ELECTRICAL.Source.Bat2.amp.getValue()))));
