@@ -600,11 +600,11 @@ var canvasElec = {
 		return ["Ac1_box", "Ac1_off", "Ac2_box", "Ac2_off", "Ac3_box", "Ac3_off", "AcGndSvc_box", "AcGndSvc_off", "AcTie1", "AcTie2", "AcTie3", "Adg", "Adg_hz", "Adg_hz_box", "Adg_hz_error", "Adg_volt", "Adg_volt_box", "Adg_volt_error", "Alert_error", "Apu_hz",
 		"Apu_hz_box", "Apu_hz_error", "Apu_load", "Apu_load_box", "Apu_load_error", "Apu_volt", "Apu_volt_box", "Apu_volt_error", "ApuGroup", "ApuPwr1", "ApuPwr2", "ApuPwr3", "Bat", "Bat_amp", "Bat_amp_error", "Bat_volt", "Bat_volt_box", "Bat_volt_error",
 		"Dc1_box", "Dc1_off", "Dc2_box", "Dc2_off", "Dc3_box", "Dc3_off", "DcGndSvc_box", "DcGndSvc_off", "DcTie1", "DcTie3", "Disc1", "Disc2", "Disc3", "ExtPwr", "ExtPwr_hz", "ExtPwr_hz_box", "ExtPwr_hz_error", "ExtPwr_line", "ExtPwr_volt", "ExtPwr_volt_box",
-		"ExtPwr_volt_error", "ExtPwrGroup", "ExtPwr_hz", "ExtPwr_volt", "Gen1", "Gen1_hz", "Gen1_hz_box", "Gen1_hz_error", "Gen1_load", "Gen1_load_box", "Gen1_load_error", "Gen1_volt", "Gen1_volt_box", "Gen1_volt_error", "Gen2", "Gen2_hz", "Gen2_hz_box",
-		"Gen2_hz_error", "Gen2_load", "Gen2_load_box", "Gen2_load_error", "Gen2_volt", "Gen2_volt_box", "Gen2_volt_error", "Gen3", "Gen3_hz", "Gen3_hz_box", "Gen3_hz_error", "Gen3_load", "Gen3_load_box", "Gen3_load_error", "Gen3_volt", "Gen3_volt_box",
-		"Gen3_volt_error", "GenBus1", "GenBus2", "GenBus3", "GlyPwrGroup", "GlyPwr_hz", "GlyPwr_hz_error", "GlyPwr_volt", "GlyPwr_volt_error", "LEmerAc_box", "LEmerAc_off", "LEmerDc_box", "LEmerDc_off", "REmerAc_box", "REmerAc_off", "REmerDc_box", "REmerDc_off",
-		"Tr1_fill", "Tr1_load", "Tr1_load_error", "Tr1_stroke", "Tr1_volt", "Tr1_volt_error", "Tr2A_fill", "Tr2A_load", "Tr2A_load_error", "Tr2A_stroke", "Tr2A_volt", "Tr2A_volt_error", "Tr2B_fill", "Tr2B_load", "Tr2B_load_error", "Tr2B_stroke", "Tr2B_volt",
-		"Tr2B_volt_error", "Tr3_fill", "Tr3_load", "Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
+		"ExtPwr_volt_error", "ExtPwrGroup", "Gen1", "Gen1_hz", "Gen1_hz_box", "Gen1_hz_error", "Gen1_load", "Gen1_load_box", "Gen1_load_error", "Gen1_volt", "Gen1_volt_box", "Gen1_volt_error", "Gen2", "Gen2_hz", "Gen2_hz_box", "Gen2_hz_error", "Gen2_load",
+		"Gen2_load_box", "Gen2_load_error", "Gen2_volt", "Gen2_volt_box", "Gen2_volt_error", "Gen3", "Gen3_hz", "Gen3_hz_box", "Gen3_hz_error", "Gen3_load", "Gen3_load_box", "Gen3_load_error", "Gen3_volt", "Gen3_volt_box", "Gen3_volt_error", "GenBus1", "GenBus2",
+		"GenBus3", "GlyPwrGroup", "GlyPwr_hz", "GlyPwr_hz_error", "GlyPwr_volt", "GlyPwr_volt_error", "LEmerAc_box", "LEmerAc_off", "LEmerDc_box", "LEmerDc_off", "REmerAc_box", "REmerAc_off", "REmerDc_box", "REmerDc_off", "Tr1_fill", "Tr1_load", "Tr1_load_error",
+		"Tr1_stroke", "Tr1_volt", "Tr1_volt_error", "Tr2A_fill", "Tr2A_load", "Tr2A_load_error", "Tr2A_stroke", "Tr2A_volt", "Tr2A_volt_error", "Tr2B_fill", "Tr2B_load", "Tr2B_load_error", "Tr2B_stroke", "Tr2B_volt", "Tr2B_volt_error", "Tr3_fill", "Tr3_load",
+		"Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
 	},
 	setup: func() {
 		me["Apu_load_box"].hide();
