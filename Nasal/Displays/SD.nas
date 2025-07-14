@@ -681,8 +681,8 @@ var canvasElec = {
 		
 		# Battery
 		Value.Elec.Bus.dcBatDirect = math.round(systems.ELECTRICAL.Bus.dcBatDirect.getValue());
-		
 		me["Bat_volt"].setText(sprintf("%d", Value.Elec.Bus.dcBatDirect));
+		
 		if (Value.Elec.Bus.dcBatDirect < 22) {
 			me["Bat"].setColor(0.9412, 0.7255, 0);
 			me["Bat_volt"].setColor(0.9412, 0.7255, 0);
