@@ -235,14 +235,14 @@
 						<label>Auto Flight and FCC</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/MD-11/Docs/Auto_Flight_and_FCC.pdf</path>
+							<path>https://github.com/Octal450/FlightGear-Aircraft-Documentation/blob/master/MD-11/Auto_Flight_and_FCC.pdf</path>
 						</binding>
 					</item>
 					<item>
 						<label>FMS and MCDU</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/MD-11/Docs/FMS_and_MCDU.pdf</path>
+							<path>https://github.com/Octal450/FlightGear-Aircraft-Documentation/blob/master/MD-11/FMS_and_MCDU.pdf</path>
 						</binding>
 					</item>
 				</menu>
