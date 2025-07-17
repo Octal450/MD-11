@@ -250,7 +250,7 @@ var canvasBase = {
 	updateBaseDials: func() {
 		# EGT
 		if (Value.Fadec.powered[0]) {
-			me["EGT1"].setText(sprintf("%d", systems.ENGINES.egt[0].getValue()));
+			me["EGT1"].setText(sprintf("%d", math.round(systems.ENGINES.egt[0].getValue())));
 			me["EGT1_needle"].setRotation(pts.Instrumentation.Ead.egt[0].getValue() * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
@@ -275,7 +275,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			me["EGT2"].setText(sprintf("%d", systems.ENGINES.egt[1].getValue()));
+			me["EGT2"].setText(sprintf("%d", math.round(systems.ENGINES.egt[1].getValue())));
 			me["EGT2_needle"].setRotation(pts.Instrumentation.Ead.egt[1].getValue() * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
@@ -300,7 +300,7 @@ var canvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			me["EGT3"].setText(sprintf("%d", systems.ENGINES.egt[2].getValue()));
+			me["EGT3"].setText(sprintf("%d", math.round(systems.ENGINES.egt[2].getValue())));
 			me["EGT3_needle"].setRotation(pts.Instrumentation.Ead.egt[2].getValue() * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
@@ -414,7 +414,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
-			me["EGT1"].setText(sprintf("%d", Value.Fadec.egt[0]));
+			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
 			me["EGT1_bar"].setTranslation(0, Value.Fadec.egt[0] / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
@@ -441,7 +441,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[1]) {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
-			me["EGT2"].setText(sprintf("%d", Value.Fadec.egt[1]));
+			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
 			me["EGT2_bar"].setTranslation(0, Value.Fadec.egt[1] / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
@@ -468,7 +468,7 @@ var canvasBase = {
 		if (Value.Fadec.powered[2]) {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
-			me["EGT3"].setText(sprintf("%d", Value.Fadec.egt[2]));
+			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
 			me["EGT3_bar"].setTranslation(0, Value.Fadec.egt[2] / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
