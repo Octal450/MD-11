@@ -316,6 +316,9 @@
 		<object-name>AltReportSw</object-name>
 		<action>
 			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
 			<binding>
 				<command>nasal</command>
 				<script>instruments.XPDR.toggleAltReport();</script>
@@ -348,6 +351,9 @@
 		<object-name>XPDRSw</object-name>
 		<action>
 			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
 			<binding>
 				<command>property-toggle</command>
 				<property>instrumentation/transponder/input/xpdr</property>
