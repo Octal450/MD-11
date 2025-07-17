@@ -1794,7 +1794,7 @@
 	
 	</channel>
 	
-	<channel name="Lights" execrate="8">
+	<channel name="Overhead Lights">
 		
 		<switch name="/systems/fcc/lights/elevator-feel-manual">
 			<default value="0"/>

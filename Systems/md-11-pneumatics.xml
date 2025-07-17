@@ -848,7 +848,7 @@
 	
 	</channel>
 	
-	<channel name="Overhead Lights" execrate="8">
+	<channel name="Overhead Lights">
 		
 		<switch name="/systems/pneumatics/lights/select-manual">
 			<default value="0"/>

@@ -2203,7 +2203,7 @@
 	
 	</channel>
 	
-	<channel name="Overhead Lights" execrate="8">
+	<channel name="Overhead Lights">
 		
 		<switch name="/systems/electrical/lights/select-manual">
 			<default value="0"/>

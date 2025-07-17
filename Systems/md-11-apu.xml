@@ -186,7 +186,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/apu/lights/avail"> <!-- Make the light behave nice, so update fast -->
+		<switch name="/systems/apu/lights/avail">
 			<default value="0"/>
 			<test value="1">
 				/systems/apu/lights/avail-flash eq 1
