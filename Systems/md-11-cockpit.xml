@@ -451,7 +451,7 @@
 	
 	</channel>
 	
-	<channel name="Cockpit Lighting" execrate="8">
+	<channel name="Cockpit Lighting" execrate="2">
 		
 		<switch name="/systems/lighting/fcp-flood-cmd">
 			<default value="0"/>
