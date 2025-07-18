@@ -578,9 +578,9 @@
 			<blue>0</blue>
 		</specular>
 		<emission>
-			<red-prop>controls/lighting/main-osg-red</red-prop>
-			<green-prop>controls/lighting/main-osg-green</green-prop>
-			<blue-prop>controls/lighting/main-osg-blue</blue-prop>
+			<red-prop>systems/lighting/main-osg-red</red-prop>
+			<green-prop>systems/lighting/main-osg-green</green-prop>
+			<blue-prop>systems/lighting/main-osg-blue</blue-prop>
 		</emission>
 	</animation>
 	

@@ -1697,9 +1697,9 @@
 			<blue>0</blue>
 		</specular>
 		<emission>
-			<red-prop>controls/lighting/fcp-osg-red</red-prop>
-			<green-prop>controls/lighting/fcp-osg-green</green-prop>
-			<blue-prop>controls/lighting/fcp-osg-blue</blue-prop>
+			<red-prop>systems/lighting/fcp-osg-red</red-prop>
+			<green-prop>systems/lighting/fcp-osg-green</green-prop>
+			<blue-prop>systems/lighting/fcp-osg-blue</blue-prop>
 		</emission>
 	</animation>
 	

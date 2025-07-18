@@ -7108,9 +7108,9 @@
 			<blue>0</blue>
 		</specular>
 		<emission>
-			<red-prop>controls/lighting/overhead-osg-red</red-prop>
-			<green-prop>controls/lighting/overhead-osg-green</green-prop>
-			<blue-prop>controls/lighting/overhead-osg-blue</blue-prop>
+			<red-prop>systems/lighting/overhead-osg-red</red-prop>
+			<green-prop>systems/lighting/overhead-osg-green</green-prop>
+			<blue-prop>systems/lighting/overhead-osg-blue</blue-prop>
 		</emission>
 	</animation>
 	
