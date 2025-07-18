@@ -430,10 +430,7 @@
 		<type>select</type>
 		<object-name>ATC1</object-name>
 		<condition>
-			<or>
-				<not><property>instrumentation/transponder/input/xpdr</property></not>
-				<property>controls/switches/annun-test</property>
-			</or>
+			<not><property>instrumentation/transponder/input/xpdr</property></not>
 		</condition>
 	</animation>
 	
@@ -465,10 +462,7 @@
 		<type>select</type>
 		<object-name>ATC2</object-name>
 		<condition>
-			<or>
-				<property>instrumentation/transponder/input/xpdr</property>
-				<property>controls/switches/annun-test</property>
-			</or>
+			<property>instrumentation/transponder/input/xpdr</property>
 		</condition>
 	</animation>
 	
