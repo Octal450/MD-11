@@ -287,17 +287,17 @@
 			<output>/systems/fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/xpdr-alt">
+		<lag_filter name="/controls/cockpit/transponder/alt">
 			<input>/instrumentation/transponder/input/alt-report</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/xpdr-knob">
+		<lag_filter name="/controls/cockpit/transponder/knob">
 			<input>/instrumentation/transponder/output/knob</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/xpdr-sw">
+		<lag_filter name="/controls/cockpit/transponder/xpdr">
 			<input>/instrumentation/transponder/input/xpdr</input>
 			<c1>20</c1>
 		</lag_filter>

@@ -329,7 +329,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AltReportSw</object-name>
-		<property>controls/cockpit/xpdr-alt</property>
+		<property>controls/cockpit/transponder/alt</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>60</dep></entry>
 			<entry><ind>1</ind><dep> 0</dep></entry>
@@ -364,7 +364,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>XPDRSw</object-name>
-		<property>controls/cockpit/xpdr-sw</property>
+		<property>controls/cockpit/transponder/xpdr</property>
 		<factor>60</factor>
 		<center>
 			<x-m>0.01489</x-m>
@@ -475,7 +475,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>ModeKnobCyl</object-name>
-		<property>controls/cockpit/xpdr-knob</property>
+		<property>controls/cockpit/transponder/knob</property>
 		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
 			<entry><ind>0</ind><dep>-34</dep></entry>
