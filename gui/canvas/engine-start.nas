@@ -75,19 +75,19 @@ var engineStartCanvas = {
 		me["start3"].setTranslation(0, me._startCmd[2] * -8);
 		
 		if (me._startCmd[0]) {
-			me["start1"].setColorFill(1,0,0);
+			me["start1"].setColorFill(0.9021, 0.3216, 0);
 		} else {
-			me["start1"].setColorFill(0.3333,0,0);
+			me["start1"].setColorFill(0.3529, 0.1255, 0);
 		}
 		if (me._startCmd[1]) {
-			me["start2"].setColorFill(1,0,0);
+			me["start2"].setColorFill(0.9021, 0.3216, 0);
 		} else {
-			me["start2"].setColorFill(0.3333,0,0);
+			me["start2"].setColorFill(0.3529, 0.1255, 0);
 		}
 		if (me._startCmd[2]) {
-			me["start3"].setColorFill(1,0,0);
+			me["start3"].setColorFill(0.9021, 0.3216, 0);
 		} else {
-			me["start3"].setColorFill(0.3333,0,0);
+			me["start3"].setColorFill(0.3529, 0.1255, 0);
 		}
 		
 		me["cutoff1"].setRotation((systems.ENGINES.Controls.cutoff[0].getValue() - 1) * 180 * D2R);
