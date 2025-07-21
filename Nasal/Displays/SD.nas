@@ -261,17 +261,16 @@ var canvasConfig = {
 				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
 				me["StabGreen"].show();
 				
-				if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 79.5 or !Value.Misc.wow) {
-					me["Stab"].setColor(1, 1, 1);
-					me["Stab_box"].hide();
-					me["StabGreen"].hide();
-					me["StabNeedle"].setColorFill(1, 1, 1);
-					me["StabUnit"].setColor(1, 1, 1);
-				} else if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
+				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
 					me["Stab"].setColor(0, 1, 0);
 					me["Stab_box"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
+				} else if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 79.5 or !Value.Misc.wow) {
+					me["Stab"].setColor(1, 1, 1);
+					me["Stab_box"].hide();
+					me["StabNeedle"].setColorFill(1, 1, 1);
+					me["StabUnit"].setColor(1, 1, 1);
 				} else {
 					me["Stab"].setColor(0.9412, 0.7255, 0);
 					me["Stab_box"].show();
@@ -1216,17 +1215,16 @@ var canvasEngBase = {
 				me["StabGreen"].setTranslation(Value.Fctl.stabComp * 12.62, 0);
 				me["StabGreen"].show();
 				
-				if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 79.5 or !Value.Misc.wow) {
-					me["Stab"].setColor(1, 1, 1);
-					me["Stab_box"].hide();
-					me["StabGreen"].hide();
-					me["StabNeedle"].setColorFill(1, 1, 1);
-					me["StabUnit"].setColor(1, 1, 1);
-				} else if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
+				if (abs(Value.Fctl.stabRound - (Value.Fctl.stabComp * -1)) <= 2) {
 					me["Stab"].setColor(0, 1, 0);
 					me["Stab_box"].hide();
 					me["StabNeedle"].setColorFill(0, 1, 0);
 					me["StabUnit"].setColor(0, 1, 0);
+				} else if (pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue() >= 79.5 or !Value.Misc.wow) {
+					me["Stab"].setColor(1, 1, 1);
+					me["Stab_box"].hide();
+					me["StabNeedle"].setColorFill(1, 1, 1);
+					me["StabUnit"].setColor(1, 1, 1);
 				} else {
 					me["Stab"].setColor(0.9412, 0.7255, 0);
 					me["Stab_box"].show();
