@@ -857,7 +857,7 @@ var canvasElec = {
 		
 		if (systems.ELECTRICAL.Rcb.dcTieDc1.getBoolValue()) {
 			me["DcTie1"].setColor(0, 1, 0);
-			me["DcTie1"].setTranslation(0, 8);
+			me["DcTie1"].setTranslation(0, 10);
 		} else {
 			me["DcTie1"].setColor(1, 1, 1);
 			me["DcTie1"].setTranslation(0, 0);
@@ -865,7 +865,7 @@ var canvasElec = {
 		
 		if (systems.ELECTRICAL.Rcb.dcTieDc3.getBoolValue()) {
 			me["DcTie3"].setColor(0, 1, 0);
-			me["DcTie3"].setTranslation(0, 8);
+			me["DcTie3"].setTranslation(0, 10);
 		} else {
 			me["DcTie3"].setColor(1, 1, 1);
 			me["DcTie3"].setTranslation(0, 0);
@@ -873,7 +873,7 @@ var canvasElec = {
 		
 		if (systems.ELECTRICAL.Relay.acTieAcGen1.getBoolValue()) {
 			me["AcTie1"].setColor(0, 1, 0);
-			me["AcTie1"].setTranslation(8, 0);
+			me["AcTie1"].setTranslation(10, 0);
 		} else {
 			me["AcTie1"].setColor(1, 1, 1);
 			me["AcTie1"].setTranslation(0, 0);
@@ -881,7 +881,7 @@ var canvasElec = {
 		
 		if (systems.ELECTRICAL.Relay.acTieAcGen2.getBoolValue()) {
 			me["AcTie2"].setColor(0, 1, 0);
-			me["AcTie2"].setTranslation(8, 0);
+			me["AcTie2"].setTranslation(10, 0);
 		} else {
 			me["AcTie2"].setColor(1, 1, 1);
 			me["AcTie2"].setTranslation(0, 0);
@@ -889,7 +889,7 @@ var canvasElec = {
 		
 		if (systems.ELECTRICAL.Relay.acTieAcGen3.getBoolValue()) {
 			me["AcTie3"].setColor(0, 1, 0);
-			me["AcTie3"].setTranslation(8, 0);
+			me["AcTie3"].setTranslation(10, 0);
 		} else {
 			me["AcTie3"].setColor(1, 1, 1);
 			me["AcTie3"].setTranslation(0, 0);
@@ -897,7 +897,7 @@ var canvasElec = {
 		
 		if (Value.Elec.Relay.idgAcGen1) {
 			me["GenBus1"].setColor(0, 1, 0);
-			me["GenBus1"].setTranslation(8, 0);
+			me["GenBus1"].setTranslation(10, 0);
 		} else {
 			me["GenBus1"].setColor(1, 1, 1);
 			me["GenBus1"].setTranslation(0, 0);
@@ -905,7 +905,7 @@ var canvasElec = {
 		
 		if (Value.Elec.Relay.idgAcGen2) {
 			me["GenBus2"].setColor(0, 1, 0);
-			me["GenBus2"].setTranslation(8, 0);
+			me["GenBus2"].setTranslation(10, 0);
 		} else {
 			me["GenBus2"].setColor(1, 1, 1);
 			me["GenBus2"].setTranslation(0, 0);
@@ -913,7 +913,7 @@ var canvasElec = {
 		
 		if (Value.Elec.Relay.idgAcGen3) {
 			me["GenBus3"].setColor(0, 1, 0);
-			me["GenBus3"].setTranslation(8, 0);
+			me["GenBus3"].setTranslation(10, 0);
 		} else {
 			me["GenBus3"].setColor(1, 1, 1);
 			me["GenBus3"].setTranslation(0, 0);
