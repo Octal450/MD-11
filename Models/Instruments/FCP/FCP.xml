@@ -70,7 +70,6 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>BankLim.knob.indicator</object-name>
 		<object-name>BtnText</object-name>
 		<object-name>floodlight.indicator</object-name>
 		<object-name>Integrity</object-name>
@@ -564,7 +563,6 @@
 	<animation>
 		<type>knob</type>
 		<object-name>BankLim.knob</object-name>
-		<object-name>BankLim.knob.indicator</object-name>
 		<drag-scale-px>15</drag-scale-px>
 		<expression>
 			<difference>
