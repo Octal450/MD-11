@@ -1785,7 +1785,7 @@ var canvasBase = {
 		
 		# RA and Minimums
 		if (Value.Misc.minimumsMode) {
-			me["Minimums"].setTranslation(-88.538, 0);
+			me["Minimums"].setTranslation(-78.333, 0);
 			me["MinimumsMode"].setTranslation(88.538, 0);
 			me["MinimumsMode"].setText("BARO");
 		} else {
