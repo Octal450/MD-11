@@ -278,13 +278,7 @@ var MCDU = {
 		}
 		
 		me.blinkScreen();
-		
-		if (me.message.size() > 0) { # Clear messages
-			me.clearMessage(2);
-		}
-		
 		me.page = me.PageList[p]; # Set page
-		
 		me.page.setup();
 		
 		# Update everything now to make sure it all transitions at once
