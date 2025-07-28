@@ -1414,7 +1414,7 @@
 				/systems/fcc/afs/enabled eq 1
 				<test logic="OR">
 					/it-autoflight/output/lat eq 4
-					/it-autoflight/output/lat eq 5
+					/it-autoflight/internal/parallel-rudder-active eq 1
 				</test>
 			</test>
 		</switch>

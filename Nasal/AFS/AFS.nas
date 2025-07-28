@@ -196,6 +196,7 @@ var Internal = {
 	navCourseTrackErrorDeg: [props.globals.initNode("/it-autoflight/internal/nav1-course-track-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav2-course-track-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav3-course-track-error-deg", 0, "DOUBLE")],
 	navHeadingErrorDeg: [props.globals.initNode("/it-autoflight/internal/nav1-heading-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav2-heading-error-deg", 0, "DOUBLE"), props.globals.initNode("/it-autoflight/internal/nav3-heading-error-deg", 0, "DOUBLE")],
 	navHeadingErrorDegTemp: [0, 0, 0],
+	parallelRudderLand: props.globals.initNode("/it-autoflight/internal/parallel-rudder-land", 0, "BOOL"),
 	radioSel: props.globals.initNode("/it-autoflight/internal/radio-sel", 0, "INT"),
 	retardLock: 0,
 	selfCheckStatus: 0,
@@ -338,6 +339,7 @@ var ITAF = {
 		Internal.fmsSpdDriving = 0;
 		Internal.takeoffSpdDriving = 0;
 		Internal.retardLock = 0;
+		Internal.parallelRudderLand.setBoolValue(0);
 		Text.land.setValue("OFF");
 		Output.spdCaptured = 1;
 		Output.hdgCaptured = 1;
@@ -573,6 +575,8 @@ var ITAF = {
 		}
 		
 		if (Internal.landCondition == "DUAL" or Internal.landCondition == "SINGLE") {
+			Internal.parallelRudderLand.setBoolValue(1);
+			
 			if (Output.latTemp == 2) {
 				if (Position.gearAglFtTemp <= 150) {
 					me.setLatMode(4);
@@ -589,6 +593,8 @@ var ITAF = {
 				}
 			}
 		} else {
+			Internal.parallelRudderLand.setBoolValue(0);
+			
 			if (Output.latTemp == 4 or Output.vertTemp == 6) {
 				me.activateLoc();
 				me.activateGs();
@@ -1341,7 +1347,7 @@ var ITAF = {
 			Internal.retardLock = 0;
 		}
 		
-		if (Output.vertTemp != 7 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5 and Output.spdProtTemp == 0) {
+		if (Output.vertTemp != 7 and Output.vertTemp != 8 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5 and Output.spdProtTemp == 0) {
 			Output.thrMode.setValue(1);
 			Text.spd.setValue("RETARD");
 			Internal.retardLock = 1;

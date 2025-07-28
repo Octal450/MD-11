@@ -519,16 +519,48 @@
 		</config>
 	</pid-controller>
 	
+	<logic>
+		<input>
+			<and>
+				<property>/it-autoflight/output/ap-on</property>
+				<or>
+					<and>
+						<equals>
+							<property>/it-autoflight/internal/parallel-rudder-land</property>
+							<value>1</value>
+						</equals>
+						<not-equals>
+							<property>/it-autoflight/output/lat</property>
+							<value>4</value>
+						</not-equals>
+					</and>
+					<and>
+						<equals>
+							<property>/it-autoflight/output/lat</property>
+							<value>5</value>
+						</equals>
+						<equals>
+							<property>/it-autoflight/output/vert</property>
+							<value>7</value>
+						</equals>
+					</and>
+					<equals>
+						<property>/it-autoflight/output/vert</property>
+						<value>8</value>
+					</equals>
+				</or>
+			</and>
+		</input>
+		<output>/it-autoflight/internal/parallel-rudder-active</output>
+	</logic>
+	
 	<pi-simple-controller>
 		<name>IT-CONTROLLER: Takeoff Parallel Rudder PI</name>
 		<enable>
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>5</value>
-					</equals>
+					<property>/it-autoflight/internal/parallel-rudder-active</property>
 				</and>
 			</condition>
 		</enable>
@@ -566,10 +598,7 @@
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>5</value>
-					</equals>
+					<property>/it-autoflight/internal/parallel-rudder-active</property>
 				</and>
 			</condition>
 		</enable>
@@ -598,10 +627,7 @@
 			<condition>
 				<and>
 					<property>/it-autoflight/output/ap-on</property>
-					<equals>
-						<property>/it-autoflight/output/lat</property>
-						<value>5</value>
-					</equals>
+					<property>/it-autoflight/internal/parallel-rudder-active</property>
 				</and>
 			</condition>
 		</enable>

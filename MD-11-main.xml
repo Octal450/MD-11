@@ -1599,6 +1599,7 @@
 			<kts type="int">250</kts>
 			<kts-mach type="bool">0</kts-mach>
 			<mach type="double">0.5</mach>
+			<parallel-rudder-active type="bool">0</parallel-rudder-active>
 			<throttle-saturated type="int">0</throttle-saturated>
 			<vert-speed-fpm type="double">0</vert-speed-fpm>
 		</internal>

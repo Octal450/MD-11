@@ -316,9 +316,13 @@
 							</equals>
 						</or>
 					</and>
-					<equals> <!-- Don't slow throttle in T/O or G/A -->
+					<equals> <!-- Don't slow throttle in T/O -->
 						<property>/it-autoflight/output/vert</property>
 						<value>7</value>
+					</equals>
+					<equals> <!-- Don't slow throttle in G/A -->
+						<property>/it-autoflight/output/vert</property>
+						<value>8</value>
 					</equals>
 					<not-equals> <!-- Don't slow throttle in Spd Prot -->
 						<property>/it-autoflight/output/spd-prot</property>
