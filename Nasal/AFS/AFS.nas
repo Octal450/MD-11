@@ -1347,7 +1347,7 @@ var ITAF = {
 			Internal.retardLock = 0;
 		}
 		
-		if (Output.vertTemp != 7 and Output.vertTemp != 8 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 21.5 and Output.spdProtTemp == 0) {
+		if (Output.vertTemp != 7 and Output.vertTemp != 8 and Position.gearAglFt.getValue() <= 50 and Misc.flapDeg.getValue() >= 31.5 and Output.spdProtTemp == 0) {
 			Output.thrMode.setValue(1);
 			Text.spd.setValue("RETARD");
 			Internal.retardLock = 1;
