@@ -98,7 +98,7 @@
 			</thruster>
 		</engine>
 		
-		<!-- Fuel Tank Capacities from FCOM, positions fudged for CG accuracy -->
+		<!-- Fuel Tank Capacities from Type Sheet, positions fudged for CG accuracy -->
 		<tank type="FUEL"> <!-- Tank 1 Outboard -->
 			<location unit="M">
 				<x>4.65468</x>
@@ -118,7 +118,7 @@
 				<y>-9.78756</y>
 				<z>5.55365</z>
 			</location>
-			<capacity unit="LBS">33988</capacity>
+			<capacity unit="LBS">33991</capacity>
 			<contents unit="LBS">13500</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>1</priority>
@@ -144,7 +144,7 @@
 				<y>9.78756</y>
 				<z>5.55365</z>
 			</location>
-			<capacity unit="LBS">33988</capacity>
+			<capacity unit="LBS">33991</capacity>
 			<contents unit="LBS">13500</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>1</priority>
@@ -170,7 +170,7 @@
 				<y>0</y>
 				<z>5.09697</z>
 			</location>
-			<capacity unit="LBS">87105</capacity>
+			<capacity unit="LBS">87111</capacity>
 			<contents unit="LBS">0</contents>
 			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
@@ -183,7 +183,7 @@
 				<y>0</y>
 				<z>4.18259</z>
 			</location>
-			<capacity unit="LBS">11001</capacity>
+			<capacity unit="LBS">11000</capacity>
 			<contents unit="LBS">0</contents>
 			<standpipe unit="LBS">43</standpipe>
 			<priority>1</priority>
@@ -196,7 +196,7 @@
 				<y>0</y>
 				<z>7.14628</z>
 			</location>
-			<capacity unit="LBS">13118</capacity>
+			<capacity unit="LBS">13124</capacity>
 			<contents unit="LBS">0</contents>
 			<standpipe unit="LBS">31</standpipe>
 			<priority>1</priority>
