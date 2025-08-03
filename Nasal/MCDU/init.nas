@@ -134,7 +134,9 @@ var Init = {
 			me.Display.L4 = "________";
 		}
 		
-		if (fms.flightData.cruiseFl > 0) {
+		if (fms.Internal.phase >= 4) {
+			me.Display.L5 = "---/---/---/---/---/---";
+		} else if (fms.flightData.cruiseFl > 0) {
 			me.Value.cruiseFlText[0] = sprintf("%03d", fms.flightData.cruiseFlAll[0]);
 			
 			if (fms.flightData.cruiseFlAll[1] > 0) me.Value.cruiseFlText[1] = sprintf("%03d", fms.flightData.cruiseFlAll[1]);
@@ -225,6 +227,11 @@ var Init = {
 			}
 		} else if (k == "l5") {
 			if (me.scratchpadState == 2) {
+				if (fms.Internal.phase >= 4) {
+					unit[me.id].setMessage("NOT ALLOWED");
+					return;
+				}
+				
 				me.Value.cruiseInput = 3;
 				me.scratchpadSplit = split("/", me.scratchpad);
 				me.scratchpadSplitSize = size(me.scratchpadSplit);
