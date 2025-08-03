@@ -71,9 +71,7 @@ var FlightData = {
 	reset: func() {
 		var blankData = flightData.new();
 		foreach(var key; keys(me)) {
-			if (typeof(me[key]) != "func") {
-				me[key] = blankData[key];
-			}
+			me[key] = blankData[key];
 		}
 	},
 };
