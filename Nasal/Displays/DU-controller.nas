@@ -7,6 +7,18 @@ var DUController = {
 		active: 0,
 		time: -10,
 	},
+	CounterDeu1: {
+		active: 0,
+		time: 0,
+	},
+	CounterDeu2: {
+		active: 0,
+		time: 0,
+	},
+	CounterDeu3: {
+		active: 0,
+		time: 0,
+	},
 	CounterIsfd: {
 		secs: 180,
 		time: 0,
@@ -14,7 +26,6 @@ var DUController = {
 	eadType: "GE-Dials",
 	eng: pts.Options.eng.getValue(),
 	elapsedSec: 0,
-	errorActive: 0,
 	isfdLcdOn: props.globals.initNode("/instrumentation/isfd/lcd-on", 0, "BOOL"),
 	PowerSource: {
 		ac1: 0,
@@ -26,6 +37,7 @@ var DUController = {
 	sdPageActive: "ENG",
 	showNd1: props.globals.initNode("/instrumentation/nd/show-nd1", 0, "BOOL"),
 	showNd2: props.globals.initNode("/instrumentation/nd/show-nd2", 0, "BOOL"),
+	showX: [0, 0, 0, 0, 0, 0],
 	singleCueFd: 0,
 	updateEad: 0,
 	updateIsfd: 0,
@@ -37,36 +49,8 @@ var DUController = {
 	updatePfd1: 0,
 	updatePfd2: 0,
 	updateSd: 0,
-	showError: func() {
-		me.errorActive = 1;
-		
-		# Hide the pages
-		me.updatePfd1 = 0;
-		me.updatePfd2 = 0;
-		me.updateNd1 = 0;
-		me.updateNd2 = 0;
-		me.updateEad = 0;
-		me.updateSd = 0;
-		me.updateMcdu1 = 0;
-		me.updateMcdu2 = 0;
-		me.updateMcdu3 = 0;
-		me.updateIsfd = 0;
-		canvas_pfd.pfd1.page.hide();
-		canvas_pfd.pfd2.page.hide();
-		me.showNd1.setBoolValue(0); # Temporary
-		me.showNd2.setBoolValue(0); # Temporary
-		canvas_ead.geDials.page.hide();
-		canvas_ead.geTapes.page.hide();
-		canvas_ead.pwDials.page.hide();
-		canvas_ead.pwTapes.page.hide();
-		me.showSdPage("NONE");
-		canvas_isfd.isfd.page.hide();
-		me.isfdLcdOn.setBoolValue(0);
-		canvas_mcdu.mcdu1.page.hide();
-		canvas_mcdu.mcdu2.page.hide();
-		canvas_mcdu.mcdu3.page.hide();
-	},
 	loop: func() {
+		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
 		
 		if (me.eng == "PW") {
@@ -83,28 +67,78 @@ var DUController = {
 			}
 		}
 		
-		if (!me.errorActive) {
-			me.PowerSource.ac1 = systems.ELECTRICAL.Bus.ac1.getValue();
-			me.PowerSource.ac3 = systems.ELECTRICAL.Bus.ac3.getValue();
-			me.PowerSource.dcBat = systems.ELECTRICAL.Bus.dcBat.getValue();
-			me.PowerSource.lEmerAc = systems.ELECTRICAL.Bus.lEmerAc.getValue();
-			me.PowerSource.rEmerAc = systems.ELECTRICAL.Bus.rEmerAc.getValue();
-			
-			# L Emer AC
-			if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
+		me.PowerSource.ac1 = systems.ELECTRICAL.Bus.ac1.getValue();
+		me.PowerSource.ac3 = systems.ELECTRICAL.Bus.ac3.getValue();
+		me.PowerSource.dcBat = systems.ELECTRICAL.Bus.dcBat.getValue();
+		me.PowerSource.lEmerAc = systems.ELECTRICAL.Bus.lEmerAc.getValue();
+		me.PowerSource.rEmerAc = systems.ELECTRICAL.Bus.rEmerAc.getValue();
+		
+		# DEU Startup
+		if (me.PowerSource.lEmerAc >= 112) {
+			if (!me.CounterDeu1.active) {
+				me.CounterDeu1.time = me.elapsedSec + 2;
+			}
+			me.CounterDeu1.active = 1;
+		} else {
+			me.CounterDeu1.active = 0;
+			me.CounterDeu1.time = -5;
+		}
+		
+		if (me.PowerSource.rEmerAc >= 112) {
+			if (!me.CounterDeu2.active) {
+				me.CounterDeu2.time = me.elapsedSec + 2;
+			}
+			me.CounterDeu2.active = 1;
+		} else {
+			me.CounterDeu2.active = 0;
+			me.CounterDeu2.time = -5;
+		}
+		
+		if (me.PowerSource.ac1 >= 112) {
+			if (!me.CounterDeu3.active) {
+				me.CounterDeu3.time = me.elapsedSec + 2;
+			}
+			me.CounterDeu3.active = 1;
+		} else {
+			me.CounterDeu3.active = 0;
+			me.CounterDeu3.time = -5;
+		}
+		
+		# L Emer AC
+		if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
+			if (me.CounterDeu1.time < me.elapsedSec) {
 				if (!me.updatePfd1) {
 					me.updatePfd1 = 1;
 					canvas_pfd.pfd1.update();
 					canvas_pfd.pfd1.page.show();
+				}
+				if (me.showX[0]) {
+					me.showX[0] = 0;
+					canvas_pfd.xx1.page.hide();
 				}
 			} else {
 				if (me.updatePfd1) {
 					me.updatePfd1 = 0;
 					canvas_pfd.pfd1.page.hide();
 				}
+				if (!me.showX[0]) {
+					me.showX[0] = 1;
+					canvas_pfd.xx1.page.show();
+				}
 			}
-				
-			if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
+		} else {
+			if (me.updatePfd1) {
+				me.updatePfd1 = 0;
+				canvas_pfd.pfd1.page.hide();
+			}
+			if (me.showX[0]) {
+				me.showX[0] = 0;
+				canvas_pfd.xx1.page.hide();
+			}
+		}
+			
+		if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
+			if (me.CounterDeu1.time < me.elapsedSec) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
 					if (me.eadType == "PW-Tapes") {
@@ -134,6 +168,10 @@ var DUController = {
 						canvas_ead.geDials.page.show();
 					}
 				}
+				if (me.showX[2]) {
+					me.showX[2] = 0;
+					canvas_ead.xx.page.hide();
+				}
 			} else {
 				if (me.updateEad) {
 					me.updateEad = 0;
@@ -142,53 +180,90 @@ var DUController = {
 					canvas_ead.pwDials.page.hide();
 					canvas_ead.pwTapes.page.hide();
 				}
-			}
-			
-			# AC 1
-			if (me.PowerSource.ac1 >= 112 and pts.Instrumentation.Du.duDimmer[1].getValue() > 0.01) {
-				if (!me.updateNd1) {
-					me.updateNd1 = 1;
-					me.showNd1.setBoolValue(1); # Temporary
-				}
-			} else {
-				if (me.updateNd1) {
-					me.updateNd1 = 0;
-					me.showNd1.setBoolValue(0); # Temporary
+				if (!me.showX[2]) {
+					me.showX[2] = 1;
+					canvas_ead.xx.page.show();
 				}
 			}
-			
-			# AC 3
-			if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[5].getValue() > 0.01) {
+		} else {
+			if (me.updateEad) {
+				me.updateEad = 0;
+				canvas_ead.geDials.page.hide();
+				canvas_ead.geTapes.page.hide();
+				canvas_ead.pwDials.page.hide();
+				canvas_ead.pwTapes.page.hide();
+			}
+			if (me.showX[2]) {
+				me.showX[2] = 0;
+				canvas_ead.xx.page.hide();
+			}
+		}
+		
+		# AC 1
+		if (me.PowerSource.ac1 >= 112 and pts.Instrumentation.Du.duDimmer[1].getValue() > 0.01) {
+			if (!me.updateNd1) {
+				me.updateNd1 = 1;
+				me.showNd1.setBoolValue(1); # Temporary
+			}
+		} else {
+			if (me.updateNd1) {
+				me.updateNd1 = 0;
+				me.showNd1.setBoolValue(0); # Temporary
+			}
+		}
+		
+		# AC 3
+		if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[5].getValue() > 0.01) {
+			if (me.CounterDeu2.time < me.elapsedSec) {
 				if (!me.updatePfd2) {
 					me.updatePfd2 = 1;
 					canvas_pfd.pfd2.update();
 					canvas_pfd.pfd2.page.show();
+				}
+				if (me.showX[5]) {
+					me.showX[5] = 0;
+					canvas_pfd.xx2.page.hide();
 				}
 			} else {
 				if (me.updatePfd2) {
 					me.updatePfd2 = 0;
 					canvas_pfd.pfd2.page.hide();
 				}
-			}
-			
-			if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[4].getValue() > 0.01) {
-				if (!me.updateNd2) {
-					me.updateNd2 = 1;
-					me.showNd2.setBoolValue(1); # Temporary
-				}
-			} else {
-				if (me.updateNd2) {
-					me.updateNd2 = 0;
-					me.showNd2.setBoolValue(0); # Temporary
+				if (!me.showX[5]) {
+					me.showX[5] = 1;
+					canvas_pfd.xx2.page.show();
 				}
 			}
-			
-			if (me.BlinkSd.active) {
-				if (me.BlinkSd.time < pts.Sim.Time.elapsedSec.getValue()) {
-					me.BlinkSd.active = 0;
-				}
+		} else {
+			if (me.updatePfd2) {
+				me.updatePfd2 = 0;
+				canvas_pfd.pfd2.page.hide();
 			}
-			if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[3].getValue() > 0.01) {
+			if (me.showX[5]) {
+				me.showX[5] = 0;
+				canvas_pfd.xx2.page.hide();
+			}
+		}
+		
+		if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[4].getValue() > 0.01) {
+			if (!me.updateNd2) {
+				me.updateNd2 = 1;
+				me.showNd2.setBoolValue(1); # Temporary
+			}
+		} else {
+			if (me.updateNd2) {
+				me.updateNd2 = 0;
+				me.showNd2.setBoolValue(0); # Temporary
+			}
+		}
+		
+		if (me.BlinkSd.active) {
+			if (me.BlinkSd.time < me.elapsedSec) {
+				me.BlinkSd.active = 0;
+			}
+		}
+		if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[3].getValue() > 0.01) {
+			if (me.CounterDeu2.time < me.elapsedSec) {
 				if (!me.BlinkSd.active) {
 					if (!me.updateSd) {
 						me.updateSd = 1;
@@ -199,98 +274,114 @@ var DUController = {
 						me.showSdPage(me.sdPage);
 					}
 				}
+				if (me.showX[3]) {
+					me.showX[3] = 0;
+					canvas_sd.xx.page.hide();
+				}
 			} else {
 				if (me.updateSd) {
 					me.updateSd = 0;
 					canvas_sd.canvasBase.hidePages();
 				}
+				if (!me.showX[3]) {
+					me.showX[3] = 1;
+					canvas_sd.xx.page.show();
+				}
+			}
+		} else {
+			if (me.updateSd) {
+				me.updateSd = 0;
+				canvas_sd.canvasBase.hidePages();
+			}
+			if (me.showX[3]) {
+				me.showX[3] = 0;
+				canvas_sd.xx.page.hide();
+			}
+		}
+		
+		# R Emer AC
+		if (me.PowerSource.dcBat >= 24) {
+			if (me.CounterIsfd.time == 0) {
+				if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
+					me.CounterIsfd.time = me.elapsedSec - 178;
+				} else {
+					me.CounterIsfd.time = me.elapsedSec;
+				}
+			}
+			if (me.CounterIsfd.secs > 0) {
+				me.CounterIsfd.secs = math.round(me.CounterIsfd.time + 180 - me.elapsedSec);
+			} else {
+				me.CounterIsfd.secs = 0;
 			}
 			
-			# R Emer AC
-			if (me.PowerSource.dcBat >= 24) {
-				me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
-				if (me.CounterIsfd.time == 0) {
-					if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-						me.CounterIsfd.time = me.elapsedSec - 178;
-					} else {
-						me.CounterIsfd.time = me.elapsedSec;
-					}
+			if (pts.Systems.Acconfig.Options.isfd.getBoolValue()) {
+				if (!me.updateIsfd) {
+					me.updateIsfd = 1;
+					canvas_isfd.isfd.update();
+					me.isfdLcdOn.setBoolValue(1);
+					canvas_isfd.isfd.page.show();
 				}
-				if (me.CounterIsfd.secs > 0) {
-					me.CounterIsfd.secs = math.round(me.CounterIsfd.time + 180 - me.elapsedSec);
-				} else {
-					me.CounterIsfd.secs = 0;
-				}
-				
-				if (pts.Systems.Acconfig.Options.isfd.getBoolValue()) {
-					if (!me.updateIsfd) {
-						me.updateIsfd = 1;
-						canvas_isfd.isfd.update();
-						me.isfdLcdOn.setBoolValue(1);
-						canvas_isfd.isfd.page.show();
-					}
-				} else { # Not equipped
-					if (me.updateIsfd) {
-						me.updateIsfd = 0;
-						canvas_isfd.isfd.page.hide();
-						me.isfdLcdOn.setBoolValue(0);
-					}
-				}
-			} else {
-				me.CounterIsfd.secs = 180;
-				me.CounterIsfd.time = 0;
-				
+			} else { # Not equipped
 				if (me.updateIsfd) {
 					me.updateIsfd = 0;
 					canvas_isfd.isfd.page.hide();
 					me.isfdLcdOn.setBoolValue(0);
 				}
 			}
+		} else {
+			me.CounterIsfd.secs = 180;
+			me.CounterIsfd.time = 0;
 			
-			# MCDUs
-			if (mcdu.unit[0].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[0].getValue() > 0.01) {
-				if (!mcdu.unit[0].Blink.active) {
-					if (!me.updateMcdu1) {
-						me.updateMcdu1 = 1;
-						canvas_mcdu.mcdu1.update();
-						canvas_mcdu.mcdu1.page.show();
-					}
-				}
-			} else {
-				if (me.updateMcdu1) {
-					me.updateMcdu1 = 0;
-					canvas_mcdu.mcdu1.page.hide();
+			if (me.updateIsfd) {
+				me.updateIsfd = 0;
+				canvas_isfd.isfd.page.hide();
+				me.isfdLcdOn.setBoolValue(0);
+			}
+		}
+		
+		# MCDUs
+		if (mcdu.unit[0].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[0].getValue() > 0.01) {
+			if (!mcdu.unit[0].Blink.active) {
+				if (!me.updateMcdu1) {
+					me.updateMcdu1 = 1;
+					canvas_mcdu.mcdu1.update();
+					canvas_mcdu.mcdu1.page.show();
 				}
 			}
-			
-			if (mcdu.unit[1].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[1].getValue() > 0.01) {
-				if (!mcdu.unit[1].Blink.active) {
-					if (!me.updateMcdu2) {
-						me.updateMcdu2 = 1;
-						canvas_mcdu.mcdu2.update();
-						canvas_mcdu.mcdu2.page.show();
-					}
-				}
-			} else {
-				if (me.updateMcdu2) {
-					me.updateMcdu2 = 0;
-					canvas_mcdu.mcdu2.page.hide();
+		} else {
+			if (me.updateMcdu1) {
+				me.updateMcdu1 = 0;
+				canvas_mcdu.mcdu1.page.hide();
+			}
+		}
+		
+		if (mcdu.unit[1].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[1].getValue() > 0.01) {
+			if (!mcdu.unit[1].Blink.active) {
+				if (!me.updateMcdu2) {
+					me.updateMcdu2 = 1;
+					canvas_mcdu.mcdu2.update();
+					canvas_mcdu.mcdu2.page.show();
 				}
 			}
-			
-			if (mcdu.unit[2].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[2].getValue() > 0.01) {
-				if (!mcdu.unit[2].Blink.active) {
-					if (!me.updateMcdu3) {
-						me.updateMcdu3 = 1;
-						canvas_mcdu.mcdu3.update();
-						canvas_mcdu.mcdu3.page.show();
-					}
+		} else {
+			if (me.updateMcdu2) {
+				me.updateMcdu2 = 0;
+				canvas_mcdu.mcdu2.page.hide();
+			}
+		}
+		
+		if (mcdu.unit[2].powerSource.getValue() >= 112 and pts.Instrumentation.Mcdu.dimmer[2].getValue() > 0.01) {
+			if (!mcdu.unit[2].Blink.active) {
+				if (!me.updateMcdu3) {
+					me.updateMcdu3 = 1;
+					canvas_mcdu.mcdu3.update();
+					canvas_mcdu.mcdu3.page.show();
 				}
-			} else {
-				if (me.updateMcdu3) {
-					me.updateMcdu3 = 0;
-					canvas_mcdu.mcdu3.page.hide();
-				}
+			}
+		} else {
+			if (me.updateMcdu3) {
+				me.updateMcdu3 = 0;
+				canvas_mcdu.mcdu3.page.hide();
 			}
 		}
 	},

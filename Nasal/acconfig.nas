@@ -101,7 +101,6 @@ var SYSTEM = {
 	},
 	showError: func() {
 		libraries.systemsLoop.stop();
-		systems.DUController.showError();
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-main"}));
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-updated"}));
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
@@ -109,7 +108,6 @@ var SYSTEM = {
 		setprop("/sim/menubar/default/menu[101]/enabled", 0);
 		setprop("/sim/menubar/default/menu[102]/enabled", 0);
 		setprop("/sim/menubar/default/menu[103]/enabled", 0);
-		setprop("/sim/menubar/default/menu[104]/enabled", 0);
 	},
 	spinning: func() {
 		if (me.spinner == "\\") {

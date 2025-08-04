@@ -5,6 +5,8 @@ var pfd1 = nil;
 var pfd1Display = nil;
 var pfd2 = nil;
 var pfd2Display = nil;
+var xx1 = nil;
+var xx2 = nil;
 
 var Value = {
 	Afs: {
@@ -270,6 +272,8 @@ var canvasBase = {
 		pfd1.setup();
 		pfd2.page.hide();
 		pfd2.setup();
+		xx1.page.hide();
+		xx2.page.hide();
 	},
 	update: func() {
 		if (systems.DUController.updatePfd1) {
@@ -2420,6 +2424,16 @@ var canvasPfd2 = {
 	},
 };
 
+var canvasXx = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasXx]};
+		canvas.parsesvg(canvasGroup, file);
+		m.page = canvasGroup;
+		
+		return m;
+	},
+};
+
 var setup = func() {
 	pfd1Display = canvas.new({
 		"name": "PFD1",
@@ -2439,9 +2453,13 @@ var setup = func() {
 	
 	var pfd1Group = pfd1Display.createGroup();
 	var pfd2Group = pfd2Display.createGroup();
+	var xx1Group = pfd1Display.createGroup();
+	var xx2Group = pfd2Display.createGroup();
 	
 	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
 	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
+	xx1 = canvasXx.new(xx1Group, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
+	xx2 = canvasXx.new(xx2Group, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
 	
 	canvasBase.setup();
 	update.start();

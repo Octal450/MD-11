@@ -10,6 +10,7 @@ var engTapes = nil;
 var hyd = nil;
 var misc = nil;
 var status = nil;
+var xx = nil;
 
 var Value = {
 	Apu: {
@@ -153,6 +154,7 @@ var canvasBase = {
 		hyd.page.hide();
 		misc.page.hide();
 		status.page.hide();
+		xx.page.hide();
 	},
 	update: func() {
 		if (systems.DUController.updateSd) {
@@ -2270,6 +2272,16 @@ var canvasStatus = {
 	},
 };
 
+var canvasXx = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasXx]};
+		canvas.parsesvg(canvasGroup, file);
+		m.page = canvasGroup;
+		
+		return m;
+	},
+};
+
 var setup = func() {
 	display = canvas.new({
 		"name": "SD",
@@ -2288,6 +2300,7 @@ var setup = func() {
 	var hydGroup = display.createGroup();
 	var miscGroup = display.createGroup();
 	var statusGroup = display.createGroup();
+	var xxGroup = display.createGroup();
 	
 	config = canvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = canvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
@@ -2297,6 +2310,7 @@ var setup = func() {
 	hyd = canvasHyd.new(hydGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-HYD.svg");
 	misc = canvasMisc.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
 	status = canvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");
+	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
 	
 	canvasBase.setup();
 	update.start();

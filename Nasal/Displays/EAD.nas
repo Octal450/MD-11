@@ -6,6 +6,7 @@ var geDials = nil;
 var geTapes = nil;
 var pwDials = nil;
 var pwTapes = nil;
+var xx = nil;
 
 var Value = {
 	barRest: 293,
@@ -87,6 +88,7 @@ var canvasBase = {
 		pwDials.setup();
 		pwTapes.page.hide();
 		pwTapes.setup();
+		xx.page.hide();
 		
 		Value.engType = pts.Options.eng.getValue();
 	},
@@ -1490,6 +1492,16 @@ var canvasPwTapes = {
 	},
 };
 
+var canvasXx = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [canvasXx]};
+		canvas.parsesvg(canvasGroup, file);
+		m.page = canvasGroup;
+		
+		return m;
+	},
+};
+
 var setup = func() {
 	display = canvas.new({
 		"name": "EAD",
@@ -1504,11 +1516,13 @@ var setup = func() {
 	var geTapesGroup = display.createGroup();
 	var pwDialsGroup = display.createGroup();
 	var pwTapesGroup = display.createGroup();
+	var xxGroup = display.createGroup();
 	
 	geDials = canvasGeDials.new(geDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Dials.svg");
 	geTapes = canvasGeTapes.new(geTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Tapes.svg");
 	pwDials = canvasPwDials.new(pwDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Dials.svg");
 	pwTapes = canvasPwTapes.new(pwTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Tapes.svg");
+	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
 	
 	canvasBase.setup();
 	update.start();
