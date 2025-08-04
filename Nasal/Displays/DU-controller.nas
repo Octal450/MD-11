@@ -78,7 +78,7 @@ var DUController = {
 		# DEU Startup
 		if (me.PowerSource.lEmerAc >= 112) {
 			if (!me.CounterDeu1.active) {
-				me.CounterDeu1.time = me.elapsedSec + 2;
+				me.CounterDeu1.time = me.elapsedSec + 1;
 			}
 			me.CounterDeu1.active = 1;
 		} else {
@@ -88,7 +88,7 @@ var DUController = {
 		
 		if (me.PowerSource.rEmerAc >= 112) {
 			if (!me.CounterDeu2.active) {
-				me.CounterDeu2.time = me.elapsedSec + 2;
+				me.CounterDeu2.time = me.elapsedSec + 1;
 			}
 			me.CounterDeu2.active = 1;
 		} else {
@@ -98,7 +98,7 @@ var DUController = {
 		
 		if (me.PowerSource.ac1 >= 112) {
 			if (!me.CounterDeu3.active) {
-				me.CounterDeu3.time = me.elapsedSec + 2;
+				me.CounterDeu3.time = me.elapsedSec + 1;
 			}
 			me.CounterDeu3.active = 1;
 		} else {

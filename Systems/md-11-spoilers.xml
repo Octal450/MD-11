@@ -7,6 +7,18 @@
 	
 	<channel name="Spoiler Lever and Logic">
 		
+		<switch name="/systems/fcs/spoilers/speedbrake-inhibit"> <!-- Prevents extension but does not retract -->
+			<default value="0"/>
+			<test logic="AND" value="0">
+				position/wow eq 1
+				/controls/flight/speedbrake-arm eq 1
+			</test>
+			<test logic="AND" value="1">
+				fcs/flap-pos-deg ge 4.5
+				gear/unit[0]/WOW eq 0
+			</test>
+		</switch>
+		
 		<fcs_function name="/controls/flight/speedbrake-fixed"> <!-- Rounds to 4 figures to fix a potential problem -->
 			<function>
 				<quotient>
