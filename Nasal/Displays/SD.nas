@@ -2310,7 +2310,7 @@ var setup = func() {
 	hyd = canvasHyd.new(hydGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-HYD.svg");
 	misc = canvasMisc.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
 	status = canvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");
-	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
+	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
 	
 	canvasBase.setup();
 	update.start();

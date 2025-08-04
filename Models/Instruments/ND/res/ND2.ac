@@ -2,7 +2,7 @@ AC3Db
 MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "buttonlights" rgb 0 0 0  amb 0 0 0  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 4
+kids 5
 OBJECT poly
 name "ND.borderR"
 loc 0.00180348 0.00535272 1.16794e-05
@@ -138,6 +138,25 @@ OBJECT poly
 name "ND.screenR"
 loc 0.00180348 0.00211162 0.000129346
 texture "screen.png"
+crease 30.000000
+numvert 4
+0 0.0852831 -0.081948
+0 -0.0785853 -0.081948
+0 -0.0785853 0.0819237
+0 0.0852831 0.0819237
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+0 1.00067 0.999407
+3 4.45843e-05 0.999407
+2 4.45843e-05 0.000756443
+1 1.00067 0.000756443
+kids 0
+OBJECT poly
+name "ND.XXR"
+loc 0.00180348 0.00211162 0.000129346
+texture "XX.png"
 crease 30.000000
 numvert 4
 0 0.0852831 -0.081948

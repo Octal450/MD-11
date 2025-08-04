@@ -49,6 +49,8 @@ var DUController = {
 	updatePfd1: 0,
 	updatePfd2: 0,
 	updateSd: 0,
+	xxNd1: props.globals.initNode("/instrumentation/nd/xx-nd1", 0, "BOOL"),
+	xxNd2: props.globals.initNode("/instrumentation/nd/xx-nd2", 0, "BOOL"),
 	loop: func() {
 		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
@@ -205,10 +207,22 @@ var DUController = {
 				me.updateNd1 = 1;
 				me.showNd1.setBoolValue(1); # Temporary
 			}
+			if (me.CounterDeu1.time < me.elapsedSec) {
+				if (me.xxNd1.getBoolValue()) {
+					me.xxNd1.setBoolValue(0); # Temporary
+				}
+			} else {
+				if (!me.xxNd1.getBoolValue()) {
+					me.xxNd1.setBoolValue(1); # Temporary
+				}
+			}
 		} else {
 			if (me.updateNd1) {
 				me.updateNd1 = 0;
 				me.showNd1.setBoolValue(0); # Temporary
+			}
+			if (me.xxNd1.getBoolValue()) {
+				me.xxNd1.setBoolValue(0); # Temporary
 			}
 		}
 		
@@ -250,10 +264,22 @@ var DUController = {
 				me.updateNd2 = 1;
 				me.showNd2.setBoolValue(1); # Temporary
 			}
+			if (me.CounterDeu2.time < me.elapsedSec) {
+				if (me.xxNd2.getBoolValue()) {
+					me.xxNd2.setBoolValue(0); # Temporary
+				}
+			} else {
+				if (!me.xxNd2.getBoolValue()) {
+					me.xxNd2.setBoolValue(1); # Temporary
+				}
+			}
 		} else {
 			if (me.updateNd2) {
 				me.updateNd2 = 0;
 				me.showNd2.setBoolValue(0); # Temporary
+			}
+			if (me.xxNd2.getBoolValue()) {
+				me.xxNd2.setBoolValue(0); # Temporary
 			}
 		}
 		

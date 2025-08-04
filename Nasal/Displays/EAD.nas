@@ -1522,7 +1522,7 @@ var setup = func() {
 	geTapes = canvasGeTapes.new(geTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Tapes.svg");
 	pwDials = canvasPwDials.new(pwDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Dials.svg");
 	pwTapes = canvasPwTapes.new(pwTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Tapes.svg");
-	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
+	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
 	
 	canvasBase.setup();
 	update.start();

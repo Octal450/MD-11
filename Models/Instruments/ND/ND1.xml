@@ -28,19 +28,43 @@
 			<dirt-factor>0</dirt-factor>
 			<contrast><use>instrumentation/du/crt-contrast</use></contrast>
 		</parameters>
-		<object-name>ND.screenL</object-name>
-		<object-name>ND.offL</object-name>
 		<object-name>ND.borderL</object-name>
+		<object-name>ND.offL</object-name>
+		<object-name>ND.screenL</object-name>
+		<object-name>ND.XXL</object-name>
 	</effect>
 	
 	<animation>
 		<type>select</type>
 		<object-name>ND.screenL</object-name>
 		<condition>
-			<equals>
-				<property>instrumentation/nd/show-nd1</property>
-				<value>1</value>
-			</equals>
+			<and>
+				<equals>
+					<property>instrumentation/nd/show-nd1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>instrumentation/nd/xx-nd1</property>
+					<value>0</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ND.XXL</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/nd/show-nd1</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>instrumentation/nd/xx-nd1</property>
+					<value>1</value>
+				</equals>
+			</and>
 		</condition>
 	</animation>
 	

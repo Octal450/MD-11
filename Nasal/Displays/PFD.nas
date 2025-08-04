@@ -2458,8 +2458,8 @@ var setup = func() {
 	
 	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
 	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
-	xx1 = canvasXx.new(xx1Group, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
-	xx2 = canvasXx.new(xx2Group, "Aircraft/MD-11/Nasal/Displays/res/X.svg");
+	xx1 = canvasXx.new(xx1Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
+	xx2 = canvasXx.new(xx2Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
 	
 	canvasBase.setup();
 	update.start();
