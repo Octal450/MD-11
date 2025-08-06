@@ -9,19 +9,19 @@ var DUController = {
 	},
 	CounterDeu1: {
 		active: 0,
-		time: 0,
+		time: -10,
 	},
 	CounterDeu2: {
 		active: 0,
-		time: 0,
+		time: -10,
 	},
 	CounterDeu3: {
 		active: 0,
-		time: 0,
+		time: -10,
 	},
 	CounterIsfd: {
 		secs: 180,
-		time: 0,
+		time: -10,
 	},
 	eadType: "GE-Dials",
 	eng: pts.Options.eng.getValue(),
@@ -83,7 +83,7 @@ var DUController = {
 			me.CounterDeu1.active = 1;
 		} else {
 			me.CounterDeu1.active = 0;
-			me.CounterDeu1.time = -5;
+			me.CounterDeu1.time = -10;
 		}
 		
 		if (me.PowerSource.rEmerAc >= 112) {
@@ -93,7 +93,7 @@ var DUController = {
 			me.CounterDeu2.active = 1;
 		} else {
 			me.CounterDeu2.active = 0;
-			me.CounterDeu2.time = -5;
+			me.CounterDeu2.time = -10;
 		}
 		
 		if (me.PowerSource.ac1 >= 112) {
@@ -103,7 +103,7 @@ var DUController = {
 			me.CounterDeu3.active = 1;
 		} else {
 			me.CounterDeu3.active = 0;
-			me.CounterDeu3.time = -5;
+			me.CounterDeu3.time = -10;
 		}
 		
 		# L Emer AC

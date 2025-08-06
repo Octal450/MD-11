@@ -94,6 +94,67 @@
 	
 	<channel name="FMS Calculations" execrate="8">
 		
+		<!-- Available Logic -->
+		<switch name="/systems/fms/internal/fms-avail-incr">
+			<default value="0.033333"/> <!-- 30 seconds -->
+			<test value="100000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fms/internal/fms-avail-decr">
+			<default value="0.2"/> <!-- 5 seconds -->
+			<test value="100000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fms/internal/fms-1-power">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/l-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fms/internal/fms-1-avail-timer">
+			<input>/systems/fms/internal/fms-1-power</input>
+			<rate_limit sense="incr">/systems/fms/internal/fms-avail-incr</rate_limit>
+			<rate_limit sense="decr">/systems/fms/internal/fms-avail-decr</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fms/internal/fms-1-avail">
+			<default value="/systems/fms/internal/fms-1-avail"/>
+			<test value="0">
+				/systems/fms/internal/fms-1-avail-timer eq 0
+			</test>
+			<test value="1">
+				/systems/fms/internal/fms-1-avail-timer eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fms/internal/fms-2-power">
+			<default value="0"/>
+			<test value="1">
+				/systems/electrical/bus/r-emer-ac ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fms/internal/fms-2-avail-timer">
+			<input>/systems/fms/internal/fms-2-power</input>
+			<rate_limit sense="incr">/systems/fms/internal/fms-avail-incr</rate_limit>
+			<rate_limit sense="decr">/systems/fms/internal/fms-avail-decr</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fms/internal/fms-2-avail">
+			<default value="/systems/fms/internal/fms-2-avail"/>
+			<test value="0">
+				/systems/fms/internal/fms-2-avail-timer eq 0
+			</test>
+			<test value="1">
+				/systems/fms/internal/fms-2-avail-timer eq 1
+			</test>
+		</switch>
+		
 		<!-- FMS CG Calculation -->
 		<fcs_function name="/systems/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-libraries.xml -->
 			<function>

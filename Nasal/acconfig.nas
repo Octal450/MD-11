@@ -317,13 +317,18 @@ var PANEL = {
 				me.l1 = nil; # Important
 				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
-				fms.EditFlightData.setAcconfigData();
 				
-				fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
-				spinningT.stop();
-				fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
-				SYSTEM.autoConfigRunning.setBoolValue(0);
-				me.stop = 1;
+				settimer(func() { # Give things a moment to settle
+					if (!me.stop) {
+						fms.EditFlightData.setAcconfigData();
+						
+						fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
+						spinningT.stop();
+						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
+						SYSTEM.autoConfigRunning.setBoolValue(0);
+						me.stop = 1;
+					}
+				}, 1);
 			}
 		});
 	},
@@ -368,7 +373,6 @@ var PANEL = {
 				systems.ELECTRICAL.Controls.extPwr.setBoolValue(0);
 				systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
-				fms.EditFlightData.setAcconfigData();
 				
 				if (t == 1) {
 					settimer(func() {
@@ -386,6 +390,7 @@ var PANEL = {
 				
 				settimer(func() { # Give things a moment to settle
 					if (!me.stop) {
+						fms.EditFlightData.setAcconfigData();
 						fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 						spinningT.stop();
 						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));

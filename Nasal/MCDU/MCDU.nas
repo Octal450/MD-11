@@ -27,9 +27,9 @@ var MCDU = {
 			init: Init.new(n),
 			init2: Init2.new(n),
 			init3: Init3.new(n),
-			menu: Menu.new(n, t),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
+			menu: Menu.new(n, t),
 			navRadio: NavRadio.new(n),
 			perfClb: Perf.new(n, 0),
 			perfCrz: Perf.new(n, 1),
@@ -79,6 +79,15 @@ var MCDU = {
 				me.page = me.PageList.menu;
 			}
 			fms.Internal.request[me.id] = 1;
+		}
+		
+		if (!me.type) {
+			if (!fms.Internal.avail[me.id].getBoolValue()) {
+				if (me.page != me.PageList.menu and me.page.group == "fmc") {
+					me.page = me.PageList.menu;
+				}
+				fms.Internal.request[me.id] = 1;
+			}
 		}
 		
 		if (me.Blink.active) {

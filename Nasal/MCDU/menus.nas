@@ -80,7 +80,6 @@ var Menu = {
 			m.Display.L2 = "<ACARS";
 			m.Display.R1 = "F-PLN*";
 		} else {
-			m.Display.L1 = "<FMC-" ~ sprintf("%s", n + 1);
 			m.Display.R1 = "NAV/RAD*";
 		}
 		
@@ -94,15 +93,22 @@ var Menu = {
 	setup: func() {
 	},
 	loop: func() {
-		if (me.type) {
-			me.Display.C1 = "";
-		} else if (fms.Internal.request[me.id]) {
-			me.Display.C1 = "<REQ>";
-		} else {
-			me.Display.C1 = "<ACT>";
-		}
-		
 		if (!me.type) {
+			if (fms.Internal.avail[me.id].getBoolValue()) {
+				me.Display.L1 = "<FMC-" ~ sprintf("%s", me.id + 1);
+				
+				if (me.type) {
+					me.Display.C1 = "";
+				} else if (fms.Internal.request[me.id]) {
+					me.Display.C1 = "<REQ>";
+				} else {
+					me.Display.C1 = "<ACT>";
+				}
+			} else {
+				me.Display.L1 = "";
+				me.Display.C1 = "";
+			}
+			
 			if (unit[me.id].lastFmcPage == "none") {
 				me.Display.R6 = "";
 			} else {
@@ -114,7 +120,7 @@ var Menu = {
 		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1" and !me.type) {
-			if (me.scratchpadState == 1) {
+			if (me.scratchpadState == 1 and me.Display.L1 != "") {
 				if (fms.Internal.request[me.id]) {
 					fms.Internal.request[me.id] = 0;
 				} else if (unit[me.id].lastFmcPage == "none") {

@@ -3,6 +3,7 @@
 
 # Properties and Data
 var Internal = {
+	avail: [props.globals.getNode("/systems/fms/internal/fms-1-avail"), props.globals.getNode("/systems/fms/internal/fms-2-avail")],
 	bankAngle1: props.globals.getNode("/systems/fms/internal/bank-limit-1"),
 	bankAngle2: props.globals.getNode("/systems/fms/internal/bank-limit-2"),
 	bankAngleVss: props.globals.getNode("/systems/fms/internal/bank-limit-vss"),
