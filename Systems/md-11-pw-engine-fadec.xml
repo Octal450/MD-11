@@ -1117,7 +1117,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fadec/limit/idle-ref"> <!-- Idle speed governor is N1 based -->
+		<fcs_function name="/systems/fadec/limit/idle-table"> <!-- Idle speed governor is N1 based -->
 			<function>
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
@@ -1146,7 +1146,7 @@
 					<floor>
 						<sum>
 							<product>
-								<property>/systems/fadec/limit/idle-ref</property>
+								<property>/systems/fadec/limit/idle-table</property>
 								<value>10</value>
 							</product>
 							<value>0.5</value> <!-- Make it round correctly -->
