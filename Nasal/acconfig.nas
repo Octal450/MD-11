@@ -318,10 +318,12 @@ var PANEL = {
 				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
 				
+				settimer(func() {
+					fms.EditFlightData.setAcconfigData();
+				}, 0.25);
+				
 				settimer(func() { # Give things a moment to settle
 					if (!me.stop) {
-						fms.EditFlightData.setAcconfigData();
-						
 						fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 						spinningT.stop();
 						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));
@@ -374,6 +376,10 @@ var PANEL = {
 				systems.ELECTRICAL.Controls.extGPwr.setBoolValue(0);
 				instruments.XPDR.setMode(3); # TA/RA
 				
+				settimer(func() {
+					fms.EditFlightData.setAcconfigData();
+				}, 0.25);
+				
 				if (t == 1) {
 					settimer(func() {
 						pts.Controls.Flight.elevatorTrim.setValue(fms.Internal.takeoffStabDeg.getValue() / -15.5);
@@ -390,7 +396,6 @@ var PANEL = {
 				
 				settimer(func() { # Give things a moment to settle
 					if (!me.stop) {
-						fms.EditFlightData.setAcconfigData();
 						fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psload"}));
 						spinningT.stop();
 						fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psloaded"}));

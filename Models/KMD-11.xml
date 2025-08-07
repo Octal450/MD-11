@@ -228,5 +228,39 @@
 			<z-m>5.7059</z-m>
 		</center>
 	</animation>
+	
+	<animation>
+		<type>spin</type>
+		<object-name>PropLH</object-name>
+		<property>velocities/airspeed-kt</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-19.915</y-m>
+			<z-m>5.12552</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>spin</type>
+		<object-name>PropRH</object-name>
+		<property>velocities/airspeed-kt</property>
+		<factor>1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>19.915</y-m>
+			<z-m>5.12552</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 </PropertyList>
