@@ -231,9 +231,9 @@
 	
 	<animation>
 		<type>spin</type>
-		<object-name>PropLH</object-name>
+		<object-name>PropLeft</object-name>
 		<property>velocities/airspeed-kt</property>
-		<factor>1</factor>
+		<factor>2</factor>
 		<center>
 			<x-m>0</x-m>
 			<y-m>-19.915</y-m>
@@ -248,9 +248,9 @@
 	
 	<animation>
 		<type>spin</type>
-		<object-name>PropRH</object-name>
+		<object-name>PropRight</object-name>
 		<property>velocities/airspeed-kt</property>
-		<factor>1</factor>
+		<factor>2</factor>
 		<center>
 			<x-m>0</x-m>
 			<y-m>19.915</y-m>
