@@ -129,7 +129,6 @@ var Perf = {
 			m.nextPage = "none";
 		}
 		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "perf";
 		m.scratchpad = "";
@@ -652,7 +651,6 @@ var PreSel = {
 			m.Display.R5 = "FORECAST>";
 		}
 		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "perf";
 		m.scratchpad = "";
