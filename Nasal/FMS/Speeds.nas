@@ -146,14 +146,8 @@ var FmsSpd = {
 			}
 		}
 		
-		# Pull target speeds
+		# Pull Speeds
 		me.getSpeeds();
-		
-		# Pull min/max speeds, 0 is disallowed as it indicates invalid speed
-		me.maxKts = math.max(math.round(Speeds.athrMax.getValue()), 1);
-		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
-		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
-		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
 		
 		# Takeoff Guidance Logic
 		me.takeoffLogic();
@@ -425,6 +419,10 @@ var FmsSpd = {
 		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
 		me.maxClimb = math.round(Speeds.maxClimb.getValue());
 		me.maxDescent = math.round(Speeds.maxDescent.getValue());
+		me.maxKts = math.max(math.round(Speeds.athrMax.getValue()), 1);
+		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
+		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
+		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
 		me.vcl = math.round(Speeds.vcl.getValue());
 		
 		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.maxKts;
