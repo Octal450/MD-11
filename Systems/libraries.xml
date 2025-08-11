@@ -101,31 +101,6 @@
 		<filter-time>0.04</filter-time>
 	</filter>
 	
-	<filter>
-		<name>IAS/Mach</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/kts</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/mach</property>
-		</input>
-		<output>/it-autoflight/input/spd-common</output>
-	</filter>
-	
 	<filter> <!-- Don't put in JSBSim! Its here for a reason! -->
 		<name>ELEV FEEL Slew Knob</name>
 		<update-interval-secs>0.075</update-interval-secs>
