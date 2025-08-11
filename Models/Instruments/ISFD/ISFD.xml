@@ -7,6 +7,22 @@
 	<path>res/ISFD.ac</path>
 	
 	<animation>
+		<type>material</type>
+		<object-name>LightingGroup</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>0.85</green>
+			<blue>0.6</blue>
+			<factor-prop>systems/lighting/main-integ</factor-prop>
+		</emission>
+	</animation>
+	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>LightingGroup</object-name>
+	</effect>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>isfd.screen</object-name>
 		<action>
@@ -49,6 +65,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HpIn</object-name>
+		<object-name>HpIn.text</object-name>
 		<property>controls/cockpit/isfd-hpin</property>
 		<factor>0.0005</factor>
 		<axis>
@@ -169,6 +186,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet</object-name>
+		<object-name>BaroSet.Text</object-name>
 		<property>controls/cockpit/isfd-baro-translate</property>
 		<factor>0.002</factor>
 		<axis>
@@ -183,6 +201,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet</object-name>
+		<object-name>BaroSet.Text</object-name>
 		<property>controls/cockpit/isfd-baro-rotate</property>
 		<factor>11.25</factor>
 		<axis>
