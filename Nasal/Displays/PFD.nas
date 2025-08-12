@@ -2283,7 +2283,7 @@ var canvasBase = {
 		} else if (Value.Qnh.inhg == 0) {
 			me["QNH"].setText(sprintf("%d", pts.Instrumentation.Altimeter.settingHpa.getValue()));
 		} else if (Value.Qnh.inhg == 1) {
-			me["QNH"].setText(sprintf("%2.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
+			me["QNH"].setText(sprintf("%5.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
 		}
 		
 		# Slats/Flaps
