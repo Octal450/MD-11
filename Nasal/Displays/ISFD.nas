@@ -383,7 +383,7 @@ var update = maketimer(0.05, func() { # 20FPS
 var showIsfd = func() {
 	var dlg = canvas.Window.new([256, 220], "dialog", nil, 0).set("resize", 1);
 	dlg.setCanvas(display);
-	dlg.set("title", "Integrated SFD");
+	dlg.set("title", "Integrated Standby");
 }
 
 var roundAbout = func(x) {
