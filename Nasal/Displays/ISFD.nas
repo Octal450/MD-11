@@ -296,7 +296,7 @@ var canvasIsfd = {
 			me["QNH"].show();
 			me["QNH_type"].setText("HP");
 		} else if (Value.Qnh.inhg == 1) {
-			me["QNH"].setText(sprintf("%2.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
+			me["QNH"].setText(sprintf("%5.2f", pts.Instrumentation.Altimeter.settingInhg.getValue()));
 			me["QNH"].show();
 			me["QNH_type"].setText("IN");
 		}
