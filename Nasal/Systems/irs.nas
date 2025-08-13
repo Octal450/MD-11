@@ -34,8 +34,6 @@ var IRS = {
 		}
 	},
 	mcduMsgUpdate: func() {
-		print(me.Iru.alignMcduMsgFms[0].getBoolValue());
-		print(me.Iru.alignMcduMsgFms[1].getBoolValue());
 		if (me.Iru.alignMcduMsgFms[0].getBoolValue()) {
 			if (IRS.Controls.mcduBtn.getBoolValue()) {
 				mcdu.unit[0].removeMessage("ALIGN IRS");
