@@ -5,6 +5,8 @@
 
 <system name="MD-11: IRS">
 	
+	<property value="0">/systems/fms/internal/fms-1-avail-feedback</property>
+	<property value="0">/systems/fms/internal/fms-2-avail-feedback</property>
 	<property value="0">/systems/iru[0]/aligned</property>
 	<property value="0">/systems/iru[1]/aligned</property>
 	<property value="0">/systems/iru[2]/aligned</property>
@@ -96,7 +98,6 @@
 				/controls/iru[0]/knob eq 1
 				/systems/iru[0]/powered eq 1
 			</test>
-			<output>/systems/iru[0]/align-mcdu-msg-out</output>
 		</switch>
 		
 		<pure_gain name="/systems/iru[0]/align-timer-input">
@@ -201,7 +202,6 @@
 				/controls/iru[1]/knob eq 1
 				/systems/iru[1]/powered eq 1
 			</test>
-			<output>/systems/iru[1]/align-mcdu-msg-out</output>
 		</switch>
 		
 		<pure_gain name="/systems/iru[1]/align-timer-input">
@@ -300,13 +300,12 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/iru[0]/align-mcdu-msg">
+		<switch name="/systems/iru[2]/align-mcdu-msg">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/controls/iru[2]/knob eq 1
 				/systems/iru[2]/powered eq 1
 			</test>
-			<output>/systems/iru[2]/align-mcdu-msg-out</output>
 		</switch>
 		
 		<pure_gain name="/systems/iru[2]/align-timer-input">
@@ -392,6 +391,32 @@
 				/systems/iru[2]/aligned eq 1
 			</test>
 			<output>/systems/iru-common/all-aligned-out</output>
+		</switch>
+		
+		<switch name="/systems/iru-common/align-mcdu-msg-fms-1">
+			<default value="0"/>
+			<test value="0">
+				/systems/fms/internal/fms-1-avail-feedback eq 0
+			</test>
+			<test logic="OR" value="1">
+				/systems/iru[0]/align-mcdu-msg eq 1
+				/systems/iru[1]/align-mcdu-msg eq 1
+				/systems/iru[2]/align-mcdu-msg eq 1
+			</test>
+			<output>/systems/iru-common/align-mcdu-msg-fms-1-out</output>
+		</switch>
+		
+		<switch name="/systems/iru-common/align-mcdu-msg-fms-2">
+			<default value="0"/>
+			<test value="0">
+				/systems/fms/internal/fms-2-avail-feedback eq 0
+			</test>
+			<test logic="OR" value="1">
+				/systems/iru[0]/align-mcdu-msg eq 1
+				/systems/iru[1]/align-mcdu-msg eq 1
+				/systems/iru[2]/align-mcdu-msg eq 1
+			</test>
+			<output>/systems/iru-common/align-mcdu-msg-fms-2-out</output>
 		</switch>
 	
 	</channel>

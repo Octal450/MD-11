@@ -130,6 +130,7 @@
 			<test value="1">
 				/systems/fms/internal/fms-1-avail-timer eq 1
 			</test>
+			<output>/systems/fms/internal/fms-1-avail-feedback</output>
 		</switch>
 		
 		<switch name="/systems/fms/internal/fms-2-power">
@@ -153,6 +154,7 @@
 			<test value="1">
 				/systems/fms/internal/fms-2-avail-timer eq 1
 			</test>
+			<output>/systems/fms/internal/fms-2-avail-feedback</output>
 		</switch>
 		
 		<!-- FMS CG Calculation -->

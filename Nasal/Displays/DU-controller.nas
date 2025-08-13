@@ -325,7 +325,7 @@ var DUController = {
 			}
 		}
 		
-		# Battery
+		# DC Bat
 		if (me.PowerSource.dcBat >= 24) {
 			if (me.CounterIsfd.time == 0) {
 				if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {

@@ -6,7 +6,7 @@ var IRS = {
 	Iru: {
 		aligned: [props.globals.getNode("/systems/iru[0]/aligned"), props.globals.getNode("/systems/iru[1]/aligned"), props.globals.getNode("/systems/iru[2]/aligned")],
 		aligning: [props.globals.getNode("/systems/iru[0]/aligning"), props.globals.getNode("/systems/iru[1]/aligning"), props.globals.getNode("/systems/iru[2]/aligning")],
-		alignMcduMsgOut: [props.globals.getNode("/systems/iru[0]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[1]/align-mcdu-msg-out"), props.globals.getNode("/systems/iru[2]/align-mcdu-msg-out")],
+		alignMcduMsgFms: [props.globals.getNode("/systems/iru-common/align-mcdu-msg-fms-1-out"), props.globals.getNode("/systems/iru-common/align-mcdu-msg-fms-2-out")],
 		alignTimer: [props.globals.getNode("/systems/iru[0]/align-timer"), props.globals.getNode("/systems/iru[1]/align-timer"), props.globals.getNode("/systems/iru[2]/align-timer")],
 		alignTimeRemainingMinutes: [props.globals.getNode("/systems/iru[0]/align-time-remaining-minutes"), props.globals.getNode("/systems/iru[1]/align-time-remaining-minutes"), props.globals.getNode("/systems/iru[2]/align-time-remaining-minutes")],
 		allAligned: props.globals.getNode("/systems/iru-common/all-aligned-out"),
@@ -34,14 +34,26 @@ var IRS = {
 		}
 	},
 	mcduMsgUpdate: func() {
-		if (me.Iru.alignMcduMsgOut[0].getBoolValue() or me.Iru.alignMcduMsgOut[1].getBoolValue() or me.Iru.alignMcduMsgOut[2].getBoolValue()) {
+		print(me.Iru.alignMcduMsgFms[0].getBoolValue());
+		print(me.Iru.alignMcduMsgFms[1].getBoolValue());
+		if (me.Iru.alignMcduMsgFms[0].getBoolValue()) {
 			if (IRS.Controls.mcduBtn.getBoolValue()) {
-				mcdu.BASE.removeGlobalMessage("ALIGN IRS");
+				mcdu.unit[0].removeMessage("ALIGN IRS");
 			} else {
-				mcdu.BASE.setGlobalMessage("ALIGN IRS");
+				mcdu.unit[0].setMessage("ALIGN IRS");
 			}
 		} else {
-			mcdu.BASE.removeGlobalMessage("ALIGN IRS");
+			mcdu.unit[0].removeMessage("ALIGN IRS");
+		}
+		
+		if (me.Iru.alignMcduMsgFms[1].getBoolValue()) {
+			if (IRS.Controls.mcduBtn.getBoolValue()) {
+				mcdu.unit[1].removeMessage("ALIGN IRS");
+			} else {
+				mcdu.unit[1].setMessage("ALIGN IRS");
+			}
+		} else {
+			mcdu.unit[1].removeMessage("ALIGN IRS");
 		}
 	},
 };
@@ -50,13 +62,10 @@ var IRS = {
 setlistener("/systems/iru-common/any-aligned-out", func() {
 	IRS.anyAlignedUpdate();
 }, 0, 0);
-setlistener("/systems/iru[0]/align-mcdu-msg-out", func() {
+setlistener("/systems/iru-common/align-mcdu-msg-fms-1-out", func() {
 	IRS.mcduMsgUpdate();
 }, 0, 0);
-setlistener("/systems/iru[1]/align-mcdu-msg-out", func() {
-	IRS.mcduMsgUpdate();
-}, 0, 0);
-setlistener("/systems/iru[2]/align-mcdu-msg-out", func() {
+setlistener("/systems/iru-common/align-mcdu-msg-fms-2-out", func() {
 	IRS.mcduMsgUpdate();
 }, 0, 0);
 setlistener("/controls/iru-common/mcdu-btn", func() {
