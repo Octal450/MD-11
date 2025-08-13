@@ -215,6 +215,8 @@ var canvasIsfd = {
 		}
 		
 		# ALT
+		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
+		
 		if (Value.Alt.indicated < 0) {
 			if (Value.Alt.indicated >= -998) {
 				me["ALT_minus"].setTranslation(29, 0);
@@ -232,7 +234,6 @@ var canvasIsfd = {
 			me["ALT_tenthousands"].show();
 		}
 		
-		Value.Alt.indicated = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
 		Value.Alt.indicatedAbs = abs(Value.Alt.indicated);
 		Value.Alt.Tape.offset = Value.Alt.indicated / 200 - int(Value.Alt.indicated / 200);
 		Value.Alt.Tape.middleText = right(sprintf("%03d", abs(roundAboutAlt(Value.Alt.indicated / 100))), 1) * 100;
