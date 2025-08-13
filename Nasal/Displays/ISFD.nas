@@ -118,9 +118,9 @@ var canvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["AI_bank", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_mask", "AI_scale", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six", "ALT_tens",
-		"ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_hundreds", "ASI_mach", "ASI_ones", "ASI_scale", "ASI_tens", "BAT_flag", "HDG_eight", "HDG_error", "HDG_five", "HDG_four", "HDG_nine", "HDG_one", "HDG_pointer", "HDG_scale",
-		"HDG_seven", "HDG_six", "HDG_three", "HDG_two", "QNH", "QNH_type"];
+		return ["AI_bank", "AI_bank_mask", "AI_center", "AI_horizon", "AI_init", "AI_init_secs", "AI_mask", "AI_scale", "AI_slipskid", "ALT_eight", "ALT_five", "ALT_four", "ALT_hundreds", "ALT_meters", "ALT_minus", "ALT_one", "ALT_scale", "ALT_seven", "ALT_six",
+		"ALT_tens", "ALT_tenthousands", "ALT_thousands", "ALT_three", "ALT_two", "ASI", "ASI_hundreds", "ASI_mach", "ASI_ones", "ASI_scale", "ASI_tens", "BAT_flag", "HDG_eight", "HDG_error", "HDG_five", "HDG_four", "HDG_nine", "HDG_one", "HDG_pointer",
+		"HDG_scale", "HDG_seven", "HDG_six", "HDG_three", "HDG_two", "QNH", "QNH_type"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -202,6 +202,7 @@ var canvasIsfd = {
 			}
 			me["AI_slipskid"].setTranslation(Value.Ai.slipSkid, 0);
 			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
+			me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
 			
 			me["AI_horizon"].show();
 			me["AI_init"].hide();

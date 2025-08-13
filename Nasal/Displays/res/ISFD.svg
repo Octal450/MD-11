@@ -50,9 +50,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="0.50000008"
-     inkscape:cx="820.25365"
-     inkscape:cy="320.97034"
+     inkscape:zoom="0.5"
+     inkscape:cx="24.509549"
+     inkscape:cy="487.52088"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -98,6 +98,15 @@
      id="AI_mask_clip"
      style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      transform="scale(1,-1)" />
+  <rect
+     transform="scale(1,-1)"
+     style="opacity:0.46000001;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:0.93415678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="AI_bank_mask_clip"
+     width="362"
+     height="340.81378"
+     x="75"
+     y="-371.62274"
+     inkscape:label="#rect9211" />
   <g
      id="AI_horizon"
      inkscape:label="#g4750">
@@ -518,10 +527,18 @@
   <path
      id="AI_mask"
      style="fill:#284cd3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.49000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 380.966,129.35605 C 355.24847,84.631957 307.59071,57.061203 255.99962,57.061203 c -51.59109,0 -99.24909,27.570644 -124.96662,72.294797 L 70,94.11858 70,0 l 372,0 0,94.11858 z"
+     d="M 380.966,129.35605 C 355.24847,84.631957 307.59071,57.061203 255.99962,57.061203 c -51.59109,0 -99.24909,27.570644 -124.96662,72.294797 L 70,94.11858 70,-50 l 372,0 0,144.11858 z"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cscccccc"
      inkscape:label="#path4580" />
+  <path
+     inkscape:label="#path4580"
+     sodipodi:nodetypes="ccccc"
+     inkscape:connector-curvature="0"
+     d="m 70,80 0,-100 372,0 0,100 z"
+     style="fill:#284cd3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.49000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="AI_bank_mask"
+     inkscape:transform-center-y="-171.22188" />
   <g
      id="AI_init"
      inkscape:label="#g4664">
