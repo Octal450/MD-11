@@ -48,9 +48,9 @@ var Value = {
 		mach: 0,
 		machLatch: 0,
 		Tape: {
-			ias: 0,
 			hundreds: 0,
 			hundredsGeneva: 0,
+			ias: 0,
 			tens: 0,
 			tensGeneva: 0,
 		},
