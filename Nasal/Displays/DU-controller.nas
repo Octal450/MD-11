@@ -8,16 +8,22 @@ var DUController = {
 		time: -10,
 	},
 	CounterDeu1: {
-		active: 0,
-		time: -10,
+		activeDown: 0,
+		activeUp: 0,
+		timeDown: -10,
+		timeUp: -10,
 	},
 	CounterDeu2: {
-		active: 0,
-		time: -10,
+		activeDown: 0,
+		activeUp: 0,
+		timeDown: -10,
+		timeUp: -10,
 	},
 	CounterDeu3: {
-		active: 0,
-		time: -10,
+		activeDown: 0,
+		activeUp: 0,
+		timeDown: -10,
+		timeUp: -10,
 	},
 	CounterIsfd: {
 		secs: 180,
@@ -77,38 +83,68 @@ var DUController = {
 		
 		# DEU Startup
 		if (me.PowerSource.lEmerAc >= 112) {
-			if (!me.CounterDeu1.active) {
-				me.CounterDeu1.time = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1 , 0.1);
+			if (!me.CounterDeu1.activeUp) {
+				me.CounterDeu1.activeUp = 1;
+				me.CounterDeu1.timeUp = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1, 0.1);
 			}
-			me.CounterDeu1.active = 1;
+			
+			me.CounterDeu1.activeDown = 0;
+			me.CounterDeu1.timeDown = -10;
 		} else {
-			me.CounterDeu1.active = 0;
-			me.CounterDeu1.time = -10;
+			if (!me.CounterDeu1.activeDown) {
+				me.CounterDeu1.activeDown = 1;
+				me.CounterDeu1.timeDown = me.elapsedSec + 0.9;
+			}
+			
+			if (me.CounterDeu1.timeDown < me.elapsedSec) {
+				me.CounterDeu1.activeUp = 0;
+				me.CounterDeu1.timeUp = -10;
+			}
 		}
 		
 		if (me.PowerSource.rEmerAc >= 112) {
-			if (!me.CounterDeu2.active) {
-				me.CounterDeu2.time = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1 , 0.1);
+			if (!me.CounterDeu2.activeUp) {
+				me.CounterDeu2.activeUp = 1;
+				me.CounterDeu2.timeUp = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1, 0.1);
 			}
-			me.CounterDeu2.active = 1;
+			
+			me.CounterDeu2.activeDown = 0;
+			me.CounterDeu2.timeDown = -10;
 		} else {
-			me.CounterDeu2.active = 0;
-			me.CounterDeu2.time = -10;
+			if (!me.CounterDeu2.activeDown) {
+				me.CounterDeu2.activeDown = 1;
+				me.CounterDeu2.timeDown = me.elapsedSec + 0.9;
+			}
+			
+			if (me.CounterDeu2.timeDown < me.elapsedSec) {
+				me.CounterDeu2.activeUp = 0;
+				me.CounterDeu2.timeUp = -10;
+			}
 		}
 		
 		if (me.PowerSource.ac1 >= 112) {
-			if (!me.CounterDeu3.active) {
-				me.CounterDeu3.time = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1 , 0.1);
+			if (!me.CounterDeu3.activeUp) {
+				me.CounterDeu3.activeUp = 1;
+				me.CounterDeu3.timeUp = me.elapsedSec + 1 + math.round((rand() * 0.2) - 0.1, 0.1);
 			}
-			me.CounterDeu3.active = 1;
+			
+			me.CounterDeu3.activeDown = 0;
+			me.CounterDeu3.timeDown = -10;
 		} else {
-			me.CounterDeu3.active = 0;
-			me.CounterDeu3.time = -10;
+			if (!me.CounterDeu3.activeDown) {
+				me.CounterDeu3.activeDown = 1;
+				me.CounterDeu3.timeDown = me.elapsedSec + 0.9;
+			}
+			
+			if (me.CounterDeu3.timeDown < me.elapsedSec) {
+				me.CounterDeu3.activeUp = 0;
+				me.CounterDeu3.timeUp = -10;
+			}
 		}
 		
 		# L Emer AC
 		if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[0].getValue() > 0.01) {
-			if (me.CounterDeu1.time < me.elapsedSec) {
+			if (me.CounterDeu1.timeUp < me.elapsedSec) {
 				if (!me.updatePfd1) {
 					me.updatePfd1 = 1;
 					canvas_pfd.pfd1.update();
@@ -140,7 +176,7 @@ var DUController = {
 		}
 			
 		if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
-			if (me.CounterDeu1.time < me.elapsedSec) {
+			if (me.CounterDeu1.timeUp < me.elapsedSec) {
 				if (!me.updateEad) {
 					me.updateEad = 1;
 					if (me.eadType == "PW-Tapes") {
@@ -207,7 +243,7 @@ var DUController = {
 				me.updateNd1 = 1;
 				me.showNd1.setBoolValue(1); # Temporary
 			}
-			if (me.CounterDeu1.time < me.elapsedSec) {
+			if (me.CounterDeu1.timeUp < me.elapsedSec) {
 				if (me.xxNd1.getBoolValue()) {
 					me.xxNd1.setBoolValue(0); # Temporary
 				}
@@ -228,7 +264,7 @@ var DUController = {
 		
 		# AC 3
 		if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[5].getValue() > 0.01) {
-			if (me.CounterDeu2.time < me.elapsedSec) {
+			if (me.CounterDeu2.timeUp < me.elapsedSec) {
 				if (!me.updatePfd2) {
 					me.updatePfd2 = 1;
 					canvas_pfd.pfd2.update();
@@ -264,7 +300,7 @@ var DUController = {
 				me.updateNd2 = 1;
 				me.showNd2.setBoolValue(1); # Temporary
 			}
-			if (me.CounterDeu2.time < me.elapsedSec) {
+			if (me.CounterDeu2.timeUp < me.elapsedSec) {
 				if (me.xxNd2.getBoolValue()) {
 					me.xxNd2.setBoolValue(0); # Temporary
 				}
@@ -289,7 +325,7 @@ var DUController = {
 			}
 		}
 		if (me.PowerSource.ac3 >= 112 and pts.Instrumentation.Du.duDimmer[3].getValue() > 0.01) {
-			if (me.CounterDeu2.time < me.elapsedSec) {
+			if (me.CounterDeu2.timeUp < me.elapsedSec) {
 				if (!me.BlinkSd.active) {
 					if (!me.updateSd) {
 						me.updateSd = 1;
