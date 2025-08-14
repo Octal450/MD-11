@@ -3,6 +3,7 @@
 # This controls the DU's in an efficient and synchronized way
 
 var DUController = {
+	autoConfigRunning: 0,
 	BlinkSd: {
 		active: 0,
 		time: -10,
@@ -61,6 +62,7 @@ var DUController = {
 	xxNd1: props.globals.initNode("/instrumentation/nd/xx-nd1", 0, "BOOL"),
 	xxNd2: props.globals.initNode("/instrumentation/nd/xx-nd2", 0, "BOOL"),
 	loop: func() {
+		me.autoConfigRunning = acconfig.SYSTEM.autoConfigRunning.getBoolValue();
 		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
 		me.singleCueFd = pts.Systems.Acconfig.Options.singleCueFd.getBoolValue();
 		
@@ -149,7 +151,8 @@ var DUController = {
 		if (me.PowerSource.dcBat >= 24) {
 			if (!me.CounterIsfd.activeUp) {
 				me.CounterIsfd.activeUp = 1;
-				me.CounterIsfd.timeUp = me.elapsedSec + 179;
+				if (me.autoConfigRunning) me.CounterIsfd.timeUp = me.elapsedSec + 1;
+				else me.CounterIsfd.timeUp = me.elapsedSec + 179;
 			}
 			
 			me.CounterIsfd.activeDown = 0;
@@ -157,7 +160,7 @@ var DUController = {
 		} else {
 			if (!me.CounterIsfd.activeDown) {
 				me.CounterIsfd.activeDown = 1;
-				me.CounterIsfd.timeDown = me.elapsedSec + 5;
+				me.CounterIsfd.timeDown = me.elapsedSec + 1;
 			}
 			
 			if (me.CounterIsfd.timeDown < me.elapsedSec) {
