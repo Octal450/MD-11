@@ -204,13 +204,8 @@ var canvasIsfd = {
 			me["AI_bank"].setRotation(-Value.Ai.roll * D2R);
 			me["AI_bank_mask"].setRotation(-Value.Ai.roll * D2R);
 			
-			me["AI_horizon"].show();
 			me["AI_init"].hide();
-			me["AI_scale"].show();
 		} else {
-			me["AI_horizon"].hide();
-			me["AI_scale"].hide();
-			
 			me["AI_init_secs"].setText(sprintf("%d", systems.DUController.CounterIsfd.secs) ~ " SECS");
 			me["AI_init"].show();
 		}

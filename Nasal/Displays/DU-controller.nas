@@ -26,8 +26,11 @@ var DUController = {
 		timeUp: -10,
 	},
 	CounterIsfd: {
+		activeDown: 0,
+		activeUp: 0,
 		secs: 180,
-		time: -10,
+		timeDown: -200,
+		timeUp: -200,
 	},
 	eadType: "GE-Dials",
 	eng: pts.Options.eng.getValue(),
@@ -139,6 +142,27 @@ var DUController = {
 			if (me.CounterDeu3.timeDown < me.elapsedSec) {
 				me.CounterDeu3.activeUp = 0;
 				me.CounterDeu3.timeUp = -10;
+			}
+		}
+		
+		# ISFD Startup
+		if (me.PowerSource.dcBat >= 24) {
+			if (!me.CounterIsfd.activeUp) {
+				me.CounterIsfd.activeUp = 1;
+				me.CounterIsfd.timeUp = me.elapsedSec + 179;
+			}
+			
+			me.CounterIsfd.activeDown = 0;
+			me.CounterIsfd.timeDown = -10;
+		} else {
+			if (!me.CounterIsfd.activeDown) {
+				me.CounterIsfd.activeDown = 1;
+				me.CounterIsfd.timeDown = me.elapsedSec + 5;
+			}
+			
+			if (me.CounterIsfd.timeDown < me.elapsedSec) {
+				me.CounterIsfd.activeUp = 0;
+				me.CounterIsfd.timeUp = -200;
 			}
 		}
 		
@@ -363,15 +387,8 @@ var DUController = {
 		
 		# DC Bat
 		if (me.PowerSource.dcBat >= 24) {
-			if (me.CounterIsfd.time == 0) {
-				if (acconfig.SYSTEM.autoConfigRunning.getBoolValue()) {
-					me.CounterIsfd.time = me.elapsedSec - 178;
-				} else {
-					me.CounterIsfd.time = me.elapsedSec;
-				}
-			}
 			if (me.CounterIsfd.secs > 0) {
-				me.CounterIsfd.secs = math.round(me.CounterIsfd.time + 180 - me.elapsedSec);
+				me.CounterIsfd.secs = math.round(me.CounterIsfd.timeUp - me.elapsedSec);
 			} else {
 				me.CounterIsfd.secs = 0;
 			}
@@ -392,7 +409,6 @@ var DUController = {
 			}
 		} else {
 			me.CounterIsfd.secs = 180;
-			me.CounterIsfd.time = 0;
 			
 			if (me.updateIsfd) {
 				me.updateIsfd = 0;
