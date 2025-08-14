@@ -42,6 +42,7 @@ var DUController = {
 		ac3: 0,
 		dcBat: 0,
 		lEmerAc: 0,
+		rEmerAc: 0,
 	},
 	sdPage: "ENG",
 	sdPageActive: "ENG",
