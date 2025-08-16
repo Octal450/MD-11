@@ -15,25 +15,16 @@
       <internal-format>normalized</internal-format>
     </texture>
     <lightmap-enabled type="int"> 1 </lightmap-enabled>
-    <lightmap-multi>1</lightmap-multi>
-    <lightmap-factor n="0">
-	<use>systems/electrical/lighting/logo-lights</use>
-    </lightmap-factor>
-    <lightmap-color n="0">1.0 1.0 1.0</lightmap-color>
-    <lightmap-factor n="1">
-	<use>systems/electrical/lighting/landing-light[0]</use>
-    </lightmap-factor>
-    <lightmap-color n="1">1.0 1.0 1.0</lightmap-color>
-    <lightmap-factor n="2">
-	<use>systems/electrical/lighting/landing-light[1]</use>
-    </lightmap-factor>
-    <lightmap-color n="2">1.0 1.0 1.0</lightmap-color>
+    <lightmap-multi> 1 </lightmap-multi>
+    <lightmap-factor n="0"> 0 </lightmap-factor>
+    <lightmap-factor n="1"> 0 </lightmap-factor>
+    <lightmap-factor n="2"> 0 </lightmap-factor>
     <lightmap-factor n="3">
-	<use>/environment/moonlight</use>
+      <use>/environment/moonlight</use>
     </lightmap-factor>
-    <lightmap-color n="3">0.1 0.1 0.15</lightmap-color>
+    <lightmap-color type="vec3d" n="3"> 0.17 0.17 0.25 </lightmap-color>
     <texture n="3">
-	<image>Aircraft/MD-11/Models/Effects/lightmap-1.png</image>
+      <image>Aircraft/MD-11/Models/Effects/lightmap.png</image>
     </texture>
     <reflection-enabled type="int"> 1 </reflection-enabled>
     <reflection-correction type="float"> -0.7 </reflection-correction>
