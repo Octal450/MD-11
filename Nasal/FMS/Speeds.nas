@@ -178,8 +178,10 @@ var FmsSpd = {
 		# ktsMach determins which is active, the other is handled in Inactive Value Sync
 		
 		if (Internal.phase >= 4) {
-			if (Value.active and Value.wpNum > 0 and Value.distanceRemainingNm < 15) {
-				me.decel = 1;
+			if (Value.active and Value.wpNum > 0) {
+				if (Value.distanceRemainingNm < 15) {
+					me.decel = 1;
+				}
 			} else {
 				me.decel = 0;
 			}
