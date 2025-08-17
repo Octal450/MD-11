@@ -496,7 +496,7 @@
 			</condition>
 			<value>-3</value>
 		</min>
-		<min>-2</min>
+		<min>-1.5</min>
 		<max>
 			<condition>
 				<not-equals>
@@ -506,7 +506,7 @@
 			</condition>
 			<value>3</value>
 		</max>
-		<max>2</max>
+		<max>1.5</max>
 	</filter>
 	
 	<filter>
