@@ -1274,7 +1274,7 @@
 		<output>/sim/sound/external/idle2-3-p</output>
 	</filter>
 	
-	<!-- Idle Whistle-->
+	<!-- Idle Whistle -->
 	<filter>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -1399,7 +1399,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[0]/n1-actual</property>
-					<entry><ind> 26.0</ind><dep>0.00</dep></entry>
+					<entry><ind> 23.0</ind><dep>0.00</dep></entry>
 					<entry><ind> 72.4</ind><dep>1.00</dep></entry>
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
@@ -1419,7 +1419,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[1]/n1-actual</property>
-					<entry><ind> 26.0</ind><dep>0.00</dep></entry>
+					<entry><ind> 23.0</ind><dep>0.00</dep></entry>
 					<entry><ind> 72.4</ind><dep>1.00</dep></entry>
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
@@ -1439,7 +1439,7 @@
 			<expression>
 				<table>
 					<property>/engines/engine[2]/n1-actual</property>
-					<entry><ind> 26.0</ind><dep>0.00</dep></entry>
+					<entry><ind> 23.0</ind><dep>0.00</dep></entry>
 					<entry><ind> 72.4</ind><dep>1.00</dep></entry>
 					<entry><ind> 88.0</ind><dep>0.85</dep></entry>
 					<entry><ind>100.0</ind><dep>0.80</dep></entry>
