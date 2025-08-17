@@ -1210,6 +1210,24 @@
 				<property>/sim/sound/flaps-click</property>
 			</condition>
 		</switch>
+		
+		<switch>
+			<name>Speedbrake Click</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/Cockpit/flaps-click.wav</path>
+			<condition>
+				<property>/sim/sound/speedbrake-click</property>
+			</condition>
+		</switch>
+		
+		<switch>
+			<name>Speedbrake Arm Click</name>
+			<mode>once</mode>
+			<path>Aircraft/MD-11/Sounds/Cockpit/flaps-click.wav</path>
+			<condition>
+				<property>/sim/sound/speedbrake-arm-click</property>
+			</condition>
+		</switch>
 	
 	</fx>
 
