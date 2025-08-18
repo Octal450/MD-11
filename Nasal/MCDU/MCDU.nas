@@ -161,6 +161,16 @@ var MCDU = {
 		systems.DUController.hideMcdu(me.id);
 		me.Blink.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
 	},
+	clearKey: func(dir) {
+		if (dir == "up") {
+			me.clearTimer.active = 0;
+			me.clearTimer.time = -5;
+		} else if (dir == "down") {
+			me.clearTimer.active = 1;
+			me.clearTimer.time = pts.Sim.Time.elapsedSec.getValue() + 1.9;
+			me.alphaNumKey("CLR");
+		}
+	},
 	clearMessage: func(a) {
 		me.clear = 0;
 		
@@ -187,16 +197,6 @@ var MCDU = {
 					me.scratchpad = "";
 				}
 			}
-		}
-	},
-	clearKey: func(dir) {
-		if (dir == "up") {
-			me.clearTimer.active = 0;
-			me.clearTimer.time = -5;
-		} else if (dir == "down") {
-			me.clearTimer.active = 1;
-			me.clearTimer.time = pts.Sim.Time.elapsedSec.getValue() + 1.9;
-			me.alphaNumKey("CLR");
 		}
 	},
 	nextPageKey: func() {
