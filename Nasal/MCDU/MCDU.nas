@@ -13,6 +13,13 @@ var MCDU = {
 		};
 		
 		m.clear = 0;
+		
+		m.clearTimer = {
+			active: 0,
+			time: -5,
+		};
+		
+		m.elapsedSec = 0;
 		m.id = n;
 		m.lastFmcPage = "none";
 		m.message = std.Vector.new();
@@ -74,6 +81,8 @@ var MCDU = {
 		me.scratchpadSize = 0;
 	},
 	loop: func() {
+		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
+		
 		if (me.powerSource.getValue() < 112) {
 			if (me.page != me.PageList.menu) {
 				me.page = me.PageList.menu;
@@ -90,8 +99,16 @@ var MCDU = {
 			}
 		}
 		
+		if (me.clearTimer.active) {
+			if (me.clearTimer.time < me.elapsedSec) {
+				me.clearTimer.active = 0;
+				me.clearTimer.time = -5;
+				me.alphaNumKey("LONGCLR");
+			}
+		}
+		
 		if (me.Blink.active) {
-			if (me.Blink.time < pts.Sim.Time.elapsedSec.getValue()) {
+			if (me.Blink.time < me.elapsedSec) {
 				me.Blink.active = 0;
 			}
 		}
@@ -102,7 +119,11 @@ var MCDU = {
 			return;
 		}
 		
-		if (k == "CLR") {
+		if (k == "LONGCLR") { # Clear everything
+			me.clear = 0;
+			me.clearMessage(0);
+			me.scratchpad = "";
+		} else if (k == "CLR") {
 			if (me.message.size() > 0) { # Clear message
 				me.clear = 0;
 				me.clearMessage(0);
@@ -166,6 +187,16 @@ var MCDU = {
 					me.scratchpad = "";
 				}
 			}
+		}
+	},
+	clearKey: func(dir) {
+		if (dir == "up") {
+			me.clearTimer.active = 0;
+			me.clearTimer.time = -5;
+		} else if (dir == "down") {
+			me.clearTimer.active = 1;
+			me.clearTimer.time = pts.Sim.Time.elapsedSec.getValue() + 1.9;
+			me.alphaNumKey("CLR");
 		}
 	},
 	nextPageKey: func() {
