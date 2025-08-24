@@ -1483,8 +1483,7 @@
 		<!-- Engine 1 -->
 		<switch name="/systems/fadec/control-1/n1-mode">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/fadec/reverse-1/active eq 1
+			<test value="1">
 				/controls/fadec/altn-1 eq 1
 			</test>
 		</switch>
@@ -1601,8 +1600,7 @@
 		<!-- Engine 2 -->
 		<switch name="/systems/fadec/control-2/n1-mode">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/fadec/reverse-2/active eq 1
+			<test value="1">
 				/controls/fadec/altn-2 eq 1
 			</test>
 		</switch>
@@ -1719,8 +1717,7 @@
 		<!-- Engine 3 -->
 		<switch name="/systems/fadec/control-3/n1-mode">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/fadec/reverse-3/active eq 1
+			<test value="1">
 				/controls/fadec/altn-3 eq 1
 			</test>
 		</switch>
