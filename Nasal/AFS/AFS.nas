@@ -426,12 +426,21 @@ var ITAF = {
 		}
 		
 		# Takeoff Lateral Reversion
-		if (Output.latTemp == 5 and (Output.vertTemp != 7 or (systems.FCS.flapsInput.getValue() == 0 and !Gear.wow1Temp and !Gear.wow2Temp))) {
-			if (!Internal.takeoffLvl.getBoolValue()) { # Don't sync or blink if it's captured heading (T/O mode)
-				me.setLatMode(3);
-			} else { # Sync and blink
-				me.setLatMode(3);
-				Fma.startBlink(1);
+		if (Output.latTemp == 5 and Output.vertTemp != 7) {
+			if (systems.FCS.flapsInput.getValue() == 0 and !Gear.wow1Temp and !Gear.wow2Temp) {
+				if (!Internal.takeoffLvl.getBoolValue()) { # Don't sync or blink if it's captured heading (T/O mode)
+					me.setLatMode(0);
+				} else { # Sync and blink
+					me.setLatMode(3);
+					Fma.startBlink(1);
+				}
+			}
+		}
+		
+		# Takeoff Engagement
+		if (Output.vertTemp == 7 and Output.latTemp != 5) {
+			if (systems.FCS.flapsInput.getValue() > 0 or Gear.wow1Temp or Gear.wow2Temp) {
+				me.setLatMode(5);
 			}
 		}
 		
