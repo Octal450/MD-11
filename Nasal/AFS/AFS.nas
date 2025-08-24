@@ -1543,8 +1543,8 @@ var ITAF = {
 			me.updateGsArm(0);
 		}
 	},
-	checkRadioReversion: func(l, v) { # Revert mode if signal lost
-		if (!Radio.inRange[Internal.radioSel.getValue()].getBoolValue()) {
+	checkRadioReversion: func(l, v) { # Revert mode if signal lost or altitude above 18000
+		if (!Radio.inRange[Internal.radioSel.getValue()].getBoolValue() or (Internal.radioSel.getValue() != 2 and Position.indicatedAltitudeFt.getValue() >= 17950)) {
 			if (l == 4 or v == 6) {
 				me.ap1Master(0);
 				me.ap2Master(0);

@@ -78,6 +78,7 @@ var NavRadio = {
 		
 		m.Value = {
 			adfKhz: [0, 0],
+			alt: 0,
 			lat: 0,
 			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
 			navMhz: [0, 0, 0],
@@ -149,7 +150,9 @@ var NavRadio = {
 			me.Display.R3 = "[  ]";
 		}
 		
-		if (me.Value.navMhz[0] > 0 and me.Value.navCrs[0] > -1) {
+		me.alt = pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue();
+		
+		if (me.Value.navMhz[0] > 0 and me.Value.navCrs[0] > -1 and me.alt < 17950) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 0) {
 				me.Display.LFont[1] = FONT.large;
 				me.Display.L2 = "VOR TRACK";
@@ -164,7 +167,7 @@ var NavRadio = {
 			me.Display.L2 = "";
 		}
 		
-		if (me.Value.navMhz[1] > 0 and me.Value.navCrs[1] > -1) {
+		if (me.Value.navMhz[1] > 0 and me.Value.navCrs[1] > -1 and me.alt < 17950) {
 			if (afs.Output.lat.getValue() == 2 and afs.Internal.radioSel.getValue() == 1) {
 				me.Display.RFont[1] = FONT.large;
 				me.Display.R2 = "VOR TRACK";
