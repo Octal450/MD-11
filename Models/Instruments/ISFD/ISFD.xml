@@ -4,7 +4,7 @@
 
 <PropertyList>
 	
-	<path>res/ISFD.ac</path>
+	<path>ISFD.ac</path>
 	
 	<animation>
 		<type>material</type>
@@ -186,7 +186,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BaroSet</object-name>
-		<object-name>BaroSet.Text</object-name>
+		<object-name>BaroSet.text</object-name>
 		<property>controls/cockpit/isfd-baro-translate</property>
 		<factor>0.002</factor>
 		<axis>
@@ -201,7 +201,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BaroSet</object-name>
-		<object-name>BaroSet.Text</object-name>
+		<object-name>BaroSet.text</object-name>
 		<property>controls/cockpit/isfd-baro-rotate</property>
 		<factor>11.25</factor>
 		<axis>
