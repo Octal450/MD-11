@@ -439,7 +439,7 @@ var ITAF = {
 		
 		# Takeoff Engagement
 		if (Output.vertTemp == 7 and Output.latTemp != 5) {
-			if (systems.FCS.flapsInput.getValue() > 0 or Gear.wow1Temp or Gear.wow2Temp) {
+			if (systems.FCS.flapsInput.getValue() > 0 and (Gear.wow1Temp or Gear.wow2Temp)) {
 				me.setLatMode(5);
 			}
 		}
