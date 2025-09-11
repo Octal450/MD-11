@@ -5,14 +5,12 @@ var crp = [nil, nil, nil];
 var ettr = props.globals.getNode("/systems/acconfig/options/eight-three-three-radios");
 
 var CRP = { # HF is not simulated in FGFS, so we will not use it
-	new: func(n, t) {
+	new: func(n) {
 		var m = {parents: [CRP]};
 		m.root = "/instrumentation/crp[" ~ n ~ "]/";
 		
-		m.defMode = 0;
-		if (t) m.defMode = 2;
-		
 		m.activeSel = 0;
+		m.defMode = n;
 		m.mode = props.globals.getNode(m.root ~ "mode"); # 0: VHF1, 1: VHF2, 2: VHF3, 3: HF1, 4: HF2
 		m.power = props.globals.getNode("/systems/electrical/outputs/crp[" ~ n ~ "]", 1);
 		m.selTemp = 0;
@@ -122,9 +120,9 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 
 var RADIOS = {
 	setup: func() {
-		crp[0] = CRP.new(0, 0);
-		crp[1] = CRP.new(1, 0);
-		crp[2] = CRP.new(2, 1);
+		crp[0] = CRP.new(0);
+		crp[1] = CRP.new(1);
+		crp[2] = CRP.new(2);
 	},
 	reset: func() {
 		for (var i = 0; i < 3; i = i + 1) {
