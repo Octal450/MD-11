@@ -77,6 +77,7 @@ var PosRef = {
 		};
 		
 		m.Value = {
+			anyAligned: 0,
 			frozen: 0,
 			positionMode: "",
 			positionString: "",
@@ -101,38 +102,47 @@ var PosRef = {
 			me.fromPage = "ref";
 			me.Display.R6 = "REF INDEX>";
 		}
+		
 		me.Value.frozen = 0;
+		me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
 	},
 	loop: func() {
+		me.anyAligned = systems.IRS.Iru.anyAligned.getValue();
+		
 		if (fms.flightData.gpsEnable) {
 			me.Display.R5 = "INHIBIT*";
-			if (systems.IRS.Iru.anyAligned.getValue()) {
+			if (me.anyAligned) {
 				me.Value.positionMode = "(G/I)";
 			} else {
 				me.Value.positionMode = "(G)";
 			}
 		} else {
 			me.Display.R5 = "ENABLE*";
-			if (systems.IRS.Iru.anyAligned.getValue()) {
+			if (me.anyAligned) {
 				me.Value.positionMode = "(I)";
 			} else {
 				me.Value.positionMode = "(NO NAV)";
 			}
 		}
 		
+		me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
+		
 		if (me.Value.positionMode != "(NO NAV)") {
-			me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
-			me.Display.L1 = me.Value.positionString;
-			me.Display.L2 = me.Value.positionString;
+			if (!me.Value.frozen) me.Display.L1 = me.Value.positionString;
 		} else {
 			me.Display.L1 = "-----.-/------.-";
-			me.Display.L2 = "-----.-/------.-";
 		}
 		
 		if (!me.Value.frozen) {
 			me.Display.L1L = " FMC LAT/LONG " ~ me.Value.positionMode;
 		} else {
-			me.Display.L1L = " POS FROZEN " ~ me.Value.positionMode
+			me.Display.L1L = " POS FROZEN " ~ me.Value.positionMode;
+		}
+		
+		if (me.anyAligned) {
+			me.Display.L2 = me.Value.positionString;
+		} else {
+			me.Display.L2 = "-----.-/------.-";
 		}
 	},
 	softKey: func(k) {
