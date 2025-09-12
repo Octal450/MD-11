@@ -104,7 +104,6 @@ var PosRef = {
 		}
 		
 		me.Value.frozen = 0;
-		me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
 	},
 	loop: func() {
 		me.anyAligned = systems.IRS.Iru.anyAligned.getValue();
