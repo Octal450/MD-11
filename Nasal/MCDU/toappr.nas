@@ -804,6 +804,8 @@ var Approach = {
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
