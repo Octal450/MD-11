@@ -152,7 +152,6 @@ var ClosestAirports = {
 				me.Value.cdVector[3] = courseAndDistance(me.Value.airports[3]);
 				me.Display.C4 = sprintf("%-03.0fg/%-4d", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
 			}
-		
 		}
 		
 		if (me.Value.customAirport == nil) {
