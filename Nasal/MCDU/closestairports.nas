@@ -132,25 +132,25 @@ var ClosestAirports = {
 			if (size(me.Value.airports) >= 1) {
 				me.Display.L1 = me.Value.airports[0].id;
 				me.Value.cdVector[0] = courseAndDistance(me.Value.airports[0]);
-				me.Display.C1 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[0][0] - me.Value.magVar), math.round(me.Value.cdVector[0][1]));
+				me.Display.C1 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[0][0] - me.Value.magVar), math.round(me.Value.cdVector[0][1]));
 			}
 			
 			if (size(me.Value.airports) >= 2) {
 				me.Display.L2 = me.Value.airports[1].id;
 				me.Value.cdVector[1] = courseAndDistance(me.Value.airports[1]);
-				me.Display.C2 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[1][0] - me.Value.magVar), math.round(me.Value.cdVector[1][1]));
+				me.Display.C2 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[1][0] - me.Value.magVar), math.round(me.Value.cdVector[1][1]));
 			}
 			
 			if (size(me.Value.airports) >= 3) {
 				me.Display.L3 = me.Value.airports[2].id;
 				me.Value.cdVector[2] = courseAndDistance(me.Value.airports[2]);
-				me.Display.C3 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[2][0] - me.Value.magVar), math.round(me.Value.cdVector[2][1]));
+				me.Display.C3 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[2][0] - me.Value.magVar), math.round(me.Value.cdVector[2][1]));
 			}
 			
 			if (size(me.Value.airports) >= 4) {
 				me.Display.L4 = me.Value.airports[3].id;
 				me.Value.cdVector[3] = courseAndDistance(me.Value.airports[3]);
-				me.Display.C4 = sprintf("%-03.0fg/%-4d", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
+				me.Display.C4 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[3][0] - me.Value.magVar), math.round(me.Value.cdVector[3][1]));
 			}
 		}
 		
@@ -160,7 +160,7 @@ var ClosestAirports = {
 		} else {
 			me.Value.cdVector[4] = courseAndDistance(me.Value.customAirport);
 			me.Display.L5 = me.Value.customAirport.id;
-			me.Display.C5 = sprintf("%03.0fg/%-4d", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
+			me.Display.C5 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
 		}
 	},
 	softKey: func(k) {
