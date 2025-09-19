@@ -102,13 +102,6 @@ var ThrLim = {
 		return m;
 	},
 	setup: func() {
-		if (unit[me.id].lastFmcPage == "takeoff") {
-			me.fromPage = "takeoff";
-			me.Display.R6 = "TAKEOFF>";
-		} else {
-			me.fromPage = "perf"; # Which page is handled by MCDU.nas
-			me.Display.R6 = "PERF MODE>";
-		}
 		if (pts.Options.eng.getValue() == "PW") {
 			me.Display.C1L = " EPR";
 			me.Value.pw = 1;
@@ -183,8 +176,19 @@ var ThrLim = {
 			} else {
 				me.Display.R1 = "[ ]*";
 			}
+				
+			if (unit[me.id].lastFmcPage == "takeoff") {
+				me.fromPage = "takeoff";
+				me.Display.R6 = "TAKEOFF>";
+			} else {
+				me.fromPage = "perf"; # Which page is handled by MCDU.nas
+				me.Display.R6 = "PERF MODE>";
+			}
 		} else {
 			me.Display.L1 = " G/A";
+			me.Display.L2L = "";
+			me.Display.L2 = "";
+			me.Display.C2 = "";
 			
 			if (me.Value.pw) {
 				me.Display.C1 = " " ~ sprintf("%4.2f", math.round(me.Value.Limit.goAround, 0.01));
@@ -198,6 +202,9 @@ var ThrLim = {
 			
 			me.Display.R1L = "TAT        ";
 			me.Display.R1 = "";
+			
+			me.fromPage = "perf"; # Which page is handled by MCDU.nas
+			me.Display.R6 = "PERF MODE>";
 		}
 		
 		if (me.Value.pw) {
