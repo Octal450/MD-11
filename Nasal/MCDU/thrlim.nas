@@ -176,7 +176,7 @@ var ThrLim = {
 			} else {
 				me.Display.R1 = "[ ]*";
 			}
-				
+			
 			if (unit[me.id].lastFmcPage == "takeoff") {
 				me.fromPage = "takeoff";
 				me.Display.R6 = "TAKEOFF>";
