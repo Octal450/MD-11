@@ -327,10 +327,10 @@ var Perf = {
 			me.Display.LFont[3] = FONT.large;
 		}
 		
-		if (me.type == 0) {
-			me.Display.L6 = sprintf("%d", fms.flightData.climbTransAlt);
-		} else if (me.type == 2) {
+		if (me.type == 2) {
 			me.Display.L6 = sprintf("%d", fms.flightData.descentTransAlt);
+		} else if (me.type == 0) {
+			me.Display.L6 = sprintf("%d", fms.flightData.climbTransAlt);
 		} else {
 			me.Display.L6 = "";
 		}
@@ -779,10 +779,10 @@ var PreSel = {
 			me.Display.LFont[3] = FONT.large;
 		}
 		
-		if (me.type == 0) {
-			me.Display.L6 = sprintf("%d", fms.flightData.climbTransAlt);
-		} else if (me.type == 2) {
+		if (me.type == 2) {
 			me.Display.L6 = sprintf("%d", fms.flightData.descentTransAlt);
+		} else if (me.type == 0) {
+			me.Display.L6 = sprintf("%d", fms.flightData.climbTransAlt);
 		} else {
 			me.Display.L6 = "";
 		}
