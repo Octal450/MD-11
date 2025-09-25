@@ -24,14 +24,15 @@ var Value = {
 		fd: [0, 0],
 		fmsSpdDriving: 0,
 		hdg: 0,
-		hdgSel: 0,
+		hdgPreSel: 0,
 		kts: 0,
-		ktsSel: 0,
+		ktsPreSel: 0,
 		ktsMach: 0,
-		ktsMachSel: 0,
+		ktsMachFms: 0,
+		ktsMachPreSel: 0,
 		lat: 0,
 		mach: 0,
-		machSel: 0,
+		machPreSel: 0,
 		land: "",
 		pitch: "",
 		pitchArm: "",
@@ -137,7 +138,7 @@ var Value = {
 		},
 	},
 	Hdg: {
-		hideHdgSel: 0,
+		hideHdgPreSel: 0,
 		indicated: 0,
 		preSel: 0,
 		sel: 0,
@@ -256,15 +257,16 @@ var canvasBase = {
 		"AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_slipskid_t", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds",
 		"ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands",
 		"ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15", "ASI_f15_p", "ASI_f15_t", "ASI_f28", "ASI_f28_p", "ASI_f28_t",
-		"ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p", "ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t", "ASI_groundspeed",
-		"ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi",
-		"ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box",
-		"ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n", "ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error",
-		"FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box",
-		"FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed",
-		"FMA_thrust", "FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text",
-		"HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker", "QFE_disab", "QNH", "RA", "RA_box", "RA_error", "RA_group",
-		"Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_mach_text", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p", "ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t",
+		"ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_mach_presel", "ASI_mach_presel_text", "ASI_mach_sel", "ASI_mach_sel_text", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn",
+		"ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash",
+		"ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n", "ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar",
+		"ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude",
+		"FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch",
+		"FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru",
+		"HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux", "LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker",
+		"QFE_disab", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn",
+		"VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -290,15 +292,16 @@ var canvasBase = {
 		if (n == 0) Value.Afs.fd[0] = afs.Output.fd1.getBoolValue();
 		if (n == 1) Value.Afs.fd[1] = afs.Output.fd2.getBoolValue();
 		Value.Afs.hdg = afs.Internal.hdg.getValue();
-		Value.Afs.hdgSel = afs.Input.hdg.getValue();
+		Value.Afs.hdgPreSel = afs.Input.hdg.getValue();
 		Value.Afs.kts = afs.Internal.kts.getValue();
-		Value.Afs.ktsSel = afs.Input.kts.getValue();
-		Value.Afs.ktsMach = afs.Internal.ktsMach.getBoolValue();
-		Value.Afs.ktsMachSel = afs.Input.ktsMach.getBoolValue();
+		Value.Afs.ktsPreSel = afs.Input.kts.getValue();
+		Value.Afs.ktsMach = pts.Instrumentation.Pfd.ktsMachSel.getBoolValue();
+		Value.Afs.ktsMachFms = pts.Instrumentation.Pfd.ktsMachFms.getBoolValue();
+		Value.Afs.ktsMachPreSel = pts.Instrumentation.Pfd.ktsMachPreSel.getBoolValue();
 		Value.Afs.lat = afs.Output.lat.getValue();
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
-		Value.Afs.machSel = afs.Input.mach.getValue();
+		Value.Afs.machPreSel = afs.Input.mach.getValue();
 		Value.Afs.pitch = afs.Fma.pitch.getValue();
 		Value.Afs.pitchArm = afs.Fma.pitchArm.getValue();
 		Value.Afs.roll = afs.Fma.roll.getValue();
@@ -1023,38 +1026,93 @@ var canvasBase = {
 		}
 		
 		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
+			me["ASI_mach_presel"].hide();
+			me["ASI_mach_presel_text"].hide();
 			me["ASI_presel"].hide();
 		} else {
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
+				me["ASI_mach_presel"].setColor(1, 0, 0);
+				me["ASI_mach_presel_text"].setColor(1, 0, 0);
 				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.vmoMmo - 5) { # No flapGearMax bar
+				me["ASI_mach_presel"].setColor(1, 0, 0);
+				me["ASI_mach_presel_text"].setColor(1, 0, 0);
 				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vss) {
+				me["ASI_mach_presel"].setColor(1, 0, 0);
+				me["ASI_mach_presel_text"].setColor(1, 0, 0);
 				me["ASI_presel"].setColor(1, 0, 0);
 			} else if (Value.Asi.preSel > Value.Asi.flapGearMax - 5 and Value.Asi.flapGearMax > 0) {
+				me["ASI_mach_presel"].setColor(0.9412, 0.7255, 0);
+				me["ASI_mach_presel_text"].setColor(0.9412, 0.7255, 0);
 				me["ASI_presel"].setColor(0.9412, 0.7255, 0);
 			} else if (Value.Asi.preSel < Value.Asi.vmin + 5) {
+				me["ASI_mach_presel"].setColor(0.9412, 0.7255, 0);
+				me["ASI_mach_presel_text"].setColor(0.9412, 0.7255, 0);
 				me["ASI_presel"].setColor(0.9412, 0.7255, 0);
 			} else {
+				me["ASI_mach_presel"].setColor(1, 1, 1);
+				me["ASI_mach_presel_text"].setColor(1, 1, 1);
 				me["ASI_presel"].setColor(1, 1, 1);
 			}
-			me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.4866);
-			me["ASI_presel"].show();
+			
+			if (Value.Afs.ktsMachPreSel) {
+				me["ASI_mach_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.4866);
+				me["ASI_mach_presel_text"].setTranslation(0, Value.Asi.Tape.preSel * -4.4866);
+				me["ASI_mach_presel_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
+				
+				me["ASI_mach_presel"].show();
+				me["ASI_mach_presel_text"].show();
+				me["ASI_presel"].hide();
+			} else {
+				me["ASI_presel"].setTranslation(0, Value.Asi.Tape.preSel * -4.4866);
+				
+				me["ASI_mach_presel"].hide();
+				me["ASI_mach_presel_text"].hide();
+				me["ASI_presel"].show();
+			}
 		}
 		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60 or !Value.Afs.spdPitchAvail or Value.Afs.fmsSpdDriving) {
+			me["ASI_mach_sel"].hide();
+			me["ASI_mach_sel_text"].hide();
 			me["ASI_sel"].hide();
 		} else {
-			me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.4866);
-			me["ASI_sel"].show();
+			if (Value.Afs.ktsMach) {
+				me["ASI_mach_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.4866);
+				me["ASI_mach_sel_text"].setTranslation(0, Value.Asi.Tape.sel * -4.4866);
+				me["ASI_mach_sel_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
+				
+				me["ASI_mach_sel_text"].show();
+				me["ASI_mach_sel"].show();
+				me["ASI_sel"].hide();
+			} else {
+				me["ASI_sel"].setTranslation(0, Value.Asi.Tape.sel * -4.4866);
+				
+				me["ASI_mach_sel"].hide();
+				me["ASI_mach_sel_text"].hide();
+				me["ASI_sel"].show();
+			}
 		}
 		if (Value.Asi.Tape.fms < -60 or Value.Asi.Tape.fms > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fms == 0) {
 			me["ASI_fms"].hide();
+			me["ASI_fms_mach_text"].hide();
 		} else {
+			if (Value.Afs.ktsMachFms) {
+				me["ASI_fms_mach_text"].setTranslation(0, Value.Asi.Tape.fms * -4.4866);
+				me["ASI_fms_mach_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.mach * 1000));
+				me["ASI_fms_mach_text"].show();
+			} else {
+				me["ASI_fms_mach_text"].hide();
+			}
+			
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms"].setColorFill(0.9607, 0, 0.7764, 1);
+				me["ASI_fms_mach_text"].setColor(0.9607, 0, 0.7764);
 			} else {
 				me["ASI_fms"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
+				me["ASI_fms_mach_text"].setColor(1, 1, 1);
 			}
+			
 			me["ASI_fms"].setTranslation(0, Value.Asi.Tape.fms * -4.4866);
 			me["ASI_fms"].show();
 		}
@@ -1082,10 +1140,10 @@ var canvasBase = {
 			}
 			me["ASI_sel_up"].setColorFill(0, 0, 0);
 			me["ASI_sel_up"].show();
-			if (Value.Afs.ktsMachSel) {
-				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
+			if (Value.Afs.ktsMachPreSel) {
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 			} else {
-				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 			}
 			me["ASI_sel_up_text"].show();
 		} else if (Value.Asi.Tape.sel > 60 and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
@@ -1144,10 +1202,10 @@ var canvasBase = {
 			}
 			me["ASI_sel_dn"].setColorFill(0, 0, 0);
 			me["ASI_sel_dn"].show();
-			if (Value.Afs.ktsMachSel) {
-				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machSel * 1000));
+			if (Value.Afs.ktsMachPreSel) {
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 			} else {
-				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsSel));
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 			}
 			me["ASI_sel_dn_text"].show();
 		} else if (Value.Asi.Tape.sel < -60 and !Value.Asi.showTaxi and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
@@ -1874,7 +1932,7 @@ var canvasBase = {
 		me["HDG_dial"].setRotation(Value.Hdg.indicated * -D2R);
 		
 		Value.Hdg.preSel = pts.Instrumentation.Pfd.hdgPreSel.getValue();
-		Value.Hdg.sel = pts.Instrumentation.Pfd.hdgSel.getValue();
+		Value.Hdg.sel = pts.Instrumentation.Pfd.hdgPreSel.getValue();
 		Value.Hdg.showHdg = afs.Output.showHdg.getBoolValue();
 		
 		if (Value.Hdg.preSel <= 35 and Value.Hdg.preSel >= -35) {
@@ -1901,7 +1959,7 @@ var canvasBase = {
 			}
 			
 			if (Value.Hdg.preSel < -35 and !afs.Internal.syncedHdg) {
-				me["HDG_sel_left_text"].setText(right(sprintf("%03d", Value.Afs.hdgSel), 3));
+				me["HDG_sel_left_text"].setText(right(sprintf("%03d", Value.Afs.hdgPreSel), 3));
 				me["HDG_sel_left_text"].show();
 			} else if (Value.Hdg.sel < -35 and Value.Afs.lat == 0) {
 				me["HDG_sel_left_text"].setText(right(sprintf("%03d", Value.Afs.hdg), 3));
@@ -1911,7 +1969,7 @@ var canvasBase = {
 			}
 			
 			if (Value.Hdg.preSel > 35 and !afs.Internal.syncedHdg) {
-				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdgSel), 3));
+				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdgPreSel), 3));
 				me["HDG_sel_right_text"].show();
 			} else if (Value.Hdg.sel > 35 and Value.Afs.lat == 0) {
 				me["HDG_sel_right_text"].setText(right(sprintf("%03d", Value.Afs.hdg), 3));
@@ -1922,17 +1980,17 @@ var canvasBase = {
 			
 			if (!afs.Internal.syncedHdg) {
 				if (Value.Hdg.preSel < -35 and Value.Hdg.sel < -35) {
-					Value.Hdg.hideHdgSel = 1;
+					Value.Hdg.hideHdgPreSel = 1;
 				} else if (Value.Hdg.preSel > 35 and Value.Hdg.sel > 35) {
-					Value.Hdg.hideHdgSel = 1;
+					Value.Hdg.hideHdgPreSel = 1;
 				} else {
-					Value.Hdg.hideHdgSel = 0;
+					Value.Hdg.hideHdgPreSel = 0;
 				}
 			} else {
-				Value.Hdg.hideHdgSel = 0;
+				Value.Hdg.hideHdgPreSel = 0;
 			}
 			
-			if (!Value.Hdg.hideHdgSel) {
+			if (!Value.Hdg.hideHdgPreSel) {
 				me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
 				me["HDG_sel"].show();
 			} else {

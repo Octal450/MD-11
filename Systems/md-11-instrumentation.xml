@@ -8,11 +8,27 @@
 	<channel name="Primary Flight Displays" execrate="2">
 		
 		<!-- Speed Bugs -->
+		<!-- Copy the value from ITAF first to ensure everything updates in sync -->
+		<pure_gain name="/instrumentation/pfd/kts-mach-pre-sel">
+			<input>/it-autoflight/input/kts-mach</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/instrumentation/pfd/kts-mach-sel">
+			<input>/it-autoflight/internal/kts-mach</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/instrumentation/pfd/kts-mach-fms">
+			<input>/systems/fms/fms-spd/kts-mach</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/instrumentation/pfd/spd-pre-sel">
 			<function>
 				<ifthen>
 					<eq>
-						<property>/it-autoflight/input/kts-mach</property>
+						<property>/instrumentation/pfd/kts-mach-pre-sel</property>
 						<value>1</value>
 					</eq>
 					<product>
@@ -31,7 +47,7 @@
 			<function>
 				<ifthen>
 					<eq>
-						<property>/it-autoflight/internal/kts-mach</property>
+						<property>/instrumentation/pfd/kts-mach-sel</property>
 						<value>1</value>
 					</eq>
 					<product>
@@ -61,7 +77,7 @@
 					</and>
 					<ifthen>
 						<eq>
-							<property>/systems/fms/fms-spd/kts-mach</property>
+							<property>/instrumentation/pfd/kts-mach-fms</property>
 							<value>1</value>
 						</eq>
 						<product>
