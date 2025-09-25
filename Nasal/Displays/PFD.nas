@@ -1147,14 +1147,14 @@ var canvasBase = {
 			}
 			
 			if (Value.Afs.ktsMachPreSel) {
-				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 				me["ASI_mach_sel_up"].setColorFill(0, 0, 0);
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 				
 				me["ASI_mach_sel_up"].show();
 				me["ASI_sel_up"].hide();
 			} else {
-				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 				me["ASI_sel_up"].setColorFill(0, 0, 0);
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 				
 				me["ASI_mach_sel_up"].hide();
 				me["ASI_sel_up"].show();
@@ -1168,14 +1168,14 @@ var canvasBase = {
 			me["ASI_sel_up_text"].setColor(1, 1, 1);
 			
 			if (Value.Afs.ktsMach) {
-				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 				me["ASI_mach_sel_up"].setColorFill(1, 1, 1);
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 				
 				me["ASI_mach_sel_up"].show();
 				me["ASI_sel_up"].hide();
 			} else {
-				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 				me["ASI_sel_up"].setColorFill(1, 1, 1);
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 				
 				me["ASI_mach_sel_up"].hide();
 				me["ASI_sel_up"].show();
@@ -1238,14 +1238,14 @@ var canvasBase = {
 			}
 			
 			if (Value.Afs.ktsMachPreSel) {
-				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 				me["ASI_mach_sel_dn"].setColorFill(0, 0, 0);
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.machPreSel * 1000));
 				
 				me["ASI_mach_sel_dn"].show();
 				me["ASI_sel_dn"].hide();
 			} else {
-				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 				me["ASI_sel_dn"].setColorFill(0, 0, 0);
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.ktsPreSel));
 				
 				me["ASI_mach_sel_dn"].hide();
 				me["ASI_sel_dn"].show();
@@ -1259,14 +1259,14 @@ var canvasBase = {
 			me["ASI_sel_dn_text"].setColor(1, 1, 1);
 			
 			if (Value.Afs.ktsMach) {
-				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 				me["ASI_mach_sel_dn"].setColorFill(1, 1, 1);
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", Value.Afs.mach * 1000));
 				
 				me["ASI_mach_sel_dn"].show();
 				me["ASI_sel_dn"].hide();
 			} else {
-				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 				me["ASI_sel_dn"].setColorFill(1, 1, 1);
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", Value.Afs.kts));
 				
 				me["ASI_mach_sel_dn"].hide();
 				me["ASI_sel_dn"].show();
