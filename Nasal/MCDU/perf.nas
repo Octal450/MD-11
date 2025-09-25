@@ -349,10 +349,10 @@ var Perf = {
 		if (me.scratchpadState == 2) {
 			if (me.type == 1) { # CRZ: Only one entry
 				if (unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 365 and unit[me.id].stringIsInt()) {
 						fms.flightData.cruiseSpeedEdit = int(me.scratchpad);
 						unit[me.id].scratchpadClear();
-					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+					} else if (me.scratchpad >= 0.4999 and me.scratchpad <= 0.8701) {
 						if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 							fms.flightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
 							unit[me.id].scratchpadClear();
@@ -386,7 +386,7 @@ var Perf = {
 								return;
 							}
 							
-							if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
+							if (me.scratchpadSplit[0] < 0.4999 or me.scratchpadSplit[0] > 0.8701) {
 								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
@@ -404,7 +404,7 @@ var Perf = {
 								return;
 							}
 							
-							if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+							if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 365 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
 								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
@@ -427,7 +427,7 @@ var Perf = {
 								return;
 							}
 							
-							if (me.scratchpadSplit[0] < 100 or me.scratchpadSplit[0] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[0])) {
+							if (me.scratchpadSplit[0] < 100 or me.scratchpadSplit[0] > 365 or !unit[me.id].stringIsInt(me.scratchpadSplit[0])) {
 								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
@@ -440,7 +440,7 @@ var Perf = {
 								return;
 							}
 							
-							if (me.scratchpadSplit[1] < 0.5 or me.scratchpadSplit[1] > 0.9) {
+							if (me.scratchpadSplit[1] < 0.4999 or me.scratchpadSplit[1] > 0.8701) {
 								unit[me.id].setMessage("ENTRY OUT OF RANGE");
 								return;
 							}
@@ -458,7 +458,7 @@ var Perf = {
 					}
 				} else if (me.scratchpadSplitSize == 1) {
 					if (unit[me.id].stringIsNumber()) {
-						if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 365 and unit[me.id].stringIsInt()) {
 							if (me.type == 2) {
 								fms.flightData.descentSpeedEditKts = int(me.scratchpad);
 								fms.flightData.descentSpeedEditMach = 1;
@@ -469,7 +469,7 @@ var Perf = {
 								fms.FmsSpd.updateEditSpeeds(0);
 							}
 							unit[me.id].scratchpadClear();
-						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+						} else if (me.scratchpad >= 0.4999 and me.scratchpad <= 0.8701) {
 							if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 								if (me.type == 2) {
 									fms.flightData.descentSpeedEditKts = 1;
@@ -805,10 +805,10 @@ var PreSel = {
 		if (me.scratchpadState == 2) {
 			if (me.type == 1) { # CRZ: Only one entry
 				if (unit[me.id].stringIsNumber()) {
-					if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
+					if (me.scratchpad >= 100 and me.scratchpad <= 365 and unit[me.id].stringIsInt()) {
 						fms.flightData.cruiseSpeedEdit = int(me.scratchpad);
 						unit[me.id].scratchpadClear();
-					} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+					} else if (me.scratchpad >= 0.4999 and me.scratchpad <= 0.8701) {
 						if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 							fms.flightData.cruiseSpeedEdit = math.round(me.scratchpad, 0.001);
 							unit[me.id].scratchpadClear();
@@ -841,7 +841,7 @@ var PreSel = {
 							return;
 						}
 						
-						if (me.scratchpadSplit[0] < 0.5 or me.scratchpadSplit[0] > 0.9) {
+						if (me.scratchpadSplit[0] < 0.4999 or me.scratchpadSplit[0] > 0.8701) {
 							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 							return;
 						}
@@ -859,7 +859,7 @@ var PreSel = {
 							return;
 						}
 						
-						if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 375 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
+						if (me.scratchpadSplit[1] < 100 or me.scratchpadSplit[1] > 365 or !unit[me.id].stringIsInt(me.scratchpadSplit[1])) {
 							unit[me.id].setMessage("ENTRY OUT OF RANGE");
 							return;
 						}
@@ -870,11 +870,11 @@ var PreSel = {
 					unit[me.id].scratchpadClear();
 				} else if (me.scratchpadSplitSize == 1) {
 					if (unit[me.id].stringIsNumber()) {
-						if (me.scratchpad >= 100 and me.scratchpad <= 375 and unit[me.id].stringIsInt()) {
+						if (me.scratchpad >= 100 and me.scratchpad <= 365 and unit[me.id].stringIsInt()) {
 							fms.flightData.descentSpeedEditKts = int(me.scratchpad);
 							fms.flightData.descentSpeedEditMach = 1;
 							unit[me.id].scratchpadClear();
-						} else if (me.scratchpad >= 0.5 and me.scratchpad <= 0.9) {
+						} else if (me.scratchpad >= 0.4999 and me.scratchpad <= 0.8701) {
 							if (unit[me.id].stringDecimalLengthInRange(1, 3)) {
 								fms.flightData.descentSpeedEditKts = 1;
 								fms.flightData.descentSpeedEditMach = math.round(me.scratchpad, 0.001);
