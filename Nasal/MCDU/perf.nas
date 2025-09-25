@@ -134,6 +134,8 @@ var Perf = {
 		m.scratchpad = "";
 		m.scratchpadSplit = nil;
 		m.scratchpadSplitSize = 0;
+		m.scratchpadSplitSize0 = 0;
+		m.scratchpadSplitSize1 = 0;
 		m.scratchpadState = 0;
 		m.type = t; # 0 = CLB, 1 = CRZ, 2 = DES
 		
@@ -654,6 +656,10 @@ var PreSel = {
 		m.group = "fmc";
 		m.name = "perf";
 		m.scratchpad = "";
+		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize = 0;
+		m.scratchpadSplitSize0 = 0;
+		m.scratchpadSplitSize1 = 0;
 		m.scratchpadState = 0;
 		m.type = t; # 0 = Unused so numbers match Perf class, 1 = CRZ, 2 = DES
 		
