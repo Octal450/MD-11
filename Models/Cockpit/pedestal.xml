@@ -790,6 +790,7 @@
 	
 	<animation>
 		<type>rotate</type>
+		<object-name>spdbrkarm</object-name>
 		<object-name>spdbrklever</object-name>
 		<object-name>spdbrklever.circle</object-name>
 		<property>controls/cockpit/spoilers-lever-rotate</property>
@@ -814,6 +815,7 @@
 	
 	<animation>
 		<type>translate</type>
+		<object-name>spdbrkarm</object-name>
 		<object-name>spdbrklever</object-name>
 		<property>controls/cockpit/spoilers-lever-translate</property>
 		<factor>0.01624</factor>
