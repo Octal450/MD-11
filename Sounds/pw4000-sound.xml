@@ -263,7 +263,7 @@
 		<engine>
 			<name>Cockpit Shutdown 1</name>
 			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Shutdown.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Shutdown.wav</path>
 			<condition>
 				<equals>
 					<property>/sim/sound/shutdown[0]</property>
@@ -283,7 +283,7 @@
 		<engine>
 			<name>Cockpit Shutdown 2</name>
 			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Shutdown.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Shutdown.wav</path>
 			<condition>
 				<equals>
 					<property>/sim/sound/shutdown[1]</property>
@@ -303,7 +303,7 @@
 		<engine>
 			<name>Cockpit Shutdown 3</name>
 			<mode>once</mode>
-			<path>Aircraft/MD-11/Sounds/SASA-CF6/Shutdown.wav</path>
+			<path>Aircraft/MD-11/Sounds/SASA-CF6/Cockpit/Shutdown.wav</path>
 			<condition>
 				<equals>
 					<property>/sim/sound/shutdown[2]</property>

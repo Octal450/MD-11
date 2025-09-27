@@ -607,7 +607,7 @@ var FmsSpd = {
 			me.v2Toggle = 0;
 		}
 		
-		# Limiting logic
+		# Limiting Logic
 		if (me.toKtsCmd > 0) {
 			if (me.minKts > me.maxKts) { # Max takes priority
 				me.toKts = me.maxKts;
