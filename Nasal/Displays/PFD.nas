@@ -491,7 +491,6 @@ var canvasBase = {
 			Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
 		}
 		
-		# Sometimes clipped by V speed box code below
 		if (Value.Asi.fmsEcon < 50) {
 			Value.Asi.Tape.fmsEcon = 0 - Value.Asi.Tape.ias;
 		} else if (Value.Asi.fmsEcon > 450) {
