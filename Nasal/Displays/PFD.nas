@@ -29,6 +29,7 @@ var Value = {
 		ktsPreSel: 0,
 		ktsMach: 0,
 		ktsMachFms: 0,
+		ktsMachFmsEcon: 0,
 		ktsMachPreSel: 0,
 		lat: 0,
 		mach: 0,
@@ -97,12 +98,14 @@ var Value = {
 		f50: 0,
 		flapGearMax: 0,
 		fms: 0,
+		fmsEcon: 0,
 		hideV1: 0,
 		hideVr: 0,
 		ias: 0,
 		mach: 0,
 		preSel: 0,
 		sel: 0,
+		showFmsEcon: 0,
 		showPreSel: 0,
 		showTaxi: 0,
 		trend: 0,
@@ -118,6 +121,7 @@ var Value = {
 			f50: 0,
 			flapGearMax: 0,
 			fms: 0,
+			fmsEcon: 0,
 			fr: 0,
 			ge: 0,
 			gr: 0,
@@ -257,16 +261,16 @@ var canvasBase = {
 		"AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_slipskid_t", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds",
 		"ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands",
 		"ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15", "ASI_f15_p", "ASI_f15_t", "ASI_f28", "ASI_f28_p", "ASI_f28_t",
-		"ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_mach_text", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p", "ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t",
-		"ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_mach_presel", "ASI_mach_presel_text", "ASI_mach_sel", "ASI_mach_sel_dn", "ASI_mach_sel_up", "ASI_mach_sel_text", "ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p",
-		"ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs", "ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p",
-		"ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n", "ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box",
-		"ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error", "Flaps", "Flaps_dn", "Flaps_num",
-		"Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text", "FMA_ATS_thrust_off",
-		"FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no", "GS_pointer", "GS_scale", "HDG",
-		"HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux", "LOC_error", "LOC_no",
-		"LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker", "QFE_disab", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1", "TCAS_2", "TRK_pointer",
-		"VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
+		"ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_econ", "ASI_fms_econ_mach_text", "ASI_fms_mach_text", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p",
+		"ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_mach_presel", "ASI_mach_presel_text", "ASI_mach_sel", "ASI_mach_sel_dn", "ASI_mach_sel_up", "ASI_mach_sel_text", "ASI_presel",
+		"ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs",
+		"ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n",
+		"ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error",
+		"Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text",
+		"FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no",
+		"GS_pointer", "GS_scale", "HDG", "HDG_dial", "HDG_error", "HDG_error2", "HDG_group", "HDG_group2", "HDG_magtru", "HDG_mode", "HDG_presel", "HDG_sel", "HDG_sel_left_text", "HDG_sel_right_text", "ILS_alt", "ILS_DME", "ILS_info", "Inner_marker", "IRS_aux",
+		"LOC_error", "LOC_no", "LOC_pointer", "LOC_scale", "Middle_marker", "Minimums", "MinimumsMode", "Outer_marker", "QFE_disab", "QNH", "RA", "RA_box", "RA_error", "RA_group", "Slats", "Slats_auto", "Slats_dn", "Slats_no", "Slats_up", "TCAS", "TCAS_1",
+		"TCAS_2", "TRK_pointer", "VSI_bug_dn", "VSI_bug_up", "VSI_dn", "VSI_error", "VSI_group", "VSI_needle_dn", "VSI_needle_up", "VSI_up"];
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -297,7 +301,7 @@ var canvasBase = {
 		Value.Afs.ktsPreSel = afs.Input.kts.getValue();
 		Value.Afs.ktsMach = pts.Instrumentation.Pfd.ktsMachSel.getBoolValue();
 		Value.Afs.ktsMachFms = pts.Instrumentation.Pfd.ktsMachFms.getBoolValue();
-		Value.Afs.ktsMachPreSel = pts.Instrumentation.Pfd.ktsMachPreSel.getBoolValue();
+		Value.Afs.ktsMachFmsEcon = pts.Instrumentation.Pfd.ktsMachFmsEcon.getBoolValue();
 		Value.Afs.lat = afs.Output.lat.getValue();
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
@@ -315,6 +319,7 @@ var canvasBase = {
 		Value.Ai.stallWarnAlphaDeg = systems.FCC.stallWarnAlphaDeg.getValue();
 		Value.Asi.flapGearMax = fms.Speeds.flapGearMax.getValue();
 		Value.Asi.fms = pts.Instrumentation.Pfd.spdFms.getValue();
+		Value.Asi.fmsEcon = pts.Instrumentation.Pfd.spdFmsEcon.getValue();
 		Value.Asi.ias = pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue();
 		Value.Asi.mach = pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue();
 		Value.Asi.preSel = pts.Instrumentation.Pfd.spdPreSel.getValue();
@@ -483,6 +488,15 @@ var canvasBase = {
 			Value.Asi.Tape.preSel = 400 - Value.Asi.Tape.ias;
 		} else {
 			Value.Asi.Tape.preSel = Value.Asi.preSel - 50 - Value.Asi.Tape.ias;
+		}
+		
+		# Sometimes clipped by V speed box code below
+		if (Value.Asi.fmsEcon < 50) {
+			Value.Asi.Tape.fmsEcon = 0 - Value.Asi.Tape.ias;
+		} else if (Value.Asi.fmsEcon > 450) {
+			Value.Asi.Tape.fmsEcon = 400 - Value.Asi.Tape.ias;
+		} else {
+			Value.Asi.Tape.fmsEcon = Value.Asi.fmsEcon - 50 - Value.Asi.Tape.ias;
 		}
 		
 		# Sometimes clipped by V speed box code below
@@ -1019,10 +1033,16 @@ var canvasBase = {
 		# ASI Pre-Sel/Sel
 		Value.Asi.showPreSel = afs.Output.showSpd.getBoolValue();
 		
-		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdActive) {
+		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdDriving) {
 			Value.Afs.fmsSpdDriving = 1;
 		} else {
 			Value.Afs.fmsSpdDriving = 0;
+		}
+		
+		if (Value.Asi.fmsEcon > 0 and fms.FmsSpd.pfdShowEconPreSel) {
+			Value.Asi.showFmsEcon = 1;
+		} else {
+			Value.Asi.showFmsEcon = 0;
 		}
 		
 		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
@@ -1106,15 +1126,28 @@ var canvasBase = {
 			}
 			
 			if (Value.Afs.fmsSpdDriving) {
-				me["ASI_fms"].setColorFill(0.9607, 0, 0.7764, 1);
-				me["ASI_fms_mach_text"].setColor(0.9607, 0, 0.7764);
+				me["ASI_fms"].setColorFill(0.9608, 0, 0.7765, 1);
 			} else {
 				me["ASI_fms"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
-				me["ASI_fms_mach_text"].setColor(1, 1, 1);
 			}
 			
 			me["ASI_fms"].setTranslation(0, Value.Asi.Tape.fms * -4.4866);
 			me["ASI_fms"].show();
+		}
+		if (Value.Asi.Tape.fmsEcon < -60 or Value.Asi.Tape.fmsEcon > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fmsEcon == 0 or !Value.Asi.showFmsEcon) {
+			me["ASI_fms_econ"].hide();
+			me["ASI_fms_econ_mach_text"].hide();
+		} else {
+			if (Value.Afs.ktsMachFmsEcon) {
+				me["ASI_fms_econ_mach_text"].setTranslation(0, Value.Asi.Tape.fmsEcon * -4.4866);
+				me["ASI_fms_econ_mach_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.econMachCalc * 1000));
+				me["ASI_fms_econ_mach_text"].show();
+			} else {
+				me["ASI_fms_econ_mach_text"].hide();
+			}
+			
+			me["ASI_fms_econ"].setTranslation(0, Value.Asi.Tape.fmsEcon * -4.4866);
+			me["ASI_fms_econ"].show();
 		}
 		
 		if ((Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi) and !afs.Internal.syncedSpd and Value.Asi.showPreSel) {
@@ -1184,9 +1217,9 @@ var canvasBase = {
 			me["ASI_sel_up_text"].show();
 		} else if (Value.Asi.Tape.fms > 60 and Value.Asi.fms != 0) { # It will never go outside envelope
 			if (Value.Afs.fmsSpdDriving) {
-				me["ASI_fms_up"].setColorFill(0.9607, 0, 0.7764, 1);
+				me["ASI_fms_up"].setColorFill(0.9608, 0, 0.7765);
 			} else {
-				me["ASI_fms_up"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
+				me["ASI_fms_up"].setColorFill(0, 0, 0);
 			}
 			
 			me["ASI_fms_up"].show();
@@ -1198,6 +1231,20 @@ var canvasBase = {
 				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.mach * 1000));
 			} else {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", fms.FmsSpd.kts));
+			}
+			
+			me["ASI_sel_up_text"].show();
+		} else if (Value.Asi.Tape.fmsEcon > 60 and Value.Asi.fmsEcon != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+			me["ASI_fms_up"].setColorFill(0, 0, 0);
+			me["ASI_fms_up"].show();
+			me["ASI_mach_sel_up"].hide();
+			me["ASI_sel_up"].hide();
+			me["ASI_sel_up_text"].setColor(0.9608, 0, 0.7765);
+			
+			if (fms.FmsSpd.ktsMach) {
+				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.econMachCalc * 1000));
+			} else {
+				me["ASI_sel_up_text"].setText(sprintf("%3.0f", fms.FmsSpd.econKtsCalc));
 			}
 			
 			me["ASI_sel_up_text"].show();
@@ -1275,9 +1322,9 @@ var canvasBase = {
 			me["ASI_sel_dn_text"].show();
 		} else if (Value.Asi.Tape.fms < -60 and !Value.Asi.showTaxi and Value.Asi.fms != 0) { # It will never go outside envelope
 			if (Value.Afs.fmsSpdDriving) {
-				me["ASI_fms_dn"].setColorFill(0.9607, 0, 0.7764, 1);
+				me["ASI_fms_dn"].setColorFill(0.9608, 0, 0.7765);
 			} else {
-				me["ASI_fms_dn"].setColorFill(0, 0, 0, 0.004); # Alpha = 0 doesn't work
+				me["ASI_fms_dn"].setColorFill(0, 0, 0);
 			}
 			
 			me["ASI_fms_dn"].show();
@@ -1289,6 +1336,20 @@ var canvasBase = {
 				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.mach * 1000));
 			} else {
 				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", fms.FmsSpd.kts));
+			}
+			
+			me["ASI_sel_dn_text"].show();
+		} else if (Value.Asi.Tape.fmsEcon < -60 and !Value.Asi.showTaxi and Value.Asi.fms != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+			me["ASI_fms_dn"].setColorFill(0, 0, 0);
+			me["ASI_fms_dn"].show();
+			me["ASI_mach_sel_dn"].hide();
+			me["ASI_sel_dn"].hide();
+			me["ASI_sel_dn_text"].setColor(0.9608, 0, 0.7765);
+			
+			if (fms.FmsSpd.ktsMach) {
+				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.econMachCalc * 1000));
+			} else {
+				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", fms.FmsSpd.econKtsCalc));
 			}
 			
 			me["ASI_sel_dn_text"].show();

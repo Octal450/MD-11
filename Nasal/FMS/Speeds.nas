@@ -49,7 +49,15 @@ var FmsSpd = {
 	apprKts: 0,
 	decel: 0,
 	econKts: 0,
+	econKtsCalc: 0,
+	econKtsCmd: 0,
+	econKtsOut: props.globals.getNode("/systems/fms/fms-spd/econ-kts"),
+	econKtsMach: 0,
+	econKtsMachOut: props.globals.getNode("/systems/fms/fms-spd/econ-kts-mach"),
 	econMach: 0,
+	econMachCalc: 0,
+	econMachCmd: 0,
+	econMachOut: props.globals.getNode("/systems/fms/fms-spd/econ-mach"),
 	editClimbKts: 0,
 	editClimbMach: 0,
 	editDescentKts: 0,
@@ -71,7 +79,8 @@ var FmsSpd = {
 	maxMach: 0.87,
 	minKts: 0,
 	minMach: 0,
-	pfdActive: 0,
+	pfdDriving: 0,
+	pfdShowEconPreSel: 0,
 	toDriving: 0,
 	toKts: 0,
 	toKtsCmd: 0,
@@ -84,6 +93,11 @@ var FmsSpd = {
 		me.alt11kToggle = 0;
 		me.apprKts = 0;
 		me.decel = 0;
+		me.econKtsCalc = 0;
+		me.econKtsCmd = 0;
+		me.econKtsMach = 0;
+		me.econMachCalc = 0;
+		me.econMachCmd = 0;
 		me.kts = 0;
 		me.ktsCmd = 0;
 		me.ktsMach = 0;
@@ -92,7 +106,8 @@ var FmsSpd = {
 		me.machToggleEcon = 0;
 		me.machToggleEditClimb = 0;
 		me.machToggleEditDescent = 0;
-		me.pfdActive = 0;
+		me.pfdDriving = 0;
+		me.pfdShowEconPreSel = 0;
 		me.toKts = 0;
 		me.toKtsCmd = 0;
 		me.v2Toggle = 0;
@@ -104,10 +119,13 @@ var FmsSpd = {
 		afs.Output.showSpd.setBoolValue(1);
 		if (b) afs.Fma.startBlink(0);
 	},
-	cancelAndZero: func() {
+	cancelAndZero: func(e = 0) {
 		if (me.active) {
 			me.cancel(1);
 		}
+		
+		if (e) me.zeroEcon();
+		
 		me.ktsMach = 0;
 		me.ktsCmd = 0;
 	},
@@ -134,9 +152,16 @@ var FmsSpd = {
 	},
 	writeOut: func() {
 		me.activeOut.setBoolValue(me.active);
+		me.econKtsOut.setValue(me.econKtsCalc);
+		me.econKtsMachOut.setBoolValue(me.econKtsMach);
+		me.econMachOut.setValue(me.econMachCalc);
 		me.ktsOut.setValue(me.kts);
 		me.ktsMachOut.setBoolValue(me.ktsMach);
 		me.machOut.setValue(me.mach);
+	},
+	zeroEcon: func() {
+		me.econKtsMach = 0;
+		me.econKtsCmd = 0;
 	},
 	loop: func() {
 		# Disengage if unavailable
@@ -175,7 +200,7 @@ var FmsSpd = {
 		}
 		
 		# Main FMS SPD Logic
-		# ktsMach determins which is active, the other is handled in Inactive Value Sync
+		# ktsMach determines which is active, the other is handled in Inactive Value Sync
 		
 		if (Internal.phase >= 4) {
 			if (Value.active and Value.wpNum > 0) {
@@ -197,12 +222,38 @@ var FmsSpd = {
 			if (me.activeOrFmsVspeed) {
 				me.ktsMach = 0;
 				me.ktsCmd = me.toKts;
+				me.econKtsMach = me.ktsMach;
+				me.econKtsCmd = me.ktsCmd;
 			} else {
-				me.cancelAndZero();
+				me.cancelAndZero(1);
 			}
 		} else if (Value.wow0) { # After takeoff, cancel on NLG WoW
-			me.cancelAndZero();
+			me.cancelAndZero(1);
 		} else if (Internal.phase == 2) { # Climb
+			# Compute ECON
+			if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
+				if (me.alt10kToggle) {
+					if (me.convertMach(me.econKts) + 0.0005 >= me.econMach) {
+						me.machToggleEcon = 1;
+					}
+					
+					if (me.machToggleEcon) {
+						me.econKtsMach = 1;
+						me.econMachCmd = me.econMach;
+					} else {
+						me.econKtsMach = 0;
+						me.econKtsCmd = math.max(me.econKts, me.vcl);
+					}
+				} else {
+					me.machToggleEcon = 0;
+					me.econKtsMach = 0;
+					me.econKtsCmd = math.max(250, me.vcl);
+				}
+			} else {
+				me.zeroEcon();
+			}
+			
+			# Compute FMS SPD
 			if (flightData.climbSpeedMode == 2) { # EDIT
 				if (me.editClimbKts > 0 and me.editClimbMach > 0) {
 					me.checkMachToggleEdit(0, 0);
@@ -225,29 +276,33 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			} else { # ECON
-				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
-					if (me.alt10kToggle) {
-						if (me.convertMach(me.econKts) + 0.0005 >= me.econMach) {
-							me.machToggleEcon = 1;
-						}
-						
-						if (me.machToggleEcon) {
-							me.ktsMach = 1;
-							me.machCmd = me.econMach;
-						} else {
-							me.ktsMach = 0;
-							me.ktsCmd = math.max(me.econKts, me.vcl);
-						}
+				if (me.econKts > 0) {
+					if (me.econKtsMach) {
+						me.ktsMach = 1;
+						me.machCmd = me.econMachCmd;
 					} else {
-						me.machToggleEcon = 0;
 						me.ktsMach = 0;
-						me.ktsCmd = math.max(250, me.vcl);
+						me.ktsCmd = me.econKtsCmd;
 					}
 				} else {
 					me.cancelAndZero();
 				}
 			}
 		} else if (Internal.phase == 3) { # Cruise
+			# Compute ECON
+			if (me.econMach > 0 and me.vcl > 0) {
+				if (me.alt10kToggle) {
+					me.econKtsMach = 1;
+					me.econMachCmd = me.econMach;
+				} else {
+					me.econKtsMach = 0;
+					me.econKtsCmd = math.max(250, me.vcl);
+				}
+			} else {
+				me.zeroEcon();
+			}
+			
+			# Compute FMS SPD
 			if (flightData.cruiseSpeedMode == 2) { # EDIT
 				if (fms.flightData.cruiseSpeedEdit > 0 and fms.flightData.cruiseSpeedEdit < 1) {
 					me.ktsMach = 1;
@@ -259,20 +314,21 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			} else { # ECON
-				if (me.econMach > 0 and me.vcl > 0) {
-					if (me.alt10kToggle) {
+				if (me.econKtsCmd > 0) {
+					if (me.econKtsMach) {
 						me.ktsMach = 1;
-						me.machCmd = me.econMach;
+						me.machCmd = me.econMachCmd;
 					} else {
 						me.ktsMach = 0;
-						me.ktsCmd = math.max(250, me.vcl);
+						me.ktsCmd = me.econKtsCmd;
 					}
 				} else {
 					me.cancelAndZero();
 				}
 			}
 		} else if (Internal.phase >= 4) { # Descent/Approach/Rollout
-			if (me.decel) {
+			# Compute Approach Decel
+			if (me.decel and flightData.vapp > 0) {
 				if (Value.flapsPos >= 34) {
 					me.apprKts = flightData.vapp;
 				} else if (Value.flapsPos >= 27) {
@@ -286,6 +342,33 @@ var FmsSpd = {
 				me.apprKts = 0;
 			}
 			
+			# Compute ECON
+			if (me.apprKts > 0) {
+				me.econKtsMach = 0;
+				me.econKtsCmd = me.apprKts;
+			} else if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
+				if (me.alt11kToggle) {
+					if (me.convertKts(me.econMach) + 0.5 >= me.econKts) {
+						me.machToggleEcon = 0;
+					}
+					
+					if (me.machToggleEcon) {
+						me.econKtsMach = 1;
+						me.econMachCmd = me.econMach;
+					} else {
+						me.econKtsMach = 0;
+						me.econKtsCmd = me.econKts;
+					}
+				} else {
+					me.machToggleEcon = 0;
+					me.econKtsMach = 0;
+					me.econKtsCmd = math.max(245, me.vcl);
+				}
+			} else {
+				me.zeroEcon();
+			}
+			
+			# Compute FMS SPD
 			if (flightData.descentSpeedMode == 2) { # EDIT
 				if (me.editDescentKts > 0 and me.editDescentMach > 0) {
 					me.checkMachToggleEdit(2, 0);
@@ -300,10 +383,7 @@ var FmsSpd = {
 				} else {
 					me.cancelAndZero();
 				}
-			} else if (me.apprKts > 0) {
-				me.ktsMach = 0;
-				me.ktsCmd = me.apprKts;
-			} else if (flightData.descentSpeedMode == 1) { # MAX
+			} else if (flightData.descentSpeedMode == 1 and me.apprKts == 0) { # MAX
 				if (me.maxDescent > 0) {
 					me.ktsMach = 0;
 					me.ktsCmd = me.maxDescent;
@@ -311,33 +391,37 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			} else { # ECON
-				if (me.econKts > 0 and me.econMach > 0 and me.vcl > 0) {
-					if (me.alt11kToggle) {
-						if (me.convertKts(me.econMach) + 0.5 >= me.econKts) {
-							me.machToggleEcon = 0;
-						}
-						
-						if (me.machToggleEcon) {
-							me.ktsMach = 1;
-							me.machCmd = me.econMach;
-						} else {
-							me.ktsMach = 0;
-							me.ktsCmd = me.econKts;
-						}
+				if (me.econKtsCmd > 0) {
+					if (me.econKtsMach) {
+						me.ktsMach = 1;
+						me.machCmd = me.econMachCmd;
 					} else {
-						me.machToggleEcon = 0;
 						me.ktsMach = 0;
-						me.ktsCmd = math.max(245, me.vcl);
+						me.ktsCmd = me.econKtsCmd;
 					}
 				} else {
 					me.cancelAndZero();
 				}
 			}
-		} else {
-			me.cancelAndZero();
+		} else { # We should never get here
+			me.cancelAndZero(1);
 		}
 		
 		# Inactive Value Sync
+		if (me.econKtsMach) {
+			if (me.econMachCmd > 0) {
+				me.econKtsCmd = me.convertKts(me.econMachCmd);
+			} else {
+				me.econKtsCmd = 0;
+			}
+		} else {
+			if (me.econKtsCmd > 0) {
+				me.econMachCmd = me.convertMach(me.econKtsCmd);
+			} else {
+				me.econMachCmd = 0;
+			}
+		}
+		
 		if (me.ktsMach) {
 			if (me.machCmd > 0) {
 				me.ktsCmd = me.convertKts(me.machCmd);
@@ -352,7 +436,36 @@ var FmsSpd = {
 			}
 		}
 		
-		# Speed Limiting Logic
+		# ECON Speed Limiting Logic
+		if (me.econKtsCmd > 0) {
+			if (me.minKts > me.maxKts) { # Max takes priority
+				me.econKtsCalc = me.maxKts;
+			} else if (me.econKtsCmd > me.maxKts) {
+				me.econKtsCalc = me.maxKts;
+			} else if (me.econKtsCmd < me.minKts) {
+				me.econKtsCalc = me.minKts;
+			} else {
+				me.econKtsCalc = me.econKtsCmd;
+			}
+		} else {
+			me.econKtsCalc = 0;
+		}
+		
+		if (me.econMachCmd > 0) {
+			if (me.minMach > me.maxMach) { # Max takes priority
+				me.econMachCalc = me.maxMach;
+			} else if (me.econMachCmd > me.maxMach) {
+				me.econMachCalc = me.maxMach;
+			} else if (me.econMachCmd < me.minMach) {
+				me.econMachCalc = me.minMach;
+			} else {
+				me.econMachCalc = me.econMachCmd;
+			}
+		} else {
+			me.econMachCalc = 0;
+		}
+		
+		# Final Speed Limiting Logic
 		if (me.ktsCmd > 0) {
 			if (me.minKts > me.maxKts) { # Max takes priority
 				me.kts = me.maxKts;
@@ -381,11 +494,30 @@ var FmsSpd = {
 			me.mach = 0;
 		}
 		
-		# PFD Magenta Bug: Shown only when FMS SPD is active, or non-overridden V2 is set and driven
+		# PFD Magenta Bug: Filled shown only when FMS SPD is active, or non-overridden V2 is set and driven, hollow ECON speed when when in EDIT mode
 		if (me.active or (me.toDriving and me.toKts > 0 and flightData.v2State == 1)) {
-			me.pfdActive = 1;
+			me.pfdDriving = 1;
+			
+			if (Internal.phase <= 1) {
+				me.pfdShowEconPreSel = 0;
+			} else if (Internal.phase == 2 and flightData.climbSpeedMode != 2) {
+				me.pfdShowEconPreSel = 0;
+			} else if (Internal.phase == 3 and flightData.cruiseSpeedMode != 2) {
+				me.pfdShowEconPreSel = 0;
+			} else if (Internal.phase == 4 and flightData.descentSpeedMode != 2) {
+				me.pfdShowEconPreSel = 0;
+			} else {
+				if (!me.econKtsMach and me.econKtsCalc != me.kts) {
+					me.pfdShowEconPreSel = 1;
+				} else if (me.econKtsMach and me.econMachCalc != me.mach) {
+					me.pfdShowEconPreSel = 1;
+				} else {
+					me.pfdShowEconPreSel = 0;
+				}
+			}
 		} else {
-			me.pfdActive = 0;
+			me.pfdDriving = 0;
+			me.pfdShowEconPreSel = 0;
 		}
 		
 		# Write to Property Tree

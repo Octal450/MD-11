@@ -1890,6 +1890,9 @@
 			</flight-data>
 			<fms-spd n="0">
 				<active type="bool">0</active>
+				<econ-kts type="int">0</econ-kts>
+				<econ-kts-mach type="bool">0</econ-kts-mach>
+				<econ-mach type="double">0</econ-mach>
 				<kts type="int">0</kts>
 				<kts-mach type="bool">0</kts-mach>
 				<mach type="double">0</mach>

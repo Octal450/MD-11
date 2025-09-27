@@ -24,6 +24,11 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
+		<pure_gain name="/instrumentation/pfd/kts-mach-fms-econ">
+			<input>/systems/fms/fms-spd/econ-kts-mach</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
 		<fcs_function name="/instrumentation/pfd/spd-pre-sel">
 			<function>
 				<ifthen>
@@ -88,6 +93,38 @@
 							<property>/systems/fms/fms-spd/mach</property>
 						</product>
 						<property>/systems/fms/fms-spd/kts</property>
+					</ifthen>
+					<value>0</value>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/pfd/spd-fms-econ">
+			<function>
+				<ifthen>
+					<and> <!-- Both must be valid -->
+						<gt>
+							<property>/systems/fms/fms-spd/econ-kts</property>
+							<value>0</value>
+						</gt>
+						<gt>
+							<property>/systems/fms/fms-spd/econ-mach</property>
+							<value>0</value>
+						</gt>
+					</and>
+					<ifthen>
+						<eq>
+							<property>/instrumentation/pfd/kts-mach-fms-econ</property>
+							<value>1</value>
+						</eq>
+						<product>
+							<quotient>
+								<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+								<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+							</quotient>
+							<property>/systems/fms/fms-spd/econ-mach</property>
+						</product>
+						<property>/systems/fms/fms-spd/econ-kts</property>
 					</ifthen>
 					<value>0</value>
 				</ifthen>
