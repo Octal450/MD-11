@@ -302,6 +302,7 @@ var canvasBase = {
 		Value.Afs.ktsMach = pts.Instrumentation.Pfd.ktsMachSel.getBoolValue();
 		Value.Afs.ktsMachFms = pts.Instrumentation.Pfd.ktsMachFms.getBoolValue();
 		Value.Afs.ktsMachFmsEcon = pts.Instrumentation.Pfd.ktsMachFmsEcon.getBoolValue();
+		Value.Afs.ktsMachPreSel = pts.Instrumentation.Pfd.ktsMachPreSel.getBoolValue();
 		Value.Afs.lat = afs.Output.lat.getValue();
 		Value.Afs.land = afs.Text.land.getValue();
 		Value.Afs.mach = afs.Internal.mach.getValue();
