@@ -299,6 +299,18 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/fms/speeds/mmo"> <!-- From FCOM -->
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fms/speeds/vmo-mmo-sel</independentVar>
+					<tableData>
+						0  0.87
+						1  0.85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/fms/speeds/mmo-kts">
 			<function>
 				<product>
@@ -309,13 +321,7 @@
 							<value>0.0001</value>
 						</max>
 					</quotient>
-					<table>
-						<independentVar lookup="row">/systems/fms/speeds/vmo-mmo-sel</independentVar>
-						<tableData>
-							0  0.87
-							1  0.85
-						</tableData>
-					</table>
+					<property>/systems/fms/speeds/mmo</property>
 				</product>
 			</function>
 		</fcs_function>

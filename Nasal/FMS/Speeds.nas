@@ -20,6 +20,7 @@ var Speeds = {
 	gearRetMax: props.globals.getNode("/systems/fms/speeds/gear-ret-max-kts"),
 	maxClimb: props.globals.getNode("/systems/fms/speeds/max-climb"),
 	maxDescent: props.globals.getNode("/systems/fms/speeds/max-descent"),
+	mmo: props.globals.getNode("/systems/fms/speeds/mmo"),
 	slatMin: props.globals.getNode("/systems/fms/speeds/slat-min"),
 	slatMax: props.globals.getNode("/systems/fms/speeds/slat-max-kts"),
 	v1: props.globals.getNode("/systems/fms/speeds/v1"),
@@ -31,6 +32,7 @@ var Speeds = {
 	vmax: props.globals.getNode("/systems/fms/speeds/vmax"),
 	vmin: props.globals.getNode("/systems/fms/speeds/vmin"),
 	vminTape: props.globals.getNode("/systems/fms/speeds/vmin-tape"),
+	vmoKts: props.globals.getNode("/systems/fms/speeds/vmo-kts"),
 	vmoMmo: props.globals.getNode("/systems/fms/speeds/vmo-mmo"),
 	vr: props.globals.getNode("/systems/fms/speeds/vr"),
 	vref: props.globals.getNode("/systems/fms/speeds/vref"),
@@ -72,13 +74,14 @@ var FmsSpd = {
 	machOut: props.globals.getNode("/systems/fms/fms-spd/mach"),
 	machToggleEcon: 0,
 	machToggleEditClimb: 0,
-	machToggleEditDescent: 0,
+	machToggleEditDescent: 1,
 	maxClimb: 0,
 	maxDescent: 0,
 	maxKts: 365,
 	maxMach: 0.87,
 	minKts: 0,
 	minMach: 0,
+	mmoMinus5: 0,
 	pfdDriving: 0,
 	pfdShowEconPreSel: 0,
 	toDriving: 0,
@@ -86,6 +89,7 @@ var FmsSpd = {
 	toKtsCmd: 0,
 	v2Toggle: 0,
 	vcl: 0,
+	vmoMinus5: 0,
 	init: func() {
 		me.active = 0;
 		me.activeOrFmsVspeed = 0;
@@ -105,7 +109,7 @@ var FmsSpd = {
 		me.machCmd = 0;
 		me.machToggleEcon = 0;
 		me.machToggleEditClimb = 0;
-		me.machToggleEditDescent = 0;
+		me.machToggleEditDescent = 1;
 		me.pfdDriving = 0;
 		me.pfdShowEconPreSel = 0;
 		me.toKts = 0;
@@ -526,7 +530,7 @@ var FmsSpd = {
 	checkMachToggleEdit: func(type, rst) { # Reset is not allowed when calling from the loop
 		if (type == 2) { # Descent
 			if (Internal.phase >= 4) {
-				if (me.convertKts(me.editDescentMach) + 0.5 >= me.editDescentKts) {
+				if (me.convertKts(math.min(me.editDescentMach, me.mmoMinus5)) + 0.5 >= math.min(me.editDescentKts, me.vmoMinus5)) {
 					me.machToggleEditDescent = 0;
 				} else if (rst) {
 					me.machToggleEditDescent = 1;
@@ -535,7 +539,7 @@ var FmsSpd = {
 				me.machToggleEditDescent = 1;
 			}
 		} else { # Climb
-			if (me.convertMach(me.editClimbKts) + 0.0005 >= me.editClimbMach) {
+			if (me.convertMach(math.min(me.editClimbKts, me.vmoMinus5)) + 0.0005 >= math.min(me.editClimbMach, me.mmoMinus5)) {
 				me.machToggleEditClimb = 1;
 			} else if (rst) {
 				me.machToggleEditClimb = 0;
@@ -557,18 +561,20 @@ var FmsSpd = {
 		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
 		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
 		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
+		me.mmoMinus5 = math.round(Speeds.mmo.getValue() - 0.005, 0.001);
 		me.vcl = math.round(Speeds.vcl.getValue());
+		me.vmoMinus5 = math.round(Speeds.vmoKts.getValue() - 5);
 		
-		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.maxKts;
+		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.vmoMinus5;
 		else me.editClimbKts = fms.flightData.climbSpeedEditKts;
 		
-		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.maxMach;
+		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.mmoMinus5;
 		else me.editClimbMach = fms.flightData.climbSpeedEditMach;
 		
-		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.maxKts;
+		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.vmoMinus5;
 		else me.editDescentKts = fms.flightData.descentSpeedEditKts;
 		
-		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.maxMach;
+		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.mmoMinus5;
 		else me.editDescentMach = fms.flightData.descentSpeedEditMach;
 	},
 	takeoffLogic: func() {
