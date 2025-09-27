@@ -276,7 +276,7 @@ var FmsSpd = {
 					me.cancelAndZero();
 				}
 			} else { # ECON
-				if (me.econKts > 0) {
+				if (me.econKtsCalc > 0) {
 					if (me.econKtsMach) {
 						me.ktsMach = 1;
 						me.machCmd = me.econMachCmd;
