@@ -142,7 +142,7 @@ var Value = {
 		},
 	},
 	Hdg: {
-		hideHdgPreSel: 0,
+		hideHdgSel: 0,
 		indicated: 0,
 		preSel: 0,
 		sel: 0,
@@ -2051,7 +2051,7 @@ var canvasBase = {
 		me["HDG_dial"].setRotation(Value.Hdg.indicated * -D2R);
 		
 		Value.Hdg.preSel = pts.Instrumentation.Pfd.hdgPreSel.getValue();
-		Value.Hdg.sel = pts.Instrumentation.Pfd.hdgPreSel.getValue();
+		Value.Hdg.sel = pts.Instrumentation.Pfd.hdgSel.getValue();
 		Value.Hdg.showHdg = afs.Output.showHdg.getBoolValue();
 		
 		if (Value.Hdg.preSel <= 35 and Value.Hdg.preSel >= -35) {
@@ -2099,17 +2099,17 @@ var canvasBase = {
 			
 			if (!afs.Internal.syncedHdg) {
 				if (Value.Hdg.preSel < -35 and Value.Hdg.sel < -35) {
-					Value.Hdg.hideHdgPreSel = 1;
+					Value.Hdg.hideHdgSel = 1;
 				} else if (Value.Hdg.preSel > 35 and Value.Hdg.sel > 35) {
-					Value.Hdg.hideHdgPreSel = 1;
+					Value.Hdg.hideHdgSel = 1;
 				} else {
-					Value.Hdg.hideHdgPreSel = 0;
+					Value.Hdg.hideHdgSel = 0;
 				}
 			} else {
-				Value.Hdg.hideHdgPreSel = 0;
+				Value.Hdg.hideHdgSel = 0;
 			}
 			
-			if (!Value.Hdg.hideHdgPreSel) {
+			if (!Value.Hdg.hideHdgSel) {
 				me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
 				me["HDG_sel"].show();
 			} else {
