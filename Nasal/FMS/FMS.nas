@@ -127,7 +127,7 @@ var CORE = {
 			} else if (Value.wow) {
 				Internal.phaseNew = 6; # Rollout
 			} else if (flightData.cruiseAltAll[0] > 0) {
-				if (Value.afsAlt < flightData.cruiseAltAll[0]) {
+				if (Value.afsAlt < flightData.cruiseAltAll[0] and Value.vertText != "ALT HLD") {
 					Internal.phaseNew = 4; # Descent
 				}
 			}
