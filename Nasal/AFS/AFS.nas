@@ -931,16 +931,19 @@ var ITAF = {
 		}
 		
 		# Mach Switchover
-		if (!fms.FmsSpd.active) { # When FMS SPD is active, it handles switchover automatically
-			if (Internal.machSwitchover) {
-				if (Position.indicatedAltitudeFt.getValue() < 25990) {
-					Internal.machSwitchover = 0;
+		# When FMS SPD is active, it handles switchover automatically
+		if (Internal.machSwitchover) {
+			if (Position.indicatedAltitudeFt.getValue() < 25990) {
+				Internal.machSwitchover = 0; # We still need to update this so it won't trigger wrongly
+				if (!fms.FmsSpd.active) {
 					if (Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(0); # Only if IAS not already preselected
 					me.spdPull();
 				}
-			} else {
-				if (Position.indicatedAltitudeFt.getValue() >= 25990) {
-					Internal.machSwitchover = 1;
+			}
+		} else {
+			if (Position.indicatedAltitudeFt.getValue() >= 25990) {
+				Internal.machSwitchover = 1; # We still need to update this so it won't trigger wrongly
+				if (!fms.FmsSpd.active) {
 					if (!Input.ktsMach.getBoolValue()) Input.ktsMach.setBoolValue(1); # Only if mach not already preselected
 					me.spdPull();
 				}
