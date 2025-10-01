@@ -4,6 +4,7 @@ MATERIAL "DefaultWhite.001" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 21
 MATERIAL "DefaultWhite.011" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.8842  trans 0
 MATERIAL "DefaultWhite.011" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 20.8842  trans 0
 OBJECT world
+hidden
 kids 115
 OBJECT poly
 name "Cube.046"
@@ -11,6 +12,7 @@ data 13
 Cube.046.mesh
 texture "pedestal.jpg"
 crease 40.000000
+hidden
 numvert 60
 -26.7288 6.70478 -0.07133
 -26.728 6.70478 -0.07048
@@ -476,6 +478,7 @@ name "cylinder"
 loc -26.7062 6.70262 -0.149463
 texture "knob.png"
 crease 45.000000
+hidden
 numvert 26
 0 -0.00608015 0
 0 0.00607967 0
@@ -739,6 +742,7 @@ data 17
 Cylinder.007.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 50
 -27.0242 6.73086 -0.15557
 -27.0242 6.73086 -0.14656
@@ -949,6 +953,7 @@ data 20
 STRB.toggle.001.mesh
 texture "buttons.jpg"
 crease 45.000000
+hidden
 numvert 12
 -0.00463867 0.0112963 -0.00863001
 -0.00463867 0.0112963 0.00863001
@@ -1034,6 +1039,7 @@ data 17
 aileron.trim.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 488
 -26.7094 6.61453 1.16962
 -26.7096 6.61368 1.17036
@@ -5273,6 +5279,7 @@ data 13
 BrkLever.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.1336 6.682 0.17008
 -27.1336 6.682 0.16796
@@ -5364,6 +5371,7 @@ data 14
 BrkLever2.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 72
 -27.1829 6.76629 0.16695
 -27.177 6.76876 0.16695
@@ -5965,6 +5973,7 @@ data 9
 Cube.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 10
 -26.6364 6.68739 -0.09629
 -26.6364 6.68739 -0.05525
@@ -6019,6 +6028,7 @@ data 13
 Cube.029.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 16
 -27.0164 6.70586 -0.0206
 -27.0164 6.70586 -0.0234
@@ -6142,6 +6152,7 @@ data 13
 Cube.030.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 16
 -27.0164 6.70586 0.01361
 -27.0164 6.70586 0.01081
@@ -6264,6 +6275,7 @@ name "Cube.038"
 data 13
 Cube.038.mesh
 crease 40.000000
+hidden
 kids 0
 OBJECT poly
 name "Cube.045"
@@ -6271,6 +6283,7 @@ data 13
 Cube.045.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 92
 -26.7309 6.7056 -0.05687
 -26.7304 6.7056 -0.05819
@@ -6992,6 +7005,7 @@ data 13
 Cube.051.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 104
 -26.6651 6.66817 0.17846
 -26.6651 6.6688 0.17981
@@ -7781,6 +7795,7 @@ data 13
 Cube.201.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 92
 -27.2971 6.72368 0.21458
 -27.301 6.71443 0.21458
@@ -8410,6 +8425,7 @@ data 13
 Cube.203.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 66
 -26.6546 6.65472 0.08512
 -26.6859 6.65472 0.08512
@@ -8934,6 +8950,7 @@ data 21
 Cylinder.021.mesh.001
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4866 6.78462 -0.00386
 -27.4865 6.78466 -0.00368
@@ -9458,6 +9475,7 @@ data 21
 Cylinder.021.mesh.002
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4866 6.78462 0.00592
 -27.4865 6.78466 0.0061
@@ -9982,6 +10000,7 @@ data 21
 Cylinder.021.mesh.003
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4611 6.71626 0.00592
 -27.461 6.7163 0.0061
@@ -10506,6 +10525,7 @@ data 21
 Cylinder.021.mesh.004
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4611 6.71626 -0.00386
 -27.461 6.7163 -0.00368
@@ -11030,6 +11050,7 @@ data 17
 Cylinder.016.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4611 6.71646 0.09206
 -27.461 6.7165 0.09223
@@ -11553,6 +11574,7 @@ data 17
 Cylinder.017.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 20
 -27.027 6.73285 -0.10082
 -27.0424 6.75164 -0.10082
@@ -11645,6 +11667,7 @@ data 17
 Cylinder.018.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.6788 6.7083 -0.03943
 -26.6788 6.70841 -0.03925
@@ -12168,6 +12191,7 @@ data 17
 Cylinder.019.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.0383 6.74616 -0.0104
 -27.0369 6.74718 -0.0104
@@ -12280,6 +12304,7 @@ data 17
 Cylinder.021.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4866 6.78462 -0.09299
 -27.4865 6.78466 -0.09281
@@ -12803,6 +12828,7 @@ data 17
 Cylinder.025.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.6788 6.7083 0.03453
 -26.6788 6.70841 0.0347
@@ -13327,6 +13353,7 @@ data 17
 Cylinder.026.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4866 6.78462 0.09206
 -27.4865 6.78466 0.09223
@@ -13850,6 +13877,7 @@ data 17
 Cylinder.027.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.2742 6.71449 -0.10703
 -27.2773 6.70745 -0.10703
@@ -14154,6 +14182,7 @@ data 17
 Cylinder.028.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 95
 -27.027 6.73793 -0.08599
 -27.0424 6.75672 -0.08599
@@ -14716,6 +14745,7 @@ data 17
 Cylinder.029.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 18
 -27.118 6.7967 -0.10592
 -27.118 6.79524 -0.10592
@@ -14863,6 +14893,7 @@ data 17
 Cylinder.031.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -26.6178 6.71022 0.03371
 -26.6113 6.71022 0.03175
@@ -15160,6 +15191,7 @@ data 17
 Cylinder.033.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.0383 6.74616 0.02479
 -27.0369 6.74718 0.02479
@@ -15271,6 +15303,7 @@ data 17
 Cylinder.036.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.7227 6.70613 -0.17255
 -26.7227 6.69846 -0.17255
@@ -15575,6 +15608,7 @@ data 17
 Cylinder.037.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.7064 6.70613 -0.17255
 -26.7064 6.69846 -0.17255
@@ -15879,6 +15913,7 @@ data 17
 Cylinder.038.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.7195 6.7083 -0.03538
 -26.7195 6.70841 -0.03521
@@ -16402,6 +16437,7 @@ data 17
 Cylinder.039.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.7195 6.7083 0.02962
 -26.7195 6.70841 0.0298
@@ -16925,6 +16961,7 @@ data 17
 Cylinder.059.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.2825 6.71902 -0.12492
 -27.2825 6.71912 -0.12474
@@ -17449,6 +17486,7 @@ data 17
 Cylinder.060.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.4611 6.71646 -0.09299
 -27.461 6.7165 -0.09281
@@ -17972,6 +18010,7 @@ data 17
 Cylinder.061.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.5924 6.7083 -0.03943
 -26.5924 6.70841 -0.03925
@@ -18495,6 +18534,7 @@ data 17
 Cylinder.095.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 22
 -26.7235 6.6949 0.03524
 -26.7157 6.6949 0.03524
@@ -18684,6 +18724,7 @@ data 17
 Cylinder.907.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -26.7159 6.68492 0.0312
 -26.71 6.68492 0.0355
@@ -19341,6 +19382,7 @@ data 17
 Cylinder.912.mesh
 texture "knob.png"
 crease 45.000000
+hidden
 numvert 24
 -27.0255 6.71393 -0.13596
 -27.0183 6.71393 -0.13596
@@ -19522,6 +19564,7 @@ data 17
 Cylinder.913.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 52
 -27.0867 6.78049 0.1139
 -27.0867 6.78049 0.10341
@@ -19877,6 +19920,7 @@ data 17
 Cylinder.916.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0149 6.71906 0.08358
 -27.0148 6.7191 0.08376
@@ -20400,6 +20444,7 @@ data 17
 Cylinder.932.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 16
 -26.5741 6.69678 -0.06079
 -26.5741 6.4893 -0.06079
@@ -20553,6 +20598,7 @@ data 17
 Cylinder.933.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 844
 -26.6365 6.58673 0.09735
 -26.6365 6.57645 0.10161
@@ -27194,6 +27240,7 @@ data 17
 Cylinder.934.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 112
 -26.6429 6.38788 0.12258
 -26.643 6.44158 0.12258
@@ -28115,6 +28162,7 @@ data 17
 Cylinder.935.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 24
 -26.6723 6.4262 0.06721
 -26.6483 6.4262 0.06721
@@ -28296,6 +28344,7 @@ data 17
 Cylinder.936.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0219 6.73049 0.15221
 -27.0218 6.73053 0.15239
@@ -28819,6 +28868,7 @@ data 17
 Cylinder.937.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0149 6.71906 0.13829
 -27.0148 6.7191 0.13847
@@ -29342,6 +29392,7 @@ data 17
 Cylinder.938.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0149 6.71906 -0.07643
 -27.0148 6.7191 -0.07625
@@ -29865,6 +29916,7 @@ data 17
 Cylinder.939.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0149 6.71906 -0.11224
 -27.0148 6.7191 -0.11206
@@ -30388,6 +30440,7 @@ data 17
 Cylinder.940.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0206 6.71906 -0.1577
 -27.0205 6.7191 -0.15752
@@ -30911,6 +30964,7 @@ data 17
 Cylinder.942.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.8258 6.70613 -0.1735
 -26.8258 6.69846 -0.1735
@@ -31215,6 +31269,7 @@ data 17
 Cylinder.943.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.8561 6.70613 -0.1735
 -26.8561 6.69846 -0.1735
@@ -31519,6 +31574,7 @@ data 17
 Cylinder.944.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.747 6.70613 0.06541
 -26.747 6.69846 0.06541
@@ -31823,6 +31879,7 @@ data 17
 Cylinder.945.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.747 6.70613 0.17641
 -26.747 6.69846 0.17641
@@ -32127,6 +32184,7 @@ data 17
 Cylinder.946.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -26.5924 6.7083 0.03453
 -26.5924 6.70841 0.0347
@@ -32650,6 +32708,7 @@ data 17
 Cylinder.947.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.7064 6.70613 -0.06365
 -26.7064 6.69846 -0.06365
@@ -32954,6 +33013,7 @@ data 17
 Cylinder.948.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -26.7227 6.70613 -0.06365
 -26.7227 6.69846 -0.06365
@@ -33258,6 +33318,7 @@ data 17
 Cylinder.949.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.1806 6.78288 0.01705
 -27.1807 6.78298 0.01723
@@ -33781,6 +33842,7 @@ data 17
 Cylinder.950.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.1806 6.78288 -0.0202
 -27.1807 6.78298 -0.02002
@@ -34304,6 +34366,7 @@ data 17
 Cylinder.951.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.2586 6.70805 -0.0894
 -27.2586 6.70038 -0.0894
@@ -34608,6 +34671,7 @@ data 17
 Cylinder.952.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.2586 6.70805 0.09581
 -27.2586 6.70038 0.09581
@@ -34912,6 +34976,7 @@ data 17
 Cylinder.953.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.279 6.71789 -0.19843
 -27.279 6.71799 -0.19825
@@ -35435,6 +35500,7 @@ data 17
 Cylinder.954.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.2677 6.71169 0.10652
 -27.2708 6.70465 0.10652
@@ -35739,6 +35805,7 @@ data 17
 Cylinder.955.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.2796 6.71695 0.21762
 -27.2827 6.70991 0.21762
@@ -36043,6 +36110,7 @@ data 17
 Cylinder.957.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0121 6.70633 0.01678
 -27.012 6.70636 0.01696
@@ -36566,6 +36634,7 @@ data 17
 Cylinder.958.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0121 6.70633 -0.03168
 -27.012 6.70636 -0.0315
@@ -37089,6 +37158,7 @@ data 17
 Cylinder.959.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0758 6.78124 -0.0202
 -27.0758 6.78134 -0.02002
@@ -37612,6 +37682,7 @@ data 17
 Cylinder.960.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 63
 -27.0758 6.78124 0.01705
 -27.0758 6.78134 0.01723
@@ -38135,6 +38206,7 @@ data 17
 Cylinder.961.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.0383 6.74616 -0.04577
 -27.0369 6.74718 -0.04577
@@ -38246,6 +38318,7 @@ data 17
 Cylinder.963.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.021 6.71703 -0.0158
 -27.018 6.71839 -0.0158
@@ -38357,6 +38430,7 @@ data 17
 Cylinder.964.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.021 6.71703 -0.05053
 -27.018 6.71839 -0.05053
@@ -38468,6 +38542,7 @@ data 21
 Cylinder.965.mesh.001
 texture "dialaflap.png"
 crease 45.000000
+hidden
 numvert 32
 -27.0376 6.74326 -0.16676
 -27.0376 6.74326 -0.17597
@@ -38780,6 +38855,7 @@ data 15
 Eng1Cutoff.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 145
 -27.6368 -3.41085 0.03556
 -27.6379 -3.40793 0.03243
@@ -39887,6 +39963,7 @@ data 15
 Eng2Cutoff.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 145
 -27.6368 -3.41085 0.00018
 -27.6379 -3.40793 -0.00296
@@ -40994,6 +41071,7 @@ data 15
 Eng3Cutoff.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 145
 -27.6368 -3.41085 -0.03482
 -27.6379 -3.40793 -0.03796
@@ -42100,6 +42178,7 @@ data 14
 flaplever.mesh
 texture "knob.png"
 crease 45.000000
+hidden
 numvert 119
 -27.1493 6.85088 -0.12315
 -27.1108 6.8492 -0.12416
@@ -43038,6 +43117,7 @@ data 16
 flaplever.2.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 32
 -27.1329 6.81546 -0.10117
 -27.1142 6.81546 -0.09958
@@ -43262,6 +43342,7 @@ data 16
 flaplever.3.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 20
 -27.1283 6.74118 -0.0965
 -27.1283 6.74118 -0.09879
@@ -43418,6 +43499,7 @@ data 18
 pedestal.text.mesh
 texture "pedestal_text.png"
 crease 45.000000
+hidden
 numvert 416
 0.218699 -0.0213509 -0.000550032
 0.214098 -0.0213509 -0.000550032
@@ -44644,6 +44726,7 @@ refs 4
 kids 0
 OBJECT group
 name "PitchTrim"
+hidden
 kids 3
 OBJECT poly
 name "PitchTrim.ctr"
@@ -44651,6 +44734,7 @@ data 18
 PitchTrim.ctr.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 39
 -27.1244 6.80995 0.17143
 -27.1245 6.80431 0.16839
@@ -44829,6 +44913,7 @@ data 17
 PitchTrim.dn.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 206
 -27.1244 6.80995 0.17143
 -27.1246 6.80431 0.16839
@@ -46432,6 +46517,7 @@ data 17
 PitchTrim.up.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 191
 -27.1191 6.80982 0.14442
 -27.1192 6.80419 0.15917
@@ -47922,6 +48008,7 @@ data 14
 reverse.1.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 100
 -27.2014 6.80834 0.03409
 -27.2057 6.80345 0.03409
@@ -48803,6 +48890,7 @@ data 14
 reverse.2.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 200
 -27.1353 6.83067 -0.00186
 -27.1345 6.82761 -0.00186
@@ -50556,6 +50644,7 @@ data 14
 reverse.3.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 100
 -27.2014 6.80834 -0.03147
 -27.2057 6.80345 -0.03147
@@ -51437,6 +51526,7 @@ data 17
 rudder.light.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 8
 -26.5904 6.7113 0
 -26.593 6.71555 0.00299
@@ -51469,6 +51559,7 @@ data 16
 rudder.trim.mesh
 texture "knob.png"
 crease 45.000000
+hidden
 numvert 144
 -26.6245 6.71621 -0.02781
 -26.6245 6.73273 -0.02781
@@ -52846,6 +52937,7 @@ data 17
 rudder.trim2.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -26.6245 6.71612 0.0312
 -26.6245 6.71022 0.03402
@@ -53322,6 +53414,7 @@ name "spdbrkarm"
 loc -27.1271 6.77939 0.101773
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 8
 -0.00488472 -0.00392532 -0.00345557
 0.00488472 -0.00392532 -0.00345557
@@ -53354,6 +53447,7 @@ data 16
 spdbrklever.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 121
 0.00552177 -0.00933599 -0.00188752
 -0.0069046 -0.00691223 -0.00188928
@@ -54357,6 +54451,7 @@ data 18
 starter.1.off.mesh
 texture "pedestal_text.png"
 crease 45.000000
+hidden
 numvert 161
 -27.0311 6.75391 0.03591
 -27.0296 6.75527 0.02428
@@ -55756,77 +55851,77 @@ numvert 161
 -27.0283 6.75811 0.03033
 numsurf 152
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 40 0.315047 0.020724
 39 0.317216 0.020927
 119 0.321079 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 119 0.321079 0.015059
 37 0.32696 0.011195
 38 0.326062 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 38 0.326062 0.009705
 37 0.32696 0.011195
 117 0.333851 0.009764
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 117 0.333851 0.009764
 35 0.340741 0.011195
 36 0.34164 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 36 0.34164 0.009705
 35 0.340741 0.011195
 115 0.346623 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 115 0.346623 0.015059
 33 0.350486 0.020927
 34 0.352655 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 114 0.354268 0.028511
 34 0.352655 0.020724
 33 0.350486 0.020927
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 47 0.350486 0.034713
 48 0.352655 0.036299
 114 0.354268 0.028511
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 48 0.352655 0.036299
 47 0.350486 0.034713
 127 0.346623 0.040592
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 123 0.321079 0.040592
 41 0.317216 0.034713
 42 0.315047 0.036299
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 46 0.34164 0.047306
@@ -55861,28 +55956,28 @@ refs 4
 134 0.147698 0.224936
 85 0.14989 0.222553
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 42 0.315047 0.036299
 41 0.317216 0.034713
 121 0.315789 0.02782
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 121 0.315789 0.02782
 39 0.317216 0.020927
 40 0.315047 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 127 0.346623 0.040592
 45 0.340741 0.044456
 46 0.34164 0.047306
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 44 0.326062 0.047306
@@ -56813,7 +56908,7 @@ refs 4
 154 0.185414 0.154911
 105 0.196166 0.162748
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 125 0.333851 0.045875
@@ -56827,6 +56922,7 @@ data 18
 starter.2.off.mesh
 texture "pedestal_text.png"
 crease 45.000000
+hidden
 numvert 161
 -27.0311 6.75391 0.000639999
 -27.0296 6.75527 -0.01099
@@ -58226,77 +58322,77 @@ numvert 161
 -27.0283 6.75811 -0.00494
 numsurf 152
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 40 0.315047 0.020724
 39 0.317216 0.020927
 119 0.321079 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 119 0.321079 0.015059
 37 0.32696 0.011195
 38 0.326062 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 38 0.326062 0.009705
 37 0.32696 0.011195
 117 0.333851 0.009764
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 117 0.333851 0.009764
 35 0.340741 0.011195
 36 0.34164 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 36 0.34164 0.009705
 35 0.340741 0.011195
 115 0.346623 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 115 0.346623 0.015059
 33 0.350486 0.020927
 34 0.352655 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 114 0.354268 0.028511
 34 0.352655 0.020724
 33 0.350486 0.020927
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 47 0.350486 0.034713
 48 0.352655 0.036299
 114 0.354268 0.028511
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 48 0.352655 0.036299
 47 0.350486 0.034713
 127 0.346623 0.040592
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 123 0.321079 0.040592
 41 0.317216 0.034713
 42 0.315047 0.036299
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 46 0.34164 0.047306
@@ -58331,28 +58427,28 @@ refs 4
 134 0.147698 0.224936
 85 0.14989 0.222553
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 42 0.315047 0.036299
 41 0.317216 0.034713
 121 0.315789 0.02782
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 121 0.315789 0.02782
 39 0.317216 0.020927
 40 0.315047 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 127 0.346623 0.040592
 45 0.340741 0.044456
 46 0.34164 0.047306
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 44 0.326062 0.047306
@@ -59283,7 +59379,7 @@ refs 4
 154 0.185414 0.154911
 105 0.196166 0.162748
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 125 0.333851 0.045875
@@ -59297,6 +59393,7 @@ data 18
 starter.3.off.mesh
 texture "pedestal_text.png"
 crease 45.000000
+hidden
 numvert 161
 -27.0311 6.75391 -0.03438
 -27.0296 6.75527 -0.04602
@@ -60696,77 +60793,77 @@ numvert 161
 -27.0283 6.75811 -0.03996
 numsurf 152
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 40 0.315047 0.020724
 39 0.317216 0.020927
 119 0.321079 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 120 0.319414 0.014081
 119 0.321079 0.015059
 37 0.32696 0.011195
 38 0.326062 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 38 0.326062 0.009705
 37 0.32696 0.011195
 117 0.333851 0.009764
 SURF 0x30
-mat 3
+mat 0
 refs 4
 118 0.333851 0.008095
 117 0.333851 0.009764
 35 0.340741 0.011195
 36 0.34164 0.009705
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 36 0.34164 0.009705
 35 0.340741 0.011195
 115 0.346623 0.015059
 SURF 0x30
-mat 3
+mat 0
 refs 4
 116 0.348288 0.014081
 115 0.346623 0.015059
 33 0.350486 0.020927
 34 0.352655 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 114 0.354268 0.028511
 34 0.352655 0.020724
 33 0.350486 0.020927
 SURF 0x30
-mat 3
+mat 0
 refs 4
 113 0.351913 0.02782
 47 0.350486 0.034713
 48 0.352655 0.036299
 114 0.354268 0.028511
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 48 0.352655 0.036299
 47 0.350486 0.034713
 127 0.346623 0.040592
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 123 0.321079 0.040592
 41 0.317216 0.034713
 42 0.315047 0.036299
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 46 0.34164 0.047306
@@ -60801,28 +60898,28 @@ refs 4
 134 0.147698 0.224936
 85 0.14989 0.222553
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 42 0.315047 0.036299
 41 0.317216 0.034713
 121 0.315789 0.02782
 SURF 0x30
-mat 3
+mat 0
 refs 4
 122 0.313434 0.028511
 121 0.315789 0.02782
 39 0.317216 0.020927
 40 0.315047 0.020724
 SURF 0x30
-mat 3
+mat 0
 refs 4
 128 0.348288 0.042942
 127 0.346623 0.040592
 45 0.340741 0.044456
 46 0.34164 0.047306
 SURF 0x30
-mat 3
+mat 0
 refs 4
 124 0.319414 0.042942
 44 0.326062 0.047306
@@ -61753,7 +61850,7 @@ refs 4
 154 0.185414 0.154911
 105 0.196166 0.162748
 SURF 0x30
-mat 3
+mat 0
 refs 4
 126 0.333851 0.048928
 125 0.333851 0.045875
@@ -61762,6 +61859,7 @@ refs 4
 kids 0
 OBJECT group
 name "throttle.1"
+hidden
 kids 2
 OBJECT poly
 name "throttle.1.ats"
@@ -61769,6 +61867,7 @@ data 19
 throttle.1.ats.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 32
 -27.0692 6.87395 0.05019
 -27.0726 6.87454 0.05019
@@ -62006,6 +62105,7 @@ data 20
 throttle.1.base.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 316
 -27.1495 6.77466 0.03586
 -27.1495 6.77466 0.04271
@@ -64588,6 +64688,7 @@ data 22
 throttle.1.circle.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -27.0826 6.77485 0.04685
 -27.0656 6.76602 0.04685
@@ -64867,6 +64968,7 @@ refs 4
 kids 0
 OBJECT group
 name "throttle.2"
+hidden
 kids 3
 OBJECT poly
 name "throttle.2.base"
@@ -64874,6 +64976,7 @@ data 20
 throttle.2.base.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 305
 -27.1186 6.85691 0.00992
 -27.1002 6.82964 0.00992
@@ -67304,6 +67407,7 @@ data 24
 throttle.2.base.mesh.001
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 9
 -27.1543 6.83273 -0.0019
 -27.1543 6.83273 0.00452
@@ -67362,6 +67466,7 @@ data 18
 throttle.2.ga.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 16
 -27.1206 6.85978 0.00702
 -27.1244 6.85713 0.00526
@@ -67479,6 +67584,7 @@ data 22
 throttle.2.circle.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -27.0826 6.77485 0.00892
 -27.0656 6.76602 0.00892
@@ -67758,6 +67864,7 @@ refs 4
 kids 0
 OBJECT group
 name "throttle.3"
+hidden
 kids 2
 OBJECT poly
 name "throttle.3.ats"
@@ -67765,6 +67872,7 @@ data 19
 throttle.3.ats.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 32
 -27.0742 6.87383 -0.04957
 -27.0726 6.87454 -0.04957
@@ -68002,6 +68110,7 @@ data 20
 throttle.3.base.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 316
 -27.0742 6.87383 -0.04622
 -27.0672 6.8694 -0.04622
@@ -70584,6 +70693,7 @@ data 22
 throttle.3.circle.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 64
 -27.0826 6.77485 -0.04188
 -27.0656 6.76602 -0.04188
@@ -70868,6 +70978,7 @@ data 17
 rudder.light.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 4
 -22.3399 16.0177 -0.00299
 -22.3439 16.0147 0
@@ -70889,6 +71000,7 @@ data 21
 Cylinder.965.mesh.001
 texture "dialaflap_text.png"
 crease 45.000000
+hidden
 numvert 32
 -27.2468 6.79533 -0.16676
 -27.2468 6.79533 -0.17597
@@ -71042,6 +71154,7 @@ data 17
 Cylinder.962.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 12
 -27.021 6.71703 0.01939
 -27.018 6.71839 0.01939
@@ -71153,6 +71266,7 @@ data 23
 spdbrklever.circle.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 40
 -27.0493 6.75685 0.09343
 -27.0362 6.74086 0.09343
@@ -71335,6 +71449,7 @@ data 21
 PitchTrim.circle.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 114
 -27.1776 6.78115 0.1585
 -27.0425 6.75427 0.1585
@@ -71962,6 +72077,7 @@ data 17
 Cylinder.024.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 54
 -27.0424 6.75526 0.05747
 -27.027 6.73628 0.05747
@@ -72305,6 +72421,7 @@ data 17
 Cylinder.020.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 626
 -27.0209 6.72661 0.02192
 -27.0209 6.72661 0.01475
@@ -76967,6 +77084,7 @@ data 16
 brake.light.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 48
 -27.0155 6.71474 0.17655
 -27.0169 6.71929 0.17382
@@ -77319,6 +77437,7 @@ name "SlatStow.on"
 loc -27.1746 6.67217 -0.172981
 texture "lights.png"
 crease 45.000000
+hidden
 numvert 4
 -0.089777 0.0375543 0.0264521
 -0.089777 0.0375543 0.0384791
@@ -77335,6 +77454,7 @@ refs 4
 kids 0
 OBJECT group
 name "ADGHandle"
+hidden
 kids 2
 OBJECT poly
 name "ADGHandleLabel"
@@ -77343,6 +77463,7 @@ data 19
 ADGHandleLabel.mesh
 texture "pedestal_text.png"
 crease 45.000000
+hidden
 numvert 4
 -26.5817 6.49746 -0.07168
 -26.5817 6.49746 -0.11724
@@ -77363,6 +77484,7 @@ data 19
 ADGHandleLever.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 38
 -26.5927 6.49738 -0.16672
 -26.5802 6.49738 -0.16672
@@ -77691,6 +77813,7 @@ name "cylinder"
 loc -26.6497 6.68793 -0.08177
 texture "knob.png"
 crease 45.000000
+hidden
 numvert 26
 0 -0.00608015 0
 0 0.00607967 0
@@ -77954,6 +78077,7 @@ data 13
 Cube.050.mesh
 texture "palette.png"
 crease 45.000000
+hidden
 numvert 8
 -26.7379 6.6603 0.07218
 -26.7379 6.6603 -0.07218
@@ -78006,6 +78130,7 @@ data 17
 Cylinder.002.mesh
 texture "pedestal.jpg"
 crease 45.000000
+hidden
 numvert 387
 -28.0625 6.22525 -0.3492
 -28.0625 6.7951 -0.3492
