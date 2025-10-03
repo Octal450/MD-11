@@ -430,7 +430,7 @@ var FmsSpd = {
 			}
 		} else if (Internal.phase >= 4) { # Descent/Approach/Rollout
 			# Compute Approach Decel
-			if (me.decel and me.minKts > 1 and flightData.vapp > 0) {
+			if (me.decel and flightData.vapp > 0) {
 				if (Value.flapsPos >= 34) {
 					me.apprKts = flightData.vapp;
 				} else if (Value.flapsPos >= 27) {
