@@ -44,8 +44,8 @@ var Speeds = {
 
 var FmsSpd = {
 	active: 0,
-	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
 	activeOrFmsVspeed: 0,
+	activeOut: props.globals.getNode("/systems/fms/fms-spd/active"),
 	alt10kToggle: 0,
 	alt11kToggle: 0,
 	apprKts: 0,
