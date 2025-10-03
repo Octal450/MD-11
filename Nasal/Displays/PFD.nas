@@ -1045,7 +1045,7 @@ var canvasBase = {
 			Value.Asi.showFmsEcon = 0;
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
+		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
 			me["ASI_mach_presel"].hide();
 			me["ASI_mach_presel_text"].hide();
 			me["ASI_presel"].hide();
@@ -1215,7 +1215,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.fms > 60 and Value.Asi.fms != 0) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.fms > 60 and Value.Afs.spdPitchAvail and Value.Asi.fms != 0) { # It will never go outside envelope
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_up"].setColorFill(0.9608, 0, 0.7765);
 			} else {
@@ -1234,7 +1234,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.fmsEcon > 60 and Value.Asi.fmsEcon != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.fmsEcon > 60 and Value.Afs.spdPitchAvail and Value.Asi.fmsEcon != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
 			me["ASI_fms_up"].setColorFill(0, 0, 0);
 			me["ASI_fms_up"].show();
 			me["ASI_mach_sel_up"].hide();
@@ -1320,7 +1320,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.fms < -60 and !Value.Asi.showTaxi and Value.Asi.fms != 0) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.fms < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and Value.Asi.fms != 0) { # It will never go outside envelope
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_dn"].setColorFill(0.9608, 0, 0.7765);
 			} else {
@@ -1339,7 +1339,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.fmsEcon < -60 and !Value.Asi.showTaxi and Value.Asi.fms != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.fmsEcon < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and Value.Asi.fms != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
 			me["ASI_fms_dn"].setColorFill(0, 0, 0);
 			me["ASI_fms_dn"].show();
 			me["ASI_mach_sel_dn"].hide();
