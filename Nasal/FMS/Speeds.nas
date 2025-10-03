@@ -205,7 +205,6 @@ var FmsSpd = {
 		
 		# Main FMS SPD Logic
 		# ktsMach determines which is active, the other is handled in Inactive Value Sync
-		
 		if (Internal.phase >= 4) {
 			if (Value.active and Value.wpNum > 0) {
 				if (Value.distanceRemainingNm < 15) {
