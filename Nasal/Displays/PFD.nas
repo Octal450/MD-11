@@ -1194,7 +1194,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.sel > 60 and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.sel > 60 and Value.Afs.spdPitchAvail and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
 			me["ASI_fms_up"].hide();
 			me["ASI_mach_sel_up"].setColor(1, 1, 1);
 			me["ASI_sel_up"].setColor(1, 1, 1);
@@ -1299,7 +1299,7 @@ var canvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.sel < -60 and !Value.Asi.showTaxi and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
+		} else if (Value.Asi.Tape.sel < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
 			me["ASI_fms_dn"].hide();
 			me["ASI_mach_sel_dn"].setColor(1, 1, 1);
 			me["ASI_sel_dn"].setColor(1, 1, 1);
