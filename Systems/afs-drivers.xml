@@ -424,7 +424,6 @@
 	<filter>
 		<name>Mach Lag</name>
 		<type>exponential</type>
-		<input>/velocities/mach</input>
 		<input>/it-autoflight/internal/mach-input-avg</input>
 		<output>/it-autoflight/internal/mach-input-lag</output>
 		<filter-time>0.04</filter-time>
