@@ -63,6 +63,16 @@ var CORE = {
 		Internal.phase = 0;
 		Internal.phaseOut.setValue(0);
 	},
+	resetRadio: func() {
+		pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
+		pts.Instrumentation.Adf.Frequencies.selectedKhz[1].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[0].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[1].setValue(0);
+		pts.Instrumentation.Nav.Frequencies.selectedMhz[2].setValue(0);
+		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(-1);
+		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(-1);
+		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(-1);
+	},
 	loop: func() {
 		Value.active = RouteManager.active.getBoolValue();
 		Value.afsAlt = afs.Internal.alt.getValue();
@@ -169,15 +179,5 @@ var CORE = {
 				me.init(1);
 			}
 		}
-	},
-	resetRadio: func() {
-		pts.Instrumentation.Adf.Frequencies.selectedKhz[0].setValue(0);
-		pts.Instrumentation.Adf.Frequencies.selectedKhz[1].setValue(0);
-		pts.Instrumentation.Nav.Frequencies.selectedMhz[0].setValue(0);
-		pts.Instrumentation.Nav.Frequencies.selectedMhz[1].setValue(0);
-		pts.Instrumentation.Nav.Frequencies.selectedMhz[2].setValue(0);
-		pts.Instrumentation.Nav.Radials.selectedDeg[0].setValue(-1);
-		pts.Instrumentation.Nav.Radials.selectedDeg[1].setValue(-1);
-		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(-1);
 	},
 };

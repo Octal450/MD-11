@@ -133,6 +133,31 @@ var FmsSpd = {
 		me.ktsMach = 0;
 		me.ktsCmd = 0;
 	},
+	checkMachToggleEdit: func(type, rst) { # Reset is not allowed when calling from the loop
+		if (type == 2) { # Descent
+			if (Internal.phase >= 4) {
+				if (me.convertKts(math.min(me.editDescentMach, me.mmoMinus5)) + 0.5 >= math.min(me.editDescentKts, me.vmoMinus5)) {
+					me.machToggleEditDescent = 0;
+				} else if (rst) {
+					me.machToggleEditDescent = 1;
+				}
+			} else { # This is required to ensure it does not flip to 0 early
+				me.machToggleEditDescent = 1;
+			}
+		} else { # Climb
+			if (me.convertMach(math.min(me.editClimbKts, me.vmoMinus5)) + 0.0005 >= math.min(me.editClimbMach, me.mmoMinus5)) {
+				me.machToggleEditClimb = 1;
+			} else if (rst) {
+				me.machToggleEditClimb = 0;
+			}
+		}
+	},
+	convertKts: func(input) {
+		return math.max(math.round(input * (Value.asiKts / Value.asiMach)), 1); # 0 is disallowed
+	},
+	convertMach: func(input) {
+		return math.max(math.round(input * (Value.asiMach / Value.asiKts), 0.001), 0.001); # 0 is disallowed
+	},
 	engage: func() {
 		if (me.active) {
 			afs.Fma.stopBlink(0);
@@ -153,6 +178,80 @@ var FmsSpd = {
 		} else {
 			return 0;
 		}
+	},
+	getSpeeds: func() {
+		me.econKts = math.round(Speeds.econKts.getValue());
+		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
+		me.maxClimb = math.round(Speeds.maxClimb.getValue());
+		me.maxDescent = math.round(Speeds.maxDescent.getValue());
+		me.maxKts = math.max(math.round(Speeds.athrMax.getValue()), 1);
+		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
+		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
+		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
+		me.mmoMinus5 = math.round(Speeds.mmo.getValue() - 0.005, 0.001);
+		me.vcl = math.round(Speeds.vcl.getValue());
+		me.vmoMinus5 = math.round(Speeds.vmoKts.getValue() - 5);
+		
+		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.vmoMinus5;
+		else me.editClimbKts = fms.flightData.climbSpeedEditKts;
+		
+		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.mmoMinus5;
+		else me.editClimbMach = fms.flightData.climbSpeedEditMach;
+		
+		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.vmoMinus5;
+		else me.editDescentKts = fms.flightData.descentSpeedEditKts;
+		
+		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.mmoMinus5;
+		else me.editDescentMach = fms.flightData.descentSpeedEditMach;
+	},
+	takeoffLogic: func() {
+		if (Internal.phase >= 2) {
+			me.toDriving = 0;
+			me.toKtsCmd = 0;
+			me.v2Toggle = 0;
+			return;
+		}
+		
+		if (fms.flightData.v2 > 0) {
+			if (!Value.wow) {
+				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
+					if (!me.v2Toggle) { # Only set the speed once
+						me.v2Toggle = 1;
+						me.toKtsCmd = math.clamp(math.round(Value.asiKts), flightData.v2, flightData.v2 + 10);
+					}
+				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
+					me.toDriving = 1;
+					me.toKtsCmd = fms.flightData.v2 + 10;
+				}
+			} else {
+				me.toDriving = 1;
+				me.toKtsCmd = math.clamp(math.max(flightData.v2, math.round(Value.asiKts)), flightData.v2, flightData.v2 + 10);
+				me.v2Toggle = 0;
+			}
+		} else {
+			me.toDriving = 0;
+			me.toKtsCmd = 0;
+			me.v2Toggle = 0;
+		}
+		
+		# Limiting Logic
+		if (me.toKtsCmd > 0) {
+			if (me.minKts > me.maxKts) { # Max takes priority
+				me.toKts = me.maxKts;
+			} else if (me.toKtsCmd > me.maxKts) {
+				me.toKts = me.maxKts;
+			} else if (me.toKtsCmd < me.minKts) {
+				me.toKts = me.minKts;
+			} else {
+				me.toKts = me.toKtsCmd;
+			}
+		} else {
+			me.toKts = 0;
+		}
+	},
+	updateEditSpeeds: func(type) {
+		me.getSpeeds();
+		me.checkMachToggleEdit(type, 1); # Allow reset to 0
 	},
 	writeOut: func() {
 		me.activeOut.setBoolValue(me.active);
@@ -525,105 +624,6 @@ var FmsSpd = {
 		
 		# Write to Property Tree
 		me.writeOut();
-	},
-	checkMachToggleEdit: func(type, rst) { # Reset is not allowed when calling from the loop
-		if (type == 2) { # Descent
-			if (Internal.phase >= 4) {
-				if (me.convertKts(math.min(me.editDescentMach, me.mmoMinus5)) + 0.5 >= math.min(me.editDescentKts, me.vmoMinus5)) {
-					me.machToggleEditDescent = 0;
-				} else if (rst) {
-					me.machToggleEditDescent = 1;
-				}
-			} else { # This is required to ensure it does not flip to 0 early
-				me.machToggleEditDescent = 1;
-			}
-		} else { # Climb
-			if (me.convertMach(math.min(me.editClimbKts, me.vmoMinus5)) + 0.0005 >= math.min(me.editClimbMach, me.mmoMinus5)) {
-				me.machToggleEditClimb = 1;
-			} else if (rst) {
-				me.machToggleEditClimb = 0;
-			}
-		}
-	},
-	convertKts: func(input) {
-		return math.max(math.round(input * (Value.asiKts / Value.asiMach)), 1); # 0 is disallowed
-	},
-	convertMach: func(input) {
-		return math.max(math.round(input * (Value.asiMach / Value.asiKts), 0.001), 0.001); # 0 is disallowed
-	},
-	getSpeeds: func() {
-		me.econKts = math.round(Speeds.econKts.getValue());
-		me.econMach = math.round(Speeds.econMach.getValue(), 0.001);
-		me.maxClimb = math.round(Speeds.maxClimb.getValue());
-		me.maxDescent = math.round(Speeds.maxDescent.getValue());
-		me.maxKts = math.max(math.round(Speeds.athrMax.getValue()), 1);
-		me.maxMach = math.max(math.round(Speeds.athrMaxMach.getValue(), 0.001), 0.001);
-		me.minKts = math.max(math.round(Speeds.athrMin.getValue()), 1);
-		me.minMach = math.max(math.round(Speeds.athrMinMach.getValue(), 0.001), 0.001);
-		me.mmoMinus5 = math.round(Speeds.mmo.getValue() - 0.005, 0.001);
-		me.vcl = math.round(Speeds.vcl.getValue());
-		me.vmoMinus5 = math.round(Speeds.vmoKts.getValue() - 5);
-		
-		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.vmoMinus5;
-		else me.editClimbKts = fms.flightData.climbSpeedEditKts;
-		
-		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.mmoMinus5;
-		else me.editClimbMach = fms.flightData.climbSpeedEditMach;
-		
-		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.vmoMinus5;
-		else me.editDescentKts = fms.flightData.descentSpeedEditKts;
-		
-		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.mmoMinus5;
-		else me.editDescentMach = fms.flightData.descentSpeedEditMach;
-	},
-	takeoffLogic: func() {
-		if (Internal.phase >= 2) {
-			me.toDriving = 0;
-			me.toKtsCmd = 0;
-			me.v2Toggle = 0;
-			return;
-		}
-		
-		if (fms.flightData.v2 > 0) {
-			if (!Value.wow) {
-				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
-					if (!me.v2Toggle) { # Only set the speed once
-						me.v2Toggle = 1;
-						me.toKtsCmd = math.clamp(math.round(Value.asiKts), flightData.v2, flightData.v2 + 10);
-					}
-				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
-					me.toDriving = 1;
-					me.toKtsCmd = fms.flightData.v2 + 10;
-				}
-			} else {
-				me.toDriving = 1;
-				me.toKtsCmd = math.clamp(math.max(flightData.v2, math.round(Value.asiKts)), flightData.v2, flightData.v2 + 10);
-				me.v2Toggle = 0;
-			}
-		} else {
-			me.toDriving = 0;
-			me.toKtsCmd = 0;
-			me.v2Toggle = 0;
-		}
-		
-		# Limiting Logic
-		if (me.toKtsCmd > 0) {
-			if (me.minKts > me.maxKts) { # Max takes priority
-				me.toKts = me.maxKts;
-			} else if (me.toKtsCmd > me.maxKts) {
-				me.toKts = me.maxKts;
-			} else if (me.toKtsCmd < me.minKts) {
-				me.toKts = me.minKts;
-			} else {
-				me.toKts = me.toKtsCmd;
-			}
-		} else {
-			me.toKts = 0;
-		}
-	},
-	updateEditSpeeds: func(type) {
-		me.getSpeeds();
-		me.checkMachToggleEdit(type, 1); # Allow reset to 0
 	},
 };
 
