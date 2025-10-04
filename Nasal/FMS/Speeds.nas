@@ -162,7 +162,7 @@ var FmsSpd = {
 		if (me.active) {
 			afs.Fma.stopBlink(0);
 			afs.Output.showSpd.setBoolValue(0);
-			fms.EditFlightData.returnToEcon();
+			EditFlightData.returnToEcon();
 		} else if (me.engageAllowed()) {
 			me.active = 1;
 			afs.Fma.stopBlink(0);
@@ -192,17 +192,17 @@ var FmsSpd = {
 		me.vcl = math.round(Speeds.vcl.getValue());
 		me.vmoMinus5 = math.round(Speeds.vmoKts.getValue() - 5);
 		
-		if (fms.flightData.climbSpeedEditKts == 1) me.editClimbKts = me.vmoMinus5;
-		else me.editClimbKts = fms.flightData.climbSpeedEditKts;
+		if (flightData.climbSpeedEditKts == 1) me.editClimbKts = me.vmoMinus5;
+		else me.editClimbKts = flightData.climbSpeedEditKts;
 		
-		if (fms.flightData.climbSpeedEditMach == 1) me.editClimbMach = me.mmoMinus5;
-		else me.editClimbMach = fms.flightData.climbSpeedEditMach;
+		if (flightData.climbSpeedEditMach == 1) me.editClimbMach = me.mmoMinus5;
+		else me.editClimbMach = flightData.climbSpeedEditMach;
 		
-		if (fms.flightData.descentSpeedEditKts == 1) me.editDescentKts = me.vmoMinus5;
-		else me.editDescentKts = fms.flightData.descentSpeedEditKts;
+		if (flightData.descentSpeedEditKts == 1) me.editDescentKts = me.vmoMinus5;
+		else me.editDescentKts = flightData.descentSpeedEditKts;
 		
-		if (fms.flightData.descentSpeedEditMach == 1) me.editDescentMach = me.mmoMinus5;
-		else me.editDescentMach = fms.flightData.descentSpeedEditMach;
+		if (flightData.descentSpeedEditMach == 1) me.editDescentMach = me.mmoMinus5;
+		else me.editDescentMach = flightData.descentSpeedEditMach;
 	},
 	takeoffLogic: func() {
 		if (Internal.phase >= 2) {
@@ -212,7 +212,7 @@ var FmsSpd = {
 			return;
 		}
 		
-		if (fms.flightData.v2 > 0) {
+		if (flightData.v2 > 0) {
 			if (!Value.wow) {
 				if (systems.ENGINES.anyEngineOut.getBoolValue()) {
 					if (!me.v2Toggle) { # Only set the speed once
@@ -221,7 +221,7 @@ var FmsSpd = {
 					}
 				} else if (Value.gearAglFt < 400) { # Once hitting 400 feet, this is overridable
 					me.toDriving = 1;
-					me.toKtsCmd = fms.flightData.v2 + 10;
+					me.toKtsCmd = flightData.v2 + 10;
 				}
 			} else {
 				me.toDriving = 1;
@@ -406,12 +406,12 @@ var FmsSpd = {
 			
 			# Compute FMS SPD
 			if (flightData.cruiseSpeedMode == 2) { # EDIT
-				if (fms.flightData.cruiseSpeedEdit > 0 and fms.flightData.cruiseSpeedEdit < 1) {
+				if (flightData.cruiseSpeedEdit > 0 and flightData.cruiseSpeedEdit < 1) {
 					me.ktsMach = 1;
-					me.machCmd = fms.flightData.cruiseSpeedEdit;
-				} else if (fms.flightData.cruiseSpeedEdit > 1) {
+					me.machCmd = flightData.cruiseSpeedEdit;
+				} else if (flightData.cruiseSpeedEdit > 1) {
 					me.ktsMach = 0;
-					me.ktsCmd = fms.flightData.cruiseSpeedEdit;
+					me.ktsCmd = flightData.cruiseSpeedEdit;
 				} else {
 					me.cancelAndZero();
 				}
