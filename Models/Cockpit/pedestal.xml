@@ -28,12 +28,12 @@
 	<animation>
 		<name>Integ Panel lighting</name>
 		<type>material</type>
-		<object-name>pedestal.text</object-name>
-		<object-name>aileron.light</object-name>
-		<object-name>rudder.light</object-name>
-		<object-name>mcdu_glare</object-name>
-		<object-name>DialAFlapInd</object-name>
 		<object-name>ADGHandleLabel</object-name>
+		<object-name>aileron.light</object-name>
+		<object-name>DialAFlapInd</object-name>
+		<object-name>DialAFlapPointer.text</object-name>
+		<object-name>pedestal.text</object-name>
+		<object-name>rudder.light</object-name>
 		<emission>
 			<red>1.0</red>
 			<green>0.85</green>
@@ -689,7 +689,7 @@
 		<interpolation>
 			<entry><ind>0</ind><dep>-26</dep></entry>
 			<entry><ind>1</ind><dep>-13</dep></entry>
-			<entry><ind>2</ind><dep> 13</dep></entry>
+			<entry><ind>2</ind><dep> 19</dep></entry>
 			<entry><ind>3</ind><dep> 24</dep></entry>
 			<entry><ind>4</ind><dep> 35</dep></entry>
 			<entry><ind>5</ind><dep> 51</dep></entry>
@@ -1458,6 +1458,27 @@
 			<x-m>-27.1082</x-m>
 			<y-m>0</y-m>
 			<z-m>6.69204</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>DialAFlapPointer</object-name>
+		<object-name>DialAFlapPointer.text</object-name>
+		<property>controls/cockpit/dial-a-flap</property>
+		<interpolation>
+			<entry><ind>10</ind><dep> 5.56</dep></entry>
+			<entry><ind>25</ind><dep>19.00</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-27.125</x-m>
+			<y-m>0</y-m>
+			<z-m>6.6837</z-m>
 		</center>
 		<axis>
 			<x>0</x>
