@@ -7,33 +7,75 @@
 	<filter>
 		<name>A/THR Knots Lag</name>
 		<type>exponential</type>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<input>/it-autoflight/internal/kts-input-avg</input>
 		<output>/it-autoflight/internal/athr-kts-input-lag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Knots Rate</name>
+		<type>derivative</type>
+		<input>/it-autoflight/internal/athr-kts-input-lag</input>
+		<output>/it-autoflight/internal/athr-kts-rate-raw</output>
+		<filter-time>1.0</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Knots Rate Lag</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/it-autoflight/internal/athr-kts-rate-raw</input>
+		<output>/it-autoflight/internal/athr-kts-rate</output>
 		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
-		<name>A/THR Knots Input Gain</name>
+		<name>A/THR Mach Lag</name>
+		<type>exponential</type>
+		<input>/it-autoflight/internal/mach-input-avg</input>
+		<output>/it-autoflight/internal/athr-mach-input-lag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Mach Rate</name>
+		<type>derivative</type>
+		<input>/it-autoflight/internal/athr-mach-input-lag</input>
+		<output>/it-autoflight/internal/athr-mach-rate-raw</output>
+		<filter-time>1.0</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Mach Rate Gain</name>
 		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/it-autoflight/internal/kts</input>
-		<output>/it-autoflight/internal/athr-kts-cmd</output>
-		<min>
-			<expression>
-				<difference>
-					<property>/it-autoflight/internal/athr-kts-input-lag</property>
-					<value>25</value>
-				</difference>
-			</expression>
-		</min>
-		<max>
-			<expression>
-				<sum>
-					<property>/it-autoflight/internal/athr-kts-input-lag</property>
-					<value>25</value>
-				</sum>
-			</expression>
-		</max>
+		<gain>650</gain>
+		<input>/it-autoflight/internal/athr-mach-rate-raw</input>
+		<output>/it-autoflight/internal/athr-mach-rate-gain</output>
+	</filter>
+	
+	<filter>
+		<name>A/THR Mach Rate Lag</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/it-autoflight/internal/athr-mach-rate-gain</input>
+		<output>/it-autoflight/internal/athr-mach-rate</output>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -41,7 +83,7 @@
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/athr-kts-cmd</input>
+		<input>/it-autoflight/internal/kts</input>
 		<output>/it-autoflight/internal/athr-kts</output>
 		<max-rate-of-change>
 			<condition>
@@ -71,43 +113,11 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Mach Lag</name>
-		<type>exponential</type>
-		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
-		<output>/it-autoflight/internal/athr-mach-input-lag</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
-		<name>A/THR Mach Input Gain</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/it-autoflight/internal/mach</input>
-		<output>/it-autoflight/internal/athr-mach-cmd</output>
-		<min>
-			<expression>
-				<difference>
-					<property>/it-autoflight/internal/athr-mach-input-lag</property>
-					<value>0.045</value>
-				</difference>
-			</expression>
-		</min>
-		<max>
-			<expression>
-				<sum>
-					<property>/it-autoflight/internal/athr-mach-input-lag</property>
-					<value>0.045</value>
-				</sum>
-			</expression>
-		</max>
-	</filter>
-	
-	<filter>
 		<name>A/THR Mach Input Filter</name>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/athr-mach-cmd</input>
+		<input>/it-autoflight/internal/mach</input>
 		<output>/it-autoflight/internal/athr-mach</output>
 		<max-rate-of-change>
 			<condition>
@@ -136,45 +146,71 @@
 		<max-rate-of-change>2</max-rate-of-change>
 	</filter>
 	
-	<pid-controller>
-		<name>IT-CONTROLLER: Knots</name>
-		<enable>
+	<filter>
+		<name>A/THR Knots Rate Command</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/athr-mach</property>
+						<property>/it-autoflight/internal/mach-asi-lag</property>
+					</difference>
+					<value>175</value>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/athr-kts</property>
+						<property>/it-autoflight/internal/kts-asi-lag</property>
+					</difference>
+					<value>0.175</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/athr-kts-error-cmd</output>
+		<min>-10</min>
+		<max>10</max>
+	</filter>
+	
+	<filter>
+		<name>A/THR Knots Rate Filter</name>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/it-autoflight/internal/athr-kts-error-cmd</input>
+		<output>/it-autoflight/internal/athr-kts-error</output>
+		<max-rate-of-change>
 			<condition>
 				<and>
 					<property>/it-autoflight/output/athr-on</property>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>0</value>
-					</equals>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
 					</equals>
 				</and>
 			</condition>
-		</enable>
-		<input>/it-autoflight/internal/athr-kts-input-lag</input>
-		<reference>/it-autoflight/internal/athr-kts</reference>
-		<output>/systems/fadec/ats-cmd-raw</output>
-		<config>
-			<Kp>0.055</Kp>
-			<Ti>9.0</Ti>
-			<Td>0.00001</Td>
-			<u_min>/systems/fadec/limit/idle-norm</u_min>
-			<u_max>/systems/fadec/limit/active-norm</u_max>
-		</config>
-	</pid-controller>
+			<value>3</value>
+		</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
+	</filter>
 	
 	<pid-controller>
-		<name>IT-CONTROLLER: Mach</name>
+		<name>IT-CONTROLLER: Speed/Mach</name>
 		<enable>
 			<condition>
 				<and>
 					<property>/it-autoflight/output/athr-on</property>
-					<equals>
-						<property>/it-autoflight/internal/kts-mach</property>
-						<value>1</value>
-					</equals>
 					<equals>
 						<property>/it-autoflight/output/thr-mode</property>
 						<value>0</value>
@@ -183,17 +219,20 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/it-autoflight/internal/athr-mach-input-lag</property>
-			<scale>1000</scale>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/athr-mach-rate</property>
 		</input>
-		<reference>
-			<property>/it-autoflight/internal/athr-mach</property>
-			<scale>1000</scale>
-		</reference>
+		<input>/it-autoflight/internal/athr-kts-rate</input>
+		<reference>/it-autoflight/internal/athr-kts-error</reference>
 		<output>/systems/fadec/ats-cmd-raw</output>
 		<config>
-			<Kp>0.055</Kp>
-			<Ti>9.0</Ti>
+			<Kp>0.06</Kp>
+			<Ti>1.0</Ti>
 			<Td>0.00001</Td>
 			<u_min>/systems/fadec/limit/idle-norm</u_min>
 			<u_max>/systems/fadec/limit/active-norm</u_max>
