@@ -32,7 +32,7 @@
 	
 	<channel name="Libraries">
 		
-		<switch name="/systems/fcc/fcc1-power">
+		<switch name="/systems/fcc/fcc-1-power">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/dc-1 ge 24
@@ -40,7 +40,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fcc/fcc2-power">
+		<switch name="/systems/fcc/fcc-2-power">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				/systems/electrical/bus/dc-3 ge 24
@@ -51,8 +51,8 @@
 		<switch name="/systems/fcc/power-avail">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/systems/fcc/fcc1-power eq 1
-				/systems/fcc/fcc2-power eq 1
+				/systems/fcc/fcc-1-power eq 1
+				/systems/fcc/fcc-2-power eq 1
 			</test>
 		</switch>
 		
@@ -130,6 +130,68 @@
 			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
 			<rate_limit sense="decr">1000</rate_limit>
 		</actuator>
+		
+		<!-- BIT Logic -->
+		<switch name="/systems/fcc/bit-decr">
+			<default value="0.2"/> <!-- 5 seconds -->
+			<test value="100000"> <!-- Instant -->
+				/systems/acconfig/autoconfig-running eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fcc/bit-1-timer">
+			<input>/systems/fcc/fcc-1-power</input>
+			<rate_limit sense="incr">100000</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/fcc/bit-decr</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fcc/bit-1">
+			<default value="/systems/fcc/bit-1"/>
+			<test value="1">
+				/systems/fcc/bit-1-timer eq 0
+			</test>
+			<test logic="AND" value="0">
+				/systems/fcc/fcc-1-power eq 1
+				<test logic="OR">
+					<test logic="AND">
+						/systems/iru[0]/fcc-bit-avail eq 1
+						/systems/fms/internal/fms-1-avail-feedback eq 1
+					</test>
+					<test logic="AND">
+						/systems/fcs/flaps/input ge 2
+						fcs/flap-pos-deg ge 0.1
+					</test>
+					/systems/fms/flight-data/v2 gt 0
+				</test>
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fcc/bit-2-timer">
+			<input>/systems/fcc/fcc-2-power</input>
+			<rate_limit sense="incr">100000</rate_limit> <!-- Instant -->
+			<rate_limit sense="decr">/systems/fcc/bit-decr</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fcc/bit-2">
+			<default value="/systems/fcc/bit-2"/>
+			<test value="1">
+				/systems/fcc/bit-2-timer eq 0
+			</test>
+			<test logic="AND" value="0">
+				/systems/fcc/fcc-2-power eq 1
+				<test logic="OR">
+					<test logic="AND">
+						/systems/iru[1]/fcc-bit-avail eq 1
+						/systems/fms/internal/fms-2-avail-feedback eq 1
+					</test>
+					<test logic="AND">
+						/systems/fcs/flaps/input ge 2
+						fcs/flap-pos-deg ge 0.1
+					</test>
+					/systems/fms/flight-data/v2 gt 0
+				</test>
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -144,7 +206,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-left-out eq 1
-				/systems/fcc/fcc2-power eq 1
+				/systems/fcc/fcc-2-power eq 1
 				/systems/failures/fcc/lsas-left-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
@@ -158,7 +220,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-left-in eq 1
-				/systems/fcc/fcc1-power eq 1
+				/systems/fcc/fcc-1-power eq 1
 				/systems/failures/fcc/lsas-left-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
@@ -172,7 +234,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-right-in eq 1
-				/systems/fcc/fcc2-power eq 1
+				/systems/fcc/fcc-2-power eq 1
 				/systems/failures/fcc/lsas-right-in ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
@@ -186,7 +248,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fcc/lsas-right-out eq 1
-				/systems/fcc/fcc1-power eq 1
+				/systems/fcc/fcc-1-power eq 1
 				/systems/failures/fcc/lsas-right-out ne 1
 				/systems/iru-common/any-aligned-out eq 1
 			</test>
@@ -488,7 +550,7 @@
 					/systems/hydraulics/sys-2-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				/systems/fcc/fcc1-power eq 1
+				/systems/fcc/fcc-1-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws eq 1
@@ -508,7 +570,7 @@
 					/systems/hydraulics/sys-1-psi ge 2200
 					/systems/hydraulics/sys-3-psi ge 2200
 				</test>
-				/systems/fcc/fcc2-power eq 1
+				/systems/fcc/fcc-2-power eq 1
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws eq 1
