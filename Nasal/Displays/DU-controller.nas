@@ -62,6 +62,134 @@ var DUController = {
 	updateSd: 0,
 	xxNd1: props.globals.initNode("/instrumentation/nd/xx-nd1", 0, "BOOL"),
 	xxNd2: props.globals.initNode("/instrumentation/nd/xx-nd2", 0, "BOOL"),
+	blinkSd: func() {
+		me.BlinkSd.active = 1;
+		me.updateSd = 0;
+		canvas_sd.canvasBase.hidePages();
+		me.BlinkSd.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
+	},
+	hideMcdu: func(n) {
+		if (n == 0) {
+			me.updateMcdu1 = 0;
+			canvas_mcdu.mcdu1.page.hide();
+		}
+		if (n == 1) {
+			me.updateMcdu2 = 0;
+			canvas_mcdu.mcdu2.page.hide();
+		}
+		if (n == 2) {
+			me.updateMcdu3 = 0;
+			canvas_mcdu.mcdu3.page.hide();
+		}
+	},
+	resetCounters: func() { # Force a reset of all timers
+		me.CounterDeu1.activeDown = 0;
+		me.CounterDeu1.activeUp = 0;
+		me.CounterDeu2.activeDown = 0;
+		me.CounterDeu2.activeUp = 0;
+		me.CounterDeu3.activeDown = 0;
+		me.CounterDeu3.activeUp = 0;
+		me.CounterIsfd.activeDown = 0;
+		me.CounterIsfd.activeUp = 0;
+	},
+	setSdPage: func(page) {
+		me.blinkSd();
+		me.sdPage = page;
+	},
+	showSdPage: func(p) {
+		if (p == "CONFIG") {
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+			canvas_sd.config.update();
+			canvas_sd.config.page.show();
+		} else if (p == "CONSEQ") {
+			canvas_sd.config.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+			canvas_sd.conseq.update();
+			canvas_sd.conseq.page.show();
+		} else if (p == "ELEC") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.update();
+			canvas_sd.elec.page.show();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+		} else if (p == "ENG") {
+			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.elec.page.hide();
+				canvas_sd.engDials.page.hide();
+				canvas_sd.hyd.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engTapes.update();
+				canvas_sd.engTapes.page.show();
+			} else {
+				canvas_sd.config.page.hide();
+				canvas_sd.conseq.page.hide();
+				canvas_sd.elec.page.hide();
+				canvas_sd.engTapes.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.hyd.page.hide();
+				canvas_sd.status.page.hide();
+				canvas_sd.engDials.update();
+				canvas_sd.engDials.page.show();
+			}
+		} else if (p == "HYD") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.update();
+			canvas_sd.hyd.page.show();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+		} else if (p == "MISC") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.update();
+			canvas_sd.misc.page.show();
+			canvas_sd.status.page.hide();
+		} else if (p == "STATUS") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.update();
+			canvas_sd.status.page.show();
+		} else {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
+		}
+	},
 	loop: func() {
 		me.autoConfigRunning = acconfig.SYSTEM.autoConfigRunning.getBoolValue();
 		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
@@ -465,124 +593,6 @@ var DUController = {
 				me.updateMcdu3 = 0;
 				canvas_mcdu.mcdu3.page.hide();
 			}
-		}
-	},
-	blinkSd: func() {
-		me.BlinkSd.active = 1;
-		me.updateSd = 0;
-		canvas_sd.canvasBase.hidePages();
-		me.BlinkSd.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
-	},
-	hideMcdu: func(n) {
-		if (n == 0) {
-			me.updateMcdu1 = 0;
-			canvas_mcdu.mcdu1.page.hide();
-		}
-		if (n == 1) {
-			me.updateMcdu2 = 0;
-			canvas_mcdu.mcdu2.page.hide();
-		}
-		if (n == 2) {
-			me.updateMcdu3 = 0;
-			canvas_mcdu.mcdu3.page.hide();
-		}
-	},
-	setSdPage: func(page) {
-		me.blinkSd();
-		me.sdPage = page;
-	},
-	showSdPage: func(p) {
-		if (p == "CONFIG") {
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
-			canvas_sd.config.update();
-			canvas_sd.config.page.show();
-		} else if (p == "CONSEQ") {
-			canvas_sd.config.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
-			canvas_sd.conseq.update();
-			canvas_sd.conseq.page.show();
-		} else if (p == "ELEC") {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.update();
-			canvas_sd.elec.page.show();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
-		} else if (p == "ENG") {
-			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
-				canvas_sd.config.page.hide();
-				canvas_sd.conseq.page.hide();
-				canvas_sd.elec.page.hide();
-				canvas_sd.engDials.page.hide();
-				canvas_sd.hyd.page.hide();
-				canvas_sd.misc.page.hide();
-				canvas_sd.status.page.hide();
-				canvas_sd.engTapes.update();
-				canvas_sd.engTapes.page.show();
-			} else {
-				canvas_sd.config.page.hide();
-				canvas_sd.conseq.page.hide();
-				canvas_sd.elec.page.hide();
-				canvas_sd.engTapes.page.hide();
-				canvas_sd.misc.page.hide();
-				canvas_sd.hyd.page.hide();
-				canvas_sd.status.page.hide();
-				canvas_sd.engDials.update();
-				canvas_sd.engDials.page.show();
-			}
-		} else if (p == "HYD") {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.update();
-			canvas_sd.hyd.page.show();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
-		} else if (p == "MISC") {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.update();
-			canvas_sd.misc.page.show();
-			canvas_sd.status.page.hide();
-		} else if (p == "STATUS") {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.update();
-			canvas_sd.status.page.show();
-		} else {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
 		}
 	},
 };
