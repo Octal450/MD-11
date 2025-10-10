@@ -1406,7 +1406,7 @@ var canvasBase = {
 			me["AI_overbank_index"].hide();
 		}
 		
-		if (Value.Afs.fd[n]) {
+		if (Value.Afs.fd[n] and !Value.Afs.bit[n]) {
 			if (systems.DUController.singleCueFd) {
 				me["FD_pitch"].hide();
 				me["FD_roll"].hide();
