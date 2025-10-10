@@ -162,6 +162,7 @@
 						fcs/flap-pos-deg ge 0.1
 					</test>
 					/systems/fms/flight-data/v2 gt 0
+					position/wow eq 0
 				</test>
 			</test>
 		</switch>
@@ -189,6 +190,7 @@
 						fcs/flap-pos-deg ge 0.1
 					</test>
 					/systems/fms/flight-data/v2 gt 0
+					position/wow eq 0
 				</test>
 			</test>
 		</switch>
