@@ -21,23 +21,6 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Knots Rate Lag</name>
-		<type>exponential</type>
-		<input>
-			<condition>
-				<less-than>
-					<property>/velocities/airspeed-kt</property>
-					<value>1</value>
-				</less-than>
-			</condition>
-			<value>0</value>
-		</input>
-		<input>/it-autoflight/internal/athr-kts-rate-raw</input>
-		<output>/it-autoflight/internal/athr-kts-rate</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
 		<name>A/THR Mach Lag</name>
 		<type>exponential</type>
 		<input>/it-autoflight/internal/mach-input-avg</input>
@@ -62,7 +45,7 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Mach Rate Lag</name>
+		<name>A/THR Rate Lag</name>
 		<type>exponential</type>
 		<input>
 			<condition>
@@ -73,8 +56,17 @@
 			</condition>
 			<value>0</value>
 		</input>
-		<input>/it-autoflight/internal/athr-mach-rate-gain</input>
-		<output>/it-autoflight/internal/athr-mach-rate</output>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/athr-mach-rate-gain</property>
+		</input>
+		<input>/it-autoflight/internal/athr-kts-rate-raw</input>
+		<output>/it-autoflight/internal/athr-rate</output>
 		<filter-time>0.04</filter-time>
 	</filter>
 	
@@ -147,7 +139,7 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Knots Rate Command</name>
+		<name>A/THR Rate Command</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
@@ -178,18 +170,18 @@
 				</product>
 			</expression>
 		</input>
-		<output>/it-autoflight/internal/athr-kts-error-cmd</output>
+		<output>/it-autoflight/internal/athr-rate-cmd-raw</output>
 		<min>-10</min>
 		<max>10</max>
 	</filter>
 	
 	<filter>
-		<name>A/THR Knots Rate Filter</name>
+		<name>A/THR Rate Filter</name>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>/it-autoflight/internal/athr-kts-error-cmd</input>
-		<output>/it-autoflight/internal/athr-kts-error</output>
+		<input>/it-autoflight/internal/athr-rate-cmd-raw</input>
+		<output>/it-autoflight/internal/athr-rate-cmd</output>
 		<max-rate-of-change>
 			<condition>
 				<and>
@@ -205,6 +197,15 @@
 		<max-rate-of-change>100</max-rate-of-change>
 	</filter>
 	
+	<filter>
+		<name>A/THR Rate Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/it-autoflight/internal/athr-rate</input>
+		<reference>/it-autoflight/internal/athr-rate-cmd</reference>
+		<output>/it-autoflight/internal/athr-rate-error</output>
+	</filter>
+	
 	<pid-controller>
 		<name>IT-CONTROLLER: Speed/Mach</name>
 		<enable>
@@ -218,21 +219,20 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/athr-mach-rate</property>
-		</input>
-		<input>/it-autoflight/internal/athr-kts-rate</input>
-		<reference>/it-autoflight/internal/athr-kts-error</reference>
+		<input>/it-autoflight/internal/athr-rate-error</input>
+		<reference>0</reference>
 		<output>/systems/fadec/ats-cmd-raw</output>
 		<config>
-			<Kp>0.06</Kp>
-			<Ti>1.0</Ti>
+			<Kp>
+				<expression>
+					<table> <!-- As thrust decreases with altitude, more dU is required -->
+						<property>/position/altitude-ft</property>
+						<entry><ind>    0</ind><dep>0.06</dep></entry>
+						<entry><ind>50000</ind><dep>0.10</dep></entry>
+					</table>
+				</expression>
+			</Kp>
+			<Ti>0.9</Ti>
 			<Td>0.00001</Td>
 			<u_min>/systems/fadec/limit/idle-norm</u_min>
 			<u_max>/systems/fadec/limit/active-norm</u_max>
