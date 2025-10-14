@@ -377,6 +377,22 @@
 	</filter>
 	
 	<filter>
+		<name>Knots ASI Lag</name>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/it-autoflight/internal/kts-asi-lag</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Mach ASI Lag</name>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
+		<output>/it-autoflight/internal/mach-asi-lag</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
 		<name>Knots Average</name>
 		<type>moving-average</type>
 		<input>/velocities/airspeed-kt</input>
@@ -398,14 +414,6 @@
 		<input>/it-autoflight/internal/kts-input-lag</input>
 		<output>/it-autoflight/internal/kts-rate-raw</output>
 		<filter-time>1.0</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Knots ASI Lag</name>
-		<type>exponential</type>
-		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
-		<output>/it-autoflight/internal/kts-asi-lag</output>
-		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -463,14 +471,6 @@
 		</input>
 		<input>/it-autoflight/internal/kts-rate-raw</input>
 		<output>/it-autoflight/internal/flch-rate</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Mach ASI Lag</name>
-		<type>exponential</type>
-		<input>/instrumentation/airspeed-indicator/indicated-mach</input>
-		<output>/it-autoflight/internal/mach-asi-lag</output>
 		<filter-time>0.04</filter-time>
 	</filter>
 	
