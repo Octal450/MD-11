@@ -596,9 +596,14 @@ var ITAF = {
 					me.setVertMode(6);
 				}
 			} else if (Output.vertTemp == 6) {
-				if (Gear.wow1Temp and Gear.wow2Temp and Text.vert.getValue() != "ROLLOUT") {
-					me.updateLatText("ROLLOUT");
-					me.updateVertText("ROLLOUT");
+				if (Gear.wow1Temp and Gear.wow2Temp) {
+					if (Text.vert.getValue() != "ROLLOUT") {
+						me.updateLatText("ROLLOUT");
+						me.updateVertText("ROLLOUT");
+					}
+				} else if (Text.vert.getValue() != "FLARE") {
+					me.updateLatText("ALIGN");
+					me.updateVertText("FLARE");
 				}
 			}
 		} else {
@@ -1067,10 +1072,6 @@ var ITAF = {
 				Sound.apOff.setBoolValue(1);
 				Sound.enableApOff = 0;
 				apKill.start();
-			}
-			
-			if (Text.vert.getValue() == "ROLLOUT") {
-				me.init(1);
 			}
 		}
 	},
