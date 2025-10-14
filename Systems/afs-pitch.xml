@@ -95,6 +95,40 @@
 	</logic>
 	
 	<filter>
+		<name>Speed By Pitch Mach Rate Gain</name>
+		<type>gain</type>
+		<gain>650</gain>
+		<input>/it-autoflight/internal/mach-rate-raw</input>
+		<output>/it-autoflight/internal/mach-rate-flch</output>
+	</filter>
+	
+	<filter>
+		<name>Speed By Pitch Rate Lag</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/mach-rate-flch</property>
+		</input>
+		<input>/it-autoflight/internal/kts-rate-raw</input>
+		<output>/it-autoflight/internal/flch-rate</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
 		<name>Speed By Pitch Knots Rate Command</name>
 		<type>gain</type>
 		<gain>1.0</gain>
