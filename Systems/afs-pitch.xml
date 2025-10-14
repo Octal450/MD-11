@@ -95,6 +95,121 @@
 	</logic>
 	
 	<filter>
+		<name>Speed By Pitch Mach Rate Gain</name>
+		<type>gain</type>
+		<gain>650</gain>
+		<input>/it-autoflight/internal/mach-rate-raw</input>
+		<output>/it-autoflight/internal/mach-rate-flch</output>
+	</filter>
+	
+	<filter>
+		<name>Speed By Pitch Rate Lag</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/velocities/airspeed-kt</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/mach-rate-flch</property>
+		</input>
+		<input>/it-autoflight/internal/kts-rate-raw</input>
+		<output>/it-autoflight/internal/flch-rate</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Speed By Pitch Knots Rate Command</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/internal/kts-mach</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/mach</property>
+						<property>/it-autoflight/internal/mach-asi-lag</property>
+					</difference>
+					<value>100</value>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-autoflight/internal/kts</property>
+						<property>/it-autoflight/internal/kts-asi-lag</property>
+					</difference>
+					<value>0.1</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/flch-rate-cmd-raw</output>
+		<min>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/spd-prot</property>
+					<value>0</value>
+				</not-equals>
+			</condition>
+			<value>-3</value>
+		</min>
+		<min>-1.5</min>
+		<max>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/spd-prot</property>
+					<value>0</value>
+				</not-equals>
+			</condition>
+			<value>3</value>
+		</max>
+		<max>1.5</max>
+	</filter>
+	
+	<filter>
+		<name>Speed By Pitch Knots Rate Filter</name>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/it-autoflight/internal/flch-rate-cmd-raw</input>
+		<output>/it-autoflight/internal/flch-rate-cmd</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<property>/it-autoflight/internal/flch-active</property>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>1.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>100</max-rate-of-change>
+	</filter>
+	
+	<filter>
 		<name>IT-CONTROLLER: Speed By Pitch Delta</name>
 		<type>gain</type>
 		<gain>
@@ -106,17 +221,8 @@
 				</table>
 			</expression>
 		</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/mach-rate</property>
-		</input>
-		<input>/it-autoflight/internal/kts-rate</input>
-		<reference>/it-autoflight/internal/flch-kts-error</reference>
+		<input>/it-autoflight/internal/flch-rate</input>
+		<reference>/it-autoflight/internal/flch-rate-cmd</reference>
 		<output>/it-autoflight/internal/flch-raw</output>
 		<min>
 			<condition>
