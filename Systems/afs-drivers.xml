@@ -9,8 +9,12 @@
 		<input>
 			<and>
 				<equals>
-					<property>/systems/fcc/fcc1-power</property>
+					<property>/systems/fcc/fcc-1-power</property>
 					<value>1</value>
+				</equals>
+				<equals>
+					<property>/systems/fcc/bit-1</property>
+					<value>0</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd-1</property></not>
 				<equals> <!-- Basic modes except NAV work with only partial alignment -->
@@ -60,8 +64,12 @@
 		<input>
 			<and>
 				<equals>
-					<property>/systems/fcc/fcc2-power</property>
+					<property>/systems/fcc/fcc-2-power</property>
 					<value>1</value>
+				</equals>
+				<equals>
+					<property>/systems/fcc/bit-2</property>
+					<value>0</value>
 				</equals>
 				<not><property>/it-autoflight/input/ovrd-2</property></not>
 				<equals> <!-- Basic modes except NAV work with only partial alignment -->
@@ -106,14 +114,18 @@
 	<logic>
 		<input>
 			<and>
+				<equals>
+					<property>/systems/fcc/power-avail</property>
+					<value>1</value>
+				</equals>
 				<or>
 					<equals>
-						<property>/systems/fcc/fcc1-power</property>
-						<value>1</value>
+						<property>/systems/fcc/bit-1</property>
+						<value>0</value>
 					</equals>
 					<equals>
-						<property>/systems/fcc/fcc2-power</property>
-						<value>1</value>
+						<property>/systems/fcc/bit-2</property>
+						<value>0</value>
 					</equals>
 				</or>
 				<or>

@@ -293,6 +293,7 @@ var PANEL = {
 	},
 	beforeStart: func() {
 		me.panelBase(0);
+		systems.DUController.resetCounters();
 		
 		pts.Services.Chocks.enable.setBoolValue(1);
 		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
@@ -336,6 +337,7 @@ var PANEL = {
 	},
 	afterStart: func(t) {
 		me.panelBase(t);
+		systems.DUController.resetCounters();
 		
 		pts.Services.Chocks.enable.setBoolValue(0);
 		systems.ELECTRICAL.Controls.battery.setBoolValue(1);

@@ -2,12 +2,14 @@
 # Copyright (c) 2025 Josh Davidson (Octal450)
 
 var FCC = {
+	bit1: props.globals.getNode("/systems/fcc/bit-1"),
+	bit2: props.globals.getNode("/systems/fcc/bit-2"),
 	ElevatorFeel: {
 		auto: props.globals.getNode("/systems/fcc/elevator-feel/auto"),
 		speed: props.globals.getNode("/systems/fcc/elevator-feel/speed"),
 	},
-	fcc1Power: props.globals.getNode("/systems/fcc/fcc1-power"),
-	fcc2Power: props.globals.getNode("/systems/fcc/fcc2-power"),
+	fcc1Power: props.globals.getNode("/systems/fcc/fcc-1-power"),
+	fcc2Power: props.globals.getNode("/systems/fcc/fcc-2-power"),
 	Lsas: {
 		autotrimInhibit: props.globals.getNode("/systems/fcc/lsas/autotrim-inhibit"),
 		leftInActive: props.globals.getNode("/systems/fcc/lsas/left-in-active"),
