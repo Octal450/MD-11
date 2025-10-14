@@ -106,17 +106,8 @@
 				</table>
 			</expression>
 		</gain>
-		<input>
-			<condition>
-				<equals>
-					<property>/it-autoflight/internal/kts-mach</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<property>/it-autoflight/internal/mach-rate</property>
-		</input>
-		<input>/it-autoflight/internal/kts-rate</input>
-		<reference>/it-autoflight/internal/flch-kts-error</reference>
+		<input>/it-autoflight/internal/flch-rate</input>
+		<reference>/it-autoflight/internal/flch-kts-rate-cmd</reference>
 		<output>/it-autoflight/internal/flch-raw</output>
 		<min>
 			<condition>
