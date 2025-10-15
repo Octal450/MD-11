@@ -71,6 +71,50 @@
 	</filter>
 	
 	<filter>
+		<name>A/THR G Accel Lag</name>
+		<type>exponential</type>
+		<input>
+			<expression>
+				<sum>
+					<property>/accelerations/pilot-gdamped</property>
+					<div>
+						<value>-1</value>
+						<cos>
+							<deg2rad>
+								<table>
+									<property>/orientation/roll-deg</property>
+									<entry><ind>-89</ind><dep>-89</dep></entry>
+									<entry><ind> 89</ind><dep> 89</dep></entry>
+								</table>
+							</deg2rad>
+						</cos>
+					</div>
+				</sum>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/athr-g-lag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>A/THR Rate G</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-autoflight/internal/athr-rate</property>
+					<product>
+						<property>/it-autoflight/internal/athr-g-lag</property>
+						<value>-1.5</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/athr-rate-g</output>
+	</filter>
+	
+	<filter>
 		<name>A/THR Knots Input Filter</name>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
@@ -201,7 +245,7 @@
 		<name>A/THR Rate Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>/it-autoflight/internal/athr-rate</input>
+		<input>/it-autoflight/internal/athr-rate-g</input>
 		<reference>/it-autoflight/internal/athr-rate-cmd</reference>
 		<output>/it-autoflight/internal/athr-rate-error</output>
 	</filter>
@@ -225,7 +269,7 @@
 		<config>
 			<Kp>
 				<expression>
-					<table> <!-- As thrust decreases with altitude, more dU is required -->
+					<table> <!-- As thrust decreases with altitude, more dT is required -->
 						<property>/position/altitude-ft</property>
 						<entry><ind>    0</ind><dep>0.06</dep></entry>
 						<entry><ind>50000</ind><dep>0.10</dep></entry>
