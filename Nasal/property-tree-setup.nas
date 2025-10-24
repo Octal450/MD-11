@@ -240,6 +240,12 @@ var Orientation = {
 	rollDeg: props.globals.getNode("/orientation/roll-deg"),
 };
 
+var Payload = {
+	Armament: {
+		msg: props.globals.getNode("/payload/armament/msg"),
+	},
+};
+
 var Position = {
 	gearAglFt: props.globals.getNode("/position/gear-agl-ft"),
 	node: props.globals.getNode("/position"),
