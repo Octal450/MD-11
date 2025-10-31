@@ -355,10 +355,10 @@ var ITAF = {
 			Internal.enableAthrOff = 0;
 			apKill.stop();
 			atsKill.stop();
-			Fma.stopBlink(0);
-			Fma.stopBlink(1);
-			Fma.stopBlink(2);
 		}
+		Fma.stopBlink(0);
+		Fma.stopBlink(1);
+		Fma.stopBlink(2);
 		Sound.apOffSingle.setBoolValue(0);
 		systems.WARNINGS.altitudeAlert.setValue(0); # Cancel altitude alert
 		loopTimer.start();
