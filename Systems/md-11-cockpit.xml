@@ -292,19 +292,19 @@
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[0]">
-			<input>/systems/fadec/control-1/throttle-pos</input>
+			<input>/systems/fadec/control-1/throttle-lever</input>
 			<c1>20</c1>
 			<output>/systems/fadec/throttle-lever-feedback[0]</output>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[1]">
-			<input>/systems/fadec/control-2/throttle-pos</input>
+			<input>/systems/fadec/control-2/throttle-lever</input>
 			<c1>20</c1>
 			<output>/systems/fadec/throttle-lever-feedback[1]</output>
 		</lag_filter>
 		
 		<lag_filter name="/controls/cockpit/throttle-lever[2]">
-			<input>/systems/fadec/control-3/throttle-pos</input>
+			<input>/systems/fadec/control-3/throttle-lever</input>
 			<c1>20</c1>
 			<output>/systems/fadec/throttle-lever-feedback[2]</output>
 		</lag_filter>
