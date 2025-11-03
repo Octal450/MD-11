@@ -374,7 +374,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>controls.gearDownSmart(1)</script>
+				<script>controls.gearDownSmart(1);</script>
 			</binding>
 			<mod-up>
 				<binding>
