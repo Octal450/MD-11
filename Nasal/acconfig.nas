@@ -384,7 +384,9 @@ var PANEL = {
 				
 				if (t == 1) {
 					settimer(func() {
-						pts.Controls.Flight.elevatorTrim.setValue(fms.Internal.takeoffStabDeg.getValue() / -15.5);
+						if (!me.stop) {
+							pts.Controls.Flight.elevatorTrim.setValue(fms.Internal.takeoffStabDeg.getValue() / -15.5);
+						}
 					}, 0.5);
 					pts.Controls.Lighting.strobeLights.setBoolValue(1);
 					pts.Controls.Lighting.landingLightL.setValue(1);
