@@ -605,7 +605,18 @@
 			<ap-disc-2 type="bool">0</ap-disc-2>
 			<armrest type="double">1</armrest>
 			<compass-cmd type="bool">0</compass-cmd>
-			<isfd-baro-rotate type="int">50016</isfd-baro-rotate>
+			<crp n="0">
+				<major-rotate type="int">50000</major-rotate>
+				<minor-rotate type="int">50000</minor-rotate>
+			</crp>
+			<crp n="1">
+				<major-rotate type="int">50000</major-rotate>
+				<minor-rotate type="int">50000</minor-rotate>
+			</crp>
+			<crp n="2">
+				<major-rotate type="int">50000</major-rotate>
+				<minor-rotate type="int">50000</minor-rotate>
+			</crp>
 			<fcp n="0">
 				<alt-rotate type="int">50000</alt-rotate>
 				<baro-l-rotate type="int">50000</baro-l-rotate>
@@ -617,6 +628,7 @@
 				<vs-rotate type="int">50000</vs-rotate>
 			</fcp>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
+			<isfd-baro-rotate type="int">50016</isfd-baro-rotate>
 			<shade-left-cmd type="double">0</shade-left-cmd>
 			<shade-right-cmd type="double">0</shade-right-cmd>
 		</cockpit>
@@ -1419,19 +1431,13 @@
 			<volume type="double">0</volume>
 		</comm>
 		<crp n="0">
-			<major-rotate type="int">50000</major-rotate>
 			<mode type="int">0</mode>
-			<minor-rotate type="int">50000</minor-rotate>
 		</crp>
 		<crp n="1">
-			<major-rotate type="int">50000</major-rotate>
 			<mode type="int">1</mode>
-			<minor-rotate type="int">50000</minor-rotate>
 		</crp>
 		<crp n="2">
-			<major-rotate type="int">50000</major-rotate>
 			<mode type="int">2</mode>
-			<minor-rotate type="int">50000</minor-rotate>
 		</crp>
 		<dme n="0"> <!-- VOR 1 -->
 			<frequencies n="0">

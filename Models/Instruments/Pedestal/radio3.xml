@@ -61,7 +61,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>Dec.knob</object-name>
-		<property>instrumentation/crp[2]/minor-rotate</property>
+		<property>controls/cockpit/crp[2]/minor-rotate</property>
 		<factor>-11.25</factor>
 		<center>
 			<x-m>0.02005</x-m>
@@ -100,7 +100,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/crp[2]/minor-rotate</property>
+				<property>controls/cockpit/crp[2]/minor-rotate</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>100000</max>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>knob</type>
 		<object-name>Int.knob</object-name>
-		<property>instrumentation/crp[2]/major-rotate</property>
+		<property>controls/cockpit/crp[2]/major-rotate</property>
 		<factor>-11.25</factor>
 		<center>
 			<x-m>0.02005</x-m>
@@ -139,7 +139,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/crp[2]/major-rotate</property>
+				<property>controls/cockpit/crp[2]/major-rotate</property>
 				<factor>1</factor>
 				<min>0</min>
 				<max>100000</max>
