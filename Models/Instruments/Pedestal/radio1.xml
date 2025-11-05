@@ -160,7 +160,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/radio/swap[0]</property>
+				<property>controls/cockpit/crp[0]/swap</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -170,7 +170,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/radio/swap[0]</property>
+					<property>controls/cockpit/crp[0]/swap</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -179,7 +179,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>swap.btn</object-name>
-		<property>controls/cockpit/radio/swap[0]</property>
+		<property>controls/cockpit/crp[0]/swap</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>0</x>
@@ -200,7 +200,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/radio/vhf-1[0]</property>
+				<property>controls/cockpit/crp[0]/vhf-1</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -210,7 +210,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/radio/vhf-1[0]</property>
+					<property>controls/cockpit/crp[0]/vhf-1</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -220,7 +220,7 @@
 		<type>translate</type>
 		<object-name>vhf1.btn</object-name>
 		<object-name>vhf1.btn.light</object-name>
-		<property>controls/cockpit/radio/vhf-1[0]</property>
+		<property>controls/cockpit/crp[0]/vhf-1</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>0</x>
@@ -241,7 +241,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/radio/vhf-2[0]</property>
+				<property>controls/cockpit/crp[0]/vhf-2</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -251,7 +251,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/radio/vhf-2[0]</property>
+					<property>controls/cockpit/crp[0]/vhf-2</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -261,7 +261,7 @@
 		<type>translate</type>
 		<object-name>vhf2.btn</object-name>
 		<object-name>vhf2.btn.light</object-name>
-		<property>controls/cockpit/radio/vhf-2[0]</property>
+		<property>controls/cockpit/crp[0]/vhf-2</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>0</x>
@@ -282,7 +282,7 @@
 			</binding>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/cockpit/radio/vhf-3[0]</property>
+				<property>controls/cockpit/crp[0]/vhf-3</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -292,7 +292,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/cockpit/radio/vhf-3[0]</property>
+					<property>controls/cockpit/crp[0]/vhf-3</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -302,7 +302,7 @@
 		<type>translate</type>
 		<object-name>vhf3.btn</object-name>
 		<object-name>vhf3.btn.light</object-name>
-		<property>controls/cockpit/radio/vhf-3[0]</property>
+		<property>controls/cockpit/crp[0]/vhf-3</property>
 		<factor>-0.001</factor>
 		<axis>
 			<x>0</x>
