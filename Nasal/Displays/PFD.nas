@@ -260,12 +260,12 @@ var canvasBase = {
 	getKeys: func() {
 		return ["AI_background", "AI_bank", "AI_bank_mask", "AI_banklimit_L", "AI_banklimit_R", "AI_center", "AI_dual_cue", "AI_error", "AI_group", "AI_group2", "AI_group3", "AI_group4", "AI_overbank_index", "AI_PLI", "AI_PLI_dual_cue", "AI_PLI_single_cue",
 		"AI_rising_runway", "AI_rising_runway_E", "AI_scale", "AI_slipskid", "AI_slipskid_t", "AI_single_cue", "ALT_agl", "ALT_bowtie", "ALT_error", "ALT_five", "ALT_five_T", "ALT_fms", "ALT_fms_dn", "ALT_fms_up", "ALT_four", "ALT_four_T", "ALT_hundreds",
-		"ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash", "ALT_tenthousands",
-		"ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15", "ASI_f15_p", "ASI_f15_t", "ASI_f28", "ASI_f28_p", "ASI_f28_t",
-		"ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_econ", "ASI_fms_econ_mach_text", "ASI_fms_mach_text", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t", "ASI_ge", "ASI_ge_p",
-		"ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_mach_presel", "ASI_mach_presel_text", "ASI_mach_sel", "ASI_mach_sel_dn", "ASI_mach_sel_up", "ASI_mach_sel_text", "ASI_presel",
-		"ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up", "ASI_v_bugs",
-		"ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n",
+		"ALT_hundreds_zero", "ALT_minimums", "ALT_minus", "ALT_one", "ALT_one_T", "ALT_presel", "ALT_scale", "ALT_sel", "ALT_sel_dn", "ALT_sel_dn_text", "ALT_sel_dn_text_T", "ALT_sel_up", "ALT_sel_up_text", "ALT_sel_up_text_T", "ALT_tens", "ALT_tens_dash",
+		"ALT_tenthousands", "ALT_thousands", "ALT_thousands_zero", "ALT_three", "ALT_three_T", "ALT_two", "ALT_two_T", "ASI", "ASI_bowtie", "ASI_bowtie_L", "ASI_bowtie_mach", "ASI_bowtie_R", "ASI_error", "ASI_f15", "ASI_f15_p", "ASI_f15_t", "ASI_f28",
+		"ASI_f28_p", "ASI_f28_t", "ASI_f35", "ASI_f35_p", "ASI_f35_t", "ASI_f50", "ASI_f50_p", "ASI_f50_t", "ASI_flap_max", "ASI_fms", "ASI_fms_dn", "ASI_fms_econ", "ASI_fms_econ_mach_text", "ASI_fms_mach_text", "ASI_fms_up", "ASI_fr", "ASI_fr_p", "ASI_fr_t",
+		"ASI_ge", "ASI_ge_p", "ASI_ge_t", "ASI_gr", "ASI_gr_p", "ASI_gr_t", "ASI_groundspeed", "ASI_ias_group", "ASI_mach", "ASI_mach_decimal", "ASI_mach_presel", "ASI_mach_presel_text", "ASI_mach_sel", "ASI_mach_sel_dn", "ASI_mach_sel_up", "ASI_mach_sel_text",
+		"ASI_presel", "ASI_ref_bugs", "ASI_scale", "ASI_se", "ASI_se_p", "ASI_se_t", "ASI_sel", "ASI_sel_dn", "ASI_sel_dn_text", "ASI_sel_up", "ASI_sel_up_text", "ASI_sr", "ASI_sr_p", "ASI_sr_t", "ASI_taxi", "ASI_taxi_group", "ASI_trend_dn", "ASI_trend_up",
+		"ASI_v_bugs", "ASI_v1_bug", "ASI_v1_bug_n", "ASI_v1_bug_p", "ASI_v1_bug_v", "ASI_v1_box", "ASI_v1_dash", "ASI_v1_text", "ASI_v2_bug", "ASI_v2_bug_n", "ASI_v2_bug_p", "ASI_v2_bug_v", "ASI_v2_box", "ASI_v2_dash", "ASI_v2_text", "ASI_vr_bug", "ASI_vr_bug_n",
 		"ASI_vr_bug_p", "ASI_vr_bug_v", "ASI_vr_box", "ASI_vr_dash", "ASI_vr_text", "ASI_vmin", "ASI_vmin_bar", "ASI_vmo", "ASI_vmo_bar", "ASI_vmo_bar2", "ASI_vss", "Comparators", "FD_error", "FD_group", "FD_group2", "FD_pitch", "FD_roll", "FD_v", "Flaps_error",
 		"Flaps", "Flaps_dn", "Flaps_num", "Flaps_num2", "Flaps_num_boxes", "Flaps_up", "FMA_altitude", "FMA_altitude_T", "FMA_AP", "FMA_AP_pitch_off_box", "FMA_AP_thrust_off_box", "FMA_ATS_pitch_off", "FMA_ATS_pitch_off_box", "FMA_ATS_pitch_off_text",
 		"FMA_ATS_thrust_off", "FMA_ATS_thrust_off_box", "FMA_ATS_thrust_off_text", "FMA_land", "FMA_pitch", "FMA_pitch_arm", "FMA_pitch_land", "FMA_roll", "FMA_roll_arm", "FMA_speed", "FMA_thrust", "FMA_thrust_arm", "FPD", "FPV", "GS_error", "GS_no",
@@ -1569,8 +1569,6 @@ var canvasBase = {
 		if (Value.Alt.indicated < 0) {
 			if (Value.Alt.indicated < -9980) {
 				me["ALT_minus"].setTranslation(-22.172, 0);
-			} else if (Value.Alt.indicated >= -980) {
-				me["ALT_minus"].setTranslation(22.172, 0);
 			} else {
 				me["ALT_minus"].setTranslation(0, 0);
 			}
@@ -1585,6 +1583,12 @@ var canvasBase = {
 			me["ALT_thousands_zero"].hide();
 		} else {
 			me["ALT_thousands_zero"].show();
+		}
+		
+		if (Value.Alt.indicatedAbs < 900) { # Prepare to show the zero at 1000
+			me["ALT_hundreds_zero"].hide();
+		} else {
+			me["ALT_hundreds_zero"].show();
 		}
 		
 		Value.Alt.Tape.tenThousands = num(right(sprintf("%05d", Value.Alt.indicatedAbs), 5)) / 100; # Unlikely it would be above 99999 but lets account for it anyways
