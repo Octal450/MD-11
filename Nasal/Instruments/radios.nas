@@ -14,7 +14,6 @@ var CRP = { # HF is not simulated in FGFS, so we will not use it
 		m.mode = props.globals.getNode(m.root ~ "mode"); # 0: VHF1, 1: VHF2, 2: VHF3, 3: HF1, 4: HF2
 		m.power = props.globals.getNode("/systems/electrical/outputs/crp[" ~ n ~ "]", 1);
 		m.selTemp = 0;
-		m.stby = props.globals.getNode(m.root ~ "stby", 1);
 		m.stbyRight = 0;
 		m.stbySel = 0;
 		m.stbySplit = [0, 0];
