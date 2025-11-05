@@ -390,7 +390,7 @@
 		<alignment>right-bottom</alignment>
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>number-value</type>
-		<format>%3.3f</format>
+		<format>%7.3f</format>
 		<property>instrumentation/crp[0]/active</property>
 		<truncate>false</truncate>
 		<font>Std7SegCustom.ttf</font>
@@ -439,7 +439,7 @@
 		<alignment>right-bottom</alignment>
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>number-value</type>
-		<format>%3.3f</format>
+		<format>%7.3f</format>
 		<property>instrumentation/crp[0]/stby</property>
 		<truncate>false</truncate>
 		<font>Std7SegCustom.ttf</font>
