@@ -2116,7 +2116,7 @@ var canvasBase = {
 				Value.Hdg.hideHdgSel = 0;
 			}
 			
-			if (!Value.Hdg.hideHdgSel) {
+			if (Value.Afs.lat == 0 and !Value.Hdg.hideHdgSel) {
 				me["HDG_sel"].setRotation(Value.Hdg.Tape.sel * D2R);
 				me["HDG_sel"].show();
 			} else {
