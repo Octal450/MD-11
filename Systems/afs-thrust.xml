@@ -142,7 +142,7 @@
 		<name>A/THR Rate Command</name>
 		<type>gain</type>
 		<gain>
-			<table> <!-- As thrust decreases with altitude, less aggressive correction is required -->
+			<table> <!-- As thrust decreases with altitude, correction must be less aggressive -->
 				<property>/position/altitude-ft</property>
 				<entry><ind>    0</ind><dep>1.0</dep></entry>
 				<entry><ind>50000</ind><dep>0.8</dep></entry>
