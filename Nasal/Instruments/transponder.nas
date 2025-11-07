@@ -20,7 +20,6 @@ var XPDR = {
 	xpdr: props.globals.getNode("/instrumentation/transponder/input/xpdr"),
 	init: func() { # Don't reset the code
 		me.altReport.setBoolValue(1);
-		me.codeEntryActive = 0;
 		me.setMode(0);
 		me.xpdr.setBoolValue(0);
 	},
