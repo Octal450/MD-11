@@ -152,18 +152,8 @@
 			<pref-height>25</pref-height>
 			<legend>&lt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(-1, 0, 0);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 1, 0);</script>
 			</binding>
 		</button>
 		
@@ -187,18 +177,8 @@
 			<pref-height>25</pref-height>
 			<legend>&gt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(1, 0, 0);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 1, 0);</script>
 			</binding>
 		</button>
 		<button>
@@ -283,18 +263,8 @@
 			<pref-height>25</pref-height>
 			<legend>&lt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(-1, 0, 1);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 1, 1);</script>
 			</binding>
 		</button>
 		
@@ -318,18 +288,8 @@
 			<pref-height>25</pref-height>
 			<legend>&gt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(1, 0, 1);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 1, 1);</script>
 			</binding>
 		</button>
 		<button>
@@ -414,18 +374,8 @@
 			<pref-height>25</pref-height>
 			<legend>&lt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(-1, 0, 2);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(-1, 1, 2);</script>
 			</binding>
 		</button>
 		
@@ -449,18 +399,8 @@
 			<pref-height>25</pref-height>
 			<legend>&gt;</legend>
 			<binding>
-				<condition>
-					<not><property>devices/status/keyboard/shift</property></not>
-				</condition>
 				<command>nasal</command>
 				<script>instruments.crp[0].adjustDec(1, 0, 2);</script>
-			</binding>
-			<binding>
-				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>nasal</command>
-				<script>instruments.crp[0].adjustDec(1, 1, 2);</script>
 			</binding>
 		</button>
 		<button>
