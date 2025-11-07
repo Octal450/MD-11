@@ -39,7 +39,7 @@
 	<filter>
 		<name>A/THR Mach Rate Gain</name>
 		<type>gain</type>
-		<gain>650</gain>
+		<gain>700</gain>
 		<input>/it-autoflight/internal/athr-mach-rate-raw</input>
 		<output>/it-autoflight/internal/athr-mach-rate-gain</output>
 	</filter>
@@ -68,54 +68,6 @@
 		<input>/it-autoflight/internal/athr-kts-rate-raw</input>
 		<output>/it-autoflight/internal/athr-rate</output>
 		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
-		<name>A/THR G Accel Lag</name>
-		<type>double-exponential</type>
-		<input>
-			<expression>
-				<sum>
-					<table> <!-- Max G effect -->
-						<property>/accelerations/pilot-g</property>
-						<entry><ind>0.75</ind><dep>0.75</dep></entry>
-						<entry><ind>1.25</ind><dep>1.25</dep></entry>
-					</table>
-					<div>
-						<value>-1</value>
-						<cos>
-							<deg2rad>
-								<table>
-									<property>/orientation/roll-deg</property>
-									<entry><ind>-89</ind><dep>-89</dep></entry>
-									<entry><ind> 89</ind><dep> 89</dep></entry>
-								</table>
-							</deg2rad>
-						</cos>
-					</div>
-				</sum>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/athr-g-lag</output>
-		<filter-time>0.32</filter-time>
-	</filter>
-	
-	<filter>
-		<name>A/THR Rate G</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<sum>
-					<property>/it-autoflight/internal/athr-rate</property>
-					<product>
-						<property>/it-autoflight/internal/athr-g-lag</property>
-						<value>-1</value>
-					</product>
-				</sum>
-			</expression>
-		</input>
-		<output>/it-autoflight/internal/athr-rate-g</output>
 	</filter>
 	
 	<filter>
@@ -189,7 +141,13 @@
 	<filter>
 		<name>A/THR Rate Command</name>
 		<type>gain</type>
-		<gain>1.0</gain>
+		<gain>
+			<table> <!-- As thrust decreases with altitude, less aggressive correction is required -->
+				<property>/position/altitude-ft</property>
+				<entry><ind>    0</ind><dep>1.0</dep></entry>
+				<entry><ind>50000</ind><dep>0.8</dep></entry>
+			</table>
+		</gain>
 		<input>
 			<condition>
 				<equals>
@@ -249,16 +207,7 @@
 		<name>A/THR Rate Error</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<input>/it-autoflight/internal/athr-rate-g</input>
-		<reference>/it-autoflight/internal/athr-rate-cmd</reference>
-		<output>/it-autoflight/internal/athr-rate-error</output>
-	</filter>
-	
-	<filter>
-		<name>A/THR Rate Error</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/it-autoflight/internal/athr-rate-g</input>
+		<input>/it-autoflight/internal/athr-rate</input>
 		<reference>/it-autoflight/internal/athr-rate-cmd</reference>
 		<output>/it-autoflight/internal/athr-rate-error</output>
 	</filter>
@@ -282,10 +231,10 @@
 		<config>
 			<Kp>
 				<expression>
-					<table> <!-- As thrust decreases with altitude, more dT is required -->
+					<table> <!-- As thrust decreases with altitude, more delta throttle is required -->
 						<property>/position/altitude-ft</property>
 						<entry><ind>    0</ind><dep>0.06</dep></entry>
-						<entry><ind>50000</ind><dep>0.10</dep></entry>
+						<entry><ind>50000</ind><dep>0.08</dep></entry>
 					</table>
 				</expression>
 			</Kp>
@@ -294,7 +243,13 @@
 			<u_min>
 				<expression>
 					<pow>
-						<property>/systems/fadec/limit/idle-norm</property>
+						<max>
+							<property>/systems/fadec/limit/idle-norm</property>
+							<sum>
+								<property>/systems/fadec/ats-cmd</property>
+								<value>-0.005</value> <!-- For 60Hz and 0.3/sec -->
+							</sum>
+						</max>
 						<value>1.4</value>
 					</pow>
 				</expression>
@@ -302,7 +257,13 @@
 			<u_max>
 				<expression>
 					<pow>
-						<property>/systems/fadec/limit/active-norm</property>
+						<min>
+							<property>/systems/fadec/limit/active-norm</property>
+							<sum>
+								<property>/systems/fadec/ats-cmd</property>
+								<value>0.005</value> <!-- For 60Hz and 0.3/sec -->
+							</sum>
+						</min>
 						<value>1.4</value>
 					</pow>
 				</expression>
