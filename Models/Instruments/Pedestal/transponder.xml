@@ -466,6 +466,21 @@
 	</animation>
 	
 	<animation>
+		<type>select</type>
+		<object-name>ATC1</object-name>
+		<object-name>ATC2</object-name>
+		<condition>
+			<or>
+				<property>controls/switches/annun-test</property>
+				<greater-than>
+					<property>instrumentation/transponder/output/knob</property>
+					<value>0</value>
+				</greater-than>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>knob</type>
 		<object-name>ModeKnobCyl</object-name>
 		<property>controls/cockpit/transponder/knob</property>
