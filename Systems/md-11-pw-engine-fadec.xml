@@ -995,55 +995,6 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fadec/limit/active-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>/systems/fadec/limit/active</property>
-						<property>/systems/fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>/systems/fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/limit/active-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<pow>
-						<table>
-							<independentVar lookup="row">/systems/fadec/limit/active-norm-ref</independentVar>
-							<tableData>
-								0.03     65768.7
-								1.00  14591440.5
-								1.50  21887160.8
-							</tableData>
-						</table>
-						<quotient>
-							<value>1</value>
-							<value>3.5</value>
-						</quotient>
-					</pow>
-					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/limit/active-norm">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/fadec/limit/active-norm-input</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
 		<fcs_function name="/systems/fadec/limit/max">
 			<function>
 				<ifthen> <!-- When in takeoff, enforce takeoff, else take highest -->
@@ -1057,55 +1008,6 @@
 						<property>/systems/fadec/limit/mct</property>
 					</max>
 				</ifthen>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/limit/max-norm-ref"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<difference>
-						<property>/systems/fadec/limit/max</property>
-						<property>/systems/fadec/epr/c2</property>
-					</difference>
-					<max> <!-- Prevent divide by 0 -->
-						<property>/systems/fadec/epr/c1</property>
-						<value>0.001</value>
-					</max>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/limit/max-norm-input"> <!-- Opposite of EPR Calc -->
-			<function>
-				<quotient>
-					<pow>
-						<table>
-							<independentVar lookup="row">/systems/fadec/limit/max-norm-ref</independentVar>
-							<tableData>
-								0.03     65768.7
-								1.00  14591440.5
-								1.50  21887160.8
-							</tableData>
-						</table>
-						<quotient>
-							<value>1</value>
-							<value>3.5</value>
-						</quotient>
-					</pow>
-					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
-				</quotient>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/limit/max-norm">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/fadec/limit/max-norm-input</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
 			</function>
 		</fcs_function>
 		
@@ -1140,7 +1042,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/idle">
+		<fcs_function name="/systems/fadec/limit/idle-n1">
 			<function>
 				<quotient>
 					<floor>
@@ -1157,15 +1059,34 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/limit/idle-norm">
+		<fcs_function name="/systems/fadec/limit/idle-ref">
 			<function>
-				<table>
-					<independentVar lookup="row">/systems/fadec/limit/idle</independentVar>
-					<tableData>
-						 23.8  0
-						111.4  1
-					</tableData>
-				</table>
+				<pow>
+					<product>
+						<property>/systems/fadec/limit/idle-n1</property>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
+					<value>3.5</value>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/idle">
+			<function>
+				<sum>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/limit/idle-ref</independentVar>
+							<tableData>
+								   65768.7  0.03
+								14591440.5  1.00
+								21887160.8  1.50
+							</tableData>
+						</table>
+						<property>/systems/fadec/epr/c1</property>
+					</product>
+					<property>/systems/fadec/epr/c2</property>
+				</sum>
 			</function>
 		</fcs_function>
 	
@@ -1225,8 +1146,8 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[0]/throttle</independentVar>
 						<tableData>
-							0.05  0.05
-							1.00  0.84
+							0.05  0.00
+							1.00  0.78
 						</tableData>
 					</table>
 					<value>0</value>
@@ -1241,8 +1162,8 @@
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-1/throttle-rev-cmd</independentVar>
 						<tableData>
-							0.05  0.25
-							0.84  1.00
+							0.00  0.25
+							0.78  1.00
 						</tableData>
 					</table>
 				</product>
@@ -1254,10 +1175,6 @@
 			<test value="/systems/fadec/reverse-1/throttle-rev-cmd">
 				/systems/fadec/reverse-1/engage eq 1
 			</test>
-			<clipto>
-				<min>0.05</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-1/active">
@@ -1335,8 +1252,8 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[1]/throttle</independentVar>
 						<tableData>
-							0.05  0.05
-							1.00  0.84
+							0.05  0.00
+							1.00  0.78
 						</tableData>
 					</table>
 					<value>0</value>
@@ -1351,8 +1268,8 @@
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-2/throttle-rev-cmd</independentVar>
 						<tableData>
-							0.05  0.25
-							0.84  1.00
+							0.00  0.25
+							0.78  1.00
 						</tableData>
 					</table>
 				</product>
@@ -1367,10 +1284,6 @@
 			<test value="/systems/fadec/reverse-2/throttle-rev-cmd">
 				/systems/fadec/reverse-2/engage eq 1
 			</test>
-			<clipto>
-				<min>0.05</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-2/active">
@@ -1433,8 +1346,8 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[2]/throttle</independentVar>
 						<tableData>
-							0.05  0.05
-							1.00  0.84
+							0.05  0.00
+							1.00  0.78
 						</tableData>
 					</table>
 					<value>0</value>
@@ -1449,8 +1362,8 @@
 					<table>
 						<independentVar lookup="row">/systems/fadec/reverse-3/throttle-rev-cmd</independentVar>
 						<tableData>
-							0.05  0.25
-							0.84  1.00
+							0.00  0.25
+							0.78  1.00
 						</tableData>
 					</table>
 				</product>
@@ -1462,10 +1375,6 @@
 			<test value="/systems/fadec/reverse-3/throttle-rev-cmd">
 				/systems/fadec/reverse-3/engage eq 1
 			</test>
-			<clipto>
-				<min>0.05</min>
-				<max>1.0</max>
-			</clipto>
 		</switch>
 		
 		<switch name="/systems/fadec/reverse-3/active">
@@ -1478,73 +1387,23 @@
 	
 	</channel>
 	
-	<channel name="Engine Control">
+	<channel name="Engine EPR Control">
 		
-		<!-- Engine 1 -->
-		<switch name="/systems/fadec/control-1/n1-mode">
-			<default value="0"/>
-			<test value="1">
-				/controls/fadec/altn-1 eq 1
-			</test>
-		</switch>
+		<fcs_function name="/systems/fadec/bot-exp">
+			<function>
+				<pow>
+					<value>0.1</value>
+					<value>2.2</value>
+				</pow>
+			</function>
+		</fcs_function>
 		
-		<switch name="/systems/fadec/control-1/max">
-			<default value="/systems/fadec/limit/max-norm"/>
-			<test value="1">
-				/systems/fadec/control-1/n1-mode eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/fadec/control-1/min">
-			<default value="/systems/fadec/limit/idle-norm"/>
-			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/altn-1 eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/fadec/control-1/throttle-pos">
-			<default value="/controls/engines/engine[0]/throttle"/>
-			<test value="0">
-				/systems/fadec/reverse-1/active eq 1
-			</test>
-			<test logic="AND" value="/systems/fadec/ats-cmd-1">
-				/it-autoflight/output/athr eq 1
-				/it-autoflight/output/clamp eq 0
-			</test>
-		</switch>
-		
-		<lag_filter name="/systems/fadec/control-1/throttle-pos-lag">
-			<input>/systems/fadec/control-1/throttle-pos</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<switch name="/systems/fadec/control-1/throttle-cmd">
-			<default value="/systems/fadec/control-1/throttle-pos"/>
-			<test value="/systems/fadec/reverse-1/throttle-rev">
-				/systems/fadec/reverse-1/active eq 1
-			</test>
-			<clipto>
-				<min>0.0</min> <!-- Intentional -->
-				<max>/systems/fadec/control-1/max</max>
-			</clipto>
-		</switch>
-		
-		<lag_filter name="/systems/fadec/control-1/throttle-lag">
-			<input>/systems/fadec/control-1/throttle-cmd</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<fcs_function name="/systems/fadec/control-1/throttle-ref">
+		<!-- Max N1 EPR -->
+		<fcs_function name="/systems/fadec/max-n1-ref">
 			<function>
 				<pow>
 					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/control-1/throttle-lag</independentVar>
-							<tableData>
-								0   23.8
-								1  111.4
-							</tableData>
-						</table>
+						<value>111.4</value>
 						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
 					</product>
 					<value>3.5</value>
@@ -1552,12 +1411,12 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/control-1/throttle-epr">
+		<fcs_function name="/systems/fadec/max-n1-epr">
 			<function>
 				<sum>
 					<product>
 						<table>
-							<independentVar lookup="row">/systems/fadec/control-1/throttle-ref</independentVar>
+							<independentVar lookup="row">/systems/fadec/max-n1-ref</independentVar>
 							<tableData>
 								   65768.7  0.03
 								14591440.5  1.00
@@ -1571,28 +1430,214 @@
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/fadec/control-1/throttle-pos-clamped">
-			<input>/systems/fadec/control-1/throttle-pos</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>/systems/fadec/control-1/min</min>
-				<max>/systems/fadec/control-1/max</max>
-			</clipto>
-		</pure_gain>
+		<!-- Idle N1 EPR -->
+		<fcs_function name="/systems/fadec/idle-n1-ref">
+			<function>
+				<pow>
+					<product>
+						<value>23.8</value>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
+					<value>3.5</value>
+				</pow>
+			</function>
+		</fcs_function>
 		
-		<switch name="/systems/fadec/control-1/throttle-output">
-			<default value="/systems/fadec/control-1/throttle-pos-clamped"/>
+		<fcs_function name="/systems/fadec/idle-n1-epr">
+			<function>
+				<sum>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/idle-n1-ref</independentVar>
+							<tableData>
+								   65768.7  0.03
+								14591440.5  1.00
+								21887160.8  1.50
+							</tableData>
+						</table>
+						<property>/systems/fadec/epr/c1</property>
+					</product>
+					<property>/systems/fadec/epr/c2</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/idle-stop-epr">
+			<function>
+				<sum>
+					<property>/systems/fadec/idle-n1-epr</property>
+					<value>-0.005</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<!-- Reverse Idle N1 EPR -->
+		<fcs_function name="/systems/fadec/rev-idle-n1-ref">
+			<function>
+				<pow>
+					<product>
+						<value>28.2</value>
+						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+					</product>
+					<value>3.5</value>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/rev-idle-n1-epr">
+			<function>
+				<sum>
+					<product>
+						<table>
+							<independentVar lookup="row">/systems/fadec/rev-idle-n1-ref</independentVar>
+							<tableData>
+								   65768.7  0.03
+								14591440.5  1.00
+								21887160.8  1.50
+							</tableData>
+						</table>
+						<property>/systems/fadec/epr/c1</property>
+					</product>
+					<property>/systems/fadec/epr/c2</property>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<!-- Engine 1 -->
+		<switch name="/systems/fadec/control-1/n1-mode">
+			<default value="0"/>
+			<test value="1">
+				/controls/fadec/altn-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fadec/control-1/max-epr">
+			<default value="/systems/fadec/limit/max"/>
+			<test value="/systems/fadec/max-n1-epr">
+				/systems/fadec/control-1/n1-mode eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fadec/control-1/min-epr">
+			<default value="/systems/fadec/limit/idle"/>
+			<test value="/systems/fadec/rev-idle-n1-epr">
+				/systems/fadec/reverse-1/active eq 1
+			</test>
+			<test value="0">
+				/systems/fadec/control-1/n1-mode eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fadec/control-1/throttle-lever">
+			<default value="/controls/engines/engine[0]/throttle"/>
+			<test value="0">
+				/systems/fadec/reverse-1/active eq 1
+			</test>
+			<test logic="AND" value="/systems/fadec/ats-cmd-1">
+				/it-autoflight/output/athr eq 1
+				/it-autoflight/output/clamp eq 0
+			</test>
+		</switch>
+		
+		<lag_filter name="/systems/fadec/control-1/throttle-lever-lag">
+			<input>/systems/fadec/control-1/throttle-lever</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<switch name="/systems/fadec/control-1/throttle-input">
+			<default value="/systems/fadec/control-1/throttle-lever"/>
 			<test value="/systems/fadec/reverse-1/throttle-rev">
 				/systems/fadec/reverse-1/active eq 1
 			</test>
-			<clipto>
-				<min>/systems/fadec/control-1/min</min>
-				<max>1.0</max> <!-- Intentional -->
-			</clipto>
 		</switch>
 		
+		<fcs_function name="/systems/fadec/control-1/target-epr-cmd">
+			<function>
+				<min>
+					<interpolate1d>
+						<pow>
+							<table>
+								<independentVar lookup="row">/systems/fadec/control-1/throttle-input</independentVar>
+								<tableData>
+									0.0  0.1
+									1.0  1.0
+								</tableData>
+							</table>
+							<value>2.2</value>
+						</pow>
+						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
+						<value>1</value><property>/systems/fadec/max-n1-epr</property>
+					</interpolate1d>
+					<property>/systems/fadec/control-1/max-epr</property>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/systems/fadec/control-1/target-epr">
+			<input>/systems/fadec/control-1/target-epr-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/fadec/control-1/target-epr-idle-limit">
+			<function>
+				<max>
+					<property>/systems/fadec/control-1/target-epr</property>
+					<property>/systems/fadec/control-1/min-epr</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/control-1/throttle-cmd-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/fadec/control-1/target-epr-idle-limit</property>
+						<property>/systems/fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
+						<property>/systems/fadec/epr/c1</property>
+						<value>0.001</value>
+					</max>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/control-1/throttle-cmd-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<pow>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-1/throttle-cmd-ref</independentVar>
+							<tableData>
+								0.03     65768.7
+								1.00  14591440.5
+								1.50  21887160.8
+							</tableData>
+						</table>
+						<quotient>
+							<value>1</value>
+							<value>3.5</value>
+						</quotient>
+					</pow>
+					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/control-1/throttle-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/control-1/throttle-cmd-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<lag_filter name="/systems/fadec/control-1/throttle-fdm">
-			<input>/systems/fadec/control-1/throttle-output</input>
+			<input>/systems/fadec/control-1/throttle-cmd</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[0]</output>
 		</lag_filter>
@@ -1605,21 +1650,24 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-2/max">
-			<default value="/systems/fadec/limit/max-norm"/>
-			<test value="1">
+		<switch name="/systems/fadec/control-2/max-epr">
+			<default value="/systems/fadec/limit/max"/>
+			<test value="/systems/fadec/max-n1-epr">
 				/systems/fadec/control-2/n1-mode eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-2/min">
-			<default value="/systems/fadec/limit/idle-norm"/>
-			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/altn-2 eq 1
+		<switch name="/systems/fadec/control-2/min-epr">
+			<default value="/systems/fadec/limit/idle"/>
+			<test value="/systems/fadec/rev-idle-n1-epr">
+				/systems/fadec/reverse-2/active eq 1
+			</test>
+			<test value="0">
+				/systems/fadec/control-2/n1-mode eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-2/throttle-pos">
+		<switch name="/systems/fadec/control-2/throttle-lever">
 			<default value="/controls/engines/engine[1]/throttle"/>
 			<test value="0">
 				/systems/fadec/reverse-2/active eq 1
@@ -1630,86 +1678,105 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="/systems/fadec/control-2/throttle-pos-lag">
-			<input>/systems/fadec/control-2/throttle-pos</input>
+		<lag_filter name="/systems/fadec/control-2/throttle-lever-lag">
+			<input>/systems/fadec/control-2/throttle-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<switch name="/systems/fadec/control-2/throttle-cmd">
-			<default value="/systems/fadec/control-2/throttle-pos"/>
+		<switch name="/systems/fadec/control-2/throttle-input">
+			<default value="/systems/fadec/control-2/throttle-lever"/>
 			<test value="/systems/fadec/reverse-2/throttle-rev">
 				/systems/fadec/reverse-2/active eq 1
 			</test>
-			<clipto>
-				<min>0.0</min> <!-- Intentional -->
-				<max>/systems/fadec/control-2/max</max>
-			</clipto>
 		</switch>
 		
-		<lag_filter name="/systems/fadec/control-2/throttle-lag">
-			<input>/systems/fadec/control-2/throttle-cmd</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<fcs_function name="/systems/fadec/control-2/throttle-ref">
+		<fcs_function name="/systems/fadec/control-2/target-epr-cmd">
 			<function>
-				<pow>
-					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/control-2/throttle-lag</independentVar>
-							<tableData>
-								0   23.8
-								1  111.4
-							</tableData>
-						</table>
-						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
-					</product>
-					<value>3.5</value>
-				</pow>
+				<min>
+					<interpolate1d>
+						<pow>
+							<table>
+								<independentVar lookup="row">/systems/fadec/control-2/throttle-input</independentVar>
+								<tableData>
+									0.0  0.1
+									1.0  1.0
+								</tableData>
+							</table>
+							<value>2.2</value>
+						</pow>
+						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
+						<value>1</value><property>/systems/fadec/max-n1-epr</property>
+					</interpolate1d>
+					<property>/systems/fadec/control-2/max-epr</property>
+				</min>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/control-2/throttle-epr">
+		<lag_filter name="/systems/fadec/control-2/target-epr">
+			<input>/systems/fadec/control-2/target-epr-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/fadec/control-2/target-epr-idle-limit">
 			<function>
-				<sum>
-					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/control-2/throttle-ref</independentVar>
-							<tableData>
-								   65768.7  0.03
-								14591440.5  1.00
-								21887160.8  1.50
-							</tableData>
-						</table>
+				<max>
+					<property>/systems/fadec/control-2/target-epr</property>
+					<property>/systems/fadec/control-2/min-epr</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/control-2/throttle-cmd-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/fadec/control-2/target-epr-idle-limit</property>
+						<property>/systems/fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
 						<property>/systems/fadec/epr/c1</property>
-					</product>
-					<property>/systems/fadec/epr/c2</property>
-				</sum>
+						<value>0.001</value>
+					</max>
+				</quotient>
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/fadec/control-2/throttle-pos-clamped">
-			<input>/systems/fadec/control-2/throttle-pos</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>/systems/fadec/control-2/min</min>
-				<max>/systems/fadec/control-2/max</max>
-			</clipto>
-		</pure_gain>
+		<fcs_function name="/systems/fadec/control-2/throttle-cmd-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<pow>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-2/throttle-cmd-ref</independentVar>
+							<tableData>
+								0.03     65768.7
+								1.00  14591440.5
+								1.50  21887160.8
+							</tableData>
+						</table>
+						<quotient>
+							<value>1</value>
+							<value>3.5</value>
+						</quotient>
+					</pow>
+					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+				</quotient>
+			</function>
+		</fcs_function>
 		
-		<switch name="/systems/fadec/control-2/throttle-output">
-			<default value="/systems/fadec/control-2/throttle-pos-clamped"/>
-			<test value="/systems/fadec/reverse-2/throttle-rev">
-				/systems/fadec/reverse-2/active eq 1
-			</test>
-			<clipto>
-				<min>/systems/fadec/control-2/min</min>
-				<max>1.0</max> <!-- Intentional -->
-			</clipto>
-		</switch>
+		<fcs_function name="/systems/fadec/control-2/throttle-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/control-2/throttle-cmd-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<lag_filter name="/systems/fadec/control-2/throttle-fdm">
-			<input>/systems/fadec/control-2/throttle-output</input>
+			<input>/systems/fadec/control-2/throttle-cmd</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[1]</output>
 		</lag_filter>
@@ -1722,21 +1789,24 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-3/max">
-			<default value="/systems/fadec/limit/max-norm"/>
-			<test value="1">
+		<switch name="/systems/fadec/control-3/max-epr">
+			<default value="/systems/fadec/limit/max"/>
+			<test value="/systems/fadec/max-n1-epr">
 				/systems/fadec/control-3/n1-mode eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-3/min">
-			<default value="/systems/fadec/limit/idle-norm"/>
-			<test value="0"> <!-- Idle schedule is by N1, so don't use n1-mode here -->
-				/controls/fadec/altn-3 eq 1
+		<switch name="/systems/fadec/control-3/min-epr">
+			<default value="/systems/fadec/limit/idle"/>
+			<test value="/systems/fadec/rev-idle-n1-epr">
+				/systems/fadec/reverse-3/active eq 1
+			</test>
+			<test value="0">
+				/systems/fadec/control-3/n1-mode eq 1
 			</test>
 		</switch>
 		
-		<switch name="/systems/fadec/control-3/throttle-pos">
+		<switch name="/systems/fadec/control-3/throttle-lever">
 			<default value="/controls/engines/engine[2]/throttle"/>
 			<test value="0">
 				/systems/fadec/reverse-3/active eq 1
@@ -1747,86 +1817,105 @@
 			</test>
 		</switch>
 		
-		<lag_filter name="/systems/fadec/control-3/throttle-pos-lag">
-			<input>/systems/fadec/control-3/throttle-pos</input>
+		<lag_filter name="/systems/fadec/control-3/throttle-lever-lag">
+			<input>/systems/fadec/control-3/throttle-lever</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<switch name="/systems/fadec/control-3/throttle-cmd">
-			<default value="/systems/fadec/control-3/throttle-pos"/>
+		<switch name="/systems/fadec/control-3/throttle-input">
+			<default value="/systems/fadec/control-3/throttle-lever"/>
 			<test value="/systems/fadec/reverse-3/throttle-rev">
 				/systems/fadec/reverse-3/active eq 1
 			</test>
-			<clipto>
-				<min>0.0</min> <!-- Intentional -->
-				<max>/systems/fadec/control-3/max</max>
-			</clipto>
 		</switch>
 		
-		<lag_filter name="/systems/fadec/control-3/throttle-lag">
-			<input>/systems/fadec/control-3/throttle-cmd</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<fcs_function name="/systems/fadec/control-3/throttle-ref">
+		<fcs_function name="/systems/fadec/control-3/target-epr-cmd">
 			<function>
-				<pow>
-					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/control-3/throttle-lag</independentVar>
-							<tableData>
-								0   23.8
-								1  111.4
-							</tableData>
-						</table>
-						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
-					</product>
-					<value>3.5</value>
-				</pow>
+				<min>
+					<interpolate1d>
+						<pow>
+							<table>
+								<independentVar lookup="row">/systems/fadec/control-3/throttle-input</independentVar>
+								<tableData>
+									0.0  0.1
+									1.0  1.0
+								</tableData>
+							</table>
+							<value>2.2</value>
+						</pow>
+						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
+						<value>1</value><property>/systems/fadec/max-n1-epr</property>
+					</interpolate1d>
+					<property>/systems/fadec/control-3/max-epr</property>
+				</min>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/control-3/throttle-epr">
+		<lag_filter name="/systems/fadec/control-3/target-epr">
+			<input>/systems/fadec/control-3/target-epr-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/fadec/control-3/target-epr-idle-limit">
 			<function>
-				<sum>
-					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/control-3/throttle-ref</independentVar>
-							<tableData>
-								   65768.7  0.03
-								14591440.5  1.00
-								21887160.8  1.50
-							</tableData>
-						</table>
+				<max>
+					<property>/systems/fadec/control-3/target-epr</property>
+					<property>/systems/fadec/control-3/min-epr</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/control-3/throttle-cmd-ref"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/fadec/control-3/target-epr-idle-limit</property>
+						<property>/systems/fadec/epr/c2</property>
+					</difference>
+					<max> <!-- Prevent divide by 0 -->
 						<property>/systems/fadec/epr/c1</property>
-					</product>
-					<property>/systems/fadec/epr/c2</property>
-				</sum>
+						<value>0.001</value>
+					</max>
+				</quotient>
 			</function>
 		</fcs_function>
 		
-		<pure_gain name="/systems/fadec/control-3/throttle-pos-clamped">
-			<input>/systems/fadec/control-3/throttle-pos</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>/systems/fadec/control-3/min</min>
-				<max>/systems/fadec/control-3/max</max>
-			</clipto>
-		</pure_gain>
+		<fcs_function name="/systems/fadec/control-3/throttle-cmd-input"> <!-- Opposite of EPR Calc -->
+			<function>
+				<quotient>
+					<pow>
+						<table>
+							<independentVar lookup="row">/systems/fadec/control-3/throttle-cmd-ref</independentVar>
+							<tableData>
+								0.03     65768.7
+								1.00  14591440.5
+								1.50  21887160.8
+							</tableData>
+						</table>
+						<quotient>
+							<value>1</value>
+							<value>3.5</value>
+						</quotient>
+					</pow>
+					<property>/systems/fadec/limit/n1-epr-temp-factor</property>
+				</quotient>
+			</function>
+		</fcs_function>
 		
-		<switch name="/systems/fadec/control-3/throttle-output">
-			<default value="/systems/fadec/control-3/throttle-pos-clamped"/>
-			<test value="/systems/fadec/reverse-3/throttle-rev">
-				/systems/fadec/reverse-3/active eq 1
-			</test>
-			<clipto>
-				<min>/systems/fadec/control-3/min</min>
-				<max>1.0</max> <!-- Intentional -->
-			</clipto>
-		</switch>
+		<fcs_function name="/systems/fadec/control-3/throttle-cmd">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/control-3/throttle-cmd-input</independentVar>
+					<tableData>
+						 23.8  0
+						111.4  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
 		<lag_filter name="/systems/fadec/control-3/throttle-fdm">
-			<input>/systems/fadec/control-3/throttle-output</input>
+			<input>/systems/fadec/control-3/throttle-cmd</input>
 			<c1>0.75</c1>
 			<output>fcs/throttle-pos-norm[2]</output>
 		</lag_filter>
@@ -1835,10 +1924,95 @@
 		<fcs_function name="/systems/fadec/throttle-compare-max">
 			<function>
 				<max> <!-- Don't use clipped -->
-					<property>/systems/fadec/control-1/throttle-pos-lag</property>
-					<property>/systems/fadec/control-2/throttle-pos-lag</property>
-					<property>/systems/fadec/control-3/throttle-pos-lag</property>
+					<property>/systems/fadec/control-1/throttle-lever-lag</property>
+					<property>/systems/fadec/control-2/throttle-lever-lag</property>
+					<property>/systems/fadec/control-3/throttle-lever-lag</property>
 				</max>
+			</function>
+		</fcs_function>
+		
+		<!-- Use the above control system to compute active, max, and idle EPR throttle position -->
+		<fcs_function name="/systems/fadec/limit/active-norm-input">
+			<function>
+				<pow>
+					<interpolate1d>
+						<property>/systems/fadec/limit/active</property>
+						<property>/systems/fadec/idle-stop-epr</property><property>/systems/fadec/bot-exp</property>
+						<property>/systems/fadec/max-n1-epr</property><value>1</value>
+					</interpolate1d>
+					<quotient>
+						<value>1</value>
+						<value>2.2</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/active-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/limit/active-norm-input</independentVar>
+					<tableData>
+						0.1  0.0
+						1.0  1.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/max-norm-input">
+			<function>
+				<pow>
+					<interpolate1d>
+						<property>/systems/fadec/limit/max</property>
+						<property>/systems/fadec/idle-stop-epr</property><property>/systems/fadec/bot-exp</property>
+						<property>/systems/fadec/max-n1-epr</property><value>1</value>
+					</interpolate1d>
+					<quotient>
+						<value>1</value>
+						<value>2.2</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/max-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/limit/max-norm-input</independentVar>
+					<tableData>
+						0.1  0.0
+						1.0  1.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/idle-norm-input">
+			<function>
+				<pow>
+					<interpolate1d>
+						<property>/systems/fadec/limit/idle</property>
+						<property>/systems/fadec/idle-stop-epr</property><property>/systems/fadec/bot-exp</property>
+						<property>/systems/fadec/max-n1-epr</property><value>1</value>
+					</interpolate1d>
+					<quotient>
+						<value>1</value>
+						<value>2.2</value>
+					</quotient>
+				</pow>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/limit/idle-norm">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/fadec/limit/idle-norm-input</independentVar>
+					<tableData>
+						0.1  0.0
+						1.0  1.0
+					</tableData>
+				</table>
 			</function>
 		</fcs_function>
 	
@@ -2639,7 +2813,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[0]">
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/fadec/control-1/throttle-epr</independentVar>
+					<independentVar lookup="row">/systems/fadec/control-1/target-epr</independentVar>
 					<tableData>
 						0  -44
 						2  120
@@ -2651,7 +2825,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[1]">
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/fadec/control-2/throttle-epr</independentVar>
+					<independentVar lookup="row">/systems/fadec/control-2/target-epr</independentVar>
 					<tableData>
 						0  -44
 						2  120
@@ -2663,7 +2837,7 @@
 		<fcs_function name="/instrumentation/ead/epr-thr[2]">
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/fadec/control-3/throttle-epr</independentVar>
+					<independentVar lookup="row">/systems/fadec/control-3/target-epr</independentVar>
 					<tableData>
 						0  -44
 						2  120

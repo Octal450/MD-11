@@ -37,7 +37,6 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>Display</object-name>
 		<object-name>Integrity</object-name>
 		<object-name>Test.Text</object-name>
 		<emission>
@@ -463,6 +462,21 @@
 		<object-name>ATC2</object-name>
 		<condition>
 			<property>instrumentation/transponder/input/xpdr</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ATC1</object-name>
+		<object-name>ATC2</object-name>
+		<condition>
+			<or>
+				<property>controls/switches/annun-test</property>
+				<greater-than>
+					<property>instrumentation/transponder/output/knob</property>
+					<value>0</value>
+				</greater-than>
+			</or>
 		</condition>
 	</animation>
 	

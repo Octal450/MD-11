@@ -8,9 +8,9 @@ var FADEC = {
 	powered: [props.globals.getNode("/systems/fadec/eng-1-powered"), props.globals.getNode("/systems/fadec/eng-2-powered"), props.globals.getNode("/systems/fadec/eng-3-powered")],
 	reverseEngage: [props.globals.getNode("/systems/fadec/reverse-1/engage"), props.globals.getNode("/systems/fadec/reverse-2/engage"), props.globals.getNode("/systems/fadec/reverse-3/engage")],
 	revState: [props.globals.getNode("/systems/fadec/eng-1-rev-state"), props.globals.getNode("/systems/fadec/eng-2-rev-state"), props.globals.getNode("/systems/fadec/eng-3-rev-state")],
+	targetEpr: [props.globals.getNode("/systems/fadec/control-1/target-epr", 1), props.globals.getNode("/systems/fadec/control-2/target-epr", 1), props.globals.getNode("/systems/fadec/control-3/target-epr", 1)],
+	targetN1: [props.globals.getNode("/systems/fadec/control-1/target-n1", 1), props.globals.getNode("/systems/fadec/control-2/target-n1", 1), props.globals.getNode("/systems/fadec/control-3/target-n1", 1)],
 	throttleCompareMax: props.globals.getNode("/systems/fadec/throttle-compare-max"),
-	throttleEpr: [props.globals.getNode("/systems/fadec/control-1/throttle-epr", 1), props.globals.getNode("/systems/fadec/control-2/throttle-epr", 1), props.globals.getNode("/systems/fadec/control-3/throttle-epr", 1)],
-	throttleN1: [props.globals.getNode("/systems/fadec/control-1/throttle-n1", 1), props.globals.getNode("/systems/fadec/control-2/throttle-n1", 1), props.globals.getNode("/systems/fadec/control-3/throttle-n1", 1)],
 	Limit: {
 		active: props.globals.getNode("/systems/fadec/limit/active"),
 		activeMode: props.globals.getNode("/systems/fadec/limit/active-mode"),

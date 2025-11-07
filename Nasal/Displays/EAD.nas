@@ -911,7 +911,7 @@ var canvasGeTapes = {
 			} else {
 				me["N11_bar"].setTranslation(0, Value.Fadec.n1[0] / 120 * -293);
 			}
-			me["N11_thr"].setTranslation(0, systems.FADEC.throttleN1[0].getValue() / 120 * -293);
+			me["N11_thr"].setTranslation(0, systems.FADEC.targetN1[0].getValue() / 120 * -293);
 			
 			if (Value.Fadec.revState[0] != 0) {
 				me["N11"].hide();
@@ -937,7 +937,7 @@ var canvasGeTapes = {
 			} else {
 				me["N12_bar"].setTranslation(0, Value.Fadec.n1[1] / 120 * -293);
 			}
-			me["N12_thr"].setTranslation(0, systems.FADEC.throttleN1[1].getValue() / 120 * -293);
+			me["N12_thr"].setTranslation(0, systems.FADEC.targetN1[1].getValue() / 120 * -293);
 			
 			if (Value.Fadec.revState[1] != 0) {
 				me["N12"].hide();
@@ -963,7 +963,7 @@ var canvasGeTapes = {
 			} else {
 				me["N13_bar"].setTranslation(0, Value.Fadec.n1[2] / 120 * -293);
 			}
-			me["N13_thr"].setTranslation(0, systems.FADEC.throttleN1[2].getValue() / 120 * -293);
+			me["N13_thr"].setTranslation(0, systems.FADEC.targetN1[2].getValue() / 120 * -293);
 			
 			if (Value.Fadec.revState[2] != 0) {
 				me["N13"].hide();
@@ -1399,7 +1399,7 @@ var canvasPwTapes = {
 			
 			me["EPR1_bar"].setTranslation(0, (Value.Fadec.epr[0] - 0.4) / 1.6 * -293);
 			if (!systems.FADEC.n1Mode[0].getValue()) {
-				me["EPR1_thr"].setTranslation(0, (systems.FADEC.throttleEpr[0].getValue() - 0.4) / 1.6 * -293);
+				me["EPR1_thr"].setTranslation(0, (systems.FADEC.targetEpr[0].getValue() - 0.4) / 1.6 * -293);
 				me["EPR1_thr"].show();
 			} else {
 				me["EPR1_thr"].hide();
@@ -1424,7 +1424,7 @@ var canvasPwTapes = {
 			
 			me["EPR2_bar"].setTranslation(0, (Value.Fadec.epr[1] - 0.4) / 1.6 * -293);
 			if (!systems.FADEC.n1Mode[1].getValue()) {
-				me["EPR2_thr"].setTranslation(0, (systems.FADEC.throttleEpr[1].getValue() - 0.4) / 1.6 * -293);
+				me["EPR2_thr"].setTranslation(0, (systems.FADEC.targetEpr[1].getValue() - 0.4) / 1.6 * -293);
 				me["EPR2_thr"].show();
 			} else {
 				me["EPR2_thr"].hide();
@@ -1449,7 +1449,7 @@ var canvasPwTapes = {
 			
 			me["EPR3_bar"].setTranslation(0, (Value.Fadec.epr[2] - 0.4) / 1.6 * -293);
 			if (!systems.FADEC.n1Mode[2].getValue()) {
-				me["EPR3_thr"].setTranslation(0, (systems.FADEC.throttleEpr[2].getValue() - 0.4) / 1.6 * -293);
+				me["EPR3_thr"].setTranslation(0, (systems.FADEC.targetEpr[2].getValue() - 0.4) / 1.6 * -293);
 				me["EPR3_thr"].show();
 			} else {
 				me["EPR3_thr"].hide();

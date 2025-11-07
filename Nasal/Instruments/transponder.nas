@@ -11,29 +11,20 @@ var XPDR = {
 	fgModeList: ["OFF", "STANDBY", "TEST", "GROUND", "ON", "ALTITUDE"],
 	fgCode: props.globals.getNode("/instrumentation/transponder/id-code", 1),
 	knob: props.globals.getNode("/instrumentation/transponder/output/knob"),
-	mode: 1,
 	ident: props.globals.getNode("/instrumentation/transponder/inputs/ident-btn", 1),
 	identTime: 0,
-	onMode: 5,
+	onMode: 3,
 	power: props.globals.getNode("/systems/electrical/outputs/transponder", 1),
 	tcasMode: props.globals.getNode("/instrumentation/tcas/inputs/mode"),
 	xpdr: props.globals.getNode("/instrumentation/transponder/input/xpdr"),
 	init: func() { # Don't reset the code
 		me.altReport.setBoolValue(1);
-		me.codeEntryActive = 0;
 		me.setMode(0);
 		me.xpdr.setBoolValue(0);
 	},
-	airGround: func() {
-		me.setMode(me.knob.getValue());
-	},
 	getOnMode: func() {
 		if (me.altReport.getBoolValue()) {
-			if (!pts.Position.wow.getBoolValue()) {
-				return 5; # Altitude
-			} else {
-				return 3; # Ground
-			}
+			return 5; # Altitude
 		} else {
 			return 4; # On
 		}

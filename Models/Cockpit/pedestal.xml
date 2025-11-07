@@ -509,9 +509,8 @@
 		<name>Aileron Trim</name>
 		<type>knob</type>
 		<object-name>aileron.trim</object-name>
-		<object-name>aileron.light</object-name>
 		<property>controls/cockpit/aileron-trim</property>
-		<factor>40</factor>
+		<factor>1000</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -535,11 +534,28 @@
 	</animation>
 	
 	<animation>
+		<type>rotate</type>
+		<object-name>aileron.light</object-name>
+		<property>controls/cockpit/aileron-trim</property>
+		<factor>40</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.00019</y-m>
+			<z-m>6.67552</z-m>
+		</center>
+	</animation>
+	
+	<animation>
 		<name>Rudder Trim</name>
 		<type>knob</type>
 		<object-name>rudder.trim</object-name>
 		<property>controls/cockpit/rudder-trim</property>
-		<factor>90</factor>
+		<factor>1000</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
