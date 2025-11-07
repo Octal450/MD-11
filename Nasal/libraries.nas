@@ -100,12 +100,6 @@ var slowLoop = maketimer(1, func() {
 	}
 });
 
-setlistener("/position/wow", func() {
-	if (initDone) {
-		instruments.XPDR.airGround();
-	}
-}, 0, 0);
-
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/systems/exterior-lights/beacon");
 var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.05, 0.05, 0.05, 1.0], "/systems/exterior-lights/strobe-lights");
 

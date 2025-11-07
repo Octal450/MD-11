@@ -22,16 +22,9 @@ var XPDR = {
 		me.setMode(0);
 		me.xpdr.setBoolValue(0);
 	},
-	airGround: func() {
-		me.setMode(me.knob.getValue());
-	},
 	getOnMode: func() {
 		if (me.altReport.getBoolValue()) {
-			if (!pts.Position.wow.getBoolValue()) {
-				return 5; # Altitude
-			} else {
-				return 3; # Ground
-			}
+			return 5; # Altitude
 		} else {
 			return 4; # On
 		}
