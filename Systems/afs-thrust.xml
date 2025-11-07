@@ -72,11 +72,15 @@
 	
 	<filter>
 		<name>A/THR G Accel Lag</name>
-		<type>exponential</type>
+		<type>double-exponential</type>
 		<input>
 			<expression>
 				<sum>
-					<property>/accelerations/pilot-gdamped</property>
+					<table> <!-- Max G effect -->
+						<property>/accelerations/pilot-g</property>
+						<entry><ind>0.75</ind><dep>0.75</dep></entry>
+						<entry><ind>1.25</ind><dep>1.25</dep></entry>
+					</table>
 					<div>
 						<value>-1</value>
 						<cos>
@@ -93,7 +97,7 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/internal/athr-g-lag</output>
-		<filter-time>0.64</filter-time>
+		<filter-time>0.32</filter-time>
 	</filter>
 	
 	<filter>
@@ -106,7 +110,7 @@
 					<property>/it-autoflight/internal/athr-rate</property>
 					<product>
 						<property>/it-autoflight/internal/athr-g-lag</property>
-						<value>-1.5</value>
+						<value>-1</value>
 					</product>
 				</sum>
 			</expression>
@@ -220,7 +224,7 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Rate Filter</name>
+		<name>A/THR Rate Command Filter</name>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
@@ -250,6 +254,15 @@
 		<output>/it-autoflight/internal/athr-rate-error</output>
 	</filter>
 	
+	<filter>
+		<name>A/THR Rate Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/it-autoflight/internal/athr-rate-g</input>
+		<reference>/it-autoflight/internal/athr-rate-cmd</reference>
+		<output>/it-autoflight/internal/athr-rate-error</output>
+	</filter>
+	
 	<pid-controller>
 		<name>IT-CONTROLLER: Speed/Mach</name>
 		<enable>
@@ -265,7 +278,7 @@
 		</enable>
 		<input>/it-autoflight/internal/athr-rate-error</input>
 		<reference>0</reference>
-		<output>/systems/fadec/ats-cmd-raw</output>
+		<output>/systems/fadec/ats-cmd-raw-pid</output>
 		<config>
 			<Kp>
 				<expression>
@@ -278,10 +291,79 @@
 			</Kp>
 			<Ti>0.9</Ti>
 			<Td>0.00001</Td>
-			<u_min>/systems/fadec/limit/idle-norm</u_min>
-			<u_max>/systems/fadec/limit/active-norm</u_max>
+			<u_min>
+				<expression>
+					<pow>
+						<property>/systems/fadec/limit/idle-norm</property>
+						<value>1.4</value>
+					</pow>
+				</expression>
+			</u_min>
+			<u_max>
+				<expression>
+					<pow>
+						<property>/systems/fadec/limit/active-norm</property>
+						<value>1.4</value>
+					</pow>
+				</expression>
+			</u_max>
 		</config>
 	</pid-controller>
+	
+	<filter>
+		<name>Speed/Mach Shaping</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<and>
+					<property>/it-autoflight/output/athr-on</property>
+					<equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<pow>
+					<property>/systems/fadec/ats-cmd-raw-pid</property>
+					<div>
+						<value>1</value>
+						<value>1.4</value>
+					</div>
+				</pow>
+			</expression>
+		</input>
+		<output>/systems/fadec/ats-cmd-raw</output>
+	</filter>
+	
+	<filter>
+		<name>Speed/Mach Inactive Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<or>
+					<not><property>/it-autoflight/output/athr-on</property></not>
+					<not-equals>
+						<property>/it-autoflight/output/thr-mode</property>
+						<value>0</value>
+					</not-equals>
+				</or>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<pow>
+					<property>/systems/fadec/ats-cmd-raw</property>
+					<value>1.4</value>
+				</pow>
+			</expression>
+		</input>
+		<output>/systems/fadec/ats-cmd-raw-pid</output>
+	</filter>
 	
 	<filter>
 		<name>IT-CONTROLLER: Idle Limit</name>
