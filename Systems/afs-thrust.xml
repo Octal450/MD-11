@@ -45,7 +45,7 @@
 	</filter>
 	
 	<filter>
-		<name>A/THR Rate Lag</name>
+		<name>A/THR Rate Filter</name>
 		<type>exponential</type>
 		<input>
 			<condition>
