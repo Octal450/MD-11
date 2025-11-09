@@ -227,7 +227,7 @@
 		</enable>
 		<input>/it-autoflight/internal/athr-rate-error</input>
 		<reference>0</reference>
-		<output>/systems/fadec/ats-cmd-raw-pid</output>
+		<output>/it-autoflight/internal/throttle-cmd-raw-pid</output>
 		<config>
 			<Kp>
 				<expression>
@@ -246,7 +246,7 @@
 						<max>
 							<property>/systems/fadec/limit/idle-norm</property>
 							<sum>
-								<property>/systems/fadec/ats-cmd</property>
+								<property>/it-autoflight/internal/throttle-cmd</property>
 								<value>-0.005</value> <!-- For 60Hz and 0.3/sec -->
 							</sum>
 						</max>
@@ -260,7 +260,7 @@
 						<min>
 							<property>/systems/fadec/limit/active-norm</property>
 							<sum>
-								<property>/systems/fadec/ats-cmd</property>
+								<property>/it-autoflight/internal/throttle-cmd</property>
 								<value>0.005</value> <!-- For 60Hz and 0.3/sec -->
 							</sum>
 						</min>
@@ -289,7 +289,7 @@
 		<input>
 			<expression>
 				<pow>
-					<property>/systems/fadec/ats-cmd-raw-pid</property>
+					<property>/it-autoflight/internal/throttle-cmd-raw-pid</property>
 					<div>
 						<value>1</value>
 						<value>1.4</value>
@@ -297,7 +297,7 @@
 				</pow>
 			</expression>
 		</input>
-		<output>/systems/fadec/ats-cmd-raw</output>
+		<output>/it-autoflight/internal/throttle-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -318,12 +318,12 @@
 		<input>
 			<expression>
 				<pow>
-					<property>/systems/fadec/ats-cmd-raw</property>
+					<property>/it-autoflight/internal/throttle-cmd-raw</property>
 					<value>1.4</value>
 				</pow>
 			</expression>
 		</input>
-		<output>/systems/fadec/ats-cmd-raw-pid</output>
+		<output>/it-autoflight/internal/throttle-cmd-raw-pid</output>
 	</filter>
 	
 	<filter>
@@ -342,7 +342,7 @@
 			</condition>
 		</enable>
 		<input>0</input>
-		<output>/systems/fadec/ats-cmd-raw</output>
+		<output>/it-autoflight/internal/throttle-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -361,7 +361,7 @@
 			</condition>
 		</enable>
 		<input>/systems/fadec/limit/active-norm</input>
-		<output>/systems/fadec/ats-cmd-raw</output>
+		<output>/it-autoflight/internal/throttle-cmd-raw</output>
 	</filter>
 	
 	<filter>
@@ -373,7 +373,7 @@
 				<greater-than-equals>
 					<expression>
 						<sum>
-							<property>/systems/fadec/ats-cmd-raw</property>
+							<property>/it-autoflight/internal/throttle-cmd-raw</property>
 							<value>0.01</value>
 						</sum>
 					</expression>
@@ -387,7 +387,7 @@
 				<less-than-equals>
 					<expression>
 						<difference>
-							<property>/systems/fadec/ats-cmd-raw</property>
+							<property>/it-autoflight/internal/throttle-cmd-raw</property>
 							<value>0.01</value>
 						</difference>
 					</expression>
@@ -410,8 +410,8 @@
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
 		</enable>
-		<input>/systems/fadec/ats-cmd-raw</input>
-		<output>/systems/fadec/ats-cmd</output>
+		<input>/it-autoflight/internal/throttle-cmd-raw</input>
+		<output>/it-autoflight/internal/throttle-cmd</output>
 		<min>
 			<condition>
 				<equals>
@@ -486,7 +486,7 @@
 			</condition>
 		</enable>
 		<input>/systems/fadec/throttle-compare-max</input>
-		<output>/systems/fadec/ats-cmd</output>
+		<output>/it-autoflight/internal/throttle-cmd</output>
 	</filter>
 	
 	<!-- Engine 1 -->
@@ -498,7 +498,7 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/systems/fadec/ats-cmd</property>
+			<property>/it-autoflight/internal/throttle-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[0]</input>
 		<output>/systems/fadec/ats-cmd-1</output>
@@ -533,7 +533,7 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/systems/fadec/ats-cmd</property>
+			<property>/it-autoflight/internal/throttle-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[1]</input>
 		<output>/systems/fadec/ats-cmd-2</output>
@@ -568,7 +568,7 @@
 			<condition>
 				<property>/it-autoflight/output/athr-on</property>
 			</condition>
-			<property>/systems/fadec/ats-cmd</property>
+			<property>/it-autoflight/internal/throttle-cmd</property>
 		</input>
 		<input>/controls/cockpit/throttle-lever[2]</input>
 		<output>/systems/fadec/ats-cmd-3</output>
