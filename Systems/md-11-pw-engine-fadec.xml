@@ -1393,7 +1393,7 @@
 			<function>
 				<pow>
 					<value>0.1</value>
-					<value>2.2</value>
+					<value>2.5</value>
 				</pow>
 			</function>
 		</fcs_function>
@@ -1466,7 +1466,7 @@
 			<function>
 				<sum>
 					<property>/systems/fadec/idle-n1-epr</property>
-					<value>-0.005</value>
+					<value>-0.003</value>
 				</sum>
 			</function>
 		</fcs_function>
@@ -1563,7 +1563,7 @@
 									1.0  1.0
 								</tableData>
 							</table>
-							<value>2.2</value>
+							<value>2.5</value>
 						</pow>
 						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
 						<value>1</value><property>/systems/fadec/max-n1-epr</property>
@@ -1702,7 +1702,7 @@
 									1.0  1.0
 								</tableData>
 							</table>
-							<value>2.2</value>
+							<value>2.5</value>
 						</pow>
 						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
 						<value>1</value><property>/systems/fadec/max-n1-epr</property>
@@ -1841,7 +1841,7 @@
 									1.0  1.0
 								</tableData>
 							</table>
-							<value>2.2</value>
+							<value>2.5</value>
 						</pow>
 						<property>/systems/fadec/bot-exp</property><property>/systems/fadec/idle-stop-epr</property>
 						<value>1</value><property>/systems/fadec/max-n1-epr</property>
@@ -1942,7 +1942,7 @@
 					</interpolate1d>
 					<quotient>
 						<value>1</value>
-						<value>2.2</value>
+						<value>2.5</value>
 					</quotient>
 				</pow>
 			</function>
@@ -1970,7 +1970,7 @@
 					</interpolate1d>
 					<quotient>
 						<value>1</value>
-						<value>2.2</value>
+						<value>2.5</value>
 					</quotient>
 				</pow>
 			</function>
@@ -1998,7 +1998,7 @@
 					</interpolate1d>
 					<quotient>
 						<value>1</value>
-						<value>2.2</value>
+						<value>2.5</value>
 					</quotient>
 				</pow>
 			</function>
