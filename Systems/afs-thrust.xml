@@ -17,6 +17,8 @@
 		<type>derivative</type>
 		<input>/it-autoflight/internal/athr-kts-input-lag</input>
 		<output>/it-autoflight/internal/athr-kts-rate-raw</output>
+		<min>-10</min>
+		<max>10</max>
 		<filter-time>1.0</filter-time>
 	</filter>
 	
@@ -42,6 +44,8 @@
 		<gain>700</gain>
 		<input>/it-autoflight/internal/athr-mach-rate-raw</input>
 		<output>/it-autoflight/internal/athr-mach-rate-gain</output>
+		<min>-10</min>
+		<max>10</max>
 	</filter>
 	
 	<filter>
@@ -142,11 +146,13 @@
 		<name>A/THR Rate Command</name>
 		<type>gain</type>
 		<gain>
-			<table> <!-- As thrust decreases with altitude, correction must be less aggressive -->
-				<property>/position/altitude-ft</property>
-				<entry><ind>    0</ind><dep>1.0</dep></entry>
-				<entry><ind>50000</ind><dep>0.8</dep></entry>
-			</table>
+			<expression>
+				<table> <!-- As thrust decreases with altitude, correction must be less aggressive -->
+					<property>/position/altitude-ft</property>
+					<entry><ind>    0</ind><dep>1.0</dep></entry>
+					<entry><ind>50000</ind><dep>0.7</dep></entry>
+				</table>
+			</expression>
 		</gain>
 		<input>
 			<condition>
