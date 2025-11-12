@@ -107,7 +107,7 @@
 	<filter>
 		<name>Speed By Pitch Mach Rate Gain</name>
 		<type>gain</type>
-		<gain>650</gain>
+		<gain>700</gain>
 		<input>/it-autoflight/internal/mach-rate-raw</input>
 		<output>/it-autoflight/internal/mach-rate-flch</output>
 		<min>-10</min>
