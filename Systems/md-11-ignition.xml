@@ -279,8 +279,8 @@
 			<test logic="AND" value="1">
 				/instrumentation/airspeed-indicator/indicated-speed-kt lt 53
 				<test logic="OR">
-					fcs/flap-pos-deg ge 0.1
-					fcs/slat-pos-deg ge 0.1
+					fcs/flap-pos-deg ge 9.9
+					fcs/slat-pos-deg ge 30.9
 				</test>
 				<test logic="OR">
 					/systems/fadec/throttle-lever-feedback[0] ge 0.7
