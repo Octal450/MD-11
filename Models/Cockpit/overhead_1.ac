@@ -139970,7 +139970,7 @@ kids 0
 OBJECT group
 name "Lights"
 loc -21.7944 -17.7202 -0.0627433
-kids 178
+kids 179
 OBJECT poly
 name "Galley1.off"
 loc -0.00330544 0.0308971 0.191798
@@ -143354,6 +143354,25 @@ refs 4
 3 0.502192 0.998461
 2 0.439032 0.998461
 0 0.439032 0.958639
+kids 0
+OBJECT poly
+name "FuelDumpEmerStop.stop"
+loc 0.00205231 -0.215487 0.318048
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.106428 -0.0780787
+0 -0.106428 -0.0677336
+0 -0.1024 -0.0677336
+0 -0.1024 -0.0780787
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+2 0.240291 0.0420526
+1 0.240291 0.0231274
+0 0.288891 0.0231274
+3 0.288891 0.0420526
 kids 0
 OBJECT poly
 name "EngMaxPointerReset"
