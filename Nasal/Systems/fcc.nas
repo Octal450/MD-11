@@ -10,6 +10,7 @@ var FCC = {
 	},
 	fcc1Power: props.globals.getNode("/systems/fcc/fcc-1-power"),
 	fcc2Power: props.globals.getNode("/systems/fcc/fcc-2-power"),
+	inhibitAltCapTime: props.globals.getNode("/systems/fcc/inhibit-alt-cap-time"),
 	Lsas: {
 		autotrimInhibit: props.globals.getNode("/systems/fcc/lsas/autotrim-inhibit"),
 		leftInActive: props.globals.getNode("/systems/fcc/lsas/left-in-active"),

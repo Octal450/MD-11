@@ -8,14 +8,15 @@
 	<property value="0">/systems/abs/brake-cmd</property>
 	<property value="0">/systems/abs/disarm</property>
 	<property value="0">/systems/abs/spoilers-cmd-deg</property>
-	<property value="0">/systems/fcc/spoiler-left-feedback</property>
-	<property value="0">/systems/fcc/spoiler-right-feedback</property>
 	<property value="0">/systems/fcc/aileron-out-enable</property>
+	<property value="-2">/systems/fcc/inhibit-alt-cap-time</property>
 	<property value="0">/systems/fcc/lsas/autotrim-inhibit</property>
 	<property value="0">/systems/fcc/lsas/pah/pid</property>
 	<property value="0">/systems/fcc/lsas/spd-prot/output</property>
 	<property value="0">/systems/fcc/rcws/input</property>
 	<property value="0">/systems/fcc/rcws/pid</property>
+	<property value="0">/systems/fcc/spoiler-left-feedback</property>
+	<property value="0">/systems/fcc/spoiler-right-feedback</property>
 	<property value="0">/systems/fcs/spoilers/auto-speedbrake-feedback</property>
 	
 	<!-- Properties for tuning -->
@@ -130,6 +131,27 @@
 			<rate_limit sense="incr">0.05</rate_limit> <!-- 20 seconds-->
 			<rate_limit sense="decr">100000</rate_limit> <!-- Instant -->
 		</actuator>
+		
+		<!-- V/S or FPA 2-second ALT CAP interrupt -->
+		<switch name="/systems/fcc/inhibit-alt-cap">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				<test logic="OR">
+					/it-autoflight/output/vert eq 1
+					/it-autoflight/output/vert eq 5
+				</test>
+				/sim/time/elapsed-sec lt /systems/fcc/inhibit-alt-cap-time
+			</test>
+			<output>/it-autoflight/input/inhibit-alt-cap</output>
+		</switch>
+		
+		<switch name="/systems/fcc/inhibit-alt-cap-reset">
+			<default value="/systems/fcc/inhibit-alt-cap-time"/>
+			<test value="-2">
+				/systems/fcc/power-avail eq 0
+			</test>
+			<output>/systems/fcc/inhibit-alt-cap-time</output>
+		</switch>
 		
 		<!-- BIT Logic -->
 		<switch name="/systems/fcc/bit-decr">

@@ -207,6 +207,7 @@ var ApPanel = {
 		if (systems.ELECTRICAL.Outputs.fcp.getValue() >= 24) {
 			me.vertTemp = afs.Output.vert.getValue();
 			if (me.vertTemp == 1) {
+				systems.FCC.inhibitAltCapTime.setValue(pts.Sim.Time.elapsedSec.getValue() + 2);
 				me.vsTemp = afs.Input.vs.getValue() + (d * 100);
 				if (me.vsTemp < -6000) {
 					afs.Input.vs.setValue(-6000);
@@ -216,6 +217,7 @@ var ApPanel = {
 					afs.Input.vs.setValue(me.vsTemp);
 				}
 			} else if (me.vertTemp == 5) {
+				systems.FCC.inhibitAltCapTime.setValue(pts.Sim.Time.elapsedSec.getValue() + 2);
 				me.fpaTemp = afs.Input.fpa.getValue();
 				if (d == 1 or d == -1) {
 					me.fpaTemp = math.round(me.fpaTemp + (d * 0.1), 0.1);
@@ -230,6 +232,7 @@ var ApPanel = {
 					afs.Input.fpa.setValue(me.fpaTemp);
 				}
 			} else {
+				systems.FCC.inhibitAltCapTime.setValue(pts.Sim.Time.elapsedSec.getValue() + 2);
 				afs.Input.vert.setValue(1);
 			}
 		}
