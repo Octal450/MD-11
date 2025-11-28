@@ -290,9 +290,6 @@
 				<yaw-mult type="float">1.0</yaw-mult>
 			</autopush>
 			<fallback-model-index type="int">358</fallback-model-index>
-			<lights>
-				<nav-lights type="bool">0</nav-lights>
-			</lights>
 			<wingflex type="double">0</wingflex>
 			<wingflex-enable type="bool">0</wingflex-enable>
 		</model>
