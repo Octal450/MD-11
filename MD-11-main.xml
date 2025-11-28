@@ -659,22 +659,23 @@
 			<engine n="0">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
-				<starter type="bool">0</starter>
 				<start-cmd type="bool">0</start-cmd>
 				<start-switch type="bool">0</start-switch>
+				<starter type="bool">0</starter>
 			</engine>
 			<engine n="1">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
-				<starter type="bool">0</starter>
 				<start-cmd type="bool">0</start-cmd>
 				<start-switch type="bool">0</start-switch>
+				<starter type="bool">0</starter>
 			</engine>
 			<engine n="2">
 				<cutoff type="bool">1</cutoff>
 				<cutoff-switch type="bool">1</cutoff-switch>
-				<starter type="bool">0</starter>
+				<start-cmd type="bool">0</start-cmd>
 				<start-switch type="bool">0</start-switch>
+				<starter type="bool">0</starter>
 			</engine>
 			<engine n="3"> <!-- APU -->
 				<cutoff type="bool">1</cutoff>
