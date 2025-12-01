@@ -1515,7 +1515,7 @@
 			<inputs n="0">
 				<arinc429 n="0">
 					<decision-height-ncd type="bool">0</decision-height-ncd>
-					<decision-height type="double">250</decision-height>
+					<decision-height type="double">0</decision-height> <!-- Disable -->
 				</arinc429>
 			</inputs>
 			<speaker n="0">
