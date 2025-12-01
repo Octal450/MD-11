@@ -7,7 +7,7 @@
 	
 	<wingarea unit="FT2">3648</wingarea> <!-- Without winglet -->
 	<wingspan unit="FT">169.52</wingspan> <!-- Without winglet -->
-	<chord unit="FT">25.19</chord>
+	<chord unit="FT">25.19</chord> <!-- Fudged for coefficient weighting -->
 	
 	<location name="AERORP" unit="M">
 		<x>3.31619</x>
