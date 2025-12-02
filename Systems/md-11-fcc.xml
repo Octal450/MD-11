@@ -420,7 +420,7 @@
 				attitude/roll-rad ge -0.558505
 				/systems/fcc/lsas/in-detent eq 1
 				position/wow eq 0
-				/position/gear-agl-ft ge 100
+				position/gear-agl-ft ge 100
 			</test>
 		</switch>
 		
@@ -436,7 +436,7 @@
 					/systems/fcc/lsas/in-detent eq 0
 					attitude/roll-rad gt 0.558505
 					attitude/roll-rad lt -0.558505
-					/position/gear-agl-ft lt 100
+					position/gear-agl-ft lt 100
 				</test>
 				position/wow eq 0
 			</test>
@@ -452,7 +452,7 @@
 			<test logic="AND" value="1">
 				/systems/fcc/lsas/channels-active gt 0
 				/systems/fcc/afs/enabled eq 0
-				/position/gear-agl-ft le 100
+				position/gear-agl-ft le 100
 			</test>
 		</switch>
 		
@@ -531,7 +531,7 @@
 			<default value="0"/>
 			<test logic="OR" value="0">
 				position/wow eq 1
-				/position/gear-agl-ft lt 50
+				position/gear-agl-ft lt 50
 			</test>
 			<test logic="OR" value="1">
 				/systems/fcc/yaw/avail-upper-a eq 1
@@ -582,7 +582,7 @@
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws eq 1
-				/position/gear-agl-ft ge 500
+				position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
@@ -602,7 +602,7 @@
 				/systems/iru-common/any-aligned-out eq 1
 				/systems/fcc/yaw/channels-active gt 0
 				/systems/acconfig/options/rcws eq 1
-				/position/gear-agl-ft ge 500
+				position/gear-agl-ft ge 500
 			</test>
 		</switch>
 		
@@ -1106,7 +1106,7 @@
 		<fcs_function name="/systems/fcc/lsas/pap/max-pitch">
 			<function>
 				<table>
-					<independentVar lookup="row">/position/gear-agl-ft</independentVar>
+					<independentVar lookup="row">position/gear-agl-ft</independentVar>
 					<tableData>
 						 2  0.165806 <!-- 9.5 -->
 						40  0.523599 <!-- 30 -->
