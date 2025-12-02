@@ -37,8 +37,8 @@
 				</difference>
 			</function>
 		</fcs_function>
-
-		<lag_filter name="position/gear-agl-lag">
+		
+		<lag_filter name="position/gear-agl-ft">
 			<input>position/gear-agl</input>
 			<c1>20</c1>
 			<output>/position/gear-agl-ft</output> <!-- So flight recorder can override it -->
