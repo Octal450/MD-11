@@ -97,7 +97,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/fcc/rcws/p-rad_sec">
+		<fcs_function name="/systems/fcc/rcws/phidot-rad_sec">
 			<function>
 				<toradians>
 					<property>/orientation/roll-rate-degps</property>
@@ -818,15 +818,15 @@
 	
 	<channel name="FCC: Roll Axis and RCWS">
 		
-		<switch name="/systems/fcc/rcws/p-switched">
-			<default value="/systems/fcc/rcws/p-rad_sec"/>
+		<switch name="/systems/fcc/rcws/phidot-switched">
+			<default value="/systems/fcc/rcws/phidot-rad_sec"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
 			</test>
 		</switch>
 		
-		<lead_lag_filter name="/systems/fcc/rcws/p-leadlag">
-			<input>/systems/fcc/rcws/p-switched</input>
+		<lead_lag_filter name="/systems/fcc/rcws/phidot-leadlag">
+			<input>/systems/fcc/rcws/phidot-switched</input>
 			<c1>1.05</c1>
 			<c2>1.0</c2>
 			<c3>0.97</c3>
@@ -890,7 +890,7 @@
 		</scheduled_gain>
 		
 		<summer name="/systems/fcc/rcws/rate-error">
-			<input>/systems/fcc/rcws/p-leadlag</input>
+			<input>/systems/fcc/rcws/phidot-leadlag</input>
 			<input>-/systems/fcc/rcws/rate-demand</input>
 		</summer>
 		
