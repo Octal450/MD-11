@@ -1123,6 +1123,7 @@
 		<fcs_function name="/systems/fcc/lsas/pap/output"> <!-- Limit upwards elevator -->
 			<function>
 				<product>
+					<property>/systems/fcc/lsas/pap/active</property>
 					<table>
 						<independentVar lookup="row">/systems/fcc/lsas/pap/max-error</independentVar>
 						<tableData>
@@ -1130,7 +1131,6 @@
 							 0.0000000  0.2273
 						</tableData>
 					</table>
-					<property>/systems/fcc/lsas/pap/active</property>
 				</product>
 			</function>
 		</fcs_function>
