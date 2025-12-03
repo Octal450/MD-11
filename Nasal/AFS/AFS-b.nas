@@ -42,9 +42,37 @@ var Fma = {
 var UpdateFma = {
 	ap1: 0,
 	ap2: 0,
+	gsArm: 0,
 	InternalRadioSel: 2,
 	latText: "T/O",
+	landArm: 0,
+	lnavArm: 0,
+	locArm: 0,
 	vertText: "T/O CLB",
+	arm: func() {
+		me.landArm = Output.landArm.getBoolValue();
+		me.lnavArm = Output.lnavArm.getBoolValue();
+		me.locArm = Output.locArm.getBoolValue();
+		me.gsArm = Output.gsArm.getBoolValue();
+		if (me.locArm) {
+			if (Input.radioSel.getValue() != 2) {
+				Fma.rollArm.setValue("VOR ARMED");
+			} else if (Internal.locOnly) {
+				Fma.rollArm.setValue("LOC ARMED");
+			} else {
+				Fma.rollArm.setValue("LAND ARMED");
+			}
+		} else if (me.lnavArm) {
+			Fma.rollArm.setValue("NAV ARMED");
+		} else {
+			Fma.rollArm.setValue("");
+		}
+		if ((me.gsArm or me.landArm) and !me.locArm) {
+			Fma.pitchArm.setValue("LAND ARMED");
+		} else {
+			Fma.pitchArm.setValue("");
+		}
+	},
 	lat: func() {
 		me.latText = Text.lat.getValue();
 		if (me.latText == "HDG") {
@@ -96,26 +124,6 @@ var UpdateFma = {
 			Fma.pitch.setValue("FLARE");
 		} else if (me.vertText == "ROLLOUT") {
 			Fma.pitch.setValue("ROLLOUT");
-		}
-	},
-	arm: func() {
-		if (Output.locArm.getBoolValue()) {
-			if (Input.radioSel.getValue() != 2) {
-				Fma.rollArm.setValue("VOR ARMED");
-			} else if (Internal.locOnly) {
-				Fma.rollArm.setValue("LOC ARMED");
-			} else {
-				Fma.rollArm.setValue("LAND ARMED");
-			}
-		} else if (Output.lnavArm.getBoolValue()) {
-			Fma.rollArm.setValue("NAV ARMED");
-		} else {
-			Fma.rollArm.setValue("");
-		}
-		if ((Output.gsArm.getBoolValue() or Output.landArm.getBoolValue()) and !Output.locArm.getBoolValue()) {
-			Fma.pitchArm.setValue("LAND ARMED");
-		} else {
-			Fma.pitchArm.setValue("");
 		}
 	},
 };
