@@ -50,10 +50,10 @@ var UpdateFma = {
 	locArm: 0,
 	vertText: "T/O CLB",
 	arm: func() {
+		me.gsArm = Output.gsArm.getBoolValue();
 		me.landArm = Output.landArm.getBoolValue();
 		me.lnavArm = Output.lnavArm.getBoolValue();
 		me.locArm = Output.locArm.getBoolValue();
-		me.gsArm = Output.gsArm.getBoolValue();
 		if (me.locArm) {
 			if (Input.radioSel.getValue() != 2) {
 				Fma.rollArm.setValue("VOR ARMED");
