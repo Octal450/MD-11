@@ -1073,7 +1073,7 @@
 			<c1>0.5</c1>
 		</washout_filter>
 		
-		<switch name="/systems/fcc/lsas/q-washout-s">
+		<switch name="/systems/fcc/lsas/q-washout-switched">
 			<default value="/systems/fcc/lsas/q-washout"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
@@ -1095,7 +1095,7 @@
 		</scheduled_gain>
 		
 		<pure_gain name="/systems/fcc/lsas/prd/output">
-			<input>/systems/fcc/lsas/q-washout-s</input>
+			<input>/systems/fcc/lsas/q-washout-switched</input>
 			<gain>/systems/fcc/lsas/prd/p-gain-scheduled</gain>
 			<clipto>
 				<min>-0.2273</min>
@@ -1558,7 +1558,7 @@
 			</clipto>
 		</pure_gain>
 		
-		<switch name="/systems/fcc/yaw/slip-skid-raw">
+		<switch name="/systems/fcc/yaw/slip-skid-switched">
 			<default value="aero/beta-rad"/>
 			<test value="0">
 				position/wow eq 1
@@ -1566,7 +1566,7 @@
 		</switch>
 		
 		<lag_filter name="/systems/fcc/yaw/slip-skid">
-			<input>/systems/fcc/yaw/slip-skid-raw</input>
+			<input>/systems/fcc/yaw/slip-skid-switched</input>
 			<c1>2.5</c1>
 		</lag_filter>
 		
