@@ -984,7 +984,7 @@
 				<min>
 					<interpolate1d>
 						<property>/systems/fadec/control-1/throttle-input</property>
-						<value>0</value><value>22.0</value>
+						<value>0</value><value>21.5</value>
 						<value>1</value><value>117.5</value>
 					</interpolate1d>
 					<property>/systems/fadec/control-1/max-n1</property>
@@ -1070,7 +1070,7 @@
 				<min>
 					<interpolate1d>
 						<property>/systems/fadec/control-2/throttle-input</property>
-						<value>0</value><value>22.0</value>
+						<value>0</value><value>21.5</value>
 						<value>1</value><value>117.5</value>
 					</interpolate1d>
 					<property>/systems/fadec/control-2/max-n1</property>
@@ -1156,7 +1156,7 @@
 				<min>
 					<interpolate1d>
 						<property>/systems/fadec/control-3/throttle-input</property>
-						<value>0</value><value>22.0</value>
+						<value>0</value><value>21.5</value>
 						<value>1</value><value>117.5</value>
 					</interpolate1d>
 					<property>/systems/fadec/control-3/max-n1</property>
