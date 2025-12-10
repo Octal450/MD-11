@@ -99,7 +99,7 @@
 			<function>
 				<difference>
 					<property>/systems/fuel/cg-control/target-cg</property>
-					<value>0.25</value>
+					<value>0.3</value>
 				</difference>
 			</function>
 		</fcs_function>
@@ -108,7 +108,7 @@
 			<function>
 				<difference>
 					<property>/systems/fuel/cg-control/target-cg</property>
-					<value>0.75</value>
+					<value>0.7</value>
 				</difference>
 			</function>
 		</fcs_function>
