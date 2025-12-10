@@ -41,6 +41,7 @@
 				/systems/failures/fuel/pumps-tail eq 0
 				/systems/fuel/cg-control/cg-aft-limit gt 0
 				/systems/fuel/cg-control/cg-percent-mac gt 0
+				/systems/fuel/tail-fuel-management eq 1
 				/systems/fms/flight-data/gw-lbs gt 0
 				/systems/fuel/cg-control/lsas-channels-active gt 0
 				/systems/fuel/cg-control/fuel-stored ge 60000

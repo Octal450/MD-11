@@ -127,6 +127,9 @@ var EditFlightData = {
 				flightplan().cleanPlan();
 				gui.popupTip("You need to initialize the MCDU before a route can be activated");
 			}
+			systems.FUEL.tankFuelManagement.setBoolValue(0);
+		} else {
+			systems.FUEL.tankFuelManagement.setBoolValue(1);
 		}
 		
 		# Force 60K for FLEX

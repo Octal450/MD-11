@@ -2,6 +2,7 @@
 # Copyright (c) 2025 Josh Davidson (Octal450)
 
 var FUEL = {
+	tankFuelManagement: props.globals.getNode("/systems/fuel/tail-fuel-management"),
 	system: props.globals.getNode("/systems/fuel/system"),
 	Controls: {
 		altPump: props.globals.getNode("/controls/fuel/alt-pump"),

@@ -1906,6 +1906,9 @@
 				<phase type="int">0</phase>
 			</internal>
 		</fms>
+		<fuel n="0">
+			<tail-fuel-management type="bool">0</tail-fuel-management>
+		</fuel>
 		<gear n="0">
 			<unit n="0">
 				<tire-l-psi-input type="double">170</tire-l-psi-input> <!-- Randomized later in sim init -->
