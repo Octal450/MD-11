@@ -1237,18 +1237,28 @@
 			<rate_limit sense="incr">/systems/gear/unit[1]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[1]/rate-decr</rate_limit>
 			<output>gear/unit[1]/pos-norm</output>
+			<output>gear/unit[4]/pos-norm</output> <!-- Dummy left aft -->
 		</actuator>
 		
-		<switch name="/systems/gear/unit[1]/angle-deg-cmd">
-			<default value="0"/>
-			<test logic="AND" value="/orientation/pitch-deg">
-				gear/unit[1]/WOW eq 1
-			</test>
+		<fcs_function name="/systems/gear/unit[1]/angle-deg-cmd">
+			<function>
+				<todegrees>
+					<atan>
+						<quotient>
+							<difference>
+								<property>/gear/gear[4]/compression-m</property>
+								<property>/gear/gear[1]/compression-m</property>
+							</difference>
+							<value>0.8025</value> <!-- Offset of dummy gear from main -->
+						</quotient>
+					</atan>
+				</todegrees>
+			</function>
 			<clipto>
 				<min>-20</min>
 				<max>20</max>
 			</clipto>
-		</switch>
+		</fcs_function>
 		
 		<lag_filter name="/systems/gear/unit[1]/angle-deg">
 			<input>/systems/gear/unit[1]/angle-deg-cmd</input>
@@ -1296,18 +1306,28 @@
 			<rate_limit sense="incr">/systems/gear/unit[2]/rate-incr</rate_limit>
 			<rate_limit sense="decr">/systems/gear/unit[2]/rate-decr</rate_limit>
 			<output>gear/unit[2]/pos-norm</output>
+			<output>gear/unit[5]/pos-norm</output> <!-- Dummy right aft -->
 		</actuator>
 		
-		<switch name="/systems/gear/unit[2]/angle-deg-cmd">
-			<default value="0"/>
-			<test logic="AND" value="/orientation/pitch-deg">
-				gear/unit[2]/WOW eq 1
-			</test>
+		<fcs_function name="/systems/gear/unit[2]/angle-deg-cmd">
+			<function>
+				<todegrees>
+					<atan>
+						<quotient>
+							<difference>
+								<property>/gear/gear[5]/compression-m</property>
+								<property>/gear/gear[2]/compression-m</property>
+							</difference>
+							<value>0.8025</value> <!-- Offset of dummy gear from main -->
+						</quotient>
+					</atan>
+				</todegrees>
+			</function>
 			<clipto>
 				<min>-20</min>
 				<max>20</max>
 			</clipto>
-		</switch>
+		</fcs_function>
 		
 		<lag_filter name="/systems/gear/unit[2]/angle-deg">
 			<input>/systems/gear/unit[2]/angle-deg-cmd</input>

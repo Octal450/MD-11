@@ -232,6 +232,38 @@
 		<retractable>1</retractable>
 	</contact>
 	
+	<!-- Dummy gears for tilt animation -->
+	<contact type="BOGEY" name="LEFT_MLG_AFT">
+		<location unit="M">
+			<x>4.7638</x>
+			<y>-6.00641</y>
+			<z>0.55861</z>
+		</location>
+		<static_friction>0</static_friction>
+		<dynamic_friction>0</dynamic_friction>
+		<rolling_friction>0</rolling_friction>
+		<spring_coeff unit="LBS/FT">0</spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>
+		<max_steer unit="DEG">0</max_steer>
+		<brake_group>NONE</brake_group>
+		<retractable>1</retractable>
+	</contact>
+	<contact type="BOGEY" name="RIGHT_MLG_AFT">
+		<location unit="M">
+			<x>4.7638</x>
+			<y>6.00641</y>
+			<z>0.55861</z>
+		</location>
+		<static_friction>0</static_friction>
+		<dynamic_friction>0</dynamic_friction>
+		<rolling_friction>0</rolling_friction>
+		<spring_coeff unit="LBS/FT">0</spring_coeff>
+		<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>
+		<max_steer unit="DEG">0</max_steer>
+		<brake_group>NONE</brake_group>
+		<retractable>1</retractable>
+	</contact>
+	
 	<contact type="STRUCTURE" name="NOSE_1">
 		<location unit="M">
 			<x>-29.1194</x>
