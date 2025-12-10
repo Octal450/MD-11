@@ -5,7 +5,7 @@
 
 <system name="MD-11: Fuel">
 	
-	<property value="10">/systems/fuel/internal/tank-2-balence-deadzone</property> <!-- Don't touch unless you know what you are doing! -->
+	<property value="10">/systems/fuel/internal/tank-2-balance-deadzone</property> <!-- Don't touch unless you know what you are doing! -->
 	
 	<channel name="FSC Switches/Logic" execrate="8">
 		
@@ -170,13 +170,13 @@
 		<summer name="/systems/fuel/fsc/tank-1-level-bias">
 			<input>propulsion/tank[0]/contents-lbs</input>
 			<input>propulsion/tank[1]/contents-lbs</input>
-			<input>/systems/fuel/internal/tank-2-balence-deadzone</input>
+			<input>/systems/fuel/internal/tank-2-balance-deadzone</input>
 		</summer>
 		
 		<summer name="/systems/fuel/fsc/tank-3-level-bias">
 			<input>propulsion/tank[3]/contents-lbs</input>
 			<input>propulsion/tank[4]/contents-lbs</input>
-			<input>/systems/fuel/internal/tank-2-balence-deadzone</input>
+			<input>/systems/fuel/internal/tank-2-balance-deadzone</input>
 		</summer>
 		
 		<switch name="/systems/fuel/fsc/trans-1">
