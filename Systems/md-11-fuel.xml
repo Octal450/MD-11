@@ -289,7 +289,6 @@
 					/systems/fuel/cg-control/active eq 0
 					/systems/fuel/cg-control/direction-cmd eq -1
 				</test>
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				propulsion/tank[7]/contents-lbs gt 10
 			</test>
 			<test value="0">
