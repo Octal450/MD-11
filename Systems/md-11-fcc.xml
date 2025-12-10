@@ -331,6 +331,7 @@
 			<input>/systems/fcc/lsas/left-in-active</input>
 			<input>/systems/fcc/lsas/right-in-active</input>
 			<input>/systems/fcc/lsas/right-out-active</input>
+			<output>/systems/fuel/cg-control/lsas-channels-active</output>
 		</summer>
 		
 		<fcs_function name="/systems/fcc/lsas/spd-prot/max">
