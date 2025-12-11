@@ -233,7 +233,7 @@
 	</contact>
 	
 	<!-- Dummy gears for tilt animation -->
-	<contact type="BOGEY" name="LEFT_MLG_AFT">
+	<contact type="BOGEY" name="LEFT_MLG_DUMMY">
 		<location unit="M">
 			<x>4.7638</x>
 			<y>-6.00641</y>
@@ -248,7 +248,7 @@
 		<brake_group>NONE</brake_group>
 		<retractable>1</retractable>
 	</contact>
-	<contact type="BOGEY" name="RIGHT_MLG_AFT">
+	<contact type="BOGEY" name="RIGHT_MLG_DUMMY">
 		<location unit="M">
 			<x>4.7638</x>
 			<y>6.00641</y>
