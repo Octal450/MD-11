@@ -2802,7 +2802,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.left.back</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>sim/multiplay/generic/float[25]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>
@@ -3023,7 +3023,7 @@
 	<animation>
 		<type>spin</type>
 		<object-name>tyres.right.back</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>sim/multiplay/generic/float[26]</property>
 		<factor>10</factor>
 		<axis>
 			<x>0</x>

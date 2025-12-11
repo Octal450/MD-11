@@ -321,6 +321,8 @@
 				<float n="22" alias="/systems/fcs/spoiler-r4/final-deg"/>
 				<float n="23" alias="/systems/fcs/spoiler-r5/final-deg"/>
 				<float n="24" alias="/systems/fcs/stabilizer/final-deg"/>
+				<float n="25" alias="/gear/gear[4]/rollspeed-ms"/> <!-- Dummy gear -->
+				<float n="26" alias="/gear/gear[5]/rollspeed-ms"/> <!-- Dummy gear -->
 			</generic>
 			<visibility-range-nm type="int">130</visibility-range-nm>
 		</multiplay>
