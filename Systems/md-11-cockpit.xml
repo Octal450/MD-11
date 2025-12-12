@@ -753,11 +753,26 @@
 			<rate_limit>/systems/cockpit/wipers/wiper-r-rate</rate_limit>
 			<output>/systems/cockpit/wipers/wiper-r-out</output>
 		</actuator>
-	
+
+        <switch name="/environment/aircraft-effects/use-wipers">
+			<default value="0"/>
+            <test logic="OR" value="1">
+                /systems/cockpit/wipers/wiper-r-out gt 0
+                /systems/cockpit/wipers/wiper-l-out gt 0
+            </test>
+        </switch>
+
 	</channel>
 	
 	<channel name="Glass Effects">
-		
+
+		<!--
+        at full speed x=1.6 y=0.0 z=0.4
+        runway speed x=1.2 y=0.0 z=0.4
+        stopped x=0.4 y=0.0 z=1.1
+        banking y = from 0 to +- 0.200 max
+        -->
+        
 		<fcs_function name="glass-effects/airspeed-clamped-sqrt">
 			<function>
 				<sqrt>
