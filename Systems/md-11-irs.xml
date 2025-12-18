@@ -150,17 +150,6 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/iru[0]/fcc-bit-avail">
-			<default value="0"/>
-			<test value="1">
-				/systems/iru[0]/aligned eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/iru[0]/align-timer ge 450
-				/systems/iru[0]/aligning eq 1
-			</test>
-		</switch>
-		
 		<switch name="/systems/iru[0]/main-avail">
 			<default value="0"/>
 			<test value="1">
@@ -265,17 +254,6 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/iru[1]/fcc-bit-avail">
-			<default value="0"/>
-			<test value="1">
-				/systems/iru[1]/aligned eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/iru[1]/align-timer ge 450
-				/systems/iru[1]/aligning eq 1
-			</test>
-		</switch>
-		
 		<switch name="/systems/iru[1]/main-avail">
 			<default value="0"/>
 			<test value="1">
@@ -376,17 +354,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/iru[2]/align-timer ge 30
-				/systems/iru[2]/aligning eq 1
-			</test>
-		</switch>
-		
-		<switch name="/systems/iru[2]/fcc-bit-avail">
-			<default value="0"/>
-			<test value="1">
-				/systems/iru[2]/aligned eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/iru[2]/align-timer ge 450
 				/systems/iru[2]/aligning eq 1
 			</test>
 		</switch>
