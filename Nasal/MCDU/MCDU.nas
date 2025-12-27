@@ -112,6 +112,7 @@ var MCDU = {
 				me.Blink.active = 0;
 			}
 		}
+		
 		me.page.loop();
 	},
 	alphaNumKey: func(k) {
