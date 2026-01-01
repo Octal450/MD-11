@@ -3,6 +3,7 @@
 
 var APU = {
 	autoConnect: 0,
+	autoShutdown: 0,
 	egt: props.globals.getNode("/engines/engine[3]/egt-actual"),
 	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),
@@ -24,12 +25,23 @@ var APU = {
 		me.Lights.avail.setBoolValue(0);
 		me.Lights.on.setBoolValue(0);
 		me.autoConnect = 0;
+		me.autoShutdown = 0;
 	},
-	fastStart: func() {
+	loop: func() {
+		if (me.autoShutdown) {
+			if (systems.ENGINES.state[0].getValue() == 3 and systems.ENGINES.state[1].getValue() == 3 and systems.ENGINES.state[2].getValue() == 3) {
+				if (!ELECTRICAL.Epcu.allowApu.getBoolValue()) { # Once all 3 gens are on bus, allowApu goes false
+					me.stop();
+				}
+			}
+		}
+	},
+	fastStart: func(t = 0) {
 		me.Controls.start.setBoolValue(1);
 		me.Lights.avail.setValue(1);
 		me.Lights.on.setValue(1);
 		me.autoConnect = 0;
+		me.autoShutdown = t;
 		settimer(func() { # Give the fuel system a moment to provide fuel in the pipe
 			pts.Fdm.JSBSim.Propulsion.setRunning.setValue(3);
 		}, 1);
@@ -66,19 +78,19 @@ var APU = {
 			me.Lights.on.setValue(!me.Lights.onTemp);
 		}
 	},
-	startStop: func(t) {
+	startStop: func(t = 0) {
 		if (ELECTRICAL.Bus.dcBat.getValue() >= 24) {
 			if (!me.Controls.start.getBoolValue() and me.n2.getValue() < 1.8) {
 				me.autoConnect = t;
+				if (t == 1 and (systems.ENGINES.state[0].getValue() != 3 or systems.ENGINES.state[1].getValue() != 3 or systems.ENGINES.state[2].getValue() != 3)) {
+					me.autoShutdown = 1;
+				} else {
+					me.autoShutdown = 0;
+				}
 				me.Controls.start.setBoolValue(1);
 				onLightt.start();
 			} else if (!acconfig.SYSTEM.autoConfigRunning.getBoolValue() and t != 1) { # Do nothing if autoconfig is running, cause it'll break it, or if ELEC panel switch was used
-				onLightt.stop();
-				me.Controls.start.setBoolValue(0);
-				me.Lights.avail.setValue(0);
-				me.Lights.on.setValue(0);
-				PNEUMATICS.Controls.bleedApu.setBoolValue(0);
-				me.autoConnect = 0;
+				me.stop();
 			}
 		}
 	},
@@ -89,6 +101,7 @@ var APU = {
 		me.Lights.on.setValue(0);
 		PNEUMATICS.Controls.bleedApu.setBoolValue(0);
 		me.autoConnect = 0;
+		me.autoShutdown = 0;
 	},
 };
 

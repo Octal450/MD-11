@@ -66,6 +66,7 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 var systemsLoop = maketimer(0.1, func() {
 	fms.CORE.loop();
 	mcdu.BASE.loop();
+	systems.APU.loop();
 	systems.FADEC.loop();
 	systems.DUController.loop();
 	SHAKE.loop();

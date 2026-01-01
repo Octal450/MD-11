@@ -299,7 +299,7 @@ var PANEL = {
 		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
 		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
-		systems.APU.fastStart();
+		systems.APU.fastStart(1);
 		systems.IRS.Controls.knob[0].setBoolValue(1);
 		systems.IRS.Controls.knob[1].setBoolValue(1);
 		systems.IRS.Controls.knob[2].setBoolValue(1);
