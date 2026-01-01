@@ -693,14 +693,17 @@
 			<default value="/systems/fms/speeds/vmin-latch"/>
 			<test value="0">
 				gear/unit[0]/WOW eq 1
-			</test>	
+			</test>
+			<test value="1">
+				/systems/fms/internal/phase ge 3
+			</test>
 			<test logic="OR" value="1">
-				/systems/fms/internal/phase ge 2
+				fcs/slat-pos-deg lt 0.1
 				/systems/fms/speeds/flaps-input-feedback ge 4
 			</test>
 		</switch>
 		
-		<switch name="/systems/fms/speeds/vmin-factor">
+		<switch name="/systems/fms/speeds/vmin-factor-cmd">
 			<default value="1.3"/> <!-- 1.3 Vstall -->
 			<test logic="AND" value="1.25"> <!-- 1.25 Vstall -->
 				fcs/flap-pos-deg ge 0.1
@@ -715,6 +718,18 @@
 				/systems/fms/speeds/vmin-latch ne 1
 			</test>
 		</switch>
+		
+		<switch name="/systems/fms/speeds/vmin-factor-rate">
+			<default value="0.02"/> <!-- Guess based on video of real -->
+			<test value="100000">
+				gear/unit[0]/WOW eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fms/speeds/vmin-factor">
+			<input>/systems/fms/speeds/vmin-factor-cmd</input>
+			<rate_limit>/systems/fms/speeds/vmin-factor-rate</rate_limit>
+		</actuator>
 		
 		<fcs_function name="/systems/fms/speeds/vmin">
 			<function>
