@@ -1,6 +1,6 @@
 # FailureMgr to IntegratedSystems Failure Bridge
 # OPRF uses FailureMgr to control failures with its damage code, but I use IntegratedSystems to manage failures. This thing allows FailureMgr to control IntegratedSystems failures.
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var numEng = 4; # Number of engines + APU, counting from 1
 var ready = 0;

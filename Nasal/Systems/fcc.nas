@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 FCC
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FCC = {
 	bit1: props.globals.getNode("/systems/fcc/bit-1"),

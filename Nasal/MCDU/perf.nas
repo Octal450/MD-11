@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 MCDU
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 # Note: Some softkey functions are shared between Perf and PreSel
 
 var Perf = {

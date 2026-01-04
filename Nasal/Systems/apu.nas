@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 APU
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var APU = {
 	autoConnect: 0,

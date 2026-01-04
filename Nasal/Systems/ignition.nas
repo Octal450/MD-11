@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Ignition
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var IGNITION = {
 	cutoff1: props.globals.getNode("/systems/ignition/cutoff-1"),

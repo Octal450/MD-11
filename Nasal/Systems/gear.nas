@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 Gear
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var GEAR = {
 	allNorm: props.globals.getNode("/systems/gear/all-norm"),

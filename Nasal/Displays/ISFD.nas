@@ -1,5 +1,5 @@
 # McDonnell Douglas MD-11 ISFD
-# Copyright (c) 2025 Josh Davidson (Octal450)
+# Copyright (c) 2026 Josh Davidson (Octal450)
 
 var display = nil;
 var isfd = nil;
