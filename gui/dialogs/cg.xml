@@ -10,12 +10,12 @@
 	
 	<nasal>
 		<open>
-			setprop("/sim/gui/dialogs/speedscg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
-			setprop("/sim/gui/dialogs/speedscg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
+			setprop("/sim/gui/dialogs/cg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
+			setprop("/sim/gui/dialogs/cg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
 			
 			var loop = maketimer(0.1, func() {
-				setprop("/sim/gui/dialogs/speedscg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
-				setprop("/sim/gui/dialogs/speedscg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
+				setprop("/sim/gui/dialogs/cg/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/cg-percent-mac"), 0.1)) ~ "% MAC");
+				setprop("/sim/gui/dialogs/cg/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/fdm/jsbsim/inertia/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
 			});
 			loop.start();
 		</open>
@@ -59,7 +59,7 @@
 			<col>1</col>
 			<label>9999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/speedscg/cg-percent-mac</property>
+			<property>/sim/gui/dialogs/cg/cg-percent-mac</property>
 		</text>
 		<text>
 			<row>1</row>
@@ -71,7 +71,7 @@
 			<col>1</col>
 			<label>9999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/speedscg/zfwcg-percent-mac</property>
+			<property>/sim/gui/dialogs/cg/zfwcg-percent-mac</property>
 		</text>
 	</group>
 
