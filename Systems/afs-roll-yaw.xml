@@ -555,7 +555,7 @@
 	</logic>
 	
 	<pi-simple-controller>
-		<name>IT-CONTROLLER: Takeoff Parallel Rudder PI</name>
+		<name>IT-CONTROLLER: Parallel Rudder PI</name>
 		<enable>
 			<condition>
 				<and>
@@ -592,7 +592,7 @@
 	</pi-simple-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: Takeoff Parallel Rudder D</name>
+		<name>IT-CONTROLLER: Parallel Rudder D</name>
 		<type>derivative</type>ion>
 		<enable>
 			<condition>
@@ -619,7 +619,7 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: Takeoff Parallel Rudder</name> <!-- Sum the controllers to make a manual PID controller -->
+		<name>IT-CONTROLLER: Parallel Rudder</name> <!-- Sum the controllers to make a manual PID controller -->
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
