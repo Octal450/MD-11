@@ -31,7 +31,7 @@
 	<property value="0">/systems/fcc/yaw/tc-p-gain-tune</property>
 	<property value="0">/systems/fcc/yaw/tc-d-gain-tune</property>
 	
-	<channel name="Libraries">
+	<channel name="Core">
 		
 		<switch name="/systems/fcc/fcc-1-power">
 			<default value="0"/>
@@ -1296,7 +1296,7 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<switch name="/systems/fcc/elevator-feel/switch"> <!-- Manual knob control is in libraries.xml -->
+		<switch name="/systems/fcc/elevator-feel/switch"> <!-- Manual knob control is in core.xml -->
 			<default value="/systems/fcc/elevator-feel/speed"/>
 			<test value="/systems/fcc/elevator-feel/kts-lag">
 				/systems/fcc/elevator-feel/auto eq 1

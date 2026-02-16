@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
-<!-- McDonnell Douglas MD-11 Libraries -->
+<!-- McDonnell Douglas MD-11 JSBSim Core -->
 <!-- Copyright (c) 2026 Josh Davidson (Octal450) -->
 
-<system name="MD-11: Libraries">
+<system name="MD-11: Core">
 	
-	<channel name="FDM Rate Libraries">
+	<channel name="FDM Rate">
 		
 		<switch name="position/wow">
 			<default value="0"/>
@@ -172,7 +172,7 @@
 	
 	</channel>
 	
-	<channel name="Execrate 8 Libraries" execrate="8">
+	<channel name="Execrate 8" execrate="8">
 		
 		<switch name="/systems/engines/any-engine-on">
 			<default value="0"/>
@@ -224,7 +224,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/libraries/blink-fast">
+		<fcs_function name="/systems/core/blink-fast">
 			<function>
 				<floor>
 					<mod>
@@ -238,7 +238,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/libraries/blink-med">
+		<fcs_function name="/systems/core/blink-med">
 			<function>
 				<floor>
 					<mod>
@@ -252,7 +252,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/libraries/blink-med-2">
+		<fcs_function name="/systems/core/blink-med-2">
 			<function>
 				<floor>
 					<mod>

@@ -208,7 +208,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("CONFIG");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -247,7 +247,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("CONSEQ");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -286,7 +286,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("ELEC");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -325,7 +325,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("ENG");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -364,7 +364,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("HYD");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -403,7 +403,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("MISC");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>
@@ -442,7 +442,7 @@
 				<command>nasal</command>
 				<script>
 					systems.DUController.setSdPage("STATUS");
-					libraries.Sound.btn2();
+					core.Sound.btn2();
 				</script>
 			</binding>
 			<binding>

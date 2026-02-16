@@ -1011,7 +1011,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -1063,7 +1063,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -1116,7 +1116,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -1174,7 +1174,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 		</action>
 	</animation>
@@ -1253,7 +1253,7 @@
 					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 			<mod-up>
 				<binding>

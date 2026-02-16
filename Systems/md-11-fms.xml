@@ -158,7 +158,7 @@
 		</switch>
 		
 		<!-- FMS CG Calculation -->
-		<fcs_function name="/systems/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-libraries.xml -->
+		<fcs_function name="/systems/fms/internal/zfwcg-x-in"> <!-- Inverted from md-11-core.xml -->
 			<function>
 				<quotient>
 					<sum>
@@ -245,7 +245,7 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fms/internal/cg-percent-mac"> <!-- From md-11-libraries.xml -->
+		<fcs_function name="/systems/fms/internal/cg-percent-mac"> <!-- From md-11-core.xml -->
 			<function>
 				<product>
 					<quotient>

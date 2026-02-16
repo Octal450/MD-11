@@ -100,7 +100,7 @@ var SYSTEM = {
 		systems.PNEUMATICS.resetFailures();
 	},
 	showError: func() {
-		libraries.systemsLoop.stop();
+		core.systemsLoop.stop();
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-main"}));
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-updated"}));
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-error"}));
@@ -256,7 +256,7 @@ var PANEL = {
 		fgcommand("dialog-close", props.Node.new({"dialog-name": "acconfig-psloaded"}));
 		fgcommand("dialog-show", props.Node.new({"dialog-name": "acconfig-psload"}));
 		systems.doIdleThrust();
-		libraries.systemsInit();
+		core.systemsInit();
 		afs.ITAF.syncHdg();
 		pts.Controls.Flight.speedbrake.setValue(0);
 		if (t == 1) {
@@ -343,7 +343,7 @@ var PANEL = {
 		systems.ELECTRICAL.Controls.battery.setBoolValue(1);
 		systems.ELECTRICAL.Controls.emerPwr.setValue(1);
 		pts.Controls.Lighting.emerLt.setValue(0.5);
-		systems.ELECTRICAL.Controls.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in libraries.nas
+		systems.ELECTRICAL.Controls.groundCart.setBoolValue(1); # autoConfigRunning cancels disable check in core.nas
 		systems.ELECTRICAL.Controls.extPwr.setBoolValue(1);
 		systems.ELECTRICAL.Controls.extGPwr.setBoolValue(1);
 		systems.IRS.Controls.knob[0].setBoolValue(1);
@@ -416,7 +416,7 @@ var spinningT = maketimer(0.05, SYSTEM, SYSTEM.spinning);
 SYSTEM.simInit();
 
 setlistener("/sim/signals/reinit", func(s) {
-	if (!s.getBoolValue() and libraries.initDone) {
+	if (!s.getBoolValue() and core.initDone) {
 		PANEL.coldDark(1);
 	}
 });

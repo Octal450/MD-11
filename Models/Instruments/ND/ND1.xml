@@ -14,7 +14,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.showNd();</script>
+				<script>core.showNd();</script>
 			</binding>
 		</action>
 	</animation>

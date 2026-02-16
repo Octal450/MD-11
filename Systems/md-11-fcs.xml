@@ -5,7 +5,7 @@
 
 <system name="MD-11: FCS">
 	
-	<channel name="Libraries">
+	<channel name="Core">
 		
 		<switch name="/systems/fcs/aileron-out-enable">
 			<default value="0"/>

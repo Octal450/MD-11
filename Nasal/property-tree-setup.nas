@@ -330,10 +330,10 @@ var Systems = {
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
 	},
-	Libraries: {
-		blinkFast: props.globals.getNode("/systems/libraries/blink-fast"),
-		blinkMed: props.globals.getNode("/systems/libraries/blink-med"),
-		blinkMed2: props.globals.getNode("/systems/libraries/blink-med-2"),
+	Core: {
+		blinkFast: props.globals.getNode("/systems/core/blink-fast"),
+		blinkMed: props.globals.getNode("/systems/core/blink-med"),
+		blinkMed2: props.globals.getNode("/systems/core/blink-med-2"),
 	},
 	Misc: {
 		minimums: props.globals.getNode("/systems/misc/minimums"),

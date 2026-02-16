@@ -91,7 +91,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.btn2();</script>
+				<script>core.Sound.btn2();</script>
 			</binding>
 			<mod-up>
 				<binding>
@@ -188,7 +188,7 @@
 					</equals>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
+				<script>core.Sound.switch1();</script>
 			</binding>
 			<binding>
 				<condition>
@@ -257,7 +257,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
+				<script>core.Sound.switch1();</script>
 			</binding>
 		</action>
 		<action>
@@ -285,7 +285,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>libraries.Sound.switch1();</script>
+				<script>core.Sound.switch1();</script>
 			</binding>
 		</action>
 	</animation>

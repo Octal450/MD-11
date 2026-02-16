@@ -353,7 +353,7 @@
 				<path>Aircraft/MD-11/Systems/afs-thrust.xml</path>
 			</autopilot>
 			<autopilot n="4">
-				<path>Aircraft/MD-11/Systems/libraries.xml</path>
+				<path>Aircraft/MD-11/Systems/core-rules.xml</path>
 			</autopilot>
 			<autopilot n="5">
 				<path>Aircraft/MD-11/Systems/instrumentation.xml</path>
@@ -930,7 +930,7 @@
 				<desc>Cycle speedbrake setting</desc>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.speedbrakeKey();</script>
+					<script>core.speedbrakeKey();</script>
 				</binding>
 			</key>
 			<key n="4">
@@ -980,7 +980,7 @@
 				<desc>Reset zoom to default</desc>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.fovZoom(0);</script>
+					<script>core.fovZoom(0);</script>
 				</binding>
 			</key>
 			<key n="33">
@@ -1015,7 +1015,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(1);</script>
+					<script>core.setView(1);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1033,7 +1033,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(2);</script>
+					<script>core.setView(2);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1051,7 +1051,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(3);</script>
+					<script>core.setView(3);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1073,7 +1073,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(4);</script>
+					<script>core.setView(4);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1091,7 +1091,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(5);</script>
+					<script>core.setView(5);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1113,7 +1113,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(6);</script>
+					<script>core.setView(6);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1131,7 +1131,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(7);</script>
+					<script>core.setView(7);</script>
 				</binding>
 				<binding>
 					<condition>
@@ -1149,7 +1149,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(8);</script>
+					<script>core.setView(8);</script>
 				</binding-->
 				<binding>
 					<condition>
@@ -1167,7 +1167,7 @@
 						<not><property>/systems/acconfig/options/keyboard-mode</property></not>
 					</condition>
 					<command>nasal</command>
-					<script>libraries.setView(9);</script>
+					<script>core.setView(9);</script>
 				</binding-->
 				<binding>
 					<condition>
@@ -1231,7 +1231,7 @@
 				<desc>Increase field of view</desc>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.fovZoom(1);</script>
+					<script>core.fovZoom(1);</script>
 				</binding>
 			</key>
 			<key n="99">
@@ -1239,7 +1239,7 @@
 				<desc>Reset view to center</desc>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.resetView();</script>
+					<script>core.resetView();</script>
 				</binding>
 			</key>
 			<key n="101">
@@ -1263,7 +1263,7 @@
 				<desc>Decrease field of view</desc>
 				<binding>
 					<command>nasal</command>
-					<script>libraries.fovZoom(-1);</script>
+					<script>core.fovZoom(-1);</script>
 				</binding>
 			</key>
 			<key n="127">
@@ -1330,7 +1330,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>libraries.fovZoom(-1);</script>
+							<script>core.fovZoom(-1);</script>
 						</binding>
 					</button>
 					<button n="4">
@@ -1345,7 +1345,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>libraries.fovZoom(1);</script>
+							<script>core.fovZoom(1);</script>
 						</binding>
 					</button>
 				</mode>
@@ -1950,13 +1950,13 @@
 		<pts>
 			<file>Aircraft/MD-11/Nasal/property-tree-setup.nas</file>
 		</pts>
-		<libraries>
-			<file>Aircraft/MD-11/Nasal/libraries.nas</file>
+		<core>
+			<file>Aircraft/MD-11/Nasal/aircraft.nas</file>
 			<file>Aircraft/MD-11/Nasal/hack-canvas.nas</file>
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 			<file>Aircraft/MD-11/Nasal/view-controller.nas</file>
 			<file>Aircraft/MD-11/Models/Instruments/ND/ND.nas</file>
-		</libraries>
+		</core>
 		<acconfig>
 			<file>Aircraft/MD-11/Nasal/acconfig.nas</file>
 		</acconfig>

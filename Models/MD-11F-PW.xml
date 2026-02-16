@@ -97,7 +97,7 @@
 					<not><property>/sim/current-view/internal</property></not>
 				</condition>
 				<command>nasal</command>
-				<script>libraries.Doors.toggle(libraries.Doors.cargoUpper, "cargo-upper", "Upper Cargo");</script>
+				<script>core.Doors.toggle(core.Doors.cargoUpper, "cargo-upper", "Upper Cargo");</script>
 			</binding>
 		</action>
 	</animation>
