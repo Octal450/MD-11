@@ -43,7 +43,12 @@
 				/systems/fuel/cg-control/cg-percent-mac gt 0
 				/systems/fuel/tail-fuel-management eq 1
 				/systems/fms/flight-data/gw-lbs gt 0
-				/systems/fuel/cg-control/lsas-channels-active gt 0
+				<test logic="OR">
+					/systems/fcc/lsas/left-out-avail eq 1
+					/systems/fcc/lsas/left-in-avail eq 1
+					/systems/fcc/lsas/right-in-avail eq 1
+					/systems/fcc/lsas/right-out-avail eq 1
+				</test>
 				/systems/fuel/cg-control/fuel-stored ge 60000
 				/systems/fuel/system eq 1
 			</test>
