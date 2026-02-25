@@ -346,6 +346,14 @@
 			<output>/controls/fuel/alt-pump</output>
 		</switch>
 		
+		<switch name="/systems/fuel/fsc/tank-2-feed-inhibit">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Do not try to balance 1 and 3 to 2 if the aux tanks are feeding -->
+				/systems/fuel/fsc/aux-pumps-cmd eq 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+			</test>
+		</switch>
+		
 		<summer name="/systems/fuel/fsc/tank-1-level-bias">
 			<input>propulsion/tank[0]/contents-lbs</input>
 			<input>propulsion/tank[1]/contents-lbs</input>
@@ -376,10 +384,12 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
 				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-1-level-bias
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
 				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-3-level-bias
 			</test>
 			<test value="0">
@@ -408,6 +418,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
 				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-1-level-bias
 			</test>
 			<test value="0">
@@ -438,6 +449,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
 				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-3-level-bias
 			</test>
 			<test value="0">
