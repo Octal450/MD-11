@@ -50,6 +50,9 @@
 					/systems/fcc/lsas/right-out-avail eq 1
 				</test>
 				/systems/fuel/cg-control/fuel-stored ge 60000
+				/systems/fuel/cg-control/tank-1-lbs gt 11500
+				/systems/fuel/cg-control/tank-2-lbs gt 11500
+				/systems/fuel/cg-control/tank-3-lbs gt 11500
 				/systems/fuel/system eq 1
 			</test>
 		</switch>
@@ -168,9 +171,6 @@
 			<test logic="OR" value="-1"> <!-- Forward -->
 				propulsion/tank[7]/contents-lbs gt /systems/fuel/cg-control/tail-fuel-limit
 				/systems/fuel/cg-control/direction-cg-latch eq -1
-				/systems/fuel/cg-control/tank-1-lbs le 11500
-				/systems/fuel/cg-control/tank-2-lbs le 11500
-				/systems/fuel/cg-control/tank-3-lbs le 11500
 			</test>
 			<test logic="AND" value="1"> <!-- Aft -->
 				/consumables/fuel/total-fuel-lbs ge 51000
