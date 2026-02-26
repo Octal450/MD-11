@@ -753,12 +753,108 @@
 			<rate_limit>/systems/cockpit/wipers/wiper-r-rate</rate_limit>
 			<output>/systems/cockpit/wipers/wiper-r-out</output>
 		</actuator>
-	
+
+        <switch name="/environment/aircraft-effects/use-wipers">
+			<default value="0"/>
+            <test logic="OR" value="1">
+                /systems/cockpit/wipers/wiper-r-out gt 0
+                /systems/cockpit/wipers/wiper-l-out gt 0
+            </test>
+        </switch>
+
 	</channel>
 	
 	<channel name="Glass Effects">
-		
-		<fcs_function name="glass-effects/airspeed-clamped-sqrt">
+
+		<!--
+        at full speed x=1.6 y=0.0 z=0.4
+        runway speed x=1.2 y=0.0 z=0.4
+        stopped x=0.4 y=0.0 z=1.1
+        banking y = from 0 to +- 0.2 max
+        -->
+        <fcs_function name="/environment/aircraft-effects/splash-vector-x">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						  0     0.4
+                          0.99  0.4
+						  1     1.2
+                         20     1.2
+                        100     1.6
+                        900     1.6
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+        <fcs_function name="/environment/aircraft-effects/splash-vector-z">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						  0     1.1
+                          0.99  1.1
+						  1     0.4
+                        100     0.4
+                        900     0.4
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+        <fcs_function name="/environment/aircraft-effects/splash-vector-y">
+			<function>
+				<table>
+					<independentVar lookup="row">/orientation/yaw-rate-degps</independentVar>
+					<tableData>
+						  -1  -0.2
+						   1   0.2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+
+        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-x">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						  0     0.4
+                          0.99  0.4
+						  1     1.2
+                         20     1.2
+                        100     1.6
+                        900     1.6
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-z">
+			<function>
+				<table>
+					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<tableData>
+						  0     1.1
+                          0.99  1.1
+						  1     0.4
+                        100     0.4
+                        900     0.4
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-y">
+			<function>
+				<table>
+					<independentVar lookup="row">/orientation/yaw-rate-degps</independentVar>
+					<tableData>
+						  -1  0.0
+						   1  0.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+        
+		<!--fcs_function name="glass-effects/airspeed-clamped-sqrt">
 			<function>
 				<sqrt>
 					<quotient>
@@ -803,7 +899,7 @@
 				</difference>
 			</function>
 			<output>/environment/aircraft-effects/splash-vector-z</output>
-		</fcs_function>
+		</fcs_function-->
 	
 	</channel>
 
