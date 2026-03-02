@@ -516,7 +516,11 @@ var ITAF = {
 		
 		if (Position.gearAglFtTemp <= 1500 and Internal.landModeActive) {
 			Internal.selfCheckStatus = 1;
-			systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(1);
+			if (Output.ap1Temp or Output.ap2Temp) {
+				systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(1);
+			} else {
+				systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(0);
+			}
 		} else if (!Internal.landModeActive) {
 			Internal.selfCheckStatus = 0;
 			systems.ELECTRICAL.Epcu.splitBuses.setBoolValue(0);
