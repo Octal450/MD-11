@@ -24,7 +24,7 @@ var Value = {
 	titleTranslate: [0, 0, 0],
 };
 
-var canvasBase = {
+var CanvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
 			return mcdu.FONT.large;
@@ -356,9 +356,9 @@ var canvasBase = {
 	},
 };
 
-var canvasMcdu1 = {
+var CanvasMcdu1 = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasMcdu1, canvasBase]};
+		var m = {parents: [CanvasMcdu1, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -368,9 +368,9 @@ var canvasMcdu1 = {
 	},
 };
 
-var canvasMcdu2 = {
+var CanvasMcdu2 = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasMcdu2, canvasBase]};
+		var m = {parents: [CanvasMcdu2, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -380,9 +380,9 @@ var canvasMcdu2 = {
 	},
 };
 
-var canvasMcdu3 = {
+var CanvasMcdu3 = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasMcdu3, canvasBase]};
+		var m = {parents: [CanvasMcdu3, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -420,11 +420,11 @@ var setup = func() {
 	var mcdu2Group = mcdu2Display.createGroup();
 	var mcdu3Group = mcdu3Display.createGroup();
 	
-	mcdu1 = canvasMcdu1.new(mcdu1Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
-	mcdu2 = canvasMcdu2.new(mcdu2Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
-	mcdu3 = canvasMcdu3.new(mcdu3Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
+	mcdu1 = CanvasMcdu1.new(mcdu1Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
+	mcdu2 = CanvasMcdu2.new(mcdu2Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
+	mcdu3 = CanvasMcdu3.new(mcdu3Group, "Aircraft/MD-11/Nasal/Displays/res/MCDU.svg");
 	
-	canvasBase.setup();
+	CanvasBase.setup();
 	
 	mcdu1.update();
 	mcdu2.update();
@@ -452,7 +452,7 @@ var rateApply = func() {
 }
 
 var update = maketimer(0.1, func() { # 10FPS
-	canvasBase.update();
+	CanvasBase.update();
 });
 
 var showMcdu1 = func {

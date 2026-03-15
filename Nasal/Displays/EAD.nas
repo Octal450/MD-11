@@ -41,7 +41,7 @@ var Value = {
 	tat: 0,
 };
 
-var canvasBase = {
+var CanvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
 			return "MD11DU.ttf";
@@ -572,9 +572,9 @@ var canvasBase = {
 	},
 };
 
-var canvasGeDials = {
+var CanvasGeDials = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasGeDials, canvasBase]};
+		var m = {parents: [CanvasGeDials, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -803,9 +803,9 @@ var canvasGeDials = {
 	},
 };
 
-var canvasGeTapes = {
+var CanvasGeTapes = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasGeTapes, canvasBase]};
+		var m = {parents: [CanvasGeTapes, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -984,9 +984,9 @@ var canvasGeTapes = {
 	},
 };
 
-var canvasPwDials = {
+var CanvasPwDials = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPwDials, canvasBase]};
+		var m = {parents: [CanvasPwDials, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -1257,9 +1257,9 @@ var canvasPwDials = {
 	},
 };
 
-var canvasPwTapes = {
+var CanvasPwTapes = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPwTapes, canvasBase]};
+		var m = {parents: [CanvasPwTapes, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -1492,9 +1492,9 @@ var canvasPwTapes = {
 	},
 };
 
-var canvasXx = {
+var CanvasXx = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasXx]};
+		var m = {parents: [CanvasXx]};
 		canvas.parsesvg(canvasGroup, file);
 		m.page = canvasGroup;
 		
@@ -1518,13 +1518,13 @@ var setup = func() {
 	var pwTapesGroup = display.createGroup();
 	var xxGroup = display.createGroup();
 	
-	geDials = canvasGeDials.new(geDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Dials.svg");
-	geTapes = canvasGeTapes.new(geTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Tapes.svg");
-	pwDials = canvasPwDials.new(pwDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Dials.svg");
-	pwTapes = canvasPwTapes.new(pwTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Tapes.svg");
-	xx = canvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
+	geDials = CanvasGeDials.new(geDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Dials.svg");
+	geTapes = CanvasGeTapes.new(geTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-GE-Tapes.svg");
+	pwDials = CanvasPwDials.new(pwDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Dials.svg");
+	pwTapes = CanvasPwTapes.new(pwTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/EAD-PW-Tapes.svg");
+	xx = CanvasXx.new(xxGroup, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
 	
-	canvasBase.setup();
+	CanvasBase.setup();
 	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.eadFps.getValue() != 20) {
@@ -1537,7 +1537,7 @@ var rateApply = func() {
 }
 
 var update = maketimer(0.05, func() { # 20FPS
-	canvasBase.update();
+	CanvasBase.update();
 });
 
 var showEad = func() {

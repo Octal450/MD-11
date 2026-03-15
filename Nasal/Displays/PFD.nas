@@ -206,7 +206,7 @@ var Value = {
 	},
 };
 
-var canvasBase = {
+var CanvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
 			return "MD11DU.ttf";
@@ -2554,9 +2554,9 @@ var canvasBase = {
 	},
 };
 
-var canvasPfd1 = {
+var CanvasPfd1 = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPfd1, canvasBase]};
+		var m = {parents: [CanvasPfd1, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -2580,9 +2580,9 @@ var canvasPfd1 = {
 	},
 };
 
-var canvasPfd2 = {
+var CanvasPfd2 = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasPfd2, canvasBase]};
+		var m = {parents: [CanvasPfd2, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -2608,9 +2608,9 @@ var canvasPfd2 = {
 	},
 };
 
-var canvasXx = {
+var CanvasXx = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasXx]};
+		var m = {parents: [CanvasXx]};
 		canvas.parsesvg(canvasGroup, file);
 		m.page = canvasGroup;
 		
@@ -2640,12 +2640,12 @@ var setup = func() {
 	var xx1Group = pfd1Display.createGroup();
 	var xx2Group = pfd2Display.createGroup();
 	
-	pfd1 = canvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
-	pfd2 = canvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
-	xx1 = canvasXx.new(xx1Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
-	xx2 = canvasXx.new(xx2Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
+	pfd1 = CanvasPfd1.new(pfd1Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
+	pfd2 = CanvasPfd2.new(pfd2Group, "Aircraft/MD-11/Nasal/Displays/res/PFD.svg");
+	xx1 = CanvasXx.new(xx1Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
+	xx2 = CanvasXx.new(xx2Group, "Aircraft/MD-11/Nasal/Displays/res/XX.svg");
 	
-	canvasBase.setup();
+	CanvasBase.setup();
 	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.pfdFps.getValue() != 20) {
@@ -2658,7 +2658,7 @@ var rateApply = func() {
 }
 
 var update = maketimer(0.05, func() { # 20FPS
-	canvasBase.update();
+	CanvasBase.update();
 });
 
 var showPfd1 = func() {

@@ -76,7 +76,7 @@ var Value = {
 	},
 };
 
-var canvasBase = {
+var CanvasBase = {
 	init: func(canvasGroup, file) {
 		var font_mapper = func(family, weight) {
 			return "MD11ISFD.ttf";
@@ -133,9 +133,9 @@ var canvasBase = {
 	},
 };
 
-var canvasIsfd = {
+var CanvasIsfd = {
 	new: func(canvasGroup, file) {
-		var m = {parents: [canvasIsfd, canvasBase]};
+		var m = {parents: [CanvasIsfd, CanvasBase]};
 		m.init(canvasGroup, file);
 		
 		return m;
@@ -361,9 +361,9 @@ var setup = func() {
 	
 	var isfdGroup = display.createGroup();
 	
-	isfd = canvasIsfd.new(isfdGroup, "Aircraft/MD-11/Nasal/Displays/res/ISFD.svg");
+	isfd = CanvasIsfd.new(isfdGroup, "Aircraft/MD-11/Nasal/Displays/res/ISFD.svg");
 	
-	canvasBase.setup();
+	CanvasBase.setup();
 	update.start();
 	
 	if (pts.Systems.Acconfig.Options.Du.isfdFps.getValue() != 20) {
@@ -376,7 +376,7 @@ var rateApply = func() {
 }
 
 var update = maketimer(0.05, func() { # 20FPS
-	canvasBase.update();
+	CanvasBase.update();
 });
 
 var showIsfd = func() {
