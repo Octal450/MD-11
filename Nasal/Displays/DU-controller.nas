@@ -65,7 +65,7 @@ var DUController = {
 	blinkSd: func() {
 		me.BlinkSd.active = 1;
 		me.updateSd = 0;
-		canvas_sd.canvasBase.hidePages();
+		canvas_sd.CanvasBase.hidePages();
 		me.BlinkSd.time = pts.Sim.Time.elapsedSec.getValue() + 0.4;
 	},
 	hideMcdu: func(n) {
@@ -499,7 +499,7 @@ var DUController = {
 			} else {
 				if (me.updateSd) {
 					me.updateSd = 0;
-					canvas_sd.canvasBase.hidePages();
+					canvas_sd.CanvasBase.hidePages();
 				}
 				if (!me.showX[3]) {
 					me.showX[3] = 1;
@@ -509,7 +509,7 @@ var DUController = {
 		} else {
 			if (me.updateSd) {
 				me.updateSd = 0;
-				canvas_sd.canvasBase.hidePages();
+				canvas_sd.CanvasBase.hidePages();
 			}
 			if (me.showX[3]) {
 				me.showX[3] = 0;
