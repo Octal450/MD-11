@@ -1814,25 +1814,25 @@ var CanvasHyd = {
 			me["Sys3_qty_box"].hide();
 		}
 		
-		me["Sys1_qty_bar"].setTranslation(0, Value.Hyd.qty[0] * -6.3333);
+		me["Sys1_qty_bar"].setTranslation(0, math.clamp(Value.Hyd.qty[0] * -6.6666, -80, 0));
 		if (Value.Eng.state[0] == 3) {
-			me["Sys1_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys1Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys1_qty_line"].setTranslation(0, math.clamp((systems.HYDRAULICS.Qty.sys1Preflight.getValue() * -6.6666), -80, -4));
 			me["Sys1_qty_line"].show();
 		} else {
 			me["Sys1_qty_line"].hide();
 		}
 		
-		me["Sys2_qty_bar"].setTranslation(0, Value.Hyd.qty[1] * -6.3333);
+		me["Sys2_qty_bar"].setTranslation(0, math.clamp(Value.Hyd.qty[1] * -6.6666, -80, 0));
 		if (Value.Eng.state[1] == 3) {
-			me["Sys2_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys2Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys2_qty_line"].setTranslation(0, math.clamp((systems.HYDRAULICS.Qty.sys2Preflight.getValue() * -6.6666), -80, -4));
 			me["Sys2_qty_line"].show();
 		} else {
 			me["Sys2_qty_line"].hide();
 		}
 		
-		me["Sys3_qty_bar"].setTranslation(0, Value.Hyd.qty[2] * -6.3333);
+		me["Sys3_qty_bar"].setTranslation(0, math.clamp(Value.Hyd.qty[2] * -6.6666, -80, 0));
 		if (Value.Eng.state[2] == 3) {
-			me["Sys3_qty_line"].setTranslation(0, math.round(systems.HYDRAULICS.Qty.sys3Preflight.getValue(), 0.1) * -6.3333);
+			me["Sys3_qty_line"].setTranslation(0, math.clamp((systems.HYDRAULICS.Qty.sys3Preflight.getValue() * -6.6666), -80, -4));
 			me["Sys3_qty_line"].show();
 		} else {
 			me["Sys3_qty_line"].hide();
