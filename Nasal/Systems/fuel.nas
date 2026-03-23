@@ -74,6 +74,7 @@ var FUEL = {
 		fillStatus1: props.globals.getNode("/systems/fuel/lights/fill-status-1"),
 		fillStatus2: props.globals.getNode("/systems/fuel/lights/fill-status-2"),
 		fillStatus3: props.globals.getNode("/systems/fuel/lights/fill-status-3"),
+		fillStatusAuxUpper: props.globals.getNode("/systems/fuel/lights/fill-status-aux-upper"),
 		fwdPump1PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-1-psi-low"),
 		fwdPump2PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-2-psi-low"),
 		fwdPump3PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-3-psi-low"),
