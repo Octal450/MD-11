@@ -19,12 +19,14 @@ var ENGINES = {
 	twoEngineOn: props.globals.getNode("/systems/engines/two-engine-on"),
 	Controls: {
 		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
+		fuReset: props.globals.getNode("/controls/engines/fu-reset"),
 		start: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
 		startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
 		throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 		throttleTemp: [0, 0, 0],
 	},
 	init: func() {
+		me.Controls.fuReset.setBoolValue(0);
 		me.Controls.start[0].setBoolValue(0);
 		me.Controls.start[1].setBoolValue(0);
 		me.Controls.start[2].setBoolValue(0);

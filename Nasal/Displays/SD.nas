@@ -7,6 +7,7 @@ var conseq = nil;
 var elec = nil;
 var engDials = nil;
 var engTapes = nil;
+var fuel = nil;
 var hyd = nil;
 var misc = nil;
 var status = nil;
@@ -58,6 +59,9 @@ var Value = {
 		stab: 0,
 		stabComp: 0,
 		stabRound: 0,
+	},
+	Fuel: {
+		qty: [0, 0, 0, 0, 0, 0],
 	},
 	Hyd: {
 		psi: [0, 0, 0],
@@ -144,6 +148,7 @@ var CanvasBase = {
 		elec.setup();
 		engDials.setup();
 		engTapes.setup();
+		fuel.setup();
 	},
 	hidePages: func() {
 		config.page.hide();
@@ -151,6 +156,7 @@ var CanvasBase = {
 		elec.page.hide();
 		engDials.page.hide();
 		engTapes.page.hide();
+		fuel.page.hide();
 		hyd.page.hide();
 		misc.page.hide();
 		status.page.hide();
@@ -172,6 +178,8 @@ var CanvasBase = {
 				} else {
 					engDials.update();
 				}
+			} else if (systems.DUController.sdPage == "FUEL") {
+				fuel.update();
 			} else if (systems.DUController.sdPage == "HYD") {
 				hyd.update();
 			} else if (systems.DUController.sdPage == "MISC") {
@@ -1675,6 +1683,115 @@ var CanvasEngTapes = {
 	},
 };
 
+var CanvasFuel = {
+	new: func(canvasGroup, file) {
+		var m = {parents: [CanvasFuel, CanvasBase]};
+		m.init(canvasGroup, file);
+		
+		return m;
+	},
+	getKeys: func() {
+		return ["Alert_error", "CG", "CG_error", "Eng1Used", "Eng1Used_error", "Eng2Used", "Eng2Used_error", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_thousands", "GW_units", "Tank1_error", "Tank1_qty", 
+		"Tank1_qty_bar", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "TankAux_qty", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", 
+		"TankTail_qty_bar"];
+	},
+	setup: func() {
+	
+	},
+	update: func() {
+		Value.Misc.wow = pts.Position.wow.getBoolValue();
+		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
+		
+		# Errors, these don't have separate logic yet.
+		if (Value.Misc.annunTestWow) {
+			me["Alert_error"].show();
+			me["CG_error"].show();
+			me["Eng1Used_error"].show();
+			me["Eng2Used_error"].show();
+			me["Eng3Used_error"].show();
+			me["Fuel_error"].show();
+			me["GW_error"].show();
+			me["Tank1_error"].show();
+			me["Tank2_error"].show();
+			me["Tank3_error"].show();
+			me["TankAuxLower_error"].show();
+			me["TankAuxUpper_error"].show();
+			me["TankTail_error"].show();
+		} else {
+			me["Alert_error"].hide();
+			me["CG_error"].hide();
+			me["Eng1Used_error"].hide();
+			me["Eng2Used_error"].hide();
+			me["Eng3Used_error"].hide();
+			me["Fuel_error"].hide();
+			me["GW_error"].hide();
+			me["Tank1_error"].hide();
+			me["Tank2_error"].hide();
+			me["Tank3_error"].hide();
+			me["TankAuxLower_error"].hide();
+			me["TankAuxUpper_error"].hide();
+			me["TankTail_error"].hide();
+		}
+		
+		# CG, GW, Fuel Total
+		if (fms.flightData.gwLbs > 0) {
+			Value.Misc.gw = math.round(fms.flightData.gwLbs * 1000, 100);
+			me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
+			me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
+			me["GW"].show();
+			me["GW_thousands"].show();
+			me["GW_units"].show();
+		} else {
+			me["GW"].hide();
+			me["GW_thousands"].hide();
+			me["GW_units"].hide();
+		}
+		
+		Value.Misc.cg = fms.Internal.cgPercentMac.getValue();
+		if (Value.Misc.cg > 0) {
+			me["CG"].setText(sprintf("%4.1f", math.round(Value.Misc.cg, 0.1)));
+			me["CG"].show();
+		} else {
+			me["CG"].hide();
+		}
+		
+		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
+		me["Fuel_thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
+		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
+		
+		# Fuel Used
+		me["Eng1Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
+		me["Eng2Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
+		me["Eng3Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
+		
+		# Fuel Tank Quantity
+		Value.Fuel.qty[0] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[0].getValue() + pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[1].getValue();
+		Value.Fuel.qty[1] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[2].getValue();
+		Value.Fuel.qty[2] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[3].getValue() + pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[4].getValue();
+		Value.Fuel.qty[3] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[5].getValue();
+		Value.Fuel.qty[4] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[6].getValue();
+		Value.Fuel.qty[5] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[7].getValue();
+		
+		me["Tank1_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[0] * -(56 / 40500), -56, 0));
+		me["Tank1_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[0], 50)));
+		
+		me["Tank2_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[1] * -(76 / 64050), -76, 0));
+		me["Tank2_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[1], 50)));
+		
+		me["Tank3_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[2] * -(56 / 40500), -56, 0));
+		me["Tank3_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[2], 50)));
+		
+		me["TankAuxUpper_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[3] * -(56 / 87120), -56, 0));
+		me["TankAuxLower_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[4] * -(38 / 11010), -38, 0));
+		me["TankAux_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[3] + Value.Fuel.qty[4], 50)));
+		
+		me["TankTail_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[5] * -(38 / 13130), -38, 0));
+		me["TankTail_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[5], 50)));
+		
+		# 
+	},
+};
+
 var CanvasHyd = {
 	new: func(canvasGroup, file) {
 		var m = {parents: [CanvasHyd, CanvasBase]};
@@ -2297,6 +2414,7 @@ var setup = func() {
 	var elecGroup = display.createGroup();
 	var engDialsGroup = display.createGroup();
 	var engTapesGroup = display.createGroup();
+	var fuelGroup = display.createGroup();
 	var hydGroup = display.createGroup();
 	var miscGroup = display.createGroup();
 	var statusGroup = display.createGroup();
@@ -2307,6 +2425,7 @@ var setup = func() {
 	elec = CanvasElec.new(elecGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ELEC.svg");
 	engDials = CanvasEngDials.new(engDialsGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Dials.svg");
 	engTapes = CanvasEngTapes.new(engTapesGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ENG-Tapes.svg");
+	fuel = CanvasFuel.new(fuelGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-FUEL.svg");
 	hyd = CanvasHyd.new(hydGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-HYD.svg");
 	misc = CanvasMisc.new(miscGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-MISC.svg");
 	status = CanvasStatus.new(statusGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-STATUS.svg");

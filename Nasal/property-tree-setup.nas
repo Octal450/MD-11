@@ -80,6 +80,9 @@ var Fdm = {
 			},
 			setRunning: props.globals.getNode("/fdm/jsbsim/propulsion/set-running"),
 			tatC: props.globals.getNode("/fdm/jsbsim/propulsion/tat-c"),
+			Tank: {
+				contentLbs: [props.globals.getNode("/fdm/jsbsim/propulsion/tank[0]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[1]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[2]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[3]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[4]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[5]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[6]/contents-lbs"), props.globals.getNode("/fdm/jsbsim/propulsion/tank[7]/contents-lbs")],
+			},
 		},
 	},
 };
@@ -224,6 +227,10 @@ var Instrumentation = {
 			oilQtyCline: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline[2]")],
 			oilQtyClineQt: [props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-qty-cline-qt[2]")],
 			oilTemp: [props.globals.getNode("/instrumentation/sd/eng/oil-temp[0]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[1]"), props.globals.getNode("/instrumentation/sd/eng/oil-temp[2]")],
+		},
+		Fuel: {
+			fu: [props.globals.getNode("/instrumentation/sd/fuel/fu[0]"), props.globals.getNode("/instrumentation/sd/fuel/fu[1]"), props.globals.getNode("/instrumentation/sd/fuel/fu[2]")],
+			fuResetTrim: [props.globals.getNode("/instrumentation/sd/fuel/fu-reset-trim[0]"), props.globals.getNode("/instrumentation/sd/fuel/fu-reset-trim[1]"), props.globals.getNode("/instrumentation/sd/fuel/fu-reset-trim[2]")],
 		},
 	},
 };

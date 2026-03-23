@@ -102,6 +102,7 @@ var DUController = {
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
@@ -112,6 +113,7 @@ var DUController = {
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
@@ -124,6 +126,7 @@ var DUController = {
 			canvas_sd.elec.page.show();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.page.hide();
@@ -133,6 +136,7 @@ var DUController = {
 				canvas_sd.conseq.page.hide();
 				canvas_sd.elec.page.hide();
 				canvas_sd.engDials.page.hide();
+				canvas_sd.fuel.page.hide();
 				canvas_sd.hyd.page.hide();
 				canvas_sd.misc.page.hide();
 				canvas_sd.status.page.hide();
@@ -143,18 +147,31 @@ var DUController = {
 				canvas_sd.conseq.page.hide();
 				canvas_sd.elec.page.hide();
 				canvas_sd.engTapes.page.hide();
+				canvas_sd.fuel.page.hide();
 				canvas_sd.misc.page.hide();
 				canvas_sd.hyd.page.hide();
 				canvas_sd.status.page.hide();
 				canvas_sd.engDials.update();
 				canvas_sd.engDials.page.show();
 			}
+		} else if (p == "FUEL") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.update();
+			canvas_sd.fuel.page.show();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.status.page.hide();
 		} else if (p == "HYD") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.update();
 			canvas_sd.hyd.page.show();
 			canvas_sd.misc.page.hide();
@@ -165,6 +182,7 @@ var DUController = {
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
@@ -175,19 +193,13 @@ var DUController = {
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
 		} else {
-			canvas_sd.config.page.hide();
-			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.page.hide();
-			canvas_sd.engDials.page.hide();
-			canvas_sd.engTapes.page.hide();
-			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.page.hide();
-			canvas_sd.status.page.hide();
+			canvas_sd.CanvasBase.hidePages();
 		}
 	},
 	loop: func() {
