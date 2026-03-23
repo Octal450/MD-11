@@ -908,7 +908,7 @@
 				/systems/fuel/aft-pump-1 eq 1
 				/systems/fuel/fwd-pump-1 eq 1
 			</test>
-			<test logic="AND" value="1"> <!-- Suction/Gravity feed if G is not to far below 1 -->
+			<test logic="AND" value="1"> <!-- Suction feed -->
 				/accelerations/pilot-gdamped ge 0.5
 			</test>
 		</switch>
@@ -920,8 +920,8 @@
 				/systems/fuel/aft-pump-2r eq 1
 				/systems/fuel/fwd-pump-2 eq 1
 			</test>
-			<test logic="AND" value="1"> <!-- Suction/Gravity feed if G is not to far below 1 -->
-				/accelerations/pilot-gdamped ge 0.5
+			<test logic="AND" value="1"> <!-- Suction feed, engine above tanks -->
+				/accelerations/pilot-gdamped le 1.5
 			</test>
 		</switch>
 		
@@ -931,7 +931,7 @@
 				/systems/fuel/aft-pump-3 eq 1
 				/systems/fuel/fwd-pump-3 eq 1
 			</test>
-			<test logic="AND" value="1"> <!-- Suction/Gravity feed if G is not to far below 1 -->
+			<test logic="AND" value="1"> <!-- Suction feed -->
 				/accelerations/pilot-gdamped ge 0.5
 			</test>
 		</switch>
