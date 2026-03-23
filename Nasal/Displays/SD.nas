@@ -1694,10 +1694,10 @@ var CanvasFuel = {
 	getKeys: func() {
 		return ["Alert_error", "CG", "CG_error", "Eng1Used", "Eng1Used_error", "Eng2Used", "Eng2Used_error", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "Tank1_error",
 		"Tank1_qty", "Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_p", "Tank2_error", "Tank2_qty", "Tank2_qty_bar",
-		"Tank2AftL_circle", "Tank2LAftL_imp", "Tank2LAftL_p", "Tank2AftR_circle", "Tank2LAftR_imp", "Tank2LAftR_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_p", "Tank3_error", "Tank3_qty",
+		"Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_p", "Tank2Fill", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_p", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_p", "Tank3_error", "Tank3_qty",
 		"Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_p", "TankAux_qty",
-		"TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "Xfeed1", "Xfeed1_disag", "Xfeed2",
-		"Xfeed2_disag", "Xfeed3", "Xfeed3_disag"];
+		"TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed2",
+		"XFeed2_disag", "XFeed3", "XFeed3_disag"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1858,26 +1858,26 @@ var CanvasFuel = {
 			me["Tank1Trans_p"].hide();
 		}
 		
-		# X-Feed, Fill 1
+		# X-Feed and Fill 1
 		if (systems.FUEL.Controls.xFeed1.getBoolValue()) {
-			me["Xfeed1"].setRotation(90 * D2R);
+			me["XFeed1"].setRotation(90 * D2R);
 			
 			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
-				me["Xfeed1_disag"].show();
-				me["Xfeed1"].setColor(0.9412, 0.7255, 0);
+				me["XFeed1_disag"].show();
+				me["XFeed1"].setColor(0.9412, 0.7255, 0);
 			} else {
-				me["Xfeed1_disag"].hide();
-				me["Xfeed1"].setColor(0, 1, 0);
+				me["XFeed1_disag"].hide();
+				me["XFeed1"].setColor(0, 1, 0);
 			}
 		} else {
-			me["Xfeed1"].setRotation(0);
+			me["XFeed1"].setRotation(0);
 			
 			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
-				me["Xfeed1_disag"].show();
-				me["Xfeed1"].setColor(0.9412, 0.7255, 0);
+				me["XFeed1_disag"].show();
+				me["XFeed1"].setColor(0.9412, 0.7255, 0);
 			} else {
-				me["Xfeed1_disag"].hide();
-				me["Xfeed1"].setColor(1, 1, 1);
+				me["XFeed1_disag"].hide();
+				me["XFeed1"].setColor(1, 1, 1);
 			}
 		}
 		
@@ -1892,6 +1892,224 @@ var CanvasFuel = {
 			me["Tank1Fill"].show();
 		} else {
 			me["Tank1Fill"].hide();
+		}
+		
+		# Tank 2 Pumps/Trans
+		if (systems.FUEL.PumpCmd.fwdPump2.getBoolValue()) {
+			if (systems.FUEL.Lights.fwdPump2PsiLow.getBoolValue()) {
+				me["Tank2Fwd_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank2Fwd_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank2Fwd_p"].show();
+			} else {
+				me["Tank2Fwd_circle"].setColor(0, 1, 0);
+				me["Tank2Fwd_imp"].setColor(0, 1, 0);
+				me["Tank2Fwd_p"].hide();
+			}
+			
+			me["Tank2Fwd_imp"].show();
+		} else {
+			me["Tank2Fwd_circle"].setColor(1, 1, 1);
+			me["Tank2Fwd_imp"].hide();
+			me["Tank2Fwd_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.apuStartPump.getBoolValue()) {
+			if (systems.FUEL.Lights.apuStartPump.getBoolValue()) {
+				me["Tank2APU_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank2APU_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank2APU_p"].show();
+			} else {
+				me["Tank2APU_circle"].setColor(0, 1, 0);
+				me["Tank2APU_imp"].setColor(0, 1, 0);
+				me["Tank2APU_p"].hide();
+			}
+			
+			me["Tank2APU_imp"].show();
+		} else {
+			me["Tank2APU_circle"].setColor(1, 1, 1);
+			me["Tank2APU_imp"].hide();
+			me["Tank2APU_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.aftPump2L.getBoolValue()) {
+			if (systems.FUEL.Lights.aftPump2LPsiLow.getBoolValue()) {
+				me["Tank2AftL_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank2AftL_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank2AftL_p"].show();
+			} else {
+				me["Tank2AftL_circle"].setColor(0, 1, 0);
+				me["Tank2AftL_imp"].setColor(0, 1, 0);
+				me["Tank2AftL_p"].hide();
+			}
+			
+			me["Tank2AftL_imp"].show();
+		} else {
+			me["Tank2AftL_circle"].setColor(1, 1, 1);
+			me["Tank2AftL_imp"].hide();
+			me["Tank2AftL_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.aftPump2R.getBoolValue()) {
+			if (systems.FUEL.Lights.aftPump2RPsiLow.getBoolValue()) {
+				me["Tank2AftR_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank2AftR_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank2AftR_p"].show();
+			} else {
+				me["Tank2AftR_circle"].setColor(0, 1, 0);
+				me["Tank2AftR_imp"].setColor(0, 1, 0);
+				me["Tank2AftR_p"].hide();
+			}
+			
+			me["Tank2AftR_imp"].show();
+		} else {
+			me["Tank2AftR_circle"].setColor(1, 1, 1);
+			me["Tank2AftR_imp"].hide();
+			me["Tank2AftR_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.trans2.getBoolValue()) {
+			if (systems.FUEL.Lights.trans2PsiLow.getBoolValue()) {
+				me["Tank2Trans_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank2Trans_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank2Trans_p"].show();
+			} else {
+				me["Tank2Trans_circle"].setColor(0, 1, 0);
+				me["Tank2Trans_imp"].setColor(0, 1, 0);
+				me["Tank2Trans_p"].hide();
+			}
+			
+			me["Tank2Trans_imp"].show();
+		} else {
+			me["Tank2Trans_circle"].setColor(1, 1, 1);
+			me["Tank2Trans_imp"].hide();
+			me["Tank2Trans_p"].hide();
+		}
+		
+		# X-Feed and Fill 2
+		if (systems.FUEL.Controls.xFeed2.getBoolValue()) {
+			me["XFeed2"].setRotation(90 * D2R);
+			
+			if (systems.FUEL.Lights.xFeed2Disag.getBoolValue()) {
+				me["XFeed2_disag"].show();
+				me["XFeed2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["XFeed2_disag"].hide();
+				me["XFeed2"].setColor(0, 1, 0);
+			}
+		} else {
+			me["XFeed2"].setRotation(0);
+			
+			if (systems.FUEL.Lights.xFeed2Disag.getBoolValue()) {
+				me["XFeed2_disag"].show();
+				me["XFeed2"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["XFeed2_disag"].hide();
+				me["XFeed2"].setColor(1, 1, 1);
+			}
+		}
+		
+		Value.Fuel.fill[1] = systems.FUEL.Lights.fillStatus2.getValue();
+		if (Value.Fuel.fill[1] > 0) {
+			if (Value.Fuel.fill[1] == 2) {
+				me["Tank2Fill"].setColor(0, 1, 0);
+			} else {
+				me["Tank2Fill"].setColor(1, 1, 1);
+			}
+			
+			me["Tank2Fill"].show();
+		} else {
+			me["Tank2Fill"].hide();
+		}
+		
+		# Tank 3 Pumps/Trans
+		if (systems.FUEL.PumpCmd.fwdPump3.getBoolValue()) {
+			if (systems.FUEL.Lights.fwdPump3PsiLow.getBoolValue()) {
+				me["Tank3Fwd_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Fwd_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Fwd_p"].show();
+			} else {
+				me["Tank3Fwd_circle"].setColor(0, 1, 0);
+				me["Tank3Fwd_imp"].setColor(0, 1, 0);
+				me["Tank3Fwd_p"].hide();
+			}
+			
+			me["Tank3Fwd_imp"].show();
+		} else {
+			me["Tank3Fwd_circle"].setColor(1, 1, 1);
+			me["Tank3Fwd_imp"].hide();
+			me["Tank3Fwd_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.aftPump3.getBoolValue()) {
+			if (systems.FUEL.Lights.aftPump3PsiLow.getBoolValue()) {
+				me["Tank3Aft_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Aft_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Aft_p"].show();
+			} else {
+				me["Tank3Aft_circle"].setColor(0, 1, 0);
+				me["Tank3Aft_imp"].setColor(0, 1, 0);
+				me["Tank3Aft_p"].hide();
+			}
+			
+			me["Tank3Aft_imp"].show();
+		} else {
+			me["Tank3Aft_circle"].setColor(1, 1, 1);
+			me["Tank3Aft_imp"].hide();
+			me["Tank3Aft_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.trans3.getBoolValue()) {
+			if (systems.FUEL.Lights.trans3PsiLow.getBoolValue()) {
+				me["Tank3Trans_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Trans_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank3Trans_p"].show();
+			} else {
+				me["Tank3Trans_circle"].setColor(0, 1, 0);
+				me["Tank3Trans_imp"].setColor(0, 1, 0);
+				me["Tank3Trans_p"].hide();
+			}
+			
+			me["Tank3Trans_imp"].show();
+		} else {
+			me["Tank3Trans_circle"].setColor(1, 1, 1);
+			me["Tank3Trans_imp"].hide();
+			me["Tank3Trans_p"].hide();
+		}
+		
+		# X-Feed and Fill 3
+		if (systems.FUEL.Controls.xFeed3.getBoolValue()) {
+			me["XFeed3"].setRotation(90 * D2R);
+			
+			if (systems.FUEL.Lights.xFeed3Disag.getBoolValue()) {
+				me["XFeed3_disag"].show();
+				me["XFeed3"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["XFeed3_disag"].hide();
+				me["XFeed3"].setColor(0, 1, 0);
+			}
+		} else {
+			me["XFeed3"].setRotation(0);
+			
+			if (systems.FUEL.Lights.xFeed3Disag.getBoolValue()) {
+				me["XFeed3_disag"].show();
+				me["XFeed3"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["XFeed3_disag"].hide();
+				me["XFeed3"].setColor(1, 1, 1);
+			}
+		}
+		
+		Value.Fuel.fill[2] = systems.FUEL.Lights.fillStatus3.getValue();
+		if (Value.Fuel.fill[2] > 0) {
+			if (Value.Fuel.fill[2] == 2) {
+				me["Tank3Fill"].setColor(0, 1, 0);
+			} else {
+				me["Tank3Fill"].setColor(1, 1, 1);
+			}
+			
+			me["Tank3Fill"].show();
+		} else {
+			me["Tank3Fill"].hide();
 		}
 	},
 };
