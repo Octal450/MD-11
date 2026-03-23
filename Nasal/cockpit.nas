@@ -42,7 +42,7 @@ var variousReset = func() {
 	pts.Instrumentation.Mcdu.dimmer[2].setValue(1);
 	pts.Instrumentation.Du.irsCapt.setBoolValue(0);
 	pts.Instrumentation.Du.irsFo.setBoolValue(0);
-	furt = math.round((rand() * 50000) + 10000) * -1; # Random between 10000 and 60000
+	furt = math.round((rand() * 30000) + 10000) * -1; # Random between 10000 and 40000
 	pts.Instrumentation.Sd.Fuel.fuResetTrim[0].setValue(furt);
 	pts.Instrumentation.Sd.Fuel.fuResetTrim[1].setValue(furt);
 	pts.Instrumentation.Sd.Fuel.fuResetTrim[2].setValue(furt);

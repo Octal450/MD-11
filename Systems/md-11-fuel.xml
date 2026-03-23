@@ -487,11 +487,18 @@
 	<channel name="Main Fuel Logic" execrate="8">
 		
 		<!-- Tank Pumps -->
+		<switch name="/systems/fuel/aft-pump-1-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/pumps-1 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/aft-pump-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-1 ge 112
-				/controls/fuel/pumps-1 eq 1
+				/systems/fuel/aft-pump-1-cmd eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
 		</switch>
@@ -507,18 +514,23 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/fwd-pump-1-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-1-fwd-pump eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system ne 1
+				/controls/fuel/pumps-1 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/fwd-pump-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-1-fwd-pump eq 1
-				/systems/failures/fuel/pumps-1 ne 1
-			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 112
-				/systems/fuel/system ne 1
-				/controls/fuel/pumps-1 eq 1
+				/systems/fuel/fwd-pump-1-cmd eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
 		</switch>
@@ -534,16 +546,23 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/aft-pump-2l-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/pumps-2 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/aft-pump-2l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/controls/fuel/pumps-2 eq 1
+				/systems/fuel/aft-pump-2l-cmd eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/electrical/sources/adg/output-volt ge 112
-				/controls/fuel/pumps-2 eq 1
+				/systems/fuel/aft-pump-2l-cmd eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 		</switch>
@@ -559,15 +578,22 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
-		<switch name="/systems/fuel/aft-pump-2r">
+		<switch name="/systems/fuel/aft-pump-2r-cmd">
 			<default value="0"/>
 			<test logic="AND" value="0"> <!-- When in AUTO and engine 2 is off, only left aft pump runs -->
 				/systems/fuel/system eq 1
 				/engines/engine[1]/state eq 0
 			</test>
+			<test value="1">
+				/controls/fuel/pumps-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/aft-pump-2r">
+			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-1 ge 112
-				/controls/fuel/pumps-2 eq 1
+				/systems/fuel/aft-pump-2r-cmd eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 		</switch>
@@ -583,18 +609,23 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/fwd-pump-2-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-fwd-pump eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system ne 1
+				/controls/fuel/pumps-2 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/fwd-pump-2">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-3 ge 112
-				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-2-fwd-pump eq 1
-				/systems/failures/fuel/pumps-2 ne 1
-			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 112
-				/systems/fuel/system ne 1
-				/controls/fuel/pumps-2 eq 1
+				/systems/fuel/fwd-pump-2-cmd eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 		</switch>
@@ -610,11 +641,18 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/apu-start-pump-cmd">
+			<default value="0"/>
+			<test value="1">
+				/systems/apu/dc-fuel-pump eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/apu-start-pump">
 			<default value="0"/>
 			<test logic="AND" value="1">
 				/systems/electrical/bus/dc-bat ge 24
-				/systems/apu/dc-fuel-pump eq 1
+				/systems/fuel/apu-start-pump-cmd eq 1
 			</test>
 		</switch>
 		
@@ -629,11 +667,18 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/aft-pump-3-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/pumps-3 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/aft-pump-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-3 ge 112
-				/controls/fuel/pumps-3 eq 1
+				/systems/fuel/aft-pump-3-cmd eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>
 		</switch>
@@ -649,18 +694,23 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/fwd-pump-3-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-3-fwd-pump eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system ne 1
+				/controls/fuel/pumps-3 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/fwd-pump-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-3-fwd-pump eq 1
-				/systems/failures/fuel/pumps-3 ne 1
-			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 112
-				/systems/fuel/system ne 1
-				/controls/fuel/pumps-3 eq 1
+				/systems/fuel/fwd-pump-3-cmd eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>
 		</switch>
@@ -693,71 +743,99 @@
 		</actuator>
 		
 		<!-- Transfer Pumps -->
-		<switch name="/systems/fuel/trans-pump-1">
+		<switch name="/systems/fuel/trans-1-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/trans-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/trans-1">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-1 ge 112
-				/controls/fuel/trans-1 eq 1
+				/systems/fuel/trans-1-cmd eq 1
 				/systems/failures/fuel/pumps-1 ne 1
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/fuel/trans-pump-1-psi-cmd">
-			<input>/systems/fuel/trans-pump-1</input>
+		<pure_gain name="/systems/fuel/trans-1-psi-cmd">
+			<input>/systems/fuel/trans-1</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<actuator name="/systems/fuel/trans-pump-1-psi">
-			<input>/systems/fuel/trans-pump-1-psi-cmd</input>
+		<actuator name="/systems/fuel/trans-1-psi">
+			<input>/systems/fuel/trans-1-psi-cmd</input>
 			<rate_limit sense="incr">5</rate_limit>
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
-		<switch name="/systems/fuel/trans-pump-2">
+		<switch name="/systems/fuel/trans-2-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/trans-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/trans-2">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/controls/fuel/trans-2 eq 1
+				/systems/fuel/trans-2-cmd eq 1
 				/systems/failures/fuel/pumps-2 ne 1
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/fuel/trans-pump-2-psi-cmd">
-			<input>/systems/fuel/trans-pump-2</input>
+		<pure_gain name="/systems/fuel/trans-2-psi-cmd">
+			<input>/systems/fuel/trans-2</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<actuator name="/systems/fuel/trans-pump-2-psi">
-			<input>/systems/fuel/trans-pump-2-psi-cmd</input>
+		<actuator name="/systems/fuel/trans-2-psi">
+			<input>/systems/fuel/trans-2-psi-cmd</input>
 			<rate_limit sense="incr">5</rate_limit>
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
-		<switch name="/systems/fuel/trans-pump-3">
+		<switch name="/systems/fuel/trans-3-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/trans-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/trans-3">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-3 ge 112
-				/controls/fuel/trans-3 eq 1
+				/systems/fuel/trans-3-cmd eq 1
 				/systems/failures/fuel/pumps-3 ne 1
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/fuel/trans-pump-3-psi-cmd">
-			<input>/systems/fuel/trans-pump-3</input>
+		<pure_gain name="/systems/fuel/trans-3-psi-cmd">
+			<input>/systems/fuel/trans-3</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<actuator name="/systems/fuel/trans-pump-3-psi">
-			<input>/systems/fuel/trans-pump-3-psi-cmd</input>
+		<actuator name="/systems/fuel/trans-3-psi">
+			<input>/systems/fuel/trans-3-psi-cmd</input>
 			<rate_limit sense="incr">5</rate_limit>
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
+		
+		<switch name="/systems/fuel/trans-aux-upper-l-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/trans-aux-l eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/fuel/trans-aux-upper-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-1 ge 112
-				/controls/fuel/trans-aux-l eq 1
+				/systems/fuel/trans-aux-upper-l-cmd eq 1
 				/systems/failures/fuel/pumps-aux-l ne 1
 			</test>
 		</switch>
@@ -773,11 +851,18 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/trans-aux-upper-r-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/trans-aux-r eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/trans-aux-upper-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/controls/fuel/trans-aux-r eq 1
+				/systems/fuel/trans-aux-upper-r-cmd eq 1
 				/systems/failures/fuel/pumps-aux-r ne 1
 			</test>
 		</switch>
@@ -793,69 +878,121 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
-		<switch name="/systems/fuel/trans-tail">
+		<switch name="/systems/fuel/trans-tail-l-cmd">
 			<default value="0"/>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/r-emer-ac ge 112
+			<test logic="AND" value="1">
 				/controls/fuel/trans-tail eq 1
 				propulsion/tank[7]/contents-lbs gt 10
 				/systems/fuel/system eq 1
-				/systems/failures/fuel/pumps-tail ne 1
 			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/r-emer-ac ge 112
+			<test logic="AND" value="1">
 				/controls/fuel/trans-tail eq 1
 				/systems/fuel/system ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/trans-tail-l">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
+				/systems/electrical/bus/l-emer-ac ge 112
+				/systems/fuel/trans-tail-l-cmd eq 1
 				/systems/failures/fuel/pumps-tail ne 1
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/fuel/trans-tail-psi-cmd">
-			<input>/systems/fuel/trans-tail</input>
+		<pure_gain name="/systems/fuel/trans-tail-l-psi-cmd">
+			<input>/systems/fuel/trans-tail-l</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<actuator name="/systems/fuel/trans-tail-psi">
-			<input>/systems/fuel/trans-tail-psi-cmd</input>
+		<actuator name="/systems/fuel/trans-tail-l-psi">
+			<input>/systems/fuel/trans-tail-l-psi-cmd</input>
 			<rate_limit sense="incr">5</rate_limit>
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
-		<switch name="/systems/fuel/tail-aux">
+		<switch name="/systems/fuel/trans-tail-r-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-tail eq 1
+				propulsion/tank[7]/contents-lbs gt 10
+				/systems/fuel/system eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-tail eq 1
+				/systems/fuel/system ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/trans-tail-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/r-emer-ac ge 112
-				/controls/fuel/alt-pump eq 1
+				/systems/fuel/trans-tail-r-cmd eq 1
 				/systems/failures/fuel/pumps-tail ne 1
 			</test>
 		</switch>
 		
-		<pure_gain name="/systems/fuel/tail-aux-psi-cmd">
-			<input>/systems/fuel/tail-aux</input>
+		<pure_gain name="/systems/fuel/trans-tail-r-psi-cmd">
+			<input>/systems/fuel/trans-tail-r</input>
 			<gain>20</gain>
 		</pure_gain>
 		
-		<actuator name="/systems/fuel/tail-aux-psi">
-			<input>/systems/fuel/tail-aux-psi-cmd</input>
+		<actuator name="/systems/fuel/trans-tail-r-psi">
+			<input>/systems/fuel/trans-tail-r-psi-cmd</input>
 			<rate_limit sense="incr">5</rate_limit>
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
+		
+		<switch name="/systems/fuel/tail-alt-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/fuel/alt-pump eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/tail-alt">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
+				/systems/electrical/bus/r-emer-ac ge 112
+				/systems/fuel/tail-alt-cmd eq 1
+				/systems/failures/fuel/pumps-tail ne 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/fuel/tail-alt-psi-cmd">
+			<input>/systems/fuel/tail-alt</input>
+			<gain>20</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/fuel/tail-alt-psi">
+			<input>/systems/fuel/tail-alt-psi-cmd</input>
+			<rate_limit sense="incr">5</rate_limit>
+			<rate_limit sense="decr">10</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/fuel/trans-aux-lower-l-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-aux-l eq 1
+				/systems/fuel/trans-tail-l eq 0
+				/systems/fuel/trans-tail-r eq 0
+				propulsion/tank[6]/contents-lbs gt 10
+				/systems/fuel/system eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-aux-l eq 1
+				/systems/fuel/trans-tail-l eq 0
+				/systems/fuel/trans-tail-r eq 0
+				/systems/fuel/system ne 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/fuel/trans-aux-lower-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-2 ge 112
-				/controls/fuel/trans-aux-l eq 1
-				/systems/fuel/trans-tail eq 0
-				propulsion/tank[6]/contents-lbs gt 10
-				/systems/fuel/system eq 1
-				/systems/failures/fuel/pumps-aux-l ne 1
-			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-2 ge 112
-				/controls/fuel/trans-aux-l eq 1
-				/systems/fuel/trans-tail eq 0
-				/systems/fuel/system ne 1
+				/systems/fuel/trans-aux-lower-l-cmd eq 1
 				/systems/failures/fuel/pumps-aux-l ne 1
 			</test>
 		</switch>
@@ -871,21 +1008,28 @@
 			<rate_limit sense="decr">10</rate_limit>
 		</actuator>
 		
+		<switch name="/systems/fuel/trans-aux-lower-r-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-aux-r eq 1
+				/systems/fuel/trans-tail-l eq 0
+				/systems/fuel/trans-tail-r eq 0
+				propulsion/tank[6]/contents-lbs gt 10
+				/systems/fuel/system eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/trans-aux-r eq 1
+				/systems/fuel/trans-tail-l eq 0
+				/systems/fuel/trans-tail-r eq 0
+				/systems/fuel/system ne 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/trans-aux-lower-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
 				/systems/electrical/bus/ac-3 ge 112
-				/controls/fuel/trans-aux-r eq 1
-				/systems/fuel/trans-tail eq 0
-				propulsion/tank[6]/contents-lbs gt 10
-				/systems/fuel/system eq 1
-				/systems/failures/fuel/pumps-aux-r ne 1
-			</test>
-			<test logic="AND" value="1"> <!-- Power source is guess, unknown -->
-				/systems/electrical/bus/ac-3 ge 112
-				/controls/fuel/trans-aux-r eq 1
-				/systems/fuel/trans-tail eq 0
-				/systems/fuel/system ne 1
+				/systems/fuel/trans-aux-lower-r-cmd eq 1
 				/systems/failures/fuel/pumps-aux-r ne 1
 			</test>
 		</switch>
@@ -949,7 +1093,7 @@
 		<switch name="/systems/fuel/feed-2-aux">
 			<default value="0"/>
 			<test value="1">
-				/systems/fuel/tail-aux eq 1
+				/systems/fuel/tail-alt eq 1
 			</test>
 		</switch>
 	
@@ -987,7 +1131,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-2 eq 1
 				/systems/fuel/x-feed-1-valve eq 1
-				/systems/fuel/trans-pump-2 eq 1
+				/systems/fuel/trans-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[8]/contents-lbs lt 9
 			</test>
@@ -998,7 +1142,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-inner eq 1
 				/systems/fuel/x-feed-1-valve eq 1
-				/systems/fuel/trans-pump-3 eq 1
+				/systems/fuel/trans-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[8]/contents-lbs lt 9
 			</test>
@@ -1010,7 +1154,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-1-inner eq 1
 				/systems/fuel/x-feed-2-valve eq 1
-				/systems/fuel/trans-pump-1 eq 1
+				/systems/fuel/trans-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
@@ -1030,7 +1174,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-inner eq 1
 				/systems/fuel/x-feed-2-valve eq 1
-				/systems/fuel/trans-pump-3 eq 1
+				/systems/fuel/trans-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
@@ -1039,7 +1183,7 @@
 		<switch name="/systems/fuel/internal/tail-tank-eng-2">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/tail-aux eq 1
+				/systems/fuel/tail-alt eq 1
 				propulsion/tank[7]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
@@ -1051,7 +1195,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-1-inner eq 1
 				/systems/fuel/x-feed-3-valve eq 1
-				/systems/fuel/trans-pump-1 eq 1
+				/systems/fuel/trans-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[10]/contents-lbs lt 9
 			</test>
@@ -1062,7 +1206,7 @@
 			<test logic="AND" value="9">
 				/systems/fuel/feed-2 eq 1
 				/systems/fuel/x-feed-3-valve eq 1
-				/systems/fuel/trans-pump-2 eq 1
+				/systems/fuel/trans-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[10]/contents-lbs lt 9
 			</test>
@@ -1141,7 +1285,12 @@
 		<switch name="/systems/fuel/internal/tail-tank-aux-upper">
 			<default value="0"/>
 			<test logic="AND" value="63">
-				/systems/fuel/trans-tail eq 1
+				/systems/fuel/trans-tail-l eq 1
+				propulsion/tank[7]/contents-lbs gt 10
+				propulsion/tank[5]/contents-lbs lt 87101
+			</test>
+			<test logic="AND" value="63">
+				/systems/fuel/trans-tail-r eq 1
 				propulsion/tank[7]/contents-lbs gt 10
 				propulsion/tank[5]/contents-lbs lt 87101
 			</test>
@@ -1218,7 +1367,7 @@
 		<switch name="/systems/fuel/internal/tank-1-inner-tank-2-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-1 eq 1
+				/systems/fuel/trans-1 eq 1
 				/controls/fuel/fill-2 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 			</test>
@@ -1235,7 +1384,7 @@
 		<switch name="/systems/fuel/internal/tank-1-inner-tank-3-inner-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-1 eq 1
+				/systems/fuel/trans-1 eq 1
 				/controls/fuel/fill-3 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 			</test>
@@ -1253,7 +1402,7 @@
 		<switch name="/systems/fuel/internal/tank-2-tank-1-inner-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-2 eq 1
+				/systems/fuel/trans-2 eq 1
 				/controls/fuel/fill-1 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 			</test>
@@ -1270,7 +1419,7 @@
 		<switch name="/systems/fuel/internal/tank-2-tank-3-inner-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-2 eq 1
+				/systems/fuel/trans-2 eq 1
 				/controls/fuel/fill-3 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 			</test>
@@ -1288,7 +1437,7 @@
 		<switch name="/systems/fuel/internal/tank-3-inner-tank-1-inner-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-3 eq 1
+				/systems/fuel/trans-3 eq 1
 				/controls/fuel/fill-1 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 			</test>
@@ -1305,7 +1454,7 @@
 		<switch name="/systems/fuel/internal/tank-3-inner-tank-2-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/fuel/trans-pump-3 eq 1
+				/systems/fuel/trans-3 eq 1
 				/controls/fuel/fill-2 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 			</test>
@@ -1324,7 +1473,7 @@
 		<switch name="/systems/fuel/internal/tank-1-inner-tail-tank">
 			<default value="0"/>
 			<test logic="AND" value="18">
-				/systems/fuel/trans-pump-1 eq 1
+				/systems/fuel/trans-1 eq 1
 				/systems/fuel/cg-control/direction-cmd eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[7]/contents-lbs lt 13114
@@ -1334,7 +1483,7 @@
 		<switch name="/systems/fuel/internal/tank-2-inner-tail-tank">
 			<default value="0"/>
 			<test logic="AND" value="18">
-				/systems/fuel/trans-pump-2 eq 1
+				/systems/fuel/trans-2 eq 1
 				/systems/fuel/cg-control/direction-cmd eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[7]/contents-lbs lt 13114
@@ -1344,7 +1493,7 @@
 		<switch name="/systems/fuel/internal/tank-3-inner-tail-tank">
 			<default value="0"/>
 			<test logic="AND" value="18">
-				/systems/fuel/trans-pump-3 eq 1
+				/systems/fuel/trans-3 eq 1
 				/systems/fuel/cg-control/direction-cmd eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[7]/contents-lbs lt 13114
@@ -1519,7 +1668,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/fill-arm-1">
+		<switch name="/systems/fuel/lights/fill-status-1">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/fill-1 ne 1
@@ -1535,7 +1684,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/fill-arm-2">
+		<switch name="/systems/fuel/lights/fill-status-2">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/fill-2 ne 1
@@ -1551,7 +1700,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/fill-arm-3">
+		<switch name="/systems/fuel/lights/fill-status-3">
 			<default value="1"/> <!-- ARM -->
 			<test value="0">
 				/controls/fuel/fill-3 ne 1
@@ -1567,57 +1716,212 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/pumps-trans-1-low">
+		<switch name="/systems/fuel/lights/aft-pump-1-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[1]/contents-lbs le 100
-				/systems/failures/fuel/pumps-1 eq 1
+				/systems/fuel/aft-pump-1-psi lt 5
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/pumps-trans-2-low">
+		<switch name="/systems/fuel/lights/fwd-pump-1-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[1]/contents-lbs le 100
+				/systems/fuel/fwd-pump-1-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/pumps-1-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/aft-pump-1-psi-low eq 1
+				/systems/fuel/lights/fwd-pump-1-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-1-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[1]/contents-lbs le 100
+				/systems/fuel/trans-1-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/aft-pump-2l-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[2]/contents-lbs le 100
-				/systems/failures/fuel/pumps-2 eq 1
+				/systems/fuel/aft-pump-2l-psi lt 5
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/pumps-trans-3-low">
+		<switch name="/systems/fuel/lights/aft-pump-2r-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[2]/contents-lbs le 100
+				/systems/fuel/aft-pump-2r-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/fwd-pump-2-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[2]/contents-lbs le 100
+				/systems/fuel/fwd-pump-2-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/pumps-2-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/aft-pump-2l-psi-low eq 1
+				/systems/fuel/lights/aft-pump-2r-psi-low eq 1
+				/systems/fuel/lights/fwd-pump-2-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-2-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[2]/contents-lbs le 100
+				/systems/fuel/trans-2-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/aft-pump-3-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[3]/contents-lbs le 100
-				/systems/failures/fuel/pumps-3 eq 1
+				/systems/fuel/aft-pump-3-psi lt 5
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/trans-aux-l-low">
+		<switch name="/systems/fuel/lights/fwd-pump-3-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				<test value="AND">
-					propulsion/tank[5]/contents-lbs le 100
-					propulsion/tank[6]/contents-lbs le 100
-				</test>
-				/systems/failures/fuel/pumps-aux-l eq 1
+				propulsion/tank[3]/contents-lbs le 100
+				/systems/fuel/fwd-pump-3-psi lt 5
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/trans-aux-r-low">
+		<switch name="/systems/fuel/lights/pumps-3-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/aft-pump-3-psi-low eq 1
+				/systems/fuel/lights/fwd-pump-3-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-3-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				<test value="AND">
-					propulsion/tank[5]/contents-lbs le 100
-					propulsion/tank[6]/contents-lbs le 100
-				</test>
-				/systems/failures/fuel/pumps-aux-r eq 1
+				propulsion/tank[3]/contents-lbs le 100
+				/systems/fuel/trans-3-psi lt 5
 			</test>
 		</switch>
 		
-		<switch name="/systems/fuel/lights/tail-low">
+		<switch name="/systems/fuel/lights/trans-aux-upper-l-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[5]/contents-lbs le 100
+				/systems/fuel/trans-aux-upper-l-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-aux-upper-r-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[5]/contents-lbs le 100
+				/systems/fuel/trans-aux-upper-r-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-aux-lower-l-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[6]/contents-lbs le 100
+				/systems/fuel/trans-aux-lower-l-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-aux-lower-r-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[6]/contents-lbs le 100
+				/systems/fuel/trans-aux-lower-r-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-aux-l-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/trans-aux-upper-l-psi-low eq 1
+				/systems/fuel/lights/trans-aux-lower-l-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-aux-r-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/trans-aux-upper-r-psi-low eq 1
+				/systems/fuel/lights/trans-aux-lower-r-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-tail-l-psi-low">
 			<default value="0"/>
 			<test logic="OR" value="1">
 				propulsion/tank[7]/contents-lbs le 100
-				/systems/failures/fuel/pumps-tail eq 1
+				/systems/fuel/trans-tail-l-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-tail-r-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[7]/contents-lbs le 100
+				/systems/fuel/trans-tail-r-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/trans-tail-psi-low">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/lights/trans-tail-l-psi-low eq 1
+				/systems/fuel/lights/trans-tail-r-psi-low eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/tail-alt-psi-low">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				propulsion/tank[7]/contents-lbs le 100
+				/systems/fuel/tail-alt-psi lt 5
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/x-feed-1-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/x-feed-1-valve ne 0
+				/systems/fuel/x-feed-1-valve ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/x-feed-2-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/x-feed-2-valve ne 0
+				/systems/fuel/x-feed-2-valve ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/x-feed-3-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/x-feed-3-valve ne 0
+				/systems/fuel/x-feed-3-valve ne 1
 			</test>
 		</switch>
 	

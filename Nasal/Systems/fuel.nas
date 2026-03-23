@@ -2,6 +2,19 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FUEL = {
+	PumpCmd: {
+		aftPump1: props.globals.getNode("/systems/fuel/aft-pump-1-cmd"),
+		aftPump2L: props.globals.getNode("/systems/fuel/aft-pump-2l-cmd"),
+		aftPump2R: props.globals.getNode("/systems/fuel/aft-pump-2r-cmd"),
+		aftPump3: props.globals.getNode("/systems/fuel/aft-pump-3-cmd"),
+		apuStartPump: props.globals.getNode("/systems/fuel/apu-start-pump-cmd"),
+		fwdPump1: props.globals.getNode("/systems/fuel/fwd-pump-1-cmd"),
+		fwdPump2: props.globals.getNode("/systems/fuel/fwd-pump-2-cmd"),
+		fwdPump3: props.globals.getNode("/systems/fuel/fwd-pump-3-cmd"),
+		trans1: props.globals.getNode("/systems/fuel/trans-1-cmd"),
+		trans2: props.globals.getNode("/systems/fuel/trans-2-cmd"),
+		trans3: props.globals.getNode("/systems/fuel/trans-3-cmd"),
+	},
 	tankFuelManagement: props.globals.getNode("/systems/fuel/tail-fuel-management"),
 	system: props.globals.getNode("/systems/fuel/system"),
 	Controls: {
@@ -33,8 +46,24 @@ var FUEL = {
 		system: props.globals.getNode("/systems/failures/fuel/system"),
 	},
 	Lights: {
+		aftPump1PsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-1-psi-low"),
+		aftPump2LPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2l-psi-low"),
+		aftPump2RPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2r-psi-low"),
+		aftPump3PsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-3-psi-low"),
+		fillStatus1: props.globals.getNode("/systems/fuel/lights/fill-status-1"),
+		fillStatus2: props.globals.getNode("/systems/fuel/lights/fill-status-2"),
+		fillStatus3: props.globals.getNode("/systems/fuel/lights/fill-status-3"),
+		fwdPump1PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-1-psi-low"),
+		fwdPump2PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-2-psi-low"),
+		fwdPump3PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-3-psi-low"),
 		manualFlash: props.globals.initNode("/systems/fuel/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
+		trans1PsiLow: props.globals.getNode("/systems/fuel/lights/trans-1-psi-low"),
+		trans2PsiLow: props.globals.getNode("/systems/fuel/lights/trans-2-psi-low"),
+		trans3PsiLow: props.globals.getNode("/systems/fuel/lights/trans-3-psi-low"),
+		xFeed1Disag: props.globals.getNode("/systems/fuel/lights/x-feed-1-disag"),
+		xFeed2Disag: props.globals.getNode("/systems/fuel/lights/x-feed-2-disag"),
+		xFeed3Disag: props.globals.getNode("/systems/fuel/lights/x-feed-3-disag"),
 	},
 	init: func() {
 		me.resetFailures();

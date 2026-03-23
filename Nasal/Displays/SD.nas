@@ -61,6 +61,7 @@ var Value = {
 		stabRound: 0,
 	},
 	Fuel: {
+		fill: [0, 0, 0, 0],
 		qty: [0, 0, 0, 0, 0, 0],
 	},
 	Hyd: {
@@ -204,8 +205,6 @@ var CanvasConfig = {
 		"ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap1_error", "Flap2", "Flap2_error", "Flap3", "Flap3_error", "Flap4", "Flap4_error", "FlapBox", "GearTest", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL",
 		"NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLower_error", "RudderLowerLeft", "RudderLowerRight", "RudderUpper_error", "RudderUpperLeft", "RudderUpperRight", "SlatExt",
 		"SpoilerL", "SpoilerL_error", "SpoilerR", "SpoilerR_error", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
-	},
-	setup: func() {
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -619,6 +618,7 @@ var CanvasElec = {
 		"Tr3_load_error", "Tr3_stroke", "Tr3_volt", "Tr3_volt_error"];
 	},
 	setup: func() {
+		# Hide unimplemented objects
 		me["Apu_load_box"].hide();
 		me["Apu_hz_box"].hide();
 		me["Apu_volt_box"].hide();
@@ -1302,7 +1302,7 @@ var CanvasEngDials = {
 			me["PW_group"].hide();
 		}
 		
-		# Unsimulated stuff, fix later
+		# Hide unimplemented objects
 		me["CabinAlt"].setText("0");
 		me["CabinRate"].setText("0");
 		me["CabinRateDn"].hide();
@@ -1501,7 +1501,7 @@ var CanvasEngTapes = {
 			me["PW_group"].hide();
 		}
 		
-		# Unsimulated stuff, fix later
+		# Hide unimplemented objects
 		me["CabinAlt"].setText("0");
 		me["CabinRate"].setText("0");
 		me["CabinRateDn"].hide();
@@ -1692,12 +1692,21 @@ var CanvasFuel = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "CG", "CG_error", "Eng1Used", "Eng1Used_error", "Eng2Used", "Eng2Used_error", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_thousands", "GW_units", "Tank1_error", "Tank1_qty", 
-		"Tank1_qty_bar", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "TankAux_qty", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", 
-		"TankTail_qty_bar"];
+		return ["Alert_error", "CG", "CG_error", "Eng1Used", "Eng1Used_error", "Eng2Used", "Eng2Used_error", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "Tank1_error",
+		"Tank1_qty", "Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_p", "Tank2_error", "Tank2_qty", "Tank2_qty_bar",
+		"Tank2AftL_circle", "Tank2LAftL_imp", "Tank2LAftL_p", "Tank2AftR_circle", "Tank2LAftR_imp", "Tank2LAftR_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_p", "Tank3_error", "Tank3_qty",
+		"Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_p", "TankAux_qty",
+		"TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "Xfeed1", "Xfeed1_disag", "Xfeed2",
+		"Xfeed2_disag", "Xfeed3", "Xfeed3_disag"];
 	},
 	setup: func() {
-	
+		# Hide unimplemented objects
+		me["GW"].hide();
+		me["GW_label"].hide();
+		me["GW_thousands"].hide();
+		me["GW_units"].hide();
+		me["Tank3Temp_box"].hide();
+		me["TankTailTemp_box"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -1715,9 +1724,11 @@ var CanvasFuel = {
 			me["Tank1_error"].show();
 			me["Tank2_error"].show();
 			me["Tank3_error"].show();
+			me["Tank3Temp_error"].show();
 			me["TankAuxLower_error"].show();
 			me["TankAuxUpper_error"].show();
 			me["TankTail_error"].show();
+			me["TankTailTemp_error"].show();
 		} else {
 			me["Alert_error"].hide();
 			me["CG_error"].hide();
@@ -1729,25 +1740,14 @@ var CanvasFuel = {
 			me["Tank1_error"].hide();
 			me["Tank2_error"].hide();
 			me["Tank3_error"].hide();
+			me["Tank3Temp_error"].hide();
 			me["TankAuxLower_error"].hide();
 			me["TankAuxUpper_error"].hide();
 			me["TankTail_error"].hide();
+			me["TankTailTemp_error"].hide();
 		}
 		
 		# CG, GW, Fuel Total
-		if (fms.flightData.gwLbs > 0) {
-			Value.Misc.gw = math.round(fms.flightData.gwLbs * 1000, 100);
-			me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
-			me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
-			me["GW"].show();
-			me["GW_thousands"].show();
-			me["GW_units"].show();
-		} else {
-			me["GW"].hide();
-			me["GW_thousands"].hide();
-			me["GW_units"].hide();
-		}
-		
 		Value.Misc.cg = fms.Internal.cgPercentMac.getValue();
 		if (Value.Misc.cg > 0) {
 			me["CG"].setText(sprintf("%4.1f", math.round(Value.Misc.cg, 0.1)));
@@ -1755,6 +1755,20 @@ var CanvasFuel = {
 		} else {
 			me["CG"].hide();
 		}
+		
+		# GW (except error X) is hidden in most pictures but is in FCOM, need to investigate what makes it show, hidden in setup() for now
+		#if (fms.flightData.gwLbs > 0) {
+		#	Value.Misc.gw = math.round(fms.flightData.gwLbs * 1000, 100);
+		#	me["GW"].setText(right(sprintf("%d", Value.Misc.gw), 3));
+		#	me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
+		#	me["GW"].show();
+		#	me["GW_thousands"].show();
+		#	me["GW_units"].show();
+		#} else {
+		#	me["GW"].hide();
+		#	me["GW_thousands"].hide();
+		#	me["GW_units"].hide();
+		#}
 		
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
 		me["Fuel_thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
@@ -1789,8 +1803,96 @@ var CanvasFuel = {
 		me["TankTail_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[5] * -(38 / 13130), -38, 0));
 		me["TankTail_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[5], 50)));
 		
-		# Fuel Pumps
+		# Tank 1 Pumps/Trans
+		if (systems.FUEL.PumpCmd.fwdPump1.getBoolValue()) {
+			if (systems.FUEL.Lights.fwdPump1PsiLow.getBoolValue()) {
+				me["Tank1Fwd_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Fwd_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Fwd_p"].show();
+			} else {
+				me["Tank1Fwd_circle"].setColor(0, 1, 0);
+				me["Tank1Fwd_imp"].setColor(0, 1, 0);
+				me["Tank1Fwd_p"].hide();
+			}
+			
+			me["Tank1Fwd_imp"].show();
+		} else {
+			me["Tank1Fwd_circle"].setColor(1, 1, 1);
+			me["Tank1Fwd_imp"].hide();
+			me["Tank1Fwd_p"].hide();
+		}
 		
+		if (systems.FUEL.PumpCmd.aftPump1.getBoolValue()) {
+			if (systems.FUEL.Lights.aftPump1PsiLow.getBoolValue()) {
+				me["Tank1Aft_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Aft_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Aft_p"].show();
+			} else {
+				me["Tank1Aft_circle"].setColor(0, 1, 0);
+				me["Tank1Aft_imp"].setColor(0, 1, 0);
+				me["Tank1Aft_p"].hide();
+			}
+			
+			me["Tank1Aft_imp"].show();
+		} else {
+			me["Tank1Aft_circle"].setColor(1, 1, 1);
+			me["Tank1Aft_imp"].hide();
+			me["Tank1Aft_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.trans1.getBoolValue()) {
+			if (systems.FUEL.Lights.trans1PsiLow.getBoolValue()) {
+				me["Tank1Trans_circle"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Trans_imp"].setColor(0.9412, 0.7255, 0);
+				me["Tank1Trans_p"].show();
+			} else {
+				me["Tank1Trans_circle"].setColor(0, 1, 0);
+				me["Tank1Trans_imp"].setColor(0, 1, 0);
+				me["Tank1Trans_p"].hide();
+			}
+			
+			me["Tank1Trans_imp"].show();
+		} else {
+			me["Tank1Trans_circle"].setColor(1, 1, 1);
+			me["Tank1Trans_imp"].hide();
+			me["Tank1Trans_p"].hide();
+		}
+		
+		# X-Feed, Fill 1
+		if (systems.FUEL.Controls.xFeed1.getBoolValue()) {
+			me["Xfeed1"].setRotation(90 * D2R);
+			
+			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
+				me["Xfeed1_disag"].show();
+				me["Xfeed1"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Xfeed1_disag"].hide();
+				me["Xfeed1"].setColor(0, 1, 0);
+			}
+		} else {
+			me["Xfeed1"].setRotation(0);
+			
+			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
+				me["Xfeed1_disag"].show();
+				me["Xfeed1"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Xfeed1_disag"].hide();
+				me["Xfeed1"].setColor(1, 1, 1);
+			}
+		}
+		
+		Value.Fuel.fill[0] = systems.FUEL.Lights.fillStatus1.getValue();
+		if (Value.Fuel.fill[0] > 0) {
+			if (Value.Fuel.fill[0] == 2) {
+				me["Tank1Fill"].setColor(0, 1, 0);
+			} else {
+				me["Tank1Fill"].setColor(1, 1, 1);
+			}
+			
+			me["Tank1Fill"].show();
+		} else {
+			me["Tank1Fill"].hide();
+		}
 	},
 };
 

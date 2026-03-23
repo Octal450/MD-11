@@ -319,6 +319,11 @@ var PANEL = {
 				systems.ELECTRICAL.Controls.apuPwr.setBoolValue(1);
 				systems.PNEUMATICS.Controls.bleedApu.setBoolValue(1);
 				
+				systems.ENGINES.Controls.fuReset.setBoolValue(1);
+				settimer(func() { # Switch needs to be held briefly
+					systems.ENGINES.Controls.fuReset.setBoolValue(0);
+				}, 0.25);
+				
 				settimer(func() {
 					fms.EditFlightData.setAcconfigData();
 				}, 0.25);
@@ -355,6 +360,11 @@ var PANEL = {
 		pts.Controls.Switches.seatbeltSign.setValue(1);
 		systems.IGNITION.Controls.ignA.setBoolValue(1);
 		systems.APU.stopRpm();
+		
+		systems.ENGINES.Controls.fuReset.setBoolValue(1);
+		settimer(func() { # Switch needs to be held briefly
+			systems.ENGINES.Controls.fuReset.setBoolValue(0);
+		}, 0.25);
 		
 		if (systems.ENGINES.state[0].getValue() != 3 or systems.ENGINES.state[1].getValue() != 3 or systems.ENGINES.state[2].getValue() != 3) {
 			engTimer = 3;
