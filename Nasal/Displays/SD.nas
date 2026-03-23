@@ -1694,10 +1694,12 @@ var CanvasFuel = {
 	getKeys: func() {
 		return ["Alert_error", "CG", "CG_error", "Eng1Used", "Eng1Used_error", "Eng2Used", "Eng2Used_error", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "Tank1_error",
 		"Tank1_qty", "Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_p", "Tank2_error", "Tank2_qty", "Tank2_qty_bar",
-		"Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_p", "Tank2Fill", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_p", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_p", "Tank3_error", "Tank3_qty",
-		"Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_p", "TankAux_qty",
-		"TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed2",
-		"XFeed2_disag", "XFeed3", "XFeed3_disag"];
+		"Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_p", "Tank2Fill", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_p", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp",
+		"Tank2Trans_p", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle",
+		"Tank3Trans_imp", "Tank3Trans_p", "TankAux_qty", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_p", "TankAuxUpper_error",
+		"TankAuxUpper_qty_bar", "TankAuxUpperL_circle", "TankAuxUpperL_imp", "TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle", "TankTailEng2_imp",
+		"TankTailEng2_p", "TankTailL_circle", "TankTailL_imp", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed2", "XFeed2_disag", "XFeed3",
+		"XFeed3_disag"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1803,7 +1805,7 @@ var CanvasFuel = {
 		me["TankTail_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[5] * -(38 / 13130), -38, 0));
 		me["TankTail_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[5], 50)));
 		
-		# Tank 1 Pumps/Trans
+		# Tank 1 Pumps/Transfer Pump
 		if (systems.FUEL.PumpCmd.fwdPump1.getBoolValue()) {
 			if (systems.FUEL.Lights.fwdPump1PsiLow.getBoolValue()) {
 				me["Tank1Fwd_circle"].setColor(0.9412, 0.7255, 0);
@@ -1894,7 +1896,7 @@ var CanvasFuel = {
 			me["Tank1Fill"].hide();
 		}
 		
-		# Tank 2 Pumps/Trans
+		# Tank 2 Pumps/Transfer Pump
 		if (systems.FUEL.PumpCmd.fwdPump2.getBoolValue()) {
 			if (systems.FUEL.Lights.fwdPump2PsiLow.getBoolValue()) {
 				me["Tank2Fwd_circle"].setColor(0.9412, 0.7255, 0);
@@ -2021,7 +2023,7 @@ var CanvasFuel = {
 			me["Tank2Fill"].hide();
 		}
 		
-		# Tank 3 Pumps/Trans
+		# Tank 3 Pumps/Transfer Pump
 		if (systems.FUEL.PumpCmd.fwdPump3.getBoolValue()) {
 			if (systems.FUEL.Lights.fwdPump3PsiLow.getBoolValue()) {
 				me["Tank3Fwd_circle"].setColor(0.9412, 0.7255, 0);
@@ -2110,6 +2112,134 @@ var CanvasFuel = {
 			me["Tank3Fill"].show();
 		} else {
 			me["Tank3Fill"].hide();
+		}
+		
+		# Aux Tank Transfer Pumps
+		if (systems.FUEL.PumpCmd.transAuxUpperL.getBoolValue()) {
+			if (systems.FUEL.Lights.transAuxUpperLPsiLow.getBoolValue()) {
+				me["TankAuxUpperL_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxUpperL_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxUpperL_p"].show();
+			} else {
+				me["TankAuxUpperL_circle"].setColor(0, 1, 0);
+				me["TankAuxUpperL_imp"].setColor(0, 1, 0);
+				me["TankAuxUpperL_p"].hide();
+			}
+			
+			me["TankAuxUpperL_imp"].show();
+		} else {
+			me["TankAuxUpperL_circle"].setColor(1, 1, 1);
+			me["TankAuxUpperL_imp"].hide();
+			me["TankAuxUpperL_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.transAuxUpperR.getBoolValue()) {
+			if (systems.FUEL.Lights.transAuxUpperRPsiLow.getBoolValue()) {
+				me["TankAuxUpperR_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxUpperR_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxUpperR_p"].show();
+			} else {
+				me["TankAuxUpperR_circle"].setColor(0, 1, 0);
+				me["TankAuxUpperR_imp"].setColor(0, 1, 0);
+				me["TankAuxUpperR_p"].hide();
+			}
+			
+			me["TankAuxUpperR_imp"].show();
+		} else {
+			me["TankAuxUpperR_circle"].setColor(1, 1, 1);
+			me["TankAuxUpperR_imp"].hide();
+			me["TankAuxUpperR_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.transAuxLowerL.getBoolValue()) {
+			if (systems.FUEL.Lights.transAuxLowerLPsiLow.getBoolValue()) {
+				me["TankAuxLowerL_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxLowerL_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxLowerL_p"].show();
+			} else {
+				me["TankAuxLowerL_circle"].setColor(0, 1, 0);
+				me["TankAuxLowerL_imp"].setColor(0, 1, 0);
+				me["TankAuxLowerL_p"].hide();
+			}
+			
+			me["TankAuxLowerL_imp"].show();
+		} else {
+			me["TankAuxLowerL_circle"].setColor(1, 1, 1);
+			me["TankAuxLowerL_imp"].hide();
+			me["TankAuxLowerL_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.transAuxLowerR.getBoolValue()) {
+			if (systems.FUEL.Lights.transAuxLowerRPsiLow.getBoolValue()) {
+				me["TankAuxLowerR_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxLowerR_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankAuxLowerR_p"].show();
+			} else {
+				me["TankAuxLowerR_circle"].setColor(0, 1, 0);
+				me["TankAuxLowerR_imp"].setColor(0, 1, 0);
+				me["TankAuxLowerR_p"].hide();
+			}
+			
+			me["TankAuxLowerR_imp"].show();
+		} else {
+			me["TankAuxLowerR_circle"].setColor(1, 1, 1);
+			me["TankAuxLowerR_imp"].hide();
+			me["TankAuxLowerR_p"].hide();
+		}
+		
+		# Tail Tank Transfer Pumps
+		if (systems.FUEL.PumpCmd.transTailL.getBoolValue()) {
+			if (systems.FUEL.Lights.transTailLPsiLow.getBoolValue()) {
+				me["TankTailL_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankTailL_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankTailL_p"].show();
+			} else {
+				me["TankTailL_circle"].setColor(0, 1, 0);
+				me["TankTailL_imp"].setColor(0, 1, 0);
+				me["TankTailL_p"].hide();
+			}
+			
+			me["TankTailL_imp"].show();
+		} else {
+			me["TankTailL_circle"].setColor(1, 1, 1);
+			me["TankTailL_imp"].hide();
+			me["TankTailL_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.transTailR.getBoolValue()) {
+			if (systems.FUEL.Lights.transTailRPsiLow.getBoolValue()) {
+				me["TankTailR_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankTailR_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankTailR_p"].show();
+			} else {
+				me["TankTailR_circle"].setColor(0, 1, 0);
+				me["TankTailR_imp"].setColor(0, 1, 0);
+				me["TankTailR_p"].hide();
+			}
+			
+			me["TankTailR_imp"].show();
+		} else {
+			me["TankTailR_circle"].setColor(1, 1, 1);
+			me["TankTailR_imp"].hide();
+			me["TankTailR_p"].hide();
+		}
+		
+		if (systems.FUEL.PumpCmd.altPump.getBoolValue()) {
+			if (systems.FUEL.Lights.altPumpPsiLow.getBoolValue()) {
+				me["TankTailEng2_circle"].setColor(0.9412, 0.7255, 0);
+				me["TankTailEng2_imp"].setColor(0.9412, 0.7255, 0);
+				me["TankTailEng2_p"].show();
+			} else {
+				me["TankTailEng2_circle"].setColor(0, 1, 0);
+				me["TankTailEng2_imp"].setColor(0, 1, 0);
+				me["TankTailEng2_p"].hide();
+			}
+			
+			me["TankTailEng2_imp"].show();
+		} else {
+			me["TankTailEng2_circle"].setColor(1, 1, 1);
+			me["TankTailEng2_imp"].hide();
+			me["TankTailEng2_p"].hide();
 		}
 	},
 };

@@ -489,6 +489,103 @@
 	
 	<channel name="Main Fuel Logic" execrate="8">
 		
+		<!-- Pressure Level -->
+		<fcs_function name="/systems/fuel/tank-pump-pressure[0]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[0]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[1]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[1]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[2]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[2]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[3]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[3]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[4]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[4]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[5]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[5]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[6]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[6]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-pump-pressure[7]">
+			<function>
+				<table>
+					<independentVar lookup="row">propulsion/tank[7]/contents-lbs</independentVar>
+					<tableData>
+						 10   0
+						130  20
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<!-- Tank Pumps -->
 		<switch name="/systems/fuel/aft-pump-1-cmd">
 			<default value="0"/>
@@ -508,7 +605,7 @@
 		
 		<pure_gain name="/systems/fuel/aft-pump-1-psi-cmd">
 			<input>/systems/fuel/aft-pump-1</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[1]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/aft-pump-1-psi">
@@ -540,7 +637,7 @@
 		
 		<pure_gain name="/systems/fuel/fwd-pump-1-psi-cmd">
 			<input>/systems/fuel/fwd-pump-1</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[1]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/fwd-pump-1-psi">
@@ -572,7 +669,7 @@
 		
 		<pure_gain name="/systems/fuel/aft-pump-2l-psi-cmd">
 			<input>/systems/fuel/aft-pump-2l</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[2]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/aft-pump-2l-psi">
@@ -603,7 +700,7 @@
 		
 		<pure_gain name="/systems/fuel/aft-pump-2r-psi-cmd">
 			<input>/systems/fuel/aft-pump-2r</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[2]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/aft-pump-2r-psi">
@@ -635,7 +732,7 @@
 		
 		<pure_gain name="/systems/fuel/fwd-pump-2-psi-cmd">
 			<input>/systems/fuel/fwd-pump-2</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[2]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/fwd-pump-2-psi">
@@ -662,7 +759,7 @@
 		
 		<pure_gain name="/systems/fuel/apu-start-pump-psi-cmd">
 			<input>/systems/fuel/apu-start-pump</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[2]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/apu-start-pump-psi">
@@ -689,7 +786,7 @@
 		
 		<pure_gain name="/systems/fuel/alt-pump-psi-cmd">
 			<input>/systems/fuel/alt-pump</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[7]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/alt-pump-psi">
@@ -716,7 +813,7 @@
 		
 		<pure_gain name="/systems/fuel/aft-pump-3-psi-cmd">
 			<input>/systems/fuel/aft-pump-3</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[3]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/aft-pump-3-psi">
@@ -748,7 +845,7 @@
 		
 		<pure_gain name="/systems/fuel/fwd-pump-3-psi-cmd">
 			<input>/systems/fuel/fwd-pump-3</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[3]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/fwd-pump-3-psi">
@@ -792,7 +889,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-1-psi-cmd">
 			<input>/systems/fuel/trans-1</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[1]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-1-psi">
@@ -819,7 +916,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-2-psi-cmd">
 			<input>/systems/fuel/trans-2</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[2]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-2-psi">
@@ -846,7 +943,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-3-psi-cmd">
 			<input>/systems/fuel/trans-3</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[3]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-3-psi">
@@ -873,7 +970,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-aux-upper-l-psi-cmd">
 			<input>/systems/fuel/trans-aux-upper-l</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[5]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-aux-upper-l-psi">
@@ -900,7 +997,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-aux-upper-r-psi-cmd">
 			<input>/systems/fuel/trans-aux-upper-r</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[5]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-aux-upper-r-psi">
@@ -933,7 +1030,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-tail-l-psi-cmd">
 			<input>/systems/fuel/trans-tail-l</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[7]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-tail-l-psi">
@@ -966,7 +1063,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-tail-r-psi-cmd">
 			<input>/systems/fuel/trans-tail-r</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[7]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-tail-r-psi">
@@ -1003,7 +1100,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-aux-lower-l-psi-cmd">
 			<input>/systems/fuel/trans-aux-lower-l</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[6]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-aux-lower-l-psi">
@@ -1040,7 +1137,7 @@
 		
 		<pure_gain name="/systems/fuel/trans-aux-lower-r-psi-cmd">
 			<input>/systems/fuel/trans-aux-lower-r</input>
-			<gain>20</gain>
+			<gain>/systems/fuel/tank-pump-pressure[6]</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/fuel/trans-aux-lower-r-psi">
@@ -1722,17 +1819,15 @@
 		
 		<switch name="/systems/fuel/lights/aft-pump-1-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[1]/contents-lbs le 100
-				/systems/fuel/aft-pump-1-psi lt 5
+			<test value="1">
+				/systems/fuel/aft-pump-1-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/fwd-pump-1-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[1]/contents-lbs le 100
-				/systems/fuel/fwd-pump-1-psi lt 5
+			<test value="1">
+				/systems/fuel/fwd-pump-1-psi lt 15
 			</test>
 		</switch>
 		
@@ -1746,41 +1841,36 @@
 		
 		<switch name="/systems/fuel/lights/trans-1-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[1]/contents-lbs le 100
-				/systems/fuel/trans-1-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-1-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/aft-pump-2l-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
-				/systems/fuel/aft-pump-2l-psi lt 5
+			<test value="1">
+				/systems/fuel/aft-pump-2l-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/aft-pump-2r-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
-				/systems/fuel/aft-pump-2r-psi lt 5
+			<test value="1">
+				/systems/fuel/aft-pump-2r-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/apu-start-pump-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
-				/systems/fuel/apu-start-pump-psi lt 5
+			<test value="1">
+				/systems/fuel/apu-start-pump-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/fwd-pump-2-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
-				/systems/fuel/fwd-pump-2-psi lt 5
+			<test value="1">
+				/systems/fuel/fwd-pump-2-psi lt 15
 			</test>
 		</switch>
 		
@@ -1795,25 +1885,22 @@
 		
 		<switch name="/systems/fuel/lights/trans-2-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[2]/contents-lbs le 100
-				/systems/fuel/trans-2-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-2-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/aft-pump-3-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[3]/contents-lbs le 100
-				/systems/fuel/aft-pump-3-psi lt 5
+			<test value="1">
+				/systems/fuel/aft-pump-3-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/fwd-pump-3-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[3]/contents-lbs le 100
-				/systems/fuel/fwd-pump-3-psi lt 5
+			<test value="1">
+				/systems/fuel/fwd-pump-3-psi lt 15
 			</test>
 		</switch>
 		
@@ -1827,41 +1914,36 @@
 		
 		<switch name="/systems/fuel/lights/trans-3-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[3]/contents-lbs le 100
-				/systems/fuel/trans-3-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-3-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/trans-aux-upper-l-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[5]/contents-lbs le 100
-				/systems/fuel/trans-aux-upper-l-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-aux-upper-l-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/trans-aux-upper-r-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[5]/contents-lbs le 100
-				/systems/fuel/trans-aux-upper-r-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-aux-upper-r-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/trans-aux-lower-l-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[6]/contents-lbs le 100
-				/systems/fuel/trans-aux-lower-l-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-aux-lower-l-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/trans-aux-lower-r-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[6]/contents-lbs le 100
-				/systems/fuel/trans-aux-lower-r-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-aux-lower-r-psi lt 15
 			</test>
 		</switch>
 		
@@ -1883,17 +1965,15 @@
 		
 		<switch name="/systems/fuel/lights/trans-tail-l-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[7]/contents-lbs le 100
-				/systems/fuel/trans-tail-l-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-tail-l-psi lt 15
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/trans-tail-r-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[7]/contents-lbs le 100
-				/systems/fuel/trans-tail-r-psi lt 5
+			<test value="1">
+				/systems/fuel/trans-tail-r-psi lt 15
 			</test>
 		</switch>
 		
@@ -1907,9 +1987,8 @@
 		
 		<switch name="/systems/fuel/lights/alt-pump-psi-low">
 			<default value="0"/>
-			<test logic="OR" value="1">
-				propulsion/tank[7]/contents-lbs le 100
-				/systems/fuel/alt-pump-psi lt 5
+			<test value="1">
+				/systems/fuel/alt-pump-psi lt 15
 			</test>
 		</switch>
 		
