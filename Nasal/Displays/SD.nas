@@ -69,6 +69,7 @@ var Value = {
 		qtyLow: [0, 0, 0],
 		rmp13Valve: 0,
 		rmp23Valve: 0,
+		rPumpCmd: [0, 0, 0],
 		Schematic: {
 			auxLine: 0,
 			aux1Line: 0,
@@ -1788,7 +1789,8 @@ var CanvasFuel = {
 		me["TankTail_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[5] * -(38 / 13130), -38, 0));
 		me["TankTail_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[5], 50)));
 		
-		# 
+		# Fuel Pumps
+		
 	},
 };
 
@@ -1974,7 +1976,8 @@ var CanvasHyd = {
 			me["Sys1PumpL_p"].hide();
 		}
 		
-		if (systems.HYDRAULICS.PumpCmd.rPump1.getValue() == 1) {
+		Value.Hyd.rPumpCmd[0] = systems.HYDRAULICS.PumpCmd.rPump1.getValue();
+		if (Value.Hyd.rPumpCmd[0] == 1) {
 			if (systems.HYDRAULICS.Lights.rPump1Fault.getBoolValue()) {
 				me["Sys1PumpR_circle"].setColor(0.9412, 0.7255, 0);
 				me["Sys1PumpR_imp"].setColor(0.9412, 0.7255, 0);
@@ -1987,7 +1990,7 @@ var CanvasHyd = {
 			
 			me["Sys1PumpR_auto"].hide();
 			me["Sys1PumpR_imp"].show();
-		} else if (systems.HYDRAULICS.PumpCmd.rPump1.getValue() == -1) {
+		} else if (Value.Hyd.rPumpCmd[0] == -1) {
 			if (systems.HYDRAULICS.Lights.rPump1Fault.getBoolValue()) {
 				me["Sys1PumpR_auto"].hide();
 				me["Sys1PumpR_circle"].setColor(0.9412, 0.7255, 0);
@@ -2026,7 +2029,8 @@ var CanvasHyd = {
 			me["Sys2PumpL_p"].hide();
 		}
 		
-		if (systems.HYDRAULICS.PumpCmd.rPump2.getValue() == 1) {
+		Value.Hyd.rPumpCmd[1] = systems.HYDRAULICS.PumpCmd.rPump2.getValue();
+		if (Value.Hyd.rPumpCmd[1] == 1) {
 			if (systems.HYDRAULICS.Lights.rPump2Fault.getBoolValue()) {
 				me["Sys2PumpR_circle"].setColor(0.9412, 0.7255, 0);
 				me["Sys2PumpR_imp"].setColor(0.9412, 0.7255, 0);
@@ -2039,7 +2043,7 @@ var CanvasHyd = {
 			
 			me["Sys2PumpR_auto"].hide();
 			me["Sys2PumpR_imp"].show();
-		} else if (systems.HYDRAULICS.PumpCmd.rPump2.getValue() == -1) {
+		} else if (Value.Hyd.rPumpCmd[1] == -1) {
 			if (systems.HYDRAULICS.Lights.rPump2Fault.getBoolValue()) {
 				me["Sys2PumpR_auto"].hide();
 				me["Sys2PumpR_circle"].setColor(0.9412, 0.7255, 0);
@@ -2078,7 +2082,8 @@ var CanvasHyd = {
 			me["Sys3PumpL_p"].hide();
 		}
 		
-		if (systems.HYDRAULICS.PumpCmd.rPump3.getValue() == 1) {
+		Value.Hyd.rPumpCmd[2] = systems.HYDRAULICS.PumpCmd.rPump3.getValue();
+		if (Value.Hyd.rPumpCmd[2] == 1) {
 			if (systems.HYDRAULICS.Lights.rPump3Fault.getBoolValue()) {
 				me["Sys3PumpR_circle"].setColor(0.9412, 0.7255, 0);
 				me["Sys3PumpR_imp"].setColor(0.9412, 0.7255, 0);
@@ -2091,7 +2096,7 @@ var CanvasHyd = {
 			
 			me["Sys3PumpR_auto"].hide();
 			me["Sys3PumpR_imp"].show();
-		} else if (systems.HYDRAULICS.PumpCmd.rPump3.getValue() == -1) {
+		} else if (Value.Hyd.rPumpCmd[2] == -1) {
 			if (systems.HYDRAULICS.Lights.rPump3Fault.getBoolValue()) {
 				me["Sys3PumpR_auto"].hide();
 				me["Sys3PumpR_circle"].setColor(0.9412, 0.7255, 0);
