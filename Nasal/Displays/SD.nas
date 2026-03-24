@@ -61,7 +61,7 @@ var Value = {
 		stabRound: 0,
 	},
 	Fuel: {
-		fill: [0, 0, 0, 0],
+		fill: [0, 0, 0, 0, 0],
 		qty: [0, 0, 0, 0, 0, 0],
 	},
 	Hyd: {
@@ -1698,8 +1698,8 @@ var CanvasFuel = {
 		"Tank2Trans_p", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle",
 		"Tank3Trans_imp", "Tank3Trans_p", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_p",
 		"TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankAuxUpperL_circle", "TankAuxUpperL_imp", "TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle",
-		"TankTailEng2_imp", "TankTailEng2_p", "TankTailL_circle", "TankTailL_imp", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed2", "XFeed2_disag",
-		"XFeed3", "XFeed3_disag"];
+		"TankTailEng2_imp", "TankTailEng2_p", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed2",
+		"XFeed2_disag", "XFeed3", "XFeed3_disag"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -2254,6 +2254,20 @@ var CanvasFuel = {
 			me["TankTailEng2_circle"].setColor(1, 1, 1);
 			me["TankTailEng2_imp"].hide();
 			me["TankTailEng2_p"].hide();
+		}
+		
+		# Tail Tank Upper Fill
+		Value.Fuel.fill[4] = systems.FUEL.Lights.fillStatusTail.getValue();
+		if (Value.Fuel.fill[4] > 0) {
+			if (Value.Fuel.fill[4] == 2) {
+				me["TankTailFill"].setColor(0, 1, 0);
+			} else {
+				me["TankTailFill"].setColor(1, 1, 1);
+			}
+			
+			me["TankTailFill"].show();
+		} else {
+			me["TankTailFill"].hide();
 		}
 	},
 };
