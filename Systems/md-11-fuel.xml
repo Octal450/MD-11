@@ -1840,7 +1840,7 @@
 	
 	</channel>
 	
-	<channel name="Overhead Lights">
+	<channel name="Overhead/Synoptic Lights">
 		
 		<switch name="/systems/fuel/lights/select-manual">
 			<default value="0"/>
@@ -2135,6 +2135,22 @@
 			<test logic="AND" value="1">
 				/systems/fuel/afi-valve ne 0
 				/systems/fuel/afi-valve ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/tip-low-1">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				propulsion/tank[0]/contents-lbs lt 6480
+				propulsion/tank[1]/contents-lbs ge 5010
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/tip-low-3">
+			<default value="0"/>
+			<test logic="AND" value="18">
+				propulsion/tank[4]/contents-lbs lt 6480
+				propulsion/tank[3]/contents-lbs ge 5010
 			</test>
 		</switch>
 	

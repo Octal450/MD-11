@@ -1762,8 +1762,8 @@ var CanvasFuel = {
 		"Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_line", "Tank3Trans_p", "Tank3TransFill_line", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp",
 		"TankAuxLowerL_line", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_line", "TankAuxLowerR_p", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankAuxUpperL_circle", "TankAuxUpperL_imp", "TankAuxUpperL_line",
 		"TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_line", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle", "TankTailEng2_imp", "TankTailEng2_line", "TankTailEng2_p",
-		"TankTailEng2_text", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_line", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_line", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1",
-		"XFeed1_disag", "XFeed1_line", "XFeed2", "XFeed2_disag", "XFeed2_line", "XFeed3", "XFeed3_disag", "XFeed3_line"];
+		"TankTailEng2_text", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_line", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_line", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "TipLow1",
+		"TipLow3", "XFeed1", "XFeed1_disag", "XFeed1_line", "XFeed2", "XFeed2_disag", "XFeed2_line", "XFeed3", "XFeed3_disag", "XFeed3_line"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -2176,6 +2176,19 @@ var CanvasFuel = {
 			me["Tank3Fill"].show();
 		} else {
 			me["Tank3Fill"].hide();
+		}
+		
+		# Tip Low Warning
+		if (systems.FUEL.Lights.tipLow1.getBoolValue()) {
+			me["TipLow1"].show();
+		} else {
+			me["TipLow1"].hide();
+		}
+		
+		if (systems.FUEL.Lights.tipLow3.getBoolValue()) {
+			me["TipLow3"].show();
+		} else {
+			me["TipLow3"].hide();
 		}
 		
 		# Aux Tank Transfer Pumps
