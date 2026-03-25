@@ -378,6 +378,19 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/fuel/fsc/afi-cmd">
+			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/fill-tail eq 1
+				propulsion/tank[6]/contents-lbs gt 10
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/fill-tail eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/fsc/alt-pump">
 			<default value="/controls/fuel/alt-pump"/>
 			<test value="0">
@@ -904,6 +917,12 @@
 		
 		<actuator name="/systems/fuel/x-feed-3-valve">
 			<input>/controls/fuel/x-feed-3</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<!-- Auxiliary Fill Isolation Valve -->
+		<actuator name="/systems/fuel/afi-valve">
+			<input>/systems/fuel/fsc/afi-cmd</input>
 			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
 		</actuator>
 		
@@ -1615,6 +1634,7 @@
 			<test logic="AND" value="1">
 				/systems/fuel/trans-1 eq 1
 				/systems/fuel/fsc/fill-tail eq 1
+				/systems/fuel/afi-valve eq 1
 				propulsion/tank[1]/contents-lbs gt 10
 			</test>
 		</switch>
@@ -1632,6 +1652,7 @@
 			<test logic="AND" value="1">
 				/systems/fuel/trans-2 eq 1
 				/systems/fuel/fsc/fill-tail eq 1
+				/systems/fuel/afi-valve eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 			</test>
 		</switch>
@@ -1649,6 +1670,7 @@
 			<test logic="AND" value="1">
 				/systems/fuel/trans-3 eq 1
 				/systems/fuel/fsc/fill-tail eq 1
+				/systems/fuel/afi-valve eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 			</test>
 		</switch>
@@ -1670,6 +1692,7 @@
 					/systems/fuel/trans-aux-upper-r eq 1
 				</test>
 				/systems/fuel/fsc/fill-tail eq 1
+				/systems/fuel/afi-valve eq 1
 				/systems/fuel/cg-control/direction-cmd eq 1
 				propulsion/tank[5]/contents-lbs gt 10
 			</test>
@@ -2104,6 +2127,14 @@
 			<test logic="AND" value="1">
 				/systems/fuel/x-feed-3-valve ne 0
 				/systems/fuel/x-feed-3-valve ne 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/lights/afi-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/afi-valve ne 0
+				/systems/fuel/afi-valve ne 1
 			</test>
 		</switch>
 	

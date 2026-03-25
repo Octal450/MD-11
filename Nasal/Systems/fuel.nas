@@ -2,6 +2,9 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FUEL = {
+	Fsc: {
+		afiCmd: props.globals.getNode("/systems/fuel/fsc/afi-cmd"),
+	},
 	PumpCmd: {
 		aftPump1: props.globals.getNode("/systems/fuel/aft-pump-1-cmd"),
 		aftPump2L: props.globals.getNode("/systems/fuel/aft-pump-2l-cmd"),
@@ -90,6 +93,7 @@ var FUEL = {
 		transTailR: props.globals.getNode("/systems/failures/fuel/trans-tail-r"),
 	},
 	Lights: {
+		afiDisag: props.globals.getNode("/systems/fuel/lights/afi-disag"),
 		aftPump1PsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-1-psi-low"),
 		aftPump2LPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2l-psi-low"),
 		aftPump2RPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2r-psi-low"),
