@@ -4,6 +4,7 @@
 var APU = {
 	autoConnect: 0,
 	autoShutdown: 0,
+	cutoffCmd: props.globals.getNode("/systems/apu/cutoff-cmd"),
 	egt: props.globals.getNode("/engines/engine[3]/egt-actual"),
 	ff: props.globals.getNode("/engines/engine[3]/ff-actual"),
 	n1: props.globals.getNode("/engines/engine[3]/n1-actual"),

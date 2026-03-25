@@ -1374,6 +1374,7 @@
 				/systems/fuel/aft-pump-2l eq 1
 				/systems/fuel/aft-pump-2r eq 1
 				/systems/fuel/fwd-pump-2 eq 1
+				/systems/fuel/apu-start-pump eq 1
 			</test>
 			<test logic="AND" value="1"> <!-- Suction feed, engine above tanks -->
 				/accelerations/pilot-gdamped le 1.5
@@ -1388,16 +1389,6 @@
 			</test>
 			<test logic="AND" value="1"> <!-- Suction feed -->
 				/accelerations/pilot-gdamped ge 0.5
-			</test>
-		</switch>
-		
-		<switch name="/systems/fuel/feed-apu">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/systems/fuel/apu-start-pump eq 1
-				/systems/fuel/aft-pump-2l eq 1
-				/systems/fuel/aft-pump-2r eq 1
-				/systems/fuel/fwd-pump-2 eq 1
 			</test>
 		</switch>
 		
@@ -1544,15 +1535,40 @@
 			</test>
 		</switch>
 		
-		<!-- Tank 2 to APU Pipe -->
+		<!-- Main Tanks to APU Pipe -->
+		<switch name="/systems/fuel/internal/tank-1-inner-apu">
+			<default value="0"/>
+			<test logic="AND" value="4">
+				/systems/fuel/x-feed-2-valve eq 1
+				/systems/fuel/trans-1 eq 1
+				propulsion/tank[1]/contents-lbs gt 10
+				propulsion/tank[11]/contents-lbs lt 4
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/internal/tank-2-apu">
 			<default value="0"/>
 			<test logic="AND" value="4">
-				/systems/fuel/feed-apu eq 1
+				/systems/fuel/feed-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[11]/contents-lbs lt 4
 			</test>
-			<output>propulsion/tank[11]/external-flow-rate-pps</output>
+			<test logic="AND" value="4">
+				/systems/fuel/x-feed-2-valve eq 1
+				/systems/fuel/trans-2 eq 1
+				propulsion/tank[2]/contents-lbs gt 10
+				propulsion/tank[11]/contents-lbs lt 4
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/internal/tank-3-inner-apu">
+			<default value="0"/>
+			<test logic="AND" value="4">
+				/systems/fuel/x-feed-2-valve eq 1
+				/systems/fuel/trans-3 eq 1
+				propulsion/tank[3]/contents-lbs gt 10
+				propulsion/tank[11]/contents-lbs lt 4
+			</test>
 		</switch>
 		
 		<!-- Outer Tanks flow to Inner Tanks -->
@@ -1908,6 +1924,7 @@
 			<input>-/systems/fuel/internal/tank-1-inner-eng-1</input>
 			<input>-/systems/fuel/internal/tank-1-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-1-inner-eng-3</input>
+			<input>-/systems/fuel/internal/tank-1-inner-apu</input>
 			<input>-/systems/fuel/internal/tank-1-inner-outer</input>
 			<input>-/systems/fuel/internal/tank-1-inner-tank-2</input>
 			<input>-/systems/fuel/internal/tank-1-inner-tank-3-inner</input>
@@ -1941,6 +1958,7 @@
 			<input>-/systems/fuel/internal/tank-3-inner-eng-1</input>
 			<input>-/systems/fuel/internal/tank-3-inner-eng-2</input>
 			<input>-/systems/fuel/internal/tank-3-inner-eng-3</input>
+			<input>-/systems/fuel/internal/tank-3-inner-apu</input>
 			<input>-/systems/fuel/internal/tank-3-inner-outer</input>
 			<input>-/systems/fuel/internal/tank-3-inner-tank-1-inner</input>
 			<input>-/systems/fuel/internal/tank-3-inner-tank-2</input>
@@ -2006,6 +2024,13 @@
 			<input>/systems/fuel/internal/tank-2-eng-3</input>
 			<input>/systems/fuel/internal/tank-3-inner-eng-3</input>
 			<output>propulsion/tank[10]/external-flow-rate-pps</output>
+		</summer>
+		
+		<summer name="/systems/fuel/internal/apu-flow-rate">
+			<input>/systems/fuel/internal/tank-1-inner-apu</input>
+			<input>/systems/fuel/internal/tank-2-apu</input>
+			<input>/systems/fuel/internal/tank-3-inner-apu</input>
+			<output>propulsion/tank[11]/external-flow-rate-pps</output>
 		</summer>
 	
 	</channel>
