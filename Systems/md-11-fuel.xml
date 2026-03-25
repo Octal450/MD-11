@@ -344,6 +344,10 @@
 		
 		<switch name="/systems/fuel/fsc/fill-aux-upper">
 			<default value="0"/>
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
+				/systems/fuel/cg-control/direction-cmd eq 1
+			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				propulsion/tank[6]/contents-lbs gt 10

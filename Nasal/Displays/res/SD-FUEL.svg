@@ -56,9 +56,9 @@
      inkscape:window-height="1009"
      id="namedview371"
      showgrid="false"
-     inkscape:zoom="1.8250056"
-     inkscape:cx="692.61277"
-     inkscape:cy="563.76462"
+     inkscape:zoom="0.91250278"
+     inkscape:cx="912.62161"
+     inkscape:cy="1008.7952"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -71,7 +71,21 @@
        id="grid5153" />
   </sodipodi:namedview>
   <path
-     d="m 600,514 0,8 m 0,-56 0,8"
+     sodipodi:nodetypes="ccccccc"
+     inkscape:connector-curvature="0"
+     inkscape:label="#path4703"
+     d="m 545,519.9997 0,-8 m 7,-1.38141 -14,0 m 62,11.38172 -68,0 -16,9.99969"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="TankAuxFill" />
+  <path
+     id="ManifoldAux_conn3"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 598,466 4,0 m -2,2 0,-4"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc"
+     inkscape:label="#path4416" />
+  <path
+     d="m 600,514 0,8 m 0,-52 0,4"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path5043"
      inkscape:connector-curvature="0"
@@ -103,12 +117,6 @@
      d="m 502,724 98,0"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 600,522 0,202"
-     id="path5112"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cc" />
-  <path
      sodipodi:nodetypes="cccc"
      d="m 820,712 0,12 m 0,-60 0,8"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -130,51 +138,66 @@
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 918,372 0,94 -318,0"
-     id="ManifoldAux_line5"
+     d="m 600,522 0,202"
+     id="path5112"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccc"
-     inkscape:label="#path4787" />
+     sodipodi:nodetypes="cc" />
+  <path
+     id="Tank3Trans_line"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 900,372 18,0 m -74,0 16,0"
+     inkscape:label="#path4785" />
   <path
      id="Tank2APU_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 396,372.0005 2,0 m -48,0 6,0"
      inkscape:label="#path4959" />
   <path
-     sodipodi:nodetypes="ccc"
-     inkscape:connector-curvature="0"
-     id="ManifoldAux_line"
-     d="m 282,372 0,94 140,0"
+     id="ManifoldAux_conn"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     inkscape:label="#path4714" />
+     d="m 420,466 4,0 m -2,2 0,-2"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc"
+     inkscape:label="#path4416" />
   <path
-     d="m 422,524 0,16 m 0,-74 0,18"
+     id="Tank1Trans_line"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 264,372 18,0 m -74,0 16,0" />
+  <path
+     d="m 422,524 0,16 m 0,-70 0,14"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="TankAuxUpperL_line"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cccc"
      inkscape:label="#path5018" />
   <path
+     inkscape:label="#path4416"
+     sodipodi:nodetypes="cccc"
+     inkscape:connector-curvature="0"
+     d="m 500,466 4,0 m -2,2 0,-2"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="ManifoldAux_conn2" />
+  <path
      sodipodi:nodetypes="cccc"
      inkscape:connector-curvature="0"
      id="TankAuxUpperR_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 502,524 0,16 m 0,-74 0,18"
+     d="m 502,524 0,16 m 0,-70 0,14"
      inkscape:label="#path5020" />
   <path
-     sodipodi:nodetypes="cc"
-     inkscape:connector-curvature="0"
-     id="ManifoldAux_line2"
-     d="m 422,466 80,0"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     inkscape:label="#path5022" />
-  <path
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 502,466 98,0"
+     d="m 506,466 90,0"
      id="ManifoldAux_line3"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cc"
      inkscape:label="#path5080" />
+  <path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="ManifoldAux_line2"
+     d="m 426,466 72,0"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="#path5022" />
   <path
      id="Tank2AftR_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -231,24 +254,31 @@
      d="m 582,308.0005 18,0 m -74,0 16,0"
      inkscape:label="#path4877" />
   <path
-     sodipodi:nodetypes="cc"
-     inkscape:connector-curvature="0"
-     id="ManifoldAux_line4"
-     d="m 600,308 0,158"
+     id="Tank2Fill"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     inkscape:label="#path4879" />
-  <path
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 600,280 0,28"
-     id="Tank2TransXFeed_line"
+     d="m 545,277.99971 0,-8 m 7,-1.38142 -14,0 m 62,11.38142 -68,0 -16,10"
+     inkscape:label="#path4703"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cc"
-     inkscape:label="#path4881" />
+     sodipodi:nodetypes="ccccccc" />
   <path
      id="XFeed2_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 582,236.0005 18,0 0,43.9995 m -132,-43.9995 74,0"
      inkscape:label="#path4883" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 600,280 0,28"
+     id="Tank2TransFill_line"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc"
+     inkscape:label="#path4881" />
+  <path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="ManifoldAux_line4"
+     d="m 600,308 0,154"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="#path4879" />
   <path
      id="TankTailEng2_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -286,6 +316,13 @@
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#path4775" />
   <path
+     sodipodi:nodetypes="ccccccc"
+     inkscape:connector-curvature="0"
+     inkscape:label="#path4703"
+     d="m 863,298 0,-8 m 7,-1.38141 -14,0 M 918,300 l -68,0 -16,10"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="Tank3Fill" />
+  <path
      id="XFeed3_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 900,256 18,0 0,44 m -132,-44 74,0"
@@ -298,17 +335,19 @@
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#path4777" />
   <path
-     id="Tank3Trans_line"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 900,372 18,0 m -74,0 16,0"
-     inkscape:label="#path4785" />
-  <path
      sodipodi:nodetypes="cc"
      inkscape:connector-curvature="0"
-     id="Tank3TransXFeed_line"
+     id="Tank3TransFill_line"
      d="m 918,300 0,72"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:label="#path4789" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 918,372 0,94 -314,0"
+     id="ManifoldAux_line5"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccc"
+     inkscape:label="#path4787" />
   <path
      id="Tank1Aft_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -327,10 +366,31 @@
      sodipodi:nodetypes="cc"
      inkscape:label="#path4724" />
   <path
+     id="Tank1Fill"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 227,298 0,-8 m 7,-1.38141 -14,0 M 282,300 l -68,0 -16,10"
+     inkscape:label="#path4703"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccc" />
+  <path
      id="XFeed1_line"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 264,256 18,0 0,44 m -132,-44 74,0"
      inkscape:label="#path4712" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 282,300 0,72"
+     id="Tank1TransFill_line"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc"
+     inkscape:label="#path4710" />
+  <path
+     sodipodi:nodetypes="ccc"
+     inkscape:connector-curvature="0"
+     id="ManifoldAux_line"
+     d="m 282,372 0,94 136,0"
+     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:label="#path4714" />
   <path
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 150,210 0,46"
@@ -338,17 +398,6 @@
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cc"
      inkscape:label="#path4730" />
-  <path
-     id="Tank1Trans_line"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 264,372 18,0 m -74,0 16,0" />
-  <path
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 282,300 0,72"
-     id="Tank1TransXFeed_line"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cc"
-     inkscape:label="#path4710" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:32px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1165,13 +1214,6 @@
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ccccsssss"
      inkscape:label="#path4325" />
-  <path
-     id="Tank1Fill"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 227,298 0,-8 m 7,-1.38141 -14,0 M 282,300 l -68,0 -16,10"
-     inkscape:label="#path4703"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccccc" />
   <g
      inkscape:label="#g4294"
      transform="translate(678.192,-137.80814)"
@@ -1284,13 +1326,6 @@
      d="m 884.5001,240.29955 0,31.2 m -9,-31.2 0,31.2 m 22.3089,-15.49973 c 0,9.83537 -7.9731,17.80818 -17.8084,17.80818 -9.8354,0 -17.8086,-7.97281 -17.8086,-17.80818 0,-9.83537 7.9727,-17.80882 17.8081,-17.80882 9.8354,0 17.8089,7.97345 17.8089,17.80882 z"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="XFeed3" />
-  <path
-     sodipodi:nodetypes="ccccccc"
-     inkscape:connector-curvature="0"
-     inkscape:label="#path4703"
-     d="m 863,298 0,-8 m 7,-1.38141 -14,0 M 918,300 l -68,0 -16,10"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="Tank3Fill" />
   <g
      id="g4899"
      transform="translate(360.192,-157.80814)"
@@ -1435,13 +1470,6 @@
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ccccsssss"
      inkscape:label="#path4325" />
-  <path
-     id="Tank2Fill"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 545,277.99971 0,-8 m 7,-1.38142 -14,0 m 62,11.38142 -68,0 -16,10"
-     inkscape:label="#path4703"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccccc" />
   <g
      transform="translate(211.809,10.211378)"
      id="g4961">
@@ -1546,13 +1574,6 @@
        x="537.91144"
        y="517.68408"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36px;font-family:MD11DU;-inkscape-font-specification:MD11DU;text-align:center;text-anchor:middle;fill:#f0b900;fill-opacity:1">P</tspan></text>
-  <path
-     sodipodi:nodetypes="ccccccc"
-     inkscape:connector-curvature="0"
-     inkscape:label="#path4703"
-     d="m 545,519.9997 0,-8 m 7,-1.38141 -14,0 m 62,11.38172 -68,0 -16,9.99969"
-     style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="TankAuxFill" />
   <path
      id="TankTailValve"
      style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

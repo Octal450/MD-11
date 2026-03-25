@@ -42,6 +42,11 @@ var FUEL = {
 		transTailL: props.globals.getNode("/systems/fuel/trans-tail-l-psi"),
 		transTailR: props.globals.getNode("/systems/fuel/trans-tail-r-psi"),
 	},
+	XFeed: {
+		valve1: props.globals.getNode("/systems/fuel/x-feed-1-valve"),
+		valve2: props.globals.getNode("/systems/fuel/x-feed-2-valve"),
+		valve3: props.globals.getNode("/systems/fuel/x-feed-3-valve"),
+	},
 	tankFuelManagement: props.globals.getNode("/systems/fuel/tail-fuel-management"),
 	system: props.globals.getNode("/systems/fuel/system"),
 	Controls: {
