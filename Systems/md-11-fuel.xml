@@ -199,6 +199,7 @@
 			<default value="/controls/fuel/pumps-1"/>
 			<test logic="AND" value="0">
 				/systems/fuel/system eq 1
+				/systems/ignition/starter-1 eq 0
 				/engines/engine[0]/state eq 0
 			</test>
 			<test value="1">
@@ -209,10 +210,19 @@
 		
 		<switch name="/systems/fuel/fsc/pumps-2">
 			<default value="/controls/fuel/pumps-2"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				<test logic="OR">
+					/controls/apu/start eq 1
+					/engines/engine[3]/state ge 1
+				</test>
+				/systems/failures/fuel/apu-start-pump eq 1
+			</test>
 			<test logic="AND" value="0">
 				/systems/fuel/system eq 1
+				/systems/ignition/starter-2 eq 0
 				/engines/engine[1]/state eq 0
-				/engines/engine[3]/n2-actual lt 96
+				/systems/electrical/sources/apu/output-volt lt 112
 			</test>
 			<test value="1">
 				/systems/fuel/system eq 1
@@ -224,6 +234,7 @@
 			<default value="/controls/fuel/pumps-3"/>
 			<test logic="AND" value="0">
 				/systems/fuel/system eq 1
+				/systems/ignition/starter-3 eq 0
 				/engines/engine[2]/state eq 0
 			</test>
 			<test value="1">
@@ -277,7 +288,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/controls/fuel/pumps-2 eq 1
-				<test logic="OR">
+				<test logic="AND">
 					/systems/failures/fuel/aft-pump-2l eq 1
 					/systems/failures/fuel/aft-pump-2r eq 1
 				</test>
@@ -466,15 +477,18 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[0]/state ge 1
 				/systems/fuel/fsc/tank-1-pumps-failed eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[2]/state ge 1
 				/systems/fuel/fsc/tank-3-pumps-failed eq 1
 				/systems/failures/fuel/trans-3 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[1]/state ge 1
 				/systems/fuel/fsc/tank-2-pumps-failed eq 1
 				/systems/failures/fuel/trans-2 eq 1
 			</test>
@@ -501,14 +515,20 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[1]/state ge 1
 				/systems/fuel/fsc/tank-2-pumps-failed eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				<test logic="OR">
-					/systems/fuel/fsc/tank-1-pumps-failed eq 1
-					/systems/fuel/fsc/tank-3-pumps-failed eq 1
-				</test>
+				/systems/fuel/fsc/tank-1-pumps-failed eq 1
+				/engines/engine[0]/state ge 1
+				/systems/failures/fuel/trans-1 eq 1
+				/systems/failures/fuel/trans-3 eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-3-pumps-failed eq 1
+				/engines/engine[2]/state ge 1
 				/systems/failures/fuel/trans-1 eq 1
 				/systems/failures/fuel/trans-3 eq 1
 			</test>
@@ -525,15 +545,18 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[2]/state ge 1
 				/systems/fuel/fsc/tank-3-pumps-failed eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[0]/state ge 1
 				/systems/fuel/fsc/tank-1-pumps-failed eq 1
 				/systems/failures/fuel/trans-1 eq 1
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[1]/state ge 1
 				/systems/fuel/fsc/tank-2-pumps-failed eq 1
 				/systems/failures/fuel/trans-2 eq 1
 			</test>
@@ -596,6 +619,7 @@
 			<default value="/controls/fuel/x-feed-1"/>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[0]/state ge 1
 				/systems/fuel/fsc/tank-1-pumps-failed eq 1
 			</test>
 			<test value="0">
@@ -608,6 +632,7 @@
 			<default value="/controls/fuel/x-feed-2"/>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[1]/state ge 1
 				/systems/fuel/fsc/tank-2-pumps-failed eq 1
 			</test>
 			<test value="0">
@@ -620,12 +645,51 @@
 			<default value="/controls/fuel/x-feed-3"/>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				/engines/engine[2]/state ge 1
 				/systems/fuel/fsc/tank-3-pumps-failed eq 1
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
 			<output>/controls/fuel/x-feed-3</output>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/apu-start-pump-timer-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				<test logic="OR"> <!-- Tank 2 Aft Pumps Power -->
+					/systems/electrical/bus/ac-1 ge 112
+					/systems/electrical/bus/ac-2 ge 112
+				</test>
+				/controls/fuel/pumps-2 eq 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/fuel/fsc/apu-start-pump-timer">
+			<input>/systems/fuel/fsc/apu-start-pump-timer-cmd</input>
+			<rate_limit sense="incr">0.011111</rate_limit> <!-- 90 seconds -->
+			<rate_limit sense="decr">100000</rate_limit> <!-- Instant -->
+		</actuator>
+		
+		<switch name="/systems/fuel/fsc/apu-start-pump-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				<test logic="OR"> <!-- Tank 2 Aft Pumps Power -->
+					/engines/engine[1]/state eq 0
+					<test logic="AND">
+						/systems/electrical/bus/ac-1 lt 112
+						/systems/electrical/bus/ac-2 lt 112
+					</test>
+				</test>
+				<test logic="OR">
+					/controls/apu/start eq 1
+					/engines/engine[3]/state ge 1
+				</test>
+				<test logic="OR">
+					/systems/fuel/fsc/apu-start-pump-timer lt 1
+					/systems/fuel/fsc/tank-2-pumps-failed eq 1
+				</test>
+			</test>
 		</switch>
 	
 	</channel>
@@ -826,6 +890,7 @@
 			<test logic="AND" value="0"> <!-- When in AUTO and engine 2 is off, only left aft pump runs -->
 				/systems/fuel/system eq 1
 				/engines/engine[1]/state eq 0
+				/systems/failures/fuel/aft-pump-2l ne 1
 			</test>
 			<test value="1">
 				/controls/fuel/pumps-2 eq 1
@@ -887,7 +952,7 @@
 		<switch name="/systems/fuel/apu-start-pump-cmd">
 			<default value="0"/>
 			<test value="1">
-				/systems/apu/dc-fuel-pump eq 1
+				/systems/fuel/fsc/apu-start-pump-cmd eq 1
 			</test>
 		</switch>
 		

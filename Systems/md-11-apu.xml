@@ -178,14 +178,6 @@
 			<output>/engines/engine[3]/state</output>
 		</switch>
 		
-		<switch name="/systems/apu/dc-fuel-pump">
-			<default value="0"/>
-			<test logic="OR" value="1">
-				/controls/apu/start eq 1
-				/systems/apu/cutoff eq 0
-			</test>
-		</switch>
-		
 		<switch name="/systems/apu/lights/avail">
 			<default value="0"/>
 			<test value="1">

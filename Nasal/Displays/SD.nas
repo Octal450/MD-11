@@ -2397,7 +2397,7 @@ var CanvasFuel = {
 		
 		Value.Fuel.Schematic.tank2AftLine = Value.Fuel.Schematic.tank2AftLLine or Value.Fuel.Schematic.tank2AftRLine;
 		Value.Fuel.Schematic.tank2AftAPULine2 = Value.Fuel.Schematic.tank2AftLine or Value.Fuel.Schematic.tank2APULine;
-		Value.Fuel.Schematic.tank2AftAPULine = Value.Fuel.Schematic.tank2AftAPULine2; # This will need more logic for APU
+		Value.Fuel.Schematic.tank2AftAPULine = Value.Fuel.Schematic.tank2AftAPULine2 and Value.Fuel.Schematic.tank2AftLine; # This will need more logic for APU
 		
 		Value.Fuel.afiValve = systems.FUEL.Valve.afi.getValue() == 1;
 		Value.Fuel.xFeed1 = systems.FUEL.Valve.xFeed1.getValue() == 1;
