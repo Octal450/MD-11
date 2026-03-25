@@ -94,6 +94,7 @@ var Value = {
 			manifoldAuxLine11: 0,
 			tank1AftLine: 0,
 			tank1FwdLine: 0,
+			tank1TransConn: 0,
 			tank1TransLine: 0,
 			tank1TransFillLine: 0,
 			tank2AftLine: 0,
@@ -103,10 +104,12 @@ var Value = {
 			tank2AftRLine: 0,
 			tank2APULine: 0,
 			tank2FwdLine: 0,
+			tank2TransConn: 0,
 			tank2TransLine: 0,
 			tank2TransFillLine: 0,
 			tank3AftLine: 0,
 			tank3FwdLine: 0,
+			tank3TransConn: 0,
 			tank3TransLine: 0,
 			tank3TransFillLine: 0,
 			tankAuxLowerLLine: 0,
@@ -1755,11 +1758,11 @@ var CanvasFuel = {
 		return ["AFIValve", "AFIValve_disag", "AFIValve_line", "Alert_error", "CG", "CG_error", "Eng1_line", "Eng1_line2", "Eng1Used", "Eng1Used_error", "Eng2_line", "Eng2_line2", "Eng2_line3", "Eng2TankTail_text", "Eng2Used", "Eng2Used_error", "Eng3_line",
 		"Eng3_line2", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "ManifoldAux_conn", "ManifoldAux_conn2", "ManifoldAux_conn3", "ManifoldAux_conn4", "ManifoldAux_line",
 		"ManifoldAux_line2", "ManifoldAux_line3", "ManifoldAux_line4", "ManifoldAux_line5", "ManifoldAux_line6", "ManifoldAux_line7", "ManifoldAux_line8", "ManifoldAux_line9", "ManifoldAux_line10", "ManifoldAux_line11", "Tank1_error", "Tank1_qty",
-		"Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_line", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_line", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_line", "Tank1Trans_p",
+		"Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_line", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_line", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_conn", "Tank1Trans_imp", "Tank1Trans_line", "Tank1Trans_p",
 		"Tank1TransFill_line", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank2Aft_line", "Tank2AftAPU_line", "Tank2AftAPU_line2", "Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_line", "Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_line",
-		"Tank2AftR_p", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_line", "Tank2APU_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_line", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_line", "Tank2Trans_p",
+		"Tank2AftR_p", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_line", "Tank2APU_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_line", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_conn", "Tank2Trans_imp", "Tank2Trans_line", "Tank2Trans_p",
 		"Tank2TransFill_line", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_line", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_line", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box",
-		"Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_line", "Tank3Trans_p", "Tank3TransFill_line", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp",
+		"Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_conn", "Tank3Trans_imp", "Tank3Trans_line", "Tank3Trans_p", "Tank3TransFill_line", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp",
 		"TankAuxLowerL_line", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_line", "TankAuxLowerR_p", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankAuxUpperL_circle", "TankAuxUpperL_imp", "TankAuxUpperL_line",
 		"TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_line", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle", "TankTailEng2_imp", "TankTailEng2_line", "TankTailEng2_p",
 		"TankTailEng2_text", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_line", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_line", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "TipLow1",
@@ -2404,20 +2407,18 @@ var CanvasFuel = {
 		Value.Fuel.Schematic.afiValveLine = Value.Fuel.afiValve and Value.Fuel.fillTail and
 			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
 		
+		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
+		Value.Fuel.Schematic.xFeed2Line = Value.Fuel.xFeed2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
+		Value.Fuel.Schematic.xFeed3Line = Value.Fuel.xFeed3 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
 		
+		Value.Fuel.Schematic.tank1TransFillLine = (Value.Fuel.fill1 == 2 and (Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine)) or
+			(Value.Fuel.Schematic.xFeed1Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
 		
-		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and (Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
-		Value.Fuel.Schematic.xFeed2Line = Value.Fuel.xFeed2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine);
-		Value.Fuel.Schematic.xFeed3Line = Value.Fuel.xFeed3 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine);
+		Value.Fuel.Schematic.tank2TransFillLine = (Value.Fuel.fill2 == 2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine)) or
+			(Value.Fuel.Schematic.xFeed2Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
 		
-		Value.Fuel.Schematic.tank1TransFillLine = (Value.Fuel.fill1 == 2 or Value.Fuel.Schematic.xFeed1Line) and
-			(Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
-		
-		Value.Fuel.Schematic.tank2TransFillLine = (Value.Fuel.fill2 == 2 or Value.Fuel.Schematic.xFeed2Line) and
-			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
-		
-		Value.Fuel.Schematic.tank3TransFillLine = (Value.Fuel.fill3 == 2 or Value.Fuel.Schematic.xFeed3Line) and
-			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
+		Value.Fuel.Schematic.tank3TransFillLine = (Value.Fuel.fill3 == 2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine)) or
+			(Value.Fuel.Schematic.xFeed3Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
 		
 		Value.Fuel.Schematic.manifoldAuxLine = 
 			(Value.Fuel.Schematic.tank1TransLine and (Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.xFeed2 or Value.Fuel.xFeed3)) or
@@ -2462,6 +2463,10 @@ var CanvasFuel = {
 		Value.Fuel.Schematic.manifoldAuxConn2 = (Value.Fuel.Schematic.manifoldAuxLine2 + Value.Fuel.Schematic.manifoldAuxLine3 + Value.Fuel.Schematic.tankAuxUpperRLine) > 1;
 		Value.Fuel.Schematic.manifoldAuxConn3 = (Value.Fuel.Schematic.manifoldAuxLine3 + Value.Fuel.Schematic.manifoldAuxLine4 + Value.Fuel.Schematic.manifoldAuxLine5 + Value.Fuel.Schematic.afiValveLine) > 1;
 		Value.Fuel.Schematic.manifoldAuxConn4 = (Value.Fuel.Schematic.manifoldAuxLine6 + Value.Fuel.Schematic.manifoldAuxLine7 + Value.Fuel.Schematic.manifoldAuxLine9) > 1;
+		
+		Value.Fuel.Schematic.tank1TransConn = (Value.Fuel.Schematic.tank1TransLine + Value.Fuel.Schematic.tank1TransFillLine + Value.Fuel.Schematic.manifoldAuxLine) > 1;
+		Value.Fuel.Schematic.tank2TransConn = (Value.Fuel.Schematic.tank2TransLine + Value.Fuel.Schematic.tank2TransFillLine + Value.Fuel.Schematic.manifoldAuxLine4) > 1;
+		Value.Fuel.Schematic.tank3TransConn = (Value.Fuel.Schematic.tank3TransLine + Value.Fuel.Schematic.tank3TransFillLine + Value.Fuel.Schematic.manifoldAuxLine5) > 1;
 		
 		Value.Fuel.Schematic.eng1Line2 = Value.Fuel.Schematic.tank1AftLine or Value.Fuel.Schematic.tank1FwdLine;
 		Value.Fuel.Schematic.eng1Line = Value.Fuel.Schematic.eng1Line2 or Value.Fuel.Schematic.xFeed1Line;
@@ -2543,6 +2548,11 @@ var CanvasFuel = {
 		} else {
 			me["Tank1TransFill_line"].setColor(1, 1, 1);
 		}
+		if (Value.Fuel.Schematic.tank1TransConn) {
+			me["Tank1Trans_conn"].setColor(0, 1, 0);
+		} else {
+			me["Tank1Trans_conn"].setColor(1, 1, 1);
+		}
 		if (Value.Fuel.Schematic.tank1TransLine) {
 			me["Tank1Trans_line"].setColor(0, 1, 0);
 		} else {
@@ -2584,6 +2594,11 @@ var CanvasFuel = {
 		} else {
 			me["Tank2TransFill_line"].setColor(1, 1, 1);
 		}
+		if (Value.Fuel.Schematic.tank2TransConn) {
+			me["Tank2Trans_conn"].setColor(0, 1, 0);
+		} else {
+			me["Tank2Trans_conn"].setColor(1, 1, 1);
+		}
 		if (Value.Fuel.Schematic.tank2TransLine) {
 			me["Tank2Trans_line"].setColor(0, 1, 0);
 		} else {
@@ -2609,6 +2624,11 @@ var CanvasFuel = {
 			me["Tank3TransFill_line"].setColor(0, 1, 0);
 		} else {
 			me["Tank3TransFill_line"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.tank3TransConn) {
+			me["Tank3Trans_conn"].setColor(0, 1, 0);
+		} else {
+			me["Tank3Trans_conn"].setColor(1, 1, 1);
 		}
 		if (Value.Fuel.Schematic.tank3TransLine) {
 			me["Tank3Trans_line"].setColor(0, 1, 0);

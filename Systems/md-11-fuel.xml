@@ -1277,12 +1277,17 @@
 				propulsion/tank[1]/contents-lbs gt 10
 				propulsion/tank[8]/contents-lbs lt 9
 			</test>
+			<test logic="AND" value="9">
+				/systems/fuel/x-feed-1-valve eq 1
+				/systems/fuel/trans-1 eq 1
+				propulsion/tank[1]/contents-lbs gt 10
+				propulsion/tank[8]/contents-lbs lt 9
+			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/internal/tank-2-eng-1">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-2 eq 1
 				/systems/fuel/x-feed-1-valve eq 1
 				/systems/fuel/trans-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
@@ -1293,7 +1298,6 @@
 		<switch name="/systems/fuel/internal/tank-3-inner-eng-1">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-3-inner eq 1
 				/systems/fuel/x-feed-1-valve eq 1
 				/systems/fuel/trans-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
@@ -1301,11 +1305,10 @@
 			</test>
 		</switch>
 		
-		<!-- Main Tanks to Engine 2 Pipe -->
+		<!-- Main/Tail Tanks to Engine 2 Pipe -->
 		<switch name="/systems/fuel/internal/tank-1-inner-eng-2">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-1-inner eq 1
 				/systems/fuel/x-feed-2-valve eq 1
 				/systems/fuel/trans-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
@@ -1320,12 +1323,17 @@
 				propulsion/tank[2]/contents-lbs gt 10
 				propulsion/tank[9]/contents-lbs lt 9
 			</test>
+			<test logic="AND" value="9">
+				/systems/fuel/x-feed-2-valve eq 1
+				/systems/fuel/trans-2 eq 1
+				propulsion/tank[2]/contents-lbs gt 10
+				propulsion/tank[9]/contents-lbs lt 9
+			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/internal/tank-3-inner-eng-2">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-3-inner eq 1
 				/systems/fuel/x-feed-2-valve eq 1
 				/systems/fuel/trans-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
@@ -1346,7 +1354,6 @@
 		<switch name="/systems/fuel/internal/tank-1-inner-eng-3">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-1-inner eq 1
 				/systems/fuel/x-feed-3-valve eq 1
 				/systems/fuel/trans-1 eq 1
 				propulsion/tank[1]/contents-lbs gt 10
@@ -1357,7 +1364,6 @@
 		<switch name="/systems/fuel/internal/tank-2-eng-3">
 			<default value="0"/>
 			<test logic="AND" value="9">
-				/systems/fuel/feed-2 eq 1
 				/systems/fuel/x-feed-3-valve eq 1
 				/systems/fuel/trans-2 eq 1
 				propulsion/tank[2]/contents-lbs gt 10
@@ -1369,6 +1375,12 @@
 			<default value="0"/>
 			<test logic="AND" value="9">
 				/systems/fuel/feed-3-inner eq 1
+				propulsion/tank[3]/contents-lbs gt 10
+				propulsion/tank[10]/contents-lbs lt 9
+			</test>
+			<test logic="AND" value="9">
+				/systems/fuel/x-feed-3-valve eq 1
+				/systems/fuel/trans-3 eq 1
 				propulsion/tank[3]/contents-lbs gt 10
 				propulsion/tank[10]/contents-lbs lt 9
 			</test>
