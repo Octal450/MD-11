@@ -263,6 +263,10 @@
 				/controls/fuel/pumps-1 eq 1
 				/systems/fuel/fsc/fwd-pumps-cmd eq 1
 			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/pumps-1 eq 1
+				/systems/failures/fuel/aft-pump-1 eq 1
+			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/fsc/tank-2-fwd-pump">
@@ -271,6 +275,13 @@
 				/controls/fuel/pumps-2 eq 1
 				/systems/fuel/fsc/fwd-pumps-cmd eq 1
 			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/pumps-2 eq 1
+				<test logic="OR">
+					/systems/failures/fuel/aft-pump-2l eq 1
+					/systems/failures/fuel/aft-pump-2r eq 1
+				</test>
+			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/fsc/tank-3-fwd-pump">
@@ -278,6 +289,10 @@
 			<test logic="AND" value="1">
 				/controls/fuel/pumps-3 eq 1
 				/systems/fuel/fsc/fwd-pumps-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/controls/fuel/pumps-3 eq 1
+				/systems/failures/fuel/aft-pump-3 eq 1
 			</test>
 		</switch>
 		
@@ -419,10 +434,49 @@
 			<input>/systems/fuel/internal/tank-2-balance-deadzone</input>
 		</summer>
 		
+		<switch name="/systems/fuel/fsc/tank-1-pumps-failed">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/failures/fuel/aft-pump-1 eq 1
+				/systems/failures/fuel/fwd-pump-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/tank-2-pumps-failed">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/failures/fuel/aft-pump-2l eq 1
+				/systems/failures/fuel/aft-pump-2r eq 1
+				/systems/failures/fuel/fwd-pump-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/tank-3-pumps-failed">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/failures/fuel/aft-pump-3 eq 1
+				/systems/failures/fuel/fwd-pump-3 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fuel/fsc/trans-1">
 			<default value="/controls/fuel/trans-1"/>
 			<test value="1">
 				/systems/fuel/cg-control/main-tanks-trans-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-1-pumps-failed eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-3-pumps-failed eq 1
+				/systems/failures/fuel/trans-3 eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-pumps-failed eq 1
+				/systems/failures/fuel/trans-2 eq 1
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
@@ -445,6 +499,19 @@
 				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
 				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-3-level-bias
 			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-pumps-failed eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				<test logic="OR">
+					/systems/fuel/fsc/tank-1-pumps-failed eq 1
+					/systems/fuel/fsc/tank-3-pumps-failed eq 1
+				</test>
+				/systems/failures/fuel/trans-1 eq 1
+				/systems/failures/fuel/trans-3 eq 1
+			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
@@ -455,6 +522,20 @@
 			<default value="/controls/fuel/trans-3"/>
 			<test value="1">
 				/systems/fuel/cg-control/main-tanks-trans-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-3-pumps-failed eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-1-pumps-failed eq 1
+				/systems/failures/fuel/trans-1 eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-pumps-failed eq 1
+				/systems/failures/fuel/trans-2 eq 1
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
@@ -513,6 +594,10 @@
 		
 		<switch name="/systems/fuel/fsc/x-feed-1">
 			<default value="/controls/fuel/x-feed-1"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-1-pumps-failed eq 1
+			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
@@ -521,6 +606,10 @@
 		
 		<switch name="/systems/fuel/fsc/x-feed-2">
 			<default value="/controls/fuel/x-feed-2"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-2-pumps-failed eq 1
+			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
@@ -529,6 +618,10 @@
 		
 		<switch name="/systems/fuel/fsc/x-feed-3">
 			<default value="/controls/fuel/x-feed-3"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/tank-3-pumps-failed eq 1
+			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
 			</test>
