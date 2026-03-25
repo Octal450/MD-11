@@ -61,7 +61,7 @@ var Value = {
 		stabRound: 0,
 	},
 	Fuel: {
-		afi: 0,
+		afiValve: 0,
 		fill1: 0,
 		fill2: 0,
 		fill3: 0,
@@ -2374,12 +2374,12 @@ var CanvasFuel = {
 		Value.Fuel.Schematic.tank2AftAPULine2 = Value.Fuel.Schematic.tank2AftLine or Value.Fuel.Schematic.tank2APULine;
 		Value.Fuel.Schematic.tank2AftAPULine = Value.Fuel.Schematic.tank2AftAPULine2; # This will need more logic for APU
 		
-		Value.Fuel.afi = systems.FUEL.Valve.afi.getValue() == 1;
+		Value.Fuel.afiValve = systems.FUEL.Valve.afi.getValue() == 1;
 		Value.Fuel.xFeed1 = systems.FUEL.Valve.xFeed1.getValue() == 1;
 		Value.Fuel.xFeed2 = systems.FUEL.Valve.xFeed2.getValue() == 1;
 		Value.Fuel.xFeed3 = systems.FUEL.Valve.xFeed3.getValue() == 1;
 		
-		Value.Fuel.Schematic.afiValveLine = Value.Fuel.afi and Value.Fuel.fillTail and
+		Value.Fuel.Schematic.afiValveLine = Value.Fuel.afiValve and Value.Fuel.fillTail and
 			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
 		
 		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and (Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
