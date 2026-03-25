@@ -80,11 +80,18 @@ var Value = {
 			manifoldAuxConn: 0,
 			manifoldAuxConn2: 0,
 			manifoldAuxConn3: 0,
+			manifoldAuxConn4: 0,
 			manifoldAuxLine: 0,
 			manifoldAuxLine2: 0,
 			manifoldAuxLine3: 0,
 			manifoldAuxLine4: 0,
 			manifoldAuxLine5: 0,
+			manifoldAuxLine6: 0,
+			manifoldAuxLine7: 0,
+			manifoldAuxLine8: 0,
+			manifoldAuxLine9: 0,
+			manifoldAuxLine10: 0,
+			manifoldAuxLine11: 0,
 			tank1AftLine: 0,
 			tank1FwdLine: 0,
 			tank1TransLine: 0,
@@ -1747,16 +1754,17 @@ var CanvasFuel = {
 	},
 	getKeys: func() {
 		return ["AFIValve", "AFIValve_disag", "AFIValve_line", "Alert_error", "CG", "CG_error", "Eng1_line", "Eng1_line2", "Eng1Used", "Eng1Used_error", "Eng2_line", "Eng2_line2", "Eng2_line3", "Eng2TankTail_text", "Eng2Used", "Eng2Used_error", "Eng3_line",
-		"Eng3_line2", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "ManifoldAux_conn", "ManifoldAux_conn2", "ManifoldAux_conn3", "ManifoldAux_line", "ManifoldAux_line2",
-		"ManifoldAux_line3", "ManifoldAux_line4", "ManifoldAux_line5", "Tank1_error", "Tank1_qty", "Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_line", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_line", "Tank1Fwd_p",
-		"Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_line", "Tank1Trans_p", "Tank1TransFill_line", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank2Aft_line", "Tank2AftAPU_line", "Tank2AftAPU_line2", "Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_line",
-		"Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_line", "Tank2AftR_p", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_line", "Tank2APU_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_line", "Tank2Fwd_p", "Tank2Trans_circle",
-		"Tank2Trans_imp", "Tank2Trans_line", "Tank2Trans_p", "Tank2TransFill_line", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_line", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_line",
-		"Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box", "Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_line", "Tank3Trans_p", "Tank3TransFill_line", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar",
-		"TankAuxLowerL_circle", "TankAuxLowerL_imp", "TankAuxLowerL_line", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_line", "TankAuxLowerR_p", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankAuxUpperL_circle",
-		"TankAuxUpperL_imp", "TankAuxUpperL_line", "TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_line", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle", "TankTailEng2_imp",
-		"TankTailEng2_line", "TankTailEng2_p", "TankTailEng2_text", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_line", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_line", "TankTailR_p", "TankTailTemp", "TankTailTemp_box",
-		"TankTailTemp_error", "XFeed1", "XFeed1_disag", "XFeed1_line", "XFeed2", "XFeed2_disag", "XFeed2_line", "XFeed3", "XFeed3_disag", "XFeed3_line"];
+		"Eng3_line2", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "ManifoldAux_conn", "ManifoldAux_conn2", "ManifoldAux_conn3", "ManifoldAux_conn4", "ManifoldAux_line",
+		"ManifoldAux_line2", "ManifoldAux_line3", "ManifoldAux_line4", "ManifoldAux_line5", "ManifoldAux_line6", "ManifoldAux_line7", "ManifoldAux_line8", "ManifoldAux_line9", "ManifoldAux_line10", "ManifoldAux_line11", "Tank1_error", "Tank1_qty",
+		"Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_line", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_line", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_imp", "Tank1Trans_line", "Tank1Trans_p",
+		"Tank1TransFill_line", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank2Aft_line", "Tank2AftAPU_line", "Tank2AftAPU_line2", "Tank2AftL_circle", "Tank2AftL_imp", "Tank2AftL_line", "Tank2AftL_p", "Tank2AftR_circle", "Tank2AftR_imp", "Tank2AftR_line",
+		"Tank2AftR_p", "Tank2APU_circle", "Tank2APU_imp", "Tank2APU_line", "Tank2APU_p", "Tank2Fill", "Tank2Fwd_circle", "Tank2Fwd_imp", "Tank2Fwd_line", "Tank2Fwd_p", "Tank2Trans_circle", "Tank2Trans_imp", "Tank2Trans_line", "Tank2Trans_p",
+		"Tank2TransFill_line", "Tank3_error", "Tank3_qty", "Tank3_qty_bar", "Tank3Aft_circle", "Tank3Aft_imp", "Tank3Aft_line", "Tank3Aft_p", "Tank3Fill", "Tank3Fwd_circle", "Tank3Fwd_imp", "Tank3Fwd_line", "Tank3Fwd_p", "Tank3Temp", "Tank3Temp_box",
+		"Tank3Temp_error", "Tank3Trans_circle", "Tank3Trans_imp", "Tank3Trans_line", "Tank3Trans_p", "Tank3TransFill_line", "TankAux_qty", "TankAuxFill", "TankAuxLower_error", "TankAuxLower_qty_bar", "TankAuxLowerL_circle", "TankAuxLowerL_imp",
+		"TankAuxLowerL_line", "TankAuxLowerL_p", "TankAuxLowerR_circle", "TankAuxLowerR_imp", "TankAuxLowerR_line", "TankAuxLowerR_p", "TankAuxUpper_error", "TankAuxUpper_qty_bar", "TankAuxUpperL_circle", "TankAuxUpperL_imp", "TankAuxUpperL_line",
+		"TankAuxUpperL_p", "TankAuxUpperR_circle", "TankAuxUpperR_imp", "TankAuxUpperR_line", "TankAuxUpperR_p", "TankTail_error", "TankTail_qty", "TankTail_qty_bar", "TankTailEng2_circle", "TankTailEng2_imp", "TankTailEng2_line", "TankTailEng2_p",
+		"TankTailEng2_text", "TankTailFill", "TankTailL_circle", "TankTailL_imp", "TankTailL_line", "TankTailL_p", "TankTailR_circle", "TankTailR_imp", "TankTailR_line", "TankTailR_p", "TankTailTemp", "TankTailTemp_box", "TankTailTemp_error", "XFeed1",
+		"XFeed1_disag", "XFeed1_line", "XFeed2", "XFeed2_disag", "XFeed2_line", "XFeed3", "XFeed3_disag", "XFeed3_line"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -2382,6 +2390,8 @@ var CanvasFuel = {
 		Value.Fuel.Schematic.afiValveLine = Value.Fuel.afiValve and Value.Fuel.fillTail and
 			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
 		
+		
+		
 		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and (Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
 		Value.Fuel.Schematic.xFeed2Line = Value.Fuel.xFeed2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine);
 		Value.Fuel.Schematic.xFeed3Line = Value.Fuel.xFeed3 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine);
@@ -2584,30 +2594,15 @@ var CanvasFuel = {
 		} else {
 			me["ManifoldAux_line"].setColor(1, 1, 1);
 		}
-		if (Value.Fuel.Schematic.manifoldAuxConn) {
-			me["ManifoldAux_conn"].setColor(0, 1, 0);
-		} else {
-			me["ManifoldAux_conn"].setColor(1, 1, 1);
-		}
 		if (Value.Fuel.Schematic.manifoldAuxLine2) {
 			me["ManifoldAux_line2"].setColor(0, 1, 0);
 		} else {
 			me["ManifoldAux_line2"].setColor(1, 1, 1);
 		}
-		if (Value.Fuel.Schematic.manifoldAuxConn2) {
-			me["ManifoldAux_conn2"].setColor(0, 1, 0);
-		} else {
-			me["ManifoldAux_conn2"].setColor(1, 1, 1);
-		}
 		if (Value.Fuel.Schematic.manifoldAuxLine3) {
 			me["ManifoldAux_line3"].setColor(0, 1, 0);
 		} else {
 			me["ManifoldAux_line3"].setColor(1, 1, 1);
-		}
-		if (Value.Fuel.Schematic.manifoldAuxConn3) {
-			me["ManifoldAux_conn3"].setColor(0, 1, 0);
-		} else {
-			me["ManifoldAux_conn3"].setColor(1, 1, 1);
 		}
 		if (Value.Fuel.Schematic.manifoldAuxLine4) {
 			me["ManifoldAux_line4"].setColor(0, 1, 0);
@@ -2618,6 +2613,57 @@ var CanvasFuel = {
 			me["ManifoldAux_line5"].setColor(0, 1, 0);
 		} else {
 			me["ManifoldAux_line5"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine6) {
+			me["ManifoldAux_line6"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line6"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine7) {
+			me["ManifoldAux_line7"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line7"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine8) {
+			me["ManifoldAux_line8"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line8"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine9) {
+			me["ManifoldAux_line9"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line9"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine10) {
+			me["ManifoldAux_line10"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line10"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxLine11) {
+			me["ManifoldAux_line11"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_line11"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Fuel.Schematic.manifoldAuxConn) {
+			me["ManifoldAux_conn"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_conn"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxConn2) {
+			me["ManifoldAux_conn2"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_conn2"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxConn3) {
+			me["ManifoldAux_conn3"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_conn3"].setColor(1, 1, 1);
+		}
+		if (Value.Fuel.Schematic.manifoldAuxConn4) {
+			me["ManifoldAux_conn4"].setColor(0, 1, 0);
+		} else {
+			me["ManifoldAux_conn4"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Fuel.Schematic.afiValveLine) {
