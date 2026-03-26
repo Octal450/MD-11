@@ -433,6 +433,43 @@
 				</avg>
 			</function>
 		</fcs_function>
+		
+		<!-- FUEL -->
+		<switch name="/instrumentation/sd/fuel/fu-reset-trim[0]">
+			<default value="/instrumentation/sd/fuel/fu-reset-trim[0]"/>
+			<test value="propulsion/engine[0]/fuel-used-lbs">
+				/controls/engines/fu-reset eq 1
+			</test>
+		</switch>
+		
+		<summer name="/instrumentation/sd/fuel/fu[0]">
+			<input>propulsion/engine[0]/fuel-used-lbs</input>
+			<input>-/instrumentation/sd/fuel/fu-reset-trim[0]</input>
+		</summer>
+		
+		<switch name="/instrumentation/sd/fuel/fu-reset-trim[1]">
+			<default value="/instrumentation/sd/fuel/fu-reset-trim[1]"/>
+			<test value="propulsion/engine[1]/fuel-used-lbs">
+				/controls/engines/fu-reset eq 1
+			</test>
+		</switch>
+		
+		<summer name="/instrumentation/sd/fuel/fu[1]">
+			<input>propulsion/engine[1]/fuel-used-lbs</input>
+			<input>-/instrumentation/sd/fuel/fu-reset-trim[1]</input>
+		</summer>
+		
+		<switch name="/instrumentation/sd/fuel/fu-reset-trim[2]">
+			<default value="/instrumentation/sd/fuel/fu-reset-trim[2]"/>
+			<test value="propulsion/engine[2]/fuel-used-lbs">
+				/controls/engines/fu-reset eq 1
+			</test>
+		</switch>
+		
+		<summer name="/instrumentation/sd/fuel/fu[2]">
+			<input>propulsion/engine[2]/fuel-used-lbs</input>
+			<input>-/instrumentation/sd/fuel/fu-reset-trim[2]</input>
+		</summer>
 	
 	</channel>
 	

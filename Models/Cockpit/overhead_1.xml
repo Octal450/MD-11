@@ -5376,7 +5376,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-1</property>
+						<property>systems/fuel/lights/fill-status-1</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5398,7 +5398,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-1</property>
+						<property>systems/fuel/lights/fill-status-1</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -5486,7 +5486,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-1-low</property>
+						<property>systems/fuel/lights/pumps-1-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5704,7 +5704,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-1-low</property>
+						<property>systems/fuel/lights/trans-1-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5793,7 +5793,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-2</property>
+						<property>systems/fuel/lights/fill-status-2</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -5815,7 +5815,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-2</property>
+						<property>systems/fuel/lights/fill-status-2</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -5903,7 +5903,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-2-low</property>
+						<property>systems/fuel/lights/pumps-2-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6121,7 +6121,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-2-low</property>
+						<property>systems/fuel/lights/trans-2-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6210,7 +6210,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-3</property>
+						<property>systems/fuel/lights/fill-status-3</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6232,7 +6232,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/fill-arm-3</property>
+						<property>systems/fuel/lights/fill-status-3</property>
 						<value>2</value>
 					</equals>
 				</and>
@@ -6320,7 +6320,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-3-low</property>
+						<property>systems/fuel/lights/pumps-3-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6538,7 +6538,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/pumps-trans-3-low</property>
+						<property>systems/fuel/lights/trans-3-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6643,7 +6643,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/trans-aux-l-low</property>
+						<property>systems/fuel/lights/trans-aux-l-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6747,7 +6747,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/trans-aux-r-low</property>
+						<property>systems/fuel/lights/trans-aux-r-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6851,7 +6851,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/tail-low</property>
+						<property>systems/fuel/lights/trans-tail-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -6955,7 +6955,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>systems/fuel/lights/tail-low</property>
+						<property>systems/fuel/lights/tail-alt-psi-low</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -9237,6 +9237,43 @@
 		<type>translate</type>
 		<object-name>AnnunTest</object-name>
 		<property>controls/switches/annun-test</property>
+		<factor>-0.0025</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>FuelUsedReset</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/fu-reset</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/fu-reset</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>FuelUsedReset</object-name>
+		<property>controls/engines/fu-reset</property>
 		<factor>-0.0025</factor>
 		<axis>
 			<x>1</x>

@@ -684,6 +684,7 @@
 				<cutoff type="bool">1</cutoff>
 				<starter type="bool">0</starter>
 			</engine>
+			<fu-reset type="bool">0</fu-reset>
 			<throttle-max type="double">0</throttle-max>
 		</engines>
 		<fadec n="0">
@@ -1815,13 +1816,25 @@
 				<yd-lower-b type="bool">0</yd-lower-b>
 			</fcc>
 			<fuel n="0">
-				<pumps-aux-l type="bool">0</pumps-aux-l>
-				<pumps-aux-r type="bool">0</pumps-aux-r>
-				<pumps-tail type="bool">0</pumps-tail>
-				<pumps-1 type="bool">0</pumps-1>
-				<pumps-2 type="bool">0</pumps-2>
-				<pumps-3 type="bool">0</pumps-3>
+				<aft-pump-1 type="bool">0</aft-pump-1>
+				<aft-pump-2l type="bool">0</aft-pump-2l>
+				<aft-pump-2r type="bool">0</aft-pump-2r>
+				<aft-pump-3 type="bool">0</aft-pump-3>
+				<alt-pump type="bool">0</alt-pump>
+				<apu-start-pump type="bool">0</apu-start-pump>
+				<fwd-pump-1 type="bool">0</fwd-pump-1>
+				<fwd-pump-2 type="bool">0</fwd-pump-2>
+				<fwd-pump-3 type="bool">0</fwd-pump-3>
 				<system type="bool">0</system>
+				<trans-1 type="bool">0</trans-1>
+				<trans-2 type="bool">0</trans-2>
+				<trans-3 type="bool">0</trans-3>
+				<trans-aux-lower-l type="bool">0</trans-aux-lower-l>
+				<trans-aux-lower-r type="bool">0</trans-aux-lower-r>
+				<trans-aux-upper-l type="bool">0</trans-aux-upper-l>
+				<trans-aux-upper-r type="bool">0</trans-aux-upper-r>
+				<trans-tail-l type="bool">0</trans-tail-l>
+				<trans-tail-r type="bool">0</trans-tail-r>
 			</fuel>
 			<gear n="0">
 				<center-actuator type="bool">0</center-actuator>

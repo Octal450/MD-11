@@ -2,6 +2,55 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FUEL = {
+	Fsc: {
+		afiCmd: props.globals.getNode("/systems/fuel/fsc/afi-cmd"),
+	},
+	PumpCmd: {
+		aftPump1: props.globals.getNode("/systems/fuel/aft-pump-1-cmd"),
+		aftPump2L: props.globals.getNode("/systems/fuel/aft-pump-2l-cmd"),
+		aftPump2R: props.globals.getNode("/systems/fuel/aft-pump-2r-cmd"),
+		aftPump3: props.globals.getNode("/systems/fuel/aft-pump-3-cmd"),
+		altPump: props.globals.getNode("/systems/fuel/alt-pump-cmd"),
+		apuStartPump: props.globals.getNode("/systems/fuel/apu-start-pump-cmd"),
+		fwdPump1: props.globals.getNode("/systems/fuel/fwd-pump-1-cmd"),
+		fwdPump2: props.globals.getNode("/systems/fuel/fwd-pump-2-cmd"),
+		fwdPump3: props.globals.getNode("/systems/fuel/fwd-pump-3-cmd"),
+		trans1: props.globals.getNode("/systems/fuel/trans-1-cmd"),
+		trans2: props.globals.getNode("/systems/fuel/trans-2-cmd"),
+		trans3: props.globals.getNode("/systems/fuel/trans-3-cmd"),
+		transAuxLowerL: props.globals.getNode("/systems/fuel/trans-aux-lower-l-cmd"),
+		transAuxLowerR: props.globals.getNode("/systems/fuel/trans-aux-lower-r-cmd"),
+		transAuxUpperL: props.globals.getNode("/systems/fuel/trans-aux-upper-l-cmd"),
+		transAuxUpperR: props.globals.getNode("/systems/fuel/trans-aux-upper-r-cmd"),
+		transTailL: props.globals.getNode("/systems/fuel/trans-tail-l-cmd"),
+		transTailR: props.globals.getNode("/systems/fuel/trans-tail-r-cmd"),
+	},
+	PumpPsi: {
+		aftPump1: props.globals.getNode("/systems/fuel/aft-pump-1-psi"),
+		aftPump2L: props.globals.getNode("/systems/fuel/aft-pump-2l-psi"),
+		aftPump2R: props.globals.getNode("/systems/fuel/aft-pump-2r-psi"),
+		aftPump3: props.globals.getNode("/systems/fuel/aft-pump-3-psi"),
+		altPump: props.globals.getNode("/systems/fuel/alt-pump-psi"),
+		apuStartPump: props.globals.getNode("/systems/fuel/apu-start-pump-psi"),
+		fwdPump1: props.globals.getNode("/systems/fuel/fwd-pump-1-psi"),
+		fwdPump2: props.globals.getNode("/systems/fuel/fwd-pump-2-psi"),
+		fwdPump3: props.globals.getNode("/systems/fuel/fwd-pump-3-psi"),
+		trans1: props.globals.getNode("/systems/fuel/trans-1-psi"),
+		trans2: props.globals.getNode("/systems/fuel/trans-2-psi"),
+		trans3: props.globals.getNode("/systems/fuel/trans-3-psi"),
+		transAuxLowerL: props.globals.getNode("/systems/fuel/trans-aux-lower-l-psi"),
+		transAuxLowerR: props.globals.getNode("/systems/fuel/trans-aux-lower-r-psi"),
+		transAuxUpperL: props.globals.getNode("/systems/fuel/trans-aux-upper-l-psi"),
+		transAuxUpperR: props.globals.getNode("/systems/fuel/trans-aux-upper-r-psi"),
+		transTailL: props.globals.getNode("/systems/fuel/trans-tail-l-psi"),
+		transTailR: props.globals.getNode("/systems/fuel/trans-tail-r-psi"),
+	},
+	Valve: {
+		afi: props.globals.getNode("/systems/fuel/afi-valve"),
+		xFeed1: props.globals.getNode("/systems/fuel/x-feed-1-valve"),
+		xFeed2: props.globals.getNode("/systems/fuel/x-feed-2-valve"),
+		xFeed3: props.globals.getNode("/systems/fuel/x-feed-3-valve"),
+	},
 	tankFuelManagement: props.globals.getNode("/systems/fuel/tail-fuel-management"),
 	system: props.globals.getNode("/systems/fuel/system"),
 	Controls: {
@@ -24,17 +73,58 @@ var FUEL = {
 		xFeed3: props.globals.getNode("/controls/fuel/x-feed-3"),
 	},
 	Failures: {
-		pumpsAuxL: props.globals.getNode("/systems/failures/fuel/pumps-aux-l"),
-		pumpsAuxR: props.globals.getNode("/systems/failures/fuel/pumps-aux-r"),
-		pumpsTail: props.globals.getNode("/systems/failures/fuel/pumps-tail"),
-		pumps1: props.globals.getNode("/systems/failures/fuel/pumps-1"),
-		pumps2: props.globals.getNode("/systems/failures/fuel/pumps-2"),
-		pumps3: props.globals.getNode("/systems/failures/fuel/pumps-3"),
+		aftPump1: props.globals.getNode("/systems/failures/fuel/aft-pump-1"),
+		aftPump2L: props.globals.getNode("/systems/failures/fuel/aft-pump-2l"),
+		aftPump2R: props.globals.getNode("/systems/failures/fuel/aft-pump-2r"),
+		aftPump3: props.globals.getNode("/systems/failures/fuel/aft-pump-3"),
+		altPump: props.globals.getNode("/systems/failures/fuel/alt-pump"),
+		apuStartPump: props.globals.getNode("/systems/failures/fuel/apu-start-pump"),
+		fwdPump1: props.globals.getNode("/systems/failures/fuel/fwd-pump-1"),
+		fwdPump2: props.globals.getNode("/systems/failures/fuel/fwd-pump-2"),
+		fwdPump3: props.globals.getNode("/systems/failures/fuel/fwd-pump-3"),
 		system: props.globals.getNode("/systems/failures/fuel/system"),
+		trans1: props.globals.getNode("/systems/failures/fuel/trans-1"),
+		trans2: props.globals.getNode("/systems/failures/fuel/trans-2"),
+		trans3: props.globals.getNode("/systems/failures/fuel/trans-3"),
+		transAuxLowerL: props.globals.getNode("/systems/failures/fuel/trans-aux-lower-l"),
+		transAuxLowerR: props.globals.getNode("/systems/failures/fuel/trans-aux-lower-r"),
+		transAuxUpperL: props.globals.getNode("/systems/failures/fuel/trans-aux-upper-l"),
+		transAuxUpperR: props.globals.getNode("/systems/failures/fuel/trans-aux-upper-r"),
+		transTailL: props.globals.getNode("/systems/failures/fuel/trans-tail-l"),
+		transTailR: props.globals.getNode("/systems/failures/fuel/trans-tail-r"),
 	},
 	Lights: {
+		afiDisag: props.globals.getNode("/systems/fuel/lights/afi-disag"),
+		aftPump1PsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-1-psi-low"),
+		aftPump2LPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2l-psi-low"),
+		aftPump2RPsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-2r-psi-low"),
+		aftPump3PsiLow: props.globals.getNode("/systems/fuel/lights/aft-pump-3-psi-low"),
+		altPumpPsiLow: props.globals.getNode("/systems/fuel/lights/alt-pump-psi-low"),
+		apuStartPumpPsiLow: props.globals.getNode("/systems/fuel/lights/apu-start-pump-psi-low"),
+		fillStatus1: props.globals.getNode("/systems/fuel/lights/fill-status-1"),
+		fillStatus2: props.globals.getNode("/systems/fuel/lights/fill-status-2"),
+		fillStatus3: props.globals.getNode("/systems/fuel/lights/fill-status-3"),
+		fillStatusAuxUpper: props.globals.getNode("/systems/fuel/lights/fill-status-aux-upper"),
+		fillStatusTail: props.globals.getNode("/systems/fuel/lights/fill-status-tail"),
+		fwdPump1PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-1-psi-low"),
+		fwdPump2PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-2-psi-low"),
+		fwdPump3PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-3-psi-low"),
 		manualFlash: props.globals.initNode("/systems/fuel/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
+		tipLow1: props.globals.getNode("/systems/fuel/lights/tip-low-1"),
+		tipLow3: props.globals.getNode("/systems/fuel/lights/tip-low-3"),
+		trans1PsiLow: props.globals.getNode("/systems/fuel/lights/trans-1-psi-low"),
+		trans2PsiLow: props.globals.getNode("/systems/fuel/lights/trans-2-psi-low"),
+		trans3PsiLow: props.globals.getNode("/systems/fuel/lights/trans-3-psi-low"),
+		transAuxLowerLPsiLow: props.globals.getNode("/systems/fuel/lights/trans-aux-lower-l-psi-low"),
+		transAuxLowerRPsiLow: props.globals.getNode("/systems/fuel/lights/trans-aux-lower-r-psi-low"),
+		transAuxUpperLPsiLow: props.globals.getNode("/systems/fuel/lights/trans-aux-upper-l-psi-low"),
+		transAuxUpperRPsiLow: props.globals.getNode("/systems/fuel/lights/trans-aux-upper-r-psi-low"),
+		transTailLPsiLow: props.globals.getNode("/systems/fuel/lights/trans-tail-l-psi-low"),
+		transTailRPsiLow: props.globals.getNode("/systems/fuel/lights/trans-tail-r-psi-low"),
+		xFeed1Disag: props.globals.getNode("/systems/fuel/lights/x-feed-1-disag"),
+		xFeed2Disag: props.globals.getNode("/systems/fuel/lights/x-feed-2-disag"),
+		xFeed3Disag: props.globals.getNode("/systems/fuel/lights/x-feed-3-disag"),
 	},
 	init: func() {
 		me.resetFailures();
@@ -59,13 +149,25 @@ var FUEL = {
 		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
-		me.Failures.pumpsAuxL.setBoolValue(0);
-		me.Failures.pumpsAuxR.setBoolValue(0);
-		me.Failures.pumpsTail.setBoolValue(0);
-		me.Failures.pumps1.setBoolValue(0);
-		me.Failures.pumps2.setBoolValue(0);
-		me.Failures.pumps3.setBoolValue(0);
+		me.Failures.aftPump1.setBoolValue(0);
+		me.Failures.aftPump2L.setBoolValue(0);
+		me.Failures.aftPump2R.setBoolValue(0);
+		me.Failures.aftPump3.setBoolValue(0);
+		me.Failures.altPump.setBoolValue(0);
+		me.Failures.apuStartPump.setBoolValue(0);
+		me.Failures.fwdPump1.setBoolValue(0);
+		me.Failures.fwdPump2.setBoolValue(0);
+		me.Failures.fwdPump3.setBoolValue(0);
 		me.Failures.system.setBoolValue(0);
+		me.Failures.trans1.setBoolValue(0);
+		me.Failures.trans2.setBoolValue(0);
+		me.Failures.trans3.setBoolValue(0);
+		me.Failures.transAuxLowerL.setBoolValue(0);
+		me.Failures.transAuxLowerR.setBoolValue(0);
+		me.Failures.transAuxUpperL.setBoolValue(0);
+		me.Failures.transAuxUpperR.setBoolValue(0);
+		me.Failures.transTailL.setBoolValue(0);
+		me.Failures.transTailR.setBoolValue(0);
 	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {

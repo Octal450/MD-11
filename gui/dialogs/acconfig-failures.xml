@@ -55,7 +55,7 @@
 			
 			<group>
 				<layout>hbox</layout>
-
+				
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
@@ -229,7 +229,7 @@
 			
 			<group>
 				<layout>hbox</layout>
-
+				
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
@@ -290,7 +290,7 @@
 			
 			<group>
 				<layout>hbox</layout>
-
+				
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
@@ -474,98 +474,7 @@
 			
 			<group>
 				<layout>hbox</layout>
-
-				<hrule>
-					<stretch>true</stretch>
-				</hrule>
-				<text>
-					<label>Fuel</label>
-				</text>
-				<hrule>
-					<stretch>true</stretch>
-				</hrule>
-			</group>
-			
-			<checkbox>
-				<label>System (FSC)</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/system</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Tank 1 Pumps</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-1</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Tank 2 Pumps</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-2</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Tank 3 Pumps</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-3</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Aux Tank L Trans</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-l</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Aux Tank R Trans</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-aux-r</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<label>Tail Trans and Alt Pumps</label>
-				<halign>left</halign>
-				<property>/systems/failures/fuel/pumps-tail</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<live>true</live>
-			</checkbox>
-		
-		</group>
-		
-		<vrule/>
-		
-		<group>
-			<layout>vbox</layout>
-			
-			<group>
-				<layout>hbox</layout>
-
+				
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
@@ -676,10 +585,221 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
+		
+		</group>
+		
+		<vrule/>
+		
+		<group>
+			<layout>vbox</layout>
 			
 			<group>
 				<layout>hbox</layout>
-
+				
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+				<text>
+					<label>Fuel</label>
+				</text>
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+			</group>
+			
+			<checkbox>
+				<label>System (FSC)</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 1 Aft Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/aft-pump-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 1 Fwd Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/fwd-pump-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 1 Transfer Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-1</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 2 Aft Pump L</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/aft-pump-2l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 2 Aft Pump R</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/aft-pump-2r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 2 Fwd Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/fwd-pump-2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 2 Transfer Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-2</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 2 APU Start Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/apu-start-pump</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 3 Aft Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/aft-pump-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 3 Fwd Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/fwd-pump-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tank 3 Transfer Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-3</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Upper Aux Tank Pump L</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-aux-upper-l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Upper Aux Tank Pump R</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-aux-upper-r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Lower Aux Tank Pump L</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-aux-lower-l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Lower Aux Tank Pump R</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-aux-lower-r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tail Tank Pump L</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-tail-l</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tail Tank Pump R</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/trans-tail-r</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Tail Tank Alt Pump</label>
+				<halign>left</halign>
+				<property>/systems/failures/fuel/alt-pump</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<group>
+				<layout>hbox</layout>
+				
 				<hrule>
 					<stretch>true</stretch>
 				</hrule>
