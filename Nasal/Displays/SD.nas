@@ -2411,49 +2411,58 @@ var CanvasFuel = {
 		Value.Fuel.Schematic.afiValveTailLine = Value.Fuel.afiValve and Value.Fuel.fillTail and
 			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine);
 		
-		Value.Fuel.Schematic.afiValveMainLine = Value.Fuel.afiValve and (Value.Fuel.fill1 == 2 or Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2) and
+		Value.Fuel.Schematic.afiValveMainLine = Value.Fuel.afiValve and (Value.Fuel.fill1 == 2 or Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.xFeed1 or Value.Fuel.xFeed2 or Value.Fuel.xFeed3) and
 			(Value.Fuel.Schematic.tankAuxLowerLLine or Value.Fuel.Schematic.tankAuxLowerRLine or Value.Fuel.Schematic.tankTailLLine or Value.Fuel.Schematic.tankTailRLine);
 		
 		Value.Fuel.Schematic.afiValveLine = Value.Fuel.Schematic.afiValveTailLine or Value.Fuel.Schematic.afiValveMainLine;
 		
-		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
-		Value.Fuel.Schematic.xFeed2Line = Value.Fuel.xFeed2 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
-		Value.Fuel.Schematic.xFeed3Line = Value.Fuel.xFeed3 and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine);
+		Value.Fuel.Schematic.xFeed1Line = Value.Fuel.xFeed1 and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine);
+		
+		Value.Fuel.Schematic.xFeed2Line = Value.Fuel.xFeed2 and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine);
+		
+		Value.Fuel.Schematic.xFeed3Line = Value.Fuel.xFeed3 and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.tank1TransFillLine = (Value.Fuel.fill1 == 2 and
 			(Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine)) or
-			(Value.Fuel.Schematic.xFeed1Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
+			(Value.Fuel.Schematic.xFeed1Line and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine));
 		
 		Value.Fuel.Schematic.tank2TransFillLine = (Value.Fuel.fill2 == 2 and
 			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine)) or
-			(Value.Fuel.Schematic.xFeed2Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
+			(Value.Fuel.Schematic.xFeed2Line and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine));
 		
 		Value.Fuel.Schematic.tank3TransFillLine = (Value.Fuel.fill3 == 2 and
-				(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine)) or
-			(Value.Fuel.Schematic.xFeed3Line and (Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine));
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine)) or
+			(Value.Fuel.Schematic.xFeed3Line and
+			(Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.afiValveMainLine));
 		
 		Value.Fuel.Schematic.manifoldAuxLine = (Value.Fuel.Schematic.tank1TransLine and (Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.xFeed2 or Value.Fuel.xFeed3)) or
 			((Value.Fuel.fill1 == 2 or Value.Fuel.xFeed1) and (Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine)) or
-			(Value.Fuel.Schematic.tank1TransLine and Value.Fuel.Schematic.afiValveTailLine) or (Value.Fuel.fill1 == 2 and Value.Fuel.Schematic.afiValveMainLine);
+			(Value.Fuel.Schematic.tank1TransLine and Value.Fuel.Schematic.afiValveTailLine) or ((Value.Fuel.fill1 == 2 or Value.Fuel.Schematic.xFeed1Line) and Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.manifoldAuxLine2 = ((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine) and (Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.xFeed2 or Value.Fuel.xFeed3)) or
 			((Value.Fuel.Schematic.tankAuxUpperRLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine) and (Value.Fuel.fill1 == 2 or Value.Fuel.xFeed1)) or
-			((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine) and Value.Fuel.Schematic.afiValveTailLine) or (Value.Fuel.fill1 == 2 and Value.Fuel.Schematic.afiValveMainLine);
+			((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine) and Value.Fuel.Schematic.afiValveTailLine) or ((Value.Fuel.fill1 == 2 or Value.Fuel.Schematic.xFeed1Line) and Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.manifoldAuxLine3 = ((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine) and
 			(Value.Fuel.fill2 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.xFeed2 or Value.Fuel.xFeed3)) or
 			((Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tank3TransLine) and (Value.Fuel.fill1 == 2 or Value.Fuel.xFeed1)) or
-			((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine) and Value.Fuel.Schematic.afiValveTailLine) or (Value.Fuel.fill1 == 2 and Value.Fuel.Schematic.afiValveMainLine);
+			((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine) and Value.Fuel.Schematic.afiValveTailLine) or
+			((Value.Fuel.fill1 == 2 or Value.Fuel.Schematic.xFeed1Line) and Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.manifoldAuxLine4 = ((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank3TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine) and
 			(Value.Fuel.fill2 == 2 or Value.Fuel.Schematic.xFeed2Line)) or
 			(Value.Fuel.Schematic.tank2TransLine and (Value.Fuel.fill1 == 2 or Value.Fuel.fill3 == 2 or Value.Fuel.Schematic.xFeed1Line or Value.Fuel.Schematic.xFeed3Line or Value.Fuel.Schematic.afiValveTailLine)) or
-			(Value.Fuel.fill2 == 2 and Value.Fuel.Schematic.afiValveMainLine);
+			((Value.Fuel.fill2 == 2 or Value.Fuel.Schematic.xFeed2Line) and Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.manifoldAuxLine5 = ((Value.Fuel.Schematic.tank1TransLine or Value.Fuel.Schematic.tank2TransLine or Value.Fuel.Schematic.tankAuxUpperLLine or Value.Fuel.Schematic.tankAuxUpperRLine) and
 			(Value.Fuel.fill3 == 2 or Value.Fuel.Schematic.xFeed3Line)) or
 			(Value.Fuel.Schematic.tank3TransLine and (Value.Fuel.fill1 == 2 or Value.Fuel.fill2 == 2 or Value.Fuel.Schematic.xFeed1Line or Value.Fuel.Schematic.xFeed2Line or Value.Fuel.Schematic.afiValveTailLine)) or
-			(Value.Fuel.fill3 == 2 and Value.Fuel.Schematic.afiValveMainLine);
+			((Value.Fuel.fill3 == 2 or Value.Fuel.Schematic.xFeed3Line) and Value.Fuel.Schematic.afiValveMainLine);
 		
 		Value.Fuel.Schematic.manifoldAuxLine6 = (Value.Fuel.fillAuxUpper == 2 and (Value.Fuel.Schematic.tankAuxLowerLLine or Value.Fuel.Schematic.tankAuxLowerRLine or Value.Fuel.Schematic.tankTailLLine or Value.Fuel.Schematic.tankTailRLine)) or
 			(Value.Fuel.Schematic.afiValveTailLine and Value.Fuel.fillTail == 2) or Value.Fuel.Schematic.afiValveMainLine;

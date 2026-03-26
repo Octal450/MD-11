@@ -601,6 +601,11 @@
 		
 		<switch name="/systems/fuel/fsc/fill-1">
 			<default value="/controls/fuel/fill-1"/>
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
+				/systems/failures/fuel/aft-pump-1 eq 1
+				/systems/failures/fuel/fwd-pump-1 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/aux-pumps-cmd eq 1
@@ -619,6 +624,12 @@
 		
 		<switch name="/systems/fuel/fsc/fill-2">
 			<default value="/controls/fuel/fill-2"/>
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
+				/systems/failures/fuel/aft-pump-2l eq 1
+				/systems/failures/fuel/aft-pump-2r eq 1
+				/systems/failures/fuel/fwd-pump-2 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/aux-pumps-cmd eq 1
@@ -632,6 +643,11 @@
 		
 		<switch name="/systems/fuel/fsc/fill-3">
 			<default value="/controls/fuel/fill-3"/>
+			<test logic="AND" value="0">
+				/systems/fuel/system eq 1
+				/systems/failures/fuel/aft-pump-3 eq 1
+				/systems/failures/fuel/fwd-pump-3 eq 1
+			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/aux-pumps-cmd eq 1
