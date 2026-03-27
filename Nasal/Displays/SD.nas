@@ -133,6 +133,8 @@ var Value = {
 			xFeed2Line: 0,
 			xFeed3Line: 0,
 		},
+		tank3Temp: 0,
+		tankTailTemp: 0,
 		xFeed1: 0,
 		xFeed2: 0,
 		xFeed3: 0,
@@ -1869,7 +1871,7 @@ var CanvasFuel = {
 		me["Tank1_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[0] * -(56 / 40500), -56, 0));
 		me["Tank1_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[0], 50)));
 		
-		me["Tank2_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[1] * -(76 / 64050), -76, 0));
+		me["Tank2_qty_bar"].setTranslation(0, math.clamp((-(56 / 40500) * math.min(Value.Fuel.qty[1], 40500)) - ((20 / (64050 - 40500)) * math.max(Value.Fuel.qty[1] - 40500, 0)), -76, 0)); # Make it equal to the wing tanks
 		me["Tank2_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[1], 50)));
 		
 		me["Tank3_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[2] * -(56 / 40500), -56, 0));
@@ -2858,6 +2860,35 @@ var CanvasFuel = {
 			me["Tank2APU_line"].hide();
 			me["Tank2APU_imp"].hide();
 			me["Tank2APU_p"].hide();
+		}
+		
+		# Fuel Temperature
+		Value.Fuel.tank3Temp = math.round(systems.FUEL.Temp.tank3.getValue());
+		if (Value.Fuel.tank3Temp < 0) {
+			me["Tank3Temp"].setText(sprintf("%2.0f", Value.Fuel.tank3Temp) ~ "gC");
+			
+			if (Value.Fuel.tank3Temp < -37) { # FMS Freeze + 3
+				me["Tank3Temp_box"].show();
+			} else {
+				me["Tank3Temp_box"].hide();
+			}
+		} else {
+			me["Tank3Temp"].setText("+" ~ sprintf("%2.0f", Value.Fuel.tank3Temp) ~ "gC");
+			me["Tank3Temp_box"].hide();
+		}
+		
+		Value.Fuel.tankTailTemp = math.round(systems.FUEL.Temp.tankTail.getValue());
+		if (Value.Fuel.tankTailTemp < 0) {
+			me["TankTailTemp"].setText(sprintf("%2.0f", Value.Fuel.tankTailTemp) ~ "gC");
+			
+			if (Value.Fuel.tankTailTemp < -37) { # FMS Freeze + 3
+				me["TankTailTemp_box"].show();
+			} else {
+				me["TankTailTemp_box"].hide();
+			}
+		} else {
+			me["TankTailTemp"].setText("+" ~ sprintf("%2.0f", Value.Fuel.tankTailTemp) ~ "gC");
+			me["TankTailTemp_box"].hide();
 		}
 	},
 };
