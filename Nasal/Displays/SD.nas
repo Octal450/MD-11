@@ -176,6 +176,7 @@ var Value = {
 		cg: 0,
 		fuel: 0,
 		gw: 0,
+		oat: 0,
 		tat: 0,
 		wow: 0,
 	},
@@ -2903,7 +2904,7 @@ var CanvasHyd = {
 		"Sys3PumpL_circle", "Sys3PumpL_imp", "Sys3PumpL_line", "Sys3PumpL_p", "Sys3PumpR_auto", "Sys3PumpR_circle", "Sys3PumpR_imp", "Sys3PumpR_line", "Sys3PumpR_p"];
 	},
 	update: func() {
-		Value.Misc.tat = pts.Fdm.JSBSim.Propulsion.tatC.getValue();
+		Value.Misc.oat = pts.Environment.temperatureDegC.getValue();
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
 		Value.Misc.annunTestWow = pts.Controls.Switches.annunTest.getBoolValue() and Value.Misc.wow;
 		
@@ -2966,9 +2967,9 @@ var CanvasHyd = {
 		}
 		
 		# Temp
-		me["Sys1_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
-		me["Sys2_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
-		me["Sys3_temp"].setText(sprintf("%d", math.round(Value.Misc.tat)) ~ "gC");
+		me["Sys1_temp"].setText(sprintf("%d", math.round(Value.Misc.oat)) ~ "gC");
+		me["Sys2_temp"].setText(sprintf("%d", math.round(Value.Misc.oat)) ~ "gC");
+		me["Sys3_temp"].setText(sprintf("%d", math.round(Value.Misc.oat)) ~ "gC");
 		
 		# Qty
 		Value.Hyd.qty[0] = math.round(systems.HYDRAULICS.Qty.sys1.getValue(), 0.1);

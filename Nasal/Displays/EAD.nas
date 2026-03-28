@@ -155,10 +155,12 @@ var CanvasBase = {
 		
 		# TAT Indication
 		Value.tat = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue());
-		if (Value.tat < 0) {
-			me["TAT"].setText(sprintf("%2.0f", Value.tat) ~ "gC");
+		if (Value.tat == 0) {
+			me["TAT"].setText("0gC");
+		} else if (Value.tat < 0) {
+			me["TAT"].setText(sprintf("%d", Value.tat) ~ "gC");
 		} else {
-			me["TAT"].setText("+" ~ sprintf("%2.0f", Value.tat) ~ "gC");
+			me["TAT"].setText("+" ~ sprintf("%d", Value.tat) ~ "gC");
 		}
 		
 		# Reversers

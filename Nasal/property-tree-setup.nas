@@ -59,6 +59,10 @@ var Controls = {
 	},
 };
 
+var Environment = {
+	temperatureDegC: props.globals.getNode("/environment/temperature-degc"),
+};
+
 var Fdm = {
 	JSBSim: {
 		Aero: {
