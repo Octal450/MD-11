@@ -1851,8 +1851,8 @@ var CanvasFuel = {
 		
 		# Fuel Used
 		me["Eng1Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
-		me["Eng2Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
-		me["Eng3Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[0].getValue(), 10)));
+		me["Eng2Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[1].getValue(), 10)));
+		me["Eng3Used"].setText(sprintf("%d", math.round(pts.Instrumentation.Sd.Fuel.fu[2].getValue(), 10)));
 		
 		# Fuel Tank Quantity
 		Value.Fuel.qty[0] = pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[0].getValue() + pts.Fdm.JSBSim.Propulsion.Tank.contentLbs[1].getValue();
