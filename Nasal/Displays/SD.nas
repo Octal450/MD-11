@@ -1264,11 +1264,9 @@ var CanvasEngBase = {
 			me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
 			me["GW"].show();
 			me["GW_thousands"].show();
-			me["GW_units"].show();
 		} else {
 			me["GW"].hide();
 			me["GW_thousands"].hide();
-			me["GW_units"].hide();
 		}
 		
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
@@ -1361,10 +1359,10 @@ var CanvasEngDials = {
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
 		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
-		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3",
-		"OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error",
-		"OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab", "Stab_box",
-		"Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
+		"GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle", "OilPsi3", "OilPsi3_error",
+		"OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline", "OilQty3_error", "OilQty3_needle",
+		"OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab", "Stab_box", "Stab_error", "StabGreen",
+		"StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -1560,7 +1558,7 @@ var CanvasEngTapes = {
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_error", "CabinRate", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CG", "CG_error",
 		"EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands", "GE_group", "GW", "GW_error",
-		"GW_thousands", "GW_units", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2", "OilPsi2_bar", "OilPsi2_error", "OilPsi3",
+		"GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2", "OilPsi2_bar", "OilPsi2_error", "OilPsi3",
 		"OilPsi3_bar", "OilPsi3_error", "OilQty_bars", "OilQty1", "OilQty1_bar", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty2", "OilQty2_bar", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty3", "OilQty3_bar", "OilQty3_box", "OilQty3_cline",
 		"OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box", "OilTemp3_error", "PW_group", "Stab", "Stab_box",
 		"Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
@@ -1842,11 +1840,9 @@ var CanvasFuel = {
 		#	me["GW_thousands"].setText(sprintf("%d", math.floor(Value.Misc.gw / 1000)));
 		#	me["GW"].show();
 		#	me["GW_thousands"].show();
-		#	me["GW_units"].show();
 		#} else {
 		#	me["GW"].hide();
 		#	me["GW_thousands"].hide();
-		#	me["GW_units"].hide();
 		#}
 		
 		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
