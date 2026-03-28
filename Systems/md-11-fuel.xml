@@ -1554,6 +1554,25 @@
 				/systems/fuel/alt-pump eq 1
 			</test>
 		</switch>
+		
+		<!-- Fuel Temperature -->
+		<fcs_function name="/systems/fuel/tank-3-temp">
+			<function>
+				<max>
+					<property>/environment/temperature-degc</property>
+					<value>-33</value>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fuel/tank-tail-temp">
+			<function>
+				<max>
+					<property>/environment/temperature-degc</property>
+					<value>-32</value>
+				</max>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -2646,24 +2665,6 @@
 				propulsion/tank[3]/contents-lbs ge 5010
 			</test>
 		</switch>
-		
-		<fcs_function name="/systems/fuel/tank-3-temp">
-			<function>
-				<max>
-					<property>/environment/temperature-degc</property>
-					<value>-33</value>
-				</max>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fuel/tank-tail-temp">
-			<function>
-				<max>
-					<property>/environment/temperature-degc</property>
-					<value>-32</value>
-				</max>
-			</function>
-		</fcs_function>
 	
 	</channel>
 	
