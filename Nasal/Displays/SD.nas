@@ -1786,8 +1786,6 @@ var CanvasFuel = {
 		me["GW_label"].hide();
 		me["GW_thousands"].hide();
 		me["GW_units"].hide();
-		me["Tank3Temp_box"].hide();
-		me["TankTailTemp_box"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
