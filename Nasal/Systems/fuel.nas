@@ -1,4 +1,4 @@
-# McDonnell Douglas MD-11 Fuel
+# McDonnell Douglas MD-11 Fuel System
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FUEL = {
