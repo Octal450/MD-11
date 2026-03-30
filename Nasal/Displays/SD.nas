@@ -1866,7 +1866,7 @@ var CanvasFuel = {
 		me["Tank1_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[0] * -(56 / 40500), -56, 0));
 		me["Tank1_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[0], 50)));
 		
-		me["Tank2_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[0] * -(76 / 64050), -76, 0));
+		me["Tank2_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[1] * -(76 / 64050), -76, 0));
 		me["Tank2_qty"].setText(sprintf("%d", math.round(Value.Fuel.qty[1], 50)));
 		
 		me["Tank3_qty_bar"].setTranslation(0, math.clamp(Value.Fuel.qty[2] * -(56 / 40500), -56, 0));
