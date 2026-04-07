@@ -209,7 +209,7 @@ var Init = {
 		me.scratchpadState = unit[me.id].scratchpadState();
 		
 		if (k == "l1") {
-			if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2 and pts.Position.wow.getBoolValue()) {
 				if (unit[me.id].stringLengthInRange(1, 10)) {
 					me.Value.coRteInsertStatus = fms.EditFlightData.insertCoRte(me.scratchpad);
 					
